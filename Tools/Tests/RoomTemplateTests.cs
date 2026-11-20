@@ -185,6 +185,15 @@ public static class RoomTemplateTests
                                           + "DankPyon_RusticDresser DankPyon_RoyalDresser DankPyon_CandleStand DankPyon_RusticLamp DankPyon_Candelabra "
                                           + "DankPyon_WallLamp DankPyon_WallTorch");
         From("sarg.alphapropsparks", "VFEPD_AP_LamplightA_Functional VFEPD_AP_LamplightC_Functional");
+        // The gods' shrine rooms (Rimfolk_RoomTemplates_GodRooms.xml): the mods' pieces, each optional, at their sizes as best
+        // known (the player's catalogue keeps none for most of them; in the game the planner leaves out one that doesn't fit).
+        F("AM_Megalith AM_KemeticSlab_Medium VFEPD_Megalith DD_DragonStatueRitual_Large AP_ObeliskFountain", 3, 3);
+        F("AM_Obelisk VFE_Obelisk AM_Urn PrimitiveWell AncientTerminal_Worshipful", 1, 1);
+        From("sarg.alphapropsparks", "AP_ObeliskFountain");
+        From("vanillaexpanded.vfepropsanddecor", "VFEPD_Megalith");
+        From("onyxae.dragonsdescent", "DD_DragonStatueRitual_Large");
+        From("dubwise.dubsbadhygiene", "PrimitiveWell");
+        From("Ludeon.RimWorld.Ideology", "AncientTerminal_Worshipful");
         From("dubwise.dubsbadhygiene", "ToiletStuff ToiletAdvStuff PitLatrine WashBucket ShowerStuff ShowerSimple ShowerAdvStuff BasinStuff BathtubStuff HotTub KitchenSink "
                                        + "ToiletStallDoor DBHSaunaHeaterLog DBHSaunaHeaterElec DBHSaunaSeating WashingMachine PetWaterBowl LitterBox");
     }

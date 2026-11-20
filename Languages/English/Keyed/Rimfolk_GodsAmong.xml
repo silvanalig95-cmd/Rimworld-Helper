@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The gods among the colony's people and the world (Source/ColonyCouncil/Gods/Among/; the content update's integrations,
+    part 2). Messages, letters' added lines and the book's entries in plain words; the council question is in its def. A
+    god is named only by the colony's own name for it, or a people's own as they said it; nothing says what a god wants.
+  -->
+
+  <!-- ===================== A vowed pilgrimage that really walks out (VowPilgrimage.cs) ===================== -->
+  <CC_GA_FellowshipShrine>the pilgrim fellowship's shrine at {TOWN}</CC_GA_FellowshipShrine>
+  <CC_GA_PilgrimFarOut>{PAWN} has set out on the pilgrimage {PAWN_pronoun} vowed to {GOD}, on foot to {PLACE}, and will be away about {DAYS} days.</CC_GA_PilgrimFarOut>
+  <CC_GA_PilgrimThere>{PAWN} has reached {PLACE} and prayed there to {GOD}, as {PAWN_pronoun} vowed.</CC_GA_PilgrimThere>
+  <CC_GA_PilgrimNameHeard>At {PLACE}, {PEOPLE} call this god {NAME}.</CC_GA_PilgrimNameHeard>
+  <CC_GA_PilgrimHome>{PAWN} is home from the pilgrimage to {PLACE} with {THING}, and has a story to tell at supper.</CC_GA_PilgrimHome>
+  <CC_GA_PilgrimHomeNamed>{PAWN} is home from the pilgrimage to {PLACE} with {THING}. {PEOPLE} there call {GOD} {NAME}, and {PAWN} has one of their stories to tell at supper.</CC_GA_PilgrimHomeNamed>
+  <CC_GA_PilgrimHomeNothing>{PAWN} is home from the pilgrimage to {PLACE}, and has a story to tell at supper.</CC_GA_PilgrimHomeNothing>
+  <CC_GA_PilgrimChronicle>{PAWN} walked to {PLACE} to keep a vow to {GOD}, and came home.</CC_GA_PilgrimChronicle>
+  <CC_GodLore_How_Pilgrim>home from a pilgrimage</CC_GodLore_How_Pilgrim>
+
+  <!-- ===================== Murmur and the fishers (MurmurFishers.cs) ===================== -->
+  <CC_GA_Fisher_Book>{PAWN} gave the first fish of the morning, a {FISH}, back to the water, and it splashed as it went in</CC_GA_Fisher_Book>
+  <CC_GA_Fisher_Journal>Gave the first fish of the morning back to the water, for {GOD}. The fishing went well after.</CC_GA_Fisher_Journal>
+
+  <!-- ===================== Ducat and what the colony owes (DucatDebts.cs) ===================== -->
+  <CC_GA_DebtCoin>A gold coin lies on the doorstep outside {PAWN}'s room this morning.</CC_GA_DebtCoin>
+  <CC_GA_DebtCoinGate>A gold coin lies by the colony's gate this morning, where {PAWN} passes.</CC_GA_DebtCoinGate>
+  <CC_GA_Saw_DebtCoin>{WHO} found a gold coin by {PAWN}'s door at {HOME}, the morning after the colony paid what it owed</CC_GA_Saw_DebtCoin>
+  <CC_GA_TraderStays>{TRADER} of {PEOPLE} has decided to stay half a day longer than planned.</CC_GA_TraderStays>
+  <CC_GA_HardBargain>{TRADER} is driving a hard bargain today.</CC_GA_HardBargain>
+  <CC_GA_HardBargainWindow>(drives a hard bargain today)</CC_GA_HardBargainWindow>
+
+  <!-- ===================== The keeper at work (KeeperAtWork.cs): what the book adds, in its keeper's voice ===================== -->
+  <CC_GA_KeeperLooked_Bare>{KEEPER} went to look afterwards.</CC_GA_KeeperLooked_Bare>
+  <CC_GA_KeeperLooked_Plain>{KEEPER} went out to the place afterwards and saw what was left there.</CC_GA_KeeperLooked_Plain>
+  <CC_GA_KeeperLooked_Devout>I, {KEEPER}, went to the place after, and saw with my own eyes what was left there.</CC_GA_KeeperLooked_Devout>
+  <CC_GA_KeeperLooked_Learned>The keeper, {KEEPER}, examined the place afterwards and confirmed what was left there.</CC_GA_KeeperLooked_Learned>
+  <CC_GA_Keeper_Journal>Wrote up {COUNT} new entries in the colony's book of the gods at the {TABLE}.</CC_GA_Keeper_Journal>
+
+  <!-- ===================== The raiders' gods, heard at the wall (RaidersGods.cs) ===================== -->
+  <CC_GA_RaiderOf>a raider of {PEOPLE}</CC_GA_RaiderOf>
+  <CC_GodLore_How_Wall>at our wall</CC_GodLore_How_Wall>
+  <CC_GodLore_How_Cell>in the cells</CC_GodLore_How_Cell>
+  <CC_GodLore_Cried_Bare>{TELLER}, {HOW}: "{WORDS}"</CC_GodLore_Cried_Bare>
+  <CC_GodLore_Cried_Plain>So {TELLER} cried {HOW}: "{WORDS}"</CC_GodLore_Cried_Plain>
+  <CC_GodLore_Cried_Devout>So {TELLER} cried out {HOW}, and I set it down as it was cried: "{WORDS}"</CC_GodLore_Cried_Devout>
+  <CC_GodLore_Cried_Learned>As {TELLER} cried it {HOW}: "{WORDS}"</CC_GodLore_Cried_Learned>
+
+  <!-- ===================== The dead's own god at the grave (GraveGods.cs) ===================== -->
+  <CC_GA_Grave_Belief>{DEAD} rests in {GOD}'s keeping now.</CC_GA_Grave_Belief>
+  <CC_GA_Grave_BeliefUnnamed>{DEAD_nameDef} rests in the keeping of the god {DEAD_pronoun} held.</CC_GA_Grave_BeliefUnnamed>
+  <CC_GA_Grave_Rite>Our dead are given into its keeping when the eulogy is said.</CC_GA_Grave_Rite>
+  <CC_GA_Grave_Letter>Then {PAWN} gave {OTHER_objective} to the god {OTHER_pronoun} held: "{LINE}"</CC_GA_Grave_Letter>
+
+  <!-- ===================== Named seasons taken for a god's doing (SeasonGods.cs) ===================== -->
+  <CC_GA_Season_Belief>{SEASON} was {GOD}'s doing.</CC_GA_Season_Belief>
+  <CC_GA_SeasonDay_Kept>The colony kept a day for {GOD} against {SEASON} coming again.</CC_GA_SeasonDay_Kept>
+  <CC_GA_SeasonDay_Passed>The council let the day against {SEASON} pass, and the words were said for {GOD} by one alone.</CC_GA_SeasonDay_Passed>
+
+  <!-- ===================== Midwinter with Vanilla Christmas Expanded (Midwinter.cs) ===================== -->
+  <CC_GA_Midwinter_TreeLit>{PAWN} switched on the {TREE} for midwinter.</CC_GA_Midwinter_TreeLit>
+  <CC_GA_Midwinter_TreeNoPower>{PAWN} switched on the {TREE} for midwinter, but there is no power to light it.</CC_GA_Midwinter_TreeNoPower>
+  <CC_GA_Midwinter_TreeStood>{PAWN} stood a while at the {TREE} for midwinter.</CC_GA_Midwinter_TreeStood>
+  <CC_GA_Midwinter_Table>{PAWN} set out the {FOOD} from the stores beside the {TABLE} for midwinter.</CC_GA_Midwinter_Table>
+  <CC_GA_Midwinter_Presents>{PAWN} handed round the midwinter presents, one each to {COUNT} of the colony.</CC_GA_Midwinter_Presents>
+  <CC_GA_Midwinter_PresentsJournal>Handed round the midwinter presents, one each to {COUNT} of us.</CC_GA_Midwinter_PresentsJournal>
+  <CC_GA_Midwinter_Snow>{PAWN} made a {WHAT} in the snow for midwinter.</CC_GA_Midwinter_Snow>
+  <CC_GA_Midwinter_Impact>Midwinter with the festive things the colony has: the tree switched on at dusk, the gingerbread and warm drinks set out at supper, the presents handed round after it, a snow sculpture by day.</CC_GA_Midwinter_Impact>
+  <CC_GA_Midwinter_ImpactBrief>the festive tree, the table and the presents</CC_GA_Midwinter_ImpactBrief>
+
+</LanguageData>

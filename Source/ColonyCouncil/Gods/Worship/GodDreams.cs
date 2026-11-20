@@ -81,10 +81,11 @@ namespace ColonyCouncil
         {
             about = null;
             if (g == null || map == null) return null;
-            var def = GodDomainDef.Of(g.domain);
-            if (def?.Animals != null && def.Animals.Count > 0)
+            // The god's own sacred kinds, else its domain's (Gods/SacredKinds.cs).
+            var kinds = SacredKinds.Of(g);
+            if (kinds.Count > 0)
                 foreach (var des in map.designationManager.SpawnedDesignationsOfDef(DesignationDefOf.Hunt))
-                    if (des.target.Thing is Pawn beast && def.Animals.Contains(beast.def))
+                    if (des.target.Thing is Pawn beast && kinds.Contains(beast.def))
                     {
                         about = beast.LabelShort;
                         return "beast";

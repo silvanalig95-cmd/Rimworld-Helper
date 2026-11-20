@@ -75,6 +75,11 @@ namespace ColonyCouncil
         public List<Pawn> petitionMet = new List<Pawn>();
         /// <summary>The day (days passed) a listener last joined it in conversation (A13, ColonyLife/TalkBacking.cs): once a day at most.</summary>
         public int talkBackedDay = -1;
+        /// <summary>
+        /// Read out at a council meeting (Ambitions/MeetingBusiness.cs), on the want that leads its petition: when (-1
+        /// never), the ayes and how many were there.
+        /// </summary>
+        public int heardTick = -1, ayes, present;
         /// <summary>Told already with the rest of its petition (a lapse, a refusal, a promise): not told again on its own (not saved).</summary>
         [Unsaved] public bool toldWithPetition;
         /// <summary>
@@ -167,6 +172,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref petition, "petition", -1);
             Scribe_Collections.Look(ref petitionMet, "petitionMet", LookMode.Reference);
             Scribe_Values.Look(ref talkBackedDay, "talkBackedDay", -1);
+            Scribe_Values.Look(ref heardTick, "heardTick", -1);
+            Scribe_Values.Look(ref ayes, "ayes");
+            Scribe_Values.Look(ref present, "present");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (coSigners == null) coSigners = new List<Pawn>();

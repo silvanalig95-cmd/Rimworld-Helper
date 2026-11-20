@@ -1165,8 +1165,7 @@ namespace ColonyCouncil
             wishes.Remove(w);
         }
 
-        /// <summary>Adds <paramref name="p"/> to the wish's names, as the wish roll does (and the meeting may: A6's seam, ColonyLife/TalkBacking.cs).</summary>
-        internal void CoSign(Wish w, Pawn p)
+        private void CoSign(Wish w, Pawn p)
         {
             // apart: a petition is put to the council; the line is said aloud about the one who asked, not to them.
             if (w.Involves(p)) return;

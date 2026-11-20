@@ -267,6 +267,8 @@ MODEL = {
     # Offices, epithets
     "Offices/Offices.cs:holders": ("defs", ("OfficeDef", 1), D, "one per office"),
     "Offices/Offices.cs:elected": ("defs", ("OfficeDef", 1), 40, "one per office"),
+    # Promises raised at the council halfway through (Offices/SeatHalfway.cs): their history ids, the newest kept.
+    "Offices/Offices.cs:raised": ("fixed", const("Offices/SeatHalfway.cs", "MaxRaised", 12), V, "promises raised halfway, OfficeTracker.MaxRaised at most"),
     # An election on the map (Offices/OfficesElection.cs): only from its letter to the count, a few days a year.
     "Offices/Election.cs:races": ("while", 14, 200, "an election's seats, while it lasts"),
     "Offices/Election.cs:entries": ("while", 14 * 3, 260, "two or three candidates a seat, with their platform, while it lasts"),
@@ -405,6 +407,19 @@ MODEL = {
     # The second seven (Gods/OnMap/OwnSeven.cs): the rooms of old ruins someone of the colony has stood in, a few kept.
     "Gods/OnMap/OwnSeven.cs:ruins": ("fixed", const("Gods/OnMap/OwnSevenMath.cs", "RuinsHeldAtMost", 30), 35,
                                      "rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go"),
+    # Each god's festival kept as its words say (Gods/OnMap/OwnFeasts.cs): the lamps switched on and the doors let shut for
+    # the night of a festival (Pip's, Undertow's), put back at dawn and let go; only while that night lasts.
+    "Gods/OnMap/OwnFeasts.cs:lit": ("while", const("Gods/OnMap/OwnFeastsMath.cs", "LampsMost", 12), P,
+                                    "lamps switched on for a festival's night, OwnFeastsMath.LampsMost at most, let go at dawn"),
+    "Gods/OnMap/OwnFeasts.cs:doors": ("while", const("Gods/OnMap/OwnFeastsMath.cs", "DoorsMost", 8), P,
+                                      "doors let shut for the Shuttered Night, OwnFeastsMath.DoorsMost at most, let go at dawn"),
+    # The gods' beasts (Gods/OnMap/GodBeasts.cs): who greeted which of the colony's beasts of a god's kind ('beast|person',
+    # a few a year, the oldest let go past GodBeastsMath.GreetedMax), and the beasts on the land taken for a god's (a
+    # legendary of PokéWorld now and then, GodBeastsMath.LegendsMax at most).
+    "Gods/OnMap/GodBeasts.cs:greeted": ("cap", (const("Gods/OnMap/GodBeastsMath.cs", "GreetedMax", 160), 0.2), 30,
+                                        "who greeted which of the gods' beasts at home, GodBeastsMath.GreetedMax at most"),
+    "Gods/OnMap/GodBeasts.cs:legends": ("cap", (const("Gods/OnMap/GodBeastsMath.cs", "LegendsMax", 20), 0.03), 200,
+                                        "beasts on the land taken for a god's (legendaries), GodBeastsMath.LegendsMax at most"),
     # The old powers' own strange happenings (OldPowers/OldPowersBook.cs): when each last came (one a happening, fourteen),
     # the short memory of the forms they took, the rooms of the old ruins searched for a scroll; and only while one is
     # under way (one at a time, let go when it ends): the pilgrims walking together and the places of the eyes in the dark.
@@ -1046,6 +1061,12 @@ MODEL = {
     # doings each colonist has seen.
     "Gods/GodLore.cs:entries": ("cap", (const("Gods/GodLoreMath.cs", "MaxEntries", 600), 0.5), 420, "the colony's book: an entry in the keeper's voice, with its date and witnesses, GodLoreMath.MaxEntries kept"),
     "Gods/GodLore.cs:who": ("fixed", 3, 20, "per entry: the colonists who saw it or believe it, by name (counted under entries)"),
+    # The gods among the colony's people and the world (Gods/Among/GodsAmongBook.cs): pilgrims home with a tale owed at
+    # supper (a few days each, GodsAmongBook.MaxTales), the god each of the dead held kept for their eulogy (five days,
+    # GodsAmongBook.MaxDeadHeld), and the named seasons taken for a god's doing (a few a year, GodsAmongMath.MaxSeasons).
+    "Gods/Among/GodsAmongBook.cs:tales": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxTales", 6), 1 / 60), 160, "pilgrims home with a tale owed at supper, six days each, GodsAmongBook.MaxTales"),
+    "Gods/Among/GodsAmongBook.cs:deadHeld": ("cap", (const("Gods/Among/GodsAmongBook.cs", "MaxDeadHeld", 12), 1 / 20), 110, "the god each of the colony's dead held, kept five days for their eulogy, GodsAmongBook.MaxDeadHeld"),
+    "Gods/Among/GodsAmongBook.cs:seasons": ("cap", (const("Gods/Among/GodsAmongMath.cs", "MaxSeasons", 12), 1 / 30), 220, "the named seasons taken for a god's doing, GodsAmongMath.MaxSeasons"),
     "Gods/GodLore.cs:names": ("cap", (const("Gods/GodLoreMath.cs", "MaxNames", 60), 0.05), 200, "the names the colony has heard the gods by, each a page of the book"),
     "Gods/GodLore.cs:told": ("fixed", 60, 40, "how much of each old story the colony has heard, one a story"),
     "Gods/GodLore.cs:lastHand": ("fixed", 14, 40, "each god's last hand remarked on"),

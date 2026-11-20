@@ -96,6 +96,11 @@ namespace ColonyCouncil
         public int awayDays;
         /// <summary>What the worker keeps to know its story by (a camp's or a world event's id).</summary>
         public string key;
+        /// <summary>
+        /// {CALL}: the hard call the weight of office waited for, in words ("the question of the empty field"), noted when it
+        /// came (Offices/SeatCalls.cs); its kind is the story's tag.
+        /// </summary>
+        public string call;
 
         /// <summary>Its def was missing when the game loaded (a mod removed): dropped without a word.</summary>
         [Unsaved] public bool lost;
@@ -164,6 +169,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref quirk, "quirk");
             Scribe_Values.Look(ref awayDays, "awayDays");
             Scribe_Values.Look(ref key, "key");
+            Scribe_Values.Look(ref call, "call");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (heldOr == null) heldOr = new List<float>();

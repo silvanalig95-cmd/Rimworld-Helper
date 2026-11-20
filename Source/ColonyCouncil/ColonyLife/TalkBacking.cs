@@ -13,9 +13,8 @@ namespace ColonyCouncil
     /// uses, its name added, the petition's deadline two days on. A petition grows this way once a day at most
     /// (TalkBackMath.MayGrow); the roll's own co-signing is unchanged.
     /// <para>
-    /// The seam for the meeting's "any other business" (A6, the council's build): <see cref="WouldBack"/> says whether
-    /// someone would want the same thing as an open wish, by the same rule as here and in the roll, and
-    /// <see cref="CoSign"/> adds them to it as the roll does.
+    /// The same rule as the meeting's "any other business" (A6, Ambitions/MeetingBusiness.cs): who would want the same is
+    /// <see cref="WantsSame"/>'s, and joining is the roll's own <see cref="CoSign"/> rule, here with a line each.
     /// </para>
     /// </summary>
     public partial class CouncilGameComponent
@@ -23,17 +22,15 @@ namespace ColonyCouncil
         private static readonly Color SpeechBacking = new Color(1f, 0.92f, 0.6f);
 
         /// <summary>
-        /// Whether <paramref name="p"/> would want what <paramref name="w"/> asks for, and may join it: a wish many back for
-        /// one thing, open, in their own colony, not theirs already, and one the wish's own rule would raise for them now
-        /// (the same subject), with the wish not on cooldown for them.
+        /// Whether <paramref name="p"/> would want what <paramref name="w"/> asks for, and may join it in conversation: a
+        /// wish many back for one thing, open, in their own colony, and one they want the same of (<see cref="WantsSame"/>,
+        /// the meeting's own rule: the wish's own rule would raise it for them now, not on cooldown, not theirs already).
         /// </summary>
         public bool WouldBack(Wish w, Pawn p)
         {
             if (w?.def == null || p == null || w.state != WishState.Open || !w.def.allowPetition || !Settings.petitions) return false;
-            if (w.pawn == null || w.Involves(p) || !CanVoiceWishes(p) || ColonyState.Of(p) != ColonyState.Of(w.pawn)) return false;
-            if (OnCooldown(p, w.def)) return false;
-            string subject = w.subjectKey ?? "";
-            return SafeCandidates(w.def, p).Any(c => c != null && c.weight > 0f && (c.subjectKey ?? "") == subject);
+            if (w.pawn == null || !CanVoiceWishes(p) || ColonyState.Of(p) != ColonyState.Of(w.pawn)) return false;
+            return WantsSame(w, p);
         }
 
         /// <summary>

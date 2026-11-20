@@ -305,6 +305,9 @@ namespace ColonyCouncil
                 }
             }
 
+            // Any other business, once the ambitions are put: the colony's open petitions read out and counted (MeetingBusiness.cs).
+            if (MeetingBusiness.Next(this, here)) return;
+
             // Now and then a confided secret sits too close to the surface (Interplay/).
             if (Interplay.MeetingSecret(this, here)) return;
 

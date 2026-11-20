@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Each god's festival kept as its words say (Source/ColonyCouncil/Gods/OnMap/OwnFeasts.cs; docs/content-update-proposals.md,
+    C1). The messages say plainly what was done and by whom, as it was seen; the book's lines are the gods' own texts, in the
+    old voice. A god is named only as its festival is (the calendar's own name for the day).
+  -->
+
+  <CC_Feast_Where_Tree>under the old {TREE}</CC_Feast_Where_Tree>
+  <CC_Feast_Where_Open>out in the open</CC_Feast_Where_Open>
+  <CC_Feast_Where_Fire>by the {FIRE}</CC_Feast_Where_Fire>
+  <CC_Feast_Where_Table>at the table</CC_Feast_Where_Table>
+
+  <!-- Hollin's Greening -->
+  <CC_Feast_Hollin_Planted>For the Greening, {PLANTERS} of {HOME} set {SAPLINGS} saplings in the ground for the {FELLED} trees felled since the last one.</CC_Feast_Hollin_Planted>
+  <CC_Feast_Hollin_NoGround>For the Greening, {HOME} owed a sapling for each of the {FELLED} trees felled since the last one, but there was no open ground near the cleared land to set them in.</CC_Feast_Hollin_NoGround>
+  <CC_Feast_Hollin_NoneFelled>No tree was felled at {HOME} since the last Greening, so no sapling was owed.</CC_Feast_Hollin_NoneFelled>
+  <CC_Feast_Hollin_Meal>Then {EATERS} of them ate {FOOD} together {WHERE}.</CC_Feast_Hollin_Meal>
+  <CC_Feast_Hollin_MealSome>Then {EATERS} of them sat down together {WHERE}, and {ATE} of them had {FOOD} to eat.</CC_Feast_Hollin_MealSome>
+  <CC_Feast_Hollin_MealNoFood>Then {EATERS} of them sat together {WHERE}, with nothing in the stores to share.</CC_Feast_Hollin_MealNoFood>
+  <CC_Feast_Hollin_Book>{SAPLINGS} saplings were set in the earth for the {FELLED} trees that fell, and the feast eaten beneath the eldest tree, as the Greening asketh.</CC_Feast_Hollin_Book>
+  <CC_Feast_Hollin_BookNone>No tree fell since the last Greening, and so no sapling was owed; the feast was eaten beneath the eldest tree, as the Greening asketh.</CC_Feast_Hollin_BookNone>
+
+  <!-- Smoulder's Deep Silver -->
+  <CC_Feast_Smoulder_Shaft>the deepest shaft</CC_Feast_Smoulder_Shaft>
+  <CC_Feast_Smoulder_Crack>a crack in the rock</CC_Feast_Smoulder_Crack>
+  <CC_Feast_Smoulder_Text>For the Deep Silver, {PAWN} carried {COUNT} silver from the stores at {HOME} and dropped it down {PLACE}, saying the mountain's names over it.</CC_Feast_Smoulder_Text>
+  <CC_Feast_Smoulder_TextNone>For the Deep Silver, {PAWN} went down to {PLACE} at {HOME} with nothing to drop, there being no silver in the stores, and said the mountain's names there all the same.</CC_Feast_Smoulder_TextNone>
+  <CC_Feast_Smoulder_Book>{COUNT} silver was cast down {PLACE} for the Deep Silver, and the mountain praised by every name it hath.</CC_Feast_Smoulder_Book>
+  <CC_Feast_Smoulder_BookNone>No silver was there to cast down {PLACE} for the Deep Silver, and yet the mountain was praised by every name it hath.</CC_Feast_Smoulder_BookNone>
+
+  <!-- Bellwether's Letting Pass -->
+  <CC_Feast_Bellwether_Herd>For the Letting Pass, {HERDER} walked {COUNT} of the colony's animals out to the long grass at the edge of {HOME} and left them to graze it.</CC_Feast_Bellwether_Herd>
+  <CC_Feast_Bellwether_Alone>For the Letting Pass, {HERDER} walked out alone to the long grass at the edge of {HOME}, with no animals free to walk out with.</CC_Feast_Bellwether_Alone>
+  <CC_Feast_Bellwether_Story>At dusk {TELLER} told the old story there to {LISTENERS}.</CC_Feast_Bellwether_Story>
+  <CC_Feast_Bellwether_StoryChildren>At dusk {TELLER} gathered the children there, {LISTENERS}, and told them the old story.</CC_Feast_Bellwether_StoryChildren>
+  <CC_Feast_Bellwether_StoryNobody>At dusk {TELLER} went out to tell the old story there, and nobody came to hear it.</CC_Feast_Bellwether_StoryNobody>
+  <CC_Feast_Bellwether_BookNoStory>For the Letting Pass {COUNT} beasts of the herd were walked out to the long grass and let graze it.</CC_Feast_Bellwether_BookNoStory>
+  <CC_Feast_Bellwether_Book>For the Letting Pass {COUNT} beasts of the herd were walked out to the long grass and let graze it, and the old story was told by {TELLER} at dusk.</CC_Feast_Bellwether_Book>
+
+  <!-- Morel's Turning Under -->
+  <CC_Feast_Morel_Dug>For the Turning Under, {PAWN} carried {COUNT} {SCRAPS} out to the field at {HOME} and dug them under, and {CELLS} squares of the field turned dark and rich.</CC_Feast_Morel_Dug>
+  <CC_Feast_Morel_DugNoRich>For the Turning Under, {PAWN} carried {COUNT} {SCRAPS} out to the field at {HOME} and dug them under.</CC_Feast_Morel_DugNoRich>
+  <CC_Feast_Morel_Turned>For the Turning Under, {PAWN} turned the soil of the field at {HOME} with nothing from the stores to give back to it, and {CELLS} squares of it turned dark and rich.</CC_Feast_Morel_Turned>
+  <CC_Feast_Morel_TurnedNoRich>For the Turning Under, {PAWN} turned the soil of the field at {HOME} with nothing from the stores to give back to it.</CC_Feast_Morel_TurnedNoRich>
+  <CC_Feast_Morel_Stew>{COOK} cooked {MEALS} meals of mushroom stew from the {FUNGUS} in the stores for the feast.</CC_Feast_Morel_Stew>
+  <CC_Feast_Morel_NoStew>No mushroom stew was cooked for the feast this year.</CC_Feast_Morel_NoStew>
+  <CC_Feast_Morel_Book>The year's leavings were given back unto the earth for the Turning Under, and the field made rich thereby, and mushroom stew was eaten at the feast.</CC_Feast_Morel_Book>
+  <CC_Feast_Morel_BookNoStew>The year's leavings were given back unto the earth for the Turning Under, and the field made rich thereby.</CC_Feast_Morel_BookNoStew>
+
+  <!-- Pip's First Spark -->
+  <CC_Feast_Pip_Mended>For the First Spark, {PAWN} mended the {BROKEN} at {HOME}.</CC_Feast_Pip_Mended>
+  <CC_Feast_Pip_NotMended>For the First Spark, {PAWN} set to mending the {BROKEN} at {HOME} but did not finish it.</CC_Feast_Pip_NotMended>
+  <CC_Feast_Pip_NothingBroken>For the First Spark, {PAWN} looked for something broken at {HOME} to mend and found nothing.</CC_Feast_Pip_NothingBroken>
+  <CC_Feast_Pip_Machines>{PAWN} walked round {COUNT} of the machines one by one and looked each over.</CC_Feast_Pip_Machines>
+  <CC_Feast_Pip_Benches>There being no machines, {PAWN} walked round {COUNT} of the work benches one by one and looked each over.</CC_Feast_Pip_Benches>
+  <CC_Feast_Pip_Lights>The lamps were lit at dusk and left burning through the night; {LIT} lights were burning at dawn, and the ones lit for the night were put out again.</CC_Feast_Pip_Lights>
+  <CC_Feast_Pip_Book>For the First Spark the {BROKEN} was mended, the machines looked over one by one, and every light left burning through the night.</CC_Feast_Pip_Book>
+  <CC_Feast_Pip_BookNothing>For the First Spark the machines were looked over one by one, and every light left burning through the night.</CC_Feast_Pip_BookNothing>
+
+  <!-- Hush's Stillness -->
+  <CC_Feast_Hush_Text>For the Stillness, {COUNT} of {HOME} sat down to a silent supper of {FOOD} {WHERE}.</CC_Feast_Hush_Text>
+  <CC_Feast_Hush_TextSome>For the Stillness, {COUNT} of {HOME} sat down to a silent supper {WHERE}, and {ATE} of them had {FOOD} to eat.</CC_Feast_Hush_TextSome>
+  <CC_Feast_Hush_TextNoFood>For the Stillness, {COUNT} of {HOME} sat together in silence {WHERE}, with no plain meal in the stores to share.</CC_Feast_Hush_TextNoFood>
+  <CC_Feast_Hush_Nearest>{NAMES} had the places nearest the fire.</CC_Feast_Hush_Nearest>
+  <CC_Feast_Hush_NearestTable>{NAMES} had the first places at the table.</CC_Feast_Hush_NearestTable>
+  <CC_Feast_Hush_Book>A supper was eaten in silence for the Stillness, of the plainest fare, and the old and the sick were set nearest the fire.</CC_Feast_Hush_Book>
+  <CC_Feast_Hush_BookPlain>A supper was eaten in silence for the Stillness, of the plainest fare.</CC_Feast_Hush_BookPlain>
+
+  <!-- Undertow's Shuttered Night -->
+  <CC_Feast_Undertow_Text>For the Shuttered Night, {PAWN} went round {HOME} as night fell shutting {DOORS} doors and lighting the lamps, and {LIT} lights were burning there by ten o'clock.</CC_Feast_Undertow_Text>
+  <CC_Feast_Undertow_TextNoDoors>For the Shuttered Night, {PAWN} went round {HOME} as night fell lighting the lamps, and {LIT} lights were burning there by ten o'clock.</CC_Feast_Undertow_TextNoDoors>
+  <CC_Feast_Undertow_Torches>{PAWN} also set about topping up {COUNT} torches and braziers that were low on fuel.</CC_Feast_Undertow_Torches>
+  <CC_Feast_Undertow_Book>On the Shuttered Night the doors were shut and every lamp lit, that it might pass us by; {LIT} lights burned through the dark.</CC_Feast_Undertow_Book>
+
+  <!-- Selene's Longest Night -->
+  <CC_Feast_Selene_WatchLabel>the watch on the longest night</CC_Feast_Selene_WatchLabel>
+  <CC_Feast_Selene_Text>For the Longest Night, {WATCHERS} kept watch on the walls of {HOME} until dawn, and at breakfast {DREAMS} of the colony told what they had dreamt.</CC_Feast_Selene_Text>
+  <CC_Feast_Selene_TextNoDreams>For the Longest Night, {WATCHERS} kept watch on the walls of {HOME} until dawn; nobody told a dream at breakfast.</CC_Feast_Selene_TextNoDreams>
+  <CC_Feast_Selene_Book>The longest night was watched through upon the walls by {WATCHERS} until the dawn, and {DREAMS} dreams were told at the morning's board.</CC_Feast_Selene_Book>
+
+</LanguageData>

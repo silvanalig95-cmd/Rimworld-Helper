@@ -128,9 +128,10 @@ namespace ColonyCouncil
         /// <summary>
         /// Someone tells another the next piece of a story of these gods (the colony's count of each story moves on only with
         /// a piece it hasn't heard), said over their head and written into the book as heard. For the other parts (a priest's
-        /// word, a dream told): <paramref name="how"/> is CC_GodLore_How_*.
+        /// word, a dream told): <paramref name="how"/> is CC_GodLore_How_*. <paramref name="asName"/>: the name the teller
+        /// tells it by, when it is another people's tale (a pilgrim home from their town); else their own name for the god.
         /// </summary>
-        public static bool Tell(Pawn teller, Pawn listener, ICollection<string> gods, string how = "Supper")
+        public static bool Tell(Pawn teller, Pawn listener, ICollection<string> gods, string how = "Supper", string asName = null)
         {
             var lore = GodLore.Instance;
             if (lore == null || teller == null) return false;
@@ -138,7 +139,7 @@ namespace ColonyCouncil
             var (def, story) = StoryOf(key);
             var g = Gods.ByKey(def?.key);
             if (story == null || g == null || piece < 0 || piece >= story.pieces.Count) return false;
-            string name = GodLore.NameOf(g, teller);
+            string name = asName.NullOrEmpty() ? GodLore.NameOf(g, teller) : asName;
             string text = Named(story.pieces[piece], g.name, name, 90, out bool renamed);
             text = Others(text, story.with, teller, lore);
             if (!renamed) name = g.name;

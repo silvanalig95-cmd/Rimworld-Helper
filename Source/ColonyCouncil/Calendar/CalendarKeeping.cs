@@ -513,6 +513,8 @@ namespace ColonyCouncil
             if (!quiet) Interplay.Notify_DayKept(d, home);
             // A god's festival: its rite at the god's place, an offering, its people's visit (Gods/Worship/Festivals.cs).
             if (!quiet && d.kind == CalendarKind.GodFestival) Safe("calendar a god's festival", () => Festivals.Kept(d, map, home));
+            // The colony's midwinter (the winter god's festival, or the midwinter custom) with Vanilla Christmas Expanded's things (Gods/Among/Midwinter.cs).
+            if (!quiet) Safe("calendar midwinter", () => Midwinter.DayKept(d, map));
             // Kept together, and an empty place at the table (Social/Talk/SharedTimes.cs).
             if (!quiet) SharedTimes.DayKept(d, map, home);
             talkDayId = d.id;

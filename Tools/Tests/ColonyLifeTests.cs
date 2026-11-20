@@ -172,8 +172,7 @@ public static class ColonyLifeTests
         C(Read("World/YearLetter.cs").Contains("YearRead.Plan(") && Read("World/YearLetter.cs").Contains("FirstSupper.YearLines("), "the year read aloud, and the aims read back");
         C(Read("Annals.cs").Contains("YearRead.Keeper(comp, now)"), "the record keeper writes the year");
         C(Read("Heart/HeartNeeds.cs").Contains("ModAims.Purpose(p)") && Read("Aspirations/Aspirations.cs").Contains("GoalMath.ModAimsFactor(ModAims.HasAims(p))"), "the mod's aims in the heart and the life goals");
-        C(Read("ColonyLife/TalkBacking.cs").Contains("public bool WouldBack(Wish w, Pawn p)") && Read("CouncilGameComponent.cs").Contains("internal void CoSign(Wish w, Pawn p)"),
-            "the seam for the meeting's any other business: who would back a wish, and the co-signing");
+        C(Read("ColonyLife/TalkBacking.cs").Contains("return WantsSame(w, p);"), "who would back a wish talked up is the meeting's own rule (any other business)");
         return n;
     }
 

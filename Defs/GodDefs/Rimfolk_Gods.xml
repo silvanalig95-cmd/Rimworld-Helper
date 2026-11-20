@@ -169,6 +169,22 @@
       <li>Dryad_Carrier</li>
       <li>Dryad_Clawer</li>
       <li>Dryad_Barkskin</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Gaubricmaker</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Nectarmaker</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Spitter</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_Dryad_Stonedigger</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Barkskin</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Berrymaker</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Carrier</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Clawer</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Gaubricmaker</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Medicinemaker</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Nectarmaker</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Spitter</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Stonedigger</li>
+      <li MayRequire="VanillaExpanded.Ideo.Dryads">VDE_AwakenedDryad_Woodmaker</li>
+      <li MayRequire="arquebus.stagzmerfolk">Stagz_Dryad_Squid</li>
+      <li MayRequire="devdesigner.elves.continued">DevDesigner_AncientDeer</li>
     </sacredAnimals>
   </ColonyCouncil.GodDef>
 
@@ -310,6 +326,13 @@
     <look>Rimfolk_GodLook_Craft</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Smoulder</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="onyxae.dragonsdescent">DD_Drake</li>
+      <li MayRequire="sarg.alphaanimals">AA_IronhuskBeetle</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">MonitorLizard</li>
+      <li MayRequire="sarg.alphaanimals">AA_MammothWorm</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 3. Bellwether, the Old Horn ==================== -->
@@ -571,6 +594,12 @@
     <look>Rimfolk_GodLook_Dead</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Morel</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="sarg.alphaanimals">AA_FungalHusk</li>
+      <li MayRequire="sarg.alphaanimals">AA_RedSpore</li>
+      <li MayRequire="sarg.alphaanimals">AA_DecayDrake</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 5. Ennu, the Guest ==================== -->
@@ -703,6 +732,11 @@
     <look>Rimfolk_GodLook_Way</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Ennu</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li>Donkey</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">Crow</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 6. Pip, the Hum ==================== -->
@@ -975,6 +1009,13 @@
     <look>Rimfolk_GodLook_Storm</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Cirrus</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="sarg.alphaanimals">AA_Thunderox</li>
+      <li MayRequire="sarg.alphaanimals">AA_Thunderbeast</li>
+      <li MayRequire="sarg.alphaanimals">AA_ShockGoat</li>
+      <li MayRequire="VanillaExpanded.VAEROY">VAERoy_Crane</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 8. Hush, the Long White ==================== -->
@@ -1093,6 +1134,15 @@
     <look>Rimfolk_GodLook_Night</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Hush</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="sarg.alphaanimals">AA_FrostboundBehemoth</li>
+      <li MayRequire="sarg.alphaanimals">AA_Frostling</li>
+      <li MayRequire="sarg.alphaanimals">AA_FrostLynx</li>
+      <li MayRequire="sarg.alphaanimals">AA_ArcticLion</li>
+      <li MayRequire="sarg.alphaanimals">AA_FrostAve</li>
+      <li MayRequire="ReGrowth.BOTR.Core">RG_ArcticDrak</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 9. Undertow, the Hunger ==================== -->
@@ -1232,6 +1282,13 @@
     <look>Rimfolk_GodLook_Void</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Undertow</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="sarg.alphaanimals">AA_DuskProwler</li>
+      <li MayRequire="sarg.alphaanimals">AA_DuskRat</li>
+      <li MayRequire="sarg.alphaanimals">AA_NightRam</li>
+      <li MayRequire="sarg.alphaanimals">AA_NightMule</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 10. Helios and Selene, the Gift and the Return ==================== -->
@@ -1388,6 +1445,12 @@
     <look>Rimfolk_GodLook_Harvest</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Helios</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="sarg.alphaanimals">AA_FlamingoPhoenix</li>
+      <li MayRequire="sarg.alphaanimals">AA_PhoenixOwlcat</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">Peacock</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <ColonyCouncil.GodDef>
@@ -1540,6 +1603,12 @@
     <look>Rimfolk_GodLook_Healing</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Selene</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="sarg.alphaanimals">AA_AngelMoth</li>
+      <li MayRequire="sarg.alphaanimals">AA_CrepuscularBeetle</li>
+      <li MayRequire="ReGrowth.BOTR.BoilingForest">RG_Owlbeast</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!--
@@ -1876,6 +1945,11 @@
     <presence>Rimfolk_GodPresence_Murmur</presence>
     <sacredAnimals>
       <li>ColossusToad</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">Bullfrog</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">Heron</li>
+      <li MayRequire="Ludeon.RimWorld.Odyssey">Otter</li>
+      <li MayRequire="ezfi.montereybayaquariumanimals">SeaOtter</li>
+      <li MayRequire="VanillaExpanded.VanillaAnimalsExpanded">AEXP_Beaver</li>
     </sacredAnimals>
   </ColonyCouncil.GodDef>
 
@@ -2002,6 +2076,11 @@
     <look>Rimfolk_GodLook_Way</look>
     <!-- Its own presence on the land after its moments (Rimfolk_GodPresence_Own.xml; GodPresenceOwn). -->
     <presence>Rimfolk_GodPresence_Ducat</presence>
+      <!-- Its sacred animals (docs/content-update-proposals.md, C2): rare kinds of the player's mods, never the land's common game. -->
+    <sacredAnimals>
+      <li MayRequire="sarg.alphaanimals">AA_BlackScarab</li>
+      <li MayRequire="VanillaExpanded.VAEEndAndExt">AEXP_Pangolin</li>
+    </sacredAnimals>
   </ColonyCouncil.GodDef>
 
   <!-- ==================== 15. Revel, the Open Cup (the player, 15 and 16 November 2026) ==================== -->

@@ -227,6 +227,8 @@ namespace ColonyCouncil
                         "CC_Herd_Gone".Translate(gone.Named("PET"), keeper.Named("PAWN")).Resolve(), LetterDefOf.NeutralEvent, LookTargets.Invalid);
                     CouncilGameComponent.GiveThought(keeper, HerdStoryDefOf.Council_Herd_LeaderGone);
                     Interplay.Journal(keeper, "Council_Journal_Herd_Gone", new[] { HerdStoryMath.BodyTag(AnimalFacts.Body(gone)) }, gone.Named("PET"), AnimalFacts.KindLabel(gone).Named("KIND"));
+                    // A tale of the game's, for the colony's art (Things/ArtTales.cs): the old leader's death, with its keeper.
+                    if (gone.Dead) ArtTales.Record(ArtTales.HerdLeader, keeper, gone, null, null);
                 }
                 comp.AddChronicle(new ChronicleEntry(ChronicleKind.Loss, "CC_Herd_GoneChronicle".Translate(gone.Named("PET")).Resolve(), keeper));
             }

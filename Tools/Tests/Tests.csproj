@@ -30,6 +30,7 @@
     <Compile Include="../../Source/ColonyCouncil/Offices/ElectionMath.cs" Link="ElectionMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/OfficeNamesMath.cs" Link="OfficeNamesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Offices/RecordMath.cs" Link="RecordMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Offices/SeatMath.cs" Link="SeatMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Pressures/PressureMath.cs" Link="PressureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentMath.cs" Link="AilmentMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Ailments/AilmentCauseMath.cs" Link="AilmentCauseMath.cs" />
@@ -365,8 +366,12 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/MogMath.cs" Link="MogMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnHappeningsMath.cs" Link="OwnHappeningsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnSevenMath.cs" Link="OwnSevenMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnFeastsMath.cs" Link="OwnFeastsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodBeastsMath.cs" Link="GodBeastsMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Things/ArtTalesMath.cs" Link="ArtTalesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/RevelMath.cs" Link="RevelMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodPaceMath.cs" Link="GodPaceMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Among/GodsAmongMath.cs" Link="GodsAmongMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodNearMath.cs" Link="GodNearMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Touch/GodTouchMath.cs" Link="GodTouchMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Touch/GodImpactMath.cs" Link="GodImpactMath.cs" />

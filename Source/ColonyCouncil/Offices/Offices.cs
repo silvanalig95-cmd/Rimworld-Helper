@@ -140,6 +140,11 @@ namespace ColonyCouncil
         public int lastElectionTick = -999999;
         /// <summary>An election under way on the map, from its letter to the count (Offices/OfficesElection.cs), or null.</summary>
         public Election election;
+        /// <summary>The quartermaster's last count of the stores (Interplay/Interplay_Seats.cs): when (-1 never), and its words.</summary>
+        public int storesCountTick = -1;
+        public string storesCount;
+        /// <summary>Promises already raised at the council halfway through (their history ids, Offices/SeatHalfway.cs), the newest last.</summary>
+        public List<int> raised = new List<int>();
 
         private List<string> k1, k2;
         private List<Pawn> v1, v2;
@@ -879,8 +884,12 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastElectionYear, "lastElectionYear", -1);
             Scribe_Values.Look(ref lastElectionTick, "lastElectionTick", -999999);
             Scribe_Deep.Look(ref election, "election");
+            Scribe_Values.Look(ref storesCountTick, "storesCountTick", -1);
+            Scribe_Values.Look(ref storesCount, "storesCount");
+            Scribe_Collections.Look(ref raised, "raised", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
+                if (raised == null) raised = new List<int>();
                 if (election != null && (election.races.Count == 0 || election.map == null)) election = null;
                 if (holders == null) holders = new Dictionary<string, Pawn>();
                 if (elected == null) elected = new Dictionary<string, Pawn>();

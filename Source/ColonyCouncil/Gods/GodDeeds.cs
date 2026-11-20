@@ -17,8 +17,8 @@ namespace ColonyCouncil
     /// gods of the dead displeased, a grieving one most.</item>
     /// <item>A great beast brought down by the colony (the great beast, a legend of the region, a pack's alpha, a beast
     /// nemesis): the gods of the hunt (Happenings' death hook).</item>
-    /// <item>A sacred animal of a domain slaughtered, or hunted wild: that domain's gods displeased (the hunt's own gods
-    /// don't mind a hunt).</item>
+    /// <item>A sacred animal slaughtered, or hunted wild: the god whose own sacred kind it is displeased (Gods/SacredKinds.cs),
+    /// and for a domain's kind that domain's gods with none of their own (the hunt's own gods don't mind a hunt).</item>
     /// <item>A funeral: a eulogy said over one of the colony's dead (Secrets/Vendettas.cs), more at a grave: the gods of the
     /// dead.</item>
     /// </list>
@@ -136,6 +136,9 @@ namespace ColonyCouncil
                     Gods.Deed(GodDomain.Hunt, map, GodsMath.GreatBeastDeed, "CC_God_Deed_GreatBeast".Translate(victim.LabelShort.Named("BEAST"), who.Named("WHO")).Resolve());
                 bool slaughtered = victim.Faction == Faction.OfPlayer || dinfo?.Def == DamageDefOf.ExecutionCut;
                 bool wild = victim.Faction == null;
+                // A god's own sacred kind (Gods/SacredKinds.cs): that god's offence.
+                SacredKinds.Killed(victim, map, slaughtered, wild, who);
+                // A domain's: the gods of that domain with no sacred kinds of their own.
                 foreach (var def in DefDatabase<GodDomainDef>.AllDefsListForReading)
                 {
                     if (def?.Animals == null || !def.Animals.Contains(victim.def)) continue;
@@ -143,7 +146,12 @@ namespace ColonyCouncil
                     if (by == 0f) continue;
                     string why = (slaughtered ? "CC_God_Deed_SacredSlaughtered" : "CC_God_Deed_SacredHunted")
                         .Translate(victim.def.label.Named("KIND"), def.ofWords.Named("WHAT"), who.Named("WHO")).Resolve();
-                    Gods.Deed(def.domain, map, by, why, FavourSource.Sacrilege);
+                    foreach (var g in Gods.All.ToList())
+                    {
+                        if (g == null || SacredKinds.Own(g)) continue;
+                        if (g.domain == def.domain) Gods.AddFavour(g, map, by, why, FavourSource.Sacrilege);
+                        else if (g.second == def.domain) Gods.AddFavour(g, map, by * 0.5f, why, FavourSource.Sacrilege);
+                    }
                 }
             }
             catch (Exception e)
@@ -155,19 +163,22 @@ namespace ColonyCouncil
         // ================= A funeral (the eulogy) =================
 
         /// <summary>A eulogy said over one of the colony's dead (Secrets/Vendettas.cs): the gods of the dead pleased, more when the body lies in a grave.</summary>
-        public static void Funeral(Pawn dead, Pawn speaker)
+        public static string Funeral(Pawn dead, Pawn speaker)
         {
-            if (!Gods.On || dead == null || speaker == null) return;
+            if (!Gods.On || dead == null || speaker == null) return null;
             try
             {
                 var map = speaker.MapHeld;
                 bool grave = dead.Corpse?.ParentHolder is Building_Grave;
                 Gods.Deed(GodDomain.Dead, map, grave ? GodsMath.FuneralDeed : GodsMath.FuneralUngravedDeed,
                     (grave ? "CC_God_Deed_Funeral" : "CC_God_Deed_FuneralNoGrave").Translate(dead.LabelShort.Named("DEAD"), speaker.LabelShort.Named("SPEAKER")).Resolve());
+                // The speaker gives the dead to the god they held, in the old voice (Gods/Among/GraveGods.cs): the line, for the eulogy's letter.
+                return GraveGods.Given(dead, speaker);
             }
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("gods: a funeral", e);
+                return null;
             }
         }
     }

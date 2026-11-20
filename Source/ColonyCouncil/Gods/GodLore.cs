@@ -419,8 +419,10 @@ namespace ColonyCouncil
         /// <summary>
         /// The same, from a teller known only by name ("Mirel of Karond-Keth"), with the name they used for the god; their
         /// people and their own name (<paramref name="by"/>), when known, set the name down as that people's (Of its names).
+        /// <paramref name="key"/>: the entry's own words instead of the told ones (CC_GodLore_&lt;key&gt;_*: Cried, a raider's cry at the wall).
         /// </summary>
-        public static LoreEntry Heard(string teller, God g, string words, string how, string storyKey, int piece, string name, Faction people = null, string by = null)
+        public static LoreEntry Heard(string teller, God g, string words, string how, string storyKey, int piece, string name, Faction people = null, string by = null,
+            string key = null)
         {
             var b = Book;
             if (b == null || words.NullOrEmpty()) return null;
@@ -429,7 +431,7 @@ namespace ColonyCouncil
                 teller ??= "CC_GodLore_Someone".Translate();
                 string page = g != null ? b.Page(name ?? Gods.Name(g), g, "CC_GodLore_FromTold".Translate(teller.Named("TELLER"), HowWords(how).Named("HOW")).Resolve()) : null;
                 string title = storyKey != null ? g?.def?.Story(storyKey)?.title ?? StoryTitle(storyKey) : null;
-                var e = b.Write(LoreKind.Heard, page, null, teller, v => (title != null ? Key("HeardStory", v) : Key("Heard", v))
+                var e = b.Write(LoreKind.Heard, page, null, teller, v => (title != null ? Key("HeardStory", v) : Key(key ?? "Heard", v))
                     .Translate(teller.Named("TELLER"), HowWords(how).Named("HOW"), words.Named("WORDS"), (title ?? "").UncapitalizeFirst().Named("TITLE")).Resolve(), storyKey, piece);
                 if (g != null && e != null && (people != null || by != null)) b.Called(name ?? Gods.Name(g), g, by, people, how);
                 // A teller who uses another name than the colony's for a god may say so.

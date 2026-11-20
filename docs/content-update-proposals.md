@@ -99,6 +99,12 @@ vigil the night watch already uses, `DilemmaEffect_Vigil`) with a word for whoev
 work count for elections (`OfficeWordsDef.measure`, `RecordMath`), news, This week. *Mod pool:* RimFridge and the deep
 storage mods' shelves count as stores, as the stores code already reads them. *Size:* M. *Harm:* none. *Text:* plain
 (seats). A bubble: "The medicine shelf is lower than I'd like." (said only when it is).
+**Built** (20 November 2026, the council's integrations, part 1, not released yet; DESIGN.md "The council at its work,
+in its questions and at its meeting"). Each act is a play-out of the colony's own that never takes a gathering's place:
+the speaker sits an hour at a table (trust under 10, every three days); the quartermaster's round of the stores at
+dawn, its count in the news and at the head of This week's plan; the reeve's walk at first light every other day in the
+growing season and the next morning for blight; the marshal's walk on the walls at dusk the two days after an attack.
+The marshal's dusk walk is kept only with "Answers play out on the map" on.
 
 **A2 (I) The seat whose work it is speaks in the question.**
 The questions about a seat's work name its holder as the one asked (role B, which already takes an `office:` tag, as
@@ -114,6 +120,11 @@ stores are spent. Their answer counts toward the seat's record that the next ele
 earlier flavour style. A sample opening: "[b:office:Reeve] {B_nameDef} has walked the bare field twice since sunrise,
 kicking at the clods. As {OFFICE_B} {B_pronoun} would like it sown by tomorrow, and would like it known that nobody
 asked {B_objective} before it went bare."
+**Built** (20 November 2026, part 1, not released yet). The holder is a role of its own (`{HOLDER_...}`, `{OFFICE}`, tags
+`[seat]` and `[seat:Reeve]`) rather than B, since many of these questions already have a B; 34 questions name a seat, every
+seasonal custom is the keeper of days', 26 have an opening and an outcome of their own for the seat and the rest the
+holder's word after the text (69 lines in all). Each one answered counts toward the record the next election reads
+("spoken for the seat in 3 of the council's questions").
 
 **A3 (V) A seat holder asks to step down.**
 A new question when a holder has been worn down or near breaking for five days (the heart), or laid up for ten days,
@@ -145,6 +156,10 @@ sick), have them answer for it at supper (a word at the table; their "weight of 
 A21), or leave it to the vote (nothing now; judged as before).
 *Ties:* `Offices/RecordMath.cs`, `ElectionPlanks`, the history's `office:promise`, PlayOut work parties, Arcs. *Size:* M.
 *Harm:* none. *Text:* council question, flavour style.
+**Built** (20 November 2026, part 1, not released yet). The ballots aren't kept by voter, so the one who raises it is
+someone who stood against the holder for the seat (now kept with the promise), else whoever thinks least of them. Only
+promises hands can help are raised (a watch, the food, the sick, the herd, the spirits); the food is brought in
+(harvest, fishing, hauling) rather than cooked, the game having no cooking work party. Each promise is raised once.
 
 **A6 (I) Any other business: petitions read out at the meeting.**
 After the ambition vote at the seasonal meeting, each open decree petition (for a decree or against one, the existing
@@ -155,6 +170,9 @@ of 7") on the Decrees page, in This week and in the meeting's letter. The counci
 *Ties:* `Ambitions/CouncilMeeting.cs`, `MeetingAttendance`, `Decrees/Decrees.cs`, `Wishes/Petitions.cs`,
 `UI/DecreePanel.cs`, the inbox. One small saved tally a petition (a model in `Tools/save_estimate.py`). *Size:* M.
 *Harm:* none. *Text:* plain (meeting lines and the page), the letter's paragraph in the flavour style of letters.
+**Built** (20 November 2026, part 1, not released yet). Read out during the meeting once the ambitions are put (the
+vote's count is at its very end), four at most; the tally is three numbers on the petition (values, so no new saved
+collection needed a model).
 
 **A7 (V) Two decrees that show on the map: the night watch, and a welcome for newcomers.**
 The night watch (six days): each night two of the colony's fighters take turns walking the walls and the gate from nine
@@ -230,8 +248,8 @@ wish many may back (a rec room, a sick bay, a council meeting: `allowPetition`),
 join it there and then (the co-signing the wish roll already uses, `CouncilGameComponent.CoSign`), with a line over both
 heads. A petition grows this way once a day at most; the roll's own co-signing is unchanged.
 *Ties:* `Interactions.cs`, `Wishes/Petitions.cs`, `Speech`. *Size:* S. *Harm:* none.
-**Built** (20 November 2026, not released yet). Half the time for someone who would want the same, more for a friend; the
-seam for A6 is `WouldBack` and `CoSign`.
+**Built** (20 November 2026, not released yet). Half the time for someone who would want the same, more for a friend; who
+would want the same is the meeting's own rule (A6's `WantsSame`).
 
 ### Ambitions and life goals
 
@@ -317,6 +335,9 @@ named in a council question about their seat's work (A2), a decree they backed t
 its journal and chronicle name it. With none in twenty days the story ends quietly instead of claiming a call.
 *Ties:* Arcs (a custom gate, `ArcWorker_Office`), the dilemmas' resolve, decrees. *Size:* S. *Harm:* none. *Text:*
 personal stories, flavour style.
+**Built** (20 November 2026, part 1, not released yet). "A decree they backed" is one they asked for or like, declared
+while someone at home hates it. The quiet end claims no call and brings no mood; the mood of a seat lost too soon now
+comes only when the seat was lost.
 
 ### Character, deeds and names
 
@@ -1150,7 +1171,7 @@ Finding one would need a search outside the catalogue.
 ## Content update, part C: the gods and faith, the land and its life, and the other mods
 
 A list to pick from (the player's request of 20 November 2026, "another large content update"). Nothing here is built
-until the player picks. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
+until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
 active rows of `docs/player-mods/`. Nothing here was dropped by the player before, and each item builds on something
 that already exists.
 
@@ -1248,7 +1269,7 @@ Each item that adds text says which of these it follows.
 
 ### The gods and faith
 
-**C1 (E) Each god's festival kept as its words say** (M to L)
+**C1 (E) Each god's festival kept as its words say** (M to L) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **On the map:** the 8 festivals that today keep only the shared feast get their own play-out, each matching its
   words:
   - Hollin's Greening: saplings set by hand, one for each tree felled this year (the count is kept), and bread eaten
@@ -1270,7 +1291,7 @@ Each item that adds text says which of these it follows.
   agarilux.
 - **Harm:** Selene's watch on a cold night already falls under the night watch's budget (`nightWatch`); nothing new.
 
-**C2 (V) Sacred kinds for every god, from the player's animals** (S)
+**C2 (V) Sacred kinds for every god, from the player's animals** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **What changes:** the 10 gods with no sacred kinds get some from the active rows, and Hollin gets Vanilla Ideology
   Expanded - Dryads' castes.
   - Kept to rare kinds, never the land's common game or the colony's livestock, so hunting does not offend all the
@@ -1300,7 +1321,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** soft, by name, with each god's domain kinds as the fallback.
 - **Harm:** none.
 
-**C3 (I) A god's beast at home** (S to M)
+**C3 (I) A god's beast at home** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **When:** one of the colony's own animals is of a god's sacred kind. In their save these would be the thunderox, the
   dusk prowler and the two dryads.
 - **What happens:**
@@ -1313,7 +1334,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** C2's kinds, `AnimalDays` (the rounds), `OmenAnimals`, `Festivals`, `PawnGods`, `GodLore.Believes`.
 - **Harm:** none.
 
-**C4 (I) The beast that stays, taken for a god's** (S)
+**C4 (I) The beast that stays, taken for a god's** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **When:** the named wild beast that stays (`ResidentBeast`) is of a god's sacred kind or shape (a thrumbo, a frost
   lynx, a dusk prowler).
 - **What happens:**
@@ -1349,6 +1370,7 @@ Each item that adds text says which of these it follows.
   (`GodTales.Tell`), and the book hears that people's name for it.
 - **Ties:** `Vows`, life goals (flavour style), the region map, journeys, peoples, the book.
 - **Harm:** the road's own, already in the budget (`pilgrimCough`).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/VowPilgrimage.cs`). Decided: a holy place within one to six days' road each way; a town of a people that holds the god is chosen before the fellowship's shrine or an old shrine unless those are much nearer; one to three days there; the keepsake is Vanilla Ideology Expanded - Relics and Artifacts' small inert relic (a statuette, idol, medallion or amulet from a town, polished rock or a fossil from an old shrine), the fellowship's shell from theirs, else a new pilgrim's token; the tale is told at the first supper home within six days; the cough only from a town.
 
 **C7 (I) Murmur and the fishers** (S to M)
 - **On the map:** a fisher who holds Murmur gives the first fish of the morning back to the water, and someone sees it
@@ -1360,6 +1382,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `OwnMurmur`, `PawnGodsMath` draws, the touch's "fish by the water".
 - **Mod pool:** Vanilla Fishing Expanded (and its Fishing Treasures add-on), Odyssey.
 - **Harm:** none new; the cold-water slip already counts fishing.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/MurmurFishers.cs`). Decided: those who hold to Murmur (holds, not leans), the first catch between 4 and 12 o'clock, one fish of it; the day's better fishing is a half-day hediff (Odyssey's `FishingYield` +0.1, the mod's `VCEF_FishingLuckOffset` +0.02, each soft); the book keeps it once in ten days; two to four fish on the mud half the time the water gives back.
 
 **C8 (I) Ducat and what the colony owes** (M)
 - **What already exists:** Ducat's lore says he watches debts, and the region already keeps "what is owed each way"
@@ -1370,6 +1393,7 @@ Each item that adds text says which of these it follows.
   ("drives a hard bargain today"), the god never named.
 - **Ties:** `OwnDucat`, the diplomacy ledger, the trade window, `GodTouch`.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/DucatDebts.cs`). Decided: the debts are the ledger's own (a colony's `Debt` ties: scenario silver, an enclave's dues; debts of honour the colony owes), paid when kept, let lapse when broken, three times in four; "the one who carried the payment" is the debt's own colonist at home, else the quartermaster, else the best talker; the coin lies outside their bedroom door (the gate with no room); the trader's half day is added to their lord's own timer once settled; the hard bargain is 5% worse prices for a day, also said in a plain message.
 
 **C9 (V) Helios: out into the sun** (S)
 - **On the map:** on a clear, warm noon, someone who holds Helios (else the doctor) walks a colonist who is getting over
@@ -1438,6 +1462,7 @@ Each item that adds text says which of these it follows.
   voice.
 - **Mod pool:** Vanilla Books Expanded.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/KeeperAtWork.cs`). Decided: the keeper goes to a sign seen at a place within 90 cells, within eight hours, one at a time; the entry gains their name and a line in their own voice; the evening's writing from 18 to 22 o'clock with any new entry, once in two days at most, a little longer for each.
 
 **C13 (V) More council questions of faith** (M; flavour style)
 - **The shrine in the way.** A room plan or a defense line is laid over a dedicated shrine: move it with a rite, build
@@ -1459,6 +1484,7 @@ Each item that adds text says which of these it follows.
   - a prisoner of that people, visited by the warden, tells a piece of their god's tale (`GodTales.Tell`).
 - **Ties:** raids, prisoners, peoples, `GodLore.Heard`, the stories in pieces.
 - **Harm:** none (the raid is the game's).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/RaidersGods.cs`). Decided: seven raids in ten of a people with gods have a cry, when a raider is within 38 cells and in sight; their war god first, else the god they swear by; a prisoner's tale one talk in five with the warden, once in two days at most.
 
 **C15 (I) The dead's own god at the grave** (S)
 - **On the map:** at a eulogy (`GodDeeds.Funeral`), the speaker gives the dead to the god they held (`PawnGods.Held`),
@@ -1468,8 +1494,9 @@ Each item that adds text says which of these it follows.
   - The book keeps "laid to rest in Hush's keeping" by the colony's name for that god, or unnamed.
 - **Ties:** funerals (`Vendettas` eulogy), belief, grief, the book.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/GraveGods.cs`). Decided: the god the dead held most when they died (kept five days for the eulogy); the line is said over the speaker's head and added to the eulogy's letter; mourners are those of the colony grieving the dead who hold the same god (+3 for six days); the book keeps it as the speaker's belief.
 
-**C16 (I) Legendary Pokémon taken for a god's** (S)
+**C16 (I) Legendary Pokémon taken for a god's** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **When:** a legendary of PokéWorld comes onto the land.
 - **What happens:** a believer says whose they take it for, perhaps wrongly, and the book keeps it as a hand
   (`GodHands`).
@@ -1492,7 +1519,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** PokéWorld's spawns and Rimfolk's rare sighting, the gods' hands, belief.
 - **Harm:** none.
 
-**C17 (I) The gods, the beasts and the land in the colony's art** (M)
+**C17 (I) The gods, the beasts and the land in the colony's art** (M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The gods' integrations, part 1: festivals, sacred beasts and art").
 - **What changes:** Rimfolk records none of the game's tales today, so the colony's sculptures never show any of its
   stories. Each of these would become one:
   - a god seen;
@@ -1523,6 +1550,7 @@ Each item that adds text says which of these it follows.
     questions in the flavour style).
 - **Ties:** `WeatherBook`, `GodLore.Believes`, the neighbours' letters, the calendar's customs.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/SeasonGods.cs`). Decided: cold Hush; heat Helios or Smoulder (a warm winter Helios); storms Cirrus; wet Murmur; dry Helios or Murmur; the most devout believer speaks, another who holds another of them argues when beside them, a doubter beside them answers; the letter through the hands kept for neighbours; the council asked in the first six days of the same quarter the year after (keep a day at the god's place, or let it pass and the one who asked goes alone).
 
 **C19 (E) After the storm: a work party for every disaster** (S to M)
 - **What exists:** after Seasonal Weather's earthquake, a party already goes round mending (`WeatherDisasters`).
@@ -1626,6 +1654,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** Alpha Memes, VIE Memes and Structures, VFE Art, VFE Props and Decor, Alpha Props - Parks and Gardens,
   Dubs Bad Hygiene, Dragons Descent; each soft.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/GodRooms.cs`, `Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_GodRooms.xml`). Decided: "a chapter in the book" is a page for the god; each room has a piece of the game's own it can't do without (pots, a torch or brazier, columns, a sarcophagus); the open-sky rooms leave their roof off; `AM_Sphynx` (12 by 18) is too big for a room and was left out; Pip's terminal and the art statues are placed only where the colony can.
 
 **C27 (V) Room plans from the player's mods** (M)
 - **What changes:** of 109 room plans, few use the player's mods (VFE's plinth and lamps, a sauna). New plans:
@@ -1666,6 +1695,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** C1, the calendar, the feast engine, `PlaySnow`.
 - **Mod pool:** Vanilla Christmas Expanded; none without it.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/Midwinter.cs`). Decided: kept from the calendar (the winter god's festival or the midwinter custom's day) and the midwinter question's first two answers; the tree switched on at dusk (said plainly without power), the food set out beside the table at supper, the presents after supper by the eldest at home, the sculpture by day; the winter god's own festival play-out (C1) is left to it.
 
 (Other items that use the mods: C2, C7, C10, C11, C12, C16, C23, C24, C26, C27.)
 

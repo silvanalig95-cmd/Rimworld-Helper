@@ -345,6 +345,109 @@ Lines elsewhere that mention a seat in passing (a dilemma's "the
 quartermaster's friends", a camp's elders, other peoples' speakers) are left as written: renaming them would rename
 other peoples' elders too.
 
+### The council at its work, in its questions and at its meeting (the content update's A1, A2, A5, A6 and A21; the player's go, 20 November 2026; released 0.279.0)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
+with this in the order you think makes most sense ... more immersion ... the relations between pawns, the kind of events
+that generated from it", and "first do all the integrations that you proposed in your document before we add additional
+content variety". Part 1 of colony life's integrations, the council: four seats that worked only through numbers seen at
+their work (A1), the seat whose work a question is about speaking in it (A2), a promise looked at halfway (A5), the
+petitions read out at the meeting (A6) and the weight of office's hard call made real (A21). The rules without game
+types are `Offices/SeatMath.cs` (tested in `SeatWorkTests`). Everything answers to "Systems talk to each other" and the
+offices' setting.
+
+- **The seats at their work (A1, `Interplay/Interplay_Seats.cs`).** Each is a play-out of the colony's own
+  (`PlayOut.routine`, with `seat:` in `PlayOut.afterward`): never counted as one of the colony's gatherings
+  (`Stage.Held`), never waiting for room among them (`Stage.Room`), let go without a word if it can't happen, and its
+  end told in its own words (`Interplay.SeatWorkOver`, from `PlayAfter.Run`). A seat's walk (`PlayOut.seat`) begins in
+  words for one person (`SeatBeginText`, a quiet message), its holder says a word of their own as they set off and on
+  the way (`Rimfolk_Pool_SeatSetsOff`, `_SeatAtWork`, by the round: [stores], [fields], [walls]), and nobody writes it
+  up as a walk together.
+  - The **speaker**, every three days at most, sits an hour at a table (`DilemmaEffect_Visit` with `sit`) with whoever of
+    the colony trusts the council least, when that is under 10 (`SeatMath.Lowest`, `HearBelow`), not the same person
+    within eight days; at the end their trust rises one point, two from a speaker of Social 20 (`HeardTrust`), each
+    says a line (`Rimfolk_Pool_SeatHeardSays`, `_SeatHearReply`, one sentence), the news says "Harper sat an hour with
+    Barr and heard him out, as the speaker." and now and then they write of it.
+  - The **quartermaster**, once a week (the seat's own promise, "a count of the stores every week"; the last count's tick
+    is saved on the council), walks round the stores at dawn (a one-person round, `PlayRoutes.Stores`: every stockpile,
+    and every room with shelves or other storage, so deep storage and RimFridge's fridges count, six stops at most) and
+    at the last store counts them: days of food, cooked meals and medicine, and what is furthest under its mark
+    (`SeatMath.Shortest`: 15 days of food, two doses and two meals each). The count goes in the news, at the head of
+    This week's plan for ten days (`InboxProviders.StoresCount`), and when something is short the quartermaster says so
+    aloud ("The medicine shelf is lower than I'd like."). A round cut short before its last store counts nothing.
+  - The **reeve**, in the growing season (spring and summer with something growing) every other day, and the next
+    morning whenever blight is in the fields unmarked, even out of season, walks round the fields at first light
+    (`PlayRoutes.Fields`, a stop at each growing zone) and at each field marks its blighted plants for cutting with the
+    game's own order (`FieldBlight.Mark`), saying so where there was some; the news says how many were marked, or that
+    there was none.
+  - The **marshal**, in the two days after an attack (the map's last big threat, never while hostiles are on it), walks
+    the walls at dusk for an hour (`DilemmaEffect_Vigil` with `patrol`, the night watch's look-outs), and at each look-out
+    has a word for anyone of the colony near it who is drafted or keeping a watch of their own (`AtLookOut`, from
+    `PlayVigils.Arrived`), each once a walk.
+  - With "Answers play out on the map" off: the speaker has a word when the two meet (`Together.When`, walking over in
+    free time), the count and the marks are made without the walk (said as such), and the marshal's evening isn't kept.
+- **The seat whose work it is speaks in the question (A2, `Offices/SeatCalls.cs`).** `DilemmaDef.seat` names the seat a
+  question is about (34 questions: the physician's sick and medicine, the reeve's fields and blight, the herdmaster's
+  herd, the peacemaker's quarrels, the chaplain's faith, the warden of guests' strangers and camps, the quartermaster's
+  stores), and every seasonal custom is the keeper of days' without saying so (`SeatOffice`). When the question is sent,
+  that seat's holder at home on its map, up, and neither A, B nor the stranger, is its holder (`DilemmaContext.holder`,
+  saved with the letter; `{HOLDER_...}`, `{OFFICE}` the seat in the colony's age, the tags `seat` and `seat:Reeve`).
+  Lines tagged `[seat]` give them a voice: 26 questions have an opening and an outcome of their own for the seat
+  (`Rimfolk_Dilemmas_Seats_Variants.xml`, each outcome saying all its plain one does, and the holder's part); any other
+  has the holder's word after its text (`Rimfolk_Pool_SeatWord`, a line for each seat and one for any). Decided here: the
+  holder is a role of their own rather than B, since many of these questions already have a B (the two in a quarrel, the
+  doctor who is tired), and a holder who is A or B is in it already. When it is answered, the holder's record
+  `Council_SeatCalls` goes up by one, and it is their hard call if their story waits for one (A21).
+- **The seat's record (`Offices/SeatRecords.cs`).** A promise now keeps the questions spoken in at the time and who stood
+  against the winner for the seat (`RecordMath.CallsAt`, `RivalsAt`; an older promise has neither). The next election's
+  record in the seat counts the questions spoken in since with the seat's work ("In the seat, Harper has sown and
+  brought in 340 plants and spoken for the seat in 3 of the council's questions"; a seat with no work counted runs on
+  them alone), and they lean voters as the work does (`WorkLeanOf(true, work + calls)`).
+- **A promise halfway (A5, `Offices/SeatHalfway.cs`, `Rimfolk_Dilemmas_SeatHalfway.xml`).** A holder at home 25 days or
+  more into the seat (`SeatMath.HalfwayDays`) whose promise, not yet raised, already reads broken by the vote's own test
+  (`SeatMath.GoingBadly` is `RecordMath.Judge` at that day), when hands can help it (`HandsFor`: a watch for the colony's
+  dead, food, the sick for medicine and sickbeds, the herd, an evening for the colony's spirits; trust, quarrels, days,
+  faith and the seat's own work are left to the vote). Who raises it: one who stood against them for the seat (the
+  promise's rivals) still at home, else whoever thinks least of them (opinion under 20); decided here, since the ballots
+  aren't kept by voter, so "someone who didn't vote for the holder" is someone who stood against them, or failing that
+  the one least likely to have. Each promise is raised once (`OfficeTracker.raised`, twelve kept). The answers: a hand
+  (`DilemmaEffect_SeatHands`: the holder and the one who raised it at the seat's own work, a watch on the walls from nine
+  at night, an afternoon's harvest, fishing and hauling, an afternoon's cleaning and hauling, an afternoon with the herd,
+  or an evening the holder calls for everyone; decided here, as the game has no cooking work party, the food is brought
+  in rather than cooked); answering for it at supper (`DilemmaEffect_SeatSupper`: words at the dining table, the holder
+  speaking, and when it is over it is their hard call); or leaving it to the vote.
+- **Any other business (A6, `Ambitions/MeetingBusiness.cs`).** In the meeting's talk (`CouncilMeeting.Talk`), once every
+  pitch is made or read out and the meeting is 40% in, the colony's open petitions are read, one a turn, the oldest first,
+  four at most: each `DecreeRequest`, and each want that leads a petition of wishes (several names, co-signers, or a want
+  the colony backs together). Its asker reads it, or the chair (or anyone) for one who isn't there; one voice from the
+  room says no where there is one (more often) or aye; everyone there is counted (`SeatMath.AyeToDecree`: those who like
+  a decree, or dislike it for lifting it; `AyeToWish`: those in it, those who want the same, friends of the asker,
+  opinion 20 or more), and up to two who want the same join it (`JoinAtMeeting`: co-signing, or their own want joining
+  the petition). The tally is saved on the petition (`heardTick`, `ayes`, `present` on `DecreeRequest` and on the leading
+  `Wish`: values, no collection) and shown on the Decrees page's card, in This week's rows, and in the meeting letter's
+  paragraph (in the letters' own style). Decided here: the reading comes during the meeting rather than after the vote's
+  count, which is at its very end, so it is heard and seen; the tally decides nothing by itself.
+- **The weight of office's hard call (A21, `Arcs/ArcWorkers_Lives.cs`, `Rimfolk_Arcs_World.xml`).** Its doubtful days now
+  wait for a real call (a Custom gate): a question of the seat's work that named them (A2), a decree they asked for or
+  like declared while someone of the colony hates it (`SeatCalls.Notify_Decree`, from `DecreeTracker.Enact`), or the
+  supper of A5. The call is noted on the story (its tag `call:question`, `call:decree` or `call:supper`, and `{CALL}`:
+  the question, the decree or the promise, `Arc.call`), and the hard call's journal and chronicle name it. With none in
+  twenty days the story ends quietly ([nocall]: a line that claims no call, and no mood); the mood of a seat lost too soon
+  now comes only when the seat was lost ([officegone], an `ArcEffect_Cast` with `ifTag`).
+- **Every age.** The seats are said in the colony's age everywhere (`OfficeNames.Key`, `Interplay.Line`, `{OFFICE}`); the
+  acts are the same on the map in every age, and a few lines have the age's own words ([tribal] store pits, [spacer]
+  reserve levels, [lowtech]).
+- **Text.** The council questions' openings and outcomes, the halfway question and the meeting letter's paragraph are in
+  the earlier flavour style (CLAUDE.md); the news, the seats' words and bubbles, the page lines and the Almanac are plain.
+  Every bubble is one sentence (ImmersionTests).
+- **Saved.** On the council: the last count's tick and words, the promises raised (a list of twelve at most, modelled in
+  `Tools/save_estimate.py`); on a petition, three numbers; on a question's letter, its holder; on a story, its call; on
+  a promise, two more values; on a play-out, whether it is a seat's. The rest (the seats' waits) is session memory, as Interplay's always is.
+- **Dev mode** ("Rimfolk", "Council seats: ..."): the speaker's hour, the quartermaster's count, the reeve's walk and the
+  marshal's dusk now (their waits forgotten, their hours from now), a question of a seat's work, a promise halfway asked
+  now (any promise hands can help), the colony's petitions read out as at a meeting, and a new holder's story given its
+  call.
+
 ---
 
 ## Layer 4: Society (the social web)
@@ -6248,6 +6351,13 @@ another and the colony reads as one life.
 | Reeve | Missions | a delivery mission offered, then filled in full | the reeve deals with the neighbours; +3 goodwill, a journal line |
 | Herdmaster | Pets, heart, bonds | a named animal dies; its person away two days | sits with the one who lost it (strain -4, friendship); minds the animal and is thanked |
 | Marshal | Heart | the end of a fight at home | those who fought beside the marshal: strain -4 |
+| Speaker | Trust, PlayOut | the council's day, someone's trust under 10 | an hour at a table with whoever trusts the council least: their trust +1 to +2, a line each |
+| Quartermaster | Stores, news, This week, PlayOut | once a week | a round of the stores at dawn: the count, what is shortest, said aloud when short |
+| Reeve | Fields, PlayOut | the growing season, or blight unmarked | a walk round the fields at first light: blight marked for cutting at each field |
+| Marshal | PlayOut | the two days after an attack | a walk on the walls at dusk, a word for anyone on watch |
+| Seats | Council questions, elections, personal stories | a question of a seat's work | its holder speaks in it; it counts toward their record and is their hard call (the weight of office) |
+| Elections | Council questions | a promise going badly halfway | raised by one who stood against the holder: a hand, a word at supper, or the vote |
+| Petitions | Council meeting | the meeting's business | read out, the ayes counted, those who want the same join |
 | Steward | Heart, PlayOut | a gathering over, the steward there | everyone else: strain -2 |
 | Heart (grief) | Calendar, PlayOut | a festive calendar day | the grieving sit it out (unless it's their day); a journal line |
 | Heart (grief) | Setbacks | a gathering missed | no "missed the gathering" |
@@ -17891,6 +18001,129 @@ or valuable item". The go, on the lead's proposal: "yes, please", "all the three
   `Gods/GodPresenceSeam.cs` (`PresenceSpec.left`), `GodsWiring.cs`, `Gods.cs`, `Touch/GodTouch.cs`; the looks' marks;
   `Languages/English/Keyed/Rimfolk_GodPresence.xml`. Tests: `GodMarkTests` (new).
 
+### The gods' integrations, part 1: festivals, sacred beasts and art (the player's go, 20 November 2026; released 0.278.1)
+
+The player, on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with
+this in the order you think makes most sense. In general, I just want additional God events, more immersion, more just
+further also building up on the gods in general, how they're integrated, the effects they have, the relations between
+pawns, the kind of events that generated from it", and "first do all the integrations that you proposed in your document
+before we add additional content variety". Built: C1, C2, C3, C4, C16 and C17 of part C, as proposed there. The unseen
+rule holds throughout: nothing says whose a beast really is, what a god wants or how it stands; a god is named only by
+the colony's name where the colony knows it was that god, and in a believer's words by their own name for the god they
+take it for, which may be wrong.
+
+**C1, each god's festival kept as its words say** (`Gods/OnMap/OwnFeasts.cs`, `OwnFeastsMath.cs`). The eight festivals
+that kept only the shared feast now play out on the map as their words (`festivalDishes`) say. Kept, a festival's custom
+waits for its hour (`OwnFeastsMath.StartHour`); answered late in the day, it begins as soon as it may until its latest
+hour (`LatestHour`), else the next day at its hour, then it is let be. Those who hold the god take part first (the god
+they pray to, or one they hold plainly; `OwnFeasts.Holds`), then anyone free.
+- Hollin's Greening: the colony's people count the trees they fell (`OwnHappenings.Felled`); on the day up to four
+  planters set a sapling by hand (`Rimfolk_Feast_Plant`) for each tree felled since the last Greening, 20 at most, on
+  open soil round the cleared ground (else round the oldest tree), each of a tree that grows wild there. Then up to ten
+  take the plainest meal from the stores and eat it together under the colony's oldest tree. Nothing felled: no
+  sapling owed, and the words say so.
+- Smoulder's Deep Silver: one who holds him carries a twentieth of the stores' silver (5 to 40) to the deepest shaft (the
+  thick-roofed rock his bargain uses), or in a colony with no mine to a crack beside the rock, and drops it: the silver
+  is gone, with heat and dust where it went, and the mountain's names said over it. No silver: they go and say the names
+  all the same.
+- Bellwether's Letting Pass: a herder walks the colony's free grazers (not those kept in pens on a rope) out to the long
+  grass at the colony's edge and leaves them to graze it; at dusk one who holds him (else the eldest) tells the old
+  story there to the children (else to whoever came out).
+- Morel's Turning Under: hay (else the plainest raw vegetables) carried out to the field and dug under
+  (`Rimfolk_Feast_Dig`): the scraps are gone, and up to nine squares of the field's natural soil turn rich. Then a cook
+  takes mushrooms from the stores (every raw fungus the game knows, `FungusMeals.IsRawFungus`) to a stove that cooks
+  simple meals and cooks a pot of mushroom stew (`Rimfolk_Feast_Cook`): fungus meals (Ideology), else simple meals, of
+  that fungus, up to six, set down by the stove.
+- Pip's First Spark: a broken machine fixed (the game's own repair with a component from the stores), else a damaged
+  building repaired (the game's own); the machines walked round one by one and looked over (`Rimfolk_Feast_Machine`), the
+  work benches where there are none; at dusk a round of the lamps (below), left burning till dawn, when the ones lit for
+  the night are switched off again. Told at dawn.
+- Hush's Stillness: at supper up to twelve take the plainest meal (a simple meal before paste) to the seats by the fire
+  (a fire of fuel, else any heater, else the table): the sick first, then the old (60 and over), nearest
+  (`OwnFeastsMath.SeatOrder`), and eat it there in silence (nothing of Rimfolk's is said).
+- Undertow's Shuttered Night: as night falls someone goes round the doors to the outside and the lamps
+  (`Rimfolk_Feast_Lamp`): a door held open is let shut, a lamp switched off is switched on, and torches and braziers low on
+  fuel are topped up with the game's own refuelling (a lamp lit in an age without switches). Told at ten with the lights
+  burning then; at dawn the doors held open again and the lamps switched off again, only those nobody changed since.
+- Selene's Longest Night: one or two who hold her keep watch on the walls from dusk till dawn: the night watch's own
+  play-out (`DilemmaEffect_Vigil`, at the gate, patrolled, till dawn), so its cold on a frosty night is the shared
+  budget's (`nightWatch`), nothing new; with answers not played out on the map they stand at the colony's edge instead.
+  At breakfast up to three tell a dream to whoever eats beside them.
+- Also: at every festival's rite the believers who are free walk over and stand in rows behind the one leading it, facing
+  the god's place (`OwnFeasts.Gather` from `Festivals.Hourly`).
+- What was done is told as it was seen, plainly (a message), and goes in the colony's book under the god it was kept
+  for, in the old voice of the gods' texts. Each part leaves a small good mood with those who took part
+  (`Rimfolk_Thought_Feast_*`, +2 to +3). Every age: torches topped up where there are no lamps, a crack in the rock where
+  there is no mine, the work benches where there are no machines.
+- Saved: the festival under way (`OwnHappeningsBook.feast`, `FeastState`): its step, who was sent, what was counted, the
+  lamps and doors changed for the night (put back and let go at dawn) and Hollin's count of trees felled.
+
+**C2, sacred kinds for every god** (`Gods/SacredKinds.cs`; `Defs/GodDefs/Rimfolk_Gods.xml`). The ten gods without
+sacred kinds get some from the player's animals, rare kinds only (never the land's common game), each soft
+(`MayRequire`): Smoulder the drake, the ironhusk beetle, the monitor lizard and the mammoth worm; Morel the fungal husk,
+the red spore and the decay drake; Ennu the donkey and the crow; Cirrus the thunderox, the thunderbeast, the shock goat
+and the crane; Hush the frostbound behemoth, the frostling, the frost lynx, the arctic lion, the frost ave and the arctic
+drake; Undertow the dusk prowler, the dusk rat, the night ram and the night mule; Helios the flamingo phoenix, the
+phoenix owlcat and the peacock; Selene the angel moth, the crepuscular beetle and the owlbeast; Murmur, beside the toad,
+the bullfrog, the heron, the otter, the sea otter and the beaver; Ducat the black scarab and the pangolin; Hollin, beside
+her dryads, Vanilla Ideology Expanded - Dryads' castes and their awakened forms, the Merren's squid dryad and the elves'
+ancient deer. Pip keeps none. What they drive, by the god's own kinds instead of its domain's (the domain's still for a
+god with none of its own): a sacred beast killed is an offence to its god (`GodDeeds`, `GodHealth`), the vow to spare
+a beast (`Vows`), the god's dream warning of a hunt (`GodDreams`), the beast a god's people bring (`GodWorldGifts`),
+and the god's mark is never one of them (`GodMarkGoods`). One choice made here: the donkey is kept for Ennu as the
+proposal's table has it, though a colony may keep donkeys; slaughtering one is an offence to Ennu, as for any sacred
+kind.
+
+**C3, a god's beast at home** (`Gods/OnMap/GodBeasts.cs`). One of the colony's own animals of a god's sacred kind (or of
+the shape a god walks in). Each colonist takes it for a god by their own reading, fixed for the two of them
+(`GodBeastsMath.Roll` with `GodLoreMath.Attribute`), sometimes wrongly. Those who hold the god they take it for:
+- greet it the first time they see it close, in one sentence;
+- now and then, in the animals' rounds hours, one of them brings it a bite by hand from the stores (two days apart at
+  least at a home);
+- on that god's festival one of them gives it a bite first and walks it to the god's place, and the book keeps it;
+- one born on its god's festival day is an omen animal (`OmenAnimals`), named in the god's own words, while there is
+  room among the living omens (the twenty days' gap gives way to the day);
+- when it dies they grieve a little (-2 for 3 days), and the book keeps a believer's verse under the god they took it for.
+
+**C4, the beast that stays, taken for a god's** (`ResidentBeast`, `Animals/ResidentBeastSacred.cs`). When the beast that
+stays is named and is of a god's sacred kind or shape, a believer there says whose they take it for (a line, a sentence
+in the naming letter, a verse in the book). The council's question about it is then `Council_DlmA_ResidentBeastSacred`,
+with the believer's own answer first and as the default: leave it be, it is not ours to hunt (the believer walks out at
+dusk and stands within sight of it a while; the god it is like is glad of it, hidden; the book keeps it). Hunting it is
+the harm of a sacred beast to those who hold the god it was taken for (-4 for 5 days) and an offence to the god it is
+like; if it stays a season, the book keeps that it stayed among them, under that god.
+
+**C16, legendary Pokémon taken for a god's** (`GodBeasts.Legends`, `GodBeastsMath.Legends`). A wild one of the table's
+kinds on a map where the colony's people are (PokéWorld's legendaries; Meowth and Persian for Ducat and Spiritomb for
+Tamiu, though not legendaries): a believer there says whose they take it for, perhaps wrongly, a scoffer may answer,
+and the book keeps it as a god's hand (`GodHands.ShowWith`); the same kind once in 30 days at most. Hunting it is the
+harm of a sacred beast for those who believe it, and an offence to the god it is like.
+
+**C17, the gods, the beasts and the land in the colony's art** (`Things/ArtTales.cs`, `ArtTalesMath.cs`;
+`Defs/Misc/Rimfolk_Tales.xml`). Eight of Rimfolk's moments are recorded as the game's own tales (`Tale_Rimfolk`), so a
+sculpture made later may show one in the game's words for art: a god seen (by its first witness), a sacred beast's visit
+(someone sat near it or fed it), an offering taken before everyone's eyes, a festival kept (its rite), a god's beast
+walked to its place on its festival, the beast that stays given its name, the herd's old leader dying (with its keeper),
+and a raid held at a line (they came through the gate and nobody fell). A god is named in them only by the colony's
+name where the colony knew at the time it was that god, else as what was seen (`GodDef.unheard`). A kind comes at most
+once in a few days at a home. Vanilla Furniture Expanded - Art's statues take the same tales. The named season (C18) is
+not built yet, so it has no tale.
+
+- **Dev mode**: "Gods: a festival kept now, its custom at once...", "Gods: the festival's next part now", "Gods: a
+  festival's rite now, the believers behind it...", "Gods: a god's beast at home: greeted, given a bite, walked to its
+  place...", "Gods: the beast that stays here taken for a god's now, and its question", "Gods: a legendary on the land
+  now, taken for a god's...", "Art: each of Rimfolk's tales now (for a sculpture to show)".
+- Code: `Gods/OnMap/OwnFeasts.cs`, `OwnFeastsMath.cs`, `GodBeasts.cs`, `GodBeastsMath.cs` (new); `Gods/SacredKinds.cs`
+  (new); `Things/ArtTales.cs`, `ArtTalesMath.cs` (new); `Animals/ResidentBeastSacred.cs` (new);
+  `Gods/GodsIntegrationDebug.cs` (new); `Gods/OnMap/OwnHappenings.cs`, `OwnSeven.cs` (the feast saved),
+  `Gods/Worship/Festivals.cs`, `Gods/GodHands.cs` (`ShowWith`), `Gods/GodDeeds.cs`, `Gods/World/GodHealth.cs`,
+  `GodWorldGifts.cs`, `Gods/Worship/Vows.cs`, `GodDreams.cs`, `Offerings.cs`, `Gods/Presence/GodMarkGoods.cs`,
+  `Gods/Gods.cs`, `Gods/OnMap/SacredAnimal.cs`, `Animals/ResidentBeast.cs`, `OmenAnimals.cs`, `HerdStory.cs`,
+  `Happenings/Happenings.cs`, `Defense/DefenseLinesWatch.cs`; `Defs/GodDefs/Rimfolk_GodFeasts.xml`,
+  `Rimfolk_GodBeasts.xml`, `Rimfolk_Gods.xml`, `Defs/DilemmaDefs/Rimfolk_Dilemmas_Beast.xml`,
+  `Defs/Misc/Rimfolk_Tales.xml`; `Languages/English/Keyed/Rimfolk_GodFeasts.xml`, `Rimfolk_GodBeasts.xml`. Tests:
+  `GodsIntegrationTests` (new); the spoken pools in `ImmersionTests`; the moods in `Tools/Balance/Rates.cs`.
+
 ### Gifts worth what they cost (the player's go, 16 November 2026; released 0.259.0)
 
 The player: "so as of now i still don't really see or feel the impact of god offerings. sometimes they trigger an event,
@@ -18113,6 +18346,107 @@ they are: felt at revels and feasts, in a drinker's or a smoker's high, in an ad
   egged on now", "... craving eased now", "... horned reveller now", "Gods: Revel in a cup in the stores now", "Gods: where is
   Revel's cup (log)", "Gods: Revel's next cup does...". Tests: `Tools/Tests/RevelTests.cs` (and every test that counts the
   gods); the moods in `Tools/Balance/Rates.cs`.
+
+### The gods among the colony's people and the world (the player's go, 20 November 2026; released 0.278.0)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good ... I just want
+additional God events, more immersion, more just further also building up on the gods in general, how they're
+integrated, the effects they have, the relations between pawns, the kind of events that generated from it", and "first
+do all the integrations that you proposed in your document". Built: C6, C7, C8, C12, C14, C15, C18, C26 and C29 of part
+C. The code is `Source/ColonyCouncil/Gods/Among/`; the pure rules `GodsAmongMath` (linked into the tests); the saved state
+`GodsAmongBook` (a game component, its hour and day with the gods' own, `GodBook.Hourly`/`Daily`, its steps only while
+something is under way); the defs `Defs/GodDefs/Rimfolk_GodsAmong.xml` and
+`Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_GodRooms.xml`; the words `Languages/English/Keyed/Rimfolk_GodsAmong.xml`. The
+gods stay unseen in all of it: a god is named only as a speaker's own name for it or the colony's page, everything in the
+book is someone's (seen, told, believed), and nothing says what a god wants.
+
+- **C6, a vowed pilgrimage that really walks out** (`VowPilgrimage.cs`). The vow's hour (`Vows.TrySetOut`) first looks for
+  a holy place of the vower's god within one to six days' road (`GodsAmongMath.InReach`): a town of a people that holds
+  the god (`Gods.Of`), the pilgrim fellowship's town (`PeoplesMath.Pilgrims`), an old shrine by a landmark; the town of a
+  people that holds it first, the others only when much nearer (`RoadWeight`). They go as a season away
+  (`SeasonAway.Send`, key `vowpilgrim`, the old shrine's people the colony's own faction): the walk to the edge, a
+  caravan of one, one to three days there, a caravan home. The message on setting out says where and about how many
+  days. There, the pilgrimage is made (the worship book's mark, so the vow is kept when they are home, `Vows.Daily`);
+  home, something of the place at their feet (Vanilla Ideology Expanded - Relics and Artifacts' inert statuette, idol,
+  medallion or amulet from a town, polished rock or fossil from an old shrine, the fellowship's shell from theirs, else
+  `Rimfolk_PilgrimToken`), the book hears that people's name for the god (`GodLore.Heard`, how "Pilgrim"), and within six
+  days, at supper (17 to 22 o'clock) beside someone, they tell one piece of that people's tale by that name
+  (`GodTales.Tell`'s new `asName`). From a town, the fellowship's cough through the harm budget (`HarmKinds.PilgrimCough`),
+  shown. Someone the colony can't spare (`PeopleEvents2.MayLeave`), or no place in reach: the walk on the colony's land as
+  before. The vow's hour never interrupts one already setting out.
+- **C7, Murmur and the fishers** (`MurmurFishers.cs`). A postfix on the game's catch (`FishingUtility.GetCatchesFor`): a
+  colonist who holds to Murmur (`PawnGodsMath.HoldsFrom`, not in dread, not a scoffer) gives one fish of the morning's
+  first catch (4 to 12 o'clock, once a day) back to the water, with the game's water splash at the spot. They keep it as
+  their small rite (belief), say a word (once in three days), and someone near in sight may say they saw it; the book
+  keeps it as theirs once in ten days, and their journal. That day `Rimfolk_MurmurFishBiting` (half a day): Odyssey's
+  `FishingYield` +0.1 and Vanilla Fishing Expanded's `VCEF_FishingLuckOffset` +0.02, each `MayRequire`. The mod's
+  `VCEF_Fisherman` draws toward Murmur (`PawnGodsMath.TraitDraws`, 22), and what the water gives back
+  (`OwnMurmur.GiveBack`) may leave two to four fish of the mod's (else the game's own) on the mud.
+- **C8, Ducat and what the colony owes** (`DucatDebts.cs`). `WorldLedger.Set` tells it of every move: a debt the colony
+  owes (a `Tie.Kind.Debt` from a colony: a scenario's silver, an enclave's dues; a debt of honour the colony owes,
+  `FavoursOwed.ColonyOwes`) kept is Paid, broken is Lapsed (`GodsAmongMath.Turn`), three times in four followed so.
+  Paid: the next morning (5 to 10 o'clock) one gold coin outside the bedroom door of the one who carried the payment
+  (the debt's own colonist at home, else the quartermaster, else the best talker; the colony's gate when they have no
+  room of their own), found by whoever passes (`OwnHappenings.Found`, the gods' own happenings' look), and the next trade
+  caravan, once settled at its spot, stays half a day longer (its lord's own timer, `TriggerData_TicksPassed`), with a
+  plain message. Lapsed: the next trader at the gate drives a hard bargain for a day (-0.05 on
+  `Pawn.TradePriceImprovementOffsetForPlayer`), with a plain message and "(drives a hard bargain today)" in Rimfolk's
+  trade window. Ducat is never named; the coin goes into the book as whoever found it took it.
+- **C12, the keeper at work** (`KeeperAtWork.cs`, `GodLoreAmong.cs`). When the book writes something seen from others'
+  eyes at a place on a home map (`Gods.Remember`, `Gods.Moment`), and the keeper (`GodLore.Keeper`) wasn't among them and
+  is within 90 cells, the keeper walks out when free (within eight hours), stands and looks, says one line in the old
+  voice (`Rimfolk_Pool_GodsAmong_Keeper`), and the entry counts them among those who saw and adds their words in the
+  keeper's voice (`CC_GA_KeeperLooked_*`). In the evening (18 to 22), with new entries since they last wrote and not two days running, the keeper
+  goes to Vanilla Books Expanded's writer's or typewriter's table, else a table to eat at, else a lectern, and writes
+  (`Rimfolk_Keeper_Write`, `JobDriver_KeeperWrites`: a little longer for each new entry, an hour and a half at most), with
+  a line on sitting down and their journal after.
+- **C14, the raiders' gods, heard at the wall** (`RaidersGods.cs`). A raid (the game's `TryExecute`) of a people that holds
+  gods, seven in ten: its cry waits up to 18 hours, until a raider is within 38 cells and in sight of one of the colony;
+  then they cry their people's war god (else the god they swear by) by their own name for it
+  (`Rimfolk_Pool_GodsAmong_RaiderCry`), and the book sets it down as "so a raider of the Ashen Banner cried at our wall"
+  (`GodLore.Heard`'s new words key, `CC_GodLore_Cried_*`), with the name heard. A prisoner talking with their warden (a
+  postfix on `Pawn_InteractionsTracker.TryInteractWith`) tells a piece of their gods' tales one time in five, once in two
+  days at most (how "Cell"). Raids waiting for their cry are not saved.
+- **C15, the dead's own god at the grave** (`GraveGods.cs`). On a colonist's death (a `Pawn.Kill` postfix) the god they
+  held most is kept five days; at their eulogy (`GodDeeds.Funeral`, now returning the line) the speaker gives them to it
+  in one sentence in the old voice (`Rimfolk_Pool_GodsAmong_Grave`), said over their head and added to the eulogy's
+  letter. Those of the colony who grieve the dead and hold the same god get `Rimfolk_Thought_GivenToOurGod` (+3, six
+  days). The book keeps it as the speaker's belief ("Ana rests in Hush's keeping now") by the colony's name for the god,
+  or "in the keeping of the god she held" when the colony has none, and, named, a rite in its chapter.
+- **C18, named seasons taken for a god's doing** (`SeasonGods.cs`). When the weather book names a season
+  (`WeatherBook.EndQuarter`), the gods its kind is tied to (`GodsAmongMath.GodsFor`: cold Hush; heat Helios or Smoulder,
+  a warm winter Helios; storms Cirrus; wet Murmur; dry Helios or Murmur): the believer who holds one of them most says
+  it over their head and the book keeps it as their belief; another who holds another of them, beside them, says so to
+  their face, both hold their own the harder (`BeliefEvent.Bickered`) and the book keeps both; a doubter beside them
+  answers and the book keeps the doubt (`GodLore.Disputed`). The season goes among the hands a neighbour's letter may
+  write of, and is kept (`SeasonTaken`, twelve at most); the year after, in the first six days of the same quarter, the
+  council is asked (`Rimfolk_Dlm_SeasonDay`, the flavour style): keep a day for the god at its place (words there with
+  whoever comes, the book's rite), or let it pass (the one who asked goes there alone). Both play out.
+- **C26, a shrine room for each god** (`GodRooms.cs`, `RoomTemplateDef.god`, `godLabel`, `godPurpose`, `openSky`). Eleven
+  rooms: Hollin's garden shrine (pots round bare ground for a tree), Smoulder's stone room with braziers and Dragons
+  Descent's dragon statue, Bellwether's standing stone (Alpha Memes' or VFE Props and Decor's megalith), Morel's dark
+  cellar of pots, Cirrus's obelisk court, Hush's white room with Alpha Memes' urns, Helios's sun court of columns,
+  Selene's moon garden with Alpha Props' obelisk fountain, Tamiu's tomb shrine (a sarcophagus, Alpha Memes' Kemetic
+  slab), Murmur's well-house (Dubs Bad Hygiene's well), Pip's machine shrine (Ideology's terminal). Each has a piece of
+  the game's own it can't do without; the mods' pieces are used where the colony can build them. `RoomMenu.Entries`
+  shows one only once the book has a page for its god (`GodsAmongMath.RoomShown`), labelled by the colony's name for it;
+  `openSky` rooms mark their floor no-roof when planned (`TemplatePlanner.Execute`). Their words picture the god as the
+  people do, never what it wants.
+- **C29, midwinter with Vanilla Christmas Expanded** (`Midwinter.cs`). The colony's midwinter is the calendar keeping the
+  winter god's festival (Hush or Selene; `CalendarKeeping.KeepDay`) or the midwinter custom (its day, or its question's
+  first two answers, `DilemmaEffect_Midwinter`). With the mod loaded, that day: by day, where the snow is deep near home,
+  someone makes a snowman with the game's own job, finished as the mod's snow sculpture (theirs, its quality by their
+  art); at dusk someone walks to a festive tree and switches every tree and string of fairy lamps on (said plainly when
+  there is no power), or stands a while at one already lit; at supper the cook carries the gingerbread, eggnog and hot
+  cocoa from the stores to the festive feast table (else the dining table) and sets them out beside it; after supper the
+  eldest takes the presents from the stores and hands one to each of the colony at home, person by person, each thinking
+  a little better of them (`Rimfolk_Thought_MidwinterPresent`, +6 opinion). Each part only with its things, and the
+  words say only what was done. The winter god's own festival play-out (C1, another build) is untouched: this runs
+  beside it from the calendar's keeping.
+
+Harm: only the fellowship's cough from a crowded town (C6), already in the budget. Dev mode: "Gods among: ..." for each.
+Not checked without the game: the catch hook's list, the trader lord's timer, a sculpture from a snowman, the trade
+window's line, the shrine rooms' layouts with the mods' pieces.
 
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
@@ -18670,8 +19004,9 @@ is over), so there is no pass of their own.
   would want the same (the wish's own rule raises it for them now, the same subject; same colony; not on its cooldown):
   half the time, more for a friend and less for someone at odds (the wish roll's own bond), once a day at most for the
   wish (`Wish.talkBackedDay`). A line from each over the other's head, a word in the news and the chronicle, the deadline
-  two days on, as a co-signer does. The seam for the meeting's "any other business" (A6, the council's build):
-  `WouldBack(w, p)` and `CoSign(w, p)`, now internal.
+  two days on, as a co-signer does. Who would want the same is the meeting's own rule for "any other business"
+  (`CouncilGameComponent.WantsSame`, A6, `Ambitions/MeetingBusiness.cs`), so a wish talked up and a petition read out at
+  the meeting find the same backers; joining does what the roll's co-signing does (`CoSign`), with a line each.
 - **A14, an ambition reached, seen on the map and kept on the calendar** (`AmbitionScenes.cs`, the ambition defs). Every
   ambition now has its scene (`achievedEffects`), led by the seat whose work it is when there is a holder at home
   (`AmbitionDef.sceneOffice`: the physician shows everyone round a new ward or infirmary, the marshal walks the defenses

@@ -163,12 +163,12 @@ namespace ColonyCouncil
 
         // ================= The Hunt: a fresh kill of the land's game =================
 
-        /// <summary>An animal of the land that is game: flesh, not a person, not an insect, not a Pokémon, not one the colony's faith holds sacred.</summary>
+        /// <summary>An animal of the land that is game: flesh, not a person, not an insect, not a Pokémon, not one the colony's faith holds sacred, nor a god's own sacred kind (Gods/SacredKinds.cs).</summary>
         private static bool Game(PawnKindDef k)
         {
             var r = k?.race?.race;
             if (r == null || !r.Animal || r.Humanlike || !r.IsFlesh || r.meatDef == null || r.FleshType == FleshTypeDefOf.Insectoid) return false;
-            return !PokeWorldLink.IsPokemon(k) && !SacredAnimals.SacredToColony(k.race);
+            return !PokeWorldLink.IsPokemon(k) && !SacredAnimals.SacredToColony(k.race) && !SacredKinds.AnySacred(k.race);
         }
 
         private static bool Kill(GodMarkPlan plan, Map map)

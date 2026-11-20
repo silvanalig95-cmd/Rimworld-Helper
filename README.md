@@ -1732,11 +1732,21 @@ they promised it (wounds tended, plants sown, enemies brought down, quarrels men
 the colony, a name the colony gave them or a life goal reached. The next yearly election judges what the holder
 promised by what the map shows now ("At the last election Toni promised a proper watch at night, and the colony has
 lost nobody since: a promise kept."): a kept promise helps them at the vote, a broken one costs, and it's said in the
-letter, at the hustings and in the results. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
+letter, at the hustings and in the results. Halfway to the vote, once a holder has sat 25 days, a promise the map
+already shows going badly by that same test (someone lost after a promise of a proper watch, the food under three days,
+the medicine short, no sickbed, the herd shrunk, spirits sunk) is raised at the council by someone who stood against
+them: give them a hand with the seat's own work (a night's watch on the walls together, the food brought in, the
+sickroom cleaned, the herd brought home, an evening they call), have them answer for it at supper, or leave it to the
+vote. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.
 
-The offices also do their jobs in the colony's life: the keeper of days organizes the calendar's feasts and games,
+The offices also do their jobs in the colony's life, on the map: the speaker sits an hour at a table with whoever
+trusts the council least and hears them out (their trust rises a little), the quartermaster walks round the stores at
+dawn once a week and counts them (days of food, cooked meals, medicine and what is shortest, in the news and at the
+head of This week's plan), the reeve walks the fields at first light in the growing season and marks blight for
+cutting at each field, and in the two days after an attack the marshal walks the walls at dusk with a word for whoever
+is on watch. The keeper of days organizes the calendar's feasts and games,
 the peacemaker steps into spats nearby (they're over in half the time), the physician does the rounds of the
 convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbors who need goods
 (and they remember it), the herdmaster sits with those whose animal died and minds the animals of those away, the
@@ -1744,6 +1754,13 @@ marshal has a word with everyone who fought beside them, and the steward's compa
 chaplain sits with the grieving, has a word with whoever is losing faith (their certainty rises) and leads the
 calendar's remembrances; the warden of guests spends an hour at the camp's fire (its tension eases) and sees visitors
 welcomed (their people's goodwill rises); the elders sit with the young and pass on what they know best.
+
+The seat whose work a council question is about speaks in it: about thirty questions (the sick and the medicine, the
+fields, the herd, quarrels, the faith, strangers and the camp, the stores, and every seasonal custom for the keeper of
+days) name the seat's holder when they're at home and not already in it, with their word in the letter and in some of
+the outcomes; each one answered counts toward their record in the seat at the next election. A newly seated holder's
+story, the weight of office, now waits for a real hard call (such a question, a decree they backed declared while
+someone hates it, or answering for a promise at supper) and names it, and with none in twenty days it ends quietly.
 
 ### Traditions
 Choose the answer that keeps a seasonal custom (a midsummer feast, a harvest celebration, a vigil on the longest night)
@@ -1842,6 +1859,12 @@ Three colonists pitch an ambition out loud; an idea whose proposer isn't there i
 less support. Others back them, doubt them or wander off topic, and when the meeting ends everyone who came
 votes (only they do). The decision letter shows the votes and tells who came, who was late, who missed it and
 why. Going with the room's favorite pleases its backers; overruling a clear majority costs a little trust.
+
+Once the ambitions are put there is **other business**: the colony's open petitions (a decree asked for or asked to be
+lifted, a want several colonists back together) are read out by their askers, someone says aye or no, the room is
+counted by how each feels about it, and anyone there who wants the same joins it. The tally stays with the petition
+("Backed at the meeting by 5 of 7.") on the Decrees page, in This week and in the meeting's letter; the council still
+answers it from its page.
 
 - **Thin meetings:** with fewer than half there (and never fewer than two), the meeting is put off once to the
   next evening; if it's thin again it's decided anyway, by few, and earns less trust.
@@ -4960,12 +4983,43 @@ Sometimes a fever eases in the night after, or the rain comes; nobody can say fo
 scoffers argue it out, while a couple who pray to different gods bicker over whose sent the rain. A prayer that goes
 unanswered can shake someone's faith, and twice shaken they may turn to another god. People make vows: no meat until
 the sick one is well, a pilgrimage on foot, a temple, a beast spared for a season. Each god the colony holds has its
-festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god. An
+festival day on the calendar, kept with a feast, a rite and a chant, and sometimes visitors who hold the same god; those
+who hold the god stand behind the one leading the rite. Each festival is kept as its words say, played out on the map:
+for Hollin's Greening a sapling is set by hand for each tree the colony felled since the last one and a meal is eaten
+under the oldest tree; for Smoulder's Deep Silver silver goes down the deepest shaft (a crack in the rock without a
+mine); for Bellwether's Letting Pass the herd is walked out to the long grass and the old story told to the children at
+dusk; for Morel's Turning Under the year's scraps are dug into a field, which turns rich, and mushroom stew is cooked;
+for Pip's First Spark something broken is mended, the machines are looked over and the lamps burn all night; for Hush's
+Stillness there is a silent supper, the sick and the old nearest the fire; for Undertow's Shuttered Night the doors are
+shut and every lamp lit (torches topped up); for Selene's Longest Night two keep watch on the walls till dawn and dreams
+are told at breakfast. Some animals of the game and your mods are held sacred to a god, rare ones, never the land's
+common game, and what the colony's people make of one is their own reading, sometimes wrong: one of the colony's own they greet, bring a bite by hand, walk to the god's place on its feast day and
+grieve when it dies; a wild beast that stays may be taken for a god's when it is named, and the council's question then
+has the believer's answer, to leave it be; a legendary Pokémon on the land may be taken for a god's, and hunting it
+troubles those who believe it. The colony's sculptures may show these moments: a god seen, a sacred beast's visit, a
+festival kept, the beast that stays named, the herd's old leader dying, a raid held at a line. An
 elected priest (a shaman, a priest, a pastor or an oracle by the age) dedicates the places, carries the offerings and
 leads the rites, and the council is asked which god to keep the year for, whether to vow a temple, what to do when
 someone dreams a god wants the colony's finest beast, and whose rite comes first when two rival gods' people quarrel.
 Gods speak in dreams. None of it ever says what a god thinks; what people saw goes into the colony's book. Setting:
 *Worship of the gods* (on).
+
+**The gods among your people** (not released yet). A vowed pilgrimage walks out for real when a holy place of the god
+lies within a few days' road (a town of a people that holds it, the pilgrim fellowship's shrine, an old shrine by a
+landmark): a caravan of one there and home, a keepsake of the place, that people's name for the god in the book and
+one of their stories told at supper. A fisher who holds to Murmur gives the first fish of the morning back to the water,
+with a splash someone may see, and fishes better that day (Vanilla Fishing Expanded's fisherman leans toward Murmur, and
+the water's give-back may leave the mod's fish on the mud). A debt the colony pays when due leaves a gold coin on the
+payer's doorstep the next morning and keeps the next trader half a day longer; one let lapse brings a trader who drives
+a hard bargain for the day, said plainly in the trade window. The book's keeper walks out to see a sign they missed and
+writes up the evening's new entries at a writing table (Vanilla Books Expanded's first). Raiders cry their god's name as
+they come on, and a prisoner may tell their warden a story of their gods. At a eulogy the dead are given to the god they
+held, in the old words, and those who share that god grieve a little less. A season the weather book names is taken for
+a god's doing by your believers, argued over, doubted, retold by a neighbour, and a year on the council may be asked to
+keep a day against it. The room planner offers a shrine room for each god your book has a chapter for, built the way
+your people picture it. With Vanilla Christmas Expanded, midwinter brings the festive tree switched on, the gingerbread
+and warm drinks set out, a present handed to each of your people and a snow sculpture. Dev mode has *Gods among: ...*
+actions for each.
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

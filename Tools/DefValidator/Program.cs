@@ -557,6 +557,8 @@ var pawnPrefixes = new HashSet<string> { "PAWN", "FOR", "OTHER", "ENVIED", "ABOU
 pawnPrefixes.Add("FRIEND");
 // Gossip and reputation (Social/Gossip/): the one a story is about, a deed's detail, and the date in a deed's name.
 pawnPrefixes.Add("SUBJECT");
+// The holder of the seat whose work a council question is about (Offices/SeatCalls.cs).
+pawnPrefixes.Add("HOLDER");
 wishPh.UnionWith(new[] { "DETAIL", "DATE" });
 // A colonist asking for a better weapon (Weapons/WeaponAsks.cs, Rimfolk_Pool_WeaponAsk): the weapon and where it lies ({PLACE}).
 wishPh.Add("WEAPON");
@@ -601,6 +603,9 @@ wishPh.UnionWith(new[] { "DRUG" });
 wishPh.UnionWith(new[] { "GIVER", "OTHERPEOPLE", "SILVER", "TRAPS", "WALLS" });
 // Vanilla Aspirations Expanded's aim reached (ColonyLife/ModAims.cs, Rimfolk_Journal_ModAim): the aim, as the mod names it.
 wishPh.Add("AIM");
+// The council's integrations, part 1 (Offices/SeatCalls.cs, Interplay/Interplay_Seats.cs): the weight of office's hard call,
+// and the crop the reeve found blight in.
+wishPh.UnionWith(new[] { "CALL", "CROP" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

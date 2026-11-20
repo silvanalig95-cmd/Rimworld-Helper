@@ -362,6 +362,10 @@ PLAY = {
     # A world event's answer that sends a colonist to a far town (World/FarErrands.cs): a caravan of one there, their days
     # there and the road home, the season away's own (Peoples/Events2/SeasonAway.cs).
     "WorldEffect_Away": "a caravan of one to a far town and home",
+    # A promise halfway (Offices/SeatHalfway.cs): the seat's own work with a hand (a watch on the walls, the food brought in,
+    # the sickroom seen to, the herd brought home, an evening), and the holder's word at supper.
+    "DilemmaEffect_SeatHands": "the seat's work with a hand",
+    "DilemmaEffect_SeatSupper": "words at supper",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

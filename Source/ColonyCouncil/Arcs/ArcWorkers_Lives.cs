@@ -275,10 +275,16 @@ namespace ColonyCouncil
     /// <summary>
     /// The weight of office: someone newly seated on the council (an office taken in the last election, at most twelve
     /// days ago) who isn't sure they can carry it, and someone to ask. {NAME} is the office. Fizzles [officegone] if
-    /// they lose the seat first.
+    /// they lose the seat first. Its hard call is a real one (the content update's A21): the doubtful days wait for it (a
+    /// Custom gate) until a question of the seat's work names them, a decree they backed is declared over someone's
+    /// objection, or they answer for a promise at supper (Offices/SeatCalls.cs notes it: the story's tag says which,
+    /// {CALL} what it was); with none in twenty days the story ends quietly [nocall].
     /// </summary>
     public class ArcWorker_Office : ArcWorker
     {
+        /// <summary>The call has come (noted on the story by SeatCalls).</summary>
+        public override bool CustomGate(Arc arc, ArcGate gate) => SeatMath.IsCall(arc.tag);
+
         public override ArcCandidate Candidate(Pawn p, List<Pawn> home)
         {
             var comp = CouncilGameComponent.Instance;
@@ -299,7 +305,19 @@ namespace ColonyCouncil
             // A seat the council no longer has (the keeper of secrets, dropped 5 November 2026): its story ends without a word.
             if (DefDatabase<OfficeDef>.GetNamedSilentFail(arc.key) == null) return ArcTracker.Retired;
             var office = OfficeTracker.HeldBy(arc.pawn);
-            return office == null || office.defName != arc.key ? "officegone" : null;
+            if (office == null || office.defName != arc.key)
+            {
+                // The tag lets only this ending bring the mood of a seat lost too soon (the def's fizzle effects).
+                arc.tag = SeatMath.OfficeGone;
+                return SeatMath.OfficeGone;
+            }
+            // No real call in twenty days: it ends quietly, claiming none.
+            if (SeatMath.EndsQuietly(arc.stage, arc.tag, ArcTracker.DaysInStage(arc)))
+            {
+                arc.tag = SeatMath.NoCall;
+                return SeatMath.NoCall;
+            }
+            return null;
         }
     }
 

@@ -16,6 +16,8 @@
   <!-- ===================== The empty field ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmY_EmptyField</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Reeve</seat>
     <label>the empty field</label>
     <workerClass>ColonyCouncil.DilemmaWorker_EmptyField</workerClass>
     <weight>1.2</weight>
@@ -69,6 +71,8 @@
   <!-- ===================== What the field grows ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmY_WhichCrop</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Reeve</seat>
     <label>what the field grows</label>
     <workerClass>ColonyCouncil.DilemmaWorker_WhichCrop</workerClass>
     <weight>1.1</weight>
@@ -274,6 +278,8 @@
   <!-- ===================== Too many in the pens ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmY_HerdTooBig</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
     <label>too many in the pens</label>
     <workerClass>ColonyCouncil.DilemmaWorker_HerdTooBig</workerClass>
     <weight>1.2</weight>
@@ -323,6 +329,8 @@
   <!-- ===================== What to teach it ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmY_TrainBeast</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
     <label>what to teach it</label>
     <workerClass>ColonyCouncil.DilemmaWorker_TrainBeast</workerClass>
     <weight>1.1</weight>
@@ -426,6 +434,8 @@
   <!-- ===================== A doubter of the faith ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmY_Doubter</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Chaplain</seat>
     <label>doubts in the faith</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Doubter</workerClass>
     <weight>1.1</weight>
@@ -478,6 +488,8 @@
   <!-- ===================== The faith without a guide ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmY_NoGuide</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Chaplain</seat>
     <label>the faith without a guide</label>
     <workerClass>ColonyCouncil.DilemmaWorker_NoGuide</workerClass>
     <weight>1.2</weight>

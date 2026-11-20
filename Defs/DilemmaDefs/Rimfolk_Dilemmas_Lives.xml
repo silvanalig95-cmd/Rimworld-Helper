@@ -438,6 +438,8 @@
   <!-- ===================== Won't see the doctor ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmLv_ElderDoctor</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Physician</seat>
     <label>won't see the doctor</label>
     <weight>1.2</weight>
     <cooldownDays>40</cooldownDays>
