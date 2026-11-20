@@ -615,6 +615,8 @@ wishPh.UnionWith(new[] { "WSNAME", "WSPLACE", "SITUATIONPEOPLE" });
 // The gods between the colony's people (Gods/OnMap/Between/, Rimfolk_Pool_GodBetween_Say): the machine mended or talked to,
 // the coat carried to the cold, the one seen whispering at the edge, the light that went out.
 wishPh.UnionWith(new[] { "MACHINE", "COAT", "WHISPERER", "LIGHT" });
+// The peoples and their ties (World/KinNews.cs, DilemmaContextKin): the world event at the town a council question is about.
+wishPh.Add("EVENT");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

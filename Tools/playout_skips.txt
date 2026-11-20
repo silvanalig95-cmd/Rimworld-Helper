@@ -651,3 +651,6 @@ Rimfolk_Dlm_WS_Apart [option 0] a rule kept while the plague lasts, not somethin
 Rimfolk_Dlm_WS_Vigil [option 0] the vigil days are played out from code, one each week while the holy year lasts (WorldHomeBook, WorldQuestions.VigilDay: a DilemmaEffect_Vigil at the god's place, an altar or the gathering spot)
 Rimfolk_Dlm_WS_Sides [option 2] a refusal to take sides: the colony goes on dealing with whoever comes, as before
 Rimfolk_Dlm_WS_Mourning [option 0] done at once by DilemmaEffect_WorldMourning: the colonists' outer clothes are dyed dark grey on the map, and put back when the mourning ends (WorldHomeBook)
+
+# Defs/WorldSituationDefs/Rimfolk_WS_NewHead.xml
+Rimfolk_WS_NewHead [end:visited] told after it happened: the supper, the gift and the feast promised were the gate's answers (a feast with them at it, the gift carried out), and the next feast is only promised

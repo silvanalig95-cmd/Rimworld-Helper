@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Help sent home (the content update's B17, 20 November 2026; Source/ColonyCouncil/World/KinNews.cs). A hard world
+    event has struck a people, and one of the colony with a tie to them (married in from them, or come from them) has
+    heard of it by the courier or the road. They ask the council to send food or medicine home with the next courier,
+    from the colony's stores. A asks, {TOWN} the struck town, {EVENT} the world event, {FACTION} their people, {WHAT} what
+    would go (raw food, medicine), {COUNT} how much. Tags: kind:sickness, kind:hunger, kind:drought, kind:fire,
+    kind:water, kind:weather, kind:war, kind:townraid, kind:roads; tie:marriage (one of theirs married into the colony),
+    tie:came (a colonist who came from them); food or medicine. It never comes on the council's own rhythm: the word of
+    the hard year puts it, once an event. In the council questions' own style.
+  -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_KinSendHome</defName>
+    <label>help sent home</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_KinSendHome</workerClass>
+    <weight>1</weight>
+    <cooldownDays>3</cooldownDays>
+    <minColonists>1</minColonists>
+    <texts>
+      <li>{A_nameDef} has had word from {TOWN} ({EVENT}), and has carried it about all day without saying much. The town is having a hard time of it.\n\n{A_nameDef} has come to the council to ask whether the colony could spare {COUNT} {WHAT} for the next courier to take home to {TOWN}.</li>
+      <li>[tie:marriage] {A_nameDef} married into the colony from {FACTION}, and {A_possessive} people at {TOWN} are in trouble ({EVENT}). The letter that brought it is creased from being read.\n\n{A_nameDef} asks the council for {COUNT} {WHAT} from the stores, to go home with the next courier.</li>
+      <li>[tie:came] {A_nameDef} came to the colony from {FACTION}, and still has people at {TOWN}. The word from there is bad ({EVENT}), and {A_nameDef} has not slept well since.\n\n{A_nameDef} has asked the council whether {COUNT} {WHAT} could go home with the next courier.</li>
+      <li>[kind:sickness,medicine] The fever is at {TOWN}, and {A_nameDef} knows people there who will be needing more than prayers. {A_nameDef} has counted what the colony keeps for its own sick and come to the council with a number: {COUNT} {WHAT}, to go with the next courier.</li>
+      <li>[kind:hunger,food] {TOWN} is going hungry, {A_nameDef} says, and the granary there was thin before it started. {A_nameDef} asks the council for {COUNT} {WHAT} from the stores, carried to the gate for the next courier to take home.</li>
+      <li>[kind:drought,food] The wells at {TOWN} are low and the fields are worse, by the letter {A_nameDef} has had. {A_nameDef} asks whether the colony could send {COUNT} {WHAT} home with the next courier, to see them through to the rains.</li>
+      <li>[kind:fire,food] Half of {TOWN} burned, the letter says, and what the fire left is being shared out by the handful. {A_nameDef} asks the council for {COUNT} {WHAT} to go home with the next courier.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Send {COUNT} {WHAT} home with the courier</label>
+        <outcome>The council agrees. {A_nameDef} carries the {WHAT} out to the gate, where a runner of {FACTION} will take it on to {TOWN}.</outcome>
+        <outcomes>
+          <li>[tie:marriage] The council agrees. {A_nameDef} carries the {WHAT} out to the gate and stays to see the runner of {FACTION} load it.</li>
+          <li>[medicine] The council agrees. {A_nameDef} packs the medicine with care and carries it out to the gate for the runner of {FACTION} to take to {TOWN}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_KinSendHome" />
+        </effects>
+        <ways><generosity>2</generosity><openness>1</openness></ways>
+      </li>
+      <li>
+        <label>The colony can't spare it now</label>
+        <outcome>The council says the colony's own stores come first this season. {A_nameDef} nods, and says nothing more about it.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

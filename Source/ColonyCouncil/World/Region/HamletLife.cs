@@ -55,8 +55,10 @@ namespace ColonyCouncil
             float p = rec != null && rec.Seeded ? rec.prosperity : -1f;
             h.highSince = HamletMath.HighSince(p, h.highSince, now);
             if (!h.secondYear && HamletMath.SecondYearOver(h.founded, now)) SecondYear(home, h, t);
-            if (HamletMath.HarvestDue(HarvestTime(home), h.harvestAt, h.founded, now, p)) Harvest(home, h, t, p, now);
-            else if (Tell.CanAsk && HamletMath.HelpDue(p, h.helpAt, h.founded, now)) AskHelp(home, h, now);
+            // The region's hard year near it (a plague, a famine, a fire) or its good one (a bumper harvest): B11.
+            var hard = RegionYear(h, false, out var hardWhere);
+            if (HamletMath.HarvestDue(HarvestTime(home), h.harvestAt, h.founded, now, p)) Harvest(home, h, t, p, now, RegionYear(h, true, out _) != null);
+            else if (Tell.CanAsk && HamletMath.HelpDue(p, h.helpAt, h.founded, now, hard != null)) AskHelp(home, h, now, hard, hardWhere);
             else if (h.stage == HamletStage.Standing && Tell.CanAsk && HamletMath.FealtyDue(h.highSince, HamletMath.LastRefused(h.refused), h.oathAt, now))
             {
                 h.oathAt = now;
@@ -92,14 +94,17 @@ namespace ColonyCouncil
             return GenDate.Quadrum(Find.TickManager.TicksAbs, Find.WorldGrid.LongLatOf(home.Tile).x) == Quadrum.Septober;
         }
 
-        /// <summary>A carter brings the first of the hamlet's harvest to the colony's gate: carried in by their own people, or left there.</summary>
-        private static void Harvest(Map home, HamletHome h, Settlement t, float prosperity, int now)
+        /// <summary>
+        /// A carter brings the first of the hamlet's harvest to the colony's gate: carried in by their own people, or left there;
+        /// half again as much in a bumper year near.
+        /// </summary>
+        private static void Harvest(Map home, HamletHome h, Settlement t, float prosperity, int now, bool bumper)
         {
             h.harvestAt = now;
             var def = new[] { "RawPotatoes", "RawCorn", "RawRice" }.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null);
             if (def == null) return;
             // Sworn, the council sets how much it brings (Diplomacy/Vassals.cs: light, usual, heavy).
-            int n = Vassals.HamletProduce(home, h, HamletMath.Produce(prosperity));
+            int n = Vassals.HamletProduce(home, h, HamletMath.Harvest(HamletMath.Produce(prosperity), bumper));
             var gate = PlaySpots.GateCell(home, null);
             var things = Couriers.Make(def, n);
             bool carried = Couriers.Deliver(home, things, h.people, gate);
@@ -114,18 +119,108 @@ namespace ColonyCouncil
             }
             FactionMemory.Note(h.people, HamletMath.DeedHarvest, t.Name);
             HistoryOf(HamletMath.KindHarvest, home, h, HamletWords.HistoryHarvest(h, n, def));
-            HamletWords.TellHarvest(home, h, n, def, carried, gate);
+            HamletWords.TellHarvest(home, h, n, def, carried, gate, bumper);
         }
 
         // ---------------- A hard season ----------------
 
-        /// <summary>A hard season: the hamlet asks for food, a doctor or tools.</summary>
-        private static void AskHelp(Map home, HamletHome h, int now)
+        /// <summary>
+        /// A hard season: the hamlet asks for food, a doctor or tools; with the region's hard year near it, for what that year
+        /// brings (a doctor in a plague, food in a famine, tools after a fire), and its letter names it.
+        /// </summary>
+        private static void AskHelp(Map home, HamletHome h, int now, WorldSituation hard, string where)
         {
-            var need = HamletMath.NeedFor(Rand.Value, h.lastNeed);
+            var need = HamletMath.NeedFor(HamletMath.RegionNeed(hard?.def?.defName), Rand.Value, h.lastNeed);
             h.lastNeed = (int)need;
             h.helpAt = now;
+            h.hardEvent = hard?.def?.defName;
+            h.hardWhere = hard != null ? where ?? "" : null;
+            h.wordUntil = -1;
             HamletAsk.AskHelp(home, h, need);
+        }
+
+        // ---------------- The region's years (docs/content-update-proposals.md, B11) ----------------
+
+        /// <summary>
+        /// The nearest running world event within reach of the hamlet (HamletMath.RegionTiles from its town; one with no town
+        /// of its own by its people's nearest town) that brings a need (<paramref name="good"/> false), or a bumper harvest
+        /// (true); null for none. <paramref name="where"/>: the place's name, empty when it is at the hamlet itself or has none.
+        /// </summary>
+        internal static WorldSituation RegionYear(HamletHome h, bool good, out string where)
+        {
+            where = null;
+            var ws = WorldSituations.Instance;
+            var at = TileOf(h);
+            if (ws == null || !at.Valid || !(ColonyCouncilMod.Settings?.worldSituations ?? true)) return null;
+            WorldSituation best = null;
+            float bestTiles = float.MaxValue;
+            foreach (var s in ws.Running)
+            {
+                string def = s?.def?.defName;
+                if (def == null || (good ? def != HamletMath.Bumper : HamletMath.RegionNeed(def) == null)) continue;
+                float tiles = TilesTo(at, s, out var town);
+                if (!HamletMath.Reaches(tiles) || tiles >= bestTiles) continue;
+                best = s;
+                bestTiles = tiles;
+                where = town != null && town.ID == h.town ? "" : s.ctx?.placeName ?? "";
+            }
+            return best;
+        }
+
+        /// <summary>Tiles from the hamlet to where a world event is: its town, its tile, or its people's nearest town; -1 for none.</summary>
+        private static float TilesTo(PlanetTile at, WorldSituation s, out Settlement town)
+        {
+            town = Refs.Town(s.place);
+            var there = town != null ? town.Tile : s.place.kind == RefKind.Tile ? RiseFall.TileOf(s.place) : PlanetTile.Invalid;
+            if (there.Valid) return there.Layer == at.Layer ? Find.WorldGrid.ApproxDistanceInTiles(at, there) : -1f;
+            float best = -1f;
+            var people = s.ctx?.faction;
+            if (people == null) return best;
+            foreach (var o in Find.WorldObjects.Settlements)
+            {
+                if (o == null || o.Destroyed || o.Faction != people || o.Tile.Layer != at.Layer) continue;
+                float d = Find.WorldGrid.ApproxDistanceInTiles(at, o.Tile);
+                if (best < 0f || d < best)
+                {
+                    best = d;
+                    town = o;
+                }
+            }
+            return best;
+        }
+
+        /// <summary>Any hamlet whose carter has a word to say at the gate (the region's hour has something to do).</summary>
+        internal static bool AnyWord()
+        {
+            int now = Now;
+            foreach (var (_, h) in All())
+                if (h.wordUntil > now)
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// The region's hour, while help sent in the region's hard year waits at the gate: their courier there, come for it,
+        /// says what is happening at home, once ("The fever from Ashford has reached our lower farms.").
+        /// </summary>
+        internal static void CarterWord(int now)
+        {
+            foreach (var (home, h) in All())
+            {
+                if (h.wordUntil <= now || h.people == null || h.hardEvent.NullOrEmpty()) continue;
+                var need = HamletMath.RegionNeed(h.hardEvent);
+                if (need == null)
+                {
+                    h.wordUntil = -1;
+                    continue;
+                }
+                var carter = CourierTracker.Instance?.trips?.Where(t => t != null && !t.settled && t.map == home && t.faction == h.people && t.state == CourierState.Working)
+                    .SelectMany(t => t.people).FirstOrDefault(p => p != null && p.Spawned && p.Map == home && !p.Dead && !p.Downed);
+                if (carter == null) continue;
+                h.wordUntil = -1;
+                string word = HamletWords.CarterWord(h, need.Value);
+                Speech.Say(carter, word);
+            }
         }
 
         /// <summary>What the colony carries out for a need, by its own means: raw food, medicine, and tools as its age has them (timber, iron, components).</summary>
@@ -157,6 +252,8 @@ namespace ColonyCouncil
             new DilemmaEffect_CarryOut { what = what, count = count, steward = false, who = need == HamletNeed.Doctor && ctx.a != null ? PlayWho.A : PlayWho.None, to = PlaySpot.Gate, label = label }
                 .Apply(ctx);
             h.firstYear |= need == HamletNeed.Food ? 1 : 2;
+            // In the region's hard year, their courier who comes to the gate for it says what is happening at home.
+            if (!h.hardEvent.NullOrEmpty() && HamletMath.RegionNeed(h.hardEvent) == need) h.wordUntil = Now + HamletMath.WordDays * Day;
             var rec = WorldLedger.TownRecord(h.town);
             if (rec != null && rec.Seeded && RegionBook.FortunesOn)
             {

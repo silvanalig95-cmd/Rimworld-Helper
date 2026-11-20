@@ -13,6 +13,8 @@ namespace ColonyCouncil
     public static class KeepOutDefOf
     {
         public static JobDef Rimfolk_BringOutFood;
+        /// <summary>The same errand with food they take home in their pack, not eat there (Diplomacy/FeastYear.cs).</summary>
+        public static JobDef Rimfolk_BringOutToKeep;
 
         static KeepOutDefOf() => DefOfHelper.EnsureInitializedInCtor(typeof(KeepOutDefOf));
     }
@@ -575,15 +577,15 @@ namespace ColonyCouncil
             return false;
         }
 
-        /// <summary>The food's handed over (JobDriver_BringOutFood): into the visitor's pack, and they eat it now if they can.</summary>
-        public static bool Handed(Pawn by, Pawn guest)
+        /// <summary>The food's handed over (JobDriver_BringOutFood): into the visitor's pack, and they eat it now if they can (unless it is for them to take home: <paramref name="eatNow"/> false).</summary>
+        public static bool Handed(Pawn by, Pawn guest, bool eatNow = true)
         {
             var carried = by?.carryTracker?.CarriedThing;
             if (carried == null || guest?.inventory == null || guest.Dead || !guest.Spawned) return false;
             if (by.carryTracker.innerContainer.TryTransferToContainer(carried, guest.inventory.innerContainer, carried.stackCount, out Thing got) <= 0 || got == null)
                 return false;
             fedAt[guest.thingIDNumber] = Now;
-            if (guest.Awake() && !guest.Downed && !guest.InMentalState && guest.CurJobDef != JobDefOf.Ingest && guest.needs?.food != null)
+            if (eatNow && guest.Awake() && !guest.Downed && !guest.InMentalState && guest.CurJobDef != JobDefOf.Ingest && guest.needs?.food != null)
             {
                 var eat = JobMaker.MakeJob(JobDefOf.Ingest, got);
                 eat.count = got.stackCount;
@@ -769,8 +771,8 @@ namespace ColonyCouncil
             {
                 try
                 {
-                    // together: the colonist has just walked over to the visitor with it.
-                    handed = KeepOut.Handed(pawn, Guest);
+                    // together: the colonist has just walked over to the visitor with it (to eat, or to take home).
+                    handed = KeepOut.Handed(pawn, Guest, job.def != KeepOutDefOf.Rimfolk_BringOutToKeep);
                 }
                 catch (Exception e)
                 {

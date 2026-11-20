@@ -396,9 +396,9 @@
     </campGoods>
     <!-- The beasts in calf (those that suit the weather here likelier), the rest of the herd, and the dogs at a herder's heels. -->
     <animals>
-      <li><kinds><li>Cow</li><li>Muffalo</li><li>Yak</li><li>Goat</li><li>Sheep</li><li>Alpaca</li><li>Dromedary</li><li MayRequire="Ludeon.RimWorld.Odyssey">Muskox</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li MayRequire="sarg.alphaanimals">AA_Thunderox</li><li MayRequire="spino.megafauna">Aurochs</li></kinds><count>6~8</count><at>pasture</at></li>
+      <li><kinds><li>Cow</li><li>Muffalo</li><li>Yak</li><li>Goat</li><li>Sheep</li><li>Alpaca</li><li>Dromedary</li><li MayRequire="Ludeon.RimWorld.Odyssey">Muskox</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li MayRequire="sarg.alphaanimals">AA_Thunderox</li><li MayRequire="spino.megafauna">Aurochs</li><li MayRequire="sarg.alphaanimals">AA_ChameleonYak</li></kinds><count>6~8</count><at>pasture</at></li>
       <li><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Horse</li></kinds><count>2~3</count><at>pasture</at></li>
-      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
     </animals>
     <titles>
       <li>Spring calving</li>

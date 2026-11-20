@@ -529,6 +529,8 @@ namespace ColonyCouncil
             if (!quiet) Safe("calendar midwinter", () => Midwinter.DayKept(d, map));
             // Kept together, and an empty place at the table (Social/Talk/SharedTimes.cs).
             if (!quiet) SharedTimes.DayKept(d, map, home);
+            // The neighbours for good come to a day kept with a gathering (Camps/HoldingDays.cs).
+            if (!quiet) Safe("calendar the neighbours for good", () => HoldingDays.DayKept(d, map));
             talkDayId = d.id;
             talkDate = DateKey(map);
             talksLeft = Rand.RangeInclusive(2, 3);

@@ -22,6 +22,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>herders</li></callings>
         <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <ages>22~55</ages>
@@ -96,6 +97,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>healers</li></callings>
         <group>Visitors</group>
         <ages>30~65</ages>
         <stayHours>10~14</stayHours>
@@ -167,6 +169,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>seers</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Royalty</li>
@@ -241,6 +244,7 @@
     <earliestDay>30</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>mechanitors</li></callings>
         <group>Visitors</group>
         <mods>
           <li>Ludeon.RimWorld.Biotech</li>
@@ -313,6 +317,7 @@
     <earliestDay>30</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>grovekeepers</li></callings>
         <group>Visitors</group>
         <ages>30~75</ages>
         <stayHours>10~14</stayHours>
@@ -381,6 +386,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>traders</li></callings>
         <group>Visitors</group>
         <ages>25~60</ages>
         <stayHours>6~10</stayHours>
@@ -449,6 +455,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>scholars</li></callings>
         <group>Visitors</group>
         <ages>28~70</ages>
         <stayHours>8~12</stayHours>
@@ -514,6 +521,7 @@
     <earliestDay>8</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>hunters</li></callings>
         <group>Visitors</group>
         <letter>NeutralEvent</letter>
         <notable>true</notable>
@@ -550,6 +558,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>hunters</li><li>tamers</li></callings>
         <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <ages>24~60</ages>

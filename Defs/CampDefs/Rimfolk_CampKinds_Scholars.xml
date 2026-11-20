@@ -64,7 +64,7 @@
     <tidy>Orderly</tidy>
     <works><li>Gather</li></works>
     <animals>
-      <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Muffalo</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Alpaca</li><li>Muffalo</li><li>Dromedary</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
     <titles>
       <li>Scholars come</li>

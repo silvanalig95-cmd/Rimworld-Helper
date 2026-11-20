@@ -51,6 +51,8 @@ namespace ColonyCouncil
         public bool keen;
         /// <summary>A meal: the colonist's food (0..1); a drink: their recreation (0..1).</summary>
         public float food, joy;
+        /// <summary>The outsider asked the colony for a meal (one from a struggling town: World/Region/FortuneShows.cs).</summary>
+        public bool askedMeal;
         /// <summary>Their recreation time by the schedule.</summary>
         public bool joyTime;
         /// <summary>A gift: how it suits them (OutsiderMath.GiftFit), whether it's the first of their visit, someone the colony knows by name.</summary>
@@ -254,6 +256,9 @@ namespace ColonyCouncil
         /// <summary>A meal when it's due soon anyway: the colonist's food at or below this.</summary>
         public const float MealHunger = 0.45f;
 
+        /// <summary>A meal the outsider asked for weighs more than anything else of the everyday (a good word is 6 to 8).</summary>
+        public const float AskedMealWorth = 8.5f;
+
         /// <summary>A drink when the colonist wants recreation: at or below this, or in their recreation time.</summary>
         public const float DrinkJoy = 0.5f;
 
@@ -302,8 +307,9 @@ namespace ColonyCouncil
                     w = 3f + Math.Min(2, o.passion) + Math.Min(3, o.lead - OutsiderMath.TeachLead) * 0.3f;
                     break;
                 case OutsiderAct.Meal:
-                    if (o.food > MealHunger) return -1f;
-                    w = 4f;
+                    // One from a struggling town asked for a meal (World/Region/FortuneShows.cs): seen to first, hungry or not.
+                    if (o.food > MealHunger && !o.askedMeal) return -1f;
+                    w = o.askedMeal ? AskedMealWorth : 4f;
                     break;
                 case OutsiderAct.Drink:
                     if (o.joy > DrinkJoy && !o.joyTime) return -1f;

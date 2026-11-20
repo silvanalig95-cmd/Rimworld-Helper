@@ -124,6 +124,8 @@ namespace ColonyCouncil
                 else if (second == null) second = p;
                 list.Add(p);
             }
+            // Their clothes show their town's year, unless the road already took them (World/Region/FortuneShows.cs).
+            if (!t.robbed && FortuneShows.TownFor(f, map, out var fortune) != null) FortuneShows.Dress(list, fortune);
             return list;
         }
 

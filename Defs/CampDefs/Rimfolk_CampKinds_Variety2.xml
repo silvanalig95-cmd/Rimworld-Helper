@@ -66,7 +66,7 @@
     <sleep>Hut</sleep>
     <works><li>Chop</li><li>Craft</li></works>
     <animals>
-      <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_IndianElephant</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
     <campGoods>
       <li><defs><li>WoodLog</li></defs><count>25~40</count><at>wall</at><leftForColony>true</leftForColony></li>
@@ -213,6 +213,7 @@
     </animals>
     <campGoods>
       <li><defs><li>@Medicine</li><li>MedicineHerbal</li></defs><count>3~5</count><at>stall</at></li>
+      <li><defs><li MayRequire="vanillaexpanded.vbrewe">VBE_RawTea</li><li>RawBerries</li></defs><count>15~30</count><at>stall</at></li>
     </campGoods>
     <titles>
       <li>Herb-gatherers come</li>

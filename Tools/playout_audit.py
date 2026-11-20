@@ -371,6 +371,8 @@ PLAY = {
     # the sickroom seen to, the herd brought home, an evening), and the holder's word at supper.
     "DilemmaEffect_SeatHands": "the seat's work with a hand",
     "DilemmaEffect_SeatSupper": "words at supper",
+    # Help sent home (World/KinNews.cs): the food or medicine carried out of the stores to the gate for their courier.
+    "DilemmaEffect_KinSendHome": "the help carried to the gate for their courier",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

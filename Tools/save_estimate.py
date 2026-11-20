@@ -1009,6 +1009,13 @@ MODEL = {
     "Peoples/Events10/PeopleEvents10Book.cs:prices": ("cap", (const("Peoples/Events10/PeopleEvents10Math.cs", "MaxPrices", 4), 1 / 60), 120,
                                                       "the season's prices a moot's ruling moved, each dropped when its season is over"),
     "Peoples/Events10/PeopleEvents10Book.cs:artGiven": ("cap", (23, 1 / 60), 30, "the peoples that handed on their art, once a game each"),
+    # Other peoples' hurt in the colony's beds (World/Region/TakenIn.cs): a runaway from a raiders' camp and a call to arms'
+    # wounded, TakenInMath.MaxPatients at once, each gone when well or after TakenInMath.StayDays; the wounded on their way,
+    # TakenInMath.MaxComing parties, each gone a day to three after the colony offered its beds.
+    "World/Region/TakenIn.cs:patients": ("fixed", const("World/Region/TakenInMath.cs", "MaxPatients", 8), 160,
+                                         "other peoples' hurt in the colony's beds, while they are here (twenty days at most)"),
+    "World/Region/TakenIn.cs:coming": ("fixed", const("World/Region/TakenInMath.cs", "MaxComing", 4), 160,
+                                       "a call to arms' wounded on their way to the colony's beds, a day to three each"),
     "Peoples/Events6/AfterFire.cs:saplings": ("fixed", const("Peoples/Events6/PeopleEvents6Math.cs", "MaxSaplings", 24), V,
                                              "the cells still to plant in the burn, while the camp stands"),
     # The gods (Gods/GodBook.cs): the pantheon, one record a god (its names, domains, form, kind and nature, colours, the

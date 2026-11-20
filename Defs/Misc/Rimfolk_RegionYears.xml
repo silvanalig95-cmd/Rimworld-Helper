@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A raiders' camp's scouts at the edge of the colony's map before a raid (docs/content-update-proposals.md, B13;
+    World/Region/RaidersCampSigns.cs): to their spot, then standing still and looking toward the colony. No fighting in it:
+    hurt, their lord sends them off the map defending themselves (the game's own duty).
+  -->
+  <DutyDef>
+    <defName>Rimfolk_CampScoutWatch</defName>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <li Class="ColonyCouncil.JobGiver_CampScoutWatch" />
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+</Defs>
