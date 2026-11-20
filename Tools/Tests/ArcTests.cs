@@ -162,7 +162,9 @@ public static class ArcTests
         // Colony life's variety, part 1 (CouncilLife/LifeArcs.cs): after the vote (helped the winner or kept the grudge, a
         // seat held again), the one sent away (with the chaplain, back at the gate, home again, better days), worn thin
         // (after the episode, or a week near breaking).
-        "helped", "kept", "seated", "chaplain", "back", "home", "better", "episode", "week"
+        "helped", "kept", "seated", "chaplain", "back", "home", "better", "episode", "week",
+        // The colony's own stories (LifeVariety/ColonyStories.cs): a custom let pass, a promise let lapse.
+        "letpass", "lapsed"
     };
 
     private static readonly Regex LowerStart = new Regex(@"(^(\[[^\]]*\]\s*)?|[.!?]\s+)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}");

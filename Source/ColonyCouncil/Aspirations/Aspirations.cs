@@ -87,7 +87,7 @@ namespace ColonyCouncil
             return Beliefs.ForbidsAny(p, forbiddenMask);
         }
         /// <summary>A goal of a seat on the council names the seat: its words say it by its name in the colony's age.</summary>
-        public string InAge(string text) => workerClass == typeof(AspirationWorker_Office) ? OfficeNames.InAge(text) : text;
+        public string InAge(string text) => workerClass != null && typeof(AspirationWorker_Office).IsAssignableFrom(workerClass) ? OfficeNames.InAge(text) : text;
 
         /// <summary>Journal, when they set their heart on it ({GOAL}).</summary>
         public ToneLines chosen = new ToneLines();
@@ -486,6 +486,9 @@ namespace ColonyCouncil
         /// <summary>Who inspired the latest "fulfilled" spark for each colonist and goal.</summary>
         private Dictionary<string, string> inspiredBy = new Dictionary<string, string>();
 
+        /// <summary>Dev mode: sets them on this goal now (LifeVariety/LifeVarietyDebug.cs), as a spark would.</summary>
+        internal Aspiration DebugBegin(CouncilGameComponent comp, Pawn p, AspirationDef def, string spark) => Begin(comp, p, def, spark, null);
+
         /// <summary>Their life goal under way, or null. Asked by the "within reach" mood for every colonist, so a plain loop.</summary>
         public Aspiration Active(Pawn p)
         {
@@ -761,7 +764,8 @@ namespace ColonyCouncil
                 return false;
             }
             b.turned = true;
-            comp.journals.Write(p, "Council_Journal_GoalChanged", null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
+            // Tagged by what changed it ([loss] or [downed], the only sparks big enough), so the entry can say so.
+            comp.journals.WriteTagged(p, "Council_Journal_GoalChanged", new[] { pick.spark }, null, old.Named("OLDGOAL"), b.Goal.Named("GOAL"));
             return true;
         }
 
@@ -806,6 +810,8 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Asp_FulfilledText".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve(), p));
             comp.annals.Notify_Aspiration(p, a.Goal);
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Asp_Fulfilled);
+            // A turning point read by their nature (A22, LifeVariety/LifeMarksDeeds.cs).
+            LifeMarks.GoalReached(p, a.Goal);
             comp.standings.Change(p, 10f, "CC_Log_Aspiration".Translate(a.Goal));
             // The people who love them are glad (they hear the news, wherever they are).
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))

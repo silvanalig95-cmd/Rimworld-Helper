@@ -1,0 +1,472 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More teasing, and more closing words for shared memories and in-jokes (the content update's A32, 20 November 2026),
+    joined at startup to the lines of the same topic or memory, turn and outcome (Social/Talk/Talk.cs). Teasing opens
+    are about the other's side ([otherfor], [otheragainst]); a child's talk of growing up says whether a child speaks
+    ([child], [!child]). Plain words, one sentence each, said aloud; voices beyond the plain and cheerful ones for those
+    who tease in their own voice (TalkMath.Voice).
+  -->
+
+  <!-- ===================== Teasing ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Food_Tease_More</defName>
+    <topic>Rimfolk_Topic_Food</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd thank the cook for a bowl of plain water, {OTHER}.</li>
+        <li>[otheragainst] If the stew's that bad, {OTHER}, why are you on your second bowl?</li>
+      </plain>
+      <warm><li>[otherfor] It's nice that someone here likes the food, {OTHER}, the cook needs you.</li></warm>
+      <blunt><li>[otheragainst] Eat it or don't, {OTHER}, but stop telling us what's wrong with it.</li></blunt>
+      <cheerful><li>[otheragainst] One day you'll cook for us, {OTHER}, and we'll all get to complain.</li></cheerful>
+      <gloomy><li>[otherfor] You'll still be calling it tasty when we're down to boiled roots, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Work_Tease_More</defName>
+    <topic>Rimfolk_Topic_Work</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otheragainst] Who's on your list of idlers today, {OTHER}, or am I still at the top?</li>
+        <li>[otherfor] You'd say a sleeping hauler was resting between loads, {OTHER}.</li>
+      </plain>
+      <warm><li>[otherfor] You always see the best in everyone's work, {OTHER}, even mine.</li></warm>
+      <blunt><li>[otheragainst] Do your own work, {OTHER}, and let the rest of us worry about ours.</li></blunt>
+      <cheerful><li>[otheragainst] I sat down for one minute and you were already looking at me, {OTHER}.</li></cheerful>
+      <cold><li>[otherfor] You'd say everyone works hard if half of them were asleep, {OTHER}.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Growing_Tease_More</defName>
+    <topic>Rimfolk_Topic_Growing</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor,!child] You'd let the little ones play until dark every day if you could, {OTHER}.</li>
+        <li>[otheragainst,child] You never stop working, {OTHER}, do you even know any games?</li>
+      </plain>
+      <warm><li>[otherfor,!child] The children love you for letting them be children, {OTHER}.</li></warm>
+      <blunt><li>[otheragainst,!child] You'd have a toddler hauling stone if we let you, {OTHER}.</li></blunt>
+      <cheerful><li>[otherfor,child] Come and play, {OTHER}, you're allowed to have fun too.</li></cheerful>
+      <gloomy><li>[otheragainst,!child] You'd have the children worrying about the winter stores already, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Council_Tease_More</defName>
+    <topic>Rimfolk_Topic_Council</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] Is there any decree you didn't like, {OTHER}, even one?</li>
+        <li>[otheragainst] You'd argue with the council about the colour of the sky, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] The council needs someone asking questions, {OTHER}, just not every time.</li></warm>
+      <blunt><li>[otherfor] You'd sign anything the council put in front of you, {OTHER}.</li></blunt>
+      <cheerful><li>[otherfor] One day the council will give you a medal for agreeing with it, {OTHER}.</li></cheerful>
+      <cold><li>[otheragainst] You keep count of the council's mistakes, {OTHER}, and remind us of the total.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Future_Tease_More</defName>
+    <topic>Rimfolk_Topic_Future</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You talk about this place in ten years as if you'd already seen it, {OTHER}.</li>
+        <li>[otheragainst] If you're leaving, {OTHER}, can I have your bed?</li>
+      </plain>
+      <warm><li>[otherfor] I like how sure you are about this place, {OTHER}, it rubs off on people.</li></warm>
+      <blunt><li>[otheragainst] Stay or go, {OTHER}, but stop talking about it.</li></blunt>
+      <cheerful><li>[otheragainst] You've said you're leaving so often, {OTHER}, I've stopped saying goodbye.</li></cheerful>
+      <gloomy><li>[otherfor] You'd still be planning next spring in the middle of a raid, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Project_Tease_More</defName>
+    <topic>Rimfolk_Topic_Project</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] Do you ever talk about anything except the project, {OTHER}?</li>
+        <li>[otheragainst] You always find something else to do when the project needs hands, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] You grumble about the project, {OTHER}, but you'll be proud of it when it's done.</li></warm>
+      <blunt><li>[otheragainst] The project's happening, {OTHER}, so you might as well pick up a tool.</li></blunt>
+      <cheerful><li>[otherfor] When the project's finished, {OTHER}, I expect you'll want to start it again.</li></cheerful>
+      <cold><li>[otherfor] You talk about the project as if it were a person, {OTHER}.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Outside_Tease_More</defName>
+    <topic>Rimfolk_Topic_Outside</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd trade the roof off the hall if a caravan asked nicely, {OTHER}.</li>
+        <li>[otheragainst] Someone comes up the road and you're at the gate with your arms folded, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] You worry about strangers because you care about us, {OTHER}, I know that.</li></warm>
+      <blunt><li>[otherfor] Not every trader is your friend, {OTHER}.</li></blunt>
+      <cheerful><li>[otherfor] You know more traders by name than colonists, {OTHER}.</li></cheerful>
+      <gloomy><li>[otheragainst] If it were up to you, {OTHER}, we'd never see another face here.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Art_Tease_More</defName>
+    <topic>Rimfolk_Topic_Art</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd stop in the middle of a raid to admire a carving, {OTHER}.</li>
+        <li>[otheragainst] You'd use the best statue in the colony to prop a door open, {OTHER}.</li>
+      </plain>
+      <warm><li>[otherfor] You notice the nice things here that the rest of us walk past, {OTHER}.</li></warm>
+      <blunt><li>[otheragainst] A sculpture won't keep you warm, I know, {OTHER}, you've said.</li></blunt>
+      <cheerful><li>[otherfor] You straighten every picture you walk past, {OTHER}.</li></cheerful>
+      <cold><li>[otheragainst] You'd break up a masterwork for building stone, {OTHER}.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Prisoners_Tease_More</defName>
+    <topic>Rimfolk_Topic_Prisoners</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd give the prisoners your own blanket if we let you, {OTHER}.</li>
+        <li>[otheragainst] You glare at the cells every time you walk past, {OTHER}.</li>
+      </plain>
+      <warm><li>[otherfor] You've a kind word for everyone, {OTHER}, even the ones behind bars.</li></warm>
+      <blunt><li>[otheragainst] They're prisoners, {OTHER}, not raiders still at the wall.</li></blunt>
+      <cheerful><li>[otherfor] Next you'll be asking the prisoners what they'd like for supper, {OTHER}.</li></cheerful>
+      <gloomy><li>[otherfor] You'll be sorry you were so nice to them if they ever get out, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Calendar_Tease_More</defName>
+    <topic>Rimfolk_Topic_Calendar</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You've had your best clothes ready for days, haven't you, {OTHER}?</li>
+        <li>[otheragainst,subject] You'll be working through {SUBJECT} again, won't you, {OTHER}?</li>
+      </plain>
+      <warm><li>[otheragainst] Take the day off this once, {OTHER}, the work will still be there.</li></warm>
+      <blunt><li>[otherfor] It's one day, {OTHER}, not the whole year.</li></blunt>
+      <cheerful><li>[otherfor,subject] You've been talking about {SUBJECT} all week, {OTHER}.</li></cheerful>
+      <cold><li>[otheragainst] You treat a day off like a punishment, {OTHER}.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Drugs_Tease_More</defName>
+    <topic>Rimfolk_Topic_Drugs</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You always know where the beer is kept, don't you, {OTHER}?</li>
+        <li>[otheragainst] You'd water down the beer if nobody was watching, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] You worry about how much we drink, {OTHER}, and I suppose someone has to.</li></warm>
+      <blunt><li>[otherfor] One cup, {OTHER}, not the whole barrel.</li></blunt>
+      <cheerful><li>[otherfor] You're the first to raise a cup and the last to put it down, {OTHER}.</li></cheerful>
+      <gloomy><li>[otheragainst] You'd ban every drink here and then wonder why we're miserable, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Wealth_Tease_More</defName>
+    <topic>Rimfolk_Topic_Wealth</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd sell the chairs out from under us if a trader made an offer, {OTHER}.</li>
+        <li>[otheragainst] You'd give a trader our best goods for a handshake, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] You're right that silver isn't everything, {OTHER}, but it does buy medicine.</li></warm>
+      <blunt><li>[otherfor] We're not a market, {OTHER}, we live here.</li></blunt>
+      <cheerful><li>[otherfor] You light up when a caravan comes in, {OTHER}, and it isn't for the company.</li></cheerful>
+      <cold><li>[otheragainst] You'll care about silver the first time we can't pay for something, {OTHER}.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Tech_Tease_More</defName>
+    <topic>Rimfolk_Topic_Tech</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd take apart the only tool that works to see what's inside, {OTHER}.</li>
+        <li>[otheragainst] If it's new, {OTHER}, you don't trust it, do you?</li>
+      </plain>
+      <warm><li>[otheragainst] There's a lot to be said for the old ways, {OTHER}, but not everything.</li></warm>
+      <blunt><li>[otherfor] Not every new idea is a good one, {OTHER}.</li></blunt>
+      <cheerful><li>[otherfor] You've got a new idea every day, {OTHER}, and some of them even work.</li></cheerful>
+      <gloomy><li>[otheragainst] You'd turn down a better tool because the old one still works, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Raid_Tease_More</defName>
+    <topic>Rimfolk_Topic_Raid</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You're always first out of the gate when raiders come, {OTHER}, and last back in.</li>
+        <li>[otheragainst] How many walls is enough for you, {OTHER}, ten?</li>
+      </plain>
+      <warm><li>[otherfor] I know you're brave, {OTHER}, but I'd like you to come back in one piece.</li></warm>
+      <blunt><li>[otherfor] Charging at raiders isn't a plan, {OTHER}.</li></blunt>
+      <cheerful><li>[otheragainst] You'd build a wall around your bed if you had the stone, {OTHER}.</li></cheerful>
+      <cold><li>[otheragainst] If you had your way, {OTHER}, we'd spend all our stone on walls.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Children_Tease_More</defName>
+    <topic>Rimfolk_Topic_Children</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor,!nochildren] You'd let the children run the whole colony if they asked nicely, {OTHER}.</li>
+        <li>[otheragainst,!nochildren] You jump every time a child goes near the gate, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst,!nochildren] You worry about the children because you care, {OTHER}, I can see that.</li></warm>
+      <blunt><li>[otherfor,!nochildren] Spoil them any more, {OTHER}, and they'll never do a day's work.</li></blunt>
+      <cheerful><li>[otherfor,!nochildren] The children have you wrapped round their little fingers, {OTHER}.</li></cheerful>
+      <gloomy><li>[otheragainst] You talk as if there were somewhere safer for children than here, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Love_Tease_More</defName>
+    <topic>Rimfolk_Topic_Love</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd marry off the whole colony by spring if you could, {OTHER}.</li>
+        <li>[otheragainst] You go red every time someone mentions a wedding, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] You say love is trouble, {OTHER}, but you smile at every wedding.</li></warm>
+      <blunt><li>[otherfor] Not everyone wants to fall in love, {OTHER}.</li></blunt>
+      <cheerful><li>[otherfor] Who are you trying to pair up this week, {OTHER}?</li></cheerful>
+      <cold><li>[otheragainst] You treat love like an illness you might catch, {OTHER}.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Camp_Tease_More</defName>
+    <topic>Rimfolk_Topic_Camp</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor,!coming] You spend so much time at that camp, {OTHER}, they must think you live there.</li>
+        <li>[otheragainst,!coming] You walk the long way round so you don't pass the camp, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] They're just people passing through, {OTHER}, give them a chance.</li></warm>
+      <blunt><li>[otherfor] They're not staying forever, {OTHER}, don't get too attached.</li></blunt>
+      <cheerful><li>[otherfor] You'll be packing up and leaving with them, won't you, {OTHER}?</li></cheerful>
+      <gloomy><li>[otheragainst,!coming] You check on that camp more often than you check on us, {OTHER}.</li></gloomy>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Health_Tease_More</defName>
+    <topic>Rimfolk_Topic_Health</topic>
+    <turn>Open</turn>
+    <outcomes><li>Tease</li></outcomes>
+    <lines>
+      <plain>
+        <li>[otherfor] You'd send someone to bed for a scraped knee, {OTHER}.</li>
+        <li>[otheragainst] You'd haul stone with a fever and call it a warm day, {OTHER}.</li>
+      </plain>
+      <warm><li>[otheragainst] Rest a bit when you're hurt, {OTHER}, nobody will think less of you.</li></warm>
+      <blunt><li>[otherwounded] That's what you get for standing in front of things, {OTHER}.</li></blunt>
+      <cheerful><li>[otherill] You look terrible, {OTHER}, and I mean that kindly.</li></cheerful>
+      <cold><li>[otherfor] You'd keep every bed full of people with a sniffle, {OTHER}.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== Remembering and in-jokes ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Nursed_Close_ColonyLife</defName>
+    <memory>Rimfolk_Mem_Nursed</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byother] Thank you again, that's all I wanted to say.</li>
+        <li>[byme] Just tell me sooner next time you feel ill.</li>
+      </plain>
+      <warm><li>I'm glad we're both here to talk about it.</li></warm>
+      <blunt><li>[byme] Next time, come to me before it gets that bad.</li></blunt>
+      <cheerful><li>[byother] Next time you're ill, I'll be the one bringing you soup.</li></cheerful>
+      <gloomy><li>I hope neither of us goes through that again.</li></gloomy>
+      <cold><li>[byme] You recovered well, and that's what matters.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_CloseCall_Close_ColonyLife</defName>
+    <memory>Rimfolk_Mem_CloseCall</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I still think about how close it was.</li>
+        <li>[byother] Look after yourself, I mean it.</li>
+      </plain>
+      <warm><li>I'm glad I wasn't on my own when it happened.</li></warm>
+      <blunt><li>Be more careful next time.</li></blunt>
+      <cheerful><li>We'll laugh about it properly when we're old.</li></cheerful>
+      <gloomy><li>It could have been so much worse.</li></gloomy>
+      <cold><li>We'll know better next time.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_Repaid_Close_ColonyLife</defName>
+    <memory>Rimfolk_Mem_Repaid</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byother] I won't forget it, whatever you say.</li>
+        <li>[byme] Just stay alive, that's all the thanks I need.</li>
+      </plain>
+      <warm><li>We'll always look out for each other, you and I.</li></warm>
+      <blunt><li>Enough about it, we're square.</li></blunt>
+      <cheerful><li>[byother] One day I'll save you, and then you'll never hear the end of it.</li></cheerful>
+      <gloomy><li>There'll be another fight, and I'll be looking for you in it.</li></gloomy>
+      <cold><li>[byother] I'll repay it when the chance comes.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Downpour_Close_ColonyLife</defName>
+    <memory>Rimfolk_Mem_Downpour</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Next time it clouds over, I'm staying inside.</li>
+        <li>[told] Fine, you didn't stand there like a post.</li>
+      </plain>
+      <warm><li>That's still one of my favourite days here.</li></warm>
+      <blunt><li>It was rain, we got wet, that's all.</li></blunt>
+      <cheerful><li>Let's get caught out again sometime, it was fun.</li></cheerful>
+      <gloomy><li>My boots have never been the same since.</li></gloomy>
+      <cold><li>Next time we check the sky before going out.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_Snowball_Close_ColonyLife</defName>
+    <memory>Rimfolk_Mem_Snowball</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Next snow, we pick teams properly.</li>
+        <li>[told] All right, I'll admit it was close.</li>
+      </plain>
+      <warm><li>Let's do it again when the snow comes back.</li></warm>
+      <blunt><li>I still won.</li></blunt>
+      <cheerful><li>Next time I'm throwing the first one.</li></cheerful>
+      <gloomy><li>I couldn't feel my fingers for an hour after.</li></gloomy>
+      <cold><li>Next time I'll plan my throws.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Joke_JokeHeard_Close_ColonyLife</defName>
+    <memory>Rimfolk_Mem_JokeHeard</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain><li>[fresh] I'm going to remember that one.</li></plain>
+      <warm><li>[byme] I'm glad it made you smile.</li></warm>
+      <blunt><li>Good one.</li></blunt>
+      <cheerful><li>[byother] I'm going to tell that one to everyone, and badly.</li></cheerful>
+      <gloomy><li>[worn] Tell me a new one next time.</li></gloomy>
+      <cold><li>[told] I'll remember the ending, at least.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_ChildFound_Open_ColonyLife</defName>
+    <memory>Rimfolk_Mem_ChildFound</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain><li>[byother] Everyone still talks about how you found {LABEL}, you know.</li></plain>
+      <warm><li>[byme] I think about {LABEL} sometimes and hope they're well.</li></warm>
+      <blunt><li>[byother] You did well, finding {LABEL}.</li></blunt>
+      <cheerful><li>I bet {LABEL} has grown since we last saw them.</li></cheerful>
+      <gloomy><li>[first] It took me days to stop worrying after we found {LABEL}.</li></gloomy>
+      <cold><li>[byme] Finding {LABEL} was a matter of following the right tracks.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_ChildFound_Reply_ColonyLife</defName>
+    <memory>Rimfolk_Mem_ChildFound</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain><li>[byme] I was just glad to see {LABEL} safe.</li></plain>
+      <warm><li>[byother] You did a good thing that day.</li></warm>
+      <blunt><li>[byme] I was in the right place, that's all.</li></blunt>
+      <cheerful><li>[byother] You were the hero that day, admit it.</li></cheerful>
+      <gloomy><li>I'm glad it ended well, they don't always.</li></gloomy>
+      <cold><li>[byme] It was the sensible thing to do.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_ChildFound_Close_ColonyLife</defName>
+    <memory>Rimfolk_Mem_ChildFound</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain><li>I'm glad that one ended well.</li></plain>
+      <warm><li>I'm proud of what we did for {LABEL}.</li></warm>
+      <blunt><li>It's done, and {LABEL} is home.</li></blunt>
+      <cheerful><li>Here's to {LABEL}, wherever they are now.</li></cheerful>
+      <gloomy><li>I hope {LABEL} never gets lost like that again.</li></gloomy>
+      <cold><li>It was worth the time it took.</li></cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

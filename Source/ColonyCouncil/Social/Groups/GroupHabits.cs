@@ -108,9 +108,38 @@ namespace ColonyCouncil
                     return p.InBed() && LifeChecks.Healing(p) && g.Pawns.Any(o => o != p && o.CurJobDef == JobDefOf.VisitSickPawn && o.CurJob.targetA.Thing == p);
                 case "music":
                     return Playing(p) || (Leisure(p) && p.Map.mapPawns.FreeColonistsSpawned.Any(o => o != p && Playing(o) && Together.Hears(p, o, 9f)));
+                // The colony's pastimes (the content update's A24): fishing, the hot water, a pot of tea or coffee, cards, chess or darts.
+                case PastimeMath.Fish:
+                    return job?.def != null && PastimeMath.FishingJob(job.def.defName);
+                case PastimeMath.Bath:
+                    return Bathing(p);
+                case PastimeMath.Cup:
+                {
+                    if (job?.def != JobDefOf.Ingest || !LifeNewTracker.IsCup(job.targetA.Thing?.def)) return false;
+                    var room = p.GetRoom();
+                    return room != null && !room.PsychologicallyOutdoors;
+                }
+                case PastimeMath.Games:
+                    return job?.def != null && PastimeMath.GameJob(job.def.defName);
                 default:
                     return Leisure(p);
             }
+        }
+
+        /// <summary>
+        /// In the hot water: Dubs Bad Hygiene's hydrotherapy (its pool, hot tub and sauna) and ReGrowth's hot spring, by the
+        /// job, or at leisure standing in a pool's or a hot spring's water or by a hot tub or a sauna's seats.
+        /// </summary>
+        private static bool Bathing(Pawn p)
+        {
+            var job = p.CurJob;
+            if (job?.def != null && PastimeMath.BathJob(job.def.defName, job.def.joyKind?.defName)) return true;
+            if (!Leisure(p) || p.Map == null) return false;
+            string terrain = p.Position.GetTerrain(p.Map)?.defName ?? "";
+            if (terrain == "PoolWater" || terrain.StartsWith("RG_HotSpring")) return true;
+            var building = p.Position.GetEdifice(p.Map) ?? p.Position.GetFirstBuilding(p.Map);
+            string b = building?.def.defName ?? "";
+            return b.IndexOf("HotTub", StringComparison.OrdinalIgnoreCase) >= 0 || b.IndexOf("Sauna", StringComparison.OrdinalIgnoreCase) >= 0;
         }
 
         /// <summary>Playing an instrument (Royalty's harp, harpsichord or piano, and any mod's that uses the game's job).</summary>
@@ -133,7 +162,7 @@ namespace ColonyCouncil
                     foreach (var o in doing)
                     {
                         if (seen.Contains(o) || !Together.Can(knot[k], o)) continue;
-                        if (habit.where == "table" && knot[k].GetRoom() != o.GetRoom()) continue;
+                        if ((habit.where == "table" || habit.where == PastimeMath.Cup) && knot[k].GetRoom() != o.GetRoom()) continue;
                         seen.Add(o);
                         knot.Add(o);
                     }

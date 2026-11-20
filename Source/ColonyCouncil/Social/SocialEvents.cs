@@ -79,6 +79,11 @@ namespace ColonyCouncil
         public bool camp;
         /// <summary>A world event of one of these kinds ("sickness", "hunger") or defNames is running.</summary>
         public List<string> situations;
+        /// <summary>
+        /// One of the council's seasons (the content update's A25, LifeVariety/CouncilSeasons.cs): speech, handover, promisewell,
+        /// promisebadly, rivalbackers, petition or elderword. Its words may say {OFFICE}, {CANDIDATE}, {RIVAL}, {PROMISE}, {WISH}.
+        /// </summary>
+        public string council;
 
         public override IEnumerable<string> ConfigErrors()
         {
@@ -93,7 +98,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A social event's context: the work two are at side by side ({WORK}), beside a dilemma's.</summary>
-    public class SocialEventContext : DilemmaContext
+    public partial class SocialEventContext : DilemmaContext
     {
         public WorkTypeDef work;
 
@@ -101,6 +106,11 @@ namespace ColonyCouncil
         {
             base.AddArgs(args);
             args.Add((work?.gerundLabel ?? work?.labelShort ?? "").Named("WORK"));
+            // The council's seasons (LifeVariety/CouncilSeasons.cs).
+            args.Add((candidate ?? "").Named("CANDIDATE"));
+            args.Add((rival ?? "").Named("RIVAL"));
+            args.Add((promise ?? "").Named("PROMISE"));
+            args.Add((wishLabel ?? "").Named("WISH"));
         }
     }
 
@@ -222,6 +232,7 @@ namespace ColonyCouncil
             if (def.sharedAilment != null && !LifeConditions.ShareOne(a, b, def.sharedAilment)) return false;
             if (def.camp && !LifeConditions.CampOn(a.MapHeld)) return false;
             if (def.situations != null && !LifeConditions.Situation(def.situations)) return false;
+            if (!def.council.NullOrEmpty() && !CouncilSeasons.Fits(def.council, a, b)) return false;
             if (def.aMemories != null && LifeConditions.Remembered(a, def.aMemories, def.memoryDays) == null) return false;
             if (def.bMemories != null && LifeConditions.Remembered(b, def.bMemories, def.memoryDays, def.bMemoryAboutA ? a : null) == null) return false;
             if (def.sameWork != null && WorkSideBySide(def, a, b) == null) return false;
@@ -296,6 +307,7 @@ namespace ColonyCouncil
                 if (ctx.work?.relevantSkills != null && ctx.work.relevantSkills.Count > 0) ctx.skill = ctx.work.relevantSkills[0];
             }
             if (def.bMadeFineDays > 0f) ctx.thing = FineOf(b, def.bMadeFineDays);
+            if (!def.council.NullOrEmpty()) CouncilSeasons.Fill(def.council, ctx);
             string text = ctx.Format(Flavor.PickText(def.texts));
             ctx.cause = text;
             if (def.sharedVendetta) ctx.faction = SharedVendetta(comp, a, b);

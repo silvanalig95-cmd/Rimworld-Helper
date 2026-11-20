@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Life goals for the other seats (the content update's A16, 20 November 2026; Source/ColonyCouncil/LifeVariety/
+    SeatSparks.cs): the reeve's, the peacemaker's, the keeper of days', the herdmaster's, the chaplain's, the warden of
+    guests' and an elder's seat, beside the marshal's, physician's, steward's and quartermaster's of Council_Aspirations2.
+    Each is sparked by doing the seat's own work (seat:harvest a big harvest in, seat:mended a quarrel mended, seat:daykept
+    a day of the calendar kept, seat:tamed an animal tamed, seat:riteled a rite of the faith led, seat:greeted a camp
+    greeted, seat:taught a student taught to stand alone) and by losing an election; a goal of a seat already counts in the
+    vote. Only wanted while the seat is open to the colony (AspirationWorker_SeatOpen). The seat is named in the colony's
+    age wherever it is said. Life goals, so the flavour style.
+  -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Seat_Reeve</defName>
+    <label>the reeve's seat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
+    <office>Council_Office_Reeve</office>
+    <weight>0.5</weight>
+    <goal>serve as the colony's reeve</goal>
+    <deed>served as the colony's reeve</deed>
+    <sparks><li>seat:harvest</li><li>thought:Council_LostElection</li></sparks>
+    <who><passion>Plants</passion></who>
+    <chosen>
+      <plain>
+        <li>Somebody has to know which field wants resting and which wants turnips. I've been that somebody for a year, without the chair.</li>
+        <li>[inherited] {NAME} walked the fields every morning before anyone else was up. I'll {GOAL}, and keep the walk going.</li>
+        <li>[spark:seat:harvest] I brought in more of the harvest than anyone this year. Next year I'd like to decide what goes in the ground.</li>
+        <li>[lowtech] The fields have always had a keeper, where I come from. Ours have a lot of people who mean well.</li>
+      </plain>
+      <warm><li>I love the fields, and I'd like the colony to trust me with them. I'll {GOAL} if they'll have me.</li></warm>
+      <blunt><li>I know the soil here better than anyone. Give me the seat.</li></blunt>
+      <cold><li>Our yields are poor because nobody plans the rotation. As reeve I would.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Reeve. I walked every field at first light this morning, the same as yesterday, except now it's my job.</li>
+        <li>They made me reeve. The first thing I did was count the seed. The second was count it again.</li>
+      </plain>
+      <cheerful><li>Reeve. I've already planned three seasons of planting in my head.</li></cheerful>
+      <gloomy><li>Reeve now. When the blight comes, they'll all look at me.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Seat_Peacemaker</defName>
+    <label>the peacemaker's seat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
+    <office>Council_Office_Peacemaker</office>
+    <weight>0.5</weight>
+    <goal>serve as the colony's peacemaker</goal>
+    <deed>served as the colony's peacemaker</deed>
+    <sparks><li>seat:mended</li><li>thought:Council_LostElection</li></sparks>
+    <who><passion>Social</passion><notTrait><li>Abrasive</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I sat two of them down this week who hadn't spoken in a month, and by supper they were passing each other the salt. Somebody ought to do that on purpose.</li>
+        <li>[inherited] {NAME} could end a shouting match with one look. I can't do the look yet, but I'll {GOAL} and learn it.</li>
+        <li>[spark:seat:mended] I mended a quarrel today that wasn't mine to mend. Next time I'd like it to be.</li>
+      </plain>
+      <warm><li>Nobody here should go to bed angry at a neighbour. I'd like to be the one who sees that they don't.</li></warm>
+      <blunt><li>Too much shouting in this colony. Make me peacemaker and there'll be less of it.</li></blunt>
+      <cold><li>Every feud costs us work. As peacemaker I would end them faster.</li></cold>
+    </chosen>
+    <achieved>
+      <plain><li>Peacemaker. Two people came to me before breakfast, both sure the other was wrong. It's going to be like this, isn't it.</li></plain>
+      <warm><li>They trust me to keep the peace. I'll try to deserve that every day.</li></warm>
+      <gloomy><li>Peacemaker now, so every quarrel is partly mine.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Seat_Keeper</defName>
+    <label>the keeper of days' seat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
+    <office>Council_Office_Keeper</office>
+    <weight>0.45</weight>
+    <goal>serve as the colony's keeper of days</goal>
+    <deed>served as the colony's keeper of days</deed>
+    <sparks><li>seat:daykept</li><li>thought:Council_LostElection</li></sparks>
+    <chosen>
+      <plain>
+        <li>I remembered the founding day this year before anyone else did, and the harvest home, and somebody's birthday the rest forgot. I could keep the colony's days properly.</li>
+        <li>[inherited] {NAME} knew every day worth keeping and why. I'll {GOAL}, so none of them are lost.</li>
+        <li>[spark:seat:daykept] We kept a day together this week, and it was me who saw it through. I'd like to see them all through.</li>
+      </plain>
+      <warm><li>Our days are what we'll remember of this place. Somebody should look after them, and I'd like it to be me.</li></warm>
+      <cheerful><li>Keeper of days, that's me. Somebody has to remind everyone it's a feast, and I never forget a feast.</li></cheerful>
+      <cold><li>The calendar is kept carelessly. A keeper of days would end that.</li></cold>
+    </chosen>
+    <achieved>
+      <plain><li>Keeper of days. I've written the year's days out on the wall in order. People keep stopping to read it.</li></plain>
+      <warm><li>They gave me the colony's days to look after. I won't let one of them slip by.</li></warm>
+      <gloomy><li>Keeper of days. Now when a day's forgotten, it's me who forgot it.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Seat_Herdmaster</defName>
+    <label>the herdmaster's seat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
+    <office>Council_Office_Herdmaster</office>
+    <weight>0.5</weight>
+    <goal>serve as the colony's herdmaster</goal>
+    <deed>served as the colony's herdmaster</deed>
+    <sparks><li>seat:tamed</li><li>thought:Council_LostElection</li></sparks>
+    <who><passion>Animals</passion></who>
+    <chosen>
+      <plain>
+        <li>The animals come to me before they come to anyone, and I know which of them is off its feed before it does. I should have the herd.</li>
+        <li>[inherited] {NAME} knew every beast in the pens by name. I'll {GOAL}, and learn the names {NAME} knew.</li>
+        <li>[spark:seat:tamed] I brought a wild one in this week, with nothing but patience and a pocket of feed. I'd like the whole herd in my care.</li>
+      </plain>
+      <warm><li>The animals need someone who'll look after them first and count them second. I'd like to be that someone.</li></warm>
+      <blunt><li>I'm the best with the animals here. Make me herdmaster.</li></blunt>
+      <cold><li>The herd is managed by whoever happens to be passing. As herdmaster I would plan its breeding properly.</li></cold>
+    </chosen>
+    <achieved>
+      <plain><li>Herdmaster. I went out to the pens and told them. They didn't seem surprised.</li></plain>
+      <cheerful><li>Herdmaster. Every animal in the colony is mine to look after now, and I mean every one.</li></cheerful>
+      <gloomy><li>Herdmaster now. When we have to slaughter, I'll be the one choosing.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Seat_Chaplain</defName>
+    <label>the chaplain's seat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
+    <office>Council_Office_Chaplain</office>
+    <weight>0.45</weight>
+    <goal>serve as the colony's chaplain</goal>
+    <deed>served as the colony's chaplain</deed>
+    <sparks><li>seat:riteled</li><li>thought:Council_LostElection</li></sparks>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>I stood at the front of the rite this week and said the words, and people listened. I'd like to be the one who says them every time.</li>
+        <li>[inherited] {NAME} sat with every grieving soul in this colony. I'll {GOAL} and sit where {NAME} sat.</li>
+        <li>[spark:seat:riteled] Leading the rite felt like something I was meant to do. The chaplain's seat would let me do it properly.</li>
+      </plain>
+      <warm><li>When someone's faith wears thin, they should have somebody to talk to. I'd like to be that somebody.</li></warm>
+      <cold><li>The faith holds the colony together. It deserves someone who takes it seriously.</li></cold>
+    </chosen>
+    <achieved>
+      <plain><li>Chaplain. I led the evening's words and my voice only shook once.</li></plain>
+      <warm><li>They gave me the faith to look after, and everyone in it. I'll keep my door open.</li></warm>
+      <gloomy><li>Chaplain now. Every funeral is mine to speak at.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Seat_Warden</defName>
+    <label>the warden of guests' seat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
+    <office>Council_Office_Warden</office>
+    <weight>0.45</weight>
+    <goal>serve as the colony's warden of guests</goal>
+    <deed>served as the colony's warden of guests</deed>
+    <sparks><li>seat:greeted</li><li>thought:Council_LostElection</li></sparks>
+    <who><passion>Social</passion></who>
+    <chosen>
+      <plain>
+        <li>I walked down to the camp by the road this week and sat at their fire, and they told me where they'd come from. Somebody should do that every time.</li>
+        <li>[inherited] {NAME} met every stranger at the gate as if they were expected. I'll {GOAL} and keep the gate that way.</li>
+        <li>[spark:seat:greeted] The travellers by the road went away thinking well of us, and I think I had something to do with it. I'd like the seat for it.</li>
+      </plain>
+      <warm><li>Everyone who comes up our road should be welcomed properly. I'd like that to be my work.</li></warm>
+      <cheerful><li>Warden of guests, that's what I'd like. I'd meet every caravan with a cup in my hand.</li></cheerful>
+      <cold><li>How we treat visitors decides how the region treats us. The warden's seat matters more than people think.</li></cold>
+    </chosen>
+    <achieved>
+      <plain><li>Warden of guests. The next traveller at the gate gets a proper welcome, and I've already decided what I'll say.</li></plain>
+      <warm><li>They made me warden of guests. Nobody will come up our road and feel unwelcome now.</li></warm>
+      <gloomy><li>Warden now. When a guest causes trouble, it'll be me who let them in.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_Asp_Seat_Elder</defName>
+    <label>an elder's seat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
+    <office>Council_Office_Elder</office>
+    <weight>0.45</weight>
+    <minAge>45</minAge>
+    <goal>take an elder's seat on the council</goal>
+    <deed>took an elder's seat on the council</deed>
+    <sparks><li>seat:taught</li><li>birth</li><li>thought:Council_LostElection</li></sparks>
+    <chosen>
+      <plain>
+        <li>I've lived long enough to have seen most of our mistakes made once already. The council could use somebody who remembers.</li>
+        <li>[inherited] {NAME} was the one the children went to with their questions. I'll {GOAL}, and keep answering them.</li>
+        <li>[spark:seat:taught] The one I taught can manage without me now. I'd like to teach more than one at a time.</li>
+        <li>[spark:birth] There's a new child in the colony, and somebody should be there to tell the little one how all this began. I'd like a seat for it.</li>
+      </plain>
+      <warm><li>I'd like to sit with the young ones and tell them what I know, before I forget it.</li></warm>
+      <cold><li>Experience is wasted if nobody asks for it. An elder's seat would make sure they ask.</li></cold>
+    </chosen>
+    <achieved>
+      <plain><li>An elder of the council now. I said one thing at the meeting and they all went quiet to listen. I could get used to that.</li></plain>
+      <warm><li>They gave me an elder's seat. I'll try to give them better advice than I was given.</li></warm>
+      <gloomy><li>An elder's seat. That's a polite word for old, but I'll take it.</li></gloomy>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

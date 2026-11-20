@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Social events of the council's seasons (the content update's A25, 20 November 2026; Source/ColonyCouncil/LifeVariety/
+    CouncilSeasons.cs). council: speech (A a candidate in an election under way, B a friend not standing against them),
+    handover (A the new holder of a seat, B the one who held it before them, within six days), promisewell / promisebadly
+    (B a holder whose election promise the map shows going well, or badly, by the vote's own test; A anyone else), rivalbackers
+    (A and B lean to different candidates for one seat, by the vote's own lean), petition (A and B both asked for the same
+    open petition), elderword (A an elder, B a young holder of a seat). {OFFICE} the seat in the colony's age, {CANDIDATE}
+    and {RIVAL} the candidates A and B lean to, {PROMISE} what B promised, {WISH} the petition. Plain words.
+  -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocCouncil_Speech</defName>
+    <label>help with the speech</label>
+    <tone>warm</tone>
+    <council>speech</council>
+    <minOpinion>15</minOpinion>
+    <texts>
+      <li>{B_nameDef} sat with {A_nameDef} for an hour going over what {A_pronoun} would say at the vote for {OFFICE}, and crossed out the longest part.</li>
+      <li>{A_nameDef} tried {A_possessive} speech for the vote on {B_nameDef}, twice, and {B_nameDef} told {A_objective} which half to keep.</li>
+      <li>{B_nameDef} listened to {A_nameDef} practise the speech for {OFFICE} and said it was good, then said it again more slowly so {A_nameDef} would believe it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>4</change>
+    <note>{B_nameDef} helped with the speech for the vote</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocCouncil_Handover</defName>
+    <label>the seat handed over</label>
+    <tone>neutral</tone>
+    <council>handover</council>
+    <minOpinion>-10</minOpinion>
+    <texts>
+      <li>{B_nameDef} showed {A_nameDef} where the {OFFICE}'s things are kept and what each is for, and left nothing out.</li>
+      <li>{B_nameDef} walked {A_nameDef} through how the work of the {OFFICE} gets done, the good habits and the bad ones.</li>
+      <li>{B_nameDef} handed {A_nameDef} what the {OFFICE} needs and explained the rest, though {B_pronoun} didn't sound happy about it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Soc_GoodTalk</thought><chance>0.6</chance></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>{B_nameDef} handed over the seat of {OFFICE}</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocCouncil_PromiseWell</defName>
+    <label>a promise remembered</label>
+    <tone>warm</tone>
+    <council>promisewell</council>
+    <minOpinion>0</minOpinion>
+    <texts>
+      <li>{A_nameDef} reminded {B_nameDef} of the promise from the vote, "{PROMISE}", and said it looked like {B_pronoun} meant it.</li>
+      <li>{A_nameDef} told {B_nameDef} that the promise {B_pronoun} made as {OFFICE} is going well, and that people have noticed.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>{A_nameDef} said the promise was going well</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocCouncil_PromiseBadly</defName>
+    <label>a promise thrown back</label>
+    <tone>friction</tone>
+    <council>promisebadly</council>
+    <maxOpinion>30</maxOpinion>
+    <texts>
+      <li>{A_nameDef} asked {B_nameDef}, in front of others, what had become of "{PROMISE}".</li>
+      <li>{A_nameDef} reminded {B_nameDef} of the promise from the vote and said it didn't look much like it was being kept.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_Snubbed</thought></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>3</change>
+    <note>{A_nameDef} brought up the broken promise</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocCouncil_RivalBackers</defName>
+    <label>backing different candidates</label>
+    <tone>friction</tone>
+    <council>rivalbackers</council>
+    <maxOpinion>40</maxOpinion>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} argued over who should be {OFFICE}: {A_nameDef} for {CANDIDATE}, {B_nameDef} for {RIVAL}.</li>
+      <li>{A_nameDef} said {CANDIDATE} was the obvious choice for {OFFICE}, and {B_nameDef}, who backs {RIVAL}, did not take it well.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_Snubbed</thought><chance>0.5</chance></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>they backed different candidates for {OFFICE}</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocCouncil_Petition</defName>
+    <label>a petition talked over</label>
+    <tone>warm</tone>
+    <council>petition</council>
+    <minOpinion>-10</minOpinion>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef}, who both asked the council for {WISH}, went over what they would say if the council asked them why.</li>
+      <li>{A_nameDef} and {B_nameDef} talked about {WISH}, which they both asked for, and agreed it would be worth the wait.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Soc_GoodTalk</thought><chance>0.7</chance></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>they talked over the petition for {WISH}</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_SocCouncil_ElderWord</defName>
+    <label>an elder's word</label>
+    <tone>warm</tone>
+    <council>elderword</council>
+    <minOpinion>0</minOpinion>
+    <texts>
+      <li>{A_nameDef} took {B_nameDef} aside and told {B_objective} what {A_pronoun} had learned about being trusted with a seat, and what {A_pronoun} would do differently.</li>
+      <li>{A_nameDef} told {B_nameDef}, who is young for the {OFFICE}, not to try to please everyone at once.</li>
+      <li>{A_nameDef} gave {B_nameDef} a piece of advice about the {OFFICE}, and {B_nameDef} wrote it down.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Soc_GoodTalk</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>{A_nameDef} gave {B_nameDef} advice about the seat</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

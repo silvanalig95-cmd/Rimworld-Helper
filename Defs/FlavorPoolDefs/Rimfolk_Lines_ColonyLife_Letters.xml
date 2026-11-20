@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More last words for the year letter and for a colonist's year in the colony (the content update's A37, 20 November
+    2026), in the flavour style the proposal gave them. The year letter's close is the author's ({PAWN_...}), tagged
+    as Council_Annals.xml says (annals:losses, annals:violent, annals:peaceful, annals:richer, annals:growing). The
+    anniversary's is said aloud and quoted in the news, so it is one sentence; [firstyear] for a first year, as the
+    pool's own lines. A voice of the anniversary keeps fewer than three lines, so it is drawn with the plain ones.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_AnnalsClose</defName>
+    <pool>Council_Pool_AnnalsClose</pool>
+    <lines>
+      <plain>
+        <li>[annals:growing] There are more names to remember now than at the start of the year, and more hands at the harvest.</li>
+        <li>[annals:peaceful] A year with few raids, and the walls had a year's rest along with the rest of us.</li>
+        <li>[annals:losses] We lost people this year, and I've tried to write them down as they were.</li>
+        <li>Whatever next year holds, the fields will need sowing and the roofs will need mending, and we'll do both.</li>
+        <li>[annals:violent] A hard year for raids, and every one of us still here has earned the next one.</li>
+      </plain>
+      <warm><li>[annals:growing] Every new face this year was a stranger once, and none of them is now.</li></warm>
+      <blunt><li>[annals:richer] More in the stores than last year, so let's not waste it.</li></blunt>
+      <cheerful><li>Another year in the book, and I've left the next page clean for better news.</li></cheerful>
+      <gloomy><li>[annals:losses] I wrote this year's names slowly, because I didn't want to write them at all.</li></gloomy>
+      <cold><li>[annals:peaceful] A quiet year means the next one may not be, so we should prepare.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- A colonist on the anniversary of joining. Only {PAWN_...}. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_Anniversary</defName>
+    <pool>Council_Pool_Anniversary</pool>
+    <lines>
+      <plain>
+        <li>[firstyear] A year ago I didn't know anyone's name here, and now I know everyone's.</li>
+        <li>[firstyear] My first year here is done, and I wasn't sure I'd see it through.</li>
+        <li>Another year here, and I still stop to look at the view from the gate.</li>
+        <li>[old] I've lived a long time, and this place has been one of the better parts of it.</li>
+        <li>Another year here, and I'm still not used to the summers.</li>
+        <li>I've more friends here now than I ever had anywhere before.</li>
+        <li>Every year here I find something new to complain about, and every year I'm still here.</li>
+        <li>All things considered, it's been a decent year, and I'm in no hurry to leave.</li>
+        <li>Some of this year was hard, but I'm still glad I stayed.</li>
+      </plain>
+      <cold><li>I've been here long enough that the newer ones come to me with their questions.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

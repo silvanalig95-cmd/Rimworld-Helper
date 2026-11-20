@@ -93,9 +93,10 @@ most sense." So, in this order, three builds at a time:
      CLAUDE.md keeps it. Gods' variety (C5, C9, C10, C11, C13, C23, C31 and thirty-one new happenings between the
      colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
      two encounters for each people; released 0.282.0); colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five more
-     council questions; released 0.283.0); building: colony life 2 (A8, A11, A15, A16, A22 to A26, A28, twelve events,
-     six personal stories), text round 1 (A31 to A37) and text round 2's world half (B9, B10, B16, B18, B30); then
-     text round 2's gods half (C32 to C36).
+     council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); colony life 2 (A8, A11, A15,
+     A16, A22 to A26, A28, twelve events, six personal stories; released 0.285.0); building: text round 2's world half
+     (B9, B10, B16, B18, B30), its gods half (C32 to C36; built, not released: the entry "Text variety: the gods' thin
+     pools"), and the last three items (A9, C25, C27). With those the proposal list is all built.
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
@@ -655,6 +656,122 @@ repo.
     seer (dev "Gods in the world: ..."): their arrival letter and their words at dawn, dusk and the seer's evening.
   - Mods that would help: none for the words. The rites already use the player's own Alpha Memes chants and Vanilla
     Ideology Expanded pieces where they are built.
+- 0.285.0, **Colony life's variety, part 2:
+  life, customs, stories and the colony's own events** (20 November 2026; the player on
+  `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with this in
+  the order you think makes most sense ... And then also, just variety, further kind of events, camps, world events,
+  normal storyteller events, dilemmas, etc. Just more of them"). Part A's colony life, variety part 2: A8, A11, A15, A16,
+  A22, A23, A24, A25, A26 and A28, each marked **Built** in the proposals doc with what was decided, and twelve events of
+  the colony's everyday life and six personal stories. DESIGN.md "Colony life's variety, part 2" (before "The land and
+  its life") has every rule, with the events and stories one line each; README in Wishes, Social (events, talk, groups,
+  deeds), Character, Life goals, Personal stories, Heirlooms and coming of age, Traditions, Ambition, Names and Rimfolk
+  events; the Almanac's council page (sections "The colony's everyday life", "The council's seasons", "The giving day and
+  the elders' day", "The other seats", the customs and names tables, coming of age), and its stories, character, gossip,
+  lists, talk and groups pages (keywords unchanged). No harm anywhere in it.
+  - **A8, coming of age: four more paths.** The fields, the kitchen, the animals and building, beside the workshop, the
+    healer, the study and the wall: apprenticeship (a mentorship and a first lesson on the map), another work, or let them
+    choose. The reeve teaches the fields and the herdmaster the animals when they're at home and could.
+  - **A11, a toy for the little one.** A parent, an elder or a grown-up fond of a child of three to twelve (Biotech) asks
+    for one of Vanilla Christmas Expanded's toys, else a small carving; once made the asker carries it to the child.
+  - **A15, three ambitions:** *nobody left out*, *a season of kept promises*, *a lighter season*.
+  - **A16, life goals for the other seats:** the reeve's, peacemaker's, keeper of days', herdmaster's, chaplain's, warden
+    of guests' and an elder's, sparked by a lost election and the seat's own work, read once a day.
+  - **A22, five marks from the colony's own life** (six defs): a life goal reached, the ambition they proposed reached, a
+    custom they asked for become a tradition, a year in a seat with the promise kept, a personal story ended well.
+  - **A23, deeds and names of the council's life:** three deeds (a promise in a seat kept or broken, spoke up for someone
+    the council was asked to send away; stepped down is A3's, from colony life's first variety build) and six names (Old Keys, Old Furrow, the Drover, the Host, the Old
+    Voice after two years in their seat; Word-Kept for two promises kept).
+  - **A24, four group habits from the pastimes:** fishing, the hot water, a pot of tea or coffee, cards, chess or darts;
+    kept as they come, never called, and four names a friendship group may take from them.
+  - **A25, the council's seasons:** seven social events (the speech, the handover, a promise remembered warmly or
+    sharply, rival backers, a petition talked over, an elder's word) and a talk topic, the vote, only during an election.
+  - **A26, the giving day (winter custom):** names drawn, gifts taken from the stores by what each wants or lacks and
+    handed over after a supper together, or the children only; Vanilla Christmas Expanded's toys, sweets, drinks and fairy
+    lamps; never doubled with midwinter's presents, and with the festive feast the gifts come with that feast.
+  - **A28, the elders' day (autumn custom):** the children make something for the elders and carry it over; at supper the
+    cup is raised to them and each tells something from their life; or the supper only.
+  - **Twelve events** (`Defs/IncidentDefs/Rimfolk_Events_ColonyLife.xml`): a quarrel at supper, the newcomer at the edge,
+    the student's first piece, short in the stores, a wish left waiting, the old song, a vow in the storm, a group's
+    evening off, the child's question, a broken promise still sore, hands for the last field, a night with the herd.
+  - **Six personal stories** (`Defs/ArcDefs/Rimfolk_Arcs_ColonyLife.xml`): a custom of their own, a promise waited on,
+    ready for the seat, a prayer for a friend, an unexpected gift, the year's aim.
+  - Code map: new `Source/ColonyCouncil/LifeVariety/`: `LifeVarietyMath.cs` (pure, linked in the tests), `LifeVarietyBook.cs`
+    (saved: first askers of customs, toys given, the giving day's plan and gifts, the elders' year, the kept-promises
+    streak; modelled in `Tools/save_estimate.py`), `LifeHands.cs` (carry a thing to someone, the play-out engine's
+    giving), `ToyWish.cs`, `ColonyAmbitions.cs`, `SeatSparks.cs`, `LifeMarksDeeds.cs`, `CouncilSeasons.cs` (the social
+    events' fill and `TopicWorker_Vote`), `GivingDay.cs`, `EldersDay.cs`, `ColonyEvents.cs`, `ColonyStories.cs`,
+    `LifeVariety.cs` (daily, hourly and tick hooks), `LifeVarietyDebug.cs`. One-line hooks in `Lives/Legacy.cs` (the seat
+    teaches), `CouncilGameComponent.cs`, `CouncilDynamics.cs`, `PlayOut/PlayOutTracker.cs`, `Offices/Offices.cs` and
+    `Aspirations/Aspirations.cs` (a seat goal by type; the mark), `Ambitions/Ambitions.cs`, `Arcs/ArcTracker.cs`,
+    `Dilemmas/Dilemmas.cs`, `Offices/SeatRecords.cs`, `Social/BanishDilemmas.cs`, `Epithets/NameRecords.cs`,
+    `Social/Groups/GroupHabits.cs` and `GroupDefs.cs`, `Social/SocialEvents.cs`, `Gods/Among/Midwinter.cs`,
+    `ColonyLife/Readings.cs`. Defs: the two above, `Defs/DilemmaDefs/Rimfolk_Dilemmas_ComingOfAge_More.xml` and
+    `Rimfolk_Dilemmas_Customs_LifeVariety.xml`, `Defs/WishDefs/Rimfolk_Wishes_LifeVariety.xml`,
+    `Defs/AmbitionDefs/Rimfolk_Ambitions_LifeVariety.xml`, `Defs/AspirationDefs/Rimfolk_Aspirations_Seats.xml`,
+    `Defs/PersonaDefs/Rimfolk_PersonaMarks_ColonyLife.xml`, `Defs/DeedDefs/Rimfolk_Deeds_Council.xml`,
+    `Defs/EpithetDefs/Rimfolk_Epithets_Council.xml`, `Defs/Misc/Rimfolk_Records_Council.xml`,
+    `Defs/GroupDefs/Rimfolk_GroupHabits_Pastimes.xml`, `Defs/SocialEventDefs/Rimfolk_SocialEvents_CouncilSeasons.xml`,
+    `Defs/TopicDefs/Rimfolk_Topics_Vote.xml`; words `Languages/English/Keyed/Rimfolk_LifeVariety.xml`. Tests
+    `Tools/Tests/LifeVarietyTests.cs`. No new `Sched` offset.
+  - Decided here: see each item's **Built** line in the proposals doc. The elders' day has no head of the table (the feast
+    engine seats nobody), so the cup and the tales stand for it. Stepped down is A3's deed (`CouncilLife/StepDown.cs`),
+    not defined twice.
+  - Not run here (none of it could be): the giving day's afternoon at the stores and the handing over after supper, and
+    how it sits beside midwinter and Vanilla Christmas Expanded's festive feast; the elders' day's carvings and tales; the
+    toy carried to the child; the four pastimes read from Odyssey's, PokéWorld's, Dubs Bad Hygiene's and ReGrowth's jobs
+    and tiles; the seats' sparks from the day's records; each event's and story's answers on the map; how often each
+    comes in a real colony.
+  - Try in the game (dev mode, "Rimfolk"): 1. "Colony life 2: ask a custom now (the giving day, the elders' day)..." and
+    choose the whole day; or "Colony life 2: the giving day's gifts now (no supper)" and "...for the children now", and
+    "Colony life 2: the elders' supper set going now". 2. "Colony life 2: one of the colony's own events now..." for each of
+    the twelve. 3. "Colony life 2: one of the new personal stories for..." on a colonist. 4. "Colony life 2: a new
+    coming-of-age path asked for...", "...a toy for a child, asked now...", "...an ambition of the colony's people under
+    way now...", "...a seat's life goal for...", "...the seats' sparks read now", "...a mark of the colony's own life
+    for...", "...a deed of the council's life for...", "...a social event of the council's seasons now...".
+  - Mods that would help (from the proposals doc's list, all in the player's list but off): Tavern
+    ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305), 1.6 and 1.7, updated 4 November;
+    needs Vanilla Expanded Framework, active) for a room fit for the giving day's and the elders' suppers; Epochs -
+    Pottery ([3092351095](https://steamcommunity.com/sharedfiles/filedetails/?id=3092351095), 1.4 to 1.6 in mods.tsv, the
+    page tags 1.7 too; updated 15 November) for clay gifts on the giving day; P-Music
+    ([725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005), 1.0 to 1.7, updated 25 October) for the
+    feel of the festival evenings and the old song. Vanilla Christmas Expanded is already on and used (the toys, the giving
+    day's gifts and lamps). Still missing: a bell for the giving day or a calendar day (no 1.6 or 1.7 mod found).
+- 0.284.0, **Colony life's text variety: the
+  journals, the teasing, the decrees' voices, the answers to wishes, the social log, social events, the seats' words and
+  the year's last** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall
+  sounds really good", with "adding more text variety" in the first request, and "first do all the integrations ...
+  before we add additional content variety"). Text round 1: A31 to A37 of part A, each marked **Built** in the proposals
+  doc with what was decided; DESIGN.md "Colony life's text variety" (after "Context-aware writing") has every pool with
+  its count before and after. Each pool recounted first with `Tools/variety_report.py` (none had grown since the
+  proposal), then brought up as proposed, about 600 lines.
+  - **Where the lines are**: A31 `Defs/FlavorPoolDefs/Rimfolk_Lines_ColonyLife_Journals.xml` (99: a seat taken, a goal
+    changed, a lower seat, a name earned, comrades, a friendship, a year here, home again); A32
+    `Rimfolk_Talk_Lines_Teasing.xml` (167: six teasing openings for each of eighteen topics, the closing words of five
+    shared memories and jokes, the joke passed on and the lost child's three turns); A33 `Rimfolk_DecreeLines_ColonyLife.xml`
+    (72, twelve sides of seven decrees); A34 `Rimfolk_Lines_ColonyLife_Wishes.xml` (60, six scene pools, flavour style);
+    A35 `Defs/InteractionDefs/Rimfolk_LogLines_ColonyLife.xml` (45 rules for talk of the council and its decrees, 23 for
+    what the gossip was about: the four newest deeds and A23's first, a seat put down); A36 two texts more for each of the
+    35 social events in `Rimfolk_SocialEvents_Lives.xml`, `Rimfolk_SocialEvents_Quirks.xml` and
+    `Council_SocialEvents_Lives.xml` (70); A37 three first words more for each of the twelve seats in
+    `Defs/OfficeDefs/Council_Offices*.xml` (36) and `Rimfolk_Lines_ColonyLife_Letters.xml` (the year letter's last word
+    and the anniversary's, 10 each). Social events and seats have no file that joins lines to them, so theirs went into the
+    defs. Code: `Aspirations.TryChangeOfHeart` writes the changed goal's entry with its spark (`WriteTagged`, `[loss]` or
+    `[downed]`); `Tools/variety_report.py` adds that tag to the pool's moments. Tests: `Tools/Tests/ColonyLifeTextTests.cs`
+    (each pool's count, its people and values, plain words, one sentence where said aloud, the goal's tags).
+  - Decided: a voice of one line got at most one more, so it is still drawn with the plain lines; a teasing topic's six
+    are two plain, one cheerful, one warm, one blunt and a gloomy or cold one, since those who tease in their own voice
+    draw them; tags that win a pick (a common trait, passion, mood or season) were taken off where one tagged line would
+    have been the unlucky speaker's words every time (four journal lines, two wish lines, three anniversary lines); the
+    decrees' lines are tagged by their reactions' traits and faiths and by the age of the decree's form; A23's other deeds
+    get their gossip when they are built; no line names an hour that may not have come (no "tonight").
+  - Not checked without the game: how the lines read among the old ones in a real colony; a changed goal's tagged entry
+    (a loss or a downing a few weeks into a goal, then a chance of a change of heart).
+  - Try in the game: dev mode, start an election or appoint someone (the letter's first words, the journal's entry); let
+    a colonist be downed or lose a friend a few weeks into a fresh goal and read the journal if they change it; declare
+    foraging days, saving the power or wood for the winter and watch who speaks for and against; promise a wish, let one
+    lapse, grant one while another waits (the lines over their heads and in the messages); watch the social log for talk
+    of the council and a decree; read the year letter's last word at the year's end.
+  - Mods that would help: none; these are words only, with no graphics or sound to add, and no def of any mod is named.
 - 0.283.0, **Colony life's variety, part 1: the
   council's situations and its everyday questions** (20 November 2026; the player on `docs/content-update-proposals.md`:
   "just variety, further kind of events, camps, world events, normal storyteller events, dilemmas, etc." and "yes, I want

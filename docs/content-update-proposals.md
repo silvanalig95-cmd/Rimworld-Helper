@@ -208,6 +208,11 @@ four are.
 *Ties:* `Lives/Legacy.cs` (`DilemmaWorker_ComingOfAge`), the social web's mentorships, A2. *Size:* S. *Harm:* none.
 *Text:* council question, flavour style: "{B_nameDef} has taken to leaving the gate to the pens open whenever
 {A_nameDef} is about, and pretending not to notice who closes it."
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+Four questions beside the four (`Defs/DilemmaDefs/Rimfolk_Dilemmas_ComingOfAge_More.xml`), each offering the
+apprenticeship (the mentorship and a first lesson on the map), another work the colony needs more, or letting them
+choose. The reeve or the herdmaster teaches when they're at home and could (`DilemmaDef.seat`, read by
+`DilemmaWorker_ComingOfAge`), else the colony's best at the skill.
 
 ### Wishes and petitions
 
@@ -245,6 +250,12 @@ toy thought where it has one.
 *Ties:* Wishes (for another), children (Biotech), `PlayOut/OnMapPlays.cs`. *Mod pool:* Vanilla Christmas Expanded
 (active). *Size:* S. *Harm:* none. *Text:* wishes, flavour style: "{OTHER_nameDef} has been talking to a stick with a
 face scratched on it for a week. {OTHER_pronoun} deserves a better friend than that stick."
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+Asked by a parent, anyone of sixty or more, or a grown-up with an opinion of 30 of the child, never by one at odds with
+them; one toy wish open for a child at a time, and none for 40 days after one was given. The mod's toys when the colony
+can make them, else the game's small sculpture. Once made, the asker carries the newest one to the child
+(`LifeVariety/LifeHands.cs`, the play-out engine's giving); the child has the mod's toy memory when it is a memory, else
+Rimfolk's (`LifeVariety/ToyWish.cs`).
 
 **A12 (E) The wished-for thing, tried out.**
 When a wish for a thing or a room is met, the thanks are said wherever the asker happens to be. Instead, in their free
@@ -292,6 +303,11 @@ someone is worn down. (A calm season counts mental breaks; this one counts the h
 *Ties:* Ambitions (`AmbitionGoals`), Groups, `Wishes/Kept.cs`, Heart. *Size:* M. *Harm:* none. *Text:* ambitions,
 flavour style: "Barr eats alone, works alone and goes to bed early. That isn't a choice, {PAWN_nameDef} says. That's a
 colony that hasn't made room."
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+`LifeVariety/ColonyAmbitions.cs`. Nobody left out counts a friend as an opinion of 40 both ways or a friendship of 30 in
+the social web, for colonies of four or more; a season of kept promises is pitched while someone still minds a broken
+promise, and counts the colony's kept and broken promises from the day it is chosen (kept in a saved book); a lighter
+season counts the heart's strain of 55 or more as worn down.
 
 **A16 (V) Life goals for the other seats.**
 A life goal may be a seat today: any seat, or the marshal's, physician's, steward's or quartermaster's
@@ -302,6 +318,12 @@ a seat already counts in the vote (`BondsMath.SeatWant`).
 *Ties:* `Defs/AspirationDefs/`, Offices, elections. *Size:* S. *Harm:* none. *Text:* life goals, flavour style:
 "Somebody has to know which field wants resting and which wants turnips. I've been that somebody for a year, without
 the chair."
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+Seven goals (`Defs/AspirationDefs/Rimfolk_Aspirations_Seats.xml`, `Rimfolk_Asp_Seat_*`), each only while the seat is
+open to the colony (the chaplain's with a faith of the colony's own) and an elder's from 45. The sparks are read once a
+day from the records (`LifeVariety/SeatSparks.cs`): twenty plants brought in that day, a quarrel mended, a day of the
+calendar kept, an animal tamed, a rite led, a camp greeted, and for an elder's a student taught to stand alone or a
+child born; never for the seat's own holder.
 
 **A17 (I) Vanilla Aspirations Expanded's aims, marked by the colony.**
 Vanilla Aspirations Expanded (active) gives colonists aims of its own, a fulfilment need (`VAspirE_Fulfillment`) and a
@@ -373,6 +395,10 @@ down a little); a year in a seat with the promise kept (pride, trust); a persona
 outlook).
 *Ties:* `Persona/` marks (`Rimfolk_PersonaMarks_Life.xml`), one-line hooks in Aspirations, Ambitions,
 `CalendarCustoms`, Offices and Arcs; the character page; journals. *Size:* M. *Harm:* none. *Text:* plain (journals).
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+Six marks (`Defs/PersonaDefs/Rimfolk_PersonaMarks_ColonyLife.xml`): the life goal reached has two, one for the proud and
+one for the rest; the hooks are in `LifeVariety/LifeMarksDeeds.cs` (`LifeMarks`), called from Aspirations, Ambitions,
+the calendar customs, the yearly election's judging and the personal stories.
 
 **A23 (V) Deeds and names of the council's life.**
 Deeds, for gossip and a name: kept a promise in the seat, broke a promise in the seat (from the history's
@@ -382,6 +408,11 @@ Doc and Old Iron have: a days-in-the-seat record for the quartermaster, reeve, h
 name at 120 days (to choose; for instance Old Keys, Old Furrow, the Drover, the Host, the Old Voice), and Word-Kept for
 two promises judged kept.
 *Ties:* `Defs/DeedDefs/`, `Epithets/` (`NameRecords`), Offices. *Size:* S/M. *Harm:* none. *Text:* plain.
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+Three deeds (`Defs/DeedDefs/Rimfolk_Deeds_Council.xml`) and six names (`Defs/EpithetDefs/Rimfolk_Epithets_Council.xml`)
+on records of days in five seats and of promises kept (`Defs/Misc/Rimfolk_Records_Council.xml`). Spoke up for someone is
+the one named objecting in the council's question about sending someone away. Stepped down is A3's own deed
+(`Rimfolk_Deeds_CouncilLife.xml`, recorded by `CouncilLife/StepDown.cs`), not made twice.
 
 ### Groups, gossip and talk
 
@@ -394,6 +425,11 @@ a friendship group may take ("the anglers", "the tea table").
 *Ties:* `Social/Groups/GroupHabits.cs` (a new `where` each), `GroupShareDef`, `Lives/LifeNew.cs`, the heart (a habit
 kept eases strain). *Mod pool:* as named, all active; the game's chess and poker and Odyssey's fishing without them.
 *Size:* M. *Harm:* none. *Text:* plain (habit lines).
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+`Defs/GroupDefs/Rimfolk_GroupHabits_Pastimes.xml`, kept only as they come, never called. Fishing reads Odyssey's `Fish`
+and PokéWorld's `PW_Fish`; the hot water Dubs Bad Hygiene's hydrotherapy, its pool water, hot tubs and saunas, and
+ReGrowth's `RG_Bathe` and hot springs; a cup is any coffee or tea drunk indoors, in the same room; games `Play_Poker`,
+`Play_Chess` and `Play_DartsBoard`. The group kinds that keep them list them after their own.
 
 **A25 (V) Social events and talk of the council's seasons.**
 Six social events: help with the speech (a candidate and a friend the evening before the count); the old holder shows
@@ -404,6 +440,10 @@ while an election is under way, with lines on whom they lean to, read from the v
 never moves the vote.
 *Ties:* `Defs/SocialEventDefs/`, `Defs/TopicDefs/` and `Social/Talk/TopicWorkers.cs`, `Offices/Election.cs`, Petitions.
 *Size:* M. *Harm:* none. *Text:* plain.
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+Seven events (the promise remembered is two, warm and sharp, by how the promise stands on the map):
+`Defs/SocialEventDefs/Rimfolk_SocialEvents_CouncilSeasons.xml`; the vote: `Defs/TopicDefs/Rimfolk_Topics_Vote.xml` and
+`TopicWorker_Vote` (`LifeVariety/CouncilSeasons.cs`), the lean read from `OfficeTracker.Leaning`.
 
 ### The calendar, customs and festivals
 
@@ -422,6 +462,12 @@ the social web (giver and receiver), children. *Size:* M. *Harm:* none. *Text:* 
 "{A_nameDef} has been whittling something behind {A_possessive} back for a week and says it isn't for anyone in
 particular. It plainly is. {A_nameDef} thinks the whole colony could do the same, one evening this winter, and then
 nobody would have to pretend."
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+`LifeVariety/GivingDay.cs`. The gifts are taken from the stores in the afternoon and handed over after a supper together
+(the feast engine), nothing worth more than 400 silver and never a drink the receiver's faith or own rule forbids; the
+fairy lamps are lit unless midwinter's are. Midwinter hands no presents on a day the giving day is kept. With the
+festive feast: once the giving day is on the calendar the gifts follow that feast, and the question isn't asked that
+winter.
 
 **A27 (I) The year's first supper: aims said aloud.**
 A custom for the first days of the year (spring): at supper each says what they mean to do this year. Answers: everyone
@@ -440,6 +486,10 @@ head of the table and are served first (`PlayFeast` with them as its guests of h
 life, and the children bring them something they made. Answers: the whole day, supper only, not this year.
 *Ties:* Calendar customs, `PlayFeast`, the elders' seat (`Interplay_Offices2.cs`), children, the elders' questions in
 `Rimfolk_Dilemmas_Lives.xml`. *Size:* S/M. *Harm:* none. *Text:* the question in the flavour style.
+**Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
+`LifeVariety/EldersDay.cs`. The feast engine seats nobody, so instead of a head of the table: the children (four at
+most) each make a small carving for an elder by day and carry it over, at supper the cup is raised to the elders and
+each tells something from their life (the readings at a gathering). Asked by someone under thirty.
 
 ### The chronicle and the annals
 
@@ -469,6 +519,9 @@ to the closest who has no room of their own. The words still say what they were 
 *Ties:* `Legacy`, `FamilyInheritance`, `FamilyLifeMath`, `VendettaMath` shared, the tests. *Size:* S. *Harm:* none.
 This one is a rule fix and comes before the rest (CLAUDE.md: bug fixes before features).
 
+**Built** (released 0.276.2, with the medal read at the gate): the heirloom and the room pass by closeness, the same
+measure as the vendetta's.
+
 ### Text variety (counted with `Tools/variety_report.py`)
 
 **A31 (T) Journals of the council's life.** `Council_Journal_Elected` has 8 lines (3 plain, one in each tone) for about
@@ -477,6 +530,7 @@ loss, a brush with death: the only two that change a goal now). `Council_Journal
 `Council_Journal_Epithet` 22 (only 2.7 effective for a speaker): +14. `Council_Journal_TieFormed_Comrades` 22 and
 `_Friends` 25: +12 each. `Council_Journal_Anniversary` 23: +10. `Council_Journal_Homecoming` 9: +10. About 100 lines,
 plain. Sample: "They made me {OFFICE}. I went back to work afterwards, because nobody said what else to do." *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). Recounted first (unchanged): 99 lines in `Rimfolk_Lines_ColonyLife_Journals.xml`, the counts as proposed. The changed goal's entry is now written with its spark (`WriteTagged`), its new lines tagged `[loss]` or `[downed]`. A voice of one line got one more, so it is still drawn with the plain lines.
 
 **A32 (T) Teasing, jokes and shared memories in talk.** Eighteen teasing pools (`Rimfolk_TL_*_Tease`: food, work,
 growing, the council, the future, the colony's project, outside, art, prisoners, the calendar, drugs, wealth, tech,
@@ -485,30 +539,36 @@ raids, children, love, the camp, health) have 8 to 14 lines each, only in the pl
 `_Repaid_Close`, `Rimfolk_TL_Joke_Downpour_Close`, `_Snowball_Close`): +7 each. `Rimfolk_TL_Joke_JokeHeard_Close` 10:
 +6. `Rimfolk_TL_Mem_ChildFound_Open`, `_Reply`, `_Close` 11, 11 and 7: +6 each. About 170 lines, plain, one sentence each
 where said aloud; old talk left as it is. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 167 lines in `Rimfolk_Talk_Lines_Teasing.xml`: six for each teasing topic, two plain and one each in the cheerful, warm and blunt voices and the gloomy or the cold, since those who tease in their own voice draw them (`TalkMath.Voice`); the closing words as proposed, one in each voice and the rest plain.
 
 **A33 (T) Decree voices for the thinnest decrees.** Lines for and against, extension files counted: every faith its
 evening 4 and 3, foraging days 5 and 3, saving the power 5 and 3, wood for the winter 6 and 3, one ideoligion 4 and 7,
 a hunting season 8 and 4, days of rest 8 and 7. +6 on each side under 8 (about 70), tagged by the traits that care, as
 `Extra_DecreeLines.xml` does, and by age where the decree's form changes (banked fires for a tribe). Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 72 lines on the twelve sides under eight (a hunting season's and days of rest's support already had eight), in `Rimfolk_DecreeLines_ColonyLife.xml`; four plain lines a side, most tagged by a trait or faith of the decree's reactions or by the age of its form (the berry days, the gleaning, the hunters' moon, a cull), and two in voices that had none or one. Saving the power is for a colony on the grid, so its lines are for the industrial and spacer ages.
 
 **A34 (T) The council's answers to wishes.** The wish scene pools of `Council_Scenes.xml`: `Council_Pool_MeToo` 32
 (about 10 draws a year), `_Bitter` 24, `_BrokenPromise` 21, `_PassedOver` 22, `_SelfHelp` 25, `_Promised` 26: +10 each
 (60). Wishes, so the flavour style. Samples: "Ask the council? I did. I've still got the answer somewhere, folded very
 small." / "If {OTHER_nameDef} is getting one, I'd like it noted that I asked first, quietly." *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 60 lines in `Rimfolk_Lines_ColonyLife_Wishes.xml`, one in each voice and five plain for each pool, each one sentence since it is said aloud; the pools' own people kept (`{ENVIED_...}` for asking because someone got one, `{OTHER_...}`, `{WISH}` and `{MINE}` for passed over).
 
 **A35 (T) Gossip and council talk in the social log.** `Council_Gossip_Devoted` 12 lines, `Council_Gossip_Bitter` 23,
 `Council_Decree_Gripe` 17, `Council_Decree_Argue` 15 (about 10 a year each): +10 to 12 each (about 45). The four newest
 deeds' gossip has 3 lines each (`Rimfolk_GossipTopic_Jailbreak`, `_Binge`, `_DugUpDead`, `_RanWild`): +5 each; six each
 for A23's deeds. Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 45 rules for the council's talk and 23 things the gossip was about, in `Defs/InteractionDefs/Rimfolk_LogLines_ColonyLife.xml`. Of A23's deeds only the first is built (a seat put down, in colony life's variety, part 1): its three things to six; the others get theirs when they are built.
 
 **A36 (T) Social events with two texts.** About 25 social events of the elders' and the quirks' (in
 `Rimfolk_SocialEvents_Lives.xml`, `Rimfolk_SocialEvents_Quirks.xml`, `Council_SocialEvents_Lives.xml`) have 2 or 3
 texts each: +2 each (about 50), by age where it matters. Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). All 35 social events of the three files, the six of the old, the 23 of the quirks and the six of secrets, vendettas and life goals beside them: two texts more each (70), written into the defs, since no file joins texts to a social event. None turned on the age.
 
 **A37 (T) The seats' first words and the year letter's last.** Each seat has three lines for what a new holder means to
 do (`elected`, 12 seats): +3 each (36), plain, each something the seat really does on the map (A1). The year letter's
 closing word (`Council_Pool_AnnalsClose`, 36 lines) and the anniversary's (`Council_Pool_Anniversary`, 17 lines,
 8/2/2/2/2/1): +10 each, as letters, in the flavour style. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). The seats' 36 first words written into `Defs/OfficeDefs/` (no file joins words to a seat), about the seats' work as A1 and the duties show it; the 20 last words in `Rimfolk_Lines_ColonyLife_Letters.xml`. The anniversary's lines are said aloud, so one sentence each, nine plain and one cold (its voices keep under three).
 
 ---
 

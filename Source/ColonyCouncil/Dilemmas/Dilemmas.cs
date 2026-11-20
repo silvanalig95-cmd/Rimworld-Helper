@@ -1457,6 +1457,8 @@ namespace ColonyCouncil
             if (kept)
             {
                 (colony?.offices ?? comp.offices).Notify_CustomKept(colonists);
+                // Whoever asked the first time it was kept is its first asker (A22: their mark when it becomes a tradition).
+                comp.lifeVariety?.NoteFirstAsker(def, ctx.a);
                 if (day == null && cal != null) day = cal.AddCustom(def, map);
                 if (day == null || map == null) return;
                 var result = CalendarMath.KeepInYear(ref day.keptYears, ref day.tradition, ref day.breaks, ref day.lastKeptYear, GenLocalDate.Year(map));
@@ -1486,6 +1488,7 @@ namespace ColonyCouncil
                     comp.AddChronicle(new ChronicleEntry(ChronicleKind.Council, "CC_Chronicle_TraditionBorn".Translate(label).Resolve(), null));
                     comp.annals.Notify_TraditionBorn(label);
                     Interplay.Notify_CouncilTradition(label, 2, map);
+                    LifeMarks.CustomBecameTradition(def, label);
                     foreach (var p in colonists.InRandomOrder().Take(2))
                         comp.journals.Write(p, "Council_Journal_TraditionBorn", null, label.Named("TRADITION"));
                 }

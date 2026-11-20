@@ -193,6 +193,8 @@ namespace ColonyCouncil
             History.Add(race.verdict == PromiseVerdict.Kept ? RecordMath.KindKept : RecordMath.KindBroken,
                 new List<HistoryActor> { new HistoryActor(Refs.Of(race.holder), HistoryRole.About) }, Refs.Colony(HomeMap ?? Homes.Seat), HistoryMath.Milestone, line, null,
                 new List<string> { race.office.defName, race.seat.ToString() });
+            // A deed for gossip, and kept, the record behind Word-Kept and a mark (A23, A22: LifeVariety/LifeMarksDeeds.cs).
+            LifeDeeds.Judged(race.holder, race.office, race.verdict == PromiseVerdict.Kept);
         }
 
         /// <summary>

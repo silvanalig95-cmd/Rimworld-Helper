@@ -53,7 +53,7 @@
       </li>
       <li>
         <label>Not this year</label>
-        <outcome>The year started like any other week.{A_nameDef} didn't tell anyone {A_possessive} aim for the year after all.</outcome>
+        <outcome>The year started like any other week. {A_nameDef} didn't tell anyone {A_possessive} aim for the year after all.</outcome>
         <ways><tradition>-2</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Thought_NoFirstSupper</thought></li>

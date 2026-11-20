@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More social log words for talk of the council and its decrees, and for what the gossip about the newest deeds was
+    about (the content update's A35, 20 November 2026), joined at startup to the interaction or rule pack each def
+    names (Social/LogLines.cs). Plain words, the same symbols as the lines they join: [favorites] and [bitter] for the
+    bitter talk, [proof] for the devoted, [decree] and [verdict] for a gripe, [decree] and [defense] for an argument
+    (the one who starts it defends the decree), gossip_topic for what a piece of gossip was about.
+  -->
+
+  <!-- ===================== Talk of the council ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_GossipDevoted</defName>
+    <interaction>Council_Gossip_Devoted</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the council had done more for the colony than most people noticed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said to [RECIPIENT_nameDef] that the council was doing its best with what it had.</li>
+        <li>r_logentry->[INITIATOR_nameDef] suggested [RECIPIENT_nameDef] take [RECIPIENT_possessive] wish to the council, and said it would be heard.</li>
+        <li>r_logentry->[INITIATOR_nameDef] reminded [RECIPIENT_nameDef] of [proof], and said that was worth remembering.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] trusted the council more than [INITIATOR_pronoun] used to.</li>
+        <li>r_logentry->[INITIATOR_nameDef] stood up for the council when [RECIPIENT_nameDef] started to complain about it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that the council's meetings were the fairest way the colony had of settling things.</li>
+        <li>r_logentry->[INITIATOR_nameDef] went over [proof] with [RECIPIENT_nameDef].</li>
+        <li>proof->the last decree that did the colony some good</li>
+        <li>proof->the promises the council had kept</li>
+        <li>proof->the wishes the council had granted this year</li>
+        <li>proof->how the council had handled the last hard season</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_GossipBitter</defName>
+    <interaction>Council_Gossip_Bitter</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that asking the council for anything was a waste of breath.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] that the council made up its mind before the meetings even started.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [bitter], and [RECIPIENT_nameDef] didn't argue.</li>
+        <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] that [favorites] always got what they wanted.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said to [RECIPIENT_nameDef] that the council had stopped listening a long time ago.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] whether [RECIPIENT_pronoun] still believed anything the council promised.</li>
+        <li>bitter->the council heard every voice but the quiet ones</li>
+        <li>bitter->a seat on the council changed people, and not for the better</li>
+        <li>favorites->whoever has a friend on the council</li>
+        <li>favorites->the ones who never complain</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- ===================== Talk of a decree ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_DecreeGripe</defName>
+    <interaction>Council_Decree_Gripe</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [decree] couldn't end soon enough.</li>
+        <li>r_logentry->[INITIATOR_nameDef] complained to [RECIPIENT_nameDef] about [decree], and [RECIPIENT_nameDef] had a complaint of [RECIPIENT_possessive] own.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] wondered aloud who on the council had come up with [decree].</li>
+        <li>r_logentry->[INITIATOR_nameDef] grumbled to [RECIPIENT_nameDef] that nobody had asked them before [decree] was declared.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] compared notes on what [decree] had cost them so far.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [INITIATOR_pronoun] would petition against [decree] if anyone else would.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed that [decree] was [verdict].</li>
+        <li>decree->the council's latest idea</li>
+        <li>decree->the new decree</li>
+        <li>verdict->more trouble than it was worth</li>
+        <li>verdict->badly thought through</li>
+        <li>verdict->something nobody had asked for</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_DecreeArgue</defName>
+    <interaction>Council_Decree_Argue</interaction>
+    <rulePack>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that [decree] was [defense], and [RECIPIENT_nameDef] said that was easy for [INITIATOR_objective] to say.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued over whether [decree] was doing any good.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] would have done instead of [decree], and didn't like the answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] said [decree] was [defense], and [RECIPIENT_nameDef] listed everything wrong with it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] stuck up for [decree], and [RECIPIENT_nameDef] said [RECIPIENT_pronoun] had heard enough.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] that complaining about [decree] wouldn't make it end any sooner.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] had words about [decree], and neither of them came away happy.</li>
+        <li>decree->the council's decree</li>
+        <li>defense->the right thing at the right time</li>
+        <li>defense->what any sensible colony would do</li>
+        <li>defense->worth a few days of grumbling</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- ===================== What the gossip was about: the newest deeds ===================== -->
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_Gossip_Jailbreak</defName>
+    <pack>Rimfolk_GossipTopic_Jailbreak</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who let the prisoners out</li>
+        <li>gossip_topic->the cell doors left open</li>
+        <li>gossip_topic->the prisoners loose in the colony</li>
+        <li>gossip_topic->how the prisoners got out</li>
+        <li>gossip_topic->the trouble with the prisoners</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_Gossip_Binge</defName>
+    <pack>Rimfolk_GossipTopic_Binge</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->what happened to the drugs in the stores</li>
+        <li>gossip_topic->the empty drug shelf</li>
+        <li>gossip_topic->the days lost to drugs</li>
+        <li>gossip_topic->who went through the drugs</li>
+        <li>gossip_topic->the binge and what it cost</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_Gossip_DugUpDead</defName>
+    <pack>Rimfolk_GossipTopic_DugUpDead</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the grave that was opened</li>
+        <li>gossip_topic->the body carried about</li>
+        <li>gossip_topic->who dug up the dead</li>
+        <li>gossip_topic->the disturbed grave</li>
+        <li>gossip_topic->what was done at the graves</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_Gossip_RanWild</defName>
+    <pack>Rimfolk_GossipTopic_RanWild</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the one who went to live in the wild</li>
+        <li>gossip_topic->who ran off from the colony</li>
+        <li>gossip_topic->the colonist who went wild</li>
+        <li>gossip_topic->the run into the wild</li>
+        <li>gossip_topic->whether the one who ran off will come back</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+  <!-- A23's first deed (CouncilLife/StepDown.cs): a holder who put a seat down. -->
+  <ColonyCouncil.LogLinesDef>
+    <defName>Rimfolk_LogLinesColonyLife_Gossip_SteppedDown</defName>
+    <pack>Rimfolk_GossipTopic_SteppedDown</pack>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->the seat given up</li>
+        <li>gossip_topic->who stepped down from the council</li>
+        <li>gossip_topic->the council seat handed back</li>
+      </rulesStrings>
+    </rulePack>
+  </ColonyCouncil.LogLinesDef>
+
+</Defs>

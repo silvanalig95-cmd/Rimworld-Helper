@@ -1072,6 +1072,8 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.AmbitionAchieved,
                 "CC_Chronicle_AmbitionAchieved".Translate(a.def.label).Resolve(), a.proposer));
             Deeds.GreatWork(a.proposer, a.def.label, map);
+            // Their idea built: a turning point read by their nature (A22, LifeVariety/LifeMarksDeeds.cs).
+            LifeMarks.IdeaBuilt(a.proposer, a.def.label);
             nextMeetingTick = Mathf.Max(nextMeetingTick, Find.TickManager.TicksGame + GenDate.TicksPerDay * 3);
         }
 
