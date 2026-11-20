@@ -241,6 +241,8 @@ namespace ColonyCouncil
                 float bottom = sh - 35f;
                 var inspect = MainButtonDefOf.Inspect;
                 if (Find.MainTabsRoot?.OpenTab == inspect && inspect?.TabWindow != null) bottom = Mathf.Min(bottom, inspect.TabWindow.windowRect.y);
+                // Above the large portrait at the inspect pane when it shows (UI/Faces/InspectPortrait.cs).
+                if (InspectPortrait.Showing(out var portrait) && portrait.x < w) bottom = Mathf.Min(bottom, portrait.y);
                 rect = new Rect(0f, Mathf.Max(0f, bottom - h - 6f), w, h);
                 return !OverAWindow(rect);
             }

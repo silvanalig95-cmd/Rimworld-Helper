@@ -873,42 +873,40 @@ namespace ColonyCouncil
 
         // ---------------- Portraits and chips ----------------
 
-        // Head and shoulders: the portrait camera centered a little above the pawn's middle, zoomed in.
-        private static readonly Vector3 PortraitOffset = new Vector3(0f, 0f, 0.28f);
-        private const float PortraitZoom = 1.75f;
         private static readonly Texture2D Disc = MakeCircle(64, 0f);
         private static readonly Texture2D Ring = MakeCircle(64, 0.8f);
-        private static readonly HashSet<int> portraitFailed = new HashSet<int>();
 
-        /// <summary>A colonist's head and shoulders in a circle, with a colored ring around it.</summary>
+        /// <summary>A round portrait this wide and up carries the mark of the person's people at its foot.</summary>
+        public const float PortraitMarkFrom = 60f;
+
+        /// <summary>
+        /// A person's face in a circle, with a colored ring around it: the face engine's steady face (UI/Faces/FaceEngine.cs),
+        /// framed by their own head so a child or another race's head fills it as a grown-up's does, on their own colour with
+        /// a soft light behind the head, and from <see cref="PortraitMarkFrom"/> across the mark of their people at its foot.
+        /// </summary>
         public static void Portrait(Rect r, Pawn p, Color ring, float alpha = 1f)
         {
             if (p == null || Event.current.type != EventType.Repaint) return;
-            GUI.color = WithAlpha(PortraitBack, alpha);
+            var back = FaceEngine.Backdrop(p);
+            GUI.color = WithAlpha(back, alpha);
             if (Disc != null) GUI.DrawTexture(r, Disc);
-            else Widgets.DrawBoxSolid(r, WithAlpha(PortraitBack, alpha));
-            GUI.color = WithAlpha(Ink, alpha);
+            else Widgets.DrawBoxSolid(r, WithAlpha(back, alpha));
             float inset = Mathf.Max(1f, Mathf.Round(r.width * 0.07f));
             var inner = r.ContractedBy(inset);
-            Texture tex = null;
-            if (!portraitFailed.Contains(p.thingIDNumber))
-            {
-                try
-                {
-                    tex = PortraitsCache.Get(p, new Vector2(Mathf.Round(inner.width), Mathf.Round(inner.height)), Rot4.South, PortraitOffset, PortraitZoom);
-                }
-                catch (Exception)
-                {
-                    portraitFailed.Add(p.thingIDNumber);
-                    tex = null;
-                }
-            }
+            var tex = FaceEngine.Picture(p, inner.size, FaceFrame.Face, out var cam);
+            if (inner.width >= 30f) FaceEngine.DrawGlow(inner, cam, FaceEngine.GlowColour(p), alpha);
+            GUI.color = new Color(1f, 1f, 1f, alpha);
             if (tex != null) DrawInCircle(inner, tex);
             else Widgets.ThingIcon(inner, p);
             GUI.color = WithAlpha(ring, ring.a * alpha);
             if (Ring != null) GUI.DrawTexture(r, Ring);
             else Widgets.DrawBox(r, 2);
             GUI.color = Color.white;
+            if (r.width >= PortraitMarkFrom)
+            {
+                float m = Mathf.Round(r.width * 0.3f);
+                FaceEngine.DrawMark(new Rect(r.xMax - m, r.yMax - m, m, m), p, alpha);
+            }
         }
 
         /// <summary>A filled circle (a glow behind a portrait, a dot at the end of a line).</summary>
