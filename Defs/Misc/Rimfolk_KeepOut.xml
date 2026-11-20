@@ -11,4 +11,14 @@
     <checkOverrideOnDamage>Always</checkOverrideOnDamage>
   </JobDef>
 
+  <!-- The same errand with food the visitor takes home in their pack (a feast's guests from a hard year:
+       Source/ColonyCouncil/Diplomacy/FeastYear.cs): handed over, not eaten there. -->
+  <JobDef>
+    <defName>Rimfolk_BringOutToKeep</defName>
+    <driverClass>ColonyCouncil.JobDriver_BringOutFood</driverClass>
+    <reportString>bringing TargetA out to TargetB to take home.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
 </Defs>

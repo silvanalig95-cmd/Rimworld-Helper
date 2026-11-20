@@ -23,6 +23,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>pilgrims</li></callings>
         <group>Visitors</group>
         <ages>24~70</ages>
         <stayHours>5~8</stayHours>
@@ -93,6 +94,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>traders</li></callings>
         <group>Visitors</group>
         <ages>28~60</ages>
         <stayHours>5~8</stayHours>
@@ -156,6 +158,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>brokers</li></callings>
         <group>Visitors</group>
         <ages>30~60</ages>
         <stayHours>10~14</stayHours>
@@ -279,6 +282,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>fishers</li></callings>
         <group>Visitors</group>
         <ages>22~60</ages>
         <stayHours>8~12</stayHours>
@@ -411,6 +415,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>artisans</li></callings>
         <group>Visitors</group>
         <ages>35~70</ages>
         <stayHours>16~20</stayHours>
@@ -481,6 +486,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>herders</li></callings>
         <group>Visitors</group>
         <ages>40~75</ages>
         <stayHours>4~6</stayHours>
@@ -545,6 +551,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>brokers</li></callings>
         <group>Visitors</group>
         <ages>28~60</ages>
         <stayHours>4~6</stayHours>
@@ -608,6 +615,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>scholars</li></callings>
         <group>Visitors</group>
         <ages>28~70</ages>
         <stayHours>6~10</stayHours>
@@ -673,6 +681,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>tamers</li></callings>
         <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <ages>28~65</ages>
@@ -739,6 +748,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>linesmen</li></callings>
         <group>Visitors</group>
         <ages>25~60</ages>
         <stayHours>5~8</stayHours>

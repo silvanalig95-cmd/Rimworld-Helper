@@ -166,16 +166,40 @@ namespace ColonyCouncil
             var args = Args(home, h);
             args.Add(HelpGoods(need).Named("GOODS"));
             var a = args.ToArray();
-            return T("CC_Hamlet_Help_" + need, a) + "\n\n" + T("CC_Hamlet_Help_Why", a);
+            string region = RegionLine(h, need);
+            return (region != null ? region + " " : "") + T("CC_Hamlet_Help_" + need, a) + "\n\n" + T("CC_Hamlet_Help_Why", a);
         }
 
+        /// <summary>
+        /// The region's hard year its ask follows (B11), first in the letter: "The plague at Ashford has reached the families of
+        /// Little Ford." Null when the ask is the hamlet's own hard season.
+        /// </summary>
+        public static string RegionLine(HamletHome h, HamletNeed need)
+        {
+            if (h?.hardEvent == null || HamletMath.RegionNeed(h.hardEvent) != need) return null;
+            string key = "CC_Hamlet_Region_" + h.hardEvent;
+            if (!key.CanTranslate()) return null;
+            return T(key, HamletName(h).Named("HAMLET"), Where(h).Named("WHERE"));
+        }
+
+        /// <summary>"at Ashford", or "in the region" when the hard year is at the hamlet itself or has no place named.</summary>
+        private static string Where(HamletHome h) =>
+            h.hardWhere.NullOrEmpty() ? "CC_Hamlet_Region_InRegion".Translate().Resolve() : "CC_Hamlet_Region_At".Translate(h.hardWhere.Named("PLACE")).Resolve();
+
+        /// <summary>Their courier at the gate, come for the help, on what is happening at home: one sentence, as speech.</summary>
+        public static string CarterWord(HamletHome h, HamletNeed need) =>
+            T("CC_Hamlet_Word_" + HamletMath.WordFamily(need), HamletName(h).Named("HAMLET"), Where(h).Named("WHERE"));
+
         /// <summary>The harvest's carter: on the way to the gate (a courier of theirs), or left at the gate.</summary>
-        public static void TellHarvest(Map home, HamletHome h, int count, ThingDef def, bool carried, IntVec3 gate)
+        public static void TellHarvest(Map home, HamletHome h, int count, ThingDef def, bool carried, IntVec3 gate, bool bumper = false)
         {
             var args = Args(home, h);
             args.Add(T("CC_Hamlet_Goods", count.Named("COUNT"), (def?.label ?? "").Named("LABEL")).Named("GOODS"));
             var look = gate.IsValid ? new LookTargets(new TargetInfo(gate, home)) : LookTargets.Invalid;
-            Tell.Message(NewsKind.World, Importance.Notable, home, T(carried ? "CC_Hamlet_Harvest_Coming" : "CC_Hamlet_Harvest_Left", args.ToArray()), look, MessageTypeDefOf.PositiveEvent);
+            string text = T(carried ? "CC_Hamlet_Harvest_Coming" : "CC_Hamlet_Harvest_Left", args.ToArray());
+            // A bumper year in the region (B11): the load is half again as big, and the message says why.
+            if (bumper) text += " " + T("CC_Hamlet_Harvest_Bumper", args.ToArray());
+            Tell.Message(NewsKind.World, Importance.Notable, home, text, look, MessageTypeDefOf.PositiveEvent);
         }
 
         /// <summary>Help refused, once this season.</summary>

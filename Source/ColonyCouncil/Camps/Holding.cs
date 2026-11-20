@@ -147,6 +147,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastSickDay, "lastSickDay", -1);
             Scribe_Values.Look(ref lastVisitDay, "lastVisitDay", -1);
             Scribe_Values.Look(ref deathsSeen, "deathsSeen");
+            // The colony's days kept, its graves, and their own days (Camps/HoldingDays.cs).
+            ExposeHoldingDays();
         }
     }
 }

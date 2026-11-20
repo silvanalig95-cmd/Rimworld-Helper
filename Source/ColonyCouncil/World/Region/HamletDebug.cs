@@ -96,7 +96,39 @@ namespace ColonyCouncil
         }
 
         [DebugAction("Rimfolk", "Hamlet: a hard season's ask now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
-        private static void DebugHelp() => DebugStanding((home, h) => AskHelp(home, h, Now));
+        private static void DebugHelp() => DebugStanding((home, h) =>
+        {
+            // A world event near it now gives the need (B11), as in the hamlet's own day.
+            var hard = RegionYear(h, false, out var where);
+            AskHelp(home, h, Now, hard, where);
+            Say(hard != null ? "it follows " + hard.Label + (where.NullOrEmpty() ? " (in the region)." : " (at " + where + ").") : "no world event near it brings a need, so the need is rolled.");
+        });
+
+        [DebugAction("Rimfolk", "Hamlet: a hard season's ask in a region's hard year...", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void DebugHelpRegion() => DebugStanding((home, h) =>
+        {
+            // The ask and the carter's word of each world event that brings a need (B11), as if one ran in the region now:
+            // nothing is started, so the letter says "in the region".
+            var options = new List<FloatMenuOption>();
+            foreach (var name in HamletMath.RegionEvents)
+            {
+                var def = DefDatabase<WorldSituationDef>.GetNamedSilentFail(name);
+                var need = HamletMath.RegionNeed(name);
+                if (def == null || need == null) continue;
+                var ev = name;
+                options.Add(new FloatMenuOption(def.LabelCap + " (" + need.Value + ")", () =>
+                {
+                    h.lastNeed = (int)need.Value;
+                    h.helpAt = Now;
+                    h.hardEvent = ev;
+                    h.hardWhere = "";
+                    h.wordUntil = -1;
+                    HamletAsk.AskHelp(home, h, need.Value);
+                }));
+            }
+            if (options.Count == 0) options.Add(new FloatMenuOption("(no world event that brings a need is loaded)", null));
+            Find.WindowStack.Add(new FloatMenu(options));
+        });
 
         [DebugAction("Rimfolk", "Hamlet: fealty asked now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void DebugOath() => DebugStanding((home, h) =>
@@ -114,7 +146,7 @@ namespace ColonyCouncil
         private static void DebugHarvest() => DebugStanding((home, h) =>
         {
             var rec = WorldLedger.TownRecord(h.town);
-            Harvest(home, h, TownOf(h), rec != null && rec.Seeded ? rec.prosperity : HamletMath.Start, Now);
+            Harvest(home, h, TownOf(h), rec != null && rec.Seeded ? rec.prosperity : HamletMath.Start, Now, RegionYear(h, true, out _) != null);
         });
 
         [DebugAction("Rimfolk", "Hamlet: its people's war, asked now", allowedGameStates = AllowedGameStates.PlayingOnMap)]

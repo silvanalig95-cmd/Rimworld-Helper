@@ -675,8 +675,10 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
   - Feasts: an invitation to the next feast with guests.
 - **Text:** flavour style (world events).
 - **Harm:** none.
+- **Built** (20 November 2026, the world's integrations, part 2: the peoples and their ties, not released yet; DESIGN.md "The peoples and their ties"; `World/Region/NewHeads.cs`, `Rimfolk_WS_NewHead.xml`). Decided: a follow-up of the world events (kind `head`), three to eight days after the seat is settled, let go after thirty days or when they no longer lead; the best talker hosts at the table (a feast with them as guests and beds for the night) or says the word at the gate (the default); the kind head's gift is silver, handed over whatever the answer; the greedy head's caravan follows two to three days on; the steady head's pact offer comes as its own letter; the head sat at the table or given a gift is on the next feast's guest list (a promise on the ledger); the words fit every age (a messenger comes ahead; a high-tech people's head makes a round of the settlements).
 
 **B5. Traders' prices follow the region's hard and good years** (E; S to M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `World/Region/RegionPrices.cs`, `RegionPricesMath`). Decided: a quarter dearer, a fifth cheaper in a bumper year; every trader of the world event's people, buying and selling alike; a war between neighbours and closed markets touch both peoples; one factor with the moot's season price on the same hook, kept within half and one and a half; the hover reads "Food dear at Ashford (famine): 25% more with the Ashford Union, buying or selling."
 - **On the map.** While a world event runs at a people's town, their caravans, visitors' traders and towns pay more for
   what that town lacks:
   - food in a famine, blight, locust year, year without a summer or drought;
@@ -784,6 +786,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### The region
 
 **B11. The hamlet's hard seasons follow the region** (I; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `HamletLife.RegionYear`, `HamletMath`). Decided: the nearest running world event within 15 tiles of the hamlet's town; "a little sooner" is an ask already below a fortune of 30 (20 otherwise), the gap between asks kept; the carter's word is said by their courier who comes to the gate for the help, once; a bumper year near makes the harvest's load half again as big.
 - **What happens now.** The colony's own hamlet asks for food, a doctor or tools at random
   (`HamletMath.NeedFor`, a roll).
 - **On the map.** When a world event runs within reach of the hamlet, the need follows it:
@@ -808,8 +811,10 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
   - Visitors and camps: the peoples' gear as new pawns come (`Peoples/PeoplesGearMath.cs`), camps
     (`Camps/CampKinds.cs`).
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `World/Region/FortuneShows.cs`). Decided: the town is the people's nearest to the colony, only the two ends show (struggling, flourishing); clothes worn to 40 to 65%; one pack beast fewer for caravans and camps; the meal is asked of the nearest colonist and seen to first by the colonists themselves; a flourishing town's gift is 20 to 45 silver about one time in three, from visitors only; camps are dressed but ask for no meal.
 
 **B13. Signs of the raiders' camp on the map** (E; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `World/Region/RaidersCampSigns.cs`, `TakenIn.cs`). Decided: the scouts before every raid of a found camp, an hour or so watching, the raid an hour or two after they were seen from where they came in; the runaway from the camp's third day, a 5% chance a day, once; taken in, +6 goodwill, the deed `rescued` and the next raid's mean days halved once; the smoke at the 18th hour, every three days at most, half the time; the defense planner is left as it is (the message and the raid's letter name the side).
 - **On the map.** While a raiders' camp stands:
   - **Scouts.** Before each of its raids, two of its scouts are seen at the map edge on the side the raid will come
     from, an hour or two ahead. They watch, then go. The message names the side.
@@ -843,6 +848,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
     `FavoursOwed.cs`.
 - **Text:** plain for the events' lines; letters in flavour style.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Peoples/PeopleTies.cs`). Decided: 77 of the peoples' events name their callings (every one that comes by itself; follow-ups and the art handed on are as ever); bound 1.5, a broken word 0.67 while still felt; the speaker carries a pact, fealty or an envoy; the gift goes to the carrier first, else as ever.
 
 **B15. The peoples' own encounters** (V, with I; M)
 - **What happens now.** An encounter with a visitor of one of Rimfolk's peoples is a general one: road news, a recipe
@@ -891,6 +897,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
   - World events.
 - **Text:** flavour style for the letters; plain for messages.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `World/KinNews.cs`, `Rimfolk_Dilemmas_KinSendHome.xml`). Decided: a colonist "who came from that people" is one of a Rimfolk people's own kinds, theirs alone; the word comes with the next courier, or by the road after two and a half days; the ask comes six times in ten as a council question (a fifth of the stores' raw food or medicine, carried to the gate for their runner) and counts as the colony's help in the world event; the colony's own at a plague town come home early half the time.
 
 ### Camps
 
@@ -915,6 +922,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Text:** flavour style for the camps' letters (arrival, join, help). The bubbles are speech, one sentence each.
 
 **B19. Camps' herds, dogs and goods from the full mod pool** (E; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `Defs/CampDefs/`, `CampKindDef.traderGoods`). Decided: the beasts as listed, the megareindeer also with the snowbound caravan; a camp's dog is now any that fits rather than the first; the salt (else pemmican) and the market's honey also always in the camp's trader's pack; honey is VFE Medieval 2's or Alpha Bees'.
 - **On the map.**
   - **Herds.** Drovers', herders' and calving camps bring beasts from the player's animal mods where the land and
     weather allow, besides muffalo, yak and sheep:
@@ -974,6 +982,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Ties.** Camps and the holding, the calendar (`Calendar/ColonyCalendar.cs`, `CalendarDay.cs`), gatherings.
 - **Text:** flavour style for the camp's letters; bubbles as speech.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Camps/HoldingDays.cs`). Decided: the days are calendar days kept with a feast, a bonfire or games, the harvest's day, and customs kept with a gathering; up to three walk over as the gathering's guests, and the first of them to get there sets down simple meals from their provisions; a grave within two days of the death, two of them; their good days are the day they settled, a birthday and a rare wedding in the family; a birth is left out (a camp can't care for a newborn on the map).
 
 ### Visitors, quests and the colony's name
 
@@ -1046,6 +1055,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### Diplomacy at home
 
 **B27. Answer a call to arms from home** (E; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The region's years and the camps"; `Diplomacy/CallsFromHome.cs`, `World/Region/TakenIn.cs`). Decided: supplies are 60 raw food (else 20 meals), 6 medicine and up to two spare weapons; silver in place of service is a season's tribute, from the medieval age on; two to four wounded a day to three later; either answer counts as half the deed of fighters sent; the doctor who tended them most is named in the deed `tended` when they leave.
 - **What happens now.**
   - A defense partner's call and a liege's call for levies can only be answered by sending colonists away by caravan.
   - Otherwise the pact breaks, or levies count as refused (`Diplomacy/CallsToArms.cs`, `Fealty.LeviesRefused`).
@@ -1085,6 +1095,7 @@ the contest)
 - **Ties.** Feasts (`Diplomacy/Feasts.cs`, `FeastLetters.cs`), world events.
 - **Text:** flavour style for the letters; the toast is speech.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Diplomacy/FeastYear.cs`). Decided: a good year is the town's fair or a bumper harvest, a hard one any bad world event there; guests brought no gift before, so the good year's gift (60 to 120 silver) is the gift; the host grants the leftovers (two meals a party, never past half of what is spare) without a question, and a colonist brings them out of the stores to each guest as the night begins, into their pack.
 
 ### More text
 
@@ -1106,6 +1117,7 @@ the contest)
 - **Ties.** Camps, world event history.
 - **Text:** flavour style (camps).
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Camps/CampMemory.cs`). Decided: the newest world event that ended at their people since they left, of 17 kinds of news by its kind and ending, and whether the colony helped.
 
 **B32. The region's great events in the colony's book of the gods, as the colony believes** (I; S to M; coordinate
 with the gods' list)

@@ -53,9 +53,9 @@
     </campGoods>
     <!-- Up to a dozen head (the beasts that suit the weather here likelier) and their dogs at a herder's heels. -->
     <animals>
-      <li><kinds><li>Muffalo</li><li>Yak</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Alpaca</li><li>Dromedary</li></kinds><count>5~7</count><at>pasture</at></li>
+      <li><kinds><li>Muffalo</li><li>Yak</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Alpaca</li><li>Dromedary</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li MayRequire="spino.megafauna">Aurochs</li><li MayRequire="sarg.alphaanimals">AA_Thunderox</li></kinds><count>5~7</count><at>pasture</at></li>
       <li><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Dromedary</li><li>Horse</li></kinds><count>3~5</count><at>pasture</at></li>
-      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
     </animals>
     <!-- Their thanks for the water after a good stay: a young beast of the herd, handed over at the gate as they go. -->
     <leaveBehind>

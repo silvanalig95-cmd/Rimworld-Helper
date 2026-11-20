@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The region's years and the camps (docs/content-update-proposals.md, B13): once in a raiders' camp's life, a captive who
+    ran from it reaches the gate from the camp's side, bruised and cut from before (World/Region/RaidersCampSigns.cs; fired
+    only by the camp, never by the storyteller). Taken in, they lie in the colony's beds as its guest until they can walk home
+    (World/Region/TakenIn.cs), their people remember it (the deed "rescued"), and the camp's next raid comes sooner.
+    {X} the runaway, {FACTION} their people, {ENEMY} the camp's people, {TALE} the camp's kind ("brigands' hold"), {PLACE}
+    where it lies ("two days' walk to the north"), {A} who sees them come.
+  -->
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_CampRunaway</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a runaway from the raiders' camp</label>
+    <workerClass>ColonyCouncil.HappeningWorker_CampRunaway</workerClass>
+    <baseChance>0</baseChance>
+    <minRefireDays>1</minRefireDays>
+    <earliestDay>0</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>16~50</ages>
+        <stayHours>10~14</stayHours>
+        <answerDays>0.4</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A runaway at the gate</li>
+          <li>Away from the {TALE}</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} saw someone coming over the rough ground toward the gate, stopping every few steps to look back. It was {X_nameDef} of {FACTION}, bruised and cut, who had been kept at the {TALE} of {ENEMY}, {PLACE}, and slipped away from it in the night.\n\n{X_nameDef} asks for a bed until {X_pronoun} can walk home. The camp will have noticed by now that {X_pronoun} is gone.</li>
+          <li>{X_nameDef} of {FACTION} reached the colony's gate on foot and sat down against the post. {X_pronoun} was taken on the road by the people of the {TALE} {PLACE}, and has been running from them since before dawn, through brush that has scratched {X_objective} all over.\n\n{X_nameDef} would like to lie somewhere safe until the cuts close, and then go home. Whoever kept {X_objective} will be looking.</li>
+          <li>[atwar] {X_nameDef} of {FACTION} has come to the gate with cuts on {X_possessive} arms and bruises on {X_possessive} face. {ENEMY} have been at war with {FACTION} a long time, and their {TALE} {PLACE} had been holding {X_objective} until {X_pronoun} got away.\n\n{X_nameDef} asks the colony for a bed and a few days. The {TALE} will want {X_objective} back.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} in and see to the wounds</label>
+            <outcome>{X_nameDef} is helped through the gate and to a bed, and the colony's doctors will see to {X_possessive} cuts and bruises. When {X_pronoun} goes home, {FACTION} will know who took {X_objective} in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CampRunaway" />
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>rescued</kind><about>x</about></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <ways><mercy>3</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send {X_objective} on</label>
+            <outcome>{X_nameDef} gets up from the gate and limps off along the road toward {FACTION}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><mercy>-2</mercy></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

@@ -93,7 +93,7 @@
     <sleep>Tents</sleep>
     <works><li>Mine</li><li>Chop</li></works>
     <animals>
-      <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Muffalo</li><li>Horse</li><li>Dromedary</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_IndianElephant</li></kinds><count>1~1</count><at>picket</at></li>
     </animals>
     <titles>
       <li>Stonecutters come</li>
@@ -248,7 +248,7 @@
     <works><li>Chop</li><li>Gather</li></works>
     <animals>
       <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
-      <li><follow>true</follow><named>true</named><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count></li>
+      <li><follow>true</follow><named>true</named><kinds><li>Husky</li><li>LabradorRetriever</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li></kinds><count>1~1</count></li>
     </animals>
     <titles>
       <li>Shearers come</li>

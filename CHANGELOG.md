@@ -5,6 +5,28 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The region's years and the camps
+
+*20 November 2026, version 0.280.2*
+
+- Traders follow the region's hard and good years: a people's traders ask and pay more for what a famine, a plague, a fire or a war makes scarce, food is cheaper in a bumper year, and hovering over a price says why.
+- The colony's hamlet asks for what a hard year near it takes (a doctor in a plague, food in a famine, tools after a fire), a little sooner, and their carter at the gate says what is happening.
+- A raiders' camp shows itself on the map: two scouts watch from the edge before each raid, which then comes from that side; once, a captive who ran from it asks for a bed; at dusk someone on the walls points out its smoke.
+- A call to arms can be answered from home: supplies, or silver in place of service to a liege, carried to the gate for their runners, or the colony's beds for their wounded after the fight.
+- Camps bring beasts, dogs and goods from your mods (aurochs, chameleon yaks, megareindeer, camels, elephants, the mods' dogs and a hermit's cat), and the salt caravan finally carries salt.
+
+## The peoples and their ties
+
+*20 November 2026, version 0.280.1*
+
+- A people's new head stops at the colony's gate a few days after taking the seat: sit them at the table, give a gift or say a word, and their temper shows in what they do.
+- A town's fortune shows on its people: from a struggling town they come in worn clothes and ask for a meal, and from a flourishing one they come better dressed and sometimes bring a small gift.
+- A people bound to the colony by a pact, a marriage, a ward, an envoy, fealty or a debt of honour sends its own events and camps more often, names the tie in its letters, and gives its gifts first to the colonist who carries the tie.
+- When a hard year strikes a people, colonists who came from them hear of it by courier or the road, worry, and may ask the council to send food or medicine home.
+- The neighbours for good come to the colony's feast days with a dish, stand at a new grave, and ask a friend over to their fire on their own good days.
+- A feast's guests bring their town's year: silver from a good year, and from a hard year meals to take home, carried out to them by a colonist.
+- A camp that comes back tells what happened at home while it was away.
+
 ## The world brought home
 
 *20 November 2026, version 0.280.0*

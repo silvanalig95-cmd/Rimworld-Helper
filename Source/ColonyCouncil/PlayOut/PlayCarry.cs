@@ -66,6 +66,21 @@ namespace ColonyCouncil
         /// <summary>The learned society's books held in trust, fetched again (Peoples/Events2/ArchiveTrust.cs): only theirs, never the colony's own books.</summary>
         public const string Archive = "archive";
 
+        /// <summary>
+        /// Spare weapons from the stores, the plainest first (a call to arms answered from home with supplies: Diplomacy/CallsFromHome.cs):
+        /// lying in storage, not forbidden, never one bonded to someone, biocoded or a relic of the colony's faith.
+        /// </summary>
+        public const string Arms = "arms";
+
+        /// <summary>A weapon that can be given away from the stores (<see cref="Arms"/>).</summary>
+        public static bool IsSpareArm(Thing t)
+        {
+            if (t?.def == null || !t.def.IsWeapon || t.def.destroyOnDrop || !t.Spawned || t.IsForbidden(Faction.OfPlayer) || !t.IsInAnyStorage()) return false;
+            if (t.TryGetComp<CompBiocodable>() is CompBiocodable code && code.Biocoded) return false;
+            if (t.TryGetComp<CompBladelinkWeapon>() != null) return false;
+            return !(t.StyleSourcePrecept is Precept_Relic);
+        }
+
         /// <summary>The kinds of an errand that carries one of each ("meals+coat"), in the order they go; null for one kind.</summary>
         public static string[] Parts(string what) => what != null && what.IndexOf('+') >= 0 ? what.Split('+') : null;
 
@@ -87,6 +102,7 @@ namespace ColonyCouncil
                 case Art:
                 case Meat:
                 case Archive:
+                case Arms:
                     return null;
             }
             return what.NullOrEmpty() ? fallback : DefDatabase<ThingDef>.GetNamedSilentFail(what);
@@ -160,6 +176,8 @@ namespace ColonyCouncil
                     return map.listerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree).Where(t => t.def.IsMeat && IsRawFood(t)).OrderBy(Unwelcome);
                 case Archive:
                     return ArchiveTrust.Held(map);
+                case Arms:
+                    return map.listerThings.ThingsInGroup(ThingRequestGroup.Weapon).Where(IsSpareArm).OrderBy(t => t.MarketValue);
             }
             def = def ?? DefOf(what, null);
             if (def == null) return Enumerable.Empty<Thing>();
@@ -248,6 +266,7 @@ namespace ColonyCouncil
                 case Art: return "CC_PeoplesG_Art".Translate();
                 case Meat: return "CC_PEv_Meat".Translate();
                 case Archive: return "CC_PEv2_ArchiveBooks".Translate();
+                case Arms: return "CC_Play_Arms".Translate();
             }
             return (def ?? DefOf(what, null))?.label ?? what ?? "";
         }

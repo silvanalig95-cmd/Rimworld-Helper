@@ -61,6 +61,8 @@ namespace ColonyCouncil
         {
             // The region's troubles, for those they touch most (Heart/FeelingFeeds_World.cs).
             WorldFeeds.RegionTroubles(p, sink);
+            // A hard year heard of at a people they have a tie to (World/KinNews.cs).
+            KinNews.Worry(p, sink);
             if (p.relations == null) return;
             var seen = new HashSet<Pawn>();
             int added = 0;

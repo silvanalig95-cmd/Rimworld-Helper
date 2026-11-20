@@ -3584,7 +3584,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   its post to you); a good stay can leave a woodpile, hides, a cairn or a gift, a sour or hurried one offal that
   draws a predator in, embers in dry grass or a lame beast, and refuse after a sour stay or a careless kind's hurry. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
   bales to the stall, the drovers' herd grazing beyond the camp with a dog at a drover's heels (real animals of their
-  people, a handful at most, fed by the camp and leaving with it), hunters dressing each kill at their butchering
+  people, a handful at most, fed by the camp and leaving with it, from your animal mods too), hunters dressing each kill at their butchering
   spot, the refugees' washing by their hut's door, the hermit's woodpile by the door. The smith may walk over and mend
   one of your damaged doors or walls for nothing. When their stay ends, the healers go round your sick and hurt
   first, the mourners plant a sprig of green by your gate, the hermit leaves a carved bird by your door, the players
@@ -3805,7 +3805,10 @@ when the colony asked them back, less each time, and never more than three times
 became of them since; they start with no unease and settle in quicker, and the colonist who made a friend of them is
 glad to see them. Here and away lists the camps that may pass this way again, and when no camp is on the land it says
 why none has come (danger on the map, the weather, no friendly people, no room, the days since the last) or that the
-way is open.
+way is open. A camp that comes back also says what it lived through at home since: the newest world event that
+ended among its people (the fever and who they lost, the drought and whether the rains came, the fire and the
+rebuilding), and that the colony helped, when it did. A camp from a struggling town comes in worn clothes and with one
+pack beast fewer; from a flourishing town, a step better dressed.
 
 **Help in a fight.** When enemies have been on the colony's land for an hour (a raid, a siege, a mechanoid cluster), a
 people at peace with the colony and at war with the attacker may send three to seven fighters, about half as strong as
@@ -3851,7 +3854,11 @@ council's questions about a camp (a theft, their beasts in the fields, one who w
 unease eases a little each day instead of growing. Now and then one of them falls ill and they ask for the colony's
 doctor, and enemies on the land may kill one of them, after which the rest may bury their dead and move on. Their
 card on the region window's Here and away, under "Our neighbours", has trade, terms, gifts, hiring, what their kind can be asked and a way
-to ask them to move on. Or the colony takes them all in instead, camp and goods and children.
+to ask them to move on. Or the colony takes them all in instead, camp and goods and children. They keep the colony's days too, while they're at ease with it: up to
+three of them come to a calendar day's feast, bonfire or games, or a custom kept with a gathering (harvest home), as its
+guests, the first of them there setting down a dish from their own stores; two of them come to stand at a grave of the colony's in the two
+days after a burial; and on their own good days (the day they settled, a birthday, now and then a wedding in the family)
+they ask the colonist warmest with them over to their fire for the evening.
 
 **Road wardens and deserters** come with the world's events rather than on their own. The wardens camp to build a post
 on the colony's land when it lets them (see "the road, over a year" under World events), and when the post stands they
@@ -3880,7 +3887,14 @@ doctors and neighbors asking for medicine in a plague year, more hungry pilgrims
 warlord rises), and so do some of the game's own (more herds in a migration, more cold snaps in a hard winter, plague
 likelier in a plague year; this needs the deeper game hooks, and only matters where your storyteller picks by
 weight). It puts two or three questions to the council along the way, sends its own visitors and caravans, and ends in
-a way that depends on what the colony did, with a letter that pays off what came before. Each has several ways to
+a way that depends on what the colony did, with a letter that pays off what came before. A few days after a people's new
+leader takes the seat, they set out to see the region and stop at the colony's gate with a few of their people: sit them at the table,
+give a gift, or say a word at the gate, and their temper shows in what they do (a kind head leaves a gift, a greedy one
+sends a caravan, a harsh one wants a token of respect, a steady one offers a trade pact where goodwill allows). When a
+hard world event strikes a people, those at the colony with a tie to them (married in, come from them, their ward,
+hostage or envoy) hear of it by the next courier or the road: a letter from home, worry for a few days and on their card
+while it lasts, and often an ask to send food or medicine home with the next courier, which counts as the colony's help.
+The colony's own ward or envoy at the struck town writes, and from a plague town may come home early. Each has several ways to
 begin, more letters along the way and more ways to end, and its answers, like a dilemma's, can turn out in more than
 one way, picked to fit the moment, so one that comes back reads differently. The region remembers who
 helped: a people the colony stood by in a plague says so when the next hard year comes, and a famous healer charges
@@ -4036,6 +4050,24 @@ A world event reaches into the colony's own life (`Source/ColonyCouncil/World/Ho
   summer and a few more), a devout colonist may set it down in the colony's book of the gods as a god's doing, in the
   book's old voice; another may take it for another god, and a doubter says so. Only what they believe: the gods stay
   unseen.
+
+### The region's years
+
+The region's hard and good years reach the colony's trade, its hamlet and its call to arms:
+- **Traders' prices.** While a world event runs, its people's traders ask and pay a quarter more for what it makes
+  scarce (food in a famine, medicine in a plague, steel in a war, wood after a fire, cloth and leather when the herds
+  sicken), and their food is a fifth cheaper in a bumper year. The price's hover in the trade window says why ("Food dear
+  at Ashford (famine): 25% more with the Ashford Union, buying or selling."), the moot's season prices beside it.
+- **The hamlet's hard seasons.** A plague, a famine or a fire near the colony's hamlet decides what it asks for, a little
+  sooner, its letter says what happened, and their carter at the gate speaks of it; a bumper harvest near makes their
+  harvest's load bigger.
+- **Signs of a raiders' camp.** Two of its scouts watch from the map's edge on the side its next raid will come from, an
+  hour or two before it; once, a captive who ran from it comes to the gate, hurt from before, to be taken in and tended
+  (their people remember it, and the camp comes looking sooner); at dusk someone on the walls points out its smoke.
+- **A call to arms answered from home.** Supplies (or, to a liege, silver in place of service) carried to the gate for
+  their runners, or the colony's beds for their wounded after the fight, as a smaller kept word than fighters.
+- **Camps from your mods.** The camps' herds, pack beasts, dogs and the hermit's cat come from your animal mods too, the
+  salt caravan finally carries salt, and the herb-gatherers and the market bring tea leaves and honey.
 
 ### What the world remembers
 Every people out in the world keeps a memory of the colony over the years: a prisoner set free, a wounded guest tended
@@ -4326,7 +4358,7 @@ by the colony with their carts until a caravan of two grown colonists sets out f
 named in its panel; after a night there the hamlet stands, a town of their own people with its founder and families,
 and the road may bring a demand or an ambush with the settlers fighting beside the caravan. Alone, a third are turned
 back. The hamlet brings produce at harvest, asks for food, a doctor or tools in hard seasons (refused twice in one, it
-stops counting on the colony), and in time asks to swear fealty: Faction Territories' vassal, or sworn to the colony.
+stops counting on the colony; a world event near it decides which, and their carter at the gate speaks of it), and in time asks to swear fealty: Faction Territories' vassal, or sworn to the colony.
 14 conversation pieces speak of it. The region map's Ours lens shows the hamlets and the settlers on their way; This week shows settlers waiting. Setting:
 *Hamlets*. **Small towns look small**: a hamlet, a trading post or a town in its first year has a smaller base with
 fewer defenders on its own map, through Vanilla Base Generation Expanded's layouts too. Setting: *Small towns' maps*.
@@ -4334,7 +4366,9 @@ fewer defenders on its own map, through Vanilla Base Generation Expanded's layou
 **Raiders' camps.** A rich colony on bad terms with a hostile people may find raiders camped a few days off: the
 game's own bandit camp, named by their age (a war camp, a brigands' hold, a bandit camp, a raider base). Someone out
 beyond the walls sees its smoke, and the letter names the danger before any raid comes. While it stands, it raids the
-colony from its side of the map at the game's own raid-source rate, on top of the usual raids, until the colony breaks
+colony from its side of the map at the game's own raid-source rate, on top of the usual raids (two of its scouts watch
+from that edge an hour or two before each; once, a captive who ran from it comes to the gate; at dusk its smoke is
+pointed out), until the colony breaks
 it (a camp left with fighters standing is back behind its walls), pays their price (silver carried out to them, and
 their word for a year), makes peace with their people, sees an ally burn it, or beats off their raids until they give
 up. Each ending is told, written into the history and remembered by the peoples. The region map's Threats
@@ -4393,7 +4427,8 @@ breaks up; once per truce their firebrands may raid anyway, and at its end it is
 face ("Speak of a pact"), or takes one they offer. While a threat is on the colony it calls a defense partner by its
 comms console or a signal fire by the gate, and their band walks in some hours later; when a partner's town is
 attacked, the colony's fighters go there by caravan and fight on the game's caravan battle map (or in Faction
-Territories' invasion). A trade pact brings their caravan each season, and the colony is asked each season whether to
+Territories' invasion), or it answers from home: supplies (silver in place of service to a liege) carried to the gate
+for their runners, or its beds for their wounded after the fight. A trade pact brings their caravan each season, and the colony is asked each season whether to
 send its cart for their silver or refuse and end the pact; the cart is a plain good it can spare (wood, cloth, leather,
 food, stone blocks, steel), a valuable one only when picked on purpose, and every cart in the lists says what it is
 worth and what they pay ("Change the cart" on the pact's card picks another). Attacking a partner breaks it, and the peoples in reach hear of it. Each shows on its people's card, its town's
@@ -4430,7 +4465,19 @@ same feast as any other: the meal from the stores, and its host raises a cup to 
 champion of the day gets the prize, and the guests stay the night and go home at first light. Their welcome moves their
 regard, and their people remember it; an empty plate is a slight. A bout's blow goes in hard now and then, and a guest's
 night may end in a fistfight. The colony's own at a neighbour's feast tell what they won when they come home. 27
-conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*.
+conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *Feasts with guests*. A guest whose town is
+in a world event now brings its year: from a hard year they think more of the meal than of the contests and, with meals
+to spare, ask to take some home, and a colonist brings two a party out of the stores to them that night; from a good year (their fair, a bumper harvest) they bring a gift of silver; and the
+host's toast names their town. A new head of a people asked to the next feast at the colony's gate is on its guest list
+already.
+
+**Ties bring a people's own.** A people bound to the colony (a pact, a marriage, a ward or hostage either way, an envoy
+either way, fealty either way, a debt of honour either way) sends its own events and camps about half again as often,
+and a people the colony broke its word with about a third less. Their letters name the tie, and their gifts go first to
+the colonist who carries it (the ward's guardian, the one married in, the colonist of a debt, else the speaker). A
+visitor group from a struggling town comes in worn clothes, a caravan with a pack beast fewer, and one of them asks for a
+meal, which the colonists see to first; from a flourishing town they come better dressed and now and then bring a small
+gift.
 
 **Marriage alliances.** A match between one of the colony's and one of a people at peace: "Speak for a match" with
 someone of theirs at the colony (two who courted their way to lovers speak for themselves), a letter proposing one (the
