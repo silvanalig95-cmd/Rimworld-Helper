@@ -92,10 +92,10 @@ most sense." So, in this order, three builds at a time:
      kind (god events above all, events, camps, world events, storyteller events, dilemmas), in the flavour style where
      CLAUDE.md keeps it. Gods' variety (C5, C9, C10, C11, C13, C23, C31 and thirty-one new happenings between the
      colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
-     two encounters for each people; released 0.282.0); building: colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five
-     more council questions; built, not released: the entry "Colony life's variety, part 1: the council's situations and
-     its everyday questions" above the newest release line), colony life 2 (A8, A11, A15, A16, A22 to A26, A28, twelve events, six personal stories)
-     and text round 1 (A31 to A37); then text round 2 (B9, B10, B16, B18, B30, C32 to C36).
+     two encounters for each people; released 0.282.0); colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five more
+     council questions; released 0.283.0); building: colony life 2 (A8, A11, A15, A16, A22 to A26, A28, twelve events,
+     six personal stories), text round 1 (A31 to A37) and text round 2's world half (B9, B10, B16, B18, B30); then
+     text round 2's gods half (C32 to C36).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
