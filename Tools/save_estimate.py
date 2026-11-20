@@ -269,6 +269,10 @@ MODEL = {
     "Offices/Offices.cs:elected": ("defs", ("OfficeDef", 1), 40, "one per office"),
     # Promises raised at the council halfway through (Offices/SeatHalfway.cs): their history ids, the newest kept.
     "Offices/Offices.cs:raised": ("fixed", const("Offices/SeatHalfway.cs", "MaxRaised", 12), V, "promises raised halfway, OfficeTracker.MaxRaised at most"),
+    # When each seat's holder took it (CouncilLife/StepDown.cs), one per seat; and the deputies doing a seat's work for ten
+    # days (a seat holder asks to step down), one per seat at most, dropped when their days are over.
+    "Offices/Offices.cs:seatFrom": ("defs", ("OfficeDef", 1.3), 90, "one per seat (a bench's seats too), its holder and when they took it"),
+    "Offices/Offices.cs:deputies": ("fixed", 2, 160, "a deputy per seat at most, only for their ten days"),
     # An election on the map (Offices/OfficesElection.cs): only from its letter to the count, a few days a year.
     "Offices/Election.cs:races": ("while", 14, 200, "an election's seats, while it lasts"),
     "Offices/Election.cs:entries": ("while", 14 * 3, 260, "two or three candidates a seat, with their platform, while it lasts"),

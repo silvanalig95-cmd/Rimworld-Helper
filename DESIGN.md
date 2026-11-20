@@ -448,6 +448,140 @@ offices' setting.
   now (any promise hands can help), the colony's petitions read out as at a meeting, and a new holder's story given its
   call.
 
+### Colony life's variety, part 1: the council's situations and its everyday questions (the content update's A3, A4, A7, A18, A19 and A20, and twenty-five questions of everyday life; the player's go, 20 November 2026; not released yet)
+
+The player: "just variety, further kind of events, camps, world events, normal storyteller events, dilemmas, etc." and
+"yes, I want more events, camps, world events, and dilemmas, but first do all the integrations". With the integrations
+built, colony life's first round of variety: a seat holder asking to step down (A3), two wishes for one pile of stuff
+(A4), two decrees that show on the map (A7), three personal stories of the council's and the heart's life (A18, A19, A20),
+and twenty-five council questions of the colony's everyday life. The rules without game types are
+`CouncilLife/CouncilLifeMath.cs` (tested in `CouncilLifeTests`). Everything uses what the integrations made: the seat
+speaking in its questions (A2), the seats' acts (A1), the heart's day off, the groups' welcomes, the play-outs.
+
+- **A seat holder asks to step down (A3, `CouncilLife/StepDown.cs`, `Rimfolk_Dilemmas_CouncilLife.xml`).** A holder at
+  home who has stood worn down or near breaking five days running (strain 55 or more; the heart now keeps since when,
+  `PawnHeart.wornSince` and `breakingSince`, looked at each hour in `HeartLogic.Evaluate`), or has lain ten days in a
+  sickbed with the same illness or wound (`Life.LaidUpDays`: in bed resting by the doctor's word, the oldest such hediff's
+  own age), never while an election is under way, asks the council (A the holder, B the one who would stand in: the most
+  able at the seat's work at home who holds no seat). Answers: let them step down (`OfficeTracker.StepDown`: the seat
+  empties with no mood of a seat lost and no trust lost, the strain eases by 12, a journal line, a chronicle line, the
+  history's `office:stepped` and the deed "stepped down from a seat"; the by-election comes as for any empty seat); B
+  stands in for ten days (`OfficeTracker.deputies`, saved: `Acting` is the deputy for their days, and `Interplay.Officer`,
+  `OfficerOf`, `Holds` and `Officers` ask for the one acting, so the seat's acts, A1's and the older ones, and the seat's
+  voice in its questions are the deputy's; the holder has the heart's day off at once, `DilemmaEffect_HeartDayOff`, or the
+  rest of the day off when one can't be given yet; told when the days are over); or ask them to stay (the devoted, trust
+  60 or more, trust the council 2 more, `DilemmaEffect_TrustDevoted`; their strain stays). The council's silence asks
+  them to stay. Decided here: "laid up" is read from the game's own age of the illness or wound keeping them abed, and
+  the deputy is B, so the letter can name them.
+- **Two wishes, one pile (A4, `CouncilLife/OneSteel.cs`).** Two colonists' open wishes, not promised and not part of a
+  petition, each for a thing that costs something to make (its fixed costs and its stuff, the stuff the stores hold most
+  of), sharing a stuff the stores hold enough of for either but not both, ten at least each (`OneSteelMath.OneOnly`). A is
+  whoever asked first. The quartermaster speaks in it ([seat]). Answers: first come, first served (A's), B's first, or
+  neither until there's more. The first is promised as the council's Promise does it (its own play-out runs: a plan laid
+  in their room and the like); whoever waits has their deadline moved on three days and is told why face to face
+  (`Together.When`, `Rimfolk_Pool_LifeYourTurn` or `_LifeBothWait`, one sentence), by the quartermaster or else the other
+  asker, and takes it as waiting a turn (a small mood), not as being passed over. Decided here: the proposal's third
+  answer, "the one who asked first", is the first answer itself, since A always asked first; the third is "neither yet".
+- **Two decrees that show on the map (A7, `CouncilLife/WatchAndWelcome.cs`, `Rimfolk_Decrees_CouncilLife.xml`).** Run
+  each morning by the decrees' day (`DecreeDef.daily`).
+  - The night watch (six days, asked for after an attack): each night two of the colony's fighters, in turn by a rota
+    over the fighters in a fixed order (`NightWatchMath.Pair`: over n nights every fighter walks), walk the walls and the
+    gate from nine until one (the patrolling vigil, `DilemmaEffect_Vigil` with `patrol`, torches for a tribe or a village)
+    and start late the next morning (the late start, `DilemmaEffect_Hours`). What a running night watch already halves it
+    halves (hungry strangers at the fields in a famine, `GateTroubles.Watched`), each night walked is the deed "kept the
+    night watch" and counts toward Night-Watch (`SharedTimes.PlayDone`), and a long watch in a hard frost can bring a chill
+    through the shared harm budget (`ColdHurts`, as any watch on the walls). Night owls, the nervous and the bloodthirsty
+    like it; the lazy hate it. Its watch is named in the colony's age (the watch at the edge of the camp, the night watch on
+    the walls, the sentry roster, the night shift on the perimeter).
+  - A welcome for newcomers (ten days, asked for when someone here fewer than twenty days stands outside every group, the
+    new `DecreeMoment.Outsider`): each evening a colonist here twenty days or more who doesn't think badly of them spends
+    an hour with each newcomer, sitting down with them at a table where there is one (`DilemmaEffect_Visit` with `sit`):
+    the friendly face of their "somewhere to belong" story when there is one, else whoever thinks best of them. When the
+    hour happened (`PlayOut.afterward` "life:welcome", `LifePlays.Over`), it counts as welcomes for the group the newcomer
+    is finding their way into (two from one of its own people, one from anyone else, `GroupNewcomer.welcomes`), the host
+    speaks for them there when they think well of them (opinion over 24) and nobody does yet, and the newcomer's story
+    counts it as the welcome its first stage waits for when the host is its friendly face. The kind and the warm like it;
+    the aloof and the wary dislike it.
+- **After the vote (A18, `CouncilLife/LifeArcs.cs`, `Rimfolk_Arcs_CouncilLife.xml`).** The council now notes when each
+  seat's holder took it (`OfficeTracker.seatFrom`, saved), and at the count the history keeps who was voted out, of which
+  seat, after how many days, to whom (`office:votedout`). Someone voted out of a seat held a year (60 days) or more, in the
+  last six days, with the winner at home: a sour few days; the winner sits down with them about the seat's work (a visit
+  at a table); then, settled by what they think of the winner (opinion -10 or more and no rivalry of 40), they spend an
+  afternoon at the winner's side teaching what they know (a lesson, and the rivalry eases by 15) or keep the grudge; it
+  ends at peace with it (a small good mood) or with a run at the next election in their journal and the chronicle. Held
+  a seat again before the end, it ends without a word. Decided here: the word comes from the winner, so the story begins
+  only with the winner at home (the proposal's "or with a friend" is left out); an older save's seat with no start on
+  record counts as a year held at a yearly vote.
+- **The one sent away (A19).** For the colonist closest to someone the council banished in the last four days (the one
+  who would stand by them, by the banishment letter's own rule, else the one who thinks best of them, opinion 10 or
+  more): a hard day; a walk out alone to the edge of the colony's land, where the road comes in (`PlaySpot.Edge`); the
+  chaplain, else a friend, sits down with them; then better days, or, when the one sent away is on a home map again, at
+  the gate (the story moves on early, `CustomGate`) they walk out to meet them (`ArcEffect_MeetSentAway`), or they are one
+  of the colony again. Decided here: the game's own joiner letter at the gate is already the choice to let them in, so the
+  story asks it with the colonist's journal and the walk out to them rather than with a wish the council couldn't meet
+  (the "joining the colony" wish holds only for prisoners).
+- **Worn thin (A20).** After the heart's own episode (within three days, once it is over) or a week near breaking: a
+  quiet day; the closest friend comes over and sits with them; a day off taken (the custom gate: the heart's day off
+  running or given since the stage began, or the calendar's rest timetable today, `ColonyCalendar.RestingToday`), so the
+  player's own button moves it on, with no day off in twelve days it comes to nothing; back to themselves (strain 30 or
+  under for two days). Its end eases strain by 10, gives a good mood, and the friend a small mark of character,
+  `Rimfolk_Mark_StoodBy` at six tenths of its size (warmth and outlook).
+- **Twenty-five questions of everyday life (`CouncilLife/EverydayQuestions.cs`, `Rimfolk_Dilemmas_Everyday.xml`).** In the
+  usual rhythm of the council's questions (never timely, never a custom, so no more questions a year), each only while
+  the colony is as its letter says, each setting two of the colony toward or against each other, with forms for a
+  low-tech colony and the rest. Every answer that says something is done does it on the map with the play-outs the
+  questions already use (`playout_audit` 0 candidates); the council's silence sets nothing going; the seat whose work it
+  is speaks in its own ([seat] openings and outcomes naming {HOLDER} and {OFFICE}). No answer hurts anyone; no Bonded mood
+  where it would make the choice plain (`dilemma_balance.py`: trade-offs, none dominated or plain).
+  - Work and rest: *the only one who knows how* (someone at 12 in a craft nobody else has at 6, and someone keen to learn
+    it: a lesson, the craft kept, or left to them); *the broom and the bucket* (one cleans, another who could never does,
+    the home dirty: a turn with the broom, a cleaning day of four, or left); *dawn to dark* (a hard worker strained, a
+    friend wants them stopped: an evening sat down at a table, the heart's day off, or left); *every hand to the harvest*
+    (the reeve's: forty ripe plants waiting: a harvest of five, the two of them, or the growers' own time).
+  - Food and the stores: *the good meals* (the quartermaster's: a fine meal in store for everyone: a supper of them
+    tonight, or kept); *a second helping* (the quartermaster's: a gourmand taking seconds with food under six days: a word
+    at supper, bringing food in, or let be); *a helper in the kitchen* (the cook, and someone keen to cook: a lesson, the
+    cooking handed over a few days, or kept); *a patch of one's own* (the reeve's: a grower wants a corner: a fenced
+    patch sown by the fields, a corner out of the way, or every row the colony's).
+  - Sickness and care: *laid up and bored* (the physician's: two days abed and bored: a friend's evening at the bedside,
+    friends in turn, or rest); *the doctor's rounds* (the physician's: one doctor, someone able who doesn't doctor, someone
+    hurt or ill: a round of the colony, the doctoring handed over, or kept); *the sickroom* (the physician's: filth in a
+    room with a patient abed: three scrubbing it, the doctor alone, or its turn).
+  - The young and the old: *a child and an animal* (the herdmaster's; Biotech: chase with a gentle animal, an afternoon
+    learning the animals, or not yet); *a chair for old bones* (someone of sixty with a room: a chair made and set in it,
+    the best seat by the fire tonight, or not); *a young voice* (eighteen to twenty-three against fifty and over: their say
+    at supper, heard out first one to one, or their turn later).
+  - Animals: *the same hands with the herd* (the herdmaster's: an afternoon at the pens together, a lesson, or left); *a
+    name for the newborn* (an animal born in five days, no herdmaster to name it: either name, given in the game, or none
+    yet); *two hands for one animal* (the herdmaster's: an animal with no master and two who could handle it: either is
+    its master, the game's own, or the herd).
+  - Guests and strangers: *a visitor at supper* (the warden's: a supper with the visitors as guests, a meal carried out to
+    one, or left); *a traveller's news* (the warden's: an evening at the fire with them, an hour with the visitor, or work).
+  - Quarrels and friendships: *two friends who fell out* (the peacemaker's: friends with a fresh friction: a supper for the
+    two, a talk, or left to cool); *an old friend left out* (someone jealous whose friend has a closer friend now: an
+    evening together, brought along to the fire, or left); *talk behind a back* (the peacemaker's: sorry said at supper, had
+    out in private, or let be).
+  - The seasons: *the first warm day* (spring, 18 degrees out at midday: supper out of doors, half an hour in the sun at
+    noon, or the sowing); *a cold bedroom* (a room under 12 degrees, another five warmer: a fire kept in it, the rooms
+    traded, or left); *the storm at night* (a thunderstorm in the evening and someone nervous or a child: everyone up in
+    one room, a friend sits with them, or bed).
+  - Decided here: the questions where a fire is the place say "at a table" where a fire might not be there; the newborn's
+    question comes only with no herdmaster (who names newborns themselves); the sickroom's scrubbing starts at its beds
+    (the work party's new "sickroom" place, `PlayWork.At`).
+- **Every age.** Each question has a low-tech opening; the watch and the welcome are named in each age; the seats in the
+  colony's age (`{OFFICE}`).
+- **Text.** The council's questions, the stories' journals and chronicles in their flavour style (CLAUDE.md, 20 November
+  2026); the decrees, moods, messages, the deed, the mark and the spoken lines plain; every spoken line one sentence.
+- **Saved.** On the council: when each seat's holder took it (a dictionary, one per seat) and the deputies (a list, one
+  per seat at most, dropped at the end of their days), both modelled in `Tools/save_estimate.py`; on the heart, two values;
+  on a question's letter, its context (`DilemmaContextLife`: the seat, the two wishes, the two names). The voted-out
+  record is a history entry.
+- **Harm.** None of Rimfolk's own; the night watch's cold is the watch's, through the shared budget, as before.
+- **Dev mode** ("Rimfolk", "Colony life (council): ..."): each new question asked now (the step-down question taking any
+  holder, two wishes for one pile any two wishes sharing a stuff), each of the three stories begun for a chosen colonist
+  (voted out of a seat held a year to whoever thinks least of them, an episode a day ago; the one sent away needs a real
+  banishment), the night watch's and the welcome's day now, and every deputy's days ended.
+
 ---
 
 ## Layer 4: Society (the social web)

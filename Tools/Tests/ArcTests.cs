@@ -158,7 +158,11 @@ public static class ArcTests
         // Getting clean (Arcs/ArcWorkers_LifeNew.cs): a slip back to the drug.
         "relapse",
         // The weight of office's hard call made real (Offices/SeatCalls.cs): the kind of call, and the quiet end without one.
-        "call:question", "call:decree", "call:supper", "nocall"
+        "call:question", "call:decree", "call:supper", "nocall",
+        // Colony life's variety, part 1 (CouncilLife/LifeArcs.cs): after the vote (helped the winner or kept the grudge, a
+        // seat held again), the one sent away (with the chaplain, back at the gate, home again, better days), worn thin
+        // (after the episode, or a week near breaking).
+        "helped", "kept", "seated", "chaplain", "back", "home", "better", "episode", "week"
     };
 
     private static readonly Regex LowerStart = new Regex(@"(^(\[[^\]]*\]\s*)?|[.!?]\s+)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}");

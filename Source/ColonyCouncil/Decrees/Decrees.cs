@@ -42,7 +42,9 @@ namespace ColonyCouncil
         /// <summary>Many are hurt: two colonists or more, and at least a third of them, with wounds still healing (<see cref="LifeChecks.HurtFrom"/>).</summary>
         Wounded,
         /// <summary>Power short: the colony's batteries under a third full (<see cref="YearFourMath.PowerShort"/>).</summary>
-        PowerShort
+        PowerShort,
+        /// <summary>Someone here fewer than twenty days stands outside every group (a welcome for newcomers, CouncilLife/).</summary>
+        Outsider
     }
 
     /// <summary>Who feels how about a decree: by trait (and degree), by passion for a skill, or by being unable to fight.</summary>
@@ -960,6 +962,11 @@ namespace ColonyCouncil
                         }
                     }
                     return YearFourMath.PowerShort(stored, capacity);
+                }
+                case DecreeMoment.Outsider:
+                {
+                    var groups = GroupTracker.Instance;
+                    return groups != null && pawns.Any(p => WelcomeMath.Newcomer(Life.DaysHere(p)) && groups.Of(p).Count == 0);
                 }
                 default:
                     return false;

@@ -617,6 +617,10 @@ wishPh.UnionWith(new[] { "WSNAME", "WSPLACE", "SITUATIONPEOPLE" });
 wishPh.UnionWith(new[] { "MACHINE", "COAT", "WHISPERER", "LIGHT" });
 // The peoples and their ties (World/KinNews.cs, DilemmaContextKin): the world event at the town a council question is about.
 wishPh.Add("EVENT");
+// Colony life's variety, part 1 (CouncilLife/): the two wishes for one pile of stuff, the two names a newborn could have,
+// and the deputy who does a seat's work for its holder.
+wishPh.UnionWith(new[] { "WISHA", "WISHB", "NAMEA", "NAMEB" });
+pawnPrefixes.Add("DEPUTY");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

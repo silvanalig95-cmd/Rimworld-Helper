@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Personal stories of the council's and the heart's life (the content update's A18, A19 and A20, the player's go of 20
+    November 2026; Source/ColonyCouncil/CouncilLife/LifeArcs.cs). In the personal stories' own style; each gate passes only
+    on what happened.
+
+    After the vote: someone voted out of a seat they held a year or more ({NAME} the seat), the winner at home ({OTHER}).
+    Tags: [winner] at first; from the third stage [helped] (they help the winner) or [kept] (they keep the grudge).
+
+    The one sent away: the colonist closest to someone the council banished ({LOST}), with the chaplain or a friend
+    ({OTHER}; [chaplain] or [friend]). From the last stage [back] (the one sent away is at the gate), [home] (one of the
+    colony again) or [better].
+
+    Worn thin: after the heart's own episode ([episode]) or a week near breaking ([week]), with the closest friend ({OTHER}).
+  -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_AfterTheVote</defName>
+    <label>after the vote</label>
+    <summary>Voted out of a seat they held a year or more, a colonist has a sour few days. The winner sits down with them about the seat's work, and then they either help the new holder find their feet or keep the grudge and mean to stand again.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_AfterVote</workerClass>
+    <maxDays>30</maxDays>
+    <stages>
+      <li>
+        <label>a sour few days</label>
+        <waiting>Next: a word with {OTHER_nameDef}, who has the seat now.</waiting>
+        <journal>
+          <plain>
+            <li>A year as {NAME}, and the count took it off me in an afternoon. {OTHER_nameDef} has my seat. I've been short with everyone since.</li>
+            <li>I keep reaching for the {NAME}'s work in the morning and then remembering it isn't mine any more.</li>
+            <li>The colony chose {OTHER_nameDef} as {NAME}. I said the right things at the count. I didn't mean most of them.</li>
+          </plain>
+          <warm><li>I hope {OTHER_nameDef} does well as {NAME}. I'll be able to say that and mean it in a few days.</li></warm>
+          <blunt><li>Lost the seat to {OTHER_nameDef}. A year's work, and that's that.</li></blunt>
+          <cheerful><li>No longer {NAME}. I'm told I'll enjoy the free evenings. I'm told a lot of things.</li></cheerful>
+          <gloomy><li>A year as {NAME}, and nobody will remember any of it by spring.</li></gloomy>
+          <cold><li>The colony preferred {OTHER_nameDef} as {NAME}. I have noted it.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} took losing the seat of {NAME} to {OTHER_nameDef} hard, after a year in it.</li>
+          <li>For a few days after the count, {PAWN_nameDef}, a year the {NAME}, was short with everyone.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Life_AfterVoteSour</thought></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>3</days>
+          <minDays>2</minDays>
+          <timeoutDays>6</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>a word with the new holder</label>
+        <waiting>Next: a few days to see whether {PAWN_nameDef} helps {OTHER_nameDef} with the seat or keeps the grudge.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} wants to sit down with me about the {NAME}'s work. I said I'd be there.</li>
+            <li>{OTHER_nameDef} asked if we could go over how I did things as {NAME}. I nearly said no.</li>
+            <li>The new {NAME} wants my advice. I don't know yet whether I want to give it.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} came to ask me about the seat. That can't have been easy for {OTHER_objective} either.</li></warm>
+          <blunt><li>{OTHER_nameDef} wants to pick my brains about the seat. Fine. One sitting.</li></blunt>
+          <cheerful><li>The new {NAME} wants lessons from the old one. I may enjoy this more than I should.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} wants to sit down about the seat. Probably to make sure I've let go of it.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has asked to discuss the seat's work. I will tell {OTHER_objective} what {OTHER_pronoun} needs to know.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{OTHER_nameDef}, the new {NAME}, asked {PAWN_nameDef} to sit down with {OTHER_objective} about the seat's work.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <a>Other</a>
+            <b>Colonist</b>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} and {B_nameDef} go over the seat's work</label><who>A</who><whom>B</whom><sit>true</sit><hours>9~20</hours><duration>1~1.5</duration></li>
+            </effects>
+          </li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>2</days>
+          <minDays>1</minDays>
+          <timeoutDays>5</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>at the new holder's side, or not</label>
+        <waiting>Next: a few more days.</waiting>
+        <journal>
+          <plain>
+            <li>[helped] I'm spending an afternoon at {OTHER_nameDef}'s side, showing {OTHER_objective} what I know. It's still my work, in a way.</li>
+            <li>[helped] {OTHER_nameDef} listens better than I expected. I'll give {OTHER_objective} what I learned as {NAME}.</li>
+            <li>[kept] {OTHER_nameDef} can work the seat out without me. I did.</li>
+            <li>[kept] I sat down with {OTHER_nameDef} once. That will have to do.</li>
+            <li>I've done what I can about the seat. The rest is up to {OTHER_nameDef}.</li>
+          </plain>
+          <warm><li>[helped] I'm helping {OTHER_nameDef} find {OTHER_possessive} feet as {NAME}. It feels better than sulking did.</li></warm>
+          <blunt><li>[kept] I'm not training my own replacement.</li></blunt>
+          <cheerful><li>[helped] Turns out I like being the one who knows how things are done.</li></cheerful>
+          <gloomy><li>[kept] Let {OTHER_nameDef} find out how hard the seat is on {OTHER_possessive} own.</li></gloomy>
+          <cold><li>[helped] I am passing on what the seat requires. It is the sensible thing.</li></cold>
+        </journal>
+        <chronicle>
+          <li>[helped] {PAWN_nameDef} spent an afternoon at {OTHER_nameDef}'s side, passing on what {PAWN_pronoun} knew of the work of the {NAME}.</li>
+          <li>[kept] {PAWN_nameDef} left {OTHER_nameDef} to learn the seat of {NAME} on {OTHER_possessive} own.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>helped</ifTag>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} shows {B_nameDef} what {A_pronoun} knows</label><teacher>A</teacher><student>B</student><hours>9~18</hours><duration>2~3</duration><xpPerHour>150</xpPerHour></li>
+              <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Rivals</kind><amount>-15</amount></li>
+            </effects>
+          </li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>3</days>
+          <minDays>2</minDays>
+          <timeoutDays>6</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>done with it</label>
+        <journal>
+          <plain>
+            <li>[helped] {OTHER_nameDef} is a decent {NAME}. Some of that is my doing, and I'm content with that.</li>
+            <li>[helped] I don't mind seeing {OTHER_nameDef} at the seat's work now. I showed {OTHER_objective} half of it.</li>
+            <li>[kept] I'll stand for {NAME} again at the next election. People can see the difference for themselves by then.</li>
+            <li>[kept] Next year's vote is a long way off. I'll be on the list for {NAME} when it comes.</li>
+            <li>It's over, losing the seat. I've stopped thinking about it every morning.</li>
+          </plain>
+          <warm><li>[helped] {OTHER_nameDef} thanked me for the help with the seat. I was glad to give it.</li></warm>
+          <blunt><li>[kept] Next election, I'm standing. That's all.</li></blunt>
+          <cheerful><li>[helped] Two of us know the {NAME}'s work now. The colony's better off for it.</li></cheerful>
+          <gloomy><li>[kept] I'll stand again next year, and probably lose again.</li></gloomy>
+          <cold><li>[kept] I have decided to stand for {NAME} at the next election.</li></cold>
+        </journal>
+        <chronicle>
+          <li>[helped] {PAWN_nameDef}, once the {NAME}, made peace with losing the seat by helping {OTHER_nameDef} into it.</li>
+          <li>[kept] {PAWN_nameDef} means to stand for {NAME} again at the next election.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>helped</ifTag>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Life_MadePeaceSeat</thought></li>
+            </effects>
+          </li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>I've stopped thinking about the vote. Other things got in the way.</li>
+        <li>[seated] I have a seat on the council again, so there's nothing left to be sour about.</li>
+      </plain>
+      <blunt><li>Enough about the seat.</li></blunt>
+    </fizzle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} was the {NAME} for a year, and good at it. I never told {OTHER_objective} that.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_SentAway</defName>
+    <label>the one sent away</label>
+    <summary>After the council sent someone away, the colonist who was closest to them has a hard day, walks out to the edge of the colony's land, and talks it over with the chaplain or a friend. Then better days, or, if the one sent away comes back to the gate, a walk out to meet them.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_SentAway</workerClass>
+    <maxDays>25</maxDays>
+    <stages>
+      <li>
+        <label>a hard day</label>
+        <waiting>Next: some time to themselves.</waiting>
+        <journal>
+          <plain>
+            <li>{LOST} is gone. The council said so, and {LOST} went. I keep looking at the door.</li>
+            <li>They sent {LOST} away today. I said what I thought of it. It didn't change anything.</li>
+            <li>{LOST}'s bed is empty. Somebody will move into that room soon, and I'll have to watch them do it.</li>
+          </plain>
+          <warm><li>I hope {LOST} finds somewhere kinder than here. I hope {LOST} knows somebody here is sorry.</li></warm>
+          <blunt><li>{LOST} is gone. I don't agree with it, and I've said so.</li></blunt>
+          <gloomy><li>{LOST} is out there alone now, and we did that.</li></gloomy>
+          <cold><li>The council has sent {LOST} away. I will not pretend to approve.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} took it hard when the council sent {LOST} away.</li>
+          <li>{PAWN_nameDef}, who had been close to {LOST}, spent the day after {LOST} was sent away barely speaking.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Life_SentAwayHard</thought></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>1</days>
+          <minDays>1</minDays>
+          <timeoutDays>3</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>out to the edge of the land</label>
+        <waiting>Next: a talk with {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>I'm going out to the edge of our land today, where the road comes in. I don't know what I expect to find there.</li>
+            <li>I want to stand where our land ends for a while. {LOST} is somewhere past it.</li>
+            <li>I'm taking an hour out at the edge of the land. Nobody needs to come with me.</li>
+          </plain>
+          <warm><li>I'll go out to where the road comes in and think about {LOST} a while. It seems the least I can do.</li></warm>
+          <blunt><li>Going for a walk to the edge of the land. Alone.</li></blunt>
+          <gloomy><li>I'll go out to the edge and look down the road. As if {LOST} might be standing there.</li></gloomy>
+          <cold><li>I will walk to the edge of the land this afternoon. I need the distance.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} went out alone to the edge of the colony's land, where the road comes in, the day after {LOST} was sent away.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s walk to the edge of the land</label><who>A</who><to>Edge</to><hours>7~19</hours><duration>1~1.5</duration></li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>1.5</days>
+          <minDays>1</minDays>
+          <timeoutDays>4</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>a talk</label>
+        <waiting>Next: better days, or {LOST} at the gate again.</waiting>
+        <journal>
+          <plain>
+            <li>[chaplain] {OTHER_nameDef} wants to sit down with me about {LOST}. I'll let {OTHER_objective}.</li>
+            <li>[friend] {OTHER_nameDef} has been watching me all day, and wants to talk about {LOST}.</li>
+            <li>{OTHER_nameDef} said I shouldn't carry {LOST}'s going on my own. We're going to sit down about it.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} asked how I'm doing about {LOST}, and actually waited for the answer.</li></warm>
+          <blunt><li>{OTHER_nameDef} wants to talk about {LOST}. Fine.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} is going to sit with me tonight. I could use the company.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} means well, wanting to talk. Talking won't bring {LOST} back.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has offered to discuss {LOST}. I have accepted.</li></cold>
+        </journal>
+        <chronicle>
+          <li>[chaplain] {OTHER_nameDef} sat down with {PAWN_nameDef} to talk about {LOST}, who had been sent away.</li>
+          <li>{OTHER_nameDef} sat with {PAWN_nameDef} a while, talking over {LOST}'s going.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <a>Other</a>
+            <b>Colonist</b>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} sits down with {B_nameDef}</label><who>A</who><whom>B</whom><sit>true</sit><hours>16~22</hours><duration>1~1.5</duration></li>
+            </effects>
+          </li>
+        </effects>
+        <gate>
+          <kind>Time</kind>
+          <days>3</days>
+          <minDays>2</minDays>
+          <timeoutDays>6</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+          <or>
+            <li><kind>Custom</kind><minDays>0.3</minDays></li>
+          </or>
+        </gate>
+      </li>
+      <li>
+        <label>after</label>
+        <journal>
+          <plain>
+            <li>[back] {LOST} is at the gate. I'm going out to {LOST} now, whatever the council thinks.</li>
+            <li>[back] Someone said {LOST} had come back to the gate, and I put down what I was holding and went.</li>
+            <li>[home] {LOST} is one of us again. I didn't think I'd get to write that.</li>
+            <li>[better] A better day today. I thought about {LOST} and it didn't hurt as much.</li>
+            <li>[better] Life here goes on without {LOST}. I'm going on with it.</li>
+          </plain>
+          <warm><li>[better] I've made my peace with {LOST}'s going, mostly. I wish {LOST} well wherever the road went.</li></warm>
+          <blunt><li>[better] {LOST} is gone. I'm still here. Back to work.</li></blunt>
+          <cheerful><li>[home] {LOST} is home. Best day in a long while.</li></cheerful>
+          <gloomy><li>[better] It hurts less. I'm not sure that's better.</li></gloomy>
+          <cold><li>[better] I have accepted {LOST}'s going.</li></cold>
+        </journal>
+        <chronicle>
+          <li>[back] When {LOST} came back to the gate, {PAWN_nameDef} was the first to go out.</li>
+          <li>[home] {PAWN_nameDef} was glad beyond words when {LOST} was one of the colony again.</li>
+          <li>[better] In time {PAWN_nameDef} made peace with {LOST}'s going.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>back</ifTag>
+            <effects>
+              <li Class="ColonyCouncil.ArcEffect_MeetSentAway" />
+            </effects>
+          </li>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>better|home</ifTag>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Life_BetterDays</thought></li>
+            </effects>
+          </li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>I've stopped thinking about {LOST} every hour. Other things took over.</li>
+        <li>[otherleft] There's nobody left here to talk to about {LOST}.</li>
+      </plain>
+      <gloomy><li>[timeout] I still think about {LOST}. I've stopped saying so.</li></gloomy>
+    </fizzle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} took it hard when {LOST} was sent away. I never knew how hard until now.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_Arc_WornThin</defName>
+    <label>worn thin</label>
+    <summary>After coming apart under the strain, or a week near breaking, a colonist has a quiet day. Their closest friend comes over to sit with them, a day off is taken, and in time they are back to themselves.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_WornThin</workerClass>
+    <maxDays>40</maxDays>
+    <stages>
+      <li>
+        <label>a quiet day</label>
+        <waiting>Next: {OTHER_nameDef} comes over.</waiting>
+        <journal>
+          <plain>
+            <li>[episode] I came apart yesterday, in my room with the door shut. Today I'm quiet, and everyone is being careful around me.</li>
+            <li>[week] A week of feeling one bad morning away from breaking. I'm keeping my head down.</li>
+            <li>I'm tired in a way sleep doesn't touch.</li>
+          </plain>
+          <warm><li>I know people are worried about me. I'm trying to let them be.</li></warm>
+          <blunt><li>Bad week. Not talking about it.</li></blunt>
+          <cheerful><li>Not my best few days. I'll be smiling again soon, I'm told.</li></cheerful>
+          <gloomy><li>Everything weighs twice what it used to.</li></gloomy>
+          <cold><li>I am functioning. That will have to be enough for now.</li></cold>
+        </journal>
+        <chronicle>
+          <li>[episode] After coming apart under the strain, {PAWN_nameDef} kept quiet for a day.</li>
+          <li>[week] {PAWN_nameDef} spent a week near breaking, and kept to {PAWN_objective}self.</li>
+        </chronicle>
+        <gate>
+          <kind>Time</kind>
+          <days>1</days>
+          <minDays>1</minDays>
+          <timeoutDays>3</timeoutDays>
+          <timeoutPasses>true</timeoutPasses>
+        </gate>
+      </li>
+      <li>
+        <label>a friend comes over</label>
+        <waiting>Next: a day off, the heart's or a rest day.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} says {OTHER_pronoun}'s coming over tonight and won't take no for an answer.</li>
+            <li>Of course {OTHER_nameDef} has noticed, and wants to sit with me this evening.</li>
+            <li>{OTHER_nameDef} told me I need a day off. I said I'd think about it. I'm thinking about it.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is coming to sit with me tonight. I didn't ask, and I'm glad.</li></warm>
+          <blunt><li>{OTHER_nameDef} wants to keep me company. Fine.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} is coming over, which means bad jokes, which I could use.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} wants to cheer me up. Good luck to {OTHER_objective}.</li></gloomy>
+          <cold><li>{OTHER_nameDef} intends to sit with me this evening. I will allow it.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{OTHER_nameDef} saw how worn {PAWN_nameDef} was and came over to sit with {PAWN_objective}.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <a>Other</a>
+            <b>Colonist</b>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} keeps {B_nameDef} company</label><who>A</who><whom>B</whom><sit>true</sit><sitBy>Dining</sitBy><hours>16~21</hours><duration>1.5~2</duration></li>
+            </effects>
+          </li>
+        </effects>
+        <gate>
+          <kind>Custom</kind>
+          <minDays>0.5</minDays>
+          <timeoutDays>12</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>a day off</label>
+        <waiting>Next: back to themselves, the strain eased and staying down for two days.</waiting>
+        <journal>
+          <plain>
+            <li>A day with nothing I have to do. I slept late and nobody said anything about it.</li>
+            <li>Day off. I didn't touch a tool. It felt strange and then it felt good.</li>
+            <li>{OTHER_nameDef} was right about the day off.</li>
+          </plain>
+          <warm><li>A whole day off. I spent some of it with people I like, and some of it alone, and both were good.</li></warm>
+          <blunt><li>Day off. Needed it.</li></blunt>
+          <cheerful><li>A day off! I'd forgotten what those were like.</li></cheerful>
+          <gloomy><li>A day off. The work will still be there tomorrow, but so will I, which is something.</li></gloomy>
+          <cold><li>I have taken a day of rest. It was efficient.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} took a day off at last, and spent it doing nothing in particular.</li>
+        </chronicle>
+        <gate>
+          <kind>Hold</kind>
+          <hold>Strain</hold>
+          <value>30</value>
+          <hours>48</hours>
+          <minDays>1</minDays>
+          <timeoutDays>20</timeoutDays>
+        </gate>
+      </li>
+      <li>
+        <label>back to themselves</label>
+        <journal>
+          <plain>
+            <li>I'm back to myself, more or less. I don't dread the mornings any more.</li>
+            <li>Two good days in a row. I'd forgotten that could happen.</li>
+            <li>I thanked {OTHER_nameDef} today for sitting with me, and was told I'd have done the same. I would have.</li>
+          </plain>
+          <warm><li>I'm better. I owe some of that to {OTHER_nameDef}, and I've told {OTHER_objective} so.</li></warm>
+          <blunt><li>Better now. Back to work.</li></blunt>
+          <cheerful><li>Back to my old self, bad jokes and all.</li></cheerful>
+          <gloomy><li>Better, for now. I'll take it.</li></gloomy>
+          <cold><li>I have recovered. I note that {OTHER_nameDef} helped.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} came back to {PAWN_objective}self, with {OTHER_nameDef}'s help.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><amount>-10</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_Life_BackToSelf</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <a>Other</a>
+            <b>Colonist</b>
+            <effects>
+              <li Class="ColonyCouncil.ArcEffect_Mark"><family>StoodBy</family><scale>0.6</scale></li>
+            </effects>
+          </li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>I never did take that day off. I'm still tired.</li>
+        <li>[timeout] Weeks of this. It just goes on.</li>
+      </plain>
+      <blunt><li>No day off. Still worn.</li></blunt>
+    </fizzle>
+    <eulogy>
+      <plain><li>{OTHER_nameDef} was worn so thin at the end. I sat with {OTHER_objective} when I could.</li></plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

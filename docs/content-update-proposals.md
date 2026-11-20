@@ -136,6 +136,11 @@ every card does.
 *Ties:* Offices (`OfficeTracker`, by-elections), Heart (bands, `HeartTimeOff`), A1, A23. *Size:* M. *Harm:* none.
 *Text:* council question, flavour style: "{A_nameDef} came to the council with the {OFFICE}'s keys wrapped in a cloth
 and set them on the table. 'Someone else should carry these for a while,' {A_pronoun} said, and didn't sit down."
+**Built** (20 November 2026, colony life's variety, part 1, not released yet; DESIGN.md "Colony life's variety, part 1: the council's situations and its everyday questions"). "Five days worn" is read from the
+heart's new since-when (strain 55 or more), "laid up ten days" from the game's own age of the illness or wound keeping
+them abed; B, the one who would stand in, is named in the letter (the most able at the seat's work holding no seat). The
+deputy does every act and word of the seat for ten days (`OfficeTracker.Acting`); the holder has the heart's day off at
+once, or the rest of the day when one can't be given yet. The deed "stepped down from a seat" is the first of A23's deeds.
 
 **A4 (V) Two wishes, one pile of steel.**
 When two colonists' open wishes each need the same stuff to build and the stores hold enough for only one (steel,
@@ -146,6 +151,10 @@ one who notices, when there is one.
 *Ties:* Wishes (the worker's thing, promises, `Kept`, trust), council questions, A2. *Size:* M. *Harm:* none.
 *Text:* council question, flavour style: "There are ninety bars of steel in the store and two people with plans for
 every one of them. {A_nameDef} has chalked an outline on the bedroom floor. {B_nameDef} has chalked one over it."
+**Built** (20 November 2026, part 1, not released yet). A is always the one who asked first, so the answers are first
+come first served (A's), B's first, and neither until there's more; whoever waits is told why face to face by the
+quartermaster or the other asker. The stuff is the wish's thing's fixed costs and its stuff (the kind the stores hold
+most of), ten at least each.
 
 **A5 (I) A promise in the seat, halfway through.**
 The election's promises are judged only at the next yearly vote. Halfway (25 days or more in the seat), when the map
@@ -185,6 +194,11 @@ sponsor and welcome the groups already have), and the newcomer's "somewhere to b
 the wary dislike it. Each age has its words (a tribe's welcome at the fire, a spacer colony's orientation week).
 *Ties:* `DecreeDef.daily`, a new `DecreeMoment`, Groups (`GroupMath`), Arcs (`ArcWorker_Newcomer`), deeds and names,
 setbacks. *Size:* M. *Harm:* none added; a watcher out at night meets whatever the game sends. *Text:* plain (decrees).
+**Built** (20 November 2026, part 1, not released yet). The rota goes round the colony's fighters in a fixed order, two a
+night (one when there is only one); the watch is asked for after an attack. The welcome's hour is a sitting at a table
+where there is one; it counts as welcomes for the group the newcomer is finding their way into (two from its own people),
+the host speaks for them there when fond enough, and it is the welcome the newcomer's story waits for when the host is
+its friendly face. "Sponsor" read as the group's own speaking for a newcomer; groups' "welcome" as their daily welcomes.
 
 **A8 (V) Coming of age: four more paths.**
 A child who comes of age is offered one of four apprenticeships today (crafting, medicine, scholarship, fighting:
@@ -311,6 +325,9 @@ at the next election noted. Each gate passes only on what happened.
 *Ties:* Offices (voted out, the grudge), a new arc worker, the social web, A16. *Size:* M. *Harm:* none. *Text:*
 personal stories, flavour style: "{PAWN_nameDef} handed over the {OFFICE}'s ledger with every page in order, and one
 page more that said only: good luck."
+**Built** (20 November 2026, part 1, not released yet). The word comes from the winner, so it begins only with the winner
+at home; helping them is an afternoon's lesson at their side and the rivalry eased; "a run at the next election noted"
+is in the journal and the chronicle. The council now keeps when each seat's holder took it.
 
 **A19 (V) The one sent away.**
 After a banishment, for the colonist closest to the one sent out (the one who objected in the letter, else the closest
@@ -319,6 +336,10 @@ friend or the chaplain; then better days, or, if the one sent away ever comes ba
 (the "joining the colony" wish already there).
 *Ties:* `Social/BanishDilemmas.cs`, Arcs, Wishes, the chaplain's day. *Size:* M. *Harm:* none. *Text:* personal stories,
 flavour style.
+**Built** (20 November 2026, part 1, not released yet). The closest is the one who would stand by them (the banishment
+letter's own rule), else the one who thinks best of them. If they come back to the gate, the colonist walks out to meet
+them; the game's own joiner letter is the choice to let them in, so no wish is made (the "joining the colony" wish holds
+only for prisoners).
 
 **A20 (V) Worn thin.**
 After the heart's own episode ends (`Council_Heart_WornOut`), or a week near breaking. A quiet day; a word from the
@@ -327,6 +348,9 @@ the story); then back to themselves (strain at 30 or under for two days, a gate 
 lifts some of the weight and gives the friend a small mark of kindness.
 *Ties:* `Heart/Episodes.cs`, `HeartTimeOff`, `HeartLogic`, Arcs (`ArcHold.Strain`), A9. *Size:* S/M. *Harm:* none.
 *Text:* personal stories, flavour style.
+**Built** (20 November 2026, part 1, not released yet). The friend sits with them at a table; a day off is the heart's
+(running or given since the stage began) or the calendar's rest timetable today; with none in twelve days it comes to
+nothing. The friend's mark is a new small one, "stood by a friend" (warmth, outlook).
 
 **A21 (E) The weight of office: the hard call made real.**
 The third stage of "the weight of office" (`Rimfolk_Arcs_World.xml`) says "Had to make a call today that somebody won't

@@ -172,6 +172,8 @@ public static class ImmersionTests
         "Rimfolk_Pool_ElectionCheer", "Rimfolk_Pool_ElectionToast", "Rimfolk_Pool_ElectionConcede",
         // A winner gloating over a seat, and thanks for being carried out of a fight (Offices/Offices.cs, Social/SocialWeb.cs).
         "Rimfolk_Pool_SeatGloat", "Rimfolk_Pool_ThanksSaved",
+        // Colony life's variety, part 1 (CouncilLife/OneSteel.cs): the one whose wish waits is told why, face to face.
+        "Rimfolk_Pool_LifeYourTurn", "Rimfolk_Pool_LifeBothWait",
         // Animals spoken to (Animals/AnimalLife.cs, AnimalHerdmaster.cs).
         "Council_Pool_Herd_SayNewborn", "Council_Pool_SayToAnimal", "Council_Pool_AnimalFollows",
         // The animals' natures (Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs): what is said on seeing them, and their own words.
@@ -262,6 +264,8 @@ public static class ImmersionTests
         "Rimfolk_Journal_Trouble_Aches", "Rimfolk_Journal_Trouble_Envy",
         // Banishment by the council: the last entry of one sent away, and one who loved them (Social/Banishment.cs).
         "Rimfolk_Journal_Banished", "Rimfolk_Journal_BanishedKin",
+        // A seat holder who stepped down by the council's leave (CouncilLife/StepDown.cs).
+        "Rimfolk_Journal_SteppedDown",
         // A familiar bound and lost, an omen born (Animals/AnimalPowers.cs).
         "Rimfolk_Journal_Fam_Bound", "Rimfolk_Journal_Fam_Died", "Rimfolk_Journal_Omen_Born",
         // The seven peoples' touchpoints: the order's night nurse, the pilgrims' Long Walk, the society's night of the fire.
