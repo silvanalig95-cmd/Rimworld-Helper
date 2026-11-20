@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A promise in the seat, halfway through (the content update's A5, 20 November 2026; Offices/SeatHalfway.cs). An
+    election's promise is judged at the next yearly vote; halfway (25 days or more in the seat), when the map clearly
+    shows it going badly by the very test the vote uses, someone who stood against the holder for the seat (or else the one
+    who thinks least of them) raises it. A is the one who raises it, B the holder, {OFFICE} the seat in the colony's age,
+    {PROMISE} what was promised ("a proper watch at night", "to walk the fields every morning"), {EVIDENCE} what the map
+    shows of it ("the colony has lost one of its own since"). Tags: [stood] when A stood against B for the seat, and the
+    seat's own work as the answer's hands would do it: [hands:watch], [hands:food], [hands:sick], [hands:herd],
+    [hands:evening]. In the council questions' own style.
+  -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_SeatHalfway</defName>
+    <label>a promise halfway</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_SeatHalfway</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>12</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>{A_nameDef} has come to the council about {B_nameDef}. When {B_nameDef} was chosen as {OFFICE}, {B_pronoun} promised {PROMISE}. That was some weeks ago, and {EVIDENCE}.\n\n{A_nameDef} isn't asking for a new vote. {A_nameDef} is asking what the council means to do about it before the next one.</li>
+      <li>[stood] {A_nameDef} stood against {B_nameDef} for the seat of {OFFICE}, lost, and has been keeping count ever since. At the election {B_nameDef} promised {PROMISE}. It is halfway to the next vote, and {EVIDENCE}.\n\n{A_nameDef} has brought it to the council, and would like to know whether anyone else has noticed.</li>
+      <li>[hands:watch] {A_nameDef} came to the council with a face like stone. {B_nameDef} promised {PROMISE} when {B_pronoun} took the seat of {OFFICE}, and {EVIDENCE}. {A_nameDef} would like to hear how those two things fit together, and would like to hear it soon.</li>
+      <li>[hands:food] The meal sacks are thin and the shelves are thinner, and {A_nameDef} remembers who promised otherwise. When {B_nameDef} was chosen as {OFFICE}, {B_pronoun} promised {PROMISE}. Now {EVIDENCE}, and it is a long way yet to the next vote.</li>
+      <li>[hands:sick] {A_nameDef} has looked in on the sick and come back angry. {B_nameDef} promised {PROMISE} when {B_pronoun} was chosen as {OFFICE}, and {EVIDENCE}. {A_nameDef} wants the council to say something before the next vote does.</li>
+      <li>[hands:herd] {A_nameDef} counted the herd this morning, and then counted it again. {B_nameDef} promised {PROMISE} as {OFFICE}, and {EVIDENCE}. {A_nameDef} would like the council to ask {B_objective} about it.</li>
+      <li>[hands:evening] Nobody has laughed at supper in days, and {A_nameDef} knows whose work that was meant to be. {B_nameDef} promised {PROMISE} as {OFFICE}, and {EVIDENCE}. {A_nameDef} has asked the council whether anyone means to do anything about it.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Give {B_nameDef} a hand with it</label>
+        <outcome>{A_nameDef} gave {B_nameDef} a hand with the work of the seat, and {B_nameDef} was glad of it.</outcome>
+        <outcomes>
+          <li>[hands:watch] {A_nameDef} and {B_nameDef} walked the walls together from dark until past midnight, from one look-out to the next. Neither of them said much, and {A_nameDef} came back with less to say against {B_objective}.</li>
+          <li>[hands:food] {A_nameDef} and {B_nameDef} spent the afternoon bringing in what could be eaten and carrying it to the stores. The shelves are only as much fuller as one afternoon makes them, but {B_nameDef} had help, and said so.</li>
+          <li>[hands:sick] {A_nameDef} and {B_nameDef} spent the afternoon scrubbing and carrying, and the colony is cleaner for it. Whether that keeps the promise is for the vote to say.</li>
+          <li>[hands:herd] {A_nameDef} and {B_nameDef} spent the afternoon with the animals, bringing them home and seeing to them. {B_nameDef} was glad of the help, and said so.</li>
+          <li>[hands:evening] {B_nameDef} called everyone together for an evening, and {A_nameDef} came and stayed to the end. Somebody laughed at supper again.</li>
+        </outcomes>
+        <ways><toil>2</toil><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SeatHands" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} answers for it at supper</label>
+        <outcome>{B_nameDef} stood at the end of the supper table and answered for what {B_pronoun} had promised, without excuses. {A_nameDef} listened to all of it, and asked one hard question at the end.</outcome>
+        <outcomes>
+          <li>[stood] {B_nameDef} answered at supper for what {B_pronoun} had promised, with {A_nameDef}, who had stood against {B_objective} for the seat, sitting across the table. It was a long supper. Nobody threw anything.</li>
+        </outcomes>
+        <ways><openness>2</openness><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SeatSupper" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave it to the vote</label>
+        <outcome>The council said a promise made at an election is for the next election to judge. {A_nameDef} said that was a long way off, and went back to work.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

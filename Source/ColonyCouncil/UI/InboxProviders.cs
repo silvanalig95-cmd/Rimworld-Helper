@@ -101,11 +101,33 @@ namespace ColonyCouncil
             Inbox.Register("apparel-asks", InboxSection.People, 41f, ApparelAsks.InboxRows);
             Inbox.Register("balance", InboxSection.People, 90f, Balance, null, true);
             // The plan: the advisor's most pressing steps, and the proposals waiting under them.
+            // The quartermaster's last count of the stores, at the head of the plan (Interplay/Interplay_Seats.cs).
+            Inbox.Register("stores-count", InboxSection.Plan, 5f, StoresCount);
             Inbox.Register("plan", InboxSection.Plan, 10f, Plan);
             Inbox.Register("proposed", InboxSection.Plan, 90f, Proposed, null, true);
         }
 
         private static string ClickPage(string page) => WeekModel.ClickPage(page);
+
+        /// <summary>The quartermaster's last count of the stores, while it is fresh (ten days), for each colony that has one.</summary>
+        private static void StoresCount(List<WeekRow> rows)
+        {
+            foreach (var council in ColonyState.Ticking())
+            {
+                var o = council.offices;
+                if (o == null || o.storesCountTick < 0 || o.storesCount.NullOrEmpty() || Now - o.storesCountTick > GenDate.TicksPerDay * 10) continue;
+                var qm = o.HolderOf(Interplay.Quartermaster);
+                rows.Add(new WeekRow
+                {
+                    icon = Icons.Plan ?? Icons.Week,
+                    pawn = qm,
+                    text = WeekModel.AtColony(council, o.storesCount),
+                    sub = "CC_Week_StoresCounted".Translate(InboxWords.Date(o.storesCountTick).Named("DATE")).Resolve(),
+                    click = qm != null ? () => Cards.Open(qm) : (System.Action)null,
+                    order = 0f
+                });
+            }
+        }
 
         private static string Tip(string body, string click) => WeekModel.Tip(body, click);
 
@@ -171,7 +193,7 @@ namespace ColonyCouncil
                 {
                     pawn = r.pawn,
                     text = WeekModel.AtColony(council, (r.repeal ? "CC_Week_PetitionLift" : "CC_Week_Petition").Translate(WeekModel.Name(r.pawn), r.def.label).Resolve()),
-                    sub = "CC_Inbox_Sub_Petition".Translate(InboxWords.Date(r.tick).Named("DATE")).Resolve(),
+                    sub = WithTally("CC_Inbox_Sub_Petition".Translate(InboxWords.Date(r.tick).Named("DATE")).Resolve(), MeetingBusiness.Tally(r)),
                     tip = Tip(r.line.NullOrEmpty() ? null : "\"" + r.line + "\"", ClickPage("Decrees")),
                     click = open,
                     act = InboxWords.Decide,
@@ -183,6 +205,9 @@ namespace ColonyCouncil
                 });
             }
         }
+
+        /// <summary>A petition's second line with how the meeting took it, when it was read out at one (Ambitions/MeetingBusiness.cs).</summary>
+        private static string WithTally(string sub, string tally) => tally.NullOrEmpty() ? sub : sub + " " + tally;
 
         private static WeekRow WishRow(Wish w)
         {
@@ -213,7 +238,7 @@ namespace ColonyCouncil
                 pawn = w.pawn,
                 others = others,
                 text = text,
-                sub = (w.promised ? "CC_Inbox_Sub_WishPromised" : "CC_Inbox_Sub_Wish").Translate(InboxWords.Date(w.createdTick).Named("DATE")).Resolve(),
+                sub = WithTally((w.promised ? "CC_Inbox_Sub_WishPromised" : "CC_Inbox_Sub_Wish").Translate(InboxWords.Date(w.createdTick).Named("DATE")).Resolve(), MeetingBusiness.Tally(w)),
                 subColor = share < 0.25f ? UiKit.Bad : share < 0.5f ? UiKit.Warn : UiKit.Faint,
                 color = w.stage >= 2 ? UiKit.Bad : w.promised ? UiKit.Gold : Color.white,
                 tip = Tip(string.Join("\n", lines), ClickPage("Wishes")),

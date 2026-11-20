@@ -267,6 +267,8 @@ MODEL = {
     # Offices, epithets
     "Offices/Offices.cs:holders": ("defs", ("OfficeDef", 1), D, "one per office"),
     "Offices/Offices.cs:elected": ("defs", ("OfficeDef", 1), 40, "one per office"),
+    # Promises raised at the council halfway through (Offices/SeatHalfway.cs): their history ids, the newest kept.
+    "Offices/Offices.cs:raised": ("fixed", const("Offices/SeatHalfway.cs", "MaxRaised", 12), V, "promises raised halfway, OfficeTracker.MaxRaised at most"),
     # An election on the map (Offices/OfficesElection.cs): only from its letter to the count, a few days a year.
     "Offices/Election.cs:races": ("while", 14, 200, "an election's seats, while it lasts"),
     "Offices/Election.cs:entries": ("while", 14 * 3, 260, "two or three candidates a seat, with their platform, while it lasts"),

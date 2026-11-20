@@ -215,7 +215,8 @@ namespace ColonyCouncil
                     PlayFire.Ahead(p);
                 if (!PlayOutMath.InHours(hour, p.hourFrom, p.hourTo)) return;
                 // The colony's own wait for room in its week, and never come within a day and a half of another gathering.
-                if (p.routine && !Stage.Room(p.map, now))
+                // A seat's own work (Interplay/Interplay_Seats.cs) is no gathering and waits for none.
+                if (p.routine && !Interplay.IsSeatWork(p) && !Stage.Room(p.map, now))
                 {
                     p.waitReason = "CC_Stage_Why_Room".Translate();
                     return;
@@ -585,7 +586,7 @@ namespace ColonyCouncil
             sit.expiryInterval = -1;
             o.jobs.StartJob(sit, JobCondition.InterruptForced, null, false, true);
             string where = (p.sitBy == PlaySpot.Fire ? "CC_Play_Where_FireSide" : "CC_Play_Where_Table").Translate();
-            Tell.Message(NewsKind.People, Importance.Notable, null, "CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
+            Tell.Message(NewsKind.People, Interplay.IsSeatWork(p) ? Importance.Flavor : Importance.Notable, null, "CC_Play_Begin_SitWith".Translate(v.Named("PAWN"), o.Named("OTHER"), where.Named("WHERE")).Resolve(),
                 new LookTargets(new[] { v, o }), MessageTypeDefOf.NeutralEvent);
             return true;
         }

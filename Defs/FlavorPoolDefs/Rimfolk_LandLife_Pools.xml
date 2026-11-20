@@ -25,7 +25,7 @@
       </plain>
       <warm><li>I hate seeing you ill, so drink this and rest.</li></warm>
       <blunt><li>Drink it, you'll feel better.</li></blunt>
-      <cheerful><li>Something for the patient, drink up!</li></cheerful>
+      <cheerful><li>[!honey] Something warm for the patient, drink up.</li></cheerful>
       <gloomy><li>It won't cure you, but it might help a little.</li></gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -44,7 +44,7 @@
       </plain>
       <warm><li>There you are, I was hoping to see you.</li></warm>
       <blunt><li>Stand still and let me count.</li></blunt>
-      <cheerful><li>Look at you all, a fine herd this year!</li></cheerful>
+      <cheerful><li>Look at you all, a fine herd this year.</li></cheerful>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 

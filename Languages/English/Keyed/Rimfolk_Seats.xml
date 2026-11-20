@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The council's integrations, part 1 (the content update's A1, A2, A5, A6 and A21, 20 November 2026): the seats seen at
+    their work (Interplay/Interplay_Seats.cs), the seat's record of the questions it spoke in (Offices/SeatRecords.cs),
+    the promise looked at halfway (Offices/SeatHalfway.cs) and any other business at the meeting
+    (Ambitions/MeetingBusiness.cs). A seat named by its medieval word here is said in the colony's age (OfficeNames.Key).
+  -->
+
+  <!-- The record a candidate runs on: the questions of the seat's work they spoke in since their promise. -->
+  <CC_Record_Calls>spoken for the seat in {COUNT} of the council's questions</CC_Record_Calls>
+  <CC_Record_CallsOne>spoken for the seat in one of the council's questions</CC_Record_CallsOne>
+
+  <!-- The speaker hears someone out. -->
+  <CC_Seat_Label_Hear>the speaker's hour</CC_Seat_Label_Hear>
+  <CC_Log_SeatHeard>the speaker, {PAWN_nameDef}, heard them out</CC_Log_SeatHeard>
+  <CC_Seat_HeardSat>{PAWN_nameDef} sat an hour with {OTHER_nameDef} and heard {OTHER_objective} out, as the speaker.</CC_Seat_HeardSat>
+  <CC_Seat_HeardWord>{PAWN_nameDef} had a word with {OTHER_nameDef} and heard {OTHER_objective} out, as the speaker.</CC_Seat_HeardWord>
+
+  <!-- The quartermaster's count. -->
+  <CC_Seat_Label_Count>the quartermaster's count</CC_Seat_Label_Count>
+  <CC_Seat_Count>{PAWN_nameDef} went round the stores at dawn and counted them: food for {DAYS} days, {MEALS} cooked meals and {MEDICINE} medicine.</CC_Seat_Count>
+  <CC_Seat_CountNoWalk>{PAWN_nameDef} counted the stores: food for {DAYS} days, {MEALS} cooked meals and {MEDICINE} medicine.</CC_Seat_CountNoWalk>
+  <CC_Seat_CountDaysMany>many</CC_Seat_CountDaysMany>
+  <CC_Seat_Short_None>Nothing is running short.</CC_Seat_Short_None>
+  <CC_Seat_Short_Food>Food is the shortest.</CC_Seat_Short_Food>
+  <CC_Seat_Short_Medicine>Medicine is the shortest.</CC_Seat_Short_Medicine>
+  <CC_Seat_Short_Meals>Cooked meals are the shortest.</CC_Seat_Short_Meals>
+  <CC_Week_StoresCounted>The quartermaster's count, {DATE}</CC_Week_StoresCounted>
+
+  <!-- The reeve's walk. -->
+  <CC_Seat_Label_Fields>the reeve's walk</CC_Seat_Label_Fields>
+  <CC_Seat_FieldsBlight>{PAWN_nameDef} walked the fields at first light and marked {COUNT} blighted plants for cutting.</CC_Seat_FieldsBlight>
+  <CC_Seat_FieldsBlightNoWalk>{PAWN_nameDef} found blight in the fields and marked {COUNT} plants for cutting.</CC_Seat_FieldsBlightNoWalk>
+  <CC_Seat_FieldsBlightOne>{PAWN_nameDef} walked the fields at first light and marked a blighted plant for cutting.</CC_Seat_FieldsBlightOne>
+  <CC_Seat_FieldsBlightOneNoWalk>{PAWN_nameDef} found blight in the fields and marked a plant for cutting.</CC_Seat_FieldsBlightOneNoWalk>
+  <CC_Seat_FieldsClear>{PAWN_nameDef} walked the fields at first light and found no blight.</CC_Seat_FieldsClear>
+
+  <!-- The marshal at dusk. -->
+  <CC_Seat_Label_Walls>the marshal's walk at dusk</CC_Seat_Label_Walls>
+  <CC_Seat_Walls>{PAWN_nameDef} walked the walls at dusk, as the marshal does after an attack.</CC_Seat_Walls>
+  <CC_Seat_WallsWord>{PAWN_nameDef} walked the walls at dusk and had a word with those on watch.</CC_Seat_WallsWord>
+
+  <!-- A seat's walk begins: one person at their work. -->
+  <CC_Seat_BeginRound>{LABEL}: {NAMES} goes {WHERE}.</CC_Seat_BeginRound>
+  <CC_Seat_BeginWalls>{LABEL}: {NAMES} walks the walls from one look-out to the next.</CC_Seat_BeginWalls>
+  <CC_Play_Where_Stores>round the stores</CC_Play_Where_Stores>
+  <CC_Play_Where_FieldsRound>round the fields</CC_Play_Where_FieldsRound>
+  <CC_Impact_Route_stores>{0}: {1} go round the stores, {2}, for {3}</CC_Impact_Route_stores>
+  <CC_Impact_Route_fields>{0}: {1} go round the fields, marking any blight for cutting, {2}, for {3}</CC_Impact_Route_fields>
+
+  <!-- A promise halfway: the answers' play-outs. -->
+  <CC_Seat_HandsLabel>a hand for {B_nameDef}</CC_Seat_HandsLabel>
+  <CC_Seat_SupperLabel>{B_nameDef}'s word at supper</CC_Seat_SupperLabel>
+
+  <!-- Any other business: the tally where the petition is shown, and the meeting letter's paragraph. -->
+  <CC_Business_Backed>Backed at the meeting by {AYES} of {PRESENT}.</CC_Business_Backed>
+  <CC_Business_NotBacked>Not backed at the meeting: {AYES} of {PRESENT} for it.</CC_Business_NotBacked>
+  <CC_Business_LetterHead>Before anyone rose, there was other business.</CC_Business_LetterHead>
+  <CC_Business_LetterDecree_Backed>{PAWN} stood and read out the petition for {WHAT}, and the room was for it, {AYES} of {PRESENT}.</CC_Business_LetterDecree_Backed>
+  <CC_Business_LetterDecree_Not>{PAWN} stood and read out the petition for {WHAT}, but the room was not for it: only {AYES} of {PRESENT} said aye.</CC_Business_LetterDecree_Not>
+  <CC_Business_LetterDecreeAbsent_Backed>{PAWN} was not there, so the petition for {WHAT} was read out for them, and the room was for it, {AYES} of {PRESENT}.</CC_Business_LetterDecreeAbsent_Backed>
+  <CC_Business_LetterDecreeAbsent_Not>{PAWN} was not there, so the petition for {WHAT} was read out for them, but only {AYES} of {PRESENT} said aye.</CC_Business_LetterDecreeAbsent_Not>
+  <CC_Business_LetterRepeal_Backed>{PAWN} read out the petition to lift {WHAT}, and the room was for lifting it, {AYES} of {PRESENT}.</CC_Business_LetterRepeal_Backed>
+  <CC_Business_LetterRepeal_Not>{PAWN} read out the petition to lift {WHAT}, but only {AYES} of {PRESENT} would see it gone.</CC_Business_LetterRepeal_Not>
+  <CC_Business_LetterRepealAbsent_Backed>{PAWN} was not there, so the petition to lift {WHAT} was read out for them, and the room was for lifting it, {AYES} of {PRESENT}.</CC_Business_LetterRepealAbsent_Backed>
+  <CC_Business_LetterRepealAbsent_Not>{PAWN} was not there, so the petition to lift {WHAT} was read out for them, but only {AYES} of {PRESENT} would see it gone.</CC_Business_LetterRepealAbsent_Not>
+  <CC_Business_LetterWish_Backed>{PAWN} asked the room for {WHAT}, and {AYES} of {PRESENT} said aye.</CC_Business_LetterWish_Backed>
+  <CC_Business_LetterWish_Not>{PAWN} asked the room for {WHAT}, but only {AYES} of {PRESENT} said aye.</CC_Business_LetterWish_Not>
+  <CC_Business_LetterWishAbsent_Backed>{PAWN} was not there, so the petition for {WHAT} was read out for them, and {AYES} of {PRESENT} said aye.</CC_Business_LetterWishAbsent_Backed>
+  <CC_Business_LetterWishAbsent_Not>{PAWN} was not there, so the petition for {WHAT} was read out for them, but only {AYES} of {PRESENT} said aye.</CC_Business_LetterWishAbsent_Not>
+
+</LanguageData>

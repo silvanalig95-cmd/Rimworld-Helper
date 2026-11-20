@@ -48,6 +48,8 @@ namespace ColonyCouncil
             Safe("interplay: chaplain", () => ChaplainDay(comp));
             Safe("interplay: warden of guests", () => WardenDay(comp));
             Safe("interplay: elders", () => EldersDay(comp));
+            // The speaker, the quartermaster and the reeve at their work (Interplay_Seats.cs).
+            SeatsDaily(comp);
             Safe("interplay: setbacks counted", () => CountSetbacks());
             PruneCooldowns();
         }
@@ -58,6 +60,7 @@ namespace ColonyCouncil
             if (!On || comp == null) return;
             Safe("interplay: pets and grief", () => PetsComfort(comp));
             Safe("interplay: marshal", () => MarshalWatch(comp));
+            Safe("interplay: marshal at dusk", SeatsHourly);
             Safe("interplay: fear faced", () => FearFacedWatch(comp));
         }
 

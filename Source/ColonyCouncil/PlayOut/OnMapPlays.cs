@@ -1017,6 +1017,8 @@ namespace ColonyCouncil
         public static void Arrived(PlayOut p, PlayHand h, int delta)
         {
             h.phase = 0;
+            // Just come to a look-out on the marshal's dusk walk: a word for whoever is on watch there (Interplay/Interplay_Seats.cs).
+            if (h.waited == 0 && Interplay.IsSeatWork(p)) Interplay.AtLookOut(p, h.pawn);
             h.waited += delta;
             if (h.waited < LookOut) return;
             h.waited = 0;
@@ -1064,6 +1066,12 @@ namespace ColonyCouncil
                 if (what.StartsWith(HandOvers.AfterPrefix, StringComparison.Ordinal))
                 {
                     HandOvers.PlayOver(p, what, happened, took);
+                    return;
+                }
+                // A seat's own walk or sitting (Interplay/Interplay_Seats.cs): the count, the marks, the word.
+                if (what.StartsWith(Interplay.SeatPrefix, StringComparison.Ordinal))
+                {
+                    Interplay.SeatWorkOver(p, what, happened);
                     return;
                 }
                 // A work party after a disaster (Weather/AfterStorm.cs): the chronicle keeps it once its work is done.

@@ -71,15 +71,31 @@ namespace ColonyCouncil
 
         // ---------------- The promise's values in the history ----------------
 
-        /// <summary>The positions of a promise's values: the office, the seat, the plank, how it is judged, the reading then, the seat's work count then.</summary>
-        public const int OfficeAt = 0, SeatAt = 1, PlankAt = 2, TestAt = 3, ReadingAt = 4, WorkAt = 5, PromiseAt = 6;
+        /// <summary>
+        /// The positions of a promise's values: the office, the seat, the plank, how it is judged, the reading then, the
+        /// seat's work count then, the promise's words, the questions of the seat's work spoken in then (Offices/SeatMath.cs),
+        /// and those who stood against them for the seat (their thingIDNumbers, comma-separated). An older promise has the
+        /// first seven only.
+        /// </summary>
+        public const int OfficeAt = 0, SeatAt = 1, PlankAt = 2, TestAt = 3, ReadingAt = 4, WorkAt = 5, PromiseAt = 6, CallsAt = 7, RivalsAt = 8;
 
-        public static List<string> Values(string office, int seat, string plank, PromiseTest test, float reading, float work, string promise) =>
+        public static List<string> Values(string office, int seat, string plank, PromiseTest test, float reading, float work, string promise, float calls = 0f, string rivals = null) =>
             new List<string>
             {
                 office ?? "", seat.ToString(CultureInfo.InvariantCulture), plank ?? "", test.ToString(), reading.ToString("R", CultureInfo.InvariantCulture),
-                work.ToString("R", CultureInfo.InvariantCulture), promise ?? ""
+                work.ToString("R", CultureInfo.InvariantCulture), promise ?? "", calls.ToString("R", CultureInfo.InvariantCulture), rivals ?? ""
             };
+
+        /// <summary>Those who stood against the holder for the seat, by thingIDNumber (none for an older promise).</summary>
+        public static List<int> RivalsOf(IReadOnlyList<string> values)
+        {
+            var list = new List<int>();
+            string s = Get(values, RivalsAt);
+            if (string.IsNullOrEmpty(s)) return list;
+            foreach (var part in s.Split(','))
+                if (int.TryParse(part, NumberStyles.Integer, CultureInfo.InvariantCulture, out int id)) list.Add(id);
+            return list;
+        }
 
         public static string Get(IReadOnlyList<string> values, int at) => values != null && at >= 0 && at < values.Count ? values[at] : null;
 

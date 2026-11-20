@@ -251,7 +251,9 @@ Every faith its evening is the other way from one ideoligion for the colony, and
         <heading>When to call one</heading>
         <text>Start rationing before winter, while there's still food to save, and run drills while raids are still small. Pair a hated decree with a short one people love, or follow it with festival days.
 
-Colonists sometimes petition for a decree when the moment fits. Declaring it within five days wins their trust.</text>
+Colonists sometimes petition for a decree when the moment fits. Declaring it within five days wins their trust.
+
+At the seasonal meeting, once the ambitions have been put, the open petitions are read out as other business, the oldest first and four at most: a decree asked for or asked to be lifted, and a want several colonists back together. The asker reads it (the chair, for one who isn't there), someone in the room says aye or no, and everyone there is counted by how they feel about it: those who like a decree are for it, those who dislike it are for lifting it, and for a want, those in it, those who want the same and friends of the asker. Anyone there who wants the same joins it. The tally stays with the petition: on its card here ("Backed at the meeting by 5 of 7."), on This week and in the meeting's letter. The council still decides from this page.</text>
       </li>
       <li>
         <heading>Repeating and forcing</heading>
@@ -476,17 +478,28 @@ The council can back one candidate for a seat (it counts on the ballots of those
         <text>With "Systems talk to each other" on, the offices also do their jobs where you can see them:</text>
         <table>
           <li>Office | Also</li>
+          <li>Speaker | Every few days, sits an hour at a table with whoever trusts the council least (when their trust is under 10), hears them out, and each says a word; their trust rises by one to two points, more from a speaker good with people. The same person isn't sat with again for about a week.</li>
+          <li>Quartermaster | Once a week at dawn, walks round the stores one by one (every stockpile, and the rooms with shelves, deep storage or fridges) and counts them: days of food, cooked meals and medicine, and what is shortest. The count goes in the news and at the head of the plan on This week, and the quartermaster says so aloud when something is short.</li>
           <li>Keeper of days | Organizes the calendar's feasts and games days (not the days about one person, which belong to them).</li>
           <li>Peacemaker | Steps into a spat nearby, now and then: the two are sore at each other half as long.</li>
           <li>Physician | Does the rounds of everyone convalescing each morning, taking about two thirds of a day off each recovery, and the office counts for two patients pulled through toward a doctor's good name.</li>
-          <li>Reeve | Deals with neighbors who ask the colony for goods; an order filled in full under the reeve brings 3 more goodwill.</li>
+          <li>Reeve | Deals with neighbors who ask the colony for goods; an order filled in full under the reeve brings 3 more goodwill. In the growing season, walks round the fields at first light every other day (the next morning when blight shows) and marks any blighted plants in each field for cutting, with the game's own order.</li>
           <li>Herdmaster | Sits with anyone whose named animal dies, and minds the animals of those away two days or more (they come home grateful). Goes down to name each newborn in the herd, brings word face to face to anyone whose animal is sick or hurt (their strain eases), and about once a week takes someone keen on animals, four levels or more behind, along for the day's work.</li>
-          <li>Marshal | After a fight at home, has a word with everyone who fought beside them, easing their strain.</li>
+          <li>Marshal | After a fight at home, has a word with everyone who fought beside them, easing their strain. In the two days after an attack, walks the walls at dusk for an hour, from one look-out to the next, with a word for anyone drafted or keeping watch near a look-out.</li>
           <li>Steward | At a gathering, eases the strain of everyone else there a little.</li>
           <li>Chaplain | Most days sits with someone grieving (their strain eases) or has a word with the believer least sure of the ideoligion (6% surer); leads the calendar's remembrances.</li>
           <li>Warden of guests | Spends an hour a day at the fire of any camp on the colony's land (its tension eases by 4, and the campers come to know the warden), and sees visitors welcomed: their people's goodwill rises by 2, once every few days for each people.</li>
           <li>Elders | Every couple of days, each elder sits with someone ten years younger or more and passes on what they know best (an afternoon's practice in it), and the two grow a little closer.</li>
         </table>
+        <after>The speaker's hour, the quartermaster's round, the reeve's walk and the marshal's evening are seen on the map with "Answers play out on the map" on. They are the colony's own doing, not one of its gatherings: they never take a gathering's evening, and one that can't happen is let go without a word. With the setting off, the speaker has a word when the two meet, the count and the marks are made without the walk, and the marshal's evening isn't kept.</after>
+      </li>
+      <li>
+        <heading>The seat in the council's questions</heading>
+        <text>About thirty of the council's questions are about a seat's work: the sick and the medicine for the physician, the fields for the reeve, the herd for the herdmaster, quarrels for the peacemaker, the faith for the chaplain, strangers and the camp for the warden of guests, the stores for the quartermaster, and every seasonal custom for the keeper of days. When the seat's holder is at home and isn't already one of the two the question is about, they are in it: the letter gives them a word, and some answers' outcomes say what they made of it. Each such question answered counts toward their record in the seat, which the next election reads ("In the seat, Harper has sown and brought in 340 plants and spoken for the seat in 3 of the council's questions"), and leans voters toward them as the seat's work does.</text>
+      </li>
+      <li>
+        <heading>A promise halfway</heading>
+        <text>A holder's election promise is judged at the next yearly vote. Halfway, once they have held the seat 25 days or more, the map may already show it going badly by the very test the vote uses: someone lost after a promise of a proper watch at night, the food under three days after meals were promised, the medicine short, no sickbed, the herd shrunk, spirits sunk. Then someone who stood against them for the seat (or else whoever thinks least of them) raises it at the council, once for each promise. The council can give the holder a hand (the holder and the one who raised it at the seat's own work: a night's watch on the walls, the food brought in, the sickroom cleaned, the herd brought home and seen to, or an evening the holder calls for everyone), have them answer for it at supper (a word at the dining table before everyone), or leave it to the vote. Answering at supper counts as the hard call of a newly seated holder's story, the weight of office.</text>
       </li>
     </sections>
     <keywords><li>office</li><li>election</li><li>vote</li><li>speaker</li><li>marshal</li><li>quartermaster</li><li>physician</li><li>steward</li><li>reeve</li><li>peacemaker</li><li>keeper of days</li><li>herdmaster</li><li>chaplain</li><li>warden</li><li>guests</li><li>elders</li></keywords>

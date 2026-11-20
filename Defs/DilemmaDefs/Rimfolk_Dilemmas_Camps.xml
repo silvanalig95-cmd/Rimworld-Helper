@@ -94,6 +94,8 @@
   <!-- ===================== Missing from the camp ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmC_Theft</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
     <label>missing from the camp</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CampMember</workerClass>
     <weight>1.2</weight>

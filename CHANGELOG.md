@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The council at its work
+
+*20 November 2026, version 0.279.0*
+
+- The speaker, the quartermaster, the reeve and the marshal are seen at their work: an hour with whoever trusts the council least, a weekly count of the stores at dawn, a walk round the fields marking blight, and a walk on the walls at dusk after an attack.
+- Council questions about a seat's work now name the seat's holder, who has a say in the letter and sometimes the outcome; each one answered counts toward their record at the next election.
+- A promise going badly halfway through the year is raised at the council by someone who stood against the holder: give them a hand with the work, have them answer for it at supper, or leave it to the vote.
+- At the seasonal meeting the open petitions are read out after the ambitions, and how the room took them shows on the Decrees page, in This week and in the meeting's letter.
+- The weight of office now waits for a real hard call and names it; with none in twenty days the story ends quietly.
+
 ## Festivals kept, beasts held sacred
 
 *20 November 2026, version 0.278.1*

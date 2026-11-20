@@ -1280,7 +1280,7 @@ namespace ColonyCouncil
                 string judged = VerdictLine(sc.race);
                 if (judged != null) text.Append(" ").Append(judged);
                 Judged(sc.race);
-                Promised(sc.race.office, sc.race.seat, sc.winner, sc.race.EntryOf(sc.winner)?.plank);
+                Promised(sc.race.office, sc.race.seat, sc.winner, sc.race.EntryOf(sc.winner)?.plank, sc.race.entries.Select(en => en.pawn));
                 seated.Add(sc.winner);
             }
             countCache = null;

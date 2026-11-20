@@ -352,6 +352,8 @@ namespace ColonyCouncil
                 yearlings = HerdCount.Yearlings(map).Count, lastWinter = last != null, leader = leader?.LabelShort,
                 count = HerdStoryMath.SlaughterCount(herd.Count, feed, winter)
             };
+            // Asked now (the tracker sends what it casts): not asked again for this count.
+            if (h != null) h.askUntil = -1;
             return true;
         }
 
