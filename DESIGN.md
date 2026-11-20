@@ -15330,7 +15330,7 @@ interface `ColonistCardEntry.cs`. No saved data, no Sched slot; two Harmony patc
   to game. Opening a colonist whose card is open brings it to the front. **The arrows** in the title bar step to the
   previous or next colonist in the colonist bar's order (round the ends), past any whose card is open in another window,
   so it stays one card per colonist (`ColonistCardMath.Step`); their tooltips name who.
-- **The header**: their whole figure as dressed from the game's portrait cache (100 by 140, a tile in the look); under
+- **The header**: their whole figure from the face engine (100 by 140, a tile in the look; "Portraits: the face engine" below); under
   it the heart's line as the colonist bar draws it (strain in its band's colour, the good side in green, each as long as
   it is full, from the bar's threshold; its tooltip the heart's line in words); their full name; who they are in the
   Story tab's one line (`StoryView.Who`: the name the colony knows them by, office or title, age, where they come from;
@@ -15960,6 +15960,104 @@ Two patch classes, each applied on its own:
 
 Both signatures are the same in 1.6 and 1.7 (ApiDiff). The settings (How you're told, "Colonist bar") switch each kind,
 the break mark and its margin above the minor line, the wish threshold, size, corner and the most shown.
+
+### Portraits: the face engine and the portrait at the inspect pane (the player's go, 20 November 2026; not released yet)
+
+The player's words (20 November 2026): "when you write letters to people or there's an event and you see the
+character's icon ... these are just not recognizable characters to me, especially the ones from other factions", "and
+especially for my own pawns, because these even at a certain length feel unrecognizable anymore, especially if you
+regularly change armor and clothing. It's just the names that stay, but the faces have absolutely no meaning." On the
+way: "it should probably most likely be just a bigger version of the p[aw]n that you already get, and kind of build on
+that what you already have ... So a good face engine, so to say, that does the face well and bigger already is probably
+a huge improvement." On the place: "when you click the pawn in the bottom left corner above the their description and
+everything, you see like a larger version of it, which already makes it much more recognizable". The go: "yes, begin on
+enhancing the pawns visuals as proposed. the larger image of the pawn can be in the bottom left corner, attached to the
+pawn default screen when you select it, in the corner of the screen and this window, perhaps you can rescale this
+window with drag and drop also". This is phase 1; phase 2 (poses and a little movement, the to-do in
+`docs/HANDOFF.md`) builds on it.
+
+No painted art: every portrait is the game's own drawing of the pawn from its portrait cache, so every mod's gear,
+race, hair and face comes with it (Facial Animation's eyes and mouth among them). The code: `UI/Faces/FaceEngine.cs`
+(the engine), `UI/Faces/FaceMath.cs` (its rules without game types, linked in the tests), `UI/Faces/InspectPortrait.cs`
+(the large portrait). Tested in `Tools/Tests/FaceEngineTests.cs`. No saved data, no Sched slot.
+
+- **One engine for every portrait.** `UiKit.Portrait` (the round portraits in letters, event cards, the People table,
+  the Story tab, the panels, the hover card and every other place that called it, each at the size it had) and the
+  colonist card's header (its tile, 100 by 140) draw through the engine, so a person's face is the same everywhere.
+  The only other call of the game's portrait cache is the founding window's pawn picker, which keeps the game's own
+  picker's look.
+- **Framed by the face.** The portrait camera is centred on the pawn's own head as the game draws it: the head node of
+  its render tree, placed and sized by the tree's own matrix for the front view (`PawnRenderTree.TryGetMatrix`, with
+  the node's mesh), so the body type's head offset, the life stage, the race's draw size and every offset another mod
+  (Humanoid Alien Races) puts on the head are in it. Until the game has drawn a pawn (a faction leader in a letter who
+  was never on a map), the body type's head offset (`BaseHeadOffsetAt`, which that mod also patches) and the life
+  stage's head size stand in, tried again half a second later. The framing is counted in head sizes, so a child, a
+  grown-up, a big xenotype and another mod's race land in the picture alike:
+  - *the face* (the round portraits): 0.74 head sizes across the picture, its top 0.33 head sizes above the head's
+    middle; for a grown-up this is the framing the round portraits had before (the camera 0.28 above the middle, zoom
+    about 1.8 against 1.75), so they look as they did, and children and other races now fill the circle the same way;
+  - *the bust* (the large portrait): 1.05 head sizes across, its top 0.44 above the head's middle, so the hair keeps its
+    room, the face sits about two fifths down and the chest is under it;
+  - *the figure* (the colonist card): 0.8 head sizes across the tile's width, its top 0.42 above the head, so a
+    grown-up is drawn from the hair to the feet.
+  An animal or a mechanoid has no head to frame by: its whole drawing, by the size the game draws it at its age, 0.85
+  of it across (an elephant fills the circle as a husky does). What is read of a pawn is kept 30 seconds and read again
+  when the game marks its portrait dirty (`Patch_FaceEngineDirty`, a postfix on `PortraitsCache.SetDirty`: new clothes,
+  hair, growing up); a reading that makes no sense (a head larger than 8 units, NaN) is framed as a grown-up's.
+- **The steady face.** The game's portrait cache takes whether to draw headgear and clothes: headgear is left off by
+  default, so a helmet or a hat that comes and goes doesn't change who it is (the setting "Headgear in portraits", off;
+  crowns and role hats go with it), and the body's clothes and armour stay ("Clothes in portraits", on).
+- **Their colour behind them.** The ground of each portrait is the person's own colour: their favourite colour (the
+  game gives each person one with Ideology), else their people's colour, else the plain portrait ground. As much of it
+  is mixed into the dark ground as keeps it no brighter than a luminance of 0.06 (a pale yellow gets less than a deep
+  blue), so the face reads on it as on the game's panels and two people's colours still tell apart; a soft light in
+  more of the colour (no brighter than 0.2) sits behind the head. Worked out once for each colour and ground.
+- **The mark of their people or the colony.** The game's icon of the faction the person belongs to, in the faction's
+  colour as the game tints it, on a small dark disc: the colony's for its own (colonists and its slaves), a prisoner's
+  or a visitor's own people's; none for the factionless. On the round portraits from 60 across (an event card's), at
+  the bottom right; on the large portrait at the top left, its people's name on hover. Not on the colonist card, where
+  everyone is the colony's.
+- **Drawn sharp, and only what is on screen.** Every picture is rendered at the size it is shown (the game's cache adds
+  its supersampling of 1.25 and the interface scale: 192 across at a scale of 2 is 480 pixels), never a small picture
+  made larger. The game's cache drops a picture not drawn for a second, so only the portraits on screen are held, at
+  their size. Sharpness is still the game's textures': a vanilla head is 128 pixels for 1.5 units.
+- **The large portrait at the inspect pane** (`InspectPortrait`, the setting "A large portrait at the inspect pane",
+  on, How you're told, Portraits; a deeper game hook). With one humanlike person selected on the map (a colonist, a
+  slave, a prisoner, a visitor, a raider), their bust stands on the inspect pane's tab buttons at its left, 192 across
+  at first, framed in Rimfolk's look (or the game's with it off). From 128 across, a band at its foot holds their name
+  and, under it, the name the colony knows them by (`KnownAs.Short`), in colours that read at 4.5:1 or better over any
+  clothes. A click opens their card (the colonist card for the colony's own, the small card for anyone else).
+  - *Where it stands* (`FaceMath.Place`), all read live from the open `MainTabWindow_Inspect`: the pane's window and the
+    top the game gives its tabs (the higher of the two, so RimHUD's taller pane moves it up), the row of tab buttons
+    (30) above it, the open tab's rect as the game draws it (`InspectTabBase.TabRect`, read by name), and the gizmos'
+    height (`GizmoGridDrawer.HeightDrawnRecently`). No tab open: on the tab buttons at the pane's left. A tab open
+    (Bio, Gear, Health...): right of it, its foot level with the tab's and lifted above the gizmos where it reaches
+    past the pane's right side, so it never covers the tab; with no room there, above the tab at the pane's left; with
+    no room at all, it waits until the tab is closed. Always on the screen, below the top 96 (the colonist bar), and
+    smaller than asked where the room is less (in steps of 8, never under 96). Why beside the tab rather than above
+    it: it stays where the eye already is, at the foot of the screen, at its size; above a tall tab there is often no
+    room.
+  - *Its size*: dragging its free corner (the top right, the game's sizing grip turned there, shown while the mouse is
+    over the portrait) sizes it from 96 to 360 in steps of 8; the size it was shown at when the mouse is let go is kept
+    in the settings ("Its size", a slider under the switch), so it lasts between games. While dragging, the picture
+    made at the start is shown larger or smaller and drawn sharp again at the new size when the mouse is let go, so no
+    picture is made at every step of the drag (the game's cache keeps a texture for each size it ever made).
+  - *Clicks*: it is a window of its own the size of the portrait (`WindowStack.ImmediateWindow`, the game's way for the
+    inspect tabs), taking no clicks around it; every click on it is taken there, so none reaches the map below.
+  - The hover card in the corner (Hud) stands above it while it shows.
+  - Patched: `Patch_InspectPortrait`, a postfix on `MainTabWindow_Inspect.ExtraOnGUI` (where the game draws the pane's
+    tabs and gizmos, every event while the pane is open); `Patch_FaceEngineDirty` above. Both signatures, and every
+    member the engine reads (`PortraitsCache.Get` with its headgear and clothes, the render tree's matrix and node,
+    `PawnDrawParms`, the favourite colour, the faction icon, the immediate window), are the same in 1.6 and 1.7
+    (ApiDiff); `TabRect` is read by name and found in both.
+- **For phase 2**: the engine takes a pose (`FacePose`, only the front so far); poses by character and mood, the head
+  and body drawn apart with the game's render flags (`HeadStump`, `NoBody`), the side views for two people facing each
+  other and a little movement come in there.
+- **Not checked without the game**: that the render tree's matrix for the head gives the framing these numbers expect
+  (the camera's units are the game's, read from its references, and the round portraits of a grown-up were matched to
+  the old framing by number, not by eye); how the bust and the card's figure look for children, babies, big xenotypes
+  and Humanoid Alien Races' races; the backdrop colours and the light behind the head; RimHUD's pane and tabs; the
+  open tabs' rects and the placement beside them; the drag; the gizmos' height as the game reports it.
 
 ### On-screen panels and the hover card
 

@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using HarmonyLib;
 using RimWorld;
 using UnityEngine;
@@ -116,7 +117,7 @@ namespace ColonyCouncil
             var type = pane.OpenTabType;
             InspectTabBase open = null;
             bool any = false;
-            foreach (var t in pane.CurTabs)
+            foreach (var t in pane.CurTabs ?? Enumerable.Empty<InspectTabBase>())
             {
                 if (t == null || !t.IsVisible || t.Hidden) continue;
                 any = true;
@@ -199,15 +200,23 @@ namespace ColonyCouncil
                 if (dragging || Mouse.IsOver(r)) Grip(grip);
             }
             float ms = Mathf.Clamp(Mathf.Round(r.width * 0.14f), 18f, 32f);
-            FaceEngine.DrawMark(new Rect(inner.x + 4f, inner.y + 4f, ms, ms), p, 1f, true);
-            if (dragging) return;
-            TooltipHandler.TipRegion(grip, gripTip);
-            TooltipHandler.TipRegion(r, tip);
-            if (Widgets.ButtonInvisible(r, false))
+            var mark = new Rect(inner.x + 4f, inner.y + 4f, ms, ms);
+            FaceEngine.DrawMark(mark, p);
+            if (!dragging)
             {
-                SoundDefOf.Click.PlayOneShotOnCamera();
-                Cards.Open(p);
+                // One tooltip at a time: the mark's people, the corner's sizing, else the portrait's own.
+                var people = FaceEngine.PeopleOf(p);
+                if (Mouse.IsOver(mark) && FaceEngine.MarkOf(people) != null && !people.Name.NullOrEmpty()) TooltipHandler.TipRegion(mark, people.Name);
+                else if (Mouse.IsOver(grip)) TooltipHandler.TipRegion(grip, gripTip);
+                else TooltipHandler.TipRegion(r, tip);
+                // A left click opens their card; any other click on it is taken here, so it never reaches the map below.
+                if (Widgets.ButtonInvisible(r, false) && ev.button == 0)
+                {
+                    SoundDefOf.Click.PlayOneShotOnCamera();
+                    Cards.Open(p);
+                }
             }
+            if ((ev.type == EventType.MouseDown || ev.type == EventType.MouseUp) && Mouse.IsOver(r)) ev.Use();
         }
 
         /// <summary>Their name and the name the colony knows them by, on a dark band at the foot of the picture.</summary>

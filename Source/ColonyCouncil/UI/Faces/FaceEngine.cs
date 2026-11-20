@@ -63,10 +63,13 @@ namespace ColonyCouncil
 
         private const int Tries = 4;
 
+        /// <summary>Pawns the game marked dirty since the last portrait was drawn (the game may mark one from another thread).</summary>
+        private static readonly System.Collections.Concurrent.ConcurrentQueue<int> forgotten = new System.Collections.Concurrent.ConcurrentQueue<int>();
+
         /// <summary>The game marked the pawn's portrait dirty (new clothes, grown up, a new look): read them again.</summary>
         public static void Forget(Pawn p)
         {
-            if (p != null) looks.Remove(p.thingIDNumber);
+            if (p != null) forgotten.Enqueue(p.thingIDNumber);
         }
 
         /// <summary>The camera that frames this pawn for a picture this size.</summary>
@@ -161,8 +164,8 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The mark of their people on a small dark disc, in the faction's colour as the game tints it; the people's name on hover with <paramref name="tip"/>.</summary>
-        public static void DrawMark(Rect r, Pawn p, float alpha = 1f, bool tip = false)
+        /// <summary>The mark of their people on a small dark disc, in the faction's colour as the game tints it.</summary>
+        public static void DrawMark(Rect r, Pawn p, float alpha = 1f)
         {
             var f = PeopleOf(p);
             var icon = MarkOf(f);
@@ -183,7 +186,6 @@ namespace ColonyCouncil
                 GUI.DrawTexture(r.ContractedBy(Mathf.Max(2f, Mathf.Round(r.width * 0.2f))), icon);
                 GUI.color = Color.white;
             }
-            if (tip && !f.Name.NullOrEmpty()) TooltipHandler.TipRegion(r, f.Name);
         }
 
         // ---------------- What the engine reads of a pawn ----------------
@@ -197,6 +199,7 @@ namespace ColonyCouncil
                 game = Current.Game;
             }
             if (p == null) return default;
+            while (!forgotten.IsEmpty && forgotten.TryDequeue(out int id)) looks.Remove(id);
             float now = Time.realtimeSinceStartup;
             bool had = looks.TryGetValue(p.thingIDNumber, out var l);
             if (!had || now >= l.until)

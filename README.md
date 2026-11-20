@@ -94,6 +94,16 @@ like Rimfolk's other windows and opens where you left it. The game's own letters
 from any colonist's name or portrait in Rimfolk's windows, panels and tabs, from Ctrl and a click on their portrait in
 the colonist bar, and from the small card button by their name on the inspect pane.
 
+**Portraits.** Every portrait Rimfolk draws (letters, event cards, the colonist card, the lists and panels) comes from
+one face engine: the game's own drawing of the person, so every mod's gear, race and hair is in it, framed by their own
+head so a child or another race fills it as a grown-up does, drawn without headgear so a helmet or a new hat doesn't
+change who it is, on their own colour (their favourite, else their people's) with the mark of their people or the
+colony, and rendered at the size it is shown so it stays sharp. Select anyone on the map and a **large portrait** of
+them stands above the inspect pane at the bottom left, with their name and the name the colony knows them by; with a
+tab open (Bio, Gear, Health) it stands beside the tab. Drag its top right corner to make it larger or smaller (96 to
+360, kept between games); click it for their card. **A large portrait at the inspect pane**, **Its size**, **Headgear
+in portraits** and **Clothes in portraits** (How you're told, Portraits) set it.
+
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:
 

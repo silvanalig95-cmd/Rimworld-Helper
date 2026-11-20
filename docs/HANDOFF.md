@@ -155,6 +155,13 @@ most sense." So, in this order, three builds at a time:
   The lead can't see the game: after a first build the player's screenshots decide sizes and framing.
   The player's picks wait: the style (painted oil, ink and wash, manuscript, or another), the tool they use, how many
   images a batch, and where to start (A for their own colonists first is the lead's suggestion).
+  **Phase 1 built** (20 November 2026, the player's go: "yes, begin on enhancing the pawns visuals as proposed. the
+  larger image of the pawn can be in the bottom left corner, attached to the pawn default screen when you select it,
+  in the corner of the screen and this window, perhaps you can rescale this window with drag and drop also"; built,
+  not released): the face engine (framing by the head, the steady face, their colour and their people's mark, drawn
+  sharp) under every portrait, and the large portrait at the inspect pane, resized by dragging; the entry "Portraits,
+  phase 1" above the newest release line. Still open: phase 2, the poses and a little movement above (the head and
+  body drawn apart, a pose by character and mood, the side views for two facing each other), which the lead sends next.
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
   using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
@@ -753,6 +760,75 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 1: the face
+  engine and the portrait at the inspect pane** (20 November 2026; the player: "especially for my own pawns, because
+  these even at a certain length feel unrecognizable anymore, especially if you regularly change armor and clothing",
+  "a good face engine, so to say, that does the face well and bigger already is probably a huge improvement", and the
+  go: "the larger image of the pawn can be in the bottom left corner, attached to the pawn default screen when you
+  select it ... perhaps you can rescale this window with drag and drop also"). DESIGN.md "Portraits: the face engine
+  and the portrait at the inspect pane" has every rule; README "Portraits"; the Almanac's guide, one sentence.
+  - **The face engine**: every portrait of a person is the game's own drawing (its portrait cache), so every mod's
+    gear, race, hair and Facial Animation's faces come with it. Framed by the face: the camera on the pawn's own head,
+    read from its render tree's matrix for the front view (the body type, life stage, race size and Humanoid Alien
+    Races' offsets in it; the body type's head offset until the game has drawn them), counted in head sizes, so a
+    child, a grown-up, a big xenotype and a mod's race land alike; three framings (the face for the round portraits,
+    as they were for a grown-up; the bust for the large one; the whole figure for the colonist card). The steady face:
+    headgear off by default, clothes on. Behind them their favourite colour (else their people's), kept dark enough
+    for the face to read, with a soft light behind the head; the mark of their people or the colony (the game's
+    faction icon in its colour) on the round portraits from 60 across and on the large one. Rendered at the size
+    shown (the game's supersampling and interface scale on it); the game's cache keeps only what was drawn in the last
+    second. An animal or a mechanoid: its whole drawing.
+  - **Every portrait through it**: `UiKit.Portrait` (letters, event cards, the People table, the Story tab, the panels,
+    the hover card and the rest, each at its size) and the colonist card's header (100 by 140, now the whole figure
+    framed by the face, without headgear, on their colour). The founding window's pawn picker keeps the game's look.
+  - **The large portrait**: with one humanlike person selected on the map (a colonist, a slave, a prisoner, a
+    visitor, a raider), their bust stands on the inspect pane's tab buttons at the left, 192 across at first, with
+    their name and the name the colony knows them by on a band at its foot (from 128 across) and their people's mark
+    at the top left; a click opens their card. The pane, the top the game gives its tabs, the open tab's rect and the
+    gizmos' height are read live (RimHUD's taller pane moves it up). With a tab open it stands right of the tab, its
+    foot level with the tab's and above the gizmos; with no room there, above the tab; with none at all it waits until
+    the tab is closed. Its top right corner sizes it by dragging, 96 to 360 in steps of 8, kept in the settings; during
+    the drag the picture of the start is shown and redrawn sharp at the end. A window the size of the portrait, so it
+    takes no clicks around it. The hover card in the corner keeps above it.
+  - **Settings** (How you're told, a new heading "Portraits"): "A large portrait at the inspect pane" (on, needs the
+    deeper game hooks), "Its size" (192), "Headgear in portraits" (off), "Clothes in portraits" (on). The colonist
+    card's tooltip no longer says "as dressed".
+  - **Code map**: `UI/Faces/FaceEngine.cs` (the engine, `Patch_FaceEngineDirty` on `PortraitsCache.SetDirty`),
+    `UI/Faces/FaceMath.cs` (framing, colours, size, placement; no game types), `UI/Faces/InspectPortrait.cs` (the large
+    portrait, `Patch_InspectPortrait` on `MainTabWindow_Inspect.ExtraOnGUI`), `UI/UiKit.cs` (`Portrait`),
+    `UI/ColonistCard/ColonistCardWindow.cs` (the header), `Hud/HudHoverCard.cs` (the corner above it),
+    `CouncilSettings.cs`, `UI/SettingsCatalog.cs`, `Languages/English/Keyed/Rimfolk_Portraits.xml`. Tests:
+    `Tools/Tests/FaceEngineTests.cs` (framing for a grown-up as before and for a child, a toddler, a big race and an
+    offset head alike, the colours on both looks' grounds and the name band's contrast, the size and the drag, the
+    placement on six screens with every tab size and gizmo rows, the seams); `ColonistCardTests` and
+    `StoryGlanceTests` read the engine now. Saved: nothing in saves; four settings.
+  - **For phase 2**: the engine takes a pose (`FacePose`, the front only so far), where the poses, the head and body
+    drawn apart and the side views come in.
+  - Not checked without the game: that the render tree's matrix gives the framing these numbers expect (the camera's
+    units are the game's, read from its references; nothing was seen); how the bust and the card's figure look for
+    children, babies, big xenotypes and Humanoid Alien Races' races; the colours and the light behind the head;
+    RimHUD's pane and tabs; the open tabs' rects as the game gives them; the drag; the gizmos' height as the game
+    reports it; how sharp a 360 portrait looks with the game's 128-pixel heads.
+  - Try in the game (screenshots, please, of each): 1. Select a colonist in armour and a helmet: the large portrait
+    above the inspect pane shows their face without the helmet, on their colour, their name and the name the colony
+    knows them by under it, the colony's mark at the top left. Put the helmet on and off: the portrait stays the same.
+    2. A child (and a baby if there is one): framed like the grown-ups, the face as large. 3. A visitor or a trader of
+    another race (a Humanoid Alien Races race, if one comes): framed by their head, their people's mark, their name on
+    hover over the mark. 4. Open the Bio tab, then Gear and Health: the portrait moves right of the tab and never covers
+    it; with many gizmos it sits above them. 5. Drag its top right corner larger and smaller; let go; look again after
+    loading the game (the size kept); the slider "Its size" shows it. 6. Open a letter or an event card with people,
+    the colonist card and the People table: the same faces, framed alike. 7. Settings, Portraits: headgear on brings the
+    helmets back everywhere; the large portrait off removes it.
+  - Mods that would help: none needed. Already in the list and coming into every portrait by themselves: [NL] Facial
+    Animation - WIP (https://steamcommunity.com/sharedfiles/filedetails/?id=1635901197) with Nice Facial Animation
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3302079637) for faces with expressions, Vanilla Hair
+    Retextured (https://steamcommunity.com/sharedfiles/filedetails/?id=2748834409) for sharper hair, Humanoid Alien
+    Races for the races. For sharper heads in a large portrait, higher-resolution head textures would help most; HD
+    Faces (Nonvanilla) (https://steamcommunity.com/sharedfiles/filedetails/?id=2475246250, tagged 1.6, 512-pixel
+    heads, its author calls it a legacy version) and Biotech Expansion - HD Textures
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3153669726, tagged 1.6, xenotype heads) are candidates,
+    but their pages showed a notice the lead couldn't confirm and Facial Animation draws its own faces over the heads,
+    so only worth a look if the large portrait looks soft.
 - 0.288.1, **Fix: the camps' own words for
   their good turns and moments** (20 November 2026; found by the world's text round below, 0.287.0, and fixed with the
   lead's go; CLAUDE.md: "Events and answers show on the map as accurately as possible: what the words say happens is
