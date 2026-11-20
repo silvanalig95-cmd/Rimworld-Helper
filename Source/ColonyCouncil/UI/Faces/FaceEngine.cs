@@ -194,8 +194,10 @@ namespace ColonyCouncil
             {
                 var local = new Rect(0f, 0f, r.width, r.height);
                 float breath = animate ? FacePoseMath.Breath(clock, seed) : 1f, sway = animate ? FacePoseMath.Sway(clock, seed) : 0f;
-                if (k < 0.999f) DrawLayer(local, p, frame, size, pose, (1f - k) * alpha, breath, sway);
-                if (k > 0.001f) DrawLayer(local, p, frame, size, new FacePose(FacePoseMath.TurnedTo(pose.turn, right), pose.bearing), k * alpha, breath, sway);
+                // A turn fades one view into the other, each full until halfway, so the figure never thins as it turns.
+                float usual = Mathf.Min(1f, 2f * (1f - k)), turned = Mathf.Min(1f, 2f * k);
+                if (usual > 0.001f) DrawLayer(local, p, frame, size, pose, usual * alpha, breath, sway);
+                if (turned > 0.001f) DrawLayer(local, p, frame, size, new FacePose(FacePoseMath.TurnedTo(pose.turn, right), pose.bearing), turned * alpha, breath, sway);
             }
             finally
             {
