@@ -551,7 +551,16 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_LastField : IncidentWorker_Happening
     {
-        protected override bool CanHappen(Map map, HappeningExtension ext) => !MapFacts.ThreatOn(map) && LastField.Ripe(map) >= ColonyEventMath.RipePlants;
+        protected override bool CanHappen(Map map, HappeningExtension ext) =>
+            !MapFacts.ThreatOn(map) && !HarvestAskedLately(map) && LastField.Ripe(map) >= ColonyEventMath.RipePlants;
+
+        /// <summary>The council asked "every hand to the harvest" (Rimfolk_DlmE_HarvestHands) lately at this home.</summary>
+        private static bool HarvestAskedLately(Map map)
+        {
+            var tracker = DilemmaTracker.For(map) ?? CouncilGameComponent.Instance?.dilemmas;
+            int last = tracker?.LastAsked("Rimfolk_DlmE_HarvestHands") ?? -1;
+            return ColonyEventMath.Within(last, Find.TickManager.TicksGame, ColonyEventMath.HarvestQuestionGapDays, GenDate.TicksPerDay);
+        }
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {

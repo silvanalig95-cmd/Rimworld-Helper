@@ -110,6 +110,9 @@ public static class LifeVarietyTests
         // ================= Events and stories =================
 
         C(ColonyEventMath.AtOdds(-20, -15) && !ColonyEventMath.AtOdds(-20, 0), "a quarrel needs both at odds");
+        C(ColonyEventMath.Within(1000, 1000 + 9 * 60000, ColonyEventMath.HarvestQuestionGapDays, 60000)
+          && !ColonyEventMath.Within(1000, 1000 + 11 * 60000, ColonyEventMath.HarvestQuestionGapDays, 60000)
+          && !ColonyEventMath.Within(-1, 5000, ColonyEventMath.HarvestQuestionGapDays, 60000), "the last field keeps ten days from the harvest question");
         C(ColonyStoryMath.CustomStillGrowing(1, false) && ColonyStoryMath.CustomStillGrowing(2, false) && !ColonyStoryMath.CustomStillGrowing(3, false) && !ColonyStoryMath.CustomStillGrowing(1, true),
             "a custom of their own while it grows toward a tradition");
         C(ColonyStoryMath.AimFresh(3, 3, 10) && !ColonyStoryMath.AimFresh(2, 3, 10) && !ColonyStoryMath.AimFresh(3, 3, 30), "the year's aim while the year is young");

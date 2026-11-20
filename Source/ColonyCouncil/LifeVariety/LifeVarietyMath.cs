@@ -367,6 +367,15 @@ namespace ColonyCouncil
         /// <summary>Hands for the last field: this many ripe plants waiting in the colony's fields, in autumn.</summary>
         public const int RipePlants = 30;
 
+        /// <summary>
+        /// Hands for the last field doesn't come within this many days of the council's question "every hand to the harvest"
+        /// (colony life's variety, part 1), so the colony isn't asked for the same afternoon in the fields twice.
+        /// </summary>
+        public const float HarvestQuestionGapDays = 10f;
+
+        /// <summary>Whether something last done at <paramref name="lastTick"/> (-1 never) was within <paramref name="days"/> of now.</summary>
+        public static bool Within(int lastTick, int now, float days, int dayTicks) => lastTick >= 0 && now - lastTick < days * dayTicks;
+
         /// <summary>A vow in the storm: within this many days of a storm, a believer with a god.</summary>
         public const int StormDays = 2;
     }

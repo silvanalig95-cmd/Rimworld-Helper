@@ -56,6 +56,9 @@ namespace ColonyCouncil
                 case CouncilSeasonMath.Handover:
                 {
                     var office = OfficeTracker.HeldBy(a);
+                    // Not while the one who lost it is in "after the vote" (CouncilLife/LifeArcs.cs): its own stage is the
+                    // word with the new holder, so the two would tell the same afternoon twice.
+                    if (ArcTracker.Instance?.Of(b)?.def?.defName == "Rimfolk_Arc_AfterTheVote") return false;
                     return office != null && LifeChecks.HasThought(b, new List<string> { "Council_LostOffice" }, CouncilSeasonMath.HandoverDays, a);
                 }
                 case CouncilSeasonMath.PromiseWell:

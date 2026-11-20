@@ -19941,7 +19941,8 @@ once an hour with its life (`LifeVariety.Hourly`: the giving day's lamps and end
   bold, the comrades and the scholars the games). Plain, spoken lines one sentence each.
 - **A25, social events and talk of the council's seasons** (`CouncilSeasons.cs`, `Rimfolk_SocialEvents_CouncilSeasons.xml`,
   `Rimfolk_Topics_Vote.xml`). Seven social events (`SocialEventDef.council`): help with the speech (a candidate and a friend
-  not standing against them), the seat handed over (the one who lost it to the new holder, within six days), a promise
+  not standing against them), the seat handed over (the one who lost it to the new holder, within six days, never while
+  they are in part 1's story "after the vote", whose own stage is that word), a promise
   remembered (the holder's election promise going well by the vote's own test) or thrown back (going badly), backing
   different candidates (by the vote's own lean), a petition talked over by two of its signers, an elder's word to a young
   holder. And a talk topic, "the vote", only while an election is under way, about its most contested seat, with lines on
@@ -19992,8 +19993,8 @@ once an hour with its life (`LifeVariety.Hourly`: the giving day's lamps and end
     fond of them, or a lesson;
   - a broken promise still sore: someone minds a broken promise and a friend asks; the speaker (else the best talker) says
     sorry at supper, or the friend takes them for a walk;
-  - hands for the last field: autumn with thirty plants or more ripe in the fields; a work party, the reeve and one more, or
-    the growers alone;
+  - hands for the last field: autumn with thirty plants or more ripe in the fields, never within ten days of the council's
+    question "every hand to the harvest" (part 1's); a work party, the reeve and one more, or the growers alone;
   - a night with the herd: an animal of the colony near its time; the herdmaster (else the best handler) sits up with it.
   Event cards, plain words.
 - **Six personal stories** (`ColonyStories.cs`, `Rimfolk_Arcs_ColonyLife.xml`), in the flavour style:
