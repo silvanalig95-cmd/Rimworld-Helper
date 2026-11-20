@@ -6,7 +6,7 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// What one of PokéWorld's items is, read from its def's own fields (never its name) by <see cref="PokeWorldShelves"/>:
-    /// the facts <see cref="PokeWorldShelvesMath.KindOf"/> needs to find the game's own kind of thing it belongs beside.
+    /// the facts <see cref="PokeWorldShelvesMath.KindOf"/> needs to find the game's own kind of thing it matches.
     /// </summary>
     public struct ShelfItemFacts
     {
@@ -42,14 +42,14 @@ namespace ColonyCouncil
     /// The pure rules of PokéWorld's items on the shelves (the player's request, 20 November 2026: "there's a bunch of
     /// items from the Poke World mod, for example, the Dawn Stone ... that I cannot put into large storage shelves").
     /// PokéWorld lists its items under categories of its own, which a shelf that names the game's categories doesn't take.
-    /// <see cref="KindOf"/> finds the game's own category each item belongs beside; a storage filter takes the PokéWorld
-    /// items of a category where it takes the whole of that category (<see cref="TakesWhole"/>); a fridge only takes those
-    /// that spoil and eggs (<see cref="FridgeTakes"/>). <see cref="PokeWorldShelves"/> applies them to the loaded defs and,
-    /// once a save, to the shelves already built.
+    /// <see cref="KindOf"/> finds the game's own category each item matches (the item isn't put in it); a storage filter
+    /// takes the PokéWorld items matched to a category where it takes the whole of that category (<see cref="TakesWhole"/>);
+    /// a fridge only takes those that spoil and eggs (<see cref="FridgeTakes"/>), a hopper none (<see cref="Allow"/>).
+    /// <see cref="PokeWorldShelves"/> applies them to the storage defs and, once a save, to the shelves already built.
     /// </summary>
     public static class PokeWorldShelvesMath
     {
-        /// <summary>The game's own categories an item can be placed beside, each with the one above it (the fallback when it's missing).</summary>
+        /// <summary>The game's own categories an item can match, each with the one above it (the fallback when it's missing).</summary>
         public static readonly Dictionary<string, string> Parents = new Dictionary<string, string>
         {
             ["ApparelUtility"] = "Apparel",
@@ -77,12 +77,12 @@ namespace ColonyCouncil
         };
 
         /// <summary>
-        /// The game's own category an item belongs beside, by what it is: apparel with apparel (a belt with the utility
-        /// pieces, a hat with headgear, the rest with the other apparel), a weapon with weapons (ranged or melee) and a tool
-        /// held like one with weapons, a fertilized egg with fertilized eggs, medicine and drugs with theirs, food with food
-        /// (meals, meat, plant food, animal products, other raw food), a leathery material with leathers, a fabric with
-        /// textiles, another material with the raw resources, and everything else (stones, fossils, balls, discs,
-        /// potions) with the game's miscellaneous items. The first that fits, in that order.
+        /// The game's own category an item matches, by what it is: apparel to apparel (a belt to the utility pieces, a hat
+        /// to headgear, the rest to the other apparel), a weapon to weapons (ranged or melee) and a tool held like one to
+        /// weapons, a fertilized egg to fertilized eggs, medicine and drugs to theirs, food to food (meals, meat, plant food,
+        /// animal products, other raw food), a leathery material to leathers, a fabric to textiles, another material to the
+        /// raw resources, and everything else (stones, fossils, balls, discs, potions) to the game's miscellaneous items.
+        /// The first that fits, in that order.
         /// </summary>
         public static string KindOf(ShelfItemFacts f)
         {
@@ -106,7 +106,7 @@ namespace ColonyCouncil
             return "ItemsMisc";
         }
 
-        /// <summary>The category and the ones above it, nearest first: where to place an item when its own is missing.</summary>
+        /// <summary>The category and the ones above it, nearest first: what an item matches when its own is missing.</summary>
         public static IEnumerable<string> WithParents(string kind)
         {
             for (int i = 0; kind != null && i < 8; i++)
@@ -127,8 +127,12 @@ namespace ColonyCouncil
         /// <summary>A fridge takes only what spoils, and eggs (they keep in the cold).</summary>
         public static bool FridgeTakes(bool rots, string kind) => rots || kind == "EggsFertilized" || kind == "EggsUnfertilized";
 
-        /// <summary>Whether one of PokéWorld's items of <paramref name="kind"/> goes on a storage building that takes the whole of that kind.</summary>
-        public static bool Allow(bool takesWhole, bool fridge, bool rots, string kind) => takesWhole && (!fridge || FridgeTakes(rots, kind));
+        /// <summary>
+        /// Whether one of PokéWorld's items matched to <paramref name="kind"/> goes on a storage building that takes the whole
+        /// of that kind: never in a hopper (what goes in one is fed to a dispenser, and a Pokémon egg isn't food for it), in a
+        /// fridge only what spoils and eggs.
+        /// </summary>
+        public static bool Allow(bool takesWhole, bool fridge, bool hopper, bool rots, string kind) => takesWhole && !hopper && (!fridge || FridgeTakes(rots, kind));
 
         /// <summary>A storage building that keeps things cold, by its class's or a comp's type name (RimFridge's fridges and the like).</summary>
         public static bool IsFridgeType(string typeName) =>
@@ -138,12 +142,12 @@ namespace ColonyCouncil
         public static bool IsHatcherType(string typeName) => !string.IsNullOrEmpty(typeName) && Has(typeName, "Hatcher");
 
         /// <summary>
-        /// One of PokéWorld's items to place: an item that can be stored (it is in some category) and isn't already in one
+        /// One of PokéWorld's items to match: an item that can be stored (it is in some category) and isn't already in one
         /// of the game's own (or another mod's): an unfinished thing PokéWorld itself lists with the game's is left alone.
         /// </summary>
-        public static bool ToPlace(bool item, bool storable, bool unfinished, bool inOthersCategory) => item && storable && !unfinished && !inOthersCategory;
+        public static bool ToMatch(bool item, bool storable, bool unfinished, bool inOthersCategory) => item && storable && !unfinished && !inOthersCategory;
 
-        /// <summary>A plain count of what was placed, for the log and the self-check: "ItemsMisc 31, EggsFertilized 379".</summary>
+        /// <summary>A plain count of the matches, for the log and the self-check: "ItemsMisc 31, EggsFertilized 379".</summary>
         public static string Summary(IEnumerable<string> kinds) =>
             string.Join(", ", (kinds ?? Enumerable.Empty<string>()).GroupBy(k => k).OrderByDescending(g => g.Count()).ThenBy(g => g.Key, StringComparer.Ordinal)
                 .Select(g => g.Key + " " + g.Count()));

@@ -565,56 +565,56 @@ repo.
     game's categories, so the stones and the rest were neither shown nor taken. The game's own shelf has no fixed filter
     and already took them.
   - **What was built**: once every def has loaded, each of PokéWorld's storable items that sits in none of the game's
-    categories is also placed in the game's own category of its kind, read from its fields (apparel by its layer and
-    body part, weapons, a tool held like one, a hatching egg, medicine, drugs, food by its kind, a material by its stuff
-    kind, else the miscellaneous items). By the player's catalogue: the 9 evolution stones, 15 fossils, 5 balls, the TM,
-    5 healing items, 2 evolution items and the odd keystone with `ItemsMisc`, the 379 eggs with `EggsFertilized`, the
-    legendary leather with `Leathers`, the 5 ball belts with `ApparelUtility`; the 17 unfinished fossils and the portable
-    computer are left alone, the 3 fishing rods go by their fields. Every storage def whose fixed filter takes the whole
-    of such a category (its own list names it or one above it with none of it left out, or it allows every one of the
-    category's own things) allows them too, and its default settings where those take the whole of it, so new shelves
-    have them ticked; a fridge only what spoils and eggs; the display roots worked out again. Shelves already built
-    take them once a save at load (or when the setting is switched on in a game) where their own settings take the
-    whole category of what they can hold. The setting "PokéWorld's items on the shelves" (Your other mods, PokéWorld, on
-    by default) undoes it all when switched off. The self-check's mods part has a line on it.
+    categories is matched to the game's own category of its kind, read from its fields (apparel by its layer and body
+    part, weapons, a tool held like one, a hatching egg, medicine, drugs, food by its kind, a material by its stuff kind,
+    else the miscellaneous items). The items are never put in those categories (the lead's call: cooking bills, food
+    policies, traders, tailoring bills and Rimfolk's egg events would draw on them, the 379 eggs above all); the match
+    only decides the shelves. By the player's catalogue: the 9 evolution stones, 15 fossils, 5 balls, the TM, 5 healing
+    items, 2 evolution items and the odd keystone match `ItemsMisc`, the 379 eggs `EggsFertilized`, the legendary
+    leather `Leathers`, the 5 ball belts `ApparelUtility`; the 17 unfinished fossils and the portable computer are left
+    alone, the 3 fishing rods go by their fields. Every storage def whose fixed filter takes the whole of such a category
+    (its own list names it or one above it with none of it left out, or it allows every one of the category's own
+    things) allows the matched items themselves, and its default settings where those take the whole of it, so new
+    shelves have them ticked; a fridge only what spoils and eggs; a hopper none (it feeds a dispenser); the display roots
+    worked out again, so the filter window lists them under PokéWorld's own heading. Shelves already built take them
+    once a save at load (or when the setting is switched on in a game) where their own settings take the whole category
+    of what they can hold. The setting "PokéWorld's items on the shelves" (Your other mods, PokéWorld, on by default)
+    puts the storage filters back when switched off. The self-check's mods part has a line on it.
   - **Which shelves take which** (from the shelves' kinds; their filters aren't in the catalogue, so this is what the
     rule gives if their filters are as their names say): Deep Storage's Big Shelf, Very Big Shelves, Pallets and Safe,
     where they take the game's items, the stones and the rest; its Clothing Rack the ball belts; its Hampers the
     legendary leather, where they take the leathers; its Weapons Cabinet and Locker only weapons (none of PokéWorld's,
     unless the fishing rods are held like a weapon); its Food Basket and Meal Tray Rack the eggs only where they take
     every fertilized egg; Deep Storage Plus's Bin like a shelf, its barrel, organ fridge and firewood rack nothing;
-    RimFridge's five fridges only the eggs, if their filters take the fertilized eggs; Vanilla Expanded's weapon rack
-    and the taps, drains and hoppers nothing; the game's own shelves already took everything and now have them ticked
-    in new ones where their default takes the category. The true list is in the self-check and, in dev mode, the log at
-    startup.
-  - **Code map**: `Integrations/PokeWorldShelves.cs` (new: `Apply`, `Place`, `Undo`, `AllowOnBuilt`, `CheckLine`,
-    `StandsDownWhy`), `Integrations/PokeWorldShelvesMath.cs` (new, pure, linked: `KindOf`, `WithParents`, `TakesWhole`,
-    `FridgeTakes`, `Allow`, `IsFridgeType`, `IsHatcherType`, `ToPlace`, `Summary`), `CouncilGameComponent.cs`
-    (`pokeShelvesVersion`, `PokeShelvesOnce` from `FinalizeInit`), `ColonyCouncilMod.WriteSettings`, `CouncilSettings`
-    (`pokemonShelves`), `UI/SettingsCatalog.cs` (its row), `UI/SelfCheck.cs` (its line), Keyed
-    `Rimfolk_Integrations_PokeWorld.xml`. Tests: `Tools/Tests/PokeWorldShelvesTests.cs` (about 110 checks: each kind to
-    its category, every PokéWorld item of the catalogue, the shelf rule, fridges, the seams), `SettingsTests` (the row).
-    Saved: one number. No Harmony patch, no Sched slot.
-  - **Decided here**: the items are added to the game's categories (the brief's "beside"), not only to the filters, so
-    a shelf's "Items" tick takes them and the filter shows them under the game's heading as well as PokéWorld's; with
-    that, an egg counts as an egg, the leather as a leather, a new food policy that allows the game's foods allows the
-    eggs (eaten only when someone is desperate), Rimfolk's egg events may find PokéWorld's eggs where its hatcher is the
-    game's, and a trader that stocks by the game's categories may carry the ones their trade setting lets it sell (the
-    stones, potions, rare candy, the leather; never the eggs, fossils or balls). "The whole of a category" also counts a
-    shelf whose own list names the category but sets one thing apart by name (as the wastepack, which is a
-    miscellaneous item, might be). Stockpile zones are left alone.
+    RimFridge's five fridges only the eggs, if their filters take the fertilized eggs; the game's hopper never;
+    Vanilla Expanded's weapon rack, the taps and drains nothing; the game's own shelves already took everything and now
+    have them ticked in new ones where their default takes the category. The true list is in the self-check and, in dev
+    mode, the log at startup.
+  - **Code map**: `Integrations/PokeWorldShelves.cs` (new: `Apply`, `Allow`, `Match`, `Undo`, `AllowOnBuilt`,
+    `CheckLine`, `StandsDownWhy`), `Integrations/PokeWorldShelvesMath.cs` (new, pure, linked: `KindOf`, `WithParents`,
+    `TakesWhole`, `FridgeTakes`, `Allow`, `IsFridgeType`, `IsHatcherType`, `ToMatch`, `Summary`),
+    `CouncilGameComponent.cs` (`pokeShelvesVersion`, `PokeShelvesOnce` from `FinalizeInit`),
+    `ColonyCouncilMod.WriteSettings`, `CouncilSettings` (`pokemonShelves`), `UI/SettingsCatalog.cs` (its row),
+    `UI/SelfCheck.cs` (its line), Keyed `Rimfolk_Integrations_PokeWorld.xml`. Tests: `Tools/Tests/PokeWorldShelvesTests.cs`
+    (about 110 checks: each kind to its category, every PokéWorld item of the catalogue, the shelf rule, fridges and
+    hoppers, never put in the game's categories, the seams), `SettingsTests` (the row). Saved: one number. No Harmony
+    patch, no Sched slot.
+  - **Decided here**: "the whole of a category" also counts a shelf whose own list names the category but sets one thing
+    apart by name (as the wastepack, which is a miscellaneous item, might be). Hoppers never take them. Stockpile zones
+    are left alone.
   - **Can't be checked without the game**: what PokéWorld's categories sit under and the storage mods' real filters
-    (neither is in the catalogue); that each shelf's filter window lists the items under Items and PokéWorld after the
-    display root is worked out again; Deep Storage editing its buildings' filters from its own settings in a running game
-    (it may set them again without PokéWorld's items until the next start); the fishing rods' and the eggs' hatcher
-    fields; the existing shelves taking them at load; anything of 1.7 beyond the reference assembly.
-  - **Try in the game**: (1) Dev mode on, start the game, open the log: "PokéWorld's items on the shelves: N placed ...;
-    M storage buildings take some: ..." lists each. (2) Load the save, select a Deep Storage Big Shelf, Storage tab:
-    Items, Miscellaneous lists the Dawn Stone and the other stones, fossils and balls (and PokéWorld's own heading the
-    same), ticked where the shelf takes all its items; haulers bring a Dawn Stone to it. (3) A clothing rack lists the
-    ball belts; a RimFridge fridge lists the Pokémon eggs, not the stones. (4) Build a new Big Shelf: the stones are
-    ticked. (5) Settings, Rimfolk, Your other mods, PokéWorld: switch "PokéWorld's items on the shelves" off and close:
-    the stones leave the Big Shelf's list. (6) Debug actions, Rimfolk, the self-check: the mods part has the line.
+    (neither is in the catalogue); that each shelf's filter window lists the items under PokéWorld after the display root
+    is worked out again; Deep Storage editing its buildings' filters from its own settings in a running game (it may set
+    them again without PokéWorld's items until the next start); the fishing rods' and the eggs' hatcher fields; the
+    existing shelves taking them at load; anything of 1.7 beyond the reference assembly.
+  - **Try in the game**: (1) Dev mode on, start the game, open the log: "PokéWorld's items on the shelves: N items, by
+    the game's kind they match ...; M storage buildings take some: ..." lists each. (2) Load the save, select a Deep
+    Storage Big Shelf, Storage tab: PokéWorld's heading lists the Dawn Stone and the other stones, fossils and balls,
+    ticked where the shelf takes all of the game's miscellaneous items; haulers bring a Dawn Stone to it. (3) A clothing
+    rack lists the ball belts; a RimFridge fridge lists the Pokémon eggs, not the stones; a hopper lists none. (4) Build
+    a new Big Shelf: the stones are ticked. (5) Settings, Rimfolk, Your other mods, PokéWorld: switch "PokéWorld's items
+    on the shelves" off and close: the stones leave the Big Shelf's list. (6) Debug actions, Rimfolk, the self-check: the
+    mods part has the line.
   - **Mods that would help**: none; the items, shelves and graphics are the player's mods' own.
 - 0.275.1, **A colonist a world event sends to
   a far town goes** (20 November 2026; the player's go: "go ahead with the next tasks", the second of the four; the

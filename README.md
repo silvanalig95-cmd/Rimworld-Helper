@@ -3073,12 +3073,13 @@ Rimfolk reads these mods by name while the game runs: with one missing, its part
   only animals that call when grown). Without those mods every species sounds as before, and the same species always
   the same. It never calls more often than PokéWorld had it; or their own cries a third as often; or as PokéWorld has
   them. **PokéWorld's items on the shelves** (a setting, on by default): PokéWorld keeps its items in lists of its own,
-  which shelves that take the game's lists (Deep Storage's and the like) don't take or show, so each item is also listed
-  beside the game's own things of the same kind (the evolution stones, fossils, balls, TMs and potions with the
-  miscellaneous items, the eggs with the fertilized eggs, the legendary leather with the leathers, the ball belts with
-  the utility apparel). A shelf, rack or bin that takes the whole of such a list then takes them and shows them in its
-  filter, a new one with them ticked; shelves already built take them once when a save loads, where they take the whole
-  list; a fridge takes only the eggs and what spoils, and a shelf's own limits still apply. Rimfolk otherwise only reads
+  which shelves that take the game's lists (Deep Storage's and the like) don't take or show, so each item counts for
+  the shelves as the game's own things of the same kind (the evolution stones, fossils, balls, TMs and potions as
+  miscellaneous items, the eggs as fertilized eggs, the legendary leather as leather, the ball belts as utility
+  apparel). A shelf, rack or bin that takes the whole of such a list then takes them and shows them in its filter under
+  PokéWorld, a new one with them ticked; shelves already built take them once when a save loads, where they take the
+  whole list; a fridge takes only the eggs and what spoils, a hopper none, and a shelf's own limits still apply. Only
+  the shelves count them this way, not bills, food policies or traders. Rimfolk otherwise only reads
   the mod, by name (checked
   against PokéWorld Updated for 1.6, its 898 species and eight generations); what a version lacks is skipped and said
   once in the log. Five Almanac pages explain it.

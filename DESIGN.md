@@ -9356,54 +9356,49 @@ it `PW_EvolutionStone`, `PW_Fossils`, `PW_PokeBall`, `PW_TM`, `PW_HealingItem`, 
 and the storage mods' shelves name the game's categories (items, resources, apparel...), so PokéWorld's items are
 neither taken nor shown. The game's own shelf has no fixed filter and takes everything, so it already took them.
 
-- **Placing** (`Integrations/PokeWorldShelves.cs`, the rules in `PokeWorldShelvesMath.cs`, Tools/Tests
+- **Matching** (`Integrations/PokeWorldShelves.cs`, the rules in `PokeWorldShelvesMath.cs`, Tools/Tests
   `PokeWorldShelvesTests`). Once every def has loaded (queued from its startup class, so after every mod's startup
   classes), each of PokéWorld's defs (`modContentPack` that of its Pokémon, `PokeWorldLink.ModPack`) that is an item
   (not a Pokémon, corpse, building or minified thing), can be stored, isn't unfinished and is in none of the game's or
-  another mod's categories is also placed in the game's own category of the same kind, read from its fields
-  (`KindOf`, the first that fits): apparel with apparel (the belt layer with `ApparelUtility`, the head with `Headgear`,
-  else `ApparelMisc`); a weapon with `WeaponsRanged` or `WeaponsMelee`; a tool held like one (primary equipment) with
-  `Weapons`; a fertilized egg (a comp whose type is a hatcher's: the game's `CompProperties_Hatcher`, PokéWorld's
-  `CompProperties_PokemonEggHatcher`) with `EggsFertilized`; medicine and drugs with theirs; other food by its kind
-  (meals, meat, plant food, animal products, else raw food); a material by its stuff kind (leathery with `Leathers`,
-  fabric with `Textiles`, else `ResourcesRaw`); everything else with `ItemsMisc`. A category that isn't loaded falls
-  back to the one above it. The item goes into the category's list and the category into the item's (after its own,
-  so its first category stays PokéWorld's), and the category's cached lists are worked out again for it and every
-  category above it (`ThingCategoryDef.ResolveReferences`). In the player's catalogue (active rows): the nine evolution
-  stones, fifteen fossils, five balls, the TM, five healing items, two evolution items and the odd keystone go with the
-  miscellaneous items, the 379 eggs with the fertilized eggs, the legendary leather with the leathers and the five ball
-  belts with the utility apparel; the 17 unfinished fossils (already the game's unfinished things) and the portable
-  computer (a building) are left as they are. The three fishing rods go by what their fields say (in the catalogue they
-  are items, not weapons).
+  another mod's categories is matched to the game's own category of the same kind, read from its fields (`KindOf`,
+  the first that fits): apparel to apparel (the belt layer to `ApparelUtility`, the head to `Headgear`, else
+  `ApparelMisc`); a weapon to `WeaponsRanged` or `WeaponsMelee`; a tool held like one (primary equipment) to `Weapons`;
+  a fertilized egg (a comp whose type is a hatcher's: the game's `CompProperties_Hatcher`, PokéWorld's
+  `CompProperties_PokemonEggHatcher`) to `EggsFertilized`; medicine and drugs to theirs; other food by its kind (meals,
+  meat, plant food, animal products, else raw food); a material by its stuff kind (leathery to `Leathers`, fabric to
+  `Textiles`, else `ResourcesRaw`); everything else to `ItemsMisc`. A category that isn't loaded falls back to the one
+  above it; an item already under its category (a PokéWorld category below the game's) needs nothing. The item is
+  never put in that category: it stays in PokéWorld's only, so nothing else that reads the game's categories (cooking
+  bills and food policies that take fertilized eggs, tailoring bills, traders' stock, Rimfolk's egg events) sees it.
+  In the player's catalogue (active rows): the nine evolution stones, fifteen fossils, five balls, the TM, five healing
+  items, two evolution items and the odd keystone match the miscellaneous items, the 379 eggs the fertilized eggs, the
+  legendary leather the leathers and the five ball belts the utility apparel; the 17 unfinished fossils (already the
+  game's unfinished things) and the portable computer (a building) are left as they are. The three fishing rods go by
+  what their fields say (in the catalogue they are items, not weapons).
 - **Storage.** Every def with a fixed or default storage filter, PokéWorld's own aside: where its fixed filter takes the
-  whole of a category, its PokéWorld items are allowed there too, and in its default settings where those also take the
-  whole of it (of what the fixed filter takes), so a new shelf has them ticked. "The whole" (`TakesWhole`): the filter's
-  own list (its def's `categories`) names the category or one above it and its `disallowedCategories` name none of it
-  (one thing set apart by name doesn't count against it), or, counted, it allows every one of the category's own
-  storable things (PokéWorld's left out, counted before they join). No fixed filter takes everything. A fridge (its
-  class or a comp of a fridge's type: RimFridge's) takes only what spoils, and eggs. Each changed filter's display root
-  is worked out again, so its filter window lists the items where they now are (Items, Miscellaneous, Dawn Stone) as
-  well as under PokéWorld's own heading. Shelves that take one kind only (a weapon rack, a clothing rack, a bookcase)
-  take only the items of their kind. A storage building's own limits are its mod's and still apply: Deep Storage's
-  stack counts, mass and size are checked when something is stored.
+  whole of a matched category, the PokéWorld items matched to it are allowed there too (the items themselves), and in
+  its default settings where those also take the whole of it (of what the fixed filter takes), so a new shelf has them
+  ticked. "The whole" (`TakesWhole`): the filter's own list (its def's `categories`) names the category or one above it
+  and its `disallowedCategories` name none of it (one thing set apart by name doesn't count against it), or, counted,
+  it allows every one of the category's own storable things (PokéWorld's left out). No fixed filter takes everything.
+  A fridge (its class or a comp of a fridge's type: RimFridge's) takes only what spoils, and eggs; a hopper
+  (`building.isHopper`) none, since what goes in one is fed to a dispenser. Each changed filter's display root is
+  worked out again, so its filter window lists the items under PokéWorld's own heading, where they sit. Shelves that
+  take one kind only (a weapon rack, a clothing rack, a bookcase) take only the items of their kind. A storage
+  building's own limits are its mod's and still apply: Deep Storage's stack counts, mass and size are checked when
+  something is stored.
 - **Shelves already built** (`AllowOnBuilt`), once a save at load (`CouncilGameComponent.pokeShelvesVersion`, from
   `FinalizeInit`, and from the settings window when it is switched on in a game): every storage building on the maps
   (its storage group's settings when linked; PokéWorld's own aside) whose own settings take every one of a category's
-  things its fixed filter allows now takes PokéWorld's items of it too, by the fridge rule; never where its settings
-  leave any of it out. Stockpile zones are left alone (they take everything that can be stored, and the player ticks
-  PokéWorld's heading there).
+  things its fixed filter allows now takes PokéWorld's items matched to it, by the fridge and hopper rule; never where
+  its settings leave any of it out. Stockpile zones are left alone (they take everything that can be stored, and the
+  player ticks PokéWorld's heading there).
 - **The setting** `pokemonShelves` (Your other mods, PokéWorld, shown while it is loaded; on by default; def data, not a
-  game hook): switched off from the settings window, everything placed is undone (the items out of the game's
-  categories, the filters back as they were); the shelves already built keep their own settings, which no longer count
-  while their fixed filter refuses the items. `StandsDownWhy`: PokéWorld isn't loaded, the setting is off, or an error
-  this session (logged once, everything placed undone). The self-check's mods part says how many were placed and which
-  storage buildings take which categories; with the game's dev mode on, the log says the same at startup.
-- **What else changes.** The items are in the game's categories for everything that reads them: an egg counts as an
-  egg, the legendary leather as a leather, a new food policy that allows the game's foods allows the eggs (they are
-  eaten only when someone is desperate, as PokéWorld has them), and a trader whose stock is drawn by the game's
-  categories may carry those of PokéWorld's items that their own trade setting lets a trader sell (the evolution stones,
-  potions, rare candy and the legendary leather among them; never the eggs, fossils or balls). Rimfolk's own egg events (`CraterEgg`, `HappeningWorker_EggTrade`) can find
-  PokéWorld's eggs among the fertilized eggs where its hatcher comp is the game's.
+  game hook): switched off from the settings window, the storage defs' filters are put back as they were; the shelves
+  already built keep their own settings, which no longer count while their fixed filter refuses the items.
+  `StandsDownWhy`: PokéWorld isn't loaded, the setting is off, or an error this session (logged once, the filters put
+  back). The self-check's mods part says how many items were matched and which storage buildings take which categories;
+  with the game's dev mode on, the log says the same at startup.
 
 Saved: one number in the game component (the once a save). No Sched slot, no Harmony patch.
 

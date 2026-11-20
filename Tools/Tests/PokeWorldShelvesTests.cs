@@ -5,9 +5,10 @@ using ColonyCouncil;
 /// <summary>
 /// PokéWorld's items on the shelves that carry everything else (the player, 20 November 2026: "there's a bunch of items
 /// from the Poke World mod, for example, the Dawn Stone ... that I cannot put into large storage shelves"): each kind of
-/// item placed beside the game's own category of the same kind, read from its fields and checked on PokéWorld's own items
-/// in the player's catalogue (docs/player-mods, active rows); a storage filter takes them where it takes the whole of that
-/// category; a fridge only what spoils and eggs; the shelves already built once a save; the setting and the seams.
+/// item matched to the game's own category of the same kind (never put in it), read from its fields and checked on
+/// PokéWorld's own items in the player's catalogue (docs/player-mods, active rows); a storage filter takes them where it
+/// takes the whole of that category; a fridge only what spoils and eggs, a hopper none; the shelves already built once a
+/// save; the setting and the seams.
 /// </summary>
 public static class PokeWorldShelvesTests
 {
@@ -22,23 +23,23 @@ public static class PokeWorldShelvesTests
 
         // ---------- Each kind of item to the game's own category ----------
         string K(ShelfItemFacts f) => PokeWorldShelvesMath.KindOf(f);
-        C(K(new ShelfItemFacts()) == "ItemsMisc", "an item that is nothing else (a stone, a fossil, a ball, a TM, a potion) goes with the miscellaneous items");
-        C(K(new ShelfItemFacts { apparel = true, beltLayer = true }) == "ApparelUtility", "a belt goes with the utility apparel, beside the shield belt");
-        C(K(new ShelfItemFacts { apparel = true, onHead = true }) == "Headgear", "a hat goes with the headgear");
-        C(K(new ShelfItemFacts { apparel = true }) == "ApparelMisc", "other apparel goes with the other apparel");
+        C(K(new ShelfItemFacts()) == "ItemsMisc", "an item that is nothing else (a stone, a fossil, a ball, a TM, a potion) matches the miscellaneous items");
+        C(K(new ShelfItemFacts { apparel = true, beltLayer = true }) == "ApparelUtility", "a belt matches the utility apparel, the shield belt's kind");
+        C(K(new ShelfItemFacts { apparel = true, onHead = true }) == "Headgear", "a hat matches the headgear");
+        C(K(new ShelfItemFacts { apparel = true }) == "ApparelMisc", "other apparel matches the other apparel");
         C(K(new ShelfItemFacts { apparel = true, weapon = true, beltLayer = true }) == "ApparelUtility", "worn first: a belt with a verb is still apparel");
         C(K(new ShelfItemFacts { weapon = true, ranged = true }) == "WeaponsRanged" && K(new ShelfItemFacts { weapon = true }) == "WeaponsMelee", "a weapon with the ranged or melee weapons");
-        C(K(new ShelfItemFacts { tool = true }) == "Weapons", "a tool held like a weapon goes with the weapons");
-        C(K(new ShelfItemFacts { hatches = true, food = true, animalProduct = true }) == "EggsFertilized", "an egg that hatches goes with the fertilized eggs, though it can be eaten");
+        C(K(new ShelfItemFacts { tool = true }) == "Weapons", "a tool held like a weapon matches the weapons");
+        C(K(new ShelfItemFacts { hatches = true, food = true, animalProduct = true }) == "EggsFertilized", "an egg that hatches matches the fertilized eggs, though it can be eaten");
         C(K(new ShelfItemFacts { medicine = true }) == "Medicine" && K(new ShelfItemFacts { drug = true, food = true }) == "Drugs", "medicine and drugs with theirs");
         C(K(new ShelfItemFacts { food = true, meal = true, meat = true }) == "FoodMeals", "a meal with the meals");
         C(K(new ShelfItemFacts { food = true, meat = true }) == "MeatRaw" && K(new ShelfItemFacts { food = true, plantFood = true }) == "PlantFoodRaw"
           && K(new ShelfItemFacts { food = true, animalProduct = true }) == "AnimalProductRaw" && K(new ShelfItemFacts { food = true }) == "FoodRaw", "raw food by its kind");
         C(K(new ShelfItemFacts { leathery = true, otherStuff = true }) == "Leathers" && K(new ShelfItemFacts { fabric = true, otherStuff = true }) == "Textiles"
           && K(new ShelfItemFacts { otherStuff = true }) == "ResourcesRaw", "a material: leathers, textiles, or the raw resources");
-        C(PokeWorldShelvesMath.ToPlace(true, true, false, false), "a storable item in PokéWorld's lists only is placed");
-        C(!PokeWorldShelvesMath.ToPlace(false, true, false, false) && !PokeWorldShelvesMath.ToPlace(true, false, false, false)
-          && !PokeWorldShelvesMath.ToPlace(true, true, true, false) && !PokeWorldShelvesMath.ToPlace(true, true, false, true),
+        C(PokeWorldShelvesMath.ToMatch(true, true, false, false), "a storable item in PokéWorld's lists only is matched");
+        C(!PokeWorldShelvesMath.ToMatch(false, true, false, false) && !PokeWorldShelvesMath.ToMatch(true, false, false, false)
+          && !PokeWorldShelvesMath.ToMatch(true, true, true, false) && !PokeWorldShelvesMath.ToMatch(true, true, false, true),
             "not a building or a Pokémon, nothing that can't be stored, no unfinished thing, nothing already in the game's lists");
 
         // Every category it can name is the game's own, each falling back to the one above it.
@@ -64,7 +65,7 @@ public static class PokeWorldShelvesTests
             string cats = r[Col("thingCategories")], comps = r[Col("comps")], foodType = r[Col("foodType")], pref = r[Col("preferability")];
             bool item = r[Col("category")] == "Item";
             bool others = cats.Split(',', StringSplitOptions.RemoveEmptyEntries).Any(c => !pwCats.Contains(c));
-            if (!PokeWorldShelvesMath.ToPlace(item, cats.Length > 0, r[0].StartsWith("PW_Unfinished"), others))
+            if (!PokeWorldShelvesMath.ToMatch(item, cats.Length > 0, r[0].StartsWith("PW_Unfinished"), others))
             {
                 skipped++;
                 continue;
@@ -91,10 +92,10 @@ public static class PokeWorldShelvesTests
         foreach (var a in apparel)
             kindOf[a[0]] = K(new ShelfItemFacts { apparel = true, beltLayer = a[6].Split(',').Contains("Belt"), onHead = a[7].Split(',').Any(g => g == "UpperHead" || g == "FullHead") });
 
-        C(items.Count > 400 && kindOf.Count > 400, $"PokéWorld's items read from the catalogue ({items.Count} items, {apparel.Count} apparel, {kindOf.Count} placed)");
-        C(kindOf.TryGetValue("PW_DawnStone", out var dawn) && dawn == "ItemsMisc", "the Dawn Stone the player named goes with the miscellaneous items");
+        C(items.Count > 400 && kindOf.Count > 400, $"PokéWorld's items read from the catalogue ({items.Count} items, {apparel.Count} apparel, {kindOf.Count} matched)");
+        C(kindOf.TryGetValue("PW_DawnStone", out var dawn) && dawn == "ItemsMisc", "the Dawn Stone the player named matches the miscellaneous items");
         string[] stones = { "PW_DawnStone", "PW_FireStone", "PW_IceStone", "PW_LeafStone", "PW_MoonStone", "PW_ShinyStone", "PW_ThunderStone", "PW_WaterStone", "PW_KingsRock" };
-        C(stones.All(s => kindOf.TryGetValue(s, out var k) && k == "ItemsMisc"), "every evolution stone with the miscellaneous items");
+        C(stones.All(s => kindOf.TryGetValue(s, out var k) && k == "ItemsMisc"), "every evolution stone matches the miscellaneous items");
         foreach (var (def, kind, what) in new[]
                  {
                      ("PW_HelixFossil", "ItemsMisc", "a fossil"), ("PW_OldAmber", "ItemsMisc", "old amber"), ("PW_CryptosleepPokeBall", "ItemsMisc", "a Poké Ball"),
@@ -102,13 +103,13 @@ public static class PokeWorldShelvesTests
                      ("PW_Upgrade", "ItemsMisc", "an evolution item"), ("PW_OddKeystone", "ItemsMisc", "the odd keystone"), ("PW_EggAbra", "EggsFertilized", "a Pokémon egg"),
                      ("PW_Leather_Legendary", "Leathers", "the legendary leather"), ("PW_PokeBallBelt", "ApparelUtility", "a ball belt")
                  })
-            C(kindOf.TryGetValue(def, out var k) && k == kind, $"{what} ({def}) goes to {kind}");
+            C(kindOf.TryGetValue(def, out var k) && k == kind, $"{what} ({def}) matches {kind}");
         int eggs = items.Count(r => r[Col("thingCategories")].Contains("PW_PokemonEggsFertilized"));
-        C(eggs > 300 && kindOf.Count(kv => kv.Value == "EggsFertilized") == eggs, $"every Pokémon egg with the fertilized eggs ({eggs})");
-        C(apparel.Count >= 5 && apparel.All(a => kindOf[a[0]] == "ApparelUtility"), "every ball belt with the utility apparel");
+        C(eggs > 300 && kindOf.Count(kv => kv.Value == "EggsFertilized") == eggs, $"every Pokémon egg matches the fertilized eggs ({eggs})");
+        C(apparel.Count >= 5 && apparel.All(a => kindOf[a[0]] == "ApparelUtility"), "every ball belt matches the utility apparel");
         C(!kindOf.ContainsKey("PW_UnfinishedHelixFossil") && !kindOf.ContainsKey("PW_PortableComputer") && skipped >= 18,
             "the unfinished fossils (already the game's unfinished things) and PokéWorld's building are left alone");
-        C(kindOf.Values.All(PokeWorldShelvesMath.Parents.ContainsKey), "every PokéWorld item goes to one of the game's own categories");
+        C(kindOf.Values.All(PokeWorldShelvesMath.Parents.ContainsKey), "every PokéWorld item matches one of the game's own categories");
         C(PokeWorldShelvesMath.Summary(new[] { "ItemsMisc", "EggsFertilized", "ItemsMisc" }) == "ItemsMisc 2, EggsFertilized 1", "the count for the log reads plainly");
 
         // ---------- The shelf rule: the whole of a category, or not ----------
@@ -118,9 +119,11 @@ public static class PokeWorldShelvesTests
         C(PokeWorldShelvesMath.TakesWhole(false, false, 47, 47), "counted: every thing of the category taken is the whole");
         C(!PokeWorldShelvesMath.TakesWhole(false, false, 47, 46) && !PokeWorldShelvesMath.TakesWhole(false, false, 47, 1), "counted: one thing short is not the whole (a shelf that takes only a few kinds, a weapon rack's)");
         C(!PokeWorldShelvesMath.TakesWhole(false, false, 0, 0), "an empty category is never taken whole by count");
-        C(PokeWorldShelvesMath.Allow(true, false, false, "ItemsMisc") && !PokeWorldShelvesMath.Allow(false, false, false, "ItemsMisc"), "a shelf takes the items of a category only where it takes the whole of it");
-        C(!PokeWorldShelvesMath.Allow(true, true, false, "ItemsMisc") && PokeWorldShelvesMath.Allow(true, true, true, "ItemsMisc") && PokeWorldShelvesMath.Allow(true, true, false, "EggsFertilized"),
+        C(PokeWorldShelvesMath.Allow(true, false, false, false, "ItemsMisc") && !PokeWorldShelvesMath.Allow(false, false, false, false, "ItemsMisc"), "a shelf takes the items of a category only where it takes the whole of it");
+        C(!PokeWorldShelvesMath.Allow(true, true, false, false, "ItemsMisc") && PokeWorldShelvesMath.Allow(true, true, false, true, "ItemsMisc") && PokeWorldShelvesMath.Allow(true, true, false, false, "EggsFertilized"),
             "a fridge takes only what spoils, and eggs");
+        C(!PokeWorldShelvesMath.Allow(true, false, true, true, "EggsFertilized") && !PokeWorldShelvesMath.Allow(true, false, true, false, "ItemsMisc"),
+            "a hopper takes none, though it takes every fertilized egg: a Pokémon egg isn't fed to a dispenser");
 
         // The fridges and the shelves of the player's storage mods, by their class (buildings.tsv, active rows).
         var buildings = File.ReadLines(Path.Combine(root, "docs", "player-mods", "buildings.tsv")).Skip(1).Select(l => l.Split('\t')).Where(c => c.Length > 14 && c[2] == "yes").ToList();
@@ -140,21 +143,24 @@ public static class PokeWorldShelvesTests
         string settings = File.ReadAllText(Path.Combine(src, "CouncilSettings.cs"));
         string selfCheck = File.ReadAllText(Path.Combine(src, "UI", "SelfCheck.cs"));
         string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Integrations_PokeWorld.xml"));
-        C(code.Contains("[StaticConstructorOnStartup]") && code.Contains("LongEventHandler.ExecuteWhenFinished(Apply);"), "placed once every mod's startup has run");
+        C(code.Contains("[StaticConstructorOnStartup]") && code.Contains("LongEventHandler.ExecuteWhenFinished(Apply);"), "the storage filters set once every mod's startup has run");
         C(code.Contains("if (!PokeWorldLink.Active || failed != null) return;") && code.Contains("\"PokéWorld isn't loaded\""), "nothing without PokéWorld, and it says so (StandsDownWhy)");
         C(code.Contains("d?.modContentPack != pack") && code.Contains("d.category == ThingCategory.Item && d.race == null && !d.IsCorpse"), "only PokéWorld's own items, never its Pokémon, corpses or buildings");
         C(code.Contains("b.modContentPack == pack) continue;"), "PokéWorld's own buildings are left alone");
-        C(code.Contains("item.thingCategories.Add(kind);") && code.Contains("kind.childThingDefs.Add(item);") && code.Contains("c.ResolveReferences();"),
-            "placed in the game's category both ways, its cached lists worked out again (and those above it)");
+        C(!code.Contains("thingCategories.Add(") && !code.Contains("childThingDefs.Add(") && !code.Contains("ResolveReferences()"),
+            "the items stay in PokéWorld's categories only: never put in the game's, so bills, food policies, traders and egg events don't see them");
+        C(code.Contains("matched.Add((d, kind));") && code.Contains("kind.ContainedInThisOrDescendant(d)"), "each item matched to its game category, unless it is already under it");
         C(code.Contains("own?.RecalculateDisplayRootCategory();") && code.Contains("defaults?.RecalculateDisplayRootCategory();"), "the filters' display roots worked out again, so the filter window lists them");
         C(code.Contains("bool fixedTakes = own == null || PokeWorldShelvesMath.TakesWhole(") && code.Contains("bool defaultTakes = defaults != null"),
             "the fixed filter where it takes the whole category, the default settings where they take the whole of it too");
-        C(code.Contains("PokeWorldShelvesMath.Allow(true, fridge, Rots(item), g.Key.defName)") && code.Contains("IsFridge(b.def)"), "fridges by the fridge rule, at startup and on the shelves already built");
+        C(code.Contains("PokeWorldShelvesMath.Allow(true, fridge, hopper, Rots(item), g.Key.defName)") && code.Contains("IsFridge(b.def)") && code.Contains("hopper = b.def.building.isHopper")
+          && code.Contains("hopper = b.building.isHopper"), "fridges by the fridge rule and no hopper, at startup and on the shelves already built");
         C(code.Contains("kindsOf[kind] = kind.DescendantThingDefs.Where(k => k != null && k.modContentPack != pack && k.EverStorable(false))"),
-            "the whole of a category is the game's own things in it, counted before PokéWorld's join");
+            "the whole of a category is the game's own things in it, PokéWorld's left out");
         C(code.Contains("var within = parent == null ? kindsOf[g.Key] : kindsOf[g.Key].Where(parent.Allows).ToList();") && code.Contains("(parent != null && !parent.Allows(item)) || own.filter.Allows(item)"),
             "a shelf already built takes them only where its own settings take the whole of what it can hold of that category");
-        C(code.Contains("private static void Undo()") && code.Contains("filter.SetAllow(item, false);") && code.Contains("kind.childThingDefs.Remove(item);"), "switched off, everything placed is undone");
+        C(code.Contains("private static void Undo()") && code.Contains("filter.SetAllow(item, false);") && code.Contains("filter.RecalculateDisplayRootCategory();"),
+            "switched off, every filter is put back as it was");
         C(comp.Contains("public int pokeShelvesVersion;") && comp.Contains("Scribe_Values.Look(ref pokeShelvesVersion, \"pokeShelvesVersion\");")
           && comp.Contains("if (pokeShelvesVersion >= 1 || !PokeWorldShelves.Applied) return;") && comp.Contains("PokeShelvesOnce();"),
             "the shelves already built take them once a save, at load");
@@ -171,7 +177,7 @@ public static class PokeWorldShelvesTests
             C(m.Success && m.Groups[1].Value.Length > 10 && !m.Groups[1].Value.Contains("—") && !m.Groups[1].Value.Contains('!'), $"{key}: plain text, no em dash or exclamation mark");
         }
         C(Regex.Match(keyed, "<CC_Settings_PokemonShelves>(.*?)</CC_Settings_PokemonShelves>").Groups[1].Value == "PokéWorld's items on the shelves", "the setting's name as the player reads it");
-        C(selfCheck.Contains("PokeWorldShelves.CheckLine()"), "the self-check says how many were placed and which storage takes them");
+        C(selfCheck.Contains("PokeWorldShelves.CheckLine()"), "the self-check says how many were matched and which storage takes them");
         return n;
     }
 
