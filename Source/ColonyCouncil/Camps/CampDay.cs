@@ -188,15 +188,20 @@ namespace ColonyCouncil
             if (Now < nextPlantSearch || SkillFor(p, CampLabour.Gather) < 0) return null;
             Plant best = null;
             float bestD = float.MaxValue;
+            // What their kind gathers first (the mushroom pickers' caps), when any is ripe near the camp.
+            bool sought = false;
             foreach (var t in GenRadial.RadialDistinctThingsAround(center, map, CampSite.WorkRadius, true))
             {
                 if (!(t is Plant plant) || plant.def.plant == null || plant.def.plant.IsTree || !plant.HarvestableNow) continue;
                 var yields = plant.def.plant.harvestedThingDef;
                 if (yields == null || !(yields.IsNutritionGivingIngestible || yields.IsMedicine) || !MayWork(plant.Position) || !CampTake.May(plant, this)) continue;
+                bool wanted = kind.gathers != null && kind.gathers.Contains(plant.def.defName);
+                if (sought && !wanted) continue;
                 float d = plant.Position.DistanceToSquared(center);
-                if (d >= bestD || Here.Any(o => o.CurJob?.targetA.Thing == plant) || !p.CanReserveAndReach(plant, PathEndMode.Touch, Danger.Some)) continue;
+                if ((d >= bestD && wanted == sought) || Here.Any(o => o.CurJob?.targetA.Thing == plant) || !p.CanReserveAndReach(plant, PathEndMode.Touch, Danger.Some)) continue;
                 best = plant;
                 bestD = d;
+                sought = wanted;
             }
             if (best == null)
             {

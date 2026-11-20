@@ -1,0 +1,1224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Twenty-five council questions of the colony's everyday life (colony life's variety, part 1; the player's go of 20
+    November 2026, "dilemmas"; Source/ColonyCouncil/CouncilLife/EverydayQuestions.cs): work and rest, food and the stores,
+    sickness and care, the young and the old, animals, guests and strangers, quarrels and friendships, the seasons. Each
+    sets two of the colony toward or against each other, comes only while the colony is as its letter says, in the usual
+    rhythm of the council's questions, and every answer that says something is done does it on the map with the play-outs
+    the council's questions already use; the answer the council's silence picks sets nothing going. The seat whose work it
+    is speaks in it where there is one ([seat] lines; Offices/SeatCalls.cs). In the council questions' own style.
+  -->
+
+  <!-- ===================== Work and rest ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_OnlyOneKnows</defName>
+    <label>the only one who knows how</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_OnlyOneKnows</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>Nobody at the colony comes near {A_nameDef} at {SKILL}, and {B_nameDef} has noticed. For a week {B_nameDef} has hung about while {A_nameDef} works, asking questions that get one-word answers. Now {B_nameDef} has asked the council to make {A_nameDef} teach.</li>
+      <li>[lowtech] Everything the colony knows of {SKILL} lives in {A_nameDef}'s hands and nowhere else. {B_nameDef} wants some of it in {B_possessive} own hands too, before the day {A_nameDef} isn't here to ask. {A_nameDef} says {A_pronoun} learned it the hard way, and so can anyone.</li>
+      <li>[!lowtech] There's no manual for the way {A_nameDef} does {SKILL}, only {A_nameDef}. {B_nameDef} has asked twice to learn it properly and been told both times that there's work to do. This time {B_nameDef} has asked the council.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} teaches {B_nameDef}</label>
+        <outcome>{A_nameDef} let {B_nameDef} work at {A_possessive} side for an afternoon and showed {B_objective} the parts of {SKILL} nobody writes down. {A_nameDef} grumbled through most of it and answered every question anyway.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} teaches {B_nameDef} {SKILL}</label><teacher>A</teacher><student>B</student><hours>8~18</hours><duration>2~3</duration><xpPerHour>200</xpPerHour></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Learned</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} keeps the craft to {A_objective}self</label>
+        <outcome>The council left {SKILL} with {A_nameDef}, who said that was the right answer. {B_nameDef} said nothing at all, which was worse.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Leave it to the two of them</label>
+        <outcome>The council didn't take a side. {B_nameDef} still hangs about, and {A_nameDef} still answers in one word.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_Broom</defName>
+    <label>the broom and the bucket</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Broom</workerClass>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} has swept the same floors every day this month while {B_nameDef} stepped over the dirt on the way to something more interesting. This morning {A_nameDef} left the broom leaning against {B_nameDef}'s bed and came to the council about it.</li>
+      <li>[lowtech] The huts are filthy again. {A_nameDef} has been scraping them out alone, and says {B_nameDef} has two good hands and has never once picked up a broom. {B_nameDef} says there's always someone who likes sweeping, and it isn't {B_objective}.</li>
+      <li>[!lowtech] {A_nameDef} brought the council a tally: every day this month {A_pronoun} cleaned, and every day {B_nameDef}, who could have, didn't.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} takes the broom</label>
+        <outcome>{B_nameDef} spent a good part of the day with the broom and the bucket, from one dirty floor to the next. {A_nameDef} found reasons to walk past and look.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{B_nameDef}'s turn with the broom</label><target>B</target><organizer>B</organizer><count>1</count><tasks><li>Clean</li></tasks><hours>8~16</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>A cleaning day, four of us</label>
+        <outcome>The council called a cleaning day, and {A_nameDef} took four of the colony round with brooms and buckets until the worst of it was gone. Whether {B_nameDef} was one of them depends on who you ask.</outcome>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the cleaning day</label><count>4</count><tasks><li>Clean</li><li>Haul</li></tasks><hours>9~17</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The floors are for whoever minds them</label>
+        <outcome>The council said the floors are for whoever minds them. {A_nameDef} said that was {A_objective}, then, as usual.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_DawnToDark</defName>
+    <label>dawn to dark</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_DawnToDark</workerClass>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} is at work before the light and still at it when the lamps are lit. {B_nameDef} has watched it for days, and says {A_nameDef} is grey in the face, short with everyone, and won't hear a word about stopping. {B_nameDef} has asked the council to make {A_objective} stop.</li>
+      <li>[lowtech] {A_nameDef} goes out with the first light and comes back with the last, and eats standing up in between. {B_nameDef} wants the council to tell {A_objective} to sit down for once.</li>
+      <li>[!lowtech] {A_nameDef} has worked every hour of every day this week. {B_nameDef} has the number, doesn't like it, and has brought it to the council.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} takes {A_nameDef} away from it for an evening</label>
+        <outcome>{B_nameDef} came for {A_nameDef} at the end of the day and sat {A_objective} down at a table for an hour and more, talking about anything but work. {A_nameDef} complained for the first part of it.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits {A_nameDef} down</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Dining</sitBy><hours>17~21</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><target>A</target><amount>-6</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_TakenAway</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>A day off for {A_nameDef}</label>
+        <outcome>The council gave {A_nameDef} a day off, starting now. {A_nameDef} took it badly, and then, after a while, took it.</outcome>
+        <ways><mercy>2</mercy><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HeartDayOff"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_SentToRest</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} knows {A_possessive} own limits</label>
+        <outcome>The council said {A_nameDef} knows {A_possessive} own limits. {B_nameDef} said that was exactly the trouble.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_HarvestHands</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Reeve</seat>
+    <label>every hand to the harvest</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HarvestHands</workerClass>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{COUNT} plants stand ripe in the fields and {A_nameDef} can't bring them in fast enough alone. {A_nameDef} wants every hand out there until it's done. {B_nameDef}, who has work of {B_possessive} own on the bench, says the growers grow and the rest of the colony has its own work.</li>
+      <li>[lowtech] The crop is ready and the weather won't wait for it. {A_nameDef} wants everyone out with a sickle. {B_nameDef} says the last time that happened the tools went unmended for a week.</li>
+      <li>[seat] {HOLDER_nameDef} walked the fields this morning, as {OFFICE}, and counted {COUNT} plants ripe and waiting. {A_nameDef} wants every hand out to bring them in. {B_nameDef} would rather the growers saw to it while the rest of the colony kept to its own work.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Every hand to the fields</label>
+        <outcome>Five of the colony went out to the fields with {A_nameDef} and brought in what was ripe, row by row, until the light went or the rows were done.</outcome>
+        <outcomes>
+          <li>[seat] {HOLDER_nameDef} sent five of the colony out to the fields with {A_nameDef}, as {OFFICE}, and they brought in what was ripe row by row until the light went or the rows were done.</li>
+        </outcomes>
+        <ways><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>every hand to the harvest</label><count>5</count><tasks><li>Harvest</li><li>Haul</li></tasks><near><li>Fields</li></near><hours>7~18</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} goes out with {A_nameDef}</label>
+        <outcome>{B_nameDef} put down {B_possessive} own work and went out to the fields with {A_nameDef} for the afternoon. The two of them brought in what they could.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} and {B_nameDef} in the fields</label><target>AAndB</target><count>2</count><tasks><li>Harvest</li><li>Haul</li></tasks><near><li>Fields</li></near><hours>9~18</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>The growers in their own time</label>
+        <outcome>The council left the harvest to the growers. {A_nameDef} went back out alone.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Food and the stores ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_GoodMeals</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
+    <label>the good meals</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_GoodMeals</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <roleA><bestAt>Cooking</bestAt></roleA>
+    <roleB><adult>true</adult></roleB>
+    <texts>
+      <li>There are {COUNT} fine meals in the stores, the best the colony has eaten in a long time, and {A_nameDef} cooked every one of them. {A_nameDef} wants them eaten at a proper supper while they're good. {B_nameDef} wants them kept for the bad days that always come.</li>
+      <li>[lowtech] {A_nameDef} spent two days over the fire making the best food the colony has had all season, and wants everyone at one table to eat it. {B_nameDef} says good food lasts better in the store than in the belly.</li>
+      <li>[seat] {HOLDER_nameDef} has counted {COUNT} fine meals in the stores, as the {OFFICE} counts everything. {A_nameDef}, who cooked them, wants them eaten tonight. {B_nameDef} wants them kept, and {HOLDER_nameDef} would like the council to say which before anyone helps themselves.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>A proper supper tonight</label>
+        <outcome>The colony sat down at one table to {A_nameDef}'s best cooking and ate it while it was good. {A_nameDef} watched everyone's first mouthful.</outcome>
+        <ways><generosity>2</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>{A_nameDef}'s supper</label><hours>17~20</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_CookProud</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep them for the hard days</label>
+        <outcome>The fine cooking stays in the stores for the bad days. {A_nameDef} wasn't pleased, and said so.</outcome>
+        <outcomes>
+          <li>[seat] The fine cooking stays in the stores for the bad days, and {HOLDER_nameDef} has put it on the {OFFICE}'s list. {A_nameDef} wasn't pleased, and said so.</li>
+        </outcomes>
+        <ways><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_FeastDenied</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_Seconds</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
+    <label>a second helping</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Seconds</workerClass>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>1</answerDays>
+    <roleA><anyTrait><li>Gourmand</li></anyTrait></roleA>
+    <roleB><adult>true</adult></roleB>
+    <texts>
+      <li>The stores are low, and everyone has been told to take one helping. {A_nameDef} takes two. {B_nameDef} has watched {A_objective} do it three nights running and wants the council to say something.</li>
+      <li>[lowtech] There's little enough in the pot these days, and {A_nameDef} always seems to be at it twice. {B_nameDef} has started counting the bowls.</li>
+      <li>[seat] {HOLDER_nameDef} keeps the count of what's left, as {OFFICE}, and it isn't much. {A_nameDef} has been taking a second helping all week, and {B_nameDef} has asked the council to make it stop.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} has a word with {A_nameDef} at supper</label>
+        <outcome>{B_nameDef} sat down beside {A_nameDef} at supper and told {A_objective}, quietly, that one helping means one. {A_nameDef} heard it out and went red.</outcome>
+        <ways><tradition>1</tradition><generosity>-1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} has a word with {A_nameDef}</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Dining</sitBy><hours>17~20</hours><duration>0.75~1</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ToldOff</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} brings in what {A_pronoun} eats</label>
+        <outcome>{A_nameDef} spent the afternoon bringing food in for the stores, from the fields and the water and wherever else it could be had. The second helping, the council said, can come out of that.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} brings food in</label><target>A</target><count>1</count><tasks><li>Harvest</li><li>Fish</li><li>Haul</li></tasks><hours>8~18</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>One more helping won't break the colony</label>
+        <outcome>The council let it go. {B_nameDef} said the colony would remember who had the last of it.</outcome>
+        <ways><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_KitchenHelp</defName>
+    <label>a helper in the kitchen</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_KitchenHelp</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>{A_nameDef} does all the colony's cooking and won't let anyone near the stove. {B_nameDef} wants to learn, and has burnt nothing yet only because {B_pronoun} has never been allowed to try. {B_nameDef} has asked the council for a place in the kitchen.</li>
+      <li>[lowtech] {A_nameDef} keeps the cooking fire as if it were {A_possessive} own, and {B_nameDef}, who would like to learn, gets shooed away from it with a ladle.</li>
+      <li>[!lowtech] {A_nameDef} runs the kitchen alone. {B_nameDef} has offered to help so often that {A_nameDef} has started shutting the door.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} learns at {A_nameDef}'s elbow</label>
+        <outcome>{A_nameDef} let {B_nameDef} into the kitchen for an afternoon and showed {B_objective} how things are done there, with a good deal of sighing.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{B_nameDef} in the kitchen with {A_nameDef}</label><teacher>A</teacher><student>B</student><hours>8~18</hours><duration>2~3</duration><xpPerHour>200</xpPerHour></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Learned</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} takes the cooking for a few days</label>
+        <outcome>{A_nameDef} handed the cooking to {B_nameDef} for a few days, on the council's word. {A_nameDef} is not taking it well.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HandOver"><work>Cooking</work><label>the cooking</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_TheirKitchen</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><target>A</target><amount>-4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The kitchen stays {A_nameDef}'s</label>
+        <outcome>The council left the kitchen to {A_nameDef}, and {B_nameDef} was turned out of it again that evening.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_OwnPatch</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Reeve</seat>
+    <label>a patch of one's own</label>
+    <cooldownDays>45</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <roleA><passion>Plants</passion></roleA>
+    <roleB><adult>true</adult></roleB>
+    <texts>
+      <li>{A_nameDef} wants a patch of ground to call {A_possessive} own: two steps by two, sown with {A_possessive} own hands and on nobody's list. {B_nameDef} says every patch of good ground is the colony's, and if everyone had one the fields would be full of other people's corners.</li>
+      <li>[lowtech] {A_nameDef} has been saving seed in a pouch for weeks and wants a corner of ground to put it in. {B_nameDef} says the ground belongs to everyone or to no one.</li>
+      <li>[seat] {A_nameDef} asked {HOLDER_nameDef}, as {OFFICE}, for a little patch of ground of {A_possessive} own, and {HOLDER_nameDef} said it was for the council to say. {B_nameDef} has already said it: every patch belongs to the colony.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>A little fenced patch by the fields</label>
+        <outcome>{A_nameDef} sowed a small patch of {A_possessive} own just outside the fields, a seed at a time, with a little fence marked out round it.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SowPatch"><fence>true</fence></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_OwnPatch</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>A corner out of the way</label>
+        <outcome>{A_nameDef} sowed a small patch in a corner at the edge of the home ground, where it's in nobody's way.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SowPatch"><fence>false</fence><outOfWay>true</outOfWay></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Every row belongs to the colony</label>
+        <outcome>The council said the ground is the colony's. {A_nameDef} put the seed back in {A_possessive} pocket.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Sickness and care ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_BoredAbed</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Physician</seat>
+    <label>laid up and bored</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_BoredAbed</workerClass>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} has been in the sickbed for days now and has counted the cracks in the ceiling twice. {B_nameDef} wants to sit with {A_objective} in the evenings. Someone always says rest is rest, and this time it's half the colony.</li>
+      <li>[lowtech] {A_nameDef} has lain on the sick-pallet for days, staring at the roof and getting no better for it. {B_nameDef} wants to sit with {A_objective} of an evening and talk.</li>
+      <li>[seat] {A_nameDef} is bored to tears in the sickbed. {B_nameDef} wants to keep {A_objective} company in the evenings, and {HOLDER_nameDef}, the {OFFICE}, says the patient needs quiet more than conversation.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} sits with {A_nameDef} this evening</label>
+        <outcome>{B_nameDef} came by the sickbed in the evening and stayed a good while, talking about nothing much. {A_nameDef} looked better for it.</outcome>
+        <outcomes>
+          <li>[seat] {B_nameDef} came by the sickbed in the evening and stayed a good while, and {HOLDER_nameDef}, as {OFFICE}, pretended not to notice. {A_nameDef} looked better for it.</li>
+        </outcomes>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits with {A_nameDef}</label><who>B</who><whom>A</whom><hours>17~21</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Company</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Friends take turns at the bedside</label>
+        <outcome>{A_nameDef}'s friends took turns at the bedside through the afternoon and the evening, so that there was always someone there.</outcome>
+        <ways><mercy>2</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>company at {A_nameDef}'s bedside</label><target>FriendsOfA</target><to>Person</to><whom>A</whom><count>3</count><hours>15~21</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Company</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Rest is rest</label>
+        <outcome>The council said the patient needs quiet. {A_nameDef} went back to counting the cracks in the ceiling.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_DoctorsRounds</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Physician</seat>
+    <label>the doctor's rounds</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_DoctorsRounds</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} does all the colony's doctoring and is starting to look like {A_pronoun} needs a doctor {A_objective}self. {B_nameDef} knows the work well enough and has never once been asked. {A_nameDef} says {B_nameDef} has never once offered.</li>
+      <li>[lowtech] {A_nameDef} has been the only one at the sick-pallets for weeks. {B_nameDef} knows the herbs nearly as well, and says so, from a safe distance.</li>
+      <li>[seat] {HOLDER_nameDef} has watched {A_nameDef} carry the colony's doctoring alone, as {OFFICE}, and wants it shared. {B_nameDef} could do some of it, and hasn't.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} does a round of the colony today</label>
+        <outcome>{B_nameDef} went round the colony during the day, stopping with each in turn to look them over and ask how they were.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Rounds"><label>{B_nameDef}'s round of the colony</label><who>B</who><count>6</count><hours>9~17</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>200</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} hands the doctoring to {B_nameDef} for a few days</label>
+        <outcome>{A_nameDef} handed the doctoring to {B_nameDef} for a few days. {A_nameDef} slept like a stone that night.</outcome>
+        <ways><mercy>1</mercy><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HandOver"><work>Doctor</work><label>the doctoring</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_LoadShared</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Strain"><target>A</target><amount>-8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>300</xp></li>
+        </effects>
+      </li>
+      <li>
+        <label>The doctoring stays with {A_nameDef}</label>
+        <outcome>The council left the doctoring with {A_nameDef}, who said nothing and went back to the sickbeds.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_Sickroom</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Physician</seat>
+    <label>the sickroom</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Sickroom</workerClass>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>There's a patient in the sickroom and dirt on its floor, and {A_nameDef} won't have the two in one room. {A_nameDef} wants it scrubbed today. {B_nameDef}, who does most of the cleaning, says the whole colony is dirty and the sickroom will get its turn.</li>
+      <li>[lowtech] The sick-hut's floor is filthy, and {A_nameDef} says filth and fever are old friends. {B_nameDef} says there's filth everywhere and only two hands.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, has seen the floor of the sickroom and wants it scrubbed before anything else. {A_nameDef} agrees. {B_nameDef}, who does most of the cleaning, says the sickroom will get its turn.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Scrub it today</label>
+        <outcome>Three of the colony went into the sickroom with brooms and buckets and kept at it until the floor was clean.</outcome>
+        <ways><toil>1</toil><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>scrubbing the sickroom</label><count>3</count><tasks><li>Clean</li></tasks><at>sickroom</at><hours>8~19</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} sees to it {A_objective}self</label>
+        <outcome>{A_nameDef} took a broom into the sickroom and cleaned it alone, between patients.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} scrubs the sickroom</label><target>A</target><count>1</count><tasks><li>Clean</li></tasks><at>sickroom</at><hours>8~19</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_OwnHands</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>It will get its turn</label>
+        <outcome>The council left the sickroom to take its turn. {A_nameDef} wasn't happy about it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The young and the old ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_ChildAndBeast</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
+    <label>a child and an animal</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ChildAndBeast</workerClass>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>{A_nameDef} has been following {PET_nameDef} round the colony for days, and {PET_nameDef} has started following {A_nameDef} back. {A_nameDef} wants the afternoon with {PET_objective}. {B_nameDef}, who looks after the animals, says an animal isn't a toy and a child should be learning something.</li>
+      <li>[lowtech] {A_nameDef} has taken to saving scraps for {PET_nameDef} and leaving them by the pen. {B_nameDef} says the child is spoiling a working animal.</li>
+      <li>[seat] {A_nameDef} wants to play with {PET_nameDef} this afternoon. {HOLDER_nameDef}, as {OFFICE}, would rather {A_nameDef} learned how the animals are kept first, and {B_nameDef} agrees.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let them play this afternoon</label>
+        <outcome>{A_nameDef} and {PET_nameDef} chased each other about until both of them were out of breath.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_AnimalScene"><scene>ChildPlay</scene></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_PlayedWithBeast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} helps {B_nameDef} with the animals</label>
+        <outcome>{A_nameDef} spent the afternoon at {B_nameDef}'s side with the animals, learning how they're fed and handled, and asked a question about every one of them.</outcome>
+        <outcomes>
+          <li>[seat] {A_nameDef} spent the afternoon at {B_nameDef}'s side with the animals, learning how they're fed and handled, and {HOLDER_nameDef} said, as {OFFICE}, that it was the right start.</li>
+        </outcomes>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} learns the animals from {B_nameDef}</label><teacher>B</teacher><student>A</student><hours>9~17</hours><duration>1.5~2</duration><xpPerHour>150</xpPerHour></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not yet</label>
+        <outcome>The council said not yet. {A_nameDef} took it about as well as children take not yet.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_NotYet</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_ElderChair</defName>
+    <label>a chair for old bones</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ElderChair</workerClass>
+    <cooldownDays>60</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <roleA><minAge>60</minAge></roleA>
+    <roleB><bestAt>Construction</bestAt></roleB>
+    <texts>
+      <li>{A_nameDef} is past sixty and has sat on the same hard stool every evening for longer than anyone remembers. {A_nameDef} hasn't asked for anything. {B_nameDef} has noticed the way {A_nameDef} gets up from it, and wants to make a proper chair, if the council will spare the time and the wood.</li>
+      <li>[lowtech] {A_nameDef}'s knees creak louder than the floor. {B_nameDef} wants to make {A_objective} a seat with a back to it, and some of the others say the wood is wanted for the walls.</li>
+      <li>[!lowtech] {A_nameDef} has had the same bad chair for years and says it suits {A_objective} fine. {B_nameDef} says it doesn't suit anyone and wants to make a better one, if the council will spare the time.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} makes {A_nameDef} a chair</label>
+        <outcome>{B_nameDef} made {A_nameDef} a chair and set it in {A_possessive} room. {A_nameDef} said it would do, which from {A_nameDef} is high praise.</outcome>
+        <ways><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_MadeChair"><label>a chair for {A_nameDef}</label><chairs>VFES_ModernArmchair|Seat_RoyalArmchair|Armchair|DiningChair|Stool</chairs><maker>B</maker><forWhom>A</forWhom><inRoom>true</inRoom><makeHours>2</makeHours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_ChairMade</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The best seat by the fire tonight</label>
+        <outcome>{A_nameDef} had the best seat by the fire that evening and sat in it a good while.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{A_nameDef}'s evening by the fire</label><target>A</target><hours>18~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_BestSeat</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The stool has done this long</label>
+        <outcome>The council said the stool has done this long. {A_nameDef} said {A_pronoun} hadn't asked, which was true.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_YoungVoice</defName>
+    <label>a young voice</label>
+    <cooldownDays>45</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <roleA><minAge>18</minAge><maxAge>23</maxAge></roleA>
+    <roleB><minAge>50</minAge></roleB>
+    <texts>
+      <li>{A_nameDef} has opinions about how the colony is run and has started saying them at supper. {B_nameDef}, who has seen more winters than {A_nameDef} has seen anything, says {A_nameDef} can have opinions once {A_pronoun} has earned them.</li>
+      <li>[lowtech] {A_nameDef} wants to speak at the fire like the grown folk do. {B_nameDef} says the young listen first and speak later, and that's how it has always been.</li>
+      <li>[!lowtech] {A_nameDef} has written down three things {A_pronoun} would change about the colony and wants to read them out. {B_nameDef} says {A_nameDef} has been grown for five minutes.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} speaks at supper</label>
+        <outcome>{A_nameDef} stood up at supper and said {A_possessive} piece in front of everyone. Some of it was good. {B_nameDef} listened with folded arms all the way through.</outcome>
+        <ways><openness>2</openness><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef} has a say</label><spots><li>Dining</li></spots><hours>17~20</hours><duration>0.75~1</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Heard</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} hears {A_nameDef} out first</label>
+        <outcome>{B_nameDef} sat down with {A_nameDef} and heard the whole of it, one to one, and told {A_objective} which parts were worth saying.</outcome>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} hears {A_nameDef} out</label><who>B</who><whom>A</whom><sit>true</sit><hours>9~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} can wait {A_possessive} turn</label>
+        <outcome>The council said there's a time for everything. {A_nameDef} said that time seemed to be never, and went quiet.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Animals ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_HerdHands</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
+    <label>the same hands with the herd</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_HerdHands</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} feeds and tends every animal the colony keeps, and has started talking to them more than to people. {B_nameDef} handles animals well enough and leaves them all to {A_nameDef}. {A_nameDef} wants that to change.</li>
+      <li>[lowtech] Every beast in the pens knows {A_nameDef}'s step and nobody else's. {B_nameDef} could take a share and doesn't, and {A_nameDef} has brought it to the council.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, says the herd leans on {A_nameDef} alone and wants a second pair of hands at it. {B_nameDef} has the skill and has never been asked.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} works the herd with {A_nameDef} this afternoon</label>
+        <outcome>{B_nameDef} spent the afternoon with {A_nameDef} at the pens, tending the animals and bringing them in.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} and {B_nameDef} at the pens</label><target>AAndB</target><count>2</count><tasks><li>Tend</li><li>Herd</li></tasks><hours>12~18</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>150</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} teaches {B_nameDef} the animals</label>
+        <outcome>{A_nameDef} kept {B_nameDef} at {A_possessive} side for an afternoon and showed {B_objective} how each of the animals likes to be handled.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} teaches {B_nameDef} the animals</label><teacher>A</teacher><student>B</student><hours>9~17</hours><duration>2~2.5</duration><xpPerHour>180</xpPerHour></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Learned</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>The herd stays with {A_nameDef}</label>
+        <outcome>The council left the animals with {A_nameDef}. The animals didn't seem to mind.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_NameNewborn</defName>
+    <label>a name for the newborn</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_NameNewborn</workerClass>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>A little {PET_labelShort} was born to the colony's animals this week, and nobody has named it. {A_nameDef} wants to call it {NAMEA}. {B_nameDef} wants {NAMEB}, and has already been calling it that.</li>
+      <li>[lowtech] The newest {PET_labelShort} in the pens has no name yet, and two people have one each for it. {A_nameDef} says {NAMEA}. {B_nameDef} says {NAMEB}, loudly.</li>
+      <li>[!lowtech] There's a new {PET_labelShort} at the colony, and nobody has given it a name. {A_nameDef} has put {NAMEA} forward. {B_nameDef} has put {NAMEB} forward, and has been saying it to the animal as if that settles it.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Call it {NAMEA}</label>
+        <outcome>The newborn is called {NAMEA} now, as {A_nameDef} wanted. {B_nameDef} will get used to it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NameAnimal"><whose>A</whose></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_NamedIt</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_NotMyName</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Call it {NAMEB}</label>
+        <outcome>The newborn is called {NAMEB} now, as {B_nameDef} wanted. {A_nameDef} will get used to it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NameAnimal"><whose>B</whose></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_NamedIt</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_NotMyName</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>It doesn't need a name yet</label>
+        <outcome>The newborn stays nameless for now. Both of them still have a name in mind for it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_DlmE_NotMyName</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_WhoseBeast</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
+    <label>two hands for one animal</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WhoseBeast</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{PET_nameDef} answers to nobody in particular, and two people would like that to change. {A_nameDef} wants {PET_objective} at {A_possessive} heel. So does {B_nameDef}, who says {B_pronoun} had the idea first.</li>
+      <li>[lowtech] {PET_nameDef} is one of the best of the young beasts and follows nobody yet. {A_nameDef} and {B_nameDef} have both been feeding {PET_objective} from their hands, each hoping.</li>
+      <li>[seat] {HOLDER_nameDef}, as {OFFICE}, would like {PET_nameDef} to have a master. {A_nameDef} and {B_nameDef} both want to be it, and neither will give way.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{PET_nameDef} goes with {A_nameDef}</label>
+        <outcome>{PET_nameDef} is {A_nameDef}'s to handle now, and keeps at {A_possessive} heels for the next day, getting used to it. {B_nameDef} watched them go.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NewMaster"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotTheBeast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{PET_nameDef} goes with {B_nameDef}</label>
+        <outcome>{PET_nameDef} is {B_nameDef}'s to handle now, and keeps at {B_possessive} heels for the next day, getting used to it. {A_nameDef} watched them go.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NewMaster"><target>B</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotTheBeast</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Grudge</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{PET_nameDef} stays with the herd</label>
+        <outcome>{PET_nameDef} stays with the herd and answers to nobody in particular. Both of them are disappointed.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Ignored</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Guests and strangers ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_VisitorSupper</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
+    <label>a visitor at supper</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <stranger>
+      <kind>Visitor</kind>
+      <adult>true</adult>
+      <notGuest>true</notGuest>
+    </stranger>
+    <roleA><tags>trait:Kind|skill:Social|persona:warm</tags></roleA>
+    <roleB><tags>persona:wary|persona:cold|trait:Greedy</tags></roleB>
+    <texts>
+      <li>{X_nameDef} of {FACTION} is at the colony with the other visitors, and has been eating out of a pack by the gate. {A_nameDef} wants to bring them in to supper. {B_nameDef} says strangers at the table is how things go missing from the table.</li>
+      <li>[lowtech] There are travellers by the gate, and the smell of the cooking fire is reaching them. {A_nameDef} wants {X_nameDef} and the rest brought to the fire to eat. {B_nameDef} would sooner they kept their distance.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, has been out to see the visitors. {A_nameDef} wants {X_nameDef} and the others brought in to supper; {B_nameDef} doesn't want strangers past the gate at all.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Supper with the visitors</label>
+        <outcome>{X_nameDef} and the other visitors sat down to supper with the colony, at {A_nameDef}'s asking.</outcome>
+        <outcomes>
+          <li>[seat] {HOLDER_nameDef} brought {X_nameDef} and the other visitors in to supper with the colony, as {OFFICE}, at {A_nameDef}'s asking.</li>
+        </outcomes>
+        <ways><openness>2</openness><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper with the visitors</label><guests>stranger</guests><hours>17~20</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} takes a meal out to them</label>
+        <outcome>{A_nameDef} carried a meal out to {X_nameDef} and handed it over, and {X_nameDef} ate it there.</outcome>
+        <ways><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><eat>true</eat></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>They stay where they are</label>
+        <outcome>The strangers stay where they are, and the colony minds its own business.</outcome>
+        <ways><openness>-1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_TravellersNews</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
+    <label>a traveller's news</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>0.5</answerDays>
+    <stranger>
+      <kind>Visitor</kind>
+      <adult>true</adult>
+      <notGuest>true</notGuest>
+    </stranger>
+    <roleA><tags>persona:curious|skill:Intellectual|skill:Social</tags></roleA>
+    <roleB><tags>persona:serious|persona:wary|trait:Industriousness</tags></roleB>
+    <texts>
+      <li>{X_nameDef} of {FACTION} has been on the roads for months and has the look of someone with news. {A_nameDef} wants to hear all of it, tonight, by the fire. {B_nameDef} says the colony has work to do and travellers' talk keeps people up.</li>
+      <li>[lowtech] {X_nameDef} has come a long way and talks like it. {A_nameDef} wants the colony round the fire tonight to hear what's out there. {B_nameDef} says what's out there can wait until the work is done.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, says {X_nameDef} of {FACTION} would be glad to sit at the fire tonight. {A_nameDef} can hardly wait. {B_nameDef} says the colony will be useless in the morning.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>An evening at the fire with them</label>
+        <outcome>The colony sat round the fire with {X_nameDef} and the other visitors until late, and heard the news of the roads.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an evening with the travellers</label><guests>stranger</guests><hours>18~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_DlmE_News</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} sits with {X_nameDef} an hour</label>
+        <outcome>{A_nameDef} sat with {X_nameDef} for an hour and came back with enough news for a week.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} sits with {X_nameDef}</label><who>A</who><to>Stranger</to><sit>true</sit><hours>9~22</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_News</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The news will keep</label>
+        <outcome>The council said the news will keep. {A_nameDef} said news never keeps.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Quarrels and friendships ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_FriendsFellOut</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Peacemaker</seat>
+    <label>two friends who fell out</label>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <roleB>
+      <tie>Friends</tie>
+      <minTie>30</minTie>
+      <thoughts><li>Insulted</li><li>Slighted</li><li>HadAngeringFight</li><li>Council_Friction_*</li></thoughts>
+      <thoughtDays>3</thoughtDays>
+      <thoughtAboutA>true</thoughtAboutA>
+    </roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} have been friends since anyone can remember, and for days now they haven't said a word to each other. Nobody knows quite what started it. Both of them have asked the council, separately, to tell the other one to apologise.</li>
+      <li>[lowtech] {A_nameDef} and {B_nameDef} used to share a bowl and a blanket on the cold nights. Now they eat at opposite ends of the fire, and everyone in between feels it.</li>
+      <li>[seat] {HOLDER_nameDef}, as {OFFICE}, has tried a word with each of them and got nowhere. {A_nameDef} and {B_nameDef} were the best of friends until a few days ago, and now they won't sit at the same table.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>A supper for the two of them</label>
+        <outcome>The council set a supper for {A_nameDef} and {B_nameDef}, just the two of them, at one end of the table. It started stiffly and ended a good deal better.</outcome>
+        <ways><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper for {A_nameDef} and {B_nameDef}</label><target>AAndB</target><spots><li>Dining</li></spots><hours>17~20</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.7</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>They talk it out</label>
+        <outcome>{A_nameDef} sat down with {B_nameDef} and the two of them talked it out. Whether it's mended, the next few days will say.</outcome>
+        <outcomes>
+          <li>[seat] {A_nameDef} sat down with {B_nameDef} and talked it out, with {HOLDER_nameDef} close by as {OFFICE} in case it went wrong. Whether it's mended, the next few days will say.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} and {B_nameDef} talk it out</label><who>A</who><whom>B</whom><sit>true</sit><hours>9~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_MadeUp</thought><chance>0.5</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let them cool off</label>
+        <outcome>The council said friends sort these things out themselves. So far, they haven't.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_DlmE_StillSore</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_OldFriendLeftOut</defName>
+    <label>an old friend left out</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_OldFriendLeftOut</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} have been friends a long time, but lately {B_nameDef} spends {B_possessive} evenings with someone else, and {A_nameDef} has noticed every one of them. {A_nameDef} hasn't said so to {B_nameDef}. {A_nameDef} has said it to everyone else.</li>
+      <li>[lowtech] {B_nameDef} has a new friend to sit with at the fire, and {A_nameDef}, the old one, sits at the edge of the light and watches.</li>
+      <li>[!lowtech] {A_nameDef} has started counting the evenings {B_nameDef} spends with other people. The number has reached the council.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>An evening for the two old friends</label>
+        <outcome>{B_nameDef} came to find {A_nameDef} after the day's work, and the two of them sat down together for the evening the way they used to.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} and {A_nameDef} sit down together</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Dining</sitBy><hours>18~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_MadeUp</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} brings {A_nameDef} along</label>
+        <outcome>{B_nameDef} called the colony to the fire for the evening and brought {A_nameDef} along with the others.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an evening at the fire</label><organizer>B</organizer><hours>18~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_BroughtAlong</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} will get over it</label>
+        <outcome>The council said friendship isn't a thing it can decree. {A_nameDef} went on counting.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_LeftOut</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_BehindTheirBack</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Peacemaker</seat>
+    <label>talk behind a back</label>
+    <cooldownDays>35</cooldownDays>
+    <answerDays>1</answerDays>
+    <roleB>
+      <thoughts><li>Council_Friction_TalkedAboutMe</li></thoughts>
+      <thoughtDays>4</thoughtDays>
+      <thoughtAboutA>true</thoughtAboutA>
+    </roleB>
+    <texts>
+      <li>{A_nameDef} said something about {B_nameDef} that wasn't meant to get back to {B_objective}. It got back to {B_objective}. {B_nameDef} wants an apology, and wants it said where everyone can hear.</li>
+      <li>[lowtech] Words travel fast round a fire, and {A_nameDef}'s about {B_nameDef} travelled faster than most. {B_nameDef} wants {A_nameDef} to take them back in front of everyone.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, has heard both sides of what {A_nameDef} said about {B_nameDef} behind {B_possessive} back. {B_nameDef} wants an apology in front of everyone. {A_nameDef} says it was only talk.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} says sorry in front of everyone</label>
+        <outcome>At supper {A_nameDef} stood up and said, in front of everyone, that what {A_pronoun} had said about {B_nameDef} was unfair. It took a while to get out.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef}'s apology</label><spots><li>Dining</li></spots><hours>17~20</hours><duration>0.5~0.75</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_SaidSorry</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_MadeUp</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>They have it out in private</label>
+        <outcome>{A_nameDef} sat down with {B_nameDef} away from everyone else, and they had it out.</outcome>
+        <outcomes>
+          <li>[seat] {A_nameDef} sat down with {B_nameDef} away from everyone else and they had it out, with {HOLDER_nameDef} there as {OFFICE} to keep it civil.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} and {B_nameDef} have it out</label><who>A</who><whom>B</whom><sit>true</sit><hours>9~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_MadeUp</thought><chance>0.6</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Words are only words</label>
+        <outcome>The council said it doesn't rule on gossip. {B_nameDef} said {B_pronoun} would remember that.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Grudge</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The seasons ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_WarmDay</defName>
+    <label>the first warm day</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WarmDay</workerClass>
+    <cooldownDays>50</cooldownDays>
+    <answerDays>0.25</answerDays>
+    <texts>
+      <li>It's the first properly warm day of the year, and {A_nameDef} has been standing in the sun with {A_possessive} eyes shut instead of working. {A_nameDef} wants the colony to eat out of doors tonight. {B_nameDef} says the fields aren't going to sow themselves.</li>
+      <li>[lowtech] The cold has gone out of the ground at last. {A_nameDef} wants everyone out in the open to eat tonight, the first time since autumn. {B_nameDef} wants the seed in first.</li>
+      <li>[!lowtech] The thermometer says spring, and {A_nameDef} has decided to believe it. {A_nameDef} wants supper out of doors. {B_nameDef} has a list of what wants doing first.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Supper out of doors</label>
+        <outcome>The colony ate out of doors that evening, in the last of the warm light, the first time since the cold came.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>supper out of doors</label><spots><li>Outdoors</li></spots><hours>17~20</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_DlmE_SupperOutside</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Half an hour in the sun at noon</label>
+        <outcome>At noon the colony stopped for half an hour out in the sun, and then went back to work.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>half an hour in the sun</label><spots><li>Outdoors</li></spots><hours>12~14</hours><duration>0.5~0.75</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_DlmE_SunAtNoon</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>The sowing comes first</label>
+        <outcome>The council said the warm days will keep coming. {A_nameDef} said this one won't.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_ColdBedroom</defName>
+    <label>a cold bedroom</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ColdBedroom</workerClass>
+    <cooldownDays>40</cooldownDays>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef}'s room is the coldest in the colony, and {A_nameDef} has taken to sleeping in all {A_possessive} clothes. {B_nameDef}'s room down the way is a good deal warmer. {A_nameDef} has asked the council whether that seems fair.</li>
+      <li>[lowtech] Frost on the inside of the walls, {A_nameDef} says, every morning. {B_nameDef}'s hut is snug. {A_nameDef} wants a fire, or {B_nameDef}'s hut.</li>
+      <li>[!lowtech] {A_nameDef} has measured it: {A_possessive} room is one of the coldest in the colony, and {B_nameDef}'s a good deal warmer. {A_nameDef} has brought the numbers to the council.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>A fire kept in {A_nameDef}'s room</label>
+        <outcome>A fire was laid in a corner of {A_nameDef}'s room, away from the bed and the door, with wood set by for it.</outcome>
+        <ways><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_KeepFire"><wood>30</wood><maxDays>4</maxDays></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_WarmAtLast</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} gives {A_nameDef} the warmer room</label>
+        <outcome>{B_nameDef} and {A_nameDef} traded beds, and {A_nameDef} sleeps in the warm room from tonight. {B_nameDef} did it with a face like thunder.</outcome>
+        <ways><mercy>1</mercy><generosity>1</generosity></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SwapRooms" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>{A_nameDef} will manage</label>
+        <outcome>The council said a cold room is still a room. {A_nameDef} said that was easy to say from a warm one.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmE_StormNight</defName>
+    <label>the storm at night</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_StormNight</workerClass>
+    <cooldownDays>30</cooldownDays>
+    <answerDays>0.15</answerDays>
+    <texts>
+      <li>The storm has been building all evening, and every crack of thunder makes {A_nameDef} jump. {B_nameDef} wants the colony to sit up in one room until it passes. Others say a storm is a storm and there's work in the morning.</li>
+      <li>[achild] The thunder has {A_nameDef} hiding under the blankets. {B_nameDef} wants the colony in one room until the storm passes, so that nobody is alone in it.</li>
+      <li>[lowtech] Thunder over the huts, and rain coming through the roof in two places. {A_nameDef} hasn't stopped shaking since the first crack. {B_nameDef} wants everyone round the fire until it's over.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Everyone sits up until it passes</label>
+        <outcome>The colony sat up in one room while the storm went over, talking and listening to the rain, {A_nameDef} among them.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>sitting out the storm</label><organizer>B</organizer><spots><li>Rec</li><li>Dining</li></spots><hours>18~23</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StormTogether</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>Others</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} sits with {A_nameDef}</label>
+        <outcome>{B_nameDef} sat with {A_nameDef} while the storm passed over.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits with {A_nameDef}</label><who>B</who><whom>A</whom><hours>18~23</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StormTogether</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><chance>0.3</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Storms pass</label>
+        <outcome>The council said storms pass. {A_nameDef} lay awake until this one did.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StormAlone</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Rimfolk_DlmE_SleptThrough</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

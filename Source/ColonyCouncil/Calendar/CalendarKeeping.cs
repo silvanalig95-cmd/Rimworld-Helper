@@ -849,6 +849,10 @@ namespace ColonyCouncil
             return given;
         }
 
+        /// <summary>Someone has today's rest timetable from the calendar: a rest day, or the rest of a day given off (worn thin, CouncilLife/LifeArcs.cs).</summary>
+        public bool RestingToday(Map map, Pawn p) =>
+            p != null && map != null && restDate >= 0 && restDate == DateKey(map) && restHours.TryGetValue(p.ThingID, out var had) && !had.NullOrEmpty();
+
         /// <summary>
         /// What an hour was before today's rest day turned it (Work, Anything), or null when the day didn't touch it. Taking
         /// it over (a curfew, DecreeWork) forgets it here: whoever changes the hour now puts it back later.

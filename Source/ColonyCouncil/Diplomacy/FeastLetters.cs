@@ -66,7 +66,11 @@ namespace ColonyCouncil
                 case FeastHope.Hunt: return new[] { ContestKind.Hunt, ContestKind.Wrestling, ContestKind.Race };
                 case FeastHope.HuntOrTourney: return new[] { ContestKind.Hunt, ContestKind.Wrestling };
                 case FeastHope.RaceOrMatch: return new[] { ContestKind.Race, ContestKind.Shooting };
-                case FeastHope.MealAndMusic: return new[] { ContestKind.Tables };
+                case FeastHope.MealAndMusic: return new[] { ContestKind.Singing, ContestKind.Tables };
+                // By their calling (B28): the bouts, the tables, the race first.
+                case FeastHope.Bouts: return new[] { ContestKind.Wrestling, ContestKind.Race };
+                case FeastHope.Tables: return new[] { ContestKind.Tables, ContestKind.Singing };
+                case FeastHope.Race: return new[] { ContestKind.Race, ContestKind.Wrestling };
                 default: return new[] { ContestKind.Wrestling, ContestKind.Tables };
             }
         }
@@ -80,6 +84,7 @@ namespace ColonyCouncil
                 case ContestKind.Hunt:
                 case ContestKind.Shooting: s = SkillDefOf.Shooting; break;
                 case ContestKind.Tables: s = SkillDefOf.Intellectual; break;
+                case ContestKind.Singing: s = SkillDefOf.Artistic; break;
                 default:
                     return Math.Max(0, (int)((p.GetStatValue(StatDefOf.MoveSpeed) - 3.5f) * 4f));
             }

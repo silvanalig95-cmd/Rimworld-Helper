@@ -25,6 +25,8 @@
         <li>[named,wsdef:Council_WS_Drought] {GOD} is holding the rain back, that's what this drought is.</li>
         <li>[named,wsdef:Council_WS_HardWinter] This winter is {GOD}'s, you can hear it in the quiet.</li>
         <li>[named,wsdef:Council_WS_Murrain] The herds at {PLACE} are dying because {GOD} turned away from them.</li>
+        <li>[named,wsdef:Rimfolk_WS_FallingStars] {GOD} is throwing the stars down, and I'd like to know who it's angry with.</li>
+        <li>[named,wsdef:Rimfolk_WS_FallingStars] Stars don't fall like that on their own, that's {GOD}'s sign.</li>
         <li>[named] {WHAT} is {GOD}'s doing, whatever anyone says.</li>
         <li>[named] I've no doubt at all that {GOD} is behind {WHAT}.</li>
         <li>[other] No, that's {GOD}'s work, not {RIVAL}'s, and you know it.</li>
@@ -33,6 +35,7 @@
         <li>[scoff] Things like that happen without anyone sending them.</li>
         <li>[scoff] It's bad luck and bad roads, not a god.</li>
         <li>[scoff,wsdef:Council_WS_Comet] It's a rock in the sky, nobody sent it.</li>
+        <li>[scoff,wsdef:Rimfolk_WS_FallingStars] They're stones burning up in the sky, that's all a falling star is.</li>
         <li>[scoff,wsdef:Council_WS_Bumper] It rained at the right time, that's all a good harvest is.</li>
       </plain>
     </lines>

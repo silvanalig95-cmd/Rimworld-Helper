@@ -76,11 +76,9 @@ most sense." So, in this order, three builds at a time:
   their pace." Then: "So for the content update, yes, I want more events, camps, world events, and dilemmas, but first
   do all the integrations that you proposed in your document before we add additional content variety in that sense."
   The order, three builds at a time:
-  1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
-     medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
-     closeness; both done, built, not released: the entry "The medal read at the gate, the peoples' errands past a barred
-     door, and what the dead leave by closeness" above the newest release line), the peoples' founder texts (in each text's present voice; built, not released), the comms console by radio and the foreign
-     peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
+  1. The to-dos already open, all released: the flavour-text restore (0.276.0), PokéWorld's shelves (0.275.3), the
+     traits (0.275.0, 0.276.1, 0.277.1), the medal's gathering with A30 (0.276.2), the peoples' founder texts (0.277.2),
+     the comms console by radio and the foreign peoples' ages (0.277.0).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
      gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
@@ -90,17 +88,18 @@ most sense." So, in this order, three builds at a time:
      home (B1, B2, B3, B23, B25, B26, B32; released 0.280.0); the peoples and their ties (B4, B12, B14, B17, B22, B29,
      B31; released 0.280.1); the region's years and the camps (B5, B11, B13, B19, B27; released 0.280.2). Every integration
      item is built.
-  3. Then the variety (started 20 November, the integrations all built): gods' variety (C5, C9, C10, C11, C13, C23, C31
-     and two new happenings for each god); the world's (B6, B7, B8, B15, B20, B21, B24, B28, six more world events, six
-     more camps); colony life's first (A3, A4, A7, A18, A19, A20, twenty-five more council questions); then the rest:
-  3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
-     events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it. The gods first: C5, C9, C10,
-     C11, C13, C23 and C31 and thirty-one new happenings between the colony's people (built, not released: the entry
-     "The gods between the colony's people, and the gods' variety" above the newest release line).
+  3. Then the variety (started 20 November, the integrations all built): the **V** and **T** items and more of every
+     kind (god events above all, events, camps, world events, storyteller events, dilemmas), in the flavour style where
+     CLAUDE.md keeps it. Gods' variety (C5, C9, C10, C11, C13, C23, C31 and thirty-one new happenings between the
+     colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
+     two encounters for each people; released 0.282.0); building: colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five
+     more council questions; built, not released: the entry "Colony life's variety, part 1: the council's situations and
+     its everyday questions" above the newest release line), colony life 2 (A8, A11, A15, A16, A22 to A26, A28, twelve events, six personal stories)
+     and text round 1 (A31 to A37); then text round 2 (B9, B10, B16, B18, B30, C32 to C36).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
-  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; built, not released): the
-  comms console and the peoples' ages.** The to-do with the player's words is now one entry above the newest release
-  line ("The comms console by radio, and the foreign peoples' ages").
+  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
+  comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
+  console by radio, and the foreign peoples' ages").
 - **The player, 20 November 2026 (third and fourth messages):**
   - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
     option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
@@ -612,6 +611,172 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Colony life's variety, part 1: the
+  council's situations and its everyday questions** (20 November 2026; the player on `docs/content-update-proposals.md`:
+  "just variety, further kind of events, camps, world events, normal storyteller events, dilemmas, etc." and "yes, I want
+  more events, camps, world events, and dilemmas, but first do all the integrations"; with the integrations built, the
+  lead's go for colony life's first round of variety). A3, A4, A7, A18, A19 and A20 of the proposals, each marked
+  **Built** there, and twenty-five new council questions of everyday life in the player's direction ("dilemmas"); DESIGN.md
+  "Colony life's variety, part 1: the council's situations and its everyday questions" (in Layer 3, after "The council at
+  its work") has every rule and the list of the twenty-five with one line each; the Almanac's *offices and elections* (new
+  section "Stepping down", with after the vote), *decrees* (the night watch and the welcome, in "The everyday decrees"),
+  *dilemmas* (the everyday questions and the council's own, in "Everyday life") and *personal stories* (three rows),
+  keywords unchanged; README "Decrees", "Dilemmas", "Offices and elections" and "Personal stories". A3: a holder worn down
+  or near breaking five days running (the heart now keeps since when) or ten days in a sickbed asks to step down, never in
+  an election: let them (the seat empties with no hard feelings, strain eased, a deed and a chronicle line; the by-election
+  as for any empty seat), someone able who holds no seat stands in for ten days (the deputy does every act and word of the
+  seat: `OfficeTracker.Acting`, which Interplay's officer look-ups now ask; the holder has the heart's day off at once), or
+  ask them to stay (the devoted trust the council more). A4: two open wishes for things that each need the same stuff,
+  the stores holding enough for either and not both: first come first served, the other first, or neither yet; the first
+  promised as the council's Promise does it, whoever waits three days longer and told why face to face by the
+  quartermaster or the other asker. A7: the night watch (six days after an attack: two fighters in turn by a rota walk the
+  walls and the gate from nine until one and start late the next morning; what a night watch halves it halves, each night
+  is the deed toward Night-Watch) and a welcome for newcomers (ten days when a newcomer stands outside every group: an
+  evening hour with each newcomer by a settled colonist who likes them, counted as the group's welcomes and the newcomer's
+  story's welcome once it happened). A18 after the vote, A19 the one sent away, A20 worn thin: three personal stories whose
+  gates pass only on what happened (the count's record, a banishment, the heart's episode or a week near breaking; the
+  winner's word, the walk to the edge, a day off taken). The twenty-five: work and rest (the only one who knows how, the
+  broom and the bucket, dawn to dark, every hand to the harvest), food and the stores (the good meals, a second helping, a
+  helper in the kitchen, a patch of one's own), sickness and care (laid up and bored, the doctor's rounds, the sickroom),
+  the young and the old (a child and an animal, a chair for old bones, a young voice), animals (the same hands with the
+  herd, a name for the newborn, two hands for one animal), guests and strangers (a visitor at supper, a traveller's news),
+  quarrels and friendships (two friends who fell out, an old friend left out, talk behind a back), the seasons (the first
+  warm day, a cold bedroom, the storm at night).
+  - Code: `CouncilLife/CouncilLifeMath.cs` (pure, linked: `StepDownMath`, `OneSteelMath`, `NightWatchMath`, `WelcomeMath`,
+    `LifeArcMath`, `EverydayMath`), `CouncilLife/StepDown.cs` (`SeatDeputy`, the `OfficeTracker` partial: `seatFrom`,
+    `deputies`, `Acting`, `StepDown`, `DeputiesDaily`; `DilemmaContextLife`, `DilemmaWorker_StepDown`, `DilemmaEffect_StepDown`,
+    `_Deputy`, `_HeartDayOff`, `_TrustDevoted`, `Life.LaidUpDays`), `CouncilLife/OneSteel.cs` (`OneSteel`,
+    `DilemmaWorker_OneSteel`, `DilemmaEffect_WishFirst`), `CouncilLife/WatchAndWelcome.cs` (`DilemmaEffect_WatchRota`,
+    `DilemmaEffect_WelcomeEvening`, `LifePlays`), `CouncilLife/LifeArcs.cs` (`LifeArcs.VotedOut`, the three workers,
+    `ArcEffect_Mark`, `ArcEffect_MeetSentAway`), `CouncilLife/EverydayQuestions.cs` (`Everyday`, the questions' workers,
+    `DilemmaEffect_NameAnimal`, `DilemmaEffect_MadeChair`), `CouncilLife/CouncilLifeDebug.cs` (dev actions). Changed:
+    `Offices/Offices.cs` (the seat's start noted in `Settle`, `Appoint` and `Seat`, the held days kept on the count's round,
+    `LifeArcs.VotedOut` in `Finish`, `DeputiesDaily`, the two collections saved), `Interplay/Interplay.cs` (`Officer`,
+    `OfficerOf`, `Holds`, `Officers` ask `Acting`), `Heart/HeartData.cs` and `HeartLogic.cs` (`wornSince`,
+    `breakingSince`), `Decrees/Decrees.cs` (`DecreeMoment.Outsider`), `Calendar/CalendarKeeping.cs` (`RestingToday`),
+    `PlayOut/OnMapPlays.cs` (`PlayAfter` hands "life:" to `LifePlays`), `PlayOut/PlayWork.cs` (the work party's "sickroom").
+    Defs: `Defs/DilemmaDefs/Rimfolk_Dilemmas_CouncilLife.xml`, `Rimfolk_Dilemmas_Everyday.xml`,
+    `Defs/DecreeDefs/Rimfolk_Decrees_CouncilLife.xml`, `Defs/ArcDefs/Rimfolk_Arcs_CouncilLife.xml`,
+    `Defs/ThoughtDefs/Rimfolk_Thoughts_CouncilLife.xml`, `Defs/DeedDefs/Rimfolk_Deeds_CouncilLife.xml` ("stepped down from a
+    seat"), `Defs/PersonaDefs/Rimfolk_PersonaMarks_CouncilLife.xml` ("stood by a friend"),
+    `Defs/FlavorPoolDefs/Rimfolk_CouncilLife.xml`, Keyed `Rimfolk_CouncilLife.xml`. Tests: `CouncilLifeTests` (the rules,
+    the defs and lines, the seams), `ArcTests` (the stories' tags), `ImmersionTests` (the two spoken pools, the journal).
+    `Tools/DefValidator/Program.cs` knows `{WISHA}`, `{WISHB}`, `{NAMEA}`, `{NAMEB}` and `{DEPUTY_...}`;
+    `Tools/playout_audit.py` the new play-outs; `Tools/dilemma_balance.py` scores the heart's day off as a day off;
+    `Tools/save_estimate.py` models the two new collections; `docs/dilemma-balance.md` written again (the 27 new
+    questions: trade-offs, or read by hand where an answer promises a wish, names an animal or hands a seat on).
+  - Decided here (open in the proposals or the brief): "laid up ten days" is read from the game's own age of the illness or
+    wound keeping them abed; the deputy is the letter's B (the most able at the seat's work holding no seat), so the letter
+    names them; A4's "the one who asked first" is the first answer itself (A always asked first), so its third answer is
+    "neither yet"; the night watch's rota goes round the fighters in a fixed order, two a night; the welcome's hour is a
+    sitting at a table where there is one; after the vote begins only with the winner at home (the proposal's "or with a
+    friend" left out), and an older save's seat with no start on record counts as a year held at a yearly vote; the one sent
+    away's return is met with a walk out to them, the game's own joiner letter being the choice to let them in (the
+    "joining the colony" wish holds only for prisoners); worn thin's day off is the heart's (running or given since its
+    stage began) or the calendar's rest today, with none in twelve days it comes to nothing; the friend's mark is a new
+    small one. The twenty-five: chosen across the eight parts of the colony's life, each a pair at odds; where a fire might
+    not be there the visit sits at a table; a name for the newborn only with no herdmaster (who names newborns); the chair
+    for old bones is the most comfortable the colony can build now (Vanilla Furniture Expanded's armchairs first, then the
+    game's), never one it hasn't researched; moods weighed so no answer is plainly best (mild new moods "the council saw it
+    my way", "made to give way", "learned from someone who knows").
+  - Harm: none of Rimfolk's own; a watcher on the walls in a hard frost may catch a chill through the shared budget, as any
+    night watch on the walls already could, and the decree says so.
+  - Not run here (none of it could be): the step-down letter with a real worn or laid-up holder, the seat emptied and its
+    by-election, a deputy at the seat's walks and words and the message when their days end; two real wishes sharing a
+    stuff, the promise's own play-out and the word face to face; the night watch's two walking the look-outs from nine and
+    the late start, and the welcome's hour at a table and its count in the group; the three stories' visits, lesson and
+    walk to the edge, the meeting at the gate; every everyday question's play-outs (the lessons, work parties, the
+    sickroom's scrubbing starting at its beds, the patch sown, the chair made and set in a room, the child's chase, the
+    newborn's name shown, the new master, the visitors at supper and by the fire, the fire kept, the rooms traded).
+  - Try in the game (dev mode, "Rimfolk", "Colony life (council): ..."): 1. "ask one of its questions now..." and pick "a
+    seat put down": with any holder at home (eased for the test), the letter names them and the one who would stand in;
+    answer "stands in for ten days" and watch the deputy at the seat's own walk (for the quartermaster, the count; for the
+    speaker, the hour at a table; dev "Council seats: ... now" runs them), and the holder's day off begins; "every deputy's
+    days over, now", then the next day's message. Answer another with "step down": the seat is empty and a by-election
+    comes within days. 2. With two colonists' wishes for things sharing a stuff open, "two wishes, one pile": answer "B's
+    first" and watch the quartermaster (or A) find B and say why. 3. "the night watch's and the welcome's day, now": at nine
+    two fighters walk the walls with torches or lamps, sleep late in the morning; a newcomer (here under twenty days) gets an
+    evening hour at a table with someone who likes them; declare the decrees from the Decrees page to see their mornings. 4.
+    "begin one of its stories now for...": after the vote (a voted-out record is made), worn thin (an episode a day ago);
+    the one sent away after a real banishment. Watch the visits each story sets going, and give a worn colonist the heart's
+    day off to move worn thin on. 5. Each of the twenty-five from the same menu, in a colony where it fits (a ripe harvest,
+    fine meals in store, a newborn animal and no herdmaster, a thunderstorm in the evening...); each answer's line under it
+    says what it does.
+  - Mods that would help: none needed. In their list already and used: Vanilla Furniture Expanded and its Spacer module
+    (the royal and modern armchairs for a chair for old bones). Not enabled but would add to it: Tavern
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305, 1.6 and 1.7, updated 4 November: tables and benches
+    for the welcome's hour and the suppers; its soft armchairs would need adding to the chair's list once it is enabled) and P-Music
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=725130005, 1.0 to 1.7, updated 25 October: music for the evenings
+    by the fire). A bell for the night watch's turns would help most and none for 1.6 or 1.7 is known (the proposals'
+    "Gaps"). Whether each is still kept up was not checked again here.
+- 0.282.0, **The world's variety: new world
+  events, camps and encounters** (20 November 2026; the player on the content update: "And then also, just variety,
+  further kind of events, camps, world events, normal storyteller events, dilemmas, etc. Just more of them", and "first
+  do all the integrations that you proposed in your document before we add additional content variety"). With the
+  integrations released, the world's variety: B6, B7, B8, B15, B20, B21, B24 and B28 of part B of
+  `docs/content-update-proposals.md` (each marked **Built** there with what was decided), and beyond the doc six more
+  world events and six more camps, each tied into the peoples, the region's towns, the gods as the colony believes them,
+  the council's questions and the ties. DESIGN.md "The world's variety: new world events, camps and encounters" (before
+  "Four small asks") lists every one with one line and has every rule; README under World events, the camps, the
+  strangers' moments, the feasts and the missions; the Almanac's world events page ("More world events: scarcities,
+  games, a pardon and more"), the camps page ("Beekeepers, mushroom pickers and the camps of the region's seasons"),
+  diplomacy's feasts ("What a feast's guests hope for, and the singing"), the strangers ("The peoples' own moments") and
+  the quests at home (the stud visit); keywords unchanged.
+  - **Ten world events** (`Defs/WorldSituationDefs/Rimfolk_WS_Variety4.xml`, `Rimfolk_WS_Variety5.xml`; flavour style,
+    each in its people's age with `[theirTribal]` to `[theirSpacer]`, a bound people's own line with `[bound]`, and a
+    paragraph for each of the 23 callings where it prefers one): cloth gone scarce and timber gone scarce (B6), a season
+    of games with the colony's games day (B7), a pardon (B8); and a hiring fair, a town's founding day (a colonist sent
+    to sit at it when the town is within three tiles, `WorldEffect_Away`), the roads gone to mud, falling stars (Cirrus
+    and Selene in the colony's book, a council question for a night out under them), the great burying (its sextons
+    carry off the enemy dead on the colony's land) and a bridge down.
+  - **Eight camps** (`Defs/CampDefs/Rimfolk_CampKinds_Variety4.xml`): beekeepers with Alpha Bees (B20), mushroom pickers
+    (B21); and young hands on the road, stranded carters, gleaners, a games team, outlaws walking home and star-watchers,
+    each with its world event (the camps' `situationKinds` now also take a world event's defName).
+  - **46 encounters** (`Defs/EncounterDefs/Rimfolk_Encounters_Peoples.xml`, B15): two for each calling, by
+    `StrangerRole.calling`; five new scenes true on the map (`WorldScenes`: grave, broken, beast, mech, building).
+  - **A stud visit** (`Defs/MissionDefs/Rimfolk_Missions_Stud.xml`, B24), a quest at home: their animal stands in the
+    colony's pen five to seven days as its own; the fee, or the young brought by their courier.
+  - **The feasts** (B28): guests of Rimfolk's peoples hope by calling (`FeastMath.HopeOfCalling`, three new hopes:
+    the bouts, the tables, the race); a singing contest (`ContestKind.Singing`), sung at an instrument the colony built
+    (its music plays) or by a lit fire; a games day is a feast of purpose `Games`.
+  - Code map: new `Source/ColonyCouncil/World/Variety/` (`VarietyMath.cs` pure and linked in the tests, `VarietyWorkers.cs`
+    the world events' workers and the burying's effect, `GamesDay.cs` the games day and its hook on `Feasts.StageChanged`,
+    `Pardon.cs`, `VarietyDebug.cs`), `Camps/CampVariety.cs` (the beekeepers', pickers' and star-watchers' workers, help at
+    the hives, the queen), `Diplomacy/FeastSinging.cs` (a singer's turn), `Missions/Workers_MissionStud.cs`. Changed:
+    `World/WorldSituationWorker.cs` (`WeightFactor`), `WorldSituations.cs` (weighs by it), `Camps/CampKindDef.cs`
+    (`gathers`), `CampKinds.cs`, `CampDay.cs`, `Strangers/Strangers.cs` and `Encounters.cs` (`calling`),
+    `World/Home/WorldScenes.cs`, `WorldHomeMath.cs` (falling stars in the book), `World/Region/RegionPricesMath.cs`
+    (cloth, timber, the bridge), `Diplomacy/FeastMath.cs`, `FeastContests.cs`, `Feasts.cs`, `FeastLetters.cs`,
+    `FeastPanels.cs`, `Text/Facts/FactsMath.cs` (the camps' tags). Defs also `Defs/DilemmaDefs/Rimfolk_Dilemmas_WorldVariety.xml`,
+    `Defs/Misc/Rimfolk_WorldVariety_Misc.xml`, `Defs/FlavorPoolDefs/Rimfolk_Lines_Feasts.xml` (the singing's lines),
+    `Rimfolk_Pool_WorldHome.xml`; words `Languages/English/Keyed/Rimfolk_WorldVariety.xml`, `Rimfolk_Feasts.xml`,
+    `Rimfolk_Renown_Colony.xml`. Tests `Tools/Tests/WorldVarietyTests.cs`. Nothing new saved beyond the world events',
+    camps' and missions' own records (the pickers' two numbers on the camp); no new `Sched` offset.
+  - Decided here (open in the proposals): see each item's **Built** line there and the DESIGN.md section.
+  - Harm: bouts at the games day as at a feast (the feast's own rate); a sting now and then at the beekeepers' hives
+    (Alpha Bees' own); one stay in four of the mushroom pickers, one of them falls ill with the game's food poisoning
+    and they ask for the colony's doctor; all through the shared harm budget and shown.
+  - Not run here (none of it could be): the games day's young walking in and the contests held without notables; the
+    singing's turns at an instrument (its music playing and stopping) and by a fire; the stud standing as the colony's,
+    the game's mating, the drover's return and the courier with the young; the pardon's prisoners walked out by the
+    wardens; the sextons carrying off the dead to their pack beast; the beekeepers' beehouses set at the camp and a
+    colonist helping there; the pickers gathering the land's caps and the evening's food poisoning; the star-watchers
+    lying out at night; each encounter's scene on the map; how often each comes in a real colony.
+  - Try in the game (dev mode, "Rimfolk"): 1. "World variety: start one of the new world events now..." for each of the
+    ten (the menu says which can't start now and why); for the games, answer its games-day letter and watch the young
+    come two days on; for the pardon, hold a prisoner of that people first. 2. "World variety: one of the new camps here
+    now..." (the beekeepers need Alpha Bees, the pickers wooded land). 3. "World variety: a people's own encounter
+    now..." with a visitor or trader of one of Rimfolk's peoples on the map. 4. "World variety: a stud visit offered
+    now", accept, then "World variety: the stud visit's days up now". 5. Hold a feast with guests and choose the singing
+    in its contests. 6. "World variety: what the pardon would cover here (log)".
+  - Mods that would help: P-Music ([725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005), 1.0 to
+    1.7) for more music at the singing; Tavern ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305),
+    1.6 and 1.7) for the games day's tables and drink; Gerrymon's Misc Props: Fences
+    ([3797400517](https://steamcommunity.com/sharedfiles/filedetails/?id=3797400517), 1.6 and 1.7, off) for a stud's pen;
+    Dark Ages: Beasts and Monsters ([3472275628](https://steamcommunity.com/sharedfiles/filedetails/?id=3472275628), 1.5
+    to 1.7, off) for more herds to stand at stud; Medieval Overhaul
+    ([3219596926](https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926), not yet on 1.7) for more mushrooms.
+    Whether each is still kept up was not checked here.
 - 0.281.0, **The gods between the colony's people,
   and the gods' variety** (20 November 2026; the player on the content update: "In general, I just want additional God
   events, more immersion, more just further also building up on the gods in general, how they're integrated, the effects

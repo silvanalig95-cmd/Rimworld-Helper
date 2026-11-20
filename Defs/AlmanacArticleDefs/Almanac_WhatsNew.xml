@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.282.0</version>
+        <date>20 November 2026</date>
+        <title>New world events, camps and encounters</title>
+        <points>
+          <li>Ten new world events, each in its people's age: cloth or timber gone scarce, a season of games, a pardon, a hiring fair, a town's founding day, roads gone to mud, falling stars, the great burying and a bridge down.</li>
+          <li>In a season of games the colony can hold a games day: young people of two friendly peoples come for bouts, a race and a shooting match, and a colonist who wins is named when the games end.</li>
+          <li>A pardon sends outlaws home past the colony, prisoners of that people can be walked out under it, and no bounty hunters come while it lasts.</li>
+          <li>Eight new camps: beekeepers with Alpha Bees, mushroom pickers in the fall, and six that come with the region's world events.</li>
+          <li>Each of Rimfolk's 23 peoples has two encounters of its own, one showing their ways on the map and one telling how their people began.</li>
+          <li>A herding people may ask to let an animal stand at stud in the colony's pen, for the young or a small fee.</li>
+          <li>Feast guests hope for their own people's contest, and a feast can hold a singing contest at the colony's instrument or by a fire.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.281.0</version>
         <date>20 November 2026</date>
         <title>The gods between the people</title>

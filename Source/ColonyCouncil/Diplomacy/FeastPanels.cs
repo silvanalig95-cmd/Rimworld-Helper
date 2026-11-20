@@ -265,7 +265,7 @@ namespace ColonyCouncil
                         icon = Icons.Visitor,
                         color = UiKit.Gold,
                         faction = people,
-                        text = WeekModel.AtHome(map, FeastWords.P(p.purpose == FeastPurpose.Wedding ? "CC_Feast_Week_Wedding" : "CC_Feast_Week_Day", FeastWords.Name(map).Named("FEAST"),
+                        text = WeekModel.AtHome(map, FeastWords.P(p.purpose == FeastPurpose.Wedding ? "CC_Feast_Week_Wedding" : p.purpose == FeastPurpose.Games ? "CC_Feast_Week_Games" : "CC_Feast_Week_Day", FeastWords.Name(map).Named("FEAST"),
                             FeastWords.Guests(p, true).Named("GUESTS"))),
                         note = InboxWords.When(at),
                         click = () =>

@@ -11,7 +11,8 @@
       and beaten (feastrunwin, feastrunlose); the best hunter back (feasthuntwin);
       a game won and lost at the tables (feasttablewin, feasttablelose); a shooter's five shots, good, fair or poor
       (feastshootgood, feastshootfair, feastshootpoor); a winner said aloud at the feast's end (feastwinner); the prize
-      handed over and taken (feastprize, us; feastprizethanks); a guest's hard words before a fistfight (feastsour, them).
+      handed over and taken (feastprize, us; feastprizethanks); a singer as they start and the best song's
+      singer (feastsing, feastsingwin); a guest's hard words before a fistfight (feastsour, them).
       Lines for either side have neither us nor them. By their ways: theirLowtech, theirHightech; the colony's age:
       lowtech, !lowtech.
     - Rimfolk_Pool_NeighbourWrites (Rimfolk_Neighbours.xml): their own words in the answer to an invitation to the
@@ -80,6 +81,23 @@
         <li>[feastsour,them] Say that again and see what happens.</li>
         <li>[feastsour,them] You've been laughing at me since the race.</li>
         <li>[feastsour,them,theirLowtech] Nobody at home would dare speak to me like that.</li>
+        <!-- The singing contest: a singer as they start (feastsing), the best song's singer at the end (feastsingwin) -->
+        <li>[feastsing] This one is from home, I hope you like it.</li>
+        <li>[feastsing] I only know the one song, so here it is.</li>
+        <li>[feastsing] Bear with me, I haven't sung this since I was small.</li>
+        <li>[feastsing] Here's one my mother used to sing.</li>
+        <li>[feastsing] Everybody join in on the second verse.</li>
+        <li>[feastsing,them] This is how we sing it where I come from.</li>
+        <li>[feastsing,us] Here's one we sing at the colony.</li>
+        <li>[feastsing,theirLowtech] This is an old song from round the fire at home.</li>
+        <li>[feastsing,theirHightech] We used to play this one on the radio.</li>
+        <li>[feastsing,their:pilgrims] It's a walking song, from the road between the shrines.</li>
+        <li>[feastsing,their:fishers] It's a rowing song, so it goes slowly.</li>
+        <li>[feastsing,their:listeners] It goes with the hum, you'll have to imagine that part.</li>
+        <li>[feastsingwin] I didn't think I'd win with that one.</li>
+        <li>[feastsingwin] Thank you, all of you, I'll sing another later.</li>
+        <li>[feastsingwin,us] That one's going in the colony's songbook.</li>
+        <li>[feastsingwin,them] I'll tell them at home I won with that.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

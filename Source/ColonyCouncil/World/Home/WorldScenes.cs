@@ -22,15 +22,63 @@ namespace ColonyCouncil
     /// <item>dog: a dog of the visitor's group and the colony's hens on the map; the dog runs at the hens and they scatter.</item>
     /// <item>hum: the visitor hums (a note over their head).</item>
     /// </list>
+    /// The peoples' own encounters (B15, Defs/EncounterDefs/Rimfolk_Encounters_Peoples.xml) add five that need no world event:
+    /// <list type="bullet">
+    /// <item>grave: one of the colony's graves near; the visitor walks to it and stands there a while.</item>
+    /// <item>broken: a machine of the colony's broken down near; the visitor goes to it and looks it over.</item>
+    /// <item>beast: one of the colony's animals near; the visitor goes beside it and looks it over.</item>
+    /// <item>mech: one of the colony's mechs near (Biotech); the visitor goes beside it and looks it over.</item>
+    /// <item>building: a building of the colony's that the encounter names (its colonyHas) near; the visitor looks it over.</item>
+    /// </list>
     /// Each keeps to what is there; nobody is hurt.
     /// </summary>
     public static class WorldScenes
     {
         public const string Pocket = "pocket", Kneel = "kneel", Warm = "warm", Sides = "sides", Sky = "sky", Dog = "dog", Hum = "hum";
 
-        public static readonly string[] All = { Pocket, Kneel, Warm, Sides, Sky, Dog, Hum };
+        /// <summary>The peoples' own encounters' scenes (B15).</summary>
+        public const string Grave = "grave", Broken = "broken", Beast = "beast", Mech = "mech", Building = "building";
 
-        private static JobDef kneelJob, warmJob;
+        public static readonly string[] All = { Pocket, Kneel, Warm, Sides, Sky, Dog, Hum, Grave, Broken, Beast, Mech, Building };
+
+        /// <summary>How far a visitor goes for a scene of the peoples' own encounters.</summary>
+        public const float LookRadius = 30f;
+
+        private static JobDef kneelJob, warmJob, lookJob, standJob;
+
+        private static JobDef LookJob => lookJob ??= DefDatabase<JobDef>.GetNamedSilentFail("Rimfolk_PE_LookOver");
+
+        private static JobDef StandJob => standJob ??= DefDatabase<JobDef>.GetNamedSilentFail("Rimfolk_PE_StandAt");
+
+        /// <summary>The thing a scene of the peoples' own encounters is about, near the visitor: a grave, a broken machine, an animal, a mech, a named building.</summary>
+        public static Thing LookTarget(EncounterDef def, Pawn x)
+        {
+            var map = x?.Map;
+            if (def == null || map == null) return null;
+            IEnumerable<Thing> found;
+            switch (def.scene)
+            {
+                case Grave:
+                    found = map.listerBuildings.allBuildingsColonist.OfType<Building_Grave>().Where(g => g.HasCorpse).Cast<Thing>();
+                    break;
+                case Broken:
+                    found = map.listerBuildings.allBuildingsColonist.Where(b => b.GetComp<CompBreakdownable>() is CompBreakdownable c && c.BrokenDown).Cast<Thing>();
+                    break;
+                case Beast:
+                    found = map.mapPawns.SpawnedColonyAnimals.Where(a => !a.Downed && !a.Dead && !a.InMentalState).Cast<Thing>();
+                    break;
+                case Mech:
+                    found = ModsConfig.BiotechActive ? map.mapPawns.SpawnedPawnsInFaction(Faction.OfPlayer).Where(m => m.RaceProps.IsMechanoid && !m.Downed && !m.Dead).Cast<Thing>() : Enumerable.Empty<Thing>();
+                    break;
+                case Building:
+                    found = def.colonyHas.NullOrEmpty() ? Enumerable.Empty<Thing>() : map.listerBuildings.allBuildingsColonist.Where(b => !b.def.IsFrame && def.colonyHas.Contains(b.def.defName)).Cast<Thing>();
+                    break;
+                default:
+                    return null;
+            }
+            return found.Where(t => t.Spawned && t.Position.InHorDistOf(x.Position, LookRadius) && x.CanReach(t, PathEndMode.Touch, Danger.Some))
+                .OrderBy(t => t.Position.DistanceToSquared(x.Position)).FirstOrDefault();
+        }
 
         private static JobDef KneelJob => kneelJob ??= DefDatabase<JobDef>.GetNamedSilentFail("Rimfolk_WH_KneelAt");
 
@@ -115,6 +163,11 @@ namespace ColonyCouncil
                     return (hour >= 21 || hour < 4) && !x.Position.Roofed(map) && a != null && !a.Position.Roofed(map);
                 case Dog: return DogOf(x) != null && Hens(map).Count > 0;
                 case Hum: return true;
+                case Grave: return StandJob != null && LookTarget(def, x) != null;
+                case Broken:
+                case Beast:
+                case Mech:
+                case Building: return LookJob != null && LookTarget(def, x) != null;
                 default: return false;
             }
         }
@@ -171,6 +224,17 @@ namespace ColonyCouncil
                     case Hum:
                         var note = DefDatabase<FleckDef>.GetNamedSilentFail("Music");
                         if (note != null && VisualTouches.On) FleckMaker.ThrowMetaIcon(x.Position, map, note);
+                        return;
+                    case Grave:
+                        var grave = LookTarget(def, x);
+                        if (grave != null) Sit(x, StandJob, grave);
+                        return;
+                    case Broken:
+                    case Beast:
+                    case Mech:
+                    case Building:
+                        var it = LookTarget(def, x);
+                        if (it != null) Sit(x, LookJob, it);
                         return;
                 }
             }

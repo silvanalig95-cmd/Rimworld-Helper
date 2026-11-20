@@ -1068,6 +1068,12 @@ namespace ColonyCouncil
                     HandOvers.PlayOver(p, what, happened, took);
                     return;
                 }
+                // Colony life's own (CouncilLife/): a welcome for newcomers' evening counted.
+                if (what.StartsWith(LifePlays.Prefix, StringComparison.Ordinal))
+                {
+                    LifePlays.Over(p, what, happened, took);
+                    return;
+                }
                 // A seat's own walk or sitting (Interplay/Interplay_Seats.cs): the count, the marks, the word.
                 if (what.StartsWith(Interplay.SeatPrefix, StringComparison.Ordinal))
                 {

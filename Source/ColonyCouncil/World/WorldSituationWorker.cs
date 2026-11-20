@@ -88,6 +88,9 @@ namespace ColonyCouncil
         /// <summary>Anything else this one needs (a river, a free tile, a leader).</summary>
         protected virtual bool CanHappen(Map map) => true;
 
+        /// <summary>A factor on how likely this one is to be the one that comes now (cloth goes scarce more readily after the flocks were lost: World/Variety/).</summary>
+        public virtual float WeightFactor(Map map) => 1f;
+
         // ---------------- Who ----------------
 
         /// <summary>Peoples that fit a need (and, for the second, the first people).</summary>
