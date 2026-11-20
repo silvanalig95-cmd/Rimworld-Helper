@@ -37,7 +37,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} and {OTHER_nameDef} sit at opposite ends of the table, and each of them keeps one eye on the other's work.</li>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} still trade sharp remarks at breakfast and again at supper.</li>
+          <li>Between {PAWN_nameDef} and {OTHER_nameDef} it is still a remark at breakfast and a remark back at supper.</li>
         </chronicle>
         <gate><kind>Hold</kind><hold>Near</hold><hours>12</hours><minDays>2</minDays><timeoutDays>25</timeoutDays></gate>
       </li>
@@ -57,7 +57,7 @@
           <cold><li>Observed {OTHER_nameDef} at close range for some hours. Competent. Annoyingly so.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} ended up on the same work and got through a whole day of it without arguing.</li>
+          <li>Thrown together on the same work, {PAWN_nameDef} and {OTHER_nameDef} got through a whole day of it without a word.</li>
         </chronicle>
         <gate>
           <kind>Talk</kind>
@@ -165,7 +165,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_OldWounds</defName>
     <label>old wounds</label>
-    <summary>Two people who fell out (former lovers, family at odds, or a friend who let a secret slip) get through a few quiet days, talk it out, and slowly start getting along again.</summary>
+    <summary>Two who fell out (former lovers, family at odds, or a friend who let a secret slip) find a few quiet days, then the words, then their way back to getting along.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Estranged</workerClass>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <maxDays>70</maxDays>
@@ -249,8 +249,8 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} talked at last, and neither of them raised their voice.</li>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} have started to make amends, choosing their words carefully.</li>
+          <li>They talked at last, {PAWN_nameDef} and {OTHER_nameDef}, and kept their voices down the whole way through.</li>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} have started to make amends, a careful word at a time.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_HeardMeOut</thought><target>AAndB</target></li>
@@ -279,8 +279,8 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} sat together at supper last night and talked like any two people at the table.</li>
-          <li>[kin] {PAWN_nameDef} and {OTHER_nameDef} get on again, as family should.</li>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} shared a bench at supper last night, and it was unremarkable.</li>
+          <li>[kin] {PAWN_nameDef} and {OTHER_nameDef} are family again, in more than name.</li>
           <li>[ex] {PAWN_nameDef} and {OTHER_nameDef} have made their peace. They'll never be what they were, and neither of them wants to be.</li>
         </chronicle>
         <effects>
@@ -305,7 +305,7 @@
       <gloomy><li>[timeout] The old hurt between {OTHER_nameDef} and me has dug in again.</li></gloomy>
     </fizzle>
     <fizzleChronicle>
-      <li>[fight] {PAWN_nameDef} and {OTHER_nameDef} quarreled again, and they are back where they started.</li>
+      <li>[fight] {PAWN_nameDef} and {OTHER_nameDef} quarreled again, and the old wound reopened.</li>
       <li>[otherdead] {OTHER_nameDef} died before {PAWN_nameDef} could make things right.</li>
       <li>The quarrel between {PAWN_nameDef} and {OTHER_nameDef} was never mended.</li>
     </fizzleChronicle>
@@ -325,7 +325,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_OldDebt</defName>
     <label>an old debt</label>
-    <summary>Someone who was rescued, tended, covered for or spoken up for wants to repay it. They spend hours making a gift by hand, and then have to work up the nerve to give it.</summary>
+    <summary>Someone who was rescued, tended, covered for or spoken up for sets out to repay it: hours of work on something made by hand, and then the harder part, giving it.</summary>
     <workerClass>ColonyCouncil.ArcWorker_Debt</workerClass>
     <who><notTrait><li>Psychopath</li></notTrait></who>
     <memories>
@@ -445,8 +445,8 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} finally gave {OTHER_nameDef} the gift, and said the debt was repaid.</li>
-          <li>{PAWN_nameDef} and {OTHER_nameDef} are even now, and closer than before.</li>
+          <li>{PAWN_nameDef} gave {OTHER_nameDef} the gift at last, and called the old kindness repaid.</li>
+          <li>Square now, {PAWN_nameDef} and {OTHER_nameDef}, and closer for it.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_DebtRepaid</thought><target>B</target></li>
@@ -492,7 +492,7 @@
     <maxDays>60</maxDays>
     <stages>
       <li>
-        <label>no trust left</label>
+        <label>no faith left</label>
         <waiting>Next: the council grants one of {PAWN_nameDef}'s wishes.</waiting>
         <journal>
           <plain>
@@ -532,7 +532,7 @@
         <gate><kind>Hold</kind><hold>Trust</hold><value>-10</value><hours>72</hours><minDays>3</minDays><timeoutDays>30</timeoutDays></gate>
       </li>
       <li>
-        <label>trust restored</label>
+        <label>faith restored</label>
         <journal>
           <plain>
             <li>I was wrong about the council. Not entirely, but enough.</li>
@@ -545,7 +545,7 @@
           <cold><li>I have revised my estimate of the council. Upward.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} trusts the council again, though not blindly.</li>
+          <li>{PAWN_nameDef} trusts the council again. Not blindly.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>8</amount></li>

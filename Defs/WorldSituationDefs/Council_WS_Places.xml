@@ -28,7 +28,7 @@
     <texts>
       <li>[theirLowtech] Settlers of {FACTION} have founded a new town, {PLACE}, {TALE}. The first houses are up and the well is dug, and they held their first market before the roofs were on.\n\nThey are short of nearly everything, timber most of all, and they will be looking for neighbors to trade with.</li>
       <li>[theirHightech] {FACTION} have put a new settlement on the map: {PLACE}, {TALE}. The first prefab walls went up last week, and someone has already painted the name over the gate, slightly crooked.\n\nA new town needs everything at once, and {PLACE} will be looking for neighbors to trade with.</li>
-      <li>[spring] With the snow gone, settlers of {FACTION} have walked out to found a new town, {PLACE}, {TALE}. Most of them are young and hopeful, and they are short of nearly everything.\n\nTheir first letter to the colony is already on the way.</li>
+      <li>[spring] With the snow gone, settlers of {FACTION} have walked out to found a new town, {PLACE}, {TALE}. They are mostly young, mostly hopeful, and mostly short of everything.\n\nTheir first letter to the colony is already on the road.</li>
     </texts>
     <summaries>
       <li>{PLACE} is on the map to stay. Its first traders will come by soon, and caravans and visitors from {FACTION} come more often while the town finds its feet.</li>
@@ -111,7 +111,7 @@
         <texts>
           <li>[gift,!timber] {PLACE} has found its feet. The fields are marked out, the walls are up, and the bell bought with the colony's silver rings for market every week.</li>
           <li>[timber] {PLACE} has found its feet. There are colony timbers in half the roofs there, and the settlers say so when they come by to trade.</li>
-          <li>[!gift,!timber] {PLACE} has found its feet. Its walls are up, its fields are marked out, and it holds a market on the first day of every week. The colony has new neighbors.</li>
+          <li>[!gift,!timber] {PLACE} has found its feet: walls up, fields marked out, a market on the first day of every week. The colony has new neighbors, for better or worse.</li>
         </texts>
         <chronicle>Settlers of {FACTION} founded {PLACE}.</chronicle>
       </li>
@@ -139,8 +139,8 @@
       <li>[drought] {PLACE}, {TALE}, is being abandoned. Its wells have been going dry for two years, and this year the last one failed.\n\n{FACTION} are moving everyone to {ITEM}. The road past the colony is full of carts, and not everyone on it has somewhere to go.</li>
       <li>[raids] {PLACE}, {TALE}, has been raided so often that {FACTION} have stopped rebuilding it. The order has gone out to leave.\n\nThe road to {ITEM} is full of carts. Some of the people on it would rather go anywhere else.</li>
       <li>[sickness] A fever went through {PLACE}, {TALE}, last season, and the people who lived through it don't want to stay where it happened. {FACTION} are giving the town up.\n\nMost are headed for {ITEM}. Some aren't sure where they're headed at all.</li>
-      <li>[mine] The mine that {PLACE} was built around has run out. {FACTION} are giving up the town, {TALE}, and moving its people to {ITEM}.\n\nSome of the miners will come this way looking for work.</li>
-      <li>[river] The river that {PLACE} was built on has changed its course, leaving the town's mills standing over a dry riverbed. {FACTION} are giving the town up.\n\nThe road from {PLACE}, {TALE}, to {ITEM} is busy with carts, and some of them will come this way.</li>
+      <li>[mine] The mine that {PLACE} was built around has given out. {FACTION} are giving up the town, {TALE}, and moving its people to {ITEM}.\n\nMiners are not, as a rule, good at sitting still. Some of them will come this way looking for work.</li>
+      <li>[river] The river that {PLACE} was built on has moved its bed, and left the town's mills standing over dry stones. {FACTION} are giving it up.\n\nThe road from {PLACE}, {TALE}, to {ITEM} is busy with carts, and some of them will come this way.</li>
     </texts>
     <summaries>
       <li>When it's over, {PLACE} will be gone from the map. Until then, people leaving it may ask the colony for shelter, and what they leave behind is anyone's to take.</li>
@@ -201,8 +201,8 @@
           <li>What {PLACE} leaves behind</li>
         </titles>
         <texts>
-          <li>The last carts are leaving {PLACE}, and what didn't fit is being left behind: timber, tools, half a mill. {FACTION} don't much mind who takes the rest.\n\n{A_nameDef} says the colony could fill a few carts of its own. Some think it would be no better than robbing a grave.</li>
-          <li>{FACTION} are leaving {PLACE} with what their carts can hold, and leaving the rest: beams, doors, a forge too heavy to move. Anyone who wants it can have it, they say.\n\n{A_nameDef} thinks the colony should take its share. Some of the others don't like the idea of picking over a town its people have only just left.</li>
+          <li>The last carts are leaving {PLACE}, and what didn't fit is being left behind: timber, tools, half a mill. {FACTION} don't much mind who takes the rest.\n\n{A_nameDef} says the colony could fill a few carts of its own. Some think it's no different from picking over a grave.</li>
+          <li>{FACTION} are leaving {PLACE} with what their carts can hold, and leaving the rest: beams, doors, a forge too heavy to move. Anyone who wants it can have it, they say.\n\n{A_nameDef} thinks the colony should take its share. Some of the others would rather not pick over a town that's still warm.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -230,8 +230,8 @@
           <li>{PLACE} stands empty</li>
         </titles>
         <texts>
-          <li>The last of {FACTION} left {PLACE} three days ago. The gates stand open, the roofs are starting to fall in, and grass is growing on the road.\n\nOnly a ruin is left.</li>
-          <li>[salvaged] {PLACE} is empty. What the colony took from it is in the colony's stores now, and the rest is left to the weather.\n\nSwallows have moved into the old mill.</li>
+          <li>The last of {FACTION} left {PLACE} three days ago. The gates stand open, the roofs are already going, and grass is creeping in at the edges of the road.\n\nIn a year it will be a ruin, and in ten a story.</li>
+          <li>[salvaged] {PLACE} is empty. What the colony carted away is in its stores now, and the rest is the weather's business.\n\nSwallows have moved into the old mill.</li>
         </texts>
         <chronicle>{FACTION} abandoned {PLACE}.</chronicle>
       </li>
@@ -269,8 +269,8 @@
       <li>A trading season</li>
     </titles>
     <texts>
-      <li>[theirLowtech] The roads through the region are safe this year, or safe enough, and the merchants have come out in force. Every inn between {PLACE} and the colony is full, and {FACTION}'s caravan masters are planning new routes over their beer.\n\nWhile it lasts, more people want the colony's goods, and they pay more for them.</li>
-      <li>[theirHightech] Fuel is cheap and the roads are clear, and every trading house in the region knows it. {FACTION} have put three new caravans on the road out of {PLACE} this month alone.\n\nEveryone on the road knows it won't last, so they are all in a hurry.</li>
+      <li>[theirLowtech] The roads through the region are safe this year, or safe enough, and the merchants have come out in force. Every inn between {PLACE} and the colony is full, and {FACTION}'s caravan masters are drawing new routes on the tables in spilled beer.\n\nWhile it lasts, the colony's goods are worth more to more people.</li>
+      <li>[theirHightech] Fuel is cheap and the roads are clear, and every trading house in the region knows it. {FACTION} have put three new caravans on the road out of {PLACE} this month alone.\n\nIt won't last. Everyone on the road knows that too, which is why they're all in such a hurry.</li>
       <li>[summer] Long days and dry roads have brought the merchants out early this year. Caravans of {FACTION} and everyone else are passing the colony every few days, and the talk in {PLACE} is of nothing but prices.</li>
     </texts>
     <summaries>
@@ -303,8 +303,8 @@
           <li>Traders on the colony's land</li>
         </titles>
         <texts>
-          <li>Merchants have started cutting across the colony's land to save half a day on the road to {PLACE}. They are polite about it, but they leave gates open and help themselves to the colony's water.\n\nSome at the colony think the merchants should pay for the privilege; a toll would bring in about {COUNT} silver. Others think a rest stop with water and a fire would make friends of every trader in the region.</li>
-          <li>Merchants' wagons have been crossing the colony's land all week on their way to {PLACE}, stopping to water their animals without asking. Their drivers are polite about it.\n\nA toll on the track across the colony's land would bring in about {COUNT} silver. A rest stop with water and a fire would make friends of every trader in the region.</li>
+          <li>Merchants have started cutting across the colony's land to save half a day on the road to {PLACE}. They are polite about it. They also leave gates open and drink the colony's water.\n\nSome at the colony think the merchants should pay for the privilege; a toll would bring in about {COUNT} silver. Others think a rest stop with water and a fire would make friends of every trader in the region.</li>
+          <li>Word came from a merchant's boy, asking very politely whether his master's wagons might water on the colony's land again on their way to {PLACE}. They have been doing it all week without asking. So have most of the caravans.\n\nA toll on the track across the colony's land would bring in about {COUNT} silver. A rest stop with water and a fire would make friends of every trader in the region.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -321,7 +321,7 @@
           </li>
           <li>
             <label>Set up a rest stop (60 wood)</label>
-            <outcome>The colony carries timber out to the gate for a shelter by the track, with a fire pit and a trough. The merchants appreciate it.</outcome>
+            <outcome>The colony sends out timber for a shelter by the track, with a fire pit and a trough. The merchants appreciate it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the rest stop</label><what>WoodLog</what><count>60</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>4</amount></li>
@@ -333,7 +333,7 @@
           </li>
           <li>
             <label>Leave it</label>
-            <outcome>The merchants keep cutting across, and the colony asks them to close the gates behind them.</outcome>
+            <outcome>The merchants keep cutting across. Somebody puts up a sign asking them to close the gate.</outcome>
           </li>
         </options>
       </li>
@@ -361,7 +361,7 @@
         </titles>
         <texts>
           <li>[toll] The caravans are going home for the season, and the colony's toll jar did well out of them. The merchants have been telling every town on the road about it, and not kindly.</li>
-          <li>[reststop] The last caravans of the season thanked the colony for its rest stop on their way home. The merchants who stopped there will be back next year, and they will bring friends.</li>
+          <li>[reststop] The last caravans of the season stopped at the colony's shelter on their way home, and left their thanks. The merchants who warmed themselves at that fire will be back next year, and they will bring friends.</li>
           <li>[!toll,!reststop] The caravans are going home with lighter wagons and heavier purses, and the roads will be quieter for a while.</li>
         </texts>
         <chronicle>A busy trading season came to an end.</chronicle>
@@ -408,7 +408,7 @@
       <li>{NAME} at {PLACE}</li>
     </titles>
     <texts>
-      <li>{FACTION} are holding {NAME} at {PLACE}, the biggest in years. Traders, actors, cooks and craftsmen are coming from every town in the region, and there will be contests on the green: the best shot, the best cook, the finest work.\n\nThe colony has been invited, along with everyone else.</li>
+      <li>{FACTION} are holding {NAME} at {PLACE}, the biggest in years. Traders, players, cooks and craftsmen are coming from every town in the region, and there will be contests on the green: the best shot, the best cook, the finest work.\n\nThe colony has been invited, along with everyone else.</li>
       <li>[theirHightech] {FACTION} have announced {NAME} at {PLACE}: market stalls, music, a contest in every trade worth having, and floodlights so it can run all night.\n\nThe colony's invitation came on stiff card, printed in two colors, with its name spelled nearly right.</li>
       <li>Riders from {PLACE} have been round every settlement in the region with the news: {FACTION} are holding {NAME}, with stalls, music and a contest in every trade worth having.\n\nThe last fair at {PLACE} is still talked about. This one, {FACTION} promise, will be bigger, and the colony is asked to come.</li>
     </texts>
@@ -484,10 +484,10 @@
           <li>{NAME} closes</li>
         </titles>
         <texts>
-          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The fair's carter is bringing back the takings, {COUNT} silver for the colony's goods, and {B_nameDef} won the contest in {SKILL}. The prize is on its way to the colony.\n\nA lot of people at {PLACE} were talking about the colony this week.</li>
-          <li>[sent,noPrize] {NAME} has closed. The fair's carter is bringing back the colony's takings, {COUNT} silver for its goods.\n\n{B_nameDef} did well in the contest in {SKILL}, but not well enough to win. Next year, {B_nameDef} says.</li>
-          <li>[sent,!entered] {NAME} has closed, and the fair's carter is on the way with the colony's takings: {COUNT} silver, in a sealed bag.</li>
-          <li>[!sent,prize] {NAME} has closed, and {B_nameDef} won the contest in {SKILL}. The prize is on its way to the colony, and {B_nameDef} has been bragging about it since the news came.</li>
+          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The fair's carter is bringing back the takings, {COUNT} silver for the colony's goods, and {B_nameDef} won the contest in {SKILL}; the prize is on its way home.\n\nThe colony's name was on a lot of lips at {PLACE} this week.</li>
+          <li>[sent,noPrize] {NAME} has closed. The colony's takings are coming back with the fair's carter, {COUNT} silver for its goods.\n\n{B_nameDef} did well in the contest in {SKILL}, but not well enough. Next year, {B_nameDef} says.</li>
+          <li>[sent,!entered] {NAME} has closed, and the fair's carter is coming around with the colony's takings: {COUNT} silver, in a sealed bag.</li>
+          <li>[!sent,prize] {NAME} has closed, and {B_nameDef} won the contest in {SKILL}. The prize is on its way home, and the bragging came ahead of it.</li>
           <li>[!sent,noPrize] {NAME} has closed. {B_nameDef} came close in the contest in {SKILL}, and has been explaining the judges' mistake to anyone who will listen.</li>
           <li>[!sent,!entered] {NAME} has closed, and the travelers who went to it are drifting home with stories. The colony will hear them for weeks.</li>
         </texts>
@@ -522,9 +522,9 @@
       <li>The pilgrimage to {PLACE}</li>
     </titles>
     <texts>
-      <li>Once in a generation, the faithful of {FACTION} walk to the old shrine at {PLACE}, and this is that year. They are on every road, in twos and threes and in long singing columns, and many of them pass the colony.\n\nMost carry little and ask for little, and they remember where they were welcomed.</li>
+      <li>Once in a generation, the faithful of {FACTION} walk to the old shrine at {PLACE}, and this is that year. They are on every road, in twos and threes and in long singing columns, and many of them pass the colony.\n\nMost carry little and ask for less. All of them will remember where they were welcomed.</li>
       <li>[theirHightech] Some walk and some ride in the backs of trucks, and all of them are singing. The faithful of {FACTION} are on their way to the old shrine at {PLACE}, as they are once in a generation, and the colony sits on one of their roads.\n\nThe trucks stop for anyone who waves them down. They will stop at the colony's gate too, if it's open.</li>
-      <li>[colony:Devout] The faithful of {FACTION} are walking to the old shrine at {PLACE} this year, as they do once in a generation. On the roads people say the colony keeps its own faith well, and more than a few of the pilgrims mean to stop there on the way.\n\nMost carry little and will ask for little.</li>
+      <li>[colony:Devout] The faithful of {FACTION} are walking to the old shrine at {PLACE} this year, as they do once in a generation, and the talk on the roads is that the colony keeps its own faith well. More than a few of them mean to stop there on the way.\n\nMost carry little, and will ask for less.</li>
     </texts>
     <summaries>
       <li>Pilgrims and travelers pass the colony far more often, hungry ones among them. Hosting them costs food and earns lasting goodwill with {FACTION}.</li>
@@ -604,7 +604,7 @@
           <li>A blessing for the colony</li>
         </titles>
         <texts>
-          <li>On their way home from {PLACE}, the pilgrims have stopped again at the colony's gate. Their leader means to say a blessing over the fields and the people in them, in the old way, and they will be on the road again before anyone can offer them a meal.\n\nEven the colony's doubters keep their heads bowed while it lasts.</li>
+          <li>On their way home from {PLACE}, the pilgrims have stopped again at the colony's gate. Their leader means to say a blessing over the fields and the people in them, in the old way, and they will be on the road again before anyone can offer supper.\n\nEven the colony's doubters keep their heads bowed while it lasts.</li>
           <li>The pilgrims are back from {PLACE}, slower and quieter than they went. Their leader has stopped at the colony's gate to bless its fields on the way past, as their custom asks, and they won't stay to eat.</li>
         </texts>
         <effects>
@@ -654,7 +654,7 @@
     <texts>
       <li>Someone in {PLACE} found silver in a creek bed last month, and now half the region is out with picks and pans. Prospectors have been passing the colony for days, and some of them are looking hard at the colony's own land.\n\nMost will find nothing. A few will get rich, and a few will want to stay.</li>
       <li>[theirHightech] A survey crew out of {PLACE} hit a silver seam last month, and the news got out before the claim was filed. Now prospectors with metal detectors and borrowed trucks are combing every hill in the region, the colony's included.\n\nThe claims office at {PLACE} has a line out the door and around the block.</li>
-      <li>A creek near {PLACE} turned up silver last month, a fistful in a single pan, and the whole region has heard. Prospectors are on every road with picks over their shoulders, and some have been looking hard at the colony's land.\n\nMost of them will go home with nothing, and a few will settle in the region for good.</li>
+      <li>A creek near {PLACE} turned up silver last month, a fistful in a single pan, and the whole region has heard. Prospectors are on every road with picks over their shoulders, and some have been looking hard at the colony's land.\n\nMost of them will go home with sore backs. A few won't go home at all.</li>
     </texts>
     <summaries>
       <li>Travelers and prospectors pass the colony often, and some will ask to stay. The colony can let them work its land for a share of what they find.</li>
@@ -679,8 +679,8 @@
           <li>Prospectors on the colony's land</li>
         </titles>
         <texts>
-          <li>A party of prospectors from {PLACE} is at the gate, asking to pan for silver on the colony's land. They will pay a share of whatever they find when the rush is over, or {COUNT} silver now, whichever the colony prefers.\n\nThey seem honest enough.</li>
-          <li>Prospectors from {PLACE} have come up to the gate with their pans and a proposal: let them pan for silver on the colony's land, and they'll pay a share of what they find when the rush is over, or {COUNT} silver now.\n\nThey look honest.</li>
+          <li>A party of prospectors from {PLACE} is at the gate, asking to work the colony's land. They will pay a share of whatever they find when the rush is over, or {COUNT} silver now, whichever the colony prefers.\n\nThey seem honest enough. Prospectors usually do.</li>
+          <li>Prospectors from {PLACE} have come up to the gate with their pans and a proposal: let them work the colony's land, and they'll pay a share of what they find when the rush is over, or {COUNT} silver now.\n\nThey look honest. Prospectors always do.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -723,7 +723,7 @@
         </effects>
         <texts>
           <li>One of the prospectors found a nugget the size of a thumb in the colony's creek, and they mean to come back and work it by lamplight.</li>
-          <li>The prospectors on the colony's land turned up a nugget as big as a thumb today, and they're coming back to work the spot by lamplight.</li>
+          <li>The prospectors on the colony's land turned up a nugget as big as a thumb, and they're coming back up to work the spot by lamplight.</li>
         </texts>
       </li>
       <li>
@@ -737,7 +737,7 @@
           <li>A prospector wants to stay</li>
         </titles>
         <texts>
-          <li>One of the prospectors has given up on getting rich and has come up to the gate. After three weeks of panning with nothing to show for it, a roof, regular meals and paid work look better than more of the same.\n\nThe prospector asks whether the colony could use another pair of hands.</li>
+          <li>One of the prospectors has given up on getting rich, and has come up to the gate. After three weeks in the creek beds with nothing to show for it, there are worse things than a roof, regular meals and work that pays in something besides hope.\n\nThe prospector asks whether the colony could use another pair of hands.</li>
           <li>One of the prospectors has walked up from the creek with an empty pan and a sunburned neck, and asks for work instead. Three weeks of panning paid nothing, and a roof and a meal a day would pay better.\n\nThe prospector wants to know if the colony could use another pair of hands.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -765,9 +765,9 @@
           <li>The rush moves on</li>
         </titles>
         <texts>
-          <li>[share] The prospectors who worked the colony's land have gone on over the ridge to the next valley, and their courier is bringing the colony's share: {COUNT} silver.</li>
-          <li>[fee] The rush has moved on to the next valley, and the prospectors with it. The colony was paid up front, and the prospectors never said whether they found more than that.</li>
-          <li>[!share,!fee] The rush has gone over the ridge to the next valley, and the colony's land is quiet again.</li>
+          <li>[share] On their way over the ridge to the next valley, the prospectors who worked the colony's land are sending the colony's share: {COUNT} silver, counted twice in front of witnesses.</li>
+          <li>[fee] The rush has moved on to the next valley, and the prospectors with it. The colony was paid up front. Whether they found more than that, they didn't say.</li>
+          <li>[!share,!fee] The colony's land is quiet again, and still full of whatever was or wasn't in it. The rush has gone over the ridge to the next valley.</li>
         </texts>
         <chronicle>The silver rush moved on.</chronicle>
       </li>

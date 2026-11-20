@@ -28,9 +28,9 @@
     <texts>
       <li>[!pokemon,town,lowtech] In {PLACE} they talk of nothing else: {NAME}, a {BEAST} older and bigger than any living hunter has seen, has come down into the region. Travelers swear to its tracks, a hand deep in hard ground, and the old hunters of {FACTION} are mending their spears.\n\nWhere it was last seen is marked on the world map.</li>
       <li>[!pokemon,town,!lowtech] The traders' radio has carried one story all week: {NAME}, a {BEAST} bigger than any on record, is roaming the hills near {PLACE}. The hunters of {FACTION} have put out the word that they would like it gone, or at least kept away from their herds.\n\nWhere it was last seen is marked on the world map.</li>
-      <li>[!pokemon,nofaction] The travelers who stop at the colony all tell the same story: {NAME}, a {BEAST} older and bigger than any the region has seen, has come down out of the wild country. Nobody agrees on what it eats, but everyone describes the same huge tracks.\n\nWhere it was last seen is marked on the world map.</li>
-      <li>[!pokemon,titan] An enormous beast has been walking the region's valleys. The hunters call it {NAME}: a {BEAST} so old that moss grows on its back, and so heavy that it leaves a hollow in the ground where it lies down.\n\nWhere it was last seen is marked on the world map.</li>
-      <li>[!pokemon,predator,town] {NAME}, a {BEAST} the hunters of {FACTION} have tracked for three winters, has come into the region. It took two of their herd beasts at {PLACE} and left a third alive.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[!pokemon,nofaction] The travelers who stop at the colony all tell the same story: {NAME}, a {BEAST} older and bigger than any the region has seen, has come down out of the wild country. Nobody agrees on what it eats. Everybody agrees on its tracks.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[!pokemon,titan] Something the size of a hill has been walking the region's valleys. The hunters call it {NAME}: a {BEAST} so old that moss grows on its back, so big that the ground keeps the shape of where it lay.\n\nWhere it was last seen is marked on the world map.</li>
+      <li>[!pokemon,predator,town] {NAME}, a {BEAST} the hunters of {FACTION} have tracked for three winters, has come into the region. It took two of their herd beasts at {PLACE} and left a third alive, as if to make a point.\n\nWhere it was last seen is marked on the world map.</li>
       <li>[pokemon] {NAME} has been seen in the region. The trainers who pass through speak of it in low voices: a legendary Pokémon, the kind the old stories are about, out in the open where anyone could find it.\n\nWhere it was last seen is marked on the world map.</li>
     </texts>
     <summaries>
@@ -128,7 +128,7 @@
           <li>{NAME} is dead</li>
         </titles>
         <texts>
-          <li>{NAME} is dead. Nobody from the colony brought it down, and the whole region is arguing about who did.</li>
+          <li>{NAME} is dead. Nobody of the colony brought it down, and the whole region is arguing about who did.</li>
         </texts>
         <chronicle>{NAME}, the legend of the region, died.</chronicle>
       </li>
@@ -152,7 +152,7 @@
         </titles>
         <texts>
           <li>[town] The hunters of {FACTION} followed {NAME}'s tracks as far as the hills beyond {PLACE}, and there they turned back. It has left the region, and nobody can say whether it will come again.</li>
-          <li>[nofaction] The travelers have stopped telling of {NAME}. It has left the region the way it came.</li>
+          <li>[nofaction] The travelers have stopped telling of {NAME}. It has left the region by whatever way it came, and the stories go with it.</li>
         </texts>
         <chronicle>{NAME}, the legend of the region, moved on.</chronicle>
       </li>

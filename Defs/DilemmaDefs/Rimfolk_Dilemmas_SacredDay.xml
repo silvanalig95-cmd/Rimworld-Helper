@@ -17,7 +17,7 @@
     <minColonists>2</minColonists>
     <seasons><li>Spring</li><li>Summer</li><li>Fall</li><li>PermanentSummer</li></seasons>
     <texts>
-      <li>[tame] The faith holds the {THING} sacred, and {A_nameDef} says the colony has never once kept a day for them. {A_nameDef} would carry food out to {X_nameDef} and have everyone gather round it for an afternoon off work.</li>
+      <li>[tame] The faith holds the {THING} sacred, and {A_nameDef} says the colony has never once kept a day for them. {A_nameDef} would carry food out to {X_nameDef} and have everyone gather round it for an afternoon, the work set down.</li>
       <li>[wild] {A_nameDef} has seen {X_nameDef} out at the edge of the colony's land, and the faith holds the {THING} sacred. {A_nameDef} would carry food out to it and have everyone gather quietly nearby for the afternoon, as a day for the sacred animals.</li>
       <li>[colony:Traditional] Where {A_nameDef} grew up, the sacred animals had a day of their own each year. The faith holds the {THING} sacred here too, and {X_nameDef} is out there now.</li>
     </texts>

@@ -136,7 +136,7 @@
         <li>It comes when I call. It sleeps by my bed. It's mine, and I'm its.</li>
         <li>I have my very own animal now, and I'm going to take care of it better than anyone has ever taken care of anything.</li>
       </plain>
-      <cheerful><li>I have a best friend with four legs, and I'm going to look after it.</li></cheerful>
+      <cheerful><li>I have a best friend with four legs! Five if you count the tail. I count the tail.</li></cheerful>
       <warm><li>My animal and I look after each other. It's the most important job I have.</li></warm>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -188,7 +188,7 @@
     <chosen>
       <plain>
         <li>Always the easy jobs. I'll get good enough at {SKILL} that they have to give me the hard ones.</li>
-        <li>I want to be the one they ask for help, not the one they send to fetch someone else.</li>
+        <li>I want to be the one they ask, not the one they ask to fetch the one they ask.</li>
         <li>[sparked] They wouldn't let me near the real work today. Fine. I'll be so good they can't stop me.</li>
       </plain>
       <blunt><li>{SKILL}. I'm going to be good at it. Then they'll stop treating me like a child.</li></blunt>
@@ -294,7 +294,7 @@
     </chosen>
     <achieved>
       <plain>
-        <li>So this is what the songs are about. They don't come close to how it feels.</li>
+        <li>So this is what the songs are about. They didn't get it right. They didn't get it nearly right enough.</li>
         <li>I'm in love, and they love me back, and I keep forgetting what I came into rooms for.</li>
       </plain>
       <cheerful><li>I'm in love, everyone can tell, and I don't care!</li></cheerful>
@@ -459,7 +459,7 @@
     <achieved>
       <plain>
         <li>I prayed tonight and meant every word of it.</li>
-        <li>My faith came back slowly. One morning I noticed it was there again.</li>
+        <li>My faith came back the way spring does. One morning I noticed it was simply there.</li>
       </plain>
       <warm><li>I believe again. I'd forgotten how quiet my head goes when I pray.</li></warm>
       <gloomy><li>My doubts haven't gone. My faith is just bigger than them now.</li></gloomy>
@@ -557,7 +557,7 @@
         <li>Ten days and nights without the old fear. I slept through a thunderstorm last night and woke up smiling.</li>
         <li>I feel safe here again. I've stopped sleeping with my boots on.</li>
       </plain>
-      <warm><li>I'm safe, and I really believe it now. The fear has gone.</li></warm>
+      <warm><li>I'm safe, and I know it, deep down where the fear used to live.</li></warm>
       <gloomy><li>Safe. I don't trust it to last, but I'll take every day of it.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>
@@ -618,9 +618,9 @@
     <achieved>
       <plain>
         <li>I thought about them today and smiled before I cried. That's new.</li>
-        <li>The grief has eased. I still talk to them sometimes, and it doesn't hurt like it did.</li>
+        <li>The grief has gone quiet. They haven't. I talk to them sometimes, and it doesn't hurt like it did.</li>
       </plain>
-      <warm><li>I still think of them every day, but it doesn't crush me any more.</li></warm>
+      <warm><li>I carry them with me now, gently, instead of being crushed under them.</li></warm>
       <gloomy><li>It's eased. It'll never go. I can live with it now, which is different.</li></gloomy>
     </achieved>
   </ColonyCouncil.AspirationDef>

@@ -17,9 +17,9 @@
     <texts>
       <li>[lowtech] Midsummer is here, and {A_nameDef} has dragged half a dead tree into the yard for the fire. Back home, {A_nameDef} says, people jumped the midsummer fire for luck, and {A_pronoun} would like to try it here.\n\nThe woodpile would be a good deal lower by morning.</li>
       <li>[!lowtech] {A_nameDef} wants the lamps off on the shortest night of the year, and a bonfire in the yard instead, with everyone out around it until the sky goes pale.\n\nIt would burn a good stack of firewood.</li>
-      <li>[rain] It has rained since breakfast, on midsummer of all days. {A_nameDef} still wants the bonfire tonight, and has kept a stack of logs dry under the eaves all week in case it came to this.</li>
-      <li>[trait:Pyromaniac] {A_nameDef} has a plan for a midsummer bonfire: where the logs go, how high, which way the wind will take the sparks. If the council says no, {A_nameDef} may well light it anyway.</li>
-      <li>[colony:Traditional] It's midsummer, and the colony keeps its seasonal customs. {A_nameDef} has the kindling laid already and only wants the council's word to light it.</li>
+      <li>[rain] Rain since breakfast, on midsummer of all days. {A_nameDef} still wants the bonfire tonight, and has kept a stack of logs dry under the eaves all week in case it came to this.</li>
+      <li>[trait:Pyromaniac] {A_nameDef} has a plan for a midsummer bonfire: where the logs go, how high, which way the wind will take the sparks. The council would rather {A_nameDef} lit it with permission than without.</li>
+      <li>[colony:Traditional] Midsummer, and the colony keeps its seasons. {A_nameDef} has the kindling laid already and only wants the council's word to light it.</li>
     </texts>
     <outcomes>
       <li>
@@ -86,7 +86,7 @@
     <defName>Council_Var_Dlm_Midwinter</defName>
     <dilemma>Council_Dilemma_Midwinter</dilemma>
     <texts>
-      <li>[lowtech] The longest night has come, and the hall fire is the only warm place left. {A_nameDef} wants to keep it the old way, with everyone in one room, extra food and a story from each.</li>
+      <li>[lowtech] The longest night has come, and the hall fire is the only warm place left. {A_nameDef} wants to keep it the old way: everyone in one room, extra food, and a story from each.</li>
       <li>[!lowtech] The heaters have run flat out since noon and the rooms are still cold. It's the longest night of the year, and {A_nameDef} thinks this is the night to bring everyone into one room, with extra rations and every lamp lit.</li>
       <li>[snow] Snow has been falling since morning on the longest night of the year. {A_nameDef} would like it marked with extra food and a long evening together, before everyone scatters to their cold rooms.</li>
       <li>[trait:Kind] {A_nameDef} has been going room to room all evening with blankets. It's midwinter, {A_nameDef} tells the council, and no night to spend alone. Extra food, one big fire, and all of them round it until late.</li>
@@ -122,7 +122,7 @@
     <dilemma>Council_Dilemma_NameTheYear</dilemma>
     <texts>
       <li>Spring, and the new year still has no name. {A_nameDef} has suggested {A_possessive} own and repeats it at every meal. The other favorites are the colony's dead and, for reasons no one has explained, the muffalo.</li>
-      <li>[lowtech] By old custom the year gets its name at the first planting. {A_nameDef} has carved a candidate into the dining table: {A_possessive} own name. Someone else has carved a muffalo next to it.\n\nThe council has been asked to choose.</li>
+      <li>[lowtech] By old custom the year gets its name at the first planting. {A_nameDef} has carved a candidate into the dining table: {A_possessive} own name. Someone else has carved a muffalo next to it.\n\nThe council has been asked to choose before the table runs out of room.</li>
       <li>[trait:Jealous] {A_nameDef} heard that the year might be named after someone else and has started a campaign: {A_possessive} own name, written on a board by the door. Others want the year named for the dead. A few want the muffalo.</li>
     </texts>
     <outcomes>
@@ -152,7 +152,7 @@
     <defName>Council_Var_Dlm_Spoils</defName>
     <dilemma>Council_Dilemma_Spoils</dilemma>
     <texts>
-      <li>[lowtech] Among the things the raiders left are good boots, a shield with only one crack in it, and a bow {A_nameDef} has already restrung. {A_nameDef} did more of the killing than anyone and wants first pick.\n\nThe others want the council to decide.</li>
+      <li>[lowtech] The raiders left more than bodies: good boots, a shield with only one crack in it, a bow {A_nameDef} has already restrung. {A_nameDef} did more of the killing than anyone and wants first pick.\n\nThe others want the council to decide.</li>
       <li>[!lowtech] There's a rifle out there with a scope that still works, and {A_nameDef} has had an eye on it since the shooting stopped. {A_nameDef} hit more raiders than anyone and says that should count when the gear is shared out.\n\nThe others haven't agreed to anything yet.</li>
       <li>[winter] The raiders came dressed for winter, and their coats are warmer than anything the colony owns. {A_nameDef}, who did most of the shooting, has asked for the best one. So has nearly everyone else.</li>
       <li>[trait:Greedy] {A_nameDef} was out among the bodies before the smoke had cleared, sorting the gear into two piles: {A_possessive} pile and the rest. {A_nameDef} fought hardest and sees nothing wrong with it.\n\nThe others want the council to have a say.</li>

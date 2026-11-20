@@ -104,7 +104,7 @@
     </titles>
     <texts>
       <li>{X_nameDef}, an elder of {FACTION}'s herders, has walked a great herd down from the high pastures ahead of the snow, and asks {A_nameDef} for leave to winter it {PLACE}. They have brought their own hay for the worst of it, {X_pronoun} says, and will keep the beasts off the colony's fields.</li>
-      <li>[snow] The snow has closed the passes behind {FACTION}'s herders, and their herd needs somewhere to spend the winter. {X_nameDef} asked {A_nameDef} whether the colony would let them graze {PLACE} until the thaw.</li>
+      <li>[snow] The snow has closed the passes behind {FACTION}'s herders, and their herd needs somewhere to see the winter out. {X_nameDef} asked {A_nameDef}, with the herd lowing beyond the ridge, whether the colony would let them graze {PLACE} until the thaw comes.</li>
       <li>[their:grateful] {FACTION}'s herders remember the colony kindly, and {X_nameDef} has brought their winter herd straight to it and asks {A_nameDef} for the grazing {PLACE}, as between friends, with wool or silver for it.</li>
       <li>[ws:drove] The drove roads are busy this year, and {FACTION}'s herders have turned off them with a herd too big to winter on the road. {X_nameDef} asks {A_nameDef} for winter grazing {PLACE}.</li>
       <li>[fall] {FACTION}'s herders are bringing their herd down for the winter, and the colony's land lies on their way. {X_nameDef} asks {A_nameDef} whether they might stop {PLACE} for the cold months, with the beasts grazing past the ridge.</li>
@@ -116,14 +116,14 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the herders {PLACE}, says {X_pronoun} has followed the grass long enough and asks whether the colony could use someone who knows beasts.</li>
-      <li>{X_nameDef} from the herders' winter camp asked today whether {X_pronoun} might stay at the colony when the herd moves on in spring.</li>
+      <li>{X_nameDef} from the herders' winter camp has been in the colony's barn most evenings, unasked. Today {X_pronoun} asked whether {X_pronoun} might stay when the herd moves on in spring.</li>
     </joinTexts>
     <farewell>
       <li>The herders of {FACTION} have gathered the herd and gone back up toward the high pastures.</li>
-      <li>{FACTION}'s herders have left their winter camp {PLACE} and taken the herd back toward the high pastures.</li>
-      <li>The herders have gathered their herd and moved on.</li>
-      <li>[left:young] {FACTION}'s herders gathered the herd and went back toward the high pastures, and {X_nameDef} stopped at the colony's gate on the way to hand over a young beast from the herd as thanks for the grazing. It is the colony's now.</li>
-      <li>[left:young] The herders have left the winter camp {PLACE}. At the gate, {X_nameDef} left the colony a young beast from the herd as thanks for the grazing.</li>
+      <li>{FACTION}'s winter camp {PLACE} is empty. The herd went out with the dog working the stragglers, and the bells were heard a long while after.</li>
+      <li>The herders moved their herd on with the weather.</li>
+      <li>[left:young] {FACTION}'s herders gathered the herd and went back toward the high pastures, and {X_nameDef} stopped at the colony's gate on the way to hand over a young beast of the herd, for the grass. It is the colony's now.</li>
+      <li>[left:young] The winter camp {PLACE} is empty. {X_nameDef} counted the herd one last time at the gate, came out one short on purpose, and left the colony a young beast of it in thanks for the grazing.</li>
     </farewell>
     <lines>
       <li>Count them again, slowly.</li>
@@ -146,7 +146,7 @@
     </momentLines>
     <helpTexts>
       <li>[milk] {X_nameDef} saw to one of the herd {PLACE} and carried what it gave over to the edge of the herders' camp for the colony: {COUNT} {THING}.</li>
-      <li>[tales] {A_nameDef} sat at the herders' winter fire and heard about every pasture between here and the mountains, and which of them have wolves.</li>
+      <li>[tales] {A_nameDef} sat at the herders' winter fire and heard about every pasture between here and the mountains, and which of them a wolf pack keeps. {A_nameDef} came back smelling of smoke and wool.</li>
     </helpTexts>
     <asks>
       <li>

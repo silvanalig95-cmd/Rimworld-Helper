@@ -12,8 +12,8 @@
     <defName>Rimfolk_Var2_DlmS_KinInChains</defName>
     <dilemma>Council_DlmS_KinInChains</dilemma>
     <texts>
-      <li>[past:soldier] {A_nameDef} has seen prisoners carried down to the cells before without a second look. This one is different, because {X_nameDef} is {A_possessive} {RELATION}, taken with the rest of {FACTION}'s fighters. {A_nameDef} has asked the council what the colony means to do with {X_objective}.</li>
-      <li>[winter] It's a cold season to sit in a cell, and {A_nameDef} feels it more than anyone, because the prisoner {X_nameDef} is {A_possessive} {RELATION}, who came here with {FACTION}. {A_nameDef} has asked the council what is to become of {X_objective}.</li>
+      <li>[past:soldier] {A_nameDef} has seen prisoners carried down to the cells before without a second look. Not this one: {X_nameDef} is {A_possessive} {RELATION}, taken with the rest of {FACTION}'s fighters. {A_nameDef} has asked the council what the colony means to do with {X_objective}.</li>
+      <li>[winter] It's a cold season to sit in a cell, and {A_nameDef} knows it better than anyone: the prisoner {X_nameDef} is {A_possessive} {RELATION}, who came here with {FACTION}. {A_nameDef} has asked the council what is to become of {X_objective}.</li>
       <li>[trait:Kind] {A_nameDef} has asked to be the one who takes {X_nameDef}'s meals down to the cells. {X_nameDef} is {A_possessive} {RELATION}, and came with {FACTION}. Now {A_nameDef} asks the council what the colony owes family, even family that came with weapons.</li>
     </texts>
     <outcomes>
@@ -44,7 +44,7 @@
     <dilemma>Council_DlmS_BeastReturns</dilemma>
     <texts>
       <li>[summer] {A_nameDef} has seen {X_definite} twice in the long evenings at the edge of the fields, watching the colony. It's the beast that mauled a colonist and got away, grown fat on the summer.</li>
-      <li>[fog] Something big moved through the fog past the fields. {A_nameDef} heard it before seeing it, and knew it was {X_definite}, the beast that mauled a colonist and got away.</li>
+      <li>[fog] Something big moved through the fog past the fields. {A_nameDef} heard it before seeing it, and knew it: {X_definite}, the beast that mauled a colonist and got away.</li>
     </texts>
     <outcomes>
       <li>
@@ -67,7 +67,7 @@
     <defName>Rimfolk_Var2_DlmS_NemesisInChains</defName>
     <dilemma>Council_DlmS_NemesisInChains</dilemma>
     <texts>
-      <li>[afterraid] The fight is barely over, and {X_nameDef}, the one who hurt {A_nameDef} and got away last time, is in the colony's cells. {A_nameDef} came straight to the council from the cell door, still out of breath.\n\nThe council has to decide what {X_nameDef} is now: a debt to be settled, a mouth to be fed, or a pair of hands to be won over.</li>
+      <li>[afterraid] The fight is barely over, and {X_nameDef} is in the colony's cells: the one who hurt {A_nameDef} and got away last time. {A_nameDef} came straight to the council from the cell door, still out of breath.\n\nThe council has to decide what {X_nameDef} is now: a debt to be settled, a mouth to be fed, or a pair of hands to be won over.</li>
     </texts>
     <outcomes>
       <li>

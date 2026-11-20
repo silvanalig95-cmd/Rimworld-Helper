@@ -96,7 +96,7 @@
     <lines>
       <plain>
         <!-- Greetings -->
-        <li>[greetings,warm] Everyone here was glad to hear from you, {WRITER}. Write again soon, and tell me how the harvest goes.</li>
+        <li>[greetings,warm] It lifted the whole house to hear from you, {WRITER}. Write again soon, and tell me how the harvest goes.</li>
         <li>[greetings,warm,theirLowtech] Your words were read out at our fire, and the children asked for them twice. Come and sit with us when the roads are good.</li>
         <li>[greetings,warm,theirHightech] Good to hear from you. We think well of your people here, and that is not said lightly in {TOWN}.</li>
         <li>[greetings,warm,call] Always good to hear a friendly voice on this line. Call whenever you like, {WRITER}.</li>
@@ -108,7 +108,7 @@
         <li>[greetings,curt] We have read your letter. There is nothing more to say for now.</li>
         <li>[greetings,curt,war] We read your words. They change nothing between us.</li>
         <li>[greetings,refusal] We do not care to keep up a correspondence. Do not trouble us again.</li>
-        <li>[greetings,refusal,war] Your people have killed ours, and not long ago. Keep your greetings.</li>
+        <li>[greetings,refusal,war] Your people's hands are still red with ours. Keep your greetings.</li>
         <li>[greetings,cordial,war] Strange, to get a kind word from your side. It will be remembered, for what it is worth.</li>
         <li>[greetings,cool,war] We read it. Some here say it was kindly meant. Others are not so sure.</li>
         <!-- Condolences -->

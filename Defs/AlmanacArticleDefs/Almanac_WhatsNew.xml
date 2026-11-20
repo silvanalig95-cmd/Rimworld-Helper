@@ -31,6 +31,31 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.276.1</version>
+        <date>20 November 2026</date>
+        <title>Every bad trait can fade</title>
+        <points>
+          <li>Seventeen more ways out of bad traits, so every bad trait Rimfolk gives and most bad traits colonists arrive with can now fade.</li>
+          <li>A psychopath Rimfolk made can, rarely, care for others again after half a year without an execution or an organ taken and with care shown to others; a bloodlust a colonist came with fades after most of a year without a fight.</li>
+          <li>A gourmand who went hungry and then went two months without a food binge eats like anyone else, slothful colonists step up to lazy after hard work done well, the very neurotic ease in a long calm, and a recluse with a friend opens up.</li>
+          <li>With Vanilla Traits Expanded, workaholics learn to rest, the anxious calm down, the squeamish harden, kleptomaniacs stop stealing once forgiven or given a seat, and animal haters soften after a bond, taming or naming the animals.</li>
+          <li>Also with Vanilla Traits Expanded, the submissive stand up, snobs are humbled, couch potatoes get up, insomniacs sleep again, and slobs tidy up, as do Dubs Bad Hygiene's slob and unhygienic.</li>
+          <li>The insanity mod's mood swings and impulsiveness settle after a long calm or therapy sessions, and the character page shows each way out from the start, now with a friend on the Bonds page and an animal bonded to them.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.276.0</version>
+        <date>20 November 2026</date>
+        <title>The flavour words back</title>
+        <points>
+          <li>Letters, wishes, ambitions, life goals, personal stories, council questions, camps and world events have their earlier flavour words back.</li>
+          <li>Where an old line said something the map doesn't show, only that part was changed: no hour a letter can't know, nobody at the gate who isn't there, no well or hill a colony may not have, silver still on its way.</li>
+          <li>The old names came back with them, such as the ambitions a ring of iron and teeth in the mud and the questions a hungry look and the shakes, and the Almanac uses them too.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.275.3</version>
         <date>20 November 2026</date>
         <title>PokéWorld on the shelves</title>

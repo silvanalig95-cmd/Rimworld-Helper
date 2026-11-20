@@ -90,8 +90,8 @@
   <CC_Region_Letter_Label_Industrial>A letter from {TOWN}</CC_Region_Letter_Label_Industrial>
   <CC_Region_Letter_Label_Spacer>A message from {TOWN}</CC_Region_Letter_Label_Spacer>
   <CC_Region_Letter_Label_Empire>A letter under seal from {TOWN}</CC_Region_Letter_Label_Empire>
-  <CC_Region_Letter_Open_Tribal>{FOUNDER} speaks for the new hearth at {TOWN}, {WHERE} of {COLONY}. We came out from {MOTHER} with our families and our fire, and we wanted you to hear it from us before you heard it from anyone else.</CC_Region_Letter_Open_Tribal>
-  <CC_Region_Letter_Open_Tribal_NoMother>{FOUNDER} speaks for the new hearth at {TOWN}, {WHERE} of {COLONY}. We came with our families and our fire, and we wanted you to hear it from us before you heard it from anyone else.</CC_Region_Letter_Open_Tribal_NoMother>
+  <CC_Region_Letter_Open_Tribal>{FOUNDER} speaks for the new hearth at {TOWN}, {WHERE} of {COLONY}. We came out from {MOTHER} with our families and our fire, and we wanted you to hear it from us before you heard it on the wind.</CC_Region_Letter_Open_Tribal>
+  <CC_Region_Letter_Open_Tribal_NoMother>{FOUNDER} speaks for the new hearth at {TOWN}, {WHERE} of {COLONY}. We came with our families and our fire, and we wanted you to hear it from us before you heard it on the wind.</CC_Region_Letter_Open_Tribal_NoMother>
   <CC_Region_Letter_Open_Medieval>To the folk of {COLONY}, from {FOUNDER}, {TITLE} of {TOWN}, greeting. We have raised our first roofs {WHERE} of you, having come out from {MOTHER}, and would be good neighbors if you will have us.</CC_Region_Letter_Open_Medieval>
   <CC_Region_Letter_Open_Medieval_NoMother>To the folk of {COLONY}, from {FOUNDER}, {TITLE} of {TOWN}, greeting. We have raised our first roofs {WHERE} of you, and would be good neighbors if you will have us.</CC_Region_Letter_Open_Medieval_NoMother>
   <CC_Region_Letter_Open_Industrial>{FOUNDER} here, {TITLE} of {TOWN}, the new settlement {WHERE} of you. We came out from {MOTHER} this season and we're putting up walls as fast as we can cut the timber. I thought you should know who your neighbors are.</CC_Region_Letter_Open_Industrial>

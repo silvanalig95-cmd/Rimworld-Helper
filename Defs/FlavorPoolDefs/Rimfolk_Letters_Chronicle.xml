@@ -28,8 +28,8 @@
     <lines>
       <plain>
         <!-- ================= Mastheads ================= -->
-        <li>[ch:head,theirs,w:industrial,!empire] The {TOWN} Courier\nPrinted whenever there is news.</li>
-        <li>[ch:head,theirs,w:industrial,!empire] The {TOWN} Weekly Sheet\nOne page, every week.</li>
+        <li>[ch:head,theirs,w:industrial,!empire] The {TOWN} Courier\nPrinted when there is news, and sometimes when there is not.</li>
+        <li>[ch:head,theirs,w:industrial,!empire] The {TOWN} Weekly Sheet\nOne page. Read it twice.</li>
         <li>[ch:head,theirs,w:industrial|w:spacer,!empire] News from {TOWN}\nAs set down by whoever had the pen this week.</li>
         <li>[ch:head,theirs,w:spacer,!empire] {TOWN} Information Bulletin\nCycle summary. Distribution: all residents, and one friend.</li>
         <li>[ch:head,theirs,w:spacer,!empire] {TOWN} Local Feed, printed copy\nFor those without a terminal, or without the patience for one.</li>
@@ -38,7 +38,7 @@
         <li>[ch:head,theirs,w:tribal] What the people of {TOWN} saw this season, told at the fire.</li>
         <!-- ================= Their fortune ================= -->
         <li>[ch:item,chs:fortune,town:struggling|town:poor,!w:tribal] TIMES HARD. Since {FORTUNEWHY}, the town has been struggling, and the council asks everyone to mend before they buy.</li>
-        <li>[ch:item,chs:fortune,town:struggling|town:poor,!w:tribal] HARD TIMES CONTINUE. Stores are low and people are worried. The sheet reminds readers that the town has come through worse.</li>
+        <li>[ch:item,chs:fortune,town:struggling|town:poor,!w:tribal] HARD TIMES CONTINUE. Stores are low and spirits lower. The sheet reminds readers that it has been worse, and that it was not much fun then either.</li>
         <li>[ch:item,chs:fortune,town:thriving|town:flourishing,!w:tribal] TRADE IS UP. More wagons on the road than anyone can remember, and the inn has run out of beds and started renting out the stable.</li>
         <li>[ch:item,chs:fortune,town:thriving|town:flourishing,!w:tribal] GOOD TIMES. Since {FORTUNEWHY}, the town has done well. Readers are asked not to boast about it on the road; it attracts the wrong sort.</li>
         <li>[ch:item,chs:fortune,town:struggling|town:poor,w:tribal] This was a lean season. The meat-racks were thin and the old ones ate last.</li>
@@ -49,8 +49,8 @@
         <li>[ch:item,chs:situation,situation,!w:tribal] FROM FURTHER OFF: there is talk on every road of {SITUATION}, and travellers bring a new rumour of it every day, most of them wrong.</li>
         <li>[ch:item,chs:situation,town:situation,w:tribal] This was the season of {TOWNSITUATION}. The old ones say it will be remembered.</li>
         <!-- ================= A death, the head, someone ill ================= -->
-        <li>[ch:item,chs:loss,!w:tribal] IN MEMORY. {LOST}, {LOSTTITLE}, has died. The town turned out for the burial, and many stayed late, telling stories about {LOST}.</li>
-        <li>[ch:item,chs:loss,w:tribal] {LOST} died this season. We sang the long song for them, all of it.</li>
+        <li>[ch:item,chs:loss,!w:tribal] IN MEMORY. {LOST}, {LOSTTITLE}, has died. The town turned out for the burial, and many stayed late, telling stories that {LOST} would have disputed.</li>
+        <li>[ch:item,chs:loss,w:tribal] {LOST} went into the dark this season. We sang the long song for them, all of it.</li>
         <li>[ch:item,chs:head,town:newhead,!w:tribal] NEW AT THE HEAD OF THINGS: {HEAD}, our new {HEADTITLE}, who has promised nothing, which the sheet considers a good start.</li>
         <li>[ch:item,chs:head,town:headdied] {OLDHEAD} is gone, and {HEAD} leads now. The town wishes {HEAD} well, and patience.</li>
         <li>[ch:item,chs:head,town:head,!town:newhead,!w:tribal] {HEAD}, our {HEADTITLE}, reports that all is well, and asks that anyone who disagrees take it up in person, soon, and briefly.</li>
@@ -92,13 +92,13 @@
         <li>[ch:item,chs:season,season:winter,home:frozen,!w:tribal] THE WEATHER. Cold, as ever. The sheet is printed indoors, by the fire, and apologises for the soot.</li>
         <li>[ch:item,chs:season,home:desert,!w:tribal] THE WEATHER. Dry. Not a drop since anyone can remember. The sheet is written in the shade, and slowly.</li>
         <li>[ch:item,chs:season,w:tribal] The {ANIMALS} came down from the hills early this season. The old ones say that means a long cold.</li>
-        <li>[ch:item,chs:season,season:summer,w:tribal] The sun was hot all season. We slept in the day and hunted at night.</li>
+        <li>[ch:item,chs:season,season:summer,w:tribal] The sun sat on us all season like a fat dog. We slept in the day and hunted at night.</li>
         <!-- ================= Notices ================= -->
         <li>[ch:notice,!w:tribal] LOST: one brown goat, answers to nothing. If found, keep it; it is yours now.</li>
         <li>[ch:notice,!w:tribal] FOUND: a boot, left, size large, in the well. The owner may collect it, and explain.</li>
-        <li>[ch:notice,!w:tribal] FOR SALE: a cart, one wheel missing. Enquire at the smithy.</li>
+        <li>[ch:notice,!w:tribal] FOR SALE: a cart, one wheel missing. Or a wheel, one cart missing. Enquire at the smithy.</li>
         <li>[ch:notice,!w:tribal] WANTED: someone who can play the fiddle. Someone who thinks they can need not apply.</li>
-        <li>[ch:notice,!w:tribal] NOTICE: the bridge is closed again, for the same reason as before.</li>
+        <li>[ch:notice,!w:tribal] NOTICE: the bridge is closed again. It is the same bridge. It is the same reason.</li>
         <li>[ch:notice,!w:tribal] THANKS to whoever left the basket of eggs at the widow's door. She knows it was you.</li>
         <li>[ch:notice,!w:tribal] REMINDER: the well is for water. It is not for cooling drinks, washing dogs, or settling arguments.</li>
         <li>[ch:notice,!w:tribal] APOLOGY: the sheet regrets an error in its last issue. The pig did not win the vote. The pig was not standing.</li>
@@ -107,14 +107,14 @@
         <li>[ch:notice,w:spacer] SYSTEM NOTICE: the water reclaimer will be down for maintenance. Residents are advised to drink responsibly and wash briefly.</li>
         <li>[ch:notice,w:spacer] LOST: one cleaning drone, answers to its serial number, last seen heading for the fields with an air of purpose.</li>
         <li>[ch:notice,w:industrial] NOTICE: the generator will be off on the third evening for repairs. Bring a candle and a good story.</li>
-        <li>[ch:notice,w:tribal] The dog with the white ear has had puppies. Anyone who wants one should come and see them.</li>
-        <li>[ch:notice,w:tribal] Someone has been taking the good stones from the river. Please put them back.</li>
+        <li>[ch:notice,w:tribal] The dog with the white ear has had puppies. Anyone who wants one should ask the dog.</li>
+        <li>[ch:notice,w:tribal] Someone has been taking the good stones from the river. The river knows who.</li>
         <li>[ch:notice,w:tribal] A child found a feather as long as an arm. Nobody knows what bird. The child sleeps with it.</li>
         <!-- ================= The foot ================= -->
         <li>[ch:end,theirs,!w:tribal,!empire] Printed at {TOWN}. Pass it on.</li>
         <li>[ch:end,!w:tribal,!empire] The sheet will appear again when there is news, or paper, whichever comes first.</li>
         <li>[ch:end,w:spacer,!empire] END OF BULLETIN.</li>
-        <li>[ch:end,w:tribal] That is the season's news.</li>
+        <li>[ch:end,w:tribal] That is the season. The fire is out.</li>
         <li>[ch:end,empire] By order. Copies to be displayed in the square.</li>
 
         <!-- ================= Medieval English (olde): a crier's roll ================= -->
@@ -182,7 +182,7 @@
         <li>[olde,ch:item,chs:short,town:short:fuel] Item: wood is short. Burn sparing, sleep close.</li>
         <li>[olde,ch:item,chs:short,town:short:hands] Item: hands are wanting in the fields. Any that can hold a sickle, come.</li>
         <li>[olde,ch:item,chs:season,season:spring] Item: mud. More mud is looked for. The crier regretteth it.</li>
-        <li>[olde,ch:item,chs:season,season:autumn] Item: the leaves are down, and the swine are turned out into the wood to feed on the acorns.</li>
+        <li>[olde,ch:item,chs:season,season:autumn] Item: the leaves are down and the swine are in the wood. Look to thine acorns.</li>
         <li>[olde,ch:notice] Be it known: the miller's dog hath bitten the miller again, and the miller asketh that none take the dog's part.</li>
         <li>[olde,ch:notice] Item: a purse was found by the well. Whoso can say what is in it may have it. None hath yet said aright.</li>
         <li>[olde,ch:notice] Wanted: one that can mend a bell and keep a secret. Ask at the chapel door, quietly.</li>
@@ -194,8 +194,8 @@
         <!-- ================= Round 2, part 2: a tribe's season, told at the fire ================= -->
         <li>[ch:head,theirs,w:tribal] Here is what the people of {TOWN} told at the fire when the moon was round.</li>
         <li>[ch:item,chs:situation,town:situation:bad,w:tribal] The people speak of {TOWNSITUATION}, and the old ones look at the sky more than they used to.</li>
-        <li>[ch:item,chs:situation,town:situation:good,w:tribal] It is said at the fire that {TOWNSITUATION} has been good for us, and the old ones give thanks for it in the evenings.</li>
-        <li>[ch:item,chs:loss,w:tribal] {LOST} has died. The people sang the whole night, and {LOST}'s name is in the song now.</li>
+        <li>[ch:item,chs:situation,town:situation:good,w:tribal] It is said at the fire that {TOWNSITUATION} has been kind to us, and the old ones thank it in the evenings.</li>
+        <li>[ch:item,chs:loss,w:tribal] {LOST} has gone to the long fire. The people sang the whole night, and the song is longer now by one name.</li>
         <li>[ch:item,chs:head,town:newhead,w:tribal] {HEAD} sits in the elder's place now, and the people are learning to wait for {HEAD} to speak first.</li>
         <li>[ch:item,chs:ill,w:tribal] {ILL} lies sick, and the healer sings over the sickness every night, and the children are being very quiet.</li>
         <li>[ch:item,chs:war,their:war,w:tribal] The war with {WAR} goes on. The young ones paint their faces before they eat.</li>
@@ -213,9 +213,9 @@
         <li>[ch:item,chs:season,season:autumn,w:tribal] The herds are moving, and so are we. The old ones say the cold will come early. They say it every year. They are right half the time.</li>
         <li>[ch:notice,w:tribal] Someone has taken the good scraping stone. Whoever it is, the grandmother knows, and she is waiting.</li>
         <li>[ch:notice,w:tribal] Two of the young ones are courting. Everyone knows. They think nobody knows.</li>
-        <li>[ch:notice,w:tribal] The black dog has had pups. Nobody knows which dog is the father.</li>
+        <li>[ch:notice,w:tribal] The black dog has had pups. The black dog will not say who the father is.</li>
         <li>[ch:end,w:tribal] That is what was told. The fire went low, and we went to sleep.</li>
-        <li>[ch:end,w:tribal] That is the season's news, as it was told.</li>
+        <li>[ch:end,w:tribal] That is the season. The next one is already coming over the hill.</li>
 
         <!-- ================= Round 2, part 2: the Empire's gazette ================= -->
         <li>[ch:head,theirs,empire] The Court Circular of {TOWN}\nMatters of honour, title and precedence, set out in order.</li>
@@ -235,20 +235,20 @@
 
         <!-- ================= Round 2, part 2: the spacer bulletin and the industrial sheet ================= -->
         <li>[ch:item,chs:fortune,town:thriving|town:flourishing,w:spacer] ECONOMY: up. Since {FORTUNEWHY}, credit is flowing and the market stalls have extended their hours, to nobody's surprise but the stallholders'.</li>
-        <li>[ch:item,chs:fortune,town:struggling|town:poor,w:spacer] ECONOMY: down. Since {FORTUNEWHY}, rationing tier two is in effect. Questions and complaints to the quartermaster.</li>
-        <li>[ch:item,chs:situation,town:situation:bad,w:spacer] ADVISORY: {TOWNSITUATION}. Stay indoors when the sirens sound.</li>
+        <li>[ch:item,chs:fortune,town:struggling|town:poor,w:spacer] ECONOMY: down. Since {FORTUNEWHY}, rationing tier two is in effect. Questions to the quartermaster, complaints to the void.</li>
+        <li>[ch:item,chs:situation,town:situation:bad,w:spacer] ADVISORY: {TOWNSITUATION}. Stay indoors when the sirens sound. Stay calm when they do not.</li>
         <li>[ch:item,chs:loss,w:spacer] OBITUARY: {LOST}, {LOSTTITLE}. Remembered at the evening watch. Personal messages to the family through the board.</li>
         <li>[ch:item,chs:war,their:war,w:spacer] SECURITY: hostilities with {WAR} remain active. Report unfamiliar signals to the comms desk.</li>
-        <li>[ch:item,chs:peace,their:peace,w:spacer] SECURITY: the ceasefire with {PEACEWITH} holds. The perimeter guns are on standby.</li>
+        <li>[ch:item,chs:peace,their:peace,w:spacer] SECURITY: the ceasefire with {PEACEWITH} holds. The perimeter guns have been told to relax. They have not been told how.</li>
         <li>[ch:item,chs:raid,rd:now,rd:end:held,!rd:road,theirs,w:spacer] SECURITY: raid repelled at the perimeter. Thanks to the watch, and to the turrets, which do not read this.</li>
-        <li>[ch:item,chs:season,w:spacer] CLIMATE: within tolerances.</li>
+        <li>[ch:item,chs:season,w:spacer] CLIMATE: within tolerances. The weather station would like to remind everyone that it is not personally responsible.</li>
         <li>[ch:notice,w:spacer] LOST AND FOUND: one maintenance drone, answering to Biscuit. Last seen heading for the hydroponics bay with intent.</li>
         <li>[ch:notice,w:spacer] REMINDER: the airlock is not a shortcut.</li>
         <li>[ch:notice,w:spacer] SOCIAL: film night in the mess, third cycle. The same film as last time. There is only the one film.</li>
         <li>[ch:notice,w:industrial] FOR SALE: one bicycle, nearly new, ridden only by a man who has since decided to walk.</li>
         <li>[ch:notice,w:industrial] TO WHOEVER KEEPS MOVING THE BENCH OUTSIDE THE POST OFFICE: we know it is you.</li>
         <li>[ch:notice,w:industrial] DANCE at the hall on the first evening of next week. The band has promised to learn a second tune.</li>
-        <li>[ch:item,chs:short,town:short:fuel,w:industrial] COAL. The supply is short and the price is high. Wear your coat indoors.</li>
+        <li>[ch:item,chs:short,town:short:fuel,w:industrial] COAL. The supply is short and the price is long. Wear your coat indoors and think warm thoughts.</li>
         <li>[ch:item,chs:caravan,town:caravan,theirs,!w:tribal] OUTWARD BOUND. A wagon train leaves for {COLONY} at the end of the month. Parcels to the depot by the twentieth.</li>
 
         <!-- ================= Round 2, part 2: an android's digest, a hive's count ================= -->
@@ -275,8 +275,8 @@
         <li>[ch:end,!w:tribal,!empire] That is the sheet. Pass it on when you have read it, and do not wrap fish in it until then.</li>
         <li>[olde,ch:notice] Item: the bridge-toll is raised a farthing, and the bridge is no better for it.</li>
         <li>[olde,ch:notice] Be it known: a fair maid of the dairy seeketh a husband that can milk. Them that cannot need not apply.</li>
-        <li>[olde,ch:notice] Item: the friar's mule is strayed again. Whoso seeth it, send it home.</li>
-        <li>[ch:notice,w:tribal] The hunters ask that nobody sing near the river until the fish come back.</li>
+        <li>[olde,ch:notice] Item: the friar's mule is strayed again. It is not lost; it knoweth exactly where it is. It is only not here.</li>
+        <li>[ch:notice,w:tribal] The hunters ask that nobody sing near the river until the fish come back. The fish do not like the new song.</li>
         <li>[ch:notice,w:tribal] Whoever borrowed the big pot, the grandmother wants it back, and she does not want it back with anything still in it.</li>
         <!-- ================= Their god's sign or curse, or their holy war (Gods/World/GodLetters.cs) ================= -->
         <li>[ch:item,chs:god,god:miracle,!w:tribal] A SIGN, SOME SAY: the priests credit {SIGNGOD} with the town's good fortune, and the collection plate agrees.</li>
