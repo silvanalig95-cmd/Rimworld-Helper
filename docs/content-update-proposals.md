@@ -1800,6 +1800,9 @@ Each item that adds text says which of these it follows.
   | Scoffs | 3 | 3 more each, 45 | plain: people talking |
   | `whatLines`, `seenLines` | 3 each | 2 more each, 60 | the old voice: the book's verses |
   | `letterLines` | 2 (Tamiu's 3) | 3 more each, about 44 | the flavour style: letters |
+- **Built** (20 November 2026, not released yet; `Defs/GodDefs/Rimfolk_Gods.xml`). 150 lines: 3 scoffs more each (3 to 6,
+  untagged, so they answer a gift, a sign or a wrath alike), 2 more `whatLines` and `seenLines` each in the old voice (3 to
+  5, told after the first three), 3 more `letterLines` each (2 to 5, Tamiu's 3 to 6), neutral about what the hand was.
 
 **T3 / C33 (T) Worship talk** (M)
 - **What to add:**
@@ -1833,6 +1836,12 @@ Each item that adds text says which of these it follows.
 - **Style:**
   - Plain, but the vow and pilgrimage lines belong to life goals and take the flavour style.
   - Prayer and rite words take the old voice (T4).
+- **Built** (20 November 2026, not released yet; `Rimfolk_GodPresence_OwnLines.xml`, `Rimfolk_Worship_Pools.xml`,
+  `Rimfolk_Belief_Pools.xml`, `Rimfolk_Saints.xml`, `Rimfolk_GodsOnMap_Lines.xml`). 277 lines: the ways 42 to 97 (3 and 1
+  a way, the visitor given Ducat's gift 3), the presences 90 to 150 (4 each), the true dreams 15 to 29 (2 a kind), every
+  pool of the table to 8 (the vow was already at 9 after 0.281.0). Of 0.281.0's own pools, the vows of a season said day by
+  day (`Rimfolk_Pool_Worship_VowKeep`, 3 a vow) to 8 a vow; the happenings between the colony's people (1 to 3 lines a beat,
+  once a scene) left for now. Decided: a way's believers' lines split by `mine` and `theirs`, as the code tags them.
 
 **T4 / C34 (T) Scripture in the old voice** (M; needs the player's word)
 - **Now:** CLAUDE.md keeps the old medieval voice for the gods' and faiths' texts, and the player enjoys it "especially
@@ -1856,6 +1865,14 @@ Each item that adds text says which of these it follows.
   - a believer of a faith of the old ages.
 
   Everyone else keeps the plain lines, and each line still says plainly what it means.
+- **Built** (20 November 2026, the player's go on the whole list; not released yet; `Rimfolk_Worship_Pools.xml`,
+  `Rimfolk_Saints.xml`, `Source/ColonyCouncil/Gods/Worship/Worship.cs`, `WorshipMath.cs`, `WorshipCouncil.cs`). 102 lines
+  tagged `[olde]`: prayers 36, thanks 14, rites 18, the words at a god's place 10, the saints' prayers 14 and feasts 10.
+  `WorshipMath.OldVoice` picks the four (a devout elder: sixty or more; a faith of the old ages: with Ideology, one another
+  people of the bow and the spear or the sword and the keep holds as its own; never a scoffer), and `Worship.LineWith`
+  gives them the tag. Decided: `festivalDishes` left, a phrase in the messages and the book, not spoken. Found on the way
+  and fixed: the words at a god's place showed the god's placeholder (the gathering fills in no god); they are filled in
+  for the one who leads them.
 
 **T5 / C35 (T) The gods' camps** (S; flavour style, as camps)
 - **Add:** the pilgrims' camp and the seer's camp (`Rimfolk_GodsWorld_Camps.xml`) to 8 lines each, about 30 lines.
@@ -1864,6 +1881,8 @@ Each item that adds text says which of these it follows.
   |---|---|---|---|
   | Pilgrims' | 4 | 4 | 6 |
   | Seer's | 3 | 2 | 5 |
+- **Built** (20 November 2026, not released yet; `Defs/GodDefs/Rimfolk_GodsWorld_Camps.xml`). 24 lines: every list of both
+  camps at 8; the seer still names no god.
 
 **T6 / C36 (T) Weather talk and the land's journal lines** (S to M; plain)
 - **Weather:** the weather pools under 7 lines, counting the everyday add-ons. Bring them to 8, about 26 more:
@@ -1900,6 +1919,10 @@ Each item that adds text says which of these it follows.
   | `PetFarewell` | 3 |
   | `Council_Cal_Talk_Companion` | 3 |
   | `Council_Cal_Talk_Foal` | 3 |
+- **Built** (20 November 2026, not released yet; `Defs/FlavorPoolDefs/Rimfolk_Lines_LandMore.xml`, extensions of the
+  pools). 73 lines, every pool brought to 8 plain lines as the brief asked (the weather 26, the journals and talk 47).
+  Recounted with their extensions, the herd's journals (`Herd_Gone`, `Herd_LastSeason` with its kinds, `Herd_SpringCalf`
+  with its kinds, `Herd_Leader`) and the pet's farewell journal were already at 10 to 12: left.
 
 ---
 

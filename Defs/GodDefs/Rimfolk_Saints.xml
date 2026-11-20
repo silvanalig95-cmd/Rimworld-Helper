@@ -197,14 +197,14 @@
         <li>[olde] {SAINT}, pray for us, that we may do as well as thou didst.</li>
         <li>[olde] {SAINT}, I know not if thou hearest me, yet I speak all the same.</li>
         <li>[olde] {SAINT}, give us of thy courage, for we have need of it.</li>
-        <li>[olde,priest] {SAINT}, look upon the people of this place and keep them.</li>
+        <li>[olde,priest] {SAINT}, look thou upon the people of this place and keep them.</li>
         <li>[olde,old] {SAINT}, I am old, and I ask thee to keep a place for me.</li>
         <li>[olde,known] {SAINT}, speak a word to {GOD} for us, for thou art nearer.</li>
-        <li>[olde,known] Ask {GOD} to deal gently with us this season, {SAINT}.</li>
+        <li>[olde,known] Ask thou {GOD} to deal gently with us this season, {SAINT}.</li>
         <li>[olde,known] {SAINT}, that walkest now with {GOD}, forget us not.</li>
         <li>[olde,place:grave] Rest thou easy, {SAINT}, for we are here and we keep faith.</li>
         <li>[olde,place:grave] I bring naught but myself this day, {SAINT}, and my prayer.</li>
-        <li>[olde,place:statue] {SAINT}, this likeness is poor, yet it was made with love.</li>
+        <li>[olde,place:statue] {SAINT}, this likeness of thee is poor, yet it was made with love.</li>
         <li>[olde,place:relic] I shall keep this safe for thee, {SAINT}, all my days.</li>
       </plain>
     </lines>
@@ -225,13 +225,13 @@
         <li>[tribal] The fire is lit for {SAINT}, so the Ancestors can find their way here tonight.</li>
         <li>[spacer] We kept {DEAD}'s voice, and tonight we let it speak again.</li>
         <li>[olde] A year hath passed since we lost {DEAD}, and still we speak of them.</li>
-        <li>[olde] {SAINT}, {DEED}, is the cause that we stand here this night.</li>
+        <li>[olde] {SAINT}, {DEED}, is the cause wherefore we stand here this night.</li>
         <li>[olde] Say ye the name of {DEAD}, all of you, that it be not forgotten.</li>
-        <li>[olde] We keep the day of {SAINT}, that they who come after us may keep it too.</li>
+        <li>[olde] We keep the day of {SAINT}, that they who come after us shall keep it too.</li>
         <li>[olde] Whoso is new among us, ask of {DEAD}, and any here shall tell thee.</li>
-        <li>[olde] Let no one here forget what {SAINT} did for us.</li>
-        <li>[olde] Blessed be the memory of {DEAD}, and blessed be this night.</li>
-        <li>[olde] {SAINT} gave much for us, and we give this night to them.</li>
+        <li>[olde] Let none here forget what {SAINT} hath done for us.</li>
+        <li>[olde] Blessed be the memory of {DEAD}, and blessed be ye that keep it.</li>
+        <li>[olde] {SAINT} gave much for us, and unto them we give this night.</li>
         <li>[olde,known] {SAINT} walketh with {GOD} now, and speaketh for us.</li>
         <li>[olde,known] {GOD} hath taken {DEAD} home, and we keep this day for both.</li>
       </plain>

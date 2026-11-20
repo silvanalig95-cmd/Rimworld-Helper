@@ -271,7 +271,7 @@
         <li>[way:given,visitor] I'll carry it on, as you say, and pass it to someone else.</li>
         <li>[way:given,visitor] Gold given to a stranger, your people are odd and kind.</li>
         <li>[way:sapling,mine,!scoffer] {GOD} took it into the ground and gave us a tree for it.</li>
-        <li>[way:sapling,theirs,!scoffer] There's a sapling where the gift was, and they say that's how {GOD} takes it.</li>
+        <li>[way:sapling,theirs,!scoffer] A sapling where the gift was, and they say that's how {GOD} takes it.</li>
         <li>[way:sapling,!scoffer] I'd swear that little tree wasn't there yesterday.</li>
         <li>[way:sapling,scoffer] Somebody planted a sapling and walked off with the gift, that's all.</li>
         <li>[way:crack,mine,!scoffer] Down into the rock with it, {GOD} keeps what he's given.</li>
@@ -291,7 +291,7 @@
         <li>[way:guest,!scoffer] Someone walked up to it in the night and never walked away again.</li>
         <li>[way:guest,scoffer] There'll be prints going out too, if you look hard enough.</li>
         <li>[way:mended,mine,!scoffer] {GOD} had the part, and it'll be in one of our machines by now.</li>
-        <li>[way:mended,theirs,!scoffer] The part's gone, and the ones who pray to {GOD} say it went where it was needed.</li>
+        <li>[way:mended,theirs,!scoffer] The part's gone, and {GOD}'s faithful say it went where it was needed.</li>
         <li>[way:mended,!scoffer] The part we left is gone, and I didn't see anyone take it.</li>
         <li>[way:mended,scoffer] Someone borrowed that part for a repair and forgot to say.</li>
         <li>[way:takenup,mine,!scoffer] {GOD} took it up in the night, straight up into the sky.</li>
@@ -299,7 +299,7 @@
         <li>[way:takenup,!scoffer] There was a streak of light over the place last night, and now it's gone.</li>
         <li>[way:takenup,scoffer] A bird took it, and a bright night made a story of it.</li>
         <li>[way:frost,mine,!scoffer] {GOD} came close in the night and took it, frost and all.</li>
-        <li>[way:frost,theirs,!scoffer] It froze over in the night and was gone at first light, and they'll say that's {GOD}.</li>
+        <li>[way:frost,theirs,!scoffer] Frozen in the night and gone at first light, and they'll say that's {GOD}.</li>
         <li>[way:frost,!scoffer] There's still frost on the ground where it was lying.</li>
         <li>[way:frost,scoffer] Things freeze at night and animals eat them in the morning.</li>
         <li>[way:hunger,mine,!scoffer] It took the gift and something besides, as {GOD} always does.</li>
