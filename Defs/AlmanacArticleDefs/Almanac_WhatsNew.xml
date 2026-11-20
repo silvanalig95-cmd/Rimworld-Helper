@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.285.0</version>
+        <date>20 November 2026</date>
+        <title>Life, customs and stories</title>
+        <points>
+          <li>A child coming of age can now be apprenticed in the fields, the kitchen, with the animals or at building, taught by the reeve or the herdmaster when they hold the seat.</li>
+          <li>A grown-up fond of a child may ask for a toy, from Vanilla Christmas Expanded or a small carving, and carries it over by hand once it is made.</li>
+          <li>Two new customs: the giving day in winter, with names drawn and gifts from the stores handed over after supper, and the elders' day in autumn.</li>
+          <li>Three new ambitions (nobody left out, a season of kept promises, a lighter season) and a life goal for every other seat on the council.</li>
+          <li>New marks, deeds and names from the colony's own life, such as Old Keys, the Drover and Word-Kept.</li>
+          <li>Groups now keep fishing, the hot water, a pot of tea or coffee and card games as habits, and elections bring seven social events and talk about the vote.</li>
+          <li>Twelve new events from the colony's everyday life and six new personal stories.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.284.0</version>
         <date>20 November 2026</date>
         <title>More words in colony life</title>

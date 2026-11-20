@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Life, customs and stories
+
+*20 November 2026, version 0.285.0*
+
+- A child coming of age can now be apprenticed in the fields, the kitchen, with the animals or at building, taught by the reeve or the herdmaster when they hold the seat.
+- A grown-up fond of a child may ask for a toy, from Vanilla Christmas Expanded or a small carving, and carries it over by hand once it is made.
+- Two new customs: the giving day in winter, with names drawn and gifts from the stores handed over after supper, and the elders' day in autumn.
+- Three new ambitions (nobody left out, a season of kept promises, a lighter season) and a life goal for every other seat on the council.
+- New marks, deeds and names from the colony's own life, such as Old Keys, the Drover and Word-Kept.
+- Groups now keep fishing, the hot water, a pot of tea or coffee and card games as habits, and elections bring seven social events and talk about the vote.
+- Twelve new events from the colony's everyday life and six new personal stories.
+
 ## More words in colony life
 
 *20 November 2026, version 0.284.0*

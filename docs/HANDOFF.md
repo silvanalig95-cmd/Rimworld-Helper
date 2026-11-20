@@ -93,9 +93,10 @@ most sense." So, in this order, three builds at a time:
      CLAUDE.md keeps it. Gods' variety (C5, C9, C10, C11, C13, C23, C31 and thirty-one new happenings between the
      colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
      two encounters for each people; released 0.282.0); colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five more
-     council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); building: colony life 2 (A8,
-     A11, A15, A16, A22 to A26, A28, twelve events, six personal stories), text round 2's world half (B9, B10, B16,
-     B18, B30) and its gods half (C32 to C36).
+     council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); colony life 2 (A8, A11, A15,
+     A16, A22 to A26, A28, twelve events, six personal stories; released 0.285.0); building: text round 2's world half
+     (B9, B10, B16, B18, B30), its gods half (C32 to C36), and the last three items (A9, C25, C27). With those the
+     proposal list is all built.
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
@@ -611,7 +612,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Colony life's variety, part 2:
+- 0.285.0, **Colony life's variety, part 2:
   life, customs, stories and the colony's own events** (20 November 2026; the player on
   `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with this in
   the order you think makes most sense ... And then also, just variety, further kind of events, camps, world events,

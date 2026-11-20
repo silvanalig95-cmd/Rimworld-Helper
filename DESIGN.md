@@ -19869,7 +19869,7 @@ is over), so there is no pass of their own.
   own reached, the year's first supper asked now or set going now, the year read aloud tonight, make a colonist the
   record keeper.
 
-## Colony life's variety, part 2: life, customs, stories and the colony's own events (the player's go, 20 November 2026; not released yet)
+## Colony life's variety, part 2: life, customs, stories and the colony's own events (the player's go, 20 November 2026; released 0.285.0)
 
 The player on `docs/content-update-proposals.md`: "just variety, further kind of events, camps, world events, normal
 storyteller events, dilemmas, etc. ... yes, I want more events, camps, world events, and dilemmas, but first do all the
