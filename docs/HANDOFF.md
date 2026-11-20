@@ -56,7 +56,8 @@ most sense." So, in this order, three builds at a time:
   4. **The peoples' own texts**: the Almanac's peoples' pages in plain words, their "Where their ways began" sections,
      each people's talk piece on how their ways began and the 21 faiths' descriptions that name a founder, each told in
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
-     the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
+     the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text"). Built, not released:
+     the entry "The peoples' own beginnings, each told its own way" above the newest release line.
 - Pokémon: pairings are changed when the player flags one.
 - **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
   overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
@@ -71,7 +72,7 @@ most sense." So, in this order, three builds at a time:
   The order, three builds at a time:
   1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
      medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
-     closeness), the peoples' founder texts (in each text's present voice), the comms console by radio and the foreign
+     closeness), the peoples' founder texts (in each text's present voice; built, not released), the comms console by radio and the foreign
      peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems.
@@ -130,8 +131,9 @@ most sense." So, in this order, three builds at a time:
     decrees and seats 0.269.5, world events 0.270.1, the gods' cards and messages 0.270.2, the Almanac 0.270.3 to
     0.270.6, What's new 0.271.1). **To do when the player asks:** restore any of them, part by part, to the text before
     its batch (`git show <the release's first parent>:<file>`), keeping the fixes that made the words match the map (the
-    def and code changes each entry names) unless the player wants those undone too. Until the player answers, the
-    peoples' own texts (task 4 above) wait: the founders' pattern can be fixed in the present voice or in plain words.
+    def and code changes each entry names) unless the player wants those undone too. The peoples' own texts (task 4
+    above) are done in each text's present voice (20 November 2026, with the go; built, not released: the entry
+    "The peoples' own beginnings, each told its own way").
   - "since i still have quite some tokens available, i want to make another large content update, meaning adding
     further variety to existing mechanics, further enhancing what's already created, further integrating different
     features with each other, adding more text variety etc." **To do when the player asks:** a proposal list first
@@ -525,7 +527,8 @@ repo.
   the `TalkLinesDef`s and `InteractionDefs`), journals, dreams (the `GodWaysDef` dreams and the dream pools), prayers
   and sermons (pools), moods (`ThoughtDefs`), what the gods leave on the body (`HediffDefs`, the gifts of
   `Rimfolk_GodsWorld_Gifts` and the touch's blessings among them: ailments), the dev tools' words for the gods' hidden
-  state, and the peoples' own faiths and "Where their ways began" pages (waiting for the player's answer).
+  state, and the peoples' own faiths and "Where their ways began" pages (waiting for the player's answer; done 20
+  November 2026 in their present voices: the entry "The peoples' own beginnings, each told its own way").
   The Almanac, part 1: the council's pages, done (19 November 2026, the same go; built, not released): the entry "Plain
   words: the Almanac's council pages" above the newest release line. Files taken: the 22 files
   `Defs/AlmanacArticleDefs/Almanac_Council*.xml` but for `Almanac_Council_Faith.xml` (`Almanac_Council`,
@@ -576,9 +579,11 @@ repo.
   page's own frame (label, summary, description, keywords, see-also), every version and date, the number of points in
   each round, and the names things had in their round (a later round's new name for a decree, a question, a story stage
   or a button is not carried back).
-  The Almanac's other pages, still to do: the peoples' pages (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`), with the
-  peoples' texts, waiting for the player's answer.
-  Still to pick, when the player asks: the peoples (their pages in the Almanac and their texts).
+  The Almanac's peoples' pages (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`): their *Where their ways began*
+  sections done with the peoples' texts (20 November 2026, with the go; built, not released: the entry "The peoples'
+  own beginnings, each told its own way"), and every other line on them that named an old founder; the rest of those
+  pages (who they are, what they wear and bring, their towns) has had no plain-words batch of its own.
+  Still to pick, when the player asks: a plain-words batch for the rest of the peoples' pages, if wanted.
   Eight parts back in the flavour style, by the player's choice (20 November 2026: "yes, please restore letters,
   wishes, ambitions, life goals, personal stories, council questions, camps, and world events to just the previous
   text, to kind of the flavor style text that you created before"; built, not released): the letters (0.266.9),
@@ -600,6 +605,55 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The peoples' own beginnings, each
+  told its own way** (20 November 2026; the player, 14 November 2026: "it really reads like AI gibberish and I don't
+  understand what is really meant. also they all follow the same structure and it's always one named individual who
+  started the faction somehow. can you redo these descriptions and do a better job? each faction shoud have it's own
+  description & history, written and tailored for it exactly"; the go of 20 November 2026: "go ahead with the next
+  tasks", the list's item 4). Since 0.252.0 the 23 descriptions tell each people's history in its own shape, a founder
+  named in six only (Aldith, Tamsa, Old Brannoc, Tobin Garrow, Nessa Pell, Captain Imre Sallow); their faith, talk and
+  Almanac page still told every start through a founder. Now every text agrees with its description, each in its own
+  voice: for the seventeen peoples with no founder by name, the faith's description (fifteen named one; the society's
+  now says the fire was at Hesk), the talk piece on how their ways began, their words about their faith face to face,
+  the Almanac's *Where their ways began* point, and every other place that named the founder (the league's call for a
+  guard and a beast and its road gang's farewell, the society's books saved from a fire, its schoolteacher, its letter
+  of greetings, the guild's mark and its marked bridge, five camps' tales, the enclave's talk of being stranded, the
+  defs' header comments, and the words their towns' and peoples' names are made from). The six keep their founder
+  everywhere; their Almanac points were written again so no two of the 23 open alike, and the pilgrims' talk and page
+  now say what the description does (Old Brannoc asked at a door each dusk and blessed the house in the morning, whether
+  it had let him in or not). Unnamed people stay unnamed (the clerk, the glassblower, the lineman, the postmaster, the
+  deserter, the overseer, the woman who began the planting), and what many did stays theirs (the nine waymasters, the
+  hauler's crew, the ferries, the soldiers, the miners' vote, the masons, the lab's own grown, the valley on its carts,
+  the Choir's generations). Voices: the Almanac in plain words, the talk as speech (one sentence of 90 characters at
+  most a line), the bubbles one sentence, the faiths in their creed's old voice. DESIGN.md "The peoples' own beginnings,
+  each told its own way" has it all; README ("Where their ways began"); `docs/design/peoples.md` (the founding rows of
+  every table, the note above the seven's); `docs/peoples-events-proposals.md` (each people's lore line).
+  - Code map (text only; nothing in code but comments, nothing saved): `Defs/PeopleDefs/Rimfolk_People_*.xml` (seventeen:
+    `ideoDescription`, header comments, the name rules' words, two meme comments), `Defs/OutsiderTalkDefs/
+    Rimfolk_OutsiderTalks_PeoplesLore.xml`, `_PeoplesD` to `_PeoplesG` (the founding pieces, defNames kept; the pilgrims'
+    too), `Defs/FlavorPoolDefs/Rimfolk_Lines_PeoplesLore.xml`, `_PeoplesD` to `_PeoplesG` (`faithtalk`, the society's
+    greeting), `Defs/AlmanacArticleDefs/Almanac_Peoples.xml`, `_PeoplesC` to `_PeoplesG` (the 23 points, the guild's
+    bridge; keywords unchanged), `Defs/IncidentDefs/Rimfolk_Events_PeopleEvents2.xml` (`Rimfolk_Evt_LeagueGuard`,
+    `_ArchiveTrust`, `_GuildMark`), `_PeopleEvents3.xml` (`Rimfolk_Evt_RoadGang`), `Defs/CampDefs/
+    Rimfolk_CampKinds_PeopleEvents6.xml`, `_8`, `_9` (the tales), `Patches/Rimfolk_PeoplesLore.xml` (the schoolteacher),
+    comments in `Peoples/Events2/LeagueGuard.cs`, `Peoples/Events7/PeopleEvents7Math.cs` and `WorkThatStays.cs`. Tests:
+    `PeoplesLoreTests` (the six founders; a word of each beginning in the description, faith, talk and pages; no text
+    names an old founder; 23 talk openings and 23 page openings, none alike), `PeoplesETests`, `PeoplesFTests`,
+    `PeoplesGTests` (their page's beginnings), `PeopleEvents7Tests` (a label).
+  - Decided here: the faiths' descriptions kept their present creed voice (HANDOFF's "in each text's present voice"),
+    not rewritten into "-eth" forms, so each reads as one text; the name rules' founders' words were changed too (a town
+    or people already named keeps its name); the talk pieces' defNames keep the old founders' names (never shown, and
+    keys stay); the rest of the peoples' Almanac pages had no plain-words batch (the to-do above).
+  - Harm: none.
+  - Not run here: how the talk reads over the heads at the gate, the faith's description in the Ideology window.
+  - Try in the game: 1. Open the Factions tab, press the info button beside the Kiln Guild (or the Choir, the Wheel) and
+    read the description; then the Almanac page "the Conclave, the Mossborn, the Banner and the guild", *Where their ways
+    began*: the same history, no founder by name. 2. With Ideology, open their faith (the Ideoligions tab): its
+    description tells the same beginning in the creed's voice. 3. With a colonist selected, right-click one of their
+    visitors, "Talk with...", and get to know them over a few visits until they tell how their ways began; "talk faith"
+    gives their words about it. 4. The hospitallers, the herders, the pilgrims, the Wardens, the Circuit and the Hollow
+    Fleet still name Aldith, Tamsa, Old Brannoc, Tobin Garrow, Nessa Pell and Captain Imre Sallow everywhere.
+  - Mods that would help: none needed; it is text in the game's own windows and Rimfolk's talk.
 - 0.276.1, **More traits that come and go, the
   other ways out** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The seventeen ways
   out of `docs/traits-proposals.md` the first batch left (3, 7, 8, 9, 11, 12, 13, 15, 17 to 25), each marked there: 3, a

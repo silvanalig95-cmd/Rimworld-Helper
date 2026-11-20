@@ -18,7 +18,7 @@
     from a colonist with rare genes, a small blood draw shown (Rimfolk_Evt_HelixSample); gene work, one of their genes
     written into a colonist (Rimfolk_Evt_HelixGeneWork); the vat-keeper's case of medicine and drugs, their trade without
     Biotech too (Rimfolk_Evt_HelixCase); a batch gone wrong asking the colony's help (Rimfolk_Evt_HelixBatch). Their ask:
-    genepacks, or medicine without Biotech (Rimfolk_Mission_HelixGenepacks). Their founding: Orla Venn kept the vats warm.
+    genepacks, or medicine without Biotech (Rimfolk_Mission_HelixGenepacks). Their founding: the lab's own grown kept the vats warm.
     Faith (Ideology): every body a draft (transhumanist), Vanilla Ideology Expanded's progressive and healthcare.
   -->
 
@@ -109,7 +109,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Living Draft</ideoName>
-    <ideoDescription>Every body is a draft, and the Works are only editors. A body is given, not chosen, and the kindest thing one person can do for another is to ask what they would change and help them change it. Orla Venn, the eldest of the lab's own grown, kept the vats warm when the founders fled and read their notes aloud to the others they had made, and every editor since has written into the ledger what they changed and why. Nothing is changed without asking, and a change is always marked.</ideoDescription>
+    <ideoDescription>Every body is a draft, and the Works are only editors. A body is given, not chosen, and the kindest thing one person can do for another is to ask what they would change and help them change it. When the founders fled, those the lab had grown kept the vats warm through the winter and read the founders' notes until the work was theirs, and every editor since has written into the ledger what they changed and why. Nothing is changed without asking, and a change is always marked.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Transhumanist</li>
       <!-- The editors ask what they would change, then change it: Vanilla Ideology Expanded's progressive and healthcare. -->
@@ -769,7 +769,7 @@
         <li>helixVirtue->Second</li>
         <li>helixVirtue->Patient</li>
         <li>helixVirtue->Marked</li>
-        <li>helixVirtue->Venn's</li>
+        <li>helixVirtue->Winter</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -789,7 +789,7 @@
         <li>labWord->Sequence</li>
         <li>labWord->Cradle</li>
         <li>labVirtue->Quiet</li>
-        <li>labVirtue->Venn's</li>
+        <li>labVirtue->Winter</li>
         <li>labVirtue->Clean</li>
         <li>labVirtue->Second</li>
       </rulesStrings>

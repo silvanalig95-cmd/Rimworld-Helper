@@ -141,13 +141,13 @@
         <li>[faithtalk,them,their:hunters] Garrow kept his brother's lantern lit eleven years, and we keep ours until it's done.</li>
         <li>[chat,them,their:sextons] Everyone is owed a bell, even the ones nobody liked.</li>
         <li>[endwarm,them,their:sextons] When your time comes, the Bell will ring for you, I promise.</li>
-        <li>[faithtalk,them,their:sextons] Ysolde Marr rang a cracked bell over every grave in the long field, and we ring it still.</li>
+        <li>[faithtalk,them,their:sextons] Our first bell was a cracked one from a chapel, rung over every grave the long war left.</li>
         <li>[chat,them,their:tamers] Win their trust and they will win your battles, it's that simple.</li>
         <li>[endwarm,them,their:tamers] Come to the ring sometime, I'd love to lose to you.</li>
         <li>[faithtalk,them,their:tamers] Pell walked forty years with what hatched from a star's egg, and every bond is hers.</li>
         <li>[chat,them,their:salvagers] Buy it cheap, sell it better, and never stop moving.</li>
         <li>[endwarm,them,their:salvagers] When the Wheel comes round again, I'll save you the good scrap.</li>
-        <li>[faithtalk,them,their:salvagers] Wainwright drove out ahead of the fire, and nobody has voted to stop since.</li>
+        <li>[faithtalk,them,their:salvagers] We put our houses on carts the night the valley burned, and nobody has voted to stop.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorExtensionDef>

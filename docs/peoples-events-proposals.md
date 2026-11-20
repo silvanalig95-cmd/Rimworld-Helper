@@ -50,7 +50,7 @@ Where it lives:
 ## 2–3. Each people: lore, what it has, and what it could do
 
 ### The road league (traders; industrial)
-**Lore:** Edda Vane took a caravan through Harrow Ford under nine flags. The league keeps the roads and the Waystone Book: fair dealers in good ink, robbers in red.
+**Lore:** Nine waymasters each sent a guard and a wagon through Harrow Ford under nine flags, and nobody fired. The league keeps the roads and the Waystone Book: fair dealers in good ink, robbers in red.
 **Has:**
 - The outrider: their caravan, bidden to the colony.
 - Winter quarters, *their own camp* (winter only): trading, wardens if asked, a waystone left at the gate.
@@ -73,7 +73,7 @@ Where it lives:
    - Reuses: deeds, the diplomacy debts, the price patch, the event card. **Small.**
 
 3. **One guard, one wagon.** *(Built, round 2: `Source/ColonyCouncil/Peoples/Events2/`.)*
-   - While a great caravan or a trading season runs within reach, a waymaster asks for one fighter and one pack beast to walk under the colony's own flag, as every waymaster did for Edda Vane.
+   - While a great caravan or a trading season runs within reach, a waymaster asks for one fighter and one pack beast to walk under the colony's own flag, as each of the nine waymasters did at Harrow Ford.
    - The colonist leaves as a caravan of one and comes home with a share of the profit and a trade lesson. The league gives +8, and its caravans come half again as often for a year.
    - The roads' ambushes and weather are the world's own.
    - Ages: a pack beast in every age; with Giddy-Up 2 the colonist rides.
@@ -206,7 +206,7 @@ Where it lives:
     - Reuses: `situationKinds`, arrivals to a camp, the pilgrims' cough, places heard of. **Large.**
 
 ### The learned society (scholars; industrial)
-**Lore:** Ilse Varro carried eleven books out of the burning archive at Hesk, and copied them for the rest of her life. "Nothing known should be lost."
+**Lore:** A clerk carried eleven books out of the burning archive at Hesk, and copied them for the rest of her life. "Nothing known should be lost."
 **Has:**
 - The copyist; the night of the fire.
 - Callers: a travelling scholar, a book swapper, a travelling teacher.
@@ -243,7 +243,7 @@ Where it lives:
     - Reuses: camp asks carrying the lesson effect, the camp's day. **Medium.**
 
 ### The spacer enclave (brokers; spacer)
-**Lore:** Ines Okoro sold a stranded hauler's cargo bargain by bargain until the crew owned a landing pad. "A bargain struck is kept to the last digit."
+**Lore:** A stranded hauler's crew sold its cargo deal by deal until they owned a landing pad. "A bargain struck is kept to the last digit."
 **Has:**
 - The lander; salvage from above.
 - A tourist (caller); busy orbital lanes and a ship come down (world events).
@@ -278,7 +278,7 @@ Where it lives:
     - Reuses: the camp trader's stall, `CampContract`'s money flowing the other way, drop pods, bands against a camp. **Large.**
 
 ### The river folk (fishers; medieval)
-**Lore:** When the dam broke, Wenna Reed's boats pulled people off the rooftops for three days; there is a knot in the net for everyone pulled out. "Carry the stranger across." "Never foul the water another drinks."
+**Lore:** When the dam broke, the ferries pulled people off the rooftops for three days; there is a knot in the net for everyone pulled out. "Carry the stranger across." "Never foul the water another drinks."
 **Has:**
 - The boat-trader's catch; nets on the bank; timber and net cloth (asks).
 - A flood downriver and the ice road (world events).
@@ -352,7 +352,7 @@ Where it lives:
     - Reuses: the beasts system, the hunt's lords, camp animals and asks. **Medium.**
 
 ### The Quiet Bell (sextons; medieval)
-**Lore:** Ysolde Marr buried the raiders nobody would, and rang a cracked bell over each. "Everyone is owed a bell," and they fear a field that stirs.
+**Lore:** After the long war the Bell buried the raiders nobody would, and rang a cracked chapel bell over each. "Everyone is owed a bell," and they fear a field that stirs.
 **Has:**
 - A bell for the enemy's dead (goodwill with their peoples); the Bell's funeral.
 - The ground is listening (Anomaly); linen for shrouds (ask).
@@ -414,7 +414,7 @@ Where it lives:
     - Reuses: camps, `JobDriver_TamerBout`, the harm budget. **Large.**
 
 ### The Wheel (salvagers; industrial)
-**Lore:** The night the valley burned, Mab Wainwright put her house on her cart, and nobody has voted to stop since. "Nothing is broken, only waiting."
+**Lore:** The night the valley burned, everyone put their houses on carts, and nobody has voted to stop since. "Nothing is broken, only waiting."
 **Has:**
 - The fixer, the scrap-runners, a wreck stripped half and half, the axle (ask), towns that move.
 - The tinker (caller); iron scarce (world event).
@@ -442,7 +442,7 @@ Where it lives:
     - Reuses: camps, `WheelTowns`. **Medium.**
 
 ### The Stormglass Conclave (seers; industrial)
-**Lore:** Hesper Lyle sealed a vial of every storm, and learned to read a frost a week ahead. The weather is the planet's psychic tide; "never wrong, never sure."
+**Lore:** A glassblower in a village the hail had starved sealed a vial of every storm, and learned to read a frost a week ahead. The weather is the planet's psychic tide; "never wrong, never sure."
 **Has:**
 - A season's watch, a rod on the roof, reading the glass, the apprentice (ask).
 - The fortune teller (caller); a year without summer (world event).
@@ -472,7 +472,7 @@ Where it lives:
     - Reuses: the rod, the watch, camp asks. **Medium.**
 
 ### The Mossborn (grovekeepers; tribal)
-**Lore:** Elin Sedge planted an acorn beside every stump of a valley that a war had cut down. "Every tree you fell owes the world a seedling."
+**Lore:** A war's survivors planted an acorn beside every stump of a valley it had cut down. "Every tree you fell owes the world a seedling."
 **Has:**
 - Saplings for the felled, a tree for the dead, the tree-connector's pruning, the grove's ledger, a burned grove (ask).
 - A blight (world event).
@@ -500,7 +500,7 @@ Where it lives:
     - Reuses: `MossPlanting`, the ledger. **Medium.**
 
 ### The Ashen Banner (mercenaries; medieval)
-**Lore:** Corra Mallin kept five hundred unpaid soldiers together under one grey banner. "Paid to the day, held to the day," and the Roll keeps every name.
+**Lore:** A dead king's soldiers stayed together under the one banner that burned grey, and sold their service to the towns. "Paid to the day, held to the day," and the Roll keeps every name.
 **Has:**
 - The squad for the season, *their own camp* (it fights; wages asked).
 - A deserter at dusk, the Roll read at a grave, the muster (ask).
@@ -532,7 +532,7 @@ Where it lives:
     - Reuses: bands against a camp, the deserter, lessons, quarrels. **Small.**
 
 ### The Kiln Guild (artisans; medieval)
-**Lore:** Oswin Kell rebuilt the Hardwater bridge three times and cut his mark into every stone. "Bad work is a lie told in stone."
+**Lore:** The Hardwater bridge was rebuilt three times with the mason's mark on every stone, and the fourth still stands. "Bad work is a lie told in stone."
 **Has:**
 - A commission, the guild collects and pays by quality, a bid on a masterwork, the wander-year (ask).
 - The art collector (caller); a great work (world event).
@@ -555,13 +555,13 @@ Where it lives:
     - Reuses: the wander-year's `learnedHere` deed. **Small.**
 
 62. **(camp) A work that stays.** *(Built, round 7: `Source/ColonyCouncil/Peoples/Events7/`.)*
-    - Three journeymen camp five to eight days and build a great work with the colony's stone or wood: a grand sculpture in its hall, a carved bridge over its river (Kell's), or a fountain where it gathers.
+    - Three journeymen camp five to eight days and build a great work with the colony's stone or wood: a grand sculpture in its hall, a carved bridge over its river (marked like the one at Hardwater), or a fountain where it gathers.
     - It carries the guild's mark: beauty, and the colony's renown.
     - It can turn: the colony's stone runs short and they wait, or a journeyman's work is judged bad and torn down.
     - Reuses: camps, colony renown, play-out work. **Large.**
 
 ### The Signal Line (linesmen; industrial)
-**Lore:** Ennis Calloway walked the hills with copper wire, raising masts until one valley could hear the next. "Silence is the only storm."
+**Lore:** A lineman walked the hills with copper wire, raising masts until one valley could hear the next. "Silence is the only storm."
 **Has:**
 - A relay mast (raid warning, faster letters), the wire-trader, a climb in the storm, the fallen span (ask).
 - Two peoples who want to talk (world event).
@@ -589,7 +589,7 @@ Where it lives:
     - Reuses: the relay mast, camp asks. **Medium.**
 
 ### The Deepwell Union (drillers; industrial)
-**Lore:** When the seam ran dry, Marta Grieve put it to the vote, and they walked out together with their picks. "Everyone up at the end of the shift."
+**Lore:** When the seam ran dry, the miners put it to the vote, and they walked out together. "Everyone up at the end of the shift."
 **Has:**
 - A drill for a share (one shift in twenty an injury), the assayer's crate, the strike, the short shift (ask).
 - A silver rush (world event).
@@ -619,7 +619,7 @@ Where it lives:
     - Reuses: the strike, bands against a camp. **Medium.**
 
 ### The Last Republic (citizens; industrial)
-**Lore:** Clement Ashdown, the last official still answering the radio, read the old laws aloud and called an election. "There is a form for that."
+**Lore:** A small town's postmaster, the most senior official left on the radio, read the old laws aloud until other towns answered. "There is a form for that."
 **Has:**
 - The census, papers, a conscript, the radio, a witness at the count (ask).
 - A republic's vote (world event).
@@ -676,7 +676,7 @@ Where it lives:
     - Reuses: the shuttle, camp asks, joining. **Small.**
 
 ### The Helix Works (editors; spacer)
-**Lore:** Orla Venn kept the vats warm after the founders fled, and taught the vat-grown to edit. "Every body is a draft; ask before you change it."
+**Lore:** The vat-grown kept the vats warm after the founders fled, and taught themselves to edit. "Every body is a draft; ask before you change it."
 **Has:**
 - The sample, gene work, the vat-keeper's case, a batch gone wrong, genepacks (ask).
 - A famous healer (world event).
@@ -703,7 +703,7 @@ Where it lives:
     - Reuses: `DilemmaEffect_HelixGene` and `_HelixSample` as camp asks. **Medium.**
 
 ### The Lattice (mechanitors; spacer)
-**Lore:** Tamsin Arro linked ten abandoned mechs to her own mind and taught three others to take ten each. "A mind alone is a candle; a lattice is a lamp."
+**Lore:** A deserter linked ten stilled mechs to her own mind and taught three others to do the same. "A mind alone is a candle; a lattice is a lamp."
 **Has:**
 - Repairs, a lost mech, the part-trader, a turret for the gate, two crafters for a day (ask).
 - A town rebuilding (world event).
@@ -732,7 +732,7 @@ Where it lives:
     - Reuses: the camp's work, bands against a camp. **Large.**
 
 ### The Choir of the Spire (listeners; beyond spacer)
-**Lore:** Ilsabet Ruen woke able to hear the Spire think, and someone has been listening ever since. "The hum is not silence."
+**Lore:** Generations beside the Spire have come to hear it think, and someone is always listening. "The hum is not silence."
 **Has:**
 - The Choir listens, the keeper of the hum, the listener's stay (ask).
 - A season of wild magic (world event).
@@ -759,7 +759,7 @@ Where it lives:
     - Reuses: `ChoirListening`, `PeoplesGMath.Felt`. **Small.**
 
 ### The Sunken Vault (vaultfolk; spacer, falling)
-**Lore:** Overseer Hollis Crane broke the seal when the water ran short, and half of them went back below for a week. "Every cell counts."
+**Lore:** The overseer the council chose broke the seal when the water ran short, and half of them went back below for a week. "Every cell counts."
 **Has:**
 - The last goods, a craft taught, a child who never saw a sky, power cells (ask).
 - A new town (world event); the supply that holds their age.

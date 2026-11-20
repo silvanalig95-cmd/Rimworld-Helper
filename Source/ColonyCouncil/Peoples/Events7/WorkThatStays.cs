@@ -65,7 +65,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// A work that stays (item 62): three journeymen of the Kiln Guild camp five to eight days by the colony and build a great work
-    /// with its own stone or wood, by what the colony has: a carved bridge over the water nearest it first (Kell's bridge at
+    /// with its own stone or wood, by what the colony has: a carved bridge over the water nearest it first (a marked bridge like the one at
     /// Hardwater: Vanilla Furniture Expanded - Architect's stone bridge of the colony's stone, else the game's wooden one), else a
     /// grand sculpture in its hall (its largest dining or recreation room), else a fountain where it gathers (Alpha Props - Parks'
     /// fountains, Dubs Bad Hygiene's). Once they have camped, the stone is carried out to them from the stores (round 1's carry-out)

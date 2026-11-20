@@ -103,7 +103,7 @@
           <li>Under the colony's flag</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a waymaster of {FACTION}, has ridden up to the gate. With {TALE} gathering at {PLACE}, the league asks each friend on the road for one fighter and one pack animal to travel with the caravans under their own flag, as the waymasters once did for the league's founder, Edda Vane. {A_nameDef} and {PET_nameDef} would be away {COUNT} days or so, and come home with a share of the profit.</li>
+          <li>{X_nameDef}, a waymaster of {FACTION}, has ridden up to the gate. With {TALE} gathering at {PLACE}, the league asks each friend on the road for one fighter and one pack animal to travel with the caravans under their own flag, as nine waymasters once did at Harrow Ford. {A_nameDef} and {PET_nameDef} would be away {COUNT} days or so, and come home with a share of the profit.</li>
           <li>[ride] A waymaster of {FACTION}, {X_nameDef}, has stopped at the gate with the league's book under {X_possessive} arm. With {TALE} gathering at {PLACE}, the league would like the colony to send someone under its own flag: one fighter riding one animal, {A_nameDef} on {PET_nameDef}, for about {COUNT} days, with a share of the profit at the end.</li>
           <li>[season] {X_nameDef} of {FACTION} has come to the gate with a list of names. It is {TALE}, and every friend of the league sends one guard and one wagon to walk with its caravans out of {PLACE}. {A_nameDef} and {PET_nameDef}, {X_pronoun} suggests: some {COUNT} days, and a share of whatever the caravans make.</li>
           <li>[lowtech] A waymaster of {FACTION} has walked up the road with a staff and the league's mark on {X_possessive} cloak, {X_nameDef} by name. With {TALE} going out from {PLACE}, the league asks the colony for one fighter and one pack beast to walk with it under the colony's own flag: some {COUNT} days, and a share of the profit.</li>
@@ -137,7 +137,7 @@
         </options>
         <lines>
           <li>[flag] One guard, one wagon, and the colony's name on the road.</li>
-          <li>[flag] Edda Vane went under nine flags, and yours makes ten.</li>
+          <li>[flag] Nine flags went through Harrow Ford, and yours makes ten.</li>
           <li>[thanks] The road won't wait, so neither will we.</li>
         </lines>
       </li>
@@ -462,7 +462,7 @@
           <li>[work] Bad work is a lie told in stone, and I don't lie.</li>
           <li>[work] Stand where you can see the work, and say nothing.</li>
           <li>[marked] Your name is in it now, so carry it well.</li>
-          <li>[marked] Kell cut his mark in every stone, and I cut yours in this.</li>
+          <li>[marked] The masons at Hardwater marked every stone, and I've cut your mark in this.</li>
           <li>[thanks] Honest work is honest work.</li>
         </lines>
       </li>
@@ -619,7 +619,7 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a copyist of {FACTION}, has come to the gate with a cart of books saved from {PLACE}. Nothing known should be lost, {X_pronoun} says, and asks the colony to keep the archive, {COUNT} books, for a season until a cart can fetch it.</li>
-          <li>[fire] {X_nameDef} of {FACTION} smells of smoke, and so does the cart behind {X_objective}: {COUNT} books carried out of {PLACE} as the fire reached it. The society's founder, Ilse Varro, once saved eleven books from a fire the same way, {X_pronoun} says, and asks the colony to keep these for a season.</li>
+          <li>[fire] {X_nameDef} of {FACTION} smells of smoke, and so does the cart behind {X_objective}: {COUNT} books carried out of {PLACE} as the fire reached it. The society itself began with eleven books a clerk carried out of the fire at Hesk, {X_pronoun} says, and asks the colony to keep these for a season.</li>
           <li>[fell] {PLACE} has fallen, and {X_nameDef}, a copyist of {FACTION}, got out with a cart of the archive. {X_pronoun} asks the colony to keep the books, {COUNT} of them, for a season, until the society can send a cart for them.</li>
           <li>[tome] {X_nameDef} of {FACTION} has brought a cart of {COUNT} books saved from {PLACE}, and a crate bound with wire and sealed. The books may be read, {X_pronoun} says, but the crate stays shut; would the colony keep them all for a season?</li>
           <li>[lowtech] A copyist of {FACTION} has pulled a handcart to the gate, {X_nameDef} by name, with {COUNT} books under an oiled cloth, saved from {PLACE}. The society holds that nothing known should be lost, and {X_nameDef} asks whether the colony would keep them for a season.</li>

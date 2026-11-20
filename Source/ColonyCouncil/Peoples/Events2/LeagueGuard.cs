@@ -13,7 +13,7 @@ namespace ColonyCouncil
     /// <summary>
     /// One guard, one wagon (item 3): while a great caravan or a trading season runs within reach (the world events), a
     /// waymaster of the league asks for one fighter and one pack beast to walk under the colony's own flag, as every
-    /// waymaster did for Edda Vane. The colonist leaves as a caravan of their own with the beast (SeasonAway), ridden with
+    /// waymaster did at Harrow Ford. The colonist leaves as a caravan of their own with the beast (SeasonAway), ridden with
     /// Giddy-Up, walks a few days with the caravan at its town, and comes home with a share of the profit and a trade lesson;
     /// the league thinks better of the colony, and its caravans come half again as often for a year (Peoples.CaravanFactor).
     /// The roads' ambushes and weather are the world's own. A pack beast in every age.

@@ -4526,29 +4526,31 @@ wand in place of their weapon, their craft named at the gate, a helpful spell in
 fight with its most broken spells kept out, and their card says what crafts are among them. A few lines of their own when
 they visit. Only pawns made from now on; their xenotype and race are not touched.
 
-**Where their ways began.** Each of the seven keeps a founding story (told in their talk and on their Almanac page; the
-description on the faction page says in plain words what they do, how they live, what they want from their neighbours
-and where their ways came from, each in a shape of its own, as for all twenty-three peoples), a few sayings, and what
-it honours and fears, shown on its card: the league's Edda Vane, who took nine waymasters' wagons through Harrow Ford
-under their flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a
+**Where their ways began.** Each of the seven keeps a founding story, a few sayings, and what it honours and fears,
+shown on its card. The description on the faction page says in plain words what they do, how they live, what they want
+from their neighbours and where their ways came from, each in a shape of its own, as for all twenty-three peoples, and
+their faith, their talk of how their ways began and their Almanac page tell the same history in their own voices, a
+founder named only where the people keep the name: the league's nine waymasters, who each sent a guard and a wagon
+through Harrow Ford under nine flags and began the Waystone Book of good ink and red; the order's Aldith, who nursed a
 fever town alone through a winter and hung its last lamp over the sickhouse door for anyone ("we were spared, and so we
 owe"); the herders' Tamsa, who walked the last forty head through the dry year to grass and back, which is why herders
-count every beast at dusk; the pilgrims' Old Brannoc, the nearly blind preacher who blessed every door he passed; the
-society's Ilse Varro, who carried eleven books out of the burning archive at Hesk; the enclave's Ines Okoro, purser of a
-downed ore hauler who sold its cargo one bargain at a time; the river folk's Wenna Reed, whose boats pulled people off the
-rooftops the night the dam broke. Their letters (now also in grief and in thanks for a warning), messengers, visitors and
-talk speak from it, each in its own manner. And each has a touchpoint of its own: when someone is down with a fever, a
-hospitaller comes to go from bed to bed through the night, the colony's doctor alongside if it likes; after a good winter's
-grazing the herders' elder leaves a young beast of the herd at the gate; in the winter a league caravan asks for winter
-quarters by the colony, trades all the while, stands with the colony against raiders if asked, and after a good stay
-leaves a carved waystone at the gate; on the fellowship's walking day a long file of pilgrims stops to pray at the
-colony's graves; once a year a fellow of the society holds the night of the fire's disputation where the colony
-gathers; in any age the enclave offers salvage from above, dropped by pod by the trade spot; and boatmen of the river
-folk dry and mend their nets on the colony's bank for the day and leave fish or net cloth for it. A herb-gatherer, a
-patrol after robbers, a lost traveller, a travelling teacher and a tourist come from them likeliest. Their faiths take a
-meme more from Vanilla Ideology Expanded where it is loaded (the lamp's light, the elders, the waymasters' republic, the
-enclave's machines, the river folk's equal shares), and a new people that arises in their ways carries their signature
-in its name (*Lamp of Ashford*, *Barr's Waystone*, *Last Herd of Ashford*).
+count every beast at dusk; the pilgrims' Old Brannoc, the nearly blind preacher who asked at a door each dusk and
+blessed the house each morning, whether it let him in or not; the society's clerk, who carried eleven books out of the
+burning archive at Hesk in a handcart; the enclave's first crew, who sold a downed ore hauler's cargo, passage and debts
+one deal at a time; the river folk's ferries, which pulled people off the rooftops the night the dam broke. Their
+letters (now also in grief and in thanks for a warning), messengers, visitors and talk speak from it, each in its own
+manner. And each has a touchpoint of its own: when someone is down with a fever, a hospitaller comes to go from bed to
+bed through the night, the colony's doctor alongside if it likes; after a good winter's grazing the herders' elder
+leaves a young beast of the herd at the gate; in the winter a league caravan asks for winter quarters by the colony,
+trades all the while, stands with the colony against raiders if asked, and after a good stay leaves a carved waystone at
+the gate; on the fellowship's walking day a long file of pilgrims stops to pray at the colony's graves; once a year a
+fellow of the society holds the night of the fire's disputation where the colony gathers; in any age the enclave offers
+salvage from above, dropped by pod by the trade spot; and boatmen of the river folk dry and mend their nets on the
+colony's bank for the day and leave fish or net cloth for it. A herb-gatherer, a patrol after robbers, a lost traveller,
+a travelling teacher and a tourist come from them likeliest. Their faiths take a meme more from Vanilla Ideology
+Expanded where it is loaded (the lamp's light, the elders, the waymasters' republic, the enclave's machines, the river
+folk's equal shares), and a new people that arises in their ways carries their signature in its name (*Lamp of Ashford*,
+*Barr's Waystone*, *Last Herd of Ashford*).
 
 **Four more: the Wardens, the Bell, the Circuit and the Wheel.** A new world also has the **Lantern Wardens**, who hunt
 the region's great beasts from lantern to lantern (medieval, a hood dyed lantern red over whatever the last hunt paid

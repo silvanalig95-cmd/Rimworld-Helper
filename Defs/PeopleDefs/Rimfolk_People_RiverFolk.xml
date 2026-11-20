@@ -13,7 +13,7 @@
     boat-trader of theirs brings a catch to the colony's gate (Rimfolk_Evt_RiverCatch, Odyssey); after a hard winter or a
     flood they ask for timber for the boats or cloth for the nets (Rimfolk_Mission_RiverBoats); the flood downriver and
     the ice road come from them likeliest (Patches/Rimfolk_PeoplesC.xml); boatmen of theirs ask to dry and mend their nets
-    on the colony's bank (Rimfolk_Evt_RiverNets). Their founding (told in the description, the founder named in their talk): Wenna Reed's boats, the only ones
+    on the colony's bank (Rimfolk_Evt_RiverNets). Their founding (told in the description, and the same in their talk, faith and page): the ferries, the only boats
     on the water the night the dam broke; a knot in the net for everyone pulled out. What they honour, fear and say is
     in their template (on their card). They defend their landings and raid only when
     the colony has turned them hostile (raidCommonalityFromPointsCurve 0.3). Listed once among the world's peoples when a
@@ -85,7 +85,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The River's Keeping</ideoName>
-    <ideoDescription>The river feeds whoever keeps it clean. Take what the water gives and no more, carry the stranger across as the river carried our mothers, and never foul the water another drinks downstream. Everything comes down to the river in the end, and the river takes it to the sea. Whoever is in the water is pulled out first and asked their name after, as Wenna Reed's boats did the night of the flood.</ideoDescription>
+    <ideoDescription>The river feeds whoever keeps it clean. Take what the water gives and no more, carry the stranger across as the river carried our mothers, and never foul the water another drinks downstream. Everything comes down to the river in the end, and the river takes it to the sea. Whoever is in the water is pulled out first and asked their name after, as the ferries did for three days when the dam broke.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">NaturePrimacy</li>
       <li MayRequire="sarg.alphamemes">AM_WaterPrimacy</li>

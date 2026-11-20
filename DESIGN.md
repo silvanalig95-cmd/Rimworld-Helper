@@ -10674,27 +10674,28 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
     lasting memory (`Rimfolk_Thought_ApprenticeMaster`, +5 for 60 days), +4. The first answer has the maker sit with them a
     while, the second has them work a morning at the bench together (a Crafting lesson, the teacher taught), the third thanks
     them at the gate. The guild at war when it is due puts it off a season; two years on it is let go.
-  - **A work that stays** (Guild; `WorkThatStays`, `CampWorker_WorkThatStays`): what they build is the guild's choice by what
-    the colony has, within forty-five cells of its middle: a carved bridge first (Kell's), across the water nearest the colony
-    from bank to bank, two cells wide and two to twelve long, every cell one the bridge can stand on, no bridge within four
-    cells; of Vanilla Furniture Expanded - Architect's stone bridge of the stone the colony holds most of, else the game's
-    wooden bridge, at its own cost a cell (laid as the game lays a bridge, a foundation over the water). Else a great work
-    of art in its hall, its largest dining, recreation or throne room, clear of doors: Vanilla Furniture Expanded - Art's
-    grand statue or monument, or the game's grand sculpture, which comes first changing with the season; else a fountain where
-    the colony gathers (by its gathering spot, else its middle): Alpha Props - Parks' fountains, then Dubs Bad Hygiene's.
-    Only of stone or wood the colony holds enough of, and only what the colony itself could build (its research done). The
-    card names the work, the stone and how much (the work's own cost, fifty at least). Three journeymen camp five to eight
-    days nearby; once settled, the stone is carried out to them from the stores (round 1's carry-out to a camp, taken at once
-    and set down there if nobody can carry it) and stacked at the work, theirs; they carve at it by day (8h to 17h,
-    `_Carve`, chips of stone), a day counted once, and it stands once two thirds of their stay are worked: the building
-    spawned, the colony's, excellent, its art a journeyman's (`CompArt.JustCreatedBy`), or the bridge laid cell by cell; the
-    stone used, any over left for the colony; told, the guild remembers it (`campHosted`), +4 as they go. The second answer
-    (or the camp's ask) has the colony's best at the art work beside them through the working hours (round 1's work beside,
-    120 Artistic an hour). It can turn, once a stay each: after a day's work at 0.3 a block cracks and the work needs a
-    quarter more (carried out the same way); when the stores don't hold what the work still needs, they wait a day, then a
-    second (their stay the longer), then make do with what they were given (it stands good, a grade plainer), or go if they
-    were given none; after two days' work at 0.2 the oldest judges a journeyman's day bad and has it torn down (`_TearDown`,
-    rubble; the day lost, a day longer).
+  - **A work that stays** (Guild; `WorkThatStays`, `CampWorker_WorkThatStays`): what they build is the guild's choice by
+    what the colony has, within forty-five cells of its middle: a carved bridge first (marked like the one at
+    Hardwater), across the water nearest the colony from bank to bank, two cells wide and two to twelve long, every cell
+    one the bridge can stand on, no bridge within four cells; of Vanilla Furniture Expanded - Architect's stone bridge
+    of the stone the colony holds most of, else the game's wooden bridge, at its own cost a cell (laid as the game lays
+    a bridge, a foundation over the water). Else a great work of art in its hall, its largest dining, recreation or
+    throne room, clear of doors: Vanilla Furniture Expanded - Art's grand statue or monument, or the game's grand
+    sculpture, which comes first changing with the season; else a fountain where the colony gathers (by its gathering
+    spot, else its middle): Alpha Props - Parks' fountains, then Dubs Bad Hygiene's. Only of stone or wood the colony
+    holds enough of, and only what the colony itself could build (its research done). The card names the work, the stone
+    and how much (the work's own cost, fifty at least). Three journeymen camp five to eight days nearby; once settled,
+    the stone is carried out to them from the stores (round 1's carry-out to a camp, taken at once and set down there if
+    nobody can carry it) and stacked at the work, theirs; they carve at it by day (8h to 17h, `_Carve`, chips of stone),
+    a day counted once, and it stands once two thirds of their stay are worked: the building spawned, the colony's,
+    excellent, its art a journeyman's (`CompArt.JustCreatedBy`), or the bridge laid cell by cell; the stone used, any
+    over left for the colony; told, the guild remembers it (`campHosted`), +4 as they go. The second answer (or the
+    camp's ask) has the colony's best at the art work beside them through the working hours (round 1's work beside, 120
+    Artistic an hour). It can turn, once a stay each: after a day's work at 0.3 a block cracks and the work needs a
+    quarter more (carried out the same way); when the stores don't hold what the work still needs, they wait a day, then
+    a second (their stay the longer), then make do with what they were given (it stands good, a grade plainer), or go if
+    they were given none; after two days' work at 0.2 the oldest judges a journeyman's day bad and has it torn down
+    (`_TearDown`, rubble; the day lost, a day longer).
   - **A voice for the colony** (Line; `VoiceForColony`): once a season (15 days) an operator comes with one call on the Line's
     masts at the Line's price (50 silver, its price for news; 150 for hands): a trader of goods or of arms (the game's own
     caravan of that kind, `TraderCaravanArrival` with its trader kind, from the nearest and friendliest people at peace that
@@ -11092,6 +11093,7 @@ history, written and tailored for it exactly." Built 15 November 2026.
 - **Where.** The `<description>` of each of the 23 FactionDefs in `Defs/PeopleDefs/Rimfolk_People_*.xml`, the text of the
   faction's info window (a people that arose in their ways shows its template's). Only the descriptions changed: the
   peoples' talk, faiths, sayings, events, letters and Almanac pages keep their founding stories and founders as they were.
+  (Since 20 November 2026 those tell the descriptions' own history: the next section.)
 - **How each is written.** In plain words (CLAUDE.md, "Plain, neutral text"): what they do, where and how they live, the
   age they live in, said plainly, what they want from their neighbours and how they treat outsiders, each of those one of
   their events, asks or trades on the map. Their history has a shape of its own: the end of a king's war (the Ashen
@@ -11118,6 +11120,67 @@ history, written and tailored for it exactly." Built 15 November 2026.
   began", no em dash or exclamation mark, the age said, and no two descriptions opening with the same three words. The
   founders' list stays for the talk's check (one piece of each people's talk tells how their ways began).
 - **What can't be checked without the game:** how each text sits in the faction's info window.
+
+### The peoples' own beginnings, each told its own way (the player's go, 20 November 2026; not released yet)
+
+The player's words (14 November 2026): "it really reads like AI gibberish and I don't understand what is really meant.
+also they all follow the same structure and it's always one named individual who started the faction somehow. can you
+redo these descriptions and do a better job? each faction shoud have it's own description & history, written and
+tailored for it exactly." The descriptions were rewritten in 0.252.0 (the section above); the go for the rest came on 20
+November 2026 ("go ahead with the next tasks"). Until now the faith, the talk and the Almanac page of seventeen peoples
+still told their start through a founder their description no longer has, so the two disagreed in the game.
+
+- **What changed.** For each of the seventeen peoples whose description names no founder (the road league, the learned
+  society, the spacer enclave, the river folk, the Quiet Bell, the Wheel, the Stormglass Conclave, the Mossborn, the
+  Ashen Banner, the Kiln Guild, the Signal Line, the Deepwell Union, the Last Republic, the Helix Works, the Lattice,
+  the Choir of the Spire, the Sunken Vault), every text that told their start through a founder now tells the
+  description's history: the faith's description (`ideoDescription`, fifteen of them; the league's and the society's
+  named nobody, and the society's now says where the fire was, Hesk), the piece of talk on how their ways began (uses
+  `chat,know`), their words about their faith face to face (`faithtalk` in `Rimfolk_Pool_OutsiderSays`), the
+  Almanac page's point under *Where their ways began*, and every other place that named the founder: the league's call
+  for a guard and a beast (`Rimfolk_Evt_LeagueGuard`, its text and a line) and its road gang's farewell
+  (`Rimfolk_Evt_RoadGang`), the society's books saved from a fire (`Rimfolk_Evt_ArchiveTrust`), the schoolteacher in the
+  society's voice (`Patches/Rimfolk_PeoplesLore.xml`), the society's letter of greetings, the guild's mark
+  (`Rimfolk_Evt_GuildMark`) and its work that stays (the bridge "marked like the one at Hardwater", on the page and in
+  two code comments), the camps' tales (`Rimfolk_Camp_StormTower`, `_AfterFire`, `_FieldLab`, `_ListeningRing`,
+  `_SurfaceScouts`), the enclave's talk of being stranded, the defs' header comments, and the words their towns' and
+  peoples' names are made from (`King's Fort`, `Humming Hall`, `Union Seam`, `Winter Garden`, `Mason's Kilns`,
+  `Deserter's Field`, `Planter's Grove`, `Lower ...`, `Lineman's Ridge`, `Glassblower's Tower`, `Overseer's Seal`,
+  `Cartwright's Yard`, `Chapel Bell` in place of the old founders' names; a town already named keeps its name). The six
+  who keep the name (Aldith, Tamsa, Old Brannoc, Tobin Garrow, Nessa Pell, Captain Imre Sallow) keep it everywhere;
+  their Almanac points were written again so that no two points open alike, and the pilgrims' talk and page now say what
+  the description says (Old Brannoc asked at a door each dusk and blessed the house in the morning, whether it had let
+  him in or not).
+- **Each in its own voice.** The Almanac in plain words (CLAUDE.md, "Plain, neutral text"); the talk as speech, each
+  line one sentence of 90 characters at most, in the people's own manner (the league practical, the enclave dry, the
+  river folk easy, the Wheel quick); the bubbles one sentence each; the faiths' descriptions in their creed's own voice,
+  the old voice the player enjoys in the religions, still saying plainly what happened. Each beginning keeps its
+  description's shape: a pact at a ford, a fire, a crash and a trade, a flood, a war's unburied dead, a flight from
+  fire, a three-hundred-year record, a war and a replanting, the end of a king's war, a bridge and an oath, a war that
+  cut the roads, a vote, a collapse and a broadcast, an abandoned lab, a battlefield, a place that changed its people
+  over generations, an opening. The talk opens on a pin, a vial, a seed, a mark or a number, or with the visitor
+  speaking first (the society, the enclave, the Banner), in five or six lines; the Almanac points open each their own
+  way, from a short paragraph (the Wheel) to a long one (the pilgrims).
+- **True to the description and the map.** No founder's name where the description has none, and nobody new named: those
+  the description leaves unnamed stay unnamed (the clerk, the glassblower, the lineman, the postmaster, the deserter,
+  the overseer, the woman who began the planting), and what it tells as many people's doing stays theirs (the nine
+  waymasters, the hauler's crew, the ferries, the soldiers, the miners' vote, the masons, the lab's own grown, the
+  valley on its carts, the Choir's generations). What the old texts claimed and the descriptions don't is gone: a purser
+  who sold the cargo, a quartermaster's five hundred unpaid soldiers, a shift-captain's call, the postmaster's election
+  in the spring, one night at the Spire's foot, the overseer's name. Every saying, honour, fear, title, event and letter
+  of theirs reads the same as before and agrees (the Line's copper aerial from the first coil, the guild's fourth
+  bridge, the vault's number on the suit, the Bell's cracked bell, the Wheel's vote never taken).
+- **Kept.** Every defName (the talk pieces' names still end with the old founders' names,
+  `Rimfolk_OT_PeoplesE_GuildKell` and the like, never shown), tag, placeholder and Almanac keyword; the descriptions
+  themselves; nothing in code but comments, nothing saved.
+- **Tests.** `Tools/Tests/PeoplesLoreTests.cs`: the founders' list is the six; each of the 23 has a word of its
+  beginning (`Beginnings`) that its description, its faith, its talk on how their ways began and the Almanac pages all
+  say, and the six founders are named in all four; no def, patch or keyed text names any of the seventeen old founders
+  (`Unnamed`); the 23 talk pieces open with 23 different first three words, and the 23 Almanac points too, at 20 lengths
+  or more. `PeoplesETests`, `PeoplesFTests` and `PeoplesGTests` read their page for the beginnings in place of the old
+  names.
+- **What can't be checked without the game:** how the talk reads over the heads at the gate, and the faith's description
+  in the Ideology window.
 
 ### Magic among the peoples, seen (the player's request, 12 November 2026; released 0.225.0)
 

@@ -371,7 +371,7 @@ public static class PeoplesGTests
         C(!almText.Contains('—') && !almText.Contains('!') && !Regex.IsMatch(almText, @"\bin \d+ (days?|hours?)\b"), "its words plain, no countdowns");
         C(almText.Contains("a fifth over") && almText.Contains("fifteen of their goodwill") && almText.Contains("one in five") && almText.Contains("about every four years")
           && almText.Contains("medieval age") && almText.Contains("six in ten") && almText.Contains("blood draw"), "its rules are the code's");
-        C(almText.Contains("Orla Venn") && almText.Contains("Tamsin Arro") && almText.Contains("Ilsabet Ruen") && almText.Contains("Hollis Crane"), "and its foundings the defs'");
+        C(almText.Contains("vats warm") && almText.Contains("deserter") && almText.Contains("generations") && almText.Contains("overseer"), "and its foundings the descriptions'");
         var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_PeoplesG.xml")).Root!.Elements().Select(e => e.Name.LocalName).ToHashSet();
         var used = Regex.Matches(code + Read("PlayOut", "PlayCarry.cs"), "\"(CC_PeoplesG_\\w+)\"").Select(m => m.Groups[1].Value).Distinct().ToList();
         C(used.Count >= 40 && used.All(keyed.Contains), $"every word the code says is keyed ({used.Count}{(used.Any(u => !keyed.Contains(u)) ? ", missing " + string.Join(", ", used.Where(u => !keyed.Contains(u))) : "")})");

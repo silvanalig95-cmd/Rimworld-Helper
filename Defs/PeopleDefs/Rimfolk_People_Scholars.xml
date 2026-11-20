@@ -10,7 +10,7 @@
     no more often than another people's. A copyist of theirs asks to copy the colony's records for the archive
     (Rimfolk_Evt_ScholarCopyist); a travelling scholar, a book swapper, the old vault opened and the comet come from them
     likeliest (Patches/Rimfolk_PeoplesC.xml); once a year a fellow holds the night of the fire's disputation at the colony's
-    gathering place (Rimfolk_Evt_Disputation). Their founding (told in the description, the founder named in their talk): Ilse Varro, who carried eleven books
+    gathering place (Rimfolk_Evt_Disputation). Their founding (told in the description, and the same in their talk and page): a clerk who carried eleven books
     and a ledger out of the burning archive at Hesk and copied them for the rest of her life. What they honour, fear and
     say is in their template (on their card). They defend their archives and raid only when the colony has turned them
     hostile (raidCommonalityFromPointsCurve 0.2). Listed once among the world's peoples when a world is made, never
@@ -64,7 +64,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Open Book</ideoName>
-    <ideoDescription>Nothing known should be lost. A scholar reads what was written, copies what is failing, and asks the question nobody else will; whatever can be written down is kept, and whatever is kept is lent. Each mind finds its own way to the truth, and the archive remembers all of them. What cannot be known is said so plainly, and argued over all the same, every year on the night of the fire.</ideoDescription>
+    <ideoDescription>Nothing known should be lost. A scholar reads what was written, copies what is failing, and asks the question nobody else will; whatever can be written down is kept, and whatever is kept is lent. Each mind finds its own way to the truth, and the archive remembers all of them. What cannot be known is said so plainly, and argued over all the same, every year on the night of the fire at Hesk.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Individualist</li>
       <li MayRequire="sarg.alphamemes">AM_Monastic</li>
