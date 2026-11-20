@@ -16,7 +16,8 @@ namespace ColonyCouncil
     {
         private static void Say(string text) => Messages.Message("Peoples: " + text, MessageTypeDefOf.SilentInput, false);
 
-        private static IEnumerable<Faction> Ours => Find.FactionManager.AllFactionsListForReading.Where(f => f != null && !f.defeated && !f.IsPlayer && Peoples.IsOurs(f));
+        /// <summary>Every people whose age Rimfolk keeps: its own, and another mod's it knows (the dark elves).</summary>
+        private static IEnumerable<Faction> Ours => Find.FactionManager.AllFactionsListForReading.Where(f => f != null && !f.defeated && !f.IsPlayer && PeopleAges.Kept(f));
 
         [DebugAction("Rimfolk", "Peoples: every people's age and progress (log)", allowedGameStates = AllowedGameStates.Playing)]
         private static void DebugList()
@@ -35,7 +36,9 @@ namespace ColonyCouncil
                 var next = PeopleAgesMath.Season(r.age, r.progress, w, PeopleAgesMath.Fate(f.loadID), d);
                 sb.AppendLine($"  {f.Name} ({f.def.defName}): {PeopleAgeWords.AgeWord(r.age)} (began {PeopleAgeWords.AgeWord(r.start)}, floor {PeopleAgeWords.AgeWord(w.floor)}, "
                               + $"limit {PeopleAgeWords.AgeWord(w.limit)}), progress {r.progress:0.00}, heading {r.heading} ({r.why}), pace {w.pace:0.#} years x{PeopleAgesMath.Fate(f.loadID):0.00}"
-                              + (w.declines ? $", declines unless supplied ({w.declineYears:0.#} years an age)" : "") + "; ");
+                              + (w.declines ? $", declines unless supplied ({w.declineYears:0.#} years an age)" : "")
+                              + (ForeignPeoples.Has(f) ? ", another mod's people (its limit by the arms of its roles)" : "")
+                              + (PostReach.Callable(f) ? ", the comms console reaches them" : ", no radio") + "; ");
                 sb.AppendLine($"    the year: trade {d.trade:0} silver, gifts {d.gifts:0}, learners {d.learners}, lessons {d.lessons}, bond {d.bond:0.#}, alone {d.yearsAlone:0.0} years, "
                               + $"burned {d.burned} of {d.towns + d.burned} towns, at war with {d.war:P0}, parts {d.supply:0}; boost x{boost:0.00}, cut off {cut:0.00}; "
                               + $"next season {next.progress:0.00}{(next.change != 0 ? (next.change > 0 ? ", rises" : ", falls back") : "")}"
@@ -59,7 +62,7 @@ namespace ColonyCouncil
                     Say(PeopleAges.Push(people, dir) ? people.Name + " " + label + "." : "couldn't.");
                 }));
             }
-            if (options.Count == 0) Say("no people of Rimfolk's can go that way.");
+            if (options.Count == 0) Say("no people whose age Rimfolk keeps can go that way.");
             else Find.WindowStack.Add(new FloatMenu(options));
         }
 

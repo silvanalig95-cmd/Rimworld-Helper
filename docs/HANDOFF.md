@@ -37,7 +37,9 @@ most sense." So, in this order, three builds at a time:
 4. **The plain-words text pass**: every category done and released (0.266.9 to 0.271.1) but the peoples' own texts and
    Almanac pages, which wait for the player's answer (below; the entry "Rimfolk's text in plain words").
 5. **More traits that come and go**: the proposal list is written (`docs/traits-proposals.md`, 19 November 2026, 38
-   numbered proposals and the lead's first batch); nothing is built until the player picks from it.
+   numbered proposals and the lead's first batch); with the player's go of 20 November 2026 all 38 are built (the first
+   batch released 0.275.0, the other ways out 0.276.1; the new traits 28 to 36 built, not released), and the to-do is
+   done.
 6. **The storytellers' below-base levers**: released 0.266.8.
 7. **New wishes, 19 November 2026**, all three with the player's go ("yes, please", "all the three"): a day off lifts
    the mood (0.266.7), choosing the material from the gear tab (0.268.1), a god's mark worth having (0.268.3).
@@ -59,6 +61,10 @@ most sense." So, in this order, three builds at a time:
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text"). Built, not released:
      the entry "The peoples' own beginnings, each told its own way" above the newest release line.
 - Pokémon: pairings are changed when the player flags one.
+- **To do when the player asks (found 20 November 2026 with A30, no words of the player's yet): who raises an orphan.**
+  The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
+  A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
+  raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
 - **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
   overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
   additional God events, more immersion, more just further also building up on the gods in general, how they're
@@ -72,29 +78,17 @@ most sense." So, in this order, three builds at a time:
   The order, three builds at a time:
   1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
      medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
-     closeness), the peoples' founder texts (in each text's present voice; built, not released), the comms console by radio and the foreign
+     closeness; both done, built, not released: the entry "The medal read at the gate, the peoples' errands past a barred
+     door, and what the dead leave by closeness" above the newest release line), the peoples' founder texts (in each text's present voice; built, not released), the comms console by radio and the foreign
      peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems.
   3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
      events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
-- **To do when the player asks (20 November 2026): the comms console and the peoples' ages.** The player, with
-  League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm Riders. I
-  mean, they are always only on medieval style tech level, it seems, you know, based on their weapons, etc. I don't know
-  if that makes sense, or whether the Storm Riders already kind of also progressed into a more modern technology level.
-  But if they did, then it's really not reflected at all in their weapons and gear. I mean, that is a very cool idea,
-  that other factions can also increase tech level and adjust over time. But then also, if they are still on older
-  technology, it doesn't make sense if they are all reachable with the comms console." Found: the Stormriders are the
-  Dark Elves mod's faction (`DevDesigner_DarkElvesFaction`, Medieval, `devdesigner.elves.continued`), one of Rimfolk's
-  foreign peoples (`Rimfolk_ForeignPeoples.xml`); Rimfolk's changing ages ("Peoples whose age changes",
-  `Peoples/PeopleAges.cs`) cover only its own twenty-three peoples and those that arose in their ways, so the
-  Stormriders are and stay medieval, and their gear is medieval as it should be. The comms console is the game's own: it
-  lists every faction, whatever its age. Proposed, waiting for the player's go: (1) the comms console reaches only
-  peoples whose age has a radio (industrial or spacer, Rimfolk's age where it keeps one, else the faction's own tech
-  level); the others are shown greyed ("no radio: a letter goes by rider"), with the way Rimfolk already writes to them
-  (the neighbours' letters) named, and a setting to keep the game's way; (2) the foreign peoples' ages change too, as
-  Rimfolk's own do (their pace by their ways, rising with trade, teaching and time), their gear following through the
-  every-age pass from the full mod pool.
+- **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
+  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; built, not released): the
+  comms console and the peoples' ages.** The to-do with the player's words is now one entry above the newest release
+  line ("The comms console by radio, and the foreign peoples' ages").
 - **The player, 20 November 2026 (third and fourth messages):**
   - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
     option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
@@ -117,9 +111,9 @@ most sense." So, in this order, three builds at a time:
     the player's words is now one entry above the newest release line ("PokéWorld's items on the shelves").
 - **The player, 20 November 2026 (second message):**
   - "go ahead with all the traits": every one of the 38 in `docs/traits-proposals.md`. The first batch (the twelve) is
-    released (0.275.0); the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25 are built, not released (the entry "More
-    traits that come and go, the other ways out" above the newest release line); the new traits 28 to 36 follow in one
-    more build, reusing their new parts.
+    released (0.275.0); the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25 are released (0.276.1); the new traits 28 to
+    36 are built, not released (the entry "More traits that come and go, the new traits" above the newest release
+    line). With them the whole list is built and the to-do is done.
   - "I don't remember making letters, wishes, ambitions, life goals, personal stories, council questions, gods cards and
     messages as plain text? do you still have the previous backups available in case i want to restore?" Answered: the
     overview of 19 November listed them under item 4 ("Plain-words text pass, remaining parts: letters, wishes and
@@ -229,8 +223,9 @@ repo.
   not released): more traits that come and go.** The to-do of 17 November 2026 with the player's words, the proposal list
   (`docs/traits-proposals.md`) and what was built are now one entry above the newest release line ("More traits that
   come and go, the first batch"). The player's "go ahead with all the traits" (20 November 2026) covers the other 26
-  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25 (built, not released: "More traits that
-  come and go, the other ways out"), then the new traits 28 to 36.
+  proposals, in two more builds: the ways out 3, 7 to 9, 11 to 13, 15, 17 to 25 (released 0.276.1, "More traits that
+  come and go, the other ways out"), then the new traits 28 to 36 (built, not released: "More traits that come and go,
+  the new traits"). The to-do "more traits that come and go" is fully done.
 - **Done (19 November 2026, the player's go: "Rooms judged by what's in them. That sounds good."; built, not
   released): rooms, the ballroom over the temple and the dining room.** Fix A was released in 0.265.2 ("Ballrooms only
   for music rooms"); fix B, Rimfolk reading a room by what is in it, and the to-do with the player's words are now one
@@ -654,6 +649,230 @@ repo.
     gives their words about it. 4. The hospitallers, the herders, the pilgrims, the Wardens, the Circuit and the Hollow
     Fleet still name Aldith, Tamsa, Old Brannoc, Tobin Garrow, Nessa Pell and Captain Imre Sallow everywhere.
   - Mods that would help: none needed; it is text in the game's own windows and Rimfolk's talk.
+- 0.277.1, **More traits that come and go, the
+  new traits** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The new traits 28 to 36
+  of `docs/traits-proposals.md`, each marked there; with them all 38 are built and the to-do "more traits that come and
+  go" is done. 28, a doctor who sees a patient through a dangerous illness gets a mark of their own ("nursed someone back
+  to health"), which counts toward kind and toward squeamish's way out (in place of 30 times tending others), and
+  healer's hands now also come of 60 recent hours as a doctor and three patients nursed back (8%); 29, perfectionist after
+  three masterworks and a skill mastered in 180 days, pride up 10 (4%); 30, dog person or cat person after a year (60
+  days) bonded with one of the colony's dogs or cats (10%); 31, fisherman after 80 recent hours fishing (Vanilla
+  Fishing Expanded, 8%); 32, wanderlust after a second season abroad within a year, twice, openness up 10 (5%); 33,
+  desensitized after two fights the colony won but lost people in and 20 corpses buried, warmth down 6 (3%), and it
+  fades after a long peace and two kindnesses (5%); 34, mountain lover after a year almost always under a roof, most of
+  their waking hours under a mountain's rock (3%); 35, drunken master in a brawler who held the line three times while
+  drunk (3%); 36, occultist after 60 recent hours of dark study and drawn to the unknown twice (Anomaly, 5%). 12 new
+  rules (112 in all): 10 gains, one more way out (60), desensitized going again. No bad trait is added: perfectionist,
+  wanderlust, desensitized, drunken master and occultist are neither good nor bad, and the last three come only of what
+  already happened on the map and are rare or uncommon. DESIGN.md "More traits that come and go, the new traits" has
+  every rule and part; the Almanac's page *traits that change* has a row for each (keywords unchanged), the page
+  *marks* the doctor's mark; README "Traits that change" and "Character".
+  - Code: `Persona/TraitChangeMath.cs` (pure, linked: `TallyCounts`, `PageMarksToAdd`, `PetKind`, `BondDays`),
+    `Persona/TraitChangeDefs.cs` (`bondedKind`, `bondedDays`, `withTrait`, a tally's `whileDrunk`, `Present`; config
+    errors for each, and a DLC's kind of work checked only with the DLC), `Persona/TraitChanges.cs` (`CountsNow` and
+    `Drunk` in every way a tally counts, `Entries` reading the page's marks too, `BondedAnimal` of a kind with its days,
+    `WithTrait`, their parts with the missing words and their letter lines), `Persona/Marks.cs` (`Notify_Nursed`),
+    `Health/HealthTracker.cs` (`PulledThrough` gives the doctor's mark after the doctor's journal line; the counting moved
+    to `CountDoctor`), `Quirks/Practice.cs` and `Quirks/Quirks.cs` (the practice `rock`: hours awake under a rock roof),
+    `Defs/PersonaDefs/Rimfolk_PersonaMarks_Bonds.xml` (`Rimfolk_Mark_NursedSomeone`), the rules in
+    `Rimfolk_TraitChanges_Mods.xml` (29 to 35), `_Character.xml` (36; kind counts the doctor's mark), `_Habits.xml`
+    (`Rimfolk_TC_HealerNursing`), `_WaysOut.xml` (`Rimfolk_TC_VTE_SqueamishNursed`), Keyed `Rimfolk_TraitChanges.xml`
+    and `Rimfolk_Habits.xml`. Saved: one number more in each colonist's practice log (`rock`; the save model's practice
+    entry is up from 140 to 160 bytes); nothing else (the tallies hold the new counts). Tests: `TraitChangeTests` (drunk,
+    the page's marks counted once, the dogs and cats of the player's list, a bond's length, each of the nine's
+    conditions against the proposal, none bad news, 112 rules, 60 ways out); `MarkTests` (the doctor's mark names the
+    patient); `Tools/Tests/ModDefNames.txt` has `VTE_DogPerson`, `VTE_CatPerson`, `VTE_ChildOfMountain` and
+    `VCEF_Fisherman`.
+  - Decided here (open in the proposals): a count of marks now also reads the marks of its kind still on the character
+    page (as the zero count already did), so a masterwork, a costly fight or a season abroad from before this build
+    counts while it is on the page, and one counted as it came isn't counted twice; a count that asks how they were at
+    the time (hungry, drunk) still only counts as it comes. 28's mark is a turning point kept 180 days, once for each
+    patient while it lasts and the next patient a day later, given after the doctor's journal line so one illness is one
+    line; squeamish's "counted toward" is a rule of its own (40 hours as a doctor and a patient nursed back, 8%), not a
+    change to 17; kind's three marks of kindness now include it. 29 counts a legendary piece as a masterwork; "within 180
+    days" holds for the three pieces and the skill mastered. 30's "a year" is the game's 60 days, from the bond's own
+    start (the game's `DirectPawnRelation.startTicks`), with the colony's own animal; a dog is the game's three, Vanilla
+    Animals Expanded's five, a breed's word in the label or a label ending in "dog" (not a prairie dog); a cat the game's
+    cat, any kind called a cat and Vanilla Animals Expanded's cats (the maine coon too; Odyssey's scimitar cat counts);
+    never both traits, never an animal hater. 31's Fishing work is Odyssey's (the catalogue has no fishing work of Vanilla
+    Fishing Expanded's own, and its 1.6 builds on Odyssey's), so the rule asks for Odyssey too. 32 is two marks of a
+    second season abroad within a year, over the 240 days a count keeps. 33's costly fights are the mark for a fight won
+    with the colony's dead ("fought through a costly fight"), the burials the game's `CorpsesBuried` (looked up in the 1.6
+    reference assemblies' `RecordDefOf`); its way out is neither good nor bad news, for any desensitized, so it is not one
+    of the ways out of a bad trait (it waits for the colony's 10 days and shows once a third of it is there). 34's "under
+    a mountain's roof" is a new practice, hours awake under a rock roof (the game's `RoofDef.isNatural`: a mountain's,
+    thin or overhead), 240 of them lately (about twelve waking hours a day), beside the undergrounder's whole rule. 35's
+    "a brawler" is the game's brawler trait (new: `withTrait`, a part that holds or not and isn't evidence toward showing
+    the rule); "while drunk" is the game's alcohol high on them when the mark is given at the end of the fight. 36 counts
+    the mark "drawn to what lies beyond" twice. Mods' files that aren't here (the traits are by defName from the
+    catalogue, active): Vanilla Traits Expanded's dog person, cat person, perfectionist, wanderlust, desensitized, mountain
+    lover and drunken master, and Vanilla Fishing Expanded's fisherman, are assumed to take and leave as the game's own
+    traits do; the drunken master is assumed not to conflict with the brawler trait (if it does, the game's conflict
+    check keeps the rule from ever coming); dog person and cat person are assumed to be about the same animals as the
+    lists here; the meanings in the letters say only what the trait names say.
+  - Harm: none. No new bad trait; the three that come of hard times (desensitized, drunken master, occultist) only of
+    fights, burials and dark study that already happened on the map, at 3 to 5% a day once everything holds.
+  - Not run here (none of it could be): every change in the game (the letters, the journal lines, the doctor's mark and
+    its journal line, "Where life is taking them" with the bond's days, the brawler line and the hours under rock); the
+    bond's start tick on a starting animal; the alcohol high still on a hero at the fight's end; the rock hours on a
+    mountain base; Vanilla Traits Expanded's and Vanilla Fishing Expanded's traits coming as the game's own do.
+  - Try in the game (dev mode; "Rimfolk", "Traits that change: why or why not" logs every rule for a colonist): 1. A
+    doctor who tends a colonist through plague or the flu twice or more: when the patient is over it, the doctor's
+    character page has "nursed someone back to health". 2. A colonist bonded to one of the colony's dogs: "Where life is
+    taking them" shows dog person "1 of 2", and its tooltip "One of the colony's dogs bonded to them: (name)" and "Days
+    bonded: N of 60". 3. A colony dug into a mountain, a colonist with openness 0 or less: after a few weeks the page
+    shows mountain lover, its tooltip "Time under a rock roof: about N hours lately (needs 240 or more)". 4. A brawler,
+    drunk on beer, who makes the most kills in a won raid: "why or why not" for them says the drunken master still lacks
+    "tally HeldDrunk" until the third such fight. 5. "Traits that change: give a trait as Rimfolk would..." with
+    `Rimfolk_TC_VTE_Desensitized`: "why or why not" shows its fading waiting out 120 days from then ("trait"), and after
+    that asking a long peace and two kindnesses remembered. 6. "Traits that change: the first that holds, now" makes any
+    of them happen with its letter.
+  - Mods that would help: none needed. Vanilla Traits Expanded (Workshop 2296404655, 1.6 and 1.7), Vanilla Fishing
+    Expanded (1914064942, 1.6 and 1.7), Vanilla Animals Expanded (2871933948, 1.6 and 1.7, its dogs and cats) and the
+    Odyssey and Anomaly DLCs, all active in their list and kept up, give the traits, the fishing, the animals and the dark
+    study.
+- 0.277.0, **The comms console by radio, and the
+  foreign peoples' ages** (20 November 2026; the player, with League_of_Toba_8: "So now I finally built the comms console,
+  and I'm able, for example, to call the Storm Riders. I mean, they are always only on medieval style tech level, it
+  seems, you know, based on their weapons, etc. I don't know if that makes sense, or whether the Storm Riders already kind
+  of also progressed into a more modern technology level. But if they did, then it's really not reflected at all in their
+  weapons and gear. I mean, that is a very cool idea, that other factions can also increase tech level and adjust over
+  time. But then also, if they are still on older technology, it doesn't make sense if they are all reachable with the
+  comms console"; the go: "yes, please go ahead Regarding the faction update, in the sense that only the ones with radio
+  can answer, and also that foreign peoples change [age] at their pace. That makes sense."). DESIGN.md "The comms console
+  by radio, and the foreign peoples' ages" (after "Peoples whose age changes"; that section and the Stormriders' now
+  point to it); README "Only peoples with a radio answer the comms console", the dark elves' and the ages' paragraphs; the
+  Almanac's peoples' page, *Their age over the years*, and the neighbours' page, *A call on the comms console* (keywords
+  unchanged).
+  - **The console by radio.** The game's console listed every people whatever its age. Now its call to a people with no
+    radio is greyed, never hidden: the game's label with "(no radio: they can only be reached by a letter)", and a
+    tooltip with the age they live in and how a letter reaches them (their card or their page under Peoples, a courier or
+    the post; with the letters off, that their messengers and traders still come to the gate). The rule
+    (`PostReach.Callable`): the age the people lives in now (Rimfolk's record where it keeps one, else the faction's own
+    tech level) is industrial or later, or a town of theirs is within 30 tiles of a Signal Line town. The Empire, the
+    outlanders, the pirates and every other people of those ages answer as before. Only the console's own call changes
+    (a postfix on `Faction.CommFloatMenuOption`): ships in orbit, other mods' contacts that aren't a people, a dialog
+    opened any other way, quests and the Empire's permits are as they were. Rimfolk's own calls now keep the one rule:
+    a pact called in, a ransom's, a favour's and a truce's call read `PostReach.Callable` (the masts now carry them too,
+    as they did the letters'), and `PostMath.RadioReaches` reads `NotableMath.Callable`. Setting `radioConsole` ("Only
+    peoples with a radio answer the comms console", What's on, The region, right under the peoples' ages; on; needs the
+    deeper game hooks).
+  - **The foreign peoples' ages.** Every faction a `ForeignPeopleDef` names (today the dark elves, the Stormriders) gets
+    an age record and moves by Rimfolk's one seasonal rule (`PeopleAges.Kept`; `Peoples.AgeOf` and `TechOf` read it), so
+    their words, camps, gear's stuff, letters' means, card heading, the region's page, the letter of a change (with
+    their head's own words) and their traders' stock (`Patch_PeopleAgeStock`) follow it, and the console reaches them
+    once they are industrial. Their ways from the profile: the dark elves 11 years an age (the Ashen Banner's pace), no
+    further than the industrial age, no lower than the tribal; a profile without them 12 years, one up and one down. The
+    arming cap: every role whose kinds carry arms needs a set for each age above its own (`ForeignRole.ageArms`, the
+    same sets as Rimfolk's kinds'), and the set has to find a weapon of the age among the loaded mods, or the people
+    rises no further. The dark elves in the industrial age (from the player's active mods): Darkshards a repeating gun
+    under `IndustrialGunAdvanced` within 600 silver (assault rifles, heavy SMGs, light machine guns, chain shotguns, the
+    Hellcat, Vanilla Weapons Expanded's, Quickdraw's, Rimsenal's and Advanced Armaments' like) with an ammo pack; Dark
+    Riders a light gun under `Gun` within 300; Dreadspears spear and shield with a frag grenade belt, the Black Guard
+    their halberds with the same belt; the knights, witch elves and sorceresses their own arms. A new pawn of theirs in
+    another age gets its role's set and the every-age pass (`AgeArms.ToAge`), then the pieces, gifts and look as before;
+    a bolt quiver only with a bow or crossbow.
+  - **For the player's save**: the Stormriders' record (`Faction_25`) is made the first region day after loading: the
+    medieval age, began medieval, a head start of 0.05 of an age, a fate of 1.01; first looked at within 15 days. As the
+    colony's ally with no trade they reach the industrial age in 28 seasons, 7 years (420 days); with 2500 silver of trade
+    a year besides, 5.3 years; with gifts of learning and teaching sooner still (three times the pace at most); by
+    themselves, 10.5 years. Over many worlds the dark elves rise in 10 years in 61% by themselves and in all allied.
+  - **Code map**: `Peoples/ConsoleRadio.cs` (new: `ConsoleRadio`, `Patch_ConsoleRadio`), `Peoples/ConsoleRadioMath.cs`
+    (new, pure, linked: `Reaches`, `Greyed`, `Key`), `Peoples/Foreign/ForeignAgesMath.cs` (new, pure, linked:
+    `DefaultPace`, `RoleArmed`, `ArmedLimit`, `Pace`, `SeasonsToRise`); `Post/PostReach.cs` (`Callable`),
+    `Post/PostMath.cs` (`RadioReaches` reads `NotableMath.Callable`); `Peoples/PeopleAges.cs` (`Kept`, `Ensure`, `Daily`,
+    `Ways`, `VoiceKey`), `Peoples/Peoples.cs` (`AgeOf`, `TechOf`), `Peoples/PeopleAgeWords.cs` (`Heading`, the voice),
+    `Peoples/PeopleAgePatches.cs` (the stock), `Peoples/PeopleAgesDebug.cs` (the foreign peoples and the console's reach in
+    the log), `Peoples/PeopleGifts.cs` (`AgeArms.Weapons`), `Peoples/Foreign/ForeignPeopleDef.cs` (`agePace`, `ageLimit`,
+    `ageFloor`, `ForeignRole.ageArms`), `Peoples/Foreign/ForeignPeoples.cs` (`ToAge`, `Ways`, `ArmedLimit`, `ArmedFor`,
+    `SetFor`, `VoiceKey`, the age pass in `Fit`, `Bow`); `Diplomacy/PactCalls.cs`, `Ransoms.cs`, `FavourAsks.cs`,
+    `Truces.cs` (`PostReach.Callable`); `CouncilSettings` (`radioConsole`), `UI/SettingsCatalog.cs` (its row); defs
+    `Rimfolk_ForeignPeoples.xml` (the dark elves' pace, limit and eight sets); Keyed `Rimfolk_PeopleAges.xml` (the
+    setting, the greyed call's words, the dark elves' voice, the ages' tip and note). Tests: `Tools/Tests/ForeignAgesTests.cs`
+    (91 checks: the radio rule, the foreign ways and the arming cap, every armed role's set against the player's catalogue,
+    the Stormriders played out, the words, the setting, the seams); `ForeignPeoplesTests` (weapon tags are tags). Saved:
+    the foreign records within `PeopleAgesMath.MaxRecords` (40), modelled in `Tools/save_estimate.py`. Harmony: one new
+    postfix. No Sched slot.
+  - **Decided here**: a postfix that greys the game's own option (the reason in the label and the tooltip), not a prefix
+    or a filter on the console's targets, so other mods' and quests' ways to a people stay open; the Signal Line's masts
+    count for the console as they do for the letters, and Rimfolk's four other calls now count them too (one rule); an
+    "armed" role is one whose kinds the Elves mod gives weapons; the dark elves' limit is the industrial age, and their
+    shielded and melee kinds keep their own arms there (the Elves mod's shield is worn in the left hand, and a rifle with
+    it is untested); the frag belt and ammo pack sit at the waist, beside the Elves mod's kit, so nothing of it is taken
+    off; the game's ransom demand by radio letter is left as it is (it is the game's letter, not the console's call).
+  - **Can't be checked without the game**: the greyed option and its tooltip in the console's menu (1.6's and 1.7's float
+    menu drawing a disabled option with a tooltip); that no other mod in the list draws the console's menu itself; the
+    Elves mod's kinds' weapon budgets and the elven weapons' base worth (the sets name their own means); the Elves mod's
+    shield with a melee weapon of another stuff; VWE Grenades' belt thrown by a dark elf in a raid; the records made and
+    the first look in a running save; anything of 1.7 beyond the reference assembly.
+  - **Try in the game**: (1) With a powered comms console, select a colonist and right-click it: the Stormriders, the
+    tribes, Medieval 2's clans and kingdoms are greyed with "(no radio: they can only be reached by a letter)"; hover one:
+    the tooltip names their age and how a letter reaches them. The Empire, the outlanders, the pirates and Rimfolk's
+    industrial and spacer peoples can be called as before; ships in orbit too. (2) Settings, What's on, The region:
+    switch "Only peoples with a radio answer the comms console" off: every people can be called again. (3) Dev mode,
+    Debug actions, Rimfolk, "Peoples: every people's age and progress (log)": the Stormriders' line (medieval, limit
+    industrial, another mod's people, no radio). (4) "Peoples: a people up an age now (testing)..." and pick the
+    Stormriders: the letter "into the industrial age" with their head's words; their card says industrial. Right-click
+    the console: they can be called now. (5) "Peoples of other mods: one of each of their kinds here now, as visitors
+    (testing)...": the Darkshards carry an assault rifle, an LMG or the like with an ammo pack, the Dark Riders a revolver
+    or a bolt-action rifle, the Dreadspears and Black Guard a frag belt, the others their own arms; their next trade
+    caravan carries industrial goods. (6) "Peoples: a people down an age now (testing)..." twice: back to the tribal age, their
+    visitors with no gun, the console greyed again.
+  - **Mods that would help**: none to add; every arm and kit comes from mods already in the player's list (Vanilla
+    Weapons Expanded with its Quickdraw and Grenades, Rimsenal, Advanced Armaments, Vanilla Apparel Expanded -
+    Accessories). No mod in the catalogue makes elven firearms; the dark elves' guns are the mods' own guns.
+- 0.276.2, **The medal read at the gate, the
+  peoples' errands past a barred door, and what the dead leave by closeness** (20 November 2026; the player's go on two
+  fixes: the medal, "I selected the option that everyone should go to the gate", given at once though "I have answers
+  play out on the map is enabled for me", and A30 of `docs/content-update-proposals.md`). DESIGN.md "The medal read at
+  the gate, and visitors' errands past a barred door" and "What the dead leave goes to whoever was closest".
+  - **The medal: the cause** (read in greyscreen.rws). The answer came at 7999921, 141 ticks after the clerk (Helena) and
+    the guard walked in from the map's south edge; the clerk was still walking to the gate (her Goto to the gate spot
+    (42, 192), begun at 7999859, still under way at the save, at (42, 100)). `RepublicMedal.Begin` sent the clerk to the
+    colonist wherever they were (`PeopleEvents8.Errand`: `CanReach` from the clerk to Avila). It never started: the save
+    has Lord_315 (the visit's) and Lord_316 (the leaving's, `Award`'s `SendAway`) and `nextLordID` 317, so the errand's
+    lord was never made, and the failing part came before it. The clerk was up, Avila neither drafted (no fight on) nor in
+    a break (no catharsis), the play-outs on (the player): the reach failed. The game lets a friendly visitor open the
+    colony's doors; Rimfolk's keep out (`Visitors/KeepOut.cs`) forbids the doors of the colony's bedrooms and cold stores
+    to visitors, and its look (tick 131 of every 250) ran at 7999881, 101 ticks after the clerk came, 40 before the
+    answer. Avila was indoors and awake then (`lastOutdoorTick` 7994323; his last `SleptInBedroom` 46350 ticks old; at the
+    save he was showering in the bedroom at (72..75, 196..198), whose bed is someone else's, after eating), so most
+    likely in a room with a bed. Not the door mods: Doors Expanded and More Door Variants' louver doors keep the game's
+    door rule, Door Clearance doesn't touch who passes, and Hospitality's guest rules are for its own visit lords (the clerk
+    was under Rimfolk's, `Strangers.IsHospitalityGuest`).
+    Also wrong before: the colonist and the gathered were sent to stand by the clerk where she was, at the map's edge.
+  - **Built.** `Peoples/Events8/PeopleEvents8.cs` (the meeting: `MeetSpot`, `Beside`, `SendOut`, `Release`, `Meet`,
+    `WorkOn`, `Undone`, `LeaveBack`; `JobDriver_PEv8Work`'s meeting place, TargetB, and a target out of reach passed
+    over), `PeopleEvents8Math` (`MeetRange`, `MeetWaitTicks`, `MeetSends`, `MeetStep`, `Step`, `Met`),
+    `RepublicMedal` (the meeting at the gate, the hour, `Left`), `GeneTakenOut` and `WholeXenogerm` (`WorkOn`, the hour,
+    `Undone`), `VoteObserver` (the roll's reachable voters), `GravshipLog` (the ship open to the officers, from outside
+    when nowhere aboard), `SleeperOfTheirs` (the colony's doctor opens it when the runner can't get to it),
+    `Peoples/PeopleErrands.cs` (the errands' ways into a bedroom, read by `KeepOut.Care`), `Events7/MastersMark.cs` and
+    `VoiceForColony.cs`, `Events9/MindShouts.cs` and `VoidListens.cs`, `Events5/MendTonight.cs`; eight new keyed lines
+    (`CC_PEv8_MedalLeft`, `_WorkUndone`, `_WorkUndonePaid`, `_GravOutside`, `_GravOutsidePart`, `_SleeperHomeOpened`,
+    `CC_PEv7_MarkNoWay`, `CC_PEv9_ShoutNoWay`). The list of each errand of rounds 5 to 10 looked over, with what was done
+    or why it was left, is in the DESIGN section.
+  - **A30.** `Social/FamilyLifeMath.cs`: `Closeness` (the vendetta's `VendettaMath.Closeness`), `KeepsakeAtLeast` 20,
+    `RoomAtLeast` 60 (the vendetta's `AtLeast`), `Heir`; `HeirBonus` and `HeirFamily` gone. `Lives/Legacy.cs` (the
+    heirloom to the closest), `Social/FamilyInheritance.cs` (`Inheritance.Closeness`; the room to the closest without a
+    room who was close enough, closeness noted at the death). The room's plain message and one journal line no longer
+    say "as family". The Almanac's "What the dead leave" and the README's line say it. Left: who raises an orphan
+    ("family first", a council question, outside A30).
+  - **Tests.** `PeopleEvents8Tests` (the hour's steps, the meeting's range, every place round the meeting place counts
+    as met, the medal never given at once with the play-outs on, the seams), `FamilyLifeTests` (closeness as the
+    vendetta's, a close friend before a distant brother, the floors, ties).
+  - **Can't be checked without the game.** The clerk waiting at the gate spot and reading when the colonist comes within
+    four cells; the colonist and the free people walking out and standing round, let go when it is read; the officers
+    walking a ship whose room has beds; a master's piece in a bedroom; the sequencer's work at the gate; KeepOut's ways
+    for these errands (the doors re-read when the errand starts).
+  - **Try in the game.** With dev mode, "Peoples' events 8: a medal for a deed now" (the clerk comes for the freshest deed): send
+    the colonist to bed in a room with a door first, answer "Gather everyone who is free at the gate to hear it": the
+    clerk walks to the gate, the colonist and up to eight others walk out and stand round her, she reads for an hour
+    (a bar), the medal is pinned on, they go back to their day. Draft the colonist before answering: the clerk waits, and
+    after the hours she goes home with the message that he could not get out to the gate. For A30: with two colonists,
+    one the dead's close friend and one a brother they didn't get on with, kill the one with a room (dev mode): a day
+    later the room goes to the friend if the friend has no room, and the heirloom to the friend.
+  - **Mods that would help.** None needed: the meeting uses the game's own standing and the visitors already there.
 - 0.276.1, **More traits that come and go, the
   other ways out** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The seventeen ways
   out of `docs/traits-proposals.md` the first batch left (3, 7, 8, 9, 11, 12, 13, 15, 17 to 25), each marked there: 3, a

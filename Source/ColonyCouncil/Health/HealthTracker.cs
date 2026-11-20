@@ -685,7 +685,8 @@ namespace ColonyCouncil
         /// <summary>
         /// A doctor pulled a patient through. For Rimfolk's serious illnesses (<paramref name="rimfolk"/>) the
         /// AilmentTracker has already told it (thoughts, journals, the after-effects); here it only counts. For the game's
-        /// own dangerous illnesses, the doctor is proud and the patient convalesces.
+        /// own dangerous illnesses, the doctor is proud and the patient convalesces. Either way each of the two gets a mark
+        /// of it (nursed back to health; nursed someone back to health).
         /// </summary>
         public void PulledThrough(Pawn doctor, Pawn patient, string illness, float peak, bool rimfolk)
         {
@@ -696,7 +697,14 @@ namespace ColonyCouncil
             // The patient is grateful to the doctor who saw them through (Social/Bonds.cs).
             Bonds.Notify_Healed(doctor, patient, false);
             if (!rimfolk && ConvalescenceOn) Convalesce(patient, HealthMath.AfterIllness(peak), "Illness", doctor);
-            if (!ReputationOn || !doctor.RaceProps.Humanlike) return;
+            if (ReputationOn && doctor.RaceProps.Humanlike) CountDoctor(doctor, patient, illness, rimfolk);
+            // The doctor's own mark, after their journal line (one happening, one line): nursed someone back to health.
+            PersonaMarks.Notify_Nursed(doctor, patient, illness);
+        }
+
+        /// <summary>A patient pulled through counts toward the doctor's name and the hospital's; for the game's own illnesses the doctor is proud.</summary>
+        private void CountDoctor(Pawn doctor, Pawn patient, string illness, bool rimfolk)
+        {
             var rec = RecordOf(doctor, true);
             rec.pulledThrough++;
             hospital.pulledThrough++;

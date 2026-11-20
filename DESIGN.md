@@ -425,6 +425,30 @@ a partner, a friend or a relative, by how close they really were: never to blood
   close has words of their own (`Rimfolk_Lines_VendettaCloseness.xml`). A dead colonist's life goal taken up by someone
   close (`Aspirations.cs`) is as it was.
 
+### What the dead leave goes to whoever was closest (A30, 20 November 2026; released 0.276.2)
+
+The player's rule of 5 November 2026: the colony is the family, never a dynasty. A dead colonist's heirloom and room
+still went to blood kin first (`FamilyLifeMath.HeirBonus` ranked a parent, child, brother or sister, 80, above a
+partner, 70, and the room went only to "the closest of their family here"). They now go by the vendetta's measure.
+
+- **How close** (`FamilyLifeMath.Closeness`, pure, `FamilyLifeTests`): `VendettaMath.Closeness` itself: the game's
+  opinion of the dead, the social web's warmth between the two, and a partner (40) or a relative by blood (20) as one
+  part among them. `HeirBonus` and `HeirFamily` are gone. `FamilyLifeMath.Heir`: the closest of those close enough, the
+  first where two are as close, or nobody.
+- **The heirloom** (`Lives/Legacy.cs`): to the closest colonist, if they were close at all (`KeepsakeAtLeast` 20, as an
+  opinion of 20 alone: a relative or a partner with nothing against the dead is enough, a stranger isn't). Before, the
+  floor was an opinion of 20, a web warmth of 30 or any relation at all.
+- **The room** (`Social/FamilyInheritance.cs`): a day after the death, to the closest of those here with no room of their
+  own who were close enough (`RoomAtLeast` 60, the vendetta's own `AtLeast`), counted as they stood at the death: each
+  colonist's closeness is noted then (`Inheritance.Notify_Died`), before the day's look lets the web's bonds with the dead
+  go; one who came since counts as they are now. A partner who shared the bed keeps it and a bed given out meanwhile
+  stays given, as before.
+- **The words** say what they were to the dead: the room's message names the relation where there is one ("passed to
+  his brother, Jon"), else "who was closest to him" (`CC_Inherit_RoomPlain`, which said "as family"); the journal line
+  "came to me, as family" now reads "because we were close". Family names and kin's moments stay flavour only.
+- Left as it was: who raises an orphaned child (`Social/FamilyGuardians.cs`, "the grown-up fondest of them, family first")
+  is a question the council answers, not a passing of what the dead leave; it is outside A30.
+
 ## Layer 5: Rimfolk events
 
 Rimfolk's own incidents: things that happen *to* the colony from outside, as opposed to the wishes and dilemmas
@@ -1332,9 +1356,9 @@ The game's traits can grow, appear or fade at the end of a stretch of life the p
 nervous colonist steadies to no nerves trait before steadfast), and what it asks for: marks (defNames, families or
 stories), sides moved from nature (lasting plus fading) and where they stand, deeds counted on separate occasions (and
 marks counted as they come, breakdowns, or a stretch with none), the game's records, a share of time from record
-snapshots every ten days, calm days, skills, the faith they hold, a friend, an animal bonded to them; guards for DLC, mods
-and tech. 100 rules (20 November 2026): 31 give a trait, 43 take one away, 26 move a trait one degree; 59 of them are
-ways out of a bad trait (`wayOutOf`, below).
+snapshots every ten days, calm days, skills, the faith they hold, a friend, an animal bonded to them (a dog or a cat of
+the colony's, for so long), a trait they have; guards for DLC, mods and tech. 112 rules (20 November 2026): 41 give a
+trait, 45 take one away, 26 move a trait one degree; 60 of them are ways out of a bad trait (`wayOutOf`, below).
 
 - **Rare.** Checked in the council's day: when the colony has had no change for 10 days, every rule that holds for a
   colonist rolls its chance (3 to 15% a day) and one of those that come up happens; a way out of a bad trait doesn't
@@ -1566,6 +1590,75 @@ trait; each rule takes a bad one away or steps it toward none. The new traits (2
   Tests: `TraitChangeTests` (the joining day, the zero count after something, who gave it, each of the seventeen's
   conditions against the proposal, 59 ways out, none of the batch a gain); `Tools/Tests/ModDefNames.txt` has Dubs Bad
   Hygiene's `Hygienic` and the insanity mod's two traits.
+
+### More traits that come and go, the new traits (the player's go, 20 November 2026; released 0.277.1)
+
+The player, 20 November 2026: "go ahead with all the traits". This build is the new traits of
+`docs/traits-proposals.md`, 28 to 36, each marked there, and with it the whole list of 38 is built. 12 new rules (112 in
+all): 10 give a trait, one more way out of a bad trait (60 in all), and desensitized going again. Harm: no new bad
+trait. The good ones (healer's hands, dog and cat person, fisherman, mountain lover) come of good things; perfectionist
+and wanderlust are neither good nor bad; the three that come of hard times (desensitized, drunken master, occultist)
+are neither good nor bad, rare or uncommon (3 to 5% a day once everything holds), and come only of what already
+happened on the map: fights the colony won but lost people in and its burials, fights won drunk, the colony's own dark
+study and brushes with the unknown. Every trait from a mod by its defName in `docs/player-mods/traits.tsv` (active rows);
+each rule does nothing without its mod. These are gains, so they wait for the colony's 10 days, and show under "Where
+life is taking them" once a third of their evidence is there.
+
+- **New parts.** A mark for the nurse (`Rimfolk_Mark_NursedSomeone`, family `NursedSomeone`: "nursed someone back to
+  health"), the other side of "nursed back to health": given to the doctor in `HealthTracker.PulledThrough`
+  (`PersonaMarks.Notify_Nursed`), after the doctor's own journal line so one happening is one line; a turning point kept
+  180 days, each patient once while it lasts, the next patient a day later (`repeatDays` 1). An animal bonded to them of a
+  kind and for so long (`bondedKind` dog or cat, `bondedDays`; the bond's length from the game's own start of the
+  relation, `DirectPawnRelation.startTicks`; only the colony's own animal; `TraitChangeMath.PetKind`, `BondDays`). A trait
+  they have (`withTrait`: a brawler; a part that holds or not, and isn't evidence toward showing the rule). A tally
+  counted only while they were drunk (`whileDrunk`, the game's alcohol high on them when the mark comes;
+  `TraitChangeMath.TallyCounts`). Time awake under a rock roof (the practice `rock`: hours under a mountain's roof,
+  mined out or overhead, `RoofDef.isNatural`; looked at hourly with the rest of the practice log, and fading the same
+  way). And a count of marks now also reads the marks of its kind still on their character page (a masterwork made
+  before this build, a mark given before the count began; `TraitChangeMath.PageMarksToAdd`, the same mark counted
+  once), as the zero count already did, unless the tally asks how they were at the time (hungry, drunk). Each new part
+  has its line on the character page with its plain "still missing" words, its check in `Lacks` and its line in the
+  letter. A kind of work from a DLC (Odyssey's fishing, Anomaly's dark study) is only checked as a config error when the
+  DLC is there (`TraitChangeDef.Present`).
+- **28, nursed someone back, and healer's hands from it**: the nurse's mark counts toward kind (one of the three marks of
+  kindness) and toward squeamish's way out (`Rimfolk_TC_VTE_SqueamishNursed`: 40 recent hours as a doctor and a patient
+  nursed back, in place of 30 times tending others; 8%); healer's hands' second way (`Rimfolk_TC_HealerNursing`): 60
+  recent hours as a doctor and three patients nursed back, 8%.
+- **29, perfectionist** (Vanilla Traits Expanded): three masterworks (a legendary piece counts as one) and a skill
+  mastered in the last 180 days, pride moved +10, 4%, neither good nor bad.
+- **30, dog person or cat person** (Vanilla Traits Expanded): bonded a year (60 days) with one of the colony's dogs or
+  cats, 10%, never both and never an animal hater. A dog: the game's three, Vanilla Animals Expanded's five, a breed in
+  the label, a label ending in "dog" (not a prairie dog); a cat: the game's cat, any kind called a cat, Vanilla Animals
+  Expanded's cats.
+- **31, fisherman** (Vanilla Fishing Expanded, on Odyssey's fishing): 80 recent hours of the Fishing work, 8%.
+- **32, wanderlust** (Vanilla Traits Expanded): two marks of a second season abroad within a year, openness moved +10,
+  5%, neither good nor bad.
+- **33, desensitized** (Vanilla Traits Expanded): two fights the colony won but lost people in (fought through a costly
+  fight), 20 corpses buried (the game's `CorpsesBuried`), warmth moved -6, 3%, neither good nor bad. It goes again after
+  a long peace and two kindnesses remembered (`Rimfolk_TC_VTE_DesensitizedEases`, 5%, any desensitized; neither good nor
+  bad, so not a way out of a bad trait).
+- **34, mountain lover** (Vanilla Traits Expanded's `VTE_ChildOfMountain`): as the undergrounder (97% of their time under
+  a roof over 60 days, 180 days in the colony, openness 0 or less), and 240 recent hours awake under a rock roof (about
+  twelve hours a day, most of their waking time), 3%.
+- **35, drunken master** (Vanilla Traits Expanded): a brawler who held the line three times while drunk, 3%, neither
+  good nor bad.
+- **36, occultist** (Anomaly): 60 recent hours of dark study and drawn to what lies beyond twice, 5%, neither good nor
+  bad.
+- **Told.** As every change: a letter with what led to it and dates (now also how long the animal has been bonded and
+  the trait they have), a journal line in six voices, the chronicle, "Traits gained and lost". The nurse's mark has its
+  own journal lines in six voices. The words are plain (CLAUDE.md, 14 November 2026).
+- **Code**: `Persona/TraitChangeMath.cs` (`TallyCounts`, `PageMarksToAdd`, `PetKind`, `BondDays`),
+  `Persona/TraitChangeDefs.cs` (`bondedKind`, `bondedDays`, `withTrait`, a tally's `whileDrunk`; `Present`; their config
+  errors), `Persona/TraitChanges.cs` (`CountsNow`, `Drunk`, `Entries` with the page's marks, `BondedAnimal` of a kind and
+  its days, `WithTrait`, their parts and letter lines), `Persona/Marks.cs` (`Notify_Nursed`), `Health/HealthTracker.cs`
+  (the doctor's mark after the journal line, `CountDoctor`), `Quirks/Practice.cs` and `Quirks.cs` (the practice `rock`),
+  `Defs/PersonaDefs/Rimfolk_PersonaMarks_Bonds.xml` (the nurse's mark), the rules in `_Mods.xml` (29 to 35),
+  `_Character.xml` (36, and kind with the nurse's mark), `_Habits.xml` (28's healer) and `_WaysOut.xml` (28's
+  squeamish), Keyed `Rimfolk_TraitChanges.xml` and `Rimfolk_Habits.xml`. Saved: one number more in each colonist's
+  practice log (`rock`); nothing else (the tallies hold the new counts). Tests: `TraitChangeTests` (drunk, the page's
+  marks, the dogs and cats of the player's list, a bond's length, each of the nine's conditions against the proposal,
+  none of them bad news, 112 rules); `MarkTests` (the nurse's mark names someone); `Tools/Tests/ModDefNames.txt` has
+  dog person, cat person, mountain lover and the fisherman.
 
 ### The animals' natures (the player's picks, 7 November 2026)
 
@@ -10803,8 +10896,9 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   - **A medal** (Republic; `RepublicMedal`): the colony's deeds (`Reputations`, Social/Gossip/Deeds.cs) of a rescue under fire
     (`Rimfolk_Deed_Rescue`) or the line held in a hard fight (`Rimfolk_Deed_HeldLine`), half a day to four days old, the doer at home
     and free for a gift, rolled once at 0.5, thirty days apart: a clerk and a guard at the gate, the card saying the deed in the deeds'
-    own words (`Deeds.TextOf`) and the fight's name. The colonist walks out to the clerk, the guard stands by, the clerk reads the
-    citation for an hour (`_Citation`); with the second answer up to eight free colonists come to stand by and hear it
+    own words (`Deeds.TextOf`) and the fight's name. The colonist walks out to the clerk at the gate (since 20 November 2026 the
+    clerk waits there for them: "The medal read at the gate" below), the guard stands by, the clerk reads the citation for an
+    hour (`_Citation`); with the second answer up to eight free colonists come to stand by and hear it
     (`Rimfolk_Thought_HeardCitation`, +2 for 3 days, for everyone within nine cells). The medal: `Rimfolk_Thought_RepublicMedal` (+6
     for 60 days), the Republic's memory of them by name (the new deed `medal`, `KinMemory.Note`, which the colony's renown reads), and
     from the industrial age on with Vanilla Books Expanded the Republic's newspaper (`VBE_Newspaper`) set down by them. +3. Without
@@ -11326,7 +11420,8 @@ current save. ... And please go ahead with all the changes right now that I told
   visitor's idle hours (`Rimfolk_Pool_VisitorIdle`: company, a fire, the stars, a walk, a blade sharpened), plain.
 - **Not changed**: pawns already in a game (the Stormriders on the map and those the world keeps) keep what they have;
   the Elves mod's other dark elves (`DevDesigner_RoughDarkElvesFaction`) and its high and wood elves; their xenotype, race,
-  kinds and weapons.
+  kinds and weapons. Since the foreign peoples' ages (below, "The comms console by radio, and the foreign peoples'
+  ages"), their age changes over the years and a pawn of theirs made in the industrial age carries its role's arms of it.
 - Dev actions "Peoples of other mods: their gear, looks and gifts (log)..." (four new pawns of each of their kinds,
   described with role, look, clothes and colours, weapon, class or psylink, hair and tattoos, not kept) and "... one of
   each of their kinds here now, as visitors (testing)...". README "Another mod's people: the dark elves"; the Almanac's
@@ -11341,7 +11436,8 @@ older factions should also be able to grow and develop over time to reach higher
 Rimfolk keeps a people's age now beside it and reads that wherever it asks about a people's ways and means.
 
 - **The record** (`Peoples/PeopleAges.cs`: `PeopleAgeRecord`, `PeopleAgeBook`, a game component of its own): one a people
-  of Rimfolk's (the twenty-three and every one that arose in their ways), made the first time the region's day looks at it:
+  of Rimfolk's (the twenty-three and every one that arose in their ways) and, since the section after this one, one a
+  people of another mod Rimfolk knows (`PeopleAges.Kept`), made the first time the region's day looks at it:
   its age now (0 tribal to 3 spacer), the age it began in (`Peoples.BeganIn`: its def's, or for one that arose the age of
   what it came from, as release B gave it), its progress (-1 falls back an age, +1 rises one, starting from a head start
   of up to a fifth by its id), when it was first heard of, looked at and last changed, the age before, and its heading
@@ -11448,6 +11544,87 @@ Rimfolk keeps a people's age now beside it and reads that wherever it asks about
   and fate, everything the rule reads for it this season, and what the next season gives), "a people up an age now
   (testing)...", "a people down an age now (testing)..." (the letter as the years would bring it), "every people's
   season now (testing)".
+
+### The comms console by radio, and the foreign peoples' ages (the player's go, 20 November 2026; released 0.277.0)
+
+The player, with League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm
+Riders. I mean, they are always only on medieval style tech level, it seems ... that is a very cool idea, that other
+factions can also increase tech level and adjust over time. But then also, if they are still on older technology, it
+doesn't make sense if they are all reachable with the comms console." The go: "yes, please go ahead Regarding the faction
+update, in the sense that only the ones with radio can answer, and also that foreign peoples change [age] at their pace.
+That makes sense."
+
+- **The comms console by radio** (`Peoples/ConsoleRadio.cs`, `Peoples/ConsoleRadioMath.cs`). The game's console lists
+  every people whatever its age. `Patch_ConsoleRadio`, a postfix on `Faction.CommFloatMenuOption` (the one option a
+  people gives the console, the same in 1.6 and 1.7), greys the call of a people with no radio: the game's label stays,
+  with "(no radio: they can only be reached by a letter)" after it, and its tooltip says the age they live in and how a
+  letter reaches them (from their card or their page under Peoples in the region window; a courier or the post carries
+  it). With the letters off it says that their messengers and traders still come to the gate. Never hidden.
+  - *The rule* (`PostReach.Callable`): the age the people lives in now (`Peoples.TechOf`: Rimfolk's record where it keeps
+    one, else the faction's own tech level) is industrial or later (`NotableMath.Callable`), or a town of theirs lies
+    within 30 tiles of a Signal Line town, whose masts carry the call (`PostReach.MastTiles`, `ConsoleRadioMath.Reaches`).
+    So the Empire (ultra), the outlanders, the pirates, the gravship crews and every other people of those ages answer as
+    before; the tribes, Vanilla Factions Expanded - Classical's republics (neolithic by their def), Medieval 2's clans and
+    kingdoms, the elves and Rimfolk's tribal and medieval peoples are greyed unless a mast is near.
+  - *Only the console's own call changes*: ships in orbit (not peoples), another mod's contact on the console that isn't
+    a people, a people's dialog opened any other way (a quest, a mod's or Rimfolk's own job calling `TryOpenComms`), the
+    Empire's permits (from the title's own buttons) and the game's quests are as they were.
+  - *One rule for every call*: `PostMath.RadioReaches` reads `NotableMath.Callable`, and a pact called in
+    (`PactCalls.Means`), a ransom's call (`Ransoms.ByCall`), a favour's (`FavourAsks`) and a truce's (`Truces`) use
+    `PostReach.Callable` in place of the age alone, so the masts carry those calls as they carry the letters'. The
+    letters' radio (`NeighbourLetters.ChannelWhyNot`, `PostReach.Radio` by the town) and a camp's word over the air
+    (`CampRaid.Radio`, both ages industrial and a console) read the same ages.
+  - *Setting* `radioConsole` ("Only peoples with a radio answer the comms console", What's on, The region, right under
+    the peoples' ages; on; needs the deeper game hooks). Off: the console calls every people, as the game has it.
+  - *Not changed*: the game's ransom demand (`IncidentWorker_RansomDemand`) still comes as a radio letter from whichever
+    people holds a colonist while the colony has a powered console (Rimfolk's messenger brings it without one).
+- **The foreign peoples' ages.** `PeopleAges.Kept`: Rimfolk's peoples and every faction a `ForeignPeopleDef` names (today
+  the dark elves of Elves (Continued), the Stormriders in the player's save). Each gets an age record
+  (`PeopleAges.Ensure`, made on the region's day, looked at once a season by the one rule, `PeopleAgesMath.Season`: the
+  colony's trade, gifts of learning, teaching and an alliance quicken it; cut off from the world it falls back).
+  `Peoples.AgeOf` and `Peoples.TechOf` read it, so everything that follows a people's age follows theirs: their words,
+  camps, the stuff of their gear, their letters' means, the console's reach, their card's heading and the region's page,
+  the letter of a change with their head's own words (`CC_PeopleAge_Voice_Rimfolk_Foreign_DarkElves_Rise` and `_Fall`,
+  by `PeopleAges.VoiceKey`), and their traders' stock (`Patch_PeopleAgeStock`).
+  - *Their ways* (`ForeignPeopleDef.agePace`, `ageLimit`, `ageFloor`; `ForeignPeoples.Ways`): the dark elves 11 years an
+    age (the Ashen Banner's pace: a medieval people that lives by war and takes up whatever arms win its raids), no
+    further than the industrial age (the coven is ruled by its sorceresses, who keep it from the spacer age's machines),
+    no lower than the tribal age (one below, the default). A profile that names none: 12 years an age
+    (`ForeignAgesMath.DefaultPace`), one age up and one down.
+  - *The arming cap* (`ForeignAgesMath.ArmedLimit`; `ForeignPeoples.ArmedLimit`, worked out once for the loaded mods):
+    each role whose kinds carry arms (a kind with weapon tags and a weapon budget) needs a set for every age above the
+    one its mod made it for (`ForeignRole.ageArms`, Rimfolk's own `PeopleAgeArms`: weapon tags of any mod and a kit),
+    and the set has to find a weapon of its tags of no later age within its means among the loaded mods
+    (`AgeArms.Weapons`, the same search the arming makes), or a piece of its kit. The people rises no further than an
+    unbroken run of such ages. Falling back needs no set: the base game's arms of the age take the place of anything of a
+    later age (`FallbackArms`), as for Rimfolk's peoples.
+  - *The dark elves' arms of the industrial age* (from the full mod pool, checked against the player's catalogue): the
+    Darkshards' repeating crossbows give way to a repeating gun under `IndustrialGunAdvanced` within 600 silver (the
+    game's assault rifle, heavy SMG, light machine gun, chain shotgun and Hellcat; Vanilla Weapons Expanded's battle and
+    service rifles, carbine, light SMG, its Quickdraw's bullpup rifle and PDW; Rimsenal's modular rifles and carbines;
+    Advanced Armaments' auto shotgun), with an ammo pack (Vanilla Apparel Expanded - Accessories); the Dark Riders a light
+    gun under `Gun` within 300 (a bolt-action rifle, a pump shotgun, a revolver, a machine pistol and the mods' like); the
+    Dreadspears keep spear and shield (the shield is worn in the left hand, so no rifle) with a belt of frag grenades
+    (Vanilla Weapons Expanded - Grenades), the Black Guard their halberds with the same belt; the Cold One Knights, the
+    witch elves, the sorceresses and the Supreme Sorceress keep their own arms. The kits sit beside the Elves mod's own
+    (a belt at the waist), so no piece of it is taken off. Their traders and ordinary folk carry no arms of their own and
+    need no set.
+  - *A pawn of theirs* (`ForeignPeoples.Fit`, fresh pawns, with the deeper hooks): in an age other than the medieval one
+    their mod made them for, first its role's set (`AgeArms.Arm`) and the every-age pass (`ForeignPeoples.ToAge`,
+    `AgeArms.ToAge`: nothing of a later age, the age's plain clothes on a bare body, the base game's arms in place of a
+    weapon of a later age or a fighter's bow in an age of guns), then the pieces, the sidearm, the gifts and the look as
+    before. A bolt quiver now goes only with a bow or a crossbow.
+  - *The numbers* (`Tools/Tests/ForeignAgesTests.cs`, "the console and the foreign ages: "). The Stormriders in the
+    player's save (`Faction_25`, an ally) begin medieval with a head start of 0.05 of an age and a fate of 1.01, and reach
+    the industrial age in 10.5 years by themselves, 7 years as the colony's ally (28 seasons, 420 days) and 5.3 with 2500
+    silver of trade a year besides; then they are settled in their ways. Over 400 worlds (each its own fate and head
+    start) the dark elves rise in 5 years in none by themselves, 2% allied and 61% allied and trading; in 10 years in 61%
+    by themselves and in all allied. Cut off wholly they fall back to the tribal age in five years, and no lower.
+  - *The records*: within `PeopleAgesMath.MaxRecords` (40: the twenty-three, six that may arise and the dark elves),
+    modelled in `Tools/save_estimate.py`.
+- **Dev actions**: "Peoples: every people's age and progress (log)" lists the dark elves too, with their limit by their
+  arms and whether the console reaches each people; "Peoples: a people up an age now (testing)..." raises them; "Peoples
+  of other mods: one of each of their kinds here now, as visitors (testing)..." then shows them armed for their age.
 
 ### The colony's animals with powers
 
@@ -18384,6 +18561,72 @@ game was paused. The job was saved with him.
   kind or without its driver back to choosing a job when a game loads, and takes such jobs out of the queues.
 - Since harm parts 5 to 7 (7 November 2026) none of those eight walks had played out: each try left the pawn so, or
   failed with an error. They now play out as written in their sections above.
+
+## The medal read at the gate, and visitors' errands past a barred door (the player's report, 20 November 2026; released 0.276.2)
+
+The player chose "Gather everyone who is free at the gate to hear it" on the Last Republic's medal, and nobody went
+anywhere: the medal was given in the same tick as the answer. Their save shows why. The clerk had walked in from the
+map's edge 141 ticks before and was still on her way to the gate; the errand Rimfolk set going was the clerk walking to
+the colonist wherever they were (`PeopleEvents8.Errand`, a `CanReach` from the clerk to the colonist). The visitors' keep
+out (`Visitors/KeepOut.cs`, 13 November 2026) had looked at the map 101 ticks after the clerk came and 40 before the
+answer (its look runs at tick 131 of every 250), and from then each door of the colony's bedrooms and cold stores was
+forbidden to her as a forbidden door is to a colonist. The errand never started (no lord was made for it: the save's
+next lord id follows the visit's and the leaving's), the clerk was up, the colonist (Avila) was neither drafted nor in a
+break, so the reach failed; the game lets a friendly visitor open the colony's doors, and those keep-out doors are the
+ones that stop one. Avila was indoors and awake (out of doors last about two hours before, no sleep ended since, and
+showering in another's bedroom half an hour later), so most likely in a room with a bed. The citation was given there and
+then (`Award`), unseen. The same pattern sat in other errands of the peoples' events.
+
+- **Meeting at the gate** (`PeopleEvents8.Meet`, `MeetSpot`, `Beside`, `SendOut`, `Release`; the rules in
+  `PeopleEvents8Math`: `MeetRange` 4 cells, `MeetWaitTicks` three hours, `MeetSends` 4, `Step`, `Met`). The meeting
+  place is the gate spot (`PeoplesD.GateSpot`), else the spot the visit was taking them to, else where the visitor
+  stands: never a place in the colony. The visitor, on an errand lord there (`LordJob_VisitOnErrand`), goes to it and
+  waits for the colonist (`JobDriver_PEv8Work`: with a meeting place, TargetB, it goes there first and waits until the
+  colonist is within four cells, at most three hours); the colonist walks out to stand two or three cells from it
+  (`Rimfolk_PEv8_StandBy`, kept in the visit's `touched` and let go when it is over). Then the work at them is done there.
+- **The medal** (`RepublicMedal`): the clerk goes on to the gate; the colonist walks out to her; the guard stands by;
+  with the second answer up to eight free colonists stand round; once the colonist is there she reads the citation for
+  an hour and pins on the medal, and those within nine cells heard it. The visit's hour sends the colonist out again if a
+  meal or a fight pulled them away (when they can be interrupted), and sets the meeting going again if it stopped (four
+  times). With the hours out before the colonist could come (a door they can't pass, a long break, a fight), the clerk
+  says "Then the citation goes into the record unread" and goes home, and a message says the colonist could not get out
+  to the gate (`CC_PEv8_MedalLeft`): no medal, no memory of it, and another deed may bring the clerk again. With the
+  play-outs off it is given at once, as before.
+- **A target behind a barred door** (`JobDriver_PEv8Work`): a target of the work the visitor can't reach is passed over
+  for the next one in the queue, so the clerk's roll at the vote and the officers' walk of the ship go on past a voter
+  or a part in a bedroom; the roll starts with a voter the clerk can reach (`VoteObserver.Begin`).
+- **The other errands of rounds 5 to 10**, looked over for the same fault (a visitor sent to a colonist or to a thing in
+  the colony, the event done there and then when the way is barred):
+  - *A gene taken out*, *a whole xenogerm* (round 8): the sequencer goes straight to the colonist when nothing bars the
+    way, else the colonist walks out to the sequencer and the work is done at the meeting place (`PeopleEvents8.WorkOn`).
+    Stopped, it is set going again; with the hours out before it could be done, the sequencer leaves at the gate the
+    silver and genepacks the colony paid and goes home, told (`PeopleEvents8.Undone`, `CC_PEv8_WorkUndone(Paid)`).
+  - *A sleeper of theirs* (round 8): the runner's way to the casket is open through a bedroom
+    (`Peoples/PeopleErrands.cs`, below); still no way (a cold store, someone asleep in the room), the colony's best
+    doctor opens it and the sleeper walks out to the runner (`CC_PEv8_SleeperHomeOpened` says who opened it).
+  - *The colony's gravship* (round 8): the ship's bedrooms are open to the officers for the walk; with no part they can
+    reach they log it from outside and the words say so (`CC_PEv8_GravOutside`, no pilot's memory, no lesson; the part
+    from the hull's stores set down where they stood).
+  - *An observer at the vote* (round 8): the roll passes over a voter the clerk can't get to.
+  - *The master's mark* (round 7): the master's way to the piece is open through a bedroom; a master who can't get to it
+    waits at the gate and is sent again each hour, and with the hours out goes home without a verdict, told
+    (`CC_PEv7_MarkNoWay`), never judged unseen.
+  - *A voice for the colony* (round 7): the operator's way to the radio is open through a bedroom; a radio they couldn't
+    get to (or were kept from) isn't used, and the call goes by runner, the words saying so.
+  - *A shout in the mind* and *the warden of the quiet* (round 9): the listener's and the warden's way to the one they sit
+    with is open through a bedroom; with no way to them they wait at the gate and the hour tries again, never the break
+    ended or the day's good done unseen; a listener who never got to a colonist still in their break says so
+    (`CC_PEv9_ShoutNoWay`).
+  - *Mending tonight* (round 5): the crew mends only what they can get to, so a building in a bedroom never holds a mender
+    up all night, and with nothing else left they go.
+  - Looked over and not sharing the fault: the field lab's sequencers wait until the colonist is in reach; the art handed
+    on and the hearings at the wood moot and the road toll meet at the gate already; the camps' work is on open ground; the
+    copyist and the lessons try again each day; the feral mech is called to the gate first.
+- **Errands the colony said yes to** (`Peoples/PeopleErrands.cs`, `PeopleErrands.Ways`, read by `KeepOut.Care`): as for
+  a doctor's work, the bedroom where the errand is lies open to the one sent (the master's piece, the radio, the casket,
+  the ship's parts, the one sat with); a cold store stays shut, and so does a bedroom where one of the colony sleeps. Each
+  of those errands refreshes the keep out's look as it starts (`KeepOut.Refresh`), so the way counts at once.
+- Tests: `PeopleEvents8Tests` (the hour's steps, the meeting's range and the places round it, and the seams).
 
 ## Ticking
 

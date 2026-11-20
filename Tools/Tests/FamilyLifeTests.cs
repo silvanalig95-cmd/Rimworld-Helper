@@ -44,15 +44,23 @@ public static class FamilyLifeTests
         Check(FamilyLifeMath.ComingOfAgeAge < FamilyLifeMath.AdultAge && FamilyLifeMath.Marked(FamilyLifeMath.ComingOfAgeAge, true), "coming of age is a growth moment, before the eighteenth");
         Check(!FamilyLifeMath.Marked(8, false) && !FamilyLifeMath.Marked(19, false) && !FamilyLifeMath.Marked(30, false), "an ordinary birthday");
 
-        // ---------- Who inherits ----------
-        float H(string r, bool blood = false) => FamilyLifeMath.HeirBonus(r, blood);
-        Check(H("Parent", true) == H("Child", true) && H("Child", true) == H("Sibling", true), "parents, children, brothers and sisters alike");
-        Check(H("Child", true) > H("Spouse") && H("Spouse") == H("Lover") && H("Spouse") == H("Fiance"), "the closest blood before a partner");
-        Check(H(FamilyMath.AdoptedChildDef) == H("Spouse") && H(FamilyMath.AdoptiveParentDef) == H(FamilyMath.AdoptedChildDef), "a child by adoption as a partner, either way round");
-        Check(H("Spouse") > H("Grandchild", true) && H("Grandchild", true) > H("ParentInLaw") && H("Cousin", true) == H("Grandchild", true), "other blood, then family by marriage");
-        Check(H("ParentInLaw") == FamilyLifeMath.HeirFamily && H("Stepchild") == FamilyLifeMath.HeirFamily, "family by marriage is the least that's family");
-        Check(H("ExSpouse") > 0f && H("ExSpouse") < FamilyLifeMath.HeirFamily, "an old flame a little, not family");
-        Check(H(null) == 0f && H("") == 0f, "no relation, nothing");
+        // ---------- What the dead leave: by closeness, never blood first (A30, 20 November 2026) ----------
+        float C(int opinion, float web = 0f, bool partner = false, bool kin = false) => FamilyLifeMath.Closeness(opinion, web, partner, kin);
+        Check(C(50, 10f, true, false) == VendettaMath.Closeness(new VendettaMath.Bond(50, 10f, true, false)) && C(30, 0f, false, true) == VendettaMath.Closeness(new VendettaMath.Bond(30, 0f, false, true)),
+            "the same measure as a vendetta passed on");
+        Check(C(40, 0f, true) > C(40, 0f, false, true) && C(40, 0f, false, true) > C(40), "at the same opinion a partner, then a relative by blood, then a friend");
+        Check(C(90, 25f) > C(10, 0f, false, true), "a close friend before a brother who was never close");
+        Check(C(70, 20f) > C(20, 0f, true), "a partner is one part among the others, not first whatever they felt");
+        int Pick(float atLeast, params float[] c) => FamilyLifeMath.Heir(c, atLeast);
+        Check(Pick(FamilyLifeMath.KeepsakeAtLeast, C(10, 0f, false, true), C(90, 25f), C(40)) == 1, "the keepsake to the closest, here a friend over a distant cousin");
+        Check(Pick(FamilyLifeMath.KeepsakeAtLeast, C(5), C(-30, 0f, false, true), C(10)) == -1, "nobody close enough: the keepsake stays where it is");
+        Check(Pick(FamilyLifeMath.KeepsakeAtLeast, C(0, 0f, false, true)) == 0 && Pick(FamilyLifeMath.KeepsakeAtLeast, C(0, 0f, true)) == 0,
+            "a relative or a partner with nothing against them is close enough for a keepsake");
+        Check(Pick(FamilyLifeMath.RoomAtLeast, C(30, 0f, false, true), C(50, 15f)) == 1 && Pick(FamilyLifeMath.RoomAtLeast, C(30, 0f, false, true)) == -1,
+            "the room to a close friend; a relative who wasn't close gets no room for being blood");
+        Check(Pick(FamilyLifeMath.RoomAtLeast, C(60), C(60)) == 0 && Pick(FamilyLifeMath.RoomAtLeast) == -1 && FamilyLifeMath.Heir(null, 0f) == -1 && Pick(0f, float.NaN) == -1,
+            "two as close: the first; none, nobody");
+        Check(FamilyLifeMath.RoomAtLeast == VendettaMath.AtLeast && FamilyLifeMath.KeepsakeAtLeast < FamilyLifeMath.RoomAtLeast, "a room asks as much closeness as a vendetta, a keepsake less");
 
         // ---------- Names for a baby ----------
         var fam = new List<NameSource>

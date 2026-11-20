@@ -135,7 +135,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The traders' goods of a people whose age moved (the game reads a trader's caps, set for the people's own age, as it
-    /// makes the stock): while the stock of one of Rimfolk's peoples is made, each stock generator's cap on what it makes
+    /// makes the stock): while the stock of one of Rimfolk's peoples (or of another mod's people Rimfolk knows, the dark
+    /// elves) is made, each stock generator's cap on what it makes
     /// moves as far as the people's age moved (PeopleAgesMath.ShiftedCap: a medieval people risen to the industrial age
     /// sells the industrial age's clothes and arms; one fallen back no longer sells what it lost), and is put back at once.
     /// What they buy keeps its caps. With the setting or the deeper game hooks off, nothing changes.
@@ -151,7 +152,7 @@ namespace ColonyCouncil
             {
                 var f = parms.makingFaction;
                 var gens = parms.traderDef?.stockGenerators;
-                if (f?.def == null || gens == null || !Peoples.IsOurs(f)) return;
+                if (f?.def == null || gens == null || !PeopleAges.Kept(f)) return;
                 int defTech = (int)f.def.techLevel, ageTech = (int)Peoples.TechOf(f);
                 if (defTech == ageTech) return;
                 foreach (var g in gens)

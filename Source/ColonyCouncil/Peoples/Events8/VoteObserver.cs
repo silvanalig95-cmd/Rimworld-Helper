@@ -95,7 +95,9 @@ namespace ColonyCouncil
             Lords.Leave(x);
             Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, spot, Mathf.Max(GenDate.TicksPerHour, v.until - Now)), map, new List<Pawn> { x });
             if (!PlayOuts.On) return;
-            var roll = Roll(map, x).Select(p => (LocalTargetInfo)p).ToList();
+            // The voters the clerk can get to: one in a room visitors keep out of (a bedroom, a cold store) is passed over, here and on the
+            // walk (JobDriver_PEv8Work), so the roll goes on past them.
+            var roll = Roll(map, x).Where(p => x.CanReach(p, PathEndMode.Touch, Danger.Some)).Select(p => (LocalTargetInfo)p).ToList();
             if (roll.Count > 0) PeopleEvents8.Send(x, PeopleEvents8.RollJob, roll[0], PeopleEvents8Math.RollTicks, roll.Skip(1).ToList());
         }
 

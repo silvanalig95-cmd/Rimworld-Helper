@@ -76,12 +76,18 @@ namespace ColonyCouncil
             if (map == null || t == null || x == null || on == null || ctx.faction == null) return;
             var v = t.AddVisit(Kind, ctx.incident, map, x, on, null, Now + 8 * GenDate.TicksPerHour);
             v.text = ctx.faction.GetUniqueLoadID() + "|" + (helper?.thingIDNumber ?? -1);
-            if (PlayOuts.On && PeopleEvents9.Errand(x, map, on, PeopleEvents9.SitWithJob, PeopleEvents9Math.ShoutSitTicks, 7f))
+            if (!PlayOuts.On)
             {
-                if (helper != null && helper != on && PeoplesG.Up(helper, map)) PeopleEvents9.Send(helper, PeopleEvents9.SitWithJob, on, PeopleEvents9Math.ShoutSitTicks + GenDate.TicksPerHour);
+                Calmed(v);
                 return;
             }
-            Calmed(v);
+            // The listener's way into the room of the one in the break counts from now (visitors keep out of bedrooms but for this:
+            // KeepOut, PeopleErrands). Still no way to them (someone asleep in the room, a cold store): the listener waits at the gate and
+            // the visit's hour tries again; the break is never ended unseen.
+            KeepOut.Refresh(map);
+            if (PeopleEvents9.Errand(x, map, on, PeopleEvents9.SitWithJob, PeopleEvents9Math.ShoutSitTicks, 7f)
+                && helper != null && helper != on && PeoplesG.Up(helper, map))
+                PeopleEvents9.Send(helper, PeopleEvents9.SitWithJob, on, PeopleEvents9Math.ShoutSitTicks + GenDate.TicksPerHour);
         }
 
         private static Pawn Helper(Visit v)
@@ -158,16 +164,17 @@ namespace ColonyCouncil
             if (x != null) PeoplesG.Home(new List<Pawn> { x });
         }
 
-        /// <summary>The break passed by itself, or the listener could not stay: they go home.</summary>
+        /// <summary>The break passed by itself, or the listener could not stay (or never got to them): they go home, the words saying which.</summary>
         private static void Passed(Visit v)
         {
             if (v.done) return;
             v.done = true;
             var helper = Helper(v);
             if (helper != null && helper.CurJobDef == PeopleEvents9.SitWithJob) helper.jobs.EndCurrentJob(JobCondition.Succeeded);
+            bool still = v.a != null && !v.a.Dead && v.a.InMentalState;
             if (v.map != null)
-                Tell.Message(NewsKind.People, Importance.Notable, v.map, "CC_PEv9_ShoutPassed".Translate((v.x?.LabelShort ?? "?").Named("LISTENER"), (v.a?.LabelShort ?? "?").Named("PAWN")).Resolve(),
-                    LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+                Tell.Message(NewsKind.People, Importance.Notable, v.map, (still ? "CC_PEv9_ShoutNoWay" : "CC_PEv9_ShoutPassed")
+                    .Translate((v.x?.LabelShort ?? "?").Named("LISTENER"), (v.a?.LabelShort ?? "?").Named("PAWN")).Resolve(), LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
             if (v.x != null) PeoplesG.Home(new List<Pawn> { v.x });
         }
     }

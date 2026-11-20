@@ -262,9 +262,7 @@ namespace ColonyCouncil
         private static bool ArmWith(Pawn p, PeopleAgeArms set, int age)
         {
             float means = set.money > 0f ? set.money : Math.Max(p.kindDef.weaponMoney.max, 150f) * 1.25f;
-            var choices = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d != null && d.IsWeapon && d.equipmentType == EquipmentType.Primary && !d.weaponTags.NullOrEmpty()
-                && d.weaponTags.Any(set.weaponTags.Contains) && d.BaseMarketValue <= means && d.tradeability != Tradeability.None
-                && d.GetCompProperties<CompProperties_Biocodable>() == null).ToList();
+            var choices = Weapons(set.weaponTags, means);
             var ofAge = choices.Where(d => !PeopleAgesMath.Later((int)d.techLevel, age)).ToList();
             if (ofAge.Count > 0) choices = ofAge;
             if (choices.Count == 0) return false;
@@ -277,6 +275,15 @@ namespace ColonyCouncil
             p.equipment.AddEquipment(weapon);
             return true;
         }
+
+        /// <summary>
+        /// The weapons of any loaded mod under these tags that a people's pawn may be given: a primary weapon within its
+        /// means, one traders deal in, not biocoded (also what a foreign people's set looks for: ForeignPeoples.ArmedFor).
+        /// </summary>
+        public static List<ThingDef> Weapons(ICollection<string> tags, float means) =>
+            tags == null ? new List<ThingDef>() : DefDatabase<ThingDef>.AllDefsListForReading.Where(d => d != null && d.IsWeapon && d.equipmentType == EquipmentType.Primary
+                && !d.weaponTags.NullOrEmpty() && d.weaponTags.Any(tags.Contains) && d.BaseMarketValue <= means && d.tradeability != Tradeability.None
+                && d.GetCompProperties<CompProperties_Biocodable>() == null).ToList();
 
         /// <summary>
         /// A pawn of a people living in another age than its kind was made for (risen, fallen back, or arisen there), after

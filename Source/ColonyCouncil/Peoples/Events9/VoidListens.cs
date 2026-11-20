@@ -89,7 +89,15 @@ namespace ColonyCouncil
             v.text = ctx.faction.GetUniqueLoadID() + "|" + (sit ? "sit" : "edge");
             if (PlayOuts.On)
             {
-                if (sit && PeoplesG.Up(ctx.b, map) && PeopleEvents9.Errand(x, map, ctx.b, PeopleEvents9.SitWithJob, PeopleEvents9Math.VoidSitTicks, 11f)) return;
+                if (sit && PeoplesG.Up(ctx.b, map))
+                {
+                    // The warden's way to the colonist's side counts from now, in a room visitors otherwise keep out of (KeepOut,
+                    // PeopleErrands). Still no way to them: the warden waits at the gate and the visit's hour tries again, never the
+                    // day's good done unseen.
+                    KeepOut.Refresh(map);
+                    PeopleEvents9.Errand(x, map, ctx.b, PeopleEvents9.SitWithJob, PeopleEvents9Math.VoidSitTicks, 11f);
+                    return;
+                }
                 var edge = Edge(map);
                 if (!sit && edge.IsValid && PeopleEvents9.Errand(x, map, edge, PeopleEvents9.ListenEdgeJob, PeopleEvents9Math.VoidListenTicks, 3f)) return;
             }

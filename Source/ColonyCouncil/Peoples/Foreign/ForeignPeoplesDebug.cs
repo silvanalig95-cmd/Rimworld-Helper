@@ -27,6 +27,8 @@ namespace ColonyCouncil
             var role = ForeignPeoples.RoleOf(ForeignPeoples.Of(p.Faction), p.kindDef);
             var sb = new StringBuilder(PeoplesDebug.Describe(p));
             sb.Append("; role " + (role?.name ?? "none"));
+            // Their age now (Peoples/PeopleAges.cs): a pawn made in another age than their mod's carries its role's arms of it.
+            sb.Append("; " + PeopleAgeWords.AgeWord(Peoples.AgeOf(p.Faction)) + " age");
             if (p.story?.hairDef != null) sb.Append("; hair " + p.story.hairDef.defName);
             if (p.style != null)
             {

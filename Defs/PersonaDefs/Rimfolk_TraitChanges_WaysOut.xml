@@ -950,6 +950,39 @@
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
+  <!--
+    17 with 28 (the new traits' build, 20 November 2026): the doctor's mark for nursing someone back to health counts
+    toward squeamish's way out, in place of the thirty times tending others (a rule of its own, "or" being two rules).
+  -->
+  <ColonyCouncil.TraitChangeDef>
+    <defName>Rimfolk_TC_VTE_SqueamishNursed</defName>
+    <label>less squeamish after nursing someone back to health</label>
+    <trait>VTE_Squeamish</trait>
+    <change>Lose</change>
+    <mods><li>vanillaexpanded.vanillatraitsexpanded</li></mods>
+    <wayOutOf><li>0</li></wayOutOf>
+    <practice>Doctor>=40</practice>
+    <marks>
+      <li><any>NursedSomeone</any></li>
+    </marks>
+    <gapDays>0</gapDays>
+    <chance>0.08</chance>
+    <tone>1</tone>
+    <news>{PAWN_nameDef} is no longer squeamish.</news>
+    <meaning>{PAWN_nameDef} has spent many hours as a doctor lately and has nursed a patient back to health. Blood and wounds no longer upset {PAWN_objective}.</meaning>
+    <journal>
+      <plain>
+        <li>I looked after a sick patient day after day until they were well. Somewhere along the way I stopped noticing the blood.</li>
+        <li>I cleaned and dressed a bad wound today and only thought about doing it properly.</li>
+      </plain>
+      <warm><li>Seeing someone get well because I looked after them made the rest of it easy to bear.</li></warm>
+      <blunt><li>Blood doesn't bother me now.</li></blunt>
+      <cheerful><li>My patient is up and walking, and I didn't feel faint once the whole time.</li></cheerful>
+      <gloomy><li>After nursing someone that sick, a bit of blood is nothing.</li></gloomy>
+      <cold><li>The sight of injury no longer affects me. That is useful.</li></cold>
+    </journal>
+  </ColonyCouncil.TraitChangeDef>
+
   <!-- 18. Kleptomaniac reformed (Vanilla Traits Expanded): forgiven, or given a seat (two rules); 120 days without a breakdown; trust moved +5. -->
   <ColonyCouncil.TraitChangeDef>
     <defName>Rimfolk_TC_VTE_KleptomaniacForgiven</defName>

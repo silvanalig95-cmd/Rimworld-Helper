@@ -349,6 +349,65 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// Whether a tally counts a moment now, by how they were at the time: one that asks for it only while they were
+        /// hungry (<paramref name="whileHungry"/>) or only while they were drunk (<paramref name="whileDrunk"/>, a fight
+        /// mark for the drunken master) counts only when they were.
+        /// </summary>
+        public static bool TallyCounts(bool whileHungry, bool whileDrunk, bool hungry, bool drunk) => (!whileHungry || hungry) && (!whileDrunk || drunk);
+
+        /// <summary>
+        /// A count of marks also reads the marks still on their character page: the ticks of those to add to the ones
+        /// counted as they came (a mark from before the count began, a masterwork made before this build), after
+        /// <paramref name="after"/> (the trait's last change) and within <paramref name="withinDays"/>, leaving out any
+        /// within half a day of one already counted (the same mark, counted when it was given).
+        /// </summary>
+        public static List<int> PageMarksToAdd(IList<int> counted, IList<int> page, int after, int now, float withinDays)
+        {
+            var add = new List<int>();
+            if (page == null) return add;
+            var seen = counted == null ? new List<int>() : new List<int>(counted);
+            for (int i = 0; i < page.Count; i++)
+            {
+                int t = page[i];
+                if (t <= after || t > now || (withinDays > 0f && now - t >= withinDays * DayTicks)) continue;
+                if (!SeparateTime(seen, null, t, -1)) continue;
+                seen.Add(t);
+                add.Add(t);
+            }
+            return add;
+        }
+
+        // ---------------- Dogs and cats ----------------
+
+        public const string Dog = "dog", Cat = "cat";
+
+        /// <summary>The dogs of the game and of Vanilla Animals Expanded (the player's list), by their kind's defName.</summary>
+        private static readonly string[] DogKinds =
+            { "Husky", "LabradorRetriever", "YorkshireTerrier", "AEXP_Corgi", "AEXP_FrenchBulldog", "AEXP_GermanShepherd", "AEXP_Poodle", "AEXP_WelshTerrier" };
+
+        /// <summary>Words in a kind's label that make it a dog (a mod's breed the list above doesn't name).</summary>
+        private static readonly string[] DogWords = { "husky", "retriever", "terrier", "shepherd", "corgi", "poodle", "bulldog", "spaniel", "collie", "mastiff", "beagle", "sheepdog" };
+
+        /// <summary>
+        /// Whether an animal's kind is a dog or a cat, for the dog person and the cat person: <see cref="Dog"/>,
+        /// <see cref="Cat"/> or null. A dog by its kind (the game's three, Vanilla Animals Expanded's five), a breed's word in
+        /// its label, or a label that is or ends in "dog" (not a prairie dog, a rodent); a cat as the gods read one
+        /// (PawnGods.IsCat: the game's cat, any kind called a cat) and Vanilla Animals Expanded's cats (the maine coon among
+        /// them). Wolves, foxes, lynxes and the hounds of other mods (bog hounds, ripper hounds) are neither.
+        /// </summary>
+        public static string PetKind(string defName, string label)
+        {
+            string l = (label ?? "").Trim().ToLowerInvariant();
+            if (defName == "Cat" || (defName ?? "").StartsWith("AEXP_Cat", StringComparison.Ordinal) || l == "cat" || l.EndsWith(" cat", StringComparison.Ordinal)) return Cat;
+            if (Array.IndexOf(DogKinds, defName) >= 0) return Dog;
+            if (l == "prairie dog") return null;
+            if (l == "dog" || l.EndsWith(" dog", StringComparison.Ordinal)) return Dog;
+            foreach (var w in DogWords)
+                if (l.IndexOf(w, StringComparison.Ordinal) >= 0) return Dog;
+            return null;
+        }
+
+        /// <summary>
         /// The kinds of work a practice fact adds up: "Cooking+Smithing" is the hours at the stove and the forge together;
         /// a single name is itself.
         /// </summary>
@@ -363,6 +422,19 @@ namespace ColonyCouncil
 
         /// <summary>Days since <paramref name="since"/> (a tick), or 0 for never.</summary>
         public static float DaysSince(int since, int now) => since < 0 || now < since ? 0f : (now - since) / (float)DayTicks;
+
+        /// <summary>
+        /// How long an animal has been bonded to them, from the bond's start (the game's own start tick of the relation; a
+        /// bond from the colony's first day starts at 0). Of several bonds the longest counts.
+        /// </summary>
+        public static float BondDays(IList<int> starts, int now)
+        {
+            float best = 0f;
+            if (starts == null) return best;
+            for (int i = 0; i < starts.Count; i++)
+                best = Math.Max(best, DaysSince(Math.Max(0, starts[i]), now));
+            return best;
+        }
 
         /// <summary>
         /// Calm days: since the last breakdown, and with <paramref name="sinceChange"/> only since the trait last changed
