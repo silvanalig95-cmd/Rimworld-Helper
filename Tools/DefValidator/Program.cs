@@ -493,6 +493,8 @@ wishPh.UnionWith(new[] { "PART", "WHAT", "HONOR" });
 wishPh.Add("SICK");
 // Letters to the neighbours (World/NeighbourLetters.cs): the colonist who wrote, the neighbour's town, the help asked for.
 wishPh.UnionWith(new[] { "WRITER", "TOWN", "HELP" });
+// The colony's names for its places (Places/PlaceNames.cs): the newest that stands, in the colony's own letters.
+wishPh.Add("OURPLACE");
 // Conversations with outsiders (Defs/OutsiderTalkDefs/, filled from what is true now by the facts service, Text/Facts/).
 wishPh.UnionWith(new[]
 {

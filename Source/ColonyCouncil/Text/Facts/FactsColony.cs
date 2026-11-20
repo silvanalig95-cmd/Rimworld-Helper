@@ -59,6 +59,14 @@ namespace ColonyCouncil
                     f.Tag("colony:newcomer", Fresh(nc.days, 10f, 2f));
                     f.Value("NEWCOMER", nc.pawn.LabelShort);
                 }
+                // A place at home the colony has named (Places/PlaceNames.cs): the newest that stands, {OURPLACE}.
+                var named = PlaceNames.Newest(map);
+                if (named != null)
+                {
+                    f.Tag("colony:place", Fresh((Now - named.tick) / (float)GenDate.TicksPerDay, 30f, 1.5f));
+                    f.Tag("place:" + named.kind);
+                    f.Value("OURPLACE", named.name);
+                }
                 if (scene.calendarDay != null && !scene.calendarDay.label.NullOrEmpty())
                 {
                     f.Tag("colony:day", 1.5f);

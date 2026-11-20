@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A day off for a friend (A9 of docs/content-update-proposals.md, the player's go of 20 November 2026;
+    Source/ColonyCouncil/Wishes/FriendDayOff.cs). A kind colonist, or someone close to a colonist who has been worn down or
+    near breaking for two days, asks the council for a day off for them: the asker's own wish ({PAWN}), about them ({OTHER}).
+    Met when {OTHER} is given the heart's day off or rests on the calendar's rest day while it waits; the thanks are the
+    asker's. Let lapse, only the asker loses trust, and {OTHER} isn't told, so the lapsed lines never say they were.
+    Wishes keep the flavour style (CLAUDE.md). A sentence never opens with a pronoun placeholder.
+  -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_Wish_FriendDayOff</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a day off for {OTHER_nameDef}</label>
+    <description>A kind colonist, or someone close to a colonist who has been worn down for two days, asks the council to give them a day off. Met when they are given the heart's day off, or rest on one of the calendar's rest days while it waits.</description>
+    <workerClass>ColonyCouncil.WishWorker_FriendDayOff</workerClass>
+    <category>Social</category>
+    <weight>1</weight>
+    <expiryDays>4</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Council_HelpedSomeone</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0</objectionChance>
+    <fulfilledWhen>{OTHER_nameDef} is given a day off (beside the strain meter on {OTHER_possessive} Mood tab, on {OTHER_possessive} card or in the heart's advice), or rests on one of the calendar's rest days.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>{OTHER_nameDef} hasn't laughed in a week, and still gets up before anyone. Give {OTHER_objective} a day. I'll do {OTHER_possessive} share.</li>
+        <li>I watched {OTHER_nameDef} stand at the bench holding a tool and not remembering what it was for. One day off, before it gets worse.</li>
+        <li>{OTHER_nameDef} answers every question with "fine" now, even the ones that aren't questions. Let {OTHER_objective} have a day to be something other than fine.</li>
+        <li>Nobody is going to ask for {OTHER_nameDef}, least of all {OTHER_nameDef}. So I am asking. One day of rest, and the work will keep.</li>
+        <li>[trait:Kind] I can carry a little more for a day. {OTHER_nameDef} can't carry any more at all. Let me take some of it.</li>
+        <li>[winter] The days are short and {OTHER_nameDef} works every hour of them, and some of the dark ones too. Let {OTHER_objective} sit by the fire for a day.</li>
+        <li>[lowtech] Where I come from, you rest the ox before it falls in the furrow. {OTHER_nameDef} is no ox, but the same sense holds.</li>
+        <li>[!lowtech] Even the machines here get switched off now and then. {OTHER_nameDef} hasn't been, not for days.</li>
+      </plain>
+      <warm>
+        <li>{OTHER_nameDef} would never ask, so I will. One day, that's all, and I'll see the work gets done.</li>
+        <li>I don't want much. Just a day where {OTHER_nameDef} wakes up and has nowhere to be.</li>
+      </warm>
+      <blunt>
+        <li>{OTHER_nameDef} is running on nothing. Give {OTHER_objective} a day off before the choice is made for us.</li>
+      </blunt>
+      <cheerful>
+        <li>I have a plan for {OTHER_nameDef}: a lie-in, a long walk, and no work at all. All it needs is the council's say-so.</li>
+      </cheerful>
+      <gloomy>
+        <li>I've seen people go the way {OTHER_nameDef} is going. A day off now costs less than what comes after.</li>
+      </gloomy>
+      <cold>
+        <li>{OTHER_nameDef}'s work has slipped two days running. A day of rest will get more out of {OTHER_objective} than another day like these.</li>
+      </cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Thank you for giving {OTHER_nameDef} the day. {OTHER_nameDef} won't say it, so I'm saying it for both of us.</li>
+        <li>A whole day of rest for {OTHER_nameDef}. I'll make sure nobody comes looking for {OTHER_objective} with work.</li>
+        <li>[promised] The council said it would see to it, and it did. {OTHER_nameDef} needed this more than anyone knew.</li>
+      </plain>
+      <warm><li>Thank you, truly. I'll keep an eye out that {OTHER_nameDef} actually rests and doesn't sneak back to work.</li></warm>
+      <blunt><li>Good. {OTHER_nameDef} needed that.</li></blunt>
+      <cheerful><li>A whole day of nothing for {OTHER_nameDef}. I could hug the council, all of it, one by one.</li></cheerful>
+      <gloomy><li>One day won't mend everything, but it's a day. Thank you.</li></gloomy>
+      <cold><li>Noted, and appreciated. {OTHER_nameDef} will be the better for it.</li></cold>
+    </thanks>
+    <expired>
+      <plain>
+        <li>No day off for {OTHER_nameDef}, then. I won't tell {OTHER_objective} anyone asked.</li>
+        <li>[promised] The council said it would see to it. {OTHER_nameDef} is still at it from dawn, and I'm the only one who knows anyone asked.</li>
+      </plain>
+      <warm><li>I'll take some of {OTHER_nameDef}'s work myself, quietly. Someone has to.</li></warm>
+      <blunt><li>Fine. I'll remember that.</li></blunt>
+      <gloomy><li>Of course. Nobody rests here until they fall over.</li></gloomy>
+      <cold><li>So the council thinks {OTHER_nameDef} can go on as before. We'll see.</li></cold>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

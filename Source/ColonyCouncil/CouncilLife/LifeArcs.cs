@@ -158,6 +158,8 @@ namespace ColonyCouncil
         {
             var h = Heart.Of(p);
             if (h == null || p.InMentalState) return null;
+            // Not while a friend's request for a day off for them waits (Wishes/FriendDayOff.cs): its day off is that request's.
+            if (FriendDayOff.AskedFor(p)) return null;
             int now = Find.TickManager.TicksGame;
             float sinceEpisode = h.lastEpisodeTick < 0 ? -1f : StepDownMath.DaysSince(h.lastEpisodeTick, now, GenDate.TicksPerDay);
             float breaking = StepDownMath.DaysSince(h.breakingSince, now, GenDate.TicksPerDay);

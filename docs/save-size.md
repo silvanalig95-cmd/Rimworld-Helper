@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 827; modelled: 827; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,100 KB** after a year, **3,820 KB** after two, **4,289 KB** after five.
+Saved collections found: 828; modelled: 828; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,101 KB** after a year, **3,823 KB** after two, **4,292 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -145,7 +145,7 @@ Rimfolk's part of the save, roughly: **3,100 KB** after a year, **3,820 KB** aft
 | `Peoples/ArisingBook.cs:arisen` | peoples that arose during play: one record each, one every 20 days at the most (the setting at 200%), ArisingMath.MaxRecords kept | cap | 3 | 6 | 15 | 4.7 |
 | `PlayOut/PlayOutTracker.cs:plays` | waiting ones capped, done ones dropped | cap | 8 | 8 | 8 | 4.7 |
 | `Social/Groups/GroupTracker.cs:past` | 12 past groups, members the game still knows | cap | 3 | 6 | 12 | 4.7 |
-| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 132 | 132 | 132 | 4.5 |
+| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 133 | 133 | 133 | 4.5 |
 | `Building/CouncilPlanQueue.cs:queue` | blueprints waiting to be placed | while | 30 | 30 | 30 | 4.4 |
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Social/Banishment.cs:records` | the people the council was asked about for trouble, and those it sent away, the oldest settled first past BanishTracker.MaxRecords | cap | 3 | 6 | 15 | 4.4 |
@@ -172,6 +172,7 @@ Rimfolk's part of the save, roughly: **3,100 KB** after a year, **3,820 KB** aft
 | `Integrations/GuestHelp.cs:guests` | one record per Hospitality guest staying (GuestHelpMath.MaxGuests at most), let go when they leave | while | 10 | 10 | 10 | 3.1 |
 | `Journeys/Journeys.cs:roadFood` | travellers eating by the road's food policy, with their own to go back to at home (a pawn and two policy references) | fixed | 20 | 20 | 20 | 3.1 |
 | `Quirks/Quirks.cs:practice` | one per colonist who works, keeps late or early hours or lives under rock; dead and departed dropped daily and at saving, faded-out ones removed | colonists | 20 | 20 | 20 | 3.1 |
+| `Places/PlaceNames.cs:places` | per home map: the places its people named, PlaceNameMath.MaxPlaces at most, one gone forgotten after a season (C25) | cap | 6 | 12 | 12 | 3.0 |
 | `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
 | `Gods/GodLore.cs:names` | the names the colony has heard the gods by, each a page of the book | cap | 3 | 6 | 15 | 2.9 |

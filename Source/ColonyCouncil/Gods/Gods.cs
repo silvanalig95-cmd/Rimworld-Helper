@@ -340,6 +340,8 @@ namespace ColonyCouncil
                 PawnGods.Saw(witnesses, taken, PawnGods.KindOf(spec.kind), plain, words, spec.cell, spec.map);
                 // A tale of the game's, for the colony's art (Things/ArtTales.cs): the god as the colony knew it then.
                 ArtTales.Seen(spec.god, spec.map, witnesses, spec.kind);
+                // The place it stood may take a name from it, by what the colony knows of it (Places/PlaceNames.cs).
+                PlaceNames.GodSeen(spec, witnesses);
                 // What it does to those who saw it, and what follows on the map (Gods/Touch/GodTouch.cs).
                 GodTouch.NoteMoment(spec, witnesses, plain, taken);
                 momentGod = spec.god.id;

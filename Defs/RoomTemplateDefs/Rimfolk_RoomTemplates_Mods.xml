@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Room plans made with the player's mods (C27 of docs/content-update-proposals.md, the player's go of 20 November 2026). Each
+    loads only with its mod (MayRequire on the plan), its key piece the mod's own, and a piece of another mod is named with
+    that mod's MayRequire (so Tools/poolcheck.py checks every name against docs/player-mods/). Every name checked against the
+    active rows of the player's catalogue:
+    - a writer's study: Vanilla Books Expanded (vanillaexpanded.vbookse), its typewriter table (VBE_TypewritersTable, printing)
+      or its writers table (VBE_WritersTable, writing, a medieval research), with Alpha Bees' wax candle (RB_WaxCandle) for a
+      colony before electricity;
+    - a coffee corner: Vanilla Brewing Expanded - Coffees and Teas (vanillaexpanded.vbrewecandt), its espresso machine
+      (VBE_EspressoMachineBuilding, an industrial research);
+    - a dryad grove: Vanilla Ideology Expanded - Dryads (vanillaexpanded.ideo.dryads), its dryad nests (VDE_DryadNest), under
+      the open sky;
+    - a festive hall: Vanilla Christmas Expanded (ve.vanillachristmasexpanded), its festive feast table (VCE_FestiveFeastTable)
+      and, once the colony has electricity, its grand and standing festive trees (VCE_GrandFestiveTree,
+      VCE_StandingFestiveTree);
+    - a beekeeper's yard: Alpha Bees (sarg.rimbees), its beehouses (RB_Beehouse, basic beekeeping, a medieval research), under
+      the open sky;
+    - a fish house: Vanilla Fishing Expanded (vanillaexpanded.vcef), cold storage for the catch, with Vanilla Cooking
+      Expanded - Sushi's prep table (VCE_SushiPrepTable) where the colony has that mod.
+    Every age takes the first piece it can build: the typewriter or the writers table, a standing lamp, a candle or a torch,
+    the game's own chairs and tables by what the colony knows. Facings follow the base files: a bench faces the wall with its
+    work spot in front of it, a chair at a bench sits on that spot.
+  -->
+
+  <!-- ==================== A writer's study (Vanilla Books Expanded) ==================== -->
+  <ColonyCouncil.RoomTemplateDef MayRequire="vanillaexpanded.vbookse">
+    <defName>Rimfolk_Room_WritersStudy</defName>
+    <label>writer's study</label>
+    <description>A writing table against the back wall with a chair at it, a bookcase, a light and a plant: the typewriter table once the colony knows printing, the writers table before it.</description>
+    <purpose>A quiet room for the colony's writer, with the books close at hand.</purpose>
+    <order>37</order>
+    <group>Work</group>
+    <size>(5,4)</size>
+    <iconDefs><li MayRequire="vanillaexpanded.vbookse">VBE_TypewritersTable</li><li MayRequire="vanillaexpanded.vbookse">VBE_WritersTable</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>Bedroom</li><li>Laboratory</li></near>
+    <avoid><li>Workshop</li></avoid>
+    <quiet>true</quiet>
+    <tips>
+      <li>Books are written at the table: the writers table with the mod's writing research, the typewriter table with its printing research.</li>
+      <li>Finished books can go on the bookcase, where they keep and can be read.</li>
+      <li>[lowtech] A torch or a candle is enough light to write by before electricity.</li>
+    </tips>
+    <things>
+      <li><defs><li MayRequire="vanillaexpanded.vbookse">VBE_TypewritersTable</li><li MayRequire="vanillaexpanded.vbookse">VBE_WritersTable</li></defs><pos>(2,3)</pos><optional>false</optional></li>
+      <li><defs><li>Armchair</li><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,2)</pos><tier>decor</tier></li>
+      <li><defs><li>Bookcase</li></defs><role>bookcase</role><pos>(0,1)</pos><rot>East</rot></li>
+      <li><defs><li>StandingLamp</li><li MayRequire="sarg.rimbees">RB_WaxCandle</li><li>TorchLamp</li></defs><role>light</role><pos>(4,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(4,3)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== A coffee corner (Vanilla Brewing Expanded - Coffees and Teas) ==================== -->
+  <ColonyCouncil.RoomTemplateDef MayRequire="vanillaexpanded.vbrewecandt">
+    <defName>Rimfolk_Room_CoffeeCorner</defName>
+    <label>coffee corner</label>
+    <description>An espresso machine against the back wall, a small table with a chair on each side, a light and a plant.</description>
+    <purpose>A small room to make coffee in and sit down with a cup.</purpose>
+    <order>21</order>
+    <group>Leisure</group>
+    <size>(4,4)</size>
+    <iconDefs><li MayRequire="vanillaexpanded.vbrewecandt">VBE_EspressoMachineBuilding</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>DiningRoom</li><li>Kitchen</li></near>
+    <tips>
+      <li>The espresso machine needs the mod's own research, an industrial one, and the coffee beans to go in it.</li>
+      <li>Coffee keeps people awake and working; set a drug policy, as for any drink.</li>
+    </tips>
+    <things>
+      <li><defs><li MayRequire="vanillaexpanded.vbrewecandt">VBE_EspressoMachineBuilding</li></defs><pos>(3,3)</pos><optional>false</optional></li>
+      <li><defs><li>Table1x2c</li></defs><role>table</role><pos>(1,2)</pos></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(0,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,2)</pos><rot>West</rot></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== A dryad grove (Vanilla Ideology Expanded - Dryads) ==================== -->
+  <ColonyCouncil.RoomTemplateDef MayRequire="vanillaexpanded.ideo.dryads">
+    <defName>Rimfolk_Room_DryadGrove</defName>
+    <label>dryad grove</label>
+    <description>Dryad nests round an open yard with plant pots between them. The roof is left off.</description>
+    <purpose>Somewhere for the dryads of the colony's Gauranlen tree to sleep, open to the sky.</purpose>
+    <order>30</order>
+    <group>Leisure</group>
+    <size>(5,5)</size>
+    <openSky>true</openSky>
+    <keepPlants>true</keepPlants>
+    <rug>false</rug>
+    <iconDefs><li MayRequire="vanillaexpanded.ideo.dryads">VDE_DryadNest</li></iconDefs>
+    <tips>
+      <li>The dryads of the colony's Gauranlen tree sleep in the nests.</li>
+      <li>A Gauranlen tree's connection grows more slowly with buildings close to it, so plan the grove a little way off from the tree.</li>
+    </tips>
+    <things>
+      <li><defs><li MayRequire="vanillaexpanded.ideo.dryads">VDE_DryadNest</li></defs><pos>(0,4)</pos><optional>false</optional></li>
+      <li><defs><li MayRequire="vanillaexpanded.ideo.dryads">VDE_DryadNest</li></defs><pos>(4,4)</pos></li>
+      <li><defs><li MayRequire="vanillaexpanded.ideo.dryads">VDE_DryadNest</li></defs><pos>(0,2)</pos></li>
+      <li><defs><li MayRequire="vanillaexpanded.ideo.dryads">VDE_DryadNest</li></defs><pos>(4,2)</pos></li>
+      <li><defs><li MayRequire="vanillaexpanded.ideo.dryads">VDE_DryadNest</li></defs><pos>(2,4)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(1,4)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,4)</pos><tier>core</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== A festive hall (Vanilla Christmas Expanded) ==================== -->
+  <ColonyCouncil.RoomTemplateDef MayRequire="ve.vanillachristmasexpanded">
+    <defName>Rimfolk_Room_FestiveHall</defName>
+    <label>festive hall</label>
+    <description>The festive feast table with chairs all around, a festive tree in each far corner once the colony has electricity, and two lights.</description>
+    <purpose>A hall for the colony's feast days, with room at the table for twelve.</purpose>
+    <order>20</order>
+    <group>Food</group>
+    <size>(8,7)</size>
+    <iconDefs><li MayRequire="ve.vanillachristmasexpanded">VCE_FestiveFeastTable</li><li MayRequire="ve.vanillachristmasexpanded">VCE_GrandFestiveTree</li></iconDefs>
+    <floors><li>WoodPlankFloor</li></floors>
+    <near><li>Kitchen</li><li>DiningRoom</li></near>
+    <tips>
+      <li>The festive trees need electricity to be built and to light up.</li>
+      <li>If the colony keeps midwinter, its feast is laid out beside the festive feast table and the festive trees are switched on at dusk.</li>
+      <li>A big impressive hall is also a good place for parties, weddings and the council's meetings.</li>
+    </tips>
+    <things>
+      <li><defs><li MayRequire="ve.vanillachristmasexpanded">VCE_FestiveFeastTable</li></defs><role>table</role><pos>(3,3)</pos><optional>false</optional></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,2)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,3)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,4)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(2,5)</pos><rot>East</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,2)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,3)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,4)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(5,5)</pos><rot>West</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,1)</pos><rot>North</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,1)</pos><rot>North</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(3,6)</pos><rot>South</rot></li>
+      <li><defs><li>DiningChair</li><li>Stool</li></defs><role>chair</role><pos>(4,6)</pos><rot>South</rot></li>
+      <li><defs><li MayRequire="ve.vanillachristmasexpanded">VCE_GrandFestiveTree</li><li MayRequire="ve.vanillachristmasexpanded">VCE_StandingFestiveTree</li></defs><pos>(0,6)</pos></li>
+      <li><defs><li MayRequire="ve.vanillachristmasexpanded">VCE_StandingFestiveTree</li></defs><pos>(7,6)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(0,0)</pos></li>
+      <li><defs><li>StandingLamp</li><li>TorchLamp</li></defs><role>light</role><pos>(7,0)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== A beekeeper's yard (Alpha Bees) ==================== -->
+  <ColonyCouncil.RoomTemplateDef MayRequire="sarg.rimbees">
+    <defName>Rimfolk_Room_BeekeepersYard</defName>
+    <label>beekeeper's yard</label>
+    <description>Beehouses along the walls of an open yard, with plant pots in the middle. The roof is left off.</description>
+    <purpose>The colony's beehouses in one walled yard under the open sky, close to the fields.</purpose>
+    <order>34</order>
+    <group>Food</group>
+    <size>(5,5)</size>
+    <openSky>true</openSky>
+    <keepPlants>true</keepPlants>
+    <rug>false</rug>
+    <nearFields>true</nearFields>
+    <avoid><li>Bedroom</li></avoid>
+    <iconDefs><li MayRequire="sarg.rimbees">RB_Beehouse</li></iconDefs>
+    <tips>
+      <li>Beehouses need the mod's basic beekeeping research, and each takes a queen and a drone of the same kind of bee.</li>
+      <li>The roof is left off: beehouses are kept under the open sky.</li>
+    </tips>
+    <things>
+      <li><defs><li MayRequire="sarg.rimbees">RB_Beehouse</li></defs><pos>(0,4)</pos><optional>false</optional></li>
+      <li><defs><li MayRequire="sarg.rimbees">RB_Beehouse</li></defs><pos>(2,4)</pos></li>
+      <li><defs><li MayRequire="sarg.rimbees">RB_Beehouse</li></defs><pos>(4,4)</pos></li>
+      <li><defs><li MayRequire="sarg.rimbees">RB_Beehouse</li></defs><pos>(0,2)</pos></li>
+      <li><defs><li MayRequire="sarg.rimbees">RB_Beehouse</li></defs><pos>(4,2)</pos></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(1,2)</pos><tier>core</tier></li>
+      <li><defs><li>PlantPot</li></defs><role>plantpot</role><pos>(3,2)</pos><tier>core</tier></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+  <!-- ==================== A fish house (Vanilla Fishing Expanded) ==================== -->
+  <ColonyCouncil.RoomTemplateDef MayRequire="vanillaexpanded.vcef">
+    <defName>Rimfolk_Room_FishHouse</defName>
+    <label>fish house</label>
+    <description>Shelves for the catch, coolers built into the back wall once the colony has them, and Vanilla Cooking Expanded - Sushi's prep table where the colony has that mod.</description>
+    <purpose>Somewhere cold to keep the catch, close to the water and the kitchen.</purpose>
+    <order>50</order>
+    <group>Food</group>
+    <size>(5,5)</size>
+    <iconDefs><li>Shelf</li></iconDefs>
+    <near><li>Kitchen</li></near>
+    <tips>
+      <li>Build it by the water where the colony fishes, so the catch has only a short way to go.</li>
+      <li>[!lowtech] Set the coolers to -10 °C, and make sure their hot side faces outside.</li>
+      <li>[lowtech] Without coolers the catch keeps only while the weather is cold, so eat it fresh in the warm months.</li>
+    </tips>
+    <things>
+      <li><defs><li>Cooler</li></defs><role>cooler</role><inWall>true</inWall><pos>(2,6)</pos></li>
+      <li><defs><li>Cooler</li></defs><role>cooler</role><inWall>true</inWall><pos>(4,6)</pos></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(1,4)</pos><rot>South</rot><optional>false</optional></li>
+      <li><defs><li>Shelf</li></defs><role>storage</role><pos>(4,4)</pos><rot>South</rot></li>
+      <li><defs><li MayRequire="vanillaexpanded.vcookesushi">VCE_SushiPrepTable</li></defs><pos>(2,2)</pos></li>
+    </things>
+  </ColonyCouncil.RoomTemplateDef>
+
+</Defs>

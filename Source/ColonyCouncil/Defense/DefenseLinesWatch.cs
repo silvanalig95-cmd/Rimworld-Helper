@@ -426,6 +426,8 @@ namespace ColonyCouncil
                 var by = map.mapPawns.FreeColonistsSpawned.Where(p => !p.Downed && !p.Dead).OrderByDescending(p => p.Drafted)
                     .ThenBy(p => p.Position.DistanceToSquared(busiest.gate)).FirstOrDefault();
                 if (by != null) ArtTales.Record(ArtTales.LineHeld, by, null, null, DefenseLineReview.NameOf(busiest, map));
+                // The gate may take a name from it: "the gate that held" (Places/PlaceNames.cs).
+                if (by != null) PlaceNames.LineHeld(map, busiest.gate, by);
             }
         }
 

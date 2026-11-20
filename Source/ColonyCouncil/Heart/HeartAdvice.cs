@@ -166,6 +166,9 @@ namespace ColonyCouncil
                         return item;
                     }
                     item.text = "CC_Advice_DayOff".Translate(p.Named("PAWN")).Resolve();
+                    // A friend has asked the council for it (Wishes/FriendDayOff.cs).
+                    string asked = FriendDayOff.AdviceNote(p);
+                    if (asked != null) item.text += " " + asked;
                     item.act = HeartTimeOff.DayOffLabel(p, h, now);
                     item.whyNot = HeartTimeOff.WhyNotDayOff(p, h, now);
                     item.tip = "CC_Count_DayOff_Desc".Translate(p.Named("PAWN")).Resolve();

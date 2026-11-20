@@ -283,6 +283,12 @@
         <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,colony:old] We have been here long enough now that the place has its own habits, and so do we.</li>
         <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,colony:traders] There are traders at our gate as I write, so the place is noisy and cheerful.</li>
         <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,colony:camp] There is a camp of {CAMP} beside us for now, and they have been good neighbours.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,colony:place] There is a place here we have started calling {OURPLACE}, and now nobody calls it anything else.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly,colony:place] We have given one of our places a name, {OURPLACE}, and I find I like living somewhere with names in it.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly|cordial,colony:place,place:tree] There is a tree here we call {OURPLACE} now. If you ever visit, we will take you to sit under it.</li>
+        <li>[ours,serious,a:plain|a:friend,colony:place,place:graves] We have a name now for the place where we bury our own. We call it {OURPLACE}.</li>
+        <li>[ours,serious,a:plain|a:friend|a:war,colony:place,place:gate] Our gate has a name now, {OURPLACE}, and it earned it.</li>
+        <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,colony:place,place:flood] The flood came further than any of us thought it would, and the place it reached is {OURPLACE} to us now.</li>
         <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,colony:election] We have just chosen who speaks for us, and the arguing has mostly stopped.</li>
         <li>[ours,everyday,a:plain|a:friend,warmly|cordial,colony:daysoon] {DAY} is coming up, and everyone is already arguing about the food.</li>
         <li>[ours,everyday,a:plain|a:friend,warmly|cordial|cool,colony:doctor] {DOCTOR} keeps our sick-room in good order, and the rest of us out of it if possible.</li>
@@ -376,6 +382,7 @@
         <li>[ours,olde,everyday,a:plain|a:friend,warmly|cordial|cool,colony:harvest] The harvest is in, and for once none complaineth of it.</li>
         <li>[ours,olde,everyday,a:plain|a:friend,warmly|cordial|cool,colony:children] Our children grow faster than their clothes can keep pace.</li>
         <li>[ours,olde,everyday,a:plain|a:friend,warmly|cordial|cool,colony:newcomer] {NEWCOMER} came to us not long since, and learneth still where all things are kept.</li>
+        <li>[ours,olde,everyday,a:plain|a:friend,warmly|cordial|cool,colony:place] There is a place among us that we now call {OURPLACE}, and the name hath held fast.</li>
         <li>[ours,olde,everyday,a:plain|a:friend,warmly|cordial|cool,season:winter] Winter is come in hard, and we spend our evenings close by the fire.</li>
         <li>[ours,olde,everyday,a:plain|a:friend,warmly|cordial|cool,weather:rain] It raineth as I write, so forgive the smudges.</li>
         <li>[ours,olde,serious,a:plain|a:friend|a:war] These are uncertain times, and it is good to know there be folk worth writing to.</li>

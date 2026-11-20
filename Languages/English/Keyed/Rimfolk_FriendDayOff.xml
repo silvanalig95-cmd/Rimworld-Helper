@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- A day off for a friend (A9; Source/ColonyCouncil/Wishes/FriendDayOff.cs, Defs/WishDefs/Rimfolk_Wishes_FriendDayOff.xml). -->
+  <CC_FriendDayOff_Reason>{OTHER_nameDef} has been worn down for days, and {PAWN_nameDef} has noticed.</CC_FriendDayOff_Reason>
+  <CC_FriendDayOff_TieNote>asked the council for a day off for {OTHER_nameDef}</CC_FriendDayOff_TieNote>
+  <CC_FriendDayOff_VisitLabel>{PAWN_nameDef} keeps {OTHER_nameDef} company on the day off</CC_FriendDayOff_VisitLabel>
+  <CC_FriendDayOff_Advice>{PAWN_nameDef} has asked the council for a day off for {OTHER_objective}.</CC_FriendDayOff_Advice>
+
+</LanguageData>

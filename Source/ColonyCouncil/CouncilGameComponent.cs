@@ -619,6 +619,8 @@ namespace ColonyCouncil
             Safe("telling the bees", TellingBees.Hourly);
             // The giving day under way (LifeVariety/GivingDay.cs).
             Safe("colony life, part 2", () => LifeVariety.Hourly(this));
+            // The colony's names for its places: graves, gatherings by a tree, a flood, places gone, supper talk (Places/PlaceNames.cs).
+            Safe("names for places", PlaceNames.Hourly);
         }
 
         private void HourlyPeople()

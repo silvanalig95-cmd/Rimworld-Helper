@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's own names for its places (C25 of docs/content-update-proposals.md; Source/ColonyCouncil/Places/). Plain
+    speech, one sentence each, said over a head (Speech.Say). {PLACE} is the name ("the gate that held"), never at the start
+    of a sentence; {PAWN} the speaker, {OTHER} the one they speak to. Tagged by what named the place: [kind:god], [kind:graves],
+    [kind:tree], [kind:gate], [kind:flood]. A line claims nothing that didn't happen on the map.
+  -->
+
+  <!-- Said once, by the one who names the place, where it happened. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PlaceNamed</defName>
+    <lines>
+      <plain>
+        <li>[kind:god] I'm calling this {PLACE}, so nobody forgets what we saw here.</li>
+        <li>[kind:god] Whatever that was, this spot is {PLACE} from now on.</li>
+        <li>[kind:god] After today, this will always be {PLACE} to me.</li>
+        <li>[kind:graves] We'll call it {PLACE}, and we'll look after it.</li>
+        <li>[kind:graves] This is {PLACE} now, for everyone we lay here.</li>
+        <li>[kind:tree] After today this tree is {PLACE}, and I won't hear otherwise.</li>
+        <li>[kind:tree] Let's call it {PLACE}, it's earned a name.</li>
+        <li>[kind:gate] They didn't get past it, so it's {PLACE} from now on.</li>
+        <li>[kind:gate] That's {PLACE} now, and it can keep the name.</li>
+        <li>[kind:flood] The water came this far, so let's call it {PLACE}.</li>
+        <li>[kind:flood] We'll call it {PLACE}, so we remember where the water reached.</li>
+      </plain>
+      <warm>
+        <li>[kind:graves] I'd like this to be {PLACE}, somewhere we can come and sit with them.</li>
+        <li>[kind:tree] I want to remember today, so this tree is {PLACE}.</li>
+      </warm>
+      <blunt>
+        <li>[kind:gate] Call it {PLACE}, because it did.</li>
+        <li>[kind:god] This is {PLACE} now, and that's that.</li>
+      </blunt>
+      <gloomy>
+        <li>[kind:graves] It needed a name, and {PLACE} will have to do.</li>
+        <li>[kind:flood] Let's call it {PLACE}, and hope the water doesn't come back.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- At supper, to the one eating beside them; [named] when the speaker named the place. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_PlaceSupper</defName>
+    <lines>
+      <plain>
+        <li>Do you ever go out by {PLACE}, {OTHER_nameDef}?</li>
+        <li>Funny how quickly everyone started saying {PLACE}, isn't it, {OTHER_nameDef}?</li>
+        <li>[named] I'm glad the name {PLACE} stuck, {OTHER_nameDef}.</li>
+        <li>[named] I didn't expect anyone else to call it {PLACE}, {OTHER_nameDef}.</li>
+        <li>[kind:god] I still think about what was seen at {PLACE}, {OTHER_nameDef}.</li>
+        <li>[kind:god] Nobody walks past {PLACE} without looking twice, {OTHER_nameDef}.</li>
+        <li>[kind:graves] I think of them whenever I pass {PLACE}, {OTHER_nameDef}.</li>
+        <li>[kind:graves] It's quiet out by {PLACE}, {OTHER_nameDef}, in a good way.</li>
+        <li>[kind:tree] That was a good day under {PLACE}, {OTHER_nameDef}.</li>
+        <li>[kind:tree] I hope nobody ever takes an axe to {PLACE}, {OTHER_nameDef}.</li>
+        <li>[kind:gate] I sleep better knowing {PLACE} is still standing, {OTHER_nameDef}.</li>
+        <li>[kind:gate] I still remember the day at {PLACE}, {OTHER_nameDef}.</li>
+        <li>[kind:flood] The water came right up to {PLACE}, {OTHER_nameDef}, remember?</li>
+        <li>[kind:flood] I think of {PLACE} every time it rains hard, {OTHER_nameDef}.</li>
+      </plain>
+      <warm>
+        <li>[kind:tree] I like that {PLACE} has a name now, {OTHER_nameDef}.</li>
+      </warm>
+      <cheerful>
+        <li>A place with a name like {PLACE} feels like home, doesn't it, {OTHER_nameDef}?</li>
+      </cheerful>
+      <gloomy>
+        <li>[kind:gate] Let's hope {PLACE} holds the next time too, {OTHER_nameDef}.</li>
+      </gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

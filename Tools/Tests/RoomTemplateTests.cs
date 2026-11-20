@@ -194,6 +194,20 @@ public static class RoomTemplateTests
         From("onyxae.dragonsdescent", "DD_DragonStatueRitual_Large");
         From("dubwise.dubsbadhygiene", "PrimitiveWell");
         From("Ludeon.RimWorld.Ideology", "AncientTerminal_Worshipful");
+        // The room plans made with the player's mods (Rimfolk_RoomTemplates_Mods.xml): sizes as the player's catalogue has them
+        // (docs/player-mods, buildings.tsv and items.tsv; a size left out there is the game's 1x1), a bench worked from the
+        // cell in front of it as the game's own benches are.
+        F("VBE_WritersTable VBE_TypewritersTable VCE_SushiPrepTable", 3, 1, spots: "0,-1");
+        F("VBE_EspressoMachineBuilding", 1, 1, spots: "0,-1");
+        F("VDE_DryadNest RB_Beehouse", 1, 1);
+        F("VCE_FestiveFeastTable", 2, 4, kind: "table");
+        F("VCE_GrandFestiveTree VCE_StandingFestiveTree RB_WaxCandle", 1, 1, "norot");
+        From("vanillaexpanded.vbookse", "VBE_WritersTable VBE_TypewritersTable");
+        From("vanillaexpanded.vbrewecandt", "VBE_EspressoMachineBuilding");
+        From("vanillaexpanded.ideo.dryads", "VDE_DryadNest");
+        From("ve.vanillachristmasexpanded", "VCE_FestiveFeastTable VCE_GrandFestiveTree VCE_StandingFestiveTree");
+        From("sarg.rimbees", "RB_Beehouse RB_WaxCandle");
+        From("vanillaexpanded.vcookesushi", "VCE_SushiPrepTable");
         From("dubwise.dubsbadhygiene", "ToiletStuff ToiletAdvStuff PitLatrine WashBucket ShowerStuff ShowerSimple ShowerAdvStuff BasinStuff BathtubStuff HotTub KitchenSink "
                                        + "ToiletStallDoor DBHSaunaHeaterLog DBHSaunaHeaterElec DBHSaunaSeating WashingMachine PetWaterBowl LitterBox");
     }

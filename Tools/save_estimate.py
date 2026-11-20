@@ -1259,6 +1259,8 @@ MODEL = {
     "LifeVariety/LifeVarietyBook.cs:toys": ("cap", (const("LifeVariety/LifeVarietyBook.cs", "MaxToys", 12), 0.1), 40, "children given a toy within forty days, dropped after; LifeVarietyBook.MaxToys at most (A11)"),
     "LifeVariety/LifeVarietyBook.cs:gifts": ("cap", (const("LifeVariety/LifeVarietyBook.cs", "MaxGifts", 16), 0.1), 70, "the giving day's gifts of the last eight days, once a winter; LifeVarietyBook.MaxGifts at most (A26)"),
     "LifeVariety/LifeVarietyBook.cs:pairs": ("while", 6, 180, "the giving day under way: one gift a person at home, gone within two days (A26)"),
+    # The colony's names for its places (Places/PlaceNames.cs, per home map, gone with it): a place gone is forgotten after a season
+    "Places/PlaceNames.cs:places": ("cap", (const("Places/PlaceNameMath.cs", "MaxPlaces", 12), 0.1), 260, "per home map: the places its people named, PlaceNameMath.MaxPlaces at most, one gone forgotten after a season (C25)"),
     "PlayOut/PlayOuts.cs:led": ("fixed", 1, P, "per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only"),
     "PlayOut/PlayOuts.cs:risks": ("fixed", 1, 120, "per play-out: an answer's fight or walk-out held for the scene, one or two at most"),
     "PlayOut/PlayOuts.cs:things": ("fixed", 2, P, "per play-out: the thing handed over, or the dead still to carry out (OnMapMath.MaxDead at most)"),

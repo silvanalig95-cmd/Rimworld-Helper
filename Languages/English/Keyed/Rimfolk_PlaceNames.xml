@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The colony's own names for its places (C25; Source/ColonyCouncil/Places/PlaceNames.cs). Plain words. -->
+
+  <!-- The names. {GROUND} one of the grounds below; {GOD} the colony's name for the god where it knows it did it, else what was seen ("the great white thrumbo"); {TREE} the tree's kind. -->
+  <CC_Place_Name_God>the {GROUND} where {GOD} was seen</CC_Place_Name_God>
+  <CC_Place_Name_Graves>the field of the graves</CC_Place_Name_Graves>
+  <CC_Place_Name_Tree>the old {TREE}</CC_Place_Name_Tree>
+  <CC_Place_Name_Gate>the gate that held</CC_Place_Name_Gate>
+  <CC_Place_Name_Flood_path>the drowned path</CC_Place_Name_Flood_path>
+  <CC_Place_Name_Flood_field>the drowned field</CC_Place_Name_Flood_field>
+
+  <CC_Place_Ground_shore>shore</CC_Place_Ground_shore>
+  <CC_Place_Ground_rise>rise</CC_Place_Ground_rise>
+  <CC_Place_Ground_ice>ice</CC_Place_Ground_ice>
+  <CC_Place_Ground_marsh>marsh</CC_Place_Ground_marsh>
+  <CC_Place_Ground_sands>sands</CC_Place_Ground_sands>
+  <CC_Place_Ground_stones>stony ground</CC_Place_Ground_stones>
+  <CC_Place_Ground_wood>wood</CC_Place_Ground_wood>
+  <CC_Place_Ground_field>field</CC_Place_Ground_field>
+
+  <CC_Place_Gathering_Party>the party</CC_Place_Gathering_Party>
+  <CC_Place_Gathering_Wedding>the wedding</CC_Place_Gathering_Wedding>
+  <CC_Place_Gathering_Council>the council's meeting</CC_Place_Gathering_Council>
+  <CC_Place_Gathering_Gathering>the gathering</CC_Place_Gathering_Gathering>
+
+  <!-- The message when a place is named: who named it, and after what. -->
+  <CC_Place_Named_God>{PAWN_nameDef} has named the place after what was seen there: {PLACE}.</CC_Place_Named_God>
+  <CC_Place_Named_Graves>{PAWN_nameDef} has named the place where the colony buries its dead: {PLACE}.</CC_Place_Named_Graves>
+  <CC_Place_Named_Tree>{PAWN_nameDef} has named the tree beside {GATHERING}: {PLACE}.</CC_Place_Named_Tree>
+  <CC_Place_Named_Gate>{PAWN_nameDef} has named the gate where the raid was held: {PLACE}.</CC_Place_Named_Gate>
+  <CC_Place_Named_Flood>{PAWN_nameDef} has named the place the flood reached: {PLACE}.</CC_Place_Named_Flood>
+
+  <!-- The chronicle. -->
+  <CC_Place_Chronicle>{PAWN_nameDef} gave a place on the colony's land its name: {PLACE}.</CC_Place_Chronicle>
+  <CC_Place_Forgotten>{PLACE} is gone, and the colony no longer uses the name.</CC_Place_Forgotten>
+
+  <!-- A god's card when the god comes where a place has a name. -->
+  <CC_Place_CardAt>It happened at the place the colony calls {PLACE}.</CC_Place_CardAt>
+
+  <!-- Dev mode. -->
+  <CC_Place_DebugGod>the shape</CC_Place_DebugGod>
+
+  <!-- The settings. -->
+  <CC_Settings_PlaceNames>The colony's names for its places</CC_Settings_PlaceNames>
+  <CC_Settings_PlaceNames_Tip>Places on the home map get names from what first happened there, given by one of the colony's people who was there: where a god was seen, the colony's first graves out in the open, a tree beside a gathering, a gate where a raid was held, where a flood reached the path or the fields. Whoever names a place says it aloud, and the chronicle keeps it. The names come up at supper, in the colony's letters and on a god's card. A place whose tree, gate or graves are gone loses its name after a season.</CC_Settings_PlaceNames_Tip>
+  <CC_SetNote_PlaceNames>Places at home get names from what happened there.</CC_SetNote_PlaceNames>
+  <CC_Settings_PlaceLabels>Names of places on the map</CC_Settings_PlaceLabels>
+  <CC_Settings_PlaceLabels_Tip>The colony's names for its places as quiet labels on the map, drawn the way the game draws its own labels, when the view is close enough. A place that is gone fades out over a season.</CC_Settings_PlaceLabels_Tip>
+  <CC_SetNote_PlaceLabels>The names of places show on the map.</CC_SetNote_PlaceLabels>
+
+</LanguageData>
