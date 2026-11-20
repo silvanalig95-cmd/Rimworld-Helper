@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.287.0</version>
+        <date>20 November 2026</date>
+        <title>The world's talk, camps and encounters, fuller</title>
+        <points>
+          <li>The thinnest world events have more ways to begin and end: new start letters, second lines for short beats and more endings for 22 of them.</li>
+          <li>Visitors now talk about 25 more world events, and a visitor from another people speaks of what they heard about one on the road.</li>
+          <li>Each of the 23 peoples talks about its working day, food, children and towns, how it stands with the other peoples, and what it makes of your colony.</li>
+          <li>The peoples' own camps have fuller words: more arrival letters, joins, help, bubble lines and moments.</li>
+          <li>Two more texts for each of the thinnest encounters and for every people's own encounter.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.286.0</version>
         <date>20 November 2026</date>
         <title>More words for the gods, and prayers in the old voice</title>

@@ -19312,7 +19312,7 @@ out, the new scenes' jobs on visitors under their lords, the beehouses built and
 sting at them, the pickers' preference among the caps, the poisoned picker's ask, the star-watchers' nights, the stud's
 mating and the young one's arrival, a singer at an instrument with its music, and how often each comes in a real colony.
 
-### Text variety: the world's thin pools (the player's go, 20 November 2026; not released yet)
+### Text variety: the world's thin pools (the player's go, 20 November 2026; released 0.287.0)
 
 The player on the content update: "your content proposal overall sounds really good. You can go ahead with this in the
 order you think makes most sense ... And then also, just variety, further kind of events, camps, world events, normal
