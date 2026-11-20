@@ -48,6 +48,12 @@ namespace ColonyCouncil
 
         public virtual LookTargets LookAt(Wish wish) => new LookTargets(wish.Beneficiary);
 
+        /// <summary>
+        /// The other one it is about isn't told when it lapses (a day off asked for a friend, Wishes/FriendDayOff.cs): they
+        /// aren't counted among the friends of the one who asked who take it personally.
+        /// </summary>
+        public virtual bool OtherNotTold => false;
+
         public virtual InspirationDef InspirationFor(Wish wish) => null;
 
         public virtual string FulfilledWhen(Wish wish) => wish.Format(def.fulfilledWhen);

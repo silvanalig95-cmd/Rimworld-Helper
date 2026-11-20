@@ -213,6 +213,8 @@ namespace ColonyCouncil
                 {
                     var h = council.HolderOf(office, seat);
                     if (h == null || !home.Contains(h) || h.InMentalState || council.HasDeputy(h)) continue;
+                    // Not while a friend's request for a day off for them waits (Wishes/FriendDayOff.cs): one answer at a time.
+                    if (FriendDayOff.AskedFor(h)) continue;
                     var heart = Heart.Of(h);
                     float worn = heart == null ? 0f : StepDownMath.DaysSince(heart.wornSince, now, GenDate.TicksPerDay);
                     float laid = Life.LaidUpDays(h);
