@@ -138,6 +138,20 @@ most sense." So, in this order, three builds at a time:
     with it;
   - shown in G (above the inspect pane), letters and event cards, the colonist card and the who's who (F), with the
     frame by standing and the crest drawn by the code (D, from the game's faction icons, no painted art).
+  Poses, the player after: "if we already work with the pawn base from the game, you know, also angles and kind of
+  positions that are also different from the one that you have at the top, which is one consistent position, is also
+  something that is nice about Crusader Kings. You know, you see these characters also a bit moving around a bit and
+  being in a position, a different one that gives them kind of character." What the game allows: its four directions
+  (front, the two sides, back), and drawing the head and the body apart (the game's render flags `HeadOnly`,
+  `HeadStump`, `NoBody`), so the head can be set at its own angle on the body. Ideas:
+  - a pose by who they are and how they are: chin up for the proud and the leaders, the head a little down for the sad
+    or the grieving, a lean for the angry, turned half away for the shy, a stoop for the old, the head low for a
+    prisoner, drawn grey for the dead;
+  - a pose by the moment: the one who speaks in a letter faces the reader, two at odds face each other side on, a
+    newcomer looks about;
+  - a little life on the cached picture (cheap, no redrawing each frame): breathing, a slow sway, now and then a turn
+    from the front to a side view and back;
+  - Facial Animation's expressions follow the mood in the picture as it is redrawn.
   The lead can't see the game: after a first build the player's screenshots decide sizes and framing.
   The player's picks wait: the style (painted oil, ink and wash, manuscript, or another), the tool they use, how many
   images a batch, and where to start (A for their own colonists first is the lead's suggestion).
