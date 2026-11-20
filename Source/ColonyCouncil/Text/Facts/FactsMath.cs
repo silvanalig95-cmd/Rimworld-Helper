@@ -106,7 +106,11 @@ namespace ColonyCouncil
             // And of round 8 (Rimfolk_CampKinds_PeopleEvents8.xml).
             "them:camp:RationPost", "them:camp:LandingParty", "them:camp:FieldLab",
             // And of round 9 (Rimfolk_CampKinds_PeopleEvents9.xml).
-            "them:camp:MechYard", "them:camp:ListeningRing", "them:camp:SurfaceScouts"
+            "them:camp:MechYard", "them:camp:ListeningRing", "them:camp:SurfaceScouts",
+            // The content update's world (Rimfolk_CampKinds_Variety4.xml): the beekeepers, the mushroom pickers, and the
+            // camps of the region's world events.
+            "them:camp:Beekeepers", "them:camp:MushroomPickers", "them:camp:YoungHands", "them:camp:StrandedCarters", "them:camp:Gleaners",
+            "them:camp:GamesTeam", "them:camp:WalkingHome", "them:camp:StarWatchers"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>
