@@ -65,6 +65,34 @@ most sense." So, in this order, three builds at a time:
   The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
   A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
   raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
+- **To do when the player asks (20 November 2026, the player; nothing built yet): faces people can recognize, in the
+  direction of Crusader Kings.** The player: "when you write letters to people or there's an event and you see the
+  character's icon, at the top, their face, their in-game icon ... these are just not recognizable characters to me,
+  especially the ones from other factions. I have like no way to recognize them. If that could just be enhanced, even
+  I don't know, just a graphical enhancement of what the game is also already implementing. If you think about this and
+  then compare it to how the characters who play an essential role in the game are displayed, for example, Crusader
+  Kings. Not that would be realistic, but uh, into that direction as much as we can." And: "Also counting for my own
+  pawns, and especially for my own pawns, because these even at a certain length feel unrecognizable anymore,
+  especially if you regularly change armor and clothing. It's just the names that stay, but the faces have absolutely
+  no meaning." Also asked what the lead can do and what the player could bring from other sites or AIs. Now:
+  `UiKit.Portrait` draws head and shoulders in a small circle (zoom 1.75) with the clothes and headgear worn. Ideas to
+  put to the player:
+  1. A steady face: the portrait drawn without headgear (the game's portrait cache can leave it off, and the outer
+     clothes too), so a helmet or a new coat doesn't change who it is; the same background every time in the pawn's own
+     favourite colour (the game keeps one per pawn), and a mark of their people or the colony.
+  2. A character card in the CK direction: a large portrait in a frame by standing (a council seat, a title, a people's
+     head, a priest, a stranger, an enemy), the crest of their people or the colony, name and earned name, age,
+     xenotype, the few traits that tell most, what they are to the colony (opinion, ties, what they did), shown on
+     letters, event cards, the colonist card and on hover.
+  3. The same face everywhere: letters, cards, the Almanac and the advisor all draw the one portrait.
+  4. A who's who in the Almanac: the people the colony knows outside (heads, envoys, regulars, enemies, prisoners
+     gone home) with the face as last seen and their history with the colony.
+  5. Soft use of Portraits of the Rim (painted portraits; 1.6, not in the list) where it is on.
+  The game draws pawns from small textures, so a bigger portrait blurs: frame, steady colour and steady face do more
+  for recognizing than size. The player could bring: screenshots of the cards and letters as they look now (the lead
+  can't run the game), a screenshot of a CK card as the look to aim for, and static art (from an image AI or an artist,
+  PNG with transparency): frames for a few standings, a parchment for letters, crests for the 23 peoples. Faces stay
+  the game's own so they match the map.
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
   using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
