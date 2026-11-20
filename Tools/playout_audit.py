@@ -156,6 +156,13 @@ PLAY = {
     # Visitors set to what they came for at the colony's relic, anima tree, gravship or bookcase, or kept by the gate
     # for a word or a lesson (Visitors/VisitorsMore2.cs).
     "VisitEffect_WorkHere": "visitors at it",
+    # The content update's variety, the world (World/Variety/, Camps/CampVariety.cs): the young of two peoples come for a
+    # games day (a feast with them at it), prisoners walked out free under a pardon, the sextons carrying the colony's
+    # unburied dead to their beast, a colonist beside the beekeepers' hives.
+    "DilemmaEffect_GamesDay": "a games day",
+    "DilemmaEffect_PardonRelease": "walked out free",
+    "DilemmaEffect_BuryingTake": "the dead taken away",
+    "DilemmaEffect_HelpAtHives": "at the hives",
     # Visitors who came to do something, doing it on the map (Visitors/Callers.cs): a piece of art carried out to its
     # buyer, a sculpture made for a collector, a wedding party's night, graves dug and the dead laid in them or loaded on
     # the undertakers' beast, a captive walked out to their kin or talked with at their door, haircuts, animals tended.

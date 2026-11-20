@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content update's variety, the world (docs/content-update-proposals.md, part B): B6 two more scarcities, cloth
+    and timber; B7 a season of games; B8 a pardon proclaimed. Their workers are in Source/ColonyCouncil/World/Variety/
+    (VarietyWorkers.cs: the people's age as a tag, [theirTribal], [theirMedieval], [theirIndustrial], [theirSpacer]; cloth
+    likelier and taken over after a sickness in the herds or markets closed; the games' champion and the colony's games
+    day, GamesDay.cs; the pardon after a kind new head or in a holy year, its prisoners sent home, Pardon.cs). Words in
+    the world events' flavour style; nothing hurts anyone but the bouts of the games day, at the feast's own rate.
+  -->
+
+  <!-- ===================== Cloth gone scarce (B6) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_ClothScarce</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>cloth gone scarce</label>
+    <workerClass>ColonyCouncil.SituationWorker_ClothScarce</workerClass>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>scarcity</kind>
+    <prosperity>-4</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Cloth gone scarce</li>
+      <li>Short of cloth</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] The weavers at {PLACE} have run out of thread, and there is none to be had on the road. {FACTION} are patching patches and cutting down old cloaks for the children, and paying whatever they must for a bolt of anything.\n\nThe colony has cloth in its stores, and people know it.</li>
+      <li>[theirHightech] The mill that sent cloth up the road to {PLACE} has stopped, and the bales have stopped with it. {FACTION} are rationing what they have, and every trader on the road is asking the same thing: who has cloth to sell?\n\nThe colony does, and people know it.</li>
+      <li>[after:Council_WS_Murrain] The sickness in the herds took the flocks before the shearing, and now there is no wool for the looms at {PLACE}. {FACTION} have gone through their old stores already, and are paying whatever they must for cloth.\n\nThe colony has some, and people know it.</li>
+      <li>[after:Council_WS_Embargo] The markets have opened again, but the cloth hasn't come back with them. The bales that used to come through {PLACE} went elsewhere while the gates were shut, and {FACTION} are paying whatever they must for a bolt of anything.\n\nThe colony has cloth in its stores, and people know it.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION}'s tailors will pay well for cloth, and one may come to the gate to buy it or to teach. Shearers come by more often while wool is wanted. A colony with cloth to spare can do well out of it, or do good.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>buy</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>tailor</what><ages>28~60</ages><pack>true</pack></li>
+        </effects>
+        <day>1~4</day>
+        <count>40~80</count>
+        <titles>
+          <li>{FACTION} want cloth</li>
+        </titles>
+        <texts>
+          <li>{FACTION}'s tailor has come up from {PLACE} with a purse and a list of everyone in town who needs a coat before winter. {FACTION} would take {COUNT} cloth, and will pay twice what it's worth.\n\nIt's a good price. It's also the colony's cloth.</li>
+          <li>[theirLowtech] The tailor of {PLACE} is waiting at the gate with a measuring cord round {X_possessive} neck and a purse in {X_possessive} hand. {COUNT} cloth, {X_pronoun} asks, at twice its worth, for the shirts and blankets {FACTION} can't make this season.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} cloth at twice its worth</label>
+            <outcome>The tailor loads the cloth onto the pack beast and leaves the purse behind, as full as it came.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Cloth</thing><price>2</price><toVisitor>true</toVisitor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold cloth to {PLACE}</deed>
+          </li>
+          <li>
+            <label>Sell it at its plain worth</label>
+            <outcome>The tailor counts out the plain price, looks at the colony's people as though measuring every one of them, and promises {FACTION} will hear of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Cloth</thing><price>1</price><toVisitor>true</toVisitor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>sold cloth to {PLACE} at its plain worth</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Keep the cloth</label>
+            <outcome>The tailor goes back to {PLACE} with the purse still full and the list still long.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>teach</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>tailor</what><ages>40~70</ages></li>
+        </effects>
+        <day>5~10</day>
+        <chance>0.7</chance>
+        <titles>
+          <li>An old tailor at the gate</li>
+        </titles>
+        <texts>
+          <li>An old tailor of {FACTION} has stopped at the gate on the way to {PLACE}. With cloth this short, {X_pronoun} says, the trick is to cut a coat out of two worn ones, and {X_pronoun} would show the colony's {A_nameDef} how for a meal and an afternoon by the wall.\n\nIt would take {A_nameDef} from the work for a few hours.</li>
+          <li>[theirLowtech] An old tailor of {FACTION} with needles stuck in {X_possessive} collar is at the gate. {X_pronoun} has made more coats out of less than anyone at {PLACE}, and offers to show {A_nameDef} how, in return for a meal.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} learns from the tailor</label>
+            <outcome>{A_nameDef} will sit with the old tailor by the gate this afternoon, with a pile of worn clothes and a sharp knife.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><hours>5</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>cutting coats with the tailor</label><teacher>X</teacher><student>A</student><skill>Crafting</skill><hours>10~16</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <deed>{A_nameDef} learned the tailor's way of making do</deed>
+          </li>
+          <li>
+            <label>Thank them and send them on</label>
+            <outcome>The old tailor thanks the colony for its time and goes on toward {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>Cloth on the roads again</li>
+        </titles>
+        <texts>
+          <li>The looms are going again at {PLACE}, and the bales are coming up the road. {FACTION} got through the cold weeks partly in the colony's cloth, and their tailor says so to anyone who will listen.</li>
+        </texts>
+        <chronicle>Cloth came back to the region; {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>Cloth on the roads again</li>
+        </titles>
+        <texts>
+          <li>Cloth is back in the region's markets, and the prices are coming down. Half of {PLACE} is still wearing its patches, out of habit.</li>
+          <li>[winter] The bales are coming up the road again, late for the cold but welcome all the same. {FACTION} have stopped cutting up old cloaks.</li>
+        </texts>
+        <chronicle>Cloth came back to the region.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:herders] The herding folk at {PLACE} have taken to wearing their blankets as cloaks, and their elders say the felt of the old days was warmer anyway.</li>
+      <li>[their:healers] The hospitallers at {PLACE} are boiling their old bandages to use them again, and the prior has asked every house for linen.</li>
+      <li>[their:salvagers] The Wheel's yard at {PLACE} is paying for rags by the sack, and their menders are stitching jackets out of tarpaulin.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:healers] There is clean linen on the shelves of the sickhouse at {PLACE} again, and the prior has given the old bandages a decent burial in the fire.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== Timber gone scarce (B6) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_TimberScarce</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>timber gone scarce</label>
+    <workerClass>ColonyCouncil.SituationWorker_Variety</workerClass>
+    <weight>1.5</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>scarcity</kind>
+    <prosperity>-4</prosperity>
+    <after>
+      <li>Council_WS_GreatFire</li>
+      <li>Council_WS_Flood</li>
+      <li>Council_WS_Rebuilding</li>
+      <li>Rimfolk_WS_GreatWork</li>
+    </after>
+    <afterDays>2~40</afterDays>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <titles>
+      <li>Timber gone scarce</li>
+      <li>Short of timber</li>
+    </titles>
+    <texts>
+      <li>[after:Council_WS_GreatFire] The fire took the woods round {PLACE} along with everything else, and now there is nothing to build back with. {FACTION} are pulling nails out of burnt beams, and paying whatever they must for a log that isn't charcoal.\n\nThe colony has timber, and people know it.</li>
+      <li>[after:Council_WS_Flood] The flood carried off the woodpiles at {PLACE} and half the bridges in the valley with them, and every carpenter in the region is short of timber at once. {FACTION} will pay whatever they must.\n\nThe colony has wood in its stores, and people know it.</li>
+      <li>[after:Council_WS_Rebuilding] The rebuilding at {PLACE} has eaten every tree within a day's haul, and the next woods are far. {FACTION} are paying whatever they must for timber, and their carpenters are idle half the week waiting for it.\n\nThe colony has wood, and people know it.</li>
+      <li>[after:Rimfolk_WS_GreatWork] {TALE} took every log the region could spare, and now there are none left for anything else. {FACTION}'s carpenters at {PLACE} are mending roofs with planks off old carts.\n\nThe colony has timber in its stores, and people know it.</li>
+      <li>Timber has gone short at {PLACE}, and nobody can build a shed without buying the planks off someone else's barn. {FACTION} are paying whatever they must.\n\nThe colony has wood, and people know it.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will pay well for timber. Woodcutters come asking to cut on the colony's land more often, and a young carpenter of theirs may ask to learn. Wood sold is wood the colony hasn't got.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>buy</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>carter</what><pack>true</pack></li>
+        </effects>
+        <day>1~4</day>
+        <count>80~150</count>
+        <titles>
+          <li>{FACTION} want timber</li>
+        </titles>
+        <texts>
+          <li>A carter of {FACTION} is at the gate with an empty cart and a full purse. Their carpenters at {PLACE} need {COUNT} wood, and {FACTION} will pay nearly twice what it's worth.\n\nIt's a good price. It's also the colony's wood.</li>
+          <li>[theirLowtech] A driver of {FACTION} has brought a cart and a message from their carpenters: {COUNT} logs, before the next rain, at nearly twice their worth.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} wood at nearly twice its worth</label>
+            <outcome>The wood is carried out to the gate and loaded onto the cart, and the driver pays and turns back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>wood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.8</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sold timber to {PLACE} when it was scarce</deed>
+          </li>
+          <li>
+            <label>Give it for their roofs</label>
+            <outcome>The wood is carried out to the gate and loaded onto the cart. The driver says the carpenters at {PLACE} will want to know the colony's name, and turns back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for {PLACE}</label><what>wood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+            </effects>
+            <help>2</help>
+            <deed>gave timber to {PLACE} when it was scarce</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>The colony needs its wood</label>
+            <outcome>The driver goes back to {PLACE} with the cart empty.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>apprentice</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>apprentice</what><ages>15~22</ages></li>
+        </effects>
+        <day>5~11</day>
+        <chance>0.7</chance>
+        <skill>Construction</skill>
+        <minLevel>6</minLevel>
+        <titles>
+          <li>A carpenter's apprentice</li>
+        </titles>
+        <texts>
+          <li>A young carpenter's apprentice of {FACTION} is at the gate. With no timber at {PLACE}, {X_possessive} master has nothing to teach {X_objective} on, and has sent {X_objective} to ask whether the colony's {A_nameDef} would show {X_objective} a thing or two for a day.\n\n{X_pronoun} has brought {X_possessive} own tools.</li>
+          <li>[theirLowtech] A boy of {FACTION} with an adze on his shoulder has come up the road from {PLACE}. His master's shed stands empty for want of logs, and he would learn from {A_nameDef} for a day, if the colony would have him.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} teaches the apprentice for a day</label>
+            <outcome>{A_nameDef} will spend the day with the apprentice by the gate, showing {X_objective} how the colony joins its beams.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_WorkHere"><hours>7</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>teaching {FACTION}'s apprentice</label><teacher>A</teacher><student>X</student><skill>Construction</skill><hours>8~16</hours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>{A_nameDef} taught a carpenter's apprentice of {PLACE}</deed>
+          </li>
+          <li>
+            <label>{A_nameDef} is needed here</label>
+            <outcome>The young carpenter thanks the colony anyway and goes back toward {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>helped</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>Timber on the roads again</li>
+        </titles>
+        <texts>
+          <li>The log carts are coming down to {PLACE} again, and the carpenters are working full weeks. {FACTION} put their roofs back on partly with the colony's wood, and they remember whose beams those are.</li>
+        </texts>
+        <chronicle>Timber came back to the region; {FACTION} remember the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>Timber on the roads again</li>
+        </titles>
+        <texts>
+          <li>Timber is moving on the roads again, and the price of a plank has come down to something a person can say out loud.</li>
+        </texts>
+        <chronicle>Timber came back to the region.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:grovekeepers] The Mossborn at {PLACE} will not sell a single tree, scarce year or not, and they are watching the axes on the roads very closely.</li>
+      <li>[their:artisans] The Kiln Guild at {PLACE} has its masons doing the carpenters' work in stone, and grumbling about the weight of it.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:grovekeepers] Timber is coming down the roads again, and the Mossborn have counted every stump between {PLACE} and the river. They have set a seedling beside each one.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A season of games (B7) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Games</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a season of games</label>
+    <workerClass>ColonyCouncil.SituationWorker_Games</workerClass>
+    <weight>0.7</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>games</kind>
+    <prosperity>3</prosperity>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+      <maxDistance>40</maxDistance>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+      <friendlyToFirst>true</friendlyToFirst>
+      <optional>true</optional>
+    </second>
+    <names>
+      <li>[theirTribal] the gathering games</li>
+      <li>[theirMedieval] the tourney</li>
+      <li>[theirIndustrial] the athletics meet</li>
+      <li>[theirSpacer] the league season</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE}</li>
+      <li>{FACTION} hold their games</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] The drums have been going at {PLACE} for two nights: {FACTION} hold {NAME}, when the young of every camp come to wrestle, race and throw before the elders. Runners have gone out to the neighbours with a painted stick, which means anyone may come.\n\nChampions from far off are already on the paths.</li>
+      <li>[theirMedieval] Heralds of {FACTION} have cried {NAME} at {PLACE}: lists for the bouts, a course for the runners, butts for the archers, and a purse for the best of the region. Every young hand who can hold a staff is polishing it.\n\nChampions from far off are already on the roads, and some of them will come this way.</li>
+      <li>[theirIndustrial] {FACTION} have posted bills for {NAME} at {PLACE}, with a track marked out on the common and a prize for every event. Their clubs have been training since the thaw.\n\nThe region's best are coming by road and rail, and some of them will pass the colony.</li>
+      <li>[theirSpacer] {FACTION} have opened {NAME} at {PLACE}, with fixtures broadcast across the region and teams from every settlement that can send one. The tables are already being argued over.\n\nChampions on their way to it will pass the colony.</li>
+    </texts>
+    <summaries>
+      <li>Traveling champions stop at the colony more often while the games last. The colony could hold a games day of its own for the young people of two friendly peoples: bouts, a race and a shooting match, a meal and a night's stay. A colonist who wins there is remembered for it.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Champion</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+      <li><incident>TravelerGroup</incident><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>gamesDay</key>
+        <day>1~5</day>
+        <titles>
+          <li>A games day at the colony</li>
+        </titles>
+        <texts>
+          <li>[!noenemy] Young people of {FACTION} on their way to {NAME} have sent a runner to ask whether the colony would hold a games day of its own before they go on, the way the towns along the road do: a few bouts, a race, some shooting, and a meal after.\n\nThey would bring some of {ENEMY}'s young along, who are going the same way. Nobody important is coming, just the young and their friends, in a few days' time.</li>
+          <li>[noenemy] Young people of {FACTION} on their way to {NAME} have sent a runner to ask whether the colony would hold a games day of its own before they go on: a few bouts, a race, some shooting, and a meal after, the way the towns along the road do.\n\nNobody important is coming, just the young and their friends.</li>
+          <li>[theirTribal] A runner of {FACTION} has come with the painted stick of {NAME}. Their young people are walking to the games, and would stop at the colony to wrestle and race against its own, if it would feed them after.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Hold a games day at the colony</label>
+            <outcome>The runner takes the colony's yes back down the road. The young people will come in a few days, on the first fine morning, for bouts, a race and whatever else the colony can set up, and stay the night.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GamesDay" />
+            </effects>
+            <flags><li>gamesDay</li></flags>
+            <help>1</help>
+            <deed>held a games day for the young of {FACTION}</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Not this year</label>
+            <outcome>The runner goes back down the road. The young people will go straight on to {NAME}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>road</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>travelers</what><count>3~5</count><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>3~8</day>
+        <message>true</message>
+        <texts>
+          <li>Young people of {FACTION} are on the road past the colony, bound for {NAME} at {PLACE}, racing each other between the milestones.</li>
+          <li>[theirLowtech] A band of {FACTION}'s young is going past on the road to {NAME}, carrying their staves and their best shirts rolled up in their packs.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>ourWin</key>
+        <requires><li>ourWin</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} is over. The purse went to {X_nameDef} of {FACTION}, the best of the region this year, but the crowd at {PLACE} was still talking about {A_nameDef}, who won at the colony's own games day before the young people came on.\n\n{A_nameDef} has not stopped hearing about it either.</li>
+          <li>[theirTribal] The drums have stopped at {PLACE}. {X_nameDef} of {FACTION} was carried round the camp on the elders' shoulders as the best of {NAME}, and the young who stopped at the colony on the way told every fire about {A_nameDef}, who beat them there.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended; {A_nameDef}'s win at the colony's games day was talked of there.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>held</key>
+        <requires><li>gamesHeld</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} is over, and the best of the region this year is {X_nameDef} of {FACTION}. The young people who stopped at the colony on the way say its games day was the best meal they had on the road.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended; the best of the region was {X_nameDef}.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} is over. The best of the region this year is {X_nameDef} of {FACTION}, who has been carried round the town twice and would like to be put down now.</li>
+          <li>[theirIndustrial] The track at {PLACE} is being rolled up for another year. {X_nameDef} of {FACTION} took the most events of {NAME}, and the clubs are already arguing about next season.</li>
+          <li>[theirSpacer] {NAME} is over at {PLACE}. {X_nameDef} of {FACTION} heads the final table, and the broadcasts have moved on to the arguments about it.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended; the best of the region was {X_nameDef}.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:mercenaries] The Ashen Banner's tourney at {PLACE} is a hiring fair as much as a contest: the keeper of the Roll watches every bout, and the best are offered a contract before the purse is paid.</li>
+      <li>[their:tamers] The Circuit holds its bouts at {PLACE} between beast and beast as well as tamer and tamer, and every sash in the ring has a token for a fair win.</li>
+      <li>[their:herders] The herding folk race their horses at {PLACE} over the old drove road, and the elders count the herds of the winners' camps as carefully as the winners.</li>
+      <li>[their:drillers] The Union's games at {PLACE} end with a tug of war between the shifts, and the losing shift buys the beer, as it was voted long ago.</li>
+      <li>[their:citizens] The Republic's games at {PLACE} open with the anthem on the radio and the census of the athletes, every one counted and named.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:mercenaries] The Ashen Banner wrote two new names on the Roll after the tourney at {PLACE}, both of them from the bouts.</li>
+      <li>[their:tamers] Every tamer who fought fairly at {PLACE} went home with a new token on their sash, and one went home with a new beast.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A pardon proclaimed (B8) ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Pardon</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a pardon proclaimed</label>
+    <workerClass>ColonyCouncil.SituationWorker_Pardon</workerClass>
+    <weight>2</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>pardon</kind>
+    <after>
+      <li>Council_WS_Succession</li>
+    </after>
+    <afterFlags>
+      <li>kind</li>
+    </afterFlags>
+    <afterDays>1~40</afterDays>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the homecoming</li>
+      <li>[theirMedieval] the pardon</li>
+      <li>[theirIndustrial] the amnesty</li>
+      <li>[theirSpacer] the amnesty</li>
+    </names>
+    <titles>
+      <li>{FACTION} proclaim {NAME}</li>
+      <li>{NAME} of {FACTION}</li>
+    </titles>
+    <texts>
+      <li>[after:Council_WS_Succession,theirMedieval] The new {TITLE} of {FACTION} has begun the way the old ones never did: {NAME} has been cried in the square at {PLACE}, and every outlaw of theirs may come home, whatever was done, if they come in peace before the season turns.\n\nThe roads will be full of people walking home who have not seen it in years.</li>
+      <li>[after:Council_WS_Succession,!theirMedieval] The new {TITLE} of {FACTION} has started the way people hoped: {NAME} has been declared at {PLACE}, and anyone of theirs who was outlawed or fled may come home without a word said against them, if they come before the season turns.\n\nThe roads will be full of people walking home.</li>
+      <li>[holyYear,theirLowtech] {FACTION} keep the holy year as the old books say it must be kept, and the old books say the outlaws come home in it. {NAME} has been cried at {PLACE}: every exile of theirs may walk back through the gate and sit at the fire again.\n\nSome of them will pass the colony on the way.</li>
+      <li>[holyYear,theirHightech] {FACTION} have added {NAME} to their holy year: every one of theirs who was outlawed or fled may come home before the season turns, and nobody may hold the old wrong against them.\n\nSome of them will pass the colony on the way home.</li>
+      <li>[theirTribal] The elders of {FACTION} have broken the stick of exile at {PLACE}. Those who were driven out may come back to the fires, and nothing will be said of why they left.\n\nSome of them are already on the paths.</li>
+    </texts>
+    <summaries>
+      <li>Outlaws of {FACTION} walk home along the roads past the colony, and one may ask a meal at the gate. Prisoners of theirs held by the colony may be sent home under it, and their people will remember it. Bounty hunters find no bounty to collect in the region while it lasts.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_BountyHunters</rimfolk><factor>0</factor></li>
+      <li><rimfolk>Rimfolk_Mission_Outlaw</rimfolk><factor>0.3</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>road</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>travelers</what><count>2~4</count><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>7</hourFrom><hourTo>17</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>1~4</day>
+        <message>true</message>
+        <texts>
+          <li>People of {FACTION} are walking past the colony toward {PLACE} under {NAME}, with everything they own on their backs and their faces turned toward home.</li>
+          <li>A few of {FACTION}'s outlaws are on the road past the colony, going home under {NAME}. One of them keeps stopping to look at the hills, as though checking they are the right ones.</li>
+        </texts>
+      </li>
+      <li>
+        <key>meal</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>outlaw</what><ages>25~60</ages></li>
+        </effects>
+        <day>3~8</day>
+        <titles>
+          <li>An outlaw going home</li>
+        </titles>
+        <texts>
+          <li>A worn-out traveler is at the gate, an outlaw of {FACTION} walking home to {PLACE} under {NAME}. {X_pronoun} has been on the road a long time, {X_pronoun} says, and asks for a meal before the last of it.\n\n{X_pronoun} does not say what {X_pronoun} was outlawed for, and nobody at the gate asks.</li>
+          <li>[theirLowtech] A thin traveler, grey from the road, is at the gate. {X_pronoun} was driven out of {PLACE} years ago, and is walking back under {NAME}. {X_pronoun} asks for something to eat, and says {X_pronoun} would work for it if the colony liked.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Give them a meal</label>
+            <outcome>A meal is carried out to the gate. The outlaw eats it sitting on the ground, thanks the colony twice, and sets off toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the outlaw going home</label><what>meals</what><count>1</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>fed an outlaw of {FACTION} going home under {NAME}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>The outlaw nods as if {X_pronoun} expected nothing else, and walks on toward {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>prisoners</key>
+        <day>2~8</day>
+        <titles>
+          <li>{NAME} and the colony's prisoners</li>
+        </titles>
+        <texts>
+          <li>A messenger of {FACTION} has brought the words of {NAME} to the colony, sealed. They cover every one of theirs, wherever they are held: {FACTION} ask whether the colony would let its {COUNT} prisoners of theirs walk home under it.\n\nNothing is offered for them. {FACTION} would remember it, the messenger says, and so would the prisoners.</li>
+          <li>[theirLowtech] A rider of {FACTION} has come to the gate with the {TITLE}'s seal and the words of {NAME}, which say every one of theirs may come home. The colony holds {COUNT} of them. The rider asks whether they may walk home with the rest.</li>
+          <li>[bound] {FACTION}'s messenger has brought the words of {NAME} to the colony first of all their neighbours, as the tie between them asks. The colony holds {COUNT} of their people, and {FACTION} ask, as friends, whether they may walk home under it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Let them walk home under {NAME}</label>
+            <outcome>The wardens open the doors. The colony's prisoners of {FACTION} will be walked out to the edge of the colony's land and let go, to go home under {NAME}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PardonRelease" />
+            </effects>
+            <flags><li>sentHome</li></flags>
+            <help>3</help>
+            <deed>sent its prisoners of {FACTION} home under {NAME}</deed>
+            <ways><mercy>2</mercy></ways>
+          </li>
+          <li>
+            <label>Keep them</label>
+            <outcome>The messenger is told the colony's prisoners stay where they are, and goes back to {PLACE} with the words still sealed.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>sentHome</key>
+        <requires><li>sentHome</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over at {PLACE}. Those who were coming home have come, and among them were the ones the colony let go. Their people have not forgotten whose doors were opened.</li>
+          <li>[theirLowtech] The season of {NAME} has turned at {PLACE}. The outlaws who came home are sitting at the fires again, and those who walked home from the colony's cells sit there too. {FACTION} have said the colony's name at the fire.</li>
+        </texts>
+        <chronicle>{NAME} of {FACTION} ended; the colony sent their people home under it.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over at {PLACE}. Those who were coming home have come, and the roads are quieter. A few of the homecomings went better than others, as homecomings do.</li>
+          <li>[helped] {NAME} is over at {PLACE}. The outlaws have come home, and one or two of them say the colony fed them on the way.</li>
+        </texts>
+        <chronicle>{NAME} of {FACTION} ended.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:healers] The prior at {PLACE} has had the pardon read in the sickhouse first, where the order says every quarrel ends anyway.</li>
+      <li>[their:citizens] The Last Republic has read the amnesty on the evening broadcast, with the names of the pardoned in alphabetical order, and the census office is open late to count them back in.</li>
+      <li>[their:mercenaries] The keeper of the Roll at {PLACE} has written back the names of the Banner's deserters, every one of them, so that nobody is left off the Roll.</li>
+      <li>[their:pilgrims] The pilgrims say their hostels have always taken the outlaw in, pardon or no pardon, and now everyone else will too.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:mercenaries] The deserters who came back under the pardon are on the Roll again at {PLACE}, and two of them have already signed a new contract.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

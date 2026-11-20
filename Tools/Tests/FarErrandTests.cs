@@ -23,7 +23,7 @@ public static class FarErrandTests
         ("Council_WS_IronScarce", "mend", 0, 3f), ("Council_WS_Exiles", "plea", 0, 1f), ("Council_WS_Rebuilding", "builder", 0, 7f),
         ("Council_WS_Vault", "writing", 0, 4f), ("Council_WS_Embargo", "talks", 0, 2f), ("Council_WS_Moot", "herald", 0, 4f),
         ("Council_WS_Moot", "herald", 1, 4f), ("Council_WS_OldBeast", "watch", 0, 4f), ("Council_WS_RivalColony", "poaching", 1, 0.5f),
-        ("Council_WS_RivalColony", "poaching", 2, 0f)
+        ("Council_WS_RivalColony", "poaching", 2, 0f), ("Rimfolk_WS_FoundingDay", "invite", 2, 2f)
     };
 
     public static int Run(Action<bool, string> check)

@@ -21,7 +21,8 @@ namespace ColonyCouncil
     /// ask more for it too, and in a bumper year sell food cheaper. Food in a famine, a blight, a locust year, a year without a
     /// summer or a drought; medicine in a plague or with medicine gone scarce; steel with iron gone scarce or in a war
     /// between neighbours (both sides); wood after a great fire, a flood, during rebuilding or a great work; cloth and leather
-    /// in a sickness of the herds or with the markets closed (both sides). The colony's buying and selling price move
+    /// in a sickness of the herds or with the markets closed (both sides); and (World/Variety/) cloth and leather with cloth
+    /// gone scarce, wood with timber gone scarce or a bridge down. The colony's buying and selling price move
     /// together, as with the moot's season prices (Peoples/Events10/, <see cref="PeopleEvents10Math.Priced"/>), and the two
     /// are one factor on the price, kept between half and one and a half. Pure (no game types): Tools/Tests checks it.
     /// </summary>
@@ -49,7 +50,11 @@ namespace ColonyCouncil
             ["Council_WS_Rebuilding"] = RegionGoods.Wood,
             ["Rimfolk_WS_GreatWork"] = RegionGoods.Wood,
             ["Council_WS_Murrain"] = RegionGoods.Textiles,
-            ["Council_WS_Embargo"] = RegionGoods.Textiles
+            ["Council_WS_Embargo"] = RegionGoods.Textiles,
+            // The content update's variety (World/Variety/): the two scarcities, and a bridge to build again.
+            ["Rimfolk_WS_ClothScarce"] = RegionGoods.Textiles,
+            ["Rimfolk_WS_TimberScarce"] = RegionGoods.Wood,
+            ["Rimfolk_WS_BridgeDown"] = RegionGoods.Wood
         };
 
         /// <summary>The bumper year: food cheaper at their town.</summary>

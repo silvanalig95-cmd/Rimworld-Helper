@@ -76,11 +76,9 @@ most sense." So, in this order, three builds at a time:
   their pace." Then: "So for the content update, yes, I want more events, camps, world events, and dilemmas, but first
   do all the integrations that you proposed in your document before we add additional content variety in that sense."
   The order, three builds at a time:
-  1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
-     medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
-     closeness; both done, built, not released: the entry "The medal read at the gate, the peoples' errands past a barred
-     door, and what the dead leave by closeness" above the newest release line), the peoples' founder texts (in each text's present voice; built, not released), the comms console by radio and the foreign
-     peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
+  1. The to-dos already open, all released: the flavour-text restore (0.276.0), PokéWorld's shelves (0.275.3), the
+     traits (0.275.0, 0.276.1, 0.277.1), the medal's gathering with A30 (0.276.2), the peoples' founder texts (0.277.2),
+     the comms console by radio and the foreign peoples' ages (0.277.0).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
      gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
@@ -90,19 +88,18 @@ most sense." So, in this order, three builds at a time:
      home (B1, B2, B3, B23, B25, B26, B32; released 0.280.0); the peoples and their ties (B4, B12, B14, B17, B22, B29,
      B31; released 0.280.1); the region's years and the camps (B5, B11, B13, B19, B27; released 0.280.2). Every integration
      item is built.
-  3. Then the variety (started 20 November, the integrations all built): gods' variety (C5, C9, C10, C11, C13, C23, C31
-     and two new happenings for each god); the world's (B6, B7, B8, B15, B20, B21, B24, B28, six more world events, six
-     more camps); colony life's first (A3, A4, A7, A18, A19, A20, twenty-five more council questions); then the rest:
-  3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
-     events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it. The gods first: C5, C9, C10,
-     C11, C13, C23 and C31 and thirty-one new happenings between the colony's people (built, not released: the entry
-     "The gods between the colony's people, and the gods' variety" above the newest release line). Colony life, part 1 (A3, A4,
-     A7, A18, A19, A20 and twenty-five new council questions of everyday life): built, not released, the entry "Colony
-     life's variety, part 1: the council's situations and its everyday questions" above the newest release line.
+  3. Then the variety (started 20 November, the integrations all built): the **V** and **T** items and more of every
+     kind (god events above all, events, camps, world events, storyteller events, dilemmas), in the flavour style where
+     CLAUDE.md keeps it. Gods' variety (C5, C9, C10, C11, C13, C23, C31 and thirty-one new happenings between the
+     colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
+     two encounters for each people; released 0.282.0); building: colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five
+     more council questions; built, not released: the entry "Colony life's variety, part 1: the council's situations and
+     its everyday questions" above the newest release line), colony life 2 (A8, A11, A15, A16, A22 to A26, A28, twelve events, six personal stories)
+     and text round 1 (A31 to A37); then text round 2 (B9, B10, B16, B18, B30, C32 to C36).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
-  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; built, not released): the
-  comms console and the peoples' ages.** The to-do with the player's words is now one entry above the newest release
-  line ("The comms console by radio, and the foreign peoples' ages").
+  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
+  comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
+  console by radio, and the foreign peoples' ages").
 - **The player, 20 November 2026 (third and fourth messages):**
   - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
     option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
@@ -712,6 +709,74 @@ repo.
     (https://steamcommunity.com/sharedfiles/filedetails/?id=725130005, 1.0 to 1.7, updated 25 October: music for the evenings
     by the fire). A bell for the night watch's turns would help most and none for 1.6 or 1.7 is known (the proposals'
     "Gaps"). Whether each is still kept up was not checked again here.
+- 0.282.0, **The world's variety: new world
+  events, camps and encounters** (20 November 2026; the player on the content update: "And then also, just variety,
+  further kind of events, camps, world events, normal storyteller events, dilemmas, etc. Just more of them", and "first
+  do all the integrations that you proposed in your document before we add additional content variety"). With the
+  integrations released, the world's variety: B6, B7, B8, B15, B20, B21, B24 and B28 of part B of
+  `docs/content-update-proposals.md` (each marked **Built** there with what was decided), and beyond the doc six more
+  world events and six more camps, each tied into the peoples, the region's towns, the gods as the colony believes them,
+  the council's questions and the ties. DESIGN.md "The world's variety: new world events, camps and encounters" (before
+  "Four small asks") lists every one with one line and has every rule; README under World events, the camps, the
+  strangers' moments, the feasts and the missions; the Almanac's world events page ("More world events: scarcities,
+  games, a pardon and more"), the camps page ("Beekeepers, mushroom pickers and the camps of the region's seasons"),
+  diplomacy's feasts ("What a feast's guests hope for, and the singing"), the strangers ("The peoples' own moments") and
+  the quests at home (the stud visit); keywords unchanged.
+  - **Ten world events** (`Defs/WorldSituationDefs/Rimfolk_WS_Variety4.xml`, `Rimfolk_WS_Variety5.xml`; flavour style,
+    each in its people's age with `[theirTribal]` to `[theirSpacer]`, a bound people's own line with `[bound]`, and a
+    paragraph for each of the 23 callings where it prefers one): cloth gone scarce and timber gone scarce (B6), a season
+    of games with the colony's games day (B7), a pardon (B8); and a hiring fair, a town's founding day (a colonist sent
+    to sit at it when the town is within three tiles, `WorldEffect_Away`), the roads gone to mud, falling stars (Cirrus
+    and Selene in the colony's book, a council question for a night out under them), the great burying (its sextons
+    carry off the enemy dead on the colony's land) and a bridge down.
+  - **Eight camps** (`Defs/CampDefs/Rimfolk_CampKinds_Variety4.xml`): beekeepers with Alpha Bees (B20), mushroom pickers
+    (B21); and young hands on the road, stranded carters, gleaners, a games team, outlaws walking home and star-watchers,
+    each with its world event (the camps' `situationKinds` now also take a world event's defName).
+  - **46 encounters** (`Defs/EncounterDefs/Rimfolk_Encounters_Peoples.xml`, B15): two for each calling, by
+    `StrangerRole.calling`; five new scenes true on the map (`WorldScenes`: grave, broken, beast, mech, building).
+  - **A stud visit** (`Defs/MissionDefs/Rimfolk_Missions_Stud.xml`, B24), a quest at home: their animal stands in the
+    colony's pen five to seven days as its own; the fee, or the young brought by their courier.
+  - **The feasts** (B28): guests of Rimfolk's peoples hope by calling (`FeastMath.HopeOfCalling`, three new hopes:
+    the bouts, the tables, the race); a singing contest (`ContestKind.Singing`), sung at an instrument the colony built
+    (its music plays) or by a lit fire; a games day is a feast of purpose `Games`.
+  - Code map: new `Source/ColonyCouncil/World/Variety/` (`VarietyMath.cs` pure and linked in the tests, `VarietyWorkers.cs`
+    the world events' workers and the burying's effect, `GamesDay.cs` the games day and its hook on `Feasts.StageChanged`,
+    `Pardon.cs`, `VarietyDebug.cs`), `Camps/CampVariety.cs` (the beekeepers', pickers' and star-watchers' workers, help at
+    the hives, the queen), `Diplomacy/FeastSinging.cs` (a singer's turn), `Missions/Workers_MissionStud.cs`. Changed:
+    `World/WorldSituationWorker.cs` (`WeightFactor`), `WorldSituations.cs` (weighs by it), `Camps/CampKindDef.cs`
+    (`gathers`), `CampKinds.cs`, `CampDay.cs`, `Strangers/Strangers.cs` and `Encounters.cs` (`calling`),
+    `World/Home/WorldScenes.cs`, `WorldHomeMath.cs` (falling stars in the book), `World/Region/RegionPricesMath.cs`
+    (cloth, timber, the bridge), `Diplomacy/FeastMath.cs`, `FeastContests.cs`, `Feasts.cs`, `FeastLetters.cs`,
+    `FeastPanels.cs`, `Text/Facts/FactsMath.cs` (the camps' tags). Defs also `Defs/DilemmaDefs/Rimfolk_Dilemmas_WorldVariety.xml`,
+    `Defs/Misc/Rimfolk_WorldVariety_Misc.xml`, `Defs/FlavorPoolDefs/Rimfolk_Lines_Feasts.xml` (the singing's lines),
+    `Rimfolk_Pool_WorldHome.xml`; words `Languages/English/Keyed/Rimfolk_WorldVariety.xml`, `Rimfolk_Feasts.xml`,
+    `Rimfolk_Renown_Colony.xml`. Tests `Tools/Tests/WorldVarietyTests.cs`. Nothing new saved beyond the world events',
+    camps' and missions' own records (the pickers' two numbers on the camp); no new `Sched` offset.
+  - Decided here (open in the proposals): see each item's **Built** line there and the DESIGN.md section.
+  - Harm: bouts at the games day as at a feast (the feast's own rate); a sting now and then at the beekeepers' hives
+    (Alpha Bees' own); one stay in four of the mushroom pickers, one of them falls ill with the game's food poisoning
+    and they ask for the colony's doctor; all through the shared harm budget and shown.
+  - Not run here (none of it could be): the games day's young walking in and the contests held without notables; the
+    singing's turns at an instrument (its music playing and stopping) and by a fire; the stud standing as the colony's,
+    the game's mating, the drover's return and the courier with the young; the pardon's prisoners walked out by the
+    wardens; the sextons carrying off the dead to their pack beast; the beekeepers' beehouses set at the camp and a
+    colonist helping there; the pickers gathering the land's caps and the evening's food poisoning; the star-watchers
+    lying out at night; each encounter's scene on the map; how often each comes in a real colony.
+  - Try in the game (dev mode, "Rimfolk"): 1. "World variety: start one of the new world events now..." for each of the
+    ten (the menu says which can't start now and why); for the games, answer its games-day letter and watch the young
+    come two days on; for the pardon, hold a prisoner of that people first. 2. "World variety: one of the new camps here
+    now..." (the beekeepers need Alpha Bees, the pickers wooded land). 3. "World variety: a people's own encounter
+    now..." with a visitor or trader of one of Rimfolk's peoples on the map. 4. "World variety: a stud visit offered
+    now", accept, then "World variety: the stud visit's days up now". 5. Hold a feast with guests and choose the singing
+    in its contests. 6. "World variety: what the pardon would cover here (log)".
+  - Mods that would help: P-Music ([725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005), 1.0 to
+    1.7) for more music at the singing; Tavern ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305),
+    1.6 and 1.7) for the games day's tables and drink; Gerrymon's Misc Props: Fences
+    ([3797400517](https://steamcommunity.com/sharedfiles/filedetails/?id=3797400517), 1.6 and 1.7, off) for a stud's pen;
+    Dark Ages: Beasts and Monsters ([3472275628](https://steamcommunity.com/sharedfiles/filedetails/?id=3472275628), 1.5
+    to 1.7, off) for more herds to stand at stud; Medieval Overhaul
+    ([3219596926](https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926), not yet on 1.7) for more mushrooms.
+    Whether each is still kept up was not checked here.
 - 0.281.0, **The gods between the colony's people,
   and the gods' variety** (20 November 2026; the player on the content update: "In general, I just want additional God
   events, more immersion, more just further also building up on the gods in general, how they're integrated, the effects

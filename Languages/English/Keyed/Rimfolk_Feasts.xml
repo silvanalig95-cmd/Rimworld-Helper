@@ -290,4 +290,22 @@
   <CC_Feast_Away_Won>{PAWN} is home with a story from the feast in {PLACE}: {PAWN_pronoun} came first in {CONTEST} there, against the best of {PEOPLE}.</CC_Feast_Away_Won>
   <CC_Feast_Away_Won_2>Back from the feast in {PLACE}, {PAWN} tells anyone who'll listen how {PAWN_pronoun} came first in {CONTEST} there.</CC_Feast_Away_Won_2>
 
+  <!-- The games day of a season of games (World/Variety/GamesDay.cs), the hopes by people, and the singing contest
+       (Diplomacy/FeastSinging.cs; the content update's B7 and B28) -->
+  <CC_Feast_Arrive_Games>The young people have come for the games day: {GUESTS} of {PEOPLES}, each with one or two friends. They are walking up to the gate to wait there.</CC_Feast_Arrive_Games>
+  <CC_Feast_HereAs_Games>here for the games day</CC_Feast_HereAs_Games>
+  <CC_Feast_Week_Games>A games day: {GUESTS}</CC_Feast_Week_Games>
+  <CC_Feast_Hope_Bouts>the bouts</CC_Feast_Hope_Bouts>
+  <CC_Feast_Hope_Tables>a game at the tables</CC_Feast_Hope_Tables>
+  <CC_Feast_Hope_Race>a race</CC_Feast_Hope_Race>
+  <CC_Feast_Contest_Singing>a singing contest</CC_Feast_Contest_Singing>
+  <CC_Feast_ContestThe_Singing>The singing</CC_Feast_ContestThe_Singing>
+  <CC_Feast_Msg_Begins_Singing>The singing begins: {COUNT} singers, the guests and the colony's people in turn.</CC_Feast_Msg_Begins_Singing>
+  <CC_Feast_Result_Singing>{WINNER} sang best at the {WHAT}, of {ENTRANTS} singers.</CC_Feast_Result_Singing>
+  <CC_Feast_Result_None_Singing>Nobody sang a song to the end.</CC_Feast_Result_None_Singing>
+  <CC_Feast_Dlg_Contest_Singing>Songs in turn at the colony's instrument, or by a fire without one.</CC_Feast_Dlg_Contest_Singing>
+  <CC_Feast_Dlg_ContestTip_Singing>Up to six singers, the guests and the colony's people in turn, each sings one song at the colony's instrument (its own music plays) or by a fire. The best song is judged on artistic and social skill, with some luck; an instrument helps a little.</CC_Feast_Dlg_ContestTip_Singing>
+  <CC_Feast_CWhy_Singing>Nobody at the colony is able to sing.</CC_Feast_CWhy_Singing>
+  <CC_Feast_CWhy_SingPlace>The colony has no instrument and no fire burning to sing at.</CC_Feast_CWhy_SingPlace>
+
 </LanguageData>

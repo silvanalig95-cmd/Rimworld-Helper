@@ -46,7 +46,7 @@ with an effect the scales don't measure (a faith's certainty, a guardian named, 
 it gets no verdict, and is read by hand.
 ```
 
-289 dilemmas, 943 answers. Flagged: 61 dilemmas, 88 answers (first pass: 61 dilemmas; second pass: 0).
+290 dilemmas, 945 answers. Flagged: 62 dilemmas, 89 answers (first pass: 62 dilemmas; second pass: 0).
 
 ## First pass: the dilemmas rebalanced in this round
 
@@ -915,6 +915,13 @@ it gets no verdict, and is read by hand.
 |  | 2 | Leave the colony's clothes as they are | 0 | 30 | 0 | -30 | mood -30 | partly scored (WorldMourning): read by hand |
 | a fair day at home (`Rimfolk_Dlm_WS_FairDay`) | 1 | Hold a fair day | 44 | 59 | 0 | -15 | mood +20, wellbeing +24, work -59 | easy: best by 15 |
 |  | 2 | Not this year | 0 | 30 | 0 | -30 | mood -30 | trade-off |
+
+### Rimfolk_Dilemmas_WorldVariety.xml
+
+| Dilemma | # | Answer | Benefit | Cost | Risk | Net | Scales | Verdict |
+|---|---|---|---|---|---|---|---|---|
+| a night under the falling stars (`Rimfolk_Dlm_WS_FallingStars`) | 1 | A night under the stars for all who want it | 20 | 5 | 0 | 15 | mood +20, work -5 | easy: best by 45 |
+|  | 2 | The work starts early tomorrow | 0 | 30 | 0 | -30 | mood -30 | trade-off |
 
 ### Rimfolk_Dilemmas_YearFour.xml
 
