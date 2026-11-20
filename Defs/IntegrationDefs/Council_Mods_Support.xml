@@ -333,7 +333,7 @@
     <code>true</code>
     <live>pokeworld</live>
     <packageIds><li>gargamiel.pokeworld</li><li>eth0net.pokeworld</li></packageIds>
-    <what>Animal events follow its wild Pokémon settings, a caught Pokémon counts as tamed, and evolutions, levels and the Pokédex become news, wishes, life goals and a council project; five Almanac pages explain it.</what>
+    <what>Animal events follow its wild Pokémon settings, a caught Pokémon counts as tamed, and evolutions, levels and the Pokédex become news, wishes, life goals and a council project, and its items go on the shelves that take the game's own things of their kind; five Almanac pages explain it.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
