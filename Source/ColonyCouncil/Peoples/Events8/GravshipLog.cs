@@ -25,6 +25,9 @@ namespace ColonyCouncil
     public static class GravshipLog
     {
         public const string Kind = "pev:gravlog";
+
+        /// <summary>The visit's due when the officers could get aboard nowhere and logged the ship from outside (0: not down yet; 1: the walk set going).</summary>
+        private const int Outside = 2;
         public const string EventDef = "Rimfolk_Evt_GravshipLog";
 
         /// <summary>Odyssey's ship upgrades carry this trade tag, Vanilla Gravship Expanded's too.</summary>
@@ -182,10 +185,15 @@ namespace ColonyCouncil
                     Logged(v);
                     return false;
                 }
-                var parts = Parts(engine as Building).Select(t => (LocalTargetInfo)t).ToList();
+                // The colony asked them aboard: the ship's rooms with beds in them are open to them for the walk (KeepOut, PeopleErrands),
+                // counted from now. A part still out of reach (a cold store, someone asleep in the room) is passed over.
+                KeepOut.Refresh(map);
+                var parts = Parts(engine as Building).Where(t => x.CanReach(t, PathEndMode.Touch, Danger.Some)).Select(t => (LocalTargetInfo)t).ToList();
                 v.due = 1;
                 if (parts.Count == 0 || !PeopleEvents8.Send(x, PeopleEvents8.DeckJob, parts[0], PeopleEvents8Math.DeckTicks, parts.Skip(1).ToList()))
                 {
+                    // Nowhere aboard they could get to: they log the ship from the outside, and the words say so.
+                    v.due = Outside;
                     Logged(v);
                     return false;
                 }
@@ -223,16 +231,17 @@ namespace ColonyCouncil
             var engine = v.place;
             var pilot = v.a;
             var f = x?.Faction ?? PeopleEvents8.PeopleOf(v);
-            bool lesson = v.stake == 1;
+            bool outside = v.due == Outside;
+            bool lesson = v.stake == 1 && !outside;
             string ship = ShipName(engine as Building);
             string part = null;
-            if (!lesson && x != null)
+            if (v.stake != 1 && x != null)
             {
                 var held = x.inventory?.innerContainer?.FirstOrDefault(t => t != null && !(t is Pawn) && t.def != ThingDefOf.Silver && (t.def.tradeTags?.Contains(UpgradeTag) == true
                                                                                                                                      || t is MinifiedThing m && m.InnerThing?.def.tradeTags?.Contains(UpgradeTag) == true));
                 if (held != null)
                 {
-                    var at = engine != null && engine.Spawned ? engine.Position : x.Spawned ? x.Position : IntVec3.Invalid;
+                    var at = engine != null && engine.Spawned && !outside ? engine.Position : x.Spawned ? x.Position : engine != null && engine.Spawned ? engine.Position : IntVec3.Invalid;
                     if (at.IsValid && map != null && x.inventory.innerContainer.TryDrop(held, at, map, ThingPlaceMode.Near, out var dropped))
                     {
                         dropped.SetForbidden(false, false);
@@ -241,9 +250,10 @@ namespace ColonyCouncil
                 }
             }
             if (lesson && pilot != null && !pilot.Dead) pilot.skills?.Learn(SkillDefOf.Intellectual, PeopleEvents8Math.PilotXp, true);
-            if (pilot != null && !pilot.Dead) PeopleEvents8.Thought(pilot, "Rimfolk_Thought_ShipLogged");
+            if (pilot != null && !pilot.Dead && !outside) PeopleEvents8.Thought(pilot, "Rimfolk_Thought_ShipLogged");
             if (x != null && x.Spawned) PeoplesG.SayLine(x, v.incident, "logged");
-            string key = part != null ? "CC_PEv8_GravLoggedPart" : lesson ? "CC_PEv8_GravLoggedLesson" : "CC_PEv8_GravLogged";
+            string key = outside ? (part != null ? "CC_PEv8_GravOutsidePart" : "CC_PEv8_GravOutside")
+                : part != null ? "CC_PEv8_GravLoggedPart" : lesson ? "CC_PEv8_GravLoggedLesson" : "CC_PEv8_GravLogged";
             Tell.Message(NewsKind.World, Importance.Notable, map, key.Translate((f?.Name ?? "?").Named("FACTION"), ship.Named("SHIP"), (pilot?.LabelShort ?? "?").Named("PILOT"),
                 (part ?? "").Named("PART")).Resolve(), engine != null && engine.Spawned ? new LookTargets(engine) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
             PeopleEvents8.Goodwill(f, PeopleEvents8Math.GravGoodwill, GoodwillWhy.Welcome);

@@ -5,6 +5,7 @@ using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.AI;
+using Verse.AI.Group;
 
 namespace ColonyCouncil
 {
@@ -112,9 +113,16 @@ namespace ColonyCouncil
         {
             if (p == null || job == null || !target.IsValid || p.Dead || !p.Spawned || p.Downed || p.InMentalState || p.CurJobDef == job) return false;
             if (!p.CanReach(target, PathEndMode.Touch, Danger.Some)) return false;
+            return Start(p, job, target, ticks, rest, IntVec3.Invalid);
+        }
+
+        /// <summary>The job started (with a meeting place first when <paramref name="meet"/> is valid: JobDriver_PEv8Work); false when it didn't take.</summary>
+        private static bool Start(Pawn p, JobDef job, LocalTargetInfo target, int ticks, List<LocalTargetInfo> rest, IntVec3 meet)
+        {
             try
             {
                 var j = JobMaker.MakeJob(job, target);
+                if (meet.IsValid) j.targetB = meet;
                 j.count = Mathf.Max(60, ticks);
                 j.locomotionUrgency = LocomotionUrgency.Walk;
                 if (!rest.NullOrEmpty()) j.targetQueueA = rest.ToList();
@@ -128,6 +136,143 @@ namespace ColonyCouncil
             }
         }
 
+        // ---------------- Meeting at the gate ----------------
+        // The player's report of 20 November 2026: the medal was handed over at once, unseen, though the answer said the colony would
+        // gather at the gate. The clerk's errand was to walk to the colonist wherever they were, and Rimfolk's visitors keep out of the
+        // colony's bedrooms and cold stores (Visitors/KeepOut.cs: their doors are barred to visitors), so with the colonist in such a room
+        // the clerk had no way to them and the citation was given there and then. Now the colonist walks out to the visitor at the gate,
+        // and the visitor never needs a way into the colony for it.
+
+        /// <summary>
+        /// Where one of theirs and one of the colony meet: the gate spot, where a visit's people wait; else the spot their visit was
+        /// taking them to; else where the visitor stands. Never a place inside the colony the visitor would have to be let into.
+        /// </summary>
+        public static IntVec3 MeetSpot(Pawn x, Map map)
+        {
+            if (!PeoplesG.Up(x, map)) return IntVec3.Invalid;
+            var gate = PeoplesD.GateSpot(map);
+            if (gate.HasValue && x.CanReach(gate.Value, PathEndMode.OnCell, Danger.Some)) return gate.Value;
+            var focus = x.mindState?.duty?.focus ?? LocalTargetInfo.Invalid;
+            if (focus.IsValid && !focus.HasThing && focus.Cell.InBounds(map) && focus.Cell.Standable(map) && x.CanReach(focus.Cell, PathEndMode.OnCell, Danger.Some)) return focus.Cell;
+            return x.Position;
+        }
+
+        /// <summary>The <paramref name="i"/>th place to stand round the meeting place (two or three cells from it), not one already taken.</summary>
+        public static IntVec3 Beside(Map map, IntVec3 spot, int i, ICollection<IntVec3> taken = null)
+        {
+            if (map == null || !spot.IsValid) return IntVec3.Invalid;
+            for (int k = 0; k < PlayOutMath.RingCount; k++)
+            {
+                PlayOutMath.RingOffset(i + k, out int dx, out int dz);
+                var c = new IntVec3(spot.x + dx, 0, spot.z + dz);
+                if (!c.InBounds(map) || !c.Standable(map) || c.GetEdifice(map) != null || c.Fogged(map) || (c.GetTerrain(map)?.IsWater ?? false)) continue;
+                if (taken != null && taken.Contains(c)) continue;
+                return c;
+            }
+            return CellFinder.StandableCellNear(spot, map, 3f);
+        }
+
+        /// <summary>
+        /// One of the colony sent out to stand beside the visit's meeting place (its cell) until the visit is done, kept in its touched
+        /// list so <see cref="Release"/> lets them go; false when they can't go now (drafted, in a break, down, no way out to it).
+        /// </summary>
+        public static bool SendOut(Visit v, Pawn p, int i, ICollection<IntVec3> taken = null)
+        {
+            var map = v?.map;
+            if (map == null || !v.cell.IsValid || !PeoplesG.Up(p, map) || p.Drafted || p.InMentalState) return false;
+            if (p.CurJobDef == StandByJob && p.CurJob.targetA.Cell.InHorDistOf(v.cell, PeopleEvents8Math.MeetRange)) return true;
+            var c = Beside(map, v.cell, i, taken);
+            if (!c.IsValid || !Send(p, StandByJob, c, Mathf.Max(GenDate.TicksPerHour, v.until - Now))) return false;
+            taken?.Add(c);
+            if (!v.touched.Contains(p)) v.touched.Add(p);
+            return true;
+        }
+
+        /// <summary>Those of the colony sent out to stand by at the meeting place go back to their day.</summary>
+        public static void Release(Visit v)
+        {
+            if (v?.touched == null || !v.cell.IsValid) return;
+            foreach (var p in v.touched)
+                if (p != null && p.Spawned && p.CurJobDef == StandByJob && p.CurJob.targetA.Cell.InHorDistOf(v.cell, PeopleEvents8Math.MeetRange + 2f))
+                    p.jobs.EndCurrentJob(JobCondition.Succeeded);
+        }
+
+        /// <summary>
+        /// The meeting set going (again): the visitor, on an errand of the visit's hours, to the meeting place (the visit's cell, found if
+        /// it has none), there to wait for the colonist (v.a) and then do the work at them; the colonist sent out to stand beside it if
+        /// they can go now (the visit's hour sends them again if not). False when the visitor's part couldn't start.
+        /// </summary>
+        public static bool Meet(Visit v, JobDef job, int ticks)
+        {
+            var x = v?.x;
+            var map = v?.map;
+            if (job == null || v.a == null || !PeoplesG.Up(x, map)) return false;
+            if (x.CurJobDef != job)
+            {
+                if (!v.cell.IsValid || !x.CanReach(v.cell, PathEndMode.OnCell, Danger.Some)) v.cell = MeetSpot(x, map);
+                if (!v.cell.IsValid) return false;
+                Lords.Leave(x);
+                LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, v.cell, Mathf.Max(GenDate.TicksPerHour, v.until - Now)), map, new List<Pawn> { x });
+                if (!Start(x, job, v.a, ticks, null, v.cell)) return false;
+            }
+            SendOut(v, v.a, 0);
+            return true;
+        }
+
+        /// <summary>
+        /// One of theirs set to work at someone of the colony (v.a): straight to them where they are when nothing bars the way, else
+        /// the colonist walks out to them and the work is done at the meeting place (<see cref="Meet"/>). False when neither could start.
+        /// </summary>
+        public static bool WorkOn(Visit v, JobDef job, int ticks)
+        {
+            var x = v?.x;
+            var a = v?.a;
+            var map = v?.map;
+            if (job == null || !PeoplesG.Up(x, map) || !PeoplesG.Up(a, map)) return false;
+            if (x.CurJobDef == job) return true;
+            float hours = Mathf.Max(1f, (v.until - Now) / (float)GenDate.TicksPerHour);
+            if (x.CanReach(a, PathEndMode.Touch, Danger.Some) && Errand(x, map, a, null, job, ticks, hours)) return true;
+            return Meet(v, job, ticks);
+        }
+
+        /// <summary>
+        /// The Works' work at a colonist (the gene taken out, the whole xenogerm) that couldn't be done in the visit's hours: the
+        /// sequencer leaves what the colony paid at the gate and goes home, said as it is.
+        /// </summary>
+        public static void Undone(Visit v)
+        {
+            if (v == null || v.done) return;
+            v.done = true;
+            Release(v);
+            var x = v.x;
+            bool paid = LeaveBack(x);
+            if (v.map != null)
+                Tell.Message(NewsKind.People, Importance.Notable, v.map, (paid ? "CC_PEv8_WorkUndonePaid" : "CC_PEv8_WorkUndone")
+                    .Translate((x?.LabelShort ?? "?").Named("SEQ"), (v.a?.LabelShort ?? "?").Named("PAWN")).Resolve(),
+                    x != null && x.Spawned ? new LookTargets(x) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+            if (x != null) PeoplesG.Home(new List<Pawn> { x });
+        }
+
+        /// <summary>
+        /// What the colony paid one of theirs for work that wasn't done, set down where they stand for the colony: the silver and
+        /// genepacks in their pack. Returns whether anything was set down.
+        /// </summary>
+        public static bool LeaveBack(Pawn x)
+        {
+            var held = x?.inventory?.innerContainer;
+            if (held == null || !x.Spawned) return false;
+            bool any = false;
+            foreach (var t in held.Where(t => t != null && (t.def == ThingDefOf.Silver || ModsConfig.BiotechActive && t is Genepack)).ToList())
+            {
+                if (held.TryDrop(t, x.Position, x.Map, ThingPlaceMode.Near, out var dropped))
+                {
+                    dropped?.SetForbidden(false, false);
+                    any = true;
+                }
+            }
+            return any;
+        }
+
         /// <summary>
         /// One of theirs at the gate sent off to work at a target, kept there by a lord of their own at the work's spot so their visit's
         /// duties don't call them off (round G's errand); false when it couldn't start.
@@ -136,7 +281,7 @@ namespace ColonyCouncil
         {
             if (!PeoplesG.Up(x, map) || job == null || !first.IsValid || !x.CanReach(first, PathEndMode.Touch, Danger.Some)) return false;
             Lords.Leave(x);
-            Verse.AI.Group.LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, first.Cell, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), map, new List<Pawn> { x });
+            LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, first.Cell, Mathf.RoundToInt(hours * GenDate.TicksPerHour)), map, new List<Pawn> { x });
             return Send(x, job, first, ticks, rest);
         }
 
@@ -193,9 +338,11 @@ namespace ColonyCouncil
 
     /// <summary>
     /// One of round 8's jobs (TargetA a thing, a person or a cell, and a queue after it): up to it, a while at it with a bar and its mark
-    /// (PEv8Work), then what it was for (PeopleEvents8.WorkDone); the next of the queue, if any. With the healing cross, someone of the
-    /// colony it works on keeps still while it is done (round G's hold). Its place in the queue isn't kept with the game: a job loaded
-    /// halfway starts its current target again.
+    /// (PEv8Work), then what it was for (PeopleEvents8.WorkDone); the next of the queue, if any. With a meeting place (TargetB a cell,
+    /// TargetA someone of the colony: PeopleEvents8.Meet), first to the place, and a wait there until they have come. A target out of
+    /// reach (behind a door barred to visitors: a bedroom, a cold store) is passed over. With the healing cross, someone of the colony
+    /// it works on keeps still while it is done (round G's hold). Its place in the queue isn't kept with the game: a job loaded halfway
+    /// starts its current target again.
     /// </summary>
     public class JobDriver_PEv8Work : JobDriver
     {
@@ -203,13 +350,49 @@ namespace ColonyCouncil
 
         private string Mark => job.def.GetModExtension<PEv8Work>()?.mark ?? "look";
 
+        /// <summary>The one to meet, when the job has a meeting place.</summary>
+        private Pawn Met => job.targetB.IsValid && !job.targetB.HasThing ? job.targetA.Pawn : null;
+
+        private bool Here(Pawn other) =>
+            other != null && !other.Dead && other.Spawned && other.Map == pawn.Map && PeopleEvents8Math.Met(other.Position.DistanceTo(pawn.Position));
+
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            if (Met != null)
+            {
+                // The meeting place first (the gate): there, the visitor waits for the colonist to come out to them.
+                yield return Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell);
+                var wait = ToilMaker.MakeToil("PEv8Meet");
+                wait.tickIntervalAction = delta =>
+                {
+                    var other = Met;
+                    if (other == null || other.Dead || !other.Spawned || other.Map != pawn.Map)
+                    {
+                        EndJobWith(JobCondition.Incompletable);
+                        return;
+                    }
+                    pawn.rotationTracker.FaceCell(other.Position);
+                    if (Here(other)) ReadyForNextToil();
+                };
+                wait.defaultCompleteMode = ToilCompleteMode.Delay;
+                wait.defaultDuration = PeopleEvents8Math.MeetWaitTicks;
+                wait.handlingFacing = true;
+                yield return wait;
+                var met = ToilMaker.MakeToil("PEv8Met");
+                met.initAction = () =>
+                {
+                    // The wait ran out and they never came: the visit's hour sends them again, or says why it couldn't be done.
+                    if (!Here(Met)) EndJobWith(JobCondition.Incompletable);
+                };
+                met.defaultCompleteMode = ToilCompleteMode.Instant;
+                yield return met;
+            }
             var next = ToilMaker.MakeToil("PEv8Next");
             next.initAction = () =>
             {
-                // The target gone (a voter away, a part taken down): on to the next of the queue.
-                while (!job.targetA.IsValid || job.targetA.HasThing && (job.targetA.Thing.Destroyed || !job.targetA.Thing.Spawned))
+                // The target gone (a voter away, a part taken down) or out of reach behind a barred door: on to the next of the queue.
+                while (!job.targetA.IsValid || job.targetA.HasThing && (job.targetA.Thing.Destroyed || !job.targetA.Thing.Spawned)
+                       || !pawn.CanReach(job.targetA, PathEndMode.Touch, Danger.Some))
                 {
                     if (job.targetQueueA.NullOrEmpty())
                     {

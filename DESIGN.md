@@ -425,6 +425,30 @@ a partner, a friend or a relative, by how close they really were: never to blood
   close has words of their own (`Rimfolk_Lines_VendettaCloseness.xml`). A dead colonist's life goal taken up by someone
   close (`Aspirations.cs`) is as it was.
 
+### What the dead leave goes to whoever was closest (A30, 20 November 2026; not released yet)
+
+The player's rule of 5 November 2026: the colony is the family, never a dynasty. A dead colonist's heirloom and room
+still went to blood kin first (`FamilyLifeMath.HeirBonus` ranked a parent, child, brother or sister, 80, above a
+partner, 70, and the room went only to "the closest of their family here"). They now go by the vendetta's measure.
+
+- **How close** (`FamilyLifeMath.Closeness`, pure, `FamilyLifeTests`): `VendettaMath.Closeness` itself: the game's
+  opinion of the dead, the social web's warmth between the two, and a partner (40) or a relative by blood (20) as one
+  part among them. `HeirBonus` and `HeirFamily` are gone. `FamilyLifeMath.Heir`: the closest of those close enough, the
+  first where two are as close, or nobody.
+- **The heirloom** (`Lives/Legacy.cs`): to the closest colonist, if they were close at all (`KeepsakeAtLeast` 20, as an
+  opinion of 20 alone: a relative or a partner with nothing against the dead is enough, a stranger isn't). Before, the
+  floor was an opinion of 20, a web warmth of 30 or any relation at all.
+- **The room** (`Social/FamilyInheritance.cs`): a day after the death, to the closest of those here with no room of their
+  own who were close enough (`RoomAtLeast` 60, the vendetta's own `AtLeast`), counted as they stood at the death: each
+  colonist's closeness is noted then (`Inheritance.Notify_Died`), before the day's look lets the web's bonds with the dead
+  go; one who came since counts as they are now. A partner who shared the bed keeps it and a bed given out meanwhile
+  stays given, as before.
+- **The words** say what they were to the dead: the room's message names the relation where there is one ("passed to
+  his brother, Jon"), else "who was closest to him" (`CC_Inherit_RoomPlain`, which said "as family"); the journal line
+  "came to me, as family" now reads "because we were close". Family names and kin's moments stay flavour only.
+- Left as it was: who raises an orphaned child (`Social/FamilyGuardians.cs`, "the grown-up fondest of them, family first")
+  is a question the council answers, not a passing of what the dead leave; it is outside A30.
+
 ## Layer 5: Rimfolk events
 
 Rimfolk's own incidents: things that happen *to* the colony from outside, as opposed to the wishes and dilemmas
@@ -10644,8 +10668,9 @@ pure rules in `PeoplesMath.cs` (`Tools/Tests/PeoplesTests.cs`, "peoples: ").
   - **A medal** (Republic; `RepublicMedal`): the colony's deeds (`Reputations`, Social/Gossip/Deeds.cs) of a rescue under fire
     (`Rimfolk_Deed_Rescue`) or the line held in a hard fight (`Rimfolk_Deed_HeldLine`), half a day to four days old, the doer at home
     and free for a gift, rolled once at 0.5, thirty days apart: a clerk and a guard at the gate, the card saying the deed in the deeds'
-    own words (`Deeds.TextOf`) and the fight's name. The colonist walks out to the clerk, the guard stands by, the clerk reads the
-    citation for an hour (`_Citation`); with the second answer up to eight free colonists come to stand by and hear it
+    own words (`Deeds.TextOf`) and the fight's name. The colonist walks out to the clerk at the gate (since 20 November 2026 the
+    clerk waits there for them: "The medal read at the gate" below), the guard stands by, the clerk reads the citation for an
+    hour (`_Citation`); with the second answer up to eight free colonists come to stand by and hear it
     (`Rimfolk_Thought_HeardCitation`, +2 for 3 days, for everyone within nine cells). The medal: `Rimfolk_Thought_RepublicMedal` (+6
     for 60 days), the Republic's memory of them by name (the new deed `medal`, `KinMemory.Note`, which the colony's renown reads), and
     from the industrial age on with Vanilla Books Expanded the Republic's newspaper (`VBE_Newspaper`) set down by them. +3. Without
@@ -18163,6 +18188,72 @@ game was paused. The job was saved with him.
   kind or without its driver back to choosing a job when a game loads, and takes such jobs out of the queues.
 - Since harm parts 5 to 7 (7 November 2026) none of those eight walks had played out: each try left the pawn so, or
   failed with an error. They now play out as written in their sections above.
+
+## The medal read at the gate, and visitors' errands past a barred door (the player's report, 20 November 2026; not released yet)
+
+The player chose "Gather everyone who is free at the gate to hear it" on the Last Republic's medal, and nobody went
+anywhere: the medal was given in the same tick as the answer. Their save shows why. The clerk had walked in from the
+map's edge 141 ticks before and was still on her way to the gate; the errand Rimfolk set going was the clerk walking to
+the colonist wherever they were (`PeopleEvents8.Errand`, a `CanReach` from the clerk to the colonist). The visitors' keep
+out (`Visitors/KeepOut.cs`, 13 November 2026) had looked at the map 101 ticks after the clerk came and 40 before the
+answer (its look runs at tick 131 of every 250), and from then each door of the colony's bedrooms and cold stores was
+forbidden to her as a forbidden door is to a colonist. The errand never started (no lord was made for it: the save's
+next lord id follows the visit's and the leaving's), the clerk was up, the colonist (Avila) was neither drafted nor in a
+break, so the reach failed; the game lets a friendly visitor open the colony's doors, and those keep-out doors are the
+ones that stop one. Avila was indoors and awake (out of doors last about two hours before, no sleep ended since, and
+showering in another's bedroom half an hour later), so most likely in a room with a bed. The citation was given there and
+then (`Award`), unseen. The same pattern sat in other errands of the peoples' events.
+
+- **Meeting at the gate** (`PeopleEvents8.Meet`, `MeetSpot`, `Beside`, `SendOut`, `Release`; the rules in
+  `PeopleEvents8Math`: `MeetRange` 4 cells, `MeetWaitTicks` three hours, `MeetSends` 4, `Step`, `Met`). The meeting
+  place is the gate spot (`PeoplesD.GateSpot`), else the spot the visit was taking them to, else where the visitor
+  stands: never a place in the colony. The visitor, on an errand lord there (`LordJob_VisitOnErrand`), goes to it and
+  waits for the colonist (`JobDriver_PEv8Work`: with a meeting place, TargetB, it goes there first and waits until the
+  colonist is within four cells, at most three hours); the colonist walks out to stand two or three cells from it
+  (`Rimfolk_PEv8_StandBy`, kept in the visit's `touched` and let go when it is over). Then the work at them is done there.
+- **The medal** (`RepublicMedal`): the clerk goes on to the gate; the colonist walks out to her; the guard stands by;
+  with the second answer up to eight free colonists stand round; once the colonist is there she reads the citation for
+  an hour and pins on the medal, and those within nine cells heard it. The visit's hour sends the colonist out again if a
+  meal or a fight pulled them away (when they can be interrupted), and sets the meeting going again if it stopped (four
+  times). With the hours out before the colonist could come (a door they can't pass, a long break, a fight), the clerk
+  says "Then the citation goes into the record unread" and goes home, and a message says the colonist could not get out
+  to the gate (`CC_PEv8_MedalLeft`): no medal, no memory of it, and another deed may bring the clerk again. With the
+  play-outs off it is given at once, as before.
+- **A target behind a barred door** (`JobDriver_PEv8Work`): a target of the work the visitor can't reach is passed over
+  for the next one in the queue, so the clerk's roll at the vote and the officers' walk of the ship go on past a voter
+  or a part in a bedroom; the roll starts with a voter the clerk can reach (`VoteObserver.Begin`).
+- **The other errands of rounds 5 to 10**, looked over for the same fault (a visitor sent to a colonist or to a thing in
+  the colony, the event done there and then when the way is barred):
+  - *A gene taken out*, *a whole xenogerm* (round 8): the sequencer goes straight to the colonist when nothing bars the
+    way, else the colonist walks out to the sequencer and the work is done at the meeting place (`PeopleEvents8.WorkOn`).
+    Stopped, it is set going again; with the hours out before it could be done, the sequencer leaves at the gate the
+    silver and genepacks the colony paid and goes home, told (`PeopleEvents8.Undone`, `CC_PEv8_WorkUndone(Paid)`).
+  - *A sleeper of theirs* (round 8): the runner's way to the casket is open through a bedroom
+    (`Peoples/PeopleErrands.cs`, below); still no way (a cold store, someone asleep in the room), the colony's best
+    doctor opens it and the sleeper walks out to the runner (`CC_PEv8_SleeperHomeOpened` says who opened it).
+  - *The colony's gravship* (round 8): the ship's bedrooms are open to the officers for the walk; with no part they can
+    reach they log it from outside and the words say so (`CC_PEv8_GravOutside`, no pilot's memory, no lesson; the part
+    from the hull's stores set down where they stood).
+  - *An observer at the vote* (round 8): the roll passes over a voter the clerk can't get to.
+  - *The master's mark* (round 7): the master's way to the piece is open through a bedroom; a master who can't get to it
+    waits at the gate and is sent again each hour, and with the hours out goes home without a verdict, told
+    (`CC_PEv7_MarkNoWay`), never judged unseen.
+  - *A voice for the colony* (round 7): the operator's way to the radio is open through a bedroom; a radio they couldn't
+    get to (or were kept from) isn't used, and the call goes by runner, the words saying so.
+  - *A shout in the mind* and *the warden of the quiet* (round 9): the listener's and the warden's way to the one they sit
+    with is open through a bedroom; with no way to them they wait at the gate and the hour tries again, never the break
+    ended or the day's good done unseen; a listener who never got to a colonist still in their break says so
+    (`CC_PEv9_ShoutNoWay`).
+  - *Mending tonight* (round 5): the crew mends only what they can get to, so a building in a bedroom never holds a mender
+    up all night, and with nothing else left they go.
+  - Looked over and not sharing the fault: the field lab's sequencers wait until the colonist is in reach; the art handed
+    on and the hearings at the wood moot and the road toll meet at the gate already; the camps' work is on open ground; the
+    copyist and the lessons try again each day; the feral mech is called to the gate first.
+- **Errands the colony said yes to** (`Peoples/PeopleErrands.cs`, `PeopleErrands.Ways`, read by `KeepOut.Care`): as for
+  a doctor's work, the bedroom where the errand is lies open to the one sent (the master's piece, the radio, the casket,
+  the ship's parts, the one sat with); a cold store stays shut, and so does a bedroom where one of the colony sleeps. Each
+  of those errands refreshes the keep out's look as it starts (`KeepOut.Refresh`), so the way counts at once.
+- Tests: `PeopleEvents8Tests` (the hour's steps, the meeting's range and the places round it, and the seams).
 
 ## Ticking
 

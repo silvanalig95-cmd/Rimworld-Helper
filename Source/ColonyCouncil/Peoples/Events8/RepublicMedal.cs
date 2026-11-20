@@ -95,7 +95,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The answer taken: the colonist to the gate (and the colony with them), the clerk reads the citation; with the play-outs off, at once.</summary>
+        /// <summary>
+        /// The answer taken: the clerk goes on to the gate and waits there; the colonist walks out to the clerk, the guard stands by, and
+        /// with the second answer the colony's free people come out to hear it; once the colonist is there, the clerk reads the citation
+        /// (PeopleEvents8.Meet: the clerk never walks into the colony for it). With the play-outs off, at once.
+        /// </summary>
         public static void Begin(HappeningContext ctx, bool gather)
         {
             var map = ctx?.map;
@@ -106,37 +110,62 @@ namespace ColonyCouncil
             var v = t.AddVisit(Kind, ctx.incident, map, x, a, ctx.group, Now + 8 * GenDate.TicksPerHour);
             v.text = ctx.faction.GetUniqueLoadID() + "|" + (ctx.tale ?? "").Replace("|", "/");
             v.stake = gather ? 1 : 0;
-            if (PlayOuts.On && PeoplesG.Up(x, map) && PeoplesG.Up(a, map) && !a.Drafted && !a.InMentalState
-                && PeopleEvents8.Errand(x, map, a, null, PeopleEvents8.CitationJob, PeopleEvents8Math.CitationTicks, 6f))
+            if (!PlayOuts.On)
             {
-                // The colonist walks out to the clerk, the guard stands by, and with the second answer the colony's free people come to hear it.
-                var near = CellFinder.StandableCellNear(x.Position, map, 2f);
-                if (near.IsValid) PeopleEvents8.Send(a, PeopleEvents8.StandByJob, near, PeopleEvents8Math.CitationTicks + GenDate.TicksPerHour);
-                foreach (var g in ctx.group.Where(g => PeoplesG.Up(g, map)))
-                {
-                    var c = CellFinder.StandableCellNear(x.Position, map, 3f);
-                    if (c.IsValid) PeopleEvents8.Send(g, PeopleEvents8.StandByJob, c, PeopleEvents8Math.CitationTicks + GenDate.TicksPerHour);
-                }
-                if (gather)
-                    foreach (var p in PeoplesD.Able(map).Where(p => p != a && !p.Drafted && !p.InMentalState && PlayOuts.Interruptible(p)).Take(8))
-                    {
-                        var c = CellFinder.StandableCellNear(x.Position, map, 5f);
-                        if (c.IsValid) PeopleEvents8.Send(p, PeopleEvents8.StandByJob, c, PeopleEvents8Math.CitationTicks + GenDate.TicksPerHour);
-                    }
+                Award(v);
                 return;
             }
-            Award(v);
+            v.cell = PeopleEvents8.MeetSpot(x, map);
+            // The clerk's part not started now (the visit's hour sets it going again): the guard and the gathered still go out to the gate.
+            PeopleEvents8.Meet(v, PeopleEvents8.CitationJob, PeopleEvents8Math.CitationTicks);
+            if (!v.cell.IsValid) return;
+            var taken = new HashSet<IntVec3>();
+            int i = 1;
+            foreach (var g in v.group.Where(g => PeoplesG.Up(g, map)))
+            {
+                var c = PeopleEvents8.Beside(map, v.cell, i++, taken);
+                if (c.IsValid && PeopleEvents8.Send(g, PeopleEvents8.StandByJob, c, Mathf.Max(GenDate.TicksPerHour, v.until - Now))) taken.Add(c);
+            }
+            if (gather)
+                foreach (var p in PeoplesD.Able(map).Where(p => p != a && !p.Drafted && !p.InMentalState && PlayOuts.Interruptible(p)).Take(8))
+                    PeopleEvents8.SendOut(v, p, i++, taken);
         }
 
-        /// <summary>The visit's hour: the clerk gone or the hours run out before the citation is read, it is read there and then.</summary>
+        /// <summary>
+        /// The visit's hour: the citation under way (or the clerk waiting at the gate), the colonist sent out again if something pulled
+        /// them away; the clerk's errand stopped, set going again; the hours out before it could be read, the clerk goes home without
+        /// reading it, said as it is (<see cref="Left"/>); the clerk gone, nobody reads it.
+        /// </summary>
         public static bool Hour(Visit v, int now)
         {
             if (v.done) return false;
             var x = v.x;
+            var a = v.a;
+            var map = v.map;
+            if (a == null || a.Dead)
+            {
+                Award(v);
+                return false;
+            }
             bool reading = x != null && x.Spawned && x.CurJobDef == PeopleEvents8.CitationJob;
-            if (reading && now <= v.until) return true;
-            Award(v);
-            return false;
+            switch (PeopleEvents8Math.Step(PeoplesG.Up(x, map), reading, now, v.until, v.due))
+            {
+                case PeopleEvents8Math.MeetStep.Wait:
+                    if (a.CurJobDef != PeopleEvents8.StandByJob && PlayOuts.Interruptible(a)) PeopleEvents8.SendOut(v, a, 0);
+                    return true;
+                case PeopleEvents8Math.MeetStep.Again:
+                    v.due++;
+                    PeopleEvents8.Meet(v, PeopleEvents8.CitationJob, PeopleEvents8Math.CitationTicks);
+                    return true;
+                case PeopleEvents8Math.MeetStep.Gone:
+                    v.done = true;
+                    PeopleEvents8.Release(v);
+                    Arrivals.SendAway(v.group.Prepend(x).Where(p => p != null).ToList());
+                    return false;
+                default:
+                    Left(v);
+                    return false;
+            }
         }
 
         /// <summary>The clerk's hour at the colonist's side done: the medal.</summary>
@@ -161,6 +190,7 @@ namespace ColonyCouncil
             var party = v.group.Prepend(x).Where(p => p != null).ToList();
             if (a == null || a.Dead)
             {
+                PeopleEvents8.Release(v);
                 Arrivals.SendAway(party);
                 return;
             }
@@ -201,7 +231,28 @@ namespace ColonyCouncil
             Tell.Message(NewsKind.People, Importance.Notable, map, key.Translate((x?.LabelShort ?? "?").Named("CLERK"), a.Named("PAWN"), (f?.Name ?? "?").Named("FACTION"), deed.Named("DEED"),
                 heard.Named("COUNT")).Resolve(), a.Spawned ? new LookTargets(a) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
             PeopleEvents8.Goodwill(f, PeopleEvents8Math.MedalGoodwill, GoodwillWhy.Welcome);
+            PeopleEvents8.Release(v);
             Arrivals.SendAway(party);
+        }
+
+        /// <summary>
+        /// The hours out before the colonist could come out to the gate (a door they couldn't get through, a fight, a long break): the
+        /// clerk goes home without reading the citation or pinning on the medal, said as it is. No medal is given unseen, and another
+        /// deed may bring the clerk again.
+        /// </summary>
+        private static void Left(Visit v)
+        {
+            if (v.done) return;
+            v.done = true;
+            var x = v.x;
+            var a = v.a;
+            var f = x?.Faction ?? PeopleEvents8.PeopleOf(v);
+            PeopleEvents8.Release(v);
+            if (x != null && x.Spawned) PeoplesG.SayLine(x, v.incident, "later");
+            if (a != null && !a.Dead && v.map != null)
+                Tell.Message(NewsKind.People, Importance.Notable, v.map, "CC_PEv8_MedalLeft".Translate((x?.LabelShort ?? "?").Named("CLERK"), a.Named("PAWN"), (f?.Name ?? "?").Named("FACTION"))
+                    .Resolve(), x != null && x.Spawned ? new LookTargets(x) : LookTargets.Invalid, MessageTypeDefOf.NeutralEvent);
+            Arrivals.SendAway(v.group.Prepend(x).Where(p => p != null).ToList());
         }
 
         /// <summary>Dev mode: the clerk with a medal now, for the freshest deed here (one recorded for the best shot if none).</summary>

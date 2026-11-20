@@ -1431,7 +1431,7 @@ Granting one of {PAWN_possessive} wishes, or keeping a promise, can win {PAWN_ob
   <CC_Guard_Chronicle>{A_nameDef} is raised by {PARENTS} now, as the council named them.</CC_Guard_Chronicle>
   <CC_Guard_TooYoung>{A_nameDef} is too young to choose.</CC_Guard_TooYoung>
   <CC_Inherit_Room>{OTHER_nameDef}'s room has passed to {OTHER_possessive} {RELATION}, {PAWN_nameDef}, and the bed is {PAWN_possessive} now.</CC_Inherit_Room>
-  <CC_Inherit_RoomPlain>{OTHER_nameDef}'s room has passed to {PAWN_nameDef}, as family, and the bed is {PAWN_possessive} now.</CC_Inherit_RoomPlain>
+  <CC_Inherit_RoomPlain>{OTHER_nameDef}'s room has passed to {PAWN_nameDef}, who was closest to {OTHER_objective}, and the bed is {PAWN_possessive} now.</CC_Inherit_RoomPlain>
   <CC_Fam_OldWeddingDay>{PAWN_nameDef} and {LOST} were married {YEARS} years ago today. {PAWN_nameDef} keeps the day on {PAWN_possessive} own.</CC_Fam_OldWeddingDay>
   <CC_Fam_OldWeddingDayLabel>keeping the wedding day with {LOST}</CC_Fam_OldWeddingDayLabel>
   <CC_Fam_OldWeddingDayCause>The wedding day with {LOST}, kept alone.</CC_Fam_OldWeddingDayCause>

@@ -360,7 +360,7 @@
     </lines>
   </ColonyCouncil.FlavorPoolDef>
 
-  <!-- A dead colonist's room passed to family (Social/FamilyInheritance.cs): {OTHER} is the one who died. -->
+  <!-- A dead colonist's room passed to the one closest to them (Social/FamilyInheritance.cs): {OTHER} is the one who died. -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Journal_InheritedRoom</defName>
     <lines>
@@ -368,7 +368,7 @@
         <li>{OTHER_nameDef}'s room is mine now. It still feels like {OTHER_possessive}.</li>
         <li>They gave me {OTHER_nameDef}'s room. I haven't changed a thing yet.</li>
         <li>I'm to sleep where {OTHER_nameDef} slept. I don't know yet if that's a comfort.</li>
-        <li>{OTHER_nameDef}'s room came to me, as family. I'll keep it the way {OTHER_pronoun} liked it.</li>
+        <li>{OTHER_nameDef}'s room came to me, because we were close. I'll keep it the way {OTHER_pronoun} liked it.</li>
         <li>[night] Tonight I sleep in {OTHER_nameDef}'s room for the first time.</li>
         <li>A room of my own at last, and I'd give it back to have {OTHER_nameDef} here.</li>
       </plain>
