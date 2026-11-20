@@ -244,7 +244,10 @@ little one, shelves for the stores, the trees grown against the walls felled bef
 roof, and the snow cleared from the doors; promised, the last two are marked for the game's own cutters and cleaners. A
 parent, an elder or a grown-up fond of a child of three to twelve (Biotech) may ask for **a toy** for them, one of
 Vanilla Christmas Expanded's from the bench or else a small carving, and once it's made carries it over to the child by
-hand. The wishes that come up most often (armor, a place to pray, a latrine, a seat at the table, a bath, warmth at night) have
+hand. A kind colonist, or someone close to a colonist who has been worn down for two days, may ask for **a day off for
+them**: met when you give them the heart's day off (or the calendar's rest day comes while it waits), when the two grow a
+little closer and the one who asked often keeps them company for an hour of it; let lapse, only the one who asked minds,
+and the one worn down never hears of it. The heart's advice on a day off says who asked. The wishes that come up most often (armor, a place to pray, a latrine, a seat at the table, a bath, warmth at night) have
 three to five ways to be asked in every temperament, so the same colonist rarely asks the same way twice.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
 industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
@@ -2153,7 +2156,7 @@ stay (and shelves with goods in them, unless you tick the box), and a piece that
 place gets a run of conduit planned to it.
 
 ### Build: room plans
-In the **Rooms** view (planning window), as a list or at a glance: 108 ready-made rooms, grouped by purpose. 28 kinds of room come in
+In the **Rooms** view (planning window), as a list or at a glance: 115 ready-made rooms, grouped by purpose. 28 kinds of room come in
 several sizes and kinds, picked in the planner: a cozy, standard or roomy bedroom, or a sleeping hut for a tribe; a
 dining room for 4, 8 or 12; an infirmary, two hospitals, a ward or a surgery; a prison cell, a furnished cell for a
 prisoner you hope to recruit, a shared cell, or a cell block of three cells off a corridor; a kitchen with one stove,
@@ -2168,7 +2171,10 @@ and medieval colonies. With the DLCs: throne rooms from an audience chamber to a
 room (Royalty); a shrine, chapel or temple (Ideology); a schoolroom, playroom, three sizes of nursery, a mechanitor's
 bay and a gene lab (Biotech); a containment cell (Anomaly). With Dubs Bad Hygiene: a small, standard or family
 bathroom and a shared washroom with stall doors, a bathhouse, sauna, laundry and a master suite with its own bathroom;
-with Hospitality a guest room. A room shows up once your colony can build its main piece; tribal and medieval colonies
+with Hospitality a guest room. With your other mods: a writer's study (Vanilla Books Expanded), a coffee corner (Vanilla
+Brewing Expanded - Coffees and Teas), a dryad grove (Vanilla Ideology Expanded - Dryads), a festive hall (Vanilla
+Christmas Expanded), a beekeeper's yard (Alpha Bees) and a fish house (Vanilla Fishing Expanded), each only with its mod.
+A room shows up once your colony can build its main piece; tribal and medieval colonies
 get sizes of their own (a council fire, a forge, a scholar's study), and the research wing waits for the
 multi-analyzer. Benches people can sit at come with a chair on the work spot.
 
@@ -2892,6 +2898,17 @@ year since a colonist joined, they
 mark the anniversary in their own words, and their friends share it. And when the moment fits (food running low,
 right after a raid, while people grieve, when everyone has grown spoiled) a colonist may petition the council for
 the decree they'd like.
+
+### The colony's names for its places
+Places on the home map get names from what first happened there, given by one of the colony's people who was there and
+said aloud once: where a god was seen ("the rise where Bellwether was seen", or, where the colony doesn't know which god
+it was, by what was seen), the first graves out in the open ("the field of the graves"), a grown tree beside a party, a
+wedding or a council meeting ("the old oak"), a gate where a raid was held with nobody lost ("the gate that held"), and
+where a flood reached the colony's path or fields ("the drowned path"). A message points at the place and the chronicle
+keeps it. Twelve at most a home, never two close together. The names come up at supper, in the colony's own letters, and
+on a god's card when a god comes again where a place has a name; with "Names of places on the map" (off by default) they
+show on the map as quiet labels. A place whose tree is cut down, or whose gate or graves are gone, fades from the map over
+a season and is forgotten.
 
 ### The weather, as the colony knows it
 Each home map keeps a **weather record**: an hour's rain, snow, storm, fog and temperature noted, the hours made into

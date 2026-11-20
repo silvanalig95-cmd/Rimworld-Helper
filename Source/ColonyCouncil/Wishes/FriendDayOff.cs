@@ -88,6 +88,8 @@ namespace ColonyCouncil
             var x = wish.other;
             var comp = CouncilGameComponent.Instance;
             if (asker == null || x == null || comp == null || x.Dead) return;
+            // apart: the council gave the day off a friend asked for; the worn one hears of it as news and thinks the better of
+            // them, and the hour of company that often follows is on the map (FriendDayOff.Company).
             comp.social.Bump(asker, x, TieKind.Friends, FriendDayOffMath.Closer, "CC_FriendDayOff_TieNote".Translate(asker.Named("PAWN"), x.Named("OTHER")).Resolve());
             CouncilGameComponent.GiveThought(x, CouncilDefOf.Council_SpokeUpForMe, asker);
             if (!Rand.Chance(FriendDayOffMath.CompanyChance)) return;

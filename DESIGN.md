@@ -20017,6 +20017,83 @@ once an hour with its life (`LifeVariety.Hourly`: the giving day's lamps and end
   the giving day's gifts now (everyone or the children, no supper), ask a custom now, the elders' supper set going now,
   one of the colony's own events now, one of the new personal stories for someone.
 
+### The colony's last variety items: a day off for a friend, the colony's names for its places, rooms from the player's mods (the player's go, 20 November 2026; not released yet)
+
+The player on `docs/content-update-proposals.md`: "All right, your content proposal overall sounds really good. You can
+go ahead with this in the order you think makes most sense." The last three variety items of the list: A9, C25 and C27,
+each built as proposed there and marked **Built** with what was decided. No harm in any of it.
+
+- **A9, a day off for a friend** (`Source/ColonyCouncil/Wishes/FriendDayOff.cs`, rules in `FriendDayOffMath.cs`;
+  `Defs/WishDefs/Rimfolk_Wishes_FriendDayOff.xml`). Someone at home who has stood worn down or near breaking (strain 55
+  or more) two days running, whose day off could be given now (strained or more, its five days' wait past, not resting
+  today already), may have a wish asked for them: by anyone close to them (the heart's closeness 0.6 or more, about an
+  opinion of 50, a partner or kin), or by a kind colonist who doesn't think badly of them. It is the asker's own wish
+  about them (`Rimfolk_Wish_FriendDayOff`, `{OTHER}` the one worn down), in the wishes' flavour style; likelier the closer
+  the two, from a kind asker, and near breaking. Met when they are given the heart's day off after it was asked (the
+  existing button, the card, the advice), or one is under way, or the calendar's rest day comes while it waits; let go
+  quietly if they are themselves again, gone, or the day off switched off. Met: the asker's thanks (the wish's own),
+  "spoke up for someone" for the asker, the two closer in the social web and "spoke up for me" for the one worn down,
+  and seven times in ten the asker keeps them company for an hour of it: a visit on the map with answers playing out
+  (`DilemmaEffect_Visit`, an hour at their side), else the day off's own time with a friend with the asker
+  (`HeartActs.FriendVisit`, the two meet for a talk). Let lapse: only the asker's trust drops (they are the wish's only
+  supporter), and the one worn down isn't told: not named in the lapse, and not counted among the asker's friends who
+  take it personally (`WishWorker.OtherNotTold`, read in `CouncilDynamics.Expire`). The heart's advice on a day off says
+  who has asked for one (`FriendDayOff.AdviceNote`). Kept apart from colony life's first variety build: never asked while
+  "worn thin" runs for them or within five days of its end, nor for a seat holder whose step-down question waits for its
+  answer or came within five days; and while it waits, neither of those begins for them (`ArcWorker_WornThin`,
+  `DilemmaWorker_StepDown`).
+- **C25, the colony's own names for its places** (`Source/ColonyCouncil/Places/`: `PlaceNames.cs`, `PlaceTalk.cs`, rules in
+  `PlaceNameMath.cs`). A place is a cell and a size by what named it (six cells for a god's, five for graves, four for a
+  tree or a gate, seven for a flood), kept with its home map (`PlaceBook`, a map component: a home given up takes its
+  names with it): its name as said, who named it, when, and the tree it is tied to. A home keeps twelve at most, none
+  within ten cells of another, never two of one name. What names a place, by one of the colony's people who was there,
+  who says it aloud once (`Speech.Say`, `Rimfolk_Pool_PlaceNamed`), with a message pointing at the place and a line in the
+  chronicle:
+  - a god seen on the land where it stood (a coming, an act, a revealing, a blessing or an anger, never an omen or a
+    going), out in the open: "the rise where Bellwether was seen". The god only as the colony knows it at that moment
+    (`ArtTales.GodWords`: the colony's name where it knows it was that god, else what was seen, "the great white
+    thrumbo"), never more; the ground by what is round it (a shore, a rise by a rock face, ice, a marsh, the sands, stony
+    ground, a wood, else a field). Named an hour after the moment at the earliest, once its card is over, by the one who
+    saw it still nearest the place;
+  - the colony's first grave out in the open with one of its own in it: "the field of the graves", once someone of the
+    colony is within twelve cells, by the one there who thought most of the dead;
+  - a gathering held out in the open beside a grown tree (a party, a wedding, a council meeting): "the old oak" by the
+    tree's own kind, by whoever called it (the first of the two at a wedding), else the one there nearest the tree;
+  - a raid that came through a gate and was held with nobody lost (the defense lines' "held"): "the gate that held", by
+    the one who stood nearest it, where a door of the colony's stands;
+  - a flood (Odyssey's) that reached the colony's path (a floor it laid) or its fields in the home area: "the drowned
+    path", "the drowned field", noted while the water lies and named when it is gone, by the one nearest.
+  Where the names are used (other words find a place with `PlaceNames.Near`, the place a cell is within its size and two
+  cells): a god's card when a god comes again where a place has a name ("It happened at the place the colony calls the
+  old oak.", `GodCard.Send`); supper talk (`PlaceTalk`: of an evening, someone eating beside another brings one up in a
+  sentence, the one they named first, at most every four days at a home, `Rimfolk_Pool_PlaceSupper`); the colony's own
+  letters (the facts service's `colony:place` and `place:KIND`, `{OURPLACE}` the newest that stands, a few lines in the
+  letter's asides, the medieval voice too); the chronicle (each naming, and each name forgotten). As a quiet label the
+  player can switch on ("Names of places on the map", off by default; "The colony's names for its places", on, switches
+  the whole of it): each name drawn at its place the way the game draws its own labels (`GenMapUI.DrawThingLabel`), when
+  the view is close enough. A place whose tree is cut down, whose gate is gone or whose graves are all gone fades: its label
+  dims over a season and it is no longer said, then it is forgotten, with a line in the chronicle. Plain words for the
+  names, the label and the messages; the letters in their own style. Dev actions ("Rimfolk", "Last variety: ...",
+  `LastVarietyDebug.cs`): name the place at the mouse as each kind would, list the names, a place taken as gone a season
+  ago, a place brought up at supper now, and a day off for a friend asked now.
+- **C27, room plans from the player's mods** (`Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_Mods.xml`). Six plans, each
+  loading only with its mod, every name checked against the active rows of `docs/player-mods/` (`Tools/poolcheck.py`):
+  - a writer's study (Vanilla Books Expanded): the typewriter table once the colony knows printing, the writers table
+    before it, a chair at it, a bookcase, a standing lamp, Alpha Bees' wax candle or a torch, a plant;
+  - a coffee corner (Vanilla Brewing Expanded - Coffees and Teas): the espresso machine, a small table with two chairs,
+    a light, a plant;
+  - a dryad grove (Vanilla Ideology Expanded - Dryads): five dryad nests round an open yard with plant pots, the roof
+    left off;
+  - a festive hall (Vanilla Christmas Expanded): the festive feast table with twelve chairs, the grand and the standing
+    festive tree in the far corners once the colony has electricity, two lights;
+  - a beekeeper's yard (Alpha Bees): five beehouses round an open yard with plant pots, the roof left off, near the
+    fields;
+  - a fish house (Vanilla Fishing Expanded): shelves for the catch, coolers in the back wall once the colony has them,
+    and Vanilla Cooking Expanded - Sushi's prep table where it is.
+  Every age takes the first piece it can build (the typewriter or the writers table, a lamp, a candle or a torch, the
+  game's chairs and tables by what the colony knows). `Tools/Tests` lays each out like the rest (`RoomTemplateTests`, the
+  mods' pieces at the sizes the catalogue gives).
+
 ## The land and its life (the player's go, 20 November 2026; released 0.279.1)
 
 The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead

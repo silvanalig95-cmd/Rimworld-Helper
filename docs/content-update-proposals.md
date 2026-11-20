@@ -224,6 +224,16 @@ of it (the day off's own "a friend sent for"). Let lapse, the asker's trust drop
 *Ties:* Heart (bands, `HeartTimeOff`, the heart's advice), Wishes (a wish for another), the social web. *Size:* S.
 *Harm:* none. *Text:* wishes, flavour style: "{OTHER_nameDef} hasn't laughed in a week, and still gets up before anyone.
 Give {OTHER_objective} a day. I'll do {OTHER_possessive} share."
+**Built** (20 November 2026, the last variety items, not released yet; DESIGN.md "The colony's last variety items";
+`Source/ColonyCouncil/Wishes/FriendDayOff.cs`, `Defs/WishDefs/Rimfolk_Wishes_FriendDayOff.xml`). Decided: "a wish for
+another" is the asker's own wish about them (as A11's toy), so the thanks and the lapse are the asker's alone; "close" is
+the heart's closeness 0.6 or more (about an opinion of 50, a partner or kin), a kind asker needing only not to think badly
+of them; asked only when a day off could be given now (strained or more, its five days' wait past, not a rest day already);
+met by a day off given after it was asked, one under way, or the calendar's rest day; "often" is seven times in ten, an hour's
+visit on the map with answers playing out, else the day off's own time with a friend; the worn one isn't told of a lapse
+(not counted among the asker's friends who take it to heart). Kept apart from A20's worn thin and A3's step-down question:
+not asked while either runs for them or within five days, and neither begins for them while it waits. The heart's advice says
+who asked.
 
 **A10 (I) A place for the group.**
 A close group (the card's "close", cohesion 50) whose first habit has nowhere to happen asks the council for its place:
@@ -1747,6 +1757,19 @@ Each item that adds text says which of these it follows.
   letters home), and as a quiet label the player can switch on.
 - **Ties:** the gods' moments, the beast that stays, the defense lines, deaths, `WeatherBook`, the chronicle.
 - **Harm:** none.
+- **Built** (20 November 2026, the last variety items, not released yet; DESIGN.md "The colony's last variety items";
+  `Source/ColonyCouncil/Places/`). Decided: a place is a cell and a size by its kind, kept with its home map, twelve at most,
+  none within ten cells of another, never two of one name; five happenings name one, by one of the colony's people who was
+  there, said aloud once: a god seen where it stood (by the colony's name for it where it knows the god did it, else what
+  was seen, "the rise where the great white thrumbo was seen"; named an hour after the moment, once its card is over), the
+  first grave out in the open ("the field of the graves"), a gathering beside a grown tree ("the old oak" by its kind: a
+  party, a wedding, a council meeting), a raid held at a gate with nobody lost ("the gate that held"), a flood that reached
+  the colony's path or fields ("the drowned path", Odyssey's flood). The
+  beast that stays already has its own name and was left to it. A tree cut, a gate gone or every grave gone: the label fades
+  over a season and the name is no longer said, then forgotten with a line in the chronicle. Used on a god's card when a god
+  comes again where a name is, at supper (one at the table brings one up to the one beside them, every four days at most),
+  in the colony's own letters (`{OURPLACE}`, the facts service's `colony:place`), the chronicle; the label is a setting, off by
+  default, drawn as the game draws its own labels when the view is close.
 
 ### Rooms and buildings
 
@@ -1788,6 +1811,16 @@ Each item that adds text says which of these it follows.
 - **Ties:** the room planner, the rooms read by what is in them.
 - **Mod pool:** each plan only with its mod.
 - **Harm:** none.
+- **Built** (20 November 2026, the last variety items, not released yet; DESIGN.md "The colony's last variety items";
+  `Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_Mods.xml`). Every name checked against the active rows of
+  `docs/player-mods/` and right as proposed: the writer's study with Vanilla Books Expanded (`vanillaexpanded.vbookse`,
+  active: the typewriter table, else the writers table, and Alpha Bees' wax candle before electricity), the coffee corner
+  with Vanilla Brewing Expanded - Coffees and Teas (`vanillaexpanded.vbrewecandt`, active), the dryad grove with Vanilla
+  Ideology Expanded - Dryads (`vanillaexpanded.ideo.dryads`, active; open to the sky, a little way off from the tree, which
+  dislikes buildings close by), the festive hall with Vanilla Christmas Expanded (`ve.vanillachristmasexpanded`, active), the
+  beekeeper's yard with Alpha Bees (`sarg.rimbees`, active: the proposal's `RB_Beehouse` is its beehouse; open to the sky),
+  the fish house with Vanilla Fishing Expanded (`vanillaexpanded.vcef`, active; it adds fish, no building, so the house is
+  shelves and coolers, with Vanilla Cooking Expanded - Sushi's prep table, `vanillaexpanded.vcookesushi`, active, where it is).
 
 ### Defense and the advisor
 

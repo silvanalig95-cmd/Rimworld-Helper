@@ -61,13 +61,13 @@
         <li>[kind:flood] I think of {PLACE} every time it rains hard, {OTHER_nameDef}.</li>
       </plain>
       <warm>
-        <li>[kind:tree] I like that we have a tree with a name now, {OTHER_nameDef}.</li>
+        <li>[kind:tree] I like that {PLACE} has a name now, {OTHER_nameDef}.</li>
       </warm>
       <cheerful>
-        <li>A place with a name feels like home, doesn't it, {OTHER_nameDef}?</li>
+        <li>A place with a name like {PLACE} feels like home, doesn't it, {OTHER_nameDef}?</li>
       </cheerful>
       <gloomy>
-        <li>[kind:gate] One day it won't hold, {OTHER_nameDef}, whatever we call it.</li>
+        <li>[kind:gate] Let's hope {PLACE} holds the next time too, {OTHER_nameDef}.</li>
       </gloomy>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

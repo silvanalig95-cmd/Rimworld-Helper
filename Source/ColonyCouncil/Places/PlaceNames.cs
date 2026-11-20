@@ -212,6 +212,7 @@ namespace ColonyCouncil
             try
             {
                 string line = Flavor.FromPool(NamedPool, namer, null, null, "kind:" + kind);
+                // apart: said over their own head, to nobody in particular, by the one naming the place.
                 if (!line.NullOrEmpty()) Speech.Say(namer, line.Formatted(namer.Named("PAWN"), name.Named("PLACE")).Resolve().CapitalizeFirst());
                 Tell.Message(NewsKind.Colony, Importance.Notable, map, message, new LookTargets(new TargetInfo(cell, map)), MessageTypeDefOf.PositiveEvent);
                 CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Life,
