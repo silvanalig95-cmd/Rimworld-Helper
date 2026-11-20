@@ -65,6 +65,11 @@ most sense." So, in this order, three builds at a time:
   The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
   A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
   raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
+- **To do when the player asks (20 November 2026, the lead's proposal for the player's "Just more of them"): the
+  content update's second round.** `docs/content-update-proposals-2.md`, 44 items: D1 to D15 the gods' events (most
+  between the colony's people), D16 to D23 storyteller events, D24 to D32 council questions, D33 to D38 camps, D39 to D44
+  world events, with counts of what exists now and mods that would help. The lead's first round of twelve: D1, D3, D4,
+  D9, D10, D14, D16, D17, D25, D30, D35, D39. Nothing is built until the player picks.
 - **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
   overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
   additional God events, more immersion, more just further also building up on the gods in general, how they're
