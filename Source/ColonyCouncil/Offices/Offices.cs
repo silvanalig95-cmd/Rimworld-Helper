@@ -655,7 +655,7 @@ namespace ColonyCouncil
         private static float SeatWant(OfficeDef office, Pawn who, bool incumbent, bool campaigned)
         {
             var goal = CouncilGameComponent.Instance?.aspirations?.Active(who)?.def;
-            bool aspires = goal != null && goal.workerClass == typeof(AspirationWorker_Office) && (goal.office == null || goal.office == office);
+            bool aspires = goal != null && typeof(AspirationWorker_Office).IsAssignableFrom(goal.workerClass) && (goal.office == null || goal.office == office);
             return BondsMath.SeatWant(incumbent, aspires, Vain(who), campaigned);
         }
 

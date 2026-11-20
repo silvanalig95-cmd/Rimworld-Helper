@@ -390,6 +390,8 @@ namespace ColonyCouncil
             ExposeLanding();
             // Colony life's try-outs, readings, the year's aims and the record keeper (ColonyLife/LifeBook.cs).
             ExposeLife();
+            // Colony life's variety, part 2: customs' first askers, the promises' season, toys, the giving day (LifeVariety/).
+            ExposeLifeVariety();
             Scribe_Collections.Look(ref history, "history", LookMode.Deep);
             Scribe_Values.Look(ref era, "era", EraMode.Auto);
             if (Scribe.mode == LoadSaveMode.Saving) lastAtHome.RemoveAll(kv => kv.Key == null || kv.Key.Dead || kv.Key.Discarded);

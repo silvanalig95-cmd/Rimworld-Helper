@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Three ambitions of the colony's people (the content update's A15, 20 November 2026; Source/ColonyCouncil/LifeVariety/
+    ColonyAmbitions.cs): nobody left out (every grown colonist in a group or with a friend; pitched when two or more stand
+    outside every group with no friend), a season of kept promises (fifteen days with no promised wish let lapse and two
+    kept along the way; pitched while someone still minds a broken promise), a lighter season (fifteen days with nobody
+    worn down or near breaking, the heart's measure; pitched when someone is worn down). Each shows its scene on the map
+    when reached and keeps its day on the calendar (A14). Pitch lines may be tagged; achieved lines can't. Only {PAWN_...}.
+    Ambitions, so the flavour style.
+  -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_Amb_NobodyOutside</defName>
+    <label>nobody left out</label>
+    <description>Every grown colonist at home in one of the colony's groups or with a friend of their own. Proposed when two or more stand outside every group with nobody close. Asking them along, a seat kept at supper and time together all help; a newcomer arriving puts it back until they find a place too.</description>
+    <days>30</days>
+    <minColonists>4</minColonists>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_NobodyOutside" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Some of us eat alone, work alone and go to bed early. That isn't a choice. That's a colony that hasn't made room.</li>
+        <li>Look round the fire some evening and count who isn't there. I did, and I didn't like the number.</li>
+        <li>[lowmood] There are people here nobody would miss at supper, and they know it. I'd like that to stop being true.</li>
+        <li>[winter] Winter is long for anyone. It's longer for the ones who spend it on their own.</li>
+        <li>[lowtech] My people used to say a fire with an empty place at it burns cold. We have more than one empty place.</li>
+      </plain>
+      <warm>
+        <li>Everyone here should have somewhere to go of an evening, and someone who'd come looking if they didn't.</li>
+      </warm>
+      <blunt>
+        <li>Some of you don't have a single friend here. Fix it. Ask them along.</li>
+      </blunt>
+      <cheerful>
+        <li>I'm going to get everyone into a group if I have to drag them to the fire myself.</li>
+      </cheerful>
+      <gloomy>
+        <li>I know what it is to be the one nobody sits next to. I wouldn't wish it on anyone here.</li>
+      </gloomy>
+      <cold>
+        <li>People with nobody leave, or break. Either costs us more than an evening's company.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Nobody eats alone here now unless they want to. I counted, twice.</li></plain>
+      <warm><li>Every one of us has a place now. I've never been so glad to be crowded at supper.</li></warm>
+      <cheerful><li>Everyone's in! Even the ones who said they didn't want to be.</li></cheerful>
+      <gloomy><li>Everyone has someone, for now. Let's keep it that way.</li></gloomy>
+      <cold><li>No one stands outside every group now. It should be easier to keep than it was to make.</li></cold>
+    </achieved>
+    <sceneOffice>Council_Office_Steward</sceneOffice>
+    <dayLabel>the day nobody was left out</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper with everyone at one table</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_Amb_KeptPromises</defName>
+    <label>a season of kept promises</label>
+    <description>Fifteen days running with no promised wish let lapse, and at least two promises kept along the way. A promise broken starts the count again. Proposed while someone still minds a promise the council broke.</description>
+    <days>30</days>
+    <minColonists>3</minColonists>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_KeptPromises" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>The council said it would see to something, and then it didn't. People remember that longer than they remember a feast. Let's give them something else to remember.</li>
+        <li>Fifteen days. Every promise the council makes in that time, the council keeps. Then we'll see if people start believing it again.</li>
+        <li>[lowmood] People have stopped asking the council for anything, because a no is easier to bear than a yes that comes to nothing.</li>
+        <li>[lowtech] A word given at the fire used to be as good as done. I'd like ours to be worth that again.</li>
+      </plain>
+      <warm>
+        <li>Somebody was let down, and I saw their face. I'd like the next few promises to be the kind we keep.</li>
+      </warm>
+      <blunt>
+        <li>Stop promising what you won't do. Then do what you promised. Fifteen days of it.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole season of yeses that turn into real things. Imagine the mood at supper.</li>
+      </cheerful>
+      <gloomy>
+        <li>Every broken promise makes the next one sound hollower. We're close to the bottom of that.</li>
+      </gloomy>
+      <cold>
+        <li>Trust in the council is worth more than anything it could build. Broken promises spend it fastest.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Fifteen days, and every promise kept. Somebody asked me for something today and actually expected to get it.</li></plain>
+      <warm><li>The council kept its word all season. I've seen people smile at it again.</li></warm>
+      <cheerful><li>Every single promise! I'm going to start asking for things myself.</li></cheerful>
+      <gloomy><li>A season of promises kept. One bad week will undo it, so let's not have one.</li></gloomy>
+      <cold><li>The council's word holds again. That is worth more than the things promised.</li></cold>
+    </achieved>
+    <sceneOffice>Council_Office_Speaker</sceneOffice>
+    <dayLabel>the end of a season of kept promises</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to a word kept</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
+  </ColonyCouncil.AmbitionDef>
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_Amb_LighterSeason</defName>
+    <label>a lighter season</label>
+    <description>Fifteen days running with nobody at home worn down or near breaking (with the colony's feelings on). Someone worn down starts the count again. Days off, a friend's company, good food and fewer late nights all help. Proposed when someone is worn down.</description>
+    <days>30</days>
+    <minColonists>3</minColonists>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li><li>Medicine</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.Goal_LighterSeason" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Nobody broke this season, and we called that calm. Half of us were holding on by our fingernails. I'd like a season where nobody has to.</li>
+        <li>I want fifteen days where nobody here is worn to the bone. Not lucky, just looked after.</li>
+        <li>[lowmood] Some of us are carrying more than we can for much longer. Let's put some of it down.</li>
+        <li>[winter] The dark months wear on people. Let's make sure nobody wears through.</li>
+      </plain>
+      <warm>
+        <li>If you're tired, say so, and somebody will take your shift. That's all I'm asking, for half a season.</li>
+      </warm>
+      <blunt>
+        <li>Too many of us are worn out. Rest them before they drop.</li>
+      </blunt>
+      <cheerful>
+        <li>A whole season of everyone getting enough sleep! It's never been done, as far as I know.</li>
+      </cheerful>
+      <gloomy>
+        <li>I can see who's close to the edge, and so can you. Let's pull them back before it's too late.</li>
+      </gloomy>
+      <cold>
+        <li>Worn-out people make mistakes, and out here mistakes are expensive. A lighter season pays for itself.</li>
+      </cold>
+    </pitch>
+    <achieved>
+      <plain><li>Fifteen days and nobody worn to the bone. I slept well every night of it, and so did the others.</li></plain>
+      <warm><li>We looked after each other all season. I could see it in everyone's faces this morning.</li></warm>
+      <cheerful><li>Half a season of everyone feeling all right! Let's do another.</li></cheerful>
+      <gloomy><li>A light season. They don't come often. I'm glad we had one.</li></gloomy>
+      <cold><li>Fifteen days with nobody worn down. Fewer mistakes, too. I counted.</li></cold>
+    </achieved>
+    <sceneOffice>Council_Office_Peacemaker</sceneOffice>
+    <dayLabel>the end of a lighter season</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>an easy evening by the fire</label><organizer>B</organizer><hours>18~22</hours><duration>2~3</duration></li>
+    </achievedEffects>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>

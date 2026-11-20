@@ -51,6 +51,8 @@ namespace ColonyCouncil
                 {
                     foreach (var p in c.offices.HoldersOf("Council_Office_Physician")) CouncilRecords.Add(p, DaysAsPhysician);
                     foreach (var p in c.offices.HoldersOf("Council_Office_Marshal")) CouncilRecords.Add(p, DaysAsMarshal);
+                    // The seats that had no record of days: the quartermaster's, reeve's, herdmaster's, steward's and elders' (A23).
+                    LifeDeeds.SeatDays(c.offices);
                 }
             }
             foreach (var p in colonists)

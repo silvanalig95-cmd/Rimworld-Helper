@@ -87,7 +87,7 @@ namespace ColonyCouncil
             return Beliefs.ForbidsAny(p, forbiddenMask);
         }
         /// <summary>A goal of a seat on the council names the seat: its words say it by its name in the colony's age.</summary>
-        public string InAge(string text) => workerClass == typeof(AspirationWorker_Office) ? OfficeNames.InAge(text) : text;
+        public string InAge(string text) => workerClass != null && typeof(AspirationWorker_Office).IsAssignableFrom(workerClass) ? OfficeNames.InAge(text) : text;
 
         /// <summary>Journal, when they set their heart on it ({GOAL}).</summary>
         public ToneLines chosen = new ToneLines();
@@ -806,6 +806,8 @@ namespace ColonyCouncil
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Life, "CC_Asp_FulfilledText".Translate(p.Named("PAWN"), a.Goal.Named("GOAL")).Resolve(), p));
             comp.annals.Notify_Aspiration(p, a.Goal);
             CouncilGameComponent.GiveThought(p, CouncilDefOf.Council_Asp_Fulfilled);
+            // A turning point read by their nature (A22, LifeVariety/LifeMarksDeeds.cs).
+            LifeMarks.GoalReached(p, a.Goal);
             comp.standings.Change(p, 10f, "CC_Log_Aspiration".Translate(a.Goal));
             // The people who love them are glad (they hear the news, wherever they are).
             foreach (var f in PawnsFinder.AllMaps_FreeColonists.ToList().Where(f => f != p && f.relations != null && (f.relations.OpinionOf(p) >= 40 || comp.social.Warmth(f, p) >= 40f)))

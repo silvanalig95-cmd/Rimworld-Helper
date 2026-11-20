@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Colony life's variety, part 2 (Source/ColonyCouncil/LifeVariety/): plain words for messages and the interface. -->
+
+  <!-- A11: a toy for the little one -->
+  <CC_Reason_Toy>{PAWN_nameDef} is fond of {OTHER_nameDef} and would like something made for {OTHER_objective} to play with.</CC_Reason_Toy>
+  <CC_Life2_Toy>a toy</CC_Life2_Toy>
+  <CC_Life2_Carving>a small carving</CC_Life2_Carving>
+  <CC_Life2_ToyPlay>a toy for {OTHER_nameDef}</CC_Life2_ToyPlay>
+  <CC_Life2_ToyMade>The {THING} {PAWN_nameDef} asked for is made, for {OTHER_nameDef}.</CC_Life2_ToyMade>
+
+  <!-- A15: three ambitions of the colony's people -->
+  <CC_Goal_NobodyOutside>Every grown colonist in a group or with a friend ({0} of {1})</CC_Goal_NobodyOutside>
+  <CC_Goal_KeptPromises>{0} days in a row with no promise let lapse, and {1} promises kept ({2} days so far, {3} kept)</CC_Goal_KeptPromises>
+  <CC_Goal_LighterSeason>{0} days in a row with nobody worn down or near breaking ({1} so far; {2} worn down now)</CC_Goal_LighterSeason>
+
+</LanguageData>
