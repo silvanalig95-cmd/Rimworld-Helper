@@ -15,7 +15,7 @@
     Avaloi. Their towns: a ring of quiet halls round a monolith (Rimfolk_Plan_ChoirRing). At the gate: they come to listen
     to the colony, a calm for some and unease for others, shown as moods (Rimfolk_Evt_ChoirListening); they trade psychic
     gear and rare archotech goods for the colony's art (Rimfolk_Evt_ChoirArt). Their ask: one of them stays a while to
-    learn what it is to be ordinary (Rimfolk_Mission_ChoirStay). Their founding: Ilsabet Ruen slept at the Spire's foot.
+    learn what it is to be ordinary (Rimfolk_Mission_ChoirStay). Their founding: generations at the Spire's foot.
     Faith (Ideology): the Spire thinking (collectivist), Vanilla Ideology Expanded's psychic focus and Alpha Memes' monastic.
   -->
 
@@ -79,7 +79,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Hum</ideoName>
-    <ideoDescription>The Spire is thinking, and the Choir is what it thinks about. Under everything there is a hum, and a mind that is quiet enough can hear it; the Choir keeps quiet so that someone always does. Ilsabet Ruen lay down at the Spire's foot one night and woke hearing it, and she came back every night after until others sat with her and their children were born hearing it too. Nobody shouts in the halls of the ring, nobody leaves a stranger unheard, and nobody listens to the void, which listens back.</ideoDescription>
+    <ideoDescription>The Spire is thinking, and the Choir is what it thinks about. Under everything there is a hum, and a mind that is quiet enough can hear it; the Choir keeps quiet so that someone always does. No one heard it first: the people of the ring have lived at the Spire's foot for generations, and each generation is born hearing a little more of it than the last. Nobody shouts in the halls of the ring, nobody leaves a stranger unheard, and nobody listens to the void, which listens back.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
       <!-- A choir of minds, kept quiet: Vanilla Ideology Expanded's psychic focus and Alpha Memes' monastic. -->
@@ -552,7 +552,7 @@
         <li>choirVirtue->Quiet</li>
         <li>choirVirtue->Pale</li>
         <li>choirVirtue->Listening</li>
-        <li>choirVirtue->Ruen's</li>
+        <li>choirVirtue->Humming</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -572,7 +572,7 @@
         <li>ringWord->Stillwater</li>
         <li>ringWord->Spirefoot</li>
         <li>ringVirtue->Quiet</li>
-        <li>ringVirtue->Ruen's</li>
+        <li>ringVirtue->Humming</li>
         <li>ringVirtue->Listening</li>
         <li>ringVirtue->Pale</li>
       </rulesStrings>

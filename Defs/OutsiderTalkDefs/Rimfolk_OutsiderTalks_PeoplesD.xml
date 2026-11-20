@@ -76,11 +76,11 @@
     <when>their:sextons</when>
     <lines>
       <li>[us] Why does the Bell bury even raiders?</li>
-      <li>[them] Nobody would bury the raiders after the long war, and what came up taught us better.</li>
-      <li>[us] Who started it?</li>
-      <li>[them] A widow called Ysolde Marr, with a spade and a cracked chapel bell.</li>
-      <li>[us] What did she do with the bell?</li>
-      <li>[them] Rang it once over every grave, friend or foe, until the ground was quiet.</li>
+      <li>[them] After the long war nobody would, and some of the dead in the fields got up again.</li>
+      <li>[us] What did you do?</li>
+      <li>[them] Went out with spades and a cracked chapel bell and buried them all, friend or enemy.</li>
+      <li>[us] Why the bell?</li>
+      <li>[them] It was rung once over each grave, until the ground was quiet.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -189,12 +189,12 @@
     <uses>chat,know</uses>
     <when>their:salvagers</when>
     <lines>
-      <li>[us] Why does the Wheel never stop?</li>
-      <li>[them] The night our valley burned, Mab Wainwright put her house on her cart and drove out.</li>
-      <li>[us] And everyone followed?</li>
-      <li>[them] With whatever they could lift, and nobody has ever voted to stop.</li>
-      <li>[us] Has anyone tried?</li>
-      <li>[them] Every few years someone stands up, and by then we've already moved on.</li>
+      <li>[us] Doesn't the Wheel ever stay put?</li>
+      <li>[them] Not since the night our valley burned.</li>
+      <li>[us] What happened?</li>
+      <li>[them] Everyone put their houses, children and tools on carts and drove out ahead of it.</li>
+      <li>[us] And nobody wanted to stop afterwards?</li>
+      <li>[them] Every few years someone stands up to say so, and by then we've already moved on.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

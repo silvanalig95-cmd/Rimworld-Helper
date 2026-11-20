@@ -19,11 +19,11 @@
     <when>their:seers</when>
     <lines>
       <li>[us] What are the little vials on your coat?</li>
-      <li>[them] Storm rain, sealed, as Hesper Lyle sealed it after hail took her village's harvest.</li>
-      <li>[us] And what did that do?</li>
-      <li>[them] She wrote what came after on each cap, and in thirty years she read frost a week ahead.</li>
-      <li>[us] All of you can do that?</li>
-      <li>[them] Some of us, some of the time, and we are rarely wrong and never sure.</li>
+      <li>[them] Storm rain, sealed, with what came after the storm written on the cap.</li>
+      <li>[us] Why keep rain?</li>
+      <li>[them] Because hail nobody saw coming once took a whole village's harvest.</li>
+      <li>[us] And the vials help with that?</li>
+      <li>[them] A glassblower there kept them thirty years, and then could read a frost a week ahead.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -75,12 +75,12 @@
     <uses>chat,know</uses>
     <when>their:grovekeepers</when>
     <lines>
-      <li>[us] Why do you keep a seed in your pocket?</li>
-      <li>[them] For the next stump, as Elin Sedge kept one when the war cut down her valley for its fires.</li>
-      <li>[us] What did she do?</li>
-      <li>[them] She walked the stumps with a sack of acorns and planted one beside each, for years.</li>
-      <li>[us] And then?</li>
-      <li>[them] We buried her under the last one she set, and it still stands, and so do we.</li>
+      <li>[us] What's the seed in your pocket for?</li>
+      <li>[them] For the next stump I find, the way our first grove was planted.</li>
+      <li>[us] Planted where?</li>
+      <li>[them] In a valley a war had cut bare for firewood and palisades.</li>
+      <li>[us] Who planted it?</li>
+      <li>[them] Whoever was left when the fighting ended, an acorn beside every stump.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -132,12 +132,11 @@
     <uses>chat,know</uses>
     <when>their:mercenaries</when>
     <lines>
-      <li>[us] Whose war was the Banner first raised for?</li>
-      <li>[them] A king nobody remembers, and when that war was lost Corra Mallin kept us together.</li>
-      <li>[us] What did she do?</li>
-      <li>[them] She sold every banner but the one burned grey, and hired us to the first town that paid.</li>
-      <li>[us] And the Roll?</li>
-      <li>[them] Those who stayed wrote down everyone lost under that banner, and we read it aloud still.</li>
+      <li>[them] The Banner was raised for a king, once.</li>
+      <li>[us] Which king?</li>
+      <li>[them] One nobody remembers, who lost his war and died, and his kingdom broke apart.</li>
+      <li>[us] And the soldiers?</li>
+      <li>[them] Stayed together and sold their service to the towns, under the banner that burned grey.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -189,12 +188,12 @@
     <uses>chat,know</uses>
     <when>their:artisans</when>
     <lines>
-      <li>[us] What is the mark on your bracer?</li>
-      <li>[them] The guild's, from Oswin Kell, who rebuilt the Hardwater bridge three times after floods.</li>
-      <li>[us] Three times?</li>
-      <li>[them] He cut his mark into every stone of it, so the next flood would know whom to blame.</li>
-      <li>[us] Did it work?</li>
-      <li>[them] The fourth still stands, and those beside him swore to mark everything they made.</li>
+      <li>[us] Whose mark is that on your bracer?</li>
+      <li>[them] My own, and every maker of the guild has one, since the bridge at Hardwater.</li>
+      <li>[us] What bridge?</li>
+      <li>[them] Floods took it three times, and each time it went back up with a mark on every stone.</li>
+      <li>[us] Did that help?</li>
+      <li>[them] The fourth still stands, and the masons swore to mark everything they made after it.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 

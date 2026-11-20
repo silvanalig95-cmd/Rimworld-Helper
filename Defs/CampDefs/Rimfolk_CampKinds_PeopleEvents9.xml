@@ -185,7 +185,7 @@
       <li>[strange] The song came out wrong tonight, we're leaving.</li>
     </momentLines>
     <helpTexts>
-      <li>[tales] {A_nameDef} sat a while at the Choir's fire and heard how Ilsabet Ruen lay down at the foot of the Spire and woke able to hear it think.</li>
+      <li>[tales] {A_nameDef} sat a while at the Choir's fire and heard how each generation born beside the Spire came to hear a little more of it than the one before.</li>
     </helpTexts>
     <asks>
       <li>
@@ -300,7 +300,7 @@
       <li>[learned] We'll take that back down and teach the others.</li>
     </momentLines>
     <helpTexts>
-      <li>[tales] {A_nameDef} sat with the scouts by their fire and heard how Overseer Hollis Crane broke the vault's seal and walked out first, and how half of them went back below for a week.</li>
+      <li>[tales] {A_nameDef} sat with the scouts by their fire and heard how the overseer the vault's council chose broke the seal and walked out first, and how half of them went back below for a week.</li>
     </helpTexts>
     <asks>
       <li>

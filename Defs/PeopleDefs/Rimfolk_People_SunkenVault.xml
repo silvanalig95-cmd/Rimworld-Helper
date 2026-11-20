@@ -18,7 +18,7 @@
     gate: their last spacer goods for components and food (Rimfolk_Evt_VaultBarter); a craft they have lost, taught at the
     colony's bench (Rimfolk_Evt_VaultCraft); a vault-born child who has never seen a sky asks to stay
     (Rimfolk_Evt_VaultChild). Their ask: power cells, components for the vault's last machines
-    (Rimfolk_Mission_VaultCells). Their founding: Overseer Hollis Crane broke the seal. Faith (Ideology): the vault below
+    (Rimfolk_Mission_VaultCells). Their founding: the overseer the council chose broke the seal. Faith (Ideology): the vault below
     (tunneler), the overseer's word (loyalist) and Vanilla Ideology Expanded's scrapper.
   -->
 
@@ -80,7 +80,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Seal</ideoName>
-    <ideoDescription>The doors opened, and the world they were waiting for didn't come with them. The vault kept them alive for generations below, every cell counted and every part kept going, and the overseer's word kept the count. When the water ran short the vault's council chose Overseer Hollis Crane to break the seal, and she walked out first into a world that had not waited. The dwellers mend what they can, trade what they must, and never forget a people who helped keep the lights on below.</ideoDescription>
+    <ideoDescription>The doors opened, and the world they were waiting for didn't come with them. The vault kept them alive for generations below, every cell counted and every part kept going, and the overseer's word kept the count. When the water ran short the vault's council chose an overseer to break the seal, and she walked out first into a world that had not waited. The dwellers mend what they can, trade what they must, and never forget a people who helped keep the lights on below.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Tunneler</li>
       <li MayRequire="Ludeon.RimWorld.Ideology">Loyalist</li>
@@ -641,7 +641,7 @@
         <li>vaultVirtue->Sunken</li>
         <li>vaultVirtue->Open</li>
         <li>vaultVirtue->Deep</li>
-        <li>vaultVirtue->Crane's</li>
+        <li>vaultVirtue->Overseer's</li>
       </rulesStrings>
     </rulePack>
   </RulePackDef>
@@ -661,7 +661,7 @@
         <li>vaultWord->Topside</li>
         <li>vaultWord->Shaft</li>
         <li>vaultVirtue->Broken</li>
-        <li>vaultVirtue->Crane's</li>
+        <li>vaultVirtue->Overseer's</li>
         <li>vaultVirtue->Lower</li>
         <li>vaultVirtue->Upper</li>
       </rulesStrings>

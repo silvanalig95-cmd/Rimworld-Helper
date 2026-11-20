@@ -333,6 +333,8 @@
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events9/PeopleEvents9Math.cs" Link="PeopleEvents9Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/Events10/PeopleEvents10Math.cs" Link="PeopleEvents10Math.cs" />
     <Compile Include="../../Source/ColonyCouncil/Peoples/PeopleAgesMath.cs" Link="PeopleAgesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/ConsoleRadioMath.cs" Link="ConsoleRadioMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Peoples/Foreign/ForeignAgesMath.cs" Link="ForeignAgesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Hauling/HaulMath.cs" Link="HaulMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ThingRolesMath.cs" Link="ThingRolesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/GoodsMath.cs" Link="GoodsMath.cs" />

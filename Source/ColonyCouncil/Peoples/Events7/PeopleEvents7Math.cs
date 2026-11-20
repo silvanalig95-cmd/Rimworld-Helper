@@ -71,7 +71,7 @@ namespace ColonyCouncil
 
         // ================= 62. A work that stays (the Kiln Guild) =================
 
-        /// <summary>What they build: a carved bridge over the colony's river (Kell's, first), a grand sculpture in its hall, a fountain where it gathers.</summary>
+        /// <summary>What they build: a carved bridge over the colony's river (marked like the one at Hardwater, first), a grand sculpture in its hall, a fountain where it gathers.</summary>
         public const string Bridge = "bridge", Sculpture = "sculpture", Fountain = "fountain";
 
         public static readonly string[] Works = { Bridge, Sculpture, Fountain };

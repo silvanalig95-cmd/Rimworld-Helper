@@ -15,8 +15,8 @@
     from the colony's best maker, paid by its quality when it is collected (Rimfolk_Evt_GuildCommission,
     Rimfolk_Evt_GuildCollects); a master-trader bids on the colony's masterwork (Rimfolk_Evt_GuildBid). Their ask: a
     wander-year apprentice who stays to learn at the colony's best maker's bench and leaves a piece of guild work
-    (Rimfolk_Mission_WanderYear). The art collector comes from them likeliest. Their founding: Oswin Kell, the mason who
-    cut his mark into every stone of the bridge at Hardwater. Faith (Ideology): spreading their work (proselytizer), VE
+    (Rimfolk_Mission_WanderYear). The art collector comes from them likeliest. Their founding: the masons who
+    cut their marks into every stone of the bridge at Hardwater. Faith (Ideology): spreading their work (proselytizer), VE
     Memes' craft culture and Alpha Memes' artist. Kinds of people: stoneborn, dirtmoles, genies, orangutans, lapis and
     boglegs, four in five baseliners.
   -->
@@ -81,7 +81,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Mark</ideoName>
-    <ideoDescription>A thing made well is a prayer that stays standing, and whoever makes it puts their mark on it and answers for it. The craft is the faith: work is honoured above rank, the master teaches and the journeyman learns, and an apprentice's wander-year among strangers carries the guild's work into every town that will have it. Bad work is a lie told in stone. Oswin Kell cut his mark into every stone of the bridge at Hardwater, three bridges and three floods, and the fourth bridge with his mark on it is still standing.</ideoDescription>
+    <ideoDescription>A thing made well is a prayer that stays standing, and whoever makes it puts their mark on it and answers for it. The craft is the faith: work is honoured above rank, the master teaches and the journeyman learns, and an apprentice's wander-year among strangers carries the guild's work into every town that will have it. Bad work is a lie told in stone. The masons of Hardwater cut their marks into every stone of a bridge the floods had taken three times, and the fourth bridge, marked, is standing yet.</ideoDescription>
     <forcedMemes>
       <!-- The guild's work carried into every town on the wander-year. -->
       <li MayRequire="Ludeon.RimWorld.Ideology">Proselytizer</li>
@@ -607,7 +607,7 @@
         <li>guildWord->Masterworks</li>
         <li>guildWord->Forge Yard</li>
         <li>guildWord->Carved Hall</li>
-        <li>guildVirtue->Kell's</li>
+        <li>guildVirtue->Mason's</li>
         <li>guildVirtue->Hardwater</li>
         <li>guildVirtue->Ochre</li>
         <li>guildVirtue->Fourth Bridge</li>

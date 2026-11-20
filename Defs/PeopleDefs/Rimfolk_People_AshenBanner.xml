@@ -16,8 +16,8 @@
     a season, who camp by the colony and take up arms against whatever comes, paid every five days or gone
     (Rimfolk_Evt_BannerHire); a deserter asking shelter (Rimfolk_Evt_BannerDeserter); the Roll read at the colony's gate
     for those of the colony who fell fighting (Rimfolk_Evt_BannerRoll). Their ask: a doctor for their wounded after a
-    contract (Rimfolk_Mission_BannerWounded). Their founding: Corra Mallin, the quartermaster who would not let the company
-    scatter unpaid. Faith (Ideology): loyalty, the company as one, and Alpha Memes' bulwark. They raid only when the colony
+    contract (Rimfolk_Mission_BannerWounded). Their founding: a lost king's soldiers, who stayed together
+    and sold their service to the towns. Faith (Ideology): loyalty, the company as one, and Alpha Memes' bulwark. They raid only when the colony
     has turned them hostile. Kinds of people: hussars, neanderthals, uhlans, boarskins, venators, Uredde, gorillas and
     Korgs, four in five baseliners.
   -->
@@ -84,7 +84,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Roll</ideoName>
-    <ideoDescription>A contract is kept to its last day, and the company is everyone under the banner together: what one earns all eat, and nobody is left on a field. Those who fall are not forgotten; every name is written on the Roll and read aloud on the night of the last battle, so that the company remembers what it cost. A wall held is the whole of the work. Corra Mallin sold every banner but the one that burned and kept five hundred soldiers together when the king was dead, and the first name on the Roll is the one she wrote that winter.</ideoDescription>
+    <ideoDescription>A contract is kept to its last day, and the company is everyone under the banner together: what one earns all eat, and nobody is left on a field. Those who fall are not forgotten; every name is written on the Roll and read aloud on the night of the last battle, so that the company remembers what it cost. A wall held is the whole of the work. When the king was dead and his kingdom broken, the soldiers did not scatter: they kept the one banner that burned in the last battle, and wrote the first names on the Roll under it that winter.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">Loyalist</li>
       <li MayRequire="Ludeon.RimWorld.Ideology">Collectivist</li>
@@ -704,7 +704,7 @@
         <li>fortWord->Drill Yard</li>
         <li>fortWord->Hall of the Roll</li>
         <li>fortWord->Muster</li>
-        <li>fortVirtue->Mallin's</li>
+        <li>fortVirtue->King's</li>
         <li>fortVirtue->Ashen</li>
         <li>fortVirtue->Last Battle</li>
         <li>fortVirtue->Paid</li>

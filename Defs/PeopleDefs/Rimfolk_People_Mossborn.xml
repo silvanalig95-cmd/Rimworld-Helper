@@ -16,7 +16,7 @@
     replant what the colony cleared (Rimfolk_Evt_MossSaplings); a sapling over a fresh grave, so the dead becomes the grove
     (Rimfolk_Evt_MossGraveTree); with Ideology, a tree-connector who tends the colony's Gauranlen tree
     (Rimfolk_Evt_MossTreeTend). Their ask: two planters for a grove that burned (Rimfolk_Mission_MossBurnedGrove). Their
-    founding: Elin Sedge, the charcoal-burner's widow who planted a seedling for every stump. Faith (Ideology): tree
+    founding: a war's survivors, who planted a seedling for every stump. Faith (Ideology): tree
     connection, nature first and Alpha Memes' Gauranlen supremacy.
   -->
 
@@ -67,7 +67,7 @@
     </xenotypeSet>
     <fixedIdeo>true</fixedIdeo>
     <ideoName>The Owed Seedling</ideoName>
-    <ideoDescription>The forest remembers every axe, and every tree felled owes the world a seedling. The grove comes before the people who live in it; the great trees are the eldest of all, and those who can hear them, through the Gauranlen and its dryads, are listened to before anyone. The dead are given back to the ground under a sapling, so that each of the Mossborn becomes the grove in the end. Elin Sedge planted an acorn beside every stump of her valley after the war, and was buried under the last of them.</ideoDescription>
+    <ideoDescription>The forest remembers every axe, and every tree felled owes the world a seedling. The grove comes before the people who live in it; the great trees are the eldest of all, and those who can hear them, through the Gauranlen and its dryads, are listened to before anyone. The dead are given back to the ground under a sapling, so that each of the Mossborn becomes the grove in the end. When the war had cut the valley bare, its people set an acorn beside every stump, and she who began the planting lies under the last sapling she set.</ideoDescription>
     <forcedMemes>
       <li MayRequire="Ludeon.RimWorld.Ideology">TreeConnection</li>
       <li MayRequire="Ludeon.RimWorld.Ideology">NaturePrimacy</li>
@@ -572,7 +572,7 @@
         <li>groveWord->Seed Vault</li>
         <li>groveWord->Burial Grove</li>
         <li>groveWord->Green Hall</li>
-        <li>groveVirtue->Sedge's</li>
+        <li>groveVirtue->Planter's</li>
         <li>groveVirtue->Mossback</li>
         <li>groveVirtue->Old Oak</li>
         <li>groveVirtue->Acorn</li>

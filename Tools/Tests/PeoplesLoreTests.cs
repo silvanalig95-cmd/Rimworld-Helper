@@ -18,23 +18,43 @@ using ColonyCouncil;
 public static class PeoplesLoreTests
 {
     /// <summary>
-    /// The founder each people's ways began with, as its page and talk name them. Its description tells its history in a
-    /// shape of its own and names the founder only where that people would (the player, 14 November 2026: "it's always one
-    /// named individual who started the faction somehow").
+    /// The six peoples who keep their founder's name in a custom (Aldith's lamp, Tamsa's count, Old Brannoc's walk, Tobin
+    /// Garrow's lantern, Nessa Pell's challenges, Captain Imre Sallow's order). The other seventeen tell what happened, and
+    /// no text of theirs names a founder (the player, 14 November 2026: "it's always one named individual who started the
+    /// faction somehow"; their own texts made to agree, 20 November 2026).
     /// </summary>
     private static readonly Dictionary<string, string> Founders = new()
     {
-        ["healers"] = "Aldith", ["herders"] = "Tamsa", ["traders"] = "Edda Vane", ["pilgrims"] = "Old Brannoc", ["scholars"] = "Ilse Varro",
-        ["brokers"] = "Ines Okoro", ["fishers"] = "Wenna Reed",
-        // Release D's.
-        ["hunters"] = "Tobin Garrow", ["sextons"] = "Ysolde Marr", ["tamers"] = "Nessa Pell", ["salvagers"] = "Mab Wainwright",
-        // Release E's.
-        ["seers"] = "Hesper Lyle", ["grovekeepers"] = "Elin Sedge", ["mercenaries"] = "Corra Mallin", ["artisans"] = "Oswin Kell",
-        // Release F's.
-        ["linesmen"] = "Ennis Calloway", ["drillers"] = "Marta Grieve", ["citizens"] = "Clement Ashdown", ["crew"] = "Imre Sallow",
-        // Release G's.
-        ["editors"] = "Orla Venn", ["mechanitors"] = "Tamsin Arro", ["listeners"] = "Ilsabet Ruen", ["vaultfolk"] = "Hollis Crane"
+        ["healers"] = "Aldith", ["herders"] = "Tamsa", ["pilgrims"] = "Old Brannoc", ["hunters"] = "Tobin Garrow", ["tamers"] = "Nessa Pell", ["crew"] = "Imre Sallow"
     };
+
+    /// <summary>
+    /// A word of each people's beginning, as its description tells it: its faith, its talk of how their ways began and its
+    /// Almanac page tell the same history, each in its own voice.
+    /// </summary>
+    private static readonly Dictionary<string, string> Beginnings = new()
+    {
+        ["healers"] = "Aldith", ["herders"] = "Tamsa", ["traders"] = "Harrow Ford", ["pilgrims"] = "Brannoc", ["scholars"] = "Hesk", ["brokers"] = "hauler",
+        ["fishers"] = "ferries",
+        // Release D's.
+        ["hunters"] = "Garrow", ["sextons"] = "cracked chapel bell", ["tamers"] = "Pell", ["salvagers"] = "carts",
+        // Release E's.
+        ["seers"] = "glassblower", ["grovekeepers"] = "acorn", ["mercenaries"] = "king", ["artisans"] = "Hardwater",
+        // Release F's.
+        ["linesmen"] = "copper", ["drillers"] = "vote", ["citizens"] = "postmaster", ["crew"] = "Sallow",
+        // Release G's.
+        ["editors"] = "vats", ["mechanitors"] = "deserter", ["listeners"] = "generation", ["vaultfolk"] = "overseer"
+    };
+
+    /// <summary>The founders the seventeen once named, which no def, patch or keyed text names any more.</summary>
+    private static readonly string[] Unnamed =
+    {
+        "Edda Vane", "Ilse Varro", "Okoro", "Wenna Reed", "Ysolde Marr", "Marr's", "Mab Wainwright", "Wainwright's", "Hesper Lyle", "Lyle's", "Elin Sedge",
+        "Sedge's", "Mallin", "Oswin Kell", "Kell's", "Kell cut", "Calloway", "Marta Grieve", "Grieve's", "Clement Ashdown", "Ashdown", "Orla Venn", "Venn's",
+        "Tamsin Arro", "Arro's", "Ilsabet Ruen", "Ruen's", "Hollis Crane", "Crane's"
+    };
+
+    private static bool Says(string text, string word) => text.IndexOf(word, StringComparison.OrdinalIgnoreCase) >= 0;
 
     /// <summary>
     /// The exclusion tags of every meme the seven name (read from Ideology's, Vanilla Ideology Expanded - Memes' and Alpha
@@ -118,7 +138,7 @@ public static class PeoplesLoreTests
         XElement Ext(XElement d, string cls) => d.Element("modExtensions")?.Elements("li").FirstOrDefault(li => li.Attribute("Class")?.Value == "ColonyCouncil." + cls);
         var factions = Directory.GetFiles(Path.Combine(root, "Defs", "PeopleDefs"), "Rimfolk_People_*.xml").SelectMany(f => XDocument.Load(f).Root!.Elements("FactionDef"))
             .ToDictionary(f => Ext(f, "PeopleExtension")!.Element("calling")!.Value);
-        C(factions.Count == 23 && Founders.Keys.All(factions.ContainsKey), "twenty-three peoples, each with a founding");
+        C(factions.Count == 23 && Beginnings.Keys.All(factions.ContainsKey) && Founders.Keys.All(Beginnings.ContainsKey), "twenty-three peoples, each with a beginning, six with a founder by name");
         string Body(string line) => Regex.Replace(line, @"^\[[^\]]*\]\s*", "").Trim();
         foreach (var (calling, f) in factions)
         {
@@ -128,7 +148,10 @@ public static class PeoplesLoreTests
             C(paras.Length >= 2 && paras.All(para => Regex.IsMatch(para.TrimEnd(), @"[.]""?$")) && desc.Length <= 1200 && !desc.Contains("Their ways began")
               && !desc.Contains('—') && !desc.Contains('!') && Regex.IsMatch(desc, @"\b(tribal|medieval|industrial|spacer)\b", RegexOptions.IgnoreCase),
                 $"{name}: a description of its own in plain words, no longer than it was, saying the age it lives in");
-            C((f.Element("ideoDescription")?.Value ?? "").Length > 250, $"{name}: its creed tells something of its founding too");
+            string creed = f.Element("ideoDescription")?.Value ?? "";
+            C(creed.Length > 250 && Says(creed, Beginnings[calling]), $"{name}: its creed tells something of its founding too, the description's own ({Beginnings[calling]})");
+            C(Says(desc, Beginnings[calling]) && (!Founders.TryGetValue(calling, out var who) || desc.Contains(who) && creed.Contains(who)),
+                $"{name}: the description tells the same beginning, and names the founder where the people keep the name");
             var ext = Ext(f, "PeopleExtension")!;
             string honours = ext.Element("honours")?.Value ?? "", fears = ext.Element("fears")?.Value ?? "";
             var sayings = ext.Element("sayings")?.Elements("li").Select(li => li.Value).ToList() ?? new List<string>();
@@ -163,6 +186,7 @@ public static class PeoplesLoreTests
                 Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_PeoplesF.xml"), Path.Combine(root, "Defs", "IncidentDefs", "Rimfolk_Events_PeoplesF.xml"),
                 Path.Combine(root, "Defs", "OutsiderTalkDefs", "Rimfolk_OutsiderTalks_PeoplesG.xml"), Path.Combine(root, "Defs", "IncidentDefs", "Rimfolk_Events_PeoplesG.xml") })
             .Select(File.ReadAllText).Aggregate((a, b) => a + "\n" + b).ToLowerInvariant().Replace("&apos;", "'");
+        var foundings = new List<string>();
         foreach (var (calling, f) in factions)
         {
             string tag = PeoplesMath.Tag(calling)!;
@@ -176,11 +200,25 @@ public static class PeoplesLoreTests
             var outs = Pool("Rimfolk_Pool_OutsiderSays").Where(l => l.Contains(tag)).ToList();
             C(new[] { "chat", "endwarm", "faithtalk" }.All(m => outs.Any(l => l.StartsWith("[" + m + ",them,"))), $"{calling}: their words face to face, their faith's among them");
             var mine = talks.Where(t => (t.Element("when")?.Value ?? "").Split(',').Contains(tag)).ToList();
-            C(mine.Count >= 3 && mine.Any(t => t.Element("uses")!.Value.Contains("know") && t.Descendants("li").Count() >= 5
-                                                && t.Descendants("li").Any(li => li.Value.Contains(Founders[calling].Split(' ').Last()))),
-                $"{calling}: three new pieces of talk, one of them telling how their ways began");
+            var piece = mine.Where(t => t.Element("uses")!.Value == "chat,know" && t.Descendants("li").Count() >= 5).ToList();
+            C(mine.Count >= 3 && piece.Count == 1 && piece[0].Descendants("li").Any(li => Says(li.Value, Beginnings[calling]))
+              && (!Founders.TryGetValue(calling, out var founder) || piece[0].Descendants("li").Any(li => li.Value.Contains(founder.Split(' ').Last()))),
+                $"{calling}: three new pieces of talk, one of them telling how their ways began as the description does ({Beginnings[calling]})");
+            foundings.Add(Body(piece.FirstOrDefault()?.Element("lines")?.Elements("li").FirstOrDefault()?.Value ?? ""));
             var sayings = Ext(f, "PeopleExtension")!.Element("sayings")!.Elements("li").Select(li => li.Value.TrimEnd('.').ToLowerInvariant()).ToList();
             C(sayings.Count(s => lore.Contains(s)) >= 2, $"{calling}: their sayings are said in their lines");
+        }
+        C(foundings.Count == 23 && foundings.Select(o => string.Join(" ", o.Split(' ').Take(3))).Distinct().Count() == 23,
+            "each people's talk of how their ways began opens its own way");
+
+        // No def, patch or keyed text names a founder a description no longer has.
+        var everyText = new[] { "Defs", "Patches", Path.Combine("Languages", "English") }
+            .SelectMany(d => Directory.GetFiles(Path.Combine(root, d), "*.xml", SearchOption.AllDirectories))
+            .Select(p => (p, text: File.ReadAllText(p).Replace("&apos;", "'"))).ToList();
+        foreach (var gone in Unnamed)
+        {
+            var where = everyText.Where(x => Regex.IsMatch(x.text, @"\b" + Regex.Escape(gone) + @"\b")).Select(x => Path.GetFileName(x.p)).ToList();
+            C(where.Count == 0, $"no text names {gone} any more ({string.Join(", ", where)})");
         }
         var disputation = lines.Elements("ColonyCouncil.FlavorPoolDef").Single(e => Dn(e) == "Rimfolk_Pool_PlayDisputation");
         C(disputation.Descendants("li").Count() >= 8, "the night of the fire has its own words");
@@ -288,7 +326,14 @@ public static class PeoplesLoreTests
         string pages = Page("Almanac_Peoples.xml") + Page("Almanac_PeoplesC.xml") + Page("Almanac_PeoplesD.xml") + Page("Almanac_PeoplesE.xml") + Page("Almanac_PeoplesF.xml")
                        + Page("Almanac_PeoplesG.xml");
         string design = File.ReadAllText(Path.Combine(root, "docs", "design", "peoples.md"));
-        C(Founders.Values.All(pages.Contains) && Founders.Values.All(design.Contains), "every founding on the Almanac's pages and in the design");
+        C(Founders.Values.All(pages.Contains) && Founders.Values.All(design.Contains) && Beginnings.Values.All(w => Says(pages, w) && Says(design, w)),
+            "every beginning on the Almanac's pages and in the design, the six founders by name");
+        // Each page's "Where their ways began" tells every people its own way: no two of the twenty-three open alike.
+        var began = new[] { "Almanac_Peoples.xml", "Almanac_PeoplesC.xml", "Almanac_PeoplesD.xml", "Almanac_PeoplesE.xml", "Almanac_PeoplesF.xml", "Almanac_PeoplesG.xml" }
+            .SelectMany(x => XDocument.Load(Path.Combine(root, "Defs", "AlmanacArticleDefs", x)).Descendants("li").Where(li => li.Element("heading")?.Value == "Where their ways began"))
+            .SelectMany(s => s.Element("points")!.Elements("li").Select(li => li.Value)).ToList();
+        C(began.Count == 23 && began.Select(b => string.Join(" ", b.Split(' ').Take(3))).Distinct().Count() == 23 && began.Select(b => b.Length).Distinct().Count() >= 20,
+            "the pages tell where each people's ways began, twenty-three ways, none opening like another");
         C(pages.Contains("Where their ways began") && pages.Contains("bed to bed") && pages.Contains("winter quarters") && pages.Contains("walking day") && pages.Contains("night of the fire")
           && pages.Contains("salvage") && pages.Contains("nets") && pages.Contains("young beast"), "and every new touchpoint");
 

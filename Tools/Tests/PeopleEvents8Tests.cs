@@ -47,6 +47,29 @@ public static class PeopleEvents8Tests
         C(PeopleEvents8Math.MedalChance <= 0.5f && PeopleEvents8Math.MedalGapDays >= 20 && PeopleEvents8Math.CitationTicks == 2500 && PeopleEvents8Math.MaxMedalDeeds >= 6,
             "not every deed; an hour's citation");
 
+        // ================= Meeting at the gate (the player's report, 20 November 2026) =================
+
+        var step = new Func<bool, bool, int, int, int, PeopleEvents8Math.MeetStep>(PeopleEvents8Math.Step);
+        C(step(false, true, 10 * H, 20 * H, 0) == PeopleEvents8Math.MeetStep.Gone && step(false, false, 30 * H, 20 * H, 9) == PeopleEvents8Math.MeetStep.Gone,
+            "the visitor gone: nobody to do it");
+        C(step(true, true, 10 * H, 20 * H, 0) == PeopleEvents8Math.MeetStep.Wait && step(true, true, 20 * H, 20 * H, PeopleEvents8Math.MeetSends) == PeopleEvents8Math.MeetStep.Wait,
+            "under way while the hours last: left alone");
+        C(step(true, false, 10 * H, 20 * H, 0) == PeopleEvents8Math.MeetStep.Again && step(true, false, 10 * H, 20 * H, PeopleEvents8Math.MeetSends - 1) == PeopleEvents8Math.MeetStep.Again,
+            "stopped (the colonist pulled away by a meal or a fight): set going again");
+        C(step(true, false, 10 * H, 20 * H, PeopleEvents8Math.MeetSends) == PeopleEvents8Math.MeetStep.GiveUp && step(true, true, 20 * H + 1, 20 * H, 0) == PeopleEvents8Math.MeetStep.GiveUp
+          && step(true, false, 21 * H, 20 * H, 0) == PeopleEvents8Math.MeetStep.GiveUp, "the hours or the sends out: it ends, said as it is");
+        C(PeopleEvents8Math.MeetSends >= 2 && PeopleEvents8Math.MeetWaitTicks >= 2 * H && PeopleEvents8Math.MeetWaitTicks * PeopleEvents8Math.MeetSends >= 8 * H,
+            "the visitor waits at the gate long enough, sent again, to fill the visit's hours");
+        C(PeopleEvents8Math.Met(0f) && PeopleEvents8Math.Met(PeopleEvents8Math.MeetRange) && !PeopleEvents8Math.Met(PeopleEvents8Math.MeetRange + 0.5f) && !PeopleEvents8Math.Met(float.NaN),
+            "met: within four cells");
+        bool ringNear = true;
+        for (int i = 0; i < PlayOutMath.RingCount; i++)
+        {
+            PlayOutMath.RingOffset(i, out int dx, out int dz);
+            ringNear &= (dx != 0 || dz != 0) && PeopleEvents8Math.Met((float)Math.Sqrt(dx * dx + dz * dz));
+        }
+        C(ringNear, "each place to stand round the meeting place is near enough to count as met, and none is the place itself");
+
         // ================= 73. A fugitive of the Republic =================
 
         C(PeopleEvents8Math.Fine(1f) == 250 && PeopleEvents8Math.Fine(0.1f) == 150 && PeopleEvents8Math.Fine(9f) == 500 && PeopleEvents8Math.Fine(float.NaN) == 250, "the fine by the colony's wealth, within reason");
@@ -298,6 +321,21 @@ public static class PeopleEvents8Tests
           && code.Contains("DilemmaEffect_") && code.Contains("CampTracker.About(") && code.Contains("Couriers.PaySilver(") && code.Contains("GeneUtility.UpdateXenogermReplication(")
           && code.Contains("GetNextAncientCryptosleepCasketGroupID()") && code.Contains("PeopleEvents.MayGive(") && code.Contains("PeopleEventsBook.Gave("),
             "the shapes reused: round G's gene work, sample and gene fault, the deeds, the radio and the papers, the election, the camps' asks, the couriers, the game's own xenogerm mark, a casket apart from its group, the gifts' rule");
+        string medal = Read("Peoples", "Events8", "RepublicMedal.cs");
+        string medalBegin = Regex.Match(medal, @"public static void Begin\(HappeningContext ctx, bool gather\)(.*?)\n        \}", RegexOptions.Singleline).Groups[1].Value;
+        C(medalBegin.Contains("PeopleEvents8.MeetSpot(x, map)") && medalBegin.Contains("PeopleEvents8.Meet(v, PeopleEvents8.CitationJob") && !medalBegin.Contains("Errand(")
+          && Regex.Matches(medalBegin, @"\bAward\(v\)").Count == 1 && medalBegin.Contains("if (!PlayOuts.On)"),
+            "the medal: the colonist walks out to the clerk at the gate, the clerk never sent into the colony to them; given at once only with the play-outs off");
+        C(medal.Contains("case PeopleEvents8Math.MeetStep.Again:") && medal.Contains("Left(v);") && medal.Contains("\"CC_PEv8_MedalLeft\"") && !Regex.IsMatch(medal, @"default:\s*Award\(v\)"),
+            "the medal's hour: sent again, else the clerk goes home and the words say so; never pinned on unseen");
+        string eight = Read("Peoples", "Events8", "PeopleEvents8.cs");
+        C(eight.Contains("Toils_Goto.GotoCell(TargetIndex.B, PathEndMode.OnCell)") && eight.Contains("\"PEv8Meet\"") && eight.Contains("PeopleEvents8Math.MeetWaitTicks")
+          && eight.Contains("!pawn.CanReach(job.targetA, PathEndMode.Touch, Danger.Some)"), "the work job: a meeting place first, and a target behind a barred door passed over");
+        C(Read("Peoples", "Events8", "GeneTakenOut.cs").Contains("PeopleEvents8.WorkOn(v, PeopleEvents8.GeneOutJob") && Read("Peoples", "Events8", "WholeXenogerm.cs").Contains("PeopleEvents8.WorkOn(v, PeopleEvents8.XenogermJob")
+          && eight.Contains("return Meet(v, job, ticks);") && eight.Contains("\"CC_PEv8_WorkUndonePaid\""), "the Works' work: straight to the colonist, else they walk out to the sequencer; not done in time, said so and the payment left");
+        C(Read("Visitors", "KeepOut.cs").Contains("PeopleErrands.Ways(v)") && Read("Peoples", "PeopleErrands.cs").Contains("case GravshipLog.Kind:")
+          && Read("Peoples", "Events8", "VoteObserver.cs").Contains("Where(p => x.CanReach(p, PathEndMode.Touch, Danger.Some))"),
+            "the errands into the colony: the ship's rooms open to the officers for their walk; the roll passes over a voter the clerk can't get to");
         var harms = Regex.Matches(code, @"Harm\.(Roll|Ail|Injure|Fight)\(([^;]*?)HarmKinds\.(\w+)").Select(mm => mm.Groups[3].Value).Distinct().OrderBy(x => x).ToList();
         C(harms.SequenceEqual(new[] { "CampBrawl", "CampFever", "DroversBull" }) && !Regex.IsMatch(code, @"TakeDamage") && code.Contains("IllnessBudget.Allows(") && code.Contains("HarmBook.Instance?.Came(HarmKinds.DroversBull"),
             "no harm kind of their own: the queue at the camp brawl's rate, the sleeper's and the vat-grown's illness the camps' fever, the lab's beast the camps' beasts' kind");

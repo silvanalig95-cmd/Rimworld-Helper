@@ -78,7 +78,7 @@
       <li>[watch] The glass is clouding, it will not be long.</li>
     </momentLines>
     <helpTexts>
-      <li>[tales] {A_nameDef} sat with the readers by their fire and heard how Hesper Lyle read a frost in the glass a week before it came.</li>
+      <li>[tales] {A_nameDef} sat with the readers by their fire and heard how a glassblower whose village lost its harvest to hail learned to read a frost in the glass a week before it came.</li>
     </helpTexts>
     <asks>
       <li>
@@ -187,7 +187,7 @@
       <li>[fire] It has caught again, get the beaters.</li>
     </momentLines>
     <helpTexts>
-      <li>[tales] {A_nameDef} sat with the grove-keepers by their fire and heard how Elin Sedge planted an acorn beside every stump in a valley the war had cut down.</li>
+      <li>[tales] {A_nameDef} sat with the grove-keepers by their fire and heard how the first grove was planted, an acorn beside every stump in a valley the war had cut down.</li>
     </helpTexts>
     <asks>
       <li>

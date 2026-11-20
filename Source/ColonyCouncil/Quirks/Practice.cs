@@ -6,7 +6,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// What one colonist has been doing lately, by the hour: each kind of work (the work tab's), time up and busy in the
-    /// small hours and in the early morning, and time out under the open sky. Looked at once an hour (an hour at it counts one), and each day it all fades a little, so it
+    /// small hours and in the early morning, time out under the open sky, and time under a rock roof (a mountain's, mined
+    /// out or overhead). Looked at once an hour (an hour at it counts one), and each day it all fades a little, so it
     /// holds about the last three weeks. Habits come sooner to those who do the matching work and stay while they keep
     /// at it (Quirks.cs); a few trait changes read it too (a night owl after weeks of night work).
     /// </summary>
@@ -23,6 +24,8 @@ namespace ColonyCouncil
         public float morning;
         /// <summary>Hours awake out under the open sky.</summary>
         public float outdoors;
+        /// <summary>Hours awake under a rock roof: the mountain's own, thin or overhead (the mountain lover, Persona/TraitChanges.cs).</summary>
+        public float rock;
 
         public const int MaxKinds = 8;
 
@@ -71,9 +74,10 @@ namespace ColonyCouncil
             work *= PracticeMath.KeepPerDay;
             morning *= PracticeMath.KeepPerDay;
             outdoors *= PracticeMath.KeepPerDay;
+            rock *= PracticeMath.KeepPerDay;
         }
 
-        public bool Empty => kinds.Count == 0 && night < 0.25f && work < 0.25f && morning < 0.25f && outdoors < 0.25f;
+        public bool Empty => kinds.Count == 0 && night < 0.25f && work < 0.25f && morning < 0.25f && outdoors < 0.25f && rock < 0.25f;
 
         public void ExposeData()
         {
@@ -84,6 +88,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref work, "work");
             Scribe_Values.Look(ref morning, "morning");
             Scribe_Values.Look(ref outdoors, "outdoors");
+            Scribe_Values.Look(ref rock, "rock");
             if (Scribe.mode == LoadSaveMode.PostLoadInit && (kinds == null || hours == null || kinds.Count != hours.Count))
             {
                 kinds = new List<string>();
@@ -94,11 +99,12 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Reading the practice logs (kept by the quirks, Quirks.cs): by work type's defName, or "work" (any work), "night"
-    /// (the small hours), "morning" (early, up and busy) and "outdoors" (awake under the open sky).
+    /// (the small hours), "morning" (early, up and busy), "outdoors" (awake under the open sky) and "rock" (awake under a
+    /// rock roof).
     /// </summary>
     public static class Practice
     {
-        public static readonly string[] Special = { "work", "night", "morning", "outdoors" };
+        public static readonly string[] Special = { "work", "night", "morning", "outdoors", "rock" };
 
         public static bool IsKnown(string what) => !what.NullOrEmpty() && (System.Array.IndexOf(Special, what) >= 0 || DefDatabase<WorkTypeDef>.GetNamedSilentFail(what) != null);
 
@@ -113,6 +119,7 @@ namespace ColonyCouncil
                 case "night": return log.night;
                 case "morning": return log.morning;
                 case "outdoors": return log.outdoors;
+                case "rock": return log.rock;
                 default: return log.Of(what);
             }
         }

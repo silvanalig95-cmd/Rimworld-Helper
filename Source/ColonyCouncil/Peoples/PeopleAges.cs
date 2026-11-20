@@ -47,8 +47,9 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// The peoples' ages as they change, kept with the game: one record a people of Rimfolk's, made the first time the
-    /// region's day looks at it, at most <see cref="PeopleAgesMath.MaxRecords"/> (a people gone from the world goes first).
+    /// The peoples' ages as they change, kept with the game: one record a people of Rimfolk's (and a people of another mod
+    /// Rimfolk knows, Peoples/Foreign/), made the first time the region's day looks at it, at most
+    /// <see cref="PeopleAgesMath.MaxRecords"/> (a people gone from the world goes first).
     /// A save from before has none: each people begins in the age it lives in.
     /// </summary>
     public class PeopleAgeBook : GameComponent
@@ -130,8 +131,9 @@ namespace ColonyCouncil
 
     /// <summary>
     /// Peoples whose age changes (docs/design/peoples-third.md, "Ages that change over time"; DESIGN.md, "Peoples whose
-    /// age changes"). Once a season, each of Rimfolk's peoples (and each that arose in their ways) is looked at on a day of
-    /// its own, on the region's day (RegionBook.Daily; no Sched slot), and moves toward its next age or back by the one
+    /// age changes"). Once a season, each of Rimfolk's peoples (and each that arose in their ways, and each people of another
+    /// mod Rimfolk knows: <see cref="Kept"/>) is looked at on a day of its own, on the region's day (RegionBook.Daily; no
+    /// Sched slot), and moves toward its next age or back by the one
     /// rule (<see cref="PeopleAgesMath.Season"/>), from what Rimfolk already records over the past year: the colony's
     /// trade with it (the trade record, and the peoples' memory of fair trades), its gifts of books, techprints,
     /// components and tools (the memory's "gaveLearning"), theirs who learned at the colony (apprentices hosted, wards
@@ -148,6 +150,12 @@ namespace ColonyCouncil
 
         private static int Now => Find.TickManager?.TicksGame ?? 0;
 
+        /// <summary>
+        /// A people whose age Rimfolk keeps: one of its own (and every one that arose in their ways), or another mod's people
+        /// it knows (Peoples/Foreign/, the dark elves: the player, 20 November 2026, "foreign peoples change [age] at their pace").
+        /// </summary>
+        public static bool Kept(Faction f) => f != null && !f.IsPlayer && (Peoples.IsOurs(f) || ForeignPeoples.Has(f));
+
         /// <summary>The age a people lives in now, given the age it began in: its record's, with the setting on.</summary>
         public static int AgeOf(Faction f, int began)
         {
@@ -156,11 +164,11 @@ namespace ColonyCouncil
             return r != null && r.age >= 0 ? r.age : began;
         }
 
-        /// <summary>A people of Rimfolk's in the world, its record made the first time it is asked for.</summary>
+        /// <summary>A people whose age Rimfolk keeps, in the world, its record made the first time it is asked for.</summary>
         public static PeopleAgeRecord Ensure(Faction f)
         {
             var book = PeopleAgeBook.Instance;
-            if (book == null || f == null || f.defeated || !Peoples.IsOurs(f)) return null;
+            if (book == null || f == null || f.defeated || !Kept(f)) return null;
             var r = book.Of(f);
             if (r != null) return r;
             int began = Peoples.BeganIn(f);
@@ -169,11 +177,25 @@ namespace ColonyCouncil
             return r;
         }
 
-        /// <summary>A people's ways for its record: its template's, from the age it began in.</summary>
+        /// <summary>
+        /// A people's ways for its record: its template's, from the age it began in; another mod's people's from its profile,
+        /// no further than its roles are armed for (ForeignPeoples.Ways).
+        /// </summary>
         public static AgeWays Ways(Faction f, PeopleAgeRecord r)
         {
+            int start = r?.start ?? Peoples.BeganIn(f);
             var ext = Peoples.Of(f);
-            return ext?.Ways(r?.start ?? Peoples.BeganIn(f)) ?? new AgeWays { pace = 12f, limit = 2, floor = 0 };
+            if (ext != null) return ext.Ways(start);
+            if (ForeignPeoples.Has(f)) return ForeignPeoples.Ways(f, start);
+            return new AgeWays { pace = 12f, limit = 2, floor = 0 };
+        }
+
+        /// <summary>Their head's words in the letter of a change of age: by their calling, or another mod's people's own (CC_PeopleAge_Voice_*), or null.</summary>
+        public static string VoiceKey(Faction f, bool rise)
+        {
+            string calling = Peoples.CallingOf(f);
+            if (!calling.NullOrEmpty()) return "CC_PeopleAge_Voice_" + calling + (rise ? "_Rise" : "_Fall");
+            return ForeignPeoples.VoiceKey(f, rise);
         }
 
         // ================= The region's day =================
@@ -186,7 +208,7 @@ namespace ColonyCouncil
             int day = now / PeopleAgesMath.DayTicks;
             foreach (var f in Find.FactionManager.AllFactionsListForReading.ToList())
             {
-                if (f == null || f.defeated || f.IsPlayer || !Peoples.IsOurs(f)) continue;
+                if (f == null || f.defeated || f.IsPlayer || !Kept(f)) continue;
                 var r = Ensure(f);
                 if (r == null || !PeopleAgesMath.LookDay(day, f.loadID)) continue;
                 if (r.looked >= 0 && now - r.looked < (PeopleAgesMath.SeasonDays - 1) * PeopleAgesMath.DayTicks) continue;

@@ -80,12 +80,16 @@ namespace ColonyCouncil
             v.stake = radio != null ? 1 : 0;
             v.text = call + "|" + (kind?.defName ?? "") + "|" + (to?.GetUniqueLoadID() ?? "");
             v.due = -1;
+            // The operator's way to the radio counts from now, through a room visitors otherwise keep out of (KeepOut, PeopleErrands).
+            if (radio != null && PlayOuts.On) KeepOut.Refresh(map);
             if (radio != null && PlayOuts.On && PeoplesE.Up(x, map) && x.CanReach(radio, PathEndMode.Touch, Danger.Some))
             {
                 Lords.Leave(x);
                 LordMaker.MakeNewLord(x.Faction, new LordJob_VisitOnErrand(x.Faction, radio.Position, 3 * GenDate.TicksPerHour), map, new List<Pawn> { x });
                 if (PeopleEvents7.Send(x, PeopleEvents7.CallJob, radio, PeopleEvents7Math.CallTicks)) return;
             }
+            // With the play-outs on, a radio the operator couldn't get to isn't used: the call goes by runner, and the words say so.
+            if (PlayOuts.On) v.stake = 0;
             Sent(v);
         }
 
@@ -118,6 +122,8 @@ namespace ColonyCouncil
             if (v.due < 0)
             {
                 if (v.x != null && v.x.Spawned && v.x.CurJobDef == PeopleEvents7.CallJob && now < v.until) return true;
+                // Kept from the radio before the call was made: it goes by runner (the hour at the radio done calls Sent itself).
+                v.stake = 0;
                 Sent(v);
                 return true;
             }

@@ -5,6 +5,40 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Each people's own beginning
+
+*20 November 2026, version 0.277.2*
+
+- Each people's faith, its talk at the gate and its Almanac page now tell the same history as its description, and only the six peoples who keep a founder's name still name one.
+- Every people's beginning is told its own way: the league's nine wagons at Harrow Ford, the Deepwell vote, the Kiln Guild's marked bridge, the Choir's generations at the Spire.
+- New towns and peoples no longer take the old founders' names.
+
+## New traits from a life lived
+
+*20 November 2026, version 0.277.1*
+
+- A doctor who nurses someone through a dangerous illness is marked by it: it counts toward kindness and toward getting over squeamishness, and three patients pulled through can bring healer's hands.
+- New traits can come with time: a perfectionist after a run of fine work, a dog or cat person after a year with their animal, a fisherman after long days at the water, and a mountain lover after a year under the rock.
+- Rarely, and only from what already happened: wanderlust after seasons away, desensitized after costly fights and many burials (it fades after a long peace), a drunken master in a brawler who held the line drunk, and an occultist after long dark study.
+- Marks still on the character page now count toward these changes, so a masterwork made before this update is not lost.
+
+## Radio and the ages of other peoples
+
+*20 November 2026, version 0.277.0*
+
+- The comms console now calls only peoples whose age has a radio, the industrial and spacer ages or a people with a town near the Signal Line's masts; the others are listed greyed with how a letter reaches them, and a setting keeps the game's way.
+- The dark elves (the Stormriders) now change age over the years like Rimfolk's own peoples: eleven years an age, sooner with your trade, gifts and alliance, and no further than the industrial age.
+- Once they reach the industrial age, their Darkshards carry repeating guns with an ammo pack, their Dark Riders a light gun, and their Dreadspears and Black Guard a belt of frag grenades, from the weapons in your mods; their traders carry that age's goods and the comms console reaches them.
+- A pact called in, a ransom, a favour and a truce by radio follow the same rule as the letters, so the Signal Line's masts carry those calls too.
+
+## The medal at the gate
+
+*20 November 2026, version 0.276.2*
+
+- The Republic's medal is read at the gate: the colonist walks out to the clerk, with everyone free if you asked, and if they can't get out in time the clerk goes home and the message says so.
+- Visitors sent to someone or something inside the colony (the Works' gene work, the master's judging, the radio call, the casket, the ship's walk, the listener and the warden) no longer finish unseen behind a shut bedroom door: the colonist comes out to them, the colony lets them through, or the message says what happened.
+- What a dead colonist leaves, their heirloom and their room, goes to whoever was closest to them, a partner, a friend or a relative, never to blood kin first.
+
 ## Every bad trait can fade
 
 *20 November 2026, version 0.276.1*

@@ -118,7 +118,9 @@ namespace ColonyCouncil
             }
             if (v.map.dangerWatcher.DangerRating != StoryDanger.None) return true;
             var taken = new HashSet<Thing>(crew.Where(Busy).SelectMany(p => (p.CurJob.targetQueueA ?? new List<LocalTargetInfo>()).Select(q => q.Thing).Prepend(p.CurJob.targetA.Thing)).Where(x => x != null));
-            var damaged = Damaged(v.map).Where(b => !taken.Contains(b)).ToList();
+            // Only what the crew can get to: a building in a room visitors keep out of (a bedroom, a cold store) is left alone, so it
+            // never holds a mender up all night, and with nothing else left they go.
+            var damaged = Damaged(v.map).Where(b => !taken.Contains(b) && crew[0].CanReach(b, PathEndMode.Touch, Danger.Some)).ToList();
             var gear = v.text == "gear" ? Gear(v.map).Where(g => !taken.Contains(g)).ToList() : new List<Thing>();
             var runner = gear.Count > 0 && crew.Count > 1 ? crew[crew.Count - 1] : null;
             if (damaged.Count == 0 && gear.Count == 0 && !crew.Any(Busy))

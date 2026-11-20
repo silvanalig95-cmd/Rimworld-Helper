@@ -5,8 +5,8 @@
     Talk with release G's peoples (docs/design/peoples.md, "Release G"; the facts service's their:CALLING tags): how their
     ways began, what they honour, what they fear, and their work, beside release F's in Rimfolk_OutsiderTalks_PeoplesF.xml;
     the format is in Rimfolk_OutsiderTalks_Greetings.xml's header. A founding is told as the story of their ways (the
-    vats kept warm, the first ten linked, the night at the Spire, the seal broken), so a people that arose and took those
-    ways can tell it too. Each in its own voice: the Works of the edit and the ledger, the Lattice of the link and the
+    vats kept warm, the first ten linked, the generations at the Spire, the seal broken), so a people that arose and took
+    those ways can tell it too. Each in its own voice: the Works of the edit and the ledger, the Lattice of the link and the
     quiet, the Choir of the hum and the listening, the Vault of the seal and the count.
   -->
 
@@ -18,12 +18,12 @@
     <uses>chat,know</uses>
     <when>their:editors</when>
     <lines>
-      <li>[us] What is the little helix pin on your collar?</li>
-      <li>[them] It is the first mark in the Works' ledger, Orla Venn's.</li>
-      <li>[us] Who was she?</li>
-      <li>[them] The eldest the lab ever grew, who kept the vats warm when the founders fled.</li>
-      <li>[us] And then?</li>
-      <li>[them] She read their notes aloud to the rest of us and taught us to edit what we were given.</li>
+      <li>[us] Were you really grown in a vat?</li>
+      <li>[them] Most of us were, in a lab whose founders fled a plague in the vats.</li>
+      <li>[us] Who looked after you?</li>
+      <li>[them] We kept the vats warm ourselves through the winter, and read the founders' notes.</li>
+      <li>[us] And learned from them?</li>
+      <li>[them] Enough to edit what we were given, and every change since is in the ledger.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -76,11 +76,11 @@
     <when>their:mechanitors</when>
     <lines>
       <li>[us] Why is there a lattice on your hood?</li>
-      <li>[them] For the first lattice, where a hundred mechs stood still round their fallen commander.</li>
+      <li>[them] For the first, on a battlefield where a hundred mechs stood round their fallen commander.</li>
       <li>[us] Who linked them?</li>
-      <li>[them] Tamsin Arro, a deserter with a mechlink, who walked out among them and took the first ten.</li>
-      <li>[us] Only ten?</li>
-      <li>[them] Then she taught three others to take ten each, and their minds began to share a quiet.</li>
+      <li>[them] A deserter with a mechlink, who took ten into her own mind and taught three others to.</li>
+      <li>[us] And then?</li>
+      <li>[them] Those linked through the same mechs could sense each other, so they stayed together.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -133,11 +133,11 @@
     <when>their:listeners</when>
     <lines>
       <li>[us] How did your people come to the Spire?</li>
-      <li>[them] A herder called Ilsabet Ruen lay down one night at its foot and woke able to hear it.</li>
-      <li>[us] Hear what?</li>
-      <li>[them] The hum, which is the Spire thinking.</li>
-      <li>[us] And the others?</li>
-      <li>[them] They came to sit with her, and their children were born hearing it too.</li>
+      <li>[them] Slowly, over more generations than anyone has counted.</li>
+      <li>[us] And the hum?</li>
+      <li>[them] Each generation born beside the Spire hears a little more of it than the one before.</li>
+      <li>[us] Will you all hear it one day?</li>
+      <li>[them] Perhaps, and until then we keep quiet so that someone always does.</li>
     </lines>
   </ColonyCouncil.OutsiderTalkDef>
 
@@ -190,9 +190,9 @@
     <when>their:vaultfolk</when>
     <lines>
       <li>[us] What is the number on your back?</li>
-      <li>[them] The vault's, from the door, which Overseer Hollis Crane opened.</li>
-      <li>[us] Why did she open it?</li>
-      <li>[them] The water ran short, generations after the doors were sealed, and the council chose her.</li>
+      <li>[them] The vault's, the same as the one on the door we were sealed behind.</li>
+      <li>[us] Why did you come out?</li>
+      <li>[them] The water ran short, so the council chose an overseer to break the seal.</li>
       <li>[us] What was it like?</li>
       <li>[them] She walked out first, and half of us went back below for a week.</li>
     </lines>

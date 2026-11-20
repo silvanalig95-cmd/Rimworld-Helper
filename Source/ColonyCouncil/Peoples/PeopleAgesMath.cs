@@ -74,7 +74,7 @@ namespace ColonyCouncil
         public const int SeasonTicks = SeasonDays * DayTicks, YearTicks = YearDays * DayTicks;
         public const int Tribal = 0, Medieval = 1, Industrial = 2, Spacer = 3;
 
-        /// <summary>Records kept: one a people standing (fifteen and the six that may arise), the gone ones let go first.</summary>
+        /// <summary>Records kept: one a people standing (the twenty-three, the six that may arise and another mod's peoples Rimfolk knows), the gone ones let go first.</summary>
         public const int MaxRecords = 40;
 
         // ================= Ages and tech levels =================

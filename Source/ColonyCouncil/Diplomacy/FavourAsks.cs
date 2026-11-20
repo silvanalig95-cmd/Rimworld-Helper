@@ -180,7 +180,7 @@ namespace ColonyCouncil
             var head = FavourCalls.HeadOf(f, home);
             var form = DipWords.Form(home, f);
             var town = head != null ? NotableBook.TownOf(head.town) : WorldSituationWorker.NearestTown(f, home);
-            bool call = NotableMath.Callable((int)Peoples.TechOf(f)) && NeighbourLetters.Console(home) != null;
+            bool call = PostReach.Callable(f) && NeighbourLetters.Console(home) != null;
             string who = head != null ? NotableBook.Called(head) : DipWords.People(f);
             string label = DipWords.T("CC_Dip_AskLabel", DipWords.People(f).Named("PEOPLE"));
             var parts = new List<string>

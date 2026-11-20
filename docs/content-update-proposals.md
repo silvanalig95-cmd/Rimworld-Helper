@@ -1425,7 +1425,7 @@ Each item that adds text says which of these it follows.
   voice.
 - **Mod pool:** Vanilla Books Expanded.
 - **Harm:** none.
-- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/KeeperAtWork.cs`). Decided: the keeper goes to a sign seen at a place within 90 cells, within eight hours, one at a time; the entry gains their name and a line in their own voice; the evening's writing from 18 to 22 o'clock with any new entry, a little longer for each.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/KeeperAtWork.cs`). Decided: the keeper goes to a sign seen at a place within 90 cells, within eight hours, one at a time; the entry gains their name and a line in their own voice; the evening's writing from 18 to 22 o'clock with any new entry, once in two days at most, a little longer for each.
 
 **C13 (V) More council questions of faith** (M; flavour style)
 - **The shrine in the way.** A room plan or a defense line is laid over a dedicated shrine: move it with a rite, build
