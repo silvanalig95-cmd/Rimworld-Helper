@@ -199,7 +199,7 @@
         </titles>
         <texts>
           <li>Two riders have come to the gate within an hour of each other, one in {X_nameDef}'s colors and one in {OTHER_nameDef}'s, and each asks the same thing.\n\n"{X_nameDef} will keep the roads open and the prices fair," says the first. "Ask your traders."\n\n"{OTHER_nameDef} will see that {FACTION} are never pushed around again," says the second, "and remembers friends."</li>
-          <li>A rider in {X_nameDef}'s colors reached the gate before noon, and one in {OTHER_nameDef}'s an hour after. Each was polite to the other, and each wants the colony's word for their own.\n\n"Trade," says the first, of {X_nameDef}. "Strength," says the second, of {OTHER_nameDef}. Neither says what {FACTION} will think of the colony afterward.</li>
+          <li>A rider in {X_nameDef}'s colors reached the gate first, and one in {OTHER_nameDef}'s an hour after. Each was polite to the other, and each wants the colony's word for their own.\n\n"Trade," says the first, of {X_nameDef}. "Strength," says the second, of {OTHER_nameDef}. Neither says what {FACTION} will think of the colony afterward.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -376,8 +376,8 @@
           <li>Preachers at the gate</li>
         </titles>
         <texts>
-          <li>Two preachers arrived on the same morning and have been arguing at the gate since noon. One speaks for {TALE} and {FACTION}, the other for {ITEM} and {ENEMY}. Both want the colony to say, out loud, which of them is right.\n\n{A_nameDef} thinks the colony could host a proper debate instead, with both of them and anyone who wants to listen. It could go well. It could also go very badly.</li>
-          <li>A preacher for {TALE} and {FACTION} and another for {ITEM} and {ENEMY} came to the colony on the same day, each to win it over, and found each other at the gate. They have been at it since morning.\n\n{A_nameDef} says the colony could give them a proper debate, with anyone who wants to listen. It might not end well.</li>
+          <li>Two preachers arrived on the same day and have been arguing at the gate ever since. One speaks for {TALE} and {FACTION}, the other for {ITEM} and {ENEMY}. Both want the colony to say, out loud, which of them is right.\n\n{A_nameDef} thinks the colony could host a proper debate instead, with both of them and anyone who wants to listen. It could go well. It could also go very badly.</li>
+          <li>A preacher for {TALE} and {FACTION} and another for {ITEM} and {ENEMY} came to the colony on the same day, each to win it over, and found each other at the gate. They have been at it ever since.\n\n{A_nameDef} says the colony could give them a proper debate, with anyone who wants to listen. It might not end well.</li>
         </texts>
         <defaultOption>3</defaultOption>
         <options>
@@ -403,7 +403,7 @@
           </li>
           <li>
             <label>Host a debate</label>
-            <outcome>The debate runs until the lamps are lit. Neither preacher gives an inch, but both leave saying the other argued well, and that the colony kept a fair table.</outcome>
+            <outcome>The debate runs long. Neither preacher gives an inch, but both leave saying the other argued well, and that the colony kept a fair table.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Both</who><amount>6</amount></li>
             </effects>
@@ -411,7 +411,7 @@
             <riskChance>0.45</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>The debate goes badly. By the second hour the preachers are shouting, by the third their followers are, and both leave convinced the colony set them up.</riskOutcome>
+            <riskOutcome>The debate goes badly. By the second hour the preachers are shouting at each other, and both leave convinced the colony set them up.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Both</who><amount>-3</amount></li>
             </riskEffects>
@@ -485,8 +485,8 @@
     </titles>
     <texts>
       <li>{FACTION} and {ENEMY} have been at war longer than the colony has stood. This season, for the first time anyone remembers, both sides are tired enough to talk.\n\nThey need somewhere neither of them owns, and someone both of them half trust. Riders from both have asked whether that could be the colony.</li>
-      <li>[winter] A hard season has worn {FACTION} and {ENEMY} down to the point where even old enemies start counting what the war costs. Both have sent riders to the colony, separately and a day apart, with the same question: would it host the talks?</li>
-      <li>Riders came to the colony a day apart, one from {FACTION} and one from {ENEMY}, and both asked the same thing. The two have been at war longer than anyone at the colony can remember, and both are tired of it.\n\nThey want a table neither of them owns, at a place both half trust. They have asked whether it could be the colony's.</li>
+      <li>[winter] A hard season has worn {FACTION} and {ENEMY} down to the point where even old enemies start counting what the war costs. Both have sent word to the colony, separately and a day apart, with the same question: would it host the talks?</li>
+      <li>Word came to the colony a day apart, from {FACTION} and from {ENEMY}, and both asked the same thing. The two have been at war longer than anyone at the colony can remember, and both are tired of it.\n\nThey want a table neither of them owns, at a place both half trust. They have asked whether it could be the colony's.</li>
     </texts>
     <summaries>
       <li>If the colony hosts the talks, the two may make peace for good, and both will owe the colony for it. It costs food for the delegations and a few days of everyone's patience.</li>
@@ -501,14 +501,14 @@
           <li>Host the talks?</li>
         </titles>
         <texts>
-          <li>The riders of {FACTION} and {ENEMY} are waiting for an answer, at opposite ends of the colony's yard. Hosting means a table, a roof, and food for both delegations, {COUNT} portions or so, and someone to keep the peace at the table.\n\n{A_nameDef} would be the one doing that. {A_nameDef} has already started thinking about the seating.</li>
-          <li>The riders of {FACTION} and {ENEMY} have kept to opposite sides of the yard all morning, waiting for the colony's answer. Hosting the talks means a table, a roof and food for both delegations, {COUNT} portions or so.\n\n{A_nameDef} would sit at the head of that table, and has been trying to work out where to put everyone else.</li>
+          <li>{FACTION} and {ENEMY} are both waiting for an answer, and neither will speak to the other. Hosting means a table, a roof, and food for both delegations, {COUNT} portions or so, and someone to keep the peace at the table.\n\n{A_nameDef} would be the one doing that. {A_nameDef} has already started thinking about the seating.</li>
+          <li>{FACTION} and {ENEMY} are both waiting for the colony's answer, and neither will speak to the other. Hosting the talks means a table, a roof and food for both delegations, {COUNT} portions or so.\n\n{A_nameDef} would sit at the head of that table, and has been trying to work out where to put everyone else.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Host the talks ({COUNT} food)</label>
-            <outcome>Both riders leave with the same answer. The food is set aside, and both delegations will come within days, though neither wants to eat with the other.</outcome>
+            <outcome>Both peoples are sent the same answer. The food is set aside, and both delegations will come within days, though neither wants to eat with the other.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what></li>
               <li Class="ColonyCouncil.VisitEffect_Come"><what>delegation</what><count>2~3</count><spot>Gate</spot><nights>2</nights><hourFrom>9</hourFrom><hourTo>16</hourTo><delay>24~48</delay><holdBeat>talks</holdBeat></li>
@@ -523,7 +523,7 @@
           </li>
           <li>
             <label>Decline</label>
-            <outcome>The riders are told the colony would rather stay out of it. The war goes on.</outcome>
+            <outcome>Both peoples are told the colony would rather stay out of it. The war goes on.</outcome>
           </li>
         </options>
       </li>
@@ -542,7 +542,7 @@
         </titles>
         <texts>
           <li>After three days of talks at the colony, with {A_nameDef} keeping order at the table, {FACTION} and {ENEMY} have agreed to end their war.\n\nThe delegations left by the same gate, side by side. Both sides know where it happened.</li>
-          <li>[theirLowtech] It took three days, two walkouts and a great deal of the colony's food, but {FACTION} and {ENEMY} have sworn peace over the colony's table, with {A_nameDef} as witness.\n\nThere is a fresh dent in the table where someone brought a fist down on the second day. The colony has decided to leave it.</li>
+          <li>[theirLowtech] It took three days, two walkouts and a great deal of the colony's food, but {FACTION} and {ENEMY} have sworn peace over the colony's table, with {A_nameDef} as witness.</li>
         </texts>
         <chronicle>{FACTION} and {ENEMY} made peace at the colony.</chronicle>
         <effects>
@@ -626,14 +626,14 @@
           <li>{X_nameDef}'s offer</li>
         </titles>
         <texts>
-          <li>"{COUNT} silver, paid now," {X_nameDef} said at the gate, with two sergeants standing behind. "For that, {NAME} rides on {ENEMY} at {PLACE}, and you get a share of whatever we bring back."\n\nIf the colony would rather not, a hot meal for the company would be taken kindly, and they would be on their way.</li>
-          <li>[againstWarlord] {X_nameDef} came to the gate in person. For {COUNT} silver, paid now, {NAME} will ride against {ENEMY} at {PLACE}, where the warlord's band comes and goes, and the colony will get a share of whatever they bring back.\n\n{X_nameDef} doesn't promise the warlord's head. {X_nameDef} doesn't rule it out either.</li>
+          <li>"{COUNT} silver, paid now," runs the message {X_nameDef} sent from the company's camp. "For that, {NAME} rides on {ENEMY} at {PLACE}, and you get a share of whatever we bring back."\n\nIf the colony would rather not, a hot meal for the company would be taken kindly, and they would be on their way.</li>
+          <li>[againstWarlord] {X_nameDef} sent word from the company's camp. For {COUNT} silver, paid now, {NAME} will ride against {ENEMY} at {PLACE}, where the warlord's band comes and goes, and the colony will get a share of whatever they bring back.\n\n{X_nameDef} doesn't promise the warlord's head. {X_nameDef} doesn't rule it out either.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
             <label>Hire them ({COUNT} silver)</label>
-            <outcome>The silver changes hands, and {NAME} breaks camp the same afternoon. {X_nameDef} says to expect news within the week.</outcome>
+            <outcome>The silver changes hands, and {NAME} breaks camp the same day. {X_nameDef} says to expect news within the week.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the company's pay</label><what>silver</what><tens>true</tens><steward>false</steward></li>
             </effects>
@@ -645,7 +645,7 @@
           </li>
           <li>
             <label>Feed the company (30 food)</label>
-            <outcome>The company's cook comes for the food with a handcart, and in the morning the company moves on, looking for work elsewhere.</outcome>
+            <outcome>The food is carried out for the company's cook, and soon the company moves on, looking for work elsewhere.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the company</label><what>rawfood</what><count>30</count></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -656,7 +656,7 @@
           </li>
           <li>
             <label>Send them on</label>
-            <outcome>{X_nameDef} shrugs and goes back to camp. There are other settlements with silver.</outcome>
+            <outcome>{X_nameDef} takes the answer with a shrug. There are other settlements with silver.</outcome>
           </li>
         </options>
       </li>
@@ -673,8 +673,8 @@
           <li>{NAME} comes back</li>
         </titles>
         <texts>
-          <li>[!warlordFell] {NAME} came back from {PLACE} in better spirits than it left, with carts behind it. {X_nameDef} has left the colony's share at the gate and ridden on, looking for the next job.</li>
-          <li>[warlordFell] {NAME} came back from {PLACE} with carts behind it and news ahead of it: the warlord was there when the company struck, and did not get away. {X_nameDef} has left the colony's share at the gate and ridden on.</li>
+          <li>[!warlordFell] {NAME} came back from {PLACE} in better spirits than it left, with carts behind it. {X_nameDef} has sent the colony's share and ridden on, looking for the next job.</li>
+          <li>[warlordFell] {NAME} came back from {PLACE} with carts behind it and news ahead of it: the warlord was there when the company struck, and did not get away. {X_nameDef} has sent the colony's share and ridden on.</li>
         </texts>
         <chronicle>{NAME}, in the colony's pay, came back from {PLACE} with spoils.</chronicle>
         <effects>
@@ -700,7 +700,7 @@
         </titles>
         <texts>
           <li>[fed] {NAME} has moved on out of the region. {X_nameDef} sent word back with a trader: if the colony ever needs swords, it knows where to ask.</li>
-          <li>[!fed] {NAME} broke camp this morning and rode on, out of the region.</li>
+          <li>[!fed] {NAME} broke camp and rode on, out of the region.</li>
         </texts>
         <chronicle>{NAME} moved on out of the region.</chronicle>
       </li>
@@ -810,8 +810,8 @@
           <li>Robbed on the road</li>
         </titles>
         <texts>
-          <li>A merchant of {FACTION} walked into the colony this morning in a shirt and one boot. The bandits on the road took the rest, including the cart and the mule.\n\nThe merchant asks for a meal and a bed for the night, and promises not to forget it.</li>
-          <li>[theirHightech] A trader of {FACTION} walked in from the road this morning with nothing but the clothes on their back. The bandits took the truck, the cargo and the boots.\n\nThe trader asks for a meal and a bed for the night, and promises not to forget it.</li>
+          <li>A merchant of {FACTION} walked into the colony in a shirt and one boot. The bandits on the road took the rest, including the cart and the mule.\n\nThe merchant asks for a meal and a bed for the night, and promises not to forget it.</li>
+          <li>[theirHightech] A trader of {FACTION} walked in from the road with nothing but the clothes on their back. The bandits took the truck, the cargo and the boots.\n\nThe trader asks for a meal and a bed for the night, and promises not to forget it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

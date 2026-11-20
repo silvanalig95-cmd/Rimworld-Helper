@@ -33,7 +33,7 @@
       <li>Sickness among {FACTION}</li>
     </titles>
     <texts>
-      <li>[their:friend] {NAME} is in {PLACE}, and the first rider {FACTION} sent out came straight to the colony and asked at the gate for {FRIEND_nameDef} by name. They have not forgotten what {FRIEND_nameDef} once did for them.\n\nThey aren't asking for anything yet. They wanted a friend to hear it first. Their caravans have stopped, and the roads will fill with people getting away from it.</li>
+      <li>[their:friend] {NAME} is in {PLACE}, and the first word {FACTION} sent out came straight to the colony, asking after {FRIEND_nameDef} by name. They have not forgotten what {FRIEND_nameDef} once did for them.\n\nThey aren't asking for anything yet. They wanted a friend to hear it first. Their caravans have stopped, and the roads will fill with people getting away from it.</li>
       <li>[their:grudge] The rider of {FACTION} read the news off a list: {NAME} is in {PLACE}, and they are asking every neighbor for medicine. The colony was near the bottom of the list.\n\nThe rider left before anyone at the gate could answer.</li>
       <li>[theirLowtech,!winter] It started with one family by the river in {PLACE}. Now smoke fires burn outside the walls day and night, the gates are shut to strangers, and {FACTION} have a name for it: {NAME}.\n\nTheir riders are going to every neighbor for herbs and medicine. No traders or pilgrims go in. The only traffic on the roads is people leaving with what they can carry.</li>
       <li>[theirHightech,!winter] {PLACE} has closed its roads. {NAME} came in on a trader's truck three weeks ago, and {FACTION}'s doctors have stopped counting the sick by the house and started counting them by the street.\n\nTheir couriers carry one question to every settlement they can reach: how much medicine, and how soon. Before long the frightened will be on the roads, and some of the sick with them.</li>
@@ -84,7 +84,7 @@
         <options>
           <li>
             <label>Shut the gate to travelers</label>
-            <outcome>The rider ties a red cord to the colony's gatepost, the sign of a closed gate, and goes on to the next farm. Travelers who come up the road will be turned back until {NAME} is over.</outcome>
+            <outcome>The rider marks the colony down as a closed gate and goes on to the next farm. Travelers who come up the road will be turned back until {NAME} is over.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>4</amount></li>
             </effects>
@@ -122,7 +122,7 @@
         <options>
           <li>
             <label>Send {COUNT} medicine</label>
-            <outcome>The medicine goes out with the rider before dark. In {PLACE}, it will be counted out one dose at a time.</outcome>
+            <outcome>The medicine goes out with the rider. In {PLACE}, it will be counted out one dose at a time.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {PLACE}</label><what>medicine</what><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
@@ -133,7 +133,7 @@
           </li>
           <li>
             <label>Sell it to them</label>
-            <outcome>{FACTION}'s silver comes a few coins short of fair. The rider counts it out twice, apologizes, and leaves with the medicine before dark.</outcome>
+            <outcome>{FACTION}'s silver comes a few coins short of fair. The rider counts it out twice, apologizes, and leaves with the medicine.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine for {PLACE}</label><what>medicine</what><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>10</factor></li>
@@ -170,7 +170,7 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>They are given a corner to sleep in and a bowl each. Before dark, one of them has already offered to help with the firewood.</outcome>
+            <outcome>They are given a corner to sleep in and a bowl each. One of them has already offered to help with the firewood.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family></li>
             </effects>
@@ -267,7 +267,7 @@
         <options>
           <li>
             <label>Help them ({COUNT} medicine)</label>
-            <outcome>{A_nameDef} filled six pages before {A_pronoun} was satisfied. The rider left with the pages tucked in among the medicine.</outcome>
+            <outcome>{A_nameDef} fills six pages before {A_pronoun} is satisfied. The rider leaves with the pages tucked in among the medicine.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the medicine and the notes for {PLACE}</label><what>medicine</what><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Medicine</skill><xp>1500</xp></li>
@@ -322,7 +322,7 @@
         </titles>
         <texts>
           <li>{NAME} is over. {PLACE} lost more people than it should have, and {FACTION} count the colony among the neighbors who sent help.</li>
-          <li>[quarantine] {NAME} is over, and the colony can take the red cord off its gatepost. {FACTION} count it among the neighbors who did what their doctors asked, which fewer did than they'd hoped.</li>
+          <li>[quarantine] {NAME} is over, and the colony's gate can open to travelers again. {FACTION} count it among the neighbors who did what their doctors asked, which fewer did than they'd hoped.</li>
         </texts>
         <chronicle>{NAME} ended; the colony sent what it could.</chronicle>
         <effects>
@@ -384,7 +384,7 @@
       <li>[remembered] {FACTION} have written from {PLACE}, where the granaries are empty again. "It is worse than the last time. You helped us then. We would not ask twice if we had another choice."\n\nThe letter is signed for all of {FACTION}. Hungry people are already on the roads, and some of them will come this way.</li>
     </texts>
     <summaries>
-      <li>Hungry travelers and pilgrims come more often. {FACTION} will ask the colony for food, and some of the desperate may try their luck against its walls. Food given now will be remembered.</li>
+      <li>Hungry travelers and pilgrims come more often. {FACTION} will ask the colony for food, and some of the desperate may try their luck against it. Food given now will be remembered.</li>
     </summaries>
     <modifiers>
       <li><rimfolk>Council_Evt_Pilgrims</rimfolk><factor>3</factor></li>
@@ -412,7 +412,7 @@
         <options>
           <li>
             <label>Send {COUNT} food</label>
-            <outcome>The driver loads the food at the gate and shakes hands with everyone who carried a sack. It will be in {PLACE} by tomorrow.</outcome>
+            <outcome>The driver loads the food at the gate and shakes hands with everyone who carried a sack. It will be in {PLACE} within a day.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food for {PLACE}</label><what>rawfood</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>12</amount></li>
@@ -467,7 +467,7 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>They are fed first, then shown where to sleep. The next morning they are up before anyone else, asking what needs doing.</outcome>
+            <outcome>They are fed first, then shown where to sleep. They say they'll be up before anyone else tomorrow, asking what needs doing.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>2~3</count><family>true</family></li>
             </effects>
@@ -505,15 +505,15 @@
           <li>A child from {PLACE}</li>
         </titles>
         <texts>
-          <li>An old man from the villages around {PLACE} brought a girl to the colony's gate this morning and was gone before anyone could ask his name. Her parents died in the hungry months, she says, and the old man has nothing left to feed her through the winter. She says it as if she has said it before.\n\nShe is sitting by the gatepost with a bundle, waiting to be told what happens now.</li>
+          <li>An old man from the villages around {PLACE} brought a girl to the colony's gate and was gone before anyone could ask his name. Her parents died in the hungry months, she says, and the old man has nothing left to feed her through the winter. She says it as if she has said it before.\n\nShe is sitting by the gatepost with a bundle, waiting to be told what happens now.</li>
           <li>[winter] A girl is sitting by the colony's gate in the snow, with a bundle and a note pinned to her coat. The note is from someone in {PLACE}: her parents are dead of the famine, and there is no food left in the village to keep her.</li>
-          <li>[colony:Merciful] Someone in {PLACE} has heard that the colony doesn't turn people away. This morning a girl was left at its gate with a bundle and a note: her parents are dead of the famine, and the village can't feed her.</li>
+          <li>[colony:Merciful] Someone in {PLACE} has heard that the colony doesn't turn people away. A girl was left at its gate with a bundle and a note: her parents are dead of the famine, and the village can't feed her.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Take her in</label>
-            <outcome>The girl is brought in, fed and given a blanket by the stove. By evening she knows every colonist's name.</outcome>
+            <outcome>The girl is brought in, fed and given a blanket by the stove. Before long she knows every colonist's name.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count><ages>14~16</ages></li>
             </effects>
@@ -675,7 +675,7 @@
           <li>Firewood for {FACTION}</li>
         </titles>
         <texts>
-          <li>[theirLowtech] A sledge from {PLACE} came up the frozen river this morning. {FACTION} are out of firewood and out of dry trees to cut, and ask for {COUNT} logs to see the old and the sick through the worst of it.\n\nThey'll pay what they can. It isn't much.</li>
+          <li>[theirLowtech] A sledge from {PLACE} came up the frozen river. {FACTION} are out of firewood and out of dry trees to cut, and ask for {COUNT} logs to see the old and the sick through the worst of it.\n\nThey'll pay what they can. It isn't much.</li>
           <li>[theirHightech] {FACTION} have run their generators dry, and {PLACE} is heating with wood again, the way their grandparents did. Their sledge is at the gate with chains for {COUNT} logs, and the driver says they will pay what they can.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -693,7 +693,7 @@
           </li>
           <li>
             <label>Sell it to them</label>
-            <outcome>{FACTION}'s driver pays a fair price, chains the logs down and starts back while there's still light.</outcome>
+            <outcome>{FACTION}'s driver pays a fair price, chains the logs down and starts back for home.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for {PLACE}</label><what>WoodLog</what></li>
               <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
@@ -718,8 +718,8 @@
           <li>Snowbound travelers</li>
         </titles>
         <texts>
-          <li>Two travelers of {FACTION} came in out of the snow at dusk, caught between towns when the road closed. They ask to stay until it opens again, however long that takes.\n\nThey will eat for two and work for half that, one of them admits. They will also remember it.</li>
-          <li>The road closed behind two travelers of {FACTION} halfway between towns, and they walked the last of the light to the colony's gate with snow to the knee. They ask for a corner until the road opens again.\n\nOne of them has already been looking at the colony's woodpile, and trying not to.</li>
+          <li>Two travelers of {FACTION} came in out of the snow, caught between towns when the road closed. They ask to stay until it opens again, however long that takes.\n\nThey will eat for two and work for half that, one of them admits. They will also remember it.</li>
+          <li>The road closed behind two travelers of {FACTION} halfway between towns, and they walked to the colony's gate with snow to the knee. They ask for a corner until the road opens again.\n\nOne of them has already been looking at the colony's woodpile, and trying not to.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -800,7 +800,7 @@
     </titles>
     <texts>
       <li>{FACTION} lost every field around {PLACE} in a single afternoon. The cloud that did it is still out there: a swarm of locusts as wide as a valley, and it hasn't settled yet.\n\nWhether it comes this way is up to the wind.</li>
-      <li>[summer] The sky to the south went brown at midday, and a few minutes later came the sound, like rain that doesn't stop. Locusts. By evening a rider had brought word that {PLACE} was stripped to the dirt.\n\nThe swarm is still in the air.</li>
+      <li>[summer] The sky to the south went brown at midday, and a few minutes later came the sound, like rain that doesn't stop. Locusts. Since then a rider has brought word that {PLACE} was stripped to the dirt.\n\nThe swarm is still in the air.</li>
       <li>A rider came through from {PLACE} without stopping, shouting the news over the gate: locusts. {FACTION}'s fields are gone, every one, and the swarm has lifted again and is drifting with the wind.\n\nWhere it comes down next is up to the wind.</li>
     </texts>
     <summaries>
@@ -923,8 +923,8 @@
           <li>
             <key>struckTexts</key>
             <texts>
-              <li>[!smoke] The swarm came over the hill at noon and settled on the colony's fields like a brown snow. By evening it had lifted and gone, and so had the crops: {COUNT} plants in the open fields were stripped or flattened.\n\nWhat was under a roof came through untouched.</li>
-              <li>[smoke] The smoke turned most of the swarm, but not all of it. A tail of it came down on the colony's fields at noon and was gone by evening, leaving {COUNT} plants in the open stripped or flattened.\n\nThe rest of the fields stood in the smoke and were left alone.</li>
+              <li>[!smoke] The swarm came down on the colony's fields like a brown snow. Now it has lifted and gone, and so have the crops: {COUNT} plants in the open fields were stripped or flattened.\n\nWhat was under a roof came through untouched.</li>
+              <li>[smoke] The smoke turned most of the swarm, but not all of it. A tail of it came down on the colony's fields and was gone again, leaving {COUNT} plants in the open stripped or flattened.\n\nThe rest of the fields stood in the smoke and were left alone.</li>
             </texts>
           </li>
         </lines>
@@ -982,7 +982,7 @@
           <li>Flooded out of {PLACE}</li>
         </titles>
         <texts>
-          <li>Wet to the waist, a family from {PLACE} came up the river path this morning with a goat and a sack of seed. Their house is gone.\n\nThey ask whether the colony has room. They are not proud about it.</li>
+          <li>Wet to the waist, a family from {PLACE} came up the river path with a goat and a sack of seed. Their house is gone.\n\nThey ask whether the colony has room. They are not proud about it.</li>
           <li>A family from {PLACE} came up the river path with their shoes in their hands and everything else on their backs. The water took the house, the father says, and the field after it.\n\nThey ask if the colony has room for them, and stand at the gate waiting for the answer.</li>
         </texts>
         <defaultOption>2</defaultOption>

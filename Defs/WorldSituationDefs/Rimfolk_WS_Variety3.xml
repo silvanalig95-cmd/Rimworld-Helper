@@ -657,7 +657,7 @@
           <li>A fall at {NAME}</li>
         </titles>
         <texts>
-          <li>A runner of {FACTION} is at the gate, out of breath. A scaffold came down at {NAME} this morning, and four of the builders are hurt. Their healer has used everything she had; {FACTION} ask whether the colony could send {COUNT} doses of medicine back with the runner.</li>
+          <li>A runner of {FACTION} is at the gate, out of breath. A scaffold came down at {NAME}, and four of the builders are hurt. Their healer has used everything she had; {FACTION} ask whether the colony could send {COUNT} doses of medicine back with the runner.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

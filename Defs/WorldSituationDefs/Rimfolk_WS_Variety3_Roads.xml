@@ -68,7 +68,7 @@
               <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Beer</thing><price>3</price><toVisitor>true</toVisitor></li>
             </effects>
             <riskChance>0.25</riskChance>
-            <riskOutcome>The beer is handed over at the gate and paid for. A few days later {FACTION}'s wardens found the bottles at {PLACE} and asked where they came from, and were told it was the colony.</riskOutcome>
+            <riskOutcome>The beer is handed over at the gate and paid for. In a few days {FACTION}'s wardens will find the bottles at {PLACE} and ask where they came from, and be told it was the colony.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
             </riskEffects>
@@ -104,7 +104,7 @@
               <li Class="ColonyCouncil.WorldEffect_Sell"><thing>Beer</thing><price>2</price><toVisitor>true</toVisitor></li>
             </effects>
             <riskChance>0.35</riskChance>
-            <riskOutcome>The beer goes into the cart at the gate and is paid for. Two days later {FACTION}'s wardens stopped the cart on the road and pulled up the boards, and the carter told them where the beer came from.</riskOutcome>
+            <riskOutcome>The beer goes into the cart at the gate and is paid for. In two days {FACTION}'s wardens will stop the cart on the road and pull up the boards, and the carter will tell them where the beer came from.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-10</amount></li>
             </riskEffects>

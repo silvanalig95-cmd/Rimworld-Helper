@@ -58,7 +58,7 @@
         </titles>
         <texts>
           <li>{X_nameDef}, who leads the settlers at {PLACE}, has walked up to the colony's gate with one companion and no weapon showing. "Neighbours," {X_pronoun} says, "should know each other's faces." They are short of timber and nearly everything else, and would pay for some; but mostly {X_pronoun} came to look the colony over, and to be looked over.</li>
-          <li>[theirLowtech] {X_nameDef} of {PLACE} stood at the gate a long moment before calling out, the way people do when they don't know the custom. {X_nameDef} has brought a jar of something as a gift, and a question: can the two settlements be neighbours, in the old sense, where one helps the other through a bad year and is helped in turn? They could use timber, {X_pronoun} adds, and would pay.</li>
+          <li>[theirLowtech] {X_nameDef} of {PLACE} stood at the gate a long moment before calling out, the way people do when they don't know the custom. {X_nameDef} has brought a question: can the two settlements be neighbours, in the old sense, where one helps the other through a bad year and is helped in turn? They could use timber, {X_pronoun} adds, and would pay.</li>
           <li>[theirHightech] {X_nameDef}, the settler leader from {PLACE}, came up to the gate in person rather than send another message. {X_pronoun} is frank: {PLACE} needs timber and goodwill, and the colony has both. {X_pronoun} would like to agree a price for one and a custom for the other.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -113,7 +113,7 @@
         </titles>
         <texts>
           <li>Hunters from {PLACE} are working the far side of the colony's land, where the colony's own hunters go. They have taken two beasts this week that the colony would have taken, and left the offal for the colony's dogs to find.\n\nThey aren't hiding. They don't think they're doing anything wrong, and by their lights they aren't: the land was nobody's a season ago.</li>
-          <li>[winter] Hunters from {PLACE} are out on the colony's side of the hill in the snow, after the same thin game the colony's hunters are after. Winter leaves little enough for one settlement.\n\nThey'd stop if they were asked, probably. They'd remember being asked, too.</li>
+          <li>[winter] Hunters from {PLACE} are out on the colony's land in the snow, after the same thin game the colony's hunters are after. Winter leaves little enough for one settlement.\n\nThey'd stop if they were asked, probably. They'd remember being asked, too.</li>
           <li>[sour] Hunters from {PLACE} are on the colony's land again, and this time they're making a point of it: a kill dressed within sight of the fields, and no word sent. After what the colony said to {X_nameDef}, they don't feel they owe it any.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -130,7 +130,7 @@
           </li>
           <li>
             <label>Send {A_nameDef} out to divide the hunting grounds with them</label>
-            <outcome>{A_nameDef} walks out to the hunters from {PLACE} and spends the morning with them agreeing which woods are whose, drawing lines in the dirt with a stick. They part with the lines agreed and the beginning of a liking.</outcome>
+            <outcome>{A_nameDef} walks out to the hunters from {PLACE} and spends a few hours with them agreeing which woods are whose, drawing lines in the dirt with a stick. They part with the lines agreed and the beginning of a liking.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the hunting grounds divided</label><to>Person</to><whom>Group</whom><duration>2~3</duration></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
@@ -327,10 +327,10 @@
           <li>
             <label>Sit down with {X_nameDef} and agree a line</label>
             <showIf><li>sour</li></showIf>
-            <outcome>{A_nameDef} and {X_nameDef} sit at the gate until the light goes, and come away with a line agreed and on better terms than before.</outcome>
+            <outcome>{A_nameDef} and {X_nameDef} sit at the gate for a few hours, and come away with a line agreed and on better terms than before.</outcome>
             <riskChance>0.35</riskChance>
             <riskSkill>Social</riskSkill>
-            <riskOutcome>{A_nameDef} and {X_nameDef} sit at the gate until the light goes, and get up without agreeing anything. {X_nameDef} walks home in the dark.</riskOutcome>
+            <riskOutcome>{A_nameDef} and {X_nameDef} sit at the gate for a few hours, and get up without agreeing anything. {X_nameDef} walks home angry.</riskOutcome>
             <riskFlags><li>keepOff</li></riskFlags>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the line agreed with {X_nameDef}</label><to>Stranger</to><duration>2~3</duration></li>
@@ -591,7 +591,7 @@
           <li>{FACTION}'s wardens at the gate</li>
         </titles>
         <texts>
-          <li>Three road wardens of {FACTION} have ridden up to the gate, dusty and civil. They keep {TALE} as far as the passes, they say, which is to say they ride it when they can and bury what they find when they can't. They ask leave to water their horses and rest an hour.\n\nThe one who does the talking looks the colony's walls over with a professional eye.</li>
+          <li>Three road wardens of {FACTION} have ridden up to the gate, dusty and civil. They keep {TALE} as far as the passes, they say, which is to say they ride it when they can and bury what they find when they can't. They ask leave to water their horses and rest an hour.\n\nThe one who does the talking looks the colony over with a professional eye.</li>
           <li>[kind] Three road wardens of {FACTION} are at the gate. They heard about the carter, they say, and how the colony dealt with him; they've been looking for the men who robbed him for a week. They ask for water for their horses and an hour's rest.</li>
         </texts>
         <defaultOption>1</defaultOption>

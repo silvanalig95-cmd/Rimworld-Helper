@@ -70,9 +70,9 @@
           <li>{X_nameDef} at the colony</li>
         </titles>
         <texts>
-          <li>[!nothingToMend,taught] {X_nameDef} arrived at noon, looked at {A_nameDef} for a long time without saying anything, and asked for hot water and the colony's best light. By evening it was done. {ITEM}\n\n{B_nameDef} watched every step and asked a hundred questions, and {X_nameDef} answered most of them.</li>
-          <li>[!nothingToMend,!taught] {X_nameDef} arrived at noon, looked at {A_nameDef} for a long time without saying anything, and asked for hot water and the colony's best light. By evening it was done. {ITEM}</li>
-          <li>[nothingToMend] {X_nameDef} arrived at noon and looked {A_nameDef} over carefully, twice, then said there was nothing left that needed a healer's hands. The colony's silver was handed back at the gate.</li>
+          <li>[!nothingToMend,taught] {X_nameDef} has come, looked at {A_nameDef} for a long time without saying anything, and asked for hot water and the colony's best light. Now it is done. {ITEM}\n\n{B_nameDef} watched every step and asked a hundred questions, and {X_nameDef} answered most of them.</li>
+          <li>[!nothingToMend,!taught] {X_nameDef} has come, looked at {A_nameDef} for a long time without saying anything, and asked for hot water and the colony's best light. Now it is done. {ITEM}</li>
+          <li>[nothingToMend] {X_nameDef} has come and looked {A_nameDef} over carefully, twice, then said there was nothing left that needed a healer's hands. The colony's silver was handed back.</li>
         </texts>
         <effects>
           <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_HealerMended</thought><forbids>nothingToMend</forbids></li>
@@ -88,8 +88,8 @@
           <li>{X_nameDef} moves on</li>
         </titles>
         <texts>
-          <li>[!nothingToMend] {X_nameDef} left the colony at dawn for the next town, with the colony's silver and its thanks. {A_nameDef} walked the healer to the edge of the colony's land and stood there a while after.</li>
-          <li>[nothingToMend] {X_nameDef} left the colony at dawn for the next town. Whatever ailed {A_nameDef} had mended on its own, and the colony will take that.</li>
+          <li>[!nothingToMend] {X_nameDef} has left the colony for the next town, with the colony's silver and its thanks.</li>
+          <li>[nothingToMend] {X_nameDef} has left the colony for the next town. Whatever ailed {A_nameDef} had mended on its own, and the colony will take that.</li>
         </texts>
         <chronicle>{X_nameDef}, the famous healer, came to the colony.</chronicle>
       </li>
@@ -131,7 +131,7 @@
     </titles>
     <texts>
       <li>Every few years the herds of the region move together, and this is one of those years. The ground shakes at dusk, the birds follow the dust, and the hunters of {FACTION} have come out of {PLACE} in force.\n\nThere will be meat for anyone who wants it, and trouble for anyone who gets in the way.</li>
-      <li>[fall] The herds are going south ahead of the cold, all of them at once. From the colony's wall the dust can be seen a day before the animals, and {FACTION}'s hunters are already camped along the valleys out of {PLACE}.</li>
+      <li>[fall] The herds are going south ahead of the cold, all of them at once. From the colony the dust can be seen a day before the animals, and {FACTION}'s hunters are already camped along the valleys out of {PLACE}.</li>
       <li>[spring] The herds are coming back north with the new grass, so many that the far hills seem to move. The hunters of {FACTION} have come out of {PLACE} to meet them, their winter stores nearly gone.</li>
     </texts>
     <summaries>
@@ -249,7 +249,7 @@
       <li>The far country has emptied into the region. Beasts the old hunters of {FACTION} only knew from stories are crossing the hills in loose bands, eating everything green and frightening the herds.\n\nAt {PLACE} they've stopped letting the children out past the fences.</li>
     </texts>
     <summaries>
-      <li>Strange creatures turn up far more often, with herds behind them. A skilled handler may win one over; a careless one may regret trying.</li>
+      <li>Strange creatures turn up far more often, with herds behind them. A skilled handler may win one over; a careless one may watch it bolt.</li>
     </summaries>
     <modifiers>
       <li><rimfolk>Council_Evt_RareCreature</rimfolk><factor>3</factor></li>
@@ -278,7 +278,7 @@
         <minLevel>6</minLevel>
         <message>true</message>
         <texts>
-          <li>{A_nameDef} found tracks by the water this morning that don't match anything in the colony's books, and has been out sketching them since.</li>
+          <li>{A_nameDef} found tracks by the water that don't match anything in the colony's books, and has been out sketching them since.</li>
           <li>{A_nameDef} came back from the far fields with a drawing of a footprint as wide as {A_possessive} hand, with four claws where there should be three, and wants to know what kind of animal stands on its toes like that.</li>
         </texts>
         <effects>
@@ -361,20 +361,20 @@
           <li>{A_nameDef} and the surge</li>
         </titles>
         <texts>
-          <li>Since the sky turned, {A_nameDef} has hardly slept, and now wants to spend a few nights out at the old stones on the hill, where the ley lines cross, to see what the surge can teach.\n\nIt could be a year's study in a week. The mages of {PLACE} say it could also go badly.</li>
-          <li>{A_nameDef} has drawn the colors of the night sky on every scrap of paper in the colony, and wants a few nights out at the old stones on the hill, where the lines cross, to learn what the surge has to teach.\n\nThe mages at {PLACE} say it could be a year of study in a week. It could also go very wrong.</li>
+          <li>Since the sky turned, {A_nameDef} has hardly slept, and now wants to spend a few nights up with the surge, to see what it can teach.\n\nIt could be a year's study in a week. The mages of {PLACE} say it could also go badly.</li>
+          <li>{A_nameDef} has drawn the colors of the night sky on every scrap of paper in the colony, and wants a few nights up with the surge, to learn what it has to teach.\n\nThe mages at {PLACE} say it could be a year of study in a week. It could also go very wrong.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Let {A_objective} study it</label>
-            <outcome>{A_nameDef} comes back from the stones after three nights, red-eyed and talking too fast, with a notebook full of diagrams that nobody else can follow.</outcome>
+            <outcome>{A_nameDef} sits up nights over the surge, red-eyed and talking too fast, and fills a notebook with diagrams that nobody else can follow.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Intellectual</skill><xp>2000</xp></li>
               <li Class="ColonyCouncil.DilemmaEffect_Inspiration" />
             </effects>
             <riskChance>0.3</riskChance>
-            <riskOutcome>{A_nameDef} comes back from the stones pale and quiet, and won't say what happened out there. The notebook is full, though.</riskOutcome>
+            <riskOutcome>{A_nameDef} comes away from the surge pale and quiet, and won't say what happened. The notebook is full, though.</riskOutcome>
             <riskEffects>
               <li Class="ColonyCouncil.WorldEffect_ThoughtFor"><thought>Council_WS_SurgeShaken</thought></li>
             </riskEffects>

@@ -303,8 +303,8 @@
           <li>Traders on the colony's land</li>
         </titles>
         <texts>
-          <li>Merchants have started cutting across the colony's land to save half a day on the road to {PLACE}. They are polite about it. They also leave gates open and drink from the well.\n\nSome at the colony think the merchants should pay for the privilege; a toll would bring in about {COUNT} silver. Others think a rest stop with water and a fire would make friends of every trader in the region.</li>
-          <li>A merchant's boy came up to the gate this morning to ask, very politely, whether his master's wagons might water at the colony's well again on their way to {PLACE}. They have been doing it all week without asking. So have most of the caravans.\n\nA toll on the track across the colony's land would bring in about {COUNT} silver. A rest stop with water and a fire would make friends of every trader in the region.</li>
+          <li>Merchants have started cutting across the colony's land to save half a day on the road to {PLACE}. They are polite about it. They also leave gates open and drink the colony's water.\n\nSome at the colony think the merchants should pay for the privilege; a toll would bring in about {COUNT} silver. Others think a rest stop with water and a fire would make friends of every trader in the region.</li>
+          <li>Word came from a merchant's boy, asking very politely whether his master's wagons might water on the colony's land again on their way to {PLACE}. They have been doing it all week without asking. So have most of the caravans.\n\nA toll on the track across the colony's land would bring in about {COUNT} silver. A rest stop with water and a fire would make friends of every trader in the region.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -321,7 +321,7 @@
           </li>
           <li>
             <label>Set up a rest stop (60 wood)</label>
-            <outcome>The colony builds a shelter by the track, with a fire pit and a trough. The merchants appreciate it.</outcome>
+            <outcome>The colony sends out timber for a shelter by the track, with a fire pit and a trough. The merchants appreciate it.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the rest stop</label><what>WoodLog</what><count>60</count><to>Gate</to></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><who>Neighbors</who><amount>4</amount></li>
@@ -333,7 +333,7 @@
           </li>
           <li>
             <label>Leave it</label>
-            <outcome>The merchants keep cutting across. Somebody puts a sign on the well asking them to close the gate.</outcome>
+            <outcome>The merchants keep cutting across. Somebody puts up a sign asking them to close the gate.</outcome>
           </li>
         </options>
       </li>
@@ -361,7 +361,7 @@
         </titles>
         <texts>
           <li>[toll] The caravans are going home for the season, and the colony's toll jar did well out of them. The merchants have been telling every town on the road about it, and not kindly.</li>
-          <li>[reststop] The last caravans of the season stopped at the colony's shelter on their way home and left the trough full. The merchants who warmed themselves at that fire will be back next year, and they will bring friends.</li>
+          <li>[reststop] The last caravans of the season stopped at the colony's shelter by the track on their way home, and left their thanks. The merchants who warmed themselves at that fire will be back next year, and they will bring friends.</li>
           <li>[!toll,!reststop] The caravans are going home with lighter wagons and heavier purses, and the roads will be quieter for a while.</li>
         </texts>
         <chronicle>A busy trading season came to an end.</chronicle>
@@ -484,10 +484,10 @@
           <li>{NAME} closes</li>
         </titles>
         <texts>
-          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The fair's carter brought back the takings, {COUNT} silver for the colony's goods, and {B_nameDef} won the contest in {SKILL} and brought the prize home.\n\nThe colony's name was on a lot of lips at {PLACE} this week.</li>
-          <li>[sent,noPrize] {NAME} has closed. The colony's takings came back with the fair's carter, {COUNT} silver for its goods.\n\n{B_nameDef} did well in the contest in {SKILL}, but not well enough. Next year, {B_nameDef} says.</li>
-          <li>[sent,!entered] {NAME} has closed, and the fair's carter has been around with the colony's takings: {COUNT} silver, in a sealed bag.</li>
-          <li>[!sent,prize] {NAME} has closed, and {B_nameDef} won the contest in {SKILL}. The prize came home with the news, and so did the bragging.</li>
+          <li>[sent,prize] {NAME} has closed, and it went well for the colony. The fair's carter is bringing back the takings, {COUNT} silver for the colony's goods, and {B_nameDef} won the contest in {SKILL}; the prize is on its way home.\n\nThe colony's name was on a lot of lips at {PLACE} this week.</li>
+          <li>[sent,noPrize] {NAME} has closed. The colony's takings are coming back with the fair's carter, {COUNT} silver for its goods.\n\n{B_nameDef} did well in the contest in {SKILL}, but not well enough. Next year, {B_nameDef} says.</li>
+          <li>[sent,!entered] {NAME} has closed, and the fair's carter is coming around with the colony's takings: {COUNT} silver, in a sealed bag.</li>
+          <li>[!sent,prize] {NAME} has closed, and {B_nameDef} won the contest in {SKILL}. The prize is on its way home, and the bragging came ahead of it.</li>
           <li>[!sent,noPrize] {NAME} has closed. {B_nameDef} came close in the contest in {SKILL}, and has been explaining the judges' mistake to anyone who will listen.</li>
           <li>[!sent,!entered] {NAME} has closed, and the travelers who went to it are drifting home with stories. The colony will hear them for weeks.</li>
         </texts>
@@ -652,9 +652,9 @@
       <li>A silver rush</li>
     </titles>
     <texts>
-      <li>Someone in {PLACE} found silver in a creek bed last month, and now half the region is out with picks and pans. Prospectors have been passing the colony for days, and some of them are looking hard at the colony's own hills.\n\nMost will find nothing. A few will get rich, and a few will want to stay.</li>
+      <li>Someone in {PLACE} found silver in a creek bed last month, and now half the region is out with picks and pans. Prospectors have been passing the colony for days, and some of them are looking hard at the colony's own land.\n\nMost will find nothing. A few will get rich, and a few will want to stay.</li>
       <li>[theirHightech] A survey crew out of {PLACE} hit a silver seam last month, and the news got out before the claim was filed. Now prospectors with metal detectors and borrowed trucks are combing every hill in the region, the colony's included.\n\nThe claims office at {PLACE} has a line out the door and around the block.</li>
-      <li>A creek near {PLACE} turned up silver last month, a fistful in a single pan, and the whole region has heard. Prospectors are on every road with picks over their shoulders, and some have been looking hard at the colony's hills.\n\nMost of them will go home with sore backs. A few won't go home at all.</li>
+      <li>A creek near {PLACE} turned up silver last month, a fistful in a single pan, and the whole region has heard. Prospectors are on every road with picks over their shoulders, and some have been looking hard at the colony's land.\n\nMost of them will go home with sore backs. A few won't go home at all.</li>
     </texts>
     <summaries>
       <li>Travelers and prospectors pass the colony often, and some will ask to stay. The colony can let them work its land for a share of what they find.</li>
@@ -679,8 +679,8 @@
           <li>Prospectors on the colony's land</li>
         </titles>
         <texts>
-          <li>A party of prospectors from {PLACE} is at the gate, asking to work the creek beds on the colony's land. They will pay a share of whatever they find when the rush is over, or {COUNT} silver now, whichever the colony prefers.\n\nThey seem honest enough. Prospectors usually do.</li>
-          <li>Prospectors from {PLACE} have come up to the gate with their pans and a proposal: let them work the colony's creek beds, and they'll pay a share of what they find when the rush is over, or {COUNT} silver now.\n\nThey look honest. Prospectors always do.</li>
+          <li>A party of prospectors from {PLACE} is at the gate, asking to work the colony's land. They will pay a share of whatever they find when the rush is over, or {COUNT} silver now, whichever the colony prefers.\n\nThey seem honest enough. Prospectors usually do.</li>
+          <li>Prospectors from {PLACE} have come up to the gate with their pans and a proposal: let them work the colony's land, and they'll pay a share of what they find when the rush is over, or {COUNT} silver now.\n\nThey look honest. Prospectors always do.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -723,7 +723,7 @@
         </effects>
         <texts>
           <li>One of the prospectors found a nugget the size of a thumb in the colony's creek, and they mean to come back and work it by lamplight.</li>
-          <li>The prospectors in the colony's creek turned up a nugget as big as a thumb this morning, and they're coming back up to work the spot by lamplight.</li>
+          <li>The prospectors on the colony's land turned up a nugget as big as a thumb, and they're coming back up to work the spot by lamplight.</li>
         </texts>
       </li>
       <li>
@@ -765,9 +765,9 @@
           <li>The rush moves on</li>
         </titles>
         <texts>
-          <li>[share] On their way over the ridge to the next valley, the prospectors who worked the colony's creeks stopped at the gate with the colony's share: {COUNT} silver, counted twice in front of witnesses.</li>
+          <li>[share] On their way over the ridge to the next valley, the prospectors who worked the colony's land are sending the colony's share: {COUNT} silver, counted twice in front of witnesses.</li>
           <li>[fee] The rush has moved on to the next valley, and the prospectors with it. The colony was paid up front. Whether they found more than that, they didn't say.</li>
-          <li>[!share,!fee] The colony's hills are quiet again, and still full of whatever was or wasn't in them. The rush has gone over the ridge to the next valley.</li>
+          <li>[!share,!fee] The colony's land is quiet again, and still full of whatever was or wasn't in it. The rush has gone over the ridge to the next valley.</li>
         </texts>
         <chronicle>The silver rush moved on.</chronicle>
       </li>

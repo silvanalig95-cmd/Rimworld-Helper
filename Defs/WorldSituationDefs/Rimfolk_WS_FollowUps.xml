@@ -156,7 +156,7 @@
         <options>
           <li>
             <label>Feed them on their way</label>
-            <outcome>The colony carries bread and soup out to the gate, and {FACTION}'s people eat it standing up, then walk on toward {PLACE} with full bellies.</outcome>
+            <outcome>The colony carries food out to the gate, and {FACTION}'s people eat it standing up, then walk on toward {PLACE} with full bellies.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the food carried out to the gate</label><what>rawfood</what><eat>true</eat></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>5</amount></li>
@@ -318,7 +318,7 @@
         <options>
           <li>
             <label>Welcome them to stop</label>
-            <outcome>Word goes down the road that the colony welcomes caravans at its well. The next one will stop.</outcome>
+            <outcome>Word goes down the road that the colony welcomes caravans at its gate. The next one will stop.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount><who>Neighbors</who></li>
             </effects>
@@ -341,8 +341,8 @@
         </titles>
         <texts>
           <li>The first rush on the reopened road is over. Caravans still come, but at their usual pace again, and the dust has settled.</li>
-          <li>[waystop] The rush is over, but the colony's well has become a known stop on the road. Caravans stop to water their animals and trade a little, and the colony hears the news of the region before anyone else.</li>
-          <li>[contract] The rush is over. The merchant house's last caravan of the season brought a note saying the colony's meals were the best of the journey, and a purse of silver to say so properly.</li>
+          <li>[waystop] The rush is over, but the colony has become a known stop on the road. Caravans stop to water their animals and trade a little, and the colony hears the news of the region before anyone else.</li>
+          <li>[contract] The rush is over. The merchant house has sent a note saying the colony's meals were the best of the journey, and a purse of silver to say so properly.</li>
         </texts>
         <chronicle>The road reopened after {TALE}.</chronicle>
         <effects>

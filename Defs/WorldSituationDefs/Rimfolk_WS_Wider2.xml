@@ -62,7 +62,7 @@
         <options>
           <li>
             <label>Send {COUNT} wood</label>
-            <outcome>The wood goes out on the road-keeper's sledge before dark. By the end of the week there are new poles all the way to the far shore.</outcome>
+            <outcome>The wood goes out on the road-keeper's sledge. By the end of the week there will be new poles all the way to the far shore.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the wood for the ice road</label><what>WoodLog</what></li>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
@@ -99,8 +99,8 @@
           <li>Through the ice</li>
         </titles>
         <texts>
-          <li>A sledge went through the ice near the shore this morning, where a spring keeps it thin. The driver got out, soaked to the chest and shaking, and came to the colony's gate because it was the nearest smoke. His sledge and his load are in the shallows under a meter of black water and broken ice.\n\nHe is very cold, and he would like his goods back.</li>
-          <li>[!lowtech] A hauler's truck broke through the ice near the shore at first light. The driver climbed out of the cab window and made it to the colony's gate, wet to the waist and blue at the lips. The truck is in the shallows with its cargo.\n\nHe needs to get warm, and then he needs a rope and some strong backs.</li>
+          <li>A sledge went through the ice near the shore, where a spring keeps it thin. The driver got out, soaked to the chest and shaking, and came to the colony's gate because it was the nearest smoke. His sledge and his load are in the shallows under a meter of black water and broken ice.\n\nHe is very cold, and he would like his goods back.</li>
+          <li>[!lowtech] A hauler's truck broke through the ice near the shore. The driver climbed out of the cab window and made it to the colony's gate, wet to the waist and blue at the lips. The truck is in the shallows with its cargo.\n\nHe needs to get warm, and then he needs a rope and some strong backs.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -120,7 +120,7 @@
           </li>
           <li>
             <label>Warm him up and send him on</label>
-            <outcome>The driver is given dry clothes and a seat by the stove until he stops shaking, and goes on his way at noon.</outcome>
+            <outcome>The driver is given dry clothes and a seat by the stove until he stops shaking, and goes on his way once he is warm.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
             </effects>
@@ -144,7 +144,7 @@
           <li>A caravan off the ice</li>
         </titles>
         <texts>
-          <li>A long caravan has come off the ice at dusk, frost on every beast and bundle, and its leader has come up to the gate. They've eaten nothing hot for three days. She would pay well for {COUNT} hot meals, and better for a night out of the wind.\n\nThe rest of the caravan is waiting by the shore, stamping their feet.</li>
+          <li>A long caravan has come off the ice, frost on every beast and bundle, and its leader has come up to the gate. They've eaten nothing hot for three days. She would pay well for {COUNT} hot meals, and better for a night out of the wind.\n\nThe rest of the caravan is waiting by the shore, stamping their feet.</li>
           <li>[!lowtech] A convoy of haulers has come off the ice road and stopped by the colony. Their stove broke down on the first night out. The convoy boss has come to the gate to ask whether the colony could sell them {COUNT} hot meals before they freeze where they stand.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -174,7 +174,7 @@
           </li>
           <li>
             <label>Nothing to spare</label>
-            <outcome>The caravan's leader nods and goes back down to the shore. They'll push on for {PLACE} in the dark.</outcome>
+            <outcome>The caravan's leader nods and goes back down to the shore. They'll push on for {PLACE} without stopping.</outcome>
           </li>
         </options>
       </li>
@@ -364,7 +364,7 @@
           <li>Delegates on the road</li>
         </titles>
         <texts>
-          <li>Delegates from the far side of the region are on their way to {NAME}, and night has caught them at the colony's gate: three speakers, a cart and a pack beast, and a long argument about which of them should have to ask. They'd like a meal and a roof, and they have news of every village they passed.</li>
+          <li>Delegates from the far side of the region are on their way to {NAME}, and the road has brought them to the colony's gate for the night: three speakers, a cart and a pack beast, and a long argument about which of them should have to ask. They'd like a meal and a roof, and they have news of every village they passed.</li>
           <li>[winter] Three delegates on their way to {NAME} have stopped at the colony's gate in the snow, looking for a roof for the night and something hot. They can pay in news, which is all they've got.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -643,14 +643,14 @@
           <li>{NAME} on the ridge</li>
         </titles>
         <texts>
-          <li>{NAME} was on the ridge above the colony at first light, grazing among the rocks, white against the gray. {A_nameDef} saw it from the wall and woke two people to come and look.\n\n{A_nameDef} wants to go up at dawn tomorrow and see it close. Not too close.</li>
-          <li>[protected] {NAME} has been grazing on the ridge above the colony at dawn, as if it knows nobody here will raise a hand to it. {A_nameDef} wants to take whoever likes up the ridge at first light to see it.</li>
+          <li>{NAME} was on the high ground near the colony at first light, grazing among the rocks, white against the gray. {A_nameDef} saw it and woke two people to come and look.\n\n{A_nameDef} wants to go up at dawn tomorrow and see it close. Not too close.</li>
+          <li>[protected] {NAME} has been grazing on the high ground near the colony at dawn, as if it knows nobody here will raise a hand to it. {A_nameDef} wants to take whoever likes up at first light to see it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Go up at dawn and see it</label>
-            <outcome>A few of the colonists will go up the ridge at first light to see {NAME}, keeping downwind.</outcome>
+            <outcome>A few of the colonists will go out at first light to see {NAME}, keeping downwind.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>the dawn walk to see {NAME}</label><target>Colony</target><count>4</count><hours>5~7</hours><duration>2~3</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_WS_SawTheOldBeast</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
@@ -659,8 +659,8 @@
             <ways><tradition>1</tradition></ways>
           </li>
           <li>
-            <label>Keep the colony off the ridge</label>
-            <outcome>The colony stays off the ridge. {NAME} grazes there until noon and then is gone over the top.</outcome>
+            <label>Keep the colony off the high ground</label>
+            <outcome>The colony keeps its distance. {NAME} grazes a while longer and then is gone.</outcome>
             <ways><toil>1</toil></ways>
           </li>
         </options>
@@ -719,7 +719,7 @@
           <li>The end of {NAME}</li>
         </titles>
         <texts>
-          <li>{ENEMY}'s hunters brought {NAME} down in the high pass beyond the colony, and its horn has gone to a dealer for a sum people repeat in whispers. The colony's share has come up the road in a leather bag: {COUNT} silver.\n\n{FACTION}'s herders have stopped leaving salt on the hillsides. They have also stopped waving to the colony's people on the road.</li>
+          <li>{ENEMY}'s hunters brought {NAME} down in the high pass beyond the colony, and its horn has gone to a dealer for a sum people repeat in whispers. The colony's share is coming up the road in a leather bag: {COUNT} silver.\n\n{FACTION}'s herders have stopped leaving salt on the hillsides. They have also stopped waving to the colony's people on the road.</li>
         </texts>
         <chronicle>{ENEMY}'s hunters took {NAME}'s horn, with the colony's leave.</chronicle>
         <effects>
@@ -779,7 +779,7 @@
         </titles>
         <texts>
           <li>{NAME} has gone back up into the high country where nobody follows. Whether anyone will see it again, nobody at {PLACE} will guess.</li>
-          <li>[watched] {NAME} has gone back up into the high country. The colony still talks about the morning on the ridge, when it lifted its head and looked straight at them.</li>
+          <li>[watched] {NAME} has gone back up into the high country. The colony still talks about the morning they went up to see it, when it lifted its head and looked straight at them.</li>
         </texts>
         <chronicle>{NAME} went back to the high country.</chronicle>
       </li>

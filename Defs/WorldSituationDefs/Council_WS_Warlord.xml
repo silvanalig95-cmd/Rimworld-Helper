@@ -89,7 +89,7 @@
           <li>[!hunters,!broken] A rider came to the gate under a white cloth and gave {X_nameDef}'s words exactly as they were given: "{COUNT} silver, and {NAME} rides past. Refuse, and we come in."\n\nThe council has argued since. Paying would buy quiet, for a while. A price on {X_nameDef}'s head, posted in every town that will take it, would set hunters on {X_objective}. Or the colony can hold its walls and let the band find out how little there is to take.</li>
           <li>[hunters,!ally,!broken] {X_nameDef} has named a price: {COUNT} silver, and {NAME} will ride past the colony. The rider who brought the message left before anyone could answer.\n\n{ENEMY} are hunting {X_nameDef} already, and are short of everything a long hunt needs. A purse of silver would go a long way with them. A bounty would bring hunters of every other kind. Or the colony can sit tight and let the band starve of plunder.</li>
           <li>[hunters,ally,!broken] {X_nameDef} has sent word: {COUNT} silver, and {NAME} will look elsewhere for plunder.\n\nThere are other answers. {ENEMY}, the colony's allies, have been fighting {FACTION} for years; asked, they would march on {NAME} in force, though it would cost them fighters and they would want that remembered. Silver for their riders, or a price on {X_nameDef}'s head, would cost the colony less. Or the council can wait the band out.</li>
-          <li>[hunters,broken] {X_nameDef} took the colony's silver once and came back anyway. Now another rider is at the gate, talking about a price.\n\nThe council won't hear of paying twice. {ENEMY} are still hunting {X_objective}, and a bounty would bring others. The band may yet break up on its own.</li>
+          <li>[hunters,broken] {X_nameDef} took the colony's silver once and came back anyway. Now another rider's message has come, naming a price.\n\nThe council won't hear of paying twice. {ENEMY} are still hunting {X_objective}, and a bounty would bring others. The band may yet break up on its own.</li>
           <li>[!hunters,broken] Another rider from {X_nameDef}, another price. The last silver the colony paid bought a few days' quiet, and then the band came back.\n\nThe council won't hear of paying twice. A bounty would bring hunters from every town that will post it. Or the colony can hold its walls and let the band wear itself out.</li>
         </texts>
         <defaultOption>4</defaultOption>
@@ -122,7 +122,7 @@
           </li>
           <li>
             <label>Send silver to {ENEMY} ({DAYS} silver)</label>
-            <outcome>A rider of {ENEMY} comes for the silver and is gone again before dark. Their hunters will be better fed and better armed for it.</outcome>
+            <outcome>A rider of {ENEMY} comes for the silver and is gone again soon after. Their hunters will be better fed and better armed for it.</outcome>
             <showIf><li>hunters</li></showIf>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the silver for {ENEMY}</label><what>silver</what><factor>0.35</factor><tens>true</tens><steward>false</steward><to>Gate</to></li>
@@ -228,8 +228,8 @@
           <li>{X_nameDef} is dead</li>
         </titles>
         <texts>
-          <li>[revenge] {X_nameDef} is dead, brought down at the colony by {B_nameDef}, who had more reason than most. {NAME} scattered before nightfall.\n\nIn {PLACE} they will tell it as a story, and not one they enjoy telling.</li>
-          <li>[slayer] {B_nameDef} brought {X_nameDef} down at the colony's own walls. Without {X_objective}, {NAME} is a crowd of tired fighters a long way from home, and it is already breaking up.\n\nIn the towns around {PLACE}, they are drinking to the colony tonight.</li>
+          <li>[revenge] {X_nameDef} is dead, brought down at the colony by {B_nameDef}, who had more reason than most. {NAME} scattered soon after.\n\nIn {PLACE} they will tell it as a story, and not one they enjoy telling.</li>
+          <li>[slayer] {B_nameDef} brought {X_nameDef} down at the colony's own walls. Without {X_objective}, {NAME} is a crowd of tired fighters a long way from home, and it is already breaking up.\n\nIn the towns around {PLACE}, they are drinking to the colony.</li>
           <li>[diedCaptive] {X_nameDef} died in the colony's hands. {NAME} did not outlive {X_objective} by long: the band broke up within days, each fighter making for home with whatever could be carried.</li>
           <li>[!diedCaptive] {X_nameDef} is dead. {NAME} came to the colony for plunder and lost its leader instead, and its fighters are already drifting home.\n\nThe neighbors have heard. For a while, the colony's name will mean something on the roads.</li>
         </texts>

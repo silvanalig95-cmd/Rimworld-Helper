@@ -2809,7 +2809,7 @@ play out (A and B are the dilemma's or event's people, X its stranger):
 
 - **great fire** (`Council_WS_GreatFire`): "Send n wood": wood carried out to the gate ("the wood for the town") · "Sell it at a fair price": wood carried out to the gate ("the wood for the town") · "Feed them and send them home": food carried out to the gate ("a sack of food for the road home").
 - **blood feud** (`Council_WS_Feud`): "Send him on, with food": food carried out to the gate ("bread for the road") · "Pay the last n silver": silver carried out to the gate ("the last of the blood price").
-- **comet** (`Council_WS_Comet`): "A night watch on the hill": bonfire ("the night watch for the comet") · "Send A to look": A goes for a long walk.
+- **comet** (`Council_WS_Comet`): "A night watch by a fire": bonfire ("the night watch for the comet") · "Send A to look": A goes for a long walk.
 - **bumper harvest** (`Council_WS_Bumper`): "Hold a harvest supper": feast from the stores ("the harvest supper").
 - **drove season** (`Council_WS_Drovers`): "Graze them, as friends": bonfire ("the drovers' evening").
 
@@ -11455,7 +11455,7 @@ own people. Each of those fifteen gatherings (`DilemmaEffect_Gathering`, `_Feast
 `Defs/CampDefs/`) now takes `<guests>camp</guests>`: the camp's people come up and take a place at it (`PlayGuests`, as
 the camp's feast and the run's supper already did), and at a feast are served like everyone else. The minstrels' song
 about the colony is sung by the minstrel the ask is about (`organizer` None, so the stranger says the words), and the
-mourners' "Stand with them for their dead" is the colony and the mourners standing together outside for a while, as
+mourners' "Stand by the road with them" is the colony and the mourners standing together outside for a while, as
 it plays out (it was "Stand by the road when they go", which nothing tied to their going). The same pass put a few
 claims right in the words: a pilgrim's prayer at a sick colonist's side is said by the one who leads them, not their
 eldest; the camp's own hunters stay at their work while the colony's hunters go out on their advice; the traveling
