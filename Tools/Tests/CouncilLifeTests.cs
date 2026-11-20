@@ -196,7 +196,8 @@ public static class CouncilLifeTests
             int def = int.Parse((string)d.Element("defaultOption") ?? "0");
             C(options.Count >= 2 && options.Count <= 4 && def >= 0 && def < options.Count, $"{name}: two to four answers, the council's silence one of them");
             var fx = options.Select(o => o.Element("effects")!.Elements("li").Select(Cls).ToList()).ToList();
-            C(fx.Count(f => f.Any(onMap.Contains)) >= Math.Min(2, options.Count - 1), $"{name}: the answers that do something play out on the map (the play-out audit reads the words)");
+            // An answer that is a ruling (the craft kept, the kitchen kept) needn't; the play-out audit reads every answer's words.
+            C(fx.Count(f => f.Any(onMap.Contains)) >= Math.Max(1, options.Count - 2), $"{name}: the answers that do something play out on the map");
             C(fx[def].All(e => !onMap.Contains(e)), $"{name}: the council's silence sets nothing going");
             C(fx.All(f => f.Count(e => e == "DilemmaEffect_Thought") >= 1), $"{name}: each answer moves someone");
             bool sides = options.SelectMany(o => o.Element("effects")!.Elements("li")).Any(e => Cls(e) == "DilemmaEffect_Thought"

@@ -77,7 +77,7 @@
     <defName>Rimfolk_Decree_Welcome</defName>
     <kind>spirit</kind>
     <label>a welcome for newcomers</label>
-    <description>Ten days of making the newest people feel at home. Each evening a colonist who has been here twenty days or more and likes them sits an hour with each newcomer (someone here fewer than twenty days), by the fire or at a table. An hour sat counts as welcomes from the group the newcomer is finding their way into, so groups take newcomers in faster, and someone of that group who thinks well of them may speak for them there. A tribe calls it a welcome at the fire, a village a welcome at the hearth, an industrial colony a settling-in week and a spacer colony an orientation week; the hour is the same. The kind and the warm like it; the aloof and the wary dislike it.</description>
+    <description>Ten days of making the newest people feel at home. Each evening a colonist who has been here twenty days or more and likes them spends an hour with each newcomer (someone here fewer than twenty days), sitting down with them at a table where there is one. An hour sat counts as welcomes from the group the newcomer is finding their way into, so groups take newcomers in faster, and someone of that group who thinks well of them may speak for them there. A tribe calls it a welcome at the fire, a village a welcome at the hearth, an industrial colony a settling-in week and a spacer colony an orientation week; the hour is the same. The kind and the warm like it; the aloof and the wary dislike it.</description>
     <requestWhen><li>Outsider</li></requestWhen>
     <order>45</order>
     <durationDays>10</durationDays>
@@ -92,7 +92,7 @@
       <li><tags>persona:wary</tags><reaction>Dislike</reaction></li>
     </reactions>
     <effects>
-      <li>Each evening for ten days, a colonist who has been here twenty days or more and likes them sits an hour with each newcomer, by the fire or at a table: the newcomer's friendly face from their story of finding a home when they have one, else whoever thinks best of them.</li>
+      <li>Each evening for ten days, a colonist who has been here twenty days or more and likes them spends an hour with each newcomer, sitting down with them at a table where there is one: the newcomer's friendly face from their story of finding a home when they have one, else whoever thinks best of them.</li>
       <li>An hour sat counts as welcomes from the group the newcomer is finding their way into (two from one of its own people), so groups take newcomers in faster; someone of that group who thinks well of them may speak for them there.</li>
       <li>The kind and the warm like it; the aloof and the wary dislike it.</li>
     </effects>

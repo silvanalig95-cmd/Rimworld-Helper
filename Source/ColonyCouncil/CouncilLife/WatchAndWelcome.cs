@@ -14,7 +14,7 @@ namespace ColonyCouncil
     //   strangers at the fields in a famine, Harm/GateTroubles.cs) it halves on those nights, and each night walked is the
     //   deed "kept the night watch", toward the Night-Watch name (Social/Talk/SharedTimes.cs).
     // - A welcome for newcomers (ten days): each evening a settled colonist who likes them spends an hour sitting with each
-    //   newcomer (DilemmaEffect_Visit with sit); when it happened, it counts as welcomes for the group the newcomer is
+    //   newcomer (DilemmaEffect_Visit with sit, at a table where there is one); when it happened, it counts as welcomes for the group the newcomer is
     //   finding their way into (two from one of its own: Social/Groups/GroupNewcomers.cs), the host becomes the one who
     //   speaks for them there when they think well enough of them, and the newcomer's "somewhere to belong" story counts it
     //   as the welcome it waits for when the host is its friendly face.
@@ -119,7 +119,7 @@ namespace ColonyCouncil
         private static DilemmaEffect_Visit Hour(Pawn host, Pawn newcomer) => new DilemmaEffect_Visit
         {
             label = ("CC_Life_WelcomeLabel_" + Ages.Tag(Ages.Ours)).Translate(host.Named("PAWN"), newcomer.Named("OTHER")).Resolve(),
-            who = PlayWho.A, whom = PlayWho.B, to = PlaySpot.Person, sit = true, sitBy = PlaySpot.Fire,
+            who = PlayWho.A, whom = PlayWho.B, to = PlaySpot.Person, sit = true, sitBy = PlaySpot.Dining,
             hours = new IntRange(WelcomeMath.From, WelcomeMath.To), duration = new FloatRange(1f, 1.25f)
         };
 

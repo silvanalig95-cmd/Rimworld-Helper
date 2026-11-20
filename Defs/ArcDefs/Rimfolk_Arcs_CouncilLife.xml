@@ -377,7 +377,7 @@
             <a>Other</a>
             <b>Colonist</b>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} keeps {B_nameDef} company</label><who>A</who><whom>B</whom><sit>true</sit><sitBy>Fire</sitBy><hours>16~21</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} keeps {B_nameDef} company</label><who>A</who><whom>B</whom><sit>true</sit><sitBy>Dining</sitBy><hours>16~21</hours><duration>1.5~2</duration></li>
             </effects>
           </li>
         </effects>

@@ -621,7 +621,7 @@ it gets no verdict, and is read by hand.
 |  | 2 | B gives A the warmer room | 40 | 30 | 0 | 10 | mood -30, relations +40 | trade-off |
 |  | 3 | A will manage | 2 | 12 | 0 | -10 | mood -12, trust +2 | trade-off |
 | the storm at night (`Rimfolk_DlmE_StormNight`) | 1 | Everyone sits up until it passes | 15 | 4 | 0 | 12 | mood +6, trust +9, work -4 | trade-off |
-|  | 2 | B sits with A | 8 | 0 | 0 | 7 | mood +6, trust +2 | trade-off |
+|  | 2 | B sits with A | 20 | 0 | 0 | 19 | mood +6, trust +2, relations +12 | trade-off |
 |  | 3 | Storms pass | 12 | 2 | 0 | 10 | mood +10 | trade-off |
 
 ### Rimfolk_Dilemmas_Faith.xml

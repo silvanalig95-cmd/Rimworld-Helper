@@ -122,10 +122,10 @@
     <options>
       <li>
         <label>{B_nameDef} takes {A_nameDef} away from it for an evening</label>
-        <outcome>{B_nameDef} came for {A_nameDef} at the end of the day and sat {A_objective} down by the fire for an hour and more, talking about anything but work. {A_nameDef} complained for the first part of it.</outcome>
+        <outcome>{B_nameDef} came for {A_nameDef} at the end of the day and sat {A_objective} down at a table for an hour and more, talking about anything but work. {A_nameDef} complained for the first part of it.</outcome>
         <ways><mercy>1</mercy></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits {A_nameDef} down</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Fire</sitBy><hours>17~21</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits {A_nameDef} down</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Dining</sitBy><hours>17~21</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.ArcEffect_Strain"><target>A</target><amount>-6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_TakenAway</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
@@ -626,7 +626,7 @@
         <label>The best seat by the fire tonight</label>
         <outcome>{A_nameDef} had the best seat by the fire that evening and sat in it a good while.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} by the fire</label><who>A</who><to>Fire</to><orTo><li>Outdoors</li></orTo><hours>18~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{A_nameDef}'s evening by the fire</label><target>A</target><hours>18~22</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_BestSeat</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
         </effects>
@@ -1010,9 +1010,9 @@
     <options>
       <li>
         <label>An evening for the two old friends</label>
-        <outcome>{B_nameDef} came to find {A_nameDef} after the day's work, and the two of them sat by the fire for the evening the way they used to.</outcome>
+        <outcome>{B_nameDef} came to find {A_nameDef} after the day's work, and the two of them sat down together for the evening the way they used to.</outcome>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} and {A_nameDef} by the fire</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Fire</sitBy><hours>18~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} and {A_nameDef} sit down together</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Dining</sitBy><hours>18~22</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_MadeUp</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_Pressed</thought></li>
         </effects>
@@ -1207,6 +1207,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} sits with {A_nameDef}</label><who>B</who><whom>A</whom><hours>18~23</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmE_StormTogether</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Bonded</thought><chance>0.3</chance></li>
         </effects>
       </li>
       <li>
