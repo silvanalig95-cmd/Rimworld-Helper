@@ -618,7 +618,7 @@ repo.
   people"), *the region* ("A town's fortune at the gate") and *diplomacy* ("Ties bring a people's own events and camps",
   "A feast's guests and their town's year"), keywords unchanged; README "Camps over a stay, a year and for good" (camps
   that come back, neighbours for good), "Feasts with guests" (with the new "Ties bring a people's own") and "World events".
-  B4: a few days after "a new leader" or "a contested seat" settles at a people at peace, the new head rides out and stops
+  B4: a few days after "a new leader" or "a contested seat" settles at a people at peace, the new head sets out and stops
   at the gate with two to four of their people (a world event of its own, started as a follow-up); the table (a feast with
   them as guests, the best talker hosting, beds for the night), a gift of silver, or a word at the gate; a kind head leaves
   a gift of their own, a greedy one asks the trade terms and sends a caravan, a harsh one wants a token of respect (a word

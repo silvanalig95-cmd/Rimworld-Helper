@@ -3888,7 +3888,7 @@ warlord rises), and so do some of the game's own (more herds in a migration, mor
 likelier in a plague year; this needs the deeper game hooks, and only matters where your storyteller picks by
 weight). It puts two or three questions to the council along the way, sends its own visitors and caravans, and ends in
 a way that depends on what the colony did, with a letter that pays off what came before. A few days after a people's new
-leader takes the seat, they ride out and stop at the colony's gate with a few of their people: sit them at the table,
+leader takes the seat, they set out to see the region and stop at the colony's gate with a few of their people: sit them at the table,
 give a gift, or say a word at the gate, and their temper shows in what they do (a kind head leaves a gift, a greedy one
 sends a caravan, a harsh one wants a token of respect, a steady one offers a trade pact where goodwill allows). When a
 hard world event strikes a people, those at the colony with a tie to them (married in, come from them, their ward,

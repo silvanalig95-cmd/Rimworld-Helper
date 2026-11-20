@@ -692,7 +692,7 @@ on the world event (its flags), the follow-ups, the holding and the council's le
   When "a new leader" or "a contested seat" ends at a people at peace with the colony with someone in the seat (the
   succession's new leader, the claimant who won), a follow-up of kind `head` is noted (`NewHeads.Remember`, from each
   worker's `Ended`): three to eight days on (`NewHeadMath.DueTick`), when a world event's slot is free, the new head
-  rides out (`SituationWorker_NewHead`, started by `FollowUps.Daily` like the warlord's son). Let go when they no longer
+  sets out (`SituationWorker_NewHead`, started by `FollowUps.Daily` like the warlord's son). Let go when they no longer
   lead or are not free in the world, or after thirty days without a slot (`NewHeadMath.Lapsed`). Their temper is the
   succession's own reading of their traits (kind, greedy, harsh, steady; `NewHeads.TemperOf` for a claimant). A rider
   comes ahead with the start letter; within the day the head stands at the gate with two to four of their people

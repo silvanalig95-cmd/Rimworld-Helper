@@ -124,8 +124,11 @@ public static class PeoplesTiesTests
         Check(head.Element("workerClass")?.Value == "ColonyCouncil.SituationWorker_NewHead" && head.Element("kind")?.Value == "head" && head.Element("faction") == null,
             "the new head's world event: its own worker and kind (never two court events' kind), its people from the follow-up");
         var texts = head.Element("texts")!.Elements("li").Select(l => l.Value).ToList();
-        Check(texts.Count >= 4 && texts.Any(t => t.StartsWith("[succeeded]")) && texts.Any(t => t.StartsWith("[claimed]")) && texts.Any(t => t.StartsWith("[theirLowtech]")),
-            "its start letters for a death and for a contested seat, and by the people's age");
+        foreach (var age in new[] { "theirLowtech", "theirHightech" })
+            Check(texts.Any(t => t.StartsWith("[succeeded," + age + "]")) && texts.Any(t => t.StartsWith("[claimed," + age + "]")) && texts.Any(t => t.StartsWith("[" + age + "]")),
+                $"its start letters for a death and for a contested seat, at a people of either age ({age})");
+        Check(!Regex.IsMatch(File.ReadAllText(Path.Combine(defs, "WorldSituationDefs", "Rimfolk_WS_NewHead.xml")), @"\b(saddle\w*|horses?|dismount\w*|rides?|ridden|riding)\b"),
+            "the new head's words fit every age: no saddles, horses or riding in its lines");
         var gate = head.Element("beats")!.Elements("li").Single(b => b.Element("key")?.Value == "gate");
         Check(gate.Descendants("li").Any(li => li.Attribute("Class")?.Value == "ColonyCouncil.VisitEffect_AtGate" && li.Element("withStranger")?.Value == "true" && li.Element("count")?.Value == "2~4"),
             "the head comes to the gate with two to four of their people");
