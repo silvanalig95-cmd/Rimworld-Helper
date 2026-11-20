@@ -983,7 +983,7 @@ bond, three animals tamed or naming the animals, the submissive stand up, a snob
 an insomniac sleeps again; Vanilla Anomaly Expanded - Insanity's mood swings and impulsiveness settle; a brave
 colonist comes of holding the line and carrying someone to safety, and a fast walker becomes a jogger after heavy hauling or seasons on the road.
 A doctor who nurses someone back to health is marked by it too, and that counts toward kindness; healer's hands also come
-of long hours as a doctor and three patients nursed back. New traits from the player's mods: a perfectionist after a
+of long hours as a doctor and three patients nursed back. New traits from the player's mods and Anomaly: a perfectionist after a
 run of masterworks, a dog person or a cat person after a year bonded with one of the colony's dogs or cats, a
 fisherman after many hours fishing (Vanilla Fishing Expanded), wanderlust after seasons away, a mountain lover after a
 year under a mountain's rock, and, rarely and only of what already happened on the map, desensitized after fights that
