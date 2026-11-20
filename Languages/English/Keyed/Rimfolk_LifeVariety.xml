@@ -15,4 +15,22 @@
   <CC_Goal_KeptPromises>{0} days in a row with no promise let lapse, and {1} promises kept ({2} days so far, {3} kept)</CC_Goal_KeptPromises>
   <CC_Goal_LighterSeason>{0} days in a row with nobody worn down or near breaking ({1} so far; {2} worn down now)</CC_Goal_LighterSeason>
 
+  <!-- A26: the giving day -->
+  <CC_Life2_Giving_ImpactAll>; names drawn so everyone gives one gift from the stores and gets one, handed over after supper</CC_Life2_Giving_ImpactAll>
+  <CC_Life2_Giving_ImpactChildren>; each child is given a gift from the stores by the grown-up fondest of them, after supper</CC_Life2_Giving_ImpactChildren>
+  <CC_Life2_NoChildren>There are no children at home.</CC_Life2_NoChildren>
+  <CC_Life2_GiftNote>{PAWN_nameDef} gave {OTHER_nameDef} {GIFT} on the giving day</CC_Life2_GiftNote>
+  <CC_Life2_GivingLamps>The fairy lamps are lit for the giving day's supper ({COUNT}).</CC_Life2_GivingLamps>
+  <CC_Life2_GivingOver>The giving day is over: {COUNT} gifts were handed over by hand.</CC_Life2_GivingOver>
+  <CC_Life2_GivingJournal>{OTHER_nameDef} drew my name on the giving day and gave me {GIFT}.</CC_Life2_GivingJournal>
+  <CC_Life2_GivingAfterFeast>After the festive feast, names are drawn for the giving day: {COUNT} gifts are taken from the stores and handed over.</CC_Life2_GivingAfterFeast>
+
+  <!-- A28: the elders' day -->
+  <CC_Life2_Elders_Impact>; the cup raised to the colony's {COUNT} elders, and each tells one thing from their life</CC_Life2_Elders_Impact>
+  <CC_Life2_Elders_ImpactChildren>; by day the children each make something small for one of the elders and carry it over</CC_Life2_Elders_ImpactChildren>
+  <CC_Life2_EldersToast>To our elders, who were here before us.</CC_Life2_EldersToast>
+  <CC_Life2_EldersMadeLabel>{A_nameDef}'s piece for {B_nameDef}</CC_Life2_EldersMadeLabel>
+  <CC_Life2_EldersJournal>They raised a cup to us elders tonight and listened while I talked about my life. I said more than I meant to.</CC_Life2_EldersJournal>
+  <CC_Life2_EldersNote>listened to {PAWN_nameDef} at the elders' supper</CC_Life2_EldersNote>
+
 </LanguageData>

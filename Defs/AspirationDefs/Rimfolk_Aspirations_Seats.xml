@@ -13,7 +13,7 @@
   -->
 
   <ColonyCouncil.AspirationDef>
-    <defName>Rimfolk_Asp_Reeve</defName>
+    <defName>Rimfolk_Asp_Seat_Reeve</defName>
     <label>the reeve's seat</label>
     <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
     <office>Council_Office_Reeve</office>
@@ -44,7 +44,7 @@
   </ColonyCouncil.AspirationDef>
 
   <ColonyCouncil.AspirationDef>
-    <defName>Rimfolk_Asp_Peacemaker</defName>
+    <defName>Rimfolk_Asp_Seat_Peacemaker</defName>
     <label>the peacemaker's seat</label>
     <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
     <office>Council_Office_Peacemaker</office>
@@ -71,7 +71,7 @@
   </ColonyCouncil.AspirationDef>
 
   <ColonyCouncil.AspirationDef>
-    <defName>Rimfolk_Asp_Keeper</defName>
+    <defName>Rimfolk_Asp_Seat_Keeper</defName>
     <label>the keeper of days' seat</label>
     <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
     <office>Council_Office_Keeper</office>
@@ -97,7 +97,7 @@
   </ColonyCouncil.AspirationDef>
 
   <ColonyCouncil.AspirationDef>
-    <defName>Rimfolk_Asp_Herdmaster</defName>
+    <defName>Rimfolk_Asp_Seat_Herdmaster</defName>
     <label>the herdmaster's seat</label>
     <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
     <office>Council_Office_Herdmaster</office>
@@ -124,7 +124,7 @@
   </ColonyCouncil.AspirationDef>
 
   <ColonyCouncil.AspirationDef>
-    <defName>Rimfolk_Asp_Chaplain</defName>
+    <defName>Rimfolk_Asp_Seat_Chaplain</defName>
     <label>the chaplain's seat</label>
     <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
     <office>Council_Office_Chaplain</office>
@@ -150,7 +150,7 @@
   </ColonyCouncil.AspirationDef>
 
   <ColonyCouncil.AspirationDef>
-    <defName>Rimfolk_Asp_Warden</defName>
+    <defName>Rimfolk_Asp_Seat_Warden</defName>
     <label>the warden of guests' seat</label>
     <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
     <office>Council_Office_Warden</office>
@@ -177,7 +177,7 @@
   </ColonyCouncil.AspirationDef>
 
   <ColonyCouncil.AspirationDef>
-    <defName>Rimfolk_Asp_Elder</defName>
+    <defName>Rimfolk_Asp_Seat_Elder</defName>
     <label>an elder's seat</label>
     <workerClass>ColonyCouncil.AspirationWorker_SeatOpen</workerClass>
     <office>Council_Office_Elder</office>

@@ -13,7 +13,9 @@ namespace ColonyCouncil
         /// <summary>The year's first supper: each at the table with a life goal says it, one line each.</summary>
         Aims,
         /// <summary>The year read aloud: its writer reads a few lines of the year letter, in order.</summary>
-        Year
+        Year,
+        /// <summary>The elders' day (A28, LifeVariety/EldersDay.cs): each elder at the supper tells one thing from their life.</summary>
+        Elders
     }
 
     /// <summary>A reading at one gathering (a PlayOut, by its id), and how far it has got.</summary>
@@ -113,7 +115,7 @@ namespace ColonyCouncil
                 var here = job.lord.ownedPawns.Where(x => x != null && x.Spawned && x.Map == map && Together.Able(x)
                                                           && GatheringsUtility.InGatheringArea(x.Position, job.Spot, map)).ToList();
                 if (here.Count < 2) continue;
-                bool said = r.kind == ReadingKind.Aims ? FirstSupper.SayNext(r, here, map) : YearRead.ReadNext(r, here);
+                bool said = r.kind == ReadingKind.Aims ? FirstSupper.SayNext(r, here, map) : r.kind == ReadingKind.Elders ? EldersDay.TellNext(r, here) : YearRead.ReadNext(r, here);
                 r.nextTick = now + (said ? ReadingMath.GapTicks : ReadingMath.LookAgainTicks);
             }
         }
@@ -125,6 +127,7 @@ namespace ColonyCouncil
             if (r == null) return;
             book.readings.Remove(r);
             if (r.kind == ReadingKind.Aims) FirstSupper.Over(r, p, took);
+            else if (r.kind == ReadingKind.Elders) EldersDay.Over(r, p, took);
             else YearRead.Over(r, p, took);
         }
 

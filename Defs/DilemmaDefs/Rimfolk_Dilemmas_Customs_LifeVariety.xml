@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two customs of the colony's year (the content update's A26 and A28, 20 November 2026), in the pattern of
+    Council_Dilemmas_Customs.xml: kept three years running each becomes a tradition that comes round on its date.
+    - The giving day (Source/ColonyCouncil/LifeVariety/GivingDay.cs), in winter: names drawn so everyone gives one gift by
+      hand and gets one, each chosen from the stores by what the other wants or lacks (Vanilla Christmas Expanded's toys,
+      gingerbread, eggnog and hot cocoa, warm hats and scarves, books, a drink, a carving), taken in the afternoon, a supper
+      together (the fairy lamps lit), then the gifts handed round. Or the children only. Midwinter hands no presents of its
+      own on the same day; with the faith's festive feast the gifts follow the feast.
+    - The elders' day (LifeVariety/EldersDay.cs), in autumn, with two colonists of sixty or more or the elder's seat held:
+      someone young asks; a supper raised to the elders, each telling one thing from their life, and with the whole day the
+      children make something for them by day and carry it over.
+    Lines for a custom kept year after year are tagged [again], [tradition], [missed]. Council questions, the flavour style.
+  -->
+
+  <!-- ===================== The giving day ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_GivingDay</defName>
+    <label>the giving day</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_GivingDay</workerClass>
+    <weight>0.9</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <texts>
+      <li>{A_nameDef} has been whittling something behind {A_possessive} back for a week and says it isn't for anyone in particular. It plainly is. {A_nameDef} thinks the whole colony could do the same, one evening this winter, and then nobody would have to pretend.</li>
+      <li>{A_nameDef} has a hat full of folded scraps of paper, one for each name in the colony, and wants everyone to draw one. Whoever you draw, you give something to, by hand, on one winter evening. "It doesn't have to be much," {A_nameDef} says, "it has to be meant."</li>
+      <li>Winter has settled in, the days are short, and {A_nameDef} thinks the colony could do with a reason to look forward to an evening. One day of giving, {A_pronoun} says: everyone gives somebody something, and then supper together.</li>
+      <li>[lowtech] Where {A_nameDef} grew up, the coldest month had one night when every hand gave something to another, carved bone or dried fruit or a warm wrap, so no one went into the dark with nothing. {A_nameDef} would like the colony to keep it.</li>
+      <li>[!lowtech] {A_nameDef} wants a giving day: names drawn from a hat, a gift each from the stores, handed over at supper. "The stores are ours anyway," {A_pronoun} says, "so it's only the giving that's new."</li>
+      <li>[again] The giving day again. {A_nameDef} has the hat out already, and some people have been very polite to each other all week in case they're drawn.</li>
+      <li>[tradition] It's the time of year for the giving day, and everyone knows it. {A_nameDef} has the names in the hat and asks only whether it's everyone this year, or the children.</li>
+      <li>[missed] There was no giving day last winter, and {A_nameDef} noticed who looked for one anyway.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the giving day</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>The giving day, for everyone</label>
+        <outcome>Names were drawn from {A_nameDef}'s hat. Each takes a gift from the stores for the one they drew, and after supper hands it over in person.</outcome>
+        <outcomes>
+          <li>[again] The names went round the hat again. The gifts come out of the stores in the afternoon and are handed over after supper, with a word each.</li>
+          <li>[lowtech] Each drew a name and takes something from the stores for them, to give by hand after the meal.</li>
+        </outcomes>
+        <ways><generosity>4</generosity><tradition>3</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GivingDay"><label>the giving day's supper</label><hours>17~21</hours><duration>2~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_GivingDay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>The children only</label>
+        <outcome>Each of the children is to be given something from the stores by the grown-up fondest of them, handed over after supper.</outcome>
+        <ways><generosity>2</generosity><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GivingDay"><label>the children's giving supper</label><childrenOnly>true</childrenOnly><hours>17~21</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_GivingDay</thought><childrenOnly>true</childrenOnly></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>No names were drawn this winter.</outcome>
+        <ways><generosity>-2</generosity><tradition>-2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Thought_NoGivingDay</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The elders' day ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dilemma_EldersDay</defName>
+    <label>the elders' day</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_EldersDay</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Fall</li></seasons>
+    <roleA><maxAge>29</maxAge></roleA>
+    <texts>
+      <li>{A_nameDef} has noticed that the oldest among them eat last and say least at supper, and doesn't think it should be that way round. One evening in the autumn, {A_pronoun} says, the cup should be raised to the elders, and the rest of the colony should listen to them for once.</li>
+      <li>"They carried this place before most of us got here," {A_nameDef} told the council. {A_pronoun} would like a day to honour the colony's elders: a supper for them, and the children making them something by hand.</li>
+      <li>{A_nameDef} asked one of the elders a question about the old days and got an answer that lasted an hour and was worth every minute. {A_pronoun} thinks the whole colony should hear more of it, on a day set aside.</li>
+      <li>[lowtech] Among {A_nameDef}'s people the old were given the first cut of the autumn meat and the warmest place at the fire, one night a year. {A_nameDef} would like the colony to do the same.</li>
+      <li>[again] The elders' day again. The elders have pretended all week not to know about it, badly.</li>
+      <li>[tradition] It's the elders' day, and {A_nameDef} has been setting places at the head of the table since noon.</li>
+      <li>[missed] Last autumn the elders' day came and went with nothing, and one of the elders mentioned it, once, at supper.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the elders' day</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>The whole day for the elders</label>
+        <outcome>The children each make something for the elders at the bench and carry it over themselves. At supper the cup is raised to the elders, and each of them tells the table something from their life.</outcome>
+        <outcomes>
+          <li>[again] The children make their pieces for the elders again, and at supper the elders tell their stories.</li>
+        </outcomes>
+        <ways><tradition>4</tradition><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_EldersDay"><label>the elders' supper</label><children>true</children><hours>17~21</hours><duration>2~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_EldersDay</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Supper only</label>
+        <outcome>The colony eats together with the cup raised to its elders, and each of them tells the table something from their life.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_EldersDay"><label>the elders' supper</label><hours>17~21</hours><duration>2~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_EldersDay</thought><chance>0.8</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>The autumn goes on as usual, with no day for the elders this year.</outcome>
+        <ways><tradition>-2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Thought_NoEldersDay</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Their moods ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_GivingDay</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>the giving day</label>
+        <description>Names were drawn, gifts were handed over by hand, and we ate together.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_NoGivingDay</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>no giving day</label>
+        <description>I asked for a giving day this winter, and the council said not this year.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_GivingDayGift</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>12</durationDays>
+    <stackLimit>2</stackLimit>
+    <stages>
+      <li>
+        <label>a gift on the giving day</label>
+        <description>Someone drew my name on the giving day and handed me a gift themselves.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+        <baseOpinionOffset>8</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_EldersDay</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>the elders' day</label>
+        <description>We honoured the colony's elders at supper and heard them tell of their lives.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_EldersHonoured</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>honoured on the elders' day</label>
+        <description>The colony raised a cup to us elders and listened while we told them about our lives.</description>
+        <baseMoodEffect>6</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_NoEldersDay</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>no elders' day</label>
+        <description>I asked for a day to honour the elders, and the council said not this year.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== What's said ===================== -->
+
+  <!-- The giver to the one their gift is for, one sentence: {GIFT} what it is; [gift:toy|sweet|warm|book|drink|carving], [forchild], [foradult]. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GivingDay_Give</defName>
+    <lines>
+      <plain>
+        <li>I drew your name, so this is for you.</li>
+        <li>It's not much, but I chose it for you.</li>
+        <li>Here, the {GIFT} is yours.</li>
+        <li>I thought about this one for a long time.</li>
+        <li>[gift:toy] This one's for you to play with, and nobody else gets a turn unless you say so.</li>
+        <li>[gift:sweet] Something sweet, and you don't have to share it.</li>
+        <li>[gift:warm] Something warm for the cold mornings.</li>
+        <li>[gift:book] A book for the long evenings, and tell me how it ends.</li>
+        <li>[gift:drink] Something to drink on a cold night.</li>
+        <li>[gift:carving] Something to put by your bed.</li>
+        <li>[forchild] Close your eyes and hold out your hands.</li>
+        <li>[lowtech] I give this to you with my own hand, as it's done.</li>
+      </plain>
+      <warm><li>I'm glad it was you I drew.</li></warm>
+      <blunt><li>Yours.</li></blunt>
+      <cheerful><li>Surprise, it's for you.</li></cheerful>
+      <gloomy><li>I hope you like it, I wasn't sure.</li></gloomy>
+      <cold><li>This seemed the most useful thing for you.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one given a gift, back to the giver, one sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GivingDay_Thanks</defName>
+    <lines>
+      <plain>
+        <li>Thank you, I didn't expect anything.</li>
+        <li>You chose well.</li>
+        <li>I'll keep it somewhere safe.</li>
+        <li>That's kind of you.</li>
+        <li>[child] Is it really mine to keep?</li>
+      </plain>
+      <warm><li>I'll think of you every time I see it.</li></warm>
+      <blunt><li>Good, thanks.</li></blunt>
+      <cheerful><li>I love it.</li></cheerful>
+      <gloomy><li>Nobody's given me anything in years.</li></gloomy>
+      <cold><li>Thank you, it will be useful.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- An elder at the elders' supper, one thing from their life, one sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_EldersDay_Tale</defName>
+    <lines>
+      <plain>
+        <li>When I was your age I walked a whole winter to reach a town that wasn't there any more.</li>
+        <li>The first animal I ever raised followed me everywhere for eleven years.</li>
+        <li>I was married once, a long time ago, and we laughed more than we argued.</li>
+        <li>I learned my trade from a man who never once said I'd done well, and I'm grateful to him.</li>
+        <li>I've buried more friends than I can count, and I remember every one of their names.</li>
+        <li>The best meal I ever ate was a pot of beans shared with strangers in the rain.</li>
+        <li>I was afraid of the dark until I was forty, and then one night I simply wasn't.</li>
+        <li>I've seen this land change more than you'd believe, and the people on it change more.</li>
+        <li>I once carried a wounded stranger for two days, and I never learned their name.</li>
+        <li>I lost everything I owned in one night, and I was happier the year after than the year before.</li>
+        <li>[lowtech] My grandmother told me the stars were the fires of the dead, and I still look for hers.</li>
+        <li>[!lowtech] I remember when the lights first came on in the town I grew up in.</li>
+        <li>[spacer] I was born on a ship between stars, and the first time I saw rain I thought the sky was broken.</li>
+        <li>[trait:Kind] The thing I'm proudest of is a small kindness nobody else saw.</li>
+        <li>[trait:Tough] I've broken most of the bones in my body at one time or another, and I'd do it all again.</li>
+      </plain>
+      <warm><li>The best thing in my life has been the people at tables like this one.</li></warm>
+      <blunt><li>I worked hard my whole life, and I'd tell you all to do the same.</li></blunt>
+      <cheerful><li>I danced at my own wedding until the musicians fell asleep.</li></cheerful>
+      <gloomy><li>I've outlived most of the people I loved, and I'm still here, which surprises me.</li></gloomy>
+      <cold><li>I've made three fortunes and lost two, and I learned more from the losing.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone at the table, to the elder who just spoke, one sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_EldersDay_Answer</defName>
+    <lines>
+      <plain>
+        <li>Tell us more about that.</li>
+        <li>I never knew that about you.</li>
+        <li>That explains a great deal.</li>
+        <li>I'll remember that one.</li>
+        <li>[child] Is that really true?</li>
+      </plain>
+      <warm><li>We're lucky to have you here.</li></warm>
+      <cheerful><li>You have to tell it again next year.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>
