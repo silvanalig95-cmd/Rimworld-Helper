@@ -18143,6 +18143,27 @@ go into the 1.6 folder.
 
 ---
 
+## Jobs of no kind (the player's report, 20 November 2026; released 0.275.2)
+
+The player, after a medal at the gate: "the whole map screen turned gray essentially while I was unpausing the game. Once
+I paused, the map just returned to normal, but as soon as I unpause, everything turns gray again", then, in a later save,
+"there's an invisible pawn here". Three of Rimfolk's lists of its own jobs (`NightWalkDefOf` in `Harm/NightWalks.cs`,
+`HarmSixDefOf`, `HarmSevenDefOf`) lacked the game's `[DefOf]` mark, so the game never filled them: the sleepwalk and the
+restless walk, the dawn walk, the muster post, the dare and the shooing of a visitor, the practice walk and a visitor's
+sneak to the stores were made as jobs of no kind. The game took such a job but couldn't make its driver. In the player's
+game the open gates' visitor (`GateTroubles.Sneak`, the guard of the Republic's clerk) got one: he was drawn as his name
+only (drawing him threw, and the game skips a pawn it can't draw), stood at the gate for good, and every frame in which
+time passed his facing read the missing driver and threw before the map was drawn, so the map stayed grey until the
+game was paused. The job was saved with him.
+
+- The three lists carry the mark; `JobGuardTests` checks that every class Rimfolk asks the game to fill
+  (`EnsureInitializedInCtor`) carries it and that each of Rimfolk's own defs it names exists.
+- `Lean/JobGuard.cs`: `Patch_JobGuard`, a prefix on `Pawn_JobTracker.StartJob`, refuses a job of no kind from anyone
+  (told once in the log), and `JobGuard.Repair`, from `CouncilGameComponent.FinalizeInit`, sends a pawn with a job of no
+  kind or without its driver back to choosing a job when a game loads, and takes such jobs out of the queues.
+- Since harm parts 5 to 7 (7 November 2026) none of those eight walks had played out: each try left the pawn so, or
+  failed with an error. They now play out as written in their sections above.
+
 ## Ticking
 
 Every system keeps its own clock; nothing is merged into one scheduler. What they share is the list of ticks in

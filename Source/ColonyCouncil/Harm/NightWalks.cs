@@ -7,6 +7,7 @@ using Verse.AI;
 
 namespace ColonyCouncil
 {
+    [DefOf]
     public static class NightWalkDefOf
     {
         public static JobDef Rimfolk_Sleepwalk;
