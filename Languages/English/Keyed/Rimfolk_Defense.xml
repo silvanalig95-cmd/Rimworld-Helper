@@ -46,6 +46,9 @@
   <CC_Def_From_Mostly>Most of the open edge lies to the {0}, so most raids will come from there.</CC_Def_From_Mostly>
   <CC_Def_Enclosed>Your home is walled in: the only ways in on foot are through doors.</CC_Def_Enclosed>
   <CC_Def_Openings>Your home is open: raiders can walk in at {0} place(s) without passing a door.</CC_Def_Openings>
+  <CC_Def_Ways_Open>These are the ways of raiders who walk in from the edge. They can't open your doors, and while an open way is left they don't break one, however far round that way goes.</CC_Def_Ways_Open>
+  <CC_Def_Ways_Shut>Every way in from the edge passes a shut door, and raiders can't open your doors. Those who walk in break in at a door or a stretch of wall they pick, so the ways drawn through your doors are only a guess. A gate held open would be their way in.</CC_Def_Ways_Shut>
+  <CC_Def_Ways_ShutSome>From part of the edge to the {0}, no open way reaches your home. Raiders who arrive there break in at a door or a stretch of wall they pick, so the ways drawn from there are only a guess. Everywhere else they take an open way, however long.</CC_Def_Ways_ShutSome>
   <CC_Def_GapSummary>To the {0}: {1}, {2} wide. About {3} in 10 raids would pass it.</CC_Def_GapSummary>
   <CC_Def_NoGaps>No narrow place on the way in, only open country. A wall with one gate makes a choke point of your own.</CC_Def_NoGaps>
   <CC_Def_Gap_Pass>a pass through the mountain</CC_Def_Gap_Pass>
@@ -136,7 +139,7 @@
   <CC_Def_Adv_Wood>The walls by the gate to the {0} are wood. Raiders set fires, and fire in a narrow place is a trap for your own people. Rebuild them in stone when there's stone to spare.</CC_Def_Adv_Wood>
   <CC_Def_Adv_Wall_Title>A way in of your own</CC_Def_Adv_Wall_Title>
   <CC_Def_Adv_Wall>Your home is open to raiders from {0} side(s), and they can walk in at {1} place(s) without passing a door. A wall round it with one gate makes a choke point of your own, and you choose where the fight is.</CC_Def_Adv_Wall>
-  <CC_Def_Adv_WallDone>Your home is walled in: raiders on foot come through a door or not at all.</CC_Def_Adv_WallDone>
+  <CC_Def_Adv_WallDone>Your home is walled in: raiders on foot come in through a door held open, and with every door shut they break in at a door or a stretch of wall they pick.</CC_Def_Adv_WallDone>
   <CC_Def_Adv_Killbox_Title>Turn the way in into a killbox</CC_Def_Adv_Killbox_Title>
   <CC_Def_Adv_Killbox>Raids are about {0} points now, more than a gate holds for long. A killbox behind it brings them round a turn, one at a time, into open ground under every gun the colony has.</CC_Def_Adv_Killbox>
   <CC_Def_Adv_Traps_Title>Traps on the way in</CC_Def_Adv_Traps_Title>
@@ -144,7 +147,7 @@
   <CC_Def_Adv_Turrets_Title>Turrets behind the gate</CC_Def_Adv_Turrets_Title>
   <CC_Def_Adv_Turrets>Two turrets behind cover near the way in to the {0} fire day and night, as long as they have power and someone repairs them. A solar flare shuts them down, so arm your people as if they weren't there.</CC_Def_Adv_Turrets>
   <CC_Def_Adv_Post_Title>An archers' post</CC_Def_Adv_Post_Title>
-  <CC_Def_Adv_Post>{1} of your fighters shoot. Behind cover a few cells back from the way in to the {0}, they hit raiders before the gate breaks, and walls on the flanks keep arrows off them.</CC_Def_Adv_Post>
+  <CC_Def_Adv_Post>{1} of your fighters shoot. Behind cover a few cells back from the way in to the {0}, they hit raiders as they come at the gate, and walls on the flanks keep arrows off them.</CC_Def_Adv_Post>
   <CC_Def_Adv_Sappers_Title>Sappers and breachers go round</CC_Def_Adv_Sappers_Title>
   <CC_Def_Adv_Sappers>Sappers dig toward the beds and breachers smash any wall in their way: a killbox or a gate does nothing against them. Walls at least two thick, or a second ring round the beds, give you time to meet them. Now {0}% of the outer wall is two thick.</CC_Def_Adv_Sappers>
   <CC_Def_Adv_SappersTribal>Tribes breach with axes.</CC_Def_Adv_SappersTribal>

@@ -6124,13 +6124,13 @@ the base layout stays yours.
 ### The defense helper: reading the ways in
 
 The Defenses page (Colony → Defenses) and its defense lines rest on one reading of the map (`Defense/DefenseSurvey.cs`,
-the pure part in `DefenseMath.cs`): from a sample of the map's edge, the cheapest way to the home area, with a door to
-break costing about as much as thirty cells of walking, and the narrow places on those ways. A few rules keep it
+the pure part in `DefenseMath.cs`): from a sample of the map's edge, the cheapest way to the home area, a shut door
+being no way at all while an open way is left (below, "Shut doors on the ways in"), and the narrow places on those ways. A few rules keep it
 honest about what the player has built:
 
 - **The door rule.** A defense line's gate, every door in its wall and a door right behind its gate (a double gate)
-  are the line's way through, shut or not: raiders who find a gate shut break it rather than walk far round. A door
-  held open counts as open. So a shut gate never makes the survey propose a new way in (`DefenseMath.MapGrid.free`,
+  are the line's way through, shut or not: the helper reads a line as it will be used in a raid, with its gate held
+  open (in the game a shut gate is no way at all to raiders while another is open). A door held open counts as open. So a shut gate never makes the survey propose a new way in (`DefenseMath.MapGrid.free`,
   `DefenseLineMath.MarkLineDoors`). The line's card says what a shut gate means and, where the door is shut, to hold it
   open in a raid.
 - **Gaps a line holds.** The survey measures a pass where it's narrowest outside home, so a line often has the same
@@ -6158,6 +6158,46 @@ honest about what the player has built:
   change a lot, or when a wall, door, turret, trap, cover, fence or rock is finished or goes within six cells of a line
   or a gap (two Harmony hooks, `Frame.CompleteConstruction` and `Building.DeSpawn`, one check each), and at once with
   "Survey again". When the busiest way in moves, the lines say so for a day and a message says it once.
+
+#### Shut doors on the ways in (the player's go, 20 November 2026; not released yet)
+
+Found in the plain-words pass on the Almanac (part 2), built with the player's go of 20 November 2026 ("go ahead with
+the next tasks"). The survey used to count a shut door as about thirty cells of walking (`DoorCost` 400), so a back door
+near the edge could be drawn as the raiders' way in, with its choke point and raid counts, while the game sends them the
+long way round to the killbox. In the game's 1.6 pathing a closed colony door is no way at all for an ordinary raider:
+they can't open it (`Building_Door.PawnCanOpen`, the door's faction against theirs), and their goto, attack and trash
+jobs can't bash doors (`TraverseParms.canBashDoors` false, so `PathUtility.GetDoorCost` gives an impassable cost). They
+take an open way however long, and with none left they pick a door or a stretch of wall at random
+(`docs/defense-research/mechanics.md`, 1.2 and 1.3).
+
+- **The rule.** A shut door (neither held open nor a line's way through) costs `DefenseMath.ShutDoorCost`, more than any
+  walk on any map costs: an open way always wins, and where none reaches home the way that breaks the fewest doors is
+  drawn (the survey's guess: the game's raiders pick at random). One Dijkstra, as before; `DoorsToBreak` and `Walking`
+  split a cost into its doors and its walking. It holds per edge cell, not for the whole colony: the game sends raiders
+  to any edge cell that reaches the colony through its doors too (`RCellFinder.TryFindRandomPawnEntryCell` with
+  `Reachability.CanReachColony`, `TraverseMode.PassDoors`), so raiders arriving where no open way reaches home break in
+  even when another edge has an open way. `Result.sideBreak` counts those edge cells per side, `BreakAll` is a colony
+  walled in all round with every gate shut.
+- **Which raids.** The ways are those of raiders who walk in from the edge and fight their way to people (an assault,
+  and a siege once it attacks). Sappers, breachers, berserk raiders and drop pods don't take them; the survey's words
+  and the line's help say so.
+- **The survey's words** (the Defenses page, "Where they come from"): with an open way from everywhere and doors in the
+  colony, "These are the ways of raiders who walk in from the edge ..." (`CC_Def_Ways_Open`); with none from anywhere,
+  "Every way in from the edge passes a shut door ... only a guess" (`CC_Def_Ways_Shut`); with none from part of the edge,
+  the sides named (`CC_Def_Ways_ShutSome`). The walled-in advice says a door held open is their way in and, with every
+  door shut, they break in where they pick.
+- **The lines.** A line's gate and the doors in its wall stay the line's way through, shut or not (the door rule: the
+  line as it will be used in a raid). The way round (`DefenseLineMath.FindLeak`) follows the game: a way round that has
+  to break more of the colony's doors than the way through the gate is no way round (sealed: "No open way round"); one
+  that breaks no more is the way they take with the gate shut, however long, past a door held open too (a long way past
+  such a door is now told as the long way round, not as sealed). Doors behind the gate (`DoorsBehind`) and the doors to
+  the beds (`DoorsToCore`) are counted on the way that breaks the fewest. The gate's notes, the help on a shut gate
+  (`CC_DefLine_How_Gate`), the doors in a line's wall, the shut-gate reminder, the killbox's "why" and the step ladder's
+  mistakes say what the game does: raiders can't pass a shut gate, take any other open way, and with none break in where
+  they pick.
+- **Not changed.** The choke points, their widths and facings, the walled-in test (`Enclosed`: no way in without passing
+  a door, held open or not), the trap corridor's way up to the gate (`DefenseApproach`, which now also avoids a shut door
+  in front of the gate while an open way is there), and the plan check's walks (`CheckWay`) all use the same costs.
 
 ---
 

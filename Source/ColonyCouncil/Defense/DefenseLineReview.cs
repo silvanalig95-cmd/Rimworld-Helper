@@ -582,15 +582,16 @@ namespace ColonyCouncil
                 var n = Note(r, "leak", LeakWords(f), "CC_DefLine_How_LeakDoor".Translate(), 4f, page);
                 n.actions.Add(ShowAction(r, door));
             }
-            else if (leak.longWay && !leak.viaDoor)
+            else if (leak.longWay)
             {
-                // Too long to matter while the gate is open; the way they take when it's shut.
+                // Too long to matter while the gate is open; the way they take when it's shut, however long (past a door
+                // held open too: a shut door elsewhere is no way round, see DefenseLineMath.FindLeak).
                 var cross = f.Cell(leak.cross);
-                int extra = Mathf.Max(1, (leak.detour - Mathf.Max(0, leak.direct)) / DefenseMath.Ortho);
+                int extra = Mathf.Max(1, (DefenseMath.Walking(leak.detour) - Mathf.Max(0, DefenseMath.Walking(leak.direct))) / DefenseMath.Ortho);
                 var n = Note(r, "leak", "CC_DefLine_Leak_Long".Translate(extra, f.SideWord(leak.lateral < 0 ? -1 : 1)).Resolve(), "CC_DefLine_How_Leak".Translate(), 3f, page);
                 n.actions.Add(ShowAction(r, cross.IsValid ? cross : f.gate));
             }
-            else if (leak.sealedShut || leak.longWay) Note(r, "leak", "CC_DefLine_Leak_Sealed".Translate(), "CC_DefLine_How_Leak".Translate(), 1f, page, true);
+            else if (leak.sealedShut) Note(r, "leak", "CC_DefLine_Leak_Sealed".Translate(), "CC_DefLine_How_Leak".Translate(), 1f, page, true);
             else if (leak.noWayOn) Note(r, "leak", "CC_DefLine_Leak_NoWayOn".Translate(), "CC_DefLine_How_NoWayOn".Translate(), 3f, A("Rimfolk_AlmDef_KillboxWhere", "Rimfolk_AlmDef_ChokePoints"));
         }
 

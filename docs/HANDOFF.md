@@ -149,18 +149,10 @@ repo.
   builder is in the play-out skips as far off. When asked: send the colonist away for the days the words say, as the
   storyline of the town's well already does with its digger (`Storylines/StorylineWell.cs`, "{PAWN} has set out for
   {PLACE} ... back in about {DAYS}"), or tell it as done by letter from where the colonist is.
-- **To do when the player asks (found 19 November 2026 in the plain-words pass on the Almanac, part 2; no words of the
-  player's yet): the defense survey counts a shut door as a way raiders might break through.** The survey of the ways
-  in (`Defense/DefenseMath.cs`, a Dijkstra from home with `DoorCost` 400, about thirty cells of walking) lets a shut
-  door stand on the raiders' way when the open way round is some thirty cells longer. In the game's 1.6 pathing a
-  closed colony door is no way at all for an ordinary assault raider: their goto, attack and trash jobs have
-  `canBashDoors` false, so they take the open way however long it is (`docs/defense-research/mechanics.md`, 1.2 and
-  1.3). A back door near the edge can so be shown as the raiders' way in, with its choke points and raid counts, while
-  the game sends them the long way to the killbox. The Almanac now says what the game does and names the survey's own
-  count ("how raiders pick their way"); the defense lines' help on a shut gate (`CC_DefLine_How_Gate` in
-  `Rimfolk_DefenseLines.xml`, "if breaking it is no cheaper than somewhere else, they pick their own stretch of wall")
-  still follows the survey's count. When asked: count a shut door as closed while any open way reaches home, and at
-  400 only when none does (a colony walled in all round, where they break in at random).
+- **Done (20 November 2026, the player's go: "go ahead with the next tasks"; built, not released): the defense survey
+  counts a shut door as a way raiders might break through.** The finding (from the plain-words pass on the Almanac, part
+  2), the cause in the game's 1.6 code and what was built are now one entry above the newest release line ("The defense
+  survey's shut doors").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -532,6 +524,83 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The defense survey's shut
+  doors** (20 November 2026; found 19 November 2026 in the plain-words pass on the Almanac, part 2, with no words of the
+  player's; the player's go of 20 November 2026: "go ahead with the next tasks"). A bug fix. DESIGN.md "Shut doors on the
+  ways in" (under "The defense helper: reading the ways in", whose door rule and opening lines now say the same);
+  README's Defenses page paragraph; the Almanac's "how raiders pick their way" and "Doors in a line"
+  (`Almanac_DefendingLines.xml`, keywords unchanged); `docs/defense-research/mechanics.md` 1.3 (where raiders arrive).
+  - **The bug**: the survey of the ways in (`Defense/DefenseMath.cs`, a Dijkstra from home) counted a shut door as
+    `DoorCost` 400, about thirty cells of walking, so a shut back door near the edge was drawn as the raiders' way in,
+    with its choke point and its share of raids, whenever the open way round was some thirty cells longer, while the game
+    sends them the long way to the killbox. Read again in the 1.6 code (the 1.6 decompile the research notes use, and
+    the 1.6 and 1.7 reference assemblies' constants and signatures, which agree): an ordinary raider's goto, attack and
+    trash jobs can't bash doors, so `PathUtility.GetDoorCost` makes a closed colony door impassable to them
+    (`Building_Door.PawnCanOpen` is false for their faction, and `LordJob_AssaultColony` doesn't let them open any
+    door); they take an open way however long, and with none left they trash a random building they can touch. The game
+    also sends raiders to any edge cell that reaches the colony through its doors (`RCellFinder.TryFindRandomPawnEntryCell`
+    wants `CanReachColony`, which uses `TraverseMode.PassDoors`), so the rule holds for each edge cell, not for the whole
+    colony.
+  - **What was built**: (1) A shut door (not held open, not a line's way through) costs `DefenseMath.ShutDoorCost`
+    (2 to the 24th), more than any walk on any map: an open way always wins, however long, and only where no open way
+    reaches home is a door on the way, the way that breaks the fewest doors (the survey's guess: the game's raiders pick
+    a door or a stretch of wall at random, so the old trade of one door against thirty cells had no ground in the game
+    either). The lead's note asked for 400 where no open way is left; with the cost above, the fewest doors decide
+    there, which differs from 400 only when two doors would save more than thirty cells, and it lets the defense lines
+    compare their ways by doors. `DoorsToBreak` and `Walking` split a cost; `Result.sideBreak`, `TotalBreak` and
+    `BreakAll` (walled in all round, every gate shut) count the edge cells with no open way; `Distances` adds in 64 bits
+    and drops a step that would overflow. (2) The survey says which, under "Where they come from" on the Defenses page:
+    `CC_Def_Ways_Open` (every edge has an open way and the colony has doors: these are the ways of raiders who walk in
+    from the edge, who don't break a door while an open way is left), `CC_Def_Ways_Shut` (no open way from anywhere:
+    they break in at a door or a stretch of wall they pick, the ways drawn through the doors are only a guess, a gate
+    held open would be their way in) or `CC_Def_Ways_ShutSome` (the sides where part of the edge has none). (3) The
+    defense lines' way round (`DefenseLineMath.FindLeak`): a way round that breaks more of the colony's doors than the
+    way through the gate is no way round ("No open way round"); one that breaks no more is the way they take with the
+    gate shut, however long, through a door held open too (`DefenseLineReview.Leak` now tells a long way past such a
+    door as the long way round, where it said "No way round"). A line's gate and the doors in its wall stay its way
+    through, shut or not (the door rule: the line as it will be used in a raid), and its card says what a shut gate
+    does. (4) The words that had breaking a door as a choice raiders weigh: `CC_DefLine_How_Gate` (it also says
+    sappers and breachers dig or break through anywhere), `CC_DefLine_Gate_Shut`, `_Gate_ShutKillbox`, `_Gate_Doors`,
+    `_How_LeakDoor`, `_Leak_Door`, `_Leak_Sealed`, `_Killbox_Why3`, `_Remind` and the reminder setting's tooltip;
+    `CC_Def_Adv_WallDone` ("come through a door or not at all"), `CC_Def_Adv_Post` ("before the gate breaks"); the
+    step ladder's killbox (`whyNow` "Raids this size break a plain gate", a shut gate's mistake, and "An entrance so
+    long that raiders give up on it and go for the walls", which the game has no rule for: raiders far from anyone to
+    fight drift off to smash what they reach, as the Almanac's killbox page says); the Almanac's three mentions of the
+    survey's thirty cells.
+  - **Code map**: `Defense/DefenseMath.cs` (`ShutDoorCost`, `DoorsToBreak`, `Walking`, `StepCost`, `Distances`,
+    `Result.sideBreak`, `TotalBreak`, `BreakAll`, the class's note on which raids the ways are), `Defense/DefenseLineMath.cs`
+    (`FindLeak`, the `Leak` fields' notes, `MarkLineDoors`' note), `Defense/DefenseLineReview.cs` (`Leak`),
+    `Defense/DefenseSurvey.cs` (notes), `UI/DefensePanel.cs` (the three lines),
+    `Languages/English/Keyed/Rimfolk_Defense.xml`, `Rimfolk_DefenseLines.xml`, `Defs/DefenseStepDefs/Rimfolk_DefenseSteps.xml`,
+    `Defs/AlmanacArticleDefs/Almanac_DefendingLines.xml`. Untouched but following the new costs: the choke points and
+    their shares, the walled-in test (`Enclosed`), the trap corridor's way up to a gate (`DefenseApproach`), the plan
+    check's walks (`CheckWay`), the doors behind a gate (`DoorsBehind`) and on the way to the beds (`DoorsToCore`).
+    Tests: `DefenseTests.ShutDoorChecks` (an open way round a few cells longer, a long one about a hundred cells longer,
+    walled in all round, the door held open there and with the colony walled in, part of the edge with only the door),
+    `DefenseLineTests` (a way round through another door: shut, no way round; held open, the way round through it),
+    `DefenseApproachTests` (a shut door that isn't a line's sends every walk to the other pass; a cost split into doors
+    and walking). Saved: nothing.
+  - **What the player sees differently**: on the Defenses page and with "Show on the map", the red ways no longer run
+    through a shut door while an open way is left, however long (round to the killbox, a gap or a gate held open); the
+    yellow narrow places and their "About N in 10 raids would pass it" follow, so a shut back door near the edge drops
+    out of the gaps and the advice. A colony walled in all round with every gate shut still has its ways drawn through
+    the doors, and the page now says they are only a guess. One new line under "Where they come from" says which. On
+    a defense line's card: a way round through another shut door is no longer told as a way through your door ("keep
+    the other shut and strong"), but as no open way round; a long way round through a door held open is told as the long
+    way round. The first survey after loading the game updates the busiest way in quietly (no "Raiders now come by"
+    message).
+  - **Can't be checked without the game**: raiders in a 1.7 raid walking the long open way past a shut back door (the
+    1.7 method bodies weren't read; its reference assembly has the same door constants and signatures); the drawn ways
+    on the player's own maps; the new line's fit in the page's left column.
+  - **Try in the game**: (1) A colony with an open killbox (or its gate held open) and a shut door nearer the raiders:
+    Colony, Defenses, "Survey again", "Show on the map": the red ways go to the killbox, none through the shut door, and
+    "Where they come from" says these are the ways of raiders who walk in from the edge. (2) Set the killbox's gate to
+    close (a colony walled in all round): "Survey again": the page says every way in passes a shut door and the ways
+    drawn are a guess, and the wall's advice says a door held open is their way in. (3) A defense line with a second
+    door of the colony's on another way in: shut, its card says "No open way round"; set that door to stay open, and it
+    says the easiest way on is through that door. (4) In a raid with a shut back door and the killbox open: raiders walk
+    the long way to the killbox, as the page now draws.
+  - **Mods that would help**: none; the survey reads the map Rimfolk already has, and no graphics or sound come into it.
 - 0.274.0, **The peoples' own events, round 10, the last**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new
