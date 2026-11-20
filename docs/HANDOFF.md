@@ -611,6 +611,42 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Colony life's text variety: the
+  journals, the teasing, the decrees' voices, the answers to wishes, the social log, social events, the seats' words and
+  the year's last** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall
+  sounds really good", with "adding more text variety" in the first request, and "first do all the integrations ...
+  before we add additional content variety"). Text round 1: A31 to A37 of part A, each marked **Built** in the proposals
+  doc with what was decided; DESIGN.md "Colony life's text variety" (after "Context-aware writing") has every pool with
+  its count before and after. Each pool recounted first with `Tools/variety_report.py` (none had grown since the
+  proposal), then brought up as proposed, about 600 lines.
+  - **Where the lines are**: A31 `Defs/FlavorPoolDefs/Rimfolk_Lines_ColonyLife_Journals.xml` (99: a seat taken, a goal
+    changed, a lower seat, a name earned, comrades, a friendship, a year here, home again); A32
+    `Rimfolk_Talk_Lines_Teasing.xml` (167: six teasing openings for each of eighteen topics, the closing words of five
+    shared memories and jokes, the joke passed on and the lost child's three turns); A33 `Rimfolk_DecreeLines_ColonyLife.xml`
+    (72, twelve sides of seven decrees); A34 `Rimfolk_Lines_ColonyLife_Wishes.xml` (60, six scene pools, flavour style);
+    A35 `Defs/InteractionDefs/Rimfolk_LogLines_ColonyLife.xml` (45 rules for talk of the council and its decrees, 23 for
+    what the gossip was about: the four newest deeds and A23's first, a seat put down); A36 two texts more for each of the
+    35 social events in `Rimfolk_SocialEvents_Lives.xml`, `Rimfolk_SocialEvents_Quirks.xml` and
+    `Council_SocialEvents_Lives.xml` (70); A37 three first words more for each of the twelve seats in
+    `Defs/OfficeDefs/Council_Offices*.xml` (36) and `Rimfolk_Lines_ColonyLife_Letters.xml` (the year letter's last word
+    and the anniversary's, 10 each). Social events and seats have no file that joins lines to them, so theirs went into the
+    defs. Code: `Aspirations.TryChangeOfHeart` writes the changed goal's entry with its spark (`WriteTagged`, `[loss]` or
+    `[downed]`); `Tools/variety_report.py` adds that tag to the pool's moments. Tests: `Tools/Tests/ColonyLifeTextTests.cs`
+    (each pool's count, its people and values, plain words, one sentence where said aloud, the goal's tags).
+  - Decided: a voice of one line got at most one more, so it is still drawn with the plain lines; a teasing topic's six
+    are two plain, one cheerful, one warm, one blunt and a gloomy or cold one, since those who tease in their own voice
+    draw them; tags that win a pick (a common trait, passion, mood or season) were taken off where one tagged line would
+    have been the unlucky speaker's words every time (four journal lines, two wish lines, three anniversary lines); the
+    decrees' lines are tagged by their reactions' traits and faiths and by the age of the decree's form; A23's other deeds
+    get their gossip when they are built; no line names an hour that may not have come (no "tonight").
+  - Not checked without the game: how the lines read among the old ones in a real colony; a changed goal's tagged entry
+    (a loss or a downing a few weeks into a goal, then a chance of a change of heart).
+  - Try in the game: dev mode, start an election or appoint someone (the letter's first words, the journal's entry); let
+    a colonist be downed or lose a friend a few weeks into a fresh goal and read the journal if they change it; declare
+    foraging days, saving the power or wood for the winter and watch who speaks for and against; promise a wish, let one
+    lapse, grant one while another waits (the lines over their heads and in the messages); watch the social log for talk
+    of the council and a decree; read the year letter's last word at the year's end.
+  - Mods that would help: none; these are words only, with no graphics or sound to add, and no def of any mod is named.
 - 0.283.0, **Colony life's variety, part 1: the
   council's situations and its everyday questions** (20 November 2026; the player on `docs/content-update-proposals.md`:
   "just variety, further kind of events, camps, world events, normal storyteller events, dilemmas, etc." and "yes, I want

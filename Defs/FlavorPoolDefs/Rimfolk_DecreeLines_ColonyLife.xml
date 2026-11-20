@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More voices for and against the thinnest decrees (the content update's A33, 20 November 2026), merged into the
+    decree defs at startup as Extra_DecreeLines.xml's are. <support> is said by a colonist who likes the decree, <oppose>
+    by one who hates it, when it is declared or when they petition for or against it. Only {PAWN_...} (the speaker) is
+    available. Shown as floating speech too, so each is one sentence. Trait and faith tags follow each decree's reactions,
+    so the people who care are the ones who say them; an age's own form of the decree is tagged by the age.
+  -->
+
+  <!-- ==================================== EVERY FAITH ITS EVENING ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Decree_EveryFaith</defName>
+    <decree>Rimfolk_Decree_EveryFaith</decree>
+    <support>
+      <plain>
+        <li>[faith:minority] Those of us who keep a different ideoligion would like an evening of our own, just once.</li>
+        <li>[faith:alone] I'm the only one here who keeps my ideoligion, and an evening for it would mean a lot to me.</li>
+        <li>[trait:Kind] Nobody should feel like a guest in their own home because of what they believe.</li>
+        <li>Ten days of treating every ideoligion alike is a small thing to ask of the council.</li>
+      </plain>
+      <blunt><li>Not everyone here keeps the colony's ideoligion, and the council should act like it knows that.</li></blunt>
+      <cheerful><li>An evening of someone else's faith sounds like a good evening to me.</li></cheerful>
+    </support>
+    <oppose>
+      <plain>
+        <li>[devout] The colony's ideoligion has kept us together, and the council shouldn't set it aside for ten days.</li>
+        <li>[faith:majority] Most of us keep the colony's ideoligion, and the council should remember that.</li>
+        <li>I don't see why the council should hold an evening for an ideoligion that isn't the colony's.</li>
+        <li>[faith:devout] The council is meant to stand by the colony's ideoligion, not treat it as one among many.</li>
+      </plain>
+      <warm><li>I don't mind what other people believe, but I'd rather the council didn't make a decree of it.</li></warm>
+      <cold><li>The devout will trust the council less for this, and the council needs them.</li></cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== FORAGING DAYS ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Decree_Foraging</defName>
+    <decree>Rimfolk_Decree_Foraging</decree>
+    <support>
+      <plain>
+        <li>[skill:Plants] There's food ripening out there that nobody planted, and I'd like to go and pick it.</li>
+        <li>[trait:Ascetic] Whatever grows wild out there is good enough food for me.</li>
+        <li>[tribal] Our people always kept the berry days, and this is the time for them.</li>
+        <li>[medieval] Let's glean the hedges while there's still something in them to glean.</li>
+        <li>[industrial|spacer] It's worth surveying what the land grows for us before it rots where it stands.</li>
+      </plain>
+      <cheerful><li>A few days out with a basket sounds good to me.</li></cheerful>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Undergrounder] I'd rather be under a roof than wandering about looking for berries.</li>
+        <li>[trait:Industrious] Picking berries one at a time is a poor use of a day's work.</li>
+        <li>Six mornings of the growers wandering off, and the crops will suffer for it.</li>
+        <li>We planted fields so we wouldn't have to go looking for food.</li>
+      </plain>
+      <warm><li>I'd rather the growers spent their days in the fields with the rest of us.</li></warm>
+      <cold><li>A basket of berries won't feed us through the winter.</li></cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== SAVING THE POWER ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Decree_SavePower</defName>
+    <decree>Rimfolk_Decree_SavePower</decree>
+    <support>
+      <plain>
+        <li>[trait:Ascetic] Nobody needs the lamps burning while they sleep.</li>
+        <li>[trait:Undergrounder] A dark room at night is how it should be anyway.</li>
+        <li>The batteries run low before morning, and the lamps are the easiest place to save.</li>
+        <li>[industrial] Lights out at eleven means the batteries will still have something in them at dawn.</li>
+        <li>[spacer] Dimming the lamps at night costs us nothing but a little light.</li>
+      </plain>
+      <cheerful><li>I sleep better in the dark anyway, so this suits me fine.</li></cheerful>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:NightOwl] Night is when I'm up and about, and I can't see what I'm doing without a lamp.</li>
+        <li>[trait:Nervous|trait:Volatile] I don't like waking up in the dark and not being able to see the door.</li>
+        <li>Somebody will walk into a wall in the dark before the five nights are out.</li>
+        <li>[afterraid] Raiders were just here, and now we're turning the lights off at night?</li>
+      </plain>
+      <warm><li>I'd rather nobody here had to wake up frightened in the dark.</li></warm>
+      <blunt><li>Build more batteries and leave the lamps alone.</li></blunt>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== WOOD FOR THE WINTER ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Decree_WoodForWinter</defName>
+    <decree>Rimfolk_Decree_WoodForWinter</decree>
+    <support>
+      <plain>
+        <li>[trait:Industrious|trait:HardWorker] Give me a week of felling and the woodpile will be up to the roof.</li>
+        <li>[trait:Tough] A week of felling in the cold never did me any harm.</li>
+        <li>[lowtech] The nights are getting longer, and the fires will need feeding every one of them.</li>
+        <li>Wood is easy to get now and hard to get once the snow comes, so let's fell it.</li>
+        <li>[winter] It's cold already, and the woodpile is lower than it should be.</li>
+      </plain>
+      <warm><li>I'd like everyone to have a warm room this winter, and that means cutting wood now.</li></warm>
+    </support>
+    <oppose>
+      <plain>
+        <li>[trait:Lazy|trait:Slothful] Eight days of carrying logs, and my back aches just thinking about it.</li>
+        <li>The woodpile will do us, and eight days is a long time to spend on it.</li>
+        <li>I like having trees around the colony, and this will clear a lot of them.</li>
+        <li>[hurt] I'm in no shape for felling, and somebody will still expect me to haul.</li>
+      </plain>
+      <blunt><li>Cut what we need when we need it, not eight days of it at once.</li></blunt>
+      <cold><li>The cutters will be no use for anything else for a week.</li></cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== ONE IDEOLIGION FOR THE COLONY ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Decree_OneFaith</defName>
+    <decree>Council_Decree_OneFaith</decree>
+    <support>
+      <plain>
+        <li>[faith:devout] Our ideoligion has carried this colony this far, and it should have the council's word behind it.</li>
+        <li>[devout] Every meeting opening with a word from the faith is how it should have been all along.</li>
+        <li>[faith:majority] Most of us pray the same way, and naming it the colony's would settle a lot of arguments.</li>
+        <li>One ideoligion for the colony means one set of holy days, and fewer quarrels about which to keep.</li>
+      </plain>
+      <blunt><li>Name it the colony's ideoligion and be done with it.</li></blunt>
+      <cheerful><li>Hearing a word from the faith at every meeting would put people in a better mood.</li></cheerful>
+    </support>
+    <oppose>
+      <plain>
+        <li>[faith:minority] Those of us who keep another ideoligion will feel like guests in our own colony.</li>
+        <li>[faith:alone] I'm the only one here who keeps my ideoligion, and this tells me how much that counts.</li>
+        <li>People should come to an ideoligion because they want to, not because the council named it.</li>
+        <li>[devout] I won't be talked out of my own ideoligion by a decree.</li>
+      </plain>
+      <warm><li>I'd rather we got along with our different ideoligions than had one named for us.</li></warm>
+      <cheerful><li>Name an ideoligion if you like, but I'll be keeping my own, thank you.</li></cheerful>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== A HUNTING SEASON ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Decree_HuntingSeason</defName>
+    <decree>Rimfolk_Decree_HuntingSeason</decree>
+    <oppose>
+      <plain>
+        <li>[trait:Kind] I don't like the idea of the animals being chased down every morning for six days.</li>
+        <li>[tribal] Our people never hunted more than the camp could eat, and this is more.</li>
+        <li>If the hunters are out every morning, who's going to do their other work?</li>
+        <li>[spacer] A cull sounds tidy until you're the one dragging the carcasses back.</li>
+      </plain>
+      <blunt><li>Animals fight back, and I'd rather not be patching up hunters all week.</li></blunt>
+      <cold><li>Six days of hunting now leaves fewer animals for next year.</li></cold>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ==================================== DAYS OF REST ==================================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Decree_Rest</defName>
+    <decree>Council_Decree_Rest</decree>
+    <oppose>
+      <plain>
+        <li>[trait:Industrious] I'm not tired, and I don't see why the work should slow down for three days.</li>
+        <li>[trait:HardWorker] There's too much waiting to be done for three slow days.</li>
+        <li>[fall] The harvest won't wait three days for us to feel better.</li>
+        <li>If we slow down now, the stores will be the first thing to feel it.</li>
+      </plain>
+      <warm><li>I know people are tired, but I'm worried about what falls behind while we rest.</li></warm>
+      <gloomy><li>Three easy days, and then three hard ones catching up.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

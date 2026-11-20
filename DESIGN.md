@@ -232,6 +232,50 @@ tone draws on its own lines alone only with three or more; a tone of one or two 
 one person, the unlucky one of ten, would say their own line again within a year, with no memory and with the speaker's
 (`--by-speaker` ranks by it; some journal pools' draws are read from the save).
 
+### Colony life's text variety (the content update's A31 to A37; the player's go, 20 November 2026; not released yet)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good", with "adding more
+text variety" in the first request. The thin pools part A counted with `Tools/variety_report.py`, recounted after the
+integrations and colony life's variety, part 1 (none of them had grown), each brought up as proposed, about 600 lines:
+
+- **A31, journals of the council's life** (`Rimfolk_Lines_ColonyLife_Journals.xml`): a seat taken (8 to 24 lines), a
+  life goal changed (8 to 24), a lower seat (3 to 12), a name earned (22 to 36), comrades in a fight (22 to 34), a
+  friendship (25 to 37), a year in the colony (23 to 33) and home from a journey (9 to 19). A changed goal is now written
+  with what changed it (`Aspirations.TryChangeOfHeart`, `WriteTagged` with the spark), so its lines are tagged `[loss]`
+  or `[downed]`, the only two sparks that change a goal (`GoalMath.Big`).
+- **A32, teasing, jokes and shared memories** (`Rimfolk_Talk_Lines_Teasing.xml`, `TalkLinesDef`s joined by topic or
+  memory, turn and outcome): six more openings for each of the eighteen thin teasing topics (8 to 14 lines each before,
+  14 to 20 after), in the plain and cheerful voices and in the warm, blunt, gloomy and cold ones of those who tease in
+  their own voice (`TalkMath.Voice`); seven more closing words for being nursed, a close call, a debt and the downpour
+  and snowball jokes (3 to 10 each), six for the joke passed on (10 to 16) and six for each turn of the lost child (11,
+  11 and 7 to 17, 17 and 13).
+- **A33, the thinnest decrees' voices** (`Rimfolk_DecreeLines_ColonyLife.xml`, as `Extra_DecreeLines.xml`): six more on
+  every side under eight lines, twelve sides: every faith its evening (4 and 3 to 10 and 9), foraging days (5 and 3 to 11
+  and 9), saving the power (5 and 3 to 11 and 9), wood for the winter (6 and 3 to 12 and 9), one ideoligion (4 and 7 to
+  10 and 13), against a hunting season (4 to 10) and against days of rest (7 to 13). Tagged by the traits and faiths of
+  the decree's own reactions, and by the age where its form changes (the berry days, the hunters' moon, a cull).
+- **A34, the council's answers to wishes** (`Rimfolk_Lines_ColonyLife_Wishes.xml`): ten more for asking because someone
+  else got one (32 to 42), the bitter (24 to 34), a broken promise (21 to 31), passed over (22 to 32), seeing to it
+  themselves (25 to 35) and a promise heard (26 to 36), in the flavour style the wishes keep.
+- **A35, the social log** (`Defs/InteractionDefs/Rimfolk_LogLines_ColonyLife.xml`, `LogLinesDef`s): speaking well of the
+  council (12 rules to 24), grumbling about it (23 to 33), griping and arguing about a decree (17 to 29, 15 to 26), and what
+  the gossip was about for the four newest deeds (3 to 8 each) and for A23's first deed, a seat put down (3 to 6).
+- **A36, social events**: two more texts for each of the 35 social events of the old, the quirks, secrets, vendettas and
+  life goals (`Rimfolk_SocialEvents_Lives.xml`, `Rimfolk_SocialEvents_Quirks.xml`, `Council_SocialEvents_Lives.xml`; 2 or
+  3 texts to 4 or 5), written into the defs, since no file joins texts to a social event.
+- **A37, the seats' first words and the year's last** (`Defs/OfficeDefs/`, in the defs for the same reason; and
+  `Rimfolk_Lines_ColonyLife_Letters.xml`): three more first words for each of the twelve seats (3 to 6), each about the
+  seat's own work on the map (the speaker's hour with the one who trusts least, the quartermaster's count, the reeve's
+  walk, the marshal on the walls at dusk, the physician's rounds); ten more last words for the year letter (36 to 46) and
+  for a year in the colony (17 to 27).
+
+Journals, talk, the social log, social events and the seats' words are the colony's people speaking or writing, in plain
+words; the answers to wishes and the year's letters in the flavour style. Every line said aloud is one sentence. A voice
+of one line got at most one more, so it stays below three and is still drawn with the plain lines
+(`LineMemory.ToneDrawsAlone`); a voice of three or more, drawn on its own, got one or two more. Tags that win a pick (a trait,
+a mood, a passion, a season) were kept to the people a line is really for, so the unlucky speaker isn't handed the same
+tagged line every time. Tests: `Tools/Tests/ColonyLifeTextTests.cs`.
+
 ### Example letter
 
 > **Engie wants a proper workshop**

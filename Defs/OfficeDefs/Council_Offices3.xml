@@ -32,6 +32,9 @@
       <li>{PAWN_nameDef} means to spend an evening in prayer before taking up the seat.</li>
       <li>{PAWN_nameDef} intends to ask after everyone who lost someone this year, by name.</li>
       <li>{PAWN_nameDef} says the faith should comfort people, not frighten them.</li>
+      <li>{PAWN_nameDef} means to sit with anyone who is grieving, for as long as they need.</li>
+      <li>{PAWN_nameDef} wants to lead the colony's days of remembrance properly.</li>
+      <li>{PAWN_nameDef} says anyone whose belief is wearing thin can come and talk, without being judged.</li>
     </elected>
     <planks>
       <li><key>comfort</key><when>LowMood</when><text>{PAWN_nameDef} says the faith is a comfort in hard days, and promises to be there for whoever needs it.</text></li>
@@ -59,6 +62,9 @@
       <li>{PAWN_nameDef} says the first job is to walk out to the gate and see who is there.</li>
       <li>{PAWN_nameDef} wants a corner swept out for guests to sit in, with a pot of water always on.</li>
       <li>{PAWN_nameDef} wants every visitor offered a meal.</li>
+      <li>{PAWN_nameDef} plans to visit the camp's fire whenever people are camped nearby.</li>
+      <li>{PAWN_nameDef} wants every visitor greeted at the gate and shown where to rest.</li>
+      <li>{PAWN_nameDef} means to keep the peace between the colony and anyone camped on its land.</li>
     </elected>
     <planks>
       <li><key>gate</key><when>RecentRaid</when><text>{PAWN_nameDef} says friends at the gate must be told apart from raiders, and welcomed when they are friends.</text></li>
@@ -89,6 +95,9 @@
       <li>{PAWN_nameDef} says only that it was about time somebody asked.</li>
       <li>{PAWN_nameDef} has stories from the colony's early years to tell the young ones.</li>
       <li>{PAWN_nameDef} takes the seat by the fire, where {PAWN_pronoun} usually sits anyway.</li>
+      <li>{PAWN_nameDef} wants to spend more time teaching the younger ones what {PAWN_pronoun} knows.</li>
+      <li>{PAWN_nameDef} says {PAWN_pronoun} will sit with the young ones and pass on a skill or two.</li>
+      <li>{PAWN_nameDef} means to keep the council from forgetting what the colony learned the hard way.</li>
     </elected>
     <planks>
       <li><key>wisdom</key><when>Always</when><text>{PAWN_nameDef} says the colony has made the same mistakes twice, and would like to spare it a third time.</text></li>

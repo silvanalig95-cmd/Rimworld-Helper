@@ -508,6 +508,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {FaithPeopleTests.Run(root, Check)} things about faith among the people (talks that sway, crises, views beside certainty).");
         Console.WriteLine($"Checked {FaithCouncilTests.Run(root, Check)} things about faith and the council (evenings of faith, the wish, the decree, faiths at odds).");
         Console.WriteLine($"Checked {TalkTests.Run(root, Check)} things about conversations (topics, how a talk goes, persuasion, the lines in turn).");
+        Console.WriteLine($"Checked {ColonyLifeTextTests.Run(root, Check)} things about colony life's text variety (journals of the council's life, teasing and shared memories, the thinnest decrees' voices, the answers to wishes, the social log's council talk and gossip, social events, the seats' first words and the year's last; each pool's count, its people and values, plain words, one sentence aloud).");
         Console.WriteLine($"Checked {MarkTests.Run(root, Check)} things about marks (choosing by nature, the limits, soft factors, the defs).");
         Console.WriteLine($"Checked {GroupTests.Run(root, Check)} things about groups (forming, roles, cohesion, splits and merges, newcomers, rivalries).");
         Console.WriteLine($"Checked {ChemistryTests.Run(root, Check)} things about how two colonists get on (not everyone ends up friends).");
