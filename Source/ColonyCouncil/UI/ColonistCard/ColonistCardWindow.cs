@@ -233,7 +233,8 @@ namespace ColonyCouncil
             {
                 if (UiKit.OwnLook) UiKit.RoundBox(tile, UiKit.PortraitBack, UiKit.Edge, SkinMath.RadiusCard);
                 else Widgets.DrawBoxSolidWithOutline(tile, UiKit.PortraitBack, UiKit.CardBorder, 1);
-                Portrait(tile, pawn);
+                // Their whole figure from the face engine: framed by their head, the steady face, on their own colour.
+                FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure);
             }
             // The heart's line under the portrait, as the colonist bar draws it under theirs.
             if (m.heartOn)
@@ -259,21 +260,6 @@ namespace ColonyCouncil
                 y += 24f;
             }
             if (m.chips.Count > 0) UiKit.Pills(tx, y + 2f, tw, m.chips);
-        }
-
-        /// <summary>Their whole figure as dressed, from the game's portrait cache (the size of the header's tile).</summary>
-        private static void Portrait(Rect r, Pawn p)
-        {
-            try
-            {
-                var tex = PortraitsCache.Get(p, new Vector2(Mathf.Round(r.width), Mathf.Round(r.height)), Rot4.South, default(Vector3), 1f);
-                GUI.color = Color.white;
-                GUI.DrawTexture(r, tex);
-            }
-            catch (Exception)
-            {
-                Widgets.ThingIcon(r, p);
-            }
         }
 
         // ---------------- The body: the parts in columns ----------------

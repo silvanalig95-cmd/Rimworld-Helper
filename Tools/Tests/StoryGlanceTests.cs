@@ -150,8 +150,8 @@ public static class StoryGlanceTests
           && glance.Contains("OfficeTracker.HeldBy(p)") && glance.Contains("\"CC_SGl_LikedBy\""), "standing: trust on a meter with its bands, the office, how the colony regards them");
         C(glance.Contains("p.relations.OpinionOf(o)") && glance.Contains("StoryGlanceMath.Friends(others)") && glance.Contains("StoryGlanceMath.Rivals(others)")
           && glance.Contains("PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_Colonists"), "friends and rivals from the game's opinions and Rimfolk's bonds, among the colony's people");
-        C(draw.Contains("UiKit.Portrait(new Rect(r.x + 1f, r.y + 1f, Face, Face), o.pawn,") && Code("UI/UiKit.cs").Contains("PortraitsCache.Get("),
-            "small portraits, through the game's portrait cache");
+        C(draw.Contains("UiKit.Portrait(new Rect(r.x + 1f, r.y + 1f, Face, Face), o.pawn,") && Code("UI/UiKit.cs").Contains("FaceEngine.Picture(")
+          && Code("UI/Faces/FaceEngine.cs").Contains("PortraitsCache.Get("), "small portraits, through the face engine and the game's portrait cache");
         C(glance.Contains("if (select && (who.pawn.Spawned || who.pawn.GetCaravan() != null)) CameraJumper.TryJumpAndSelect(who.pawn);") && glance.Contains("else Cards.Open(who.pawn);"),
             "a click selects them in the Story tab (as the game's Social tab does), opens their card elsewhere");
         C(glance.Contains("SocialColumn.PairNote(subject, who.pawn)") && glance.Contains("TooltipHandler.TipRegion(r, () =>"), "Rimfolk's line about the two only when hovered");

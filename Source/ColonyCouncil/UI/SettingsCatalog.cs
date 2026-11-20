@@ -689,6 +689,13 @@ namespace ColonyCouncil
             Section("CC_SetSec_Links");
             Toggle("linkPreviews", "CC_Settings_LinkPreviews", "CC_SetNote_LinkPreviews");
             Slider("linkPreviewDelay", "CC_Settings_LinkPreviewDelay", "CC_SetNote_LinkPreviewDelay", 0.1f, 1.5f, 0.05f, "0.00", "linkPreviews");
+            // Portraits (UI/Faces/): the steady face every portrait is drawn with, and the large one at the inspect pane.
+            Section("CC_SetSec_Portraits");
+            Toggle("inspectPortrait", "CC_Settings_InspectPortrait", "CC_SetNote_InspectPortrait", "deepHooks");
+            Slider("inspectPortraitSize", "CC_Settings_InspectPortraitSize", "CC_SetNote_InspectPortraitSize", FaceMath.SizeLeast, FaceMath.SizeMost, FaceMath.SizeStep, "0",
+                "inspectPortrait");
+            Toggle("portraitHeadgear", "CC_Settings_PortraitHeadgear", "CC_SetNote_PortraitHeadgear");
+            Toggle("portraitClothes", "CC_Settings_PortraitClothes", "CC_SetNote_PortraitClothes");
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");

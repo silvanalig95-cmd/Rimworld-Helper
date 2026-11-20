@@ -828,6 +828,15 @@ namespace ColonyCouncil
         public bool colonistCardBar = true;
         /// <summary>A small button by a colonist's name on the inspect pane opens their card (a deeper game hook).</summary>
         public bool colonistCardPane = true;
+        // Portraits (UI/Faces/): the face engine every portrait is drawn by, and the large portrait at the inspect pane.
+        /// <summary>A large portrait of the selected person above the inspect pane at the bottom left (UI/Faces/InspectPortrait.cs; a deeper game hook).</summary>
+        public bool inspectPortrait = true;
+        /// <summary>Its size in the interface's units (FaceMath.SizeLeast to SizeMost), set by its slider or by dragging its top right corner.</summary>
+        public float inspectPortraitSize = 192f;
+        /// <summary>Headgear in every portrait; off draws the steady face, the same whatever helmet or hat they wear (UI/Faces/FaceEngine.cs).</summary>
+        public bool portraitHeadgear = false;
+        /// <summary>Clothes and armour on the body in every portrait.</summary>
+        public bool portraitClothes = true;
         /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
         public System.Collections.Generic.List<string> windowPlaces = new System.Collections.Generic.List<string>();
 
@@ -1306,6 +1315,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref colonistCard, "colonistCard", true);
             Scribe_Values.Look(ref colonistCardBar, "colonistCardBar", true);
             Scribe_Values.Look(ref colonistCardPane, "colonistCardPane", true);
+            Scribe_Values.Look(ref inspectPortrait, "inspectPortrait", true);
+            Scribe_Values.Look(ref inspectPortraitSize, "inspectPortraitSize", 192f);
+            Scribe_Values.Look(ref portraitHeadgear, "portraitHeadgear", false);
+            Scribe_Values.Look(ref portraitClothes, "portraitClothes", true);
             Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 windowPlaces ??= new System.Collections.Generic.List<string>();
