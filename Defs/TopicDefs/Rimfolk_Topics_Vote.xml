@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    "The vote" (the content update's A25, 20 November 2026; Source/ColonyCouncil/LifeVariety/CouncilSeasons.cs,
+    TopicWorker_Vote): talked of only while an election is under way at the colony, about its most contested seat
+    ({SUBJECT}, the seat in the colony's age). For it: cares how the vote goes; against: thinks it changes nothing. Its lines
+    say whom the speaker leans to, read from the vote's own lean so the words match: [lean:self] themselves, [lean:holder]
+    the one who holds the seat now, [lean:other] someone else standing, [undecided] nobody yet; [standing] the speaker
+    stands for the seat, [holder] holds it now. Talking about it never moves a vote. One sentence each, as all talk lines.
+  -->
+
+  <ColonyCouncil.TopicDef>
+    <defName>Rimfolk_Topic_Vote</defName>
+    <label>the vote</label>
+    <about>the election under way</about>
+    <workerClass>ColonyCouncil.TopicWorker_Vote</workerClass>
+    <interaction>Rimfolk_Talk_Vote</interaction>
+    <viewFor>cares a great deal how the colony votes</viewFor>
+    <viewAgainst>says the vote changes nothing that matters</viewAgainst>
+    <relevance>0.9</relevance>
+    <hotDays>2</hotDays>
+    <seed><trust>30</trust><openness>20</openness><pride>15</pride><outlook>15</outlook></seed>
+    <leans>
+      <li><trait>Kind</trait><lean>0.1</lean></li>
+      <li><trait>Psychopath</trait><lean>-0.2</lean></li>
+      <li><trait>Abrasive</trait><lean>0.1</lean></li>
+      <li><skill>Social</skill><lean>0.15</lean></li>
+    </leans>
+    <interest><pride>20</pride><openness>15</openness></interest>
+  </ColonyCouncil.TopicDef>
+
+  <InteractionDef ParentName="Rimfolk_TalkBase">
+    <defName>Rimfolk_Talk_Vote</defName>
+    <label>talked about the vote</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the vote.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] who [RECIPIENT_pronoun] meant to vote for.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over the candidates for the council.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] how [INITIATOR_pronoun] thought the vote would go.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Vote_Open</defName>
+    <topic>Rimfolk_Topic_Vote</topic>
+    <turn>Open</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[for] Have you made up your mind about the vote for {SUBJECT}?</li>
+        <li>[for] This vote matters more than people think.</li>
+        <li>[for,lean:holder] I'm keeping the same {SUBJECT}, the work's been done well enough.</li>
+        <li>[for,lean:other] I think it's time we had a new {SUBJECT}.</li>
+        <li>[for,lean:self] I'm standing for {SUBJECT}, and I'd like your vote.</li>
+        <li>[for,undecided] I still don't know who I'll vote for as {SUBJECT}.</li>
+        <li>[for,standing] I've been asking everyone what they want from the next {SUBJECT}.</li>
+        <li>[for,holder] I'd like another year as {SUBJECT}, if the colony will have me.</li>
+        <li>[against] Whoever wins, the same work gets done by the same people.</li>
+        <li>[against] It's a vote for a chair, nothing more.</li>
+        <li>[against,lean:holder] I'll vote to keep things as they are and stop thinking about it.</li>
+        <li>[against,lean:other] I'll vote for a change, not that it'll make much difference.</li>
+        <li>[against,undecided] I haven't thought about the vote, and I'm not going to.</li>
+        <li>[mixed] I go back and forth on the vote for {SUBJECT}.</li>
+        <li>[mixed,undecided] Both of them would do, which makes it harder to choose.</li>
+        <li>[mixed,lean:other] I'm leaning toward someone new, but I could be talked out of it.</li>
+      </plain>
+      <warm>
+        <li>[for] Whoever wins, I hope they're kind about it.</li>
+        <li>[for,lean:holder] I think the one we have deserves another year.</li>
+      </warm>
+      <blunt>
+        <li>[for] Who are you voting for?</li>
+        <li>[against] The vote's a waste of an evening.</li>
+      </blunt>
+      <cheerful>
+        <li>[for] I love a vote, everyone's so polite to each other for a week.</li>
+      </cheerful>
+      <gloomy>
+        <li>[against] Whoever we pick, we'll be complaining about them by winter.</li>
+      </gloomy>
+      <cold>
+        <li>[for] The vote decides who decides, so it's worth getting right.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Vote_Reply</defName>
+    <topic>Rimfolk_Topic_Vote</topic>
+    <turn>Reply</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree,for] It matters, and I'm glad someone else thinks so.</li>
+        <li>[agree,lean:holder] I'm keeping the one we have too.</li>
+        <li>[agree,lean:other] I'm voting for a change as well.</li>
+        <li>[agree,undecided] I haven't decided either, so we can be undecided together.</li>
+        <li>[agree,lean:self] I'm standing too, so we'll see which of us they choose.</li>
+        <li>[agree,against] It won't change much, I agree.</li>
+        <li>[agree] That's more or less where I am.</li>
+        <li>[debate,lean:holder] The one we have has done well enough to keep.</li>
+        <li>[debate,lean:other] A new face would do the seat some good.</li>
+        <li>[debate,undecided] I'll listen to the speeches before I choose.</li>
+        <li>[debate,for] It's worth thinking about properly, at least.</li>
+        <li>[debate,against] It's one vote among many, I won't lose sleep over it.</li>
+        <li>[argue,lean:holder] You'd throw out someone who's done the work for nothing.</li>
+        <li>[argue,lean:other] Another year of the same, that's what you want?</li>
+        <li>[argue,against] If you don't care, don't vote.</li>
+        <li>[argue,for] It's not a game, people's lives depend on who sits there.</li>
+      </plain>
+      <warm>
+        <li>[agree] I'm glad we see it the same way.</li>
+      </warm>
+      <blunt>
+        <li>[argue] You're wrong about this one.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Vote_Close</defName>
+    <topic>Rimfolk_Topic_Vote</topic>
+    <turn>Close</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[agree] We'll see how it goes at the count, then.</li>
+        <li>[agree,lean:self] Thank you, I'll try to deserve it.</li>
+        <li>[agree,for] I'll see you at the vote.</li>
+        <li>[debate] Vote how you like, and I'll do the same.</li>
+        <li>[debate,undecided] Tell me if you make up your mind.</li>
+        <li>[debate,for] We'll find out soon enough who was right.</li>
+        <li>[argue] We'll have to vote against each other, then.</li>
+        <li>[argue,against] Fine, stay home on the day.</li>
+        <li>[agree,against] Either way, the fields still need doing.</li>
+      </plain>
+      <warm>
+        <li>[debate] Whoever wins, we'll still have supper together.</li>
+      </warm>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Vote_Last</defName>
+    <topic>Rimfolk_Topic_Vote</topic>
+    <turn>Last</turn>
+    <outcomes><li>Agree</li><li>Debate</li><li>Argue</li></outcomes>
+    <lines>
+      <plain>
+        <li>[debate] Maybe, we'll see.</li>
+        <li>[debate,undecided] I'll decide on the day.</li>
+        <li>[debate,lean:other] I still think it's time for someone new.</li>
+        <li>[debate,lean:holder] I still think we should keep who we have.</li>
+        <li>[argue] My vote's my own business.</li>
+        <li>[argue,lean:self] I'll win without yours, then.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>
