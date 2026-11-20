@@ -38,6 +38,9 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("event pools", e);
             }
             PokeWorldSounds.Apply();
+            // PokéWorld's items beside the game's own, or back in its own lists; switched on in a game, its shelves take them once.
+            PokeWorldShelves.Apply();
+            if (Current.ProgramState == ProgramState.Playing) CouncilGameComponent.Instance?.PokeShelvesOnce();
         }
 
         public override void DoSettingsWindowContents(Rect inRect)

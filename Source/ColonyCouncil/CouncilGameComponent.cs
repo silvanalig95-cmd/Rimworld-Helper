@@ -154,6 +154,8 @@ namespace ColonyCouncil
 
         /// <summary>1: the vegetarian and carnivore simple meals were let in wherever simple meals are (DietMeals.AllowWhereSimple).</summary>
         public int dietMealsVersion;
+        /// <summary>1: the shelves already built took PokéWorld's items where they take the whole of their kind (PokeWorldShelves.AllowOnBuilt).</summary>
+        public int pokeShelvesVersion;
         /// <summary>The medics Rimfolk set a medicine stock for ("id|def|count"), and those the player took over (count -1): Health/MedicKits.cs.</summary>
         public List<string> medicKits = new List<string>();
 
@@ -275,6 +277,8 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("vegetarian and carnivore simple meals in older policies and storage", e);
                 }
             }
+            // A save from before PokéWorld's items were placed beside the game's own: the shelves already built take them (once).
+            PokeShelvesOnce();
             // Rimfolk's groups an older version left with nobody in them, ticking for good: ended now (Lean/Lords.cs).
             Safe("empty groups left in the save", () => Lords.Sweep());
             // An older save's ties (grudges, guest kin, the scenario's debt) go into the world ledger, now the homes are known.
@@ -287,6 +291,17 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("moving an older save's ties into the world ledger", e);
             }
+        }
+
+        /// <summary>
+        /// Once a save, while PokéWorld's items are placed (Integrations/PokeWorldShelves.cs): the shelves already built that
+        /// take the whole of a kind take PokéWorld's items of it. At load, or when the setting is switched on in a game.
+        /// </summary>
+        public void PokeShelvesOnce()
+        {
+            if (pokeShelvesVersion >= 1 || !PokeWorldShelves.Applied) return;
+            pokeShelvesVersion = 1;
+            Safe("PokéWorld's items on the shelves already built", () => PokeWorldShelves.AllowOnBuilt());
         }
 
         private static CouncilSettings Settings => ColonyCouncilMod.Settings;
@@ -384,6 +399,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref tamingsVersion, "tamingsVersion");
             Scribe_Values.Look(ref fungusBillsVersion, "fungusBillsVersion");
             Scribe_Values.Look(ref dietMealsVersion, "dietMealsVersion");
+            Scribe_Values.Look(ref pokeShelvesVersion, "pokeShelvesVersion");
             Scribe_Collections.Look(ref medicKits, "medicKits", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit) medicKits ??= new List<string>();
             Scribe_Collections.Look(ref cooldowns, "cooldowns", LookMode.Value, LookMode.Value, ref tmpKeys, ref tmpValues);
