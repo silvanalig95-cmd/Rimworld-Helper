@@ -1,0 +1,286 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods among the colony's people and the world (Source/ColonyCouncil/Gods/Among/; the content update's integrations,
+    part 2: C6, C7, C8, C12, C14, C15, C18, C26, C29 of docs/content-update-proposals.md). Spoken lines are one sentence each,
+    plain speech, but for the keeper's and the grave's, which are the faith's own words in the old voice. A god is named in a
+    line only as the speaker's own name for it ({GOD}); nothing here says what a god wants or thinks.
+  -->
+
+  <!-- ===================== A vowed pilgrimage that really walks out (VowPilgrimage.cs) ===================== -->
+
+  <ThingDef>
+    <defName>Rimfolk_PilgrimToken</defName>
+    <label>pilgrim's token</label>
+    <description>A small token a pilgrim brought home from a holy place far off: a shell, a stone or a scrap of cloth from the place, worn on a cord. It is worth little to anyone but the one who walked for it.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <drawerType>MapMeshOnly</drawerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <resourceReadoutPriority>Middle</resourceReadoutPriority>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <useHitPoints>true</useHitPoints>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+    </comps>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/PilgrimShell</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.6,0.6)</drawSize>
+    </graphicData>
+    <stackLimit>10</stackLimit>
+    <statBases>
+      <MarketValue>10</MarketValue>
+      <Mass>0.05</Mass>
+      <MaxHitPoints>40</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+    </statBases>
+    <thingCategories>
+      <li>ItemsMisc</li>
+    </thingCategories>
+    <tradeability>All</tradeability>
+  </ThingDef>
+
+  <!-- ===================== Murmur and the fishers (MurmurFishers.cs) ===================== -->
+
+  <!-- A day of good fishing after the first fish of the morning went back to the water: Odyssey's fishing yield a tenth up,
+       Vanilla Fishing Expanded's fishing luck a little up where it is loaded (GodsAmongMath.YieldOffset, LuckOffset). -->
+  <HediffDef>
+    <defName>Rimfolk_MurmurFishBiting</defName>
+    <label>fish biting</label>
+    <description>Gave the first fish of the morning back to the water. The fish have been biting well since, and the catch is a little better for the rest of the day.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.55, 0.75, 0.85)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>30000~36000</disappearsAfterTicks>
+        <showRemainingTime>false</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <statOffsets>
+          <FishingYield MayRequire="Ludeon.RimWorld.Odyssey">0.1</FishingYield>
+          <VCEF_FishingLuckOffset MayRequire="vanillaexpanded.vcef">0.02</VCEF_FishingLuckOffset>
+        </statOffsets>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodsAmong_Fisher</defName>
+    <lines>
+      <plain>
+        <li>[giveback] The first one goes back to the water, for {GOD}.</li>
+        <li>[giveback] Back you go, the first catch of the day is {GOD}'s.</li>
+        <li>[giveback] One back to the water before I keep any, the way I was taught.</li>
+        <li>[giveback] There, {GOD} has the first, now the rest are mine.</li>
+        <li>[seen] I saw that splash, the first fish of the day went back to {GOD}.</li>
+        <li>[seen] Good, the first fish went back, the day will go well now.</li>
+        <li>[seenother] Did that fish just get thrown back in on purpose?</li>
+        <li>[seenother] Somebody just tossed a good fish back into the water.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Ducat and what the colony owes (DucatDebts.cs): the coin found, in the gods' own happenings' words ===================== -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GodsAmong_DebtCoinSaid</defName>
+    <pool>Rimfolk_Pool_GodOwnSaid</pool>
+    <lines>
+      <plain>
+        <li>[debtcoin] There's a gold coin on the doorstep, and nobody here dropped it.</li>
+        <li>[debtcoin] A gold coin, right outside the door, the morning after we paid what we owed.</li>
+        <li>[debtcoin,doubt] A coin on the step, a trader must have lost it on the way through.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- ===================== The keeper at work (KeeperAtWork.cs): the keeper's words, in the old voice ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_Keeper_Write</defName>
+    <driverClass>ColonyCouncil.JobDriver_KeeperWrites</driverClass>
+    <reportString>writing up the colony's book of the gods.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+  </JobDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodsAmong_Keeper</defName>
+    <lines>
+      <plain>
+        <li>[look] Here it was, and here I see it with mine own eyes, that the book may say so.</li>
+        <li>[look] So it is as they told me, and I shall set it down as I find it.</li>
+        <li>[look] I came to see what {GOD} left here, and I shall write it plain.</li>
+        <li>[look] Let it be written that the keeper came hither and saw it so.</li>
+        <li>[lookunnamed] Something was here, as they said, and I know not whose doing it was.</li>
+        <li>[lookunnamed] I have seen the place, and the book shall say what I saw and no more.</li>
+        <li>[write] Let it be set down as it was told me, and no word added.</li>
+        <li>[write] Now to write what was seen this day, while it is yet fresh.</li>
+        <li>[write] The book wanteth its new pages, and I shall give them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The raiders' gods, heard at the wall (RaidersGods.cs) ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodsAmong_RaiderCry</defName>
+    <lines>
+      <plain>
+        <li>For {GOD}, and for everything you have.</li>
+        <li>{GOD} is with us, and {GOD} sees you hiding.</li>
+        <li>{GOD} wants your walls down, and we are here to do it.</li>
+        <li>We came in {GOD}'s name, and we go home with your goods.</li>
+        <li>Call on your own gods, {GOD} is louder.</li>
+        <li>{GOD} goes before us, so run while you can.</li>
+        <li>Take them, {GOD} is watching how we fight.</li>
+        <li>In {GOD}'s name, over the wall with you all.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The dead's own god at the grave (GraveGods.cs): the speaker's words, in the old voice ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Thought_GivenToOurGod</defName>
+    <durationDays>6</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>given to the god we share</label>
+        <description>At the eulogy they were given into the keeping of the god we both hold. It is a little easier to let them go, knowing that.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodsAmong_Grave</defName>
+    <lines>
+      <plain>
+        <li>[give] Take {OTHER_objective} into thy keeping, {GOD}, for {OTHER_pronoun} kept faith with thee.</li>
+        <li>[give] Unto thee, {GOD}, we give {OTHER_nameDef}, and ask that thou keep {OTHER_objective} well.</li>
+        <li>[give] {GOD}, here is one of thine come home to thee, receive {OTHER_objective} gently.</li>
+        <li>[give] Into thy hands, {GOD}, as {OTHER_pronoun} would have wished it.</li>
+        <li>[give,doubt] If thou art there, {GOD}, take {OTHER_objective}, for {OTHER_pronoun} believed it.</li>
+        <li>[give,priest] By the old words we give {OTHER_nameDef} unto {GOD}, and the earth unto the earth.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Named seasons taken for a god's doing (SeasonGods.cs) ===================== -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodsAmong_Season</defName>
+    <lines>
+      <plain>
+        <li>[named] That was {GOD}'s doing, {SEASON}, I'd stake anything on it.</li>
+        <li>[named] Nobody can tell me {SEASON} just happened, that was {GOD}.</li>
+        <li>[named] {GOD} sent us {SEASON}, and we'd do well to remember it.</li>
+        <li>[named] My grandmother would have called it {GOD}'s season, and so do I.</li>
+        <li>[other] No, that was {GOD}, not {RIVAL}, and you know it.</li>
+        <li>[other] You've got it wrong, {SEASON} was {GOD}'s work, not {RIVAL}'s.</li>
+        <li>[other] {RIVAL}, really, when it was so plainly {GOD}?</li>
+        <li>[scoff] It was a hard season, that's all, and next year will be another.</li>
+        <li>[scoff] Weather is weather, nobody sent it.</li>
+        <li>[scoff] You'd blame a god for a draught under the door.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!--
+    A named season of last year come round again: the one who took it for a god's doing asks the council to keep a day
+    against it (a council question, the flavour style). {SEASON} is the name the season is remembered by, {GOD} the god it was
+    taken for (the colony's name for it), {PLACE} that god's place. Each answer plays out on the map: words at the god's
+    place with whoever comes, or the one who asked going there alone.
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_SeasonDay</defName>
+    <label>a day against the season</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_SeasonDay</workerClass>
+    <weight>0.6</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>{A_nameDef} has not forgotten {SEASON}, and holds to it that it was {GOD}'s doing. Now the same season has come round again, and {A_pronoun} asks the council to keep a day against it: words said at {PLACE}, and the colony's people there to hear them, so that {GOD} remembers this house kindly.</li>
+      <li>The season has turned to where it was a year ago, when {SEASON} came down on the colony. {A_nameDef} says it was {GOD}, and that a day kept for {GOD} at {PLACE} would be a small price against another like it.</li>
+      <li>[lowtech] {A_nameDef} has marked the day on the post by the door: a year since {SEASON} began. {GOD} sent it, {A_pronoun} says, and {GOD} should be asked at {PLACE}, with everyone there, not to send it twice.</li>
+      <li>[priest] It falls to the priest to remember such things. {A_nameDef} reminds the council of {SEASON}, which {A_pronoun} took for {GOD}'s, and asks for a day kept against its coming again.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Keep a day for {GOD} at {PLACE}</label>
+        <outcome>The council kept the day. {A_nameDef} led the words at {PLACE} that evening, and those who came stood with {A_objective} until it was done.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><label>a day kept against {SEASON}</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>2</amount><why>the council kept a day against {SEASON}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SeasonDay"><kept>true</kept></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it pass</label>
+        <outcome>The council let the day pass. {A_nameDef} went to {PLACE} alone that evening and said the words there all the same.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><target>A</target><god>1</god><priest>false</priest><label>{A_nameDef} at {PLACE} alone</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>17~21</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_SeasonDay"><kept>false</kept></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Midwinter with Vanilla Christmas Expanded (Midwinter.cs) ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_Thought_MidwinterPresent</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>20</durationDays>
+    <stackLimit>5</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>gave me a midwinter present</label>
+        <baseOpinionOffset>6</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_GodsAmong_Midwinter</defName>
+    <lines>
+      <plain>
+        <li>[tree] There, the tree is lit, now it feels like midwinter.</li>
+        <li>[tree] Lights on, and everyone come and look at it.</li>
+        <li>[treedark] It's switched on, but there's no power to light it.</li>
+        <li>[treedark] Somebody get the power running, or the tree stays dark.</li>
+        <li>[treelit] Still lit from last night, and it looks better every time.</li>
+        <li>[treelit] I just wanted a moment by the tree before supper.</li>
+        <li>[table] Gingerbread and the warm drinks are out by the table, help yourselves.</li>
+        <li>[table] It's all set out, and nobody touches it before supper.</li>
+        <li>[present] This one's for you, happy midwinter.</li>
+        <li>[present] I picked this one out for you, open it now.</li>
+        <li>[present] One each this year, and this is yours.</li>
+        <li>[snow] It's no snowman, it's a proper sculpture, come and see.</li>
+        <li>[snow] Snow's good for more than throwing, look at this.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

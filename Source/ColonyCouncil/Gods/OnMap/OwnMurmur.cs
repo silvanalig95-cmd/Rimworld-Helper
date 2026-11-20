@@ -342,6 +342,9 @@ namespace ColonyCouncil
                 var old = OldThing();
                 if (old != null) things.Add(old);
             }
+            // A few fish left on the mud, now and then: Vanilla Fishing Expanded's, else the game's own (Gods/Among/MurmurFishers.cs).
+            var fish = MurmurFishers.MudFish();
+            if (fish != null) things.Add(fish);
             var words = new List<string>();
             foreach (var t in things)
             {

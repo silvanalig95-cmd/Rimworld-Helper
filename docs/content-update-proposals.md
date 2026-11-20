@@ -1333,6 +1333,7 @@ Each item that adds text says which of these it follows.
   (`GodTales.Tell`), and the book hears that people's name for it.
 - **Ties:** `Vows`, life goals (flavour style), the region map, journeys, peoples, the book.
 - **Harm:** the road's own, already in the budget (`pilgrimCough`).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/VowPilgrimage.cs`). Decided: a holy place within one to six days' road each way; a town of a people that holds the god is chosen before the fellowship's shrine or an old shrine unless those are much nearer; one to three days there; the keepsake is Vanilla Ideology Expanded - Relics and Artifacts' small inert relic (a statuette, idol, medallion or amulet from a town, polished rock or a fossil from an old shrine), the fellowship's shell from theirs, else a new pilgrim's token; the tale is told at the first supper home within six days; the cough only from a town.
 
 **C7 (I) Murmur and the fishers** (S to M)
 - **On the map:** a fisher who holds Murmur gives the first fish of the morning back to the water, and someone sees it
@@ -1344,6 +1345,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `OwnMurmur`, `PawnGodsMath` draws, the touch's "fish by the water".
 - **Mod pool:** Vanilla Fishing Expanded (and its Fishing Treasures add-on), Odyssey.
 - **Harm:** none new; the cold-water slip already counts fishing.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/MurmurFishers.cs`). Decided: those who hold to Murmur (holds, not leans), the first catch between 4 and 12 o'clock, one fish of it; the day's better fishing is a half-day hediff (Odyssey's `FishingYield` +0.1, the mod's `VCEF_FishingLuckOffset` +0.02, each soft); the book keeps it once in ten days; two to four fish on the mud half the time the water gives back.
 
 **C8 (I) Ducat and what the colony owes** (M)
 - **What already exists:** Ducat's lore says he watches debts, and the region already keeps "what is owed each way"
@@ -1354,6 +1356,7 @@ Each item that adds text says which of these it follows.
   ("drives a hard bargain today"), the god never named.
 - **Ties:** `OwnDucat`, the diplomacy ledger, the trade window, `GodTouch`.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/DucatDebts.cs`). Decided: the debts are the ledger's own (a colony's `Debt` ties: scenario silver, an enclave's dues; debts of honour the colony owes), paid when kept, let lapse when broken, three times in four; "the one who carried the payment" is the debt's own colonist at home, else the quartermaster, else the best talker; the coin lies outside their bedroom door (the gate with no room); the trader's half day is added to their lord's own timer once settled; the hard bargain is 5% worse prices for a day, also said in a plain message.
 
 **C9 (V) Helios: out into the sun** (S)
 - **On the map:** on a clear, warm noon, someone who holds Helios (else the doctor) walks a colonist who is getting over
@@ -1422,6 +1425,7 @@ Each item that adds text says which of these it follows.
   voice.
 - **Mod pool:** Vanilla Books Expanded.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/KeeperAtWork.cs`). Decided: the keeper goes to a sign seen at a place within 90 cells, within eight hours, one at a time; the entry gains their name and a line in their own voice; the evening's writing from 18 to 22 o'clock with any new entry, a little longer for each.
 
 **C13 (V) More council questions of faith** (M; flavour style)
 - **The shrine in the way.** A room plan or a defense line is laid over a dedicated shrine: move it with a rite, build
@@ -1443,6 +1447,7 @@ Each item that adds text says which of these it follows.
   - a prisoner of that people, visited by the warden, tells a piece of their god's tale (`GodTales.Tell`).
 - **Ties:** raids, prisoners, peoples, `GodLore.Heard`, the stories in pieces.
 - **Harm:** none (the raid is the game's).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/RaidersGods.cs`). Decided: seven raids in ten of a people with gods have a cry, when a raider is within 38 cells and in sight; their war god first, else the god they swear by; a prisoner's tale one talk in five with the warden, once in two days at most.
 
 **C15 (I) The dead's own god at the grave** (S)
 - **On the map:** at a eulogy (`GodDeeds.Funeral`), the speaker gives the dead to the god they held (`PawnGods.Held`),
@@ -1452,6 +1457,7 @@ Each item that adds text says which of these it follows.
   - The book keeps "laid to rest in Hush's keeping" by the colony's name for that god, or unnamed.
 - **Ties:** funerals (`Vendettas` eulogy), belief, grief, the book.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/GraveGods.cs`). Decided: the god the dead held most when they died (kept five days for the eulogy); the line is said over the speaker's head and added to the eulogy's letter; mourners are those of the colony grieving the dead who hold the same god (+3 for six days); the book keeps it as the speaker's belief.
 
 **C16 (I) Legendary Pokémon taken for a god's** (S)
 - **When:** a legendary of PokéWorld comes onto the land.
@@ -1507,6 +1513,7 @@ Each item that adds text says which of these it follows.
     questions in the flavour style).
 - **Ties:** `WeatherBook`, `GodLore.Believes`, the neighbours' letters, the calendar's customs.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/SeasonGods.cs`). Decided: cold Hush; heat Helios or Smoulder (a warm winter Helios); storms Cirrus; wet Murmur; dry Helios or Murmur; the most devout believer speaks, another who holds another of them argues when beside them, a doubter beside them answers; the letter through the hands kept for neighbours; the council asked in the first six days of the same quarter the year after (keep a day at the god's place, or let it pass and the one who asked goes alone).
 
 **C19 (E) After the storm: a work party for every disaster** (S to M)
 - **What exists:** after Seasonal Weather's earthquake, a party already goes round mending (`WeatherDisasters`).
@@ -1610,6 +1617,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** Alpha Memes, VIE Memes and Structures, VFE Art, VFE Props and Decor, Alpha Props - Parks and Gardens,
   Dubs Bad Hygiene, Dragons Descent; each soft.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/GodRooms.cs`, `Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_GodRooms.xml`). Decided: "a chapter in the book" is a page for the god; each room has a piece of the game's own it can't do without (pots, a torch or brazier, columns, a sarcophagus); the open-sky rooms leave their roof off; `AM_Sphynx` (12 by 18) is too big for a room and was left out; Pip's terminal and the art statues are placed only where the colony can.
 
 **C27 (V) Room plans from the player's mods** (M)
 - **What changes:** of 109 room plans, few use the player's mods (VFE's plinth and lamps, a sauna). New plans:
@@ -1650,6 +1658,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** C1, the calendar, the feast engine, `PlaySnow`.
 - **Mod pool:** Vanilla Christmas Expanded; none without it.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/Midwinter.cs`). Decided: kept from the calendar (the winter god's festival or the midwinter custom's day) and the midwinter question's first two answers; the tree switched on at dusk (said plainly without power), the food set out beside the table at supper, the presents after supper by the eldest at home, the sculpture by day; the winter god's own festival play-out (C1) is left to it.
 
 (Other items that use the mods: C2, C7, C10, C11, C12, C16, C23, C24, C26, C27.)
 

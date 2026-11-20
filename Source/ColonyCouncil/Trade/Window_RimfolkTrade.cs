@@ -730,6 +730,9 @@ namespace ColonyCouncil
             string kind = trader.TraderKind?.LabelCap.ToString() ?? "";
             string line = W("CC_TradeWin_Negotiator", kind.Named("KIND"), negotiator.LabelShort.Named("NAME"),
                 negotiator.GetStatValue(StatDefOf.TradePriceImprovement).ToStringPercent().Named("PCT"));
+            // A trader after a debt let lapse drives a hard bargain today (Gods/Among/DucatDebts.cs), said plainly.
+            string hard = DucatDebts.WindowNote(trader);
+            if (hard != null) line += " " + hard;
             if (WindowFrame.Shown)
             {
                 UiKit.LabelFit(new Rect(r.x + 2f, r.y, tw, r.height), line, UiKit.Faint);

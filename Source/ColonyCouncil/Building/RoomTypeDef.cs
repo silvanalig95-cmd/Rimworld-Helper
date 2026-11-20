@@ -116,6 +116,9 @@ namespace ColonyCouncil
             foreach (var t in DefDatabase<RoomTemplateDef>.AllDefsListForReading)
             {
                 if (!t.architect) continue;
+                // A god's shrine room: only once the colony has a page for its god, by the colony's name for it (Gods/Among/GodRooms.cs).
+                if (!GodRooms.Shown(t)) continue;
+                GodRooms.Name(t);
                 var type = RoomTypeDef.Of(t);
                 if (type == null)
                 {

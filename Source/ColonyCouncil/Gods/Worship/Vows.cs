@@ -16,9 +16,11 @@ namespace ColonyCouncil
     /// (WorshipMath.NoMeatVowChance), never for one who eats no meat already or eats only meat. They ask the council for
     /// vegetarian meals in the stores (a wish; the vegetarian simple meals have their use). Kept when the sick get well, or
     /// die, or after twenty days; broken the moment they eat meat.</item>
-    /// <item>A pilgrimage: a life goal. On a free day they walk out to the god's holy place on the colony's land (the oldest
-    /// tree for the green, the water's edge for the waters, the graves for the dead, the far edge of the land), pray an
-    /// hour there, and come home: kept.</item>
+    /// <item>A pilgrimage: a life goal. On a free day they set out for a holy place of their god in the region (a town of a
+    /// people that holds it, the pilgrim fellowship's shrine, an old shrine by a landmark) as a caravan of their own, and are
+    /// kept when they are home (Gods/Among/VowPilgrimage.cs); with none in reach, or when the colony can't spare them, they
+    /// walk out to the god's holy place on the colony's land (the oldest tree for the green, the water's edge for the
+    /// waters, the graves for the dead, the far edge of the land), pray an hour there, and come home: kept.</item>
     /// <item>A temple: a life goal, kept when a place dedicated to their god stands in a fine room indoors.</item>
     /// <item>A beast spared: a hunter with a god whose sacred beast walks the colony's land vows that the colony won't hunt its
     /// kind for a season; broken if one of the colony kills one.</item>
@@ -248,9 +250,11 @@ namespace ColonyCouncil
             if (p == null || !p.Spawned || p.Map != map) return;
             int hour = GenLocalDate.HourOfDay(map);
             if (hour < 7 || hour > 13 || !Rand.Chance(0.2f)) return;
-            if (!WorshipJobs.Free(p) || p.CurJobDef?.defName == WorshipJobs.PilgrimJob) return;
+            if (!WorshipJobs.Free(p) || p.CurJobDef?.defName == WorshipJobs.PilgrimJob || SeasonAway.AwayNow(p)) return;
             var g = Gods.ById(r.god);
             if (g == null) return;
+            // A holy place of the god within reach in the region: they go there, a caravan of their own (Gods/Among/VowPilgrimage.cs).
+            if (VowPilgrimage.TryFar(p, g, map)) return;
             var place = HolyPlace(p, g);
             if (!place.IsValid) return;
             var def = WorshipJobs.Def(WorshipJobs.PilgrimJob);

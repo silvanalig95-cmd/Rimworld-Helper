@@ -4921,6 +4921,23 @@ someone dreams a god wants the colony's finest beast, and whose rite comes first
 Gods speak in dreams. None of it ever says what a god thinks; what people saw goes into the colony's book. Setting:
 *Worship of the gods* (on).
 
+**The gods among your people** (not released yet). A vowed pilgrimage walks out for real when a holy place of the god
+lies within a few days' road (a town of a people that holds it, the pilgrim fellowship's shrine, an old shrine by a
+landmark): a caravan of one there and home, a keepsake of the place, that people's name for the god in the book and
+one of their stories told at supper. A fisher who holds to Murmur gives the first fish of the morning back to the water,
+with a splash someone may see, and fishes better that day (Vanilla Fishing Expanded's fisherman leans toward Murmur, and
+the water's give-back may leave the mod's fish on the mud). A debt the colony pays when due leaves a gold coin on the
+payer's doorstep the next morning and keeps the next trader half a day longer; one let lapse brings a trader who drives
+a hard bargain for the day, said plainly in the trade window. The book's keeper walks out to see a sign they missed and
+writes up the evening's new entries at a writing table (Vanilla Books Expanded's first). Raiders cry their god's name as
+they come on, and a prisoner may tell their warden a story of their gods. At a eulogy the dead are given to the god they
+held, in the old words, and those who share that god grieve a little less. A season the weather book names is taken for
+a god's doing by your believers, argued over, doubted, retold by a neighbour, and a year on the council may be asked to
+keep a day against it. The room planner offers a shrine room for each god your book has a chapter for, built the way
+your people picture it. With Vanilla Christmas Expanded, midwinter brings the festive tree switched on, the gingerbread
+and warm drinks set out, a present handed to each of your people and a snow sculpture. Dev mode has *Gods among: ...*
+actions for each.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

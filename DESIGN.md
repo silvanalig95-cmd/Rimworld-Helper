@@ -17874,6 +17874,107 @@ they are: felt at revels and feasts, in a drinker's or a smoker's high, in an ad
   Revel's cup (log)", "Gods: Revel's next cup does...". Tests: `Tools/Tests/RevelTests.cs` (and every test that counts the
   gods); the moods in `Tools/Balance/Rates.cs`.
 
+### The gods among the colony's people and the world (the player's go, 20 November 2026; not released yet)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good ... I just want
+additional God events, more immersion, more just further also building up on the gods in general, how they're
+integrated, the effects they have, the relations between pawns, the kind of events that generated from it", and "first
+do all the integrations that you proposed in your document". Built: C6, C7, C8, C12, C14, C15, C18, C26 and C29 of part
+C. The code is `Source/ColonyCouncil/Gods/Among/`; the pure rules `GodsAmongMath` (linked into the tests); the saved state
+`GodsAmongBook` (a game component, its hour and day with the gods' own, `GodBook.Hourly`/`Daily`, its steps only while
+something is under way); the defs `Defs/GodDefs/Rimfolk_GodsAmong.xml` and
+`Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_GodRooms.xml`; the words `Languages/English/Keyed/Rimfolk_GodsAmong.xml`. The
+gods stay unseen in all of it: a god is named only as a speaker's own name for it or the colony's page, everything in the
+book is someone's (seen, told, believed), and nothing says what a god wants.
+
+- **C6, a vowed pilgrimage that really walks out** (`VowPilgrimage.cs`). The vow's hour (`Vows.TrySetOut`) first looks for
+  a holy place of the vower's god within one to six days' road (`GodsAmongMath.InReach`): a town of a people that holds
+  the god (`Gods.Of`), the pilgrim fellowship's town (`PeoplesMath.Pilgrims`), an old shrine by a landmark; the town of a
+  people that holds it first, the others only when much nearer (`RoadWeight`). They go as a season away
+  (`SeasonAway.Send`, key `vowpilgrim`, the old shrine's people the colony's own faction): the walk to the edge, a
+  caravan of one, one to three days there, a caravan home. The message on setting out says where and about how many
+  days. There, the pilgrimage is made (the worship book's mark, so the vow is kept when they are home, `Vows.Daily`);
+  home, something of the place at their feet (Vanilla Ideology Expanded - Relics and Artifacts' inert statuette, idol,
+  medallion or amulet from a town, polished rock or fossil from an old shrine, the fellowship's shell from theirs, else
+  `Rimfolk_PilgrimToken`), the book hears that people's name for the god (`GodLore.Heard`, how "Pilgrim"), and within six
+  days, at supper (17 to 22 o'clock) beside someone, they tell one piece of that people's tale by that name
+  (`GodTales.Tell`'s new `asName`). From a town, the fellowship's cough through the harm budget (`HarmKinds.PilgrimCough`),
+  shown. Someone the colony can't spare (`PeopleEvents2.MayLeave`), or no place in reach: the walk on the colony's land as
+  before. The vow's hour never interrupts one already setting out.
+- **C7, Murmur and the fishers** (`MurmurFishers.cs`). A postfix on the game's catch (`FishingUtility.GetCatchesFor`): a
+  colonist who holds to Murmur (`PawnGodsMath.HoldsFrom`, not in dread, not a scoffer) gives one fish of the morning's
+  first catch (4 to 12 o'clock, once a day) back to the water, with the game's water splash at the spot. They keep it as
+  their small rite (belief), say a word (once in three days), and someone near in sight may say they saw it; the book
+  keeps it as theirs once in ten days, and their journal. That day `Rimfolk_MurmurFishBiting` (half a day): Odyssey's
+  `FishingYield` +0.1 and Vanilla Fishing Expanded's `VCEF_FishingLuckOffset` +0.02, each `MayRequire`. The mod's
+  `VCEF_Fisherman` draws toward Murmur (`PawnGodsMath.TraitDraws`, 22), and what the water gives back
+  (`OwnMurmur.GiveBack`) may leave two to four fish of the mod's (else the game's own) on the mud.
+- **C8, Ducat and what the colony owes** (`DucatDebts.cs`). `WorldLedger.Set` tells it of every move: a debt the colony
+  owes (a `Tie.Kind.Debt` from a colony: a scenario's silver, an enclave's dues; a debt of honour the colony owes,
+  `FavoursOwed.ColonyOwes`) kept is Paid, broken is Lapsed (`GodsAmongMath.Turn`), three times in four followed so.
+  Paid: the next morning (5 to 10 o'clock) one gold coin outside the bedroom door of the one who carried the payment
+  (the debt's own colonist at home, else the quartermaster, else the best talker; the colony's gate when they have no
+  room of their own), found by whoever passes (`OwnHappenings.Found`, the gods' own happenings' look), and the next trade
+  caravan, once settled at its spot, stays half a day longer (its lord's own timer, `TriggerData_TicksPassed`), with a
+  plain message. Lapsed: the next trader at the gate drives a hard bargain for a day (-0.05 on
+  `Pawn.TradePriceImprovementOffsetForPlayer`), with a plain message and "(drives a hard bargain today)" in Rimfolk's
+  trade window. Ducat is never named; the coin goes into the book as whoever found it took it.
+- **C12, the keeper at work** (`KeeperAtWork.cs`, `GodLoreAmong.cs`). When the book writes something seen from others'
+  eyes at a place on a home map (`Gods.Remember`, `Gods.Moment`), and the keeper (`GodLore.Keeper`) wasn't among them and
+  is within 90 cells, the keeper walks out when free (within eight hours), stands and looks, says one line in the old
+  voice (`Rimfolk_Pool_GodsAmong_Keeper`), and the entry counts them among those who saw and adds their words in the
+  keeper's voice (`CC_GA_KeeperLooked_*`). In the evening (18 to 22) with new entries since they last wrote, the keeper
+  goes to Vanilla Books Expanded's writer's or typewriter's table, else a table to eat at, else a lectern, and writes
+  (`Rimfolk_Keeper_Write`, `JobDriver_KeeperWrites`: a little longer for each new entry, an hour and a half at most), with
+  a line on sitting down and their journal after.
+- **C14, the raiders' gods, heard at the wall** (`RaidersGods.cs`). A raid (the game's `TryExecute`) of a people that holds
+  gods, seven in ten: its cry waits up to 18 hours, until a raider is within 38 cells and in sight of one of the colony;
+  then they cry their people's war god (else the god they swear by) by their own name for it
+  (`Rimfolk_Pool_GodsAmong_RaiderCry`), and the book sets it down as "so a raider of the Ashen Banner cried at our wall"
+  (`GodLore.Heard`'s new words key, `CC_GodLore_Cried_*`), with the name heard. A prisoner talking with their warden (a
+  postfix on `Pawn_InteractionsTracker.TryInteractWith`) tells a piece of their gods' tales one time in five, once in two
+  days at most (how "Cell"). Raids waiting for their cry are not saved.
+- **C15, the dead's own god at the grave** (`GraveGods.cs`). On a colonist's death (a `Pawn.Kill` postfix) the god they
+  held most is kept five days; at their eulogy (`GodDeeds.Funeral`, now returning the line) the speaker gives them to it
+  in one sentence in the old voice (`Rimfolk_Pool_GodsAmong_Grave`), said over their head and added to the eulogy's
+  letter. Those of the colony who grieve the dead and hold the same god get `Rimfolk_Thought_GivenToOurGod` (+3, six
+  days). The book keeps it as the speaker's belief ("Ana rests in Hush's keeping now") by the colony's name for the god,
+  or "in the keeping of the god she held" when the colony has none, and, named, a rite in its chapter.
+- **C18, named seasons taken for a god's doing** (`SeasonGods.cs`). When the weather book names a season
+  (`WeatherBook.EndQuarter`), the gods its kind is tied to (`GodsAmongMath.GodsFor`: cold Hush; heat Helios or Smoulder,
+  a warm winter Helios; storms Cirrus; wet Murmur; dry Helios or Murmur): the believer who holds one of them most says
+  it over their head and the book keeps it as their belief; another who holds another of them, beside them, says so to
+  their face, both hold their own the harder (`BeliefEvent.Bickered`) and the book keeps both; a doubter beside them
+  answers and the book keeps the doubt (`GodLore.Disputed`). The season goes among the hands a neighbour's letter may
+  write of, and is kept (`SeasonTaken`, twelve at most); the year after, in the first six days of the same quarter, the
+  council is asked (`Rimfolk_Dlm_SeasonDay`, the flavour style): keep a day for the god at its place (words there with
+  whoever comes, the book's rite), or let it pass (the one who asked goes there alone). Both play out.
+- **C26, a shrine room for each god** (`GodRooms.cs`, `RoomTemplateDef.god`, `godLabel`, `godPurpose`, `openSky`). Eleven
+  rooms: Hollin's garden shrine (pots round bare ground for a tree), Smoulder's stone room with braziers and Dragons
+  Descent's dragon statue, Bellwether's standing stone (Alpha Memes' or VFE Props and Decor's megalith), Morel's dark
+  cellar of pots, Cirrus's obelisk court, Hush's white room with Alpha Memes' urns, Helios's sun court of columns,
+  Selene's moon garden with Alpha Props' obelisk fountain, Tamiu's tomb shrine (a sarcophagus, Alpha Memes' Kemetic
+  slab), Murmur's well-house (Dubs Bad Hygiene's well), Pip's machine shrine (Ideology's terminal). Each has a piece of
+  the game's own it can't do without; the mods' pieces are used where the colony can build them. `RoomMenu.Entries`
+  shows one only once the book has a page for its god (`GodsAmongMath.RoomShown`), labelled by the colony's name for it;
+  `openSky` rooms mark their floor no-roof when planned (`TemplatePlanner.Execute`). Their words picture the god as the
+  people do, never what it wants.
+- **C29, midwinter with Vanilla Christmas Expanded** (`Midwinter.cs`). The colony's midwinter is the calendar keeping the
+  winter god's festival (Hush or Selene; `CalendarKeeping.KeepDay`) or the midwinter custom (its day, or its question's
+  first two answers, `DilemmaEffect_Midwinter`). With the mod loaded, that day: by day, where the snow is deep near home,
+  someone makes a snowman with the game's own job, finished as the mod's snow sculpture (theirs, its quality by their
+  art); at dusk someone walks to a festive tree and switches every tree and string of fairy lamps on (said plainly when
+  there is no power), or stands a while at one already lit; at supper the cook carries the gingerbread, eggnog and hot
+  cocoa from the stores to the festive feast table (else the dining table) and sets them out beside it; after supper the
+  eldest takes the presents from the stores and hands one to each of the colony at home, person by person, each thinking
+  a little better of them (`Rimfolk_Thought_MidwinterPresent`, +6 opinion). Each part only with its things, and the
+  words say only what was done. The winter god's own festival play-out (C1, another build) is untouched: this runs
+  beside it from the calendar's keeping.
+
+Harm: only the fellowship's cough from a crowded town (C6), already in the budget. Dev mode: "Gods among: ..." for each.
+Not checked without the game: the catch hook's list, the trader lord's timer, a sculpture from a snowman, the trade
+window's line, the shrine rooms' layouts with the mods' pieces.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,
