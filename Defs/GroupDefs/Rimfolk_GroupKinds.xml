@@ -49,7 +49,7 @@
       <li>[medieval] the huntsmen's table</li>
     </names>
     <why>They go out after game together.</why>
-    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Hunt</li></habits>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Hunt</li><li>Rimfolk_Habit_Fishing</li></habits>
     <tag>hunters</tag>
     <order>10</order>
   </ColonyCouncil.GroupKindDef>
@@ -66,7 +66,7 @@
       <li>[lowtech] the hearth-keepers</li>
     </names>
     <why>They spend their days over the same pots.</why>
-    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Work</li></habits>
+    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Cup</li></habits>
     <tag>kitchen</tag>
     <order>11</order>
   </ColonyCouncil.GroupKindDef>
@@ -84,7 +84,7 @@
       <li>[tribal] the planters</li>
     </names>
     <why>They work the fields side by side.</why>
-    <habits><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Table</li></habits>
+    <habits><li>Rimfolk_Habit_Work</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Fishing</li></habits>
     <tag>fields</tag>
     <order>12</order>
   </ColonyCouncil.GroupKindDef>
@@ -171,7 +171,7 @@
       <li>[!lowtech] the lab crowd</li>
     </names>
     <why>They puzzle over the same problems.</why>
-    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Reading</li></habits>
+    <habits><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Reading</li><li>Rimfolk_Habit_Cards</li></habits>
     <tag>scholars</tag>
     <order>17</order>
   </ColonyCouncil.GroupKindDef>
@@ -225,7 +225,7 @@
       <li>[!lowtech] the firing line</li>
     </names>
     <why>They have fought side by side.</why>
-    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Sickbed</li></habits>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Sickbed</li><li>Rimfolk_Habit_Cards</li></habits>
     <norms><li>Rimfolk_Norm_Brave</li></norms>
     <tag>comrades</tag>
     <order>20</order>
@@ -335,7 +335,7 @@
       <li>the old guard</li>
     </names>
     <why>They have the most years behind them.</why>
-    <habits><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Reading</li></habits>
+    <habits><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Reading</li><li>Rimfolk_Habit_Cup</li></habits>
     <tag>elders</tag>
     <order>40</order>
   </ColonyCouncil.GroupKindDef>
@@ -351,7 +351,7 @@
       <li>the young crowd</li>
     </names>
     <why>They are the colony's young.</why>
-    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Music</li></habits>
+    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Walk</li><li>Rimfolk_Habit_Music</li><li>Rimfolk_Habit_Bath</li></habits>
     <tag>young</tag>
     <order>41</order>
   </ColonyCouncil.GroupKindDef>
@@ -371,7 +371,7 @@
       <li>the jokers' corner</li>
     </names>
     <why>They all love a laugh.</why>
-    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Music</li></habits>
+    <habits><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Music</li><li>Rimfolk_Habit_Bath</li><li>Rimfolk_Habit_Cards</li></habits>
     <tag>merry</tag>
     <order>60</order>
   </ColonyCouncil.GroupKindDef>
@@ -426,7 +426,7 @@
       <li>the reckless lot</li>
     </names>
     <why>None of them knows how to back down.</why>
-    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Games</li></habits>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Games</li><li>Rimfolk_Habit_Cards</li></habits>
     <tag>bold</tag>
     <order>63</order>
   </ColonyCouncil.GroupKindDef>
@@ -444,7 +444,7 @@
       <li>the kind table</li>
     </names>
     <why>They are all big-hearted, and look out for each other.</why>
-    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Sickbed</li></habits>
+    <habits><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Sickbed</li><li>Rimfolk_Habit_Cup</li><li>Rimfolk_Habit_Bath</li></habits>
     <tag>gentle</tag>
     <order>64</order>
   </ColonyCouncil.GroupKindDef>
@@ -465,7 +465,7 @@
       <li>{ANCHOR}'s table</li>
     </names>
     <why>They are friends, and gather round one of them.</why>
-    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Sickbed</li></habits>
+    <habits><li>Rimfolk_Habit_Fire</li><li>Rimfolk_Habit_Table</li><li>Rimfolk_Habit_Talk</li><li>Rimfolk_Habit_Sickbed</li><li>Rimfolk_Habit_Cup</li></habits>
     <tag>friends</tag>
     <order>90</order>
   </ColonyCouncil.GroupKindDef>

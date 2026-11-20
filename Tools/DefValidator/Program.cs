@@ -623,6 +623,9 @@ wishPh.Add("EVENT");
 // and the deputy who does a seat's work for its holder.
 wishPh.UnionWith(new[] { "WISHA", "WISHB", "NAMEA", "NAMEB" });
 pawnPrefixes.Add("DEPUTY");
+// Colony life's variety, part 2 (LifeVariety/): the gift handed over on the giving day (GivingDay.cs), and the candidates two
+// people lean to in the council's seasons' social events (CouncilSeasons.cs).
+wishPh.UnionWith(new[] { "GIFT", "CANDIDATE" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

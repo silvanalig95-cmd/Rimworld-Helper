@@ -808,6 +808,8 @@ namespace ColonyCouncil
             Safe("trait changes", () => TraitChanges.Daily(this));
             Safe("fungus diet", () => FungusDiet.Daily(this));
             Safe("interplay", () => Interplay.Daily(this));
+            // Colony life's variety, part 2: the seats' own work sets people on the seats' life goals (LifeVariety/).
+            Safe("colony life, part 2", () => LifeVariety.Daily(this));
             Safe("family across the years", () => FamilyYears.Daily(this));
             // The end of a long life may begin for the old (Health/LastSeason.cs).
             Safe("the end of a long life", () => LastSeason.Daily(this));

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Coming of age, four more paths (the content update's A8, 20 November 2026), beside the workshop, the healer, the
+    scholar and the wall of Council_Dilemmas_ComingOfAge.xml: the fields, the kitchen, the animals and building. A is the
+    one just come of age; B the colony's best at the work, and for a path that is a seat's work (the fields the reeve's,
+    the animals the herdmaster's) the seat's holder when they are at home and could teach (DilemmaWorker_ComingOfAge). Each
+    apprenticeship is a real mentorship in the social web and a first lesson on the map, as the four are. Council
+    questions, so the flavour style.
+  -->
+
+  <!-- ===================== The fields ===================== -->
+
+  <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
+    <defName>Rimfolk_Dilemma_Path_Fields</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a path: the fields</label>
+    <seat>Council_Office_Reeve</seat>
+    <roleB><bestAt>Plants</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
+    <texts>
+      <li>{B_nameDef} says {A_nameDef} has walked the rows behind {B_objective} since {A_pronoun} was small enough to be lost in the corn, pulling the wrong weeds with great confidence. Now that {A_nameDef} has come of age, {B_nameDef} would like {A_objective} to learn which ones are the right ones.</li>
+      <li>"Ask {A_objective} which field wants resting and {A_pronoun}'ll tell you," {B_nameDef} told the council. {A_nameDef} came of age this week, and {B_nameDef} wants {A_objective} in the fields with {B_objective} before the next sowing.</li>
+      <li>[lowtech] {B_nameDef} has kept the seed baskets for years and means to hand the knack on to someone. {A_nameDef}, just come of age, is the one {B_pronoun} has in mind.</li>
+    </texts>
+    <options>
+      <li>
+        <label>Apprentice {A_nameDef} to {B_nameDef} in the fields</label>
+        <outcome>{A_nameDef} spent the first morning on {A_possessive} knees in the soil while {B_nameDef} talked about roots, and came in at noon muddy to the elbows and asking about manure.</outcome>
+        <ways><tradition>3</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Plants</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Plants</skill></li>
+        </effects>
+      </li>
+      <li>
+        <label>The workshop needs hands more</label>
+        <outcome>{A_nameDef} goes to the workbench instead of the fields. {B_nameDef} said nothing, and went out to the rows alone the next morning as usual.</outcome>
+        <ways><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>3000</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} choose</label>
+        <outcome>{A_nameDef} thought it over for a day and a night, and took nobody's advice in the end, which {B_nameDef} said was the first sign of a grower.</outcome>
+        <ways><tradition>-4</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The kitchen ===================== -->
+
+  <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
+    <defName>Rimfolk_Dilemma_Path_Kitchen</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a path: the kitchen</label>
+    <roleB><bestAt>Cooking</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
+    <texts>
+      <li>Every time {B_nameDef} turned round in the kitchen these last years, {A_nameDef} was there, tasting what {A_pronoun} shouldn't. {A_nameDef} has come of age now, and {B_nameDef} says {A_pronoun} may as well taste it for a reason.</li>
+      <li>"A colony eats three times a day whether anyone thanks the cook or not," {B_nameDef} told the council. "I'd like someone to thank me by learning it." {B_pronoun} means {A_nameDef}, just come of age.</li>
+      <li>{B_nameDef} has kept a list in {B_possessive} head of what {A_nameDef} will and won't eat since {A_nameDef} was small. Now {A_nameDef} is grown, and {B_nameDef} wants {A_objective} at the stove, learning why.</li>
+    </texts>
+    <options>
+      <li>
+        <label>Apprentice {A_nameDef} to {B_nameDef} in the kitchen</label>
+        <outcome>{A_nameDef}'s first lesson was onions, a great many of them, and {A_pronoun} cried through most of it and was very proud of the soup.</outcome>
+        <ways><tradition>3</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Cooking</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Cooking</skill></li>
+        </effects>
+      </li>
+      <li>
+        <label>The building crew needs hands more</label>
+        <outcome>{A_nameDef} is put on the building crew, and will learn the work there instead of at the stove.</outcome>
+        <ways><toil>4</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>3000</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} choose</label>
+        <outcome>{A_nameDef} has been asked what {A_pronoun} wants, and is taking the question very seriously.</outcome>
+        <ways><tradition>-4</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The animals ===================== -->
+
+  <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
+    <defName>Rimfolk_Dilemma_Path_Animals</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a path: the animals</label>
+    <seat>Council_Office_Herdmaster</seat>
+    <roleB><bestAt>Animals</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
+    <texts>
+      <li>{B_nameDef} has taken to leaving the gate to the pens open whenever {A_nameDef} is about, and pretending not to notice who closes it. {A_nameDef} has come of age, and {B_nameDef} thinks {A_pronoun} should stop closing gates and start learning what is behind them.</li>
+      <li>The animals follow {A_nameDef} about the yard, {B_nameDef} told the council, and that can't be taught. The rest can. {A_nameDef} came of age this week, and {B_nameDef} wants {A_objective} at the pens.</li>
+      <li>[lowtech] {B_nameDef} says the beasts have known {A_nameDef}'s step since {A_pronoun} was a child, and calm at it. Now that {A_nameDef} is grown, {B_nameDef} would teach {A_objective} the rest of the handler's trade.</li>
+    </texts>
+    <options>
+      <li>
+        <label>Apprentice {A_nameDef} to {B_nameDef} with the animals</label>
+        <outcome>{A_nameDef} spent the first day learning to stand still in a pen until the animals forgot {A_pronoun} was there. {B_nameDef} says that is most of it.</outcome>
+        <ways><tradition>3</tradition><mercy>1</mercy></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Animals</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Animals</skill></li>
+        </effects>
+      </li>
+      <li>
+        <label>The fields first</label>
+        <outcome>{A_nameDef} goes to the fields, and the animals will have to do without {A_objective}. They still follow {A_objective} to the fence every morning.</outcome>
+        <ways><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>3000</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} choose</label>
+        <outcome>{A_nameDef} went out to the pens to think it over, which some took as an answer already.</outcome>
+        <ways><tradition>-4</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Building ===================== -->
+
+  <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
+    <defName>Rimfolk_Dilemma_Path_Building</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a path: building</label>
+    <roleB><bestAt>Construction</bestAt><minOpinionOfA>-20</minOpinionOfA></roleB>
+    <texts>
+      <li>Half the walls in this colony have {A_nameDef}'s handprints in the mortar, {B_nameDef} says, from the years {A_pronoun} was too small to be any help and helped anyway. {A_nameDef} has come of age, and {B_nameDef} wants {A_objective} on the building crew properly.</li>
+      <li>"Someone has to know how the roof stays up when I'm gone," {B_nameDef} told the council, "and {A_nameDef} already asks." {A_nameDef} came of age this week.</li>
+      <li>[lowtech] {B_nameDef} raised most of the colony's walls with {B_possessive} own hands, and would teach {A_nameDef}, just come of age, how a wall is laid so it still stands in fifty winters.</li>
+    </texts>
+    <options>
+      <li>
+        <label>Apprentice {A_nameDef} to {B_nameDef} in building</label>
+        <outcome>{A_nameDef} laid {A_possessive} first course of the wall crooked, took it down without being told, and laid it again. {B_nameDef} looked pleased about the second part.</outcome>
+        <ways><tradition>3</tradition><toil>2</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Construction</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Construction</skill></li>
+        </effects>
+      </li>
+      <li>
+        <label>The kitchen needs hands more</label>
+        <outcome>{A_nameDef} is put in the kitchen instead, and will learn to cook rather than to build.</outcome>
+        <ways><toil>3</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Cooking</skill><xp>3000</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let {A_nameDef} choose</label>
+        <outcome>The choice is left to {A_nameDef}, who is taking the question seriously.</outcome>
+        <ways><tradition>-4</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>6</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

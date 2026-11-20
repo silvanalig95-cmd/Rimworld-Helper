@@ -152,6 +152,8 @@ namespace ColonyCouncil
             PlayStrangers.Tick(now);
             // A wished-for thing tried out, and lines said in turn at a gathering under way (ColonyLife/LifeBook.cs).
             LifeBook.Tick(now);
+            // The giving day's walks to the stores and to the ones the gifts are for (LifeVariety/GivingDay.cs).
+            LifeVariety.Tick(now);
             // The colony's count of gatherings, the toasts waiting, the floor (Stage.cs).
             try
             {

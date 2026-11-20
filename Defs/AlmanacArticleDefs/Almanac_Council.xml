@@ -413,6 +413,12 @@ Others are given once, for one deed, and stay with their holder: the builder len
           <li>The Last of the First | being the only founder still here, of two or more, a year on | the founding day's letter, their death letter</li>
           <li>The Firstborn | being the first child born here, now grown (Biotech) | the founding day's letter, their death letter</li>
           <li>The Annalist | writing the annals three years running | they go on writing the annals, even if a better writer arrives</li>
+          <li>Old Keys | two years as quartermaster | the colony calls them so, and it counts at an election</li>
+          <li>Old Furrow | two years as reeve | the colony calls them so, and it counts at an election</li>
+          <li>The Drover | two years as herdmaster | the colony calls them so, and it counts at an election</li>
+          <li>The Host | two years as steward | the colony calls them so, and it counts at an election</li>
+          <li>The Old Voice | two years in an elder's seat | the colony calls them so, and it counts at an election</li>
+          <li>Word-Kept | two promises made for a seat judged kept at the yearly election | the colony calls them so, and it counts at an election</li>
         </table>
         <after>Like every name, these count for a candidate in an election. A vote lost counts in an election for any single seat, so a speaker who once stood for marshal and lost is no longer unbeaten.</after>
       </li>
@@ -564,8 +570,16 @@ Someone voted out of a seat they held a year or more may take it hard for a few 
           <li>Winter | The mending day: a work party repairing, cleaning and hauling, and the colony's best crafter teaching a young one at the bench; or a morning's mending by a few | a young one (30 or under) to learn</li>
           <li>Winter | The winter tales: the colony's best talker tells the year by the fire, to everyone who sits and listens; or one tale at supper | someone with a love of talk to tell it</li>
           <li>The year's first week | The year's first supper: everyone at one table, each saying what they mean to do this year, and anyone without a life goal may choose one there; or only those who want to | someone with a life goal to ask for it</li>
+          <li>Winter | The giving day: names drawn so everyone gives one gift and gets one, each taken from the stores by what the other wants or lacks, handed over by hand after a supper together; or the children only, each given something by the grown-up fondest of them | someone to ask for it, once a winter</li>
+          <li>Fall | The elders' day: the children make something for the elders by day and carry it over, and at supper the cup is raised to the elders and each tells something from their life; or the supper only | two colonists of sixty or more, or the elder's seat held, and someone under thirty to ask</li>
         </table>
         <after>The herd's year has customs of its own (the colony's animals has them): the lambing watch, shearing day, and bringing the herd home before the winter, in a cold snap or after a raid. One seasonal custom is asked a season, so the colony's year has four of them at most: a season that holds a custom's day on the calendar is asked no other, and a custom on the calendar is never asked as one of the council's ordinary questions; a tradition still comes round when its time does, and counts as its season's.</after>
+      </li>
+      <li>
+        <heading>The giving day and the elders' day</heading>
+        <text>On the giving day the gifts come from the colony's own stores, chosen by what the one they're for wants or lacks: a toy or something sweet for a child, something warm for someone without a hat in winter, a book for a reader, a drink for someone who may drink (never what their faith or their own rule forbids), a carving, nothing worth more than 400 silver. With Vanilla Christmas Expanded its toys, gingerbread, eggnog, hot cocoa and warm clothes are among them, and its fairy lamps are lit for the supper. In the afternoon each giver goes to the stores and takes theirs; after supper each walks over to the one it's for and hands it over with a word. Midwinter's presents aren't handed round on a day the giving day is kept, so the two never double, and if the colony's ideoligion keeps the festive feast, once the giving day is on the calendar the gifts follow that feast instead and the question isn't asked that winter.
+
+On the elders' day the children (four at most) each make something small at the bench for one of the elders and carry it over. At supper the cup is raised to the elders, and each of them there tells the table one thing from their life, one at a time, while someone answers now and then; the elders are glad of the evening, and the others grow a little closer to them.</text>
       </li>
       <li>
         <heading>Customs of the land and the ideoligion</heading>
@@ -644,6 +658,10 @@ Love has its own troubles, on top of the game's own romance, which is left as it
         <text>Small social events happen most days, always between two who are together at the time: late talks, pranks, snubs, squabbles, war stories, lessons, contests, gifts, gossip and the odd truce. Life brings its own: a friend keeping vigil at a sickbed, an evening at a camp on the map, a quarrel over what the council decided, fears confided in the night, grief carried together, homesickness shared, a peace offering after a quarrel. What happens on the map brings more: two who came to blows making it up within the day or two after, a debt remembered by someone tended under fire, a friend taking the heavy end for someone with an old injury, two at the same work racing it (rivals) or keeping each other company (friends), a fine piece just finished shown to the teacher, admired by a friend or envied by a jealous one, a quiet word after a loss, asking after a hurt from one of the land's dangers (or teasing about it), an old remedy for the ill from someone who has seen it before, a newcomer shown the ropes, company at a meal for someone low, the rain, the snow, the heat and the bitter cold out in the open, the last of the harvest, and the region's news (the neighbors' war, the households on the road, a dry town, a great work, the summer that never came). Each takes the form of the colony's age: a quarrel buried the way a tribe ends one, a hand given on it, a drink owed. They come as a share of the day's small events, never more of them. Each moves the bond a little. Keep rivals on different work shifts to avoid squabbles.
 
 The council's decisions feed back too. Losing an election to someone, having your wish passed over for theirs, a fight, a grudge from a dilemma or arguing over a decree can start rivalries. Backing the same petition, making up or going through something together builds friendships, as far as the two can go.</text>
+      </li>
+      <li>
+        <heading>The council's seasons</heading>
+        <text>A few social events come from the council's own life: a friend helping a candidate with their speech while an election is under way, the one who lost a seat showing the new holder where everything is kept for it, someone reminding a holder of the promise they made at the vote (warmly when the colony can see it going well, sharply when it can't), two backing different candidates for one seat falling out over it, two who asked for the same petition talking it over, and an elder's advice to a young holder. Whom someone backs is read from how they'd vote, and none of it changes a vote.</text>
       </li>
       <li>
         <heading>Moments and frictions</heading>
@@ -759,6 +777,10 @@ Some goals cost something to give up: someone who never found love, a friend for
       <li>
         <heading>Said aloud</heading>
         <text>In the year's first week, someone with a life goal may ask for the year's first supper, a custom that goes on the calendar like the others. With everyone saying it, the colony eats together and, one at a time, each at the table with a life goal says what they mean to do this year; someone without one may choose one there and then from what fits them, and say it. With only those who want to, those who already have a goal say it. A friend at the table may answer. When the supper is over, each who said their goal and those there who think well of them grow a little closer. The next year letter reads it back: who said what, and whether they did it, are still at it, let it go or did not live to see it.</text>
+      </li>
+      <li>
+        <heading>The other seats</heading>
+        <text>Besides the marshal's, physician's, steward's and quartermaster's, any seat may be a life goal: the reeve's, the peacemaker's, the keeper of days', the herdmaster's, the chaplain's (only while the colony has a faith of its own), the warden of guests' and an elder's (from 45). Each is sparked by losing an election, and by doing the seat's own work: a big harvest in (twenty plants in a day), a quarrel mended, a day of the calendar kept, an animal tamed, a rite led, a camp greeted, a student taught to stand alone; an elder's also by a child born. Someone who wants a seat leans the vote their way, as before.</text>
       </li>
       <li>
         <heading>Vanilla Aspirations Expanded</heading>
@@ -911,7 +933,7 @@ A watcher of the stars, the dread of storms and the other quirks that come from 
       </li>
       <li>
         <heading>Coming of age</heading>
-        <text>With children (Biotech), coming of age is marked: parents are proud, the colony remembers the child they were, and the council is asked to help choose a path, often an apprenticeship that starts a real mentorship with the colony's best.</text>
+        <text>With children (Biotech), coming of age is marked: parents are proud, the colony remembers the child they were, and the council is asked to help choose a path, often an apprenticeship that starts a real mentorship with the colony's best: the workshop, the healer, study, the wall, the fields, the kitchen, the animals or building, each with a first lesson on the map. The fields are the reeve's work and the animals the herdmaster's: whoever holds the seat teaches, when they could.</text>
       </li>
       <li>
         <heading>After a death</heading>
@@ -1154,6 +1176,25 @@ At a rock face under a roof of rock, the rock can creak and drop grit on whoever
 Each hurt is one of the game's own wounds through the same rules as the rest of Rimfolk's hurts ("Ailments and illnesses"): the setting scales it, nobody takes more than one in three days, and nothing here kills outright. When the cap keeps someone from being hurt, the rock still falls or the ground still gives, and they get clear. Each is told as it happens, with a word from whoever was there, and none brings a mood on top of the pain. They come as Rimfolk's events, in the same share of the storyteller's draw as the rest, so they are no more often for being new.
 
 A visitor at the colony may challenge its best at the chess or poker table (or another game of the mind): the two sit down across that table, and skill and luck decide it while they play; for silver the stake changes hands, for fun the others gather in the rec room. A neighbour may commission one fine coat, bow, blade or gun the colony can make: taken, a bill goes up at the bench that counts only pieces of the quality asked, their rider comes for the first one made and pays, and a masterwork brings them back for another. The commission and its deadline show on the region window's Here and away.</text>
+      </li>
+      <li>
+        <heading>The colony's everyday life</heading>
+        <text>Twelve events come out of the colony's own life and its people, each from something on the map, and each answer happens on the map. None ends in a fight or hurts anyone.</text>
+        <table>
+          <li>Event | When it comes | The answers</li>
+          <li>A quarrel at supper | Two colonists at odds with each other, at the supper hours | The peacemaker (else the best talker) sits them down at a table, a quarrel mended for them; or they're kept apart a few days; or left to it</li>
+          <li>The newcomer at the edge | Someone here twenty days or less who belongs to no group | A group's anchor brings them to an evening of the group; or keeps them a seat at supper; or they find their own way</li>
+          <li>The student's first piece | A student of someone in the colony made something excellent or better lately | A toast to it at supper, led by the teacher; or a word between the two</li>
+          <li>Short in the stores | Under five days of food, with crops ripe or wild food within reach | A work party brings the harvest in; or wild food is marked for gathering; or wait and see</li>
+          <li>A wish left waiting | A wish more than half its time gone, never promised, and a friend asks | The council promises it; tells them it will have to wait; or says nothing</li>
+          <li>The old song | One of the colony's elders, of an evening | The song sung at the fire with music; or taught to a child</li>
+          <li>A vow in the storm | After a storm, a colonist who holds to a god with a shrine of it at home | A night's watch kept there, alone or with a friend; or the work comes first. It is their belief: nothing says the god heard</li>
+          <li>A group's evening off | A close group not gathered for a week | The evening given, led by its anchor; or the work first</li>
+          <li>The child's question | A child asks a grown-up fond of them why the colony keeps one of its days (Biotech) | The story told that evening; or a lesson; or later</li>
+          <li>A broken promise still sore | Someone still minds a promise the council broke, and a friend asks | The speaker (else the best talker) says sorry at supper; or the friend takes them for a walk; or leave it</li>
+          <li>Hands for the last field | Autumn, with thirty plants or more ripe in the fields | Everyone who can be spared; the reeve and one more; or the growers alone</li>
+          <li>A night with the herd | An animal of the colony near its time | The herdmaster (else the best handler) sits up with it; or it manages alone</li>
+        </table>
       </li>
       <li>
         <heading>Hail, vermin and the great beast</heading>

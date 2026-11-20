@@ -19935,6 +19935,154 @@ is over), so there is no pass of their own.
   own reached, the year's first supper asked now or set going now, the year read aloud tonight, make a colonist the
   record keeper.
 
+## Colony life's variety, part 2: life, customs, stories and the colony's own events (the player's go, 20 November 2026; released 0.285.0)
+
+The player on `docs/content-update-proposals.md`: "just variety, further kind of events, camps, world events, normal
+storyteller events, dilemmas, etc. ... yes, I want more events, camps, world events, and dilemmas, but first do all the
+integrations". With the integrations all released (0.278.0 to 0.280.2), the variety of colony life, part 2: A8, A11, A15,
+A16, A22, A23, A24, A25, A26 and A28 of part A, each built as proposed there, and beyond the doc, in the player's
+direction ("normal storyteller events"), twelve events of the colony's everyday life and six personal stories. The code is
+in `Source/ColonyCouncil/LifeVariety/`; the pure rules in `LifeVarietyMath.cs` (Tools/Tests: `LifeVarietyTests`). What is
+kept between passes (`LifeVarietyBook`, saved with the council as `CouncilGameComponent.lifeVariety`): who first asked for
+each custom the colony keeps, where a season of kept promises stands, the children lately given a toy, the giving day under
+way and the years the giving day and the elders' day were last kept, and the giving day's gifts of the last days; each list
+short (see "Save size"). Its passes: once a day with the council's second half (`LifeVariety.Daily`: the seats' sparks),
+once an hour with its life (`LifeVariety.Hourly`: the giving day's lamps and end), and the play-outs' own 250-tick pass
+(`LifeVariety.Tick`: the giving day's walks).
+
+- **A8, coming of age: four more paths** (`Rimfolk_Dilemmas_ComingOfAge_More.xml`). Beside the workshop, the healer, the
+  scholar and the wall: the fields, the kitchen, the animals and building, each a real mentorship in the social web and a
+  first lesson on the map (`DilemmaEffect_Mentorship`, `DilemmaEffect_Lesson`), with the other choice (another work's
+  experience) and letting them choose. A path that is a seat's work names it (`<seat>`: the fields the reeve's, the
+  animals the herdmaster's), and the seat's holder at home teaches when they could (`DilemmaWorker_ComingOfAge` takes them
+  as B before the colony's best at the work). Council questions, the flavour style.
+- **A11, a toy for the little one** (`ToyWish.cs`, `Rimfolk_Wish_Toy`). A grown-up fond of a child of three to twelve at
+  home (a parent, an elder of sixty or more, or anyone with an opinion of 30 of the child, all alike, never one at odds:
+  `ToyMath.MayAsk`; nothing follows family lines) asks for a toy made at the bench: Vanilla Christmas Expanded's wooden,
+  plushie or metal toy where the colony can make one (its recipe researched, its bench built or buildable), else a small
+  sculpture. One wish for a child at a time, and not for one given a toy in the last forty days. Met when one is made after
+  the wish (the count of them on the map grows): the one who asked takes the newest by hand to the child (`LifeHands.Give`,
+  the play-out engine's own handing over, waiting for both to be free), and the child has the mod's toy memory when it is a
+  memory (by name), else Rimfolk's "a toy of my own" (+6, an opinion of the asker); the asker "gave a child a toy".
+  Wishes, the flavour style.
+- **A15, three ambitions of the colony's people** (`ColonyAmbitions.cs`, `Rimfolk_Ambitions_LifeVariety.xml`). Nobody left
+  out (`Goal_NobodyOutside`): every grown colonist at home in a group or with a friend (both opinions 40, or the social
+  web's friendship 30), pitched when two or more stand outside, its progress the share inside, met only with nobody
+  outside; a supper for everyone, led by the steward. A season of kept promises (`Goal_KeptPromises`): fifteen days running
+  with no promised wish let lapse and two promises kept along the way (the colony's counts on the standings; the counts
+  when the season began kept in the book), pitched while someone still minds a broken promise; a toast led by the speaker.
+  A lighter season (`Goal_LighterSeason`): fifteen days with nobody at home worn down or near breaking (the heart's strain
+  of 55 or more), pitched when someone is; an easy evening by the fire led by the peacemaker. Each keeps its day on the
+  calendar as every ambition does (A14). Ambitions, the flavour style.
+- **A16, life goals for the other seats** (`SeatSparks.cs`, `Rimfolk_Aspirations_Seats.xml`). The reeve's, the
+  peacemaker's, the keeper of days', the herdmaster's, the chaplain's, the warden of guests' and an elder's seat (an elder's
+  from 45), each sparked by losing an election and by the seat's own work: once a day each colonist's record behind it is
+  read against yesterday's (twenty plants harvested in a day, a quarrel mended, a day of the calendar kept, an animal
+  tamed, a rite led, a camp greeted, a student taught to stand alone: `SeatSparkMath`), never for the seat they hold; the
+  elder's also by a child born. `AspirationWorker_SeatOpen` wants a seat only while it is open to the colony (the
+  chaplain's needs its own faith). A goal of a seat already leans the vote (`BondsMath.SeatWant`; the check now takes the
+  new worker too). Life goals, the flavour style.
+- **A22, marks from the colony's own life** (`LifeMarksDeeds.cs`, `Rimfolk_PersonaMarks_ColonyLife.xml`). Five turning
+  points, each read by nature as the other marks are: a life goal reached (pride and outlook; the proud more pride,
+  `Aspirations.Fulfil`), an idea of theirs built (openness and pride, the ambition they proposed reached,
+  `Ambitions.Complete`), a custom they first asked for become a tradition (warmth, openness down a little: the council's
+  customs note who asked the first time one was kept, `LifeVarietyBook.NoteFirstAsker`), a year in a seat with the promise
+  kept (pride and trust, the promise judged kept at the yearly election, `SeatRecords.Judged`), a personal story that ended
+  well (warmth and outlook, `ArcTracker.Complete`). The marks write their own journal lines (plain).
+- **A23, deeds and names of the council's life** (`LifeMarksDeeds.cs`, `Rimfolk_Deeds_Council.xml`,
+  `Rimfolk_Epithets_Council.xml`, `Rimfolk_Records_Council.xml`). Deeds told round the colony: kept a promise in a seat and
+  broke one (judged at the yearly election), spoke up for someone before the council (the one named objecting when the
+  council is asked to send someone away); stepped down from a seat is A3's own deed (`CouncilLife/StepDown.cs`,
+  `Rimfolk_Deeds_CouncilLife.xml`), not made twice. Records of days in the seats that had none, counted with the names each day (the
+  quartermaster's, the reeve's, the herdmaster's, the steward's, the elders'), and names at 120 days, as Old Doc and Old
+  Iron are: Old Keys, Old Furrow, the Drover, the Host, the Old Voice; and Word-Kept for two promises in a seat judged
+  kept. Plain.
+- **A24, group habits from the colony's pastimes** (`Social/Groups/GroupHabits.cs`, `Rimfolk_GroupHabits_Pastimes.xml`).
+  Four habits kept as they come, as reading and music are: fishing together (Odyssey's and PokéWorld's fishing), the hot
+  water (Dubs Bad Hygiene's hydrotherapy, its pool's water, a hot tub or a sauna, ReGrowth's hot spring), a pot of tea or
+  coffee in the same room (any coffee or tea a mod adds, the morning cup's own rule), cards, chess or darts (the game's
+  poker and chess, Vanilla Furniture Expanded's dartboard). Each is something a friendship group may be named for ("the
+  anglers", "the tea table"), and the kinds that keep it list it after their own (the hunters and the fields fishing, the
+  elders, the kitchen, the gentle and friends the cup, the young, the gentle and the merry the hot water, the merry, the
+  bold, the comrades and the scholars the games). Plain, spoken lines one sentence each.
+- **A25, social events and talk of the council's seasons** (`CouncilSeasons.cs`, `Rimfolk_SocialEvents_CouncilSeasons.xml`,
+  `Rimfolk_Topics_Vote.xml`). Seven social events (`SocialEventDef.council`): help with the speech (a candidate and a friend
+  not standing against them), the seat handed over (the one who lost it to the new holder, within six days, never while
+  they are in part 1's story "after the vote", whose own stage is that word), a promise
+  remembered (the holder's election promise going well by the vote's own test) or thrown back (going badly), backing
+  different candidates (by the vote's own lean), a petition talked over by two of its signers, an elder's word to a young
+  holder. And a talk topic, "the vote", only while an election is under way, about its most contested seat, with lines on
+  whom the speaker leans to read from the vote's own lean (`OfficeTracker.Leaning`, without the day's luck: themselves,
+  the holder, someone else, or undecided when two are within a hair); talking never moves the vote. Plain.
+- **A26, the giving day** (`GivingDay.cs`, `Rimfolk_Dilemmas_Customs_LifeVariety.xml`). A winter custom, asked once a winter
+  at a home, kept on the calendar and three years running a tradition. "The giving day, for everyone": names drawn so
+  everyone at home gives one and gets one (`GivingMath.Draw`, never themselves), and for each a gift chosen from the stores
+  by what the one it's for wants or lacks (`GivingMath.Order`: a child a toy, then something sweet; someone bare-headed in
+  winter something warm; a reader a book; someone who may drink a drink, never one their faith or their own rule forbids;
+  then a carving, then something sweet), worth 400 silver at most: Vanilla Christmas Expanded's toys, gingerbread, milk and
+  cookies, eggnog and hot cocoa and warm hat and jacket, Vanilla Apparel Expanded's scarf, the game's tuque, novel,
+  textbook, chocolate and beer, any mod's coffee or tea, a small sculpture packed in the stores; every age by what its
+  stores hold. From one in the afternoon each giver walks to the stores and takes theirs into their pack; the supper (the one
+  feast engine), the mod's fairy lamps switched on at it (unless midwinter lit them today); after it, from seven, each walks
+  over to the one theirs is for and hands it over with a line (and maybe a thanks), a memory and a little closeness. The
+  evening over, what wasn't handed round is set down by its giver, and the day is told. "The children only": each child a
+  gift from the grown-up fondest of them who has given least (`GivingMath.ForChildren`). Midwinter (C29) hands no presents
+  of its own while the giving day is under way at the home, so the two never double. With the faith's festive feast
+  (Vanilla Christmas Expanded's `VCE_FestiveFeast`), once the giving day is on the calendar, the gifts follow the feast at
+  once and that winter's question isn't asked (decided here: the calendar spends it without blame).
+- **A28, the elders' day** (`EldersDay.cs`, same file). An autumn custom with two colonists of sixty or more at home or the
+  elder's seat held, asked by someone under thirty, once an autumn. "The whole day": the colony's children (four at most)
+  each make a small sculpture for one of the elders in turn and carry it over (the answers' own making and handing over);
+  at supper the cup is raised to the elders, and each elder there tells one thing from their life, one line every ten
+  seconds or so (the gatherings' readings, `ReadingKind.Elders`), someone at the table answering now and then; those who
+  told theirs are glad of it and the others grow a little closer to them. "Supper only": the supper and the tales.
+  Decided here: the proposal's head of the table and serving first aren't claimed, since the feast engine seats nobody;
+  the cup raised to them and their tales are what is seen.
+- **Twelve events of the colony's everyday life** (`ColonyEvents.cs`, `Rimfolk_Events_ColonyLife.xml`), each from what is
+  on the map and tied into what exists, each answer played out with the engine's own; none brings harm:
+  - a quarrel at supper: two at odds both ways at the supper hours; the peacemaker (else the best talker) sits them down at
+    a table (counted as a quarrel mended, a spark for the peacemaker's goal), or they are kept apart, or left to it;
+  - the newcomer at the edge: someone here twenty days or less outside every group; a group's anchor brings them to an
+    evening of the group, or keeps them a seat at supper;
+  - the student's first piece: a mentorship's student made something excellent or better; a toast to it led by the teacher,
+    or a word between the two (the coming-of-age apprenticeships bring these);
+  - short in the stores: under five days of food with something to bring in; a work party at the harvest, or wild food
+    marked for gathering (the quartermaster speaks when there is one);
+  - a wish left waiting: a wish more than half its time gone with no promise, and a friend asks; the council promises it
+    (as the player's own "Promise" does), says it must wait, or says nothing;
+  - the old song: an elder of sixty or more remembers a song of an evening; sung at the fire with music, or taught to a child;
+  - a vow in the storm: after a storm, a colonist who holds a god with a shrine of it at home says they vowed to keep a
+    night's watch there; the watch kept (alone or with a friend), or the work first. Their belief: the god is named as they
+    call it, and nothing says it heard;
+  - a group's evening off: a close group not gathered for a week asks for an evening, led by its anchor;
+  - the child's question: a child asks why the colony keeps one of its days (or how it began); told the story by a grown-up
+    fond of them, or a lesson;
+  - a broken promise still sore: someone minds a broken promise and a friend asks; the speaker (else the best talker) says
+    sorry at supper, or the friend takes them for a walk;
+  - hands for the last field: autumn with thirty plants or more ripe in the fields, never within ten days of the council's
+    question "every hand to the harvest" (part 1's); a work party, the reeve and one more, or the growers alone;
+  - a night with the herd: an animal of the colony near its time; the herdmaster (else the best handler) sits up with it.
+  Event cards, plain words.
+- **Six personal stories** (`ColonyStories.cs`, `Rimfolk_Arcs_ColonyLife.xml`), in the flavour style:
+  - a custom of their own: the one who first asked for a custom, until it is kept a second year and becomes a tradition
+    (let pass, it comes to nothing);
+  - a promise waited on: a promised wish still open after four days, hopeful, restless, kept (let lapse, nothing);
+  - ready for the seat: a life goal of a seat, practising its work, standing for it at an election, holding it (an election
+    lost ends it);
+  - a prayer for a friend: a believer with a shrine of their god and a close friend laid up; sitting with them, and when the
+    friend is well, taking it as the god's answer and giving thanks at the shrine (their belief, never the colony's
+    knowledge);
+  - an unexpected gift: a gift on the giving day from someone they thought little of, a word of thanks, and friends;
+  - the year's aim: a goal said aloud at the year's first supper, halfway, reached.
+- Words: council questions (the paths, the customs), wishes, ambitions, life goals and personal stories in the flavour style
+  as restored in 0.276.0; event cards, social events, talk, deeds, names, marks, journals, messages and the interface
+  plain; spoken lines one sentence each. No em dashes or exclamation marks. No harm in any of it.
+- Dev actions ("Rimfolk", "Colony life 2: ...", `LifeVarietyDebug.cs`): a new coming-of-age path asked for, a toy for a
+  child asked now, an ambition of the colony's people under way now, a seat's life goal for someone, the seats' sparks read
+  now, a mark of the colony's own life, a deed of the council's life, a social event of the council's seasons (who fits),
+  the giving day's gifts now (everyone or the children, no supper), ask a custom now, the elders' supper set going now,
+  one of the colony's own events now, one of the new personal stories for someone.
+
 ## The land and its life (the player's go, 20 November 2026; released 0.279.1)
 
 The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead

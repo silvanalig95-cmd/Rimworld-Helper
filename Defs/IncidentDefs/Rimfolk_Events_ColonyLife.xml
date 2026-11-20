@@ -1,0 +1,705 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Twelve events of the colony's everyday life (the content update's variety, the player's go of 20 November 2026: "normal
+       storyteller events"; Source/ColonyCouncil/LifeVariety/ColonyEvents.cs). Each grows out of what is on the map and is
+       tied into what exists: a quarrel at supper the peacemaker sits down, the newcomer at the edge a group's anchor brings
+       along, a student's first fine piece, short in the stores (the quartermaster), a wish left waiting, an elder's old song,
+       a vow in the storm to the god a colonist holds (named as they call it), a group's evening off, a child's question about
+       the colony's days, a broken promise still sore (the speaker), hands for the last field (the reeve), a night with the
+       herd (the herdmaster). Each answer plays out with the engine's own. None ends in a fight or brings harm. Event cards,
+       so plain words. -->
+
+  <!-- ===================== A quarrel at supper ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_QuarrelAtSupper</defName>
+    <label>a quarrel at supper</label>
+    <workerClass>ColonyCouncil.HappeningWorker_QuarrelAtSupper</workerClass>
+    <baseChance>0.8</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>3</minColonists>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A quarrel at supper</li>
+          <li>Words at the table</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} and {B_nameDef} have been at odds for days, and at supper it came out: raised voices over the table, and a bowl pushed away. {HOLDER_nameDef} would like to sit the two of them down together before it goes any further.</li>
+          <li>[peacemaker] Supper went quiet when {A_nameDef} and {B_nameDef} started on each other again. {HOLDER_nameDef}, who keeps the peace in the colony, says this is exactly what that is for, and would sit them down tonight.</li>
+          <li>[lowtech] {A_nameDef} and {B_nameDef} quarrelled across the fire at the evening meal, loudly enough that the children went quiet. {HOLDER_nameDef} offers to sit with the two of them and have it out properly.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{HOLDER_nameDef} sits the two of them down</label>
+            <outcome>{HOLDER_nameDef} sat {A_nameDef} and {B_nameDef} down at a table and let each of them talk. They are not friends, but the worst of it is said.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef} and {B_nameDef} sat down together</label><target>AAndB</target><organizer>Group</organizer><spots><li>Dining</li><li>Rec</li><li>Gather</li></spots><hours>18~22</hours><duration>1~1.5</duration>
+                <lines>
+                  <li>One at a time, and nobody shouts.</li>
+                  <li>Say what it's really about.</li>
+                  <li>You don't have to like each other, just stop this.</li>
+                </lines>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_QuarrelMended" />
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_Evt_SatDown</thought></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Keep them apart for a few days</label>
+            <outcome>{A_nameDef} and {B_nameDef} are kept apart at meals and at work for a few days. Neither of them likes being handled like that.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_DlmSoc_Separated</thought></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Let them sort it out themselves</label>
+            <outcome>Nobody steps in, and {A_nameDef} and {B_nameDef} stay at odds.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Rivals</kind><amount>5</amount><withB>true</withB></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The newcomer at the edge ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_NewcomerAtEdge</defName>
+    <label>the newcomer at the edge</label>
+    <workerClass>ColonyCouncil.HappeningWorker_NewcomerAtEdge</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>4</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The newcomer at the edge</li>
+          <li>Eating alone</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} has been with the colony for a few weeks and still eats alone, at the end of the table or outside. {B_nameDef}, who keeps {TALE} together, has noticed, and would bring {A_objective} along to their next evening.</li>
+          <li>{B_nameDef} says {A_nameDef} hasn't found a place among anyone yet, and that {TALE} could do with a new face. Is it all right to ask {A_objective} along?</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{B_nameDef} brings {A_nameDef} to an evening of {TALE}</label>
+            <outcome>{B_nameDef} brought {A_nameDef} along to an evening of {TALE}, and {A_nameDef} stayed until the end.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GroupEvening"><withA>true</withA></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Evt_BroughtAlong</thought></li>
+            </effects>
+            <ways><openness>2</openness></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} keeps {A_nameDef} a seat at supper</label>
+            <outcome>{B_nameDef} sat with {A_nameDef} at supper and asked about where {A_pronoun} came from.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{B_nameDef} at supper with {A_nameDef}</label><who>B</who><whom>A</whom><sit>true</sit><sitBy>Dining</sitBy><hours>17~20</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>6</amount><withB>true</withB></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Let {A_nameDef} find {A_possessive} own way</label>
+            <outcome>The colony leaves {A_nameDef} to find {A_possessive} own place, in {A_possessive} own time.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The student's first piece ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FirstPiece</defName>
+    <label>the student's first piece</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FirstPiece</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The student's first piece</li>
+          <li>{B_nameDef}'s {THING}</li>
+        </titles>
+        <texts>
+          <li>{B_nameDef}, who has been learning from {A_nameDef}, has made a {THING} better than anything {B_pronoun} made before. {A_nameDef} is prouder of it than {B_nameDef} is, and would like the colony to see it.</li>
+          <li>{A_nameDef} has been turning {B_nameDef}'s new {THING} over in {A_possessive} hands all morning. It's good work, the best {B_nameDef} has done since {A_nameDef} took {B_objective} on, and {A_nameDef} wants to raise a cup to it.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>A toast to the piece at supper</label>
+            <outcome>{A_nameDef} raised a cup to {B_nameDef}'s {THING} at supper, and the table drank to it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to {B_nameDef}'s {THING}</label><organizer>A</organizer><hours>17~21</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_Evt_PieceToasted</thought></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} tells {B_nameDef} so, between the two of them</label>
+            <outcome>{A_nameDef} found {B_nameDef} and told {B_objective} the {THING} was good work, and why.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s word to {B_nameDef}</label><who>A</who><whom>B</whom><hours>8~20</hours><duration>0.5~1</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_Evt_PieceNoticed</thought></li>
+            </effects>
+          </li>
+          <li>
+            <label>No fuss</label>
+            <outcome>The {THING} goes into the colony's stores with everything else.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Short in the stores ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_StoresShort</defName>
+    <label>short in the stores</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StoresShort</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>3</minColonists>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Short in the stores</li>
+          <li>{COUNT} days of food</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} has been through the stores and counted about {COUNT} days of food left, and would like hands put to bringing more in now, before it gets worse.</li>
+          <li>[quartermaster] {A_nameDef}, who keeps the colony's stores, has counted them twice: about {COUNT} days of food, and wants everyone who can be spared to help bring food in.</li>
+          <li>[ripe] There are about {COUNT} days of food in the stores and ripe crops standing in the fields. {A_nameDef} wants them in, today, with everyone helping.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>A work party to bring the harvest in</label>
+            <outcome>Five of the colony went out to bring in whatever was ripe.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the harvest in</label><count>5</count><tasks><li>Harvest</li></tasks><hours>6~18</hours><duration>3~4</duration></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} marks wild food to gather</label>
+            <outcome>The wild food within reach is marked for gathering.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Forage"><count>12</count></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Wait and see</label>
+            <outcome>Nothing changes for now. {A_nameDef} will count the stores again tomorrow.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A wish left waiting ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WishWaiting</defName>
+    <label>a wish left waiting</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WishWaiting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A wish left waiting</li>
+          <li>{B_nameDef} speaks up for {A_nameDef}</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} asked the council for {TALE} some time ago and has heard nothing since. {B_nameDef} has come to ask whether the council means to do it or not, so {A_nameDef} knows where {A_pronoun} stands.</li>
+          <li>{B_nameDef} says {A_nameDef} has stopped mentioning {TALE}, and that this is worse than when {A_pronoun} kept asking. {B_nameDef} would like an answer for {A_objective}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Promise it</label>
+            <outcome>The council promises {A_nameDef} {TALE}. {B_nameDef} went straight to tell {A_objective}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_PromiseWish" />
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Tell {A_nameDef} it will have to wait</label>
+            <outcome>{A_nameDef} is told plainly that {TALE} will have to wait. {A_nameDef} would have liked a yes, but says an answer is better than none.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Say nothing</label>
+            <outcome>The council says nothing. {B_nameDef} doesn't ask again.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>AAndB</target><amount>-2</amount></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The old song ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OldSong</defName>
+    <label>the old song</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OldSong</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>3</minColonists>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The old song</li>
+          <li>{A_nameDef} remembers a song</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} was humming at work today, a tune nobody else knew. It's a song from where {A_pronoun} grew up, and {A_pronoun} remembers all of it. {A_nameDef} would sing it at the fire tonight, if anyone wants to hear.</li>
+          <li>[child] {B_nameDef} heard {A_nameDef} singing something old under {A_possessive} breath and has been following {A_objective} around asking for the words. {A_nameDef} would teach them, or sing it for everyone at the fire.</li>
+          <li>[lowtech] {A_nameDef} says there was a song for this time of year where {A_pronoun} came from, and that it would be a shame for it to die with {A_objective}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>An evening of it at the fire</label>
+            <outcome>{A_nameDef} sang the old song at the fire, twice, and by the second time some of the others had the chorus.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>{A_nameDef}'s song at the fire</label><organizer>A</organizer><music>true</music><hours>18~22</hours><duration>1.5~2</duration>
+                <lines>
+                  <li>Sing the one from before again.</li>
+                  <li>I think I've got the chorus now.</li>
+                  <li>Where did you learn that one?</li>
+                </lines>
+              </li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} teaches it to {B_nameDef}</label>
+            <outcome>{A_nameDef} taught {B_nameDef} the song, word by word, until {B_pronoun} could sing it back.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student><skill>Artistic</skill><hours>15~20</hours></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>5</amount><withB>true</withB></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Not tonight</label>
+            <outcome>{A_nameDef} hums it while {A_pronoun} works.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A vow in the storm ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_StormVow</defName>
+    <label>a vow in the storm</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StormVow</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <weather>
+          <li>storm:2</li>
+        </weather>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A vow in the storm</li>
+          <li>{A_nameDef}'s vow</li>
+        </titles>
+        <texts>
+          <li>During the storm {A_nameDef} vowed to {TALE} that if it passed without harm to the colony, {A_pronoun} would keep a night's watch at the {PLACE}. The storm has passed, and {A_nameDef} means to keep the vow tonight.</li>
+          <li>{A_nameDef} says {A_pronoun} made a promise to {TALE} in the worst of the storm: a night at the {PLACE} if the roof held. It held, and {A_pronoun} wants to go. {B_nameDef} offers to go with {A_objective}.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} keep the vow</label>
+            <outcome>{A_nameDef} kept watch at the {PLACE} through the night, as {A_pronoun} vowed.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WatchAtPlace"><label>{A_nameDef}'s night at the {PLACE}</label><target>A</target><hours>20~23</hours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Evt_VowKept</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} keeps the watch with {A_objective}</label>
+            <outcome>{A_nameDef} and {B_nameDef} kept watch together at the {PLACE}, and talked most of the night.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WatchAtPlace"><label>a night at the {PLACE}</label><target>AAndB</target><hours>20~23</hours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Evt_VowKept</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>6</amount><withB>true</withB></li>
+            </effects>
+            <ways><tradition>1</tradition><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The work comes first</label>
+            <outcome>{A_nameDef} is needed at work tomorrow, and the vow waits, which {A_nameDef} is not happy about.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Evt_VowHeldBack</thought></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A group's evening off ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_GroupEveningOff</defName>
+    <label>a group's evening off</label>
+    <workerClass>ColonyCouncil.HappeningWorker_GroupEveningOff</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>4</minColonists>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>{TALE} ask for an evening</li>
+          <li>An evening together</li>
+        </titles>
+        <texts>
+          <li>{TALE} haven't had an evening together in more than a week. {B_nameDef} asks whether they could have one tonight, all of them, with the work left until morning.</li>
+          <li>{A_nameDef} says {TALE} have been passing each other at work and nothing more. {B_nameDef} would gather them this evening, if the council doesn't mind the work waiting.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Give them the evening</label>
+            <outcome>{TALE} had their evening together, led by {B_nameDef}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_GroupEvening" />
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+          <li>
+            <label>The work comes first this week</label>
+            <outcome>{TALE} are told the work comes first this week. {B_nameDef} says they'll ask again.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_Evt_EveningRefused</thought></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== The child's question ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_ChildsQuestion</defName>
+    <label>the child's question</label>
+    <workerClass>ColonyCouncil.HappeningWorker_ChildsQuestion</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>2</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The child's question</li>
+          <li>{B_nameDef} wants to know</li>
+        </titles>
+        <texts>
+          <li>[day] {B_nameDef} asked {A_nameDef} why the colony keeps {TALE}, and didn't accept the first answer. {A_nameDef} would like to tell {B_objective} the whole story properly.</li>
+          <li>[noday] {B_nameDef} asked {A_nameDef} how the colony began, and who was here first. {A_nameDef} would like to tell {B_objective} properly, not in a hurry between jobs.</li>
+          <li>[day] "Why do we stop working for {TALE}?" {B_nameDef} asked. {A_nameDef} thinks the question deserves a real answer.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} tells {B_nameDef} the story this evening</label>
+            <outcome>{A_nameDef} sat with {B_nameDef} and told {B_objective} the story from the start. {B_nameDef} asked a great many questions.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} tells {B_nameDef} the story</label><who>A</who><whom>B</whom><sit>true</sit><sitBy>Rec</sitBy><hours>16~20</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_Evt_StoryTold</thought></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>A lesson about it tomorrow</label>
+            <outcome>{A_nameDef} gave {B_nameDef} a proper lesson about the colony and its days.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student><skill>Social</skill><hours>9~15</hours></li>
+            </effects>
+          </li>
+          <li>
+            <label>Later, when there's time</label>
+            <outcome>{B_nameDef} is told it will have to wait, and will ask again.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A broken promise still sore ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_PromiseSore</defName>
+    <label>a broken promise still sore</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PromiseSore</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>3</minColonists>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>A broken promise still sore</li>
+          <li>{B_nameDef} asks for {A_nameDef}</li>
+        </titles>
+        <texts>
+          <li>The council promised {A_nameDef} something and didn't keep the promise, and {A_nameDef} hasn't got over it. {B_nameDef} asks that someone at least say so to {A_objective} face to face.</li>
+          <li>[speaker] {B_nameDef} has asked {HOLDER_nameDef}, who speaks for the council, to say something to {A_nameDef} about the broken promise. {A_nameDef} has been short with everyone since.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>{HOLDER_nameDef} says sorry at supper</label>
+            <outcome>{HOLDER_nameDef} told {A_nameDef} at supper, in front of everyone, that the council had let {A_objective} down.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{HOLDER_nameDef}'s word to {A_nameDef}</label><target>AAndB</target><organizer>Group</organizer><spots><li>Dining</li><li>Rec</li></spots><hours>17~21</hours><duration>0.75~1</duration>
+                <lines>
+                  <li>We promised, and we didn't do it.</li>
+                  <li>That was our fault, not yours.</li>
+                </lines>
+              </li>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Evt_Apology</thought></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} takes {A_nameDef} out for a walk</label>
+            <outcome>{B_nameDef} took {A_nameDef} out for a long walk, and they didn't talk about the council at all.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a walk with {A_nameDef}</label><who>B</who><whom>A</whom><to>Walk</to><hours>16~20</hours><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Friends</kind><amount>5</amount><withB>true</withB></li>
+            </effects>
+          </li>
+          <li>
+            <label>Leave it</label>
+            <outcome>Nothing is said. {A_nameDef} remembers that, too.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+            </effects>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Hands for the last field ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_LastField</defName>
+    <label>hands for the last field</label>
+    <workerClass>ColonyCouncil.HappeningWorker_LastField</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons><li>Fall</li></seasons>
+        <minColonists>3</minColonists>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Hands for the last field</li>
+          <li>{COUNT} plants ripe</li>
+        </titles>
+        <texts>
+          <li>{COUNT} plants stand ripe in the colony's fields, and {A_nameDef} doesn't want to lose them to the first frost, and asks for every pair of hands that can be spared this afternoon.</li>
+          <li>[reeve] {A_nameDef}, who keeps the colony's fields, has walked them: {COUNT} plants ripe and the nights getting colder, and wants a work party in the field today.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Everyone who can be spared</label>
+            <outcome>Six of the colony went out to the fields with {A_nameDef} and brought in what was ripe.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the last field</label><count>6</count><tasks><li>Harvest</li></tasks><hours>7~18</hours><duration>3~4</duration></li>
+            </effects>
+            <ways><toil>2</toil><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} and {B_nameDef}</label>
+            <outcome>{A_nameDef} and {B_nameDef} went out to the fields together and brought in what they could.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the last field</label><target>AAndB</target><count>2</count><tasks><li>Harvest</li></tasks><hours>7~18</hours><duration>3~4</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>The growers can manage</label>
+            <outcome>The harvest is left to the growers at their own pace.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== A night with the herd ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_HerdNight</defName>
+    <label>a night with the herd</label>
+    <workerClass>ColonyCouncil.HappeningWorker_HerdNight</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>25</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <minColonists>2</minColonists>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>A night with the herd</li>
+          <li>{PET_nameDef} is near {PET_possessive} time</li>
+        </titles>
+        <texts>
+          <li>{PET_nameDef}, the colony's {BEAST}, is close to giving birth, and {A_nameDef} would like to sit up with {PET_objective} tonight in case anything goes wrong.</li>
+          <li>[herdmaster] {A_nameDef}, who keeps the colony's herd, says {PET_nameDef} will give birth any day now and wants to spend the night nearby.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} sits up with {PET_nameDef}</label>
+            <outcome>{A_nameDef} spent the evening with {PET_nameDef}, keeping {PET_objective} calm.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{A_nameDef} sitting up with {PET_nameDef}</label><target>A</target><to>Person</to><whom>Pet</whom><hours>19~23</hours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Evt_HerdWatch</thought></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The animal will manage</label>
+            <outcome>{A_nameDef} looks in on {PET_nameDef} before bed, and leaves the rest to {PET_objective}.</outcome>
+          </li>
+        </options>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== Their moods ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_SatDown</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>sat down and talked it out</label><description>Someone sat us down and made us say it all. It wasn't pleasant, but it's said.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_BroughtAlong</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>asked along</label><description>Someone asked me along to their evening. I didn't expect it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_PieceToasted</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>my work was toasted</label><description>The whole table raised a cup to something I made.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_PieceNoticed</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>my teacher noticed</label><description>The one teaching me said my work was good, and told me why.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_VowKept</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>kept my vow</label><description>I made a vow in the storm, and I kept it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_VowHeldBack</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>kept from my vow</label><description>I made a vow and wasn't allowed to keep it. The work came first.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_EveningRefused</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>no evening together</label><description>We asked for one evening together, and the work came first.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_StoryTold</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>heard the whole story</label><description>Somebody told me the whole story when I asked, and didn't hurry.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_Apology</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the council said sorry</label><description>The council broke its promise to me, and at least it said so to my face.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Evt_HerdWatch</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>sat up with the herd</label><description>I spent the night with an animal near its time. It was quiet, and I was glad to be there.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

@@ -244,7 +244,11 @@ namespace ColonyCouncil
                 if (def.roleB != null)
                 {
                     var options = map.mapPawns.FreeColonistsSpawned.Where(p => def.roleB.Allows(p, a)).ToList();
-                    if (def.roleB.bestAt != null) options = options.OrderByDescending(p => p.skills?.GetSkill(def.roleB.bestAt)?.Level ?? 0).Take(1).ToList();
+                    // A path that is a seat's work (the fields the reeve's, the animals the herdmaster's: content update A8): its
+                    // holder at home teaches, when they could; else the colony's best at it.
+                    var holder = def.seat != null ? options.FirstOrDefault(p => Interplay.Holds(p, def.seat.defName)) : null;
+                    if (holder != null) options = new List<Pawn> { holder };
+                    else if (def.roleB.bestAt != null) options = options.OrderByDescending(p => p.skills?.GetSkill(def.roleB.bestAt)?.Level ?? 0).Take(1).ToList();
                     b = options.RandomElementWithFallback();
                     if (b == null) continue;
                 }

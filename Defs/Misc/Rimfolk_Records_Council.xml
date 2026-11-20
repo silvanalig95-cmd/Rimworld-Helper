@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Records of the council's life (the content update's A23, 20 November 2026; Source/ColonyCouncil/LifeVariety/
+    LifeMarksDeeds.cs): days in the seats that had no record of their own (counted once a day with the names, beside the
+    physician's and the marshal's), and promises made for a seat judged kept at the yearly election. They show in the
+    game's Records tab, and names grow on them (Defs/EpithetDefs/Rimfolk_Epithets_Council.xml).
+  -->
+
+  <RecordDef>
+    <defName>Council_DaysAsQuartermaster</defName>
+    <label>days as the colony's quartermaster</label>
+    <description>Days this colonist held the quartermaster's seat on the council.</description>
+    <type>Int</type>
+    <displayOrder>1640</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_DaysAsReeve</defName>
+    <label>days as the colony's reeve</label>
+    <description>Days this colonist held the reeve's seat on the council.</description>
+    <type>Int</type>
+    <displayOrder>1641</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_DaysAsHerdmaster</defName>
+    <label>days as the colony's herdmaster</label>
+    <description>Days this colonist held the herdmaster's seat on the council.</description>
+    <type>Int</type>
+    <displayOrder>1642</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_DaysAsSteward</defName>
+    <label>days as the colony's steward</label>
+    <description>Days this colonist held the steward's seat on the council.</description>
+    <type>Int</type>
+    <displayOrder>1643</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_DaysAsElder</defName>
+    <label>days as an elder of the council</label>
+    <description>Days this colonist held an elder's seat on the council.</description>
+    <type>Int</type>
+    <displayOrder>1644</displayOrder>
+  </RecordDef>
+
+  <RecordDef>
+    <defName>Council_SeatPromisesKept</defName>
+    <label>promises in a seat judged kept</label>
+    <description>Promises this colonist made when voted into a council seat, judged kept at the next yearly election.</description>
+    <type>Int</type>
+    <displayOrder>1645</displayOrder>
+  </RecordDef>
+
+</Defs>

@@ -146,7 +146,11 @@ namespace ColonyCouncil
                 if (relation.NullOrEmpty()) relation = (close ? "CC_Banish_Kin" : "CC_Banish_Friend").Translate().Resolve();
                 string line = BanishTracker.Line("Rimfolk_Pool_BanishObject", objector, a, close ? "kin" : "friend");
                 if (!line.NullOrEmpty())
+                {
                     lines.Add(BanishTracker.W("CC_Banish_Objects", objector.Named("PAWN"), a.Named("OTHER"), relation.Named("RELATION")) + " \"" + line + "\"");
+                    // Spoke up for them before the council: a deed the colony talks about (A23, LifeVariety/LifeMarksDeeds.cs).
+                    LifeDeeds.SpokeUp(objector, a);
+                }
             }
             string say = BanishTracker.Line("Rimfolk_Pool_BanishPlea", a, c.b, BanishMath.Say(trouble.started, trouble.joined, a.needs?.mood?.CurLevelPercentage ?? 0.5f));
             if (!say.NullOrEmpty()) lines.Add(BanishTracker.W("CC_Banish_OwnSay", a.Named("OTHER")) + " \"" + say + "\"");

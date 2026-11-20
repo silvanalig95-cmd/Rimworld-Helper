@@ -236,13 +236,15 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-129 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+130 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely. Among
 the newer ones: cloth put by for mending before the cold months, steel and spare parts in the stores, milk for a
 little one, shelves for the stores, the trees grown against the walls felled before a storm brings one down on a
-roof, and the snow cleared from the doors; promised, the last two are marked for the game's own cutters and cleaners. The
-wishes that come up most often (armor, a place to pray, a latrine, a seat at the table, a bath, warmth at night) have
+roof, and the snow cleared from the doors; promised, the last two are marked for the game's own cutters and cleaners. A
+parent, an elder or a grown-up fond of a child of three to twelve (Biotech) may ask for **a toy** for them, one of
+Vanilla Christmas Expanded's from the bench or else a small carving, and once it's made carries it over to the child by
+hand. The wishes that come up most often (armor, a place to pray, a latrine, a seat at the table, a bath, warmth at night) have
 three to five ways to be asked in every temperament, so the same colonist rarely asks the same way twice.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
 industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
@@ -864,7 +866,7 @@ less often and frictions more, and after a few days side by side they don't clic
 on each other's nerves (up to -10, deepening over a month). Two who get on easily grow closer the same way (up to +6).
 Most pairs are in between, and what happens between them decides. Partners are left alone.
 
-Most days something small happens between two people who are together at the time (123 kinds of social event): a
+Most days something small happens between two people who are together at the time (130 kinds of social event): a
 late talk, a shared joke, a prank that lands badly, a snub at dinner, a squabble over chores, war stories, a lesson,
 a contest between rivals, a handmade gift, gossip that gets found out, an unexpected truce. Life brings its own: a
 vigil at a friend's sickbed, an evening at a camp on the map, a quarrel over what the council decided, fears confided
@@ -875,7 +877,12 @@ fine piece just finished shown to the teacher (or admired, or envied), a quiet w
 from one of the land's dangers (or teasing about it), an old remedy, a newcomer shown the ropes, company at a meal for
 someone low, rain, snow, heat and bitter cold out in the open, the last of the harvest, and the region's news (the
 neighbors' war, the households on the road, a dry town, a great work, the summer that never came), each in the form of
-the colony's age, and as a share of the day's small events, never more of them. Each one nudges their bond; most change how the two see each other
+the colony's age, and as a share of the day's small events, never more of them. The council's own seasons bring seven: a
+friend helping a candidate with their speech while an election is under way, the one who lost a seat showing the new
+holder where everything is kept, a holder reminded of the promise they made at the vote (warmly when the colony can see
+it going well, sharply when it can't), two who back different candidates for one seat falling out over it, two who
+asked for the same petition talking it over, and an elder's advice to a young holder; whom someone backs is read from
+how they'd vote, and none of it changes a vote. Each one nudges their bond; most change how the two see each other
 rather than anyone's mood (a shared joke is a little recreation, a lesson practice). In conversation they share smaller moments
 too (about a hundred kinds, 44 of them frictions), shaped by who they are (night owls keeping each other company,
 brawlers comparing scars, an iron-willed colonist steadying a nervous one) and by what's going on (visiting the sick,
@@ -920,10 +927,12 @@ a year.
 Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
 nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
 Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
-lean of their own. Then life marks them, with 58 kinds of mark: downed in a raid, carried out of one, holding the
+lean of their own. Then life marks them, with 65 kinds of mark: downed in a raid, carried out of one, holding the
 line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness or nursing someone through one, forgiven after a
 breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
-beaten, a new ideoligion, a crisis of faith (with Ideology), a brush with what lies past the world. Their nature picks the mark and how deep it goes: the
+beaten, a new ideoligion, a crisis of faith (with Ideology), a brush with what lies past the world, and from the
+colony's own life a life goal reached, an ambition they proposed reached, a custom they first asked for become a
+tradition, a year in a seat with the promise they won it on kept, a personal story of theirs come to a good end. Their nature picks the mark and how deep it goes: the
 bold harden where the timid are shaken, the cold close up where others grieve, raid after raid hardens some and
 wears others down. Part of each change stays for good and the rest fades over years; marks are kept rare (one small
 mark per few days, each turning point once in a long while), and a turning point goes into their journal in their
@@ -1025,8 +1034,9 @@ newest face in the colony, faith, the world outside and its traders, the animals
 whether to stay, the dead, the prisoners, drink, new learning against the old ways, the children, the colony's project,
 money, love, a day on the calendar coming up or just kept (a birthday, a tradition, a day of mourning nobody jokes
 about), the world's latest news (good or bad, and whether the colony helped), the camp on the map (who they are, what
-they take), the sick and the hurt (put to bed and nursed, or worked through; only while someone is ill or healing)
-(24 topics). Children talk too, of growing up, with a grown-up or each other. What comes up follows the news
+they take), the sick and the hurt (put to bed and nursed, or worked through; only while someone is ill or healing),
+the vote (only while an election is under way: whom each leans to is whom they'd vote for, and talking it over never
+changes a vote) (25 topics). Children talk too, of growing up, with a grown-up or each other. What comes up follows the news
 (a raid yesterday, a death, a new decree, a wedding, a newcomer, a harvest, a disaster, a day due tomorrow, a camp
 walking in), what each of them cares about and who they are, and their tie: friends talk about anything, rivals find
 what they disagree on.
@@ -1066,10 +1076,14 @@ their own way), on the People table, the Bonds page and their character page. Ea
   anchor, the joker, the peacemaker (who steps into its quarrels), the firebrand, the worrier, the quiet one, the newcomer;
 - **ways** it shares and expects (18: loud and merry, keep to themselves, suspicious of outsiders, brave to a fault...),
   which its people drift towards over the weeks, and **views** most of them hold;
-- **habits** kept together when they're really together (13: an evening at the fire, a shared table, a game night, the
+- **habits** kept together when they're really together (17: an evening at the fire, a shared table, a game night, the
   small hours, an hour with a book, keeping the sick company, music of an evening, the night sky...), which ease strain
   and count for belonging rather than mood; now and then the anchor calls them all to one on the map (never to the four
-  newest, which are only kept as they come, until the group has a place of its own for one: then that one too);
+  newest, which are only kept as they come, until the group has a place of its own for one: then that one too). Four
+  come from the colony's pastimes and are only ever kept as they come: fishing side by side (Odyssey's or PokéWorld's
+  fishing), the hot water (Dubs Bad Hygiene's pool, hot tub or sauna, ReGrowth's hot spring), a pot of tea or coffee in
+  the same room, and cards, chess or darts (Vanilla Furniture Expanded's dartboard among them); a friendship group may
+  be named for one ("the anglers", "the tea table");
 - **cohesion** that grows with habits and shared memories and falls with quarrels, losses and time apart, and a history.
 
 Newcomers are outsiders until a group takes them in, sooner in a warm, trusting group, while a wary one closes ranks.
@@ -1081,7 +1095,7 @@ two went through together, and the character page has a "Groups and role" sectio
 group".
 
 #### Reputation and gossip: what people say about each other
-Colonists notice what the others do (51 kinds of deed): who carried a wounded friend out of a fight and who ran, who
+Colonists notice what the others do (55 kinds of deed): who carried a wounded friend out of a fight and who ran, who
 held the line or brought many down, who sat with the wounded for days, a tantrum, a berserk rage, the first punch, a
 binge while the stores ran low, a secret kept or let out, a masterwork, a great work seen through, a botched
 operation, a contest or an election won, a kindness to a stranger, a cruelty to a prisoner, an affair or a breakup,
@@ -1094,7 +1108,9 @@ good) and makes of it what their character does (the bold admire courage, the wa
 their heads, in about 660 lines by deed, slant and character, and the listener answers. Deeds come from the newer
 systems too: a friend made at a camp or a quarrel with one, a lost child found, a pilgrim walked home, a neighbour's
 harvest worked or a mission let slip, a call for help answered in a world event, a calendar day seen to, a feast dish
-burned or a quarrel at its table, the night watch walked, the dead carried out, the rounds of the sick; and from the
+burned or a quarrel at its table, the night watch walked, the dead carried out, the rounds of the sick, a promise made
+for a seat judged kept or broken at the yearly election, speaking up for someone the council was asked to send away,
+stepping down from a seat of one's own will; and from the
 game's own moments: the prisoners let out of their cells, a binge on the colony's drugs, a body dug up, running off
 into the wild.
 
@@ -1223,7 +1239,11 @@ the others (as does one who pulled through a serious illness); with the neighbou
 straight enough to stand on the wall, or to answer the neighbours' calls; a new colony's first night makes someone want
 to see it grow or its days kept, and a parting the journey to the other colony; an evening at a camp's fire, five more.
 Others mend forty broken things, strike six deals with traders, mend three quarrels or lead three of the faith's rites.
-97 in all, listed on the Almanac page "every life goal". Goals fit the person (their passions, traits and situation) and grow out of what happens to them: a battle
+Any seat on the council may be a life goal, not only the marshal's, physician's, steward's and quartermaster's: the
+reeve's, the peacemaker's, the keeper of days', the herdmaster's, the chaplain's, the warden of guests' and an elder's
+(from 45), each set off by a lost election or by doing the seat's own work (twenty plants brought in in a day, a quarrel
+mended, a day of the calendar kept, an animal tamed, a rite led, a camp greeted, a student taught to stand alone; for
+an elder's, a child born). 104 in all, listed on the Almanac page "every life goal". Goals fit the person (their passions, traits and situation) and grow out of what happens to them: a battle
 makes a warrior, a brush with death a healer, a wedding someone who wants to marry, a birth someone who wants a child,
 a lost election someone who wants a seat, loneliness someone who wants friends, and seeing a friend reach their goal
 can make them want the same. A fight can make a warrior of those who fought hardest in it (the three who brought down
@@ -1246,7 +1266,7 @@ fulfilment need counts toward the heart's purpose, and Rimfolk's own goals come 
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
-There are 36 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+There are 42 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
@@ -1266,13 +1286,19 @@ the world when sickness, famine or war comes there). Three come from the council
 again), the one sent away (the colonist closest to someone the council banished: a hard day, a walk out to the edge of
 the land, a talk with the chaplain or a friend, and better days, or a walk out to meet them if they come back to the
 gate) and worn thin (after coming apart under the strain: a friend comes to sit with them, a day off taken, the heart's
-or a rest day, and back to themselves, the friend marked by it). The young and the old have their own: bad nights (a child's
+or a rest day, and back to themselves, the friend marked by it). Six grow out of the colony's own life: a custom of their own (the
+custom someone first asked for, kept again the next year and the one after until it is a tradition), a promise waited on
+(a wish the council promised, still open: two days of hoping, then restless until it's met), ready for the seat (a life
+goal of a seat, practised for at the seat's work and stood for at the election), a prayer for a friend (a believer whose
+friend is laid up sits with them, and when the friend is well gives thanks at the shrine, taking it as the god's answer,
+as they believe), an unexpected gift (a giving day's gift from someone they thought little of, a visit to say thanks and
+a friendship from it) and the year's aim (a life goal said aloud at the year's first supper, and reached). The young and the old have their own: bad nights (a child's
 nightmares), not a child any more (a teenager and a grown-up who won't see it), a new parent (Biotech), one more
 spring (an elder in poor health) and the last two of us (two old rivals, the last of their generation). Four are
 **stories of three**: a rival in love (two people fond of the same one, who chooses, or doesn't), torn between two
 students (a mentor with two learners), brothers and sisters (a parent and two children at odds) and caught in the
 middle (someone between two friends who can't stand each other). Their talks need the two people together, they can
-end with either one ahead, and the third keeps a journal of it too. With A RimWorld of Magic there's a 36th, the long
+end with either one ahead, and the third keeps a journal of it too. With A RimWorld of Magic there's a 42nd, the long
 discipline (a mage or a fighter hits a wall in their art and works through it). Each starts from what Rimfolk already
 knows about the colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on
 only when something happens in play: a skill reached, a talk between the two of them in the social log, a piece of
@@ -1309,8 +1335,10 @@ the years they gave, the name they earned, the goal they never reached, who kill
 ### Heirlooms and coming of age
 A dead colonist's weapon or hat passes to the person who loved them most. Carrying it is a comfort (to anyone,
 more to the heir), and losing it hurts. When a child grows up (Biotech), the colony marks it, parents are proud, and
-the council is asked to help choose a path: an apprenticeship in the workshop, the infirmary, the study or on the
-wall (which starts a real mentorship with the colony's best), or letting them choose for themselves.
+the council is asked to help choose a path: an apprenticeship in the workshop, the infirmary, the study, on the wall,
+in the fields, the kitchen, with the animals or at building (which starts a real mentorship with the colony's best, and a
+first lesson on the map; the fields are taught by the reeve and the animals by the herdmaster when the seat's holder
+could), or letting them choose for themselves.
 
 ### Quirks and superstitions
 Colonists pick up beliefs and habits from what they live through: a **lucky helmet** after surviving a raid in it
@@ -1800,7 +1828,7 @@ weather isn't there), or with its occasion for a custom asked in its moment. Kee
 same rule as the calendar's own days, and it becomes a tradition: keeping it pleases everyone, breaking it disappoints
 them, and twice in a row it lapses. Let it pass before then and it leaves the calendar, a question again in its
 season. A season that holds a custom's day is asked no other. An older save's customs go on the calendar as they stood:
-a tradition stays one, one kept once needs two more years. Thirty-eight customs can become traditions, among them the **planting day** (asked
+a tradition stays one, one kept once needs two more years. Forty customs can become traditions, among them the **planting day** (asked
 when the fields open after a cold season: the colony sows together, the grower says a few words at the field's edge,
 and a crop sown in full is remembered as a good start) and the **remembrance walk** to the colony's graves in spring, the **midsummer swim** on a hot day by the water,
 the **harvest dance**, **first-frost soup** on the first freezing day, and **lantern night** in winter. Some belong
@@ -1816,7 +1844,13 @@ again in later years), **the star night** on a clear warm night, **the fishing m
 Bees' beehouses. Four more fill the autumn and the winter: **the woodpile day** (the colony out for the winter's wood while the stores are short of it),
 **the night of lights** (a light by every grave of the colony's own at dusk, and the colony standing among them), **the
 mending day** (a day of repairs, and the best crafter teaching a young one at the bench) and **the winter tales** (the
-year told by the fire).
+year told by the fire). Two belong to the colony's people: **the giving day** in winter (names drawn so
+everyone gives one gift and gets one, each taken from the stores by what the other wants or lacks and handed over by
+hand after a supper together, or the children only; with Vanilla Christmas Expanded its toys, gingerbread, eggnog and
+cocoa are among the gifts and its fairy lamps are lit; midwinter's presents are never handed round the same day, and if
+the colony's faith keeps the mod's festive feast the gifts come with that feast) and **the elders' day** in autumn (the
+children make something for the elders and carry it over, and at supper the cup is raised to the elders and each tells
+something from their life; or the supper only).
 
 A custom kept year after year reads like one: its letters remember the last time, speak of a custom kept for years,
 and say so when one was let go; people talk about the occasion itself while it's kept; and openings and outcomes fit
@@ -1906,13 +1940,15 @@ answers it from its page.
 - With only one colonist, the council "meets" in passing. The setting *Meetings call people from their work*
   (on by default) can be turned off; then colonists come only when they're free, and attendance is still kept.
 
-65 ambitions, from *a full larder*, *hold the line* and *hold the way in* to *clean hands*, *law and order*, *the brewmasters*,
+68 ambitions, from *a full larder*, *hold the line* and *hold the way in* to *clean hands*, *law and order*, *the brewmasters*,
 *stone and mortar*, *a master healer*, *a seat of power* and *school days*. Achieving one lifts everyone's mood
 and trust; one that was already more than half done when the colony chose it counts for less (down to 60%).
 Only those the colony can achieve now are pitched, and some fit a colony's size or era: *a home, not a camp* and
 *nobody is the only one* for a small band, *the great feast* for a crowd, *the healing garden* before electricity,
 *word from outside* after it. Some answer the newer systems (*a calm season*, *a healthy season*, *a proper
-infirmary*, *friends at the camp*, *a table for everyone*). Eight come in stages (*a home, not a camp*, *a proper
+infirmary*, *friends at the camp*, *a table for everyone*), and three the colony's people: *nobody left out* (every
+grown colonist in a group or with a friend), *a season of kept promises* (fifteen days with no promise let lapse and two
+kept) and *a lighter season* (fifteen days with nobody worn down or near breaking). Eight come in stages (*a home, not a camp*, *a proper
 infirmary*, *ready for every season*, *raise the walls*, *a market town*, *the winter cache*, *the starlight
 archive*, *renowned hosts*): only the current stage counts, and a message says what comes next. Some take a season
 (*a season of hot meals* and *a season of plenty*, where one lean day starts the count again, *keep the year's days*,
@@ -2840,7 +2876,10 @@ and *the Annalist*, who keeps the pen. They show in play: travelers ask for Old 
 founding day's letter names the last of the founders. Six deeds the colony talks about count for names too: *the
 Shield* (people carried out of a fight), *Night-Watch* (nights on the walls), *the Champion* (contests won),
 *Master-Hand* (masterworks), *the Lamp* (rounds of the sick) and *Open-Hand* (kindnesses to strangers), with *the
-Teacher* (students taught to stand alone) and *the Hopeful* (votes lost, again and again). 71 names in all. A name holds: nobody can take it for 20 days,
+Teacher* (students taught to stand alone) and *the Hopeful* (votes lost, again and again). Two years in a seat
+brings a name in the seats that had none: *Old Keys* (quartermaster), *Old Furrow* (reeve), *the Drover* (herdmaster),
+*the Host* (steward) and *the Old Voice* (an elder's seat); and two promises made for a seat and judged kept at the
+yearly election make someone *Word-Kept*. 77 names in all. A name holds: nobody can take it for 20 days,
 and after that it passes to someone who stays a fifth ahead on the count every day of a week and does more of that work
 than the holder in it, never back to the one who lost it within 30 days (who writes it once in their journal). Two who
 share the work don't pass a name more than about once in 60 days; one who clearly surpasses the holder has it within a
@@ -3509,6 +3548,16 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   same fence marked to go back or the gap left for the animals to graze outside; **the ambrosia ripe**, all of it or a
   night's marked for harvest, or left (its pull named first); and **a clutch in the grass** of a wild bird's eggs,
   raised for the colony by the game's own hatching, sent to the kitchen, or left to hatch wild.
+- **The colony's everyday life (12 more).** From the colony's own people, each from something on the map and answered
+  on it, none with a fight or a hurt: **a quarrel at supper** (the peacemaker, else the best talker, sits the two down
+  at a table), **the newcomer at the edge** (a group's anchor brings someone new and alone to the group's evening), **the
+  student's first piece** (a toast to it at supper, led by the teacher), **short in the stores** (a work party brings
+  the ripe harvest in, or wild food is marked for gathering), **a wish left waiting** (a friend asks the council to
+  promise it), **the old song** (an elder's song at the fire, or taught to a child), **a vow in the storm** (a night's
+  watch at the shrine of the god someone holds to, as they believe), **a group's evening off**, **the child's question**
+  (why the colony keeps one of its days, told that evening; Biotech), **a broken promise still sore** (the speaker says
+  sorry at supper), **hands for the last field** in autumn, and **a night with the herd** (the herdmaster, else the best
+  handler, sits up with an animal near its time).
 - **Dangers on the map.** Seen coming, asked about quickly, and only with hurts from everyday life on: **the creak at
   the dig** (a rock face under the mountain drops grit; prop it, dig on and the rock may fall on the digger, or leave
   the face), **the leaning tree** by a wall after rain (felled, or left for a wind to bring down on the wall and anyone
