@@ -1063,6 +1063,12 @@ namespace ColonyCouncil
                     PlayMarkers.Fallback(p, what);
                     return;
                 }
+                // The year written up at the writer's table (A29, ColonyLife/YearRead.cs): the book, once the writing happened.
+                if (what.StartsWith(YearBook.AfterPrefix, StringComparison.Ordinal))
+                {
+                    if (happened) YearBook.Made(p, what);
+                    return;
+                }
                 if (what == Smash)
                 {
                     PlaySmash.Smash(p.place, happened ? p.visitor : null);

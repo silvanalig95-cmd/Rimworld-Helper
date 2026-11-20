@@ -61,6 +61,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the walls' fire</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
     </achievedEffects>
+    <dayLabel>the day the walls were raised</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A season of hot meals (season-long) ===================== -->
@@ -101,6 +102,10 @@
       <cheerful><li>Fifteen days of hot food! I'm rounder and happier.</li></cheerful>
       <cold><li>Fifteen days and not one meal eaten raw. The cooks can be trusted with more.</li></cold>
     </achieved>
+    <dayLabel>the end of a season of hot meals</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper for a season of hot meals</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A season of plenty (season-long) ===================== -->
@@ -139,6 +144,11 @@
       <cheerful><li>Full barns all season! I keep going in just to look at them.</li></cheerful>
       <cold><li>We stayed twenty days ahead of hunger for a whole season. I'd like that to become the rule.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Reeve</sceneOffice>
+    <dayLabel>the end of a season of plenty</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper for a season of plenty</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Keep the year's days (the calendar) ===================== -->
@@ -176,6 +186,11 @@
       <cheerful><li>Two days, two celebrations! Next year we'll do even better.</li></cheerful>
       <cold><li>Both days kept. People worked better the morning after, which I hadn't expected.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Keeper</sceneOffice>
+    <dayLabel>the day the year's days were all kept</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the year's days</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== The winter cache (tribal; in stages) ===================== -->
@@ -221,6 +236,11 @@
       <cheerful><li>Sixty pemmican, all stacked up! I've already had to chase someone off them.</li></cheerful>
       <cold><li>The cache will feed the tribe until the thaw, if nobody gets greedy.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Quartermaster</sceneOffice>
+    <dayLabel>the day the winter cache was full</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the winter cache</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== The hunters' year (tribal) ===================== -->
@@ -270,6 +290,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the hunters' fire</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
     </achievedEffects>
+    <dayLabel>the end of the hunters' year</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== The starlight archive (spacer; in stages) ===================== -->
@@ -314,6 +335,10 @@
       <cheerful><li>Supper's all equations and star charts now, and I love it!</li></cheerful>
       <cold><li>Three people now understand what one did before.</li></cold>
     </achieved>
+    <dayLabel>the day the starlight archive was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the starlight archive</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A hospital of the stars (spacer) ===================== -->
@@ -362,6 +387,11 @@
       <cheerful><li>Everything in there is white and shining. I hope nobody needs it for a long time.</li></cheerful>
       <cold><li>Spotless, stocked and staffed. Fewer of us will die after the next raid.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Physician</sceneOffice>
+    <dayLabel>the day the hospital of the stars was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone round the new hospital</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>The beds are clean and ready.</li><li>Let's hope nobody needs them soon.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Renowned hosts (Hospitality; in stages) ===================== -->
@@ -407,6 +437,11 @@
       <cheerful><li>Our last guest asked to have the same bed next time!</li></cheerful>
       <cold><li>Guests ask for us by name now. That will be useful.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Warden</sceneOffice>
+    <dayLabel>the day the colony became known for its welcome</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to renowned hosts</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A market town (medieval and industrial; in stages) ===================== -->
@@ -455,6 +490,11 @@
       <cheerful><li>A real market town! I'm going to start charging for directions.</li></cheerful>
       <cold><li>Three peoples trade with us and the strongbox is full. Now we set the prices.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Quartermaster</sceneOffice>
+    <dayLabel>the day the colony became a market town</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the market town</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

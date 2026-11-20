@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Remembering the year read aloud (A29, Defs/SharedMemoryDefs/Rimfolk_SharedMemories_ColonyLife.xml): the opening, the
+    reply and the close. {LABEL} is "the second year read aloud". Plain speech, one sentence a line.
+  -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_YearRead_Open</defName>
+    <memory>Rimfolk_Mem_YearRead</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Do you remember {LABEL}, all of us at the table?</li>
+        <li>I keep thinking about {LABEL}.</li>
+        <li>[first] I'd forgotten half of what happened until I heard {LABEL}.</li>
+        <li>I had to look away when the names were read, at {LABEL}.</li>
+      </plain>
+      <warm>
+        <li>{LABEL} made me glad I'm here with all of you.</li>
+      </warm>
+      <blunt>
+        <li>{LABEL} went on a bit, didn't it.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_YearRead_Reply</defName>
+    <memory>Rimfolk_Mem_YearRead</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I didn't know it had been such a full year until I heard it all at once.</li>
+        <li>I liked hearing it read out, it made it feel like it counted.</li>
+        <li>I was waiting to hear my name, and then I was embarrassed when I did.</li>
+        <li>It was quieter at that table than I've ever heard it.</li>
+      </plain>
+      <warm>
+        <li>I'm glad someone writes it all down.</li>
+      </warm>
+      <blunt>
+        <li>It was fine, I was hungry.</li>
+      </blunt>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_TL_Mem_YearRead_Close</defName>
+    <memory>Rimfolk_Mem_YearRead</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Let's hope next year's is a good one to read.</li>
+        <li>I want to be in next year's for something good.</li>
+        <li>We'll hear the next one soon enough.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>

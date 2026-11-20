@@ -329,6 +329,7 @@ namespace ColonyCouncil
                 case CalendarKind.FirstTrade:
                 case CalendarKind.Founding:
                 case CalendarKind.CampGift:
+                case CalendarKind.Ambition:
                     return PlaySpot.Gate;
                 default:
                     return PlaySpot.Walk;

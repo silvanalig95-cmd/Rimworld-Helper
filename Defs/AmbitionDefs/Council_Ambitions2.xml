@@ -39,6 +39,10 @@
       <plain><li>The floors are scrubbed and the butchering's moved out. Dinner's ready.</li></plain>
       <cheerful><li>Look at that floor! You could eat off it, though I'd rather you used the tables.</li></cheerful>
     </achieved>
+    <dayLabel>the day the kitchen was clean</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper from the clean kitchen</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -81,6 +85,10 @@
       <plain><li>One cell with a bed and a lock. All it needs now is someone in it.</li></plain>
       <cold><li>The cell is ready. The wounded ones are worth carrying in now.</li></cold>
     </achieved>
+    <dayLabel>the day the cells were finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone the new cells</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>Let's hope it stays empty.</li><li>Solid walls, at least.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -133,6 +141,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>the first barrel</label><hours>17~22</hours></li>
     </achievedEffects>
+    <dayLabel>the day of the first barrel</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -172,6 +181,11 @@
       <plain><li>Let them bring their torches.</li></plain>
       <cold><li>A fire now costs us one room, not the colony. That's acceptable.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Marshal</sceneOffice>
+    <dayLabel>the day the stone walls were finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>{B_nameDef} walks along the new stone walls</label><target>Colony</target><organizer>B</organizer><count>3</count><route>bounds</route><hours>16~19</hours><duration>1~1.5</duration><lines><li>Fire won't take these.</li><li>Good stone, all the way round.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -209,6 +223,10 @@
     <achieved>
       <plain><li>Every room lit. Funny how much bigger the place looks.</li></plain>
     </achieved>
+    <dayLabel>the day every corner was lit</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening with every corner lit</label><music>true</music><spots><li>Rec</li><li>Dining</li><li>Gather</li></spots><hours>19~23</hours><duration>1.5~2</duration><lines><li>You can see right into the corners now.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -253,6 +271,11 @@
     <achieved>
       <plain><li>Our doctor could close a wound in the dark now. Try not to make work for them.</li></plain>
     </achieved>
+    <sceneOffice>Council_Office_Physician</sceneOffice>
+    <dayLabel>the day the colony had a master healer</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the colony's healer</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -293,6 +316,10 @@
     <achieved>
       <plain><li>Look at the joins on that. Not a gap anywhere.</li></plain>
     </achieved>
+    <dayLabel>the day the colony had a master's hand</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to a master's hand</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -335,6 +362,11 @@
     <achieved>
       <plain><li>Enough pemmican to walk halfway across the world on, or to last a bad winter.</li></plain>
     </achieved>
+    <sceneOffice>Council_Office_Quartermaster</sceneOffice>
+    <dayLabel>the day the long store was full</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the long store</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -376,6 +408,11 @@
     <achieved>
       <plain><li>Our dead have their own ground now, with a fence around it.</li></plain>
     </achieved>
+    <sceneOffice>Council_Office_Chaplain</sceneOffice>
+    <dayLabel>the day the graves were finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>a quiet hour at the graves</label><target>Colony</target><organizer>B</organizer><to>Grave</to><count>6</count><hours>15~19</hours><duration>1~1.5</duration><lines><li>They have a proper place to rest now.</li><li>We'll keep it tidy for them.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -420,6 +457,10 @@
     <achieved>
       <plain><li>A seat fit for a noble. Mind the steps.</li></plain>
     </achieved>
+    <dayLabel>the day the throne room was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone round the throne room</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>It's a room fit for a title, now.</li><li>Mind the floor, it's just been done.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -462,6 +503,11 @@
     <achieved>
       <plain><li>Desks in a row, chalk on the board. Sit down, everyone, class is in.</li></plain>
     </achieved>
+    <sceneOffice>Council_Office_Elder</sceneOffice>
+    <dayLabel>the day of the first lesson</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the first lesson at the new desks</label><target>Colony</target><childrenOnly>true</childrenOnly><organizer>B</organizer><spots><li>Place</li><li>Dining</li><li>Rec</li></spots><hours>9~15</hours><duration>1~1.5</duration><lines><li>Sit down, all of you, and we'll start.</li><li>Each of you has a desk of your own now.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

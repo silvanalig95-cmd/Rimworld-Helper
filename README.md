@@ -236,7 +236,7 @@ to them. A raid makes someone ask for defenses within hours; a cold night, a mea
 friend's death or food poisoning all set off matching wishes. Every wish arrives with a little scene and a line
 in the colonist's own voice, chosen to fit the season, weather, time of day and their situation.
 
-128 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
+129 kinds of wish, most with variants (six kinds of work room, a dozen pieces of furniture, any
 missing body part), so the same colony rarely hears the same request twice in a row: a wish the colony has
 heard several times lately becomes much less likely, and one nobody here has ever made a little more likely. Among
 the newer ones: cloth put by for mending before the cold months, steel and spare parts in the stores, milk for a
@@ -246,6 +246,13 @@ wishes that come up most often (armor, a place to pray, a latrine, a seat at the
 three to five ways to be asked in every temperament, so the same colonist rarely asks the same way twice.
 Every wish asks only for what the colony can do now, in its era: a tribe hears about healroot and pemmican, an
 industrial colony about a deep drill or a comms console. The Almanac page "what colonists wish for" lists them all.
+A wish met for something that stays (a chair, a bed, a room) is **tried out**: in their free time that day the one it
+was for goes to it, sits in it, lies on it a moment, warms up at it, looks it over or walks round the room, and says
+thanks there, while a friend nearby sometimes admires it. A wish several may back for one thing **grows by talk**: when
+someone brings it up in conversation, a listener who would want the same can join it there and then, a line from each
+(once a day at most). A close group whose habit has nowhere to happen asks for **a place of its own** (a fire pit with
+seats, a bookcase with a chair, a game table, an instrument, a shrine), its anchor asking and the rest signing; once it
+is built the group has its first evening there, and is called there from then on.
 Wishes follow the land's year: clothes are asked for by the season coming (what someone wears has to keep them
 comfortable in its usual cold, or on hot land its heat, never a coat for the stores), hot country wants a freezer
 (and, with nothing yet that can keep food frozen, food that keeps), and cold land a sauna, Dubs Bad Hygiene's or a
@@ -1052,7 +1059,7 @@ their own way), on the People table, the Bonds page and their character page. Ea
 - **habits** kept together when they're really together (13: an evening at the fire, a shared table, a game night, the
   small hours, an hour with a book, keeping the sick company, music of an evening, the night sky...), which ease strain
   and count for belonging rather than mood; now and then the anchor calls them all to one on the map (never to the four
-  newest, which are only kept as they come);
+  newest, which are only kept as they come, until the group has a place of its own for one: then that one too);
 - **cohesion** that grows with habits and shared memories and falls with quarrels, losses and time apart, and a history.
 
 Newcomers are outsiders until a group takes them in, sooner in a warm, trusting group, while a wary one closes ranks.
@@ -1220,6 +1227,12 @@ stays: a cup raised to them at the colony's next gathering (or at supper, if non
 never slips again and comes a little faster), a younger colonist with the same passion learning at their side, and a
 title on their Story tab that the colony tells round in gossip. Dying before it is remembered: the chronicle notes
 what they never got to do, and their friends write about it.
+In the year's first week someone may ask for **the year's first supper**, a custom: at one table each says what they
+mean to do this year, one line each, and anyone without a goal may choose one there; those who back them grow a little
+closer, and the next year's letter reads it back ("At the first supper Toni said she would train the dogs. She did.").
+With **Vanilla Aspirations Expanded**, an aim of the mod's reached is marked like a life goal (a cup raised at the next
+gathering, the chronicle, the annals, the colony's talk), unless it is one the colony wouldn't celebrate; its
+fulfilment need counts toward the heart's purpose, and Rimfolk's own goals come a third less often beside it.
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
@@ -1797,7 +1810,8 @@ small and share the budget of good moods. Kept **three years running**, a day or
 **tradition** (one rule for both), with a letter, moods, the chronicle and the annals, and letting it pass then
 disappoints everyone. With Ideology, the letter suggests the ideoligion's own rite where one fits (a funeral rite,
 a feast or festival), and holding it keeps the day. With Rimfolk events on, founding day is the founding event's to
-keep. An older save fills its calendar in from the chronicle, its dead and its nemeses.
+keep. An older save fills its calendar in from the chronicle, its dead and its nemeses. The day the colony reached one
+of its ambitions goes on it too ("the day the hospital was finished"), kept by walking out to what was built.
 
 ### Journals
 Every colonist keeps a journal in their own voice: wishes granted and ignored, promises, decrees, raids, losses,
@@ -1850,7 +1864,10 @@ archive*, *renowned hosts*): only the current stage counts, and a message says w
 (*a season of hot meals* and *a season of plenty*, where one lean day starts the count again, *keep the year's days*,
 *a year of steady nerves*). A tribe has *the winter cache* and *the hunters' year*, a spacer colony *the starlight
 archive* and *a hospital of the stars*, and with Hospitality the colony can set out to become *renowned hosts*. The
-Almanac page "council projects" lists them all.
+Almanac page "council projects" lists them all. Every ambition reached is **seen on the map**, led by whoever proposed it
+or by the seat whose work it is: the physician shows everyone round the new ward, the marshal walks the defenses at
+dusk, the elder gives the children their first lesson at the new desks, and the rest end with a supper, an evening
+under the new lights, a quiet hour at the graves or a toast; its day goes on the colony calendar.
 
 ### Planning: what to build, make and grow next
 The **planning** window, behind its own button in the bottom bar (it took the rooms button's place and kept its
@@ -2830,7 +2847,11 @@ came back, the world events that ended and how, the allies, and a few lines of t
 the world. Then the founding: who has been here since the first days, how many have died since, what travellers call
 the colony and its customs. Last, a word in the author's own voice. The founding day's own event (or the calendar's
 letter) asks how to keep the day and no longer tells the year; the chronicle has one line for it. Past years can be
-reread from the Chronicle tab.
+reread from the Chronicle tab. That evening the writer **reads some of the year aloud** at the table (three to five
+sentences: who came and who was lost, what was built, an aim kept, a name), and those there remember it together. A
+colonist the council made **record keeper** writes it from then on. With **Vanilla Books Expanded** and a writer's
+table, the year is first written up there as a book called after it ("The second year") that goes on the colony's
+shelf, or a newspaper once printing is researched.
 
 ### Chronicle
 The colony's view of its one history (the region window's History holds the same, with the world around it). It shows

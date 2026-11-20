@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Colony life's integrations, part 2 (Source/ColonyCouncil/ColonyLife/YearRead.cs): the year read aloud at the table on
+    the landing's anniversary (A29), remembered by those who were there. {LABEL} is "the second year read aloud". Brought
+    up in conversation like the others (their lines: Defs/FlavorPoolDefs/Rimfolk_Talk_Lines_ColonyLife.xml).
+  -->
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_Mem_YearRead</defName>
+    <label>the year read aloud</label>
+    <description>They sat at the table while the year was read out: who came, who was lost, and what the colony did.</description>
+    <text>heard {LABEL} together</text>
+    <weight>0.9</weight>
+    <fadeDays>120</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+</Defs>

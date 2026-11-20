@@ -66,6 +66,7 @@ namespace ColonyCouncil
                 case CalendarKind.Situation: return Icons.WorldEvent;
                 case CalendarKind.FaithDay: return Icons.CatIdeology;
                 case CalendarKind.Rescue: return Icons.Heart;
+                case CalendarKind.Ambition: return Icons.Ambition;
                 case CalendarKind.Custom: return Icons.Ways;
                 case CalendarKind.Parting: return Icons.Colony;
                 case CalendarKind.GodFestival: return Icons.Ways;
@@ -279,6 +280,9 @@ namespace ColonyCouncil
                 case CalendarKind.Situation: return "CC_Cal_Origin_Situation".Translate(d.subject ?? "?", d.sinceYear).Resolve().CapitalizeFirst();
                 case CalendarKind.FaithDay: return "CC_Cal_Origin_FaithDay".Translate(d.subject ?? "?", d.otherName ?? "?").Resolve();
                 case CalendarKind.Rescue: return "CC_Cal_Origin_Rescue".Translate(d.pawnName ?? "?", d.sinceYear, d.kills, d.enemy ?? "?").Resolve();
+                case CalendarKind.Ambition:
+                    return (d.pawnName.NullOrEmpty() ? "CC_Cal_Origin_AmbitionNoOne" : "CC_Cal_Origin_Ambition")
+                        .Translate((d.subject ?? "?").Named("AMBITION"), d.sinceYear.Named("YEAR"), d.kills.Named("DAYS"), (d.pawnName ?? "").Named("PAWN")).Resolve();
                 case CalendarKind.GodFestival: return "CC_Cal_Origin_GodFestival".Translate((d.subject ?? "?").Named("GOD"), (d.otherName ?? "").Named("GODEPITHET"), d.sinceYear.Named("YEAR")).Resolve();
                 case CalendarKind.Custom:
                 {

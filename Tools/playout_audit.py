@@ -35,6 +35,8 @@ SKIP_LINE = re.compile(r"^(\S+) \[([^\]]+)\]\s*(.*)$")
 PLAY = {
     "DilemmaEffect_Gathering": "gathering",
     "DilemmaEffect_Feast": "feast",
+    # The year's first supper (ColonyLife/FirstSupper.cs): a feast at which each says their aim for the year.
+    "DilemmaEffect_FirstSupper": "feast",
     "DilemmaEffect_Bonfire": "bonfire",
     "DilemmaEffect_Toast": "toast",
     "DilemmaEffect_Words": "words",

@@ -58,6 +58,11 @@
         <li>Thirty days of food in store. I'll recount it at midwinter.</li>
       </cold>
     </achieved>
+    <sceneOffice>Council_Office_Quartermaster</sceneOffice>
+    <dayLabel>the day the larder was full</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper from the full larder</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -104,6 +109,11 @@
         <li>The shelves are full, the air's cold and nothing in there is rotting.</li>
       </plain>
     </achieved>
+    <sceneOffice>Council_Office_Quartermaster</sceneOffice>
+    <dayLabel>the day the cold store was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone the new cold store</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>Shut the door behind you, it's cold in there.</li><li>Everything in there will keep now.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -158,6 +168,11 @@
         <li>Good. Now stop getting shot.</li>
       </blunt>
     </achieved>
+    <sceneOffice>Council_Office_Physician</sceneOffice>
+    <dayLabel>the day the hospital was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone round the new ward</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>The beds are clean and ready.</li><li>Let's hope nobody needs them soon.</li><li>The medicine goes on that shelf there.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -211,6 +226,10 @@
         <li>I painted a name sign for every door!</li>
       </cheerful>
     </achieved>
+    <dayLabel>the day everyone had a room</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at {A_nameDef}'s new room</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>So this is your room now.</li><li>You've got it nicely set out.</li><li>A door you can shut makes all the difference.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -271,6 +290,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the first feast in the great hall</label><hours>16~22</hours></li>
     </achievedEffects>
+    <dayLabel>the day the great hall was finished</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -326,6 +346,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the games night</label><spots><li>Rec</li><li>Dining</li><li>Gather</li></spots><hours>17~23</hours></li>
     </achievedEffects>
+    <dayLabel>the day the games room was finished</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -386,6 +407,11 @@
         <li>We're safer than we were. I'll still sleep in my boots.</li>
       </gloomy>
     </achieved>
+    <sceneOffice>Council_Office_Marshal</sceneOffice>
+    <dayLabel>the day the defenses were ready</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>{B_nameDef} walks the defenses at dusk</label><target>Colony</target><organizer>B</organizer><count>3</count><route>bounds</route><hours>16~19</hours><duration>1~1.5</duration><lines><li>This is where we'd hold them.</li><li>Keep your head below the top of that.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -429,6 +455,11 @@
         <li>The guns are up. The approaches are covered.</li>
       </plain>
     </achieved>
+    <sceneOffice>Council_Office_Marshal</sceneOffice>
+    <dayLabel>the day the ring of iron was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>{B_nameDef} walks round the new guns at dusk</label><target>Colony</target><organizer>B</organizer><count>3</count><route>bounds</route><hours>16~19</hours><duration>1~1.5</duration><lines><li>Each of these covers the next one.</li><li>Nobody comes in this way now.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -481,6 +512,11 @@
         <li>The approaches are now hostile. Good.</li>
       </cold>
     </achieved>
+    <sceneOffice>Council_Office_Marshal</sceneOffice>
+    <dayLabel>the day the traps were set</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>{B_nameDef} walks past the new traps at dusk</label><target>Colony</target><organizer>B</organizer><count>3</count><route>bounds</route><hours>16~19</hours><duration>1~1.5</duration><lines><li>Mind where you step out here.</li><li>Stay on the path, all of you.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -526,6 +562,10 @@
         <li>The lights stayed on all night, and the freezer never warmed up.</li>
       </plain>
     </achieved>
+    <dayLabel>the day the lights came on</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening under the new lights</label><music>true</music><spots><li>Place</li><li>Rec</li><li>Dining</li><li>Gather</li></spots><hours>19~23</hours><duration>1.5~2</duration><lines><li>You can see right across the room now.</li><li>No more eating in the dark.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -573,6 +613,10 @@
         <li>Benches are in and the tools are hung. Bring me your torn boots.</li>
       </plain>
     </achieved>
+    <dayLabel>the day the workshop was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone round the new workshop</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>There's room to work in here at last.</li><li>The light is good by the benches.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -617,6 +661,10 @@
         <li>Three pieces of art in the common rooms, and people actually stop to look at them.</li>
       </plain>
     </achieved>
+    <dayLabel>the day the gallery was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone the colony's art</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>Who made this one?</li><li>I walk past these every day and still stop to look.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -668,6 +716,11 @@
         <li>I've named every one of them, and two already come when I call!</li>
       </cheerful>
     </achieved>
+    <sceneOffice>Council_Office_Herdmaster</sceneOffice>
+    <dayLabel>the day the barn was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone round the new barn</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>The animals have more room than we do now.</li><li>Watch where you put your feet.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -717,6 +770,10 @@
         <li>Three projects finished. I've already started on the fourth.</li>
       </plain>
     </achieved>
+    <dayLabel>the day the place of study was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone round the new place of study</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>Quiet in here, please.</li><li>We'll learn more in a month here than in a year without it.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -762,6 +819,11 @@
         <li>Green and growing, whatever the weather.</li>
       </plain>
     </achieved>
+    <sceneOffice>Council_Office_Reeve</sceneOffice>
+    <dayLabel>the day the greenhouse was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper for the greenhouse</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -804,6 +866,10 @@
         <li>Every bedroom has its own heat now. Let it snow.</li>
       </plain>
     </achieved>
+    <dayLabel>the day every bedroom was warm</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to a warm winter</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -851,6 +917,10 @@
         <li>Welcome. Pick yourself a bed, and supper's at dusk.</li>
       </plain>
     </achieved>
+    <dayLabel>the day the colony grew</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the newcomers</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -898,6 +968,10 @@
         <li>Listen to that. People are laughing again.</li>
       </plain>
     </achieved>
+    <dayLabel>the day of good times</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening of good times</label><spots><li>Rec</li><li>Dining</li><li>Gather</li></spots><hours>17~22</hours><duration>1.5~2</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -946,6 +1020,11 @@
         <li>The treasury's full. I counted it twice.</li>
       </plain>
     </achieved>
+    <sceneOffice>Council_Office_Quartermaster</sceneOffice>
+    <dayLabel>the day the treasury was full</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to a full treasury</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -1001,6 +1080,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the first fine dinner</label><hours>16~22</hours><duration>1.5~2</duration></li>
     </achievedEffects>
+    <dayLabel>the day of the first fine dinner</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

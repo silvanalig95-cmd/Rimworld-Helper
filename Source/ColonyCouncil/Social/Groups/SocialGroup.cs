@@ -106,6 +106,12 @@ namespace ColonyCouncil
         public int playId = -1;
         /// <summary>Its founding was told (a quiet one, found in an old save, isn't).</summary>
         public bool announced;
+        /// <summary>
+        /// Its own place, asked of the council and built (A10, ColonyLife/GroupPlaces.cs): the fire pit, the bookcase, the game
+        /// table, the instrument or the shrine (a ThingID), and which of those it is; its anchor calls it there from then on.
+        /// </summary>
+        public string placeId;
+        public GroupPlaceKind placeKind;
 
         // What happened today, for the day's cohesion (not saved: a reload in the middle of a day only loses a little).
         [Unsaved] public int todayHabits, todayQuarrels, todayMends, todayMemories, todayDied, todayLeft;
@@ -211,6 +217,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref gatherings, "gatherings");
             Scribe_Values.Look(ref playId, "playId", -1);
             Scribe_Values.Look(ref announced, "announced");
+            Scribe_Values.Look(ref placeId, "placeId");
+            Scribe_Values.Look(ref placeKind, "placeKind");
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 members ??= new List<GroupMember>();

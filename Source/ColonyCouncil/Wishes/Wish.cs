@@ -73,6 +73,8 @@ namespace ColonyCouncil
         public int petition = -1;
         /// <summary>Those of its petition whose own want was answered on the map before this one, named when the last is.</summary>
         public List<Pawn> petitionMet = new List<Pawn>();
+        /// <summary>The day (days passed) a listener last joined it in conversation (A13, ColonyLife/TalkBacking.cs): once a day at most.</summary>
+        public int talkBackedDay = -1;
         /// <summary>Told already with the rest of its petition (a lapse, a refusal, a promise): not told again on its own (not saved).</summary>
         [Unsaved] public bool toldWithPetition;
         /// <summary>
@@ -164,6 +166,7 @@ namespace ColonyCouncil
             // A wish from an older save is on its own (-1); one of the same want voiced now may join it.
             Scribe_Values.Look(ref petition, "petition", -1);
             Scribe_Collections.Look(ref petitionMet, "petitionMet", LookMode.Reference);
+            Scribe_Values.Look(ref talkBackedDay, "talkBackedDay", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (coSigners == null) coSigners = new List<Pawn>();

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A27: the year's first supper, aims said aloud (Source/ColonyCouncil/ColonyLife/FirstSupper.cs). A custom of the year's
+    first days (CustomConditions.lastDayOfYear), in the pattern of Council_Dilemmas_Customs.xml: kept three years running it
+    becomes a tradition that comes round on its date. Any season, since the year's first days are spring in one place and
+    autumn in another. A is someone with a life goal ({GOAL}). The supper is the one feast engine; at the table each with a
+    life goal says it in one line, and with "Everyone says it" someone without one may choose one there and then. The year
+    letter reads it back. Lines for a custom kept year after year are tagged [again], [tradition], [missed].
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Council_Dilemma_FirstSupper</defName>
+    <label>the year's first supper</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Custom</workerClass>
+    <weight>1.1</weight>
+    <cooldownDays>50</cooldownDays>
+    <seasons><li>Spring</li><li>Summer</li><li>Fall</li><li>Winter</li><li>PermanentSummer</li><li>PermanentWinter</li></seasons>
+    <roleA><goal>true</goal></roleA>
+    <texts>
+      <li>The year has just turned, and {A_nameDef} wants it started properly: one supper with everyone at the long table, and each of them saying out loud what they mean to do with the year. {A_nameDef} has already decided. It's to {GOAL}, and {A_pronoun} says it will be easier with witnesses.</li>
+      <li>{A_nameDef} has been telling anyone who will listen that this is the year {A_pronoun}'ll {GOAL}. Now {A_pronoun} wants everyone else to say theirs too, at one supper, so nobody can pretend later that they never said it.</li>
+      <li>A new year, and {A_nameDef} thinks the colony should begin it at one table, going round in turn and saying what each means to do. Some will mumble, {A_nameDef} says, and that is allowed.</li>
+      <li>[again] The year has turned again, and {A_nameDef} has been setting places at the long table since noon. What people said last year is still remembered, some of it fondly.</li>
+      <li>[tradition] It's time for the year's first supper. {A_nameDef} still has a list of what everyone said last time, and means to read it out before the new round starts.</li>
+      <li>[missed] Nobody said anything out loud at the start of last year, and {A_nameDef} thinks the year went the way it did because of it.</li>
+    </texts>
+    <traditionOption>0</traditionOption>
+    <traditionLabel>the year's first supper</traditionLabel>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Everyone says it, at one supper</label>
+        <outcome>They ate together and went round the table, each saying what they mean to do with the year. Some said it quietly, and one or two decided on something there and then.</outcome>
+        <outcomes>
+          <li>[again] They went round the table again, and a few were teased about what they had said last year. Then everyone said this year's.</li>
+        </outcomes>
+        <ways><tradition>3</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FirstSupper"><label>the year's first supper</label><chooseNew>true</chooseNew><hours>17~21</hours><duration>2.5~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_FirstSupper</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Only those who want to say it</label>
+        <outcome>They had supper together, and those who had something in mind for the year said it. Nobody was pressed.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FirstSupper"><label>the year's first supper</label><hours>17~21</hours><duration>2~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_FirstSupper</thought><chance>0.85</chance></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not this year</label>
+        <outcome>The year started like any other week.{A_nameDef} didn't tell anyone {A_possessive} aim for the year after all.</outcome>
+        <ways><tradition>-2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Thought_NoFirstSupper</thought></li>
+        </effects>
+      </li>
+    </options>
+    <modExtensions>
+      <li Class="ColonyCouncil.CustomConditions">
+        <lastDayOfYear>7</lastDayOfYear>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Colony life's integrations, part 2 (Source/ColonyCouncil/ColonyLife/): trying out a wished-for thing (A12,
+    TryOuts.cs). The one who asked goes to it in their free time and says their thanks there.
+  -->
+  <JobDef>
+    <defName>Rimfolk_TryOut</defName>
+    <driverClass>ColonyCouncil.JobDriver_TryOut</driverClass>
+    <reportString>trying out TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+</Defs>

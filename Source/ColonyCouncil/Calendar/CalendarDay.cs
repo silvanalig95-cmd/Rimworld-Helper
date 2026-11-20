@@ -58,7 +58,9 @@ namespace ColonyCouncil
         /// </summary>
         Parting,
         /// <summary>A god's festival (Gods/Worship/Festivals.cs): one of the colony's gods, on its domain's day, kept with a feast and its rite.</summary>
-        GodFestival
+        GodFestival,
+        /// <summary>The day the colony reached one of its ambitions (ColonyLife/AmbitionScenes.cs): kept by walking out to what was built.</summary>
+        Ambition
     }
 
     /// <summary>How the colony keeps a day.</summary>

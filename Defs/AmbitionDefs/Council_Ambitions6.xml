@@ -63,6 +63,10 @@
       <cheerful><li>Real beds and a real table! I've been smiling all through supper.</li></cheerful>
       <cold><li>Everyone sleeps and eats properly now. I can start asking more of them.</li></cold>
     </achieved>
+    <dayLabel>the day it became a home</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening at the new long table</label><organizer>B</organizer><spots><li>Place</li><li>Rec</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>It feels like a home now, not a camp.</li><li>There's a seat for everyone.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A table for everyone (the heart: belonging) ===================== -->
@@ -119,6 +123,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the first supper at the long table</label><hours>16~22</hours><duration>1.5~2</duration></li>
     </achievedEffects>
+    <dayLabel>the day there was a seat for everyone</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A calm season (the heart: strain) ===================== -->
@@ -167,6 +172,11 @@
       <gloomy><li>Fifteen quiet days. I'll take them.</li></gloomy>
       <cold><li>Fifteen days without a break. Let's not undo it the first time the food runs short.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Peacemaker</sceneOffice>
+    <dayLabel>the end of a calm season</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to a calm season</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A year of steady nerves (long; established colonies) ===================== -->
@@ -218,6 +228,10 @@
       <gloomy><li>A year without anyone breaking. I didn't think we'd make it.</li></gloomy>
       <cold><li>Sixty days without a break. I'll expect the same next year.</li></cold>
     </achieved>
+    <dayLabel>the end of a steady year</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to a year of steady nerves</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A healthy season (illness) ===================== -->
@@ -267,6 +281,11 @@
       <cheerful><li>I haven't heard a sneeze in days. I keep listening for one.</li></cheerful>
       <cold><li>Everyone's fit for work again, and there's medicine set aside for the next time.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Physician</sceneOffice>
+    <dayLabel>the end of a healthy season</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to a healthy season</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== A proper infirmary (small colonies; in stages) ===================== -->
@@ -328,6 +347,11 @@
       <gloomy><li>It's ready, which means someone's about to need it.</li></gloomy>
       <cold><li>Two clean beds and the medicine to hand. Infections should drop.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Physician</sceneOffice>
+    <dayLabel>the day the infirmary was finished</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone round the new infirmary</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>Everything is clean in here.</li><li>The sick will mend faster in a room like this.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Friends at the camp (camps) ===================== -->
@@ -379,6 +403,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the evening with the camp</label><music>true</music><spots><li>Camp</li><li>Fire</li><li>Outdoors</li></spots><hours>16~22</hours></li>
     </achievedEffects>
+    <dayLabel>the day the camp became friends</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Coats for winter (every era; cold maps) ===================== -->
@@ -426,6 +451,10 @@
       <cheerful><li>We all look ridiculous and nobody's cold!</li></cheerful>
       <cold><li>Everyone has a coat. I've written down who got the good ones.</li></cold>
     </achieved>
+    <dayLabel>the day everyone had a winter coat</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Procession"><label>a walk out in the new coats</label><target>Colony</target><to>Walk</to><count>6</count><hours>10~15</hours><duration>1~1.5</duration><lines><li>I can't feel the wind at all.</li><li>Mine is warmer than yours.</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== The great feast (large colonies) ===================== -->
@@ -485,6 +514,7 @@
     <achievedEffects>
       <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the great feast</label><hours>16~22</hours><duration>3~4</duration></li>
     </achievedEffects>
+    <dayLabel>the day of the great feast</dayLabel>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Nobody is the only one (small colonies) ===================== -->
@@ -538,6 +568,10 @@
       <gloomy><li>Less fragile than we were.</li></gloomy>
       <cold><li>Any one of us could die now, and the rest would still eat and still be stitched up.</li></cold>
     </achieved>
+    <dayLabel>the day nobody was the only one</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the second pair of hands</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Word from outside (industrial and later) ===================== -->
@@ -590,6 +624,10 @@
       <cheerful><li>I've talked to more strangers this week than in my whole life!</li></cheerful>
       <cold><li>Two factions will answer when we call. I've written down what each of them wants.</li></cold>
     </achieved>
+    <dayLabel>the day word came from outside</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{B_nameDef} shows everyone the new way to hear from outside</label><organizer>B</organizer><spots><li>Place</li><li>Gather</li><li>Dining</li></spots><pool>Rimfolk_Pool_AmbitionShow</pool><hours>16~21</hours><duration>1~1.5</duration><lines><li>Now we'll hear what's going on out there.</li><li>Who should we ask about first?</li></lines></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Ready for every season (long; in stages) ===================== -->
@@ -644,6 +682,11 @@
       <cheerful><li>Every list ticked off, and I've started a new one for next year.</li></cheerful>
       <cold><li>Food, coats and medicine, all counted. The year can do as it likes.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Quartermaster</sceneOffice>
+    <dayLabel>the day the colony was ready for every season</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper for a year made ready</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== The healing garden (tribal and medieval) ===================== -->
@@ -696,6 +739,11 @@
       <gloomy><li>Something will still get us. Not a scratch, though.</li></gloomy>
       <cold><li>Twenty-five healroot, dried, and two people who won't waste it.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Physician</sceneOffice>
+    <dayLabel>the day of the healing garden</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the healing garden</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <!-- ===================== Whole again (industrial and later, mostly) ===================== -->
@@ -740,6 +788,11 @@
       <cheerful><li>Someone challenged me to a race this morning, on their new leg!</li></cheerful>
       <cold><li>All replaceable losses replaced.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Physician</sceneOffice>
+    <dayLabel>the day everyone was whole again</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to being whole again</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

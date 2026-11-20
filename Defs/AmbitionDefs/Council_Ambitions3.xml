@@ -54,6 +54,11 @@
       <gloomy><li>They're our allies until they change their minds. I've seen that happen overnight.</li></gloomy>
       <cold><li>Their soldiers cost us nothing until the day we need them.</li></cold>
     </achieved>
+    <sceneOffice>Council_Office_Speaker</sceneOffice>
+    <dayLabel>the day of friends abroad</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to friends abroad</label><organizer>B</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -102,6 +107,10 @@
       <cheerful><li>It's so beautiful I want to hug it!</li></cheerful>
       <cold><li>Two excellent pieces. The colony is measurably better made.</li></cold>
     </achieved>
+    <dayLabel>the day of the finer things</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the finer things</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -151,6 +160,10 @@
       <gloomy><li>It's perfect. I'll probably never make anything this good again.</li></gloomy>
       <cold><li>It's worth many times what went into it. I've told the trader not to bother asking.</li></cold>
     </achieved>
+    <dayLabel>the day of the masterwork</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the masterwork</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
   <ColonyCouncil.AmbitionDef>
@@ -198,6 +211,10 @@
       <gloomy><li>Enough to last the winter. If the winter plays fair.</li></gloomy>
       <cold><li>Three hundred logs. I've worked out how many nights that is, and it's enough.</li></cold>
     </achieved>
+    <dayLabel>the day the woodpile was full</dayLabel>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>a fire from the winter's wood</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
+    </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
 </Defs>

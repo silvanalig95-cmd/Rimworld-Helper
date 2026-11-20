@@ -32,6 +32,15 @@ namespace ColonyCouncil
         /// <summary>How many of those who brought down the most in a fight it sparks.</summary>
         public const int FightTop = 3;
 
+        /// <summary>The spark of a goal chosen at the year's first supper and said aloud there (A27, ColonyLife/FirstSupper.cs).</summary>
+        public const string SupperSpark = "supper";
+
+        /// <summary>
+        /// How much less often someone takes up one of Rimfolk's life goals when Vanilla Aspirations Expanded gives them aims of
+        /// their own (A17): a third less, so nobody chases six at once.
+        /// </summary>
+        public static float ModAimsFactor(bool hasModAims) => hasModAims ? 2f / 3f : 1f;
+
         /// <summary>A spark big enough to change a goal held: a brush with death, or someone close lost.</summary>
         public static bool Big(string spark) => spark == "downed" || spark == "loss";
 

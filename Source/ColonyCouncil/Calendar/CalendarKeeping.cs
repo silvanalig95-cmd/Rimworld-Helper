@@ -107,7 +107,8 @@ namespace ColonyCouncil
                            ?? adults.OrderByDescending(YearsWithUs).First();
                 case CalendarKind.CampGift:
                 case CalendarKind.Rescue:
-                    // The colonist closest to the camp, or the one brought home; else one who knew them, else the longest here.
+                case CalendarKind.Ambition:
+                    // The colonist closest to the camp, the one brought home, the one who proposed the ambition; else one who knew them, else the longest here.
                     return home.FirstOrDefault(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile()) ?? adults.Where(p => d.knew.Contains(p.ThingID)).FirstOrDefault()
                            ?? adults.OrderByDescending(YearsWithUs).First();
                 case CalendarKind.Situation:
@@ -1043,6 +1044,7 @@ namespace ColonyCouncil
                     break;
                 case CalendarKind.CampGift:
                 case CalendarKind.Rescue:
+                case CalendarKind.Ambition:
                     list.AddRange(home.Where(p => p.ThingID == d.pawnId && !p.DevelopmentalStage.Juvenile()));
                     list.AddRange(home.Where(p => p.ThingID != d.pawnId && d.knew.Contains(p.ThingID) && !p.DevelopmentalStage.Juvenile()).InRandomOrder().Take(1));
                     break;
@@ -1127,6 +1129,7 @@ namespace ColonyCouncil
                     break;
                 case CalendarKind.CampGift:
                 case CalendarKind.Rescue:
+                case CalendarKind.Ambition:
                     a = home.FirstOrDefault(p => p.ThingID == d.pawnId) ?? home.Where(p => d.knew.Contains(p.ThingID)).RandomElementWithFallback();
                     break;
                 case CalendarKind.FirstChild:

@@ -65,7 +65,9 @@ namespace ColonyCouncil
             }
             void Part(string key) => heading = key.Translate().Resolve().Colorize(ColoredText.TipSectionTitleColor);
             string ord = HerdStory.Ordinal(year);
+            bool keeper = author != null && author == comp.life?.recordKeeper;
             if (author == null) Para("CC_YearOne_OpeningNobody".Translate(ord.Named("ORD")).Resolve());
+            else if (keeper && !annals.Partial(sinceTick)) Para("CC_YearOne_OpeningKeeper".Translate(ord.Named("ORD"), author.Named("PAWN")).Resolve());
             else if (annals.Partial(sinceTick))
                 Para("CC_YearOne_OpeningPartial".Translate(ord.Named("ORD"), author.Named("PAWN"), Since(annals.Since, map).Named("SINCE")).Resolve());
             else Para((keeps ? "CC_YearOne_OpeningAnnalist" : "CC_YearOne_Opening").Translate(ord.Named("ORD"), author.Named("PAWN")).Resolve());
@@ -73,6 +75,8 @@ namespace ColonyCouncil
             // The people: the annals' figures for the year.
             Part("CC_YearOne_PartPeople");
             annals.PeoplePart(comp, map, Para);
+            // The aims said aloud at the year's first supper, and how each turned out (A27, ColonyLife/FirstSupper.cs).
+            Para(FirstSupper.YearLines(comp, sinceTick, now));
 
             // The land and the world.
             Part("CC_YearOne_PartLand");
@@ -131,7 +135,10 @@ namespace ColonyCouncil
             var look = author != null ? new LookTargets(author) : holding != null ? holding.Look : LookTargets.Invalid;
             // With more than one colony the letter is about them all (each named in its part).
             Tell.Letter(NewsKind.Colony, Importance.Notable, ColonyState.Several ? null : map, "CC_Year_Title".Translate(ord.Named("ORD")).Resolve(), text, LetterDefOf.NeutralEvent, look);
+            // What the writer reads aloud that evening, worked out before the year's figures are begun again (A29, ColonyLife/YearRead.cs).
+            var read = author != null ? YearRead.Lines(comp, map, sinceTick, now, year) : null;
             annals.Keep(map, year, author, text);
+            if (read != null) YearRead.Plan(comp, map, year, author, read);
             // The chronicle has the year once.
             comp.AddChronicle(new ChronicleEntry(ChronicleKind.Note, author != null
                 ? "CC_YearOne_Chronicle".Translate(ord.Named("ORD"), author.Named("PAWN")).Resolve()

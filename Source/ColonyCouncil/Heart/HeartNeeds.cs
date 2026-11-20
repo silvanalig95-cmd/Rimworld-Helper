@@ -252,6 +252,13 @@ namespace ColonyCouncil
                     why.Add(g, "CC_Heart_Why_Goal".Translate());
                 }
                 else if (ColonyCouncilMod.Settings.aspirations) why.Add(-5f, "CC_Heart_Why_NoGoal".Translate(), "CC_Heart_NeedHelp_Goal", false);
+                // Vanilla Aspirations Expanded's fulfilment need, where they have it (A17, ColonyLife/ModAims.cs): -10 empty to +10 full.
+                float aims = ModAims.Purpose(p);
+                if (ModAims.HasAims(p) && Math.Abs(aims) >= 1f)
+                {
+                    v += aims;
+                    why.Add(aims, (aims > 0f ? "CC_Heart_Why_ModAimsMet" : "CC_Heart_Why_ModAimsUnmet").Translate());
+                }
                 if (ColonyCouncilMod.Settings.offices && OfficeTracker.HeldBy(p) != null)
                 {
                     v += 15f;

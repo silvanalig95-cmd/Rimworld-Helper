@@ -217,7 +217,11 @@ public static class ImmersionTests
         "Rimfolk_Pool_PlayBellFuneral",
         // The old powers' own strange happenings (OldPowers/): what the seer, the enchanter, the pilgrims, the beast and the
         // colony say at each moment.
-        "Rimfolk_Pool_OldPowersSaid"
+        "Rimfolk_Pool_OldPowersSaid",
+        // Colony life's integrations, part 2 (ColonyLife/): a wish talked up and joined, a friend admiring the wished-for
+        // thing, the aims said at the year's first supper and a backer's answer, the reader's asides, what was built shown.
+        "Rimfolk_Pool_TalkBacked_Join", "Rimfolk_Pool_TalkBacked_Glad", "Rimfolk_Pool_TryOut_Admire", "Rimfolk_Pool_Supper_Aim",
+        "Rimfolk_Pool_Supper_NewAim", "Rimfolk_Pool_Supper_Backed", "Rimfolk_Pool_YearRead_Aside", "Rimfolk_Pool_AmbitionShow"
     };
 
     /// <summary>Spoken pools said so rarely (a record broken, a lightning rod struck) that a handful of lines is enough.</summary>

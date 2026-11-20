@@ -35,6 +35,13 @@ namespace ColonyCouncil
         /// build a kind of thing, its things; a goal of a room or a place, any building; the rest build nothing.
         /// </summary>
         public virtual bool OwnWork(Verse.ThingDef def) => false;
+
+        /// <summary>
+        /// A thing of what was built, to stand by when the ambition is reached and to walk out to on its day on the calendar
+        /// (A14, ColonyLife/AmbitionScenes.cs): the new room's best piece, the newest of the things built. Null when the goal
+        /// builds nothing to stand by (a stock, a mood, a skill).
+        /// </summary>
+        public virtual Thing Showpiece(Map map) => null;
     }
 
     public class Goal_FoodDays : AmbitionGoal
@@ -129,6 +136,13 @@ namespace ColonyCouncil
 
         public override float Progress(Map map, float baseline) => Best(map);
 
+        /// <summary>The finest room of its kind, and its own piece in it (the thing the goal asks for, else its finest building).</summary>
+        public override Thing Showpiece(Map map)
+        {
+            var room = RoomUtil.RoomsFor(map, Role).OrderByDescending(RoomUtil.Impressiveness).FirstOrDefault();
+            return AmbitionScenes.PieceIn(room, thingRole.NullOrEmpty() ? null : RoomTemplateDef.RolePredicate(thingRole));
+        }
+
         public override string Describe(Map map, float baseline)
         {
             string roleLabel = Role?.label ?? role;
@@ -181,6 +195,9 @@ namespace ColonyCouncil
 
         public override float Progress(Map map, float baseline) => Ratio(Avail.ColonyCount(map, Pred) - baseline, count);
 
+        /// <summary>The newest of the things built.</summary>
+        public override Thing Showpiece(Map map) => AmbitionScenes.Newest(map, Pred);
+
         public override string Describe(Map map, float baseline)
         {
             int have = Avail.ColonyCount(map, Pred) - (int)baseline;
@@ -197,6 +214,9 @@ namespace ColonyCouncil
             Avail.AnyBuildable(map, d => d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass));
 
         public override float Progress(Map map, float baseline) => RoomUtil.HasFreezer(map) ? 1f : 0f;
+
+        /// <summary>The newest cooler.</summary>
+        public override Thing Showpiece(Map map) => AmbitionScenes.Newest(map, d => d.thingClass != null && typeof(Building_Cooler).IsAssignableFrom(d.thingClass));
 
         public override string Describe(Map map, float baseline) => "CC_Goal_Freezer".Translate();
     }
@@ -216,6 +236,9 @@ namespace ColonyCouncil
         }
 
         public override float Progress(Map map, float baseline) => RoomUtil.HasGreenhouse(map, 20) ? 1f : 0f;
+
+        /// <summary>The newest sun lamp or growing basin.</summary>
+        public override Thing Showpiece(Map map) => AmbitionScenes.Newest(map, d => Avail.IsSunLamp(d) || Avail.IsHydroponics(d));
 
         public override string Describe(Map map, float baseline) => "CC_Goal_Greenhouse".Translate();
     }
@@ -383,6 +406,9 @@ namespace ColonyCouncil
             Avail.ColonyHas(map, d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic)) || Avail.AnyBuildable(map, d => Avail.IsWorkstationFor(d, SkillDefOf.Artistic));
 
         public override float Progress(Map map, float baseline) => Ratio(WishWorker_Artwork.SharedArtCount(map), count);
+
+        /// <summary>The newest work of art.</summary>
+        public override Thing Showpiece(Map map) => AmbitionScenes.Newest(map, d => d.IsArt);
 
         public override string Describe(Map map, float baseline) => "CC_Goal_SharedArt".Translate(count, WishWorker_Artwork.SharedArtCount(map));
     }
