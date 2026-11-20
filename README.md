@@ -3584,7 +3584,7 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   its post to you); a good stay can leave a woodpile, hides, a cairn or a gift, a sour or hurried one offal that
   draws a predator in, embers in dry grass or a lame beast, and refuse after a sour stay or a careless kind's hurry. Each kind looks the part on the map: the caravan's pack beasts tethered by the stash while porters carry
   bales to the stall, the drovers' herd grazing beyond the camp with a dog at a drover's heels (real animals of their
-  people, a handful at most, fed by the camp and leaving with it), hunters dressing each kill at their butchering
+  people, a handful at most, fed by the camp and leaving with it, from your animal mods too), hunters dressing each kill at their butchering
   spot, the refugees' washing by their hut's door, the hermit's woodpile by the door. The smith may walk over and mend
   one of your damaged doors or walls for nothing. When their stay ends, the healers go round your sick and hurt
   first, the mourners plant a sprig of green by your gate, the hermit leaves a carved bird by your door, the players
@@ -4037,6 +4037,24 @@ A world event reaches into the colony's own life (`Source/ColonyCouncil/World/Ho
   book's old voice; another may take it for another god, and a doubter says so. Only what they believe: the gods stay
   unseen.
 
+### The region's years
+
+The region's hard and good years reach the colony's trade, its hamlet and its call to arms:
+- **Traders' prices.** While a world event runs, its people's traders ask and pay a quarter more for what it makes
+  scarce (food in a famine, medicine in a plague, steel in a war, wood after a fire, cloth and leather when the herds
+  sicken), and their food is a fifth cheaper in a bumper year. The price's hover in the trade window says why ("Food dear
+  at Ashford (famine): 25% more with the Ashford Union, buying or selling."), the moot's season prices beside it.
+- **The hamlet's hard seasons.** A plague, a famine or a fire near the colony's hamlet decides what it asks for, a little
+  sooner, its letter says what happened, and their carter at the gate speaks of it; a bumper harvest near makes their
+  harvest's load bigger.
+- **Signs of a raiders' camp.** Two of its scouts watch from the map's edge on the side its next raid will come from, an
+  hour or two before it; once, a captive who ran from it comes to the gate, hurt from before, to be taken in and tended
+  (their people remember it, and the camp comes looking sooner); at dusk someone on the walls points out its smoke.
+- **A call to arms answered from home.** Supplies (or, to a liege, silver in place of service) carried to the gate for
+  their runners, or the colony's beds for their wounded after the fight, as a smaller kept word than fighters.
+- **Camps from your mods.** The camps' herds, pack beasts, dogs and the hermit's cat come from your animal mods too, the
+  salt caravan finally carries salt, and the herb-gatherers and the market bring tea leaves and honey.
+
 ### What the world remembers
 Every people out in the world keeps a memory of the colony over the years: a prisoner set free, a wounded guest tended
 and sent home, gifts, fair trades, quests and missions done or failed, a camp helped or driven off, help in their hard
@@ -4326,7 +4344,7 @@ by the colony with their carts until a caravan of two grown colonists sets out f
 named in its panel; after a night there the hamlet stands, a town of their own people with its founder and families,
 and the road may bring a demand or an ambush with the settlers fighting beside the caravan. Alone, a third are turned
 back. The hamlet brings produce at harvest, asks for food, a doctor or tools in hard seasons (refused twice in one, it
-stops counting on the colony), and in time asks to swear fealty: Faction Territories' vassal, or sworn to the colony.
+stops counting on the colony; a world event near it decides which, and their carter at the gate speaks of it), and in time asks to swear fealty: Faction Territories' vassal, or sworn to the colony.
 14 conversation pieces speak of it. The region map's Ours lens shows the hamlets and the settlers on their way; This week shows settlers waiting. Setting:
 *Hamlets*. **Small towns look small**: a hamlet, a trading post or a town in its first year has a smaller base with
 fewer defenders on its own map, through Vanilla Base Generation Expanded's layouts too. Setting: *Small towns' maps*.
@@ -4334,7 +4352,9 @@ fewer defenders on its own map, through Vanilla Base Generation Expanded's layou
 **Raiders' camps.** A rich colony on bad terms with a hostile people may find raiders camped a few days off: the
 game's own bandit camp, named by their age (a war camp, a brigands' hold, a bandit camp, a raider base). Someone out
 beyond the walls sees its smoke, and the letter names the danger before any raid comes. While it stands, it raids the
-colony from its side of the map at the game's own raid-source rate, on top of the usual raids, until the colony breaks
+colony from its side of the map at the game's own raid-source rate, on top of the usual raids (two of its scouts watch
+from that edge an hour or two before each; once, a captive who ran from it comes to the gate; at dusk its smoke is
+pointed out), until the colony breaks
 it (a camp left with fighters standing is back behind its walls), pays their price (silver carried out to them, and
 their word for a year), makes peace with their people, sees an ally burn it, or beats off their raids until they give
 up. Each ending is told, written into the history and remembered by the peoples. The region map's Threats
@@ -4393,7 +4413,8 @@ breaks up; once per truce their firebrands may raid anyway, and at its end it is
 face ("Speak of a pact"), or takes one they offer. While a threat is on the colony it calls a defense partner by its
 comms console or a signal fire by the gate, and their band walks in some hours later; when a partner's town is
 attacked, the colony's fighters go there by caravan and fight on the game's caravan battle map (or in Faction
-Territories' invasion). A trade pact brings their caravan each season, and the colony is asked each season whether to
+Territories' invasion), or it answers from home: supplies (silver in place of service to a liege) carried to the gate
+for their runners, or its beds for their wounded after the fight. A trade pact brings their caravan each season, and the colony is asked each season whether to
 send its cart for their silver or refuse and end the pact; the cart is a plain good it can spare (wood, cloth, leather,
 food, stone blocks, steel), a valuable one only when picked on purpose, and every cart in the lists says what it is
 worth and what they pay ("Change the cart" on the pact's card picks another). Attacking a partner breaks it, and the peoples in reach hear of it. Each shows on its people's card, its town's
