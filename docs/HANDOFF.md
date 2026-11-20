@@ -611,6 +611,45 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Text round 2, the world's part:
+  the thin world events, their talk, the peoples' own talk, their camps and the thinnest encounters** (20 November 2026;
+  the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
+  with this in the order you think makes most sense ... And then also, just variety, further kind of events, camps,
+  world events, normal storyteller events, dilemmas, etc. Just more of them."). B9, B10, B16, B18 and B30 of part B, each
+  marked **Built** in the proposals doc with what was decided and its counts; DESIGN.md "Text variety: the world's thin
+  pools" (after "The world's variety"). Every pool recounted first: 0.282.0's world events, camps and encounters as thin
+  as the named ones were brought to the same floor (five world events for B9, all ten for B10, all eight camps for B18,
+  all 46 peoples' encounters for B30). 82 world event lines, 213 talk pieces (1,043 lines said), 285 camp lines and
+  142 encounter texts.
+  - **Where the lines are**: B9 the world events' own defs in `Defs/WorldSituationDefs/` (82: start letters to four,
+    second lines for one-line beats, ending lines to three, for 22 world events); B10 `Defs/OutsiderTalkDefs/
+    Rimfolk_OutsiderTalks_WorldTold.xml` (75 pieces for 25 world events: theirs, heard of by another people, and over);
+    B16 `Rimfolk_OutsiderTalks_PeoplesDays.xml` and `_PeoplesDays2.xml` (138 pieces, six for each of the 23 peoples); B18
+    the camps' own defs in `Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml` and `_Variety4.xml` (285 lines); B30 the
+    encounters' own defs in `Defs/EncounterDefs/` (142 texts). Code, for B10 only: a visitor of another people now hears
+    of the newest world event of another people (`FactsMath.SituationRank`, `Heard`, `AddHeard`; `Facts.Situations` in
+    `Text/Facts/FactsWorld.cs`): `heard`, `heard:bad`/`heard:good`, `heard:ws:DEFNAME`, {HEARD}, {HEARDPLACE},
+    {HEARDPEOPLE}; the talk's format header (`Rimfolk_OutsiderTalks_Greetings.xml`) and the tests' vocabulary
+    (`Tools/Tests/OutsiderTalkTests.cs`) name them, `Tools/Tests/FactsTests.cs` tests the rule.
+  - Decided: B16's other peoples by the conditions the talk already has (their war and how it stands with the colony, a
+    peace made lately, at war with nobody), no new code; a camp's help and moment lines only where they are said (the
+    enclave's pad and the Banner's company give no help, the field sickhouse's moments and six of 0.282.0's camps'
+    are never said); no beat line where a beat has no words now (an arrival or an incident alone); new camp arrivals
+    say nothing of cold or snow, and name gear only where the people's gear has it.
+  - Found, not changed (for the lead to decide): help lines of a camp's own for medicine, wood, mend and meat never show,
+    as `CampCarry`, `CampLife.DoHelp` and `CampRequests.MendGear` tell those by the shared `CC_Camp_Help_*` lines (the
+    pilgrims' hostel's [medicine], the boat-builders' [wood], the Wheel's yard's [mend], all eight of 0.282.0's camps'
+    help lines); moment lines no code says (the hostel's [gift], the field sickhouse's [round] and [gift], the [carry]
+    and [gift] of six of 0.282.0's camps). A fix through `HelpText` would show a few lines that claim more than happens.
+  - Not checked without the game: how the new lines read among the old ones in a real colony; a visitor of a third
+    people speaking of another people's world event; the other-peoples pieces with a people at war, at peace with all
+    and just after a peace.
+  - Try in the game: dev mode, "World variety: start one of the new world events now..." or any world event, then talk
+    with a visitor of its people and of another people (right-click, Talk with...); read the start and ending letters
+    of the gold fever, the levy, the market days or the bridge down; start a people's own camp from its event and watch
+    the bubbles and the arrival letter; let a visitor of one of the 23 peoples stay and talk (their day, their food,
+    their young, their town, the other peoples, the colony).
+  - Mods that would help: none; these are words only, with no graphics or sound to add, and no def of any mod is named.
 - 0.284.0, **Colony life's text variety: the
   journals, the teasing, the decrees' voices, the answers to wishes, the social log, social events, the seats' words and
   the year's last** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall

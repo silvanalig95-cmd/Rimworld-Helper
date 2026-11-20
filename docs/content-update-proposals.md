@@ -779,6 +779,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B9. More ways to begin and end for the thinnest world events** (T; S to M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Defs/WorldSituationDefs/`). Decided: recounted first; the 17 named and five of 0.282.0's ten as thin (falling stars, the great burying, the bridge down, the roads gone to mud, timber gone scarce) each to four start letters, a second line for every beat of one line and three ending lines, an ending of one line given a second; beats with no words (an arrival or a game's incident alone) left without, since words would add a letter the map doesn't need; new start letters by their people's age or the season, never the colony's era alone; 82 lines (titles, start letters, beats and endings of the 22: 227 before, 309 after).
 - **The thin pools as counted** (start letters / beat lines / ending lines):
 
   | World event | Start letters | Beat lines | Ending lines | Note |
@@ -809,6 +810,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Text:** flavour style (world events).
 
 **B10. Talk of the world events nobody mentions** (T; S to M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Rimfolk_OutsiderTalks_WorldTold.xml`, `FactsMath.AddHeard`). Decided: a visitor of another people knew of no world event but their own and the region's, so a piece for them could never be said; the smallest fact was added (`heard`, `heard:ws:DEFNAME`, {HEARD}, {HEARDPLACE}, {HEARDPEOPLE}: the newest world event of another people, news from the road, less current than their own) with a test; the twelve named, famine, plague, a hard winter and all ten of 0.282.0's (which had none either) get three pieces each: 75 pieces, 326 lines.
 - **The thin pools.**
   - Twelve world events have no outsider talk piece at all: Blight, ColdYear, DryLaw, GreatCaravan, GreatWork, Legend,
     MedicineScarce, NeighborsWar, NewTownMet, SonBand, TownRaid and Trek.
@@ -903,6 +905,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B16. Each people's own talk** (T; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Rimfolk_OutsiderTalks_PeoplesDays.xml`, `_PeoplesDays2.xml`). Decided: the other peoples by the conditions the talk already has, with no new code: their war ({WAR}, and war:ourfoe or war:ourfriend for how their foe stands with the colony), a peace of theirs made lately ({PEACEWITH}), or at war with nobody; the colony as they see it by their regard (likesus, wary) and what is true of it (small, its animals, their age ahead of it); a line naming a tool of one age has the other age's form; 138 pieces (106 before, 244 after).
 - **The thin pools as counted.** 16 peoples have 4 talk pieces of their own (faith, honour, hardship, work) and 7 have 6.
 - **What to add.** Six more each, about 138 pieces, on:
   - their working day;
@@ -937,6 +940,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### Camps
 
 **B18. The peoples' own camps, fuller words** (T; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml`, `_Variety4.xml`). Decided: help texts and moment lines added only where they are said: a help told by its own words (tales, milk, fish, show), a moment its camp's ways say; the enclave's pad and the Banner's company give no help, the sickhouse's moments are never said (its round and gift come from a farewell walk and a gift it doesn't have), so those stay as they were; the eight camps of 0.282.0 to the same floor for arrivals, joins and bubbles, and their two moments that are said (the carters' mending, the games team's kill); a new arrival text says no cold or snow, which the colony's land may not have; 26 camps: arrivals 56 to 105, joins 26 to 52, help 27 to 51, bubbles 132 to 234, moments 102 to 154; the eight newest: arrivals 24 to 32, joins 9 to 16, bubbles 62 to 73, moments 10 to 14.
 - **The thin pools as counted.** These are the 26 camps of the peoples' events (`Rimfolk_CampKinds_PeopleEvents*.xml`):
 
   | Pool | Lines in all 26 camps | Average per camp |
@@ -1139,6 +1143,7 @@ the contest)
 ### More text
 
 **B30. The thinnest encounters** (T; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "Text variety: the world's thin pools"; `Defs/EncounterDefs/`). Decided: the 46 peoples' own encounters of 0.282.0, at two texts each, brought to the same floor; every new text true to the scene that plays out (a herder at one of the colony's animals, a sexton at a grave, a linesman at the comms console); by season, weather and time of day where they cross them; 142 texts (the 25 named: 49 to 99; the 46: 92 to 184).
 - **The thin pools as counted.** 25 encounters have only 1 or 2 texts: MarshLights, CaveMouth, FogShape, Gallatross,
   Graveyard, Meadow, Mushrooms, OcularForest, RefugeeThanks, RefugeeCarving, Shiny, Rare, ChildAndWild, RowTalk,
   QuietHour, Lifter, SongFromHome, HardWord, Trick, Fascination, Unease, ChildQuestion, DebtMentioned, HeatLightning and
