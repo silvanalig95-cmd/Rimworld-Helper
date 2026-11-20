@@ -274,7 +274,7 @@ namespace ColonyCouncil
                 : GodOmens.OuterDoor(map) is Building_Door d && d.Position.InHorDistOf(at, 1.5f)
                     ? "CC_GodHush_Where_Door".Translate(d.LabelNoCount.Named("DOOR")).Resolve()
                     : "CC_GodHush_Where_Ground".Translate().Resolve();
-            string text = "CC_GodHush_Word_Text".Translate(p.Named("PAWN"), w.Named("WORD"), where.Named("WHERE")).Resolve() + (fact.NullOrEmpty() ? "" : "\n\n" + fact);
+            string text = TextVariants.Vary("CC_GodHush_Word_Text").Translate(p.Named("PAWN"), w.Named("WORD"), where.Named("WHERE")).Resolve() + (fact.NullOrEmpty() ? "" : "\n\n" + fact);
             OwnHappenings.CardOf(g, map, null, "CC_GodHush_Word_Title", "CC_GodHush_Word_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), null, w.Named("WORD"));
             if (g != null) OwnHappenings.Saw(g, map, at, GodActKind.Omen, p, "CC_GodHush_Saw_Word", w.Named("WORD"));
         }
@@ -413,7 +413,7 @@ namespace ColonyCouncil
             OwnHappenings.Memory(k, SatUpThought);
             OwnHappenings.MemoryOf(f, SatWithThought, k);
             string warmth = ("CC_GodHush_Warmth_" + OwnHappenings.Age).Translate().Resolve();
-            string text = "CC_GodHush_Thaw_Text".Translate(k.Named("KEEPER"), f.Named("FRAIL"), warmth.Named("WARMTH")).Resolve();
+            string text = TextVariants.Vary("CC_GodHush_Thaw_Text").Translate(k.Named("KEEPER"), f.Named("FRAIL"), warmth.Named("WARMTH")).Resolve();
             OwnHappenings.CardOf(g, map, null, "CC_GodHush_Thaw_Title", "CC_GodHush_Thaw_TitleNamed", text, new LookTargets(f), LetterDefOf.PositiveEvent);
             OwnHappenings.SayFrom(k, Pool, g, "thaw");
             if (g != null) OwnHappenings.Saw(g, map, f.Position, GodActKind.Blessing, k, "CC_GodHush_Saw_Thaw", k.LabelShort.Named("KEEPER"), f.LabelShort.Named("FRAIL"));
@@ -553,8 +553,8 @@ namespace ColonyCouncil
             var names = (s.walkSeers ?? "").Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries).ToList();
             string how = (s.walkStep >= s.walkSteps ? "CC_GodHush_Walk_All" : "CC_GodHush_Walk_Part").Translate().Resolve();
             string text = names.Count > 0
-                ? "CC_GodHush_Walk_TextSeen".Translate(names.ToCommaList(true).Named("WHO"), Homes.Name(map).Named("HOME"), how.Named("HOW")).Resolve()
-                : "CC_GodHush_Walk_Text".Translate(Homes.Name(map).Named("HOME"), how.Named("HOW")).Resolve();
+                ? TextVariants.Vary("CC_GodHush_Walk_TextSeen").Translate(names.ToCommaList(true).Named("WHO"), Homes.Name(map).Named("HOME"), how.Named("HOW")).Resolve()
+                : TextVariants.Vary("CC_GodHush_Walk_Text").Translate(Homes.Name(map).Named("HOME"), how.Named("HOW")).Resolve();
             var at = RingCell(s, 0, map);
             OwnHappenings.CardOf(g, map, null, "CC_GodHush_Walk_Title", "CC_GodHush_Walk_TitleNamed", text, new LookTargets(new TargetInfo(at, map)), null);
             var witness = names.Count > 0 ? map.mapPawns.FreeColonistsSpawned.FirstOrDefault(p => p.LabelShort == names[0]) : null;
@@ -650,7 +650,7 @@ namespace ColonyCouncil
             }
             var seer = OwnHappenings.Seer(map, grave.Position, 25f);
             if (seer != null) OwnHappenings.SayFromWith(seer, Pool, g, new[] { dead.Named("DEAD") }, "grave");
-            string text = (cold ? "CC_GodHush_Grave_Text" : "CC_GodHush_Grave_TextQuiet").Translate(dead.Named("DEAD"), Homes.Name(map).Named("HOME")).Resolve();
+            string text = TextVariants.Vary(cold ? "CC_GodHush_Grave_Text" : "CC_GodHush_Grave_TextQuiet").Translate(dead.Named("DEAD"), Homes.Name(map).Named("HOME")).Resolve();
             OwnHappenings.CardOf(g, map, null, "CC_GodHush_Grave_Title", "CC_GodHush_Grave_TitleNamed", text, new LookTargets(grave), LetterDefOf.NegativeEvent, dead.Named("DEAD"));
             if (g != null) OwnHappenings.Saw(g, map, grave.Position, GodActKind.Omen, seer, "CC_GodHush_Saw_Grave", dead.Named("DEAD"));
             s.grave = grave;
@@ -698,7 +698,7 @@ namespace ColonyCouncil
             var seer = OwnHappenings.Seer(map, grave.Position, 25f);
             var morel = OwnHappenings.God("Morel");
             if (seer != null) OwnHappenings.SayFromWith(seer, Pool, morel, new[] { dead.Named("DEAD") }, "melt");
-            OwnHappenings.Line(map, (placed > 0 ? "CC_GodHush_Melt_Text" : "CC_GodHush_Melt_TextBare").Translate(dead.Named("DEAD")).Resolve(), new LookTargets(grave));
+            OwnHappenings.Line(map, TextVariants.Vary(placed > 0 ? "CC_GodHush_Melt_Text" : "CC_GodHush_Melt_TextBare").Translate(dead.Named("DEAD")).Resolve(), new LookTargets(grave));
             // In both chapters: the cold kept the dead whole, and the soft mother took them back.
             var hush = God;
             if (hush != null) OwnHappenings.Saw(hush, map, grave.Position, GodActKind.Mark, seer, "CC_GodHush_Saw_Melt", dead.Named("DEAD"));

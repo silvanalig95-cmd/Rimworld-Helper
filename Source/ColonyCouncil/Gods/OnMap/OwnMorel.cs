@@ -109,7 +109,7 @@ namespace ColonyCouncil
             GodSky.Stay(map, SkySign.Mourner, at, b.mournerUntil - now, 2.6f);
             var spec = PresenceSpec.For(g, map, PresenceKind.Appear, at);
             spec.title = GodsOnMapWords.Title(g, map, false, "CC_GodO_Mourner_Title", "CC_GodO_Mourner_TitleNamed");
-            spec.text = "CC_GodO_Mourner_Text".Translate(Homes.Name(map).Named("HOME")).Resolve();
+            spec.text = TextVariants.Vary("CC_GodO_Mourner_Text").Translate(Homes.Name(map).Named("HOME")).Resolve();
             if (!GodPresenceSeam.Call(spec)) Tell.Letter(NewsKind.Land, Importance.Notable, map, spec.title, spec.text, LetterDefOf.NeutralEvent, new LookTargets(at, map));
             var seer = GodsOnMapWords.Seer(map, at, 40f);
             OwnHappenings.Say(seer, "mourner", g);

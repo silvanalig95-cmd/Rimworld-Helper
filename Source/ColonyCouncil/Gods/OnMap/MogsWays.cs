@@ -587,7 +587,7 @@ namespace ColonyCouncil
                 if (god != null) Gods.AddFavour(god, map, MogMath.RightFavour, null);
                 string title = GodsOnMapWords.Title(god, map, false, "CC_Mog_Right_Title", "CC_Mog_Right_TitleNamed", called.Named("BEAST"));
                 GodPresence.Look(map, a.Position);
-                Tell.Letter(NewsKind.Land, Importance.Notable, map, title, "CC_Mog_Right_Text".Translate(args).Resolve(), LetterDefOf.PositiveEvent, new LookTargets(p));
+                Tell.Letter(NewsKind.Land, Importance.Notable, map, title, TextVariants.Vary("CC_Mog_Right_Text").Translate(args).Resolve(), LetterDefOf.PositiveEvent, new LookTargets(p));
                 CouncilGameComponent.Instance?.journals?.WriteText(p, "CC_Mog_Journal_Right".Translate(args).Resolve());
                 if (god != null) GodsOnMapWords.Saw(god, map, a.Position, GodActKind.Blessing, p, "CC_GodM_Saw_RiddleRight", args);
                 return;
@@ -605,7 +605,7 @@ namespace ColonyCouncil
             }
             Memory(p, WrongThought);
             if (god != null) Gods.AddFavour(god, map, MogMath.WrongFavour, null);
-            string key = cuffed ? "CC_Mog_Wrong_TextCuffed" : "CC_Mog_Wrong_Text";
+            string key = TextVariants.Vary(cuffed ? "CC_Mog_Wrong_TextCuffed" : "CC_Mog_Wrong_Text");
             string wtitle = GodsOnMapWords.Title(god, map, false, "CC_Mog_Wrong_Title", "CC_Mog_Wrong_TitleNamed", called.Named("BEAST"));
             GodPresence.Look(map, a.Position);
             Tell.Letter(NewsKind.Land, Importance.Notable, map, wtitle, key.Translate(args).Resolve(), cuffed ? LetterDefOf.NegativeEvent : LetterDefOf.NeutralEvent,

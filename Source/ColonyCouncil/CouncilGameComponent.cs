@@ -613,6 +613,8 @@ namespace ColonyCouncil
             Safe("habit bubbles", HabitBubbles.Hourly);
             // A cup for one who is ill (Immersion/SickCup.cs).
             Safe("a cup for the sick", SickCup.Hourly);
+            // The bees told of a death or someone new (Immersion/TellingBees.cs).
+            Safe("telling the bees", TellingBees.Hourly);
         }
 
         private void HourlyPeople()

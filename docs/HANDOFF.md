@@ -94,7 +94,9 @@ most sense." So, in this order, three builds at a time:
      and two new happenings for each god); the world's (B6, B7, B8, B15, B20, B21, B24, B28, six more world events, six
      more camps); colony life's first (A3, A4, A7, A18, A19, A20, twenty-five more council questions); then the rest:
   3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
-     events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
+     events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it. The gods first: C5, C9, C10,
+     C11, C13, C23 and C31 and thirty-one new happenings between the colony's people (built, not released: the entry
+     "The gods between the colony's people, and the gods' variety" above the newest release line).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; built, not released): the
   comms console and the peoples' ages.** The to-do with the player's words is now one entry above the newest release
@@ -610,6 +612,63 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.281.0, **The gods between the colony's people,
+  and the gods' variety** (20 November 2026; the player on the content update: "In general, I just want additional God
+  events, more immersion, more just further also building up on the gods in general, how they're integrated, the effects
+  they have, the relations between pawns, the kind of events that generated from it ... And then also, just variety", and
+  "first do all the integrations that you proposed in your document before we add additional content variety"). With
+  the integrations released, the first of the variety, the gods first: C5, C9, C10, C11, C13, C23 and C31 of part C of
+  `docs/content-update-proposals.md` (each marked **Built** there with what was decided), and beyond the doc thirty-one
+  new happenings of the gods' own, two or more for each of the fifteen (Helios three, C9 among them), each setting the
+  colony's people toward or against each other. DESIGN.md "The gods between the colony's people, and the gods' variety"
+  (after the gods among the people) lists every happening with one line and has every rule; README "The gods between your
+  people" (after the gods among your people); the Almanac's gods page, a paragraph of what the colony's people do (keywords
+  unchanged, no god's ways).
+  - **The happenings between the colony's people** (`Source/ColonyCouncil/Gods/OnMap/Between/`: the frame `Between.cs`,
+    one file a god; the rules `Gods/OnMap/OwnBetweenMath.cs`; the words `Defs/GodDefs/Rimfolk_GodBetween.xml` and
+    `Languages/English/Keyed/Rimfolk_GodBetween.xml`; dev mode `Gods/OwnBetweenDebug.cs`). New `OwnHappening`s at the end
+    of the list, on the gods' pace, one at a home at a time, in the gods' hour (`OwnSeven.cs`) and saved with the gods'
+    own happenings' book (`BetweenState`). Each plays out on the map (someone walks over, stands, carries, a sign in the
+    god's own look), a card in three wordings, the book as its witness saw it (felt by belief, `GodTouch`), one sentence a
+    speaker by what they believe, and how it ends between the two as a memory of each other, a plain line in the news and
+    their journals. Hollin: the saplings between two who fought; brambles round a woodcutter's stump. Smoulder: the forge
+    flares at a masterwork (the next-best hand resents it); pulled back from stones falling under the mountain. Bellwether:
+    the old one and the child at the edge, the grazers drawing close; the hunter who let the beast go. Morel: whose rot it
+    was; threads on a sealed stone (her faithful against Tamiu's or Hush's). Ennu: a bowl for the newcomer; waiting up for
+    the late one. Pip: two hands on a broken machine; a machine that hums for the one who talks to it. Cirrus: a star for
+    two; shapes in the clouds. Hush: a coat for the cold one; quiet asked on the cold night. Undertow (never named): seen
+    whispering at the edge; a light let go out. Helios: out into the sun (C9); his light on two at odds; called into the
+    shade. Selene: sorry in the morning after a moonlit night; the same dream at breakfast. Tamiu: a cat on the grave;
+    riddles at supper. Murmur: a splash at the water; a frog in the bedroom (Odyssey's bullfrog). Ducat: a coin passed hand
+    to hand; a miser's silver scattered. Revel: one cup between two at odds; a drunken wager paid by scrubbing a floor.
+  - **C31**: the 99 older happening cards (the gods' own, the gods on the map, the festivals) each in three wordings
+    (`Languages/English/Keyed/Rimfolk_GodCards_Wordings.xml`, through `TextVariants.Vary`).
+  - **C5, four vows of a season** (`Gods/Worship/VowsSeason.cs`, life goals in `Rimfolk_Worship_Goals.xml`): a lamp kept
+    lit, a tree a week, plain bread, every caller fed; kept by the vower's walk, broken by what anyone can see.
+  - **C10, the gods' rarest gifts** (`Gods/Touch/GodRareGifts.cs`): after a god's great effect, once in two colony-years
+    at most, a Possessed Weapons weapon in a ring of scorched ground; after Smoulder's waking, Dragons Descent's warm egg.
+  - **C11**: 28 more xenotypes drawn to a god (and Paws of Interest's Skitty to Tamiu, Goodra to Murmur).
+  - **C13, four council questions of faith** (`Gods/Worship/WorshipCouncilMore.cs`, `Rimfolk_Worship_Dilemmas_More.xml`):
+    the shrine in the way, the feast in a hard season (its eve's answer kept on the day: `Festivals.Kept`,
+    `CalendarKeeping`), the scoffer at the rite (`FaithHeart` notes the laugh; `OwnFeasts.Gather` leaves the barred out;
+    `Offerings` sends the one asked to carry), a shrine nobody keeps.
+  - **C23, telling the bees** (`Immersion/TellingBees.cs`): Alpha Bees' hives told of a death or someone new.
+  - Harm: none. Saved: `BetweenState` and `TellingBeesBook` (each list small, in `Tools/save_estimate.py`); a field each on
+    the vow's record and the offering's (the asked carrier). Tests: `Tools/Tests/GodsBetweenTests.cs`,
+    `GodsVarietyTests.cs`; the older happenings' tests count only their own (`OwnHappeningsMath.IsBetween`).
+  - Not checked without the game: the happenings' timing in a real colony (how often each comes; the paces are the gods'
+    usual, gaps of 15 to 30 days), the jobs' walking and standing, a stray cat and the frogs leaving, the coat put on, a
+    shrine taken up and frames cancelled, the drake's egg hatching as the colony's, Alpha Bees' hives reached, the calendar
+    letting a festival day go after the council's eve answer.
+  - Try in the game: dev mode, "Gods: Hollin's saplings between two who fought now" and the rest (one for each), "Gods: a
+    rare gift (a god's weapon) now...", "Bees: tell the bees of a death now"; a vow from dev mode's vow action (Lamp,
+    Trees, PlainBread, Visitors) on a devout colonist of the right god; the council's questions come on their own (a
+    blueprint against a shrine, a festival tomorrow with food short, a scoffer's laugh, a shrine nobody holds).
+  - Mods that would help (graphics and sound): Milky Way (3773448562, 1.6 and 1.7, kept up to check) for the stars two
+    watch; Simple FX: Splashes (3261109179, to 1.6) for the splash at the water; Dark Ages: Crypts and Tombs (2963826335,
+    to 1.6) for the sealed stone and the cat on the grave; P-Music (725130005, 1.0 to 1.7, kept up) for the gods' moments;
+    Pawns on Display (3446605621, 1.5 to 1.7) for a statue of a god's beast or a saint. All but Pawns on Display are in
+    the player's subscriptions, switched off.
 - 0.280.2, **The region's years and the camps**
   (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good.
   You can go ahead with this in the order you think makes most sense ... more immersion", and "first do all the

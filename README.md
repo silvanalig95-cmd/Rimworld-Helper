@@ -5112,6 +5112,32 @@ your people picture it. With Vanilla Christmas Expanded, midwinter brings the fe
 and warm drinks set out, a present handed to each of your people and a snow sculpture. Dev mode has *Gods among: ...*
 actions for each.
 
+**The gods between your people** (not released yet). Every god has two or more happenings of its own that set your
+colonists toward or against each other, each played out on the map and told as it was seen: two who fought find two
+saplings come up between their beds and stand at them together; a woodcutter is shown the brambles round their last
+stump; the forge flares at a masterwork and the next-best hand resents it; under the mountain one pulls another back as
+stones come down where they stood; the eldest tells a child of the white beast at dusk as the grazers drift close; a
+hunter lets the beast go when it turns to look, and the cook grumbles; two argue over food let rot, or dig it into the
+field together; white threads on a sealed stone set two faiths arguing; the kindest carries a bowl to a newcomer;
+someone waits up at the edge with a light for one late home; two hands on a broken machine start it again; a machine
+hums for the one who talks to it while a doubter laughs; two out at night watch a star cross; two see their own gods'
+shapes in the clouds; a warm coat carried to one taking a chill melts the frost round them; one who holds the cold asks
+the loud ones for quiet on a winter night; someone with a grudge is seen whispering into the dark at the edge; a lamp
+by a sleeper goes out and two argue whose it was; one getting over an illness is walked out to sit an hour in the noon
+sun; the noon light on two at odds; a friend calls someone into the shade; one who said a cruel word stands under the
+moon all night and says sorry in the morning; two tell the same dream at breakfast; a cat sits on a grave and the two
+who loved the dead sit with it; riddles at supper and a cat at the winner's heel; a splash at the water and the frogs
+croaking; a frog in a bedroom in the rain; a gold coin passed hand to hand; a miser's silver found scattered in heaps;
+one cup set between two at odds; a drunken wager paid by scrubbing a floor. How it ends between them (closer, a quarrel,
+made up, ashamed, resentful, wary, laughed at, a kindness remembered) stays in their opinions of each other and is a
+plain line in the news. The devout may vow their god a season as a life goal: a lamp kept lit by its place, a tree a
+week, plain food only, every caller at the gate fed, each kept day by day on the map and broken by what anyone can see.
+The council is asked about a plan laid over a god's place, a feast day in a hard season, a scoffer at the rites and a
+place nobody keeps. Very rarely a named weapon of Possessed Weapons lies in a ring of scorched ground where something
+strange happened, or a warm drake's egg of Dragons Descent in the deep after the mountain shook. More of your mods'
+xenotypes lean toward a god by what they are, every god's card comes in three wordings, and with Alpha Bees the one who
+tends the hives tells the bees of a death or someone new. Dev mode has *Gods: ...* and *Bees: ...* actions for each.
+
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with
 something already in motion, and a few seconds in, a letter says how things stand.

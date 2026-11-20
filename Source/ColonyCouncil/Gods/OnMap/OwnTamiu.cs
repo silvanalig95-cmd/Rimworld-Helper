@@ -217,7 +217,7 @@ namespace ColonyCouncil
             var away = CellFinder.RandomClosewalkCellNear(c.Position + (c.Position - p.PositionHeld) * 6, map, 6, x => x.Standable(map));
             if (away.IsValid) OwnHappenings.Lead(c, away.ClampInsideMap(map), GenDate.TicksPerHour);
             OwnHappenings.Memory(p, LetGoThought);
-            string text = "CC_GodTamiu_WentAway_Text".Translate(p.Named("PAWN"), c.KindLabel.Named("CAT")).Resolve();
+            string text = TextVariants.Vary("CC_GodTamiu_WentAway_Text").Translate(p.Named("PAWN"), c.KindLabel.Named("CAT")).Resolve();
             OwnHappenings.CardOf(g, map, null, "CC_GodTamiu_WentAway_Title", "CC_GodTamiu_WentAway_TitleNamed", text, new LookTargets(p), LetterDefOf.PositiveEvent, p.Named("PAWN"));
             var seer = OwnHappenings.Seer(map, c.Position, 18f);
             GodTouch.About(map, "CC_GodTamiu_Saw_WentAway", p);
@@ -326,7 +326,7 @@ namespace ColonyCouncil
             }
             OwnHappenings.Stand(f, body.Position, 360);
             OwnHappenings.SayFromWith(f, Pool, g, new[] { dead.Named("DEAD") }, "lost");
-            string text = "CC_GodTamiu_Lost_Text".Translate(dead.Named("DEAD"), f.Named("PAWN"), c.KindLabel.Named("CAT")).Resolve();
+            string text = TextVariants.Vary("CC_GodTamiu_Lost_Text").Translate(dead.Named("DEAD"), f.Named("PAWN"), c.KindLabel.Named("CAT")).Resolve();
             OwnHappenings.CardOf(g, map, null, "CC_GodTamiu_Lost_Title", "CC_GodTamiu_Lost_TitleNamed", text, new LookTargets(body), LetterDefOf.NeutralEvent, dead.Named("DEAD"));
             if (g != null) OwnHappenings.Saw(g, map, body.Position, GodActKind.Omen, f, "CC_GodTamiu_Saw_Lost", dead.Named("DEAD"));
             // The cat stays by the body until it is carried off or the day is out.

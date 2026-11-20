@@ -604,7 +604,7 @@ namespace ColonyCouncil
                     OwnHappenings.SayFrom(carrier, Pool, g, "smoulder", "down");
                     Thought(carrier, "Smoulder");
                 }
-                Told(g, map, at, K("Smoulder", "Text").Translate((carrier?.LabelShort ?? "").Named("PAWN"), n.Named("COUNT"), place.Named("PLACE"), home).Resolve(),
+                Told(g, map, at, TextVariants.Vary(K("Smoulder", "Text")).Translate((carrier?.LabelShort ?? "").Named("PAWN"), n.Named("COUNT"), place.Named("PLACE"), home).Resolve(),
                     K("Smoulder", "Book").Translate(n.Named("COUNT"), place.Named("PLACE")).Resolve(), carrier);
                 Finish(b, s, false);
                 return;
@@ -623,7 +623,7 @@ namespace ColonyCouncil
             OwnHappenings.Stand(carrier, s.at, 400);
             OwnHappenings.SayFrom(carrier, Pool, g, "smoulder", "empty");
             Thought(carrier, "Smoulder");
-            Told(g, map, s.at, K("Smoulder", "TextNone").Translate(carrier.LabelShort.Named("PAWN"), place.Named("PLACE"), home).Resolve(),
+            Told(g, map, s.at, TextVariants.Vary(K("Smoulder", "TextNone")).Translate(carrier.LabelShort.Named("PAWN"), place.Named("PLACE"), home).Resolve(),
                 K("Smoulder", "BookNone").Translate(place.Named("PLACE")).Resolve(), carrier);
             Finish(b, s, false);
         }
@@ -1150,7 +1150,7 @@ namespace ColonyCouncil
             s.told = true;
             var home = Homes.Name(map).Named("HOME");
             var pawn = (s.lead?.LabelShort ?? "").Named("PAWN");
-            string text = K("Undertow", s.count > 0 ? "Text" : "TextNoDoors").Translate(pawn, s.count.Named("DOORS"), lit.Named("LIT"), home).Resolve();
+            string text = TextVariants.Vary(K("Undertow", s.count > 0 ? "Text" : "TextNoDoors")).Translate(pawn, s.count.Named("DOORS"), lit.Named("LIT"), home).Resolve();
             if (s.torches > 0) text += " " + K("Undertow", "Torches").Translate(pawn, s.torches.Named("COUNT")).Resolve();
             Told(g, map, s.lead?.Position ?? OwnHappenings.Middle(map), text, K("Undertow", "Book").Translate(lit.Named("LIT")).Resolve(), s.lead);
             if (s.lead != null) Thought(s.lead, "Undertow");
@@ -1262,8 +1262,8 @@ namespace ColonyCouncil
                 var home = Homes.Name(map).Named("HOME");
                 string where = s.thing != null ? "CC_Feast_Where_Fire".Translate(s.thing.def.label.Named("FIRE")).Resolve() : "CC_Feast_Where_Table".Translate().Resolve();
                 string text = s.count > 0 && food != null
-                    ? K("Hush", s.count >= s.count3 ? "Text" : "TextSome").Translate(s.count3.Named("COUNT"), s.count.Named("ATE"), food.label.Named("FOOD"), where.Named("WHERE"), home).Resolve()
-                    : K("Hush", "TextNoFood").Translate(s.count3.Named("COUNT"), where.Named("WHERE"), home).Resolve();
+                    ? TextVariants.Vary(K("Hush", s.count >= s.count3 ? "Text" : "TextSome")).Translate(s.count3.Named("COUNT"), s.count.Named("ATE"), food.label.Named("FOOD"), where.Named("WHERE"), home).Resolve()
+                    : TextVariants.Vary(K("Hush", "TextNoFood")).Translate(s.count3.Named("COUNT"), where.Named("WHERE"), home).Resolve();
                 if (s.what2 != null) text += " " + K("Hush", s.thing != null ? "Nearest" : "NearestTable").Translate(s.what2.Named("NAMES")).Resolve();
                 Told(g, map, s.at, text, K("Hush", s.what2 != null && s.thing != null ? "Book" : "BookPlain").Translate(s.count3.Named("COUNT")).Resolve());
             }
@@ -1336,7 +1336,7 @@ namespace ColonyCouncil
             }
             if (s.count2 < OwnFeastsMath.DreamsMost && now <= s.until) return;
             var home = Homes.Name(map).Named("HOME");
-            string text = K("Selene", s.count2 > 0 ? "Text" : "TextNoDreams").Translate((s.what ?? "").Named("WATCHERS"), s.count2.Named("DREAMS"), home).Resolve();
+            string text = TextVariants.Vary(K("Selene", s.count2 > 0 ? "Text" : "TextNoDreams")).Translate((s.what ?? "").Named("WATCHERS"), s.count2.Named("DREAMS"), home).Resolve();
             Told(g, map, OwnHappenings.Middle(map), text, K("Selene", "Book").Translate((s.what ?? "").Named("WATCHERS"), s.count2.Named("DREAMS")).Resolve(), s.lead);
             Finish(b, s, false);
         }
@@ -1353,7 +1353,7 @@ namespace ColonyCouncil
             if (leader == null || map == null || g == null) return;
             try
             {
-                var who = map.mapPawns.FreeColonistsSpawned.Where(p => p != leader && Holds(p, g) && OwnHappenings.Free(p) && !p.DevelopmentalStage.Baby())
+                var who = map.mapPawns.FreeColonistsSpawned.Where(p => p != leader && Holds(p, g) && OwnHappenings.Free(p) && !p.DevelopmentalStage.Baby() && !WorshipCouncilMore.Barred(p))
                     .OrderBy(p => p.Position.DistanceToSquared(shrine.Position)).Take(OwnFeastsMath.GatheringMost).ToList();
                 if (who.Count == 0) return;
                 // Behind the leader as they will stand: the leader at the place's front, the rows further from it.

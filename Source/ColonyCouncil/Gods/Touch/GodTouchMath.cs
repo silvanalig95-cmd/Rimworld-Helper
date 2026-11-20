@@ -329,7 +329,10 @@ namespace ColonyCouncil
             "CC_GodHush_Saw_Thaw", "CC_GodMurmur_Saw_", "CC_GodDucat_Saw_", "CC_GodSelene_Saw_Watch", "CC_GodUndertow_Saw_",
             // Revel's: the long night's joy, the vision walked to, the craving's dose, the stash, the craving eased, his cup shared
             // (his binge seen has none of its own, so one of his may follow it).
-            "CC_GodRevel_Saw_Night", "CC_GodRevel_Saw_Vision", "CC_GodRevel_Saw_Craving", "CC_GodRevel_Saw_Stash", "CC_GodRevel_Saw_LetGo", "CC_GodRevel_Saw_Shared"
+            "CC_GodRevel_Saw_Night", "CC_GodRevel_Saw_Vision", "CC_GodRevel_Saw_Craving", "CC_GodRevel_Saw_Stash", "CC_GodRevel_Saw_LetGo", "CC_GodRevel_Saw_Shared",
+            // The gods between the colony's people (Gods/OnMap/Between/): each ends in what it does between two people (their
+            // memories of each other, a quarrel, a kindness), so nothing of the touch's own comes on top; those who saw it feel it.
+            "CC_GodB_Saw_"
         };
 
         /// <summary>The Guest's small tests' keys begin so (CC_GodO_Saw_TestStory, _TestCook ...).</summary>

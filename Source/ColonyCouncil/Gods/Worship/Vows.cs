@@ -90,6 +90,8 @@ namespace ColonyCouncil
                 CouncilGameComponent.GiveThought(p, kept ? WorshipDefOf.Rimfolk_Worship_VowKept : WorshipDefOf.Rimfolk_Worship_VowBroken);
             // Their own belief: a vow kept binds them closer, a broken one leaves guilt and a little fear (Gods/Belief/PawnGods.cs).
             if (!p.Dead) PawnGods.Vowed(p, g, kept, r.kind == VowKind.Temple || r.kind == VowKind.Pilgrimage);
+            // A vow of a season kept: its life goal is done (VowsSeason, AspirationWorker_SeasonVow).
+            if (kept && WorshipMath.SeasonVow(r.kind)) Worship.Book?.AddMark(p, "vowkept:" + r.kind, g.id);
             Tell.Minor(NewsKind.People, Importance.Notable, map, text, p);
             Worship.Witness(g, map, GodActKind.Vow, text, p.PositionHeld);
             Worship.Booked(g, map, p.PositionHeld, text, p);
@@ -176,6 +178,13 @@ namespace ColonyCouncil
                     case VowKind.Pilgrimage:
                         TrySetOut(r, map, now);
                         break;
+                    case VowKind.Lamp:
+                    case VowKind.Trees:
+                    case VowKind.PlainBread:
+                    case VowKind.Visitors:
+                        // The four vows of a season (Gods/Worship/VowsSeason.cs).
+                        VowsSeason.Hourly(r, map, now);
+                        break;
                 }
             }
         }
@@ -184,7 +193,8 @@ namespace ColonyCouncil
         public static void Daily(WorshipBook b, Map map, int now)
         {
             var goals = CouncilGameComponent.Instance?.aspirations;
-            foreach (var r in b.vows.Where(v => v != null && !v.done && (v.kind == VowKind.Pilgrimage || v.kind == VowKind.Temple) && v.pawn?.MapHeld == map).ToList())
+            foreach (var r in b.vows.Where(v => v != null && !v.done && (v.kind == VowKind.Pilgrimage || v.kind == VowKind.Temple || WorshipMath.SeasonVow(v.kind)) && v.pawn?.MapHeld == map)
+                         .ToList())
             {
                 if (r.kind == VowKind.Pilgrimage && b.Count(r.pawn, "pilgrimage", r.since, r.god) > 0)
                 {
@@ -351,7 +361,8 @@ namespace ColonyCouncil
             }
             Pawn about = k == VowKind.NoMeat ? p.Map?.mapPawns.FreeColonistsSpawned.FirstOrDefault(x => x != p) ?? p : null;
             ThingDef beast = k == VowKind.BeastSpared ? SacredKinds.Of(g).FirstOrDefault() ?? DefDatabase<ThingDef>.GetNamedSilentFail("Deer") : null;
-            Make(p, g, k, about, beast);
+            var r = Make(p, g, k, about, beast);
+            if (WorshipMath.SeasonVow(k)) VowsSeason.Made(r);
         }
     }
 
@@ -454,6 +465,7 @@ namespace ColonyCouncil
             try
             {
                 Vows.Ate(ingester, __instance);
+                VowsSeason.Ate(ingester, __instance);
             }
             catch (Exception e)
             {
