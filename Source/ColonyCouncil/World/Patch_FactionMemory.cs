@@ -73,6 +73,8 @@ namespace ColonyCouncil
             var f = Other(a, b);
             if (f == null || reason == null || !FactionMemory.Remembers(f)) return;
             string name = NameOf(look);
+            // Someone the colony took in hurt (World/Region/TakenIn.cs) is remembered as they were sent home, never twice.
+            if ((reason.defName == "MemberExitedMapHealthy" || reason.defName == "FriendlyExitedMapTended") && TakenIn.Credited(exiting ?? LookPawn(look))) return;
             switch (reason.defName)
             {
                 case "MemberExitedMapHealthy":

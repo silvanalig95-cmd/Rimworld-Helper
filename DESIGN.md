@@ -18677,6 +18677,104 @@ Harm: none. Dev mode: "World home: ..." for each. Not checked without the game: 
 Quests tab, a dog's run and the hens' scatter, the visitors' kneeling and warming jobs under their lords, the dyed
 clothes' colours and their return, how often each comes in a real colony.
 
+### The region's years and the camps (the player's go, 20 November 2026; released 0.280.2)
+
+The content update's world integrations, part 3, with the same go as "The world brought home" ("first do all the
+integrations that you proposed in your document before we add additional content variety"). Built: B5, B11, B13, B19
+and B27 of `docs/content-update-proposals.md`, part B. The pure rules are `RegionPricesMath`, the region part of
+`HamletMath`, `RaidersCampSignsMath`, `TakenInMath` and `CallsFromHomeMath` (linked into the tests,
+`Tools/Tests/RegionYearsTests.cs`); the words are `Languages/English/Keyed/Rimfolk_RegionYears.xml`. No new clock: the
+prices are read when a price is, the hamlet and the raiders' camp on their own day and hour, those taken in on the
+region's hour (`RegionBook`).
+
+- **B5, traders' prices follow the region's hard and good years** (`World/Region/RegionPrices.cs`). While a world event
+  runs, every trader of its people (their caravans and visitors' traders on the colony's map, a caravan of the colony's at
+  their town) asks and pays a quarter more for what it makes scarce: food in a famine, a blight, a locust year, a year
+  without a summer or a drought; medicine in a plague or with medicine gone scarce; steel with iron gone scarce or in a war
+  between neighbours; wood after a great fire or a flood, in rebuilding and during a great work; cloth and leather in a
+  sickness of the herds or with the markets closed. In a bumper year their food is a fifth cheaper. A war between
+  neighbours and closed markets touch both peoples (the event's `{ENEMY}` too). What a thing is comes from the game's own
+  facts (medicine before food, so herbal medicine is no food; food people eat, not a drug or a corpse; the steel; woody,
+  fabric and leathery stuff). It rides on the moot's season prices (`Patch_SeasonPrices`, 0.274.0): one factor on the
+  price, the moot's (for every trader) times the region's (by the trader's people), kept within half and one and a half,
+  so the two never pull against each other, and buying and selling move together as the moot's do. The price's hover in
+  the trade window (the game's and Rimfolk's own, `Tradeable.GetPriceTooltip`) says why: "Food dear at Ashford (famine):
+  25% more with the Ashford Union, buying or selling.", the other side of a war unplaced, and the moot's ruling too. With
+  world events off nothing moves.
+- **B11, the hamlet's hard seasons follow the region** (`World/Region/HamletLife.cs`, `HamletWords.cs`). The nearest
+  running world event within 15 tiles of the hamlet's town (its own town, its tile, or its people's nearest town) that
+  brings a need decides what a hard season's ask is for: a doctor in a plague; food in a famine, a blight, a locust year,
+  a drought or a year without a summer; tools and timber (by the colony's age, as before) after a great fire, a flood or
+  in rebuilding. With one near, the hamlet asks already below a fortune of 30 rather than 20 (help comes due a little
+  sooner; the gap between asks holds). The letter opens with what happened ("The plague at Ashford has reached the families
+  of Little Ford."), and once the help is out, their courier who comes to the gate for it says so aloud, once ("The fever
+  at Ashford has put half of Little Ford in bed."). A bumper harvest near makes the harvest's carter bring half again as
+  much, and the message says why. The ask's world event and place are saved on the hamlet (`hardEvent`, `hardWhere`,
+  `wordUntil`).
+- **B13, signs of the raiders' camp on the map** (`World/Region/RaidersCampSigns.cs`, `TakenIn.cs`).
+  - Scouts: when a found camp's raid comes due, two of its people (its plainest fighters) come in at the map's edge on its
+    side first, walk ten cells or so in, stand and look toward the colony for an hour or so (`Rimfolk_CampScoutWatch`,
+    never the waiting job that strikes at a passer-by), then walk off; the message names the side. The raid follows an
+    hour or two after they were first seen, from the cell they came in at, once they are gone, and its letter says so;
+    held back by another fight it waits, and is given up half a day late. Hurt, the scouts leave at once and defend
+    themselves as they go (the game's own leaving duty); they never start a fight. With no edge or scout to be had, the
+    raid comes as before.
+  - The runaway: once in a found camp's life, from its third day, a 5% chance a day: a captive who ran from it (one of a
+    people at peace with the colony, likelier one at war with the camp's) comes in from the camp's side with two or three
+    bruises, cuts and scratches from before, sits at the gate and asks for a bed (`Rimfolk_Evt_CampRunaway`, never from
+    the storyteller). Taken in, they are the colony's guest, sent to a bed (or carried to one if they go down), tended by
+    its doctors, and walk home well or after twenty days; their people think 6 better of the colony and remember it (the
+    deed `rescued`, naming the doctor who tended them most when they leave), and the camp's next raid comes sooner (its
+    mean days between raids halved once). Sent on, they limp off.
+  - The smoke: at dusk (the 18th hour), every three days at most, half the time, someone of the colony out of doors by a
+    wall, a fence or a door (the marshal first, then anyone drafted) says the camp's smoke is up again, and which way.
+- **B19, camps' herds, dogs and goods from the full mod pool** (`Defs/CampDefs/`). `MayRequire` kinds beside the game's
+  own in each list (the game's the fallback): Megafauna's aurochs, Alpha Animals' chameleon yak and thunderox in the herders', drovers' and
+  calving camps; Vanilla Christmas Expanded's megareindeer in the herders' winter camp and among a snowbound caravan's
+  beasts; Vanilla Animals Expanded's camel and Indian elephant as pack beasts; its German shepherd, beagle and French
+  bulldog at a camp's heels (a camp's dog is now any that fits, not the first); one of its cats, or the game's, with the
+  hermit. Goods, the mod's first and the game's after it (a camp's goods take the first that exists): the salt caravan's
+  salt (Vanilla Cooking Expanded's, else pemmican) at its stall and, new for a camp, always in its trader's pack
+  (`CampKindDef.traderGoods`, beyond its people's own stock); the herb-gatherers' tea leaves (Vanilla Brewing Expanded's,
+  else berries); raw honey at the market's stall and in its trader's pack (Vanilla Factions Expanded - Medieval 2's or
+  Alpha Bees', else berries at the stall). All checked by `Tools/poolcheck.py`.
+- **B27, answer a call to arms from home** (`Diplomacy/CallsFromHome.cs`, `World/Region/TakenIn.cs`). A defense partner's
+  call, a liege's call for levies and a creditor's call for fighters (`ChoiceLetter_CallToArms`) have two more answers,
+  each greyed out with its reason when it can't be given:
+  - supplies in place of fighters: 60 raw food (else 20 meals), 6 medicine and up to two spare weapons from storage (not
+    biocoded, bonded or a relic), each carried out to the gate by the colony's people for their runners (the couriers);
+    under fealty from the medieval age on, a season's tribute in silver in place of service, carried out the same way (a
+    tribal colony sends supplies);
+  - their wounded taken in: two to four of them come up the road a day to three later, hurt from their fight (gunshots
+    from the industrial age on, cuts and stabs before it, and bruises; never so many that they can't walk in or would
+    bleed out first), and lie in the colony's beds as its guests until well (`TakenIn`); their people remember the doctor
+    who tended them most (the deed `tended`, once: the game's own count of a guest gone home is left out for them). Greyed
+    out with nobody who can doctor.
+
+  Either keeps the colony's word as a smaller kept word than fighters: the pact's call is cleared, the debt settled, the
+  levies counted as sent, each remembered at half a fighter's weight (`keptWord` 5, `levies` 4) and written in the
+  history.
+
+Decided here (open in the proposals): B5's percents (a quarter dearer, a fifth cheaper) and its reach (every trader of
+the world event's people, wherever the event is, since the proposal reads "by people"); the hover's words. B11's reach (15
+tiles) and "a little sooner" (asks below 30, not 20); the carter's word comes from their courier at the gate when the
+help is collected. B13's lead is an hour or two; the scouts are seen before every raid of a found camp; the runaway's
+chance; "sooner" halves the mean days to the next raid once; the defense planner is not changed (the message and the
+raid's letter name the side). B19's megareindeer also goes with the snowbound caravan; a camp's own trader goods are new.
+B27's amounts; weapons only as many as there are; a pact's "smaller kept word" is half the deed; the wounded come a day to
+three later and make for the beds themselves (a colonist carries anyone who goes down).
+
+Harm: the runaway's and the wounded's injuries are from before they came, shown on their health; any who die do so by
+the game's own rules, with a message. The scouts don't fight unless attacked; the raid is the camp's own, at its own
+rate, a little sooner once after a runaway taken in. Dev mode: "Region's years: what moves the traders' prices now",
+"Hamlet: a hard season's ask now" (follows a world event near it), "Hamlet: a hard season's ask in a region's hard
+year...", "Raiders' camp: its scouts now (the raid follows them)", "Raiders' camp: a runaway at the gate now", "Raiders'
+camp: the smoke at dusk, said now", "Taken in: ..." (who is in the beds, the wounded on their way come now, a call to
+arms' wounded come now...), "Camps: one with the mods' beasts and goods here now...". Not checked without the game: the trade window's hover and the advice's marks with a moved
+price, the courier saying the carter's word, the scouts' standing and walking off under their lord and the turrets' answer
+to them, a guest's bed rest and going home (the game's own guest rules beside `TakenIn`'s), the camps' mod beasts in the
+weather.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

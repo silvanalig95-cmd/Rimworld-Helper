@@ -232,6 +232,8 @@ namespace ColonyCouncil
             // The colony's doctor and diggers sent to a plague town for the hospitaller order and the Quiet Bell together
             // (Peoples/Events10/PlagueYear.cs): a lasting deed in both peoples' memories, heavy and slow to fade.
             ["plagueYear"] = K(DeedSide.Favor, 25),
+            // One of theirs who ran from a raiders' camp near the colony, taken in and tended (World/Region/RaidersCampSigns.cs).
+            ["rescued"] = K(DeedSide.Favor, 12),
             // The colony's wrongs.
             ["robbed"] = K(DeedSide.Wrong, 20, 2f),
             ["attacked"] = K(DeedSide.Wrong, 6, 2f, 30),

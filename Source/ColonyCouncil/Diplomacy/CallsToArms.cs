@@ -130,6 +130,8 @@ namespace ColonyCouncil
             string text = PactWords.T(fealty ? "CC_Arms_Fealty" : pact ? "CC_Arms_Pact" : "CC_Arms_Favour", who.Named("WHO"), PactWords.People(f).Named("PEOPLE"), town.Name.Named("TOWN"),
                               PactWords.People(enemy).Named("ENEMY"), form.word.Named("WORD"), form.rite.Named("RITE"))
                           + "\n\n" + PactWords.P("CC_Arms_How", town.Name.Named("TOWN"), PactMath.MinFighters.Named("COUNT"), CardWords.DistanceShort(town.Tile).Named("DISTANCE"))
+                          // Answered from home instead (B27): supplies or silver to the gate, or the colony's beds for their wounded.
+                          + "\n\n" + CallsFromHome.LetterText(t, home, f)
                           + "\n\n" + PactWords.P(fealty ? "CC_Arms_Refuse_Fealty" : pact ? "CC_Arms_Refuse_Pact" : "CC_Arms_Refuse_Favour", PactWords.People(f).Named("PEOPLE"),
                               FealtyMath.LeviesRefusedGoodwill.Named("GOODWILL"));
             var letter = LetterMaker.MakeLetter(PactWords.P(fealty ? "CC_Arms_Label_Fealty" : "CC_Arms_Label", PactWords.People(f).Named("PEOPLE"), form.word.Named("WORD")), text, def,
@@ -241,8 +243,11 @@ namespace ColonyCouncil
                     c != null ? new LookTargets(c) : LookTargets.Invalid, MessageTypeDefOf.PositiveEvent);
         }
 
-        /// <summary>The call is over: a pact's call cleared (the pact goes on), a debt's kept or let go; with <paramref name="state"/> null, let go with nobody at fault.</summary>
-        private static void Close(Tie t, bool pact, Tie.State? state)
+        /// <summary>
+        /// The call is over: a pact's call cleared (the pact goes on), a debt's kept or let go; with <paramref name="state"/> null,
+        /// let go with nobody at fault. Answered from home too (Diplomacy/CallsFromHome.cs).
+        /// </summary>
+        internal static void Close(Tie t, bool pact, Tie.State? state)
         {
             if (pact)
             {
@@ -427,6 +432,37 @@ namespace ColonyCouncil
                     },
                     resolveTree = true
                 }, this, "callToArms", caller, null, () => map);
+                // From home (B27): supplies, or silver in place of service, carried to the gate; or the colony's beds for their wounded.
+                var fromHome = new DiaOption(CallsFromHome.Label(t, map, caller))
+                {
+                    action = () =>
+                    {
+                        Find.LetterStack.RemoveLetter(this);
+                        var x = Live(out bool pact);
+                        if (x == null) return;
+                        var f = pact ? x.kind == Tie.Kind.Fealty ? Fealty.LiegeOf(x) : Pacts.PeopleOf(x) : Refs.Faction(x.to);
+                        CallsFromHome.Send(x, f, map, NotableBook.TownOf(town), pact);
+                    },
+                    resolveTree = true
+                };
+                string whyNot = CallsFromHome.WhyNot(t, map);
+                if (whyNot != null) fromHome.Disable(whyNot);
+                yield return Answers.Recorded(fromHome, this, "callToArms", caller, null, () => map);
+                var beds = new DiaOption(PactWords.P("CC_Arms_Opt_Wounded"))
+                {
+                    action = () =>
+                    {
+                        Find.LetterStack.RemoveLetter(this);
+                        var x = Live(out bool pact);
+                        if (x == null) return;
+                        var f = pact ? x.kind == Tie.Kind.Fealty ? Fealty.LiegeOf(x) : Pacts.PeopleOf(x) : Refs.Faction(x.to);
+                        CallsFromHome.OfferBeds(x, f, map, NotableBook.TownOf(town), pact);
+                    },
+                    resolveTree = true
+                };
+                string noBeds = CallsFromHome.WoundedWhyNot(map);
+                if (noBeds != null) beds.Disable(noBeds);
+                yield return Answers.Recorded(beds, this, "callToArms", caller, null, () => map);
                 yield return Answers.Recorded(new DiaOption(PactWords.P("CC_Arms_Opt_Refuse"))
                 {
                     action = () =>

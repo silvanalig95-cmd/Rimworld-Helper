@@ -88,8 +88,11 @@ most sense." So, in this order, three builds at a time:
      council (A1, A2, A5, A6, A21; released 0.279.0); the land and its life (C19, C20, C21, C22, C24, C28, C30; released
      0.279.1); wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29; released 0.279.2); the world brought
      home (B1, B2, B3, B23, B25, B26, B32; released 0.280.0); the peoples and their ties (B4, B12, B14, B17, B22, B29,
-     B31; built, not released: the entry "The peoples and their ties" above the newest release line); the region's years
-     and the camps (B5, B11, B13, B19, B27).
+     B31; released 0.280.1); the region's years and the camps (B5, B11, B13, B19, B27; released 0.280.2). Every integration
+     item is built.
+  3. Then the variety (started 20 November, the integrations all built): gods' variety (C5, C9, C10, C11, C13, C23, C31
+     and two new happenings for each god); the world's (B6, B7, B8, B15, B20, B21, B24, B28, six more world events, six
+     more camps); colony life's first (A3, A4, A7, A18, A19, A20, twenty-five more council questions); then the rest:
   3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
      events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
@@ -607,6 +610,82 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.280.2, **The region's years and the camps**
+  (20 November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good.
+  You can go ahead with this in the order you think makes most sense ... more immersion", and "first do all the
+  integrations that you proposed in your document before we add additional content variety"). Part B's world
+  integrations, part 3: B5, B11, B13, B19 and B27, each marked **Built** in the proposals doc with what was decided.
+  DESIGN.md "The region's years and the camps" (after "The world brought home") has every rule; README "The region's
+  years" (under World events) and touches in its hamlets, raiders' camps, pacts and camps; the Almanac's world events page
+  (a section "Hard and good years in the traders' prices"), the region page's hamlets, the raiders' camps page (a section
+  "Its signs on the map"), diplomacy's "Their call to arms" and the camps page (keywords unchanged). Built on an earlier
+  agent's unfinished work (branch `worktree-agent-a42666197e4639ac4`, which never ran the checks), finished and checked.
+  - **B5, traders' prices follow the region's hard and good years.** While a world event runs, every trader of its people
+    asks and pays a quarter more for what it makes scarce (food in a famine, blight, locusts, a year without a summer or a
+    drought; medicine in a plague or with medicine scarce; steel with iron scarce or in a war between neighbours; wood
+    after a fire or a flood, in rebuilding or a great work; cloth and leather in a murrain or with markets closed), and in
+    a bumper year their food is a fifth cheaper. One factor with the moot's season prices on the same hook
+    (`Patch_SeasonPrices`, 0.274.0), within half and one and a half, so the two never fight; the trade window's price
+    hover says why ("Food dear at Ashford (famine): 25% more with the Ashford Union, buying or selling.").
+  - **B11, the hamlet's hard seasons follow the region.** The nearest running world event within 15 tiles decides the
+    ask (a doctor in a plague, food in a famine and the like, tools after a fire, a flood or in rebuilding), the ask comes
+    below a fortune of 30 rather than 20, the letter opens with what happened, and their courier at the gate says it aloud
+    once; a bumper year near makes the harvest's load half again as big.
+  - **B13, signs of the raiders' camp on the map.** Two scouts at the edge on the camp's side before each raid (they
+    watch for an hour or so and walk off; the raid follows an hour or two after, from where they came in, and its letter
+    says so); once in a camp's life a captive who ran from it at the gate, hurt from before, taken in as the colony's
+    guest and tended (+6 goodwill, the deed `rescued`, the camp's next raid sooner); someone on the walls at dusk
+    pointing out its smoke.
+  - **B19, camps' herds, dogs and goods from the full mod pool.** Aurochs, chameleon yak, thunderox, megareindeer, camel
+    and Indian elephant in the herds and among the pack beasts, Vanilla Animals Expanded's dogs at a camp's heels (any
+    dog that fits now, not the first), a cat for the hermit; the salt caravan's salt (Vanilla Cooking Expanded, else
+    pemmican) at its stall and always in its trader's pack, the herb-gatherers' tea leaves, the market's raw honey.
+  - **B27, answer a call to arms from home.** A defense partner's, a liege's and a creditor's call have two more answers:
+    supplies (60 raw food or 20 meals, 6 medicine, up to two spare weapons) or, to a liege from the medieval age on, a
+    season's tribute in silver, carried to the gate for their runners; or the colony's beds for two to four of their
+    wounded, who come up the road a day to three later and stay as its guests until well. Either keeps the word at half a
+    fighter's weight.
+  - Code map: new `World/Region/RegionPrices.cs` and `RegionPricesMath.cs` (B5; the hover patch `Patch_SeasonPriceWhy`),
+    `World/Region/RaidersCampSigns.cs` and `RaidersCampSignsMath.cs` (B13: the scouts' lord and duty, the runaway's worker
+    and effect, the smoke), `World/Region/TakenIn.cs` and `TakenInMath.cs` (other peoples' hurt in the colony's beds,
+    `TakenInBook` saved and modelled in `Tools/save_estimate.py`), `Diplomacy/CallsFromHome.cs` and `CallsFromHomeMath.cs`
+    (B27), `World/Region/RegionYearsDebug.cs`. Changed: `Peoples/Events10/PeopleEvents10.cs` (`Patch_SeasonPrices` takes
+    the region's factor), `World/Region/HamletLife.cs`, `HamletMath.cs`, `HamletWords.cs`, `Hamlet.cs` (saved `hardEvent`,
+    `hardWhere`, `wordUntil`), `HamletDebug.cs`, `RaidersCamp.cs` (saved `scoutAt`, `raidDue`, `raidSide`, `raidCell`,
+    `runaway`, `sooner`, `smokeAt`; `TryRaid` from the scouts' cell), `RegionBook.cs` (the carter's word and those taken in
+    on the region's hour), `Diplomacy/CallsToArms.cs` (the two answers), `PlayOut/PlayCarry.cs` (spare weapons, `arms`),
+    `World/FactionMemory.cs` and `FavourMath.cs` (the deed `rescued`), `World/Patch_FactionMemory.cs` (no second deed for
+    one taken in), `Camps/CampKindDef.cs` (`traderGoods`), `CampTracker.cs`, `CampLook.cs` (a dog any that fits). Defs:
+    `Defs/IncidentDefs/Rimfolk_Events_RegionYears.xml` (the runaway), `Defs/Misc/Rimfolk_RegionYears.xml` (the scouts'
+    duty), the camp kinds in `Defs/CampDefs/`; words `Languages/English/Keyed/Rimfolk_RegionYears.xml`. Tests
+    `Tools/Tests/RegionYearsTests.cs` (163 checks). No new `Sched` offset.
+  - Decided here (open in the proposals): see each item's **Built** line there.
+  - Harm: the runaway's and the wounded's injuries are from before they came, shown on their health, never so many that
+    they can't walk in or would bleed out before they are tended; any who die do so by the game's own rules, with a
+    message. The scouts don't fight unless attacked (turrets that fire on them start it); the camp's raids are its own, a
+    little sooner once after a runaway taken in.
+  - Not run here (none of it could be): the trade window's hover and the trade advice's marks with a moved price; the
+    courier saying the carter's word; the scouts walking in, standing and walking off under their lord, and the raid then
+    coming from their cell; the runaway at the gate and in bed as a guest, the game's own guest rules beside `TakenIn`'s
+    (bed rest, going home, the goodwill it gives); the wounded's walk to the beds; the camps' mod beasts in the weather;
+    how often each comes in a real colony.
+  - Try in the game (dev mode, "Rimfolk"): 1. "Start world event..." a famine (or a plague) on a people whose caravan or
+    town you trade with, then "Region's years: what moves the traders' prices now" and hover over food's price in the
+    trade window. 2. With a hamlet standing, start a plague near it and "Hamlet: a hard season's ask now", or use "Hamlet:
+    a hard season's ask in a region's hard year..."; send the help and watch their courier at the gate. 3. With a raiders'
+    camp found, "Raiders' camp: its scouts now (the raid follows them)", "Raiders' camp: a runaway at the gate now" (take
+    them in, then "Taken in: who is in the colony's beds") and "Raiders' camp: the smoke at dusk, said now". 4. "Pacts:
+    their call to arms now...", "Fealty: their call on the levies now" or "Favours: they call in the colony's debt..." and
+    answer with supplies, silver or the beds; then "Taken in: the wounded on their way come now" (or "Taken in: a call to
+    arms' wounded come now..." without a call). 5. "Camps: one with the mods' beasts and goods here now..." (the salt
+    caravan, the market, the hermit, drovers, herb-gatherers, a snowbound caravan, woodcutters), or "Peoples: one of their
+    camps here now..." for the herders' winter camp and the calving camp; look at their beasts, their dog and their
+    trader's goods.
+  - Mods that would help: Dark Ages: Beasts and Monsters
+    ([3472275628](https://steamcommunity.com/sharedfiles/filedetails/?id=3472275628), 1.5 to 1.7, in the player's list but
+    off) for more herds and dogs (`DA_DwarvenMuffton`, `DA_ImperialRedhound`; it also brings trolls and incidents of its
+    own); Gerrymon's Misc Props: Fences ([3797400517](https://steamcommunity.com/sharedfiles/filedetails/?id=3797400517),
+    1.6 and 1.7, off) for the herders' pens. Whether each is still kept up was not checked here.
 - 0.280.1, **The peoples and their ties** (20
   November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You
   can go ahead with this in the order you think makes most sense ... more immersion ... the relations between pawns, the

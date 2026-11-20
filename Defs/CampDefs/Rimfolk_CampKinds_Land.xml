@@ -105,7 +105,7 @@
     <sleep>Tents</sleep>
     <works><li>Fish</li><li>Chop</li><li>Gather</li></works>
     <animals>
-      <li><kinds><li>LabradorRetriever</li><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+      <li><kinds><li>LabradorRetriever</li><li>Husky</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Beagle</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_FrenchBulldog</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
     </animals>
     <titles>
       <li>Fishers on the bank</li>
@@ -264,7 +264,7 @@
     <tidy>Careless</tidy>
     <works><li>Chop</li></works>
     <animals>
-      <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Donkey</li></kinds><count>1~2</count><at>picket</at></li>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Donkey</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li></kinds><count>1~2</count><at>picket</at></li>
     </animals>
     <titles>
       <li>A scrap crew</li>

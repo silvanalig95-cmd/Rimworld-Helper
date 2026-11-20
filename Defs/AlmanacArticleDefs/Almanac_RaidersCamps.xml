@@ -31,6 +31,14 @@ It can be found other ways too, once it has stood two days: a visitor or trader 
         <text>A camp raids at the game's own raid-source rate, by its threat points: a raid every 25 days on average at 400 points, 10 at 1,500, 5 at 5,000, straight between them. Each is a little over half a raid on the colony (0.6 of its threat points), walks in from the edge of the map on the camp's side (when that side gives no way in, from the nearest side that does, and the letter says which), and comes on top of the storyteller's own. The first comes no sooner than two days after the camp was set up and a day after it was found, and never within a day and a half of the last, nor on top of another threat on the map or within a day of the last big one.</text>
       </li>
       <li>
+        <heading>Its signs on the map</heading>
+        <text>Before each of its raids, two of the camp's scouts come in at the edge of the map on its side, stand some way in looking toward the colony for an hour or so, and walk off; a message names the side. The raid follows an hour or two after they were first seen, from where they came in, once they are gone, and its letter says so. The scouts don't start a fight: hurt, they leave at once and defend themselves on the way. With no way in for them, the raid comes as before.
+
+Once in a camp's life, from its third day after it is found, a captive who ran from it may come in from its side: one of a people at peace with the colony, bruised and cut from before, who sits at the gate and asks for a bed. Taken in, they are the colony's guest, put to bed and tended until they can walk home (or after twenty days on their feet); their people think 6 better of the colony and remember it, naming the doctor who tended them, and the camp's next raid comes sooner, its people out looking for them. Sent on, they limp off along the road.
+
+At dusk, every few days, someone of the colony out by a wall or a gate may say the camp's smoke is up again, and which way.</text>
+      </li>
+      <li>
         <heading>How it ends</heading>
         <table>
           <li>Ending | How</li>
