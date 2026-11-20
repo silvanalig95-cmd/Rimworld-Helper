@@ -17167,8 +17167,15 @@ close by again or back into the base"; then they sent Nice Inventory Tab's DLL.
   held when they aren't near (`MadeForWearMath.GoNow`: free, in the home area, the piece in the home area too or within
   40 cells); Rimfolk says the piece is ready (the mod's own message after it left out); `MadeForWearBook` (saved) keeps
   it, and when they next choose a job with nothing under way (`DetermineNextJob`) and are near, they put it on first,
-  forced as the mod's order was. Let go of once worn, gone, after 15 days, or when it no longer fits without taking
-  something off. Someone nearby goes at once, as before.
+  forced as the mod's order was; what they wear in its place comes off, as with the mod's own order. Let go of once
+  worn, gone, after 15 days, when they can't wear it (`EquipmentUtility.CanEquip`) or when it would take off something
+  locked on them (`WouldReplaceLockedApparel`). Someone nearby goes at once, as before.
+- **Kept for them** (the player, 20 November 2026: "when the pawn that creates the item would also wear it, they
+  immediately wear it ... instead of reserving it for the other pawn"): while a piece waits for someone, the game's own
+  look for better clothes (`JobGiver_OptimizeApparel.ApparelScoreGain`, `Patch_MadeForWearKept`) scores it as worth
+  nothing to anyone else, the crafter too (`MadeForWearMath.KeptFrom`: the one it is for alive, the wait not run out).
+  An order the player gives still goes. Until 20 November a waiting piece was also let go of as soon as they wore
+  something in its place, the usual case, so they never put it on.
 
 ### Choose the material when ordering a piece from the gear tab (the player's go, 19 November 2026; released 0.268.1)
 
@@ -17189,7 +17196,8 @@ lead's proposal: "yes, please", "all the three".
   name): for a piece made from a material (the product is made from stuff and the recipe takes its stuff from an
   ingredient), one more menu opens, titled "Material for the (piece)": "Any material" first, then each material the
   recipe takes (from its material ingredient, never a fixed one like components; allowed for the piece and by the
-  recipe) that the colony has enough of for one piece, with how much is on hand and the material's own icon. On hand
+  recipe) that the colony has enough of for one piece, with how much one piece takes and how much is on hand ("Cloth: 60
+  for one, 412 on hand", since 20 November 2026) and the material's own icon. On hand
   is what lies on the map, seen and not forbidden; one piece's need is the game's own count for that material
   (`IngredientCount.CountRequiredOfFor`, so gold and silver count in their own units). The order
   (`MaterialChoiceMath.Offered`, pure, in the tests): the material that makes the most pieces first, then by name. With

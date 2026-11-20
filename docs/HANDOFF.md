@@ -568,6 +568,28 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.274.2, **A piece made for someone, kept
+  for them** (20 November 2026; the player: "So while the material selection for creating a item seems to work for the
+  most part, although it should, in my opinion, only show the materials where I also have enough available, or
+  otherwise, just or at least show how many it takes and how many I have. But it also doesn't seem to work yet that this
+  item is then kind of reserved for this pawn. So essentially, when the pawn that creates the item would also wear it,
+  they immediately wear it. I just saw this instead of reserving it for the other pawn. And I don't know if it works that
+  the target pawn takes it later."). A fix of 0.266.4 and 0.268.1, built in the main tree.
+  - **The causes.** Nothing kept a waiting piece from others: the crafter's own look for better clothes found it beside
+    the bench and put it on. And the one it was made for never would have: `MadeForWear.NextJob` let the piece go as soon
+    as it "no longer fits without taking something off" (`CanWearWithoutDroppingAnything`), true for anyone who already
+    wears a shirt when a shirt is made for them.
+  - **The fix.** `Patch_MadeForWearKept`, a postfix on `JobGiver_OptimizeApparel.ApparelScoreGain`: a piece waiting for
+    someone scores -1000 for everyone else while the one it is for is alive and the 15 days haven't run out
+    (`MadeForWearBook.KeptFromOthers`, `MadeForWearMath.KeptFrom`). `NextJob` lets a piece go only when they can't wear it
+    (`EquipmentUtility.CanEquip`) or it would take off something locked (`WouldReplaceLockedApparel`); the forced Wear job
+    takes off what it replaces, as the mod's own order does. The material menu says "Cloth: 60 for one, 412 on hand"
+    (`CC_MaterialChoice_Stuff` with `{NEED}`); it already offered only materials with enough for one piece
+    (`MaterialChoiceMath.Offered`), so if one ever shows with less, the two numbers now show it.
+  - **Try in the game.** Order a parka from the gear tab for a colonist who is out working far off and already wears a
+    parka; let someone else make it. The message says it is ready and it goes to storage; nobody else puts it on, not the
+    crafter. When the colonist is back at the base and free, they walk to it and put it on, dropping the old parka.
+  - **Mods that would help.** None; this works with Nice Inventory Tab, which is in the list.
 - 0.274.1, **The defense survey's shut
   doors** (20 November 2026; found 19 November 2026 in the plain-words pass on the Almanac, part 2, with no words of the
   player's; the player's go of 20 November 2026: "go ahead with the next tasks"). A bug fix. DESIGN.md "Shut doors on the

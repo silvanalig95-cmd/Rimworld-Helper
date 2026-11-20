@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Kept for the one it was made for
+
+*20 November 2026, version 0.274.2*
+
+- A piece made for someone from the gear tab is kept for them: nobody else puts it on while it waits, not even the crafter.
+- They now put it on when back near the base even if they already wear something in its place, which comes off as with Nice Inventory Tab's own order.
+- The material menu says how much one piece takes beside how much is on hand.
+
 ## Shut doors on the ways in
 
 *20 November 2026, version 0.274.1*

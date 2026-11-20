@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.274.2</version>
+        <date>20 November 2026</date>
+        <title>Kept for the one it was made for</title>
+        <points>
+          <li>A piece made for someone from the gear tab is kept for them: nobody else puts it on while it waits, not even the crafter.</li>
+          <li>They now put it on when back near the base even if they already wear something in its place, which comes off as with Nice Inventory Tab's own order.</li>
+          <li>The material menu says how much one piece takes beside how much is on hand.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.274.1</version>
         <date>20 November 2026</date>
         <title>Shut doors on the ways in</title>

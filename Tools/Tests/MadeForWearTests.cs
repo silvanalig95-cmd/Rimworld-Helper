@@ -34,8 +34,15 @@ public static class MadeForWearTests
           && src.Contains("!(MadeForWear.held && MadeForWear.finishingFor != null)"), "the mod's message left out only after Rimfolk held the order and said so");
         C(src.Contains("[HarmonyPatch(typeof(Pawn_JobTracker), \"DetermineNextJob\")]") && src.Contains("__instance?.curJob != null")
           && src.Contains("job.playerForced = true;"), "put on between jobs, forced as the mod's own order was");
-        C(src.Contains("!p.apparel.CanWearWithoutDroppingAnything(piece.def)") && src.Contains("piece.ParentHolder is Pawn_ApparelTracker"),
-            "let go of once worn, or when it no longer fits without taking something off");
+        C(src.Contains("!EquipmentUtility.CanEquip(piece, p) || p.apparel.WouldReplaceLockedApparel(piece)") && src.Contains("piece.ParentHolder is Pawn_ApparelTracker")
+          && !src.Contains("CanWearWithoutDroppingAnything"),
+            "let go of once worn, or when they can't wear it or it would take off something locked; not because they wear something in its place");
+        C(MadeForWearMath.KeptFrom(true, false, false), "kept from everyone else, the crafter too, while it waits");
+        C(!MadeForWearMath.KeptFrom(true, true, false), "not kept from the one it was made for");
+        C(!MadeForWearMath.KeptFrom(false, false, false) && !MadeForWearMath.KeptFrom(true, false, true), "free for anyone once the one it was for is dead or the wait has run out");
+        C(MadeForWearMath.NotForThem < 0f, "worth nothing to the others looking for better clothes");
+        C(src.Contains("[HarmonyPatch(typeof(JobGiver_OptimizeApparel), \"ApparelScoreGain\")]") && src.Contains("if (book.KeptFromOthers(ap, pawn)) __result = MadeForWearMath.NotForThem;"),
+            "the game's look for better clothes passes over a piece kept for someone else");
         C(src.Contains("RimfolkPatches.On && (ColonyCouncilMod.Settings?.madeForWearLater ?? true)"), "the holding behind the deeper hooks and its setting");
         string catalog = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "UI", "SettingsCatalog.cs"));
         C(catalog.Contains("Mod(Toggle(\"madeForWearLater\", \"CC_Settings_MadeForWearLater\", \"CC_SetNote_MadeForWearLater\", \"deepHooks\"), NiceInventoryTabId);"),
