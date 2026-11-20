@@ -61,14 +61,14 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The age a people of Rimfolk's lives in now (0 tribal to 3 spacer): the age it began in (<see cref="BeganIn"/>),
-        /// as it has risen or fallen back since over the years (Peoples/PeopleAges.cs, with the setting on). Any other
-        /// people: its own.
+        /// as it has risen or fallen back since over the years (Peoples/PeopleAges.cs, with the setting on); so is another
+        /// mod's people Rimfolk knows (Peoples/Foreign/, the dark elves). Any other people: its own.
         /// </summary>
         public static int AgeOf(Faction f)
         {
             if (f?.def == null) return (int)Ages.Ours;
             int began = BeganIn(f);
-            return Of(f) == null ? began : PeopleAges.AgeOf(f, began);
+            return !PeopleAges.Kept(f) ? began : PeopleAges.AgeOf(f, began);
         }
 
         /// <summary>
@@ -91,13 +91,13 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The tech level a people lives by now, for what Rimfolk asks of its ways and means (its words, its messengers, its
-        /// camps, its gear's stuff, its towns' stores): its def's own while its age is its def's, else its age's. Any other
-        /// people, and the game itself, keep the def's.
+        /// camps, its gear's stuff, its towns' stores, the comms console's reach): its def's own while its age is its def's,
+        /// else its age's; the same for another mod's people Rimfolk knows. Any other people, and the game itself, keep the def's.
         /// </summary>
         public static TechLevel TechOf(Faction f)
         {
             if (f?.def == null) return TechLevel.Undefined;
-            if (Of(f) == null) return f.def.techLevel;
+            if (!PeopleAges.Kept(f)) return f.def.techLevel;
             int age = AgeOf(f);
             return age == (int)LedgerMath.AgeOf((int)f.def.techLevel) ? f.def.techLevel : (TechLevel)PeopleAgesMath.TechOfAge(age);
         }

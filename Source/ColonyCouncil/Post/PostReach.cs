@@ -194,6 +194,23 @@ namespace ColonyCouncil
             return PostMath.RadioReaches((int)Peoples.TechOf(f, TechLevel.Industrial), town != null ? MastTiles(town.Tile) : -1f);
         }
 
+        /// <summary>
+        /// A call reaches the people as a whole (the comms console's own calls, a pact's, a ransom's, a favour's, a truce's):
+        /// its age has the radio (by the age it lives in now, Peoples.TechOf), or a town of theirs is within reach of the
+        /// Signal Line's masts (ConsoleRadioMath.Reaches). The same rule as <see cref="Radio"/> for a town.
+        /// </summary>
+        public static bool Callable(Faction f)
+        {
+            if (f?.def == null) return false;
+            int tech = (int)Peoples.TechOf(f, TechLevel.Industrial);
+            if (PostMath.RadioReaches(tech, -1f)) return true;
+            var tiles = new List<float>();
+            foreach (var s in Find.WorldObjects.Settlements)
+                if (s != null && s.Faction == f && !s.Destroyed)
+                    tiles.Add(MastTiles(s.Tile));
+            return ConsoleRadioMath.Reaches(tech, tiles);
+        }
+
         /// <summary>The colony's means for its letters: by its age, mounted when it has an animal to ride.</summary>
         public static LetterMeans ColonyMeans(Map home) => PostMath.ColonyMeans(Ages.Ours, OwnRiders.MountFor(home, null) != null);
 

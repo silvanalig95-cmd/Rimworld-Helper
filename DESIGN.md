@@ -11263,7 +11263,8 @@ current save. ... And please go ahead with all the changes right now that I told
   visitor's idle hours (`Rimfolk_Pool_VisitorIdle`: company, a fire, the stars, a walk, a blade sharpened), plain.
 - **Not changed**: pawns already in a game (the Stormriders on the map and those the world keeps) keep what they have;
   the Elves mod's other dark elves (`DevDesigner_RoughDarkElvesFaction`) and its high and wood elves; their xenotype, race,
-  kinds and weapons.
+  kinds and weapons. Since the foreign peoples' ages (below, "The comms console by radio, and the foreign peoples'
+  ages"), their age changes over the years and a pawn of theirs made in the industrial age carries its role's arms of it.
 - Dev actions "Peoples of other mods: their gear, looks and gifts (log)..." (four new pawns of each of their kinds,
   described with role, look, clothes and colours, weapon, class or psylink, hair and tattoos, not kept) and "... one of
   each of their kinds here now, as visitors (testing)...". README "Another mod's people: the dark elves"; the Almanac's
@@ -11278,7 +11279,8 @@ older factions should also be able to grow and develop over time to reach higher
 Rimfolk keeps a people's age now beside it and reads that wherever it asks about a people's ways and means.
 
 - **The record** (`Peoples/PeopleAges.cs`: `PeopleAgeRecord`, `PeopleAgeBook`, a game component of its own): one a people
-  of Rimfolk's (the twenty-three and every one that arose in their ways), made the first time the region's day looks at it:
+  of Rimfolk's (the twenty-three and every one that arose in their ways) and, since the section after this one, one a
+  people of another mod Rimfolk knows (`PeopleAges.Kept`), made the first time the region's day looks at it:
   its age now (0 tribal to 3 spacer), the age it began in (`Peoples.BeganIn`: its def's, or for one that arose the age of
   what it came from, as release B gave it), its progress (-1 falls back an age, +1 rises one, starting from a head start
   of up to a fifth by its id), when it was first heard of, looked at and last changed, the age before, and its heading
@@ -11385,6 +11387,87 @@ Rimfolk keeps a people's age now beside it and reads that wherever it asks about
   and fate, everything the rule reads for it this season, and what the next season gives), "a people up an age now
   (testing)...", "a people down an age now (testing)..." (the letter as the years would bring it), "every people's
   season now (testing)".
+
+### The comms console by radio, and the foreign peoples' ages (the player's go, 20 November 2026; not released yet)
+
+The player, with League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm
+Riders. I mean, they are always only on medieval style tech level, it seems ... that is a very cool idea, that other
+factions can also increase tech level and adjust over time. But then also, if they are still on older technology, it
+doesn't make sense if they are all reachable with the comms console." The go: "yes, please go ahead Regarding the faction
+update, in the sense that only the ones with radio can answer, and also that foreign peoples change [age] at their pace.
+That makes sense."
+
+- **The comms console by radio** (`Peoples/ConsoleRadio.cs`, `Peoples/ConsoleRadioMath.cs`). The game's console lists
+  every people whatever its age. `Patch_ConsoleRadio`, a postfix on `Faction.CommFloatMenuOption` (the one option a
+  people gives the console, the same in 1.6 and 1.7), greys the call of a people with no radio: the game's label stays,
+  with "(no radio: they can only be reached by a letter)" after it, and its tooltip says the age they live in and how a
+  letter reaches them (from their card or their page under Peoples in the region window; a courier or the post carries
+  it). With the letters off it says that their messengers and traders still come to the gate. Never hidden.
+  - *The rule* (`PostReach.Callable`): the age the people lives in now (`Peoples.TechOf`: Rimfolk's record where it keeps
+    one, else the faction's own tech level) is industrial or later (`NotableMath.Callable`), or a town of theirs lies
+    within 30 tiles of a Signal Line town, whose masts carry the call (`PostReach.MastTiles`, `ConsoleRadioMath.Reaches`).
+    So the Empire (ultra), the outlanders, the pirates, the gravship crews and every other people of those ages answer as
+    before; the tribes, Vanilla Factions Expanded - Classical's republics (neolithic by their def), Medieval 2's clans and
+    kingdoms, the elves and Rimfolk's tribal and medieval peoples are greyed unless a mast is near.
+  - *Only the console's own call changes*: ships in orbit (not peoples), another mod's contact on the console that isn't
+    a people, a people's dialog opened any other way (a quest, a mod's or Rimfolk's own job calling `TryOpenComms`), the
+    Empire's permits (from the title's own buttons) and the game's quests are as they were.
+  - *One rule for every call*: `PostMath.RadioReaches` reads `NotableMath.Callable`, and a pact called in
+    (`PactCalls.Means`), a ransom's call (`Ransoms.ByCall`), a favour's (`FavourAsks`) and a truce's (`Truces`) use
+    `PostReach.Callable` in place of the age alone, so the masts carry those calls as they carry the letters'. The
+    letters' radio (`NeighbourLetters.ChannelWhyNot`, `PostReach.Radio` by the town) and a camp's word over the air
+    (`CampRaid.Radio`, both ages industrial and a console) read the same ages.
+  - *Setting* `radioConsole` ("Only peoples with a radio answer the comms console", What's on, The region, right under
+    the peoples' ages; on; needs the deeper game hooks). Off: the console calls every people, as the game has it.
+  - *Not changed*: the game's ransom demand (`IncidentWorker_RansomDemand`) still comes as a radio letter from whichever
+    people holds a colonist while the colony has a powered console (Rimfolk's messenger brings it without one).
+- **The foreign peoples' ages.** `PeopleAges.Kept`: Rimfolk's peoples and every faction a `ForeignPeopleDef` names (today
+  the dark elves of Elves (Continued), the Stormriders in the player's save). Each gets an age record
+  (`PeopleAges.Ensure`, made on the region's day, looked at once a season by the one rule, `PeopleAgesMath.Season`: the
+  colony's trade, gifts of learning, teaching and an alliance quicken it; cut off from the world it falls back).
+  `Peoples.AgeOf` and `Peoples.TechOf` read it, so everything that follows a people's age follows theirs: their words,
+  camps, the stuff of their gear, their letters' means, the console's reach, their card's heading and the region's page,
+  the letter of a change with their head's own words (`CC_PeopleAge_Voice_Rimfolk_Foreign_DarkElves_Rise` and `_Fall`,
+  by `PeopleAges.VoiceKey`), and their traders' stock (`Patch_PeopleAgeStock`).
+  - *Their ways* (`ForeignPeopleDef.agePace`, `ageLimit`, `ageFloor`; `ForeignPeoples.Ways`): the dark elves 11 years an
+    age (the Ashen Banner's pace: a medieval people that lives by war and takes up whatever arms win its raids), no
+    further than the industrial age (the coven is ruled by its sorceresses, who keep it from the spacer age's machines),
+    no lower than the tribal age (one below, the default). A profile that names none: 12 years an age
+    (`ForeignAgesMath.DefaultPace`), one age up and one down.
+  - *The arming cap* (`ForeignAgesMath.ArmedLimit`; `ForeignPeoples.ArmedLimit`, worked out once for the loaded mods):
+    each role whose kinds carry arms (a kind with weapon tags and a weapon budget) needs a set for every age above the
+    one its mod made it for (`ForeignRole.ageArms`, Rimfolk's own `PeopleAgeArms`: weapon tags of any mod and a kit),
+    and the set has to find a weapon of its tags of no later age within its means among the loaded mods
+    (`AgeArms.Weapons`, the same search the arming makes), or a piece of its kit. The people rises no further than an
+    unbroken run of such ages. Falling back needs no set: the base game's arms of the age take the place of anything of a
+    later age (`FallbackArms`), as for Rimfolk's peoples.
+  - *The dark elves' arms of the industrial age* (from the full mod pool, checked against the player's catalogue): the
+    Darkshards' repeating crossbows give way to a repeating gun under `IndustrialGunAdvanced` within 600 silver (the
+    game's assault rifle, heavy SMG, light machine gun, chain shotgun and Hellcat; Vanilla Weapons Expanded's battle and
+    service rifles, carbine, light SMG, its Quickdraw's bullpup rifle and PDW; Rimsenal's modular rifles and carbines;
+    Advanced Armaments' auto shotgun), with an ammo pack (Vanilla Apparel Expanded - Accessories); the Dark Riders a light
+    gun under `Gun` within 300 (a bolt-action rifle, a pump shotgun, a revolver, a machine pistol and the mods' like); the
+    Dreadspears keep spear and shield (the shield is worn in the left hand, so no rifle) with a belt of frag grenades
+    (Vanilla Weapons Expanded - Grenades), the Black Guard their halberds with the same belt; the Cold One Knights, the
+    witch elves, the sorceresses and the Supreme Sorceress keep their own arms. The kits sit beside the Elves mod's own
+    (a belt at the waist), so no piece of it is taken off. Their traders and ordinary folk carry no arms of their own and
+    need no set.
+  - *A pawn of theirs* (`ForeignPeoples.Fit`, fresh pawns, with the deeper hooks): in an age other than the medieval one
+    their mod made them for, first its role's set (`AgeArms.Arm`) and the every-age pass (`ForeignPeoples.ToAge`,
+    `AgeArms.ToAge`: nothing of a later age, the age's plain clothes on a bare body, the base game's arms in place of a
+    weapon of a later age or a fighter's bow in an age of guns), then the pieces, the sidearm, the gifts and the look as
+    before. A bolt quiver now goes only with a bow or a crossbow.
+  - *The numbers* (`Tools/Tests/ForeignAgesTests.cs`, "the console and the foreign ages: "). The Stormriders in the
+    player's save (`Faction_25`, an ally) begin medieval with a head start of 0.05 of an age and a fate of 1.01, and reach
+    the industrial age in 10.5 years by themselves, 7 years as the colony's ally (28 seasons, 420 days) and 5.3 with 2500
+    silver of trade a year besides; then they are settled in their ways. Over 400 worlds (each its own fate and head
+    start) the dark elves rise in 5 years in none by themselves, 2% allied and 61% allied and trading; in 10 years in 61%
+    by themselves and in all allied. Cut off wholly they fall back to the tribal age in five years, and no lower.
+  - *The records*: within `PeopleAgesMath.MaxRecords` (40: the twenty-three, six that may arise and the dark elves),
+    modelled in `Tools/save_estimate.py`.
+- **Dev actions**: "Peoples: every people's age and progress (log)" lists the dark elves too, with their limit by their
+  arms and whether the console reaches each people; "Peoples: a people up an age now (testing)..." raises them; "Peoples
+  of other mods: one of each of their kinds here now, as visitors (testing)..." then shows them armed for their age.
 
 ### The colony's animals with powers
 

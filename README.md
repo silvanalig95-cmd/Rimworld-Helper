@@ -4036,6 +4036,15 @@ end the range in the spacer age. Each town's card says how to reach them now and
 two days on the road: by the next post rider", "far: by relay through Emberford, about seven days", "out of reach until
 you have radio"), and the region map rings the far and the out-of-reach towns.
 
+**Only peoples with a radio answer the comms console.** The game's console lists every people whatever its age. With
+Rimfolk, a people of the tribal or the medieval age (by the age it lives in now, as Rimfolk keeps it, or the faction's own
+tech level) with no town near the Signal Line's masts is listed greyed: "(no radio: they can only be reached by a
+letter)", and its tooltip says how a letter reaches them (their card or their page under Peoples, a courier or the
+post). The Empire, the outlanders, the pirates and every people of the industrial age or later answer as before, and so
+does a people that has risen into the industrial age. Only the console's own call changes: ships in orbit, quests and the
+Empire's permits are as they were. Rimfolk's own calls (a pact called in, a ransom, a favour, a truce, a letter by radio)
+keep the same rule. Setting: *Only peoples with a radio answer the comms console* (on; needs the deeper game hooks).
+
 **The peoples, closest first, and what to do with each.** The region window's Peoples is a list of every people beside
 the page of the one you choose. The list has a search, filters (neighbors, mail, dealings) and a sort: closest first
 by default (their nearest town's days on the road at the colony's means, as the post reckons it), or by regard, name or
@@ -4524,7 +4533,12 @@ elves (bladedancers) and about half of their sorceresses (lightning, ice and fir
 sorceresses have a psylink instead. Their casters show it as the peoples' do: a caster's own hood where it fits, never a
 wand in place of their weapon, their craft named at the gate, a helpful spell in peace now and then, the mod's own AI in a
 fight with its most broken spells kept out, and their card says what crafts are among them. A few lines of their own when
-they visit. Only pawns made from now on; their xenotype and race are not touched.
+they visit. Only pawns made from now on; their xenotype and race are not touched. Their age changes over the years as
+Rimfolk's own peoples' do (below): at a medieval people's pace, eleven years an age, sooner with the colony's trade, gifts
+and alliance, and no further than the industrial age. Risen into it, their Darkshards carry repeating guns (assault
+rifles, heavy SMGs, light machine guns and the mods' like) with an ammo pack, their Dark Riders a light gun, their
+Dreadspears and Black Guard keep spear, shield and halberd with a belt of frag grenades, and their knights, witch elves
+and sorceresses keep their own arms; and the comms console reaches them.
 
 **Where their ways began.** Each of the seven keeps a founding story (told in their talk and on their Almanac page; the
 description on the faction page says in plain words what they do, how they live, what they want from their neighbours
@@ -4849,7 +4863,9 @@ craft taught or the power cells it asks for. In a typical game of five to ten ye
 and a learned one the colony helps may go two. A letter in their own voice tells each change, what they learned or what
 they lost, and their card and the region's page of peoples show their age and which way they are heading. Their next
 visitors come dressed and armed as the new age is (and nothing of a later age among a people that fell back), their
-camps are built its way and their traders carry its goods. Setting: *Peoples' ages change* (on).
+camps are built its way and their traders carry its goods. The other mods' peoples Rimfolk knows change age the same way
+at a pace of their own: the dark elves of Elves (Continued) at eleven years an age, up to the industrial age, and only as
+far as each of their fighting kinds has arms of that age from your mods. Setting: *Peoples' ages change* (on).
 
 **The gods.** Fifteen gods, each a being with names and a character of its own: Hollin, whose body is the roots under
 the world; Smoulder, a dragon asleep under the mountains; Bellwether, the first thrumbo; Morel, the soft mother of rot

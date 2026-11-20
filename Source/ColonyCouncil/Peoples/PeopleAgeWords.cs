@@ -61,15 +61,15 @@ namespace ColonyCouncil
             var town = TownOf(f, out var home);
             home ??= Homes.Seat;
             var form = Ages.Form(AgeFeature.Founding, home, f);
-            string calling = Peoples.CallingOf(f) ?? "";
             var a = new[]
             {
                 form.word.CapitalizeFirst().Named("MEANS"), f.Name.Named("PEOPLE"), AgeWord(r.age).Named("AGE"), AgeWord(r.was).Named("WAS"),
                 (f.LeaderTitle ?? Peoples.Of(f)?.head ?? "").Named("LEADER")
             };
             var parts = new List<string> { T((rise ? "CC_PeopleAge_Rise_" : "CC_PeopleAge_Fall_") + r.age, a) };
-            string voice = "CC_PeopleAge_Voice_" + calling + (rise ? "_Rise" : "_Fall");
-            if (voice.CanTranslate()) parts.Add(T(voice, a));
+            // Their head's words: by their calling, or another mod's people's own (the dark elves').
+            string voice = PeopleAges.VoiceKey(f, rise);
+            if (voice != null && voice.CanTranslate()) parts.Add(T(voice, a));
             string because = Because(why, rise);
             if (because != null) parts.Add(T("CC_PeopleAge_Letter_" + because, a));
             string text = string.Join(" ", parts) + "\n\n" + T(rise ? "CC_PeopleAge_Seen_Rise" : "CC_PeopleAge_Seen_Fall", a);
@@ -94,11 +94,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Their age and which way it is heading, with why ("medieval age, rising: trades with you, learns from you"), or
-        /// null for a people not of Rimfolk's or with the setting off.
+        /// null for a people whose age Rimfolk doesn't keep or with the setting off.
         /// </summary>
         public static string Heading(Faction f)
         {
-            if (f == null || !PeopleAges.On || !Peoples.IsOurs(f)) return null;
+            if (f == null || !PeopleAges.On || !PeopleAges.Kept(f)) return null;
             try
             {
                 var r = PeopleAgeBook.Instance?.Of(f);

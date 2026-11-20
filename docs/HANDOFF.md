@@ -77,23 +77,10 @@ most sense." So, in this order, three builds at a time:
      (A) and the world (B); the **E** items with them where they belong to the same systems.
   3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
      events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
-- **To do when the player asks (20 November 2026): the comms console and the peoples' ages.** The player, with
-  League_of_Toba_8: "So now I finally built the comms console, and I'm able, for example, to call the Storm Riders. I
-  mean, they are always only on medieval style tech level, it seems, you know, based on their weapons, etc. I don't know
-  if that makes sense, or whether the Storm Riders already kind of also progressed into a more modern technology level.
-  But if they did, then it's really not reflected at all in their weapons and gear. I mean, that is a very cool idea,
-  that other factions can also increase tech level and adjust over time. But then also, if they are still on older
-  technology, it doesn't make sense if they are all reachable with the comms console." Found: the Stormriders are the
-  Dark Elves mod's faction (`DevDesigner_DarkElvesFaction`, Medieval, `devdesigner.elves.continued`), one of Rimfolk's
-  foreign peoples (`Rimfolk_ForeignPeoples.xml`); Rimfolk's changing ages ("Peoples whose age changes",
-  `Peoples/PeopleAges.cs`) cover only its own twenty-three peoples and those that arose in their ways, so the
-  Stormriders are and stay medieval, and their gear is medieval as it should be. The comms console is the game's own: it
-  lists every faction, whatever its age. Proposed, waiting for the player's go: (1) the comms console reaches only
-  peoples whose age has a radio (industrial or spacer, Rimfolk's age where it keeps one, else the faction's own tech
-  level); the others are shown greyed ("no radio: a letter goes by rider"), with the way Rimfolk already writes to them
-  (the neighbours' letters) named, and a setting to keep the game's way; (2) the foreign peoples' ages change too, as
-  Rimfolk's own do (their pace by their ways, rising with trade, teaching and time), their gear following through the
-  every-age pass from the full mod pool.
+- **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
+  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; built, not released): the
+  comms console and the peoples' ages.** The to-do with the player's words is now one entry above the newest release
+  line ("The comms console by radio, and the foreign peoples' ages").
 - **The player, 20 November 2026 (third and fourth messages):**
   - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
     option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
@@ -600,6 +587,96 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The comms console by radio, and the
+  foreign peoples' ages** (20 November 2026; the player, with League_of_Toba_8: "So now I finally built the comms console,
+  and I'm able, for example, to call the Storm Riders. I mean, they are always only on medieval style tech level, it
+  seems, you know, based on their weapons, etc. I don't know if that makes sense, or whether the Storm Riders already kind
+  of also progressed into a more modern technology level. But if they did, then it's really not reflected at all in their
+  weapons and gear. I mean, that is a very cool idea, that other factions can also increase tech level and adjust over
+  time. But then also, if they are still on older technology, it doesn't make sense if they are all reachable with the
+  comms console"; the go: "yes, please go ahead Regarding the faction update, in the sense that only the ones with radio
+  can answer, and also that foreign peoples change [age] at their pace. That makes sense."). DESIGN.md "The comms console
+  by radio, and the foreign peoples' ages" (after "Peoples whose age changes"; that section and the Stormriders' now
+  point to it); README "Only peoples with a radio answer the comms console", the dark elves' and the ages' paragraphs; the
+  Almanac's peoples' page, *Their age over the years*, and the neighbours' page, *A call on the comms console* (keywords
+  unchanged).
+  - **The console by radio.** The game's console listed every people whatever its age. Now its call to a people with no
+    radio is greyed, never hidden: the game's label with "(no radio: they can only be reached by a letter)", and a
+    tooltip with the age they live in and how a letter reaches them (their card or their page under Peoples, a courier or
+    the post; with the letters off, that their messengers and traders still come to the gate). The rule
+    (`PostReach.Callable`): the age the people lives in now (Rimfolk's record where it keeps one, else the faction's own
+    tech level) is industrial or later, or a town of theirs is within 30 tiles of a Signal Line town. The Empire, the
+    outlanders, the pirates and every other people of those ages answer as before. Only the console's own call changes
+    (a postfix on `Faction.CommFloatMenuOption`): ships in orbit, other mods' contacts that aren't a people, a dialog
+    opened any other way, quests and the Empire's permits are as they were. Rimfolk's own calls now keep the one rule:
+    a pact called in, a ransom's, a favour's and a truce's call read `PostReach.Callable` (the masts now carry them too,
+    as they did the letters'), and `PostMath.RadioReaches` reads `NotableMath.Callable`. Setting `radioConsole` ("Only
+    peoples with a radio answer the comms console", What's on, The region, right under the peoples' ages; on; needs the
+    deeper game hooks).
+  - **The foreign peoples' ages.** Every faction a `ForeignPeopleDef` names (today the dark elves, the Stormriders) gets
+    an age record and moves by Rimfolk's one seasonal rule (`PeopleAges.Kept`; `Peoples.AgeOf` and `TechOf` read it), so
+    their words, camps, gear's stuff, letters' means, card heading, the region's page, the letter of a change (with
+    their head's own words) and their traders' stock (`Patch_PeopleAgeStock`) follow it, and the console reaches them
+    once they are industrial. Their ways from the profile: the dark elves 11 years an age (the Ashen Banner's pace), no
+    further than the industrial age, no lower than the tribal; a profile without them 12 years, one up and one down. The
+    arming cap: every role whose kinds carry arms needs a set for each age above its own (`ForeignRole.ageArms`, the
+    same sets as Rimfolk's kinds'), and the set has to find a weapon of the age among the loaded mods, or the people
+    rises no further. The dark elves in the industrial age (from the player's active mods): Darkshards a repeating gun
+    under `IndustrialGunAdvanced` within 600 silver (assault rifles, heavy SMGs, light machine guns, chain shotguns, the
+    Hellcat, Vanilla Weapons Expanded's, Quickdraw's, Rimsenal's and Advanced Armaments' like) with an ammo pack; Dark
+    Riders a light gun under `Gun` within 300; Dreadspears spear and shield with a frag grenade belt, the Black Guard
+    their halberds with the same belt; the knights, witch elves and sorceresses their own arms. A new pawn of theirs in
+    another age gets its role's set and the every-age pass (`AgeArms.ToAge`), then the pieces, gifts and look as before;
+    a bolt quiver only with a bow or crossbow.
+  - **For the player's save**: the Stormriders' record (`Faction_25`) is made the first region day after loading: the
+    medieval age, began medieval, a head start of 0.05 of an age, a fate of 1.01; first looked at within 15 days. As the
+    colony's ally with no trade they reach the industrial age in 28 seasons, 7 years (420 days); with 2500 silver of trade
+    a year besides, 5.3 years; with gifts of learning and teaching sooner still (three times the pace at most); by
+    themselves, 10.5 years. Over many worlds the dark elves rise in 10 years in 61% by themselves and in all allied.
+  - **Code map**: `Peoples/ConsoleRadio.cs` (new: `ConsoleRadio`, `Patch_ConsoleRadio`), `Peoples/ConsoleRadioMath.cs`
+    (new, pure, linked: `Reaches`, `Greyed`, `Key`), `Peoples/Foreign/ForeignAgesMath.cs` (new, pure, linked:
+    `DefaultPace`, `RoleArmed`, `ArmedLimit`, `Pace`, `SeasonsToRise`); `Post/PostReach.cs` (`Callable`),
+    `Post/PostMath.cs` (`RadioReaches` reads `NotableMath.Callable`); `Peoples/PeopleAges.cs` (`Kept`, `Ensure`, `Daily`,
+    `Ways`, `VoiceKey`), `Peoples/Peoples.cs` (`AgeOf`, `TechOf`), `Peoples/PeopleAgeWords.cs` (`Heading`, the voice),
+    `Peoples/PeopleAgePatches.cs` (the stock), `Peoples/PeopleAgesDebug.cs` (the foreign peoples and the console's reach in
+    the log), `Peoples/PeopleGifts.cs` (`AgeArms.Weapons`), `Peoples/Foreign/ForeignPeopleDef.cs` (`agePace`, `ageLimit`,
+    `ageFloor`, `ForeignRole.ageArms`), `Peoples/Foreign/ForeignPeoples.cs` (`ToAge`, `Ways`, `ArmedLimit`, `ArmedFor`,
+    `SetFor`, `VoiceKey`, the age pass in `Fit`, `Bow`); `Diplomacy/PactCalls.cs`, `Ransoms.cs`, `FavourAsks.cs`,
+    `Truces.cs` (`PostReach.Callable`); `CouncilSettings` (`radioConsole`), `UI/SettingsCatalog.cs` (its row); defs
+    `Rimfolk_ForeignPeoples.xml` (the dark elves' pace, limit and eight sets); Keyed `Rimfolk_PeopleAges.xml` (the
+    setting, the greyed call's words, the dark elves' voice, the ages' tip and note). Tests: `Tools/Tests/ForeignAgesTests.cs`
+    (91 checks: the radio rule, the foreign ways and the arming cap, every armed role's set against the player's catalogue,
+    the Stormriders played out, the words, the setting, the seams); `ForeignPeoplesTests` (weapon tags are tags). Saved:
+    the foreign records within `PeopleAgesMath.MaxRecords` (40), modelled in `Tools/save_estimate.py`. Harmony: one new
+    postfix. No Sched slot.
+  - **Decided here**: a postfix that greys the game's own option (the reason in the label and the tooltip), not a prefix
+    or a filter on the console's targets, so other mods' and quests' ways to a people stay open; the Signal Line's masts
+    count for the console as they do for the letters, and Rimfolk's four other calls now count them too (one rule); an
+    "armed" role is one whose kinds the Elves mod gives weapons; the dark elves' limit is the industrial age, and their
+    shielded and melee kinds keep their own arms there (the Elves mod's shield is worn in the left hand, and a rifle with
+    it is untested); the frag belt and ammo pack sit at the waist, beside the Elves mod's kit, so nothing of it is taken
+    off; the game's ransom demand by radio letter is left as it is (it is the game's letter, not the console's call).
+  - **Can't be checked without the game**: the greyed option and its tooltip in the console's menu (1.6's and 1.7's float
+    menu drawing a disabled option with a tooltip); that no other mod in the list draws the console's menu itself; the
+    Elves mod's kinds' weapon budgets and the elven weapons' base worth (the sets name their own means); the Elves mod's
+    shield with a melee weapon of another stuff; VWE Grenades' belt thrown by a dark elf in a raid; the records made and
+    the first look in a running save; anything of 1.7 beyond the reference assembly.
+  - **Try in the game**: (1) With a powered comms console, select a colonist and right-click it: the Stormriders, the
+    tribes, Medieval 2's clans and kingdoms are greyed with "(no radio: they can only be reached by a letter)"; hover one:
+    the tooltip names their age and how a letter reaches them. The Empire, the outlanders, the pirates and Rimfolk's
+    industrial and spacer peoples can be called as before; ships in orbit too. (2) Settings, What's on, The region:
+    switch "Only peoples with a radio answer the comms console" off: every people can be called again. (3) Dev mode,
+    Debug actions, Rimfolk, "Peoples: every people's age and progress (log)": the Stormriders' line (medieval, limit
+    industrial, another mod's people, no radio). (4) "Peoples: a people up an age now (testing)..." and pick the
+    Stormriders: the letter "into the industrial age" with their head's words; their card says industrial. Right-click
+    the console: they can be called now. (5) "Peoples of other mods: one of each of their kinds here now, as visitors
+    (testing)...": the Darkshards carry an assault rifle, an LMG or the like with an ammo pack, the Dark Riders a revolver
+    or a bolt-action rifle, the Dreadspears and Black Guard a frag belt, the others their own arms; their next trade
+    caravan carries industrial goods. (6) "Peoples: a people down an age now (testing)..." twice: back to the tribal age, their
+    visitors with no gun, the console greyed again.
+  - **Mods that would help**: none to add; every arm and kit comes from mods already in the player's list (Vanilla
+    Weapons Expanded with its Quickdraw and Grenades, Rimsenal, Advanced Armaments, Vanilla Apparel Expanded -
+    Accessories). No mod in the catalogue makes elven firearms; the dark elves' guns are the mods' own guns.
 - 0.276.1, **More traits that come and go, the
   other ways out** (20 November 2026; the player, 20 November 2026: "go ahead with all the traits"). The seventeen ways
   out of `docs/traits-proposals.md` the first batch left (3, 7, 8, 9, 11, 12, 13, 15, 17 to 25), each marked there: 3, a

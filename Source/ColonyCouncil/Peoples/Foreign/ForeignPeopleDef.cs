@@ -22,6 +22,14 @@ namespace ColonyCouncil
         public string tag;
         /// <summary>A people whose ways revolve around magic (a coven): more casters, and its card says so.</summary>
         public bool builtOnMagic;
+        /// <summary>
+        /// Their age over the years (Peoples/PeopleAges.cs, as Rimfolk's own peoples'; the player, 20 November 2026): the
+        /// years an age takes at their own pace (unset, ForeignAgesMath.DefaultPace); the highest age their ways would take
+        /// (unset, one above the age their mod made them for), lowered to the ages their roles are armed for
+        /// (ForeignRole.ageArms); the lowest they fall back to (unset, one below).
+        /// </summary>
+        public float agePace = -1f;
+        public int ageLimit = -1, ageFloor = -1;
         public List<ForeignRole> roles;
         public List<ForeignLook> looks;
 
@@ -38,6 +46,13 @@ namespace ColonyCouncil
                     foreach (var e in r.Errors(builtOnMagic))
                         yield return e;
             }
+            if (float.IsNaN(agePace) || agePace <= 0f && agePace != -1f) yield return "agePace is the years an age takes, above 0 (or unset)";
+            if (ageLimit < -1 || ageLimit > 3 || ageFloor < -1 || ageFloor > 3) yield return "ageLimit and ageFloor are ages 0 (tribal) to 3 (spacer), or unset";
+            if (roles != null)
+                foreach (var r in roles.Where(r => r?.ageArms != null))
+                    foreach (var set in r.ageArms)
+                        if (set == null || set.ages.min < 0 || set.ages.max > 3 || set.ages.min > set.ages.max || set.weaponTags.NullOrEmpty() && set.apparel.NullOrEmpty())
+                            yield return "role '" + r.name + "': each set of arms names its ages (0 to 3) and its weapon tags or kit";
             if (looks != null)
                 foreach (var l in looks.Where(l => l != null))
                     if (float.IsNaN(l.weight) || l.weight < 0f || !Chance(l.hairChance) || !Chance(l.faceTattooChance) || !Chance(l.bodyTattooChance))
@@ -68,6 +83,12 @@ namespace ColonyCouncil
         public List<PeopleGift> gifts;
         /// <summary>Without A RimWorld of Magic: these instead (a psylink), or nothing.</summary>
         public List<PeopleGift> giftsWithoutMagic;
+        /// <summary>
+        /// The arms of the ages their mod didn't make them for (PeopleKindExtension.ageArms, the same sets as Rimfolk's own
+        /// kinds'): weapon tags of any mod and a kit, by age. A role that carries arms needs one for every age above the one
+        /// its mod made it for, or the people rises no further (ForeignAgesMath.ArmedLimit).
+        /// </summary>
+        public List<PeopleAgeArms> ageArms;
 
         public IEnumerable<string> Errors(bool builtOnMagic)
         {

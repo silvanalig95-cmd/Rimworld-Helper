@@ -17,6 +17,12 @@
     cloth (the Elves' own midnight and purple, charcoal and wine, black-violet and ash, brown and midnight), with a share of
     long, braided or loose hair styles and of face and body tattoos. Their xenotype and race are not touched.
 
+    Their age changes over the years as Rimfolk's own peoples' do (Peoples/PeopleAges.cs; DESIGN.md "The comms console by
+    radio, and the foreign peoples' ages"; the player, 20 November 2026: "foreign peoples change [age] at their pace"): at
+    the pace below, no further than the age below, and no further than every role that carries arms has a set of arms for
+    (ageArms: weapon tags of any mod, a kit). A pawn of theirs made in another age than the medieval one their mod made
+    them for carries its role's arms of that age and nothing of a later age.
+
     Every name of another mod is MayRequire'd on its mod (the base game's are plain): without the Elves mod nothing here
     matches, and a piece whose mod isn't loaded is never given. Checked against the player's mods (docs/player-mods,
     active rows) by Tools/Tests/ForeignPeoplesTests.cs and Tools/poolcheck.py.
@@ -31,6 +37,12 @@
     <tag>folk:darkelves</tag>
     <!-- A coven, led by sorceresses, with witch elves in its warbands. -->
     <builtOnMagic>true</builtOnMagic>
+    <!-- Their age over the years: eleven years an age at their own pace, as the Ashen Banner's, a medieval people that
+         lives by war and takes up whatever arms win its raids; no further than the industrial age, since the coven is
+         ruled by its sorceresses, who keep it from the spacer age's machines. Each role that carries arms has its arms of
+         the industrial age below. -->
+    <agePace>11</agePace>
+    <ageLimit>2</ageLimit>
     <roles>
 
       <!-- The trader of a caravan: a merchant's hat or a masked hood, a vest, a pack, now and then a cloak in place of the cape. -->
@@ -185,6 +197,20 @@
           <li><trait>Gladiator</trait><chance>0.05</chance></li>
           <li><trait>StormBorn</trait><chance>0.03</chance></li>
         </gifts>
+        <!-- In the industrial age they keep spear and shield (the shield is held in the left hand, so no rifle), with a belt
+             of frag grenades (Vanilla Weapons Expanded - Grenades) to throw before they close in. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Spear</li>
+            </weaponTags>
+            <money>1500</money>
+            <apparel>
+              <li MayRequire="vanillaexpanded.vweg">VWE_Apparel_GrenadeFragBelt</li>
+            </apparel>
+          </li>
+        </ageArms>
       </li>
 
       <!-- The Darkshards, the crossbow line: their whole kit, the cape in the look's colour. -->
@@ -200,6 +226,22 @@
           <li><trait>Ranger</trait><chance>0.06</chance></li>
           <li><trait>StormBorn</trait><chance>0.03</chance></li>
         </gifts>
+        <!-- In the industrial age the repeating crossbow gives way to a repeating gun: an assault rifle, a heavy SMG, a
+             light machine gun or a chain shotgun, the game's or any mod's under the same tag (Vanilla Weapons Expanded's
+             battle and service rifles, Rimsenal's modular rifles and the like), with an ammo pack (Vanilla Apparel Expanded
+             - Accessories). -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li>IndustrialGunAdvanced</li>
+            </weaponTags>
+            <money>600</money>
+            <apparel>
+              <li MayRequire="vanillaexpanded.vaeaccessories">VAEA_Apparel_AmmoPack</li>
+            </apparel>
+          </li>
+        </ageArms>
       </li>
 
       <!-- The Dark Riders, their scouts: a bolt quiver with a crossbow, hood and cloak in the look's colours. -->
@@ -229,6 +271,17 @@
           <li><trait>StormBorn</trait><chance>0.08</chance></li>
           <li><trait>Ranger</trait><chance>0.04</chance></li>
         </gifts>
+        <!-- In the industrial age the scouts carry a light gun: a bolt-action rifle, a pump shotgun, a revolver or a
+             machine pistol, the game's or any mod's under the same tag. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li>Gun</li>
+            </weaponTags>
+            <money>300</money>
+          </li>
+        </ageArms>
       </li>
 
       <!-- The Black Guard: their whole kit and colours, now and then a banner. -->
@@ -249,6 +302,19 @@
           <li><trait>Gladiator</trait><chance>0.08</chance></li>
           <li><trait>TM_Commander</trait><chance>0.04</chance></li>
         </gifts>
+        <!-- In the industrial age the Black Guard keep their halberds, with a belt of frag grenades. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Halberd</li>
+            </weaponTags>
+            <money>1500</money>
+            <apparel>
+              <li MayRequire="vanillaexpanded.vweg">VWE_Apparel_GrenadeFragBelt</li>
+            </apparel>
+          </li>
+        </ageArms>
       </li>
 
       <!-- The Cold One Knights: their whole kit and colours. -->
@@ -261,6 +327,18 @@
           <li><trait>TM_Commander</trait><chance>0.06</chance></li>
           <li><trait>Gladiator</trait><chance>0.06</chance></li>
         </gifts>
+        <!-- In the industrial age the knights keep their own arms and shield: a charge on a Cold One is still a charge. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Spear</li>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Greatsword</li>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Sword</li>
+            </weaponTags>
+            <money>1500</money>
+          </li>
+        </ageArms>
       </li>
 
       <!-- The witch elves: their whole look; some are bladedancers. -->
@@ -272,6 +350,16 @@
         <gifts>
           <li><trait>Bladedancer</trait><chance>0.15</chance></li>
         </gifts>
+        <!-- In the industrial age the witch elves keep their blades: theirs is a fight close in. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Sword</li>
+            </weaponTags>
+            <money>1500</money>
+          </li>
+        </ageArms>
       </li>
 
       <!-- The sorceresses, casters by their own name: their whole look; about half have a class of A RimWorld of Magic,
@@ -298,6 +386,16 @@
             <chance>0.54</chance>
           </li>
         </giftsWithoutMagic>
+        <!-- In the industrial age the sorceresses keep their spears: their sorcery is their weapon. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Spear</li>
+            </weaponTags>
+            <money>1500</money>
+          </li>
+        </ageArms>
       </li>
 
       <!-- The Supreme Sorceress, their head. -->
@@ -322,6 +420,16 @@
             <chance>0.55</chance>
           </li>
         </giftsWithoutMagic>
+        <!-- In the industrial age the Supreme Sorceress keeps her halberd. -->
+        <ageArms>
+          <li>
+            <ages>2~2</ages>
+            <weaponTags>
+              <li MayRequire="devdesigner.elves.continued">DevDesigner_DarkElves_Halberd</li>
+            </weaponTags>
+            <money>2000</money>
+          </li>
+        </ageArms>
       </li>
     </roles>
 

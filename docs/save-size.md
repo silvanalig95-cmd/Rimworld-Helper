@@ -76,7 +76,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,781 KB** aft
 | `Building/Suggest/SameRules.cs:marked` | per step: the things it gave an order on (taken down, trees marked, a firebreak's brush) | fixed | 300 | 300 | 300 | 11.7 |
 | `CouncilGameComponent.cs:wishes` | open wishes only (one per colonist at most) | cap | 20 | 20 | 20 | 11.7 |
 | `Letters/LetterBook.cs:used` | the long pieces written into letters, by their first words: LetterKindMath.MaxUsed at most, the oldest let go | cap | 30 | 60 | 150 | 11.7 |
-| `Peoples/PeopleAges.cs:ages` | one record a people of Rimfolk's (the fifteen at once, and each that arises), PeopleAgesMath.MaxRecords kept, gone peoples dropped | cap | 40 | 40 | 40 | 11.7 |
+| `Peoples/PeopleAges.cs:ages` | one record a people of Rimfolk's (those in the world at once, and each that arises) and one for another mod's people Rimfolk knows, PeopleAgesMath.MaxRecords kept, gone peoples dropped | cap | 40 | 40 | 40 | 11.7 |
 | `Setbacks/SetbackTracker.cs:built` | what colonists built, while it stands and is recent | window | 60 | 60 | 60 | 11.7 |
 | `Social/Moments.cs:pairs` | pair tones forgotten after 4 quiet days or when one is gone | pairs | 95 | 95 | 95 | 11.1 |
 | `Ailments/AilmentTracker.cs:had` | known pawns only | known | 165 | 180 | 225 | 11.0 |

@@ -122,7 +122,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>Their offer comes by a call: the colony has a working comms console and their people call by machine.</summary>
-        public static bool ByCall(Faction f, Map home) => f?.def != null && NotableMath.Callable((int)Peoples.TechOf(f)) && NeighbourLetters.Console(home) != null;
+        public static bool ByCall(Faction f, Map home) => f?.def != null && PostReach.Callable(f) && NeighbourLetters.Console(home) != null;
 
         /// <summary>The colony's negotiator: its speaker, else whoever is best with people at home.</summary>
         public static Pawn Negotiator(Map home) => TruceParley.Speaker(home);

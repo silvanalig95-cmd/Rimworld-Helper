@@ -47,6 +47,9 @@ public static class ForeignPeoplesTests
 
     private const string Elves = "devdesigner.elves.continued";
 
+    /// <summary>A dark elf kind's own kit (for ForeignAgesTests: their arms of another age sit beside it).</summary>
+    public static IEnumerable<string> KitOf(string kind) => ElvesKit.TryGetValue(kind, out var kit) ? kit : Array.Empty<string>();
+
     public static int Run(Action<bool, string> check)
     {
         string root = Root();
@@ -153,7 +156,8 @@ public static class ForeignPeoplesTests
         foreach (var e in named)
         {
             string name = e.Value.Trim();
-            if (e.Parent?.Name.LocalName == "li") continue;
+            // A weapon tag of their arms of another age is a tag, not a def (ForeignAgesTests looks those up).
+            if (e.Parent?.Name.LocalName == "li" || e.Parent?.Name.LocalName == "weaponTags") continue;
             checkedNames++;
             bool known = pool.TryGetValue(name, out var hits);
             string req = e.Attribute("MayRequire")?.Value?.ToLowerInvariant();

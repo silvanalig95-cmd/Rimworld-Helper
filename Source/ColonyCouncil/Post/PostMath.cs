@@ -314,8 +314,11 @@ namespace ColonyCouncil
             return best;
         }
 
-        /// <summary>The radio reaches them: a people of the industrial age or later, or a town within reach of the Signal Line's masts.</summary>
-        public static bool RadioReaches(int theirTech, float mastTiles) => theirTech >= 4 || mastTiles >= 0f && mastTiles <= MastReach;
+        /// <summary>
+        /// The radio reaches them: a people of the industrial age or later (NotableMath.Callable, the one rule every call of
+        /// Rimfolk's and the comms console keep), or a town within reach of the Signal Line's masts.
+        /// </summary>
+        public static bool RadioReaches(int theirTech, float mastTiles) => NotableMath.Callable(theirTech) || mastTiles >= 0f && mastTiles <= MastReach;
 
         /// <summary>How far a Signal Line mast carries (world tiles).</summary>
         public const float MastReach = 30f;
