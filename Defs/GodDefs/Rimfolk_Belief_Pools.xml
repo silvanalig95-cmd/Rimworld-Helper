@@ -93,6 +93,8 @@
         <li>[won:answered] I asked {GOD} for help and help came. I'm keeping my side of it from now on.</li>
         <li>[won:gift] {GOD} gave me something I never asked for. I don't know what I owe, but I know whom I owe it to.</li>
         <li>[won:livedthrough] I came through it, and I don't think I did it alone. I'm {GOD}'s now.</li>
+        <li>I never thought I'd write this, but I pray to {GOD} now. It came on slowly, and today I knew it.</li>
+        <li>[won:sawplain] I saw {GOD} with my own eyes today. I don't know what more a person needs.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -107,6 +109,9 @@
         <li>Keep it away from me, whatever {GOD} wants.</li>
         <li>I'm not looking at it, I'm not.</li>
         <li>[kind:hunger] It's here, I can feel it, and I want it gone.</li>
+        <li>Not again, please, not again.</li>
+        <li>I know whose sign that is, and I'm not staying to watch.</li>
+        <li>{GOD} is here again, I knew this would happen.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -119,6 +124,10 @@
         <li>Somebody else can walk past that shrine, I won't.</li>
         <li>That's {GOD}'s place, and I keep my distance.</li>
         <li>[kind:hunger] Whatever lives there can stay there, without me.</li>
+        <li>I'll go round the long way, away from {GOD}'s place.</li>
+        <li>Not near that shrine, not today and not tomorrow.</li>
+        <li>I've seen what {GOD} can do, so I'll keep well back.</li>
+        <li>[kind:hunger] Keep the light between me and that place, please.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -130,6 +139,11 @@
         <li>I can't stop thinking about what {GOD} did. I used to say the name without a thought, and now I won't say it at all.</li>
         <li>I'm afraid of {GOD}. There, I've written it.</li>
         <li>[kind:hunger] Something under the world knows my name now. I keep the lamp lit all night.</li>
+        <li>I keep away from {GOD}'s place now. I take the long way round, even in the rain.</li>
+        <li>Every time someone says {GOD}'s name I go cold. I can't help it.</li>
+        <li>I dreamed about {GOD} again. I woke up before the end, and I'm glad I did.</li>
+        <li>I used to think the frightened ones were foolish. Now I'm one of them, and it's {GOD} I'm afraid of.</li>
+        <li>[kind:hunger] I don't wish for anything any more, not even in my head, in case something hears.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -142,6 +156,11 @@
         <li>Somebody tore down {GOD}'s place, and it'll be remembered.</li>
         <li>{GOD}'s place is gone, and we'll answer for it.</li>
         <li>[doubt] I don't know if {GOD} minds, but I do.</li>
+        <li>{GOD}'s place is gone, and it feels like a door has been shut on us.</li>
+        <li>Who would pull down {GOD}'s place, and why?</li>
+        <li>We'll build {GOD} another place, and a better one.</li>
+        <li>{GOD}'s place is gone, and nobody asked the rest of us.</li>
+        <li>[doubt] It was only a shrine, but I'll miss it all the same.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -156,6 +175,9 @@
         <li>If {RIVAL} were worth anything, {GOD} wouldn't have to do all the work.</li>
         <li>{RIVAL} again, and you wonder why {GOD} is cross with us.</li>
         <li>Say what you like about {GOD}, at least {GOD} isn't {RIVAL}.</li>
+        <li>{RIVAL} has never done a thing for us that {GOD} couldn't do better.</li>
+        <li>Pray to {RIVAL} if you like, but {GOD} is the one who answers here.</li>
+        <li>I don't know why anyone bothers with {RIVAL} when there's {GOD}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -168,6 +190,10 @@
         <li>Keep your {RIVAL}, and I'll keep {GOD}, and we'll see.</li>
         <li>You've got {RIVAL} all wrong, and {GOD} too.</li>
         <li>At least {GOD} never asked me for anything I couldn't give.</li>
+        <li>{GOD} has done more for this colony than {RIVAL} ever will.</li>
+        <li>Say what you like, I'm staying with {GOD}.</li>
+        <li>I'll pray to {GOD}, and you can pray to whoever you like.</li>
+        <li>{GOD} doesn't need defending, but I'll do it anyway.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

@@ -223,6 +223,10 @@
         <li>This is {SAINT}'s now, so treat it kindly.</li>
         <li>Let this be {SAINT}'s, for as long as it stands.</li>
         <li>[known] For {SAINT}, and for {GOD} who keeps them.</li>
+        <li>This place is {SAINT}'s, so remember them when you pass.</li>
+        <li>Here stands {SAINT}, and here we'll come to remember.</li>
+        <li>For {SAINT}, who did more for us than we can say.</li>
+        <li>[known] Let {SAINT} keep watch here, close to {GOD}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -238,6 +242,8 @@
         <li>We'll keep their day every year, on the day we lost them.</li>
         <li>Nobody here will forget what they did, I'll see to that.</li>
         <li>They'd laugh at all this, but they'd be glad of it too.</li>
+        <li>From today, whoever needs them can come here and ask.</li>
+        <li>We'll tell the children about them, so they're never forgotten.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -253,6 +259,8 @@
         <li>They were the best of us, whatever anyone calls them.</li>
         <li>Rest well, and thank you for everything.</li>
         <li>A few words for them, and then we'll get on, as they would want.</li>
+        <li>They gave everything, and we'll remember it here.</li>
+        <li>We'll say their name at supper, and that's enough for them.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -266,6 +274,10 @@
         <li>{SAINT}. It still sounds strange. It also sounds right.</li>
         <li>I asked for it and they said yes. {DEAD} would have rolled their eyes at the fuss, and been pleased.</li>
         <li>[known] {SAINT}, with {GOD} now. I hope they're looking after each other.</li>
+        <li>{SAINT}. I keep saying it under my breath to get used to it.</li>
+        <li>The council named {DEAD} a saint today. I didn't expect it to move me as much as it did.</li>
+        <li>I asked the council to remember {DEAD}, and they did more than that. {SAINT} now.</li>
+        <li>[known] {SAINT} keeps company with {GOD} now, or so we believe. I hope it's true.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

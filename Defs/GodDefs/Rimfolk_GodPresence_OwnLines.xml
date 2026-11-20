@@ -118,6 +118,66 @@
         <li>[notice:revelry,wrath] Nothing tastes right today, not even the good stuff.</li>
         <li>[notice:revelry,named] {GOD} is at the table, so somebody pour him a cup.</li>
         <li>[notice:revelry,scoffer] Someone left a pipe burning somewhere, that's the smell.</li>
+        <li>[notice:growth] The dryads have stopped what they were doing, look at them standing there.</li>
+        <li>[notice:growth] Seeds keep drifting past me toward that one tree.</li>
+        <li>[notice:growth] The crops are coming on fast today, you can almost watch them.</li>
+        <li>[notice:growth,named] {GOD} is listening through the roots today, so go easy with the axe.</li>
+        <li>[notice:warmstone] The rooms under the rock are warm enough to sleep without a blanket.</li>
+        <li>[notice:warmstone] There's ore showing in the rock face that I never noticed before.</li>
+        <li>[notice:warmstone] My boots are warm from standing on the stone.</li>
+        <li>[notice:warmstone,named] {GOD} is stirring in his sleep, so mind what you dig today.</li>
+        <li>[notice:grazing] The wild things are grazing side by side as if nobody ever hunted anything.</li>
+        <li>[notice:grazing] There's been less arguing today than I can remember.</li>
+        <li>[notice:grazing] The big white beast just keeps grazing, as if it has all the time in the world.</li>
+        <li>[notice:grazing,named] {GOD} is grazing on our land, so keep the hunters home today.</li>
+        <li>[notice:rot,night|evening] The spores are glowing in the dark, faint and pale.</li>
+        <li>[notice:rot] Get the meat into the cold, it'll turn by evening out here.</li>
+        <li>[notice:rot] The sick ones seem to be getting over it faster today.</li>
+        <li>[notice:rot,named] {GOD} is near, so bury the dead quickly and keep the food cold.</li>
+        <li>[notice:warmth] The fire's barely been fed and it's still roaring.</li>
+        <li>[notice:warmth] Everyone's being so polite to each other this evening.</li>
+        <li>[notice:warmth] Our guest looks glad just to be sitting by the fire.</li>
+        <li>[notice:warmth,named] {GOD} is here with us tonight, so nobody leave the fire early.</li>
+        <li>[notice:hum] The workbench is running smoother than it has in weeks.</li>
+        <li>[notice:hum] The machines are all humming the same note.</li>
+        <li>[notice:hum] It feels like the machines are pleased about something today.</li>
+        <li>[notice:hum,named] {GOD} is awake in the machines today, so say thank you to the bench.</li>
+        <li>[notice:highsky] The weather hasn't changed one bit all day.</li>
+        <li>[notice:highsky] I keep looking up, and I keep feeling looked at.</li>
+        <li>[notice:highsky] There isn't a single bird left in the trees.</li>
+        <li>[notice:highsky,named] {GOD} is looking down on us, so stand up straight.</li>
+        <li>[notice:whitesilence] Nothing left outside is going off in this cold.</li>
+        <li>[notice:whitesilence] Keep the little ones and the old ones by the fire, this cold goes right through them.</li>
+        <li>[notice:whitesilence] There's frost all along the walls, inside and out.</li>
+        <li>[notice:whitesilence,named] {GOD} is near, so keep the fires high and the doors shut.</li>
+        <li>[notice:dark] I lit another lamp and the corner's still dark.</li>
+        <li>[notice:dark] The light just stops short of the wall, as if it's hitting something.</li>
+        <li>[notice:dark] My head feels open tonight, like anything could get in.</li>
+        <li>[notice:dark] Stay where the light is, all of you.</li>
+        <li>[notice:longnoon] My shadow hasn't moved since I started this row.</li>
+        <li>[notice:longnoon] The crops are drinking up this sun, look at them.</li>
+        <li>[notice:longnoon] Nobody who works nights is getting any sleep in this light.</li>
+        <li>[notice:longnoon,named] {GOD} is standing still over us, so get the planting done.</li>
+        <li>[notice:moonsleep] The ones who slept under that moon look well rested.</li>
+        <li>[notice:moonsleep] I can see all the way to the edge of the land by moonlight.</li>
+        <li>[notice:moonsleep] The moon's hanging so low it looks close enough to touch.</li>
+        <li>[notice:moonsleep,named,night|evening] {GOD} is close tonight, so sleep and let her mend you.</li>
+        <li>[notice:watch] Not one rat anywhere today.</li>
+        <li>[notice:watch] The cats are all sitting facing the graves again.</li>
+        <li>[notice:watch] That big cat walks among the graves like she owns them.</li>
+        <li>[notice:watch,named] {GOD} is keeping watch over our dead, so leave the graves be.</li>
+        <li>[notice:rain] I can feel that croak in my ribs.</li>
+        <li>[notice:rain] The plants by the water are coming on faster than the rest.</li>
+        <li>[notice:rain] The air's gone heavy, rain's not far off.</li>
+        <li>[notice:rain,named] {GOD} is singing down there, so leave the wells alone today.</li>
+        <li>[notice:glint] The coins in the stores keep catching the light.</li>
+        <li>[notice:glint] If anyone comes to trade today, we'll get a good price, I can feel it.</li>
+        <li>[notice:glint] Count the silver, I'm sure it's moved since this morning.</li>
+        <li>[notice:glint,named] {GOD} is passing through, so spend a coin and keep it moving.</li>
+        <li>[notice:revelry] It doesn't take much to make anyone laugh today.</li>
+        <li>[notice:revelry] The air smells sweet, like a party's just ended.</li>
+        <li>[notice:revelry] I'd take a day like this every week.</li>
+        <li>[notice:revelry,named] {GOD} is about the place, so pour him his share before supper.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -142,6 +202,20 @@
         <li>[true:sad] Someone should sit with {OTHER}, I dreamed of them all night.</li>
         <li>[true:moon] I dreamed the moon came down and sat with me a while.</li>
         <li>[true:moon] I dreamed of silver water, and nothing bad at all.</li>
+        <li>[warmvoice] Someone under the floor asked me very politely what I wanted most.</li>
+        <li>[warmvoice] I dreamed of a warm dark place full of silver, and a voice that wanted to bargain.</li>
+        <li>[true:raid] I dreamed of smoke on the road and people with weapons coming this way.</li>
+        <li>[true:raid] In my dream the dogs barked at the gate all night, so be ready.</li>
+        <li>[true:visitors] I dreamed of travellers stopping at our gate to ask for water.</li>
+        <li>[true:visitors] Someone's on the road to us, I saw their pack in my dream.</li>
+        <li>[true:predator] I dreamed something with teeth was lying in wait {SITE}.</li>
+        <li>[true:predator] I dreamed of a {BEAST} {SITE}, so nobody walk out there alone.</li>
+        <li>[true:rot] I dreamed the bread was green and the meat was crawling, so check the stores.</li>
+        <li>[true:rot] I dreamed of flies over the food, someone look at it today.</li>
+        <li>[true:sad] I dreamed {OTHER} was sitting alone in the dark, so someone go and see them.</li>
+        <li>[true:sad] In my dream {OTHER} wouldn't stop crying, and nobody noticed.</li>
+        <li>[true:moon] I dreamed I was floating on a lake of moonlight, and I woke up rested.</li>
+        <li>[true:moon] I dreamed the moon told me a story, and it was a kind one.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -196,6 +270,61 @@
         <li>[way:given,visitor] This is for me, truly, from your shrine?</li>
         <li>[way:given,visitor] I'll carry it on, as you say, and pass it to someone else.</li>
         <li>[way:given,visitor] Gold given to a stranger, your people are odd and kind.</li>
+        <li>[way:sapling,mine,!scoffer] {GOD} took it into the ground and gave us a tree for it.</li>
+        <li>[way:sapling,theirs,!scoffer] There's a sapling where the gift was, and they say that's how {GOD} takes it.</li>
+        <li>[way:sapling,!scoffer] I'd swear that little tree wasn't there yesterday.</li>
+        <li>[way:sapling,scoffer] Somebody planted a sapling and walked off with the gift, that's all.</li>
+        <li>[way:crack,mine,!scoffer] Down into the rock with it, {GOD} keeps what he's given.</li>
+        <li>[way:crack,theirs,!scoffer] It's gone down the crack, and the ones who pray there say it went to {GOD}.</li>
+        <li>[way:crack,!scoffer] Put your hand on the floor there, it's still warm.</li>
+        <li>[way:crack,scoffer] Leave anything by a crack long enough and it rolls down it.</li>
+        <li>[way:grazed,mine,!scoffer] {GOD} came by in the night and ate it, and left his print to show it.</li>
+        <li>[way:grazed,theirs,!scoffer] It's been grazed, and they'll say {GOD} was here by the size of that print.</li>
+        <li>[way:grazed,!scoffer] Look at the size of that hoofprint next to it.</li>
+        <li>[way:grazed,scoffer] A big animal had it, and big animals leave big prints.</li>
+        <li>[way:rot,mine,!scoffer] It's soil now, and {GOD} has had her share.</li>
+        <li>[way:rot,theirs,!scoffer] Black earth and a mushroom, and they say that's {GOD}'s way of taking it.</li>
+        <li>[way:rot,!scoffer] It went soft and black overnight, and there's a mushroom where it lay.</li>
+        <li>[way:rot,scoffer] It went off in the damp, and that's the weather, not a goddess.</li>
+        <li>[way:guest,mine,!scoffer] {GOD} came as a guest in the night and took it, look at the footprints.</li>
+        <li>[way:guest,theirs,!scoffer] Footprints going in and none coming back, and they'll say {GOD} made them.</li>
+        <li>[way:guest,!scoffer] Someone walked up to it in the night and never walked away again.</li>
+        <li>[way:guest,scoffer] There'll be prints going out too, if you look hard enough.</li>
+        <li>[way:mended,mine,!scoffer] {GOD} had the part, and it'll be in one of our machines by now.</li>
+        <li>[way:mended,theirs,!scoffer] The part's gone, and the ones who pray to {GOD} say it went where it was needed.</li>
+        <li>[way:mended,!scoffer] The part we left is gone, and I didn't see anyone take it.</li>
+        <li>[way:mended,scoffer] Someone borrowed that part for a repair and forgot to say.</li>
+        <li>[way:takenup,mine,!scoffer] {GOD} took it up in the night, straight up into the sky.</li>
+        <li>[way:takenup,theirs,!scoffer] It's gone from under the open sky, and they say {GOD} took it up.</li>
+        <li>[way:takenup,!scoffer] There was a streak of light over the place last night, and now it's gone.</li>
+        <li>[way:takenup,scoffer] A bird took it, and a bright night made a story of it.</li>
+        <li>[way:frost,mine,!scoffer] {GOD} came close in the night and took it, frost and all.</li>
+        <li>[way:frost,theirs,!scoffer] It froze over in the night and was gone at first light, and they'll say that's {GOD}.</li>
+        <li>[way:frost,!scoffer] There's still frost on the ground where it was lying.</li>
+        <li>[way:frost,scoffer] Things freeze at night and animals eat them in the morning.</li>
+        <li>[way:hunger,mine,!scoffer] It took the gift and something besides, as {GOD} always does.</li>
+        <li>[way:hunger,theirs,!scoffer] The gift's gone and so is something else, and nobody wants to say what took it.</li>
+        <li>[way:hunger,!scoffer] Check the stores, the gift isn't the only thing missing.</li>
+        <li>[way:hunger,scoffer] Two things gone in one night means a thief, not a god.</li>
+        <li>[way:moon,mine,!scoffer] It went last night under the moon, as {GOD}'s gifts do.</li>
+        <li>[way:moon,theirs,!scoffer] It was there until the moon came up, and they say {GOD} took it then.</li>
+        <li>[way:moon,!scoffer] It's gone, and the moon was out over it all night.</li>
+        <li>[way:moon,scoffer] Clear night, bright moon, easy work for a thief.</li>
+        <li>[way:well,mine,!scoffer] {GOD} took it down into the water, and I heard the croak after.</li>
+        <li>[way:well,theirs,!scoffer] It's gone into the wet ground, and they say {GOD} pulled it under.</li>
+        <li>[way:well,!scoffer] There was a croak from down below last night, and now the gift's gone.</li>
+        <li>[way:well,scoffer] It sank in the mud, and the frogs made the noise they always make.</li>
+        <li>[way:cat,mine,!scoffer] One of {GOD}'s cats had it at dawn, which is how she takes a gift.</li>
+        <li>[way:cat,theirs,!scoffer] A cat had it, and the ones who keep {GOD} say that's how she takes it.</li>
+        <li>[way:cat,!scoffer] It was gone by dawn, and I'd bet a cat had it.</li>
+        <li>[way:cat,scoffer] Leave food out and the cats will have it, every time.</li>
+        <li>[way:cup,mine,!scoffer] {GOD} drank it off in the night, and left the ground wet for us to see.</li>
+        <li>[way:cup,theirs,!scoffer] It's been drunk where it stood, and they say that's {GOD}'s share taken.</li>
+        <li>[way:cup,!scoffer] The ground's still wet there, and it smells like the inside of a barrel.</li>
+        <li>[way:cup,scoffer] Whoever has a sore head this morning drank it, not a god.</li>
+        <li>[way:given,visitor] Your shrine gave me this, so I'll pass it on to the next one who needs it.</li>
+        <li>[way:given,visitor] I didn't expect a gift from strangers, thank you.</li>
+        <li>[way:given,visitor] Gold from a shrine for a passing traveller, I'll tell them about this on the road.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
