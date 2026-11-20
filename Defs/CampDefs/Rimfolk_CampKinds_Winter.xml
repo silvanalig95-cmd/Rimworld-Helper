@@ -158,7 +158,7 @@
     <sleep>Hut</sleep>
     <works><li>Chop</li></works>
     <animals>
-      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Beagle</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_FrenchBulldog</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
     </animals>
     <campGoods>
       <li><defs><li>WoodLog</li></defs><count>30~45</count><at>fire</at></li>

@@ -65,6 +65,17 @@ namespace ColonyCouncil
         /// <summary>The colony's people who fought on its map (RaidersCampMath has no say in it): remembered by name when it is broken (World/ColonistMemory.cs).</summary>
         public List<Pawn> fought = new List<Pawn>();
 
+        /// <summary>
+        /// Its signs on the map (World/Region/RaidersCampSigns.cs): its scouts seen at the edge before a raid (when), the raid
+        /// then due, and the side and edge cell it comes in from (-1 and invalid while none is due); a captive who ran from it
+        /// reached the gate (once in its life), and, taken in, its next raid comes sooner; when someone on the walls last spoke
+        /// of its smoke at dusk.
+        /// </summary>
+        public int scoutAt = -1, raidDue = -1, raidSide = -1;
+        public IntVec3 raidCell = IntVec3.Invalid;
+        public bool runaway, sooner;
+        public int smokeAt = -1;
+
         public bool Shown => stage != CampStage.Hidden;
 
         public void ExposeData()
@@ -101,6 +112,13 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref leaderWhy, "leaderWhy");
             if (Scribe.mode == LoadSaveMode.Saving) fought?.RemoveAll(p => p == null || p.Discarded);
             Scribe_Collections.Look(ref fought, "fought", LookMode.Reference);
+            Scribe_Values.Look(ref scoutAt, "scoutAt", -1);
+            Scribe_Values.Look(ref raidDue, "raidDue", -1);
+            Scribe_Values.Look(ref raidSide, "raidSide", -1);
+            Scribe_Values.Look(ref raidCell, "raidCell", IntVec3.Invalid);
+            Scribe_Values.Look(ref runaway, "runaway");
+            Scribe_Values.Look(ref sooner, "sooner");
+            Scribe_Values.Look(ref smokeAt, "smokeAt", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 raiders ??= new List<Pawn>();
@@ -402,9 +420,13 @@ namespace ColonyCouncil
                 End(home, rh, c, CampEnd.GaveUp, null);
                 return;
             }
-            if (!c.raidOpen && On && ThreatsAllowed && RaidersCampMath.MayRaid(c.stage, c.setAt, c.foundAt, c.lastRaid, now)
-                && Rand.MTBEventOccurs(RaidersCampMath.RaidMtb(CurveDays(c.points), Rate), Day, RaidersCampMath.HourTicks))
+            // Its scouts seen at the edge come before each raid, and the raid follows them in from that side (RaidersCampSigns.cs).
+            if (c.raidDue >= 0 && !c.raidOpen) DueRaid(home, c, now);
+            else if (!c.raidOpen && On && ThreatsAllowed && RaidersCampMath.MayRaid(c.stage, c.setAt, c.foundAt, c.lastRaid, now)
+                     && Rand.MTBEventOccurs(RaidersCampSignsMath.Mtb(RaidersCampMath.RaidMtb(CurveDays(c.points), Rate), c.sooner), Day, RaidersCampMath.HourTicks)
+                     && !Scout(home, c, now))
                 TryRaid(home, c, now);
+            Smoke(home, c, now);
             if (RaidersCampMath.TermsDue(c.stage, c.foundAt, c.offered, now) && !c.raidOpen && Tell.CanAsk && !MapFacts.ThreatOn(home))
                 RaidersCampTerms.Offer(home, c);
         }
@@ -426,6 +448,8 @@ namespace ColonyCouncil
                 End(home, rh, c, CampEnd.GaveUp, null);
                 return;
             }
+            // Once in its life, a captive who ran from it reaches the gate (RaidersCampSigns.cs).
+            if (On) Runaway(home, c, now);
             if (!RaidersCampMath.AllyDue(c.allyAt, now)) return;
             c.allyAt = now;
             var ally = AllyNear(c);
@@ -881,23 +905,35 @@ namespace ColonyCouncil
         /// <summary>
         /// A raid from the camp: never on top of another threat on the map nor within a day of the last big one; at 0.6 of
         /// the home's threat points, walking in from the map's edge on the camp's side (or the nearest side that lets them
-        /// in, which the letter then names), led by its leader if it has one.
+        /// in, which the letter then names), or from where its scouts were seen (<paramref name="scouted"/>: the edge cell and
+        /// its side), led by its leader if it has one. False when it couldn't come now.
         /// </summary>
-        private static void TryRaid(Map home, RaidersCamp c, int now)
+        private static bool TryRaid(Map home, RaidersCamp c, int now, IntVec3? scouted = null, int scoutSide = -1)
         {
-            if (MapFacts.ThreatOn(home) || now - home.storyState.LastThreatBigTick < Day) return;
+            if (MapFacts.ThreatOn(home) || now - home.storyState.LastThreatBigTick < Day) return false;
             float points = StorytellerUtility.DefaultThreatPointsNow(home) * RaidersCampMath.RaidFactor;
             var before = new HashSet<Pawn>(home.mapPawns.SpawnedPawnsInFaction(c.people));
             var people = c.people.Name.Named("PEOPLE");
             string where = Where(home, c);
             string label = "CC_RaidCamp_RaidLabel".Translate(c.kind.Named("KIND")).Resolve().CapitalizeFirst();
             string text = TextVariants.Vary("CC_RaidCamp_RaidText").Translate(people, c.kind.Named("KIND"), where.Named("WHERE")).Resolve();
-            var from = EdgeToward(home, TileOf(c), out int side, out float heading);
-            // No way in from the camp's own side: they come round, and the letter says from where.
-            if (from.HasValue && !RaidersCampMath.SideFits(heading, side))
-                text += " " + "CC_RaidCamp_RaidRound".Translate(SideWord(side).Named("SIDE")).Resolve();
+            IntVec3? from;
+            if (scouted.HasValue && scouted.Value.IsValid && scouted.Value.InBounds(home) && scouted.Value.Walkable(home) && scoutSide >= 0)
+            {
+                // From where its scouts were watching: the letter says so.
+                from = scouted;
+                text += " " + "CC_RaidCamp_RaidScouted".Translate(SideWord(scoutSide).Named("SIDE")).Resolve();
+            }
+            else
+            {
+                from = EdgeToward(home, TileOf(c), out int side, out float heading);
+                // No way in from the camp's own side: they come round, and the letter says from where.
+                if (from.HasValue && !RaidersCampMath.SideFits(heading, side))
+                    text += " " + "CC_RaidCamp_RaidRound".Translate(SideWord(side).Named("SIDE")).Resolve();
+            }
             var lead = c.leader != null && !LeaderLost(c) && !c.leader.Spawned ? c.leader : null;
-            if (!Raids.Send(home, c.people, points, label, text, lead, from, false)) return;
+            if (!Raids.Send(home, c.people, points, label, text, lead, from, false)) return false;
+            c.sooner = false;
             c.raids++;
             c.lastRaid = now;
             c.raidOpen = true;
@@ -907,6 +943,7 @@ namespace ColonyCouncil
             c.raiders = home.mapPawns.SpawnedPawnsInFaction(c.people).Where(p => !before.Contains(p)).ToList();
             c.raidSize = c.raiders.Count;
             History.Add(RaidersCampMath.KindRaid, Actors(c, null, null), Refs.Colony(home), HistoryMath.Everyday, text, mergeTicks: Day);
+            return true;
         }
 
         /// <summary>

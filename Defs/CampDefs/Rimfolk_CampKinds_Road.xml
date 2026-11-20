@@ -88,13 +88,18 @@
     <!-- Their pack beasts (the kind their own caravans use, where this land allows it) tethered by the stash, with the
          bales and fodder unloaded beside them; porters carry bales between the beasts and the stall all day. -->
     <animals>
-      <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Alpaca</li><li>Yak</li><li>Donkey</li></kinds><count>2~3</count><at>picket</at></li>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Dromedary</li><li>Alpaca</li><li>Yak</li><li>Donkey</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_IndianElephant</li></kinds><count>2~3</count><at>picket</at></li>
     </animals>
     <campGoods>
       <li><defs><li>Cloth</li></defs><count>35~60</count><at>picket</at><carryTo>stall</carryTo></li>
       <li><defs><li>Cloth</li></defs><count>25~45</count><at>picket</at><carryTo>stall</carryTo></li>
+      <li><defs><li MayRequire="vanillaexpanded.vcooke">VCE_Salt</li><li>Pemmican</li></defs><count>40~75</count><at>picket</at><carryTo>stall</carryTo></li>
       <li><defs><li>Hay</li></defs><count>30~50</count><at>picket</at></li>
     </campGoods>
+    <!-- What their trader always has to sell besides their people's own stock: the salt (else salted fare). -->
+    <traderGoods>
+      <li><defs><li MayRequire="vanillaexpanded.vcooke">VCE_Salt</li><li>Pemmican</li></defs><count>50~90</count></li>
+    </traderGoods>
     <titles>
       <li>A caravan stops</li>
       <li>[lowtech] The salt caravan</li>
@@ -400,8 +405,8 @@
     <!-- Part of their herd grazes beyond the camp (beasts that suit the weather here, those that live wild on this land
          likelier), and a dog keeps to a drover's heels. The beast the colony can buy is one of these. -->
     <animals>
-      <li><kinds><li>Cow</li><li>Sheep</li><li>Goat</li><li>Yak</li><li>Muffalo</li><li>Alpaca</li><li>Dromedary</li></kinds><count>3~4</count><at>pasture</at></li>
-      <li><kinds><li>LabradorRetriever</li><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+      <li><kinds><li>Cow</li><li>Sheep</li><li>Goat</li><li>Yak</li><li>Muffalo</li><li>Alpaca</li><li>Dromedary</li><li MayRequire="spino.megafauna">Aurochs</li><li MayRequire="sarg.alphaanimals">AA_ChameleonYak</li><li MayRequire="sarg.alphaanimals">AA_Thunderox</li></kinds><count>3~4</count><at>pasture</at></li>
+      <li><kinds><li>LabradorRetriever</li><li>Husky</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Beagle</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
     </animals>
     <titles>
       <li>Drovers and their dogs</li>

@@ -41,7 +41,7 @@
     <works><li>Chop</li><li>Mine</li><li>Gather</li><li>Hunt</li><li>Craft</li></works>
     <!-- Their carts' beasts, tethered by the stash, and the timber and seed for their first houses and fields. -->
     <animals>
-      <li><pack>true</pack><kinds><li>Muffalo</li><li>Donkey</li><li>Dromedary</li><li>Yak</li></kinds><count>1~2</count><at>picket</at></li>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Donkey</li><li>Dromedary</li><li>Yak</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li></kinds><count>1~2</count><at>picket</at></li>
     </animals>
     <campGoods>
       <li><defs><li>WoodLog</li></defs><count>25~40</count><at>picket</at></li>
