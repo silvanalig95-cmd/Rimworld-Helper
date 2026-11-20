@@ -655,8 +655,10 @@ repo.
     play-out list's names and the comet's watch), README (one ambition), the Almanac (three pages' names),
     `docs/dilemma-balance.md`, `docs/flavour-restore.md` (new: every line put right).
   - **Checks.** `Tools/textcheck.py --base claude/peaceful-maxwell-rpqlwu`: no placeholder, tag or key lost; it names
-    only the restore itself ("withdrawal" to "the shakes", a one-word name it reads as an identifier, and the silver sums
-    the old answer labels didn't name, "Send silver instead" for "Send 80 silver instead" and five more).
+    only the restore itself: "withdrawal" to "the shakes" (a one-word name it reads as an identifier), the silver sums
+    the old answer labels didn't name ("Send silver instead" for "Send 80 silver instead" and seven more), two camps'
+    tips that say "a share of their meat" where the plain ones said 35, and the circus show that no longer names
+    {A_nameDef} as the strongman's volunteer.
   - **Can't be checked without the game.** How the flavour lines read beside the plain messages and cards around them;
     that the lines put right still sound like their neighbours.
   - **Try in the game.** Write to a few neighbours and read the answers (an unschooled raider people holding a colonist
