@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 794; modelled: 794; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,782 KB** after two, **4,242 KB** after five.
+Saved collections found: 795; modelled: 795; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,068 KB** after a year, **3,782 KB** after two, **4,242 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -46,7 +46,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,782 KB** aft
 | `Trade/TradeRecord.cs:goods` | goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first | cap | 48 | 50 | 50 | 24.7 |
 | `Camps/Camp.cs:plans` | what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), and what it adds over its stay (seats round the fire, a lean-to's posts, a pen's fences, a rack, a bench, an altar, a banner, a latrine, a second store: CampGrow.cs, about thirty more), while the camp stays | while | 120 | 120 | 120 | 23.4 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 248 | 248 | 248 | 21.8 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 249 | 249 | 249 | 21.9 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding, the customs kept | cap | 12 | 24 | 36 | 21.1 |
 | `Gods/Worship/WorshipBook.cs:prayers` | prayers said, settled and let go after twenty days, WorshipBook.MaxPrayers | cap | 60 | 80 | 80 | 20.3 |
@@ -115,8 +115,8 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,782 KB** aft
 | `Building/ColonyUse.cs:amounts` | with the above: how much | window | 280 | 280 | 280 | 6.8 |
 | `Building/ColonyUse.cs:days` | the record of use: one entry a day per thing used, bench product and bench hand, today and UseLog.WindowDays before it | window | 280 | 280 | 280 | 6.8 |
 | `Dreams/Dreams.cs:seen` | dream counts of known pawns | known | 55 | 60 | 75 | 6.6 |
+| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 75 | 75 | 75 | 6.6 |
 | `Beasts/BeastBook.cs:alphas` | packs led by an alpha: one a home a month at most (the setting at 200%: two), BeastsMath.MaxAlphaRecords kept | cap | 4 | 7 | 16 | 6.6 |
-| `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 74 | 74 | 74 | 6.5 |
 | `Epithets/Epithets.cs:holders` | one per title | defs | 74 | 74 | 74 | 6.5 |
 | `Gods/Worship/WorshipBook.cs:vows` | the vows' kinds beside the core's, the open and the newest done, WorshipBook.MaxVows | cap | 6 | 12 | 30 | 6.4 |
 | `Dilemmas/AnswerShifts.cs:shifts` | a colonist's hours or work changed by an answer, a night to a heat wave long, at most AnswerShifts.MaxShifts at once | cap | 18 | 36 | 40 | 6.2 |
@@ -471,6 +471,7 @@ Rimfolk's part of the save, roughly: **3,067 KB** after a year, **3,782 KB** aft
 | `Faith/FaithCouncilTracker.cs:plans` | the evening of faith waiting to be held: one at a time, let go when its gathering is over | while | 1 | 1 | 1 | 0.3 |
 | `Happenings/Happenings.cs:group` | per raid or visit (counted with them) | fixed | 1 | 1 | 1 | 0.3 |
 | `Lives/Legacy.cs:children` | known pawns only | known | 6 | 6 | 8 | 0.3 |
+| `Offices/Offices.cs:raised` | promises raised halfway, OfficeTracker.MaxRaised at most | fixed | 12 | 12 | 12 | 0.3 |
 | `Peoples/Events6/PeopleEvents6Book.cs:veterans` | the Banner's old soldiers settled with the colony, PeopleEvents6.MaxVeterans kept once gone | cap | 0 | 1 | 2 | 0.3 |
 | `Peoples/Events9/PeopleEvents9Book.cs:enemies` | what came up from the vault's lower level, while its fight is on (made at most thirty) | fixed | 30 | 30 | 30 | 0.3 |
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |

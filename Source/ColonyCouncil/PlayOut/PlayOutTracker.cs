@@ -215,7 +215,8 @@ namespace ColonyCouncil
                     PlayFire.Ahead(p);
                 if (!PlayOutMath.InHours(hour, p.hourFrom, p.hourTo)) return;
                 // The colony's own wait for room in its week, and never come within a day and a half of another gathering.
-                if (p.routine && !Stage.Room(p.map, now))
+                // A seat's own work (Interplay/Interplay_Seats.cs) is no gathering and waits for none.
+                if (p.routine && !Interplay.IsSeatWork(p) && !Stage.Room(p.map, now))
                 {
                     p.waitReason = "CC_Stage_Why_Room".Translate();
                     return;

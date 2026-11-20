@@ -10,6 +10,8 @@
   <!-- ===================== A thief in the stores ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Thief</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a thief in the stores</label>
     <weight>1</weight>
@@ -137,6 +139,8 @@
   <!-- ===================== A feud ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Feud</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Peacemaker</seat>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a feud</label>
     <weight>1.2</weight>
@@ -219,6 +223,8 @@
   <!-- ===================== The cook's feast ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Feast</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the cook's feast</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Feast</workerClass>

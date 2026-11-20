@@ -105,6 +105,8 @@ namespace ColonyCouncil
         {
             string label = (p.label ?? "").CapitalizeFirst();
             string names = Names(p.hands.Select(h => h.pawn).ToList());
+            // A seat's own round or walk: one person at their work (Interplay/Interplay_Seats.cs).
+            if (Interplay.IsSeatWork(p)) return Interplay.SeatBeginText(p, names, where);
             switch (p.kind)
             {
                 case PlayKind.WorkParty: return "CC_Play_Begin_WorkParty".Translate(label, names, TaskWords(p)).Resolve();

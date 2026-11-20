@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The council's integrations, part 1 (the content update's A1, A2, A5 and A6, 20 November 2026). A seat named by its
+    medieval word in these lines is said in the colony's age (Interplay.Line, OfficeNames.InAge). Lines said over a head
+    are one sentence each.
+  -->
+
+  <!-- ===================== The seat's word in a council question (A2) ===================== -->
+
+  <!-- After a council question about a seat's work that has no opening of its own for the seat: its holder's word, in
+       the council questions' own style. {HOLDER_...} the holder, {OFFICE} the seat in the colony's age. Tagged by the
+       seat ([seat:Physician]); the untagged lines fit any. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatWord</defName>
+    <lines>
+      <plain>
+        <li>[seat:Physician] {HOLDER_nameDef}, the colony's {OFFICE}, has come up from the sickbeds to be heard on it. The sick are {HOLDER_possessive} business, {HOLDER_pronoun} says, and {HOLDER_pronoun} would rather be asked than told.</li>
+        <li>[seat:Physician] {HOLDER_nameDef} has had a say in this already, at length and with {HOLDER_possessive} sleeves still rolled up. As {OFFICE}, {HOLDER_pronoun} will be the one living with whatever the council decides.</li>
+        <li>[seat:Reeve] {HOLDER_nameDef}, as {OFFICE}, has an opinion on it, and has brought a handful of soil to the table to make it with.</li>
+        <li>[seat:Reeve] The fields are the {OFFICE}'s, and {HOLDER_nameDef} would like that remembered, and has asked to speak before anyone else does.</li>
+        <li>[seat:Herdmaster] {HOLDER_nameDef} has come in from the pens to be heard, smelling of them. The animals are the {OFFICE}'s to look after, and {HOLDER_pronoun} knows each of them by name.</li>
+        <li>[seat:Herdmaster] As {OFFICE}, {HOLDER_nameDef} would like a word first, having a fair idea what the animals can stand and what they can't.</li>
+        <li>[seat:Peacemaker] {HOLDER_nameDef}, the {OFFICE}, has been asked about it so often today that {HOLDER_pronoun} has started answering before the question is finished, and would like the council to hear {HOLDER_objective} out too.</li>
+        <li>[seat:Peacemaker] Quarrels are the {OFFICE}'s work, and {HOLDER_nameDef} has been in the middle of this one from the start, and has asked to be heard before anything is settled.</li>
+        <li>[seat:Keeper] {HOLDER_nameDef}, as {OFFICE}, has the day written down already, and would like the council's word on it before anyone else's.</li>
+        <li>[seat:Keeper] The {OFFICE}, {HOLDER_nameDef}, remembers how the colony kept it before, and has offered to tell the council, whether or not it asks.</li>
+        <li>[seat:Chaplain] {HOLDER_nameDef}, the colony's {OFFICE}, has asked to speak on it. Matters of the faith fall to {HOLDER_objective}, {HOLDER_pronoun} says, and {HOLDER_pronoun} has been thinking about little else.</li>
+        <li>[seat:Chaplain] As {OFFICE}, {HOLDER_nameDef} would like a word before the council decides, with the faith's view of it and {HOLDER_possessive} own.</li>
+        <li>[seat:Warden] {HOLDER_nameDef}, as {OFFICE}, has asked to be heard first. Strangers are {HOLDER_possessive} business, and {HOLDER_pronoun} has already had a long look at these.</li>
+        <li>[seat:Warden] The {OFFICE}, {HOLDER_nameDef}, has a view on it, and has been trying to give it to anyone who would stand still.</li>
+        <li>[seat:Quartermaster] {HOLDER_nameDef}, as {OFFICE}, has asked to be heard, and has brought the count of the stores along in case anyone wants to argue with it.</li>
+        <li>[seat:Quartermaster] Whatever the council decides comes out of the stores, says {HOLDER_nameDef}, and as {OFFICE} {HOLDER_pronoun} would like a say before it does.</li>
+        <li>{HOLDER_nameDef}, as {OFFICE}, has asked to be heard on it before the council decides, since the work is {HOLDER_possessive}.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The speaker hears someone out (A1) ===================== -->
+
+  <!-- Said by the one heard out, to the speaker, at the end of their hour together. {OTHER_...} the speaker. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatHeardSays</defName>
+    <lines>
+      <plain>
+        <li>I keep asking the council for things and nobody ever comes back to me about them.</li>
+        <li>It feels like the council only ever listens to the same three people.</li>
+        <li>I'm tired of hearing what was decided after it was already decided.</li>
+        <li>Nobody asked me before, so thank you for asking now.</li>
+        <li>I just wanted someone on the council to know how it looks from where I stand.</li>
+      </plain>
+      <warm><li>Thank you for sitting with me, it helps to say it out loud to someone.</li></warm>
+      <blunt><li>The council doesn't listen, and that's the whole of it.</li></blunt>
+      <gloomy><li>I don't expect anything to change, but I'm glad somebody asked.</li></gloomy>
+      <cold><li>I have said what I came to say, and I would like it remembered.</li></cold>
+      <cheerful><li>Well, that's more listening than I've had all season, so thank you.</li></cheerful>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Said by the speaker in answer. {OTHER_...} the one heard out. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatHearReply</defName>
+    <lines>
+      <plain>
+        <li>That's fair, and I'm sorry nobody sat down with you sooner.</li>
+        <li>I didn't know it had got that bad, thank you for telling me straight.</li>
+        <li>You're right that we should have asked you, and I'll remember it.</li>
+        <li>I've heard you, {OTHER_nameDef}, and I'm glad you said it.</li>
+      </plain>
+      <warm><li>Come and find me whenever it gets like that again, I mean it.</li></warm>
+      <blunt><li>Fair enough, I've heard you.</li></blunt>
+      <cold><li>Noted, and I will keep it in mind.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The one heard out writes about it afterwards. {OTHER_...} the speaker. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Journal_SeatHeard</defName>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} sat with me for an hour today and listened to all of it. I still don't think much of the council, but I think a bit better of {OTHER_objective}.</li>
+        <li>The speaker came and found me today to hear what I had to say. I said it. It's a start.</li>
+        <li>{OTHER_nameDef} asked me what was wrong and then let me talk. Nobody on the council has done that before.</li>
+      </plain>
+      <gloomy><li>{OTHER_nameDef} heard me out. Nothing will come of it, but it was decent of {OTHER_objective}.</li></gloomy>
+      <blunt><li>Told {OTHER_nameDef} what I think of the council. The speaker listened. Good.</li></blunt>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The quartermaster's count (A1) ===================== -->
+
+  <!-- The quartermaster, at the end of the count, about what is shortest ([short:food], [short:medicine], [short:meals]).
+       Said only when something is. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatCountShort</defName>
+    <lines>
+      <plain>
+        <li>[short:medicine] The medicine shelf is lower than I'd like.</li>
+        <li>[short:medicine] We'll want more medicine before somebody really needs it.</li>
+        <li>[short:food] There's less food in the stores than I'd like going into the next weeks.</li>
+        <li>[short:food] The food won't last as long as people think it will.</li>
+        <li>[short:meals] There aren't many cooked meals put by, somebody should get a pot on.</li>
+        <li>[short:meals] We're short of cooked meals, the cooks need to catch up.</li>
+        <li>[tribal,short:food] The store pits are emptier than they should be at this time of year.</li>
+        <li>[spacer,short:medicine] Medical supplies are under the reserve level.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The reeve's walk (A1) ===================== -->
+
+  <!-- The reeve at a field with blight in it, having marked it for cutting. {CROP} the crop. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatBlight</defName>
+    <lines>
+      <plain>
+        <li>There's blight in the {CROP}, I've marked it for cutting.</li>
+        <li>Blight on the {CROP} again, it all has to come out before it spreads.</li>
+        <li>I've marked the sick {CROP} for cutting, the rest looks clean.</li>
+        <li>Black spots on the {CROP}, so that row comes out before it spreads.</li>
+        <li>[lowtech] Blight in the {CROP}, those stalks come out today before it spreads.</li>
+      </plain>
+      <blunt><li>Blight in the {CROP}, marked it, it comes out today.</li></blunt>
+      <gloomy><li>Blight in the {CROP}, and I'd hoped we'd seen the last of it.</li></gloomy>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== The marshal at dusk (A1) ===================== -->
+
+  <!-- The marshal to someone on watch at a look-out on the dusk walk. {OTHER_...} the one on watch. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatOnWatch</defName>
+    <lines>
+      <plain>
+        <li>Anything moving out past the tree line, {OTHER_nameDef}?</li>
+        <li>Keep your eyes on the far side tonight, that's where they came from last time.</li>
+        <li>Shout the moment you see anything, don't wait to be sure.</li>
+        <li>Stay sharp, {OTHER_nameDef}, they might try again tonight.</li>
+      </plain>
+      <blunt><li>Stay awake and keep looking.</li></blunt>
+      <warm><li>Get some warm food in you when you come off, {OTHER_nameDef}.</li></warm>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A promise halfway (A5) ===================== -->
+
+  <!-- Said by the holder at the supper where they answer for their promise ([speaker]: the holder leads it). One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_SeatSupper</defName>
+    <lines>
+      <plain>
+        <li>[speaker] I made you a promise at the election, and you're owed an account of how it's going.</li>
+        <li>[speaker] I won't pretend it's going well, but I haven't given up on it.</li>
+        <li>[speaker] If anyone at this table has a better idea, I'm listening.</li>
+        <li>[speaker] Here is what went wrong, as far as I can tell.</li>
+        <li>[speaker] I'd rather you heard it from me than from anyone else.</li>
+        <li>[speaker] There's still time before the vote, and I mean to use it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== Any other business (A6) ===================== -->
+
+  <!-- The asker reads out their petition at the meeting ([decree], [repeal] or [wish]). {WHAT} what it asks for. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MeetingPetition</defName>
+    <lines>
+      <plain>
+        <li>[decree] I've asked the council for {WHAT}, and I'd like the room to hear why.</li>
+        <li>[decree] Before we all go, I'm still asking for {WHAT}.</li>
+        <li>[repeal] I've asked the council to lift {WHAT}, and I'm asking again in front of everyone.</li>
+        <li>[repeal] {WHAT} has gone on long enough, and I'd like it lifted.</li>
+        <li>[wish] We've asked for {WHAT}, and I'd like to know who else wants it.</li>
+        <li>[wish] There's still the matter of {WHAT}, which some of us have been asking for.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The chair reads out a petition for one who isn't there. {OTHER_...} the asker, {WHAT} what it asks for. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MeetingPetitionFor</defName>
+    <lines>
+      <plain>
+        <li>[decree] {OTHER_nameDef} couldn't be here, so I'll read out the petition for {WHAT}.</li>
+        <li>[repeal] {OTHER_nameDef} couldn't be here, but asked me to read out the petition to lift {WHAT}.</li>
+        <li>[wish] {OTHER_nameDef} isn't here, so I'll read out the petition for {WHAT} myself.</li>
+        <li>[decree] {OTHER_nameDef} asked for {WHAT} and can't be with us, so here it is.</li>
+        <li>[repeal] On behalf of {OTHER_nameDef}, who isn't here: the petition to lift {WHAT}.</li>
+        <li>[wish] {OTHER_nameDef} and the others who signed want {WHAT}, and asked me to say so.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone at the meeting says aye to a petition just read. {OTHER_...} the asker. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MeetingAye</defName>
+    <lines>
+      <plain>
+        <li>Aye, I'm with {OTHER_nameDef} on that.</li>
+        <li>Aye, and it's about time somebody said it.</li>
+        <li>[wish] Aye, I'd want the same.</li>
+        <li>[repeal] Aye, lift it.</li>
+        <li>[decree] Aye, I'd be glad of it.</li>
+        <li>Aye, put me down for it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- Someone at the meeting says no to a petition just read. {OTHER_...} the asker, {WHAT} what it asks for. One sentence. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_MeetingNay</defName>
+    <lines>
+      <plain>
+        <li>No, I don't see the need for it.</li>
+        <li>[decree] No, I'd rather we did without {WHAT}.</li>
+        <li>[repeal] No, leave it as it is.</li>
+        <li>[wish] No, there are better things to spend on.</li>
+        <li>No, not now, there are bigger worries.</li>
+        <li>[repeal] No, it's doing what it was meant to.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

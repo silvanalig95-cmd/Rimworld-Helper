@@ -13,6 +13,8 @@
   <!-- ===================== Ideoligions at odds ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmFaith_Clash</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Chaplain</seat>
     <label>ideoligions at odds</label>
     <workerClass>ColonyCouncil.DilemmaWorker_FaithClash</workerClass>
     <weight>1.2</weight>

@@ -156,7 +156,9 @@ public static class ArcTests
         // A feud with an animal (Animals/AnimalArcs.cs) that began with a stolen meal.
         "robbed",
         // Getting clean (Arcs/ArcWorkers_LifeNew.cs): a slip back to the drug.
-        "relapse"
+        "relapse",
+        // The weight of office's hard call made real (Offices/SeatCalls.cs): the kind of call, and the quiet end without one.
+        "call:question", "call:decree", "call:supper", "nocall"
     };
 
     private static readonly Regex LowerStart = new Regex(@"(^(\[[^\]]*\]\s*)?|[.!?]\s+)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}");

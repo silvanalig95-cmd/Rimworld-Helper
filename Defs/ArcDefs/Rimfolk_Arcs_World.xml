@@ -172,7 +172,7 @@
       </li>
       <li>
         <label>doubtful days</label>
-        <waiting>Next: some steady days, or {PAWN_nameDef}'s faith in the council holding.</waiting>
+        <waiting>Next: a hard call as {NAME}: a council question about the seat's work, a decree {PAWN_pronoun} backed that someone hates, or answering for a promise at supper.</waiting>
         <journal>
           <plain>
             <li>{OTHER_nameDef} told me nobody is ready for a seat on the council, and everyone pretends. It helped more than it should have.</li>
@@ -187,17 +187,13 @@
         <chronicle>
           <li>"Nobody is ready for a seat on the council," {OTHER_nameDef} told {PAWN_nameDef}. "Everyone pretends."</li>
         </chronicle>
+        <!-- The hard call is a real one (the content update's A21): it waits for a question of the seat's work that names
+             them, a decree they backed declared over someone's objection, or answering for a promise at supper
+             (Offices/SeatCalls.cs); with none in twenty days the story ends quietly ([nocall], ArcWorker_Office.Broken). -->
         <gate>
-          <kind>Hold</kind>
-          <hold>Mood</hold>
-          <value>0.5</value>
-          <hours>48</hours>
+          <kind>Custom</kind>
           <minDays>2</minDays>
-          <timeoutDays>20</timeoutDays>
-          <timeoutPasses>true</timeoutPasses>
-          <or>
-            <li><kind>Hold</kind><hold>Trust</hold><value>15</value><hours>48</hours><minDays>2</minDays></li>
-          </or>
+          <timeoutDays>25</timeoutDays>
         </gate>
       </li>
       <li>
@@ -205,17 +201,25 @@
         <waiting>Next: a few more days in the seat.</waiting>
         <journal>
           <plain>
-            <li>Had to make a call today that somebody won't like. Made it anyway. Slept badly. Got up and did the next thing.</li>
-            <li>Someone came to me as {NAME} today, angry, and I handled it. I'm not sure how. I did.</li>
+            <li>[call:question] The council put {CALL} to me today as {NAME}, and I gave my answer. Somebody won't like it. I said it anyway, slept badly, and got up and did the next thing.</li>
+            <li>[call:question] Everyone looked at me when {CALL} came up, because it's the {NAME}'s business. I said what I thought. My hands were shaking under the table.</li>
+            <li>[call:decree] I spoke for {CALL}, and now it's declared, and not everyone is pleased with me. I'd still do it again.</li>
+            <li>[call:decree] I backed {CALL} as {NAME}, and now it's in force. Somebody gave me a look at breakfast that could curdle milk.</li>
+            <li>[call:supper] I answered at supper for my promise of {CALL}. It's going badly, and I didn't pretend otherwise. Nobody threw anything.</li>
+            <li>[call:supper] They wanted to know what became of {CALL}. I told them the truth across the table, and ate my supper cold.</li>
+            <li>It came down to me as {NAME} today, over {CALL}. I made the call. Somebody won't like it.</li>
           </plain>
-          <warm><li>I had to say no to someone I care about today, as {NAME}. I explained why. I think they understood.</li></warm>
-          <blunt><li>Made a hard call. Would make it again.</li></blunt>
-          <cheerful><li>Survived my first real decision as {NAME}! Not a single bowl was thrown.</li></cheerful>
-          <gloomy><li>I made the call. I'll find out in a week whether it was the wrong one.</li></gloomy>
-          <cold><li>A difficult decision was required of me, and I made it. That is what the office is for.</li></cold>
+          <warm><li>As {NAME} I had to decide on {CALL}, and it meant disappointing someone I care about. I explained why. I think they understood.</li></warm>
+          <blunt><li>Made the call on {CALL} as {NAME}. Would make it again.</li></blunt>
+          <cheerful><li>My first real decision as {NAME}, on {CALL}, and not a single bowl was thrown.</li></cheerful>
+          <gloomy><li>I made the call on {CALL}. I'll find out in a week whether it was the wrong one.</li></gloomy>
+          <cold><li>As {NAME} I was required to decide on {CALL}, and I did. That is what the office is for.</li></cold>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} made a hard call as {NAME}, and stood by it.</li>
+          <li>[call:question] When the council took up {CALL}, {PAWN_nameDef} spoke for it as {NAME}, and stood by what {PAWN_pronoun} said.</li>
+          <li>[call:decree] {PAWN_nameDef} backed {CALL} as {NAME}, though not everyone wanted it, and stood by it once it was declared.</li>
+          <li>[call:supper] {PAWN_nameDef} answered at supper for {PAWN_possessive} promise of {CALL}, as {NAME}, and didn't make excuses.</li>
+          <li>{PAWN_nameDef} made a hard call on {CALL} as {NAME}, and stood by it.</li>
         </chronicle>
         <gate>
           <kind>Time</kind>
@@ -257,17 +261,26 @@
       <plain>
         <li>[officegone] I'm not {NAME} any more. I was only just learning how.</li>
         <li>[timeout] I hold the office still. I'm just not sure I'll ever feel I deserve it.</li>
+        <li>[nocall] Three weeks as {NAME} and nothing has needed a hard decision from me yet. I've stopped waiting for one.</li>
+        <li>[nocall] Nobody has brought the {NAME} anything hard to decide. I'm not sure whether to be glad.</li>
         <li>Whatever I hoped to become in that seat, I haven't, not yet.</li>
       </plain>
       <blunt><li>[officegone] Lost the seat. Fine. Their loss.</li></blunt>
       <gloomy><li>[officegone] They took the seat away before I'd learned to sit in it. I knew they would.</li></gloomy>
       <warm><li>[officegone] Someone else has the office now. I'll help them the way {OTHER_nameDef} helped me.</li></warm>
     </fizzle>
+    <!-- The mood of a seat lost too soon only when the seat was lost (the story's tag, ArcWorker_Office.Broken). -->
     <fizzleEffects>
-      <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_LostSeatEarly</thought></li>
+      <li Class="ColonyCouncil.ArcEffect_Cast">
+        <ifTag>officegone</ifTag>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_LostSeatEarly</thought></li>
+        </effects>
+      </li>
     </fizzleEffects>
     <fizzleChronicle>
       <li>[officegone] {PAWN_nameDef} lost the seat of {NAME} before {PAWN_pronoun} had grown into it.</li>
+      <li>[nocall] {PAWN_nameDef} has held the office of {NAME} for three weeks without a hard call, and has stopped waiting for one.</li>
       <li>{PAWN_nameDef} never quite felt at home in the office of {NAME}.</li>
     </fizzleChronicle>
     <eulogy>

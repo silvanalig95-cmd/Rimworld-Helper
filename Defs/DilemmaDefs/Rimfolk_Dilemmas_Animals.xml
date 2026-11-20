@@ -11,6 +11,8 @@
   <!-- ===================== The herd in a famine ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmA_FamineCull</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
     <label>the herd or the stores</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Famine</workerClass>
     <weight>1.2</weight>
@@ -86,6 +88,8 @@
   <!-- ===================== A wild animal in the crops ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmA_CropRaider</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Reeve</seat>
     <label>a raider in the crops</label>
     <workerClass>ColonyCouncil.DilemmaWorker_CropRaider</workerClass>
     <weight>1</weight>
@@ -167,6 +171,8 @@
   <!-- ===================== A sick animal and the medicine it would take ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmA_SickAnimal</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
     <label>medicine for an animal</label>
     <workerClass>ColonyCouncil.DilemmaWorker_SickAnimal</workerClass>
     <weight>1</weight>
@@ -239,6 +245,8 @@
   <!-- ===================== A predator stalking the pens ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmA_PenStalker</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
     <label>something at the pens</label>
     <workerClass>ColonyCouncil.DilemmaWorker_PenStalker</workerClass>
     <weight>1</weight>

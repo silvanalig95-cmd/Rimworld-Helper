@@ -119,6 +119,10 @@ public static class ImmersionTests
         "Rimfolk_Pool_SparBegin", "Rimfolk_Pool_SparHit", "Rimfolk_Pool_SparSorry", "Rimfolk_Pool_SparEnd", "Rimfolk_Pool_DareBegin", "Rimfolk_Pool_DareDone",
         "Rimfolk_Pool_DareHurt", "Rimfolk_Pool_DareTalkedOut", "Rimfolk_Pool_DareCall", "Rimfolk_Pool_MarshalWord", "Rimfolk_Pool_CowardBreaks",
         "Rimfolk_Pool_FuryBreaks",
+        // The council's seats at their work, a holder answering for a promise at supper, and any other business at the meeting
+        // (Interplay/Interplay_Seats.cs, Offices/SeatHalfway.cs, Ambitions/MeetingBusiness.cs).
+        "Rimfolk_Pool_SeatHeardSays", "Rimfolk_Pool_SeatHearReply", "Rimfolk_Pool_SeatCountShort", "Rimfolk_Pool_SeatBlight", "Rimfolk_Pool_SeatOnWatch",
+        "Rimfolk_Pool_SeatSupper", "Rimfolk_Pool_MeetingPetition", "Rimfolk_Pool_MeetingPetitionFor", "Rimfolk_Pool_MeetingAye", "Rimfolk_Pool_MeetingNay",
         // Harm, part 7 (Harm/Tempers.cs, GateTroubles.cs, Stories.cs): tempers in the colony, visitors and outsiders, personal
         // stories, said by those they happen to and those who step in.
         "Rimfolk_Pool_SitDownBlows", "Rimfolk_Pool_PeacemakerBetween", "Rimfolk_Pool_SpeakerWords", "Rimfolk_Pool_SpeakerCalms", "Rimfolk_Pool_PeacemakerWord",

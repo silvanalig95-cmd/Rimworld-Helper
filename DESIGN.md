@@ -345,6 +345,107 @@ Lines elsewhere that mention a seat in passing (a dilemma's "the
 quartermaster's friends", a camp's elders, other peoples' speakers) are left as written: renaming them would rename
 other peoples' elders too.
 
+### The council at its work, in its questions and at its meeting (the content update's A1, A2, A5, A6 and A21; the player's go, 20 November 2026; not released yet)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
+with this in the order you think makes most sense ... more immersion ... the relations between pawns, the kind of events
+that generated from it", and "first do all the integrations that you proposed in your document before we add additional
+content variety". Part 1 of colony life's integrations, the council: four seats that worked only through numbers seen at
+their work (A1), the seat whose work a question is about speaking in it (A2), a promise looked at halfway (A5), the
+petitions read out at the meeting (A6) and the weight of office's hard call made real (A21). The rules without game
+types are `Offices/SeatMath.cs` (tested in `SeatWorkTests`). Everything answers to "Systems talk to each other" and the
+offices' setting.
+
+- **The seats at their work (A1, `Interplay/Interplay_Seats.cs`).** Each is a play-out of the colony's own
+  (`PlayOut.routine`, with `seat:` in `PlayOut.afterward`): never counted as one of the colony's gatherings
+  (`Stage.Held`), never waiting for room among them (`Stage.Room`), let go without a word if it can't happen, and its
+  end told in its own words (`Interplay.SeatWorkOver`, from `PlayAfter.Run`). A seat's walk begins in words for one
+  person (`SeatBeginText`).
+  - The **speaker**, every three days at most, sits an hour at a table (`DilemmaEffect_Visit` with `sit`) with whoever of
+    the colony trusts the council least, when that is under 10 (`SeatMath.Lowest`, `HearBelow`), not the same person
+    within eight days; at the end their trust rises one point, two from a speaker of Social 20 (`HeardTrust`), each
+    says a line (`Rimfolk_Pool_SeatHeardSays`, `_SeatHearReply`, one sentence), the news says "Harper sat an hour with
+    Barr and heard him out, as the speaker." and now and then they write of it.
+  - The **quartermaster**, once a week (the seat's own promise, "a count of the stores every week"; the last count's tick
+    is saved on the council), walks round the stores at dawn (a one-person round, `PlayRoutes.Stores`: every stockpile,
+    and every room with shelves or other storage, so deep storage and RimFridge's fridges count, six stops at most) and
+    at the last store counts them: days of food, cooked meals and medicine, and what is furthest under its mark
+    (`SeatMath.Shortest`: 15 days of food, two doses and two meals each). The count goes in the news, at the head of
+    This week's plan for ten days (`InboxProviders.StoresCount`), and when something is short the quartermaster says so
+    aloud ("The medicine shelf is lower than I'd like."). A round cut short before its last store counts nothing.
+  - The **reeve**, in the growing season (spring and summer with something growing) every other day, and the next
+    morning whenever blight is in the fields unmarked, even out of season, walks round the fields at first light
+    (`PlayRoutes.Fields`, a stop at each growing zone) and at each field marks its blighted plants for cutting with the
+    game's own order (`FieldBlight.Mark`), saying so where there was some; the news says how many were marked, or that
+    there was none.
+  - The **marshal**, in the two days after an attack (the map's last big threat, never while hostiles are on it), walks
+    the walls at dusk for an hour (`DilemmaEffect_Vigil` with `patrol`, the night watch's look-outs), and at each look-out
+    has a word for anyone of the colony near it who is drafted or keeping a watch of their own (`AtLookOut`, from
+    `PlayVigils.Arrived`), each once a walk.
+  - With "Answers play out on the map" off: the speaker has a word when the two meet (`Together.When`, walking over in
+    free time), the count and the marks are made without the walk (said as such), and the marshal's evening isn't kept.
+- **The seat whose work it is speaks in the question (A2, `Offices/SeatCalls.cs`).** `DilemmaDef.seat` names the seat a
+  question is about (34 questions: the physician's sick and medicine, the reeve's fields and blight, the herdmaster's
+  herd, the peacemaker's quarrels, the chaplain's faith, the warden of guests' strangers and camps, the quartermaster's
+  stores), and every seasonal custom is the keeper of days' without saying so (`SeatOffice`). When the question is sent,
+  that seat's holder at home on its map, up, and neither A, B nor the stranger, is its holder (`DilemmaContext.holder`,
+  saved with the letter; `{HOLDER_...}`, `{OFFICE}` the seat in the colony's age, the tags `seat` and `seat:Reeve`).
+  Lines tagged `[seat]` give them a voice: 26 questions have an opening and an outcome of their own for the seat
+  (`Rimfolk_Dilemmas_Seats_Variants.xml`, each outcome saying all its plain one does, and the holder's part); any other
+  has the holder's word after its text (`Rimfolk_Pool_SeatWord`, a line for each seat and one for any). Decided here: the
+  holder is a role of their own rather than B, since many of these questions already have a B (the two in a quarrel, the
+  doctor who is tired), and a holder who is A or B is in it already. When it is answered, the holder's record
+  `Council_SeatCalls` goes up by one, and it is their hard call if their story waits for one (A21).
+- **The seat's record (`Offices/SeatRecords.cs`).** A promise now keeps the questions spoken in at the time and who stood
+  against the winner for the seat (`RecordMath.CallsAt`, `RivalsAt`; an older promise has neither). The next election's
+  record in the seat counts the questions spoken in since with the seat's work ("In the seat, Harper has sown and
+  brought in 340 plants and spoken for the seat in 3 of the council's questions"; a seat with no work counted runs on
+  them alone), and they lean voters as the work does (`WorkLeanOf(true, work + calls)`).
+- **A promise halfway (A5, `Offices/SeatHalfway.cs`, `Rimfolk_Dilemmas_SeatHalfway.xml`).** A holder at home 25 days or
+  more into the seat (`SeatMath.HalfwayDays`) whose promise, not yet raised, already reads broken by the vote's own test
+  (`SeatMath.GoingBadly` is `RecordMath.Judge` at that day), when hands can help it (`HandsFor`: a watch for the colony's
+  dead, food, the sick for medicine and sickbeds, the herd, an evening for the colony's spirits; trust, quarrels, days,
+  faith and the seat's own work are left to the vote). Who raises it: one who stood against them for the seat (the
+  promise's rivals) still at home, else whoever thinks least of them (opinion under 20); decided here, since the ballots
+  aren't kept by voter, so "someone who didn't vote for the holder" is someone who stood against them, or failing that
+  the one least likely to have. Each promise is raised once (`OfficeTracker.raised`, twelve kept). The answers: a hand
+  (`DilemmaEffect_SeatHands`: the holder and the one who raised it at the seat's own work, a watch on the walls from nine
+  at night, an afternoon's harvest, fishing and hauling, an afternoon's cleaning and hauling, an afternoon with the herd,
+  or an evening the holder calls for everyone; decided here, as the game has no cooking work party, the food is brought
+  in rather than cooked); answering for it at supper (`DilemmaEffect_SeatSupper`: words at the dining table, the holder
+  speaking, and when it is over it is their hard call); or leaving it to the vote.
+- **Any other business (A6, `Ambitions/MeetingBusiness.cs`).** In the meeting's talk (`CouncilMeeting.Talk`), once every
+  pitch is made or read out and the meeting is 40% in, the colony's open petitions are read, one a turn, the oldest first,
+  four at most: each `DecreeRequest`, and each want that leads a petition of wishes (several names, co-signers, or a want
+  the colony backs together). Its asker reads it, or the chair (or anyone) for one who isn't there; one voice from the
+  room says no where there is one (more often) or aye; everyone there is counted (`SeatMath.AyeToDecree`: those who like
+  a decree, or dislike it for lifting it; `AyeToWish`: those in it, those who want the same, friends of the asker,
+  opinion 20 or more), and up to two who want the same join it (`JoinAtMeeting`: co-signing, or their own want joining
+  the petition). The tally is saved on the petition (`heardTick`, `ayes`, `present` on `DecreeRequest` and on the leading
+  `Wish`: values, no collection) and shown on the Decrees page's card, in This week's rows, and in the meeting letter's
+  paragraph (in the letters' own style). Decided here: the reading comes during the meeting rather than after the vote's
+  count, which is at its very end, so it is heard and seen; the tally decides nothing by itself.
+- **The weight of office's hard call (A21, `Arcs/ArcWorkers_Lives.cs`, `Rimfolk_Arcs_World.xml`).** Its doubtful days now
+  wait for a real call (a Custom gate): a question of the seat's work that named them (A2), a decree they asked for or
+  like declared while someone of the colony hates it (`SeatCalls.Notify_Decree`, from `DecreeTracker.Enact`), or the
+  supper of A5. The call is noted on the story (its tag `call:question`, `call:decree` or `call:supper`, and `{CALL}`:
+  the question, the decree or the promise, `Arc.call`), and the hard call's journal and chronicle name it. With none in
+  twenty days the story ends quietly ([nocall]: a line that claims no call, and no mood); the mood of a seat lost too soon
+  now comes only when the seat was lost ([officegone], an `ArcEffect_Cast` with `ifTag`).
+- **Every age.** The seats are said in the colony's age everywhere (`OfficeNames.Key`, `Interplay.Line`, `{OFFICE}`); the
+  acts are the same on the map in every age, and a few lines have the age's own words ([tribal] store pits, [spacer]
+  reserve levels, [lowtech]).
+- **Text.** The council questions' openings and outcomes, the halfway question and the meeting letter's paragraph are in
+  the earlier flavour style (CLAUDE.md); the news, the seats' words and bubbles, the page lines and the Almanac are plain.
+  Every bubble is one sentence (ImmersionTests).
+- **Saved.** On the council: the last count's tick and words, the promises raised (a list of twelve at most, modelled in
+  `Tools/save_estimate.py`); on a petition, three numbers; on a question's letter, its holder; on a story, its call; on
+  a promise, two more values. The rest (the seats' waits) is session memory, as Interplay's always is.
+- **Dev mode** ("Rimfolk", "Council seats: ..."): the speaker's hour, the quartermaster's count, the reeve's walk and the
+  marshal's dusk now (their waits forgotten, their hours from now), a question of a seat's work, a promise halfway asked
+  now (any promise hands can help), the colony's petitions read out as at a meeting, and a new holder's story given its
+  call.
+
 ---
 
 ## Layer 4: Society (the social web)
@@ -6248,6 +6349,13 @@ another and the colony reads as one life.
 | Reeve | Missions | a delivery mission offered, then filled in full | the reeve deals with the neighbours; +3 goodwill, a journal line |
 | Herdmaster | Pets, heart, bonds | a named animal dies; its person away two days | sits with the one who lost it (strain -4, friendship); minds the animal and is thanked |
 | Marshal | Heart | the end of a fight at home | those who fought beside the marshal: strain -4 |
+| Speaker | Trust, PlayOut | the council's day, someone's trust under 10 | an hour at a table with whoever trusts the council least: their trust +1 to +2, a line each |
+| Quartermaster | Stores, news, This week, PlayOut | once a week | a round of the stores at dawn: the count, what is shortest, said aloud when short |
+| Reeve | Fields, PlayOut | the growing season, or blight unmarked | a walk round the fields at first light: blight marked for cutting at each field |
+| Marshal | PlayOut | the two days after an attack | a walk on the walls at dusk, a word for anyone on watch |
+| Seats | Council questions, elections, personal stories | a question of a seat's work | its holder speaks in it; it counts toward their record and is their hard call (the weight of office) |
+| Elections | Council questions | a promise going badly halfway | raised by one who stood against the holder: a hand, a word at supper, or the vote |
+| Petitions | Council meeting | the meeting's business | read out, the ayes counted, those who want the same join |
 | Steward | Heart, PlayOut | a gathering over, the steward there | everyone else: strain -2 |
 | Heart (grief) | Calendar, PlayOut | a festive calendar day | the grieving sit it out (unless it's their day); a journal line |
 | Heart (grief) | Setbacks | a gathering missed | no "missed the gathering" |
