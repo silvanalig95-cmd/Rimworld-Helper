@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Deeds of the council's life (the content update's A23, 20 November 2026; Source/ColonyCouncil/LifeVariety/
+    LifeMarksDeeds.cs), recorded by hooks in the code: a promise in a seat judged kept or broken at the yearly election
+    ({DETAIL} the seat), speaking up for someone before the council (the one named objecting when the council is asked to
+    send someone away; {VICTIM} the one they spoke for), and stepping down from a seat ({DETAIL} the seat). Same rules as
+    Rimfolk_Deeds.xml; their gossip topics follow.
+  -->
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SeatPromiseKept</defName>
+    <label>kept a promise in a seat</label>
+    <theme>seatkept</theme>
+    <facets><diligence>6</diligence><discretion>3</discretion></facets>
+    <fadeDays>150</fadeDays>
+    <interest>0.8</interest>
+    <text>kept the promise made as {DETAIL}</text>
+    <labelText>the vote on the {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_SeatKept</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SeatPromiseBroken</defName>
+    <label>broke a promise in a seat</label>
+    <theme>seatbroken</theme>
+    <facets><diligence>-5</diligence><discretion>-3</discretion></facets>
+    <fadeDays>120</fadeDays>
+    <interest>1</interest>
+    <text>broke the promise made as {DETAIL}</text>
+    <labelText>the vote on the {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_SeatBroken</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SpokeUp</defName>
+    <label>spoke up for someone before the council</label>
+    <theme>spokeup</theme>
+    <facets><courage>5</courage><kindness>6</kindness></facets>
+    <fadeDays>120</fadeDays>
+    <interest>1.1</interest>
+    <text>spoke up for {VICTIM} before the council</text>
+    <textAlone>spoke up for one of ours before the council</textAlone>
+    <labelText>the council's question on the {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_SpokeUp</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <ColonyCouncil.DeedDef>
+    <defName>Rimfolk_Deed_SteppedDown</defName>
+    <label>stepped down from a seat</label>
+    <theme>steppeddown</theme>
+    <facets><discretion>4</discretion><diligence>-2</diligence></facets>
+    <fadeDays>120</fadeDays>
+    <interest>1</interest>
+    <text>stepped down as {DETAIL}</text>
+    <labelText>the council on the {DATE}</labelText>
+    <logTopic>Rimfolk_GossipTopic_SteppedDown</logTopic>
+  </ColonyCouncil.DeedDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_SeatKept</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a promise kept in a council seat</li>
+        <li>gossip_topic->what was promised at the last vote, and what came of it</li>
+        <li>gossip_topic->a councillor who did what they said</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_SeatBroken</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a promise broken in a council seat</li>
+        <li>gossip_topic->what was promised at the last vote, and what didn't happen</li>
+        <li>gossip_topic->a councillor who didn't do what they said</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_SpokeUp</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->who spoke up before the council</li>
+        <li>gossip_topic->the objection in the council's letter</li>
+        <li>gossip_topic->someone standing by a friend in trouble</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+  <RulePackDef>
+    <defName>Rimfolk_GossipTopic_SteppedDown</defName>
+    <rulePack>
+      <rulesStrings>
+        <li>gossip_topic->a councillor who stepped down</li>
+        <li>gossip_topic->the empty seat and why it's empty</li>
+        <li>gossip_topic->who will take the seat now</li>
+      </rulesStrings>
+    </rulePack>
+  </RulePackDef>
+
+</Defs>

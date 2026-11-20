@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Marks from the colony's own life (the content update's A22, 20 November 2026; Source/ColonyCouncil/LifeVariety/
+    LifeMarksDeeds.cs): a life goal reached, an idea of theirs built (the ambition they proposed reached), a custom they
+    first asked for become a tradition, a year in a seat with the promise kept, a personal story that ended well. Each
+    family is read by nature as the others are: the first mark whose "when" fits is the one given. {LABEL} is what it was
+    about (the goal, the ambition, the custom, the seat, the story). Journals plain.
+  -->
+
+  <!-- ===================== A life goal reached ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_GoalReachedProud</defName>
+    <label>reached a life goal</label>
+    <shifts><pride>8</pride><outlook>3</outlook></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has stood a little taller since {PAWN_pronoun} managed to {LABEL}.</shaped>
+    <defaultLabel>do what they set out to do</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>GoalReached</family>
+        <when>pride>=10</when>
+        <order>0</order>
+        <journal>
+          <plain>
+            <li>I said I would {LABEL}, and I did. I'd like that written somewhere people will see it.</li>
+            <li>Done. I keep going over how I did it, the way you count coins twice.</li>
+          </plain>
+          <blunt><li>Said I'd {LABEL}. Did it.</li></blunt>
+          <cold><li>The goal is reached. I had expected it to take longer.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_GoalReached</defName>
+    <label>reached a life goal</label>
+    <shifts><outlook>7</outlook><pride>4</pride></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has looked further ahead since {PAWN_pronoun} managed to {LABEL}.</shaped>
+    <defaultLabel>do what they set out to do</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>GoalReached</family>
+        <order>1</order>
+        <lean>outlook:-0.3</lean>
+        <journal>
+          <plain>
+            <li>I managed to {LABEL}. I didn't think I would, most days. Now I wonder what else I could do.</li>
+            <li>It took longer than I thought and it was harder than I thought, and I did it anyway.</li>
+          </plain>
+          <warm><li>I couldn't have done it without the others. I'll tell each of them so.</li></warm>
+          <cheerful><li>I did it! What's next?</li></cheerful>
+          <gloomy><li>I got there. I keep waiting for something to go wrong with it.</li></gloomy>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== An idea of theirs built ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_IdeaBuilt</defName>
+    <label>saw their idea built</label>
+    <shifts><openness>5</openness><pride>5</pride></shifts>
+    <major>true</major>
+    <keepDays>150</keepDays>
+    <shaped>{PAWN_nameDef} has been readier with ideas since the colony took up {PAWN_possessive} plan for {LABEL} and finished it.</shaped>
+    <defaultLabel>the council's project</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>IdeaBuilt</family>
+        <journal>
+          <plain>
+            <li>It was my idea, {LABEL}, and now it's done and people use it. I keep walking past just to look.</li>
+            <li>I stood up at the meeting and said we should do it, and we did. I have three more ideas now.</li>
+          </plain>
+          <warm><li>Everyone worked on it, not just me. But I said it first, and I'm allowed to be glad.</li></warm>
+          <blunt><li>Told them we should. We did. It works.</li></blunt>
+          <gloomy><li>They built what I asked for. Now if it fails, everyone will know whose idea it was.</li></gloomy>
+          <cold><li>The plan was sound and was carried out. I'll propose the next one sooner.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== A custom they asked for became a tradition ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_CustomTradition</defName>
+    <label>a custom of theirs kept for good</label>
+    <shifts><warmth>6</warmth><openness>-2</openness></shifts>
+    <major>true</major>
+    <keepDays>240</keepDays>
+    <shaped>{PAWN_nameDef} has been fonder of the colony's ways since {LABEL}, which {PAWN_pronoun} first asked for, became a tradition.</shaped>
+    <defaultLabel>a custom</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>CustomTradition</family>
+        <news>{PAWN_nameDef} first asked for {LABEL}, and now it's a tradition.</news>
+        <journal>
+          <plain>
+            <li>Three years ago I asked for {LABEL}, once. Now it's a tradition, and the children think it was always here.</li>
+            <li>{LABEL} is ours for good now. I remember the evening I first asked for it, and how nervous I was.</li>
+          </plain>
+          <warm><li>Something I asked for will go on after me. I didn't expect that to matter so much.</li></warm>
+          <cheerful><li>My custom is a tradition! I'm going to pretend I planned it that way.</li></cheerful>
+          <gloomy><li>A tradition now. One day somebody will forget why we do it.</li></gloomy>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== A year in a seat, the promise kept ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_SeatYearKept</defName>
+    <label>kept their word in a seat</label>
+    <shifts><pride>5</pride><trust>6</trust></shifts>
+    <major>true</major>
+    <keepDays>180</keepDays>
+    <shaped>{PAWN_nameDef} has trusted the colony more since a year as {LABEL} with the promise {PAWN_pronoun} made kept.</shaped>
+    <defaultLabel>councillor</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>SeatYearKept</family>
+        <journal>
+          <plain>
+            <li>A year as {LABEL}, and I did what I said I would. The colony saw it too.</li>
+            <li>I promised when they voted me in, and the year showed I meant it. That's worth more to me than the seat.</li>
+          </plain>
+          <warm><li>They believed me a year ago, and I didn't let them down. I'm grateful they believed me.</li></warm>
+          <blunt><li>Promised. Delivered. A year as {LABEL}.</li></blunt>
+          <cold><li>The promise is judged kept. It is a useful thing to have on the record.</li></cold>
+        </journal>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+  <!-- ===================== A personal story that ended well ===================== -->
+
+  <ColonyCouncil.PersonaMarkDef>
+    <defName>Rimfolk_Mark_StoryEndedWell</defName>
+    <label>a hard stretch that ended well</label>
+    <shifts><warmth>4</warmth><outlook>6</outlook></shifts>
+    <keepDays>120</keepDays>
+    <shaped>{PAWN_nameDef} has been more hopeful since {LABEL} came to a good end.</shaped>
+    <defaultLabel>a hard stretch</defaultLabel>
+    <modExtensions>
+      <li Class="ColonyCouncil.PersonaMarkExtension">
+        <family>StoryEndedWell</family>
+        <repeatDays>40</repeatDays>
+        <lean>outlook:-0.2</lean>
+      </li>
+    </modExtensions>
+  </ColonyCouncil.PersonaMarkDef>
+
+</Defs>
