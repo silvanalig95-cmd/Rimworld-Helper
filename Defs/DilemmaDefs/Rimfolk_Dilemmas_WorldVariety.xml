@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    A council question of the content update's world events (World/Variety/; the B26 way, DilemmaDef.situations): it comes
+    only while its world event runs. {NAME} the world event, {PLACE} where it is, {FACTION} its people. The answer does what it
+    says: a night out under the open sky, the colony's gathering outdoors (the play-out's own). Flavour style, as the council's
+    questions are.
+  -->
+
+  <!-- ===================== Falling stars: a night out under them ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_WS_FallingStars</defName>
+    <label>a night under the falling stars</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_WorldSeason</workerClass>
+    <weight>1</weight>
+    <cooldownDays>60</cooldownDays>
+    <minColonists>2</minColonists>
+    <situations><li>Rimfolk_WS_FallingStars</li></situations>
+    <texts>
+      <li>The stars have been falling over the region for nights now, and half the colony has been sneaking out to look. {A_nameDef} asks the council to stop pretending otherwise: one night, everyone who wants to out under the open sky together, with a fire and something warm, to watch them while they last.\n\nSome say the falling stars are a sign. {A_nameDef} says it doesn't much matter of what. It would be a short night's sleep before a working day.</li>
+      <li>[lowtech] The old people say a sky full of falling stars is something you tell your grandchildren about, and {A_nameDef} means to have something to tell. {A_nameDef} asks the council for one night with everyone out on the open ground, a fire lit, watching the stars come down.\n\nThe colony would be tired the next day, and nobody would be sorry.</li>
+      <li>[!lowtech] {FACTION} at {PLACE} have their readers out with instruments every night, and the colony has been watching the same sky from its doorways. {A_nameDef} asks the council for one night out together, a fire on the open ground and everyone who wants to lying back and counting.\n\nIt would cost a little sleep.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>A night under the stars for all who want it</label>
+        <outcome>Tonight, everyone who wants to will go out to the open ground after supper, light a fire, and watch the stars fall until the cold sends them in.</outcome>
+        <ways><openness>1</openness><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the night of the falling stars</label><spots><li>Outdoors</li><li>Fire</li></spots><hours>20~23</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+        </effects>
+      </li>
+      <li>
+        <label>The work starts early tomorrow</label>
+        <outcome>The colony goes to bed at the usual time. {A_nameDef} thinks it is missing something it will not see again.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Overruled</thought></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>
