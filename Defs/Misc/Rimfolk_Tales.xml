@@ -190,4 +190,30 @@
     </rulePack>
   </TaleDef>
 
+  <!-- A season the weather book named, taken by a believer for a god's doing (Gods/Among/SeasonGods.cs, C18). WHAT is the
+       season's name ("the winter of the long cold"); GOD is said as the believer's view, never as the truth. -->
+  <TaleDef>
+    <defName>Rimfolk_Tale_SeasonTaken</defName>
+    <label>a season taken for a god's doing</label>
+    <taleClass>ColonyCouncil.Tale_Rimfolk</taleClass>
+    <type>Expirable</type>
+    <expireDays>180</expireDays>
+    <usableForArt>true</usableForArt>
+    <baseInterest>2.5</baseInterest>
+    <rulePack>
+      <rulesStrings>
+        <li>tale_noun->[WHAT]</li>
+        <li>tale_noun->what [PAWN_nameDef] said of [WHAT]</li>
+        <li>image->[PAWN_nameFull] pointing up at the sky in [WHAT] [circumstance_group]</li>
+        <li>image->[PAWN_nameFull] standing at the edge of the fields in [WHAT] [circumstance_group]</li>
+        <li>circumstance_phrase->while the others listen</li>
+        <li>circumstance_phrase->with the colony's roofs behind [PAWN_objective]</li>
+        <li>circumstance_phrase->at the end of the season</li>
+        <li>desc_sentence->[PAWN_nameDef] took the season for the doing of [GOD].</li>
+        <li>desc_sentence->A shape above the scene may stand for [GOD].</li>
+        <li>desc_sentence->Not everyone in the piece looks convinced.</li>
+      </rulesStrings>
+    </rulePack>
+  </TaleDef>
+
 </Defs>

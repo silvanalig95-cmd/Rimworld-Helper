@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 801; modelled: 801; growing without end: 0.
+Saved collections found: 802; modelled: 802; growing without end: 0.
 Rimfolk's part of the save, roughly: **3,070 KB** after a year, **3,786 KB** after two, **4,251 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -46,7 +46,7 @@ Rimfolk's part of the save, roughly: **3,070 KB** after a year, **3,786 KB** aft
 | `Trade/TradeRecord.cs:goods` | goods the colony sold or bought, TradeMarketMath.MaxGoods at most, the one traded longest ago going first | cap | 48 | 50 | 50 | 24.7 |
 | `Camps/Camp.cs:plans` | what the camp builds (a bed each, the hut or tents, a windbreak, tables and seats, lights, its spots, the picket, the stash: CampBuildMath), and what it adds over its stay (seats round the fire, a lean-to's posts, a pen's fences, a rack, a bench, an altar, a banner, a latrine, a second store: CampGrow.cs, about thirty more), while the camp stays | while | 120 | 120 | 120 | 23.4 |
 | `Social/SocialWeb.cs:ties` | ties of the dead dropped daily, of the gone faded out | pairs | 57 | 57 | 57 | 22.3 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 250 | 250 | 250 | 22.0 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 251 | 251 | 251 | 22.1 |
 | `Ailments/AilmentTracker.cs:last` | last ailments 120 days, known pawns only | window | 120 | 240 | 240 | 21.1 |
 | `Calendar/ColonyCalendar.cs:days` | 12 the colony's, 8 the player's, traditions and the founding, the customs kept | cap | 12 | 24 | 36 | 21.1 |
 | `Gods/Worship/WorshipBook.cs:prayers` | prayers said, settled and let go after twenty days, WorshipBook.MaxPrayers | cap | 60 | 80 | 80 | 20.3 |
@@ -301,6 +301,7 @@ Rimfolk's part of the save, roughly: **3,070 KB** after a year, **3,786 KB** aft
 | `Setbacks/SetbackTracker.cs:bestAt` | one per skill | fixed | 12 | 12 | 12 | 1.1 |
 | `Weather/WeatherBook.cs:quarters` | WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map | fixed | 12 | 12 | 12 | 1.1 |
 | `Gods/OnMap/OwnSeven.cs:ruins` | rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go | fixed | 30 | 30 | 30 | 1.0 |
+| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 25 | 25 | 25 | 1.0 |
 | `Arcs/ArcTracker.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Building/BuildAhead.cs:queueCells` | per room step: the pieces it queued until the ground is clear | fixed | 40 | 40 | 40 | 1.0 |
 | `Camps/Camp.cs:owned` | the camp's goods, pruned of the gone at saving | while | 40 | 40 | 40 | 1.0 |
@@ -309,7 +310,6 @@ Rimfolk's part of the save, roughly: **3,070 KB** after a year, **3,786 KB** aft
 | `CouncilGameComponent.cs:recentWishTicks` | with the above | window | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:sharedNameAsked` | couples the council was asked about, one name or two, the newest 40 (Social/FamilyNames.cs) | fixed | 40 | 40 | 40 | 1.0 |
 | `CouncilGameComponent.cs:weddingAsked` | couples asked about their wedding, the newest 40 (Social/WeddingPlans.cs) | fixed | 40 | 40 | 40 | 1.0 |
-| `Dilemmas/Dilemmas.cs:traditions` | per tradition | defs | 25 | 25 | 25 | 1.0 |
 | `Secrets/Vendettas.cs:eulogies` | until given | cap | 3 | 5 | 5 | 1.0 |
 | `Animals/AnimalPowers.cs:bindings` | bindings waiting for a quiet hour, AnimalPowersMath.MaxBindings at most, each dropped after 10 days | cap | 6 | 6 | 6 | 0.9 |
 | `Camps/CampMemory.cs:people` | the people kept of each remembered camp, four at most (CampStoryMath.KeepPeople) per camp | fixed | 24 | 24 | 24 | 0.9 |
@@ -512,6 +512,7 @@ Rimfolk's part of the save, roughly: **3,070 KB** after a year, **3,786 KB** aft
 | `World/Region/Hamlet.cs:settlers` | per home: the settlers of its hamlet on their way, HamletMath.MaxSettlers at most, let go once it stands | cap | 3 | 6 | 8 | 0.2 |
 | `CouncilGameComponent.cs:medicKits` | the medics Rimfolk set a medicine stock for, and those the player took over: three a home at most (Health/MedicKits.cs) | fixed | 9 | 9 | 9 | 0.2 |
 | `OldPowers/OldPowersBook.cs:cells` | the places of the eyes in the dark, while they are there (six at most) | while | 6 | 6 | 6 | 0.2 |
+| `Animals/HerdStory.cs:sellIds` | the yearlings the council chose to sell at the autumn count (ids), HerdStoryMath.MaxSell at most, until sold or a season | while | 8 | 8 | 8 | 0.2 |
 | `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
 | `Gods/OnMap/OwnHappenings.cs:watches` | the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most | fixed | 8 | 8 | 8 | 0.2 |

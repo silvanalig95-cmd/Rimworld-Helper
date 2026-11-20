@@ -64,6 +64,15 @@ namespace ColonyCouncil
         public int downedFront, downedGate, downedCoverLeft, downedCoverRight, downedZone, downedBehind;
         /// <summary>"Hana at the sandbags on the left": who was downed near the line, and where.</summary>
         public List<string> downed = new List<string>();
+        /// <summary>
+        /// The colony's animals at the line (DefenseLinesWatch): how many fought there, the enemies they brought down, how many
+        /// of them were downed or killed there, and their kind's word when they were all one kind ("dogs"), else null.
+        /// </summary>
+        public int animalsFought, animalsBrought, animalsDowned;
+        public string animalKind;
+        /// <summary>The weather when the raid came (its label), and the aim it left shots in the open, in percent (100: none lost).</summary>
+        public string weather;
+        public int aim = 100;
         /// <summary>The lessons (<see cref="DefenseLineMath.Lesson"/> names), weightiest first.</summary>
         public List<string> lessons = new List<string>();
 
@@ -71,10 +80,11 @@ namespace ColonyCouncil
         {
             through = through, roundLeft = roundLeft, roundRight = roundRight, broke = broke, inside = inside,
             downedFront = downedFront, downedGate = downedGate, downedCoverLeft = downedCoverLeft, downedCoverRight = downedCoverRight,
-            downedZone = downedZone, downedBehind = downedBehind
+            downedZone = downedZone, downedBehind = downedBehind, animalsFought = animalsFought, animalsBrought = animalsBrought, animalsDowned = animalsDowned,
+            aim = aim
         };
 
-        public bool Empty => Tally.Raiders == 0 && Tally.Downed == 0;
+        public bool Empty => Tally.Raiders == 0 && Tally.Downed == 0 && animalsFought == 0 && animalsDowned == 0;
 
         public void ExposeData()
         {
@@ -94,6 +104,12 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref downedBehind, "downedBehind");
             Scribe_Collections.Look(ref downed, "downed", LookMode.Value);
             Scribe_Collections.Look(ref lessons, "lessons", LookMode.Value);
+            Scribe_Values.Look(ref animalsFought, "animalsFought");
+            Scribe_Values.Look(ref animalsBrought, "animalsBrought");
+            Scribe_Values.Look(ref animalsDowned, "animalsDowned");
+            Scribe_Values.Look(ref animalKind, "animalKind");
+            Scribe_Values.Look(ref weather, "weather");
+            Scribe_Values.Look(ref aim, "aim", 100);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 downed ??= new List<string>();

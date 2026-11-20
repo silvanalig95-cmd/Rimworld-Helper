@@ -30,7 +30,6 @@
   <CC_Annals_WeatherNamed>The year's weather is remembered by {0}. {1}</CC_Annals_WeatherNamed>
   <CC_Weather_TraderStays>The traders of {0} will wait out the weather here: their caravan stays half a day longer.</CC_Weather_TraderStays>
   <CC_Weather_MissionSnow>The snow on the land will slow the people of {0} on their way here: they will take half again as long.</CC_Weather_MissionSnow>
-  <CC_Annals_WeatherQuakes>The earth shook {0} times.</CC_Annals_WeatherQuakes>
   <CC_Weather_QuakeParty>going round the roofs and walls after the earthquake</CC_Weather_QuakeParty>
   <CC_Weather_QuakeChronicle>The earth shook. When it was over, {PAWN_nameDef} and a few others went round every roof and wall.</CC_Weather_QuakeChronicle>
   <CC_Adv_Firebreak_Title>Dry and windy: cut a firebreak</CC_Adv_Firebreak_Title>

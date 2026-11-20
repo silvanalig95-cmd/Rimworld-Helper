@@ -54,6 +54,8 @@ namespace ColonyCouncil
             // apart: a believer's word on a season everyone at home lived through, said to nobody in particular.
             Speech.Say(first, line);
             GodLore.Believes(first, g, "CC_GA_Season_Belief".Translate(named.Named("SEASON"), Worship.Called(g, first).Named("GOD")).Resolve());
+            // A tale of the game's, for the colony's art (Things/ArtTales.cs): the believer in the named season, the god as the colony knew it.
+            ArtTales.Record(ArtTales.SeasonTaken, first, null, ArtTales.GodWords(g, map), named);
             // Another who takes it for another god, beside them: they say so, and each holds their own the harder.
             var other = believers.Skip(1).FirstOrDefault(p => Together.Can(first, p) && GodsAmongMath.Argue(g.Key, Holds(p, gods)?.Key));
             if (other != null)

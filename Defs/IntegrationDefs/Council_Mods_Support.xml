@@ -148,8 +148,8 @@
     <defName>Council_Support_VBE</defName>
     <label>Vanilla Brewing Expanded</label>
     <order>21</order>
-    <packageIds><li>vanillaexpanded.vbrewe</li></packageIds>
-    <what>Its barrels count for brewing wishes; tea, coffee and soda aren't "something to drink" for the brewer; tea has a journal day. A toast is raised with its wines, or its tea for teetotalers.</what>
+    <packageIds><li>vanillaexpanded.vbrewe</li><li>vanillaexpanded.vbrewecandt</li></packageIds>
+    <what>Its barrels count for brewing wishes; tea, coffee and soda aren't "something to drink" for the brewer; tea has a journal day. A toast is raised with its wines, or its tea for teetotalers. Its teas (the Coffees and Teas add-on's first) are carried to someone with a cold or a cough, and an early riser may take the first pot to a friend.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -210,7 +210,7 @@
     <label>Vanilla Events Expanded</label>
     <order>33</order>
     <packageIds><li>vanillaexpanded.vee</li></packageIds>
-    <what>The advisor explains its world conditions and what to do about them. Its aurora is awe and the superbloom's drone dread in the feelings.</what>
+    <what>The advisor explains its world conditions and what to do about them. Its aurora is awe and the superbloom's drone dread in the feelings. After its earthquake the builders go round the roofs and walls, and the annals count it.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -449,7 +449,7 @@
     <label>Seasonal Weather</label>
     <order>38</order>
     <packageIds><li>mlie.seasonalweather</li></packageIds>
-    <what>The double rainbow, windy days and dust storms each bring an encounter; lines can ask for its weathers by name.</what>
+    <what>The double rainbow, windy days and dust storms each bring an encounter; lines can ask for its weathers by name. The advisor suggests a firebreak in a dry wind, and after an earthquake the builders go round the roofs and walls.</what>
   </ColonyCouncil.ModSupportDef>
 
   <ColonyCouncil.ModSupportDef>
@@ -458,6 +458,64 @@
     <order>54</order>
     <packageIds><li>det.stoneborn</li><li>devdesigner.elves.continued</li><li>arquebus.stagzmerfolk</li><li>det.venators</li><li>det.boglegs</li><li>det.avaloi</li></packageIds>
     <what>Each people has wishes, decree likes and a pull on the colony's ways of its own: stone for the Stoneborn, flowers and books for elves, water for merfolk, a nest egg for boglegs.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <!-- ===================== The content update's integrations (20 November 2026) ===================== -->
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_LandmarksVE</defName>
+    <label>Vanilla Landmarks Expanded</label>
+    <order>70</order>
+    <packageIds><li>vanillaexpanded.vexploratione</li></packageIds>
+    <what>After its tidal flooding the colony cleans up, and after its tornado alley's tornadoes the builders clear the debris and mend; the annals count both.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_AlphaBees</defName>
+    <label>Alpha Bees</label>
+    <order>71</order>
+    <packageIds><li>sarg.rimbees</li></packageIds>
+    <what>Its beehouses count for a wish for bees and its honeys for a gourmand's; its honey is carried to someone with a sore throat when there's no tea; its mead barrel brews.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_ChristmasVE</defName>
+    <label>Vanilla Christmas Expanded</label>
+    <order>72</order>
+    <packageIds><li>ve.vanillachristmasexpanded</li></packageIds>
+    <what>Midwinter is kept with its festive trees lit, its food set out and its presents handed round; its hot cocoa is carried to the sick; winter camps wear its warm clothes.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_Medieval2VFE</defName>
+    <label>Vanilla Factions Expanded - Medieval 2</label>
+    <order>73</order>
+    <packageIds><li>oskarpotocki.vfe.medieval2</li></packageIds>
+    <what>Camps pitch with its banners, cloth walls and palisades; room plans use its fur beds and heraldic rug; visitors train at its dummy and archery target; its raw honey goes to the sick.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_DryadsVIE</defName>
+    <label>Vanilla Ideology Expanded - Dryads</label>
+    <order>74</order>
+    <packageIds><li>vanillaexpanded.ideo.dryads</li></packageIds>
+    <what>Some of the colony's people hold its dryads sacred: greeted, fed by hand, walked to a god's place on its feast day, grieved when they die.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_DragonsDescent</defName>
+    <label>Dragons Descent</label>
+    <order>75</order>
+    <packageIds><li>onyxae.dragonsdescent</li></packageIds>
+    <what>Some of the colony's people hold its drakes sacred, and its great dragon statue stands in the stone shrine room the room planner offers.</what>
+  </ColonyCouncil.ModSupportDef>
+
+  <ColonyCouncil.ModSupportDef>
+    <defName>Council_Support_FishingVE</defName>
+    <label>Vanilla Fishing Expanded</label>
+    <order>76</order>
+    <packageIds><li>vanillaexpanded.vcef</li></packageIds>
+    <what>A fisher who holds to the god of the waters gives a fish of the morning's first catch back and fishes better for half a day; its fisherman trait draws toward that god.</what>
   </ColonyCouncil.ModSupportDef>
 
 </Defs>

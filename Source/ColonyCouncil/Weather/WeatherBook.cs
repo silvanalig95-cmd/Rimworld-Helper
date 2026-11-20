@@ -12,8 +12,10 @@ namespace ColonyCouncil
     /// season. What it gives: the coldest night, the hottest day, the longest rain and the longest dry spell since the
     /// colony came, remarked on when broken; each season set against the same season a year before; a season far from
     /// this land's usual, remembered by a name ("the winter of the long cold") in the chronicle and the annals; the
-    /// first snow against last year's; and the recent weather Rimfolk's events ask for ("rain:5/7"), so an event never
-    /// speaks of rain that didn't fall. A month of days and three years of seasons are kept, as short lines.
+    /// first snow against last year's; the recent weather Rimfolk's events ask for ("rain:5/7"), so an event never
+    /// speaks of rain that didn't fall; last winter as the advisor reads it (how long the cold lasted, the coldest night,
+    /// how long the snow lay: LastWinter); and the disasters, each with its work party after (Weather/AfterStorm.cs) and
+    /// counted for the annals. A month of days and three years of seasons are kept, as short lines.
     /// </summary>
     public class WeatherBook : MapComponent
     {
@@ -23,7 +25,13 @@ namespace ColonyCouncil
         private string today, quarter, records;
         private int lastSnowDay = -9999, firstSnowYear = -1, firstSnowDoy = -1;
         private int lastRecordNews = -9999999;
-        /// <summary>Seasonal Weather's earthquake was going on at the last look; the year of the last quakes, and how many that year.</summary>
+        /// <summary>
+        /// The disasters going on at the last look (AfterStorm.OnNow, comma between), the work parties waiting for their time
+        /// (AfterStormMath: "kind@tick;..."), and how many of each came this year and the year before ("year:kind=n,...|...").
+        /// </summary>
+        private string stormsOn = "", disasters = "";
+        internal string afterWaiting = "";
+        /// <summary>Kept before the disasters were: Seasonal Weather's earthquake and a tornado going on, and the year's quakes (read from an older save only).</summary>
         private bool quakeOn, tornadoOn;
         private int quakeYear = -1, quakeCount;
 
@@ -142,7 +150,7 @@ namespace ColonyCouncil
                 if (cur == null || cur.year != now.year || cur.quadrum != now.quadrum)
                 {
                     if (cur != null) EndQuarter(cur, tick);
-                    cur = new WeatherQuarter { year = now.year, quadrum = now.quadrum, season = (int)GenLocalDate.Season(map) };
+                    cur = new WeatherQuarter { year = now.year, quadrum = now.quadrum, season = (int)GenLocalDate.Season(map), counted = true };
                 }
             }
             var wm = map.weatherManager;
@@ -152,33 +160,84 @@ namespace ColonyCouncil
             bool storm = Flavor.IsStorm(wm.curWeather);
             bool fog = wm.curWeather?.defName != null && wm.curWeather.defName.IndexOf("Fog", StringComparison.OrdinalIgnoreCase) >= 0;
             float temp = map.mapTemperature.OutdoorTemp;
-            WeatherMath.AddHour(now, rain, snow, storm, fog, temp);
+            WeatherMath.AddHour(now, rain, snow, storm, fog, temp, SnowLies(map));
             var broken = WeatherMath.TempRecord(rec, temp, day);
             if (broken != WeatherRecordKind.None) RecordBroken(broken, temp, tick);
             // A storm keeps a trade caravan a little longer (Weather/WeatherVisitors.cs).
             WeatherVisitors.Hourly(map);
-            // Seasonal Weather's earthquake: counted for the annals, and gone round after (Weather/WeatherDisasters.cs).
-            bool quake = WeatherDisasters.Active && map.gameConditionManager.ActiveConditions.Any(c => c.def.defName == "Earthquake");
-            if (quake && !quakeOn)
-            {
-                if (quakeYear != year)
+            // The disasters (an earthquake, a tornado, a flashstorm, hail, a flood): counted for the annals, and a work
+            // party after each (Weather/AfterStorm.cs).
+            AfterStorm.Hourly(map, this, year);
+        }
+
+        /// <summary>
+        /// Snow lies on most of the open land: of the open ground looked at on a coarse grid over the map (every tenth
+        /// cell each way, no roof, no water), half or more under a layer of snow.
+        /// </summary>
+        private static bool SnowLies(Map map)
+        {
+            var grid = map.snowGrid;
+            if (grid == null) return false;
+            int open = 0, covered = 0;
+            var size = map.Size;
+            for (int x = 5; x < size.x; x += 10)
+                for (int z = 5; z < size.z; z += 10)
                 {
-                    quakeYear = year;
-                    quakeCount = 0;
+                    var c = new IntVec3(x, 0, z);
+                    if (c.Roofed(map) || c.GetTerrain(map)?.IsWater == true) continue;
+                    open++;
+                    if (grid.GetDepth(c) >= SnowLayer) covered++;
                 }
-                quakeCount++;
-            }
-            if (!quake && quakeOn) WeatherDisasters.QuakeOver(map);
-            quakeOn = quake;
-            // A tornado crossing the land (Disasters: Tornado, or the game's own): the chronicle, and a journal after.
-            bool tornado = WeatherMods.TornadoOn(map);
-            if (tornado && !tornadoOn) CouncilGameComponent.Instance?.AddChronicle(new ChronicleEntry(ChronicleKind.Note, "CC_Weather_TornadoChronicle".Translate().Resolve()));
-            if (!tornado && tornadoOn)
+            return open > 0 && covered * 2 >= open;
+        }
+
+        /// <summary>Snow this deep on a cell (of the game's 0 to 1) is a layer that lies, not a dusting.</summary>
+        private const float SnowLayer = 0.1f;
+
+        // ---------------- The disasters (Weather/AfterStorm.cs) ----------------
+
+        /// <summary>The disasters going on at the last look.</summary>
+        internal HashSet<string> StormsOn
+        {
+            get => new HashSet<string>((stormsOn ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Where(AfterStormMath.IsKind));
+            set => stormsOn = value == null ? "" : string.Join(",", AfterStormMath.Kinds.Where(value.Contains));
+        }
+
+        /// <summary>One more of a kind this year, for the annals.</summary>
+        internal void CountDisaster(int year, string kind) => disasters = AfterStormMath.Count(disasters, year, kind);
+
+        // ---------------- Last winter (the advisor remembers it) ----------------
+
+        /// <summary>The last winter the record kept on this map (the last year's seasons, WeatherMath.WinterBefore), or null.</summary>
+        public LastWinter LastWinter
+        {
+            get
             {
-                var home = ColonyCalendar.AtHome(map);
-                if (home.Count > 0) CouncilGameComponent.Instance?.journals.WriteTagged(home.RandomElement(), "Council_Journal_Tornado", new string[0]);
+                int year = GenLocalDate.Year(map), quadrum = GenLocalDate.DayOfYear(map) / WeatherMath.QuarterDays;
+                return WeatherMath.WinterBefore(quarterList, year, quadrum);
             }
-            tornadoOn = tornado;
+        }
+
+        /// <summary>Dev: a last winter made up for this map (four seasons of the year before, one a winter), so the advisor's notes can be tried at once.</summary>
+        internal void DevLastWinter()
+        {
+            int year = GenLocalDate.Year(map), quadrum = GenLocalDate.DayOfYear(map) / WeatherMath.QuarterDays;
+            int at = year * 4 + quadrum;
+            quarterList.RemoveAll(q => q.year * 4 + q.quadrum >= at - 4 && q.year * 4 + q.quadrum < at);
+            for (int i = 4; i >= 1; i--)
+            {
+                int n = at - i;
+                bool winter = i == 2;
+                var q = new WeatherQuarter
+                {
+                    year = n / 4, quadrum = n % 4, season = winter ? 4 : 2, days = 15, counted = true, coldest = winter ? -24f : 3f, hottest = winter ? 4f : 24f,
+                    meanSum = (winter ? -9f : 12f) * 15, expectedSum = (winter ? -8f : 12f) * 15,
+                    coldDays = winter ? 15 : i == 1 || i == 3 ? 4 : 0, frozenDays = winter ? 11 : 0, coverDays = winter ? 9 : 0
+                };
+                quarterList.Add(q);
+            }
+            quarterList.Sort((a, b) => (a.year * 4 + a.quadrum).CompareTo(b.year * 4 + b.quadrum));
+            WeatherMath.Trim(quarterList, WeatherMath.MaxQuarters);
         }
 
         private void EndDay(WeatherDay d, int tick)
@@ -321,7 +380,7 @@ namespace ColonyCouncil
         /// <summary>The year's weather for the annals: the seasons it is remembered by, and how cold and hot it got. Null if there's nothing to say.</summary>
         public string AnnalsLine(int year)
         {
-            string quakes = quakeYear == year && quakeCount > 0 ? "CC_Annals_WeatherQuakes".Translate(quakeCount).Resolve() : null;
+            string quakes = DisastersLine(year);
             var seasons = quarterList.Where(q => q.year == year && q.days >= 10).ToList();
             if (seasons.Count < 2) return quakes;
             var named = seasons.Where(q => q.name != null).Select(NameText).ToList();
@@ -335,6 +394,14 @@ namespace ColonyCouncil
             if (temp != null) words.Add(("CC_Annals_Year_" + temp).Translate().Resolve());
             if (words.Count > 0) line = "CC_Annals_WeatherYear".Translate(TextUtil.JoinAnd(words)).Resolve() + " " + line;
             return quakes != null ? line + " " + quakes : line;
+        }
+
+        /// <summary>The year's disasters for the annals: "The earth shook twice, and hail fell on the fields once." Null when none came.</summary>
+        private string DisastersLine(int year)
+        {
+            var parts = AfterStormMath.Annals(disasters, year)
+                .Select(x => (x.count == 1 ? "CC_Annals_After_" + x.kind + "_Once" : "CC_Annals_After_" + x.kind).Translate(x.count).Resolve()).ToList();
+            return parts.Count == 0 ? null : "CC_Annals_After".Translate(TextUtil.JoinAnd(parts)).Resolve().CapitalizeFirst();
         }
 
         /// <summary>A few lines for the Overview: the forecast, this season so far against last year's, the records, the last season with a name.</summary>
@@ -382,10 +449,17 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref firstSnowYear, "firstSnowYear", -1);
             Scribe_Values.Look(ref firstSnowDoy, "firstSnowDoy", -1);
             Scribe_Values.Look(ref lastRecordNews, "lastRecordNews", -9999999);
-            Scribe_Values.Look(ref quakeOn, "quakeOn");
-            Scribe_Values.Look(ref tornadoOn, "tornadoOn");
-            Scribe_Values.Look(ref quakeYear, "quakeYear", -1);
-            Scribe_Values.Look(ref quakeCount, "quakeCount");
+            Scribe_Values.Look(ref stormsOn, "stormsOn", "");
+            Scribe_Values.Look(ref afterWaiting, "afterWaiting", "");
+            Scribe_Values.Look(ref disasters, "disasters", "");
+            if (Scribe.mode == LoadSaveMode.LoadingVars)
+            {
+                // An older save's earthquake and tornado going on, and its year's quakes, carried over once.
+                Scribe_Values.Look(ref quakeOn, "quakeOn");
+                Scribe_Values.Look(ref tornadoOn, "tornadoOn");
+                Scribe_Values.Look(ref quakeYear, "quakeYear", -1);
+                Scribe_Values.Look(ref quakeCount, "quakeCount");
+            }
             dyn.Expose();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -396,6 +470,22 @@ namespace ColonyCouncil
                 rec = (records != null ? WeatherMath.UnpackRecords(records) : null) ?? new WeatherRecords();
                 WeatherMath.Trim(dayList, WeatherMath.MaxDays);
                 WeatherMath.Trim(quarterList, WeatherMath.MaxQuarters);
+                stormsOn ??= "";
+                afterWaiting ??= "";
+                disasters ??= "";
+                if (quakeOn || tornadoOn)
+                {
+                    var on = StormsOn;
+                    if (quakeOn) on.Add(AfterStormMath.Quake);
+                    if (tornadoOn) on.Add(AfterStormMath.Tornado);
+                    StormsOn = on;
+                    quakeOn = tornadoOn = false;
+                }
+                if (quakeYear >= 0 && quakeCount > 0 && disasters.Length == 0)
+                    for (int i = 0; i < quakeCount; i++)
+                        disasters = AfterStormMath.Count(disasters, quakeYear, AfterStormMath.Quake);
+                quakeYear = -1;
+                quakeCount = 0;
             }
             if (Scribe.mode == LoadSaveMode.Saving || Scribe.mode == LoadSaveMode.PostLoadInit)
             {

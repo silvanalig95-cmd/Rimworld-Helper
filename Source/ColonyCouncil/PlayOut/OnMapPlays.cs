@@ -363,6 +363,8 @@ namespace ColonyCouncil
     /// those working outside (<see cref="outdoors"/>: only those out in the open when it starts). Up to
     /// <see cref="count"/> people. What's said comes from <see cref="lines"/>, then <see cref="pool"/>. With
     /// <see cref="serve"/>, they first fetch a meal for each from the stores and hand one to each, who eats it there.
+    /// With <see cref="herd"/>, the round is of the colony's herd instead (the autumn count, Animals/HerdCount.cs): the
+    /// one going round walks the pens from animal to animal, the nearest first, and stops a moment by each.
     /// </summary>
     public class DilemmaEffect_Rounds : DilemmaEffect_PlayOut
     {
@@ -378,6 +380,7 @@ namespace ColonyCouncil
         public PlayWho who = PlayWho.A;
         public bool outdoors;
         public bool serve;
+        public bool herd;
         public int count = 6;
         public string pool;
         [MustTranslate] public List<string> lines;
@@ -404,7 +407,7 @@ namespace ColonyCouncil
                 if (x != null && !p.named.Contains(x) && PlayOuts.OurPerson(x)) p.named.Add(x);
             p.count = 1;
             p.amount = Mathf.Clamp(count, 1, OnMapMath.MaxRounds);
-            p.mode = outdoors ? PlayRounds.Outdoors : null;
+            p.mode = herd ? PlayRounds.Herd : outdoors ? PlayRounds.Outdoors : null;
             p.what = serve ? PlayRounds.Meals : null;
             p.pool = pool;
             p.lines = lines?.Where(l => !l.NullOrEmpty()).Select(ctx.Format).ToList() ?? new List<string>();
@@ -422,6 +425,13 @@ namespace ColonyCouncil
     public static class PlayRounds
     {
         public const string Outdoors = "outdoors";
+
+        /// <summary>A round of the colony's herd (PlayOut.mode), not of its people: the autumn count (Animals/HerdCount.cs).</summary>
+        public const string Herd = "herd";
+
+        /// <summary>One of the herd to stop by: the colony's, here, standing (not on a rope or in a caravan's lord).</summary>
+        public static bool HerdVisitable(Pawn a, Map map) =>
+            a != null && !a.Dead && a.Spawned && a.Map == map && !a.Downed && a.Faction == Faction.OfPlayer && a.RaceProps.Animal && !(a.roping?.IsRoped ?? false);
 
         /// <summary>A round that hands out food (PlayOut.what): a meal from the stores for each, fetched first.</summary>
         public const string Meals = "meals";
@@ -451,10 +461,12 @@ namespace ColonyCouncil
             where = null;
             var v = p.hands[0].pawn;
             var map = p.map;
-            var pool = map.mapPawns.FreeColonistsSpawned.Where(x => x != v && Visitable(x, map) && (p.mode != Outdoors || Outside(x, map))).ToList();
+            var pool = p.mode == Herd
+                ? AnimalFacts.Herd(map).Where(a => HerdVisitable(a, map) && v.CanReach(a, PathEndMode.Touch, Danger.Some)).ToList()
+                : map.mapPawns.FreeColonistsSpawned.Where(x => x != v && Visitable(x, map) && (p.mode != Outdoors || Outside(x, map))).ToList();
             if (pool.Count == 0)
             {
-                p.waitReason = (p.mode == Outdoors ? "CC_Play_Why_NobodyOut" : "CC_Play_Why_Busy").Translate();
+                p.waitReason = (p.mode == Outdoors ? "CC_Play_Why_NobodyOut" : p.mode == Herd ? "CC_Play_Why_NoHerd" : "CC_Play_Why_Busy").Translate();
                 return false;
             }
             var order = new List<Pawn>();
@@ -505,8 +517,8 @@ namespace ColonyCouncil
             while (h.done < p.round.Count && guard++ < 20)
             {
                 var x = p.round[h.done];
-                // Gone indoors before the pot reached them, asleep, called away: on to the next.
-                if (!Visitable(x, map) || (p.mode == Outdoors && h.waited == 0 && !Outside(x, map)))
+                // Gone indoors before the pot reached them, asleep, called away (an animal led off, sold): on to the next.
+                if (!(p.mode == Herd ? HerdVisitable(x, map) : Visitable(x, map)) || (p.mode == Outdoors && h.waited == 0 && !Outside(x, map)))
                 {
                     Next(p, h, false);
                     continue;
@@ -556,8 +568,9 @@ namespace ColonyCouncil
             bool first = h.waited <= 0;
             h.waited += delta;
             h.ticks += delta;
-            // together: said beside them, a step away (the rounds' job brought the one going round to them).
-            if (first) PlayWords.During(p, v, x);
+            // together: said beside them, a step away (the rounds' job brought the one going round to them); counting
+            // the herd, said aloud to nobody in particular.
+            if (first) PlayWords.During(p, v, p.mode == Herd ? null : x);
             // together: their bowl handed over where they stand, and they eat it there.
             if (first && p.what == Meals) Serve(p, v, x);
             if (h.waited >= OnMapMath.RoundsStop(p.durationTicks, p.round.Count)) Next(p, h, true);
@@ -1051,6 +1064,18 @@ namespace ColonyCouncil
                 if (what.StartsWith(HandOvers.AfterPrefix, StringComparison.Ordinal))
                 {
                     HandOvers.PlayOver(p, what, happened, took);
+                    return;
+                }
+                // A work party after a disaster (Weather/AfterStorm.cs): the chronicle keeps it once its work is done.
+                if (what.StartsWith(AfterStorm.AfterPrefix, StringComparison.Ordinal))
+                {
+                    AfterStorm.Over(p, what, happened);
+                    return;
+                }
+                // The autumn count of the herd (Animals/HerdCount.cs): the year's count kept, and the council's question waits.
+                if (what == HerdCount.After)
+                {
+                    HerdCount.Counted(p, happened);
                     return;
                 }
                 if (what == DilemmaEffect_FindLost.Search)

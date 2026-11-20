@@ -49,6 +49,8 @@ namespace ColonyCouncil
             Safe("animals: on screen", OnScreen);
             // Each colony's own beast.
             foreach (var m in Homes.All) Safe("animals: the beast seen", () => comp.BeastOf(m)?.Hourly(comp));
+            // The herd's autumn count, its question, and the yearlings kept for the traders (Animals/HerdCount.cs).
+            foreach (var m in Homes.All) Safe("animals: the autumn count", () => HerdCount.Hourly(comp.HerdOf(m), m));
             // Their natures (Animals/AnimalTempers.cs, AnimalBonds.cs, AnimalVoices.cs): temperaments, bonds, and those that speak.
             Safe("animals: temperaments", AnimalTempers.Hourly);
             Safe("animals: friends, rivals and grief", AnimalBonds.Hourly);

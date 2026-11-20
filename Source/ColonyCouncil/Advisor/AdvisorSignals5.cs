@@ -463,8 +463,10 @@ namespace ColonyCouncil
             if (smokehouse) ways.Add("CC_Adv_WinterStores_Smoke".Translate().Resolve());
             else if (build != null) ways.Add("CC_Adv_WinterStores_Build".Translate(Avail.Indefinite(build)).Resolve());
             if (pemmican != null) ways.Add("CC_Adv_WinterStores_Pemmican".Translate(pemmican.label).Resolve());
-            var s = Signal(0.3f + Mathf.Clamp01((winter * 0.5f - keeps) / 30f) * 0.25f, "CC_Adv_WinterStores_Title".Translate().Resolve(),
-                "CC_Adv_WinterStores_Detail".Translate(spoils.ToString("0"), keeps.ToString("0"), winter.ToString("0"), TextUtil.JoinAnd(ways)).Resolve(), 0.6f);
+            // Last winter, as the colony's weather record kept it (Advisor/AdvisorLastWinter.cs).
+            string detail = AdvisorLastWinter.With("CC_Adv_WinterStores_Detail".Translate(spoils.ToString("0"), keeps.ToString("0"), winter.ToString("0"), TextUtil.JoinAnd(ways)).Resolve(),
+                AdvisorLastWinter.Stores(map));
+            var s = Signal(0.3f + Mathf.Clamp01((winter * 0.5f - keeps) / 30f) * 0.25f, "CC_Adv_WinterStores_Title".Translate().Resolve(), detail, 0.6f);
             s.suggestThing = build ?? pemmican;
             s.key = "winter-stores";
             yield return s;
@@ -497,8 +499,9 @@ namespace ColonyCouncil
             int needed = AdvisorMath.FirewoodNeeded(perDay, (now ? 0f : until) + length);
             int have = Goal_Woodpile.Firewood(map);
             if (!AdvisorMath.FirewoodShort(have, needed)) yield break;
-            var s = Signal(0.3f + Mathf.Clamp01(1f - have / (float)needed) * 0.3f, "CC_Adv_Firewood_Title".Translate().Resolve(),
-                "CC_Adv_Firewood_Detail".Translate(burners, needed, have).Resolve(), now ? 0.8f : 0.5f);
+            // Last winter's cold against the days the wood lasts at today's fires (Advisor/AdvisorLastWinter.cs).
+            string detail = AdvisorLastWinter.With("CC_Adv_Firewood_Detail".Translate(burners, needed, have).Resolve(), AdvisorLastWinter.Firewood(map, have, perDay));
+            var s = Signal(0.3f + Mathf.Clamp01(1f - have / (float)needed) * 0.3f, "CC_Adv_Firewood_Title".Translate().Resolve(), detail, now ? 0.8f : 0.5f);
             if (example != null) s.look = new LookTargets(example);
             s.suggestThing = ThingDefOf.WoodLog;
             s.key = "firewood";

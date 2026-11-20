@@ -1134,7 +1134,7 @@ Finding one would need a search outside the catalogue.
 ## Content update, part C: the gods and faith, the land and its life, and the other mods
 
 A list to pick from (the player's request of 20 November 2026, "another large content update"). Nothing here is built
-until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
+until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); so are C19, C20, C21, C22, C24, C28 and C30 (the land and its life, not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
 active rows of `docs/player-mods/`. Nothing here was dropped by the player before, and each item builds on something
 that already exists.
 
@@ -1498,6 +1498,8 @@ Each item that adds text says which of these it follows.
   time (`GodDef.unheard` otherwise).
 - **Ties:** the gods' moments, the animals, the weather book, the defense lines, the game's art.
 - **Mod pool:** Vanilla Furniture Expanded - Art's statues show the same tales (they use the game's art system).
+- **The named season (added with the land and its life, not released yet):** the ninth tale, a named season a believer
+  took for a god's doing, recorded from C18's `SeasonGods.Named`.
 - **Harm:** none.
 
 ### The land and its life
@@ -1515,7 +1517,7 @@ Each item that adds text says which of these it follows.
 - **Harm:** none.
 - **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Among/SeasonGods.cs`). Decided: cold Hush; heat Helios or Smoulder (a warm winter Helios); storms Cirrus; wet Murmur; dry Helios or Murmur; the most devout believer speaks, another who holds another of them argues when beside them, a doubter beside them answers; the letter through the hands kept for neighbours; the council asked in the first six days of the same quarter the year after (keep a day at the god's place, or let it pass and the one who asked goes alone).
 
-**C19 (E) After the storm: a work party for every disaster** (S to M)
+**C19 (E) After the storm: a work party for every disaster** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What exists:** after Seasonal Weather's earthquake, a party already goes round mending (`WeatherDisasters`).
 - **What changes:** the same after the others:
   - a tornado: debris cleared, roofs and walls mended;
@@ -1526,16 +1528,18 @@ Each item that adds text says which of these it follows.
 - **Words:** the chronicle and the annals keep each.
 - **Ties:** `WeatherDisasters`, `WeatherBook` (it already notes the tornado), `PlayWork`, the chronicle.
 - **Harm:** none (fires are the game's).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Weather/AfterStorm.cs`, `AfterStormMath.cs`). Decided: each disaster as the game or the mod shows it (Seasonal Weather's quake condition, Vanilla Events Expanded's quake event, the game's flashstorm condition and tornado thing, Rimfolk's hail, Odyssey's seasonal flood thing, Vanilla Landmarks Expanded's tidal flooding condition); the party an hour or so after it ends, on a quiet map, the fires out first, led by the best builder or grower and three others, only where there is work, let go after two days; hail's broken crops are sown again (Rimfolk's hail destroys those it flattens, so nothing is left to cut); a flood's "stores moved up" is the water's leavings carried back to the stores; the chronicle keeps it once some work is done, the annals count each kind.
 
-**C20 (E) The advisor remembers last winter** (S to M)
+**C20 (E) The advisor remembers last winter** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** the advisor's firewood, winter-stores, herd-feed and herd-cold notes read the colony's own record of
   the same season a year before: its longest cold, its coldest night, how long the snow lay (`WeatherBook`).
 - **In words:** said in the colony's terms: "last winter the cold held 19 days; at today's fires the wood lasts 11 such
   days".
 - **Ties:** `AdvisorSignals5` (Firewood, WinterStores), HerdFeed, HerdCold, `WeatherBook`.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Advisor/AdvisorLastWinter.cs`, `WeatherMath.WinterBefore`). Decided: last winter is the four quadrums before the one now; "its longest cold" is how many days the cold lasted (a mean below 6 °C, the advisor's own measure), since the record keeps quadrums; the snow lay when half or more of the open land had a layer of it most of the day; spoken of after 20 days of a winter the record counted (seasons kept before the update are left out); one sentence added to each of the four notes.
 
-**C21 (I) The autumn count of the herd** (M; flavour style for the question)
+**C21 (I) The autumn count of the herd** (M; flavour style for the question) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **When:** each autumn, when the herd is four or more.
 - **What happens:**
   - The herdmaster, else the best with animals, walks the pens counting; a play-out.
@@ -1544,8 +1548,9 @@ Each item that adds text says which of these it follows.
   - The herd story notes the year's count and its leader.
 - **Ties:** `HerdStory`, the HerdFeed advisor, `WeatherBook`, trade, the council.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Animals/HerdCount.cs`, `Defs/DilemmaDefs/Rimfolk_Dilemmas_HerdCount.xml`). Decided: between 8 and 15 o'clock on a quiet day of autumn, once a year; the count is a round of up to eight of the herd; the question asked after it, within two days; yearlings are past their first stage and under a year old (eight at most, nobody's own, bonded, named or carrying young); they are marked to sell in the trade window for 30 days and the counter goes down to the pens when a caravan stops (Rimfolk never sells by itself); the oldest never the herd's leader, a male and a female of each kind kept, one when the hay lasts and the share it falls short by when it doesn't, four at most.
 
-**C22 (I) The colony's animals at the line** (S to M)
+**C22 (I) The colony's animals at the line** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** the defense lines' lessons note colonists downed at a line (`DefenseLinesWatch`). They would also
   count the colony's animals that fought there: how many enemies they brought down, and who was hurt.
   - A lesson would say "the dogs held the gate" or "keep the animals back from the gate: three were downed there".
@@ -1553,6 +1558,7 @@ Each item that adds text says which of these it follows.
   already exist (`Strangers/Pets.cs`).
 - **Ties:** defense lines, the animals, the journal.
 - **Harm:** none (the fight is the game's).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Defense/DefenseLinesWatch.cs`, `DefenseLineMath`). Decided: an animal fights at a line when it went for a raider within 30 cells of the gate; what it brought down is the greater of its own downings and kills in the raid (the game's records); "keep the animals back" when two or more fell there (or one that brought nobody down), "they held" as a note beside the lessons when they brought enemies down and none fell; the card's "lately" and its person's journal for one that brought an enemy down, unless the fight came to the person (the pets' heroics say that).
 
 **C23 (V) Telling the bees** (S)
 - **When:** one of the colony dies, or someone new joins.
@@ -1564,7 +1570,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** Alpha Bees; never comes without it.
 - **Harm:** none.
 
-**C24 (I) A cup for the sick** (S to M)
+**C24 (I) A cup for the sick** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **On the map:** the first-pot habit already carries coffee or tea to a friend in the morning (`Immersion/FirstPot.cs`).
   This item would bring something hot to someone with a cold, a cough or a sore throat:
   - Vanilla Brewing Expanded - Coffees and Teas' `VBE_MintTea`, `VBE_LemonTea`, `VBE_BlackTea`;
@@ -1577,6 +1583,7 @@ Each item that adds text says which of these it follows.
 - **Mod pool:** the three mods, by name; never offered against a drug policy, a faith or teetotalism.
 - **Harm:** none; it slightly lowers the time spent ill, which sits near the top of its target (14% average,
   `docs/balance-report.md`).
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Immersion/SickCup.cs`, `SickCupMath.cs`). Decided: the ailments are Rimfolk's colds and coughs (head and chest cold, the smoke, rimrot, post-flu, pollution, lingering, smoker's and spore coughs); the bringer is the colonist at their leisure, not ill, who thinks best of the sick one; Vanilla Cooking Expanded has no honey in the player's mods, so the honey is Alpha Bees' or Vanilla Factions Expanded - Medieval 2's raw honey, and the mods' other teas come after mint and lemon; no vanilla fallback (the game has no hot drink); one cup a day each, waking hours, one every two hours a map, severity eased by 0.04 (some five hours off a head cold).
 
 **C25 (V) The colony's own names for its places** (L)
 - **What changes:** places on the home map get names from what first happened there, given by the colony's people:
@@ -1633,7 +1640,7 @@ Each item that adds text says which of these it follows.
 
 ### Defense and the advisor
 
-**C28 (E) The lines in today's weather** (S to M)
+**C28 (E) The lines in today's weather** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** the game lowers every shot taken outdoors in fog, rain or snow (the weather factor in the aim,
   `docs/defense-research/mechanics.md`). The defense survey follows the game's own sight and cover but not the weather.
   With this item:
@@ -1642,6 +1649,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `DefenseLineReview`, `DefenseLinesWatch`, the weather. To check against the 1.6 code before building, as
   the survey's other rules were.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/UI/DefenseLinesPanel.cs`, `DefenseLinesWatch.cs`). Checked in the 1.6 code (`Verse/ShotReport.HitReportFor`): the weather's accuracy factor multiplies every shot's aim when the shooter or the target is unroofed, any shooter, turrets too; melee is untouched. Decided: said when it takes a tenth or more, in percent; the raid's first look is one message; the lessons keep it as a note beside the others.
 
 (C20 and C22 also touch the advisor and the defense.)
 
@@ -1664,7 +1672,7 @@ Each item that adds text says which of these it follows.
 
 ### The Almanac
 
-**C30 (E) The Almanac's pages for the mods this round uses** (S)
+**C30 (E) The Almanac's pages for the mods this round uses** (S) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **What changes:** these active mods have no page today, or are named nowhere in the Almanac:
   - Possessed Weapons
   - Vanilla Ideology Expanded - Dryads
@@ -1679,6 +1687,7 @@ Each item that adds text says which of these it follows.
 - **No gods:** like the gods' own page, no page says what a god does with them; the pages say what the colony's people
   do.
 - **Keywords:** of existing pages unchanged (`almanaccheck`).
+- **Built** (20 November 2026, not released yet; `Defs/AlmanacArticleDefs/Almanac_Mods_I_Integrations.xml`, `Council_Mods_Support.xml`). Decided: pages for the mods the built integrations use that had none (Vanilla Ideology Expanded - Dryads, Dragons Descent, Vanilla Landmarks Expanded, Vanilla Christmas Expanded, Vanilla Factions Expanded - Medieval 2); Vanilla Fishing Expanded's part with the fishers on the Vanilla Cooking Expanded page that covers it; the brewing, bees and events pages brought up to date; a table row for each. Possessed Weapons, Sanguinary Animals and Demigryphs have no page, since no built integration uses them.
 
 ### Text variety
 

@@ -30,6 +30,8 @@ public static class ImmersionTests
         // The gods among the colony's people (Gods/Among/).
         "Rimfolk_Pool_GodsAmong_Fisher", "Rimfolk_Pool_GodsAmong_Keeper", "Rimfolk_Pool_GodsAmong_RaiderCry", "Rimfolk_Pool_GodsAmong_Grave", "Rimfolk_Pool_GodsAmong_Season",
         "Rimfolk_Pool_GodsAmong_Midwinter",
+        // The land and its life: a cup for the sick, the autumn count of the herd (Immersion/SickCup.cs, Animals/HerdCount.cs).
+        "Rimfolk_Pool_SickCup", "Rimfolk_Pool_HerdCount",
         // The family's days together (Social/FamilyBonds.cs).
         "Council_Pool_PlayFamilySupper", "Council_Pool_SaySiblingClose", "Council_Pool_SaySiblingRival",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).
@@ -253,7 +255,9 @@ public static class ImmersionTests
         // A familiar bound and lost, an omen born (Animals/AnimalPowers.cs).
         "Rimfolk_Journal_Fam_Bound", "Rimfolk_Journal_Fam_Died", "Rimfolk_Journal_Omen_Born",
         // The seven peoples' touchpoints: the order's night nurse, the pilgrims' Long Walk, the society's night of the fire.
-        "Rimfolk_Journal_Evt_OrderNurse", "Rimfolk_Journal_Evt_LongWalk", "Rimfolk_Journal_Evt_Disputation"
+        "Rimfolk_Journal_Evt_OrderNurse", "Rimfolk_Journal_Evt_LongWalk", "Rimfolk_Journal_Evt_Disputation",
+        // An animal of theirs that brought a raider down at a defense line (Defense/DefenseLinesWatch.cs).
+        "Rimfolk_Journal_AnimalAtLine"
     };
 
     private static readonly string[] Prefixes = { "Council_Setback_", "Council_Friction_", "Council_Nuisance_", "Council_Arc_" };
