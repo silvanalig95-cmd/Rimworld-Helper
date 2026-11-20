@@ -65,6 +65,22 @@ most sense." So, in this order, three builds at a time:
   The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
   A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
   raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
+- **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
+  the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
+  using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
+  walking in another direction. The sprite was just kind of stuck on. So it's not like the pawn walked there as if you
+  would right click it on the map, but as if something, so to say, dragged it while it's still in the same position.
+  They should always, NPCs should actually use the walking animation or action, which is the same as when the player
+  like right clicks it, and not try to drag it across the map using some other way programming." (The event's wording
+  was "still a bit weird", but the player said to leave that.) Found so far: "Thorn Guard" is in neither the defs nor
+  League_of_Toba_8b, so it is a name made later in that game (a people's band, a warlord's men or the like); a save from
+  then would name the event. Rimfolk never sets a pawn's position directly, but turns pawns to face someone in 163
+  places (`rotationTracker.Face...`), many of them in visitors' errands (`Diplomacy/`: the ransom, the match, the pact's
+  call, the envoy, the truce, the ward, the oath, the feast; `Camps/`); one that keeps turning a pawn every tick while
+  it walks would show exactly this, a pawn walking one way and facing another, and with the player's Melee Animation
+  and Facial Animation on, a pawn that never turns to its path looks dragged. To do: find the event by its band's name,
+  make every walk of Rimfolk's go through the game's own path following with the pawn turned to its path (the same as
+  a right click), turn to face only once arrived, and a test that no face-turn runs in a toil that is walking.
 - **To do when the player asks (20 November 2026, the player; nothing built yet): fewer quests out on the world map,
   more that play out at home, and how the odds of events work.** The player: "the missions that you get, especially the
   ones on the world map, where something pops up somewhere ... where you could go and invade a base or whatever, or find
