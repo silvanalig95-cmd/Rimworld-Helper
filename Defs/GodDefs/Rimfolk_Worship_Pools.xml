@@ -8,6 +8,9 @@
     god's own lines), whether the god is felt only (veiled) or drawn near (near: GodNear), doubt (the speaker wavers), priest, scoffer, the
     moment (pray:sickness, pray:death, pray:raid, pray:drought; offer:meal and the like; vow:nomeat...), and the speaker's own
     (the age, lowtech, hurt, grieving, the tone). Spoken lines are one sentence each, said over the head (Speech.Say).
+    olde: the faith's words in the old voice, beside the plain prayers, thanks and rites (and the saints' prayers and feasts),
+    said only by the priest, the keeper of the colony's book of the gods, a devout elder and a believer of a faith of the old
+    ages (WorshipMath.OldVoice); everyone else says the plain lines.
   -->
 
   <!-- ===================== A place dedicated ===================== -->
@@ -266,6 +269,42 @@
         <li>[godkey:murmur,pray:drought] Sing, {GOD}, please, the wells are low.</li>
         <li>[godkey:ducat] {GOD}, I gave what I had, so turn our luck.</li>
         <li>[godkey:revel] {GOD}, I poured your share first, so be kind in the morning.</li>
+        <li>[olde] Hear me, {GOD}, as thou hast heard our elders before us.</li>
+        <li>[olde] {GOD}, I ask but this one thing of thee, so hearken to me.</li>
+        <li>[olde] Look upon us, {GOD}, and forget us not in this hour.</li>
+        <li>[olde] {GOD}, be thou near us, for we are few and the world is wide.</li>
+        <li>[olde,priest] {GOD}, I speak for all who dwell here, so hear them through me.</li>
+        <li>[olde,old] {GOD}, I have prayed to thee all my long life, so hear me once more.</li>
+        <li>[olde,pray:sickness] {GOD}, lay thy hand upon the sick and raise them up.</li>
+        <li>[olde,pray:sickness] Take the fever from them, {GOD}, and give it to the wind.</li>
+        <li>[olde,pray:sickness,inbed] {GOD}, I lie weak abed, so lend me thy strength a while.</li>
+        <li>[olde,pray:sickness,god:healing] {GOD}, thou that mendest all things, mend this one.</li>
+        <li>[olde,pray:death] {GOD}, receive the one we have lost, and keep them well.</li>
+        <li>[olde,pray:death] Lead them home, {GOD}, by the road we cannot walk with them.</li>
+        <li>[olde,pray:death,god:dead] {GOD}, open thy door to them, and let them rest.</li>
+        <li>[olde,pray:raid] {GOD}, stand thou at our wall, and turn the enemy back.</li>
+        <li>[olde,pray:raid] Strengthen our arms, {GOD}, and keep our people this day.</li>
+        <li>[olde,pray:raid,god:war] {GOD}, go thou before us into the fight, and we shall follow.</li>
+        <li>[olde,pray:drought] {GOD}, the earth is parched and the wells are low, so send us rain.</li>
+        <li>[olde,pray:drought] Open the heavens, {GOD}, and let the fields drink.</li>
+        <li>[olde,pray:drought,god:harvest] {GOD}, thy fields wither, and we with them.</li>
+        <li>[olde,atshrine] I am come to thy place, {GOD}, that thou mayest know I mean it.</li>
+        <li>[olde,kind:hunger] {GOD}, I know thy price, and I ask of thee all the same.</li>
+        <li>[olde,godkey:hollin] {GOD}, I have planted more than I have felled, so hear me.</li>
+        <li>[olde,godkey:smoulder] {GOD}, sleep thou soundly, and name thy price but softly.</li>
+        <li>[olde,godkey:bellwether] {GOD}, walk thy road in peace, and let us walk ours.</li>
+        <li>[olde,godkey:morel] {GOD}, be thou slow and gentle with us, as is thy way.</li>
+        <li>[olde,godkey:ennu] {GOD}, whatsoever face thou wearest tonight, thou art welcome here.</li>
+        <li>[olde,godkey:pip] {GOD}, keep the wheels turning and the lights burning for us.</li>
+        <li>[olde,godkey:cirrus] {GOD}, look down upon us but once, and kindly.</li>
+        <li>[olde,godkey:hush] {GOD}, we have laid up our stores, so pass thou by our door.</li>
+        <li>[olde,godkey:undertow] I ask of thee, {GOD}, and I know well what thou shalt take for it.</li>
+        <li>[olde,godkey:helios] {GOD}, thou givest without looking, and I thank thee all the same.</li>
+        <li>[olde,godkey:selene] {GOD}, I tell thee all my day, so give it back to us gently.</li>
+        <li>[olde,godkey:mog] {GOD}, keep thou the door of our dead, and let none trouble them.</li>
+        <li>[olde,godkey:murmur] {GOD}, sing thou in the deep wells, and we shall answer thee.</li>
+        <li>[olde,godkey:ducat] {GOD}, I gave what I had, so turn thou our fortune.</li>
+        <li>[olde,godkey:revel] {GOD}, I poured thy share first, so deal kindly with us at morning.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -286,6 +325,20 @@
         <li>[godkey:murmur,pray:drought] That was {GOD}, croaking under the well before the rain.</li>
         <li>[godkey:undertow] {GOD} said yes, and now I wonder what it'll want for it.</li>
         <li>[godkey:revel] {GOD} was kind, and I'm waiting to find out what it costs.</li>
+        <li>[olde] Thanks be to thee, {GOD}, and I shall not forget it.</li>
+        <li>[olde] {GOD} hath heard us, and to {GOD} be the thanks.</li>
+        <li>[olde] Blessed be {GOD}, who heard us in our need.</li>
+        <li>[olde,priest] Give thanks, all of you, for {GOD} hath answered us.</li>
+        <li>[olde,pray:sickness] They are risen from their sickbed, and {GOD} be thanked for it.</li>
+        <li>[olde,pray:raid] {GOD} stood with us at the wall, and we are still here.</li>
+        <li>[olde,pray:drought] The rain is come, {GOD}, and the fields drink of it.</li>
+        <li>[olde,pray:death] {GOD} hath received them, I am sure of it, and I give thanks.</li>
+        <li>[olde,godkey:hollin] The roots have held, and {GOD} be thanked.</li>
+        <li>[olde,godkey:smoulder] Praise to {GOD}, the great one under the mountain.</li>
+        <li>[olde,godkey:selene] What we sent out came back by night, as {GOD} doth.</li>
+        <li>[olde,godkey:murmur] {GOD} sang, and the rain came after, thanks be.</li>
+        <li>[olde,godkey:mog] {GOD} kept watch, and our dead rest easy, thanks be to her.</li>
+        <li>[olde,godkey:undertow] {GOD} said yes, and I shall pay what is asked, as I must.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -534,6 +587,24 @@
         <li>[about:way] {GOD}, for every road walked and every guest who came down it.</li>
         <li>[about:machine] {GOD}, the machines turned all year, keep them turning.</li>
         <li>[about:void] {GOD}, we keep your day so that you keep your distance.</li>
+        <li>[olde] This day is thine, {GOD}, and we keep it as we were taught.</li>
+        <li>[olde] {GOD}, {GODEPITHET}, we keep thy day as our elders kept it.</li>
+        <li>[olde,priest] Hear, all of you, for this is the day of {GOD}.</li>
+        <li>[olde,old] I have kept the day of {GOD} many a year, and I keep it still.</li>
+        <li>[olde,about:harvest] {GOD}, we bring thee the first sheaf, as thou hast given us the field.</li>
+        <li>[olde,about:night] On this longest night we keep a light for {GOD} till morning.</li>
+        <li>[olde,about:dead] {GOD}, this night we name our dead, and thou shalt keep them.</li>
+        <li>[olde,about:hearth] The fire is lit and the bread is broken, so come, {GOD}, and sit with us.</li>
+        <li>[olde,about:storm] {GOD}, we hear thy thunder, and we thank thee for the rain.</li>
+        <li>[olde,about:hunt] {GOD}, grant us a clean kill and a full table, and no more.</li>
+        <li>[olde,about:wild] {GOD}, the first green is left to thee, uncut and growing.</li>
+        <li>[olde,about:waters] To {GOD}, for every river crossed and every net drawn full.</li>
+        <li>[olde,about:war] We stand before {GOD} this day, every one of us, unafraid.</li>
+        <li>[olde,about:healing] For all who rose again this year, {GOD}, we give thee thanks.</li>
+        <li>[olde,about:craft] All that our hands made well this year was made under thine eye, {GOD}.</li>
+        <li>[olde,about:way] {GOD}, for every road walked and every stranger fed, we thank thee.</li>
+        <li>[olde,about:machine] {GOD}, the wheels turned all the year, so keep them turning.</li>
+        <li>[olde,about:void] {GOD}, we keep thy day, that thou mayest keep thy distance from us.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -550,6 +621,16 @@
         <li>[doubt] It's for the colony as much as for {GOD}, and that's fine.</li>
         <li>{GOD}, the colony has spoken, and we stand by what it said.</li>
         <li>Remember tonight, all of you, and that {GOD} heard it.</li>
+        <li>[olde] {GOD}, {GODEPITHET}, hear what the colony hath decided.</li>
+        <li>[olde] We stand here before {GOD}, all of us together, as one.</li>
+        <li>[olde] Say it with me, all: {GOD} keep us, and we shall keep faith.</li>
+        <li>[olde] Whatsoever cometh this year, we shall meet it with {GOD}.</li>
+        <li>[olde] Let it be known to all here that we have spoken before {GOD}.</li>
+        <li>[olde,priest] In the name of {GOD}, I bid you hear and remember.</li>
+        <li>[olde,lowtech] Lay your hand upon the stone and say the name of {GOD}.</li>
+        <li>[olde] {GOD}, bear witness to what we have promised here this evening.</li>
+        <li>[olde] Thus it is said before {GOD}, and thus it shall be done.</li>
+        <li>[olde] {GOD}, look upon thy people gathered here, and keep them.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
