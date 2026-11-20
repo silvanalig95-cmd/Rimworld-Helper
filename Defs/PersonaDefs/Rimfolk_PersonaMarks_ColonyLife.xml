@@ -28,7 +28,9 @@
           <plain>
             <li>I said I would {LABEL}, and I did. I'd like that written somewhere people will see it.</li>
             <li>Done. I keep going over how I did it, the way you count coins twice.</li>
+            <li>People said I'd never {LABEL}. I'd like a list of their names.</li>
           </plain>
+          <cheerful><li>I set out to {LABEL}, and look at me now.</li></cheerful>
           <blunt><li>Said I'd {LABEL}. Did it.</li></blunt>
           <cold><li>The goal is reached. I had expected it to take longer.</li></cold>
         </journal>
@@ -53,6 +55,7 @@
           <plain>
             <li>I managed to {LABEL}. I didn't think I would, most days. Now I wonder what else I could do.</li>
             <li>It took longer than I thought and it was harder than I thought, and I did it anyway.</li>
+            <li>I keep catching myself smiling at nothing. It's because I managed to {LABEL}.</li>
           </plain>
           <warm><li>I couldn't have done it without the others. I'll tell each of them so.</li></warm>
           <cheerful><li>I did it. What's next?</li></cheerful>
@@ -79,6 +82,7 @@
           <plain>
             <li>It was my idea, {LABEL}, and now it's done and people use it. I keep walking past just to look.</li>
             <li>I stood up at the meeting and said we should do it, and we did. I have three more ideas now.</li>
+            <li>The others thanked me for {LABEL} today. I said it was everyone's work, and it was, but I said it first.</li>
           </plain>
           <warm><li>Everyone worked on it, not just me. But I said it first, and I'm allowed to be glad.</li></warm>
           <blunt><li>Told them we should. We did. It works.</li></blunt>
@@ -107,6 +111,7 @@
           <plain>
             <li>Three years ago I asked for {LABEL}, once. Now it's a tradition, and the children think it was always here.</li>
             <li>{LABEL} is ours for good now. I remember the evening I first asked for it, and how nervous I was.</li>
+            <li>We kept {LABEL} again, the third year running, and nobody asked whether we would.</li>
           </plain>
           <warm><li>Something I asked for will go on after me. I didn't expect that to matter so much.</li></warm>
           <cheerful><li>My custom is a tradition. I'm going to pretend I planned it that way.</li></cheerful>
@@ -133,6 +138,7 @@
           <plain>
             <li>A year as {LABEL}, and I did what I said I would. The colony saw it too.</li>
             <li>I promised when they voted me in, and the year showed I meant it. That's worth more to me than the seat.</li>
+            <li>A year ago I said what I would do as {LABEL}. Today the colony said I did it.</li>
           </plain>
           <warm><li>They believed me a year ago, and I didn't let them down. I'm grateful they believed me.</li></warm>
           <blunt><li>Promised. Delivered. A year as {LABEL}.</li></blunt>

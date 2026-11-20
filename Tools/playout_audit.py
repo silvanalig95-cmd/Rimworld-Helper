@@ -37,6 +37,13 @@ PLAY = {
     "DilemmaEffect_Feast": "feast",
     # The year's first supper (ColonyLife/FirstSupper.cs): a feast at which each says their aim for the year.
     "DilemmaEffect_FirstSupper": "feast",
+    # Colony life's variety, part 2 (LifeVariety/): the giving day's supper and its gifts handed round, the elders' supper
+    # with their tales (and the children's pieces), a group's evening, a night's watch at a shrine, thanks given there.
+    "DilemmaEffect_GivingDay": "feast",
+    "DilemmaEffect_EldersDay": "feast",
+    "DilemmaEffect_GroupEvening": "gathering",
+    "DilemmaEffect_WatchAtPlace": "vigil",
+    "DilemmaEffect_ShrineThanks": "visit",
     "DilemmaEffect_Bonfire": "bonfire",
     "DilemmaEffect_Toast": "toast",
     "DilemmaEffect_Words": "words",

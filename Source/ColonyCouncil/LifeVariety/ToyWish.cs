@@ -110,7 +110,8 @@ namespace ColonyCouncil
             string label = "CC_Life2_ToyPlay".Translate(child.Named("OTHER")).Resolve();
             if (made != null && LifeHands.Give(asker, child, made, label, new List<HeldMood> { LifeHands.Mood(child, childMood, asker), LifeHands.Mood(asker, askerMood, child) }) != null)
                 return;
-            // Nothing carried (play-outs off, or the toy gone): the moods now, and a word on where it is.
+            // apart: nothing carried (play-outs off, or the toy gone): the moods now, as a met wish's always came, and the
+            // message says only that it is made, not that it was handed over.
             if (childMood != null) CouncilGameComponent.GiveThought(child, childMood, asker);
             if (askerMood != null) CouncilGameComponent.GiveThought(asker, askerMood, child);
             if (made != null)

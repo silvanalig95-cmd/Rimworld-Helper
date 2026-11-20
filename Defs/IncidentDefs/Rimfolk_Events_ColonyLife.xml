@@ -61,7 +61,7 @@
           </li>
           <li>
             <label>Let them sort it out themselves</label>
-            <outcome>Nobody steps in. {A_nameDef} and {B_nameDef} finish supper at opposite ends of the table.</outcome>
+            <outcome>Nobody steps in, and {A_nameDef} and {B_nameDef} stay at odds.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Rivals</kind><amount>5</amount><withB>true</withB></li>
             </effects>

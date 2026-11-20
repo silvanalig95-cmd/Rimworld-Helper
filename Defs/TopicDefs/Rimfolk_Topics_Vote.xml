@@ -63,6 +63,9 @@
         <li>[against,lean:holder] I'll vote to keep things as they are and stop thinking about it.</li>
         <li>[against,lean:other] I'll vote for a change, not that it'll make much difference.</li>
         <li>[against,undecided] I haven't thought about the vote, and I'm not going to.</li>
+        <li>[against] We'll vote, someone will win, and the cows will still need milking.</li>
+        <li>[against] Every year the same speeches, and every year the same work after.</li>
+        <li>[against,standing] I put my name down because nobody else would, not because it matters.</li>
         <li>[mixed] I go back and forth on the vote for {SUBJECT}.</li>
         <li>[mixed,undecided] Both of them would do, which makes it harder to choose.</li>
         <li>[mixed,lean:other] I'm leaning toward someone new, but I could be talked out of it.</li>

@@ -83,7 +83,7 @@
       </li>
       <li>
         <label>The building crew needs hands more</label>
-        <outcome>{A_nameDef} carries stone for the builders now. {B_nameDef} still sets a bowl aside for {A_objective} at supper, out of habit.</outcome>
+        <outcome>{A_nameDef} is put on the building crew, and will learn the work there instead of at the stove.</outcome>
         <ways><toil>4</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>3000</xp></li>
@@ -174,7 +174,7 @@
       </li>
       <li>
         <label>The kitchen needs hands more</label>
-        <outcome>{A_nameDef} goes to the kitchen. {B_nameDef} mended the roof alone that week and grumbled about it to anyone below.</outcome>
+        <outcome>{A_nameDef} is put in the kitchen instead, and will learn to cook rather than to build.</outcome>
         <ways><toil>3</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Cooking</skill><xp>3000</xp></li>
@@ -183,7 +183,7 @@
       </li>
       <li>
         <label>Let {A_nameDef} choose</label>
-        <outcome>{A_nameDef} took the question to the top of the wall and sat with it there until supper.</outcome>
+        <outcome>The choice is left to {A_nameDef}, who is taking the question seriously.</outcome>
         <ways><tradition>-4</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
