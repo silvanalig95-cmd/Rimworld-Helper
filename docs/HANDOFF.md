@@ -114,6 +114,13 @@ most sense." So, in this order, three builds at a time:
      camp, a storm, a wedding and so on, each in the tribal, medieval, industrial and spacer look; a mood picture, never
      showing what the map doesn't.
   F. The character card and the who's who (2 and 4 above) built on A and B.
+  G. The player, after: "What I like from this [mod] is your positioning, and also that when you click the pawn in the
+     bottom left corner above the their description and everything, you see like a larger version of it, which already
+     makes it much more recognizable than the tiny icon on the top or the pawn on the map." So a large portrait above
+     the inspect pane (bottom left) for any selected person, colonist or outsider, as Portraits of the Rim placed it:
+     first with the game's own face (the steady face of 1: no headgear, the favourite colour behind, the mark of their
+     people or the colony), needing no art, then the painted one from A or B where there is one. A setting for its size
+     and to switch it off.
   The player's picks wait: the style (painted oil, ink and wash, manuscript, or another), the tool they use, how many
   images a batch, and where to start (A for their own colonists first is the lead's suggestion).
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
