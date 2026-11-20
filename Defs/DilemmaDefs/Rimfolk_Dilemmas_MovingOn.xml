@@ -72,7 +72,7 @@
   <!-- A: the colonist; X: their partner (lover, betrothed or spouse) of {FACTION}, here on a visit. Tags: "guest" (a Hospitality guest), "married", "engaged". -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmMove_Love</defName>
-    <label>a partner from outside the colony</label>
+    <label>a love from outside</label>
     <workerClass>ColonyCouncil.DilemmaWorker_LoveOutside</workerClass>
     <weight>0.6</weight>
     <cooldownDays>20</cooldownDays>
@@ -125,7 +125,7 @@
     <cooldownDays>30</cooldownDays>
     <texts>
       <li>{A_nameDef} has slept crowded in with everyone else for too long, and has nobody here of {A_possessive} own to stay for. {A_nameDef} has asked the council to let {A_objective} move on to somewhere with room, unless there's a room to be had here.</li>
-      <li>{A_nameDef} has slept on a bedroll among the others night after night, and is worn out by it. {A_nameDef} came to the council to ask for a room of {A_possessive} own, or leave to go and find one elsewhere.</li>
+      <li>Night after night on a bedroll among the others, and {A_nameDef} is worn thin by it. {A_nameDef} came to the council: a room of {A_possessive} own, or leave to go and find one elsewhere.</li>
       <li>{A_nameDef} has been miserable for days, sleeping wherever there's space and never alone. With no family or partner here, {A_nameDef} has asked whether the colony still has a place for {A_objective}.</li>
     </texts>
     <defaultOption>0</defaultOption>
@@ -179,7 +179,7 @@
     <texts>
       <li>{A_nameDef} kept {A_possessive} word and stayed, but hasn't stopped thinking about {RELATIVE}, {A_possessive} {RELATION} among {FACTION}. {A_nameDef} has come back to the council: let {A_objective} go, or bring {RELATIVE} here.</li>
       <li>[old] {RELATIVE} isn't getting any younger, and {A_nameDef} knows it. {A_nameDef} has asked the council a second time to let {A_objective} go to {FACTION}, while there's time.</li>
-      <li>[child] Every day {A_nameDef} stays, {A_possessive} child {RELATIVE} grows up a little more among {FACTION} without {A_objective}. {A_nameDef} has asked the council again, more firmly this time.</li>
+      <li>[child] Every day {A_nameDef} stays, {A_possessive} child {RELATIVE} grows up a little more among {FACTION} without {A_objective}. {A_nameDef} has asked the council again, and this time it isn't really a question.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -273,7 +273,7 @@
     <cooldownDays>5</cooldownDays>
     <answerDays>2</answerDays>
     <texts>
-      <li>{A_nameDef} has made do for a long time and has had enough. {A_nameDef} has asked the council again for a room of {A_possessive} own, or leave to go.</li>
+      <li>{A_nameDef} has made do, and made do, and is done with it. {A_nameDef} has asked the council again for a room of {A_possessive} own, or leave to go.</li>
       <li>[broken] The council promised {A_nameDef} a room, and {A_nameDef} is still sleeping among the others. {A_nameDef} has come back to the council: a room now, or leave to go.</li>
       <li>[noroom] {A_nameDef} is still sleeping crowded in, and nobody here has a room to spare. {A_nameDef} has asked the council a second time to let {A_objective} go.</li>
     </texts>

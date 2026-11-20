@@ -4,7 +4,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_NewClothes</defName>
     <label>new clothes</label>
-    <description>Wearing tattered rags, a dead raider's shirt or nothing at all, this colonist wants something decent to wear.</description>
+    <description>Tattered rags, a dead raider's shirt, or nothing at all: this colonist wants something decent to wear.</description>
     <workerClass>ColonyCouncil.WishWorker_NewClothes</workerClass>
     <forbiddenBy><li>Nudity</li></forbiddenBy>
     <envy>0.5</envy>
@@ -38,7 +38,7 @@
         <li>When the tailor has a moment, a new shirt would be lovely. Anything that fits, really.</li>
       </warm>
       <blunt>
-        <li>I look like a scarecrow. Get me some clothes.</li>
+        <li>I look like a scarecrow that lost a fight. Get me some clothes.</li>
       </blunt>
       <cheerful>
         <li>I'd love a new outfit! Something with pockets, if the tailor can manage it.</li>
@@ -73,7 +73,7 @@
     <expired>
       <plain>
         <li>I'll patch these up one more time.</li>
-        <li>[winter] I'll shiver through the winter, then. I'm used to it.</li>
+        <li>[winter] I'll shiver. I'm good at it by now.</li>
       </plain>
       <gloomy>
         <li>I'll wear these till they rot off me.</li>
@@ -232,7 +232,7 @@
     </requestForOther>
     <thanks>
       <plain>
-        <li>It's not the same as before, but it works. Thank you.</li>
+        <li>Good as new. Well, good as different. Thank you.</li>
         <li>I'll learn it. Give me a week and you won't know it isn't mine.</li>
       </plain>
       <cheerful>
@@ -356,7 +356,7 @@
         <li>[night] Every noise out there tonight sounds like boots. I'd like to know we're ready.</li>
       </plain>
       <warm>
-        <li>I count heads after every raid, and I'm afraid of coming up short. More {SUBJECT}, please.</li>
+        <li>I count heads after every raid. I'd like to stop counting. More {SUBJECT}, please.</li>
       </warm>
       <blunt>
         <li>We're sitting ducks. Build more {SUBJECT} before they come back.</li>
@@ -389,7 +389,7 @@
     <expired>
       <plain>
         <li>I'll sleep with my weapon by the bed.</li>
-        <li>[afterraid] We'll do it the hard way, then, and people will get hurt.</li>
+        <li>[afterraid] We'll do it the hard way, then. With blood.</li>
       </plain>
       <gloomy>
         <li>When they come, remember I asked.</li>

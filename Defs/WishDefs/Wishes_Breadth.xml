@@ -150,7 +150,7 @@
     <thanks>
       <plain><li>Healroot drying in bundles from the rafters. That's a good sight.</li></plain>
       <warm><li>Whoever falls ill next will be glad of this. I am already.</li></warm>
-      <blunt><li>That'll do for the next fever.</li></blunt>
+      <blunt><li>That'll do. Don't eat it.</li></blunt>
       <cheerful><li>Look at all that green! I've already sewn a pouch to carry some in.</li></cheerful>
       <gloomy><li>Enough for a bad winter, maybe.</li></gloomy>
       <cold><li>Medical stock is adequate. Keep it that way.</li></cold>
@@ -231,7 +231,7 @@
     <expired>
       <plain><li>More meat, then.</li></plain>
       <blunt><li>Fine. I'll chew on bark.</li></blunt>
-      <gloomy><li>We'll pay for it when our teeth start coming loose.</li></gloomy>
+      <gloomy><li>We'll pay for it in teeth.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still nothing fresh in the stores.</li></plain>
@@ -349,7 +349,7 @@
       <blunt><li>I said what I came to say.</li></blunt>
       <cheerful><li>We agreed on three whole things. I've chalked them on the wall so they stay agreed.</li></cheerful>
       <gloomy><li>We talked. That's something.</li></gloomy>
-      <cold><li>The council is working as it should.</li></cold>
+      <cold><li>The council functions.</li></cold>
     </thanks>
     <expired>
       <plain><li>I'll keep my idea to myself, then.</li></plain>
@@ -408,7 +408,7 @@
       </cold>
     </request>
     <thanks>
-      <plain><li>Everyone at the table together, talking. I'd missed that.</li></plain>
+      <plain><li>Everyone at the table together. It took me a moment to place the sound.</li></plain>
       <warm><li>Look at us all. This is how it should be.</li></warm>
       <blunt><li>About time. The end chair's mine.</li></blunt>
       <cheerful><li>Room for everyone, and the pot made it all the way round the table.</li></cheerful>
@@ -493,7 +493,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_FoodThatKeeps</defName>
     <label>food that keeps</label>
-    <description>Winter is coming (or the heat spoils the food faster than it can be eaten, in hot country with no way yet to keep it frozen), and someone wants food put by that won't spoil: pemmican in a tribe, packaged meals or canned goods later on, whatever the colony can make now.</description>
+    <description>Winter is coming (or the heat turns the food faster than it can be eaten, in hot country with no way yet to keep it frozen), and someone wants food put by that won't spoil: pemmican in a tribe, packaged meals or canned goods later on, whatever the colony can make now.</description>
     <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
     <forbiddenBy><li>NoMeat</li><li>MeatOnly</li><li>FungusOrInsectOnly</li></forbiddenBy>
     <category>Safety</category>
@@ -521,7 +521,7 @@
       <coldComing>true</coldComing>
       <!-- In hot country where nothing can keep food frozen yet (a passive cooler can't), any time of year. -->
       <orHotLandNoCold>true</orHotLandNoCold>
-      <reason>{PAWN_nameDef} wants food put by that won't spoil: for the hungry end of winter, or for the heat that spoils everything else.</reason>
+      <reason>{PAWN_nameDef} wants food put by that won't spoil: for the hungry end of winter, or for the heat that turns everything else.</reason>
     </wants>
     <request>
       <plain>
@@ -548,7 +548,7 @@
         <li>Every winter someone says we'll be fine. Then we aren't.</li>
       </gloomy>
       <cold>
-        <li>When a harvest fails, people start fighting over food. I'd rather we had a reserve.</li>
+        <li>When a harvest fails, people start looking at each other differently. I'd rather we had a reserve.</li>
       </cold>
     </request>
     <thanks>
@@ -599,7 +599,7 @@
         <li>[lowmood] An afternoon by the water, with nothing to do but wait for a bite. That's all I want.</li>
         <li>[evening] The water goes still in the evening, and that's when the big ones come up to feed.</li>
         <li>[winter] They bite through the ice too, if you're patient. I'm patient.</li>
-        <li>[lowtech] With a line and a hook carved from bone, my grandmother fed a whole family.</li>
+        <li>[lowtech] A line, a hook carved from bone, and the morning. My grandmother fed a family that way.</li>
       </plain>
       <warm>
         <li>Fresh fish for everyone, and a quiet hour on the bank for whoever catches it.</li>
@@ -609,10 +609,10 @@
         <li>Fish in the water, none on the table. Fix that.</li>
       </blunt>
       <cheerful>
-        <li>I'll catch the biggest fish anyone's ever seen, or at least a decent one.</li>
+        <li>I'll catch the biggest fish anyone's ever seen. Or a boot. Probably a boot.</li>
       </cheerful>
       <gloomy>
-        <li>There are plenty of fish out there. We might as well eat some.</li>
+        <li>The fish will be there long after we're gone. We might as well eat a few first.</li>
       </gloomy>
       <cold>
         <li>Food is swimming past and we're letting it. That's careless.</li>
@@ -622,7 +622,7 @@
       <plain><li>Three today, all small. I'll take it.</li></plain>
       <warm><li>Fish for supper, and I caught it. Thank you.</li></warm>
       <blunt><li>Now leave me be by the water.</li></blunt>
-      <cheerful><li>I caught one. It wasn't big, but it still counts.</li></cheerful>
+      <cheerful><li>I caught one this long. All right, this long. It still counts.</li></cheerful>
       <gloomy><li>Two fish in a whole afternoon. Still beats the stew.</li></gloomy>
       <cold><li>One more source of food. One less way to starve.</li></cold>
     </thanks>
@@ -693,7 +693,7 @@
       <warm><li>Come and look. I'll show you where to point it.</li></warm>
       <blunt><li>Don't touch the lens.</li></blunt>
       <cheerful><li>I found a faint red star and named it after myself.</li></cheerful>
-      <gloomy><li>There are so many worlds up there, and we're stuck on this one.</li></gloomy>
+      <gloomy><li>All those worlds, and here we are.</li></gloomy>
       <cold><li>A fine instrument.</li></cold>
     </thanks>
     <expired>
@@ -876,7 +876,7 @@
         <li>Build {THING}. I'll do the rest.</li>
       </blunt>
       <cheerful>
-        <li>Who knows what's under our feet? It could even be gold.</li>
+        <li>Who knows what's under our feet? Gold! Probably not gold. Maybe gold.</li>
       </cheerful>
       <gloomy>
         <li>Probably nothing down there but rock. I'd still like to find out.</li>
@@ -908,7 +908,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_CommsConsole</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>{THING} to call other settlements</label>
+    <label>{THING} to call beyond the hills</label>
     <description>A sociable colonist wants to hear voices from beyond the colony, and to call traders and friends when they're needed.</description>
     <workerClass>ColonyCouncil.WishWorker_Have</workerClass>
     <lasting>true</lasting>
@@ -1011,7 +1011,7 @@
         <li>I'm old. Build {THING}.</li>
       </blunt>
       <cheerful>
-        <li>A few years off would be wonderful. I'd feel young again.</li>
+        <li>A few years off! I'd be the youngest old person in the colony.</li>
       </cheerful>
       <gloomy>
         <li>I can feel the end coming. A few more years would be something.</li>
@@ -1086,7 +1086,7 @@
       </cold>
     </request>
     <thanks>
-      <plain><li>I sat down in it and didn't want to get up again.</li></plain>
+      <plain><li>I sat down in it and didn't want to get up. I may not.</li></plain>
       <warm><li>Come and sit with me, there's room on the arm.</li></warm>
       <blunt><li>Mine.</li></blunt>
       <cheerful><li>It fits me perfectly. I think it was made for me.</li></cheerful>
@@ -1094,7 +1094,7 @@
       <cold><li>My back is grateful.</li></cold>
     </thanks>
     <expired>
-      <plain><li>The stool, then, and my back will keep hurting.</li></plain>
+      <plain><li>The stool, then. My back sends its regards.</li></plain>
       <blunt><li>I'll complain about my back instead. Every day.</li></blunt>
       <gloomy><li>Old bones don't count for much here.</li></gloomy>
     </expired>
@@ -1142,10 +1142,10 @@
         <li>Build me {THING} before I need it. Not after.</li>
       </blunt>
       <cheerful>
-        <li>I want a nice one, with my name carved big on it.</li>
+        <li>I want a nice one, with my name carved big! I'll lie in it to try it out.</li>
       </cheerful>
       <gloomy>
-        <li>Death is coming for me sooner or later. I'd rather be prepared.</li>
+        <li>It's coming. I'd rather it found me prepared.</li>
       </gloomy>
       <cold>
         <li>A planned burial spares everyone an improvised one. It's practical.</li>
@@ -1156,7 +1156,7 @@
       <warm><li>Thank you. Knowing it's there, I worry less.</li></warm>
       <blunt><li>Don't put anyone else in it.</li></blunt>
       <cheerful><li>It's lovely. I've already decided which end my head goes.</li></cheerful>
-      <gloomy><li>There it is, ready for when I need it.</li></gloomy>
+      <gloomy><li>There it is. Waiting.</li></gloomy>
       <cold><li>Arrangements complete.</li></cold>
     </thanks>
     <expired>
@@ -1561,7 +1561,7 @@
     <expired>
       <plain><li>Dirt floor it is, then.</li></plain>
       <blunt><li>I didn't want your planks anyway.</li></blunt>
-      <gloomy><li>Everyone else has a proper floor, and I'm still living on bare ground.</li></gloomy>
+      <gloomy><li>Some of us live in rooms. Some of us live in the ground.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still sweeping dirt off a dirt floor.</li></plain>

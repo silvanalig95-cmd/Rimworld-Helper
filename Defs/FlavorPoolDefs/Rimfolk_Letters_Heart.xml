@@ -32,17 +32,17 @@
         <li>[council,no,deal:hire] We need every pair of hands at home this season.</li>
         <li>[council,yes,deal:petition] We have heard your petition, and we grant it.</li>
         <li>[council,no,deal:petition] We have heard your petition, and we cannot grant it.</li>
-        <li>[council,yes,deal:work] We are agreed, and glad to build it together.</li>
+        <li>[council,yes,deal:work] A work done together is a work that lasts. We are agreed.</li>
         <li>[council,no,deal:work] We see no need for it, and no means either.</li>
         <li>[council,yes,deal:market] There is a place in our market for {COLONY}, once the fee is paid.</li>
         <li>[council,no,deal:market] Our market is for our own people.</li>
-        <li>[council,yes,deal:invite] Some of us will come, and the rest will want to hear all about it.</li>
+        <li>[council,yes,deal:invite] Some of us will come, and the rest will hear about it for a year.</li>
         <li>[council,no,deal:invite] Nobody can be spared to make the journey this time.</li>
         <li>[council,moot] Things have changed since your letter was written, and there is nothing left for the council to decide.</li>
 
         <!-- ================= They write first (plain English) ================= -->
         <li>[first,k:news] There is news from our side of the hills, and I thought you should have it.</li>
-        <li>[first,k:news] Here is the news that has reached us lately, for what it is worth to {COLONY}.</li>
+        <li>[first,k:news] Here is what the roads have brought us lately, for what it is worth to {COLONY}.</li>
         <li>[first,k:news,m:trade] News first, then business: the roads are open, and so are our wagons.</li>
         <li>[first,k:news,m:wary] I write with what news we have, and to see what news you send back.</li>
         <li>[first,k:news,m:proud] We hear everything first at {TOWN}, as is only proper. Here is some of it.</li>
@@ -64,17 +64,17 @@
 
         <!-- ================= Their thanks for the colony's reply (plain English) ================= -->
         <li>[thanks] Thank you for answering. Not everyone does.</li>
-        <li>[thanks,k:news] Thank you for your news. Everyone in {TOWN} had heard it within the day.</li>
+        <li>[thanks,k:news] Thank you for your news. It went round {TOWN} faster than the flu.</li>
         <li>[thanks,k:request,yes] Thank you. Our porters will come for it, and we will not forget it.</li>
         <li>[thanks,k:request,no] We understand, and we ask nothing more.</li>
         <li>[thanks,k:invitation,yes] We will look for your people at the festival, and save them a bench.</li>
-        <li>[thanks,k:invitation,no] Another year, then. The festival is held every year.</li>
+        <li>[thanks,k:invitation,no] Another year, then. The festival will keep.</li>
 
         <!-- ================= A friend's word (plain English) ================= -->
         <li>[friendmade] I find I look forward to your letters more than to market day, and I do not say that lightly.</li>
         <li>[friendmade] Somewhere between your second letter and your third, this stopped being courtesy and started being friendship.</li>
-        <li>[friendmade] I have begun telling people here about my friend at {COLONY}, so often that they tease me about it.</li>
-        <li>[friendfavour] If ever {COLONY} needs a good turn, ask, and it is done. All these letters have made us friends.</li>
+        <li>[friendmade] I have begun telling people here about my friend at {COLONY}. They roll their eyes now. That is how you know.</li>
+        <li>[friendfavour] If ever {COLONY} needs a good turn, ask, and it is done. That is what all these letters have made of us.</li>
         <li>[friendfavour] I owe you nothing, which is exactly why I want you to know you can call on me.</li>
         <li>[raidword] Riders of {RAIDERS} passed us at dawn, heading your way. Bar your gate and get your people in.</li>
         <li>[raidword] {RAIDERS} are on the road toward {COLONY}, armed and in no hurry to hide it. You have hours, not days.</li>
@@ -128,7 +128,7 @@
         <li>[olde,truce,warm|cordial] Enough blood hath been spilt. If thou meanest it, so do we.</li>
         <li>[olde,truce,cordial] An end to the fighting would suit us, if it be an honest one.</li>
         <li>[olde,truce,cool] We have heard thine offer. We shall see whether thy people keep their word.</li>
-        <li>[olde,truce,curt|refusal] There is no truce to be had while our dead are unavenged.</li>
+        <li>[olde,truce,curt|refusal] There is no truce to be had while our dead lie unanswered.</li>
         <li>[olde,ransom,warm|cordial] We would have our own back, and we shall deal fairly to have them.</li>
         <li>[olde,ransom,cordial] Name thy terms plainly, and we shall answer them plainly.</li>
         <li>[olde,ransom,cool] We have read thy terms touching the captive. Here is our answer to them.</li>
@@ -137,7 +137,7 @@
         <li>[olde,envoy,cordial] Our envoy may come, if thou keep them well.</li>
         <li>[olde,envoy,cool] We have considered thy request for our envoy.</li>
         <li>[olde,envoy,curt|refusal] Our envoy stayeth here.</li>
-        <li>[olde,ward,warm|cordial] A young one fostered between us maketh a bond between our peoples, and we are glad of it.</li>
+        <li>[olde,ward,warm|cordial] A young one fostered is a bond made. We are glad of it.</li>
         <li>[olde,ward,cordial] We have talked it over with the young one, which is only right.</li>
         <li>[olde,ward,cool] We have considered it, carefully, as such things must be.</li>
         <li>[olde,ward,curt|refusal] Our young stay with their own.</li>
@@ -180,7 +180,7 @@
 
         <li>[olde,greetings,warm|cordial,their:healers] All at the sickhouse send their greeting, and bid thee keep well.</li>
         <li>[olde,news,warm|cordial,their:mercenaries] The Banner hears much upon the roads. Here is what is worth thy knowing.</li>
-        <li>[olde,invitation,warm|cordial,their:pilgrims] We shall walk to thee on our next pilgrimage, as pilgrims do.</li>
+        <li>[olde,invitation,warm|cordial,their:pilgrims] We shall walk to thee when next the road calleth, as pilgrims do.</li>
         <li>[olde,help,warm|cordial,their:healers] The healers made up what they could spare, with a blessing on each jar.</li>
         <li>[olde,truce,warm|cordial,war] Let it end, then, and let us both be glad of it.</li>
 
@@ -199,15 +199,15 @@
         <li>[u:none,help,warm|cordial] All right. We are sending what we can spare. Don't say we never gave you anything.</li>
         <li>[u:none,help,cool|curt|refusal] We have nothing to spare. Sorry.</li>
         <li>[u:none,truce,warm|cordial] All right. We stop fighting if you stop fighting. Deal.</li>
-        <li>[u:none,truce,cool|curt|refusal] No truce. We will burn your walls.</li>
+        <li>[u:none,truce,cool|curt|refusal] No truce. We will burn your walls. After the rain stops. It is raining a lot.</li>
         <li>[u:none,ransom] We have your people. You want them back, you pay. Silver. Real silver, not painted rocks.</li>
-        <li>[u:none,ransom,curt|refusal] No deal. We keep them.</li>
+        <li>[u:none,ransom,curt|refusal] No deal. We keep them. They eat a lot, though.</li>
         <li>[u:none,ransom] {CAPTIVE} is all right. We didn't hurt them much. You want {CAPTIVE} back, send silver.</li>
         <li>[u:none,warm|cordial] Good letter. We liked it. Here is ours back.</li>
         <li>[u:none,cool] We read your letter. Here is the answer.</li>
         <li>[u:none,curt] No.</li>
-        <li>[u:none,refusal] The answer is no. Don't ask again.</li>
-        <li>[u:none,refusal,c:raider] We are the strongest band on the road, and everyone knows it. So no.</li>
+        <li>[u:none,refusal] The answer is no. Don't ask again, or we will come over there. Eventually.</li>
+        <li>[u:none,refusal,c:raider] We are the strongest band on the road, and everyone knows it. So no. Also, we are a bit busy.</li>
 
         <!-- ================= A hive (sv:hive) ================= -->
         <li>[sv:hive,greetings,warm|cordial] We read your greeting. We greet back. All of us.</li>

@@ -59,7 +59,7 @@
     </achieved>
     <!-- With "Answers play out on the map": a fire lit by the new walls. -->
     <achievedEffects>
-      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>a fire for the new walls</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the walls' fire</label><music>true</music><hours>17~23</hours><duration>2~3</duration></li>
     </achievedEffects>
   </ColonyCouncil.AmbitionDef>
 
@@ -130,7 +130,7 @@
       <warm><li>One season where the cook never has to say there's less tonight. That's all I'm asking.</li></warm>
       <blunt><li>Every time the weather turns, we start rationing. Keep the stores full.</li></blunt>
       <cheerful><li>Full bellies and full barns all season long! It's like something out of a story.</li></cheerful>
-      <gloomy><li>Food always runs short again sooner or later, and there's never any warning.</li></gloomy>
+      <gloomy><li>Hunger always comes back, and it never sends word first.</li></gloomy>
       <cold><li>With twenty days held in reserve, the next blight is an inconvenience, not a disaster.</li></cold>
     </pitch>
     <achieved>
@@ -206,7 +206,7 @@
       <plain>
         <li>Gather everything the land gives before the cold, the old way. Then pound it into pemmican that keeps all winter.</li>
         <li>Berries, roots, grain, all of it, and then the cache. My people never went hungry in the snow.</li>
-        <li>[fall] There's plenty to gather now, and in a month there won't be. Let's take it while we can.</li>
+        <li>[fall] The land is giving now. In a month it won't be. Let's take what it gives.</li>
         <li>[winter] We were hungry last winter. A proper cache, and we never will be again.</li>
       </plain>
       <warm><li>I want every belly in this tribe full all winter, whatever the hunters bring home.</li></warm>
@@ -390,7 +390,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Travelers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and people on the roads will come to know our name.</li>
+        <li>Travelers pass us by because there's nowhere to sleep. Beds first, then a room worth the walk, and the roads will learn our name.</li>
         <li>I'd like guests to leave here telling everyone about us. Let's give them something to tell.</li>
         <li>[medieval] Every road needs a good inn. Let's be it.</li>
         <li>[large] With this many of us, there's always someone free to look after guests.</li>

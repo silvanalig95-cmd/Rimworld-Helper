@@ -24,7 +24,7 @@
         <li>[note:open,warm|cordial] No time for a proper letter, so this will have to do.</li>
         <li>[note:open,theirs,m:trade] Quickly, between customers:</li>
         <li>[note:open,theirs,a:council|m:duty] For the record:</li>
-        <li>[note:open,theirs,a:empire] By command, and briefly:</li>
+        <li>[note:open,theirs,a:empire] By command, and without ornament:</li>
         <li>[note:open,a:war] No greeting. You know why.</li>
         <li>[note:open,ours,v:blunt] Short one.</li>
         <li>[note:open,theirs,w:tribal] The runner is already tying his sandals, so:</li>
@@ -44,7 +44,7 @@
         <li>[note:close,a:war] Until the war is over, this is the last of it.</li>
         <li>[note:close,ours,v:blunt] That's it.</li>
         <li>[note:close,ours,warm|cordial] Everyone here says hello.</li>
-        <li>[note:close,theirs,w:tribal] That is all I have to say.</li>
+        <li>[note:close,theirs,w:tribal] The fire is low. That is all.</li>
         <li>[note:close,theirs,w:industrial|w:spacer] Sent in a hurry. Excuse the hand.</li>
         <!-- ================= Medieval English (olde) ================= -->
         <li>[olde,note:open,cordial|cool|curt] In haste, for the rider will not wait.</li>
@@ -83,11 +83,11 @@
         <li>[note:open,theirs,their:scholars] An abstract, since the full text would run to volumes:</li>
         <li>[note:open,ours,v:eloquent] A short letter, for once, and I apologise for its brevity, though not for its content:</li>
         <li>[note:close,warm|cordial,fam:familiar|fam:close] More soon, as ever.</li>
-        <li>[note:close,warm,fam:close] The rest when there is time.</li>
+        <li>[note:close,warm,fam:close] The rest when there is time. There is always more.</li>
         <li>[note:close,cool|curt,fam:cooled] That is all.</li>
         <li>[note:close,theirs,w:spacer] End of transmission.</li>
         <li>[note:close,theirs,w:industrial] Must dash; the post is going.</li>
-        <li>[note:close,theirs,w:tribal] That is all for now. Go well.</li>
+        <li>[note:close,theirs,w:tribal] The fire calls. Go well.</li>
         <li>[note:close,theirs,m:trade] Prices on request.</li>
         <li>[note:close,theirs,m:duty] By the hand of the office.</li>
         <li>[note:close,theirs,m:wary] Write if you must.</li>
@@ -110,7 +110,7 @@
         <li>[sv:green,note:open] Few words. The sun is short.</li>
         <li>[sv:hive,note:open] The many are busy. One writes.</li>
         <li>[sv:fey,note:close] Said once, and quickly, and that is our rudeness for the season.</li>
-        <li>[sv:deep,note:open] Only a short note today. We found a weak spot in the floor and are busy shoring it up.</li>
+        <li>[sv:deep,note:open] Short. The floor is thin today.</li>
 
         <!-- ================= Round 2, part 2: the court's notes ================= -->
         <li>[note:open,theirs,empire] Briefly, between audiences:</li>
@@ -118,7 +118,7 @@
         <li>[note:open,theirs,empire,fam:familiar|fam:close] A short note, old friend, the court permitting:</li>
 
         <!-- ================= Round 2, part 2: more bare notes ================= -->
-        <li>[note:close,warm|cordial] Longer next time, I promise.</li>
+        <li>[note:close,warm|cordial] Longer next time. I promise, which you know is worth exactly what it costs.</li>
         <li>[note:open,cool|curt,theirs] Your letter came. Here is what you need to know:</li>
         <li>[note:close,theirs,w:tribal,warm|cordial] More when the moon is new.</li>
         <li>[note:open,ours,v:plain] A short one, since there is not much to say this time:</li>

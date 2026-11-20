@@ -91,11 +91,11 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the woodcutters {PLACE}, says {X_pronoun} has cut enough of other people's trees, and asks whether the colony could use a strong back and a good eye for timber.</li>
-      <li>{X_nameDef} from the woodcutters' camp is tired of felling trees for a living, and has asked whether there might be a place for {X_objective} at the colony.</li>
+      <li>{X_nameDef} from the woodcutters' camp has asked whether there might be a place for {X_objective} at the colony, where the trees stay standing and the fire is somebody else's to keep.</li>
     </joinTexts>
     <farewell>
       <li>The woodcutters from {FACTION} have gone on, their pack beast loaded to the ears.</li>
-      <li>The woodcutters have packed up their camp {PLACE} and gone, leaving the stumps behind.</li>
+      <li>The woodcutters have left {PLACE}, and the stumps left behind them.</li>
       <li>{X_nameDef} and the crew have gone off down the road, and the woods {PLACE} are quiet again.</li>
     </farewell>
     <lines>
@@ -154,7 +154,7 @@
         <deed>aid</deed>
         <askTexts>
           <li>{X_nameDef} came up from the woodcutters' camp {PLACE} at the end of the day, stiff and smelling of resin. The crew have been living on hard bread since they came, and would give a lot for a hot supper from the colony's kitchen.</li>
-          <li>[their:tribal] {X_nameDef} of the wood-gatherers came to the colony's gate today and asked, without much hope, whether the colony had cooked food to spare for the people who have been cutting all day.</li>
+          <li>[their:tribal] {X_nameDef} of the wood-gatherers came to the colony's gate and asked, without much hope, whether the colony had cooked food to spare for the people who have been cutting all day.</li>
         </askTexts>
         <tip>Four of the colony's meals are carried out to the woodcutters' camp.</tip>
         <outcomes>
@@ -238,9 +238,9 @@
       <li>{X_nameDef} of the herb-gatherers asked {A_nameDef} whether the colony's healer could use a pair of hands that knows which leaf is which.</li>
     </joinTexts>
     <farewell>
-      <li>The herb-gatherers from {FACTION} have gone on with their baskets full.</li>
-      <li>The herb-gatherers have packed up their camp {PLACE} and gone on, gathering as they went.</li>
-      <li>{X_nameDef} led the herb-gatherers off down the road, grateful for the use of the colony's wild ground.</li>
+      <li>The herb-gatherers from {FACTION} have gone on with their baskets full and the pack beast complaining under them.</li>
+      <li>The herb-gatherers' camp {PLACE} is empty. They left gathering as they went.</li>
+      <li>{X_nameDef} thanked the colony for the use of its wild ground and led the herb-gatherers off down the road, stopping twice before the edge to dig.</li>
     </farewell>
     <lines>
       <li>Not that one, it's bitter.</li>

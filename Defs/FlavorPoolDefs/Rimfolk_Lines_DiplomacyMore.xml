@@ -81,7 +81,7 @@
         <li>[pact,refusal,theirLowtech] There will be no oath between us this year.</li>
         <li>[pact,refusal,call] I'm sorry, {WRITER}. There won't be a pact between us this year.</li>
         <!-- While a pact holds -->
-        <li>[greetings,cordial,tie:pact:defence,theirLowtech] Our watchers look your way at night now. Write when you like, and send for us if you need us.</li>
+        <li>[greetings,cordial,tie:pact:defence,theirLowtech] Our watchers look your way at night now. Write when you like, and light your fire when you must.</li>
         <li>[greetings,warm,tie:pact:trade] The traders here look forward to your colony's cart more than to most caravans.</li>
         <li>[news,cordial,tie:pact] Here is our news, and since we stand together, I have left nothing out.</li>
         <li>[help,warm,tie:pact] Friends under a pact should not have to ask twice. We send {HELP}.</li>
@@ -114,7 +114,7 @@
         <li>[ransom,cordial,theirHightech] Your proposal works for us. Expect to hear from us shortly.</li>
         <li>[ransom,cordial,call] Thanks for calling, {WRITER}. You'll hear from us about it.</li>
         <li>[ransom,cool,letter] Fine. We'll settle this, but not in letters.</li>
-        <li>[ransom,cool,war,theirLowtech] We do not love your colony, but we want our own back. Look for us at your gate.</li>
+        <li>[ransom,cool,war,theirLowtech] We do not love your colony, but we want our own back. Watch your gate.</li>
         <li>[ransom,refusal,war,theirHightech] We don't negotiate with your colony, not over prisoners and not over anything.</li>
         <li>[ransom,refusal,letter] Your letter was read and set aside. We will not bargain over this one.</li>
         <li>[ransom,refusal,theirLowtech] The one you hold shamed us by being taken. We will not bargain for them.</li>

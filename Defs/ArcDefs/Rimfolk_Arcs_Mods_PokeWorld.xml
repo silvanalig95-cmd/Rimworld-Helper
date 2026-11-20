@@ -9,7 +9,7 @@
   <ColonyCouncil.ArcDef>
     <defName>Council_Arc_PW_Partner</defName>
     <label>a trainer and a partner</label>
-    <summary>A trainer and a Pokémon that isn't their friend yet spend time together, learn its moves and fight side by side, and its friendship (PokéWorld's own) grows until they're partners. Only with PokéWorld.</summary>
+    <summary>A trainer and a Pokémon that isn't their friend yet: time together, learning its moves, a fight side by side, and its friendship (PokéWorld's own) growing until they're partners. Only with PokéWorld.</summary>
     <workerClass>ColonyCouncil.ArcWorker_PokemonPartner</workerClass>
     <children>true</children>
     <weight>1.1</weight>
@@ -31,7 +31,7 @@
           <cold><li>{PET_nameDef}'s friendship is low. That will change with time and good handling.</li></cold>
         </journal>
         <chronicle>
-          <li>{PET_nameDef} won't come when {PAWN_nameDef} calls. For now, they are trainer and Pokémon only in name.</li>
+          <li>{PET_nameDef} won't come when {PAWN_nameDef} calls. Trainer and Pokémon, so far, in name only.</li>
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Follow"><hours>24</hours></li>
@@ -68,7 +68,7 @@
       </li>
       <li>
         <label>side by side</label>
-        <waiting>Next: a fight at home side by side, or enough friendship without one.</waiting>
+        <waiting>Next: a fight at home, side by side (or friendship enough without one).</waiting>
         <journal>
           <plain>
             <li>We're ready, I think, {PET_nameDef} and me. Whatever comes over the wall next, we'll meet it together.</li>
@@ -95,7 +95,7 @@
       </li>
       <li>
         <label>friends</label>
-        <waiting>Next: {PET_nameDef}'s friendship grows.</waiting>
+        <waiting>Next: {PET_nameDef}'s friendship, grown.</waiting>
         <journal>
           <plain>
             <li>{PET_nameDef} came out of {PET_possessive} ball on {PET_possessive} own this morning, just to sit next to me.</li>

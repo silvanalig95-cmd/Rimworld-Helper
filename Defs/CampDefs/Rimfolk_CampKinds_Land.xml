@@ -124,13 +124,13 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, one of the fishers, says {X_pronoun} is tired of moving from bank to bank, and asks whether the colony could use someone who knows the water.</li>
-      <li>{X_nameDef} from the fishers' camp asked today whether {X_pronoun} might stay at the colony for good.</li>
+      <li>{X_nameDef} from the fishers' camp has been bringing fish up to the colony's door of an evening, unasked. Today {X_pronoun} asked whether {X_pronoun} might stay for good.</li>
       <li>{X_nameDef} of the fishing family says the others will manage without {X_objective}, and asks whether there's room in the colony for one more pair of hands.</li>
     </joinTexts>
     <farewell>
       <li>The fishers from {FACTION} rolled up their lines at first light and walked on along the water, baskets on their backs.</li>
       <li>The fishers' camp {PLACE} is empty, and there's a ring of fish bones round the cold fire.</li>
-      <li>The fishing family from {FACTION} packed up and moved on to the next good water.</li>
+      <li>The fishing family from {FACTION} packed up and moved on to the next good water, the dog running ahead.</li>
     </farewell>
     <lines>
       <li>They're biting this morning.</li>
@@ -151,7 +151,7 @@
     </momentLines>
     <helpTexts>
       <li>[fish] {X_nameDef} set out {COUNT} {THING} from the fishers' catch at the edge of their camp for the colony, wrapped in leaves.</li>
-      <li>[fish] The fishers left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} told {A_nameDef} it was there for the colony.</li>
+      <li>[fish] The fishers left {COUNT} {THING} on the colony's side of their camp, and {X_nameDef} waved at {A_nameDef} to come and take it.</li>
       <li>[tales] {A_nameDef} sat with the fishers at their fire and heard about every river, lake and coast between here and the sea, and which of them are fished out.</li>
     </helpTexts>
     <asks>
@@ -281,11 +281,11 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the scrap crew says {X_pronoun} has pulled apart enough ruins for one life, and asks whether the colony needs someone who can build things up instead.</li>
-      <li>{X_nameDef} from the salvagers' camp asks to stay on with the colony, and says the foreman keeps the best of every haul.</li>
+      <li>{X_nameDef} from the salvagers' camp asks to stay on with the colony. {X_nameDef} says the foreman keeps the best of every haul.</li>
     </joinTexts>
     <farewell>
-      <li>The salvagers from {FACTION} loaded their haul onto the pack beast and walked on.</li>
-      <li>The scrap crew has packed up their camp {PLACE} and moved on with their haul.</li>
+      <li>The salvagers from {FACTION} loaded their haul and walked on, the pack beast complaining under it.</li>
+      <li>The scrap crew's camp {PLACE} is empty, and their haul went with them.</li>
     </farewell>
     <lines>
       <li>Steel under all that rust.</li>
@@ -409,11 +409,11 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the reaping crew says {X_pronoun} has followed the harvest long enough, and asks whether the colony would keep a grower through the winter.</li>
-      <li>{X_nameDef} from the harvest hands' camp asks to stay on, and says the colony's fields are the best {X_pronoun} has worked this year.</li>
+      <li>{X_nameDef} from the harvest hands' camp asks to stay on. {X_nameDef} says the colony's fields are the best {X_pronoun} has worked this year.</li>
     </joinTexts>
     <farewell>
-      <li>The harvest hands from {FACTION} shouldered their sickles and walked on to the next farm.</li>
-      <li>The reaping crew has packed up their camp {PLACE} and gone on to the next farm.</li>
+      <li>The harvest hands from {FACTION} shouldered their sickles and walked on to the next farm, singing.</li>
+      <li>The reaping crew's camp {PLACE} is empty, and the crew gone on to the next farm.</li>
     </farewell>
     <lines>
       <li>Keep the rows straight.</li>
@@ -544,7 +544,7 @@
     </titles>
     <texts>
       <li>A small craft of {FACTION} came down hard near the edge of the colony's land, and its crew walked away from it. {X_nameDef}, its pilot, asked {A_nameDef} for leave to camp {PLACE} by the wreck while they strip what they can carry and wait for their people to send for them.</li>
-      <li>[ws:sky] A craft of {FACTION} came down out of the sky near the map's edge, and its crew survived. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} by the hull a few days.</li>
+      <li>[ws:sky] Something came down out of the sky near the map's edge: a craft of {FACTION}, and its crew alive. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} by the hull a few days.</li>
     </texts>
     <settled>
       <li>The spacers from {FACTION} have made camp {PLACE}, in the lee of their wrecked hull, with a fire they don't quite know how to keep.</li>
@@ -552,7 +552,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef}, a passenger on the wrecked craft, says {X_pronoun} has no wish to go back up, and asks whether the colony would take {X_objective} in.</li>
-      <li>{X_nameDef} of the stranded spacers asks to stay with the colony when the others go, and says {X_pronoun} has had enough of living on ships and stations.</li>
+      <li>{X_nameDef} of the stranded spacers asks to stay with the colony when the others go. {X_nameDef} says this is the first ground in years that felt like ground.</li>
     </joinTexts>
     <farewell>
       <li>The spacers from {FACTION} shouldered what they stripped from their craft and walked out to meet their people beyond the edge. The broken hull stays where it came down.</li>
@@ -574,7 +574,7 @@
       <li>[hull] Mind the coolant.</li>
     </momentLines>
     <helpTexts>
-      <li>[tales] {A_nameDef} sat with the stranded spacers at their fire and heard about the space stations above the planet, and the long journeys between them.</li>
+      <li>[tales] {A_nameDef} sat with the stranded spacers at their fire and heard about the stations above, and the long dark between them.</li>
     </helpTexts>
     <asks>
       <li>
@@ -697,8 +697,8 @@
       <li>{X_nameDef} of the watchers says {X_pronoun} would rather study the monolith from inside the colony's walls, and asks to stay.</li>
     </joinTexts>
     <farewell>
-      <li>The watchers from {FACTION} packed up their notebooks and their lamp and left.</li>
-      <li>The watchers have packed up their camp {PLACE} and gone.</li>
+      <li>The watchers from {FACTION} packed up their notebooks and their lamp and walked away from the monolith without looking back.</li>
+      <li>The watchers' camp {PLACE} is empty. Their fire is cold, and the monolith is just as it was.</li>
     </farewell>
     <lines>
       <li>Write the hour down.</li>
@@ -716,7 +716,7 @@
       <li>[watch] Write the hour down.</li>
     </momentLines>
     <helpTexts>
-      <li>[tales] {A_nameDef} sat with the watchers at their lamp and heard what other monoliths had done in other places before they went quiet again.</li>
+      <li>[tales] {A_nameDef} sat with the watchers at their lamp and heard what other monoliths did, in other places, before they slept again.</li>
     </helpTexts>
     <asks>
       <li>
@@ -816,7 +816,7 @@
       <li>The beast show</li>
     </titles>
     <texts>
-      <li>A traveling show of {FACTION} is on the road with beasts from far places, and they'd like to camp {PLACE} a few days. {X_nameDef}, who keeps the beasts, asked {A_nameDef} whether they might, and promised a show at their fire.</li>
+      <li>A travelling show of {FACTION} is on the road with beasts from far places, and they'd like to camp {PLACE} a few days. {X_nameDef}, who keeps the beasts, asked {A_nameDef} and promised a show at their fire.</li>
       <li>[ws:fair] A beast show of {FACTION}, on its way to the fair, asked {A_nameDef} for a few days' camp {PLACE}. {X_nameDef} says the beasts need rest more than the keepers do.</li>
     </texts>
     <settled>
@@ -828,7 +828,7 @@
     </joinTexts>
     <farewell>
       <li>The beast show from {FACTION} led its beasts out at first light, the keepers walking beside them.</li>
-      <li>The beast show has packed up its camp {PLACE} and moved on.</li>
+      <li>The show's camp {PLACE} is empty, and the beasts gone with it.</li>
     </farewell>
     <lines>
       <li>Don't feed that one by hand.</li>
@@ -847,7 +847,7 @@
       <li>[herd] Somebody's hungry.</li>
     </momentLines>
     <helpTexts>
-      <li>[show] The keepers are putting on their show at their fire this evening, and the colony is invited to watch. {X_nameDef} will walk the beasts round the ring one after another.</li>
+      <li>[show] The keepers put on their show at the fire this evening, and {X_nameDef} will have the beasts walk the ring one after another while the colony watches.</li>
       <li>[tales] {A_nameDef} sat with the keepers at their fire and heard where every one of the beasts came from, and how.</li>
     </helpTexts>
     <asks>

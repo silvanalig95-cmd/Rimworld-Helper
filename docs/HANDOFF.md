@@ -109,7 +109,8 @@ most sense." So, in this order, three builds at a time:
     0.269.1, world events 0.270.1), keeping every def and code change that made the map match the words (the camp's
     people at its gatherings, the guardian on the long walk, the prospector, preachers and delegations at the gate, the
     far-town colonists sent away) and, where the old words claim what the code doesn't do (the batches' "put right"
-    lists), a minimal fix in the old voice.
+    lists), a minimal fix in the old voice. Done: the entry "The flavour text back in eight parts" above the newest
+    release line.
   - **Done (built, not released): PokéWorld storage**: "there's a bunch of items from the Poke World mod, for example,
     the Dawn Stone and I guess other evolution stones that I cannot put into large storage shelves ..." The to-do with
     the player's words is now one entry above the newest release line ("PokéWorld's items on the shelves").
@@ -576,6 +577,15 @@ repo.
   The Almanac's other pages, still to do: the peoples' pages (`Almanac_Peoples`, `_PeoplesC` to `_PeoplesG`), with the
   peoples' texts, waiting for the player's answer.
   Still to pick, when the player asks: the peoples (their pages in the Almanac and their texts).
+  Eight parts back in the flavour style, by the player's choice (20 November 2026: "yes, please restore letters,
+  wishes, ambitions, life goals, personal stories, council questions, camps, and world events to just the previous
+  text, to kind of the flavor style text that you created before"; built, not released): the letters (0.266.9),
+  wishes, ambitions and life goals (0.268.2), personal stories (0.268.4), council questions (0.268.5, 0.269.2), camps
+  (0.269.1) and world events (0.270.1) have their words from before those batches again, with the false parts put
+  right in the old voice; the entry "The flavour text back in eight parts" above the newest release line, and CLAUDE.md
+  ("Plain, neutral text") says new text for these parts takes that style. The other batches stay plain: event cards,
+  messages and the interface, advice, encounters, missions and visitors, decrees and seats, the gods and faith, the
+  Almanac, What's new.
 - **Done (15 November 2026, the player's go: "alright, i'd like the storytellers and fixes/small improvements"; built,
   not released): porters reach the mailbag, or say why not; the market stall shows how worn armour and weapons are;
   world events running now, easy to see.** The three entries, with the player's words, are now one entry above the
@@ -588,6 +598,91 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.276.0, **The flavour text back in eight
+  parts** (20 November 2026; the player: "yes, please restore letters, wishes, ambitions, life goals, personal
+  stories, council questions, camps, and world events to just the previous text, to kind of the flavor style text that
+  you created before, restore it from the backup, and keep that also in mind for additional content to be added").
+  The plain-words batches of those eight parts are undone in their text: the letters (0.266.9), wishes, ambitions and
+  life goals (0.268.2), personal stories (0.268.4), council questions (0.268.5 and 0.269.2), camps (0.269.1) and world
+  events (0.270.1). Every other plain-words batch stays as it is.
+  - **How.** For each batch, its own text diff reversed onto the present files with a three-way merge (`git
+    merge-file`: the present file, the batch's result as base, the text before the batch with the batch's def-only
+    commits applied: the camps' guests commit `e8d7fd78`, the world events' visitors commit `ff7da580`, the lead's own
+    fix inside the 0.269.2 merge). Every file merged cleanly; the two lines of the 0.269.2 fix whose patch didn't apply
+    (the guardian's second `DilemmaEffect_Visit`, the hurt animal's "first hunter free" outcome) were put back by hand.
+    Kept: every def setting and code change since (the camps' fifteen `<guests>camp</guests>` and the minstrel's
+    `organizer`, `VisitEffect_AtGate` for the prospector and the preachers, `VisitEffect_Come` for the delegations, the
+    guardian's walk, the peoples' events rounds 5 to 10, new lines and defs added since). The far-town errands
+    (0.275.1) landed first and their lines are kept as the lead has them, as the lead asked: each sending answer's
+    "sets out for" outcome, the `home` lines, the six removed `riskOutcome`s, the harvest supper's `[!hands]`, the
+    feud's gate texts and its four ending lines with "the colony's gate". `Lean/ShippedLines.cs`: the four hour-bound
+    camp farewells and their `AlsoWhen` keys are the old ones again ("which is how {X_nameDef} arrived", "carrying the
+    colony's hills away with them on paper", "in a cloud of exhaust and goodwill", the tree-singers' bow); every pinned
+    line is word for word in the defs.
+  - **Lines brought back, per part** (lines of the part's files that differ from the plain text, the ones then put
+    right included): letters 608, wishes 170, ambitions 35, life goals 36, personal stories 161, council questions 509,
+    camps 291, world events 336. Names came back with them: the ambitions "a ring of iron", "teeth in the mud", "the
+    long store", "nobody is the only one", "the walls' fire", the life goal "a town on the rim"; the stories' stages
+    ("the empty place", "small things again", "the body tells", "every morning a gift", "news on the wind"); the
+    questions' names ("a path: the workshop", "a hungry look", "blood on old hands", "the shakes", "a raider in the
+    crops", "something at the pens", "what to teach it", "the den in the brush" and the rest); the camps' "Pilgrims of the
+    green" and "Men out of {SITUATION}". Where the docs name them: DESIGN.md's ambitions line and play-out list, README's
+    ambitions, the Almanac's ambition table and animal questions table and the den's name on the nature mods page
+    (keywords unchanged), `docs/dilemma-balance.md` written again by `Tools/dilemma_balance.py`. The batches' truth
+    fixes in README and the Almanac (an old companion "if it dies first", the strange herds that bolt, the prospector at
+    the gate, the delegations' two nights) stay.
+  - **Put right against the map, in the old voice: 374 lines** (letters 2, wishes 5, life goals 1, personal stories 12,
+    council questions 49, camps 127, world events 178). Each old line is back with only its false part changed; every
+    one, with its reason and its words before and after, is in `docs/flavour-restore.md`. By kind: a ransom asked in gold
+    (paid in silver); the justice wish's "only raider still alive" (any hostile prisoner) and the child's "only four"
+    books; the passing-on story's "nearly as good" (two levels gained), the feud with an animal's "ambush in the doorway,
+    a stolen lunch" (it runs at the heels), the road calls' "boundary stone" (the gate), the grudge's "since {LOST}"
+    (what happened to {LOST}), "the traders' news", "the children's questions", an old companion's death "the story's
+    end", the settings' "three or four stages"; the council's answers that named a season, a celebration, a day of work,
+    the night shift let off, one last walk read as a death, a night watch "for a while", turns "through the night", "A
+    goes with the next journey out", a sowing or building party "this afternoon", the spring cleaning's day and morning,
+    "{B_nameDef} ends its pain", the crop "by the next moon"; the camps' hours (41 lines: an arrival "this morning", a join or
+    request "tonight", a farewell "before dawn" or "at first light"), the hunting asks that sent the camp's party along,
+    the eldest and the youngest nobody picks, the pilgrims' eldest praying, "their best" prospector or player, the
+    healer seeing "whoever is ill", the salt caravan's "half again as much", the charts helping "whoever is studying",
+    the refugees' stacked wood, the shows and songs told as done though about to happen, the wardens' watch told as
+    done, the mourners standing by the road "when they go", the settling ask brought to the gate with "in the morning",
+    and twenty farewells with a leftover the map doesn't keep (trampled ground, hay, salt in the dirt, holes freezing
+    over, a camp "gone" that may still stand); the world events' hours (71 lines), people at the gate no
+    effect brings (the plague's first rider, the bandit's map, the mercenary captain, the warlord's second price, the
+    peace talks' riders, the merchant's boy, the road's foreman), silver and prizes told as come that are on their way,
+    the well, wall, stream, creek, ridge, hill and old stones a colony may not have (the comet's hill, the mage's stones,
+    the prospector's stream, the old thrumbo's ridge), a herald or envoy called "he", things told as done that come later
+    or not on the map (the token at the chain, the beans by the wall, the dent in the table, the outcomes in the past
+    tense), and the healer walked "to the edge of the colony's land". 44 of these lines opened a sentence with a pronoun
+    placeholder, which the game shows in lowercase: the name stands there instead (the batches had done the same).
+  - **Restored whole although a batch listed them:** "Sell it to them at a fair price" (40 silver for 40 raw food is
+    fair); the stockpile "drawn in under its roof" (that is what happens to it); the tea wish's "Sick and thirsty, then"
+    (the batch's change was about the approved sample's rewrite, not the old line); "A long walk past the fields with
+    {B_nameDef}, first" (true since the lead's fix sends B along); the camp's gatherings and the minstrel's song (true
+    since the guests commit); the prospector, the preachers and the delegations at the gate.
+  - **Code map.** No code changed but `ShippedLines.AlsoWhen`'s four keys (back to the old lines). Def text in the
+    batches' files under `Defs/FlavorPoolDefs/` (letters), `Defs/WishDefs/`, `Defs/AmbitionDefs/`,
+    `Defs/AspirationDefs/`, `Defs/ArcDefs/`, `Defs/DilemmaDefs/`, `Defs/CampDefs/`, `Defs/WorldSituationDefs/`, and their
+    Keyed lines (`ColonyCouncil.xml`'s justice reason, `Rimfolk_Arcs`, `Rimfolk_Animals`, `Rimfolk_HarmSeven`,
+    `Rimfolk_DilemmaImpact`, `Rimfolk_Variety3`, `Rimfolk_Camps`, `Rimfolk_Holding`, `Rimfolk_WorldBeyond`,
+    `Rimfolk_Region`); DESIGN.md (the new section "The flavour words back in eight parts", the ambitions line, the
+    play-out list's names and the comet's watch), README (one ambition), the Almanac (three pages' names),
+    `docs/dilemma-balance.md`, `docs/flavour-restore.md` (new: every line put right).
+  - **Checks.** `Tools/textcheck.py --base claude/peaceful-maxwell-rpqlwu`: no placeholder, tag or key lost; it names
+    only the restore itself: "withdrawal" to "the shakes" (a one-word name it reads as an identifier), the silver sums
+    the old answer labels didn't name ("Send silver instead" for "Send 80 silver instead" and seven more), two camps'
+    tips that say "a share of their meat" where the plain ones said 35, and the circus show that no longer names
+    {A_nameDef} as the strongman's volunteer.
+  - **Can't be checked without the game.** How the flavour lines read beside the plain messages and cards around them;
+    that the lines put right still sound like their neighbours.
+  - **Try in the game.** Write to a few neighbours and read the answers (an unschooled raider people holding a colonist
+    asks for silver); open the council window and wait for a few wishes and an ambition's pitch ("a ring of iron" in a
+    colony with turrets researched); dev actions "Rimfolk": "Personal story: begin one for..." and "next stage" (a long
+    grief's "the empty place"); "Dev: dilemma now" on the decrees page a few times; "Camps: another camp here now" and
+    read the arrival, a join, a show's letter in the evening and the farewell at any hour; "Start world event..." with
+    the comet, the gold fever and a famous healer, and read each letter at different hours.
+  - **Mods that would help.** None; it is text only.
 - 0.275.3, **PokéWorld's items on the
   shelves** (20 November 2026; the player's go of the same day: "there's a bunch of items from the Poke World mod, for
   example, the Dawn Stone and I guess other evolution stones that I cannot put into large storage shelves, for example,

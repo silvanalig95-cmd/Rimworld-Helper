@@ -297,7 +297,7 @@
 
   <ColonyCouncil.AmbitionDef>
     <defName>Council_Amb_LongStore</defName>
-    <label>a store of pemmican</label>
+    <label>the long store</label>
     <description>Put away 150 pemmican. It keeps for months without cold storage, so it's there for caravans, sieges and a winter that runs long.</description>
     <days>20</days>
     <relevantCategories><li>Food</li></relevantCategories>
@@ -313,7 +313,7 @@
     </goals>
     <pitch>
       <plain>
-        <li>Pemmican doesn't taste of much, but it lasts for months. Let's make a hundred and fifty packs of it.</li>
+        <li>Pemmican tastes like a boot that went to war, but it lasts for months. Let's make a hundred and fifty packs of it.</li>
         <li>If the meat spoils or the lean months run long, I want food that keeps.</li>
       </plain>
       <warm>

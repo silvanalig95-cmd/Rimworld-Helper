@@ -56,11 +56,11 @@
         <tension>-2</tension>
         <deed>traded</deed>
         <askTexts>
-          <li>{X_nameDef} has come up from the Banner's camp with the paymaster's book under one arm. Five days are up, and the squad's wage is due: {COUNT} silver. If it is paid, they hold the wall for the next five days; if not, they strike camp and leave, as the Banner always does.</li>
-          <li>[lowtech] {X_nameDef} is at the gate with the Banner's book open at the colony's page. The squad has held the wall for five days, {X_nameDef} says, and {COUNT} silver is owed for them. Without pay, they will not stay.</li>
-          <li>{X_nameDef} of the Banner's squad has the contract out at the gate, and a finger on the line that says five days. The wage is {COUNT} silver, {X_nameDef} says, and the squad stays if it is paid and leaves if it isn't.</li>
+          <li>{X_nameDef} has come up from the Banner's camp with the paymaster's book under one arm. Five days are up, and the squad's wage is due: {COUNT} silver. Paid, they hold the wall the next five days; unpaid, they strike camp and go, as the Banner always does.</li>
+          <li>[lowtech] {X_nameDef} is at the gate with the Banner's book open at the colony's page. Five days held, {X_nameDef} says, and {COUNT} silver owed for them. No pay, no wall.</li>
+          <li>{X_nameDef} of the Banner's squad has the contract out at the gate, and a finger on the line that says five days. The wage is {COUNT} silver, {X_nameDef} says plainly, and the squad stays for it or goes without it.</li>
         </askTexts>
-        <tip>{COUNT} silver is carried out to the squad's fire. Turned down, or left unanswered, the squad strikes camp and leaves, and the Banner hears of it.</tip>
+        <tip>{COUNT} silver is carried out to the squad's fire. Turned down, or left unanswered, the squad strikes camp and walks, and the Banner hears of it.</tip>
         <outcomes>
           <li>{A_nameDef} carried {COUNT} silver out to the Banner's fire, and {X_nameDef} counted it twice and wrote it in the book.</li>
           <li>The wage is going out to the squad's fire. {X_nameDef} will count it there, in front of everyone, as the Banner does.</li>
@@ -105,12 +105,12 @@
       <li>Smoke rises from the Banner's camp {PLACE}, and someone there is reading the Roll aloud to the others.</li>
     </settled>
     <joinTexts>
-      <li>{X_nameDef}, one of the Banner's squad camped {PLACE}, came to the gate with {X_possessive} pack on. {X_nameDef} would like to leave the company and stay on at the colony, if there is a place.</li>
+      <li>{X_nameDef}, one of the Banner's squad camped {PLACE}, came to the gate with {X_possessive} pack on. The contract is the company's, {X_nameDef} says, but a wall worth holding is worth staying for; is there a place here?</li>
     </joinTexts>
     <farewell>
-      <li>The Banner's squad packed its bedding {PLACE} at the season's end and marched off, leaving its post to the colony that hired it. The contract was kept to its last day, and the Banner's records will say so.</li>
-      <li>[carried] The squad of {FACTION} kept the contract to its last day and went, carrying their dead with them. Every name will be added to the Roll, the Banner's book of its dead.</li>
-      <li>The squad has packed up its camp {PLACE} and marched off, paid in full for every day it served. {X_nameDef} led them out.</li>
+      <li>The Banner's squad packed its bedding {PLACE} at the season's end and marched off in step, leaving its post to the colony that hired it. The contract was kept to its last day, and the Roll will say so.</li>
+      <li>[carried] The squad of {FACTION} kept the contract to its last day and went, carrying their dead with them. Every name will be read into the Roll.</li>
+      <li>The squad's camp {PLACE} is empty. {X_nameDef} led them out: paid to the day, held to the day.</li>
     </farewell>
     <lines>
       <li>Paid to the day, held to the day.</li>

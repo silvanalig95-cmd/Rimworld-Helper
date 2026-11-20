@@ -34,8 +34,8 @@
       <li>A levy from {PLACE}</li>
     </titles>
     <texts>
-      <li>A letter has come from the imperial steward at {PLACE}, sealed in red wax. It looks like one of a hundred copies:\n\n"To the settlements within a month's ride. The Empire raises a levy for its campaign on the far side of the world. Contributions are expected, in silver or in kind. This is not a tax. It is an opportunity to be remembered."</li>
-      <li>[titled] An imperial steward at {PLACE} has written to the colony, addressing its titled colonists by their full honors. The Empire is raising a levy for a campaign far away, and those who hold its titles are expected to set an example.\n\nThe letter is polite, but it makes very clear what is expected.</li>
+      <li>A letter has come from the imperial steward at {PLACE}, sealed in red wax and copied, by the look of it, a hundred times:\n\n"To the settlements within a month's ride. The Empire raises a levy for its campaign on the far side of the world. Contributions are expected, in silver or in kind. This is not a tax. It is an opportunity to be remembered."</li>
+      <li>[titled] An imperial steward at {PLACE} has written to the colony, addressing its titled colonists by their full honors. The Empire is raising a levy for a campaign far away, and those who hold its titles are expected to set an example.\n\nThe letter is polite. It is also very clear.</li>
     </texts>
     <summaries>
       <li>{FACTION} will ask the colony for a share of the levy. Paying earns their goodwill; refusing costs some, though it won't come to blows.</li>
@@ -61,7 +61,7 @@
         </titles>
         <texts>
           <li>The steward's clerk has arrived with the assessment: {COUNT} silver, to be delivered to {PLACE} within the week. The clerk is young, sunburnt, and very sorry about the whole thing.\n\nHe mentions, without being asked, that settlements which pay in full are listed by name in the campaign's dispatches.</li>
-          <li>[titled] The steward's clerk has arrived with the assessment: {COUNT} silver. From a colony with titled members, the clerk notes, the Empire expects the full amount, and would notice if it got less.</li>
+          <li>[titled] The steward's clerk has arrived with the assessment: {COUNT} silver. For a colony with titled members, the clerk notes, the Empire would expect nothing less, and would notice anything less.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -121,7 +121,7 @@
           <li>The levy is raised</li>
         </titles>
         <texts>
-          <li>The Empire has raised its levy and the campaign has moved on. {FACTION} at {PLACE} speak well of the colony, and the steward has sent a short, formal letter of thanks.</li>
+          <li>The Empire's campaign has its silver and has gone wherever campaigns go. {FACTION} at {PLACE} speak well of the colony, and the steward has sent a short, formal letter of thanks.</li>
         </texts>
         <chronicle>The colony paid its share of the Empire's levy.</chronicle>
       </li>
@@ -132,7 +132,7 @@
           <li>The levy is raised without us</li>
         </titles>
         <texts>
-          <li>The Empire's campaign got its silver from other settlements. The steward at {PLACE} has not written again, and the colony's refusal is noted in his ledger.</li>
+          <li>The Empire's campaign has its silver, from other settlements. The steward at {PLACE} has not written again. The colony's name is in his ledger, with a line through it.</li>
         </texts>
         <chronicle>The colony refused the Empire's levy.</chronicle>
       </li>
@@ -174,7 +174,7 @@
       <li>Deserters on the roads</li>
     </titles>
     <texts>
-      <li>A unit of the Empire's troops walked away from their posts near {PLACE} last week, and some of them took their gear with them. The Empire has posted a reward for every one brought back.\n\nImperial patrols are on the roads, asking questions at every gate. Some of the deserters are hiding in the hills, and some of them are just tired of fighting.</li>
+      <li>A unit of the Empire's troops walked away from their posts near {PLACE} last week, and some of them took their gear with them. The Empire has posted a reward for every one brought back.\n\nImperial patrols are on the roads, asking questions at every gate. Some of the deserters are hiding in the hills. Some of them are only tired.</li>
       <li>[titled] The Empire has written to the colony's titled colonists in person: deserters from a garrison near {PLACE} are loose in the region, and those who hold the Empire's honors are expected to help bring them in.\n\nSome of the deserters have gone over to the Empire's enemies. Most of them just want to go home.</li>
     </texts>
     <summaries>
@@ -199,7 +199,7 @@
         </titles>
         <texts>
           <li>A young soldier in a torn imperial uniform has come to the colony's gate with empty hands raised. The soldier deserted from the garrison near {PLACE} and hasn't eaten in three days.\n\nThe deserter doesn't want to fight anyone, only to stop running. The patrols are a day behind.</li>
-          <li>[winter] A deserter from {FACTION}'s garrison has come to the gate half-frozen, still in uniform. The soldier left a week ago, when the officer ordered a village burned.\n\nAn imperial patrol passed the colony yesterday, asking after exactly this soldier.</li>
+          <li>[winter] A deserter from {FACTION}'s garrison has come to the gate half-frozen, still in uniform. The soldier says the officer ordered a village burned, and that was the end of it. That was a week ago.\n\nAn imperial patrol passed the colony yesterday, asking after exactly this.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -258,8 +258,8 @@
           <li>The hunt moves on</li>
         </titles>
         <texts>
-          <li>The Empire's patrols have moved on from the roads around {PLACE}. Some of the deserters were caught and some got away, and the reward posters are coming down.</li>
-          <li>[sheltered] The Empire's patrols have moved on. One of the deserters they were looking for now lives at the colony.</li>
+          <li>The Empire's patrols have moved on from the roads around {PLACE}. Some of the deserters were caught, some got away, and the reward posters are peeling off the walls.</li>
+          <li>[sheltered] The Empire's patrols have moved on. One of the deserters they were looking for is mending fences at the colony and answering to a new name.</li>
           <li>[handedover] The Empire's patrols have moved on. At {PLACE} they say the deserters who were caught were sent to the far end of the world, where the fighting is.</li>
         </texts>
         <chronicle>The Empire hunted deserters on the roads around {PLACE}.</chronicle>
@@ -292,7 +292,7 @@
       <li>Election season at {PLACE}</li>
     </titles>
     <texts>
-      <li>{FACTION} is choosing its consuls for the coming year. The senate at {PLACE} is split between the old families, who want things to stay as they are, and the reformers, who want land for the veterans and bread for the city.\n\nCanvassers from both sides are out on every road, shaking every hand they can reach, and some of them will come to the colony.</li>
+      <li>{FACTION} is choosing its consuls for the coming year. The senate at {PLACE} is split between the old families, who want things as they are, and the reformers, who want land for the veterans and bread for the city.\n\nCanvassers from both sides are out on every road, shaking every hand they can reach. Some of them have reached the colony.</li>
     </texts>
     <summaries>
       <li>Both sides would like the colony's backing, which mostly means its silver. Whoever wins will remember who helped.</li>
@@ -318,7 +318,7 @@
           <li>Canvassers at the gate</li>
         </titles>
         <texts>
-          <li>Two canvassers from {PLACE} have arrived, one for each side, and are ignoring each other. The man from the old families talks about order, and the reformer about bread. Either would carry the colony's good wishes back to the senate, along with {COUNT} silver for the campaign.\n\n{A_nameDef} has listened to both, and has opinions.</li>
+          <li>Two canvassers from {PLACE} arrived within an hour of each other and are pretending not to see one another. The man from the old families talks about order, the reformer about bread. Either would carry the colony's good wishes back to the senate, along with {COUNT} silver for the campaign.\n\n{A_nameDef} has listened to both, and has opinions.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -387,7 +387,7 @@
         </titles>
         <texts>
           <li>[reform] The old families have kept the consulship. The new consuls know exactly which settlements paid for the reformers' campaign, and their first letters to the colony are cool.</li>
-          <li>[oldfamilies] The reformers have taken the consulship. They know who paid for the old families' campaign, and they say they hold no grudges, but their letters to the colony have been cool.</li>
+          <li>[oldfamilies] The reformers have taken the consulship. They know who paid for the old families' campaign, and say they hold no grudges, in a way that suggests they hold several.</li>
         </texts>
         <chronicle>The colony's side lost {FACTION}'s election.</chronicle>
         <effects>
@@ -461,16 +461,16 @@
           <li>A prospector's offer</li>
         </titles>
         <texts>
-          <li>A prospector from {PLACE} with a bent pan and a patient mule has come to the gate. He wants to pan for gold on the colony's land, and offers the colony a third of anything he finds. He swears there is gold in the ground here.\n\n{A_nameDef} has never seen any.</li>
+          <li>A prospector from {PLACE} with a bent pan and a very patient mule wants to work the colony's land for a week. He offers the colony a third of anything he finds, and swears on his mother that there's color in this ground.\n\n{A_nameDef} has walked that ground every day for a year and never seen any.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
           <li>
             <label>Let him dig, for a third</label>
-            <outcome>The prospector pans the colony's land and finds a little gold. The colony's third is weighed out on his brass scale and paid in silver, more than anyone expected.</outcome>
+            <outcome>The prospector panned the colony's land, singing, and came up to the gate grinning. The colony's third was weighed out on his little brass scale and paid in silver, more than anyone expected.</outcome>
             <riskChance>0.5</riskChance>
             <riskReplaces>true</riskReplaces>
-            <riskOutcome>The prospector pans the colony's land and finds nothing of value. He leaves in good spirits, heading for the next creek.</riskOutcome>
+            <riskOutcome>The prospector panned the colony's land and found nothing of value. He left in good spirits, heading for the next creek.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Silver"><count>220</count></li>
             </effects>
@@ -487,7 +487,7 @@
         <day>6~11</day>
         <message>true</message>
         <texts>
-          <li>Another string of prospectors passed the colony today, headed for the hills above {PLACE}. {A_nameDef} watched them go and has talked of little else since.</li>
+          <li>Another string of prospectors passed the colony, headed for the hills above {PLACE}. {A_nameDef} tried to sell one of them a coil of rope for twice what it was worth, and nearly managed it.</li>
         </texts>
       </li>
     </beats>

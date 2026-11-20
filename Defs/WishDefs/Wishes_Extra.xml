@@ -123,7 +123,7 @@
   <ColonyCouncil.WishDef>
     <defName>Council_Wish_ArtInRoom</defName>
     <label>art for their bedroom</label>
-    <description>This colonist wants a sculpture or other piece of art in their own room, something nice to wake up to.</description>
+    <description>A sculpture or other piece of art in their own room: something beautiful to wake up to.</description>
     <workerClass>ColonyCouncil.WishWorker_ArtInRoom</workerClass>
     <lasting>true</lasting>
     <lostText>The art is gone from {FOR_nameDef}'s bedroom.</lostText>
@@ -203,7 +203,7 @@
         <li>I'm tired. Give me time off or watch me fall asleep on the job.</li>
       </blunt>
       <cheerful>
-        <li>Give me an afternoon off and I'll spend it doing absolutely nothing.</li>
+        <li>Give me an afternoon off and I'll spend it doing absolutely nothing, beautifully!</li>
       </cheerful>
       <gloomy>
         <li>I'm running on empty. I keep making mistakes I wouldn't make rested.</li>
@@ -217,7 +217,7 @@
         <li>An afternoon to myself. I'll sleep, then eat, then sleep again.</li>
       </plain>
       <cheerful>
-        <li>Free time. I'm going to spend it doing nothing at all.</li>
+        <li>Free time! I'm going to waste it magnificently.</li>
       </cheerful>
     </thanks>
     <expired>

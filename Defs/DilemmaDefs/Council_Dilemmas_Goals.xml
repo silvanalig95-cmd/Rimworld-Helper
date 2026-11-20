@@ -11,20 +11,20 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Excused</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>time off for a dream</label>
+    <label>time for a dream</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
     <roleA>
       <goal>true</goal>
     </roleA>
     <texts>
-      <li>{A_nameDef} had clearly practiced what to say. {A_nameDef} asked for a season off the chore roster, with no hauling and no scrubbing, and every spare hour given to the thing {A_pronoun} wants more than anything, which is to {GOAL}.\n\nThe people who would pick up the hauling were in the room, listening very closely.</li>
-      <li>{A_nameDef} fell asleep at the supper table again, spoon still in hand. {A_nameDef} does chores from dawn and has nothing left by evening for the one thing {A_pronoun} actually wants, which is to {GOAL}.\n\n{A_nameDef} is asking for lighter duties for a while. The roster is tight already.</li>
+      <li>{A_nameDef} had clearly practiced this. A season off the chore roster, {A_pronoun} asked, with no hauling and no scrubbing, and every spare hour given to the thing {A_pronoun} wants more than anything, which is to {GOAL}.\n\nThe people who would pick up the hauling were in the room, listening very closely.</li>
+      <li>Asleep at the supper table again, spoon still in hand. {A_nameDef} works the chores from dawn and has nothing left by evening for the one thing {A_pronoun} actually wants, which is to {GOAL}.\n\nLighter duties for a while, {A_nameDef} asks. The roster is tight already.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
       <li>
-        <label>Give {A_nameDef} time off the chores</label>
+        <label>Let {A_nameDef} off the chores for the rest of the day</label>
         <outcome>{A_nameDef}'s name came off the chore roster that afternoon. The hauling went to the others, who have started keeping count of it.</outcome>
         <ways><toil>-6</toil></ways>
         <effects>
@@ -76,14 +76,14 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Purse</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>silver for a dream</label>
+    <label>a dream on credit</label>
     <weight>0.9</weight>
     <cooldownDays>45</cooldownDays>
     <roleA>
       <goal>true</goal>
     </roleA>
     <texts>
-      <li>{A_nameDef} has written out a plan to {GOAL} in {A_possessive} neatest hand. It asks for 150 silver from the colony's purse, 90 for things the traders sell, 45 for things they might have and 15 to spare.\n\nAt the bottom {A_nameDef} has written "every coin accounted for" and underlined it twice. The purse has never been heavy, and the others know it.</li>
+      <li>The plan to {GOAL}, in {A_nameDef}'s neatest hand:\n\nWhat the traders sell that would help, 90 silver.\nWhat they might sell, if they have it, 45 silver.\nFor luck, 15 silver.\nFrom the colony's purse, 150 silver in all.\n\nAt the bottom {A_nameDef} has written "every coin accounted for" and underlined it twice. The purse has never been heavy, and the others know it.</li>
       <li>A trader passed through last week, and {A_nameDef} spent the whole visit at the wagons asking questions. {A_nameDef} is now sure that with the right supplies, {A_pronoun} could finally {GOAL}.\n\nThe supplies cost 150 silver. {A_nameDef} has none, and is asking the council for it.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -174,8 +174,8 @@
       <notTie>Rivals</notTie>
     </roleB>
     <texts>
-      <li>{A_nameDef} has picked a teacher. To {GOAL}, {A_pronoun} says, {A_pronoun} needs {B_nameDef}, who has seen more of the world than most and knows how things get done.\n\n{A_nameDef} wants all of {B_nameDef}'s evenings for a season. {B_nameDef} hasn't been asked yet, and would like to be.</li>
-      <li>For days {A_nameDef} has followed {B_nameDef} around with questions, most of them about how a person sets out to {GOAL}. {B_nameDef} has answered some of them and avoided the rest.\n\nNow {A_nameDef} wants the council to make it official, with time set aside for teaching. {B_nameDef} isn't sure about that.</li>
+      <li>{A_nameDef} has picked a teacher. To {GOAL}, {A_pronoun} says, {A_pronoun} needs {B_nameDef}, who has seen more of the world than most and knows how things get done.\n\nEvery one of {B_nameDef}'s evenings, for a season. {B_nameDef} hasn't been asked yet, and would like to be.</li>
+      <li>For days {A_nameDef} has followed {B_nameDef} around with questions, most of them about how a person sets out to {GOAL}. {B_nameDef} has answered some of them and hidden from the rest.\n\nNow {A_nameDef} wants the council to make it official, with time set aside for teaching. {B_nameDef} isn't sure about that.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -218,7 +218,7 @@
         </effects>
       </li>
       <li>
-        <label>Leave it to the two of them</label>
+        <label>That's between the two of them</label>
         <outcome>Left to themselves, {A_nameDef} and {B_nameDef} have settled into an arrangement: {A_nameDef} asks, and {B_nameDef} answers about one question in three.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Ignored</thought></li>
@@ -244,7 +244,7 @@
       <notTie>Friends</notTie>
     </roleB>
     <texts>
-      <li>"Go on, tell them," {B_nameDef} said at dinner, loud enough to carry to the far end of the table. "Tell them you want to {GOAL}." A few people laughed. {A_nameDef} didn't.\n\n{A_nameDef} wants the council to say in public that it's a fine thing to want. {B_nameDef} wants the council to say it's foolish.</li>
+      <li>"Go on, tell them," {B_nameDef} said at dinner, loud enough to carry to the far end of the table. "Tell them you want to {GOAL}." A few people laughed. {A_nameDef} didn't.\n\n{A_nameDef} wants the council to say in public that it's a fine thing to want. {B_nameDef} wants the council to call it what it is.</li>
       <li>{B_nameDef} has taken to calling {A_nameDef} "the dreamer," and not kindly. {A_nameDef} wants to {GOAL}, and {B_nameDef} thinks it's foolish and says so whenever {A_nameDef} walks into a room.\n\nIt came to shouting this morning, and both of them have brought it to the council.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -335,7 +335,7 @@
     </roleB>
     <texts>
       <li>{A_nameDef} wants to {GOAL}. {B_nameDef} has a dream of {B_possessive} own. Neither is unreasonable, but a colony this size has only so many free hours, so much spare silver and one decent workbench, and each of them wants all of it.\n\nThey've been getting in each other's way for weeks, and now they want the council to say whose dream comes first.</li>
-      <li>Two people spoke to the council this morning, and both spoke well. {A_nameDef} wants to {GOAL}; {B_nameDef} is chasing a different dream entirely. Both need time off the roster and a share of the stores, and there's only enough for one.\n\nEach of them wants the other to wait.</li>
+      <li>Two speeches to the council this morning, both good. {A_nameDef} wants to {GOAL}; {B_nameDef} is chasing a different dream entirely. Both need time off the roster and a share of the stores, and there's only enough for one.\n\nEach speech ended with the other one waiting.</li>
     </texts>
     <defaultOption>2</defaultOption>
     <options>
@@ -399,7 +399,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_Caravan</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>leaving with a caravan</label>
+    <label>the road out</label>
     <weight>0.7</weight>
     <cooldownDays>50</cooldownDays>
     <roleA>
@@ -407,7 +407,7 @@
       <maxMood>0.7</maxMood>
     </roleA>
     <texts>
-      <li>{A_nameDef} has been restless for weeks. The dream is to {GOAL}, and here it seems further away every day. A trader's stories about the settlements to the east made it worse. Now {A_nameDef} wants to leave with the next caravan and see whether life is kinder somewhere else.\n\n{A_nameDef} has asked for the council's blessing, though the others suspect {A_pronoun} also hopes to be talked out of it.</li>
+      <li>{A_nameDef} has been restless for weeks. The dream is to {GOAL}, and here it seems further away every day; a trader's stories about the settlements to the east did the rest. Now {A_nameDef} wants to leave with the next caravan and see whether life is kinder somewhere else.\n\n{A_nameDef} has asked for the council's blessing, though the others suspect {A_pronoun} also hopes to be talked out of it.</li>
       <li>A pack has been sitting half full by {A_nameDef}'s bed for days. Late last night {A_nameDef} admitted to thinking about leaving with the next caravan. {A_nameDef} wants to {GOAL}, and no longer believes it can happen here.\n\nNothing is decided yet. {A_nameDef} would like the council's word first.</li>
     </texts>
     <defaultOption>3</defaultOption>
@@ -467,7 +467,7 @@
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Goal_GivingUp</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
-    <label>giving up on a dream</label>
+    <label>a dream fading</label>
     <weight>1</weight>
     <cooldownDays>40</cooldownDays>
     <roleA>
@@ -475,7 +475,7 @@
       <maxMood>0.55</maxMood>
     </roleA>
     <texts>
-      <li>"Maybe it was never going to happen." {A_nameDef} said it quietly last night, to nobody in particular, after a long time trying to {GOAL} and a while now of not trying.\n\n{A_nameDef}'s friends have asked the council to step in. {A_nameDef} hasn't asked for anything.</li>
+      <li>"Maybe it was never going to happen." {A_nameDef} said it last night, more to the fire than to anyone, after a long time of trying to {GOAL} and a while now of not trying.\n\n{A_nameDef}'s friends have asked the council to step in. {A_nameDef} hasn't asked for anything.</li>
       <li>This morning {A_nameDef}'s notes turned up on the trash heap, months of plans to {GOAL}, torn neatly in half. {A_nameDef} says it doesn't matter, but has hardly eaten since.\n\nThe council can try to get {A_nameDef} going again, or let {A_objective} set it down in peace.</li>
     </texts>
     <defaultOption>2</defaultOption>
@@ -560,7 +560,7 @@
     </roleB>
     <texts>
       <li>A note, folded twice, left on the council's table:\n\n"People die out here with no warning. If it's me, I never got to {GOAL}. Write that down somewhere, so it's remembered. Maybe someone takes it up."\n\nIt's signed {A_nameDef}. {B_nameDef} read it first, and hasn't said a word since.</li>
-      <li>Lately {A_nameDef} has been putting things in order. Old clothes mended, odds and ends given away, a journal written in late into the night. Today {A_nameDef} came to the council about one more thing.\n\nIf death comes first, {A_nameDef} wants the colony to know {A_pronoun} meant to {GOAL}, and to remember it. {B_nameDef} has been listening closely, and looks troubled.</li>
+      <li>Lately {A_nameDef} has been putting things in order. Old clothes mended, odds and ends given away, a journal written in late into the night. Today there was one more thing to put in order.\n\nIf death comes first, {A_nameDef} wants the colony to know {A_pronoun} meant to {GOAL}, and to remember it. {B_nameDef} has been listening closely, and looks troubled.</li>
     </texts>
     <defaultOption>3</defaultOption>
     <options>

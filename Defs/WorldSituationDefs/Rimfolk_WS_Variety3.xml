@@ -261,7 +261,7 @@
           <li>{FACTION} win {NAME}</li>
         </titles>
         <texts>
-          <li>{NAME} is over. {ENEMY} have pulled back from the border by {PLACE} and given up the ground it began over, and {FACTION}'s fighters are going home.\n\n{FACTION} say the colony's help made a difference. {ENEMY} say so too, and they don't mean it kindly.</li>
+          <li>{NAME} is over. {ENEMY} have pulled back from the border by {PLACE} and given up the ground it began over, and {FACTION}'s fighters are going home.\n\n{FACTION} say the colony's help counted. {ENEMY} say the same, in other words.</li>
           <li>[theirEmpire] {ENEMY} have yielded the field at {PLACE}, and the {TITLE}'s honor is satisfied. {FACTION}'s knights are going home with their banners, and the colony's name has been spoken among the Empire's friends.</li>
         </texts>
         <chronicle>{FACTION} won {NAME} against {ENEMY}; the colony had supplied them.</chronicle>
@@ -657,7 +657,7 @@
           <li>A fall at {NAME}</li>
         </titles>
         <texts>
-          <li>A runner of {FACTION} is at the gate, out of breath. A scaffold has collapsed at {NAME}, and four of the builders are hurt. Their healer has used everything she had, and {FACTION} ask whether the colony could send {COUNT} doses of medicine back with the runner.</li>
+          <li>A runner of {FACTION} is at the gate, out of breath. A scaffold came down at {NAME}, and four of the builders are hurt. Their healer has used everything she had; {FACTION} ask whether the colony could send {COUNT} doses of medicine back with the runner.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

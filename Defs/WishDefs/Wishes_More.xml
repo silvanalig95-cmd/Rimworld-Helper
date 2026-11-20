@@ -21,7 +21,7 @@
         <li>I haven't seen the sky in days. I'd settle for standing in the doorway.</li>
         <li>Put me on hauling, hunting, anything. Just somewhere with weather.</li>
         <li>[winter] I know it's freezing. I don't care. I need to see something that isn't a wall.</li>
-        <li>[indoors,night] I can hear the wind outside, and I wish I were out there.</li>
+        <li>[indoors,night] I can hear the wind outside and I'm jealous of it.</li>
       </plain>
       <warm>
         <li>Could I take the next outdoor job? I'm going pale in here.</li>
@@ -50,7 +50,7 @@
     </thanks>
     <expired>
       <plain><li>Another day staring at the same wall.</li></plain>
-      <blunt><li>Fine, I'll stay indoors. Happy?</li></blunt>
+      <blunt><li>I'll stay in the dark like a mushroom. Happy?</li></blunt>
     </expired>
   </ColonyCouncil.WishDef>
 
@@ -76,7 +76,7 @@
       <plain>
         <li>I know what you're thinking, and I don't care. Keep {SUBJECT} in the stores, or watch me come apart.</li>
         <li>I'm not asking for a party. Just enough {SUBJECT} that my hands stop shaking.</li>
-        <li>[lowmood] Every day without it feels like a week. Please.</li>
+        <li>[lowmood] Every day without it is a week. Please.</li>
       </plain>
       <warm>
         <li>I'm sorry. I know it's not good for me. But I can't do my work like this.</li>
@@ -85,7 +85,7 @@
         <li>Keep {SUBJECT} in stock, or I'll go and find some myself. You won't like where.</li>
       </blunt>
       <cheerful>
-        <li>With some {SUBJECT} in me, I'm the best worker you've got. Without it, I'm no use to anyone.</li>
+        <li>With some {SUBJECT} in me, I'm the best worker you've got! Without it, you get this.</li>
       </cheerful>
       <gloomy>
         <li>I've accepted what I am. I'd appreciate it if the colony would too.</li>
@@ -151,12 +151,12 @@
         <li>The craving's gone, and the shaking with it. I can think straight again.</li>
       </plain>
       <warm><li>You got me through it. All of you. I won't forget it.</li></warm>
-      <cheerful><li>I'm free of it, and I feel better than I have in months.</li></cheerful>
+      <cheerful><li>I'm free of it! I'm celebrating with a nice glass of water.</li></cheerful>
       <cold><li>Dependency eliminated. Thank you for your discipline.</li></cold>
     </thanks>
     <expired>
       <plain><li>Still hooked. I'll try again, if I can face it.</li></plain>
-      <gloomy><li>I tried, and it didn't work. I'm still hooked.</li></gloomy>
+      <gloomy><li>I tried. Or you didn't. Either way, here I am.</li></gloomy>
     </expired>
     <reminder>
       <plain><li>Still clean. Barely. Keep it away from me.</li></plain>
@@ -254,7 +254,7 @@
         <li>I want to be able to help everyone who comes to me hurt. Right now I can't.</li>
       </warm>
       <blunt>
-        <li>Get me medicine, or people are going to die on my table.</li>
+        <li>Get me medicine or start practicing your death rattle.</li>
       </blunt>
       <cheerful>
         <li>Fill the shelf and I'll keep every one of you in one piece. That's a promise!</li>

@@ -34,8 +34,8 @@
           </plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has been practicing the same thing for days, and still can't get it right.</li>
-          <li>{PAWN_nameDef} is close to the next step in {PAWN_possessive} art, but can't quite get there.</li>
+          <li>{PAWN_nameDef} has been practicing the same thing for days, and it still won't come.</li>
+          <li>Whatever {PAWN_nameDef} is reaching for in {PAWN_possessive} art, it stays just out of reach.</li>
         </chronicle>
       </li>
       <li>
@@ -52,8 +52,8 @@
           <plain><li>[teacher] {OTHER_nameDef} came to me about the wall. I told {OTHER_objective} what my own teacher told me, and hoped it would work as well.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} practices the same exercises morning and evening, day after day.</li>
-          <li>{PAWN_nameDef} practices {PAWN_possessive} art early and late, hoping for a breakthrough any day now.</li>
+          <li>{PAWN_nameDef} has settled into a long practice: the same forms, morning and evening, day after day.</li>
+          <li>{PAWN_nameDef} keeps at {PAWN_possessive} art early and late, as if the wall might give way any morning.</li>
         </chronicle>
       </li>
       <li>
@@ -70,8 +70,8 @@
           <plain><li>[teacher] {OTHER_nameDef} broke through today. I didn't say much. I didn't need to.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} has made a breakthrough in {PAWN_possessive} art and gained a level.</li>
-          <li>All that practice has paid off, and {PAWN_nameDef} is making progress again.</li>
+          <li>{PAWN_nameDef} has broken through in {PAWN_possessive} art, and is a level stronger for it.</li>
+          <li>All that practice has paid: {PAWN_nameDef} is past the wall.</li>
         </chronicle>
       </li>
       <li>
@@ -88,7 +88,7 @@
           <plain><li>{OTHER_nameDef} has come through the wall and out the other side. I'd forgotten how good it is to watch that happen.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} uses {PAWN_possessive} art more easily now than before.</li>
+          <li>{PAWN_nameDef} carries {PAWN_possessive} art more easily now, as if the wall had never been there.</li>
           <li>{PAWN_nameDef}'s long discipline is done, and {PAWN_pronoun} is the stronger for it.</li>
         </chronicle>
       </li>
@@ -101,10 +101,10 @@
       </plain>
     </fizzle>
     <fizzleChronicle>
-      <li>[otherdead] With {OTHER_nameDef} dead, {PAWN_nameDef} has set the long training aside, still stuck where {PAWN_pronoun} was.</li>
-      <li>[taken] {PAWN_nameDef} no longer has {PAWN_possessive} art, so the long training has ended.</li>
-      <li>[timeout] {PAWN_nameDef} has set the long training aside for now, still stuck where {PAWN_pronoun} was.</li>
-      <li>{PAWN_nameDef}'s long training has ended before it got anywhere.</li>
+      <li>[otherdead] With {OTHER_nameDef} gone, {PAWN_nameDef} has set the long training aside, the wall still standing.</li>
+      <li>[taken] {PAWN_nameDef}'s art has gone from {PAWN_objective}, and the long training with it.</li>
+      <li>[timeout] {PAWN_nameDef} has set the long training aside for now, the wall still standing.</li>
+      <li>{PAWN_nameDef}'s long training has come to an end before its time.</li>
     </fizzleChronicle>
     <eulogy>
       <plain><li>{OTHER_nameDef} was so close to getting past it. I'd have liked to see {OTHER_objective} do it.</li></plain>
@@ -146,7 +146,7 @@
         </otherJournal>
         <chronicle>
           <li>{PAWN_nameDef} is finding {PAWN_possessive} way about the colony, with {OTHER_nameDef} to ask.</li>
-          <li>At supper, {PAWN_nameDef} now looks for {OTHER_nameDef}, glad of a friendly face.</li>
+          <li>{PAWN_nameDef} has a friendly face to look for at supper now: {OTHER_nameDef}'s.</li>
         </chronicle>
       </li>
       <li>
@@ -160,8 +160,8 @@
           <blunt><li>Settling in. Slowly.</li></blunt>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef} knows {PAWN_possessive} way around the colony now, and seems more at ease.</li>
-          <li>{PAWN_nameDef} is settling in, day by day.</li>
+          <li>{PAWN_nameDef} has stopped looking for the way out of every room.</li>
+          <li>{PAWN_nameDef} is settling in, one ordinary day after another.</li>
         </chronicle>
       </li>
       <li>
@@ -217,7 +217,7 @@
         </otherJournal>
         <chronicle>
           <li>Wherever {OTHER_nameDef} is at work, young {PAWN_nameDef} is never far off.</li>
-          <li>These days {PAWN_nameDef} thinks of nothing but {SKILL}, and watches {OTHER_nameDef}, who is good at it, whenever {PAWN_pronoun} can.</li>
+          <li>{PAWN_nameDef} has eyes for nothing but {SKILL} these days, and for {OTHER_nameDef}, who is good at it.</li>
         </chronicle>
       </li>
       <li>
@@ -250,7 +250,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} is practicing {SKILL} every spare moment now, and it's starting to show.</li>
-          <li>Young {PAWN_nameDef} is getting more confident at {SKILL}.</li>
+          <li>Young {PAWN_nameDef}'s hands are getting surer at {SKILL}.</li>
         </chronicle>
       </li>
       <li>
@@ -267,7 +267,7 @@
           <plain><li>{OTHER_nameDef} has found the work {OTHER_pronoun} wants to do. I can't think of a better thing to have helped with.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>Young {PAWN_nameDef} has chosen {SKILL}, and {OTHER_nameDef} thinks it was a good choice.</li>
+          <li>Young {PAWN_nameDef} has chosen {SKILL}, and {OTHER_nameDef} thinks it chose well.</li>
           <li>{PAWN_nameDef}'s interest in {SKILL} has become a calling.</li>
         </chronicle>
       </li>
@@ -314,7 +314,7 @@
           <cheerful><li>I'm getting good. Not done, but good. {OTHER_nameDef} has noticed, I think.</li></cheerful>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}'s work in {SKILL} has improved, and {PAWN_pronoun} wants {OTHER_nameDef} to look it over.</li>
+          <li>{PAWN_nameDef}'s work in {SKILL} has come on, and {PAWN_pronoun} wants {OTHER_nameDef}'s eye on it.</li>
           <li>{PAWN_nameDef} is no beginner at {SKILL} any more.</li>
         </chronicle>
       </li>
@@ -415,8 +415,8 @@
           <plain><li>{OTHER_nameDef} says there are only a few things left to tell me. I want to hear every one of them.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{OTHER_nameDef} has come a long way in {SKILL} under {PAWN_nameDef}'s teaching. A few lessons remain.</li>
-          <li>{PAWN_nameDef}'s student, {OTHER_nameDef}, has got much better at {SKILL}.</li>
+          <li>{OTHER_nameDef} is catching up with {PAWN_nameDef} in {SKILL}. A few lessons remain.</li>
+          <li>{PAWN_nameDef}'s student, {OTHER_nameDef}, is getting closer to {PAWN_possessive} own hand at {SKILL} now.</li>
         </chronicle>
       </li>
       <li>
@@ -433,8 +433,8 @@
           <plain><li>{OTHER_nameDef} says there's nothing left to teach me. There is. I'll find it out the way {OTHER_pronoun} did.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{OTHER_nameDef} has learned what {PAWN_nameDef} had to teach about {SKILL}.</li>
-          <li>{PAWN_nameDef}'s lessons are finished, and {OTHER_nameDef} can carry on the craft.</li>
+          <li>What {PAWN_nameDef} had to teach of {SKILL}, {OTHER_nameDef} knows now.</li>
+          <li>{PAWN_nameDef}'s lessons are done: {OTHER_nameDef} has the craft in hand.</li>
         </chronicle>
       </li>
     </stages>
@@ -444,7 +444,7 @@
       </plain>
     </fizzle>
     <fizzleChronicle>
-      <li>[timeout] {PAWN_nameDef}'s lessons for {OTHER_nameDef} have stopped before they were finished.</li>
+      <li>[timeout] {PAWN_nameDef}'s lessons for {OTHER_nameDef} have trailed off, half given.</li>
     </fizzleChronicle>
   </ColonyCouncil.FlavorExtensionDef>
 
@@ -480,7 +480,7 @@
         </journal>
         <chronicle>
           <li>{PAWN_nameDef} has begun to speak of {LOST} again, though not for long.</li>
-          <li>The first days of grief are over for {PAWN_nameDef}, but {PAWN_pronoun} still thinks of {LOST} all the time.</li>
+          <li>The first days are behind {PAWN_nameDef}. {LOST} is not.</li>
         </chronicle>
       </li>
       <li>
@@ -497,7 +497,7 @@
           <plain><li>{OTHER_nameDef} has started speaking of {LOST} again. I'll listen as long as {OTHER_pronoun} wants to talk.</li></plain>
         </otherJournal>
         <chronicle>
-          <li>{PAWN_nameDef} is slowly getting back to ordinary life.</li>
+          <li>{PAWN_nameDef} is beginning to find {PAWN_possessive} way back to ordinary days.</li>
           <li>{PAWN_nameDef} can speak of {LOST} now without stopping halfway.</li>
         </chronicle>
       </li>
@@ -512,7 +512,7 @@
           <gloomy><li>It's eased. I hate that it's eased, a little. Then I don't.</li></gloomy>
         </journal>
         <chronicle>
-          <li>{PAWN_nameDef}'s grief for {LOST} is easier to bear now.</li>
+          <li>{PAWN_nameDef} carries {PAWN_possessive} grief for {LOST} more lightly now.</li>
           <li>{PAWN_nameDef} smiles when {LOST}'s name comes up these days.</li>
         </chronicle>
       </li>
@@ -589,7 +589,7 @@
       </plain>
     </fizzle>
     <fizzleChronicle>
-      <li>[relapse] {PAWN_nameDef} gave in to the craving this time, but may try again, and {OTHER_nameDef} has said {OTHER_pronoun}'ll be there.</li>
+      <li>[relapse] The craving won this time. {PAWN_nameDef} may try again, and {OTHER_nameDef} has said {OTHER_pronoun}'ll be there.</li>
     </fizzleChronicle>
   </ColonyCouncil.FlavorExtensionDef>
 

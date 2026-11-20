@@ -22,7 +22,7 @@
     <lines>
       <plain>
         <!-- The Signal Line: the mast, the voice, where it was heard -->
-        <li>[greetings,warm,their:linesmen] Your letter came down the line clearly, {WRITER}, passed from mast to mast all the way.</li>
+        <li>[greetings,warm,their:linesmen] Your letter came down the line clear as morning, {WRITER}, and every mast between us passed it on gladly.</li>
         <li>[greetings,cordial,their:linesmen] The relay has your letter, {WRITER}. Heard at the ridge mast, written down at ours.</li>
         <li>[greetings,cool,their:linesmen] We have your letter. The line carries every voice, and yours is one of them, nothing more yet.</li>
         <li>[news,warm,their:linesmen] The masts hear the whole region, {WRITER}, and we always say where. Here is what the season sent down the line.</li>
@@ -34,7 +34,7 @@
         <li>[condolences,warm,their:linesmen] We put your dead's name down the whole line tonight, {WRITER}, mast to mast, so the region heard it. Every mast is a voice.</li>
         <li>[condolences,cordial,their:linesmen] The Line is sorry for your loss, {WRITER}. We have passed the news on true, and said where it was heard.</li>
         <li>[warning,warm,their:linesmen] Your warning reached the relay before the trouble did, {WRITER}, and we called it down the line to everyone. The Line will not forget who said it first.</li>
-        <li>[warning,cordial,their:linesmen] We have your warning, {WRITER}, and it is on the line already, mast to mast.</li>
+        <li>[warning,cordial,their:linesmen] We have your warning, {WRITER}, and it is on the line already. Keep it singing.</li>
         <!-- The Deepwell Union: the vote, the shift, the book -->
         <li>[greetings,warm,their:drillers] Your letter was read out in the union hall, {WRITER}, and somebody moved we write back at once, and it carried.</li>
         <li>[greetings,cordial,their:drillers] The union has your letter, {WRITER}. It goes in the book with everything else.</li>

@@ -55,7 +55,7 @@
         <li>[new,years] I have led {TOWN} a while now, and still the first thing anyone asks a traveler is whether they came by way of {COLONY}.</li>
         <!-- Someone of the town's former people asking after their own in the colony -->
         <li>[asks,!tribal] {ASKER} thinks of {KIN} often and wanted it written down, so here it is.</li>
-        <li>[asks] {ASKER} wants {KIN} to know they are always welcome to come and visit.</li>
+        <li>[asks] {ASKER} wants {KIN} to know that the road between us runs both ways.</li>
         <li>[asks] {ASKER} asked me to put in a word for {KIN}: come and see us when you can.</li>
         <li>[asks,tribal] {ASKER} sends {KIN} a greeting in the old words, the ones the band used, and hopes {KIN} still knows them.</li>
         <li>[asks,former] {ASKER} and I both think of {KIN} when we sit down to eat. Tell {KIN} that, from the two of us.</li>
@@ -124,13 +124,13 @@
         <li>[takeback,warm,theirHightech] The vote was not close. Send word when your people are on their way.</li>
         <li>[takeback,warm,letter] Yes, and gladly. I have kept this short so that it reaches you sooner.</li>
         <li>[takeback,cordial] It is right that it goes back to the people who built it. We agree.</li>
-        <li>[takeback,cordial,theirLowtech] We started here with what you left us. It can be yours again.</li>
+        <li>[takeback,cordial,theirLowtech] Our fire was lit from yours. It can burn under your roof again.</li>
         <li>[takeback,cordial,call] We have talked it over, and the answer is yes. The place is ready when you are.</li>
         <li>[takeback,cool] We agree, though not everyone here is happy about it.</li>
-        <li>[takeback,cool,theirLowtech] The elders say yes. Some of the young ones say otherwise, but the elders speak for the town.</li>
+        <li>[takeback,cool,theirLowtech] The elders say yes. Some of the young ones say otherwise, but the elders speak for the hearth.</li>
         <li>[takeback,cool,call] Fine. We cannot keep it going alone, and you know it.</li>
         <li>[takeback,refusal] We are grateful for what the colony gave us, and that is exactly why we mean to keep it.</li>
-        <li>[takeback,refusal,theirLowtech] The town is ours now. Come as guests whenever you like.</li>
+        <li>[takeback,refusal,theirLowtech] The hearth is ours now. Come and sit at it as guests whenever you like.</li>
         <li>[takeback,refusal,theirHightech] It was put to a vote, and it was not close. {TOWN} stays as it is.</li>
         <li>[takeback,refusal,letter] I am sorry to send your letter back with a no, but the answer is no.</li>
         <li>[takeback,refusal,call] Not now, and I think not ever. We have made it our own.</li>

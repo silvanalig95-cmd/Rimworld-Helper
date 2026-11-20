@@ -60,10 +60,10 @@
         <li>Nobody butchers {OTHER_nameDef}. I'm burying {OTHER_objective}.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} had a good life with us. Let's give {OTHER_objective} a grave in a sunny spot.</li>
+        <li>{OTHER_nameDef} had a good life with us. Let's give {OTHER_objective} a good spot in the sun to finish it.</li>
       </cheerful>
       <gloomy>
-        <li>Everything out here dies sooner or later. At least let {OTHER_nameDef} have a proper grave.</li>
+        <li>Everything out here ends in the dirt. At least let {OTHER_nameDef}'s be a grave.</li>
       </gloomy>
       <cold>
         <li>A body left lying draws scavengers. {OTHER_nameDef} gets buried, and I'll do it.</li>
@@ -130,7 +130,7 @@
     </thanks>
     <expired>
       <plain><li>Maybe next spring.</li></plain>
-      <gloomy><li>Home is a long way off, and I miss it more every year.</li></gloomy>
+      <gloomy><li>Home is a long way off, and getting further.</li></gloomy>
       <blunt><li>Fine. No {SUBJECT}.</li></blunt>
     </expired>
   </ColonyCouncil.WishDef>
@@ -170,7 +170,7 @@
       <blunt><li>Build a sun lamp over a field indoors. We'll want the food.</li></blunt>
       <cheerful><li>Strawberries in winter, or at least potatoes. A sun lamp would do it.</li></cheerful>
       <gloomy><li>It's going to be a long, grey winter. Something growing would help.</li></gloomy>
-      <cold><li>We have the power and the knowledge. Growing crops indoors through the winter just makes sense.</li></cold>
+      <cold><li>We have the power and the knowledge. Indoor crops through the winter are simply sense.</li></cold>
     </request>
     <thanks>
       <plain>
@@ -268,8 +268,8 @@
       </plain>
       <warm><li>Everyone gets wet on that path, not just me. A roof would spare us all.</li></warm>
       <blunt><li>Roof the path to the table. I'm sick of being wet.</li></blunt>
-      <cheerful><li>I'd like a roof over the path, so I don't get soaked on the way to breakfast.</li></cheerful>
-      <gloomy><li>I go to bed wet and come to breakfast wet, all season long.</li></gloomy>
+      <cheerful><li>I'd love to get to breakfast without a bath on the way!</li></cheerful>
+      <gloomy><li>Wet to bed, wet to breakfast. That's the whole season.</li></gloomy>
       <cold><li>A few cells of roof would save hours of drying clothes. The sums are easy.</li></cold>
     </request>
     <thanks>

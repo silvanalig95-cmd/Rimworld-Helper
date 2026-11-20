@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The flavour words back
+
+*20 November 2026, version 0.276.0*
+
+- Letters, wishes, ambitions, life goals, personal stories, council questions, camps and world events have their earlier flavour words back.
+- Where an old line said something the map doesn't show, only that part was changed: no hour a letter can't know, nobody at the gate who isn't there, no well or hill a colony may not have, silver still on its way.
+- The old names came back with them, such as the ambitions a ring of iron and teeth in the mud and the questions a hungry look and the shakes, and the Almanac uses them too.
+
 ## PokéWorld on the shelves
 
 *20 November 2026, version 0.275.3*
