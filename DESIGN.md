@@ -18937,6 +18937,142 @@ price, the courier saying the carter's word, the scouts' standing and walking of
 to them, a guest's bed rest and going home (the game's own guest rules beside `TakenIn`'s), the camps' mod beasts in the
 weather.
 
+### The world's variety: new world events, camps and encounters (the player's go, 20 November 2026; released 0.282.0)
+
+The player on the content update: "just variety, further kind of events, camps, world events, normal storyteller events,
+dilemmas, etc. ... So for the content update, yes, I want more events, camps, world events, and dilemmas, but first do
+all the integrations that you proposed in your document before we add additional content variety." With the
+integrations released (0.278.0 to 0.280.2), this is the first round of the variety for the world: B6, B7, B8, B15, B20,
+B21, B24 and B28 of `docs/content-update-proposals.md`, part B, as proposed, and six world events and six camps more of
+the lead's own choosing in the player's direction, each tied into what exists. The code is `Source/ColonyCouncil/World/
+Variety/` (`VarietyWorkers.cs` the world events' workers, `GamesDay.cs`, `Pardon.cs`, `VarietyDebug.cs`), the camps'
+ways `Camps/CampVariety.cs`, the singing `Diplomacy/FeastContests.cs` and `FeastSinging.cs`, the stud visit
+`Missions/Workers_MissionStud.cs`; the pure rules `VarietyMath` (and FeastMath's hopes and singing; linked into the tests,
+`Tools/Tests/WorldVarietyTests.cs`). Nothing new is saved: the world events' own flags, the camps' own state (the pickers'
+roll, `CampWorkState`), the stud visit's mission record and the feast's plan carry it. Words: `Languages/English/Keyed/
+Rimfolk_WorldVariety.xml`; the world events, camps and the council's question in their flavour style, the encounters,
+the stud visit and the messages plain.
+
+Every world event of this round takes its people's age as a tag (`SituationWorker_Variety`: [theirTribal],
+[theirMedieval], [theirIndustrial], [theirSpacer]), so its names and letters have each age's form, and [bound] when its
+people is bound to the colony by a tie (`PeopleTies.Bound`: a pact, a marriage, a ward, an envoy, fealty, a debt of
+honour); one that prefers one of Rimfolk's peoples has a start and an ending paragraph in their ways (B1's `theirs` and
+`theirEnds`). A world event's worker may now make it likelier for the moment (`WorldSituationWorker.WeightFactor`, read by
+`WorldSituations.Weight`), and a camp kind's `situationKinds` may name one world event by its defName as well as a kind
+(`CampKinds.Situation`).
+
+- **B6, two more scarcities.** Cloth gone scarce (`Rimfolk_WS_ClothScarce`, kind scarcity) comes on its own, or three times
+  as readily within 40 days of a sickness in the herds or markets closed, taking over that world event's people with
+  [after:defName] lines (`SituationWorker_ClothScarce`). A tailor of theirs at the gate buys cloth at twice its worth or
+  its plain worth; an old tailor teaches a colonist a way of making coats out of worn ones (a lesson at the gate, Crafting).
+  Timber gone scarce (`Rimfolk_WS_TimberScarce`, kind scarcity) follows a great fire, a flood, rebuilding or a great work
+  (`after`): timber bought dear (carried out, nearly twice its worth, or given), and a young carpenter's apprentice asks
+  the colony's best builder for a day's teaching (a lesson at the gate, Construction). Shearers come more often while cloth
+  is scarce, woodcutters while timber is (their `situationKinds`, by name); their traders pay more for cloth and leather,
+  or wood, at their towns (B5's `RegionPricesMath`, as for iron and medicine).
+- **B7, a season of games** (`Rimfolk_WS_Games`, kind games, spring to fall). A town within reach holds its games in its
+  age's form: the gathering games, a tourney, an athletics meet, a league season. The region's best is one of theirs ({X},
+  made for it and named in the ending). Travelling champions stop three times as often (`Council_Evt_Champion`), a games
+  team camps on the road. The colony may hold a games day (`DilemmaEffect_GamesDay`, `GamesDay.cs`): two young people of
+  the first people and one of the second (the event's `{ENEMY}`, at peace with both), or three of one, each with one or two
+  friends (the feast's retinue), come in two days on the first fine morning for the feast's bouts, race and a shooting
+  match where the colony has targets, eat at the colony's table and stay the night: a feast of its own purpose
+  (`FeastPurpose.Games`: its own arrival and card words, no notables, no hopes). A colonist who wins a contest there is
+  named in the games' ending ([ourWin], `GamesHooks` on `Feasts.StageChanged`) and counts it for their own name as any
+  contest won at a feast. Not offered while guests are coming for another feast. Harm: the bouts' real blow at the feast's
+  own rate, under the shared cap.
+- **B8, a pardon proclaimed** (`Rimfolk_WS_Pardon`, kind pardon). After a kind new head (the succession's follow-up, its
+  flag "kind"), or while a holy year runs (by that year's own people, [holyYear]; `SituationWorker_Pardon`). Outlaws walk
+  home past the colony (on the road), one asks a meal at the gate (carried out to them). Only when the colony holds
+  prisoners of theirs, they ask that those walk home under it: the wardens walk them out by the game's own release
+  (`DilemmaEffect_PardonRelease`), so their people's goodwill and memory ("released") and the debt of honour that follows
+  are the game's and Rimfolk's own. While it lasts no bounty hunters come and the outlaw quest is a third as likely; a camp
+  of outlaws walking home may stop a night.
+- **B15, the peoples' own encounters** (`Defs/EncounterDefs/Rimfolk_Encounters_Peoples.xml`). Two moments for each of the
+  23 peoples (46): `StrangerRole.calling` picks a visitor (or their trader) of that people. One of each pair is their ways
+  (the Waystone Book's ink, a hospitaller looking at a colonist's old injury, a herder looking over the colony's animals, a
+  pilgrim standing at the colony's graves, a scholar at its books, a river-folk knot, a warden's rule, a sexton at the
+  graves, a tamer and a colony animal, a Wheel salvager at a broken machine, a reader under the night sky, the Mossborn's
+  count, a soldier comparing scars, a guild mason asking after a colonist's work, a linesman at the comms console, the
+  union's vote, the census-taker's notebook, the crew's log, the Helix Works asking first, a Lattice mechanitor at a colony
+  mech, a Choir listener humming, a vault dweller's old part), the other how their people began, as their descriptions tell
+  it. Where a moment says the visitor does something, it is true on the map and plays out: five new scenes
+  (`WorldScenes`: grave, broken, beast, mech, building, with the jobs `Rimfolk_PE_StandAt` and `Rimfolk_PE_LookOver`), the
+  old ones (sky, hum), and a colonist's own state (an old injury, a passion, able to fight).
+- **B20, beekeepers on the move** (`Rimfolk_Camp_Beekeepers`, spring and summer). Decided: they come only with Alpha Bees,
+  whose beehouse is their hive (two set at the edge of the camp, built by them and taken with them); with VFE Medieval 2
+  too, its honey and mead are among their goods. They tend the hives by day, sell honey, wax and mead at their stall, and on
+  asks a crock of honey or their wax (the first of the mods' that exists), a colonist's afternoon at their hives (a job
+  beside the beehouse, Animals, so the game's own bee-sting ailment comes at its own rule), and a queen (temperate, or
+  woodland for a home among trees) only once the colony has Alpha Bees' basic beekeeping. Decided: no ask to keep fires and
+  axes from the hives, as nothing on the map would hold it.
+- **B21, mushroom and truffle pickers** (`Rimfolk_Camp_MushroomPickers`). In the fall, or within six days of the colony's
+  own mushrooms after rain, by the woods (`needs` woods; `CampWorker_MushroomPickers`). Their gathering takes the land's
+  caps first (`CampKindDef.gathers`: Vanilla Plants Expanded - Mushrooms' healtruffle, timbercap and glowcap, the caves'
+  agarilux and bryolux), else what grows wild; they sell Alpha Animals' black truffles (else raw fungus) and raw fungus,
+  with their truffle pig or dog. One stay in four, one of them eats a cap that looked right and wasn't: the game's food
+  poisoning, on them, told, and they ask for the colony's doctor (the camps' own tend at their fire).
+- **B24, a stud visit** (`Rimfolk_Mission_StudVisit`). A herding people (the herders preferred) asks the colony to let one
+  of their animals stand in its pen for five to seven days, of a kind the colony keeps that the game breeds by mating
+  (mods' kinds included; egg layers left out). Their male with the colony's females, or their female with the colony's
+  male; while it stands it is the colony's, so the game's own mating pairs them. Theirs: if one of the colony's is
+  pregnant by him when their drover comes back, the young is the colony's and their courier takes a fee (a seventh of his
+  worth, 30 to 200). Ours: if she has taken, their courier brings one of the young to the gate once it is born (the rest of
+  her gestation and a few days). By letter, the colony may ask them for silver for the keep instead (half the fee, no fee
+  and no young owed). Dead or lost, it ends badly; bonded to a colonist, they leave it.
+- **B28, a feast's guests hope for their own people's contest, and a singing contest.** By calling (`FeastMath.HopeOfCalling`):
+  the hunt for the hunters, herders and grovekeepers; the bouts for the mercenaries, drillers, citizens and crew; the tables
+  for the traders, brokers, scholars, artisans, seers, and (decided) the editors and mechanitors; the race for the
+  salvagers, linesmen, tamers, and (decided) the fishers; a fine meal and music for the pilgrims, sextons, healers,
+  listeners, and (decided) the vault's folk. Any other people hopes by its age, the Empire by its own ways. The singing
+  (`ContestKind.Singing`): up to six singers, guests and colonists in turn, each sings one song at the colony's instrument
+  (the game's or a mod's, its own music playing while they sing) or, without one, by a fire, each with a word as they start;
+  the best by Artistic and half Social, two more for an instrument, and up to four of luck. It answers a hope of music, as a
+  concert does, and a neighbour's feast of such a people holds one.
+
+Six world events more (`Defs/WorldSituationDefs/Rimfolk_WS_Variety5.xml`):
+- **A hiring fair** (kind hiring, spring and fall): the young of the region walk past to find places (the gathering of the
+  young, a hiring fair, a labour exchange, a crew call), one asks at the gate whether the colony has a place (taken in, or
+  sent on); the young hands camp on the road; the peoples' own ways of hiring.
+- **A town's founding day** (kind jubilee): a people at peace keeps the day its town began; a runner asks a gift for it
+  (silver carried out), good wishes, or, when the town is within three tiles, a colonist who goes to sit at it (away two
+  days); each of the 23 peoples tells how its ways began, in a start and an ending paragraph, as its description has it.
+- **The roads gone to mud** (kind mud, spring, the road league preferred): caravans and visitors fewer; a carter sells a
+  load of potatoes that would spoil for half its worth (paid and set down at the gate); travellers stuck by the mud ask two
+  nights indoors; carters sit it out in a camp on the colony's land.
+- **Falling stars** (kind stars, the Stormglass Conclave preferred): a finder sells a piece of a fallen star at the gate
+  (star-iron for a colony of the old ways, plasteel for a later one); star-watchers camp under the colony's sky; the
+  colony's believers take it for a god's doing (one of B32's great events, Cirrus or Selene, in the book as they believe
+  it); a council question asks for a night out under the stars (a gathering outdoors).
+- **The great burying** (kind burial, the Quiet Bell preferred): a flood opens an old battlefield and its people bury the
+  dead; a sexton asks linen for the shrouds (cloth carried out); when the colony has unburied enemy dead on its land,
+  sextons with their beast ask to take them (the undertakers' own load and carry, `DilemmaEffect_BuryingTake`).
+- **The bridge down** (kind bridge, the river folk preferred): travellers go the long way round past the colony; timber for
+  the new bridge bought dear or given; travellers rest a night by the wall; carters camp; wood is dear at their towns.
+
+Six camps more (`Defs/CampDefs/Rimfolk_CampKinds_Variety4.xml`):
+- **Hands on the road** (with a hiring fair): young people walking to find places, a night or two; they work for their
+  supper (most will hire), one may stay.
+- **Stranded carters** (spring and fall, ten times as often in the mud or with a bridge down): they wait out the road and
+  sell from their load; the colony can send hot meals over.
+- **Gleaners** (fall, more in a hungry year, drawn by a generous colony): a family asks to walk the colony's harvested
+  rows (three of them in the fields for a couple of hours); the colony can send a sack of food.
+- **A games team** (with the games): young people training on their way; a colonist can train with them (Melee).
+- **Outlaws walking home** (only with a pardon): a night's camp on the way home; food for the road.
+- **Star-watchers** (with falling stars or a comet): they lie out under the open sky from dusk to one and sleep by day
+  (`CampWorker_StarWatchers`); a colonist can watch with them in the evening (Intellectual).
+
+Harm: the games day's bouts at the feast's own rate; a sting now and then for a colonist at the beekeepers' hives by the
+game's own ailment; a picker's food poisoning on them, one stay in four, shown. Nothing else new hurts anyone.
+
+Dev mode: "World variety: start one of the new world events now...", "... one of the new camps here now...", "... a
+people's own encounter now...", "... a stud visit offered now", "... the stud visit's days up now", "... what the pardon
+would cover here (log)"; the feast's own "a feast with a people's notables, set for today..." holds the singing among its
+contests. Not checked without the game: the games day's young people at the gate and in the contests, the pardon's walk
+out, the new scenes' jobs on visitors under their lords, the beehouses built and taken down by the beekeepers, a colonist's
+sting at them, the pickers' preference among the caps, the poisoned picker's ask, the star-watchers' nights, the stud's
+mating and the young one's arrival, a singer at an instrument with its music, and how often each comes in a real colony.
+
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
 - **Decrees rest less:** every decree waits 70 % of its own rest before it can be declared again (`DecreeMath.CooldownShare`,

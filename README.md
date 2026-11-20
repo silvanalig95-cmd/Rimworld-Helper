@@ -1399,7 +1399,12 @@ Colonists meet everyone else on the map, too:
 - **What their people remember:** a visitor whose people the colony once rescued thanks them, a trader of a grateful
   people gives a friend's price, one whose people hold a grudge charges double or won't haggle, and a visitor whose
   people helped the colony mentions it, and one whose people remember a colonist by name stops them to say thank
-  you. 225 kinds of encounter in all. Most of these small
+  you.
+- **The peoples' own moments** (not released yet): a visitor or trader of each of Rimfolk's 23 peoples has two of its
+  own, one showing their ways on the map (a hospitaller looks at a colonist's old injury, a herder or tamer looks over
+  one of the colony's animals, a pilgrim or sexton stands at its graves, a scholar at its books, a salvager crouches by
+  a broken machine, a linesman at the comms console, a mechanitor over a mech) and one telling how their people began.
+  285 kinds of encounter in all. Most of these small
   moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
   against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
 - **Mechs, slaves and what the platforms hold:** with Biotech the colony's own mechs have small moments with those
@@ -3632,6 +3637,14 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   people's age) comes to a colony with children (Biotech): a lesson at their camp for up to three of them, a colonist
   sitting in, a supper for the pupils. **Wounded fighters** come with the game's own wounds, a cut bandaged on the road
   and a fresh bruise, most often while a war runs in the region: send the colony's doctor, medicine or a hot supper.
+  Not released yet: with Alpha Bees, **beekeepers** camp in spring and summer with their beehouses at the edge of the
+  camp: buy honey or wax, send a colonist to help at their hives (practice with animals, a sting now and then), or,
+  once the colony knows basic beekeeping, buy a young queen. **Mushroom pickers** come to wooded land in the fall, or
+  soon after the colony's own mushrooms after rain, pick the land's wild caps, sell truffles and fungus and teach which
+  are safe; now and then one eats the wrong cap and they ask for the colony's doctor. And six come with the region's
+  world events: **young hands** walking to a hiring fair, **carters** stuck by the spring mud or going round a fallen
+  bridge, **gleaners** who ask to walk the harvested rows in the fall, a **games team**, **outlaws walking home** under
+  a pardon, and **star-watchers** who lie out under the colony's sky through falling stars or a comet.
 
   Some come for something the land near the colony has, and say so: the letter names it and looks at it. **Scholars**
   (a tale-seeker, a scholar with a mule of books, a professor and two students, or an archaeotech survey team, by their
@@ -3718,7 +3731,11 @@ collected on the day; a **sick animal** of theirs is handed over at the gate to 
 when well; a **caravan camps** one night at the edge of the land, where raiders or wild animals may come for it (a real
 fight, within the harm budget); their **seed** is kept in the cold store at freezing or colder, untouched, until the
 sowing; a scholar's **book is copied** at a research bench (research work, done before the research), and the colony
-keeps a copy; and **musicians** stay a night and play at the colony's party. One more (not released yet) is the only one
+keeps a copy; and **musicians** stay a night and play at the colony's party. A herding people may also ask to let one of
+their animals **stand at stud** in the colony's pen for five to seven days (not released yet), of a kind the colony keeps
+that breeds by mating: while it stands it is the colony's and mates as its own do; a female of yours pregnant by their
+male when their drover comes for him is yours for a small fee, and if their female has taken, their courier brings one
+of the young to the gate once it is born (answered by letter, ask for silver for the keep instead). One more (not released yet) is the only one
 that sends the colony's people out, and only when the place is within three tiles: a neighbour's old map shows a **cache in
 old ruins** close by; a caravan brings it home, their people collect it and pay, and what else lay with it is the colony's.
 A tribe pays in goods of its own, everyone else in silver. When the region knows the
@@ -4019,6 +4036,21 @@ Some days or weeks after a world event ends, its people may come back about it, 
 of a plague the colony helped with come to give thanks, the first harvest after a famine is shared, a flooded town
 looks for what the water took, those sheltered through a hard winter bring seed in spring, old friends send seed grain
 after locusts or a drought, and after a hard year the colony looked away from, an elder comes to say what it cost.
+
+Ten more world events, not released yet, each in the form of its people's age: **cloth gone scarce** (a tailor buys
+the colony's cloth or teaches coats made from worn ones; more readily after a murrain or closed markets) and **timber
+gone scarce** after a great fire, a flood or rebuilding (timber bought dear, a carpenter's apprentice asks for a day's
+teaching), both making their goods dear with that people's traders; a **season of games** (travelling champions come
+oftener, and the colony may hold a games day: young people of two friendly peoples come for bouts, a race and a
+shooting match, eat at its table and stay the night, and a colonist who wins is named when the games end); a
+**pardon** after a kind new head takes the seat or in a holy year (outlaws walk home past the colony, prisoners of
+that people may be walked out under it, and no bounty hunters come while it lasts); a **hiring fair** (one of the
+region's young may ask for a place at the colony); a town's **founding day** (a gift for the day, or a colonist sent to
+sit at it when the town is within three tiles); **roads gone to mud** in spring (fewer caravans, carters stuck on the
+road, a cheap load that would spoil); **falling stars** (a finder sells a piece of one, star-iron or, in a later age,
+plasteel; star-watchers camp, and some at the colony take them for a god's sign); **the great burying** of an old
+battlefield's dead (linen for the shrouds, and its sextons carry off the enemy dead on the colony's land); and a
+**bridge down** (travellers come the long way round past the colony, and its builders ask for timber).
 
 The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
 about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it
@@ -4469,7 +4501,11 @@ conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *
 in a world event now brings its year: from a hard year they think more of the meal than of the contests and, with meals
 to spare, ask to take some home, and a colonist brings two a party out of the stores to them that night; from a good year (their fair, a bumper harvest) they bring a gift of silver; and the
 host's toast names their town. A new head of a people asked to the next feast at the colony's gate is on its guest list
-already.
+already. A guest of one of Rimfolk's peoples hopes for their own people's contest (the hunt for hunters and herders, the
+bouts for soldiers and ship's crews, a game at the tables for traders and scholars, the race for salvagers and river
+folk, a fine meal and music for pilgrims and hospitallers), and a feast can hold a **singing contest** (not released
+yet): up to six singers, guests and colonists in turn, each sings one song at the colony's instrument (its own music
+plays) or by a fire, judged on artistic and social skill with some luck; it answers a hope for music.
 
 **Ties bring a people's own.** A people bound to the colony (a pact, a marriage, a ward or hostage either way, an envoy
 either way, fealty either way, a debt of honour either way) sends its own events and camps about half again as often,

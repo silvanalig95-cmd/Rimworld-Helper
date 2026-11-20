@@ -380,6 +380,7 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/Among/GodsAmongMath.cs" Link="GodsAmongMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Home/WorldHomeMath.cs" Link="WorldHomeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/RegionPricesMath.cs" Link="RegionPricesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Variety/VarietyMath.cs" Link="VarietyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/RaidersCampSignsMath.cs" Link="RaidersCampSignsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/TakenInMath.cs" Link="TakenInMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/CallsFromHomeMath.cs" Link="CallsFromHomeMath.cs" />

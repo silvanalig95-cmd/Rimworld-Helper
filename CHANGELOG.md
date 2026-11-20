@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New world events, camps and encounters
+
+*20 November 2026, version 0.282.0*
+
+- Ten new world events, each in its people's age: cloth or timber gone scarce, a season of games, a pardon, a hiring fair, a town's founding day, roads gone to mud, falling stars, the great burying and a bridge down.
+- In a season of games the colony can hold a games day: young people of two friendly peoples come for bouts, a race and a shooting match, and a colonist who wins is named when the games end.
+- A pardon sends outlaws home past the colony, prisoners of that people can be walked out under it, and no bounty hunters come while it lasts.
+- Eight new camps: beekeepers with Alpha Bees, mushroom pickers in the fall, and six that come with the region's world events.
+- Each of Rimfolk's 23 peoples has two encounters of its own, one showing their ways on the map and one telling how their people began.
+- A herding people may ask to let an animal stand at stud in the colony's pen, for the young or a small fee.
+- Feast guests hope for their own people's contest, and a feast can hold a singing contest at the colony's instrument or by a fire.
+
 ## The gods between the people
 
 *20 November 2026, version 0.281.0*

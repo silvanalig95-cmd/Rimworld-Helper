@@ -147,6 +147,8 @@ namespace ColonyCouncil
                 case "Council_WS_Drought": return new[] { "Helios", "Murmur" };
                 case "Council_WS_HardWinter": return new[] { "Hush" };
                 case "Council_WS_Murrain": return new[] { "Bellwether", "Morel" };
+                // The content update's variety (World/Variety/): stars falling over the region, as the comet is the sky's.
+                case "Rimfolk_WS_FallingStars": return new[] { "Cirrus", "Selene" };
                 default: return new string[0];
             }
         }
@@ -155,7 +157,7 @@ namespace ColonyCouncil
         public static readonly string[] Great =
         {
             "Council_WS_Plague", "Council_WS_Comet", "Council_WS_Bumper", "Council_WS_GreatFire", "Rimfolk_WS_ColdYear", "Council_WS_Famine",
-            "Council_WS_Flood", "Council_WS_Drought", "Council_WS_HardWinter", "Council_WS_Murrain"
+            "Council_WS_Flood", "Council_WS_Drought", "Council_WS_HardWinter", "Council_WS_Murrain", "Rimfolk_WS_FallingStars"
         };
 
         /// <summary>A devout colonist sets a great world event down as a god's doing this often (once for each, when it is new).</summary>

@@ -216,7 +216,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>What their people hope for at the feast.</summary>
-        public static FeastHope HopeOf(Faction f) => f == null ? FeastHope.None : FeastMath.Hope(Ages.Of(f), Ages.IsEmpire(f));
+        /// <summary>What a people hopes for: by its age, the Empire by its own ways, one of Rimfolk's peoples by its calling (B28).</summary>
+        public static FeastHope HopeOf(Faction f) => f == null ? FeastHope.None : FeastMath.Hope(Ages.Of(f), Ages.IsEmpire(f), Peoples.CallingOf(f));
 
         /// <summary>Why this notable can't be invited now (by a letter or a call), or null.</summary>
         public static string InviteWhyNot(Notable n, Map home)
@@ -739,9 +740,9 @@ namespace ColonyCouncil
             Moved(p, map, FeastStage.Here);
             var people = p.guests.Where(g => g.state == GuestState.Here).Select(g => g.people).FirstOrDefault();
             string rite = FeastWords.Rite(people, map, out bool faith);
-            string text = FeastWords.T(p.purpose == FeastPurpose.Wedding ? "CC_Feast_Arrive_Wedding" : "CC_Feast_Arrive", FeastWords.Guests(p, true).Named("GUESTS"),
-                FeastWords.Peoples(p, true).Named("PEOPLES"), FeastWords.Name(map).Named("FEAST"));
-            if (p.purpose == FeastPurpose.Feast)
+            string text = FeastWords.T(p.purpose == FeastPurpose.Wedding ? "CC_Feast_Arrive_Wedding" : p.purpose == FeastPurpose.Games ? "CC_Feast_Arrive_Games" : "CC_Feast_Arrive",
+                FeastWords.Guests(p, true).Named("GUESTS"), FeastWords.Peoples(p, true).Named("PEOPLES"), FeastWords.Name(map).Named("FEAST"));
+            if (p.purpose != FeastPurpose.Wedding)
             {
                 text += "\n\n" + FeastWords.P(p.contests.Count > 0 ? "CC_Feast_Arrive_How" : "CC_Feast_Arrive_HowNone", FeastWords.Contests(p.contests).Named("CONTESTS"));
                 if (faith && !rite.NullOrEmpty()) text += " " + FeastWords.P("CC_Feast_Arrive_Rite", FeastWords.People(people).Named("PEOPLE"), rite.Named("RITE"));
@@ -1378,7 +1379,9 @@ namespace ColonyCouncil
             foreach (var g in p.guests.Where(g => g.state == GuestState.Here || g.state == GuestState.Gone && g.pawn != null && g.pawn.MapHeld != map && p.arrived >= 0))
             {
                 if (g.pawn == null || g.pawn.Dead) continue;
-                bool hopeMet = g.hope == FeastHope.MealAndMusic ? g.fine && p.music : p.results.Any(r => !r.off && FeastMath.Answers(g.hope, r.kind));
+                // A fine meal and music: the concert, or a singing contest held (B28).
+                bool hopeMet = g.hope == FeastHope.MealAndMusic ? g.fine && (p.music || p.results.Any(r => !r.off && r.kind == ContestKind.Singing))
+                    : p.results.Any(r => !r.off && FeastMath.Answers(g.hope, r.kind));
                 g.welcome = insulted ? -15f : FeastMath.Welcome(g.ate, g.fine, hopeMet, contests, g.prize, g.bed, g.floor, g.hurt, g.sour, Empire(g));
                 // A hard year at home: the meal counts for more than the contests (Diplomacy/FeastYear.cs).
                 if (!insulted) g.welcome = FeastYear.Welcome(g, g.welcome, contests);
@@ -1419,7 +1422,7 @@ namespace ColonyCouncil
                     ? FeastWords.P("CC_Feast_Hist_Held", FeastWords.Name(map).Named("FEAST"), FeastWords.Guests(p, true).Named("GUESTS"))
                     : FeastWords.P("CC_Feast_Hist_HeldChampion", FeastWords.Name(map).Named("FEAST"), FeastWords.Guests(p, true).Named("GUESTS"), p.championName.Named("CHAMPION"));
                 p.heldEntry = Diplomacy.Write(DiplomacyMath.Feast, actors, Diplomacy.Colony(map), held, true)?.id ?? -1;
-                if (p.purpose == FeastPurpose.Feast)
+                if (p.purpose != FeastPurpose.Wedding)
                 {
                     string results = FeastWords.Results(p);
                     string text = FeastWords.T(insulted ? "CC_Feast_End_Insulted" : "CC_Feast_End", FeastWords.Guests(p, true).Named("GUESTS"), FeastWords.Name(map).Named("FEAST"))
@@ -1585,7 +1588,7 @@ namespace ColonyCouncil
             var p = Of(x, out var h, out var g);
             if (p == null || g == null || !p.OnMap) return null;
             string feast = FeastWords.Name(h.Map);
-            if (g.pawn == x) return FeastWords.P(p.purpose == FeastPurpose.Wedding ? "CC_Feast_HereAs_Wedding" : "CC_Feast_HereAs", feast.Named("FEAST"));
+            if (g.pawn == x) return FeastWords.P(p.purpose == FeastPurpose.Wedding ? "CC_Feast_HereAs_Wedding" : p.purpose == FeastPurpose.Games ? "CC_Feast_HereAs_Games" : "CC_Feast_HereAs", feast.Named("FEAST"));
             return FeastWords.P("CC_Feast_HereAs_Retinue", FeastWords.Name(g).Named("NAME"), feast.Named("FEAST"));
         }
     }

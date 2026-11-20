@@ -98,6 +98,11 @@ namespace ColonyCouncil
         public string tags;
         /// <summary>People: a dog of their own people's is with them, close by (<see cref="Strangers.DogOf"/>).</summary>
         public bool withDog;
+        /// <summary>
+        /// People: of one of Rimfolk's peoples of this calling (Peoples/: healers, salvagers, sextons), their own moments by
+        /// their ways (B15 of docs/content-update-proposals.md). A lodger counts by their own people.
+        /// </summary>
+        public string calling;
     }
 
     public static class Strangers
@@ -221,6 +226,7 @@ namespace ColonyCouncil
                 if (r.royal && x.royalty?.MostSeniorTitle == null) return false;
                 if (!r.anyTrait.NullOrEmpty() && (x.story?.traits == null || !r.anyTrait.Any(x.story.traits.HasTrait))) return false;
                 if (r.withDog && DogOf(x) == null) return false;
+                if (!r.calling.NullOrEmpty() && Peoples.CallingOf(FactionOf(x)) != r.calling) return false;
                 if (a != null && x.relations != null && a.relations != null)
                 {
                     int of = x.relations.OpinionOf(a), from = a.relations.OpinionOf(x);

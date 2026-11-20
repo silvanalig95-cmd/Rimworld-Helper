@@ -15,14 +15,21 @@ namespace ColonyCouncil
         /// <summary>A game at the colony's tables (chess, poker, billiards, horseshoes, hoopstone), played as the game's own recreation.</summary>
         Tables,
         /// <summary>Shots at a target, only where a mod gives one.</summary>
-        Shooting
+        Shooting,
+        /// <summary>
+        /// Singers in turn, at one of the colony's instruments (the game's harp, harpsichord, piano or drum, a mod's), or by
+        /// the fire without one, judged on Artistic and Social (the content update's B28).
+        /// </summary>
+        Singing
     }
 
     /// <summary>What guests come to the colony for: a feast of the colony's own, or a wedding (release 2b.2 hosts its guests here).</summary>
     public enum FeastPurpose
     {
         Feast,
-        Wedding
+        Wedding,
+        /// <summary>A games day in a season of games (World/Variety/GamesDay.cs): the young of two friendly peoples come for the contests, the meal and a night.</summary>
+        Games
     }
 
     /// <summary>Where a feast with guests stands, step by step (never a time left).</summary>
@@ -71,8 +78,14 @@ namespace ColonyCouncil
         RaceOrMatch,
         /// <summary>Spacers: an exhibition match (wrestling or a game at the tables).</summary>
         Exhibition,
-        /// <summary>The Empire: a fine meal and music.</summary>
-        MealAndMusic
+        /// <summary>The Empire: a fine meal and music. Of Rimfolk's peoples, the pilgrims, sextons, hospitallers, the Choir and the vault's folk too.</summary>
+        MealAndMusic,
+        /// <summary>A people of fighters and crews (B28): the bouts.</summary>
+        Bouts,
+        /// <summary>A people of traders and learned folk (B28): a game at the tables.</summary>
+        Tables,
+        /// <summary>A people always on the move (B28): the race.</summary>
+        Race
     }
 
     /// <summary>
@@ -193,12 +206,63 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// What one of Rimfolk's peoples hopes for by its calling (the content update's B28): the hunt for the hunters,
+        /// herders and grovekeepers; the bouts for the mercenaries, drillers, citizens and crew; the tables for the traders,
+        /// brokers, scholars, artisans, seers, editors and mechanitors; the race for the salvagers, linesmen, tamers and
+        /// fishers; a fine meal and music only for the pilgrims, sextons, healers, listeners and the vault's folk. None for
+        /// any other people (their age's hope stands).
+        /// </summary>
+        public static FeastHope HopeOfCalling(string calling)
+        {
+            switch (calling)
+            {
+                case "hunters":
+                case "herders":
+                case "grovekeepers": return FeastHope.Hunt;
+                case "mercenaries":
+                case "drillers":
+                case "citizens":
+                case "crew": return FeastHope.Bouts;
+                case "traders":
+                case "brokers":
+                case "scholars":
+                case "artisans":
+                case "seers":
+                case "editors":
+                case "mechanitors": return FeastHope.Tables;
+                case "salvagers":
+                case "linesmen":
+                case "tamers":
+                case "fishers": return FeastHope.Race;
+                case "pilgrims":
+                case "sextons":
+                case "healers":
+                case "listeners":
+                case "vaultfolk": return FeastHope.MealAndMusic;
+                default: return FeastHope.None;
+            }
+        }
+
+        /// <summary>A people's hope: the Empire's its own, one of Rimfolk's peoples' by its calling, any other by its age.</summary>
+        public static FeastHope Hope(WorldAge age, bool empire, string calling)
+        {
+            if (empire) return FeastHope.MealAndMusic;
+            var h = HopeOfCalling(calling);
+            return h != FeastHope.None ? h : Hope(age, false);
+        }
+
         /// <summary>A contest that answers the hope.</summary>
         public static bool Answers(FeastHope hope, ContestKind k)
         {
             switch (hope)
             {
                 case FeastHope.Hunt: return k == ContestKind.Hunt;
+                case FeastHope.Bouts: return k == ContestKind.Wrestling;
+                case FeastHope.Tables: return k == ContestKind.Tables;
+                case FeastHope.Race: return k == ContestKind.Race;
+                // Music: a singing contest answers it as the concert does.
+                case FeastHope.MealAndMusic: return k == ContestKind.Singing;
                 case FeastHope.HuntOrTourney: return k == ContestKind.Hunt || k == ContestKind.Wrestling;
                 case FeastHope.RaceOrMatch: return k == ContestKind.Race || k == ContestKind.Shooting;
                 case FeastHope.Exhibition: return k == ContestKind.Wrestling || k == ContestKind.Tables;
@@ -206,10 +270,10 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The hope is offered by these contests (the Empire's by music: the colony has an instrument).</summary>
+        /// <summary>The hope is offered by these contests (the Empire's by music: the colony has an instrument, or a singing contest).</summary>
         public static bool Offered(FeastHope hope, IEnumerable<ContestKind> contests, bool music)
         {
-            if (hope == FeastHope.MealAndMusic) return music;
+            if (hope == FeastHope.MealAndMusic && music) return true;
             if (contests == null) return false;
             foreach (var k in contests)
                 if (Answers(hope, k))
@@ -234,12 +298,35 @@ namespace ColonyCouncil
                 case ContestKind.Race: return 2 * HourTicks;
                 case ContestKind.Hunt: return HuntTicks + HourTicks;
                 case ContestKind.Tables: return TableTicks + HourTicks;
+                case ContestKind.Singing: return 3 * HourTicks;
                 default: return 3 * HourTicks;
             }
         }
 
-        /// <summary>Held out of doors (it waits for fine weather and the light).</summary>
-        public static bool Outdoor(ContestKind k) => k != ContestKind.Tables;
+        /// <summary>Held out of doors (it waits for fine weather and the light): not the tables, nor the singing at an instrument or a fire.</summary>
+        public static bool Outdoor(ContestKind k) => k != ContestKind.Tables && k != ContestKind.Singing;
+
+        // ---------------- The singing (B28) ----------------
+
+        /// <summary>Singers at most, of both sides together; each sings this long.</summary>
+        public const int MaxSingers = 6, SingTicks = 750;
+
+        /// <summary>
+        /// A song's score: Artistic counts in full and Social by half (how it is sung and how it is put across), an instrument
+        /// of the colony's adds two, and luck up to four.
+        /// </summary>
+        public static float SingScore(int artistic, int social, bool instrument, float roll) =>
+            Clamp(artistic, 0, 20) + Clamp(social, 0, 20) * 0.5f + (instrument ? 2f : 0f) + Clamp01(roll) * 4f;
+
+        /// <summary>The best song (the highest score; the first of equal ones), or -1 with none sung.</summary>
+        public static int SingWinner(IList<float> scores)
+        {
+            int best = -1;
+            for (int i = 0; scores != null && i < scores.Count; i++)
+                if (scores[i] > 0f && (best < 0 || scores[i] > scores[best]))
+                    best = i;
+            return best;
+        }
 
         /// <summary>
         /// A bout's real blow (a cracked rib, a bloody nose gone bad), once a bout: one time in 25, the sparring rate; never

@@ -1,0 +1,883 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Six more world events of the content update's variety (part B of docs/content-update-proposals.md, beyond the doc, in
+    the player's direction of 20 November 2026): a hiring fair, a town's founding day, the roads gone to mud, a season of
+    falling stars, the great burying and the bridge down. Each in the form of its people's age ([theirTribal]...,
+    SituationWorker_Variety; World/Variety/), in the peoples' own ways where it falls on one of Rimfolk's peoples
+    (theirs, theirEnds), and tied to what exists: the region's towns, the peoples' own beginnings, their camps (the young
+    hands on the road, stranded carters, star-watchers: Defs/CampDefs/Rimfolk_CampKinds_Variety4.xml), the colony's book of
+    the gods (the falling stars as a great event, World/Home/), the dead the Quiet Bell takes off a colony's hands, the road's
+    news. Words in the world events' flavour style; nobody is hurt.
+  -->
+
+  <!-- ===================== A hiring fair ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_HiringFair</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a hiring fair</label>
+    <workerClass>ColonyCouncil.SituationWorker_Variety</workerClass>
+    <weight>0.7</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>200</cooldownDays>
+    <durationDays>10~16</durationDays>
+    <kind>hiring</kind>
+    <prosperity>2</prosperity>
+    <seasons>
+      <li>Spring</li>
+      <li>Fall</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the gathering of the young</li>
+      <li>[theirMedieval] the hiring fair</li>
+      <li>[theirIndustrial] the labour exchange</li>
+      <li>[theirSpacer] the crew call</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE}</li>
+      <li>Young people on the roads</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] The young of {FACTION}'s camps are walking to {PLACE} for {NAME}, when those with no place yet go round the fires to see who will take them in for the season, and the old ones look them over.\n\nThe paths past the colony will be busy with them for a while.</li>
+      <li>[theirMedieval] {FACTION} hold {NAME} at {PLACE}. The young of the region stand in the square with the sign of their trade in their hats, a shepherd's tuft of wool, a carter's whip, a maid's mop, and wait for a master to hire them for the year.\n\nThose who don't find one at {PLACE} will try the next town, and the next.</li>
+      <li>[theirIndustrial] {FACTION} have opened {NAME} at {PLACE}: a hall with a board of places on one wall and a queue of young people down the street outside it. Every mill, farm and yard in the region has sent someone to hire.\n\nThose who don't find a place will be walking the roads looking for one.</li>
+      <li>[theirSpacer] {FACTION} have put out {NAME} from {PLACE}: every post they need filled for the season, broadcast across the region. The young people of three settlements are already on the road to apply.\n\nSome of them will pass the colony.</li>
+    </texts>
+    <summaries>
+      <li>Young people looking for a place walk the roads past the colony, and one may ask at the gate whether the colony has a place for them. Hands on the road camp near the colony more often while it lasts.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+      <li><incident>TravelerGroup</incident><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>road</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>travelers</what><count>3~5</count><ages>16~26</ages><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>1~4</day>
+        <message>true</message>
+        <texts>
+          <li>Young people of {FACTION} with their bundles on their shoulders are on the road past the colony, going to {NAME} at {PLACE}.</li>
+          <li>[theirMedieval] A string of young people is walking past the colony toward {NAME}, each with the sign of a trade stuck in a hat.</li>
+        </texts>
+      </li>
+      <li>
+        <key>seeker</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>young one</what><ages>17~26</ages></li>
+        </effects>
+        <day>3~9</day>
+        <chance>0.8</chance>
+        <titles>
+          <li>Looking for a place</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a young one of {FACTION}, has stopped at the gate on the way to {NAME}. {X_pronoun} heard on the road that the colony is a good place to work, and asks, before going on, whether it has a place for one more pair of hands.\n\n{X_pronoun} is not asking for wages, only a bed and a place at the table.</li>
+          <li>[theirLowtech] A young {FACTION} with a bundle and a staff is at the gate. {X_nameDef} was going to stand at {NAME} with the rest, {X_pronoun} says, but would sooner be taken on by people {X_pronoun} has heard well of than by whoever bids first.</li>
+          <li>[theirHightech] {X_nameDef} of {FACTION} has come up to the gate with a folder of references and a nervous smile. {X_pronoun} was on the way to {NAME}, and wanted to try the colony first.</li>
+          <li>[bound] {X_nameDef}, a young one of {FACTION}, has come to the gate on the way to {NAME}. {X_pronoun} says {X_possessive} people speak of the colony as their own, with the tie between them, and {X_pronoun} would sooner work for it than for a stranger at the fair.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_nameDef} in</label>
+            <outcome>{X_nameDef} is let in at the gate, with the bundle and a grin {X_pronoun} is trying to hide.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count><ages>17~26</ages></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>taken</li></flags>
+            <help>1</help>
+            <deed>took on a young one of {FACTION} going to {NAME}</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Send them on to the fair</label>
+            <outcome>{X_nameDef} thanks the colony for its time and walks on toward {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>taken</key>
+        <requires><li>taken</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} is over, and the young of the region have found their places, or will try again next season. {FACTION} have heard where one of theirs went instead, and they hear it is a good place.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended; one of its young found a place at the colony.</chronicle>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} is over. Most of the young who came found a place; the rest have gone home to try again next season.</li>
+          <li>[theirIndustrial] The board at {PLACE} has been taken down for the season. {FACTION} say every place on it was filled, which they say every year.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:traders] The road league hires its wagon hands at {PLACE}, and a youngster who can mend a wheel and keep a word is signed on before noon.</li>
+      <li>[their:herders] The herding folk's young change camps at {PLACE}, a season with a camp that isn't their own, and the elders count them in at dusk with the herd.</li>
+      <li>[their:artisans] The Kiln Guild's masters take on apprentices at {PLACE}, and every one of them is asked to show their hands before anything else.</li>
+      <li>[their:drillers] The Union hires at {PLACE} by vote of the shift, and every new hand's name goes into the book before they go down.</li>
+      <li>[their:crew] The Hollow Fleet calls at {PLACE} for posts it can't fill from its own, and those it takes swear to the watch as the crew always have.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:traders] The league's caravans left {PLACE} with new hands on every wagon, and the old carters complaining about all of them.</li>
+      <li>[their:herders] The young of the herding folk are at their new camps, counted at dusk with the herds they were sent to learn.</li>
+      <li>[their:artisans] The guild's new apprentices have started their first week at {PLACE}, sweeping up round the kilns as every master once did.</li>
+      <li>[their:drillers] The new hands at {PLACE} are written in the Union's book and down the shaft with their shifts.</li>
+      <li>[their:crew] The Fleet's new crew have stood their first watch at {PLACE}, and the log says so.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A town's founding day ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_FoundingDay</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a town's founding day</label>
+    <workerClass>ColonyCouncil.SituationWorker_FoundingDay</workerClass>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <kind>jubilee</kind>
+    <prosperity>2</prosperity>
+    <faction>
+      <friendly>true</friendly>
+      <minGoodwill>0</minGoodwill>
+    </faction>
+    <names>
+      <li>[theirTribal] the naming of the fire</li>
+      <li>[theirMedieval] the founding feast</li>
+      <li>[theirIndustrial] founders' day</li>
+      <li>[theirSpacer] landing day</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE}</li>
+      <li>{FACTION} keep {NAME}</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] {FACTION} keep {NAME} at {PLACE}, the night the first fire there was lit, and every year since the camp has told how it was. The elders have sent word round the neighbours: anyone who comes in peace may sit at the fire and hear it.</li>
+      <li>[theirMedieval] {PLACE} keeps {NAME} this week, as {FACTION} have kept it every year since the first stone was laid. There will be bells, a procession and too much to eat, and every neighbour of good standing is sent word.\n\nThe colony's name is on the list.</li>
+      <li>[theirIndustrial] {PLACE} celebrates {NAME} this week, with bunting on the main street, a band, and speeches by everyone who can be stopped from making one. {FACTION} have sent word to every neighbour on good terms.\n\nThe colony is one of them.</li>
+      <li>[theirSpacer] {FACTION} mark {NAME} at {PLACE}, the day their people first set down there. The recording of the landing is played in the square, and their neighbours are sent the broadcast and an invitation.\n\nThe colony's came in this morning.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} would welcome a gift for the day from the colony. Their people tell how their town and their ways began, and those who honour the day are remembered.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>invite</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what><ages>15~30</ages></li>
+        </effects>
+        <day>1~3</day>
+        <count>80~160</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>An invitation to {NAME}</li>
+        </titles>
+        <texts>
+          <li>A runner of {FACTION} is at the gate with the colony's word of {NAME} at {PLACE}. A gift from a neighbour is the custom, {X_pronoun} says, carried back with {X_objective}: nothing grand, but a neighbour who sends nothing is noticed.\n\n{COUNT} silver would be a good gift. Good wishes would be noticed too, a little less.</li>
+          <li>[theirLowtech] A runner of {FACTION} has come to the gate with a ribbon of their colours and the word of {NAME}. By their custom a neighbour sends something back with the runner for the fire, and {X_pronoun} waits politely to see what it will be.</li>
+          <li>[bound] A runner of {FACTION} is at the gate with the word of {NAME} at {PLACE}, and a note that the colony's name has been put among those of their own, as the tie between them asks. A gift for the day is the custom, carried back with the runner; {COUNT} silver would be a good one.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {COUNT} silver for the day</label>
+            <outcome>The silver is carried out to the runner, who ties it into a cloth with great care and sets off back to {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the colony's gift for {NAME}</label><what>silver</what><tens>true</tens></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>gift</li></flags>
+            <help>2</help>
+            <deed>sent a gift for {NAME} at {PLACE}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send good wishes</label>
+            <outcome>The runner takes the colony's good wishes back to {PLACE}, where they will be read out with all the others.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>1</amount></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send {A_nameDef} to the day</label>
+            <showIf><li>near</li></showIf>
+            <outcome>{A_nameDef} sets out with the runner for {PLACE}, to sit at {NAME} for the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>2</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {NAME} at {PLACE}, full of the town's food and the story of how it began, and wants to tell all of it.</li>
+                </home>
+              </li>
+            </effects>
+            <flags><li>gift</li></flags>
+            <help>2</help>
+            <deed>sent {A_nameDef} to sit at {NAME} at {PLACE}</deed>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>honoured</key>
+        <requires><li>gift</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over at {PLACE}. When the neighbours' gifts were named, the colony's was among them, and {FACTION} have not forgotten who honoured their day.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE}: the colony honoured {FACTION}'s day.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over at {PLACE}. The bunting is down, the story has been told for another year, and nobody wants to see food for a week.</li>
+          <li>[theirLowtech] The fire of {NAME} has burned down at {PLACE}. The story was told again, the young ones learned it, and the camp has gone back to its work.</li>
+        </texts>
+        <chronicle>{FACTION} kept {NAME} at {PLACE}.</chronicle>
+      </li>
+    </endings>
+    <!-- How their ways began, told on their day (the peoples' own beginnings: Defs/PeopleDefs/, their descriptions). -->
+    <theirs>
+      <li>[their:healers] On their day the hospitallers at {PLACE} hang a new lamp over the sickhouse door, as Aldith hung the town's last one, and read the year's names from the Book of the Spared.</li>
+      <li>[their:herders] On their day the herding folk at {PLACE} tell how Tamsa drove the last forty head north through the dust and brought every one back, and every child counts the herd at dusk.</li>
+      <li>[their:pilgrims] On their day the pilgrims at {PLACE} tell of old Brannoc, turned out for praying at the wrong shrine, and bless every house in the town whether it lets them in or not.</li>
+      <li>[their:traders] On their day the road league sends nine wagons through the ford at {PLACE} under nine flags, the way it was first done at Harrow Ford.</li>
+      <li>[their:fishers] On their day the river folk at {PLACE} tie a knot in their nets for everyone the ferries pulled off the rooftops when the dam broke.</li>
+      <li>[their:hunters] On their day the Lantern Wardens at {PLACE} light a lantern for Tobin Garrow's brother and read from the first page of the book.</li>
+      <li>[their:sextons] On their day the Quiet Bell at {PLACE} rings the cracked bell once, the way it was rung over the first grave in the fields after the long war.</li>
+      <li>[their:scholars] On their day the learned society at {PLACE} argues until dawn about what burned at Hesk, as it does every year, and lays out the eleven books that were saved.</li>
+      <li>[their:salvagers] On their day the Wheel at {PLACE} drives every house a mile down the road at night with the lamps lit, to remember the night they drove out ahead of the fire.</li>
+      <li>[their:seers] On their day the Stormglass Conclave at {PLACE} opens the first vial on the shelf, the one the glassblower sealed after the hail that took the harvest, and reads the cap aloud.</li>
+      <li>[their:grovekeepers] On their day the Mossborn at {PLACE} plant an acorn beside a stump, as the first grove was planted, and sit under the oldest tree.</li>
+      <li>[their:mercenaries] On their day the Ashen Banner at {PLACE} carries out the grey banner and reads the Roll aloud from the first name.</li>
+      <li>[their:artisans] On their day the Kiln Guild at {PLACE} cuts a mark into a new stone, as the masons swore at the bridge at Hardwater, and every journeyman shows their year's work.</li>
+      <li>[their:linesmen] On their day the Signal Line passes a message from the first mast to the last, and {PLACE} answers it like every other relay.</li>
+      <li>[their:drillers] On their day the Union at {PLACE} reads every name in the book aloud, as at the first meeting, and votes again to stay together.</li>
+      <li>[their:citizens] On their day the Republic at {PLACE} reads the old laws on the evening broadcast, as the postmaster read them the winter the capital went dark.</li>
+      <li>[their:crew] On their day the Hollow Fleet at {PLACE} stands to its posts and writes in the log that the ship is holding position, as it has every day since Captain Sallow's last order.</li>
+      <li>[their:vaultfolk] On their day the Sunken Vault at {PLACE} opens the old door wide, and the youngest walks out first under the open sky, as the overseer did.</li>
+      <li>[their:brokers] On their day the enclave at {PLACE} reads out the first deal in the hauler's manifest, the one that sold its cargo instead of its hull.</li>
+      <li>[their:editors] On their day the Helix Works at {PLACE} keeps the vats warm by hand for a night, as the first of them did when the founders left.</li>
+      <li>[their:mechanitors] On their day the Lattice at {PLACE} links every mech in the yard at once, and stands quiet in the middle of them for an hour.</li>
+      <li>[their:listeners] On their day the Choir at {PLACE} sings with the hum of the Spire, all of them together, from dusk until the first of them stops.</li>
+      <li>[their:tamers] On their day the Circuit at {PLACE} holds a bout in Nessa Pell's name, and the winner must offer a rematch to anyone who asks.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:healers] The new lamp is lit over the sickhouse door at {PLACE}, and it will burn until next year's is hung.</li>
+      <li>[their:herders] The herding folk's children counted the herd at {PLACE} without a mistake, which is the best end to the day.</li>
+      <li>[their:pilgrims] Every house at {PLACE} has been blessed, and the pilgrims are on the roads again.</li>
+      <li>[their:traders] The nine wagons are through the ford at {PLACE} and back on their roads, and nobody fired on them.</li>
+      <li>[their:fishers] The new knots are tied in the nets at {PLACE}, and the boats are back on the water.</li>
+      <li>[their:hunters] The lantern burned all night at {PLACE}, and the wardens are back on the trails.</li>
+      <li>[their:sextons] The bell has been rung at {PLACE}, and the grave-garden is quiet.</li>
+      <li>[their:scholars] The argument at {PLACE} ended at dawn, unsettled, as it always does.</li>
+      <li>[their:salvagers] The Wheel drove back into its yard at {PLACE} at first light, and the vote to stop came to nothing again.</li>
+      <li>[their:seers] The first vial is sealed again on its shelf at {PLACE}, and the keepers are back at their glasses.</li>
+      <li>[their:grovekeepers] There is one more oak seedling at {PLACE}, and the Mossborn have counted it.</li>
+      <li>[their:mercenaries] The Roll has been read to its last name at {PLACE}, and the banner is folded away until next year.</li>
+      <li>[their:artisans] The new stone is set at {PLACE} with its mark cut true, and the journeymen have gone back on the road.</li>
+      <li>[their:linesmen] The message went down the whole Line and back, and {PLACE} logged its answer on time.</li>
+      <li>[their:drillers] The Union voted to stay together at {PLACE}, again, with nobody against.</li>
+      <li>[their:citizens] The old laws were read to the end at {PLACE}, and the broadcast went back to the evening news.</li>
+      <li>[their:crew] The log at {PLACE} says the ship is holding position, as it said yesterday.</li>
+      <li>[their:vaultfolk] The vault door at {PLACE} is closed again, and the youngest has been walking about as though it owns the sky.</li>
+      <li>[their:brokers] The first deal has been read at {PLACE}, and the enclave is back to making new ones.</li>
+      <li>[their:editors] The vats at {PLACE} are back on their own heat, and the night's watchers have gone to sleep.</li>
+      <li>[their:mechanitors] The Lattice at {PLACE} has let go of the link, and the yard is working again.</li>
+      <li>[their:listeners] The Choir at {PLACE} sang until the small hours, and the last voice to stop was a child's.</li>
+      <li>[their:tamers] Nessa Pell's bout at {PLACE} was won fairly, and the winner has three rematches waiting.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The roads gone to mud ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_MudRoads</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the roads gone to mud</label>
+    <workerClass>ColonyCouncil.SituationWorker_Variety</workerClass>
+    <weight>0.6</weight>
+    <earliestDay>20</earliestDay>
+    <cooldownDays>120</cooldownDays>
+    <durationDays>8~14</durationDays>
+    <kind>mud</kind>
+    <prosperity>-2</prosperity>
+    <seasons>
+      <li>Spring</li>
+    </seasons>
+    <faction>
+      <friendly>true</friendly>
+      <calling>traders</calling>
+    </faction>
+    <titles>
+      <li>The roads gone to mud</li>
+      <li>Mud on every road</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] The thaw has come all at once, and every road in the region is a river of mud to the axles. {FACTION}'s carts have stopped where they stood, and the drovers at {PLACE} are waiting for the ground to dry, which it shows no sign of doing.\n\nNobody is going far this week.</li>
+      <li>[theirHightech] The spring rains have turned the region's roads to mud, and {FACTION}'s trucks are sunk to the hubs between {PLACE} and the ford. The traders are sitting it out wherever they stopped, and the post is days late.\n\nWhoever is on the road now is staying on it a while.</li>
+      <li>[their:traders] The road league has stopped its caravans at every waystation from {PLACE} to the ford: the roads are mud to the axles, and a waymaster does not send wagons where they will sink.\n\nThe carters already on the road are stuck where they are.</li>
+    </texts>
+    <summaries>
+      <li>Caravans and visitors come less often while the roads are mud. Carters stuck on the road may stop at the colony, and a carter may sell the colony a load cheap that would spoil before it reached {PLACE}.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>0.6</factor></li>
+      <li><incident>VisitorGroup</incident><factor>0.7</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>load</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>carter</what><pack>true</pack></li>
+        </effects>
+        <day>1~5</day>
+        <count>40~70</count>
+        <titles>
+          <li>A load that won't keep</li>
+        </titles>
+        <texts>
+          <li>A carter of {FACTION}, mud to the knees, is at the gate. {X_possessive} load was for {PLACE}, but it will rot before the road lets {X_objective} through, and {X_pronoun} would sooner sell it here for half than throw it in a ditch: {COUNT} potatoes, still good.\n\nIt's cheap. It's also a lot of potatoes.</li>
+          <li>[theirLowtech] A carter of {FACTION} has walked up from the road with {X_possessive} beast and a heavy pack. The rest of the load is sinking with the cart, {X_pronoun} says, and what {X_pronoun} carried up is {COUNT} potatoes the colony can have for half their worth before they spoil.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy the {COUNT} potatoes for half their worth</label>
+            <outcome>The carter is paid at the gate and sets the sacks down there, and goes back the way {X_pronoun} came, lighter in every way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.9</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawPotatoes</thing><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>bought a stuck carter's load</deed>
+          </li>
+          <li>
+            <label>The colony has enough</label>
+            <outcome>The carter goes back the way {X_pronoun} came, to see what can be saved.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>shelter</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><count>2~3</count></li>
+        </effects>
+        <day>3~8</day>
+        <chance>0.8</chance>
+        <titles>
+          <li>Stuck on the road</li>
+        </titles>
+        <texts>
+          <li>Two or three travelers of {FACTION}, plastered with mud, are at the gate. They have given up on the road to {PLACE} until it dries, and ask whether they might sit it out under the colony's roof for a couple of nights.</li>
+          <li>[rain] Travelers of {FACTION} are standing at the gate in the rain, their boots gone the colour of the road. They were on the way to {PLACE} and can't go on, and ask for a dry corner for two nights.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Give them a dry corner for two nights</label>
+            <outcome>The travelers are shown in out of the wet, and will stay two nights before trying the road again.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>2</nights><inside>true</inside></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>sheltered travelers stuck by the mud</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>The travelers squelch back the way they came.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>dry</key>
+        <titles>
+          <li>The roads dry out</li>
+        </titles>
+        <texts>
+          <li>The roads have dried enough to drive on, and the carts are moving again, in a hurry, with a week to make up. The ruts they left will be there until next spring.</li>
+          <li>[helped] The roads have dried at last, and the travelers and carters who sat out the mud are back on them. More than one of them stopped at the colony on the way past to say thank you.</li>
+        </texts>
+        <chronicle>The spring mud dried on the region's roads.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:traders] The waymasters have written the date in the Waystone Book, as they do for every week the road is lost to the weather.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:traders] The league's caravans are rolling again from {PLACE}, and the waymasters have crossed the mud weeks off in the Waystone Book.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== A season of falling stars ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_FallingStars</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>falling stars</label>
+    <workerClass>ColonyCouncil.SituationWorker_FallingStars</workerClass>
+    <weight>0.5</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>6~10</durationDays>
+    <kind>stars</kind>
+    <faction>
+      <friendly>true</friendly>
+      <calling>seers</calling>
+    </faction>
+    <titles>
+      <li>Falling stars</li>
+      <li>Stars falling over {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] For three nights the stars have been falling over the region, a dozen an hour some nights, and at {PLACE} the people of {FACTION} stay up to watch them. One came down in the hills above the town with a sound like a door slammed, and the children have been out looking for it every day since.</li>
+      <li>[theirHightech] The night sky over the region is full of falling stars, more than anyone at {PLACE} can remember, and {FACTION}'s readers are out with their instruments every night. One came down whole in the hills near the town, and the finders are already arguing over it.</li>
+      <li>[their:seers] The Stormglass Conclave at {PLACE} has had its readers up every night for a week: the stars are falling over the region in their hundreds, and one came down whole in the hills near the tower. The keepers are writing all of it down.</li>
+    </texts>
+    <summaries>
+      <li>Those who watch the sky come to camp under the colony's open sky while it lasts, and a finder may bring a piece of a fallen star to the gate to sell. Some at the colony will take the stars for a god's sign, and say so.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>night</key>
+        <day>1~3</day>
+        <message>true</message>
+        <texts>
+          <li>The stars are still falling over the region these nights. At {PLACE} the people sleep in the day so as to be up to watch them.</li>
+        </texts>
+      </li>
+      <li>
+        <key>starIron</key>
+        <requires><li>lowtechColony</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>finder</what><pack>true</pack></li>
+        </effects>
+        <day>2~6</day>
+        <count>15~30</count>
+        <titles>
+          <li>A piece of a fallen star</li>
+        </titles>
+        <texts>
+          <li>A finder of {FACTION} is at the gate with a pack that clanks. {X_pronoun} found where one of the stars came down in the hills, and inside the burnt rock was iron, good iron, {COUNT} pieces of it. {X_pronoun} would sell it to the colony for a fair price before carrying it on to {PLACE}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy the star-iron</label>
+            <outcome>The finder is paid at the gate and sets the star-iron down there, and goes back toward the hills.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>1.2</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Steel</thing><by>Outsiders</by></li>
+            </effects>
+            <deed>bought star-iron from a finder of {FACTION}</deed>
+          </li>
+          <li>
+            <label>Let it go to {PLACE}</label>
+            <outcome>The finder goes on to {PLACE} with the pack still clanking.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>starMetal</key>
+        <forbids><li>lowtechColony</li></forbids>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>finder</what><pack>true</pack></li>
+        </effects>
+        <day>2~6</day>
+        <count>8~16</count>
+        <titles>
+          <li>A piece of a fallen star</li>
+        </titles>
+        <texts>
+          <li>A finder of {FACTION} is at the gate with a heavy case. One of the falling stars came down near {PLACE}, and it wasn't a rock: it was a piece of something old from up there, and {X_pronoun} has cut {COUNT} plates of plasteel out of it. {X_pronoun} would sell them to the colony for a fair price.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Buy the plasteel</label>
+            <outcome>The finder is paid at the gate and sets the case down there, and goes back to the hills for more.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><factor>1.2</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Plasteel</thing><by>Outsiders</by></li>
+            </effects>
+            <deed>bought a fallen star's plasteel from a finder of {FACTION}</deed>
+          </li>
+          <li>
+            <label>Let it go to {PLACE}</label>
+            <outcome>The finder goes on to {PLACE} with the case.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>The stars are still again</li>
+        </titles>
+        <texts>
+          <li>The stars have stopped falling over the region, and the nights are ordinary again. At {PLACE} they are still arguing about what it meant, and will be for years.</li>
+          <li>[theirLowtech] The falling stars are over. The children of {PLACE} found the one that came down in the hills, and it is in the square now, a black stone nobody quite likes to touch.</li>
+        </texts>
+        <chronicle>The stars fell over the region for a week.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:seers] The Conclave has set out a vial for the night of the falling stars, though it rained none, and the first reader has written on its cap that the weather was not the planet thinking this time.</li>
+      <li>[their:scholars] The learned society at {PLACE} has fellows out on the roof every night with their charts, counting.</li>
+      <li>[their:tamers] The Circuit at {PLACE} has sent its youngest out to look in the craters, as Nessa Pell found her egg in one.</li>
+      <li>[their:listeners] The Choir at {PLACE} says the hum changed on the first night of the falling stars, and has not changed back.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:seers] The readers of the Conclave are back to the weather, and the night's vial sits sealed and empty on the shelf at {PLACE}.</li>
+      <li>[their:scholars] The society's count of the falling stars is in the archive at {PLACE}, and two fellows already disagree with it.</li>
+      <li>[their:tamers] Nobody at {PLACE} found an egg in the craters, but every young tamer went to look.</li>
+      <li>[their:listeners] The hum at {PLACE} is as it was before, and the Choir has gone quiet about it.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The great burying ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_GreatBurying</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the great burying</label>
+    <workerClass>ColonyCouncil.SituationWorker_GreatBurying</workerClass>
+    <weight>0.5</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>10~16</durationDays>
+    <kind>burial</kind>
+    <faction>
+      <friendly>true</friendly>
+      <calling>sextons</calling>
+    </faction>
+    <names>
+      <li>the great burying</li>
+    </names>
+    <titles>
+      <li>The great burying at {PLACE}</li>
+      <li>{FACTION} bury the old field</li>
+    </titles>
+    <texts>
+      <li>A flood has opened an old battlefield above {PLACE}, and the bones of a war nobody alive remembers are lying in the open. {FACTION} have sworn to bury every one of them before the summer, friend and enemy alike, and have sent word round the region for linen for the shrouds.\n\nIt will take them weeks.</li>
+      <li>[their:sextons] The Quiet Bell has found an old field above {PLACE} where the dead of the long war were never buried, and every sexton of theirs is walking there with a spade and a bell. They will not leave until every grave is dug and every bell is rung.\n\nThey are asking the region for linen for the shrouds.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION} will want linen for the shrouds. While their sextons are near, they will take any dead the colony has left unburied on its land and bury them with the rest.</li>
+    </summaries>
+    <modifiers>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>linen</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>sexton</what><ages>30~65</ages></li>
+        </effects>
+        <day>1~5</day>
+        <count>20~40</count>
+        <titles>
+          <li>Linen for the shrouds</li>
+        </titles>
+        <texts>
+          <li>A sexton of {FACTION} is at the gate with a spade on {X_possessive} shoulder and a list of what the burying still needs. Linen, mostly: {COUNT} cloth would shroud a good many of the old dead at {PLACE}.\n\n{X_pronoun} has no silver to offer for it, only the thanks of the dead, which {X_pronoun} says is worth more than it sounds.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Give {COUNT} cloth for the shrouds</label>
+            <outcome>The cloth is carried out to the gate. The sexton folds it into {X_possessive} pack, bows, and walks back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>linen for the shrouds</label><what>Cloth</what><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>linen</li></flags>
+            <help>2</help>
+            <deed>gave linen for the great burying at {PLACE}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>The colony needs its cloth</label>
+            <outcome>The sexton thanks the colony anyway and walks back toward {PLACE}.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>ourDead</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>sexton</what><count>2~3</count><pack>true</pack></li>
+        </effects>
+        <day>4~10</day>
+        <titles>
+          <li>The sextons ask after the colony's dead</li>
+        </titles>
+        <texts>
+          <li>Sextons of {FACTION} on their way to the burying are at the gate with a pack beast and their spades. They have seen dead lying unburied on the colony's land, strangers by the look of them, and ask whether they may take them to the old field and bury them with the rest.\n\nIt would cost the colony nothing.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them take the dead</label>
+            <outcome>The sextons walk out over the colony's land to where the dead lie, and carry them off one by one to the old field.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BuryingTake" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>gave its unburied dead to the great burying</deed>
+          </li>
+          <li>
+            <label>The colony sees to its own ground</label>
+            <outcome>The sextons nod and go on toward {PLACE} without them.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>quiet</key>
+        <minHelp>2</minHelp>
+        <helped>true</helped>
+        <titles>
+          <li>The old field is quiet</li>
+        </titles>
+        <texts>
+          <li>The great burying is done above {PLACE}. Every one of the old dead is in the ground in a shroud, some of them in the colony's linen, and the bell has been rung over every grave. {FACTION} have written down who helped.</li>
+        </texts>
+        <chronicle>The great burying above {PLACE} was done, with the colony's help.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>The old field is quiet</li>
+        </titles>
+        <texts>
+          <li>The great burying is done above {PLACE}, and the old field is a field again. The sextons have gone home, and nobody else in the region has to look at it.</li>
+        </texts>
+        <chronicle>The great burying above {PLACE} was done.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:sextons] The first bell has come down from the tower at {PLACE} to ring over the old field herself.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:sextons] The last bell has been rung over the old field above {PLACE}, and the Quiet Bell has gone back to its grave-gardens with the ground behind it quiet.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== The bridge down ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_BridgeDown</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the bridge down</label>
+    <workerClass>ColonyCouncil.SituationWorker_Variety</workerClass>
+    <weight>0.6</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>bridge</kind>
+    <prosperity>-3</prosperity>
+    <faction>
+      <friendly>true</friendly>
+      <calling>fishers</calling>
+    </faction>
+    <names>
+      <li>[theirLowtech] the old bridge</li>
+      <li>[theirHightech] the iron bridge</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE} is down</li>
+      <li>The long way round</li>
+    </titles>
+    <texts>
+      <li>[theirLowtech] {NAME} at {PLACE} went down in the night, piers and all, and the river took most of it before morning. {FACTION} are already cutting timber for a new one, but until it stands every cart on the road has to go round by the upper ford, and the upper ford goes past the colony.</li>
+      <li>[theirHightech] {NAME} at {PLACE} has given way under a loaded truck, and the river has the middle span. {FACTION}'s engineers say a new one by the end of the season if the timber comes. Until then the road goes the long way round, and the long way goes past the colony.</li>
+      <li>[their:fishers] {NAME} at {PLACE} is down in the river, and the river folk have every ferry on the water carrying people across, free, as they carried them off the rooftops when the dam broke. The carts can't go on a ferry, though, and the carts are coming the long way round, past the colony.</li>
+    </texts>
+    <summaries>
+      <li>Travelers on the long way round pass the colony more often. {FACTION} will want timber for the new bridge, and the road's travelers may ask to rest at the colony's gate.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TravelerGroup</incident><factor>1.6</factor></li>
+      <li><incident>VisitorGroup</incident><factor>1.2</factor></li>
+      <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>road</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>travelers</what><count>2~4</count><pack>true</pack><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>7</hourFrom><hourTo>17</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>1~4</day>
+        <message>true</message>
+        <texts>
+          <li>Travelers going the long way round {NAME} are on the road past the colony with their pack beasts, grumbling about the extra day.</li>
+        </texts>
+      </li>
+      <li>
+        <key>timber</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>carter</what><pack>true</pack></li>
+        </effects>
+        <day>3~8</day>
+        <count>60~120</count>
+        <titles>
+          <li>Timber for the new bridge</li>
+        </titles>
+        <texts>
+          <li>A carter of {FACTION} is at the gate with an empty cart and a message from the bridge-builders at {PLACE}: {COUNT} wood for the piers and the deck of the new bridge, at half again what it's worth.\n\nThe sooner it stands, the sooner the road goes back the short way.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Sell {COUNT} wood at half again its worth</label>
+            <outcome>The wood is carried out to the gate and loaded onto the cart, and the driver pays and turns back toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for the new bridge</label><what>wood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Silver"><factor>1.5</factor></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>timber</li></flags>
+            <help>1</help>
+            <deed>sold timber for the new bridge at {PLACE}</deed>
+          </li>
+          <li>
+            <label>Give it for the bridge</label>
+            <outcome>The wood is carried out to the gate and loaded onto the cart, and the driver says the builders will cut the colony's name into the new bridge.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the timber for the new bridge</label><what>wood</what></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>7</amount></li>
+            </effects>
+            <flags><li>timber</li></flags>
+            <help>2</help>
+            <deed>gave timber for the new bridge at {PLACE}</deed>
+            <ways><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>The colony needs its wood</label>
+            <outcome>The driver turns back toward {PLACE} with the cart empty.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>rest</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><count>2~4</count><pack>true</pack></li>
+        </effects>
+        <day>5~11</day>
+        <chance>0.7</chance>
+        <titles>
+          <li>Travelers on the long way round</li>
+        </titles>
+        <texts>
+          <li>Travelers of {FACTION} on the long way round {NAME} are at the gate, footsore and a day behind. They ask whether they might rest by the colony's wall for the night and water their beasts.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Let them rest by the wall for the night</label>
+            <outcome>The travelers settle by the wall with their beasts, and will go on at first light.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <help>1</help>
+            <deed>let travelers on the long way round rest at its wall</deed>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>The travelers go on down the road, a little more footsore.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>rebuilt</key>
+        <requires><li>timber</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>A new bridge at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The new bridge at {PLACE} is open, and the road goes the short way again. Some of its beams are the colony's, and {FACTION} say so to anyone who will listen.</li>
+          <li>[their:artisans] The new bridge at {PLACE} is open, with a mason's mark on every stone and the colony's name on one of them.</li>
+        </texts>
+        <chronicle>A new bridge was built at {PLACE}, with the colony's timber.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+          <li Class="ColonyCouncil.WorldEffect_Fortune"><amount>3</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>A new bridge at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The new bridge at {PLACE} is open, and the road goes the short way again. The colony's stretch of road has gone quiet, which some at the colony are relieved about and some aren't.</li>
+        </texts>
+        <chronicle>A new bridge was built at {PLACE}.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:fishers] The landing master at {PLACE} will not take a coin for the ferry until the bridge is up again.</li>
+      <li>[their:artisans] The Kiln Guild's masons at {PLACE} have already marked the stones for the new piers, each with its maker's sign.</li>
+      <li>[their:traders] The road league has written the long way round into the Waystone Book, with a note to be patient with it.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:fishers] The bridge is up at {PLACE}, and the river folk have gone back to charging for the ferry, though not much.</li>
+      <li>[their:artisans] Every stone of the new bridge at {PLACE} carries its mason's mark, and the masons say it will outlast the river.</li>
+      <li>[their:traders] The league has crossed the long way round out of the Waystone Book, and the caravans are back on the short road.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+</Defs>

@@ -1,0 +1,836 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The peoples' own encounters (docs/content-update-proposals.md, B15): two moments for each of Rimfolk's 23 peoples, by
+    their ways, with a visitor (or their trader) of that people (StrangerRole.calling). Where a moment says the visitor does
+    something, it must be true on the map and plays out as it is told (EncounterDef.scene, World/Home/WorldScenes.cs):
+    standing at one of the colony's graves (grave), looking over a broken machine (broken), one of the colony's animals
+    (beast), one of its mechs (mech) or the building it names (building, its colonyHas), or humming (hum). The rest is talk
+    between two people standing together. {A_...} the colonist, {X_...} the visitor, {FACTION} their people. Plain words.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_PE_LookOver</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>looking over TargetB.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <ticks>900~1500</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_PE_StandAt</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>standing at TargetB.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <social>Off</social>
+        <ticks>1200~1800</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_EncPE_TheirWays</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a traveler's ways</label><description>A traveler showed me how their people do something. I'd never thought of doing it that way.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_EncPE_TheirStory</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a traveler's story</label><description>A traveler told me how their people's ways began. I keep thinking about it.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_EncPE_LookedOver</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a traveler looked at my old trouble</label><description>A traveler looked at an old trouble of mine and told me how to ease it. They didn't have to.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_EncPE_OurWork</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a traveler judged our work</label><description>A traveler looked over something of ours and said plainly what they thought of it. Most of it was good.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The road league (traders) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_LeagueBook</defName>
+    <label>the Waystone Book</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>traders</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} explained the Waystone Book to {A_nameDef}: every fair dealer on the road is written in black ink, and every robber in red. {X_pronoun} said the colony was in black, and showed {A_objective} the page.</li>
+      <li>{A_nameDef} asked {X_nameDef} what "good ink" meant. It is the best thing a wayfarer can say about anyone, {X_pronoun} said, and it takes years to earn and one bad trade to lose.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_LeagueFord</defName>
+    <label>nine wagons at the ford</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Trader</kind><calling>traders</calling></stranger>
+    <texts>
+      <li>{X_nameDef}, the league's trader, told {A_nameDef} how the league began at Harrow Ford: nine waymasters sent one guard and one wagon each through the ford together, under nine flags, and nobody fired on them.</li>
+      <li>{X_nameDef} told {A_nameDef} that the league still crosses Harrow Ford nine wagons at a time once a year, so that nobody forgets why they keep the road together.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The hospitaller order (healers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_OrderOldInjury</defName>
+    <label>a hospitaller looks at an old injury</label>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>healers</calling></stranger>
+    <colonist><oldInjury>true</oldInjury></colonist>
+    <texts>
+      <li>{X_nameDef} of {FACTION} noticed the old injury {A_nameDef} still favours, and asked to look at it. {X_pronoun} told {A_objective} how to rest it and which way to keep it warm, and said the order sees a lot of old wounds like that.</li>
+      <li>{X_nameDef} watched {A_nameDef} favour the old injury for a while, then came over and showed {A_objective} a simple way to ease it at night. Nobody on a sickbed is anyone's enemy, {X_pronoun} said, and nobody with a bad back is either.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_LookedOver</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <ways><openness>1</openness></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_OrderLamp</defName>
+    <label>the hospitallers' lamp</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>healers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about Aldith, the carter's daughter who stayed behind in the fever years and nursed a whole town alone, and why every sickhouse of the order keeps a lamp lit over its door all night.</li>
+      <li>[night] {X_nameDef} asked {A_nameDef} whether the colony keeps a light burning at night for travelers. The order does, {X_pronoun} said, because Aldith did, and nobody has let one go out since.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The herding folk (herders) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_HerdersCount</defName>
+    <label>a herder looks over the colony's animals</label>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>herders</calling></stranger>
+    <scene>beast</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} went over to look at the colony's animals, the way {X_possessive} people look over a herd at dusk, and told {A_nameDef} which of them looked well and which needed watching.</li>
+      <li>{X_nameDef} walked over to one of the colony's animals and looked it over carefully. When {A_nameDef} asked why, {X_pronoun} said {X_possessive} people count every animal at dusk, and can't help doing it anywhere.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_HerdersTamsa</defName>
+    <label>the herding folk's dry year</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>herders</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the year the wells failed, when a herd girl named Tamsa drove the last forty head north through the dust to grass nobody believed was there, and brought every one back.</li>
+      <li>{A_nameDef} asked {X_nameDef} why {X_possessive} people never stay in one place. Because Tamsa didn't, {X_pronoun} said, and the camps that stayed put that year are not there any more.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The pilgrim fellowship (pilgrims) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_PilgrimsGrave</defName>
+    <label>a pilgrim at the colony's graves</label>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>pilgrims</calling></stranger>
+    <scene>grave</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} where the colony buries its dead, and went to stand at one of the graves a while. Pilgrims stop at the graves of good people, {X_pronoun} said, and {X_pronoun} supposed everyone here was one.</li>
+      <li>{X_nameDef} said a short prayer at the colony's graves before going on, and told {A_nameDef} that the fellowship blesses a house whether it lets them in or not.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_PilgrimsShells</defName>
+    <label>a cord of shells</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>pilgrims</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} the cord of shells round {X_possessive} neck, one for every shrine reached, and told {A_objective} about old Brannoc, who was turned out of his town for praying at the wrong one.</li>
+      <li>{A_nameDef} counted the shells on {X_nameDef}'s cord and got to twenty before losing track. {X_nameDef} laughed and said the first one was the hardest to get, because it meant leaving home.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The learned society (scholars) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_ScholarsBooks</defName>
+    <label>a scholar at the colony's books</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>scholars</calling></stranger>
+    <colonyHas><li>Bookcase</li><li>BookcaseSmall</li></colonyHas>
+    <scene>building</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} went over to look at the colony's books, and asked {A_nameDef} where each one had come from. {X_pronoun} wrote two of the titles down for the society's archive.</li>
+      <li>{X_nameDef} looked over the colony's books and asked {A_nameDef} a question about one of them that {A_pronoun} couldn't answer. {X_pronoun} said that was the best kind of question.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>300</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_ScholarsHesk</defName>
+    <label>the fire at Hesk</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>scholars</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the fire at Hesk, when a clerk saved eleven books and a ledger in a handcart and spent the rest of her life copying them for anyone who would feed her.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the society argues about every year on the night of the fire. What was lost, {X_pronoun} said, and nobody has ever won the argument.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The spacer enclave (brokers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_EnclaveFigure</defName>
+    <label>the exact figure</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Trader</kind><calling>brokers</calling></stranger>
+    <texts>
+      <li>{X_nameDef}, the enclave's trader, worked out for {A_nameDef} what the colony's last harvest would fetch in orbit, down to the last silver. {X_pronoun} said the enclave never names a price it won't honour.</li>
+      <li>{A_nameDef} tried to haggle with {X_nameDef}, who listened politely and then explained, figure by figure, why the price was already fair. {A_nameDef} had to agree.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_CaravanGossip</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_EnclaveManifest</defName>
+    <label>the hauler's manifest</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>brokers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} how the enclave began: an ore hauler with a dead drive, and a crew who sold its cargo, its passage and its debts one deal at a time instead of selling the hull for scrap.</li>
+      <li>{X_nameDef} told {A_nameDef} that every deal the enclave has made is written in the old hauler's manifest, and that the first entry is still the best one.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The river folk (fishers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_RiverKnot</defName>
+    <label>a knot for the nets</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>fishers</calling></stranger>
+    <lands><li>river</li><li>lake</li><li>coast</li></lands>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} a knot for mending nets that holds when it's wet, with a bit of string from {X_possessive} pocket. {A_nameDef} got it on the fourth try.</li>
+      <li>{X_nameDef} asked {A_nameDef} whether the colony fishes its water, and showed {A_objective} with {X_possessive} hands the river folk's way of laying a net across a current.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_RiverKnotNight</defName>
+    <label>knot night</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>fishers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the night the dam broke upriver, and the ferries that pulled people off the rooftops for three days. Every year, {X_pronoun} said, they tie a knot in their nets for each one.</li>
+      <li>{A_nameDef} asked {X_nameDef} why the river folk will carry anyone across, enemy or not. Because the ferries didn't ask whose roof it was, {X_pronoun} said.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Lantern Wardens (hunters) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_WardensTracks</defName>
+    <label>how a warden reads a pack</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>hunters</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} how a warden finds a pack's leader by its tracks: the deepest prints, and the ones the others never step in front of.</li>
+      <li>{X_nameDef} asked {A_nameDef} who hunts for the colony, and gave {A_objective} the wardens' first rule to pass on: never follow a wounded beast into cover.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_WardensLantern</defName>
+    <label>Tobin Garrow's lantern</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>hunters</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about Tobin Garrow, who hung his dead brother's lantern at a crossroads and kept it lit for eleven years, until the beast that killed him was dead.</li>
+      <li>[night] {A_nameDef} asked {X_nameDef} why a warden's lantern is never let go out. {X_pronoun} said it means someone is still hunting, and that is a promise.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Quiet Bell (sextons) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_BellGraves</defName>
+    <label>a sexton at the colony's graves</label>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>sextons</calling></stranger>
+    <scene>grave</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} stopped at the colony's graves and stood there a while. {X_pronoun} told {A_nameDef} afterwards that the ground was quiet, and that it was well kept.</li>
+      <li>{X_nameDef} asked {A_nameDef} whether {X_pronoun} might go and stand at the colony's graves, as sextons do wherever they pass. {X_pronoun} came back and said nothing there was troubled.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_BellFields</defName>
+    <label>the bell in the fields</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>sextons</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} how the Quiet Bell began: in the fields after the long war, with a spade and a cracked chapel bell, burying friend and enemy alike until the ground was quiet.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether {X_pronoun} was ever afraid of the dead. No, {X_pronoun} said, only of the ones nobody buried.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Circuit of Tamers (tamers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_TamerBeast</defName>
+    <label>a tamer looks over a colony animal</label>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>tamers</calling></stranger>
+    <scene>beast</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} went over to one of the colony's animals and looked it over with a tamer's eye. {X_pronoun} told {A_nameDef} what it would be good at, and how to bring it on.</li>
+      <li>{X_nameDef} crouched beside one of the colony's animals and let it come to {X_objective}. It was a companion, not property, {X_pronoun} told {A_nameDef}, and it would show what it could do when it trusted someone.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_TamerSash</defName>
+    <label>tokens on a sash</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>tamers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} the tokens on {X_possessive} violet sash, one for every bout won fairly, and told {A_objective} about Nessa Pell, who found an egg in the crater of a falling star.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the greatest honour among the tamers is. To be beaten fairly by a stranger, {X_pronoun} said, and grinned as though hoping for it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Wheel (salvagers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_WheelBroken</defName>
+    <label>a salvager at a broken machine</label>
+    <weight>1.2</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>salvagers</calling></stranger>
+    <scene>broken</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} went over to the colony's broken machine, crouched beside it and looked it over. It needs a new part, {X_pronoun} told {A_nameDef}, nothing worse, and the Wheel would have mended it by morning.</li>
+      <li>{X_nameDef} looked over the broken machine for a while and told {A_nameDef} exactly what had worn out and why. {A_nameDef} wished {X_pronoun} had brought tools.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_WheelFire</defName>
+    <label>why the Wheel keeps moving</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>salvagers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the night a fire swept through their valley, and they put their houses on carts and drove out ahead of it. Nobody has voted to stop since, {X_pronoun} said.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the Wheel will ever stay in one place. {X_pronoun} laughed and said someone asks that at every vote, and loses every time.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Stormglass Conclave (seers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_GlassSky</defName>
+    <label>a reader under the night sky</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>seers</calling></stranger>
+    <scene>sky</scene>
+    <texts>
+      <li>Out under the night sky, {X_nameDef} of {FACTION} showed {A_nameDef} how their readers watch the clouds and write down what they see, and said the record is worth more than any single guess.</li>
+      <li>{X_nameDef} stood out under the open sky with {A_nameDef} a while and talked about the weather the way other people talk about family. The Conclave is rarely wrong, {X_pronoun} said, and never certain.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_GlassVial</defName>
+    <label>the first vial</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>seers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the hailstorm that took a village's whole harvest, and the glassblower there who began keeping a vial of every storm's rain so it would never come unseen again.</li>
+      <li>{A_nameDef} asked {X_nameDef} how many vials the towers hold now. Three hundred years of them, {X_pronoun} said, and every cap says what came after.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Mossborn (grovekeepers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_MossCount</defName>
+    <label>the Mossborn's count</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>grovekeepers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} how many trees the colony has cut, and how many it has planted. {A_nameDef} didn't know. {X_nameDef} said the forest does.</li>
+      <li>{X_nameDef} told {A_nameDef} that every tree felled is owed a seedling, and showed {A_objective} how the Mossborn set one beside a stump so that it takes.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_MossGrove</defName>
+    <label>the first grove</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>grovekeepers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the valley a war had cut bare, and the survivors who planted an acorn beside every stump and stayed to live among the young trees.</li>
+      <li>{A_nameDef} asked {X_nameDef} why the Mossborn bury their dead under saplings. So that they become part of the grove, {X_pronoun} said, as the woman who planted the first one did.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Ashen Banner (mercenaries) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_BannerScars</defName>
+    <label>a soldier of the Banner compares scars</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>mercenaries</calling></stranger>
+    <colonist><canFight>true</canFight></colonist>
+    <texts>
+      <li>{X_nameDef} of {FACTION} and {A_nameDef} ended up comparing how they had each held a wall, and which side of a pike is the safe one to stand on.</li>
+      <li>{X_nameDef} looked at the way {A_nameDef} stands and said {A_pronoun} had been in a fight or two. They swapped stories until somebody called {A_nameDef} away.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FellowFighter</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_BannerRoll</defName>
+    <label>the Roll</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>mercenaries</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the Roll, the list of everyone who has died under the grey banner, read aloud every year on the night of the battle that burned it.</li>
+      <li>{A_nameDef} asked {X_nameDef} why the Banner fights for whoever pays. Because the king it was raised for is dead, {X_pronoun} said, and a contract kept is the only thing left to be loyal to.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Kiln Guild (artisans) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_GuildMark</defName>
+    <label>a guild mason judges a piece</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>artisans</calling></stranger>
+    <colonist><passion>Crafting</passion></colonist>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} to describe the last thing {A_pronoun} made, and how. {X_pronoun} said plainly what was good about it and what wasn't, and told {A_objective} to put a mark on the next one.</li>
+      <li>{X_nameDef} asked {A_nameDef} whether {A_pronoun} marks {A_possessive} work. In the guild, {X_pronoun} said, a maker who won't put a mark on a thing shouldn't have made it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>300</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_OurWork</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_GuildBridge</defName>
+    <label>the bridge at Hardwater</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>artisans</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the bridge at Hardwater, carried off three times by floods and rebuilt with the mason's mark on every stone, so that everyone would know whose work it was if it failed again.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the fourth bridge at Hardwater still stands. It does, {X_pronoun} said, and the guild's oath is what it is because of it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Signal Line (linesmen) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_LineConsole</defName>
+    <label>a linesman at the colony's console</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>linesmen</calling></stranger>
+    <colonyHas><li>CommsConsole</li></colonyHas>
+    <scene>building</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} went over to look at the colony's comms console and told {A_nameDef} how far its voice would carry from here, and which relay of the Line would hear it first.</li>
+      <li>{X_nameDef} looked over the colony's console and showed {A_nameDef} how the Line always says where it heard something, so a message can be traced back to its source.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_LineFirstMast</defName>
+    <label>the first mast</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>linesmen</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the lineman who walked the hills after the long war with a coil of copper wire and raised a mast on every height he could climb, until one valley could hear the next.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the first mast still stands. On its ridge, {X_pronoun} said, and it has never gone off the air.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Deepwell Union (drillers) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_UnionVote</defName>
+    <label>a vote on it</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>drillers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} how the colony decides things. When {A_nameDef} explained the council, {X_pronoun} wanted to know who votes and how often, and said the union would call it too few.</li>
+      <li>{X_nameDef} told {A_nameDef} that in the union even the boss is elected every year, and nobody decides anything alone. {A_nameDef} said that sounded slow. {X_pronoun} said it was, and that was the point.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_UnionBook</defName>
+    <label>the union's book</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>drillers</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the night the seam at Deepwell ran dry and the owners left, and the miners voted in the hall to stay together and wrote every name in a book.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether {X_possessive} own name is in the union's book. Every member and every shift, {X_pronoun} said, and showed {A_objective} the red armband that goes with it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Last Republic (citizens) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_RepublicCount</defName>
+    <label>counted by a citizen</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>citizens</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef}, very politely, for {A_possessive} full name, age and trade, and wrote them down in a small notebook. For the census, {X_pronoun} explained, in case the Republic ever needs to know.</li>
+      <li>{X_nameDef} told {A_nameDef} that the Republic still holds its elections on the set day, whatever happens, and asked whether the colony keeps a list of its people. {A_nameDef} said it knew them all by name. {X_nameDef} said that wasn't the same thing.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_RepublicPostmaster</defName>
+    <label>the winter the capital went dark</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>citizens</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the winter the capital went dark, when a small town's postmaster began reading the old laws aloud on the radio every evening, and other towns answered.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether the old government is really gone. {X_nameDef} said the Republic has a census, a radio and an election next spring, so no, not really.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Hollow Fleet (crew) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_FleetLog</defName>
+    <label>the day's log</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>crew</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} the small log book every crew member keeps, and the line {X_pronoun} writes in it each day: holding position. {A_nameDef} asked whether it ever says anything else. Not yet, {X_pronoun} said.</li>
+      <li>{X_nameDef} stood very straight while talking to {A_nameDef}, as the crew do at every rank, and asked how the colony keeps its watches at night.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_FleetOrder</defName>
+    <label>the order that never came</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>crew</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about Captain Imre Sallow, who ordered the crew to keep their posts until the order came to disembark, and died before he could give it.</li>
+      <li>{A_nameDef} asked {X_nameDef} why nobody has given the order since. Nobody has the rank, {X_pronoun} said, and changed the subject.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Helix Works (editors) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_HelixConsent</defName>
+    <label>asked first</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>editors</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} whether {X_pronoun} might shake {A_possessive} hand before doing it. In the Works, {X_pronoun} explained, nothing touches a body without its owner saying yes, and old habits stay.</li>
+      <li>{X_nameDef} told {A_nameDef} that every child of the Works chooses their own genes when they are old enough. {A_nameDef} asked what {X_nameDef} had chosen. {X_pronoun} said that was {X_possessive} own business, kindly.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_HelixVats</defName>
+    <label>the vats kept warm</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>editors</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} how the founders of the lab fled a plague in the vats and left the machines running, and how the people they left behind kept the vats warm through the winter and taught themselves the work.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether {X_pronoun} was grown in a vat. Most of them were, {X_pronoun} said, and the ledger says which one.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Lattice (mechanitors) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_LatticeMech</defName>
+    <label>a mechanitor looks over a colony mech</label>
+    <weight>1.1</weight>
+    <cooldownDays>8</cooldownDays>
+    <mods><li>Ludeon.RimWorld.Biotech</li></mods>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>mechanitors</calling></stranger>
+    <scene>mech</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} went over to one of the colony's mechs and looked it over closely. {X_pronoun} told {A_nameDef} which part of it would wear out first, and how the Lattice mends it.</li>
+      <li>{X_nameDef} stood beside one of the colony's mechs a while without saying anything, then told {A_nameDef} it was well kept. The Lattice fears nothing more than a mech left to itself, {X_pronoun} said.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_OurWork</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_LatticeField</defName>
+    <label>the old battlefield</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>mechanitors</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the old battlefield where a hundred war mechs stood still for years, until a deserter with a mechlink linked ten of them to her own mind.</li>
+      <li>{A_nameDef} asked {X_nameDef} what it is like to be linked with the others. {X_pronoun} said it is like knowing someone is in the next room, all the time.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Choir of the Spire (listeners) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_ChoirHum</defName>
+    <label>a listener hums</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>listeners</calling></stranger>
+    <scene>hum</scene>
+    <texts>
+      <li>{X_nameDef} of {FACTION} hummed quietly while {A_nameDef} talked to {X_objective}, a low note that never quite changed. When {A_nameDef} asked, {X_pronoun} said it was the Spire's, and that {X_pronoun} had stopped noticing it years ago.</li>
+      <li>{X_nameDef} hummed along with something {A_nameDef} couldn't hear, then stopped and apologised. Among the Choir, {X_pronoun} said, a song held with others is the best thing there is.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_ChoirQuiet</defName>
+    <label>a quiet mind</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>listeners</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} that the colony is very loud, and meant the minds, not the noise. {X_pronoun} said it kindly, and asked {A_nameDef} to sit quietly with {X_objective} a minute, which {A_nameDef} did.</li>
+      <li>{A_nameDef} asked {X_nameDef} what the Spire is. {X_nameDef} said the Choir believes it is thinking, and that nobody should listen to the void, because it listens back.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== The Sunken Vault (vaultfolk) ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_VaultPart</defName>
+    <label>a part kept working</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>vaultfolk</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} an old part of {X_possessive} suit that still works, made before the vault was sealed, and asked how the colony makes the components that the vault can no longer make.</li>
+      <li>{X_nameDef} asked {A_nameDef} to show {X_objective} how the colony mends its tools. Nobody in the vault knows any more, {X_pronoun} said, and they would like to learn it again.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>200</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirWays</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncPE_VaultSky</defName>
+    <label>the day the seal broke</label>
+    <weight>0.9</weight>
+    <cooldownDays>9</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><calling>vaultfolk</calling></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} told {A_nameDef} about the day the overseer broke the vault's seal and walked out first, and half of them went back below for a week because nobody had told them what the sky would look like.</li>
+      <li>{A_nameDef} asked {X_nameDef} whether {X_pronoun} has got used to the sky yet. Mostly, {X_pronoun} said, except on very clear days, when there is too much of it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_EncPE_TheirStory</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>
