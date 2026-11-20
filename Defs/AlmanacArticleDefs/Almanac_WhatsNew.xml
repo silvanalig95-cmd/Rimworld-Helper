@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.288.1</version>
+        <date>20 November 2026</date>
+        <title>The camps' own words, said where they happen</title>
+        <points>
+          <li>Fixed: a camp's good turns are told in its own words, so the hostel's herbs, the boat-builders' logs, the Wheel yard's mending and the help of the eight newest camps now show what each camp says.</li>
+          <li>Fixed: camp lines that said more than happens now match the map, such as the hostel's herbs gathered by its own people at dawn, and wood left at a camp's edge rather than brought over.</li>
+          <li>Fixed: camp moment lines are said where they happen: a word as they carry in wood or what they gathered, the hostel's word as it leaves its hut, a sister's word on her rounds. Lines for things that never happen are gone.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.288.0</version>
         <date>20 November 2026</date>
         <title>A day off for a friend, the colony's names for its places, rooms from your mods</title>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The camps' own words, said where they happen
+
+*20 November 2026, version 0.288.1*
+
+- Fixed: a camp's good turns are told in its own words, so the hostel's herbs, the boat-builders' logs, the Wheel yard's mending and the help of the eight newest camps now show what each camp says.
+- Fixed: camp lines that said more than happens now match the map, such as the hostel's herbs gathered by its own people at dawn, and wood left at a camp's edge rather than brought over.
+- Fixed: camp moment lines are said where they happen: a word as they carry in wood or what they gathered, the hostel's word as it leaves its hut, a sister's word on her rounds. Lines for things that never happen are gone.
+
 ## A day off for a friend, the colony's names for its places, rooms from your mods
 
 *20 November 2026, version 0.288.0*

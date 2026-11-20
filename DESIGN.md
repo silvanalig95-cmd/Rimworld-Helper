@@ -19365,7 +19365,7 @@ no old line was changed.
   animals, a pilgrim or a sexton at a grave, a scholar at the books, a salvager at the broken machine, a reader under the
   open sky, a linesman at the comms console, a mechanitor at a mech, a listener humming).
 
-**The camps' own words said** (a fix, 20 November 2026; not released yet). Found by this round, fixed after it. Every
+**The camps' own words said** (a fix, 20 November 2026; released 0.288.1). Found by this round, fixed after it. Every
 good turn of a camp is told through `Camp.HelpText`, the kind's own line first and the shared `CC_Camp_Help_*` line
 only for a kind with none, so the own lines for medicine (`CampCarry.Brought`), wood and meat (`CampLife.DoHelp`) and
 mending (`CampRequests.MendGear`) now show: the pilgrims' hostel's, the herb-gatherers', the boat-builders', the Wheel's
