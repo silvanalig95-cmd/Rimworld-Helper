@@ -158,7 +158,9 @@ public static class ArcTests
         // Getting clean (Arcs/ArcWorkers_LifeNew.cs): a slip back to the drug.
         "relapse",
         // The weight of office's hard call made real (Offices/SeatCalls.cs): the kind of call, and the quiet end without one.
-        "call:question", "call:decree", "call:supper", "nocall"
+        "call:question", "call:decree", "call:supper", "nocall",
+        // The colony's own stories (LifeVariety/ColonyStories.cs): a custom let pass, a promise let lapse.
+        "letpass", "lapsed"
     };
 
     private static readonly Regex LowerStart = new Regex(@"(^(\[[^\]]*\]\s*)?|[.!?]\s+)\{[A-Z]+_(pronoun|possessive|objective|definite|indefinite)\}");
