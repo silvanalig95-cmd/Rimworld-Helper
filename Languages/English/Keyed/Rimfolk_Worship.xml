@@ -260,6 +260,26 @@
   <CC_Wsh_Impact_DryMaybe>{PAWN} fears the rain may stay away a while</CC_Wsh_Impact_DryMaybe>
   <CC_Wsh_Impact_GiveBeast>{PET} is walked out and let go into the wild</CC_Wsh_Impact_GiveBeast>
   <CC_Wsh_Impact_GiveBeastBrief>a beast given</CC_Wsh_Impact_GiveBeastBrief>
+  <!-- More council questions of faith (Gods/Worship/WorshipCouncilMore.cs): what each answer does, plainly. -->
+  <CC_Wsh_Unavailable_NotMovable>{PLACE} can't be taken up and moved.</CC_Wsh_Unavailable_NotMovable>
+  <CC_Wsh_Unavailable_NoOtherGod>The one asking holds no other god to give it to.</CC_Wsh_Unavailable_NoOtherGod>
+  <CC_Wsh_Impact_Shrine_move>{SHRINE} marked to be taken up and moved, after words said over it</CC_Wsh_Impact_Shrine_move>
+  <CC_Wsh_Impact_Shrine_moveBrief>the place moved</CC_Wsh_Impact_Shrine_moveBrief>
+  <CC_Wsh_Impact_Shrine_round>The plans against {SHRINE} cancelled, so the building goes round it</CC_Wsh_Impact_Shrine_round>
+  <CC_Wsh_Impact_Shrine_roundBrief>built round it</CC_Wsh_Impact_Shrine_roundBrief>
+  <CC_Wsh_Impact_Shrine_down>{SHRINE} is the god's no longer, and is marked to be taken down</CC_Wsh_Impact_Shrine_down>
+  <CC_Wsh_Impact_Shrine_downBrief>the place taken down</CC_Wsh_Impact_Shrine_downBrief>
+  <CC_Wsh_Impact_Eve_lean>{FESTIVAL} kept tomorrow without an offering or guests</CC_Wsh_Impact_Eve_lean>
+  <CC_Wsh_Impact_Eve_leanBrief>kept with less</CC_Wsh_Impact_Eve_leanBrief>
+  <CC_Wsh_Impact_Eve_rite>The rite of {FESTIVAL} held this evening; tomorrow is an ordinary day</CC_Wsh_Impact_Eve_rite>
+  <CC_Wsh_Impact_Eve_riteBrief>the rite only</CC_Wsh_Impact_Eve_riteBrief>
+  <CC_Wsh_Impact_Eve_pass>{FESTIVAL} let pass this year</CC_Wsh_Impact_Eve_pass>
+  <CC_Wsh_Impact_Eve_passBrief>let pass</CC_Wsh_Impact_Eve_passBrief>
+  <CC_Wsh_Impact_Barred>{B} kept away from the god's rites for {DAYS} days</CC_Wsh_Impact_Barred>
+  <CC_Wsh_Impact_BarredBrief>kept from the rites</CC_Wsh_Impact_BarredBrief>
+  <CC_Wsh_Impact_ScofferCarries>{B} carries the next offering to {SHRINE}</CC_Wsh_Impact_ScofferCarries>
+  <CC_Wsh_Impact_ShrineGiven>Someone walks out and gives the place to {GOD}</CC_Wsh_Impact_ShrineGiven>
+  <CC_Wsh_Impact_ShrineGivenBrief>given to another god</CC_Wsh_Impact_ShrineGivenBrief>
   <CC_Wsh_Impact_Offering>An offering carried to {SHRINE}</CC_Wsh_Impact_Offering>
   <CC_Wsh_Impact_OfferingBrief>an offering</CC_Wsh_Impact_OfferingBrief>
   <CC_Wsh_DryBegins_Title>The rain stays away</CC_Wsh_DryBegins_Title>

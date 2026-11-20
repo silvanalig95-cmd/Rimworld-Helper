@@ -313,7 +313,7 @@ namespace ColonyCouncil
         }
 
         public override string ProgressText(Aspiration a) =>
-            ("CC_Wsh_Goal_Season" + (Progress(a) >= 1f ? "Done_" : "_") + Kind).Translate(Worship.Called(GodOf(a)).Named("GOD"), Progress(a).ToStringPercent().Named("PERCENT")).Resolve();
+            ((Progress(a) >= 1f ? "CC_Wsh_Goal_SeasonDone_" : "CC_Wsh_Goal_Season_") + Kind).Translate(Worship.Called(GodOf(a)).Named("GOD"), Progress(a).ToStringPercent().Named("PERCENT")).Resolve();
     }
 
     public class AspirationWorker_VowLamp : AspirationWorker_SeasonVow

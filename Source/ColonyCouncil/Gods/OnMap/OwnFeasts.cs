@@ -1353,7 +1353,7 @@ namespace ColonyCouncil
             if (leader == null || map == null || g == null) return;
             try
             {
-                var who = map.mapPawns.FreeColonistsSpawned.Where(p => p != leader && Holds(p, g) && OwnHappenings.Free(p) && !p.DevelopmentalStage.Baby())
+                var who = map.mapPawns.FreeColonistsSpawned.Where(p => p != leader && Holds(p, g) && OwnHappenings.Free(p) && !p.DevelopmentalStage.Baby() && !WorshipCouncilMore.Barred(p))
                     .OrderBy(p => p.Position.DistanceToSquared(shrine.Position)).Take(OwnFeastsMath.GatheringMost).ToList();
                 if (who.Count == 0) return;
                 // Behind the leader as they will stand: the leader at the place's front, the rows further from it.

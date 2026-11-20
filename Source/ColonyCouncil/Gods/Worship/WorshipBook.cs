@@ -55,6 +55,8 @@ namespace ColonyCouncil
         public int god = -1;
         public int home = HomesMath.None;
         public Pawn carrier;
+        /// <summary>The one the council asked to carry it (a scoffer set to carry the offering: WorshipCouncilMore), first in line.</summary>
+        public Pawn asked;
         /// <summary>What it was, in words ("a fine meal", "a thrumbo fur"), for when it is gone.</summary>
         public string label;
         public OfferingKind kind;
@@ -105,6 +107,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref god, "god", -1);
             Scribe_Values.Look(ref home, "home", HomesMath.None);
             Scribe_References.Look(ref carrier, "carrier");
+            Scribe_References.Look(ref asked, "asked");
             Scribe_Values.Look(ref label, "label");
             Scribe_Values.Look(ref kind, "kind", OfferingKind.Other);
             Scribe_Values.Look(ref favour, "favour");
