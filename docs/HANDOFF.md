@@ -65,6 +65,11 @@ most sense." So, in this order, three builds at a time:
   The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
   A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
   raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
+- **To do when the player asks (20 November 2026, the lead's proposal for the player's "Just more of them"): the
+  content update's second round.** `docs/content-update-proposals-2.md`, 44 items: D1 to D15 the gods' events (most
+  between the colony's people), D16 to D23 storyteller events, D24 to D32 council questions, D33 to D38 camps, D39 to D44
+  world events, with counts of what exists now and mods that would help. The lead's first round of twelve: D1, D3, D4,
+  D9, D10, D14, D16, D17, D25, D30, D35, D39. Nothing is built until the player picks.
 - **The player's go of 20 November 2026 on the content update and the next tasks**: "All right, your content proposal
   overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I just want
   additional God events, more immersion, more just further also building up on the gods in general, how they're
@@ -94,9 +99,10 @@ most sense." So, in this order, three builds at a time:
      colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
      two encounters for each people; released 0.282.0); colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five more
      council questions; released 0.283.0); text round 1 (A31 to A37; released 0.284.0); colony life 2 (A8, A11, A15,
-     A16, A22 to A26, A28, twelve events, six personal stories; released 0.285.0); building: text round 2's world half
-     (B9, B10, B16, B18, B30), and the last three items (A9, C25, C27); text round 2's gods half (C32 to C36) released
-     0.286.0. With those the proposal list is all built.
+     A16, A22 to A26, A28, twelve events, six personal stories; released 0.285.0); text round 2's gods half (C32 to C36;
+     released 0.286.0) and its world half (B9, B10, B16, B18, B30; released 0.287.0). Building: the last three items
+     (A9, C25, C27), with which the proposal list is all built, and a fix for the camps' own help and moment lines
+     that no code said (found by the world's text round).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
@@ -612,51 +618,13 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Text round 2, the world's part:
-  the thin world events, their talk, the peoples' own talk, their camps and the thinnest encounters** (20 November 2026;
-  the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
-  with this in the order you think makes most sense ... And then also, just variety, further kind of events, camps,
-  world events, normal storyteller events, dilemmas, etc. Just more of them."). B9, B10, B16, B18 and B30 of part B, each
-  marked **Built** in the proposals doc with what was decided and its counts; DESIGN.md "Text variety: the world's thin
-  pools" (after "The world's variety"). Every pool recounted first: 0.282.0's world events, camps and encounters as thin
-  as the named ones were brought to the same floor (five world events for B9, all ten for B10, all eight camps for B18,
-  all 46 peoples' encounters for B30). 82 world event lines, 213 talk pieces (1,043 lines said), 285 camp lines and
-  142 encounter texts.
-  - **Where the lines are**: B9 the world events' own defs in `Defs/WorldSituationDefs/` (82: start letters to four,
-    second lines for one-line beats, ending lines to three, for 22 world events); B10 `Defs/OutsiderTalkDefs/
-    Rimfolk_OutsiderTalks_WorldTold.xml` (75 pieces for 25 world events: theirs, heard of by another people, and over);
-    B16 `Rimfolk_OutsiderTalks_PeoplesDays.xml` and `_PeoplesDays2.xml` (138 pieces, six for each of the 23 peoples); B18
-    the camps' own defs in `Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml` and `_Variety4.xml` (285 lines); B30 the
-    encounters' own defs in `Defs/EncounterDefs/` (142 texts). Code, for B10 only: a visitor of another people now hears
-    of the newest world event of another people (`FactsMath.SituationRank`, `Heard`, `AddHeard`; `Facts.Situations` in
-    `Text/Facts/FactsWorld.cs`): `heard`, `heard:bad`/`heard:good`, `heard:ws:DEFNAME`, {HEARD}, {HEARDPLACE},
-    {HEARDPEOPLE}; the talk's format header (`Rimfolk_OutsiderTalks_Greetings.xml`) and the tests' vocabulary
-    (`Tools/Tests/OutsiderTalkTests.cs`) name them, `Tools/Tests/FactsTests.cs` tests the rule.
-  - Decided: B16's other peoples by the conditions the talk already has (their war and how it stands with the colony, a
-    peace made lately, at war with nobody), no new code; a camp's help and moment lines only where they are said (the
-    enclave's pad and the Banner's company give no help, the field sickhouse's moments and six of 0.282.0's camps'
-    are never said); no beat line where a beat has no words now (an arrival or an incident alone); new camp arrivals
-    say nothing of cold or snow, and name gear only where the people's gear has it.
-  - Found here, fixed after (the entry "Fix: the camps' own words for their good turns and moments" below): help lines
-    of a camp's own for medicine, wood, mend and meat never showed, as `CampCarry`, `CampLife.DoHelp` and
-    `CampRequests.MendGear` told those by the shared `CC_Camp_Help_*` lines; moment lines no code said (the hostel's
-    [gift], the field sickhouse's [round] and [gift], the [carry] and [gift] of six of 0.282.0's camps).
-  - Not checked without the game: how the new lines read among the old ones in a real colony; a visitor of a third
-    people speaking of another people's world event; the other-peoples pieces with a people at war, at peace with all
-    and just after a peace.
-  - Try in the game: dev mode, "World variety: start one of the new world events now..." or any world event, then talk
-    with a visitor of its people and of another people (right-click, Talk with...); read the start and ending letters
-    of the gold fever, the levy, the market days or the bridge down; start a people's own camp from its event and watch
-    the bubbles and the arrival letter; let a visitor of one of the 23 peoples stay and talk (their day, their food,
-    their young, their town, the other peoples, the colony).
-  - Mods that would help: none; these are words only, with no graphics or sound to add, and no def of any mod is named.
 - Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Fix: the camps' own words for
-  their good turns and moments** (20 November 2026; found by the world's text round above and fixed with the lead's
-  go; CLAUDE.md: "Events and answers show on the map as accurately as possible: what the words say happens is what the
-  player sees", and camps keep the flavour style of the player's 20 November restore). Two bugs: a camp kind's own help
-  lines for medicine, wood, mending and meat were never shown (the shared `CC_Camp_Help_*` lines always were), and
-  moment lines sat in the defs with no code to say them. DESIGN.md "Text variety: the world's thin pools", the paragraph
-  "The camps' own words said".
+  their good turns and moments** (20 November 2026; found by the world's text round below, 0.287.0, and fixed with the
+  lead's go; CLAUDE.md: "Events and answers show on the map as accurately as possible: what the words say happens is
+  what the player sees", and camps keep the flavour style of the player's 20 November restore). Two bugs: a camp kind's
+  own help lines for medicine, wood, mending and meat were never shown (the shared `CC_Camp_Help_*` lines always
+  were), and moment lines sat in the defs with no code to say them. DESIGN.md "Text variety: the world's thin pools",
+  the paragraph "The camps' own words said".
   - **The good turns**: every one is told through `Camp.HelpText` (the kind's own line, else the shared one): medicine
     (`CampCarry.Brought`), wood and meat (`CampLife.DoHelp`), mending (`CampRequests.MendGear`). Shown now: the
     pilgrims' hostel's, the herb-gatherers', the boat-builders', the Wheel's yard's, the trappers', the herd followers'
@@ -694,11 +662,49 @@ repo.
     young hands or those walking home; as they carry in what they cut or gathered, now and then a word ("Careful, they
     bruise.", "Nearly a full sack."); when they do the colony a good turn, the letter is in their own words. 2. "Peoples'
     events: one of their camps here now..." for the pilgrims' hostel: its herbs letter after a dawn's gathering, and as
-    it goes at the end of its stay its eldest says the hut is left for the next walker. 3. "Peoples' events 3: one of
-    their camps here now..." for the field sickhouse: a sister on her rounds now and then says "Bed to bed, each in
-    turn." 4. A salt caravan: its porters' words are said between the beasts and the stall, never over the logs they
-    carry in.
+    it goes at the end of its stay the one who speaks for them says the hut is left for the next walker. 3. "Peoples'
+    events 3: one of their camps here now..." for the field sickhouse: a sister on her rounds now and then says "Bed to
+    bed, each in turn." 4. A salt caravan: its porters' words are said between the beasts and the stall, never over the
+    logs they carry in.
   - Mods that would help: none; these are words and where they are said, with no graphics or sound to add.
+- 0.287.0, **Text round 2, the world's part:
+  the thin world events, their talk, the peoples' own talk, their camps and the thinnest encounters** (20 November 2026;
+  the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
+  with this in the order you think makes most sense ... And then also, just variety, further kind of events, camps,
+  world events, normal storyteller events, dilemmas, etc. Just more of them."). B9, B10, B16, B18 and B30 of part B, each
+  marked **Built** in the proposals doc with what was decided and its counts; DESIGN.md "Text variety: the world's thin
+  pools" (after "The world's variety"). Every pool recounted first: 0.282.0's world events, camps and encounters as thin
+  as the named ones were brought to the same floor (five world events for B9, all ten for B10, all eight camps for B18,
+  all 46 peoples' encounters for B30). 82 world event lines, 213 talk pieces (1,043 lines said), 285 camp lines and
+  142 encounter texts.
+  - **Where the lines are**: B9 the world events' own defs in `Defs/WorldSituationDefs/` (82: start letters to four,
+    second lines for one-line beats, ending lines to three, for 22 world events); B10 `Defs/OutsiderTalkDefs/
+    Rimfolk_OutsiderTalks_WorldTold.xml` (75 pieces for 25 world events: theirs, heard of by another people, and over);
+    B16 `Rimfolk_OutsiderTalks_PeoplesDays.xml` and `_PeoplesDays2.xml` (138 pieces, six for each of the 23 peoples); B18
+    the camps' own defs in `Defs/CampDefs/Rimfolk_CampKinds_PeopleEvents*.xml` and `_Variety4.xml` (285 lines); B30 the
+    encounters' own defs in `Defs/EncounterDefs/` (142 texts). Code, for B10 only: a visitor of another people now hears
+    of the newest world event of another people (`FactsMath.SituationRank`, `Heard`, `AddHeard`; `Facts.Situations` in
+    `Text/Facts/FactsWorld.cs`): `heard`, `heard:bad`/`heard:good`, `heard:ws:DEFNAME`, {HEARD}, {HEARDPLACE},
+    {HEARDPEOPLE}; the talk's format header (`Rimfolk_OutsiderTalks_Greetings.xml`) and the tests' vocabulary
+    (`Tools/Tests/OutsiderTalkTests.cs`) name them, `Tools/Tests/FactsTests.cs` tests the rule.
+  - Decided: B16's other peoples by the conditions the talk already has (their war and how it stands with the colony, a
+    peace made lately, at war with nobody), no new code; a camp's help and moment lines only where they are said (the
+    enclave's pad and the Banner's company give no help, the field sickhouse's moments and six of 0.282.0's camps'
+    are never said); no beat line where a beat has no words now (an arrival or an incident alone); new camp arrivals
+    say nothing of cold or snow, and name gear only where the people's gear has it.
+  - Found here, fixed after (the entry "Fix: the camps' own words for their good turns and moments" above): help lines
+    of a camp's own for medicine, wood, mend and meat never showed, as `CampCarry`, `CampLife.DoHelp` and
+    `CampRequests.MendGear` told those by the shared `CC_Camp_Help_*` lines; moment lines no code said (the hostel's
+    [gift], the field sickhouse's [round] and [gift], the [carry] and [gift] of six of 0.282.0's camps).
+  - Not checked without the game: how the new lines read among the old ones in a real colony; a visitor of a third
+    people speaking of another people's world event; the other-peoples pieces with a people at war, at peace with all
+    and just after a peace.
+  - Try in the game: dev mode, "World variety: start one of the new world events now..." or any world event, then talk
+    with a visitor of its people and of another people (right-click, Talk with...); read the start and ending letters
+    of the gold fever, the levy, the market days or the bridge down; start a people's own camp from its event and watch
+    the bubbles and the arrival letter; let a visitor of one of the 23 peoples stay and talk (their day, their food,
+    their young, their town, the other peoples, the colony).
+  - Mods that would help: none; these are words only, with no graphics or sound to add, and no def of any mod is named.
 - 0.286.0, **Text variety: the gods' thin
   pools** (20 November 2026; the player on `docs/content-update-proposals.md`: "In general, I just want additional God
   events, more immersion, more just further also building up on the gods in general ... And then also, just variety", and
