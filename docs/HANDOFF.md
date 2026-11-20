@@ -121,6 +121,24 @@ most sense." So, in this order, three builds at a time:
      first with the game's own face (the steady face of 1: no headgear, the favourite colour behind, the mark of their
      people or the colony), needing no art, then the painted one from A or B where there is one. A setting for its size
      and to switch it off.
+  Then the player chose (20 November 2026): "while it's nice, to have, of course, as much of the game's items covered in
+  the visuals. That's just too much, and there's always going to be more from mods coming that the art probably can't
+  handle. I guess it should probably most likely be just a bigger version of the p[aw]n that you already get, and kind
+  of build on that what you already have ... you can't really have a sprite from every single thing ready. So you have
+  to work with what is already there. And I guess on the faces, you have more consistency. Across the different gears
+  and races and everything. So a good face engine, so to say, that does the face well and bigger already is probably a
+  huge improvement." So A, B and E (painted art) are dropped; the way is a face engine on the game's own drawing, which
+  fits every mod's gear, race and hair by itself:
+  - framing by the face: the camera centred on the pawn's own head (its race, body, age and size read from how the
+    game draws it), so a child, a big xenotype and a mod's race are framed alike;
+  - the steady face of 1: headgear off by default, the favourite colour behind, the same framing every time;
+  - drawn sharp: rendered at the size it is shown (and supersampled), never a small picture scaled up;
+  - the game's own directions: front for one portrait, the side views (east, west) for two people facing each other;
+  - Facial Animation (on in the list) draws its eyes and mouth into the game's own portrait, so its expressions come
+    with it;
+  - shown in G (above the inspect pane), letters and event cards, the colonist card and the who's who (F), with the
+    frame by standing and the crest drawn by the code (D, from the game's faction icons, no painted art).
+  The lead can't see the game: after a first build the player's screenshots decide sizes and framing.
   The player's picks wait: the style (painted oil, ink and wash, manuscript, or another), the tool they use, how many
   images a batch, and where to start (A for their own colonists first is the lead's suggestion).
 - **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
