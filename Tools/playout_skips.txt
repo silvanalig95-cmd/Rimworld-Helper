@@ -647,3 +647,7 @@ Rimfolk_Storyline_GraveMourners [option 0] done by the part's own code: the mour
 Rimfolk_Storyline_RaidersTribute [option 0] done by the part's own code: a colonist carries the silver out to the edge of the colony's land (DilemmaEffect_RaidersCampPrice, HappeningWorker_RaidersTribute.Start)
 Rimfolk_Storyline_WellDigger [option 0] done by the part's own code: the foreman walks to the gate and the lent colonist walks out with them (HappeningWorker_WellDigger, JobDriver_StorylineLentOut)
 Rimfolk_Storyline_WellRefugees [option 0] done by the part's own code: the refugees walk in to the gate and join the colony (HappeningWorker_WellRefugees, Arrivals.Join)
+Rimfolk_Dlm_WS_Apart [option 0] a rule kept while the plague lasts, not something done once: the colony kept apart is WorldApart (the sickness from travellers halved, no moments with visitors or traders, each group a little cooler)
+Rimfolk_Dlm_WS_Vigil [option 0] the vigil days are played out from code, one each week while the holy year lasts (WorldHomeBook, WorldQuestions.VigilDay: a DilemmaEffect_Vigil at the god's place, an altar or the gathering spot)
+Rimfolk_Dlm_WS_Sides [option 2] a refusal to take sides: the colony goes on dealing with whoever comes, as before
+Rimfolk_Dlm_WS_Mourning [option 0] done at once by DilemmaEffect_WorldMourning: the colonists' outer clothes are dyed dark grey on the map, and put back when the mourning ends (WorldHomeBook)

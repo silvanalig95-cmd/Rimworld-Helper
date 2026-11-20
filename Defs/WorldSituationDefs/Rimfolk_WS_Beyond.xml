@@ -46,6 +46,8 @@
       <li><incident>WandererJoin</incident><factor>1.3</factor></li>
       <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
       <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.4</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_ChildrenShelter</rimfolk><factor>3</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -274,6 +276,32 @@
         <chronicle>{PLACE} rebuilt after the great fire without the colony's help.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:artisans] The fire took the Kiln Guild's kilns at {PLACE}, and the guildhall with them. The masters are sifting the ashes for their marked work.</li>
+      <li>[their:traders] The fire at {PLACE} took the league's waystation and the goods in it. The waymaster is counting what is owed to whom.</li>
+      <li>[their:healers] The order's sickhouse at {PLACE} is full of the burned. The priors have run out of salve and are using honey and clean linen instead.</li>
+      <li>[their:herders] The fire at {PLACE} spread to the grass, and the herding folk drove their herd through the smoke to the river. They lost the winter hay.</li>
+      <li>[their:pilgrims] The fellowship's hostel at {PLACE} burned with the rest, and the palmers are sleeping in the street beside the townspeople.</li>
+      <li>[their:scholars] The archive at {PLACE} burned, and the copyists went into the fire for the books. The archivist says more was saved than lost, and nobody believes it.</li>
+      <li>[their:brokers] The fire took the enclave's market at {PLACE}, and the pad master is counting the losses to the last coin.</li>
+      <li>[their:fishers] The river folk at {PLACE} made a line from the river to the fire and passed buckets all night. The landing was saved, and not much else.</li>
+      <li>[their:hunters] The wardens kept the crossroads lantern by {PLACE} lit through the fire, so that people fleeing it could find the road out.</li>
+      <li>[their:sextons] The sextons at {PLACE} have not stopped digging since the fire. The bell rang for each of the dead.</li>
+      <li>[their:tamers] The Circuit's beasts at {PLACE} broke out of their pens in the fire, and the beast-riders are still bringing them back.</li>
+      <li>[their:salvagers] The Wheel was camped at {PLACE} when the fire came, and lost two carts. The yard boss says that is what comes of standing still.</li>
+      <li>[their:seers] The Conclave's tower at {PLACE} stood above the fire, and the readers watched the town burn. They are writing down how the wind turned.</li>
+      <li>[their:grovekeepers] The fire at {PLACE} reached the edge of the grove, and the Mossborn fought it with green branches and earth. The grove-wardens are counting the trees lost.</li>
+      <li>[their:mercenaries] The Banner's companies were the first into the fire at {PLACE}, and not all of them came out. The keeper of the Roll has new names to add.</li>
+      <li>[their:linesmen] The relay at {PLACE} burned, and the line went silent for a day. The linesmen are already putting up a new mast.</li>
+      <li>[their:drillers] The fire at {PLACE} reached the pit head, and the Union got everyone up from below before it took the hoist. The shift-captain counted them twice.</li>
+      <li>[their:citizens] The fire took the town hall at {PLACE}, and the Republic's records with it. The minister says the census will be taken again from the beginning.</li>
+      <li>[their:crew] The fire at {PLACE} burned right up against the hull, and the Hollow Fleet sealed it and waited it out. The rest of the town had nowhere like that to go.</li>
+      <li>[their:editors] The fire reached the Helix Works' lab at {PLACE}, and the vats went cold. The sequencers saved what samples they could carry.</li>
+      <li>[their:mechanitors] The Lattice's mechs walked into the fire at {PLACE} to pull people out. Some of them came out melted.</li>
+      <li>[their:listeners] The Choir at {PLACE} sang through the night of the fire to keep people calm. Their ring was spared, and they have opened it to the burned-out.</li>
+      <li>[their:vaultfolk] The Sunken Vault at {PLACE} shut its door as the fire came and let it pass overhead. They have opened it now to the people who lost their homes.</li>
+    </theirs>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A blood feud ===================== -->
@@ -318,6 +346,8 @@
     <modifiers>
       <li><rimfolk>Council_Evt_Quarrel</rimfolk><factor>0.3</factor></li>
       <li><rimfolk>Council_Evt_Peacemaker</rimfolk><factor>2</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_QuarrelTruce</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -736,6 +766,14 @@
         <chronicle>{NAME} crossed the sky and was gone.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:scholars] The society at {PLACE} has readers up on the archive roof every night, writing down where {NAME} stands against the stars.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:scholars] {NAME} is gone, and the society at {PLACE} has bound the readers' notes into a book of its own, to wait for the next one.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A bumper harvest ===================== -->
@@ -972,6 +1010,9 @@
       <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.6</factor></li>
       <li><incident>HerdMigration</incident><factor>1.5</factor></li>
       <li><rimfolk>Council_Evt_Stray</rimfolk><factor>2</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_HerdStray</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_SickAnimal</rimfolk><factor>1.5</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -1094,6 +1135,14 @@
         <chronicle>The droves of {FACTION} passed by on the way to market.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:herders] For the herding folk the drove is the year's great work: every rider of {PLACE} is on the road with the herd, and the count at dusk is called out at every camp along the way.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:herders] The herding folk have sold their herd beyond {PLACE} and are riding home lighter, with the camp elder carrying the silver.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

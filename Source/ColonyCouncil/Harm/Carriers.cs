@@ -245,7 +245,8 @@ namespace ColonyCouncil
                     if (!seenLords.Add(lord.loadID)) continue;
                     if (seenLords.Count > 300) seenLords.Clear();
                     if (!PlagueOver(lord.faction, out bool shut)) continue;
-                    float chance = Harm.Chance(HarmKinds.GateSickness, HarmFiveMath.CarrierChance(CarrierKind.Gate, shut, Quarantined(map)));
+                    // Kept apart from travellers at the council's word (World/Home/WorldHome.cs, B26): half as often.
+                    float chance = Harm.Chance(HarmKinds.GateSickness, WorldHomeMath.ApartChance(HarmFiveMath.CarrierChance(CarrierKind.Gate, shut, Quarantined(map)), WorldApart.Apart));
                     // The roll is the group's own, so a reload rolls it the same way.
                     if (Rand.ValueSeeded(lord.loadID * 7919 + 211) >= chance) continue;
                     var trader = lord.LordJob is LordJob_TradeWithColony ? TraderCaravanUtility.FindTrader(lord) : null;
@@ -264,7 +265,7 @@ namespace ColonyCouncil
             DebugCourier = false;
             bool shut = false;
             if (!debug && !PlagueOver(f, out shut)) return;
-            float chance = Harm.Chance(HarmKinds.CourierSick, HarmFiveMath.CarrierChance(CarrierKind.Courier, shut, Quarantined(map)));
+            float chance = Harm.Chance(HarmKinds.CourierSick, WorldHomeMath.ApartChance(HarmFiveMath.CarrierChance(CarrierKind.Courier, shut, Quarantined(map)), WorldApart.Apart));
             if (!debug && !Rand.Chance(chance)) return;
             var courier = people.FirstOrDefault(p => p != null && p.RaceProps.Humanlike);
             if (courier == null || Carrying(courier)) return;

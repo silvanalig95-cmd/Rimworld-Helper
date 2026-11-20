@@ -559,7 +559,8 @@ namespace ColonyCouncil
             int n = DropAll(t, from, at, down);
             t.toUnload.Remove(from);
             t.unloaded += n;
-            if (by != null && n > 0) CourierWords.Say(by, t, "deliver");
+            // The road's news when a world event runs on it (World/Home/WorldHome.cs, B3), else their usual word.
+            if (by != null && n > 0 && !RoadNews.Say(by, t.faction, by.MapHeld)) CourierWords.Say(by, t, "deliver");
             // Set down short of the mailbag for want of a way in: the message says why, once a trip, the porter standing by it.
             if (down != null && n > 0)
             {

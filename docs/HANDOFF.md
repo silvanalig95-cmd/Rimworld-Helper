@@ -87,7 +87,7 @@ most sense." So, in this order, three builds at a time:
      released 0.278.0);
      council (A1, A2, A5, A6, A21), started 20 November; the land and its life (C19, C20, C21, C22, C24, C28, C30);
      wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29); the world brought home (B1, B2, B3, B23,
-     B25, B26, B32); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
+     B25, B26, B32; built, not released: the entry "The world brought home" above the newest release line); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
      B11, B13, B19, B27).
   3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
      events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it.
@@ -606,6 +606,83 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The world brought home** (20
+  November 2026; the player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You
+  can go ahead with this in the order you think makes most sense ... more immersion ... the relations between pawns, the
+  kind of events that generated from it", and "first do all the integrations that you proposed in your document before we
+  add additional content variety"). Part B's first integrations: B1, B2, B3, B23, B25, B26 and B32, each marked **Built**
+  in the proposals doc with what was decided. DESIGN.md "The world brought home" (after the gods among the people) has
+  every rule; README "The world brought home" (under World events); the Almanac's world events page, a section of the same
+  name (keywords unchanged).
+  - **B1, world events in the peoples' own ways.** When a world event falls on one of Rimfolk's 23 peoples, its start
+    letter and its ending's letter add a paragraph in their ways (`WorldSituationDef.theirs`, `theirEnds`; told only when
+    a line of their calling fits): one start and one ending for each of the 33 world events that prefer a people, and a
+    start for every people in each of the six hard ones (plague, famine, hard winter, flood, great fire, mourning). 205
+    lines, the world events' flavour style.
+  - **B2, world events steer the quests and storylines offered.** 21 world events raise the 17 home quests and storyline
+    first parts of the proposal's table; while one is cast, the world event's own people are four times as likely to ask,
+    and its first letter is picked with the world event's tags and prefers the 41 lines written for the season
+    ("With the gray cough in Ashford, the order's sickhouse there is full..."; `{WSNAME}`, `{WSPLACE}`).
+  - **B3, messengers tell the road's news.** A courier setting the bag down at the mailbag (or handing an answer over),
+    and the post rider, the mail run or any carrier dropping the post's bag, says a sentence about a world event on their
+    road three times in four (44 lines in `Rimfolk_CourierLines`, tagged `[road]`); else their usual word.
+  - **B23, what the colony is known for draws the quests and camps that fit it**: the proposal's table in
+    `RenownMath.Events` and a new `RenownMath.Camps`, read by `CampKindDef.WeightNow`.
+  - **B25, encounters of the region's hard times**: fourteen, each only in its world event's season
+    (`EncounterDef.situations`) and, where it says something happens, only when it is true on the map and played out as
+    told (`EncounterDef.scene`: food slipped into a visitor's pack, a pilgrim kneeling at the colony's holy place, a carter
+    warming their hands at the fire, two visitors of a war's sides at one fire, the comet watched under the open sky, a
+    drover's dog sent after the hens, a visitor humming).
+  - **B26, council questions the world brings home**: five (`DilemmaDef.situations`), flavour style, each answer doing
+    what it says: kept apart from travellers in a plague (the sickness from visitors and couriers halved, no small moments
+    with them, each group a point cooler), a vigil day each week in a holy year (played out from code, belief and mood
+    after each), which side to back in a war between neighbours (only that side's asks come), mourning colours for a
+    neighbour's dead (outer clothes dyed dark grey, put back when it ends), a fair day at home (a gathering and the day off).
+  - **B32, the region's great events in the colony's book.** Ten great world events, each tied to one or two gods; while
+    one is new, the most devout who holds such a god says whose doing it was, the book keeps it as their belief in its old
+    voice under their name for the god, a rival believer and a doubter answer, as for a named season (C18).
+  - Code map: `Source/ColonyCouncil/World/Home/` (all new: `WorldHomeMath` pure and linked in the tests; `WorldHome.cs`
+    with `WorldSeason`, `WorldSteer`, `RoadNews`, `WorldApart`, `GreatTaken`; `WorldQuestions.cs` the questions' worker,
+    context and effects and the vigil and dye play; `WorldScenes.cs` the encounters' scenes; `WorldHomeBook` saved, the vows
+    and the dyed clothes, modelled in `Tools/save_estimate.py`; `WorldHomeDebug.cs`). Hooks: `WorldSituationDef` (`theirs`,
+    `theirEnds`), `WorldSituationWorker.Theirs`, `WorldSituations` (the start and ending letters, `WorldHome.Hourly` at the
+    world events' own tick, no new offset), `IncidentWorker_Happening` (the cast, `TextTags`, `Pick`), `HappeningContext.AddArgs`,
+    `Storylines.Line`, `Arrivals.Friendly`, `MissionPeoples.Grateful`, `CourierTracker`, `NeighbourLetters.Delivered`,
+    `MailIn.Delivered`, `Carriers` (the gate and the courier), `CampKindDef.WeightNow`, `Renown.CampFactor`,
+    `RenownMath.Events`/`Camps`, `EncounterDef` (`situations`, `scene`) and the encounters' pool, cast, words and telling,
+    `DilemmaDef.situations` and the council's pool. Defs: the world events' files (the paragraphs, 21 modifier blocks, the
+    war's side flags on four beats), the 17 first parts' new lines in `Defs/MissionDefs/`, `Defs/EncounterDefs/
+    Rimfolk_Encounters_WorldTimes.xml`, `Defs/DilemmaDefs/Rimfolk_Dilemmas_WorldHome.xml`, `Defs/FlavorPoolDefs/
+    Rimfolk_Pool_WorldHome.xml`, `Rimfolk_CourierLines.xml` (the road's news), `Defs/Misc/Rimfolk_WorldHome_Misc.xml` (the
+    kneeling and warming jobs, the vigil's mood); words `Languages/English/Keyed/Rimfolk_WorldHome.xml`. The DefValidator
+    knows `{WSNAME}`, `{WSPLACE}`, `{SITUATIONPEOPLE}`. Tests `Tools/Tests/WorldHomeTests.cs`; the great events' pool in
+    `ImmersionTests`; `RenownTests` reads the missions' defs too; `Tools/playout_skips.txt` has the four answers that are a
+    rule kept, played from code or a refusal.
+  - Decided here (open in the proposals): see each item's **Built** line there; in short, B1's paragraph is added under the
+    letter's own text, so it always shows when one fits; B2's people four times as likely; B3 three times in four, every
+    messenger who sets the bag down; B25's five more moments of the same seasons; B26's "keep the gate quiet" stays in the
+    colonist's words and the answer does the colours; B32 takes ten great world events.
+  - Harm: none new (kept apart lowers the plague's carriers).
+  - Not run here (none of it could be): every letter and line in the game (the paragraphs under the letters, the steered
+    first letters in the Quests tab, the road's news over a courier's head), the steered people actually chosen, the
+    scenes' jobs on visitors under their lords (the kneeling, the warming, the dog's run, the hens' scatter), the dyed
+    clothes and their return, the vigil's play-out from code, the war's beats held back after a side is backed, and how
+    often each comes in a real colony.
+  - Try in the game (dev mode, "Rimfolk"): 1. "Start world event..." a plague (or a famine, a great fire) falling on one of
+    Rimfolk's peoples: the start letter ends with their paragraph; "End world event..." for the ending's. 2. With a plague,
+    a drought or the assize running, "World home: a quest a running world event makes likelier, now..." and read its
+    first letter. 3. Select a courier or a visitor and "World home: the road's news...", or wait for the post. 4. With the
+    world event running and visitors on the map, "World home: an encounter of the region's hard times now..." (the scene
+    must be true: a holy place for the kneeling, a lit fire for the warming, hens and a visitor's dog). 5. "World home: a
+    council question the world brings home now..." for each of the five (the plague, a holy year, a war between neighbours
+    with a colonist tied to one side, a mourning, a great fair); then "the next vigil day now" and "the mourning colours
+    put back now". 6. With the gods on and a believer at home, start a great one and "World home: a great world event
+    taken for a god's doing now", then read the colony's book.
+  - Mods that would help: Dark Ages: Beasts and Monsters ([3472275628](https://steamcommunity.com/sharedfiles/filedetails/?id=3472275628),
+    1.5 to 1.7, in their list but off) for more drovers' dogs and herds; P-Music
+    ([725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005), 1.0 to 1.7, off, kept up) for the fair
+    day and the season of songs; Tavern ([3775694305](https://steamcommunity.com/sharedfiles/filedetails/?id=3775694305),
+    1.6 and 1.7, off) for the fair day's furniture. Whether each is still kept up was not checked here.
 - 0.278.1, **The gods' integrations, part 1:
   festivals, sacred beasts and art** (20 November 2026; the player, on `docs/content-update-proposals.md`: "your content
   proposal overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I

@@ -654,6 +654,14 @@
         <chronicle>{TALE} came into use past the colony's gate.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] The league has written the road past the colony into its books, and its road riders now count it as one of their own to keep.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:traders] The league keeps the road past the colony on its books, and its road riders know the colony's gate by sight.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A wardens' post by the colony ===================== -->
@@ -833,6 +841,14 @@
         <chronicle>{FACTION}'s wardens put a post on the road near the colony.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] Among the league a waystation is a promise kept with fire and spear, and the waymaster at {PLACE} would set the colony's name to this one.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:traders] The waymaster at {PLACE} has written the post's season into the league's books, with the colony's part in it beside the date.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A crossroads town ===================== -->

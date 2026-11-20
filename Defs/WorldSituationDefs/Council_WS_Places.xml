@@ -116,6 +116,14 @@
         <chronicle>Settlers of {FACTION} founded {PLACE}.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:vaultfolk] The Sunken Vault has sent its first people up to live under the open sky at {PLACE}, and the warden has them answer the roll call every morning, as below.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:vaultfolk] The new town at {PLACE} has its roll call now, every number answered, and the Sunken Vault calls it settled.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A town abandoned ===================== -->
@@ -370,6 +378,14 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] The waymaster at {PLACE} has every road rider out, and the league's waystations stay lit all night for the carts that keep coming.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:traders] The league's carts are fewer on the road again, and the waymaster at {PLACE} is counting what the season brought in. It was a good one.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A great fair ===================== -->
@@ -422,6 +438,9 @@
       <li><rimfolk>Council_Evt_Storyteller</rimfolk><factor>1.5</factor></li>
       <li><rimfolk>Council_Evt_Champion</rimfolk><factor>1.5</factor></li>
       <li><rimfolk>Council_Evt_HarvestFair</rimfolk><factor>0.2</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Mission_Musicians</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_WeddingPiece</rimfolk><factor>2</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -499,6 +518,14 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:tamers] The Circuit has set up its ring at {NAME}, and anyone may stand in it against one of their beasts. They say a stranger who beats them is the best thing a fair can bring.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:tamers] The Circuit has taken its ring down at {PLACE}, and the beast-riders will be talking about the bouts all the way home.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A great pilgrimage ===================== -->
@@ -536,6 +563,8 @@
       <li><rimfolk>Council_Evt_Storyteller</rimfolk><factor>1.5</factor></li>
       <li><rimfolk>Council_Evt_FortuneTeller</rimfolk><factor>1.5</factor></li>
       <li><group>Visitors</group><factor>1.3</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_RelicRest</rimfolk><factor>3</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -630,6 +659,14 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:pilgrims] The fellowship has opened every hostel on the road to {PLACE}, and the hostellers sleep on the floor so that the footsore can have the beds.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:pilgrims] The palmers are coming back from {PLACE} with shells on their hats, and the fellowship's hostels are emptying for another generation.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A silver rush ===================== -->
@@ -772,6 +809,14 @@
         <chronicle>The silver rush moved on.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:drillers] The Union has sent its own crews to the creek at {PLACE}, with every shaft shored right before anyone goes down, whatever the prospectors from outside are doing.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:drillers] The rush is over, and the Union's crews at {PLACE} have filled in their shafts and come home. The shift-captain says everyone came up at the end.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

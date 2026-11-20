@@ -867,7 +867,8 @@ namespace ColonyCouncil
                 foreach (var t in tags)
                     if (!t.NullOrEmpty())
                         context.Add(t);
-            string pick = Flavor.Pick(lines, context);
+            // A first part a world event steered here: the lines written for its season first (World/Home/, B2).
+            string pick = Flavor.Pick(WorldSteer.Prefer(lines, context), context);
             if (pick.NullOrEmpty()) return null;
             if (item != null) pick = Texts.Fill(pick, ("ITEM", item));
             if (days != null) pick = Texts.Fill(pick, ("DAYS", days));

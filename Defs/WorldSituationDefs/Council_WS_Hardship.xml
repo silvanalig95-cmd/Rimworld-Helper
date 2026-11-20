@@ -65,6 +65,10 @@
       <li><group>Visitors</group><factor>0.4</factor><whileFlag>quarantine</whileFlag></li>
       <li><incident>Disease_Plague</incident><factor>0.5</factor><whileFlag>quarantine</whileFlag></li>
       <li><incident>Disease_Flu</incident><factor>0.7</factor><whileFlag>quarantine</whileFlag></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_SicknessMedicine</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_Healer</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_OrderMedicine</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -341,6 +345,32 @@
         <chronicle>{NAME} ran its course; the colony kept its gate shut.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] The league has shut its waystation at {PLACE} to every caravan. The road riders carry nothing now but news of {NAME}, from one closed gate to the next.</li>
+      <li>[their:healers] The order's sickhouse at {PLACE} is full to the doors, and the priors are asking for linen as well as medicine. The postulants sleep in shifts beside the beds.</li>
+      <li>[their:herders] The herding folk have moved their camp at {PLACE} upwind of the sick, and their riders leave food at a marked stone rather than come in. Nobody shares a fire this season.</li>
+      <li>[their:pilgrims] The fellowship has closed its hostel at {PLACE} for the first time anyone remembers. The palmers who were on the road are sleeping in the open rather than carry {NAME} to another door.</li>
+      <li>[their:scholars] The archive at {PLACE} has sealed its reading rooms, and the copyists are writing out remedies instead of histories. The archivist sends a list of the old cures to anyone who asks.</li>
+      <li>[their:brokers] The enclave has stopped all landings at {PLACE} and is selling medicine at three times its price. The pad master says the price is the price.</li>
+      <li>[their:fishers] The ferry at {PLACE} has stopped, and the boatmen are taking the sick downriver to wherever will have them. They say the water carried {NAME} in.</li>
+      <li>[their:hunters] The wardens have hung a red lamp beside the crossroads lantern by {PLACE}, their sign for sickness on the road. The keeper of the book is writing down the dead instead of the beasts.</li>
+      <li>[their:sextons] The bell at the grave-garden of {PLACE} has rung every day this week. The sextons are digging ahead now, and it has not been enough.</li>
+      <li>[their:tamers] The Circuit has called off its bouts at {PLACE} and turned the ring into a sick-ward. The beasts are kept in the far pens, away from the coughing.</li>
+      <li>[their:salvagers] The Wheel has left {PLACE} behind and pulled its carts out onto the open road, the sick and the well in separate wagons. The yard boss says standing still is how the fever catches you.</li>
+      <li>[their:seers] The readers at {PLACE} say they saw {NAME} coming in the glass, and nobody listened. Now the tower is a sickhouse, and the vials stand covered.</li>
+      <li>[their:grovekeepers] The Mossborn have carried their sick into the oldest part of the grove at {PLACE}, where they say the air is cleanest. The grove-wardens burn green branches at its edge day and night.</li>
+      <li>[their:mercenaries] The Banner has shut its fort at {PLACE} and turned away a contract for the first time in years. The keeper of the Roll is adding names to it that no fight put there.</li>
+      <li>[their:artisans] The Kiln Guild has let its kilns go cold at {PLACE}, the first time since the guildhall was built. The journeymen are nursing their masters instead.</li>
+      <li>[their:linesmen] The Signal Line carries the count of the sick at {PLACE} from relay to relay every morning. The relay-keepers have not left their masts in a week.</li>
+      <li>[their:drillers] The Union has stopped every shift at {PLACE}, and the pit is a sickhouse now, the one place cool and dry enough. The shift-captains count heads morning and evening.</li>
+      <li>[their:citizens] The Republic has declared an emergency at {PLACE}, and the radio reads out the count of the sick each evening. The minister has ordered every sick house marked on the door.</li>
+      <li>[their:crew] The Hollow Fleet has sealed its hull at {PLACE} deck by deck. The first officer has put the sick in the old sleeper bays, the only place that could be closed off.</li>
+      <li>[their:editors] The Helix Works has shut its lab at {PLACE} to all but its own. The sequencers say they are working on {NAME} itself, and nobody is to bother them until they have something.</li>
+      <li>[their:mechanitors] The Lattice has set its mechs to carrying the sick at {PLACE}, since mechs cannot catch it. The link-wardens are going without sleep to keep the links steady.</li>
+      <li>[their:listeners] The Choir has stopped its singing at {PLACE}, because the cantor says the sick need the quiet more. The hum-walkers go between the houses with water instead.</li>
+      <li>[their:vaultfolk] The Sunken Vault has closed its door at {PLACE} and gone below, as its people did once before. The warden says nobody comes up until {NAME} has passed.</li>
+    </theirs>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Famine ===================== -->
@@ -617,6 +647,32 @@
         <chronicle>The famine among {FACTION} ended; the colony kept its stores to itself.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] The league's caravans are carrying grain to {PLACE} at any price they can get, with guards on every cart. A sack of meal is worth its weight in silver on the road now.</li>
+      <li>[their:healers] The sickhouse at {PLACE} is feeding the hungry from its own garden, and the priors have stopped taking their evening meal so the ward can have it.</li>
+      <li>[their:herders] The herding folk at {PLACE} are selling their herds at a loss to buy grain, and the camp elders eat last, as their custom is. The count at dusk gets smaller every week.</li>
+      <li>[their:pilgrims] The hostel at {PLACE} still keeps its open door, but there is only thin soup behind it. The hosteller sends the palmers out to beg for the hungry instead of for themselves.</li>
+      <li>[their:scholars] The society at {PLACE} has sold half its rare books to buy grain. The archivist says a full library is no use to the starving.</li>
+      <li>[their:brokers] The enclave at {PLACE} sells food at prices only its own people can pay, and the market is under guard. The pad master calls it the cost of being stranded.</li>
+      <li>[their:fishers] The river folk at {PLACE} are fishing day and night, and the landing master shares out the catch a piece to each. It is not enough for everyone.</li>
+      <li>[their:hunters] The wardens at {PLACE} are hunting further out than they have in years, and the keeper of the book says the game is thinning. The lodge eats what they bring back and nothing else.</li>
+      <li>[their:sextons] The sextons at {PLACE} say they have more work this season than in any plague. The bell is rung for the hungry dead as for any others.</li>
+      <li>[their:tamers] The Circuit at {PLACE} feeds its beasts before its people, as its ways say. Some of the ring's people have gone thin to keep their animals strong.</li>
+      <li>[their:salvagers] The Wheel has stripped its yard at {PLACE} and traded the scrap for food. The yard boss wants to move on, but nobody has the strength to pull the carts.</li>
+      <li>[their:seers] The Conclave at {PLACE} says the glass foretold a bad harvest and nobody made ready for it. The tower has opened its stores to the town, and they will not last.</li>
+      <li>[their:grovekeepers] The Mossborn of {PLACE} are living on what the grove gives: nuts, roots and bark. The grove-wardens have forbidden cutting a single tree for firewood, whatever the hunger.</li>
+      <li>[their:mercenaries] The Banner at {PLACE} has taken a contract for food instead of silver, the first in its history. The keeper of the Roll says it will be paid for in blood all the same.</li>
+      <li>[their:artisans] The guild's masters at {PLACE} are selling their best work for grain, and the journeymen go without supper. A masterwork buys a week's bread there now.</li>
+      <li>[their:linesmen] The Signal Line passes on the price of grain at {PLACE} every morning, and every morning it is higher. The relay-keepers are eating the last of the station stores.</li>
+      <li>[their:drillers] The Union has cut the shifts at {PLACE} to half a day, because nobody has the strength for more. The shift-captain shares out the bread by headcount at the pit head.</li>
+      <li>[their:citizens] The Republic has rationed the bread at {PLACE}, and the census is used to count out the portions. There is a queue outside the minister's door every morning.</li>
+      <li>[their:crew] The Hollow Fleet's stores at {PLACE} are down to old ship's rations. The first officer has them counted out by the gram.</li>
+      <li>[their:editors] The Helix Works at {PLACE} is growing food in its vats instead of samples. The sequencers say it tastes of nothing, and it keeps people alive.</li>
+      <li>[their:mechanitors] The Lattice at {PLACE} has set every mech it has to working the fields. The links hold, but the fields give little.</li>
+      <li>[their:listeners] The Choir at {PLACE} is fasting together, as its ways say, so that the hungry can eat. The cantor says the hum is quieter on an empty stomach.</li>
+      <li>[their:vaultfolk] The Sunken Vault at {PLACE} has opened its old stores of sealed rations. The warden says they were kept for the end of the world, and this is close enough.</li>
+    </theirs>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A hard winter ===================== -->
@@ -662,6 +718,8 @@
       <li><rimfolk>Council_Evt_Thaw</rimfolk><factor>0.2</factor></li>
       <li><rimfolk>Council_Evt_WarmSpell</rimfolk><factor>0.3</factor></li>
       <li><group>Visitors</group><factor>0.7</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Mission_SeedKept</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -769,6 +827,32 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] The league's road through {PLACE} is under snow, and the waystation is full of caravans waiting for it to clear. The waymaster is selling them firewood at a good price.</li>
+      <li>[their:healers] The sickhouse at {PLACE} is full of frostbite and chest colds. The priors have the night watch keeping every fire alight.</li>
+      <li>[their:herders] The herding folk brought their herd down to the winter camp at {PLACE} early, and the grass is under the snow. The camp elder counts the hay every night.</li>
+      <li>[their:pilgrims] The palmers on the road have taken shelter at the fellowship's hostel at {PLACE}, and the hosteller has turned nobody away. There are people sleeping in the stable.</li>
+      <li>[their:scholars] The society at {PLACE} is burning its least useful books to keep warm. The archivist chooses which ones, and does not sleep well.</li>
+      <li>[their:brokers] The enclave's landing pad at {PLACE} is iced over, and nothing has come down in weeks. The pad master is selling heaters at whatever price people will pay.</li>
+      <li>[their:fishers] The river at {PLACE} has frozen over, and the river folk are cutting holes in the ice to fish. The ferry is pulled up on the bank until spring.</li>
+      <li>[their:hunters] The wardens keep the lantern at the crossroads by {PLACE} lit through the long nights, so that travellers caught in the snow can find their way to the lodge.</li>
+      <li>[their:sextons] The ground at the grave-garden of {PLACE} is frozen hard, and the winter's dead wait in the bell-house for the thaw. The sextons keep watch over them.</li>
+      <li>[their:tamers] The Circuit has brought its beasts in from the ring at {PLACE} and keeps them in with the people, for the warmth. The ring-keeper says the animals mind it less than the people do.</li>
+      <li>[their:salvagers] The Wheel's carts are stuck at {PLACE} with snow over the axles. The yard boss hates standing still, but nobody is moving them before the thaw.</li>
+      <li>[their:seers] The Conclave at {PLACE} says the glass has shown nothing but cold for weeks. The readers keep their vials wrapped against the frost.</li>
+      <li>[their:grovekeepers] The Mossborn at {PLACE} are clearing the snow off the youngest trees by hand. The grove-wardens say a heavy snow breaks more trees than any axe.</li>
+      <li>[their:mercenaries] The Banner's fort at {PLACE} is snowed in, and the companies sit idle. The keeper of the Roll says a winter without fighting has its own losses.</li>
+      <li>[their:artisans] The kilns at {PLACE} are the only warm places in the town, and the guild has opened the guildhall to anyone who needs warming.</li>
+      <li>[their:linesmen] The cold has brought down two masts on the line by {PLACE}, and the linesmen are climbing the rest in the ice to keep them working.</li>
+      <li>[their:drillers] The pit at {PLACE} is warmer than the town, and half of {FACTION} are sleeping below ground. The shift-captain counts them in each night.</li>
+      <li>[their:citizens] The Republic has opened the town hall at {PLACE} as a warm room for anyone without fuel. The radio reads out where the heated rooms are each evening.</li>
+      <li>[their:crew] The hull at {PLACE} holds its heat better than any house, and the Hollow Fleet has taken in the town's old and sick. The first officer runs it like a ship.</li>
+      <li>[their:editors] The Helix Works at {PLACE} is keeping its vats warm before anything else. The sequencers say the cold would undo years of work.</li>
+      <li>[their:mechanitors] The Lattice's mechs at {PLACE} clear the roads of snow day and night. The link-wardens say the cold is hard on them, and they keep going.</li>
+      <li>[their:listeners] The Choir at {PLACE} keeps singing through the long nights, to keep the cold out of people's minds, they say. The cantor takes the darkest hours.</li>
+      <li>[their:vaultfolk] The Sunken Vault at {PLACE} has gone below for the winter, where it is warm. The surface-runners come up only for firewood.</li>
+    </theirs>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Locusts ===================== -->
@@ -1091,6 +1175,36 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:fishers] At {PLACE} the river is in the lower houses, and the boatmen are carrying people out of their own landing by boat. The landing master says the river has always taken its share, but never this much.</li>
+      <li>[their:traders] The league's road to {PLACE} is under water, and caravans wait at the waystation for it to go down. The road riders swim their horses across with the post.</li>
+      <li>[their:healers] The sickhouse at {PLACE} has moved its sick to the upper floor, and the priors are boiling every drop of water. After a flood, they say, comes the flux.</li>
+      <li>[their:herders] The herding folk drove their herd to the high ground above {PLACE}, but the water took some of it. The count at dusk was short.</li>
+      <li>[their:pilgrims] The fellowship's hostel at {PLACE} stands on a rise, and it is full of people from the flooded houses. The hosteller has given up her own bed.</li>
+      <li>[their:scholars] The water got into the archive at {PLACE}, and the copyists are drying pages on lines strung across every room. The archivist is deciding which books are lost.</li>
+      <li>[their:brokers] The enclave at {PLACE} is selling pumps and dry goods at three times their price. The pad master says nobody else has any.</li>
+      <li>[their:hunters] The wardens at {PLACE} are out in boats looking for the stranded. The keeper of the book writes down every name they bring back.</li>
+      <li>[their:sextons] The flood at {PLACE} broke through the grave-garden, and the sextons are bringing back what the water moved. The bell has not stopped all day.</li>
+      <li>[their:tamers] The Circuit's ring at {PLACE} is under water, and the beast-riders swam the animals out one by one. Not all of them made it.</li>
+      <li>[their:salvagers] The Wheel has come to {PLACE} for what the flood left behind, and the yard boss pays fair for it. The townspeople are glad of the silver.</li>
+      <li>[their:seers] The Conclave says the glass at {PLACE} showed the rain coming, and the warning went out too late. The readers are marking how high the water rose.</li>
+      <li>[their:grovekeepers] The water has stood in the grove at {PLACE} for days, and the grove-wardens fear for the oldest trees. Some of their roots will rot.</li>
+      <li>[their:mercenaries] The Banner has sent its companies to dig the floodbanks at {PLACE}, unpaid. The keeper of the Roll says some fights are with water.</li>
+      <li>[their:artisans] The flood put out the kilns at {PLACE} and filled the guildhall with mud. The journeymen are digging it out by hand.</li>
+      <li>[their:linesmen] The relay at {PLACE} stands in water, and the relay-keeper is passing messages on from the roof. The line is still open.</li>
+      <li>[their:drillers] The flood has filled the pit at {PLACE}, and the Union has every pump it owns working on it. The shift-captain says it will be weeks before anyone goes down again.</li>
+      <li>[their:citizens] The Republic has called out every citizen at {PLACE} to fill sandbags. The radio reads out which streets are under water.</li>
+      <li>[their:crew] The Hollow Fleet has sealed its hull at {PLACE} against the water, and the first officer has taken the flooded families aboard.</li>
+      <li>[their:editors] The water has got into the Helix Works' lab at {PLACE}, and the sequencers are saving what samples they can.</li>
+      <li>[their:mechanitors] The Lattice has sent its mechs into the water at {PLACE} to pull out the stranded. The link-wardens hold the links from the rooftops.</li>
+      <li>[their:listeners] The Choir sings from its ring above the water at {PLACE} every evening, and the people in the flooded houses can hear it.</li>
+      <li>[their:vaultfolk] The Sunken Vault has shut its door at {PLACE} against the water, and the warden says it will hold. Its people come up through the old shaft to help.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:fishers] The water has gone down at {PLACE}, and the river folk are clearing the mud out of the landing. The ferry is running again, and the boatmen take the flooded families across for nothing.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

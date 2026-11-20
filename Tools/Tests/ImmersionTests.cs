@@ -30,6 +30,8 @@ public static class ImmersionTests
         // The gods among the colony's people (Gods/Among/).
         "Rimfolk_Pool_GodsAmong_Fisher", "Rimfolk_Pool_GodsAmong_Keeper", "Rimfolk_Pool_GodsAmong_RaiderCry", "Rimfolk_Pool_GodsAmong_Grave", "Rimfolk_Pool_GodsAmong_Season",
         "Rimfolk_Pool_GodsAmong_Midwinter",
+        // The region's great events taken for a god's doing (World/Home/WorldHome.cs, GreatTaken).
+        "Rimfolk_Pool_WorldHome_Great",
         // The family's days together (Social/FamilyBonds.cs).
         "Council_Pool_PlayFamilySupper", "Council_Pool_SaySiblingClose", "Council_Pool_SaySiblingRival",
         // Habits shown on the map (Immersion/QuirkHabits.cs, HabitBubbles.cs).

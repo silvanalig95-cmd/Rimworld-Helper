@@ -300,6 +300,14 @@
         <chronicle>{NAME} went on over the hills.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:pilgrims] The palmers of the fellowship walk beside {NAME} on the road, as they would beside any pilgrim, and the hostels give her followers a place to sleep.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:pilgrims] The fellowship's palmers have gone back to their own roads, and the hostel at {PLACE} speaks of {NAME} as one more pilgrim who passed through.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== An old vault opened ===================== -->
@@ -558,6 +566,14 @@
         <chronicle>{NAME} was stripped bare.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:scholars] The society has sent its best copyists to the vault above {PLACE} with ink and lamps. The archivist wants every word on its walls written down before anyone touches anything.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:scholars] The society's copyists have come back from the vault with boxes of pages, and the archive at {PLACE} has given them a room of their own.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Markets closed ===================== -->
@@ -602,6 +618,8 @@
       <li><incident>TraderCaravanArrival</incident><factor>1.3</factor><unlessFlag>joined</unlessFlag></li>
       <li><incident>TraderCaravanArrival</incident><factor>0.8</factor><whileFlag>joined</whileFlag></li>
       <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_QuarrelTruce</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>

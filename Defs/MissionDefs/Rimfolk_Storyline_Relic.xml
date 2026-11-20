@@ -30,6 +30,8 @@
         <texts>
           <li>[fellowship] A group of {COUNT} pilgrims of {FACTION}, led by {GIVER}, is walking from shrine to shrine with a relic of their faith. They ask to rest at the colony for a few days.</li>
           <li>[!fellowship] A group of {COUNT} pilgrims of {FACTION}, led by {GIVER}, is on its way to a holy place with a relic of their faith. They ask to rest at the colony for a few days.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:faith] A group of {COUNT} pilgrims of {FACTION}, led by {GIVER}, is on the road for {WSNAME} with a relic of their faith. They ask to rest at the colony for a few days.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

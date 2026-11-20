@@ -114,6 +114,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("world situations", e);
             }
+            // What the running world events bring home: kept apart, the great ones in the book, the vows (World/Home/).
+            WorldHome.Hourly(t);
         }
 
         /// <summary>
@@ -375,6 +377,9 @@ namespace ColonyCouncil
                 using var began = History.Situation(s, "began");
                 string body = worker.Line(def.texts, s) ?? "";
                 string text = body;
+                // In the people's own ways, when it is about one of Rimfolk's peoples (World/Home/, B1).
+                string theirs = worker.Theirs(def.theirs, s);
+                if (!theirs.NullOrEmpty()) text += "\n\n" + theirs;
                 string extra = worker.StartExtra(s);
                 if (!extra.NullOrEmpty()) text += "\n\n" + extra;
                 string summary = WorldSituationsPanel.Summary(s);
@@ -745,6 +750,8 @@ namespace ColonyCouncil
                         }
                         string label = worker.Line(ending.titles, s) ?? s.Label;
                         string text = worker.Line(ending.texts, s) ?? "";
+                        string theirs = worker.Theirs(def.theirEnds, s, ending.key);
+                        if (!theirs.NullOrEmpty()) text += (text.Length > 0 ? "\n\n" : "") + theirs;
                         string note = worker.EndingNote(s, ending, text);
                         if (!note.NullOrEmpty()) text += (text.Length > 0 ? "\n\n" : "") + note;
                         // What the ending changed, in numbers: the goodwill it gave and the prosperity it moved.

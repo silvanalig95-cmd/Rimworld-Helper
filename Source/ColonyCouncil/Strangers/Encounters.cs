@@ -59,12 +59,25 @@ namespace ColonyCouncil
         /// slavery is frowned on, a hard one where it's honourable. A name the game doesn't have never fits.
         /// </summary>
         public List<string> precepts;
+        /// <summary>
+        /// Only while a world event of one of these runs, by its kind or its defName ("hunger", "Council_WS_Comet"): an
+        /// encounter of the region's hard times (World/Home/WorldScenes.cs). Its words may name it: {SITUATION} (what it is
+        /// called), {SITUATIONPLACE} (where), {SITUATIONPEOPLE} (its people); its lines may ask for [ws:KIND].
+        /// </summary>
+        public List<string> situations;
+        /// <summary>
+        /// What must be true on the map, and plays out as it is told (WorldScenes: pocket, kneel, warm, sides, sky, dog, hum).
+        /// Empty: words only.
+        /// </summary>
+        public string scene;
 
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (stranger == null || stranger.kind == StrangerKind.None) yield return "encounter needs a stranger kind";
             if (texts.NullOrEmpty()) yield return "encounter has no texts";
+            if (!scene.NullOrEmpty() && !WorldScenes.All.Contains(scene)) yield return "unknown scene " + scene;
+            if (scene == WorldScenes.Sides && situations.NullOrEmpty()) yield return "the sides scene needs the war it is about (situations)";
         }
     }
 
@@ -247,6 +260,7 @@ namespace ColonyCouncil
             var season = GenLocalDate.Season(map);
             // Each kind's cooldown at this home.
             var h = HomeOf(map);
+            bool apart = WorldApart.Apart;
             var lastTick = h.lastTick;
             var pool = DefDatabase<EncounterDef>.AllDefsListForReading.Where(d =>
                 d.stranger != null && present.Contains(d.stranger.kind)
@@ -256,6 +270,9 @@ namespace ColonyCouncil
                 && (!d.nightOnly || night) && (!d.dayOnly || !night)
                 && Lands.Fits(map, d.lands)
                 && ConditionOn(map, d.conditions)
+                // Only in a world event's season; none with visitors or traders while the colony keeps apart from travellers (World/Home/).
+                && WorldSeason.Fits(d.situations)
+                && !(apart && (d.stranger.kind == StrangerKind.Visitor || d.stranger.kind == StrangerKind.Trader))
                 && ModContent.Fits(d, map)
                 && ((d.colonyIs.NullOrEmpty() && d.colonyIsNot.NullOrEmpty()) || (CharacterTracker.For(map)?.Fits(d.colonyIs, d.colonyIsNot) ?? false))).ToList();
             foreach (var def in pool.InRandomOrder().OrderByDescending(d => d.weight * Rand.Value))
@@ -317,6 +334,8 @@ namespace ColonyCouncil
                 var s = Strangers.Pick(map, def.stranger, p, met);
                 if (s == null) continue;
                 if (!def.moment.NullOrEmpty() && Flavor.Match("[" + def.moment + "]", LetterTags.For(new DilemmaContext { map = map, a = p, stranger = s })) < 0) continue;
+                // A scene of the region's hard times only where it is true on the map (World/Home/WorldScenes.cs).
+                if (!WorldScenes.Fits(def, p, s, map)) continue;
                 a = p;
                 x = s;
                 return true;
@@ -341,7 +360,12 @@ namespace ColonyCouncil
             // together: Cast picks a colonist who is with the stranger (Meets).
             var ctx = new DilemmaContext { map = map, a = a, stranger = x, faction = Strangers.FactionOf(x), why = def.label };
             // Tagged lines ([rain], [winter], [trait:Kind], [x:child]) only when they fit the moment and the people.
-            string text = ctx.Format(Flavor.Pick(def.texts, LetterTags.For(ctx)) ?? Flavor.PickText(def.texts));
+            var tags = LetterTags.For(ctx);
+            // A moment of a world event's season: its kind and name, and the scene's own (World/Home/WorldScenes.cs).
+            var season = WorldSeason.Of(def.situations);
+            WorldSeason.AddTags(tags, season);
+            WorldScenes.Fill(def, ctx, tags);
+            string text = ctx.Format(WorldSeason.Fill(Flavor.Pick(def.texts, tags) ?? Flavor.PickText(def.texts), season));
             ctx.cause = text;
             // An animal's scene plays out on the map first (Animals/AnimalScenes.cs), and the moment is told once it has.
             if (AnimalScenes.Begin(def, ctx, () => Told(def, comp, map, a, x, ctx, text))) return;
@@ -352,6 +376,8 @@ namespace ColonyCouncil
         private static void Told(EncounterDef def, CouncilGameComponent comp, Map map, Pawn a, Pawn x, DilemmaContext ctx, string text)
         {
             // together: Cast picked a colonist who is with the stranger (Meets), or an animal's scene brought them together.
+            // A scene of the region's hard times plays out as it is told (World/Home/WorldScenes.cs).
+            WorldScenes.Play(def, ctx);
             // Their people's goodwill, if the moment moves it, is for a meeting with one of theirs (World/GoodwillWhy.cs).
             using (GoodwillWhy.During(GoodwillWhy.Meeting))
                 foreach (var e in def.effects)

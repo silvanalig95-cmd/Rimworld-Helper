@@ -58,10 +58,15 @@
     <modifiers>
       <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
       <li><incident>VisitorGroup</incident><factor>0.8</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_QuarrelTruce</rimfolk><factor>2.5</factor></li>
+      <li><rimfolk>Rimfolk_Storyline_ChildrenShelter</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>
         <key>food</key>
+        <!-- The council backed the other side (Rimfolk_Dlm_WS_Sides): this side stops asking. -->
+        <forbids><li>backEnemy</li></forbids>
         <effects>
           <li Class="ColonyCouncil.VisitEffect_AtGate"><what>driver</what><pack>true</pack></li>
         </effects>
@@ -113,6 +118,8 @@
       </li>
       <li>
         <key>steel</key>
+        <!-- The council backed the other side (Rimfolk_Dlm_WS_Sides): this side stops asking. -->
+        <forbids><li>backFaction</li></forbids>
         <effects>
           <li Class="ColonyCouncil.VisitEffect_AtGate"><what>smith</what><enemy>true</enemy><gender>Male</gender><ages>30~60</ages><pack>true</pack></li>
         </effects>
@@ -150,6 +157,8 @@
       </li>
       <li>
         <key>column</key>
+        <!-- The council backed the other side (Rimfolk_Dlm_WS_Sides): this side stops asking. -->
+        <forbids><li>backEnemy</li></forbids>
         <effects>
           <li Class="ColonyCouncil.VisitEffect_AtGate"><what>rider</what></li>
         </effects>
@@ -197,6 +206,8 @@
       </li>
       <li>
         <key>worn</key>
+        <!-- The council backed the other side (Rimfolk_Dlm_WS_Sides): this side stops asking. -->
+        <forbids><li>backFaction</li></forbids>
         <effects>
           <li Class="ColonyCouncil.VisitEffect_AtGate"><what>travelers</what><enemy>true</enemy><count>2</count><ages>18~40</ages></li>
         </effects>
@@ -359,6 +370,8 @@
       <li><incident>HeatWave</incident><factor>0.2</factor></li>
       <li><rimfolk>Council_Evt_GrowingSpell</rimfolk><factor>0.4</factor></li>
       <li><rimfolk>Council_Evt_WarmSpell</rimfolk><factor>0.3</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Mission_SeedKept</rimfolk><factor>3</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -506,6 +519,14 @@
         <chronicle>The year without a summer ended.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:seers] The readers of the Conclave at {PLACE} say the glass has stayed clouded since spring. They are writing down every frost, so that next time somebody sees it coming.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:seers] The Conclave at {PLACE} has filled a whole book with the cold year, frost by frost. The keeper of the glass says the next one will not catch them unready.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A great work ===================== -->
@@ -728,6 +749,15 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:artisans] Every master of the Kiln Guild at {PLACE} has a hand in {NAME}, and the kiln-warden has the kilns going day and night for its bricks.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:artisans,!end:halfBuilt] The guild's marks are cut into {NAME} at {PLACE}, every one of them true, and the kiln-warden has let the kilns rest at last.</li>
+      <li>[their:artisans,end:halfBuilt] {NAME} stands half built at {PLACE}, and the guild has cut no marks into it. The kiln-warden says a mark on unfinished work is a lie.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Encounters of the region's hard times (docs/content-update-proposals.md, B25; Source/ColonyCouncil/World/Home/
+    WorldScenes.cs). Each comes only while a world event of its situations runs (a kind or a world event's defName).
+    {SITUATION} is what the world event is called, {SITUATIONPLACE} where it is, {SITUATIONPEOPLE} its people; {A_...} the
+    colonist, {X_...} the visitor or trader, {B_...} the other side's visitor in the war's scene, {FACTION} X's people.
+    A scene (pocket, kneel, warm, sides, sky, dog, hum) must be true on the map for the encounter to come, and plays out as
+    it is told. Plain words.
+  -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_PlagueDistance</defName>
+    <label>a visitor who keeps their distance</label>
+    <weight>1.5</weight>
+    <cooldownDays>4</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_Plague</li></situations>
+    <texts>
+      <li>{X_nameDef} of {FACTION} stopped a few steps short of {A_nameDef} and stayed there, and when {A_nameDef} offered a cup, {X_pronoun} said no thank you. With {SITUATION} in {SITUATIONPLACE}, {X_pronoun} said, everyone on the road keeps their distance.</li>
+      <li>{X_nameDef} talked with {A_nameDef} from across the path, a cloth pulled up over {X_possessive} mouth. Nobody on the road sits close to anyone this season, {X_pronoun} said, not with {SITUATION} about.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_PlagueAsks</defName>
+    <label>a visitor asks after the fever</label>
+    <weight>1</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_Plague</li></situations>
+    <texts>
+      <li>Before {X_nameDef} would sit down, {X_pronoun} asked {A_nameDef} whether anyone at the colony had the fever. {A_nameDef} told {X_objective} how things stood, and {X_nameDef} told {A_nameDef} how they stood at {SITUATIONPLACE}, which was worse.</li>
+      <li>{X_nameDef} of {FACTION} wanted to know whether {SITUATION} had come this way yet. {A_nameDef} answered as honestly as {A_pronoun} could, and {X_nameDef} thanked {A_objective} for not pretending.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_FaminePocket</defName>
+    <label>food taken from the stores</label>
+    <weight>1</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>hunger</li></situations>
+    <scene>pocket</scene>
+    <texts>
+      <li>{A_nameDef} saw {X_nameDef} slip food from the colony's stores into {X_possessive} pack, and let it go. With {SITUATION} at {SITUATIONPLACE}, {A_nameDef} said afterwards, nobody should have to ask.</li>
+      <li>{A_nameDef} caught {X_nameDef} slipping food from the colony's stores into {X_possessive} pack. {X_nameDef} went red and started to put it back, but {A_nameDef} told {X_objective} to keep it, with {SITUATION} on at {SITUATIONPLACE}.</li>
+    </texts>
+    <ways><generosity>1</generosity></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_FamineGrain</defName>
+    <label>a trader looking for grain</label>
+    <weight>1</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <situations><li>hunger</li></situations>
+    <texts>
+      <li>{X_nameDef}, the trader, asked {A_nameDef} whether the colony had any grain to sell. With {SITUATION} at {SITUATIONPLACE}, {X_pronoun} said, grain is worth more than silver this year.</li>
+      <li>{X_nameDef} told {A_nameDef} that every cart on the road is carrying food to {SITUATIONPLACE} or coming back empty. {X_pronoun} would buy any grain the colony could spare, and pay well for it.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_CaravanGossip</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_DroughtWater</defName>
+    <label>a visitor asks for water</label>
+    <weight>1</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>drought</li></situations>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} where the colony's water was. Since {SITUATION}, {X_pronoun} said, every well on the road has a queue at it, and some have a guard.</li>
+      <li>{X_nameDef} told {A_nameDef} that the stream at {SITUATIONPLACE} is down to mud. {A_nameDef} showed {X_objective} where to fill {X_possessive} waterskin.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_PilgrimKneels</defName>
+    <label>a pilgrim kneels at the colony's holy place</label>
+    <weight>1.5</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_HolyYear</li><li>Council_WS_Pilgrimage</li></situations>
+    <scene>kneel</scene>
+    <texts>
+      <li>{X_nameDef}, on the road to {SITUATIONPLACE} for {SITUATION}, asked {A_nameDef} whether the colony had a holy place. {A_nameDef} pointed the way, and {X_nameDef} went to kneel there a while.</li>
+      <li>{X_nameDef} of {FACTION} saw the colony's holy place and asked {A_nameDef} whether a pilgrim might kneel there. {A_nameDef} said yes, and {X_nameDef} went straight to it.</li>
+    </texts>
+    <ways><openness>1</openness></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_PilgrimPrayer</defName>
+    <label>a pilgrim's prayer for a colonist</label>
+    <weight>1</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_HolyYear</li><li>Council_WS_Pilgrimage</li></situations>
+    <texts>
+      <li>{X_nameDef} asked {A_nameDef}'s name, to say it in a prayer at {SITUATIONPLACE}. {A_nameDef} spelled it out twice to be sure {X_pronoun} had it right.</li>
+      <li>Before going on toward {SITUATIONPLACE}, {X_nameDef} offered to carry a prayer there for {A_nameDef}. {A_nameDef} thought about it for a while, then told {X_objective} what to pray for.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_WarFire</defName>
+    <label>two sides of a war at one fire</label>
+    <weight>2</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Rimfolk_WS_NeighborsWar</li></situations>
+    <scene>sides</scene>
+    <texts>
+      <li>[fire] {X_nameDef} of {FACTION} and {B_nameDef}, of the other side in {SITUATION}, ended up at the same fire. {A_nameDef} watched them warm their hands a few feet apart. Neither of them said a word about the war, and {A_nameDef} didn't ask.</li>
+      <li>[fire] {A_nameDef} found {X_nameDef} and {B_nameDef} sitting at the colony's fire. Their peoples are at war, and they both knew it, but it was the only fire and they both stayed.</li>
+      <li>[heater] {X_nameDef} of {FACTION} and {B_nameDef}, whose peoples are at war in {SITUATION}, sat at the same heater without looking at each other. {A_nameDef} kept an eye on them, but they stayed quiet.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_CometWatch</defName>
+    <label>watching the comet</label>
+    <weight>1.5</weight>
+    <cooldownDays>4</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_Comet</li></situations>
+    <scene>sky</scene>
+    <nightOnly>true</nightOnly>
+    <children>true</children>
+    <texts>
+      <li>{A_nameDef} and {X_nameDef} stood outside in the dark and looked for the comet over the hills. {X_nameDef} said that at {SITUATIONPLACE} they ring a bell every night it shows.</li>
+      <li>{X_nameDef} of {FACTION} pointed the comet out to {A_nameDef}, low in the sky with its tail behind it. They stood and watched it together until the cold sent them in.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_FairRibbon</defName>
+    <label>a ribbon from the fair</label>
+    <weight>1</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_Fair</li></situations>
+    <children>true</children>
+    <texts>
+      <li>{X_nameDef} of {FACTION} showed {A_nameDef} a ribbon {X_pronoun} won at the fair at {SITUATIONPLACE}, for the best cheese. {A_nameDef} said it must have been very good cheese.</li>
+      <li>{X_nameDef} showed {A_nameDef} a ribbon from the fair at {SITUATIONPLACE}: second place in the wrestling. {X_pronoun} says the winner cheated.</li>
+      <li>[x:child] {X_nameDef} showed {A_nameDef} the ribbon {X_pronoun} won in the children's race at the fair at {SITUATIONPLACE}, and wanted to know whether the colony has races too.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_DroverDog</defName>
+    <label>a drover's dog and the hens</label>
+    <weight>2</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_Drovers</li><li>Council_WS_Migration</li></situations>
+    <scene>dog</scene>
+    <children>true</children>
+    <texts>
+      <li>{X_nameDef}'s dog spotted the colony's hens and went straight for them, and they scattered in every direction. {X_nameDef} apologised to {A_nameDef}: the dog has been driving herds all season and can't stop.</li>
+      <li>{A_nameDef} and {X_nameDef} were talking when {X_nameDef}'s dog ran off to round up the colony's hens. {X_nameDef} called it back, laughing, and said it thinks every flock on the road is its own this year.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_IceRoadWarm</defName>
+    <label>a carter off the ice road warms up</label>
+    <weight>1.5</weight>
+    <cooldownDays>4</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <situations><li>Council_WS_IceRoad</li><li>Council_WS_HardWinter</li></situations>
+    <scene>warm</scene>
+    <texts>
+      <li>[fire] {X_nameDef} came in off the frozen road with frostnipped hands and asked {A_nameDef} whether {X_pronoun} might warm them at the colony's fire before going on. {A_nameDef} took {X_objective} to it.</li>
+      <li>[fire] {X_nameDef} showed {A_nameDef} hands red and stiff from holding the reins all the way from {SITUATIONPLACE}, and went to warm them at the colony's fire.</li>
+      <li>[heater] {X_nameDef} came in off the frozen road with frostnipped hands, and {A_nameDef} sent {X_objective} to stand by the heater for a while.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_SongHum</defName>
+    <label>the song about the colony</label>
+    <weight>1.5</weight>
+    <cooldownDays>5</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_Songs</li></situations>
+    <scene>hum</scene>
+    <children>true</children>
+    <texts>
+      <li>{X_nameDef} was humming a tune while {A_nameDef} worked nearby. It's the song about this colony that {SITUATION} has been singing on the road, {X_pronoun} said, and hummed it again so {A_nameDef} could learn it.</li>
+      <li>{X_nameDef} of {FACTION} hummed a few lines of the song about the colony for {A_nameDef}. {A_nameDef} said the part about the wall was not how it happened.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FireSongs</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_EncWH_MourningNames</defName>
+    <label>the names of the dead said aloud</label>
+    <weight>1</weight>
+    <cooldownDays>6</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <situations><li>Council_WS_Mourning</li></situations>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} to say the names of {X_possessive} people's dead aloud with {X_objective}, as they do at {SITUATIONPLACE} this season. {A_nameDef} said each one after {X_objective}.</li>
+      <li>{X_nameDef} told {A_nameDef} about the people {SITUATIONPEOPLE} lost, one by one, and {A_nameDef} listened to all of it.</li>
+    </texts>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

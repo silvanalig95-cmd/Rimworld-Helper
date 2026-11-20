@@ -207,6 +207,14 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:mechanitors] The Lattice has every mech it owns on the rebuilding at {PLACE}, the link-wardens working in shifts so that the work never stops.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:mechanitors] The Lattice's mechs at {PLACE} have gone back to their yard, each one mended to its last part after the work.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A trade route reopens ===================== -->

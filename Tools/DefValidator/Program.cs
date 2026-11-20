@@ -599,6 +599,9 @@ wishPh.UnionWith(new[] { "DRUG" });
 // Storylines (Storylines/Storylines.cs, Fill): the person who asked by name, the second people, a sum, and the traps and lengths
 // of wall a part asks for ({RIVAL}, {NAME}, {KIND} and {WAY} are above).
 wishPh.UnionWith(new[] { "GIVER", "OTHERPEOPLE", "SILVER", "TRAPS", "WALLS" });
+// The world brought home (World/Home/WorldHome.cs): the world event that made a quest likelier and where it is (WorldSteer),
+// and the people of an encounter's world event (WorldSeason.Fill; {SITUATION} and {SITUATIONPLACE} are above).
+wishPh.UnionWith(new[] { "WSNAME", "WSPLACE", "SITUATIONPEOPLE" });
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

@@ -27,6 +27,9 @@
         <texts>
           <li>[!bell] The elders of {FACTION} have sent word from {PLACE}: {NAME}, one of the people who founded them, is buried on the colony's land, {WAY} of the colony. The grave was never marked, and they ask the colony to find it and mark it.</li>
           <li>[bell] The bell-keepers of {FACTION} have sent word from {PLACE}: {NAME}, one of the people who founded them, is buried on the colony's land, {WAY} of the colony. The grave was never marked, and they ask the colony to find it and mark it.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:mourning,!bell] In their mourning for {WSNAME}, the elders of {FACTION} at {PLACE} have been counting their dead, old and new. {NAME}, one of the people who founded them, is buried on the colony's land, {WAY} of the colony. The grave was never marked, and they ask the colony to find it and mark it.</li>
+          <li>[ws:mourning,bell] In their mourning for {WSNAME}, the bell-keepers of {FACTION} at {PLACE} have been counting their dead, old and new. {NAME}, one of the people who founded them, is buried on the colony's land, {WAY} of the colony. The grave was never marked, and they ask the colony to find it and mark it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

@@ -122,6 +122,9 @@
           <li>[their:industrial] {FACTION} sent a message from {PLACE}: {DEAD} is getting married, and the family wants one {TALE} made for the day. They ask the colony to make it.</li>
           <li>[their:spacer,!their:empire] {FACTION} sent word that {DEAD} is to be married at {PLACE}. They want one {TALE} made by hand for the day, and ask the colony to make it.</li>
           <li>[their:empire] A steward of {FACTION} writes that {DEAD}, of the household at {PLACE}, is to be married. The household wants one {TALE} for the ceremony, and the steward asks the colony to make it.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:fair] {DEAD} of {FACTION} is to be married at {WSNAME} at {WSPLACE}, where half the region will see it. The family wants one {TALE} for the day, and they ask the colony to make it.</li>
+          <li>[ws:songs] {DEAD} of {FACTION} is to be married at {PLACE}, and {WSNAME} has promised to sing at the wedding. The family wants one {TALE} for the day, and they ask the colony to make it.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -203,6 +206,11 @@
           <li>[plague,their:hightech,!their:empire] {FACTION}'s {THING}, {DEAD}, has the animal plague, and nobody at {PLACE} can treat it. They have heard the colony has a good doctor, and ask it to take {DEAD} in until it is well.</li>
           <li>[thin,their:hightech,!their:empire] {FACTION}'s {THING}, {DEAD}, went hungry on a long journey and is badly underfed. They ask the colony to take {DEAD} in and feed it up until it is well.</li>
           <li>[their:empire] A steward of {FACTION} writes that the household's {THING}, {DEAD}, is unwell with {TALE}. The household at {PLACE} asks the colony to take {DEAD} in and look after it until it is well.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[wsdef:Council_WS_Murrain,plague] {WSNAME} has reached {FACTION}'s animals, and their {THING}, {DEAD}, has the animal plague. Nobody at {PLACE} can treat it, and they ask the colony to take {DEAD} in and look after it until it is well.</li>
+          <li>[wsdef:Council_WS_Murrain,flu] {WSNAME} has reached {FACTION}'s animals, and their {THING}, {DEAD}, has the animal flu. Nobody at {PLACE} can treat it, and they ask the colony to take {DEAD} in and look after it until it is well.</li>
+          <li>[ws:drove,thin] {FACTION}'s {THING}, {DEAD}, went short of food on the drove road and is badly underfed. They ask the colony to take {DEAD} in and feed it up until it is well.</li>
+          <li>[ws:herds,thin] {FACTION}'s {THING}, {DEAD}, ran itself thin keeping up with {WSNAME}. They ask the colony to take {DEAD} in and feed it up until it is well.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -363,6 +371,9 @@
           <li>[their:industrial] The cold store at {PLACE} has broken down, and {FACTION} have {COUNT} {THING} they need as seed for spring. They ask the colony to keep it cold for them until the sowing.</li>
           <li>[their:spacer,!their:empire] {FACTION} have {COUNT} {THING} kept as seed stock, and the freezer at {PLACE} has failed. They ask the colony to keep it cold for them until the sowing.</li>
           <li>[their:empire] A steward of {FACTION} asks the colony to keep {COUNT} {THING} cold for the estate at {PLACE}. It is next year's seed, and the estate's own store is full.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[wsdef:Rimfolk_WS_ColdYear] With no summer this year, {FACTION} have kept back {COUNT} {THING} as seed for next year's sowing, more than they can store at {PLACE}. They ask the colony to keep it cold for them until the sowing.</li>
+          <li>[wsdef:Council_WS_HardWinter] {WSNAME} has filled every cellar at {PLACE} with the town's own food, and {FACTION} have {COUNT} {THING} put by as seed for the spring with nowhere to keep it. They ask the colony to keep it cold for them until the sowing.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -524,6 +535,9 @@
           <li>[their:industrial] A small band of {FACTION}, {COUNT} players led by {X_nameDef}, is on a tour of the towns around {PLACE}. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
           <li>[their:spacer,!their:empire] {COUNT} musicians of {FACTION}, led by {X_nameDef}, are passing through on their way to {PLACE}. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
           <li>[their:empire] {COUNT} court musicians of {FACTION}, led by {X_nameDef}, are on their way to the household at {PLACE}. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:fair] {COUNT} musicians of {FACTION}, led by {X_nameDef}, are on their way to play at {WSNAME} at {WSPLACE}. They ask to stay one night at the colony on the way, and offer to play for its people in the evening.</li>
+          <li>[ws:songs] {COUNT} musicians of {FACTION}, led by {X_nameDef}, are following {WSNAME} from town to town this season. They ask to stay one night at the colony, and offer to play for its people in the evening.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

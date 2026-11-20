@@ -161,6 +161,14 @@
         <chronicle>The blight left the region's fields.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:grovekeepers] The Mossborn are burning the blighted rows at {PLACE} and setting a seedling at each burned field's edge, as their ways ask, so that something grows back where something was lost.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:grovekeepers] The blight has burned itself out at {PLACE}, and the seedlings the Mossborn set at the field edges have taken.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Medicine gone scarce ===================== -->
@@ -193,6 +201,10 @@
       <li><rimfolk>Council_Evt_Bonesetter</rimfolk><factor>1.5</factor></li>
       <li><rimfolk>Council_Evt_Inoculation</rimfolk><factor>0.5</factor></li>
       <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.2</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_SicknessMedicine</rimfolk><factor>2</factor></li>
+      <li><rimfolk>Rimfolk_Mission_Healer</rimfolk><factor>1.5</factor></li>
+      <li><rimfolk>Rimfolk_Mission_OrderMedicine</rimfolk><factor>2.5</factor></li>
     </modifiers>
     <beats>
       <li>

@@ -31,6 +31,9 @@
           <li>[food,!union] {GIVER} of {FACTION} has come from {PLACE}: the town's well has run dry, and with no water for the fields and the kitchens they are short of food. They ask the colony to send meals.</li>
           <li>[water,union] {GIVER} of {FACTION} has come from {PLACE}: the drill hit the old aquifer and the town's well has run dry. Until a new one is dug, they are short of water, and they ask the colony to send what water it can spare.</li>
           <li>[food,union] {GIVER} of {FACTION} has come from {PLACE}: the drill hit the old aquifer and the town's well has run dry. With no water for the fields and the kitchens they are short of food, and they ask the colony to send meals.</li>
+          <!-- A world event that makes this likelier names it here: {WSNAME}, at {WSPLACE} (World/Home/WorldHome.cs, WorldSteer; B2). -->
+          <li>[ws:drought,water] With {WSNAME}, the town's well at {PLACE} has run dry. {GIVER} of {FACTION} has come to ask the colony to send what water it can spare until a new one is dug.</li>
+          <li>[ws:drought,food] With {WSNAME}, the town's well at {PLACE} has run dry, and with no water for the fields and the kitchens they are short of food. {GIVER} of {FACTION} has come to ask the colony to send meals.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>

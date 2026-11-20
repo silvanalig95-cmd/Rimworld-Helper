@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The world brought home (Source/ColonyCouncil/World/Home/; docs/content-update-proposals.md, B25 and B26): a visitor
+    kneeling a while at the colony's holy place, a visitor warming their hands at the colony's fire or heater (the visitors'
+    own work, JobDriver_VisitWork, at a cell beside it, facing it), and the mood of a vigil day kept in a holy year.
+  -->
+
+  <JobDef>
+    <defName>Rimfolk_WH_KneelAt</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>kneeling at TargetB.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <social>Off</social>
+        <ticks>1200~2000</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_WH_WarmAt</defName>
+    <driverClass>ColonyCouncil.JobDriver_VisitWork</driverClass>
+    <reportString>warming up at TargetB.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions>
+      <li Class="ColonyCouncil.VisitWorkExtension">
+        <ticks>1500~2500</ticks>
+      </li>
+    </modExtensions>
+  </JobDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_WH_VigilKept</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>kept my vigil day</label><description>I kept the vigil day I vowed for the holy year. It was a long, quiet day, and I feel the better for it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

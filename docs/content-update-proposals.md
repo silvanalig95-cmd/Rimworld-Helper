@@ -560,6 +560,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### World events
 
 **B1. World events in the peoples' own ways** (I, with T; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world brought home"; `Source/ColonyCouncil/World/Home/`). Decided: a paragraph under the letter's own text (`WorldSituationDef.theirs`, `theirEnds`), told only when a line of that people's calling fits; one start and one ending paragraph for each of the 33 world events that prefer a people, and one start paragraph for each of the 23 peoples in each of the six hard ones: 205 lines.
 - **On the map.** When a world event falls on one of Rimfolk's 23 peoples, its letters sound like that people:
   - A plague at the hospitallers' town fills their sickhouse, and their priors ask for linen as well as medicine.
   - A famine among the herding folk means herds sold at a loss and elders who eat last.
@@ -576,6 +577,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B2. World events steer the quests and storylines offered** (I; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world brought home"; `WorldSteer`). Decided: the table as written (21 world events, 17 first parts, factors 1.5 to 3); a steered first part's people are the world event's own four times as often; its lines are picked with `ws:KIND`, `wsdef:DEFNAME` and `ws:theirs`, and the 41 lines written for a season (`{WSNAME}`, `{WSPLACE}`) are preferred when one fits.
 - **On the map.** While a world event runs, the home quests and storylines that fit it come more often, and the first
   part's letter names it ("With the fever in Ashford, the town's healer asks..."). Each world event below makes these
   likelier:
@@ -601,6 +603,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** only what each quest already has.
 
 **B3. Messengers tell the road's news** (I, with T; S to M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world brought home"; `RoadNews`). Decided: told three times in four when a world event lies near the colony, near their town or not far out of the way between; their own town's first; at a courier's delivery, an answer handed over, and every carrier of the post's bag; 44 lines.
 - **On the map.** The colony's messengers say a sentence about the road as they set down the bag at the mailbag. That
   covers the post rider, the mail run, a people's runner and a carrier. Some examples:
   - "The ford below Ashford is under water, I came round by the hill."
@@ -938,6 +941,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 ### Visitors, quests and the colony's name
 
 **B23. What the colony is known for draws the quests and camps that fit it** (I; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world brought home"; `RenownMath.Events`, `RenownMath.Camps`). Decided: the table as written, by the same band factor as the old events (a quarter more to three quarters).
 - **What happens now.** Renown draws 9 old events (`Diplomacy/RenownMath.cs`, `Events`).
 - **What changes.** Widen the table to the newer quests and camps that match each kind of renown:
 
@@ -970,6 +974,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none beyond the game's own animal births.
 
 **B25. Encounters of the region's hard times** (I; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world brought home"; `WorldScenes`). Decided: fourteen, the nine above and five more of the same seasons; `EncounterDef.situations` takes a kind or a world event's name, and `scene` what must be true on the map and plays out (the food into their pack, the kneeling, the warming, the two sides at one fire, the comet under the open sky, the dog and the hens, the humming).
 - **On the map.** About 14 moments that come only while a world event runs:
   - **Plague:** a visitor keeps their distance and won't share a cup.
   - **Famine:** a hungry visitor pockets bread from the table, and the colonist lets it go or speaks.
@@ -987,6 +992,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B26. Council questions the world brings home** (I; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world brought home"; `WorldQuestions`). Decided: kept apart halves the sickness at the gate and the couriers', stops the small moments with travellers and costs a point of goodwill a group; the vigil day is most of a working day each week at the god's place, an altar or the gathering spot; backing a side lets only its asks come; "keep the gate quiet" stays in the colonist's words, and the answer dyes the colony's outer clothes dark grey until the mourning ends; the fair day is a gathering and the day off.
 - **On the map.** Five questions about the colony's own people that come only in a world event's season:
   - **Plague:** keep apart from travellers while the fever lasts. Fewer sicknesses come in with visitors and couriers
     (`Harm/Carriers.cs`), and visitors are cooler.
@@ -1066,6 +1072,7 @@ the contest)
 
 **B32. The region's great events in the colony's book of the gods, as the colony believes** (I; S to M; coordinate
 with the gods' list)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world brought home"; `GreatTaken`). Decided: ten great world events, each tied to one or two gods; once while it is new, nearly two times in three; the believer, a rival believer and a doubter as for a named season (C18); the book's words in its old voice.
 - **On the map.** When a great world event comes (a plague, a comet, a bumper year, a great fire, a year without a
   summer), a devout colonist may set it in the colony's book as a god's doing. It is attributed, "some say", and possibly
   wrong. The book says who believes it.

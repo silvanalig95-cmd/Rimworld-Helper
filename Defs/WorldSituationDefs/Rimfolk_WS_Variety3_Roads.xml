@@ -440,6 +440,15 @@
         </effects>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:traders] The league has put its own road riders on {NAME}, two to every ten beasts, and the waymaster at {PLACE} has given the league's word at the waystone that it will come home whole.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:traders,!end:robbed] At {PLACE} the league has written {NAME} into its books, every bale counted, and the road riders who brought it in are drinking on the waymaster's account.</li>
+      <li>[their:traders,end:robbed] The league has written the robbery of {NAME} into its books in red, and its road riders are already out after the ones who did it.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Households on the move ===================== -->

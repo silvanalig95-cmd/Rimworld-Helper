@@ -72,6 +72,55 @@
         <li>[deliver,letter] This is for your people, from mine.</li>
         <li>[deliver,letter,theirLowtech] Words from my people, carried the whole way.</li>
         <li>[deliver,letter,theirHightech] Your answer, delivered by hand as promised.</li>
+        <!-- The road's news (World/Home/WorldHome.cs, RoadNews; docs/content-update-proposals.md, B3): said as the bag is set
+             down at the mailbag while a world event runs on the messenger's road, by its kind ([ws:water]) or name
+             ([wsdef:Council_WS_Assize]); [ws:theirs] when it is at the messenger's own people. {PLACE} is where it is, {NAME}
+             what it is called, {FACTION} its people. -->
+        <li>[road,ws:water] The ford below {PLACE} is under water, I came round by the hill.</li>
+        <li>[road,ws:water] Half the road to {PLACE} is mud since the river came up.</li>
+        <li>[road,ws:water,ws:theirs] The river's in the lower houses at home, I came out over the bridge while it still stood.</li>
+        <li>[road,ws:sickness] They've shut the gate at {PLACE} for the fever, so I went round.</li>
+        <li>[road,ws:sickness] Every inn on the road asks where you've come from before they let you in.</li>
+        <li>[road,ws:sickness,ws:theirs] We've shut our own gate at {PLACE} for {NAME}, I came out by the back road.</li>
+        <li>[road,ws:hunger] There's nothing to buy to eat on the road this side of {PLACE}.</li>
+        <li>[road,ws:hunger,ws:theirs] I'd stay for a bite if you offer, there's not much of it at home.</li>
+        <li>[road,ws:fair] Half the road is wagons going to the fair at {PLACE}.</li>
+        <li>[road,ws:fair,ws:theirs] The whole of {PLACE} is stalls and tents for the fair, I could hardly get out.</li>
+        <li>[road,ws:faith] The road's full of pilgrims walking to {PLACE}, I've never seen so many.</li>
+        <li>[road,ws:war] I kept off the main road, there's fighting near {PLACE}.</li>
+        <li>[road,ws:war,ws:theirs] Our people are at war, so mind who you let through your gate.</li>
+        <li>[road,ws:roads] I came the long way, the road by {PLACE} isn't safe these days.</li>
+        <li>[road,ws:drought] The wells along the road are nearly dry, I had to carry my own water.</li>
+        <li>[road,ws:weather] It's been cold the whole way from {PLACE}, colder than any year I remember.</li>
+        <li>[road,ws:fire] You can still smell the smoke from {PLACE} on the road.</li>
+        <li>[road,ws:fire,ws:theirs] Half of {PLACE} burned, and I've been sleeping in a barn since.</li>
+        <li>[road,ws:mourning] Every house in {PLACE} has black on the door.</li>
+        <li>[road,ws:songs] Every inn on the road is singing that new song, the one about this place.</li>
+        <li>[road,ws:comet] People stop on the road at night to look at the comet.</li>
+        <li>[road,ws:harvest] The carts going past {PLACE} are piled high, it's a good year there.</li>
+        <li>[road,ws:harvest,ws:theirs] It's been a fine harvest at home, and I'm told to say we'll be selling.</li>
+        <li>[road,ws:herds] I had to wait half a morning for a herd to cross the road.</li>
+        <li>[road,ws:drove] The drove road's full, I walked behind cattle half the way.</li>
+        <li>[road,ws:trade] The road to {PLACE} is busy with carts, trade's good this season.</li>
+        <li>[road,ws:road] The new road's open past {PLACE}, it saved me half a day.</li>
+        <li>[road,ws:toll] There's a toll at {PLACE} now, so I went round by the fields.</li>
+        <li>[road,wsdef:Council_WS_Assize] The road's full of people going to the assize at {PLACE}.</li>
+        <li>[road,ws:court] Everyone on the road is talking about {NAME} at {PLACE}.</li>
+        <li>[road,ws:levy] The Empire's men are on the road collecting the levy, I kept my head down.</li>
+        <li>[road,ws:rush] Everyone on the road is heading for the diggings, I was the only one going the other way.</li>
+        <li>[road,ws:sellswords] There are sellswords camped by the road near {PLACE}, I didn't stop.</li>
+        <li>[road,ws:ice] The river's frozen hard by {PLACE}, the carts are driving right across it.</li>
+        <li>[road,ws:scarcity] The traders I passed had none of what everyone's asking for.</li>
+        <li>[road,ws:exile] I passed a lot of people on the road carrying everything they own.</li>
+        <li>[road,ws:rebuild] They're rebuilding at {PLACE}, the road is all carts of timber and stone.</li>
+        <li>[road,ws:beast] Everyone at {PLACE} is talking about the beast, so I kept to the open road.</li>
+        <li>[road,ws:embargo] The market at {PLACE} is shut to outsiders, I couldn't even buy water there.</li>
+        <li>[road,ws:peace] The road past {PLACE} is busy with envoys going to the talks.</li>
+        <li>[road,ws:wreck] People are going up the road to {PLACE} to pick over the wreck.</li>
+        <li>[road,ws:healer] Everyone on the road says there's a healer at {PLACE} who can mend anything.</li>
+        <li>[road,ws:town] There's a new town going up near {PLACE}, the road's busy with settlers.</li>
+        <li>[road,ws:feud] I went round {PLACE}, there's a feud on and strangers get asked whose side they're on.</li>
+        <li>[road,ws:creed] I kept my mouth shut at {PLACE}, nobody there wants to hear of any other faith just now.</li>
       </plain>
       <warm>
         <li>[arrive] Your fields look well from the road.</li>

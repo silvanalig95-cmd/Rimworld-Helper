@@ -47,6 +47,8 @@
       <li><rimfolk>Council_Evt_Mourners</rimfolk><factor>2</factor></li>
       <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.4</factor></li>
       <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Storyline_GraveSearch</rimfolk><factor>3</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -172,6 +174,36 @@
         <chronicle>{FACTION} buried {NAME}.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:sextons] The Quiet Bell has rung for {NAME} at {PLACE} from dawn to dusk, and the sextons have dug the grave in the oldest part of the garden. Every bell-carrier on the road has come home for it.</li>
+      <li>[their:traders] The league has closed the waystation at {PLACE} for a day of mourning for {NAME}, the first time anyone remembers. The road riders wear black bands on their sleeves.</li>
+      <li>[their:healers] The order keeps a night watch at {PLACE} for {NAME}, as it does for its own. The priors say {NAME} never once turned a sick traveller away.</li>
+      <li>[their:herders] The herding folk have left a place empty at the fire at {PLACE} for {NAME}, and nobody will sit in it until the season turns.</li>
+      <li>[their:pilgrims] The fellowship has sent palmers to every shrine on the road to say {NAME}'s name there. The hostel at {PLACE} keeps its door open all night for the mourners.</li>
+      <li>[their:scholars] The society at {PLACE} is writing out {NAME}'s life in full, to keep in the archive. The archivist is asking everyone who knew them to come and tell it.</li>
+      <li>[their:brokers] The enclave has closed its market at {PLACE} for {NAME}, which costs it money every hour. The pad master says it is the right thing.</li>
+      <li>[their:fishers] The river folk set a boat with a light in it on the river at {PLACE} for {NAME}, and watched it go downstream until it was gone.</li>
+      <li>[their:hunters] The keeper of the book at {PLACE} has written {NAME}'s name on a page of its own. The lantern at the crossroads is kept lit through the mourning.</li>
+      <li>[their:tamers] The Circuit's beasts are led round the ring at {PLACE} once a day for {NAME}, without riders. The ring-keeper says the animals know.</li>
+      <li>[their:salvagers] The Wheel has stopped at {PLACE} for {NAME}, and the yard boss says they will not move on until the mourning is over. For the Wheel, that is a great deal.</li>
+      <li>[their:seers] The Conclave at {PLACE} has covered its glass for {NAME}. The readers say no forecast will be read while the mourning lasts.</li>
+      <li>[their:grovekeepers] The Mossborn planted a tree for {NAME} at {PLACE}, in the place the grove-wardens chose. Mourners leave water at its roots.</li>
+      <li>[their:mercenaries] The Banner read {NAME}'s name aloud at the fort at {PLACE}, and the companies stood for it. The keeper of the Roll has added it in the place kept for friends of the Banner.</li>
+      <li>[their:artisans] The guild has let the kilns go cold at {PLACE} for {NAME}, and the masters are cutting a stone with {NAME}'s name to set in the guildhall wall.</li>
+      <li>[their:linesmen] The Signal Line passed {NAME}'s name from relay to relay the length of the line, the only message that day. The masts at {PLACE} are hung with black.</li>
+      <li>[their:drillers] The Union stopped every shift at {PLACE} for an hour for {NAME}, and the workers stood at the pit head in silence.</li>
+      <li>[their:citizens] The Republic has declared a day of mourning at {PLACE} for {NAME}, and the radio has played nothing but quiet music since.</li>
+      <li>[their:crew] The Hollow Fleet at {PLACE} rang the ship's bell for {NAME}, as it does for a captain. The first officer read the old words.</li>
+      <li>[their:editors] The Helix Works at {PLACE} keeps a sample from everyone it has lost, and has added {NAME}'s. The sequencers do no work while the mourning lasts.</li>
+      <li>[their:mechanitors] The Lattice's mechs at {PLACE} stood still for {NAME} for a whole day, every link held quiet.</li>
+      <li>[their:listeners] The Choir at {PLACE} is singing for {NAME} without a break, one voice taking over from another, until the mourning ends.</li>
+      <li>[their:vaultfolk] The Sunken Vault at {PLACE} has called {NAME}'s number at the roll call every day since, and left the answer empty.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:sextons] {NAME} lies in the grave-garden at {PLACE} now, and the bell has gone back to its ordinary hours. The sextons say it is quiet ground.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== A season of songs ===================== -->
@@ -214,6 +246,9 @@
       <li><rimfolk>Council_Evt_Players</rimfolk><factor>2</factor></li>
       <li><rimfolk>Council_Evt_Fiddler</rimfolk><factor>2</factor></li>
       <li><rimfolk>Council_Evt_Camp</rimfolk><factor>1.3</factor></li>
+      <!-- The home quests and storylines that fit it (World/Home/WorldHome.cs, WorldSteer; B2). -->
+      <li><rimfolk>Rimfolk_Mission_Musicians</rimfolk><factor>3</factor></li>
+      <li><rimfolk>Rimfolk_Mission_WeddingPiece</rimfolk><factor>2</factor></li>
     </modifiers>
     <beats>
       <li>
@@ -648,6 +683,14 @@
         <chronicle>Iron came back to the region.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:salvagers] The Wheel's yard at {PLACE} has never been busier: every broken thing with iron in it is worth something now, and the yard boss pays fair for all of it.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:salvagers] Iron is coming out of the hills again, and the Wheel has loaded its carts at {PLACE} and moved on, as it always does.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
   <!-- ===================== Exiles on the roads ===================== -->
@@ -873,6 +916,14 @@
         <chronicle>The exiles of {PLACE} went their ways.</chronicle>
       </li>
     </endings>
+    <!-- In the people's own ways, under the start letter when it falls on one of Rimfolk's peoples (World/Home/, B1). -->
+    <theirs>
+      <li>[their:crew] The Hollow Fleet does not cast people out lightly, and the first officer at {PLACE} logged every word of the hearing. The exiles were given the old ship's farewell at the hull door.</li>
+    </theirs>
+    <!-- How it ended for them, in their own ways, under the ending's letter (World/Home/, B1). -->
+    <theirEnds>
+      <li>[their:crew] The first officer at {PLACE} has closed the exiles' entry in the ship's log, whichever way it ended. The Hollow Fleet does not open a closed entry.</li>
+    </theirEnds>
   </ColonyCouncil.WorldSituationDef>
 
 </Defs>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The world brought home (Source/ColonyCouncil/World/Home/; docs/content-update-proposals.md, part B: B1, B2, B3, B23, B25, B26, B32). -->
+
+  <CC_WH_TheRegion>the region</CC_WH_TheRegion>
+
+  <!-- B32: a great world event in the colony's book, as a believer holds it (the gods' book's old voice). {WHAT} is the world
+       event ("the gray cough at Ashford"), {GOD} the god as the believer calls it. -->
+  <CC_WH_Great_What>{NAME} at {PLACE}</CC_WH_Great_What>
+  <CC_WH_Great_Belief_1>{WHAT} came of {GOD}, and not of chance.</CC_WH_Great_Belief_1>
+  <CC_WH_Great_Belief_2>It was {GOD} that sent {WHAT} upon the land.</CC_WH_Great_Belief_2>
+  <CC_WH_Great_Belief_3>{WHAT} is the work of {GOD}, whatsoever others may say.</CC_WH_Great_Belief_3>
+
+  <!-- B26: what the council's answers do, under each answer. -->
+  <CC_WH_Impact_Apart>Kept apart from travellers while the sickness lasts: sickness brought in by visitors, traders and couriers comes half as often, and nobody of the colony has one of the small moments with them.</CC_WH_Impact_Apart>
+  <CC_WH_Impact_ApartBrief>Half the sickness from travellers</CC_WH_Impact_ApartBrief>
+  <CC_WH_Impact_ApartCool>Each group of visitors or traders kept at arm's length thinks a little less of the colony (1 goodwill).</CC_WH_Impact_ApartCool>
+  <CC_WH_Impact_ApartCoolBrief>Visitors a little cooler</CC_WH_Impact_ApartCoolBrief>
+  <CC_WH_Impact_Vow>{PAWN} keeps a vigil day each week while the holy year lasts, from tomorrow morning: most of the working day at their god's place, an altar or the gathering spot, away from work. Each one kept strengthens their belief and lifts their mood.</CC_WH_Impact_Vow>
+  <CC_WH_Impact_VowBrief>{PAWN}: a vigil day each week</CC_WH_Impact_VowBrief>
+  <CC_WH_Impact_Side>Only {BACKED} come asking while the war lasts; {OTHER} stop asking the colony for anything.</CC_WH_Impact_Side>
+  <CC_WH_Impact_SideBrief>Backs {BACKED}</CC_WH_Impact_SideBrief>
+  <CC_WH_Impact_Mourning>Outer clothes dyed dark grey until the mourning is over ({WHO}); then each piece is put back as it was.</CC_WH_Impact_Mourning>
+  <CC_WH_Impact_MourningBrief>Mourning colours</CC_WH_Impact_MourningBrief>
+
+  <!-- B26: what happens after. -->
+  <CC_WH_Mourning_Dyed>The colony is in mourning colours for {NAME}: {COUNT} of its people have their outer clothes dyed dark grey until it is over.</CC_WH_Mourning_Dyed>
+  <CC_WH_VigilLabel>a vigil day</CC_WH_VigilLabel>
+  <CC_WH_Vigil_Kept>{PAWN} kept a vigil day, as vowed for the holy year.</CC_WH_Vigil_Kept>
+  <CC_WH_Vow_Done>The holy year is over. {PAWN} kept {COUNT} vigil days, as vowed.</CC_WH_Vow_Done>
+
+</LanguageData>
