@@ -57,6 +57,50 @@ most sense." So, in this order, three builds at a time:
      that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
+- **The player, 20 November 2026 (third and fourth messages):**
+  - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
+    option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
+    unpausing the game. Once I paused, the map just returned to normal, but as soon as I unpause, everything turns gray
+    again ... Once I reload the save, the issue seems to be resolved ... the player log doesn't update". Save uploaded
+    (1.7.5014; Cirrus's presence, a drought and no wind active; the medal given). Being traced.
+  - **Go, restore**: "yes, please restore letters, wishes, ambitions, life goals, personal stories, council questions,
+    camps, and world events to just the previous text, to kind of the flavor style text that you created before,
+    restore it from the backup, and keep that also in mind for additional content to be added." CLAUDE.md's text rule
+    now says so. To build: each of the eight parts back to its text before its plain-words batch (letters 0.266.9,
+    wishes, ambitions and life goals 0.268.2, personal stories 0.268.4, council questions 0.268.5 and 0.269.2, camps
+    0.269.1, world events 0.270.1), keeping every def and code change that made the map match the words (the camp's
+    people at its gatherings, the guardian on the long walk, the prospector, preachers and delegations at the gate, the
+    far-town colonists sent away) and, where the old words claim what the code doesn't do (the batches' "put right"
+    lists), a minimal fix in the old voice.
+  - **Go, PokéWorld storage**: "there's a bunch of items from the Poke World mod, for example, the Dawn Stone and I
+    guess other evolution stones that I cannot put into large storage shelves, for example, from the storage mod. It's
+    just not in the list of available items ... Can you please review all the Poke World items and ensure they are also
+    storable in storage mods, or in appropriate kinds of storage shelves that also can carry everything else?" PokéWorld
+    keeps its items under its own top category (`PW_PokeWorld`: stones, fossils, balls, TMs, healing items, eggs,
+    leathers, belts), which shelves that list the game's categories don't take; the player's storage mods are LWM's Deep
+    Storage, Deep Storage Plus (Continued) and RimFridge's shelves.
+- **The player, 20 November 2026 (second message):**
+  - "go ahead with all the traits": every one of the 38 in `docs/traits-proposals.md`. The first batch (the twelve) is
+    being built; the other 26 follow in two builds once it is merged (the ways out 3, 7, 8, 9, 11, 12, 13, 15, 17 to 25;
+    the new traits 28 to 36), reusing its new parts.
+  - "I don't remember making letters, wishes, ambitions, life goals, personal stories, council questions, gods cards and
+    messages as plain text? do you still have the previous backups available in case i want to restore?" Answered: the
+    overview of 19 November listed them under item 4 ("Plain-words text pass, remaining parts: letters, wishes and
+    ambitions, personal stories, council questions, the peoples, camps and visitors, the region map, council and
+    decrees, the Almanac, What's new, and the plain parts of the gods and faith texts (the medieval voice stays)"), and
+    the player answered "Plain words text sounds great"; the lead read it as the go for every listed part. Every earlier
+    text is in git: each batch is its own release (letters 0.266.9, wishes, ambitions and life goals 0.268.2, personal
+    stories 0.268.4, council questions 0.268.5 and 0.269.2, camps 0.269.1, encounters 0.269.3, missions 0.269.4,
+    decrees and seats 0.269.5, world events 0.270.1, the gods' cards and messages 0.270.2, the Almanac 0.270.3 to
+    0.270.6, What's new 0.271.1). **To do when the player asks:** restore any of them, part by part, to the text before
+    its batch (`git show <the release's first parent>:<file>`), keeping the fixes that made the words match the map (the
+    def and code changes each entry names) unless the player wants those undone too. Until the player answers, the
+    peoples' own texts (task 4 above) wait: the founders' pattern can be fixed in the present voice or in plain words.
+  - "since i still have quite some tokens available, i want to make another large content update, meaning adding
+    further variety to existing mechanics, further enhancing what's already created, further integrating different
+    features with each other, adding more text variety etc." **To do when the player asks:** a proposal list first
+    (`docs/content-update-proposals.md`), by system, each item what happens on the map, which features it ties together
+    and what it draws from the mod pool; nothing is built until the player picks.
 
 **How a build goes.** Small fixes in the main tree. Bigger pieces go to worktree agents, three at most at once (the
 container has 4 cores): each gets a brief (`docs/agent-brief.md` holds the part every brief shares), builds and checks
@@ -139,18 +183,10 @@ repo.
   event sends to a far town really goes.** The to-do (found 19 November 2026 in the plain-words pass on the region map)
   and what was built are now one entry above the newest release line ("A colonist a world event sends to a far town
   goes").
-- **To do when the player asks (found 19 November 2026 in the plain-words pass on the Almanac, part 2; no words of the
-  player's yet): the defense survey counts a shut door as a way raiders might break through.** The survey of the ways
-  in (`Defense/DefenseMath.cs`, a Dijkstra from home with `DoorCost` 400, about thirty cells of walking) lets a shut
-  door stand on the raiders' way when the open way round is some thirty cells longer. In the game's 1.6 pathing a
-  closed colony door is no way at all for an ordinary assault raider: their goto, attack and trash jobs have
-  `canBashDoors` false, so they take the open way however long it is (`docs/defense-research/mechanics.md`, 1.2 and
-  1.3). A back door near the edge can so be shown as the raiders' way in, with its choke points and raid counts, while
-  the game sends them the long way to the killbox. The Almanac now says what the game does and names the survey's own
-  count ("how raiders pick their way"); the defense lines' help on a shut gate (`CC_DefLine_How_Gate` in
-  `Rimfolk_DefenseLines.xml`, "if breaking it is no cheaper than somewhere else, they pick their own stretch of wall")
-  still follows the survey's count. When asked: count a shut door as closed while any open way reaches home, and at
-  400 only when none does (a colony walled in all round, where they break in at random).
+- **Done (20 November 2026, the player's go: "go ahead with the next tasks"; built, not released): the defense survey
+  counts a shut door as a way raiders might break through.** The finding (from the plain-words pass on the Almanac, part
+  2), the cause in the game's 1.6 code and what was built are now one entry above the newest release line ("The defense
+  survey's shut doors").
 - **To do when the player asks (17 November 2026): more traits that come and go.** The player: "while i generally like
   the idea of traits emerging and/or disappearing (we shouild also build up on this as to do)". Today 53 rules: 30 give a
   trait (9 of them bad ones), 7 take a bad one away (two of them vengeful's ways out, 17 November 2026), 16 move a trait
@@ -583,6 +619,83 @@ repo.
     question brings both families' elders to the gate; the talker sits with them; the words come when they are done.
     5. With two grown colonists, or the colonist drafted, the answer is greyed with the reason.
   - Mods that would help: none needed; the caravans, roads and world map are the game's own.
+- 0.274.1, **The defense survey's shut
+  doors** (20 November 2026; found 19 November 2026 in the plain-words pass on the Almanac, part 2, with no words of the
+  player's; the player's go of 20 November 2026: "go ahead with the next tasks"). A bug fix. DESIGN.md "Shut doors on the
+  ways in" (under "The defense helper: reading the ways in", whose door rule and opening lines now say the same);
+  README's Defenses page paragraph; the Almanac's "how raiders pick their way" and "Doors in a line"
+  (`Almanac_DefendingLines.xml`, keywords unchanged); `docs/defense-research/mechanics.md` 1.3 (where raiders arrive).
+  - **The bug**: the survey of the ways in (`Defense/DefenseMath.cs`, a Dijkstra from home) counted a shut door as
+    `DoorCost` 400, about thirty cells of walking, so a shut back door near the edge was drawn as the raiders' way in,
+    with its choke point and its share of raids, whenever the open way round was some thirty cells longer, while the game
+    sends them the long way to the killbox. Read again in the 1.6 code (the 1.6 decompile the research notes use, and
+    the 1.6 and 1.7 reference assemblies' constants and signatures, which agree): an ordinary raider's goto, attack and
+    trash jobs can't bash doors, so `PathUtility.GetDoorCost` makes a closed colony door impassable to them
+    (`Building_Door.PawnCanOpen` is false for their faction, and `LordJob_AssaultColony` doesn't let them open any
+    door); they take an open way however long, and with none left they trash a random building they can touch. The game
+    also sends raiders to any edge cell that reaches the colony through its doors (`RCellFinder.TryFindRandomPawnEntryCell`
+    wants `CanReachColony`, which uses `TraverseMode.PassDoors`), so the rule holds for each edge cell, not for the whole
+    colony.
+  - **What was built**: (1) A shut door (not held open, not a line's way through) costs `DefenseMath.ShutDoorCost`
+    (2 to the 24th), more than any walk on any map: an open way always wins, however long, and only where no open way
+    reaches home is a door on the way, the way that breaks the fewest doors (the survey's guess: the game's raiders pick
+    a door or a stretch of wall at random, so the old trade of one door against thirty cells had no ground in the game
+    either). The lead's note asked for 400 where no open way is left; with the cost above, the fewest doors decide
+    there, which differs from 400 only when two doors would save more than thirty cells, and it lets the defense lines
+    compare their ways by doors. `DoorsToBreak` and `Walking` split a cost; `Result.sideBreak`, `TotalBreak` and
+    `BreakAll` (walled in all round, every gate shut) count the edge cells with no open way; `Distances` adds in 64 bits
+    and drops a step that would overflow. (2) The survey says which, under "Where they come from" on the Defenses page:
+    `CC_Def_Ways_Open` (every edge has an open way and the colony has doors: these are the ways of raiders who walk in
+    from the edge, who don't break a door while an open way is left), `CC_Def_Ways_Shut` (no open way from anywhere:
+    they break in at a door or a stretch of wall they pick, the ways drawn through the doors are only a guess, a gate
+    held open would be their way in) or `CC_Def_Ways_ShutSome` (the sides where part of the edge has none). (3) The
+    defense lines' way round (`DefenseLineMath.FindLeak`): a way round that breaks more of the colony's doors than the
+    way through the gate is no way round ("No open way round"); one that breaks no more is the way they take with the
+    gate shut, however long, through a door held open too (`DefenseLineReview.Leak` now tells a long way past such a
+    door as the long way round, where it said "No way round"). A line's gate and the doors in its wall stay its way
+    through, shut or not (the door rule: the line as it will be used in a raid), and its card says what a shut gate
+    does. (4) The words that had breaking a door as a choice raiders weigh: `CC_DefLine_How_Gate` (it also says
+    sappers and breachers dig or break through anywhere), `CC_DefLine_Gate_Shut`, `_Gate_ShutKillbox`, `_Gate_Doors`,
+    `_How_LeakDoor`, `_Leak_Door`, `_Leak_Sealed`, `_Killbox_Why3`, `_Remind` and the reminder setting's tooltip;
+    `CC_Def_Adv_WallDone` ("come through a door or not at all"), `CC_Def_Adv_Post` ("before the gate breaks"); the
+    step ladder's killbox (`whyNow` "Raids this size break a plain gate", a shut gate's mistake, and "An entrance so
+    long that raiders give up on it and go for the walls", which the game has no rule for: raiders far from anyone to
+    fight drift off to smash what they reach, as the Almanac's killbox page says); the Almanac's three mentions of the
+    survey's thirty cells.
+  - **Code map**: `Defense/DefenseMath.cs` (`ShutDoorCost`, `DoorsToBreak`, `Walking`, `StepCost`, `Distances`,
+    `Result.sideBreak`, `TotalBreak`, `BreakAll`, the class's note on which raids the ways are), `Defense/DefenseLineMath.cs`
+    (`FindLeak`, the `Leak` fields' notes, `MarkLineDoors`' note), `Defense/DefenseLineReview.cs` (`Leak`),
+    `Defense/DefenseSurvey.cs` (notes), `UI/DefensePanel.cs` (the three lines),
+    `Languages/English/Keyed/Rimfolk_Defense.xml`, `Rimfolk_DefenseLines.xml`, `Defs/DefenseStepDefs/Rimfolk_DefenseSteps.xml`,
+    `Defs/AlmanacArticleDefs/Almanac_DefendingLines.xml`. Untouched but following the new costs: the choke points and
+    their shares, the walled-in test (`Enclosed`), the trap corridor's way up to a gate (`DefenseApproach`), the plan
+    check's walks (`CheckWay`), the doors behind a gate (`DoorsBehind`) and on the way to the beds (`DoorsToCore`).
+    Tests: `DefenseTests.ShutDoorChecks` (an open way round a few cells longer, a long one about a hundred cells longer,
+    walled in all round, the door held open there and with the colony walled in, part of the edge with only the door),
+    `DefenseLineTests` (a way round through another door: shut, no way round; held open, the way round through it),
+    `DefenseApproachTests` (a shut door that isn't a line's sends every walk to the other pass; a cost split into doors
+    and walking). Saved: nothing.
+  - **What the player sees differently**: on the Defenses page and with "Show on the map", the red ways no longer run
+    through a shut door while an open way is left, however long (round to the killbox, a gap or a gate held open); the
+    yellow narrow places and their "About N in 10 raids would pass it" follow, so a shut back door near the edge drops
+    out of the gaps and the advice. A colony walled in all round with every gate shut still has its ways drawn through
+    the doors, and the page now says they are only a guess. One new line under "Where they come from" says which. On
+    a defense line's card: a way round through another shut door is no longer told as a way through your door ("keep
+    the other shut and strong"), but as no open way round; a long way round through a door held open is told as the long
+    way round. The first survey after loading the game updates the busiest way in quietly (no "Raiders now come by"
+    message).
+  - **Can't be checked without the game**: raiders in a 1.7 raid walking the long open way past a shut back door (the
+    1.7 method bodies weren't read; its reference assembly has the same door constants and signatures); the drawn ways
+    on the player's own maps; the new line's fit in the page's left column.
+  - **Try in the game**: (1) A colony with an open killbox (or its gate held open) and a shut door nearer the raiders:
+    Colony, Defenses, "Survey again", "Show on the map": the red ways go to the killbox, none through the shut door, and
+    "Where they come from" says these are the ways of raiders who walk in from the edge. (2) Set the killbox's gate to
+    close (a colony walled in all round): "Survey again": the page says every way in passes a shut door and the ways
+    drawn are a guess, and the wall's advice says a door held open is their way in. (3) A defense line with a second
+    door of the colony's on another way in: shut, its card says "No open way round"; set that door to stay open, and it
+    says the easiest way on is through that door. (4) In a raid with a shut back door and the killbox open: raiders walk
+    the long way to the killbox, as the page now draws.
+  - **Mods that would help**: none; the survey reads the map Rimfolk already has, and no graphics or sound come into it.
 - 0.274.0, **The peoples' own events, round 10, the last**
   (19 November 2026; the player's go on the overview: "Events sounds great", for the wish of 10 November 2026: "I'd first
   like more faction specific events, interactions etc. like this event i had with these gene guys who gave my pawn a new

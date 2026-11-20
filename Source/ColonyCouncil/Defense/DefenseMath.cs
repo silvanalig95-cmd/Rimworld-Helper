@@ -8,10 +8,19 @@ namespace ColonyCouncil
     /// routes they walk, the narrow places on those routes (choke points: a pass between hills, a gap between rock and
     /// water, a bridge, a gate in the colony's own wall), and whether the colony is walled in.
     /// <para>
-    /// The way in is worked out once from home outward (Dijkstra over the walkable cells, doors costing extra, as raiders
-    /// would have to break them; a defense line's gate and a door held open cost nothing, see <see cref="MapGrid.free"/>),
-    /// then every reachable edge cell walks downhill to home. Raids come from a random
-    /// reachable edge cell, so the share of those walks that pass a place is about the share of raids that will.
+    /// The ways in are those of ordinary raiders who walk in from the map's edge and fight their way to the colony's people
+    /// (an assault raid, and the assault a siege turns into). In the game's own pathing they can't open the colony's doors,
+    /// and while an open way is left they never break one, however long the open way is (their goto, attack and trash jobs
+    /// can't bash doors; docs/defense-research/mechanics.md, 1.2 and 1.3). So a shut door costs more than any walk
+    /// (<see cref="ShutDoorCost"/>): it is on a way only where no open way reaches home from there, and then the way that
+    /// breaks the fewest doors is taken (the game's raiders then pick a door or a stretch of wall at random, so that way is
+    /// the survey's guess). A defense line's gate and a door held open cost nothing (see <see cref="MapGrid.free"/>).
+    /// Sappers, breachers, berserk raiders and drop pods don't take these ways: they dig, break or land where they mean to.
+    /// </para>
+    /// <para>
+    /// The way in is worked out once from home outward (Dijkstra over the walkable cells), then every reachable edge cell
+    /// walks downhill to home. Raids come from a random edge cell that reaches the colony (through its doors too, as the
+    /// game picks them), so the share of those walks that pass a place is about the share of raids that will.
     /// </para>
     /// </summary>
     public static class DefenseMath
@@ -21,7 +30,20 @@ namespace ColonyCouncil
         /// <summary>Not a cell kind: the end of a span at the map's edge.</summary>
         public const byte Edge = 8;
 
-        public const int Ortho = 13, Diag = 18, DoorCost = 400;
+        public const int Ortho = 13, Diag = 18;
+
+        /// <summary>
+        /// What a shut door adds to a way: more than any walk on any map costs, so an open way, however long, beats any way
+        /// through a shut door, and where no open way is left the way that breaks the fewest doors wins. The walking part
+        /// of a way stays below it (<see cref="Walking"/>).
+        /// </summary>
+        public const int ShutDoorCost = 1 << 24;
+
+        /// <summary>How many shut doors a way (a cost from <see cref="Distances"/>) has to break: 0 for an open way, -1 for no way.</summary>
+        public static int DoorsToBreak(int cost) => cost < 0 ? -1 : cost / ShutDoorCost;
+
+        /// <summary>A way's cost without its shut doors: the walking alone (-1 for no way).</summary>
+        public static int Walking(int cost) => cost < 0 ? -1 : cost % ShutDoorCost;
         /// <summary>The widest place still counted as a choke point.</summary>
         public const int MaxChokeWidth = 13;
         /// <summary>How far each side of a cell a gap is measured before it counts as open country.</summary>
@@ -39,8 +61,9 @@ namespace ColonyCouncil
             /// <summary>Where people sleep and live: what "walled in" protects. Falls back to home.</summary>
             public readonly bool[] core;
             /// <summary>
-            /// Doors raiders count as open ground: a defense line's gate and the doors in its wall (the line's way
-            /// through, shut or not: they break a shut gate rather than go far round), and any door held open.
+            /// Doors raiders count as open ground: any door held open, and a defense line's gate and the doors in its wall
+            /// (the line's way through, shut or not: the helper reads a line as it will be used in a raid, with its gate
+            /// held open; the line's card says what a shut gate does in the game).
             /// </summary>
             public readonly bool[] free;
             public int centerX, centerZ;
@@ -64,7 +87,7 @@ namespace ColonyCouncil
             public bool In(int x, int z) => x >= 0 && z >= 0 && x < w && z < h;
             public bool Passable(int i) => kind[i] == Open || kind[i] == Door || kind[i] == Bridge;
 
-            /// <summary>A door raiders would have to break: neither a line's way through nor held open.</summary>
+            /// <summary>A door raiders can't pass and would have to break: neither a line's way through nor held open.</summary>
             public bool ShutDoor(int i) => kind[i] == Door && !free[i];
         }
 
@@ -104,12 +127,20 @@ namespace ColonyCouncil
         public class Result
         {
             public int w, h;
-            /// <summary>Cost of the easiest way from each cell to home; -1 where none.</summary>
+            /// <summary>
+            /// Cost of the easiest way from each cell to home; -1 where none. Each shut door on it adds
+            /// <see cref="ShutDoorCost"/> (<see cref="DoorsToBreak"/>): only where no open way is left.
+            /// </summary>
             public int[] dist;
             /// <summary>Walks from the edge passing each cell.</summary>
             public int[] flow;
             /// <summary>Edge cells per side (N, E, S, W) people can stand on, and those with a way to home.</summary>
             public int[] sideWalkable = new int[4], sideReach = new int[4];
+            /// <summary>
+            /// Of those, the edge cells per side with no open way to home, only one through a shut door: raiders who
+            /// arrive there break in, at a door or a stretch of wall they pick.
+            /// </summary>
+            public int[] sideBreak = new int[4];
             public int walks;
             /// <summary>A few of the walks, for the map: up to three per side.</summary>
             public List<Route> shown = new List<Route>();
@@ -133,6 +164,9 @@ namespace ColonyCouncil
             public int doorsToCore;
 
             public int TotalReach => sideReach[0] + sideReach[1] + sideReach[2] + sideReach[3];
+            public int TotalBreak => sideBreak[0] + sideBreak[1] + sideBreak[2] + sideBreak[3];
+            /// <summary>No open way from any edge: every way in passes a shut door (walled in all round, every gate shut).</summary>
+            public bool BreakAll => TotalReach > 0 && TotalBreak == TotalReach;
         }
 
         private static readonly int[] DX = { 0, 1, 0, -1, 1, 1, -1, -1 };
@@ -172,6 +206,7 @@ namespace ColonyCouncil
                     r.sideWalkable[side]++;
                     if (r.dist[i] < 0) continue;
                     r.sideReach[side]++;
+                    if (DoorsToBreak(r.dist[i]) > 0) r.sideBreak[side]++;
                     entries.Add((i, side));
                 }
             }
@@ -356,11 +391,17 @@ namespace ColonyCouncil
             return m.Passable(m.Index(x + DX[d], z)) && m.Passable(m.Index(x, z + DZ[d]));
         }
 
-        /// <summary>What a step onto a cell costs: the walk, the ground, and a door to break (not a line's gate, nor one held open).</summary>
+        /// <summary>
+        /// What a step onto a cell costs: the walk, the ground, and a shut door to break (<see cref="ShutDoorCost"/>; not a
+        /// line's gate, nor one held open).
+        /// </summary>
         public static int StepCost(MapGrid m, int to, int d) =>
-            (d < 4 ? Ortho : Diag) + System.Math.Max(0, System.Math.Min(m.cost[to], 600)) + (m.ShutDoor(to) ? DoorCost : 0);
+            (d < 4 ? Ortho : Diag) + System.Math.Max(0, System.Math.Min(m.cost[to], 600)) + (m.ShutDoor(to) ? ShutDoorCost : 0);
 
-        /// <summary>The cost of the easiest way from every cell to the sources (Dijkstra from all of them at once); -1 where there's none.</summary>
+        /// <summary>
+        /// The cost of the easiest way from every cell to the sources (Dijkstra from all of them at once); -1 where there's
+        /// none. An open way is always the easiest while there is one; else the way that breaks the fewest shut doors.
+        /// </summary>
         public static int[] Distances(MapGrid m, bool[] sources)
         {
             int n = m.w * m.h;
@@ -386,10 +427,11 @@ namespace ColonyCouncil
                     int j = m.Index(x + DX[d], z + DZ[d]);
                     if (done[j]) continue;
                     // The cost of stepping from j onto i: walking out of j toward home.
-                    int nd = dist[i] + StepCost(m, i, d);
+                    long nd = (long)dist[i] + StepCost(m, i, d);
+                    if (nd >= int.MaxValue) continue;
                     if (dist[j] < 0 || nd < dist[j])
                     {
-                        dist[j] = nd;
+                        dist[j] = (int)nd;
                         heap.Push(nd, j);
                     }
                 }

@@ -696,6 +696,8 @@ public static class DefenseTests
             check(r.unreachable && r.chokes.Count == 0, "island: no way in");
         }
 
+        ShutDoorChecks(check);
+
         // The heap gives the lowest first.
         {
             var heap = new DefenseMath.MinHeap(2);
@@ -713,5 +715,83 @@ public static class DefenseTests
             check(sorted, "the heap pops in order");
         }
         check(DefenseMath.Compass(0f) == 0 && DefenseMath.Compass(44f) == 1 && DefenseMath.Compass(90f) == 2 && DefenseMath.Compass(350f) == 0 && DefenseMath.Compass(315f) == 7, "compass points");
+    }
+
+    /// <summary>
+    /// A shut door is no way at all to raiders who walk in while an open way is left, however long (the game's own
+    /// pathing: they can't open the colony's doors, and their jobs can't bash them); only where no open way reaches home
+    /// is it on their way, the one that breaks the fewest doors. A door held open is open ground.
+    /// </summary>
+    private static void ShutDoorChecks(Action<bool, string> check)
+    {
+        // A pocket of home under rock, 60 x 60: a strip of open ground along the north edge, a lane down from it to the
+        // pocket's north wall with a door in it (x 30, z 41), and, when asked, a gap in that wall beside the lane, or a long
+        // way round: down the east side, along the south and up into the pocket from below (about a hundred cells longer).
+        const int W = 60;
+        int door = 41 * W + 30;
+        DefenseMath.MapGrid Pocket(bool gap, bool roundSouth, bool roundToEast) => Map(W, W, (x, z) =>
+        {
+            if (z >= 50) return '.';
+            if (x >= 28 && x <= (gap ? 39 : 32) && z >= 42 && z <= 49) return '.';
+            if (z == 41 && x >= 20 && x <= 40) return x == 30 ? 'D' : gap && x == 38 ? '.' : 'W';
+            if (x >= 20 && x <= 40 && z >= 20 && z <= 40) return x >= 25 && x <= 35 && z >= 25 && z <= 35 ? (x == 30 && z == 30 ? 'c' : 'h') : '.';
+            if (roundSouth || roundToEast)
+            {
+                if (roundSouth && x >= 54 && x <= 56 && z >= 5 && z <= 49) return '.';
+                if (z >= 5 && z <= 7 && x >= 29 && (roundToEast || x <= 56)) return '.';
+                if (x >= 29 && x <= 31 && z >= 5 && z <= 19) return '.';
+            }
+            return '#';
+        });
+        int Through(DefenseMath.Result r) => r.walked.Count(w => w.Contains(door));
+
+        // An open way round, a few cells longer than the way through the door: nobody passes the door.
+        {
+            var r = DefenseMath.Analyse(Pocket(true, false, false));
+            check(r.walks > 0 && Through(r) == 0, $"shut door: with a gap in the wall beside it, no way in passes the door ({Through(r)} of {r.walks})");
+            check(r.TotalBreak == 0 && !r.BreakAll, "shut door: every edge cell has an open way in");
+            check(r.chokes.Count > 0 && r.chokes[0].doors == 0 && r.chokes.All(c => !c.span.Contains(door)), "shut door: the gap is the narrow place, not the door");
+        }
+        // A long open way round, about a hundred cells further: still nobody passes the door (it used to count as thirty
+        // cells of walking, so every way in went through it).
+        {
+            var m = Pocket(false, true, false);
+            var r = DefenseMath.Analyse(m);
+            check(r.walks > 0 && Through(r) == 0, $"long way round: no way in passes the shut door ({Through(r)} of {r.walks})");
+            check(r.TotalBreak == 0 && !r.BreakAll && r.sideReach[0] > 0, "long way round: the open way is the way in from the whole edge");
+            check(r.shown.All(rt => DefenseMath.DoorsToBreak(r.dist[rt.cells[0]]) == 0 && r.dist[rt.cells[^1]] == 0), "long way round: the ways shown break no door and end at home");
+            check(r.chokes.All(c => !c.span.Contains(door)), "long way round: the door isn't a narrow place on the way in");
+            check(DefenseMath.DoorsToBreak(r.dist[45 * W + 30]) == 0 && DefenseMath.Walking(r.dist[45 * W + 30]) > 60 * DefenseMath.Ortho,
+                $"long way round: from just outside the door the way in is the long one ({DefenseMath.Walking(r.dist[45 * W + 30]) / DefenseMath.Ortho} cells)");
+            // The same door held open: open ground, the short way, and everyone takes it.
+            m.free[door] = true;
+            var held = DefenseMath.Analyse(m);
+            check(held.walks > 0 && Through(held) == held.walks, $"door held open: every way in passes it ({Through(held)} of {held.walks})");
+            check(held.TotalBreak == 0 && held.chokes.Count > 0 && held.chokes[0].span.Contains(door), "door held open: it is the narrow place, and nobody breaks in");
+        }
+        // Walled in all round: no open way, so the door is the way in, the one door to break.
+        {
+            var m = Pocket(false, false, false);
+            var r = DefenseMath.Analyse(m);
+            check(r.walks > 0 && Through(r) == r.walks, $"walled in all round: every way in passes the door ({Through(r)} of {r.walks})");
+            check(r.BreakAll && r.TotalBreak == r.TotalReach && r.enclosed, "walled in all round: every edge cell has to break in");
+            check(r.chokes.Count > 0 && r.chokes[0].doors == 1 && r.chokes[0].span.Contains(door), "walled in all round: the door is the narrow place");
+            check(DefenseMath.DoorsToBreak(r.dist[45 * W + 30]) == 1, "walled in all round: one door to break");
+            // Left open, it's an open way: nobody breaks in.
+            m.free[door] = true;
+            var open = DefenseMath.Analyse(m);
+            check(!open.BreakAll && open.TotalBreak == 0 && Through(open) == open.walks, "walled in, the door left open: everyone walks in through it, nobody breaks in");
+        }
+        // Each edge cell on its own: the long way round reaches the east edge, not the north strip. Raiders who arrive
+        // in the north have only the door and break in; those from the east walk the open way.
+        {
+            var r = DefenseMath.Analyse(Pocket(false, false, true));
+            check(r.sideReach[0] > 0 && r.sideBreak[0] == r.sideReach[0], $"part of the edge: the north edge has only the door ({r.sideBreak[0]} of {r.sideReach[0]})");
+            check(r.sideBreak[1] > 0 && r.sideBreak[1] < r.sideReach[1], $"part of the edge: on the east, the strip breaks in and the low way walks ({r.sideBreak[1]} of {r.sideReach[1]})");
+            check(!r.BreakAll && r.TotalBreak > 0, "part of the edge: not walled in all round");
+            bool northDoor = r.walked.Where(w => w[0] / W == W - 1).All(w => w.Contains(door));
+            bool lowOpen = r.walked.Where(w => w[0] / W <= 7).All(w => !w.Contains(door));
+            check(northDoor && lowOpen && r.walked.Any(w => w[0] / W <= 7), "part of the edge: the north's ways go through the door, the low east way doesn't");
+        }
     }
 }

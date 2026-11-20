@@ -42,8 +42,9 @@ public static class GateVisitorTests
             "a beat whose letter says someone is at the gate waits while they can't come (danger, no room for another group)");
         C(Regex.IsMatch(ws, @"foreach \(var g in gates\) HappeningTracker\.Safe\(g, ctx\);\s*if \(VisitorTracker\.Instance\?\.CameWith\(ctx\) != true\)\s*\{\s*wait = true;\s*return false;"),
             "whoever it brings comes first, and if they didn't reach the map, nothing of the beat happens and it tries again");
-        C(ws.Contains("if (Postpone(s, bs, true, now)) s.beats.Add(bs);") && ws.Contains("if (!retry || bs.postponed >= 8 || now + GenDate.TicksPerHour * 6 >= s.endTick) return false;"),
-            "it tries again every six hours, eight times at most, while the event runs");
+        C(ws.Contains("if (Postpone(s, bs, true, now)) s.beats.Add(bs);")
+          && ws.Contains("if (!retry || bs.postponed >= 8 || now + GenDate.TicksPerHour * 6 >= s.endTick && !FarErrands.Out(s)) return false;"),
+            "it tries again every six hours, eight times at most, while the event runs (or waits for the colonist it sent away)");
         C(ws.Contains("gates.Any(g => g.withStranger && !(WorldSituationWorker.FreeInWorld(x)"), "the event's own person who walks in at their head must be free to come");
         string effects = Code("Visitors/VisitEffects.cs");
         C(effects.Contains("public bool Brings(DilemmaContext ctx)") && effects.Contains("if (chance < 1f || !Could(ctx)) return false;"),

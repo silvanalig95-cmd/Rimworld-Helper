@@ -480,10 +480,13 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A beat that can't come yet tries again in six hours, eight times at most and while the event runs; false: it doesn't come.</summary>
+        /// <summary>
+        /// A beat that can't come yet tries again in six hours, eight times at most and while the event runs (or waits for the
+        /// colonist it sent to a far town); false: it doesn't come.
+        /// </summary>
         private static bool Postpone(WorldSituation s, BeatState bs, bool retry, int now)
         {
-            if (!retry || bs.postponed >= 8 || now + GenDate.TicksPerHour * 6 >= s.endTick) return false;
+            if (!retry || bs.postponed >= 8 || now + GenDate.TicksPerHour * 6 >= s.endTick && !FarErrands.Out(s)) return false;
             bs.postponed++;
             bs.due = now + GenDate.TicksPerHour * 6;
             return true;

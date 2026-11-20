@@ -143,7 +143,7 @@
   <!-- Step: the killbox -->
   <CC_DefLine_Killbox_Why1>Raiders who can walk to your people take the easiest path, so the killbox's open gate is where they come.</CC_DefLine_Killbox_Why1>
   <CC_DefLine_Killbox_Why2>The entrance turns, so they can't stop in the doorway and shoot from its cover: they have to come out into the box.</CC_DefLine_Killbox_Why2>
-  <CC_DefLine_Killbox_Why3>The way in must stay open during the raid. Shut it, and with no way in they break the walls wherever they like.</CC_DefLine_Killbox_Why3>
+  <CC_DefLine_Killbox_Why3>The way in must stay open during the raid. Shut it, and they take any other open way, however long, or with none left they break the walls wherever they like.</CC_DefLine_Killbox_Why3>
   <CC_DefLine_Killbox_Why4>Sappers and breachers ignore it and come through the walls: keep a line to fall back to.</CC_DefLine_Killbox_Why4>
   <CC_DefLine_Killbox_Why4Pods>Sappers, breachers and drop pods ignore it, and some of your enemies can land inside: keep weapons by the beds and a line to fall back to.</CC_DefLine_Killbox_Why4Pods>
   <CC_DefLine_Killbox_Tunnel>In a pass through the mountain the killbox can be dug out of the rock: the rock is its walls, and nothing falls on it from above.</CC_DefLine_Killbox_Tunnel>
@@ -180,11 +180,11 @@
   <CC_DefLine_Leak_Short>The wall stops {0} short of {1} to the {2}: with the gate shut, raiders walk round there.</CC_DefLine_Leak_Short>
   <CC_DefLine_Leak_Open>To the {0} the wall ends in open ground: raiders walk round its end.</CC_DefLine_Leak_Open>
   <CC_DefLine_Leak_Far>With the gate shut, raiders walk round {0} to the {1} of the gate.</CC_DefLine_Leak_Far>
-  <CC_DefLine_Leak_Door>With the gate shut, the easiest way on is through your door to the {0}: hold one gate, and keep the other shut and strong.</CC_DefLine_Leak_Door>
+  <CC_DefLine_Leak_Door>With the gate shut, the easiest way on is through your door to the {0}, if it stands open: hold one gate open in a raid, and keep the other shut.</CC_DefLine_Leak_Door>
   <CC_DefLine_Leak_EvenOpen>That way is easier than the gate itself, so they'd go round even with it open.</CC_DefLine_Leak_EvenOpen>
   <CC_DefLine_Leak_Long>With the gate shut, raiders still have a way on: the long way round, about {0} cells further, crossing the line's row to the {1}. Hold the gate open in a raid, or close that way too.</CC_DefLine_Leak_Long>
   <CC_DefLine_Leak_Planned>Walls are planned there; it's closed once they're built.</CC_DefLine_Leak_Planned>
-  <CC_DefLine_Leak_Sealed>No way round: with the gate shut, raiders would have to break in.</CC_DefLine_Leak_Sealed>
+  <CC_DefLine_Leak_Sealed>No open way round: with the gate shut, raiders would have to break in, at a door or a stretch of wall they pick.</CC_DefLine_Leak_Sealed>
   <CC_DefLine_Leak_NoWayOn>From in front of this gate there's no way on to the beds, even with it open, so raiders have no reason to come this way. Check that the line is where they cross.</CC_DefLine_Leak_NoWayOn>
   <CC_DefLine_End_Rock>the rock</CC_DefLine_End_Rock>
   <CC_DefLine_End_Water>the water</CC_DefLine_End_Water>
@@ -208,9 +208,9 @@
   <CC_DefLine_PlanCover_Tip>Opens the planner with a line of cover at that distance, placed for this line.</CC_DefLine_PlanCover_Tip>
   <CC_DefLine_Walls_Wood>{0} of the line's {1} cells are wood. Raiders set fires, and a burning wall in a narrow place is a trap for your own people.</CC_DefLine_Walls_Wood>
   <CC_DefLine_Gate_Open>The gate ({0}) is held open: raiders come to it rather than break the wall.</CC_DefLine_Gate_Open>
-  <CC_DefLine_Gate_Shut>The gate ({0}) is shut. It's still the line's way in: raiders will break this door if there's no other way. Hold it open during a raid to keep them coming through the gate into your guns, rather than hacking at the wall wherever they like.</CC_DefLine_Gate_Shut>
-  <CC_DefLine_Gate_ShutKillbox>The gate ({0}) is shut. It's still the line's way in: raiders will break this door if there's no other way. Hold it open during a raid to keep them coming through the killbox, rather than hacking at the wall wherever they like.</CC_DefLine_Gate_ShutKillbox>
-  <CC_DefLine_Gate_Doors>{0} doors stand in this line's wall, and raiders count each as a way through: hold open only the one you want them to use.</CC_DefLine_Gate_Doors>
+  <CC_DefLine_Gate_Shut>The gate ({0}) is shut. The helper still counts it as the line's way in, but raiders can't pass a shut door. They take any other open way, however long, and with none left they break in at a door or a stretch of wall they pick. Hold it open during a raid to keep them coming through the gate into your guns.</CC_DefLine_Gate_Shut>
+  <CC_DefLine_Gate_ShutKillbox>The gate ({0}) is shut. The helper still counts it as the line's way in, but raiders can't pass a shut door. They take any other open way, however long, and with none left they break in at a door or a stretch of wall they pick. Hold it open during a raid to keep them coming through the killbox.</CC_DefLine_Gate_ShutKillbox>
+  <CC_DefLine_Gate_Doors>{0} doors stand in this line's wall. Raiders go through whichever stands open and take a shut one for wall: hold open only the one you want them to use.</CC_DefLine_Gate_Doors>
   <CC_DefLine_SelectGate>Select the gate</CC_DefLine_SelectGate>
   <CC_DefLine_SelectGate_Tip>Takes you to the gate and selects it, so you can set it to stay open.</CC_DefLine_SelectGate_Tip>
   <CC_DefLine_Dark_Posts>At night {0} of the {1} firing positions that see the gate are dark. The dark doesn't spoil anyone's aim, but people there move and work more slowly and it wears on them: a lamp behind the cover helps.</CC_DefLine_Dark_Posts>
@@ -228,7 +228,7 @@
 
   <!-- How each check works (tooltips) -->
   <CC_DefLine_How_Leak>Raiders who can walk to your people take the easiest open way. A way round a line, however long, is the one they take as soon as the gate is shut.</CC_DefLine_How_Leak>
-  <CC_DefLine_How_LeakDoor>Raiders don't open your doors; they break them. A second door is a second gate: hold one, and make the other strong.</CC_DefLine_How_LeakDoor>
+  <CC_DefLine_How_LeakDoor>Raiders can't open your doors, and while an open way is left they don't break one. A door held open is a way in like any gap: hold one gate open in a raid, and keep the others shut.</CC_DefLine_How_LeakDoor>
   <CC_DefLine_How_NoWayOn>The helper measures the way from just in front of the gate to the beds. Where there's none, raiders arriving here have no reason to come through.</CC_DefLine_How_NoWayOn>
   <CC_DefLine_How_Sight>A firing position counts when someone standing there can see the cell just inside the gate, or in a killbox the box itself. Walls, rock and doors block the view; sandbags and barricades don't.</CC_DefLine_How_Sight>
   <CC_DefLine_How_Range>Past a weapon's reach nobody can shoot at all, and hits fall off well before it.</CC_DefLine_How_Range>
@@ -236,7 +236,7 @@
   <CC_DefLine_How_Distance>Too close, and a rush or a grenade through the gate reaches the shooters at once; too far, and the shots go wide. The cover line is drawn for the colony: off to the sides where nobody outside the gate sees it, within your weapons' reach, and more than a grenade's throw back when the raiders throw them.</CC_DefLine_How_Distance>
   <CC_DefLine_How_Turrets>A badly damaged turret can explode, and its blast reaches the turrets and people near it. A turret without power, fuel or repairs is just cover for raiders.</CC_DefLine_How_Turrets>
   <CC_DefLine_How_Wood>Raiders bring torches and incendiaries. Stone doesn't burn, and holds longer against a breacher's axe.</CC_DefLine_How_Wood>
-  <CC_DefLine_How_Gate>Raiders who have a way to your people take it. A gate held open during a raid brings them into your guns; a shut one is a door to break, and if breaking it is no cheaper than somewhere else, they pick their own stretch of wall. The helper counts a line's gate, and every door in its wall, as the line's way through whether it's shut or not, so a shut gate never makes it look for a new way in.</CC_DefLine_How_Gate>
+  <CC_DefLine_How_Gate>Raiders who walk in from the edge take any open way to your people, however long. A gate held open during a raid brings them into your guns. A shut one is wall to them. They can't open it, so they take another open way if there is one, and with none left they break in at a door or a stretch of wall they pick, not always the gate. The helper counts a line's gate, and every door in its wall, as the line's way through whether it's shut or not, as the line will be used in a raid, so a shut gate never makes it look for a new way in. Sappers and breachers dig or break through anywhere.</CC_DefLine_How_Gate>
   <CC_DefLine_How_Way>The helper reads the ways in again when something is built or taken away near a line or a gap (at most once a game hour), and says when the busiest one has moved.</CC_DefLine_How_Way>
   <CC_DefLine_How_Dark>Darkness doesn't spoil anyone's aim by itself: it slows movement and work, and wears on the mood. Only a belief that prefers combat in darkness changes shooting, 25% better at targets in the dark and 20% worse at lit ones.</CC_DefLine_How_Dark>
   <CC_DefLine_How_Upkeep>Damaged walls fall sooner in the next raid, and sprung traps do nothing until they're rebuilt. Your builders repair only what's inside the home area.</CC_DefLine_How_Upkeep>
@@ -274,7 +274,7 @@
   <CC_DefLine_PickSpot_Taken>There's a defense line here already.</CC_DefLine_PickSpot_Taken>
 
   <!-- Raids -->
-  <CC_DefLine_Remind>Raiders are here, and the gate of {0} is shut. With no way in, they break the wall wherever they like. If you mean to fight there, select the gate and set it to stay open.</CC_DefLine_Remind>
+  <CC_DefLine_Remind>Raiders are here, and the gate of {0} is shut. They can't pass a shut gate, so they take another open way if there is one, or break the wall wherever they like. If you mean to fight there, select the gate and set it to stay open.</CC_DefLine_Remind>
   <CC_DefLine_RaidOver>The raid at {0} is over. {1} The defense window shows what it taught.</CC_DefLine_RaidOver>
   <CC_DefLine_LastRaid>Last raid ({0} ago): {1}</CC_DefLine_LastRaid>
   <CC_DefLine_Raid_Through>{0} came through the gate</CC_DefLine_Raid_Through>
@@ -351,7 +351,7 @@
 
   <!-- Settings -->
   <CC_Settings_DefenseGateReminder>Remind me of a shut gate when raiders come</CC_Settings_DefenseGateReminder>
-  <CC_Settings_DefenseGateReminder_Tip>When raiders arrive, says once if a defense line's gate is shut. With no way in, raiders break the wall wherever they like; a gate held open brings them into your guns.</CC_Settings_DefenseGateReminder_Tip>
+  <CC_Settings_DefenseGateReminder_Tip>When raiders arrive, says once if a defense line's gate is shut. Raiders can't pass a shut gate, so they take another open way, or with none left break the wall wherever they like; a gate held open brings them into your guns.</CC_Settings_DefenseGateReminder_Tip>
   <CC_SetNote_DefenseGateReminder>Once a raid, a word if a defense line's gate is shut when raiders come.</CC_SetNote_DefenseGateReminder>
   <CC_Settings_CoverDrag>Ctrl and right-drag sends drafted colonists to cover</CC_Settings_CoverDrag>
   <CC_Settings_CoverDrag_Tip>With drafted colonists selected, hold Ctrl and right-drag: the cell you press is where they gather and the drag points at the enemy. Each one goes to the cell nearby with the most cover from that side that they can shoot from, long guns a step back and melee fighters a step forward. The cover of each cell shows while you drag. Ctrl and a right-click without dragging takes cover from the nearest enemies in sight. Needs the deeper game hooks.</CC_Settings_CoverDrag_Tip>
