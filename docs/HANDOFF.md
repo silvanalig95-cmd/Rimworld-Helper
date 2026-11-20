@@ -76,11 +76,9 @@ most sense." So, in this order, three builds at a time:
   their pace." Then: "So for the content update, yes, I want more events, camps, world events, and dilemmas, but first
   do all the integrations that you proposed in your document before we add additional content variety in that sense."
   The order, three builds at a time:
-  1. The to-dos already open: the flavour-text restore, PokéWorld's shelves, the traits (ways out, then 28 to 36), the
-     medal's gathering (answers play out is on, so the medal given at once is a bug) with A30 (what the dead leave by
-     closeness; both done, built, not released: the entry "The medal read at the gate, the peoples' errands past a barred
-     door, and what the dead leave by closeness" above the newest release line), the peoples' founder texts (in each text's present voice; built, not released), the comms console by radio and the foreign
-     peoples' ages (the to-do "the comms console and the peoples' ages" above, now with the go).
+  1. The to-dos already open, all released: the flavour-text restore (0.276.0), PokéWorld's shelves (0.275.3), the
+     traits (0.275.0, 0.276.1, 0.277.1), the medal's gathering with A30 (0.276.2), the peoples' founder texts (0.277.2),
+     the comms console by radio and the foreign peoples' ages (0.277.0).
   2. Every **I** (integration) item of `docs/content-update-proposals.md`, the gods' first (part C), then colony life
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
      gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
@@ -90,18 +88,17 @@ most sense." So, in this order, three builds at a time:
      home (B1, B2, B3, B23, B25, B26, B32; released 0.280.0); the peoples and their ties (B4, B12, B14, B17, B22, B29,
      B31; released 0.280.1); the region's years and the camps (B5, B11, B13, B19, B27; released 0.280.2). Every integration
      item is built.
-  3. Then the variety (started 20 November, the integrations all built): gods' variety (C5, C9, C10, C11, C13, C23, C31
-     and two new happenings for each god); the world's (B6, B7, B8, B15, B20, B21, B24, B28, six more world events, six
-     more camps; built, not released: the entry "The world's variety: new world events, camps and encounters" above the
-     newest release line); colony life's first (A3, A4, A7, A18, A19, A20, twenty-five more council questions); then the rest:
-  3. Then the variety: the **V** and **T** items and more of every kind (god events above all, events, camps, world
-     events, storyteller events, dilemmas), in the flavour style where CLAUDE.md keeps it. The gods first: C5, C9, C10,
-     C11, C13, C23 and C31 and thirty-one new happenings between the colony's people (built, not released: the entry
-     "The gods between the colony's people, and the gods' variety" above the newest release line).
+  3. Then the variety (started 20 November, the integrations all built): the **V** and **T** items and more of every
+     kind (god events above all, events, camps, world events, storyteller events, dilemmas), in the flavour style where
+     CLAUDE.md keeps it. Gods' variety (C5, C9, C10, C11, C13, C23, C31 and thirty-one new happenings between the
+     colony's people; released 0.281.0); the world's (B6, B7, B8, B15, B20, B21, B24, B28, ten world events, eight camps,
+     two encounters for each people; released 0.282.0); building: colony life 1 (A3, A4, A7, A18, A19, A20, twenty-five
+     more council questions), colony life 2 (A8, A11, A15, A16, A22 to A26, A28, twelve events, six personal stories)
+     and text round 1 (A31 to A37); then text round 2 (B9, B10, B16, B18, B30, C32 to C36).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
-  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; built, not released): the
-  comms console and the peoples' ages.** The to-do with the player's words is now one entry above the newest release
-  line ("The comms console by radio, and the foreign peoples' ages").
+  the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
+  comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms
+  console by radio, and the foreign peoples' ages").
 - **The player, 20 November 2026 (third and fourth messages):**
   - **Bug, priority**: "I just had an event pop up about one of my pawns receiving a medal. And then I selected the
     option that everyone should go to the gate ... after this, the whole map screen turned gray essentially while I was
