@@ -54,7 +54,7 @@ most sense." So, in this order, three builds at a time:
      `docs/traits-proposals.md` (the player named no numbers, so the recommended twelve; the rest wait for a pick).
   4. **The peoples' own texts**: the Almanac's peoples' pages in plain words, their "Where their ways began" sections,
      each people's talk piece on how their ways began and the 21 faiths' descriptions that name a founder, each told in
-     that people's own shape as the descriptions were (0.239.0 and after), a founder named only where the people keep
+     that people's own shape as the descriptions were (0.252.0), a founder named only where the people keep
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text").
 - Pokémon: pairings are changed when the player flags one.
 
