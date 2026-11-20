@@ -72,8 +72,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The named values: {PAWN} the one speaking (or the story's colonist), {OTHER} whom it's about, {PET} the animal,
-        /// {SKILL}, {LOST}, {NAME}, {FACTION}, {GOAL}, {QUIRK} and {DAYS}; in a story of three, {THIRD} the one of the three
-        /// who is neither speaking nor spoken of (the third person in the colonist's lines, the colonist's other in theirs).
+        /// {SKILL}, {LOST}, {NAME}, {FACTION}, {GOAL}, {QUIRK}, {DAYS} and {CALL} (the weight of office's hard call); in a story
+        /// of three, {THIRD} the one of the three who is neither speaking nor spoken of (the third person in the colonist's
+        /// lines, the colonist's other in theirs).
         /// </summary>
         public static NamedArgument[] Args(Arc arc, Pawn speaker, Pawn about)
         {
@@ -93,7 +94,8 @@ namespace ColonyCouncil
                 (arc?.faction?.Name ?? arc?.factionName ?? "").Named("FACTION"),
                 (arc?.goalText ?? "").Named("GOAL"),
                 (quirk ?? "").Named("QUIRK"),
-                (arc?.awayDays ?? 0).Named("DAYS")
+                (arc?.awayDays ?? 0).Named("DAYS"),
+                (arc?.call ?? "").Named("CALL")
             };
         }
 

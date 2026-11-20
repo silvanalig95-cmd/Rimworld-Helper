@@ -10,6 +10,8 @@
   <!-- ===================== Sworn rivals ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_Soc_SwornRivals</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Peacemaker</seat>
     <label>a line down the middle</label>
     <weight>1.2</weight>
     <cooldownDays>35</cooldownDays>

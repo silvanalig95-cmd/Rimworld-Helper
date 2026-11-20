@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The seat whose work it is speaks in the question (the content update's A2, 20 November 2026): openings and outcomes
+    for the council's questions about a seat's work (DilemmaDef.seat), tagged [seat], so they come only when the seat's
+    holder is at home and is neither A nor B (Offices/SeatCalls.cs). {HOLDER_...} is the holder, {OFFICE} the seat in the
+    colony's age. An outcome here says everything the plain one does, and the holder's part in it. A question of a seat
+    with no opening of its own here has the holder's word after its text (Rimfolk_Pool_SeatWord). Written in the council
+    questions' own style (CLAUDE.md, "Plain, neutral text").
+  -->
+
+  <!-- ===================== The physician ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_LastMedicine</defName>
+    <dilemma>Council_DlmL_LastMedicine</dilemma>
+    <texts>
+      <li>[seat] Two days in bed on broth and rest, and {A_nameDef}'s {ILLNESS} is no better. {HOLDER_nameDef}, the colony's {OFFICE}, counted the medicine this morning and came back with a short number and a firm opinion about who should have it.\n\nA dose now would likely see {A_nameDef} through. It would also be one less for whatever the next month brings, and {HOLDER_nameDef} would like the council to remember that.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] The medicine stays on the shelf. {A_nameDef} has a bed by the stove, broth three times a day and orders from {HOLDER_nameDef}, as {OFFICE}, not to lift anything. {A_nameDef} is following the orders and not enjoying them.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_SickCook</defName>
+    <dilemma>Council_DlmL_SickCook</dilemma>
+    <texts>
+      <li>[seat] Sniffing over the pot and wiping {A_possessive} nose on {A_possessive} sleeve between stirs, {A_nameDef} has cooked every meal this week with {ILLNESS}. {HOLDER_nameDef}, the {OFFICE}, has told {A_objective} twice to get out of the kitchen, and has now brought the matter to the council, since being the {OFFICE} apparently counts for nothing with a cook.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] {A_nameDef} has been sent to bed on {HOLDER_nameDef}'s word and {B_nameDef} is at the stove. The meals are plainer. {A_nameDef} comes to the kitchen door every hour to say what {B_nameDef} is doing wrong.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_StrangerMedicine</defName>
+    <dilemma>Council_DlmL_StrangerMedicine</dilemma>
+    <texts>
+      <li>[seat] At the gate, {X_nameDef} of the {FACTION} visitors asked {A_nameDef} whether the colony could spare any medicine for {X_possessive} {THEIRILLNESS}. The colony has a few doses left, and {HOLDER_nameDef}, as {OFFICE}, knows exactly how few. {X_nameDef}'s people will be gone in a day either way.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] "We have nothing to spare," {A_nameDef} told {X_nameDef}, as {HOLDER_nameDef} had advised. {X_nameDef} nodded and went back to the other visitors, and coughed through the evening where the colony could hear it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_ElderDoctor</defName>
+    <dilemma>Council_DlmLv_ElderDoctor</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} has {ILLNESS} and won't let {B_nameDef} look at it. "I've had worse than this and lived," {A_nameDef} says, and goes on working, slower every day. {B_nameDef} has asked the council to make {A_objective} see sense, and {HOLDER_nameDef}, the {OFFICE}, has put {HOLDER_possessive} name to the request.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] The council insisted, with {HOLDER_nameDef} speaking for it as {OFFICE}. {A_nameDef} sat for {B_nameDef}'s examination unwillingly, and was given rest and a remedy. {A_nameDef} feels better, and is more put out than ever.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The reeve ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_EmptyField</defName>
+    <dilemma>Rimfolk_DlmY_EmptyField</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} walked the {THING} field this morning and counted {COUNT} rows of bare earth in the middle of the growing season. {HOLDER_nameDef}, the {OFFICE}, would like it sown by tomorrow, and would like it known that nobody asked {HOLDER_objective} before it went bare. {B_nameDef} says the hands are wanted elsewhere, and the field can wait.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] {A_nameDef} took a few of the colony out to the {THING} field with the seed, and the bare rows were sown before the light went. {HOLDER_nameDef} said, as {OFFICE}, that it should never have needed the council at all.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_WhichCrop</defName>
+    <dilemma>Rimfolk_DlmY_WhichCrop</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} has come to the council about the {PLAIN} field: the stores are full of food, {A_pronoun} says, and short of what {THING} gives, so the field should be turned over to {THING}. {B_nameDef} grew that {PLAIN} and says food in the stores is the only kind that counts. {HOLDER_nameDef}, as {OFFICE}, keeps the planting order, and would rather the council settled it than the two of them.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] The far half of the {PLAIN} field is marked out as a field of its own for {THING}; the near half stays as it was. {HOLDER_nameDef} wrote it into the planting order as {OFFICE}, and both sides say it was their idea.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_Blight</defName>
+    <dilemma>Rimfolk_DlmE_Blight</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} found black spots on the leaves this morning, and by noon {COUNT} plants of the fields had them. It's blight, and it goes from plant to plant. {B_nameDef} wants the sick ones cut out today; {A_nameDef} would bring in what's close to ripe as well. {HOLDER_nameDef}, the {OFFICE}, wants a decision before supper, whichever it is.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] The blighted plants are marked for cutting, as {HOLDER_nameDef} asked, and the growers will take them out before the blight goes further down the rows. The rest of the field grows on.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_CropRaider</defName>
+    <dilemma>Council_DlmA_CropRaider</dilemma>
+    <texts>
+      <li>[seat] Something has found the colony's fields, {X_indefinite}, and it likes them. {A_nameDef} came in this morning with a handful of chewed stalks and a face like thunder, and {HOLDER_nameDef}, as {OFFICE}, has added {HOLDER_possessive} own count of the damage.\n\n{A_nameDef} wants it dealt with. {B_nameDef} thinks an animal that bold might be worth taming.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] {A_nameDef} and {B_nameDef} take turns sitting out by the crops with a lantern and a pot to bang, until the animal learns to stay away. {HOLDER_nameDef} set the turns, as {OFFICE}.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The herdmaster ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_FamineCull</defName>
+    <dilemma>Council_DlmA_FamineCull</dilemma>
+    <texts>
+      <li>[seat] The stores won't last the week, and the herd eats from them every day. {B_nameDef} has done the sums out loud at supper: cull {COUNT} head and the rest of us eat. {A_nameDef}, who has raised most of them, has gone very quiet, and {HOLDER_nameDef}, the {OFFICE}, has asked to be heard before anyone picks up a knife.\n\nThe council has to decide.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] The herd stays, as {HOLDER_nameDef} asked, and the people eat less until the stores recover. {B_nameDef} complains at every meal. {A_nameDef} has been thanking them one at a time, down at the pens.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_HerdTooBig</defName>
+    <dilemma>Rimfolk_DlmY_HerdTooBig</dilemma>
+    <texts>
+      <li>[seat] The cold is coming, and {A_nameDef} has done the sums: the hay and kibble in store won't see the whole herd through to spring. {A_nameDef} would have {COUNT} of them marked for the butcher now, while they're fat. {B_nameDef} says the herd is the colony's future. {HOLDER_nameDef}, as {OFFICE}, knows exactly which of them would go, and has asked the council to choose carefully.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] One is marked for slaughter, the oldest of the herd, as {HOLDER_nameDef} advised. The council will look at the hay again when the snow comes.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_TrainBeast</defName>
+    <dilemma>Rimfolk_DlmY_TrainBeast</dilemma>
+    <texts>
+      <li>[seat] {PET_nameDef} is old enough to learn a trade, and two people want it to learn theirs. {A_nameDef} would teach {PET_objective} to haul. {B_nameDef} would teach {PET_objective} to guard. {HOLDER_nameDef}, the {OFFICE}, has watched {PET_nameDef} at the pens, and says the animal has a view of its own that nobody has asked for.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] The council leaves {PET_nameDef} as {PET_pronoun} is: nobody's beast of burden and nobody's guard, only the colony's. {HOLDER_nameDef} looked pleased about it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_SickAnimal</defName>
+    <dilemma>Council_DlmA_SickAnimal</dilemma>
+    <texts>
+      <li>[seat] {PET_nameDef} is sick, {X_possessive} breathing short and hot: {THEIRILLNESS}. {A_nameDef} has been sitting with {X_objective} since dawn, and {HOLDER_nameDef}, as {OFFICE}, wants a say in what is spent on {X_objective}.\n\n{B_nameDef} says the good medicine might pull {PET_nameDef} through, but there isn't much of it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] {PET_nameDef} will be tended with herbs and simple remedies, as {HOLDER_nameDef} suggested, and the good medicine stays in the cupboard for people.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The peacemaker ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_FrictionGrown</defName>
+    <dilemma>Council_DlmL_FrictionGrown</dilemma>
+    <texts>
+      <li>[seat] It started small: a muddy floor, a seat taken at supper, a joke that didn't land. Between {A_nameDef} and {B_nameDef} it hasn't stayed small. This week they stopped speaking except through other people, and {HOLDER_nameDef}, the {OFFICE}, has carried most of the messages. {HOLDER_nameDef} has brought the whole thing to the council with a tired face.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] By order of the council, and on {HOLDER_nameDef}'s advice as {OFFICE}, {A_nameDef} and {B_nameDef} are on the same job all week, side by side. On the first day one of them made a joke, and the other laughed before remembering not to.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_SwornRivals</defName>
+    <dilemma>Council_Dilemma_Soc_SwornRivals</dilemma>
+    <texts>
+      <li>[seat] Somebody carved a line down the middle of the dining table this week. {A_nameDef} eats on one side of it and {B_nameDef} on the other, and the rest of the colony has had to pick a side to sit on. {HOLDER_nameDef}, as {OFFICE}, has talked to each of them alone and got nowhere, and would like the council to try.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] {A_nameDef} and {B_nameDef} are teaching each other their trades, through gritted teeth, which was {HOLDER_nameDef}'s idea as {OFFICE}. Both are learning something, and the first lesson ended without anyone shouting.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_Feud</defName>
+    <dilemma>Council_Dilemma_Feud</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} and {B_nameDef} have been at each other's throats for days. Today it was about whose turn it was to clean. Yesterday it was a borrowed knife that came back dull. {HOLDER_nameDef}, the {OFFICE}, has heard both sides so often that {HOLDER_pronoun} could give them.\n\nBoth of them want the council to settle it, and both expect to win.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] {A_nameDef} and {B_nameDef} got through their first shift side by side, as {HOLDER_nameDef} had suggested, with nothing worse than a few looks. There are more shifts to come.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The chaplain ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_Doubter</defName>
+    <dilemma>Rimfolk_DlmY_Doubter</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} has stopped coming to the words of {FAITH}, and when asked, said {A_pronoun} isn't sure anymore what {A_pronoun} believes. {B_nameDef} would sit with {A_objective} and hear every doubt. {HOLDER_nameDef}, the colony's {OFFICE}, would rather the council asked {A_nameDef} what {A_pronoun} wants first.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] The council leaves {A_nameDef}'s faith to {A_nameDef}, as {HOLDER_nameDef} asked. What {A_pronoun} believes is between {A_objective} and {FAITH}.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_NoGuide</defName>
+    <dilemma>Rimfolk_DlmY_NoGuide</dilemma>
+    <texts>
+      <li>[seat] Nobody guides {FAITH} in the colony: nobody leads its words, settles its quarrels, or speaks for it to the doubters. {A_nameDef} and {B_nameDef} could each do it, and the faithful are split between them. {HOLDER_nameDef}, the {OFFICE}, has kept out of it so far, and would like the council to choose.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] The council names nobody. {FAITH}'s faithful will have to settle their own questions for now, with {HOLDER_nameDef}, the {OFFICE}, to ask when they can't.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_FaithClash</defName>
+    <dilemma>Council_DlmFaith_Clash</dilemma>
+    <texts>
+      <li>[seat] The colony holds {COUNT} ideoligions now, and it shows. {A_nameDef} of {FAITH} and {B_nameDef} of {OTHERFAITH} both want the evenings, and neither will give way. {WHY}\n\nThey have asked the council to settle it, and {HOLDER_nameDef}, as {OFFICE}, has asked to be heard before it does.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] The ideoligions take turns at the {ALTAR} now: {FAITH} in the evenings, {OTHERFAITH} at first light, the others as they ask, in the order {HOLDER_nameDef} set as {OFFICE}. The open-minded call it the fairest thing the council has done in a while. The devout are less sure.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The warden of guests ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_Beggars</defName>
+    <dilemma>Council_DlmS_Beggars</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} counted a handful of {FACTION} people at the gate, thin as fence rails, one of them carrying a child too tired to cry. {X_nameDef} speaks for them. They want food, whatever the colony can spare. {HOLDER_nameDef}, as {OFFICE}, says they are as hungry as they look, and would like the council to be quick about it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] {X_nameDef} tied the last sack shut, said thank you twice, and the {FACTION} people set off before dark, bent under the sacks. {HOLDER_nameDef} said, as {OFFICE}, that the road would hear of it. The cooks are already working out what to stretch.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_RudeGuest</defName>
+    <dilemma>Council_DlmS_RudeGuest</dilemma>
+    <texts>
+      <li>[seat] {X_nameDef} of {FACTION} has spent the whole visit telling anyone who'll listen what is wrong with {A_nameDef}, and {A_nameDef} has heard all of it. {HOLDER_nameDef}, as {OFFICE}, will have to face the {FACTION} visitors whatever the council decides, and has asked it to think about that.\n\nThe colony would like to stay on good terms with {FACTION}.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] {X_nameDef} apologized to {A_nameDef} the next morning, without once looking up. {HOLDER_nameDef} called it the right answer, as {OFFICE}.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_Overstay</defName>
+    <dilemma>Council_DlmR_Overstay</dilemma>
+    <texts>
+      <li>[seat] The colony's gate is always open, and {X_nameDef} of {FACTION} has made the most of it. In two days {X_nameDef} has eaten at every table and borrowed {A_nameDef}'s good cloak without asking. {HOLDER_nameDef}, the {OFFICE}, says a guest is a guest, and that this one is testing it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] {X_nameDef} was handed an axe and told, in {HOLDER_nameDef}'s words as {OFFICE}, that guests who live like family can work like family. {X_nameDef} grumbled the whole time, and the woodpile is twenty-five logs higher for it.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_CampHungry</defName>
+    <dilemma>Council_DlmL_CampHungry</dilemma>
+    <texts>
+      <li>[seat] {X_nameDef} came up from the {FACTION} camp this evening and waited just outside the firelight until {A_nameDef} noticed {X_objective}. The hunting has been bad all week, {X_nameDef} said, and the camp's last sack of meal ran out yesterday. {HOLDER_nameDef}, the {OFFICE}, knows the camp well enough to say they mean it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] {A_nameDef} carried out enough food for a week and put it into {X_nameDef}'s arms, with {HOLDER_nameDef}'s blessing as {OFFICE}. Before {A_nameDef} was back through the gate, someone at the camp had started singing.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <!-- ===================== The quartermaster ===================== -->
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_Thief</defName>
+    <dilemma>Council_Dilemma_Thief</dilemma>
+    <texts>
+      <li>[seat] Food has been going missing from the stores for days. Last night {B_nameDef} waited in the dark between the shelves and caught {A_nameDef} filling a sack. {HOLDER_nameDef}, the {OFFICE}, has counted what is gone and brought the number to the council.\n\n{A_nameDef} hasn't tried to deny it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] {A_nameDef} is pulling extra shifts until the stores are paid back, sack for sack, by {HOLDER_nameDef}'s count as {OFFICE}. Most people think that's fair.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_StoresInRain</defName>
+    <dilemma>Rimfolk_DlmE_StoresInRain</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} came in soaked and said what everyone knows: half the stockpile lies under the open sky, and the rain has been at it all week. {COUNT} stacks out there are going to ruin. {HOLDER_nameDef}, as {OFFICE}, knows what is in every one of them and would like them under a roof. {B_nameDef} says a roof can go over the part the walls can carry.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>0</option>
+        <lines>
+          <li>[seat] The open part of the stockpile is marked for a roof wherever the walls can carry one, as {HOLDER_nameDef} asked, and the builders will put it up in their own time.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_Feast</defName>
+    <dilemma>Council_Dilemma_Feast</dilemma>
+    <texts>
+      <li>[seat] {A_nameDef} wants to cook a feast tonight with the best of everything in the stores. "We could all be dead next week," {A_pronoun} says.\n\nIt would use about {COUNT} raw food. {HOLDER_nameDef}, the {OFFICE}, has done the sum already and is waiting to say what {HOLDER_pronoun} thinks of it.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>2</option>
+        <lines>
+          <li>[seat] A good supper from a modest share of the stores, the share {HOLDER_nameDef} would agree to as {OFFICE}, and smaller than {A_nameDef} had in mind. {A_nameDef} apologized for it all evening while the colony asked for seconds.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+  <ColonyCouncil.LetterVariantsDef>
+    <defName>Rimfolk_Var_Seat_HarvestHome</defName>
+    <dilemma>Council_Dilemma_HarvestHome</dilemma>
+    <texts>
+      <li>[seat] The last of the crop is in. {A_nameDef}, who planted most of it, wants a harvest supper with second helpings all round, about {COUNT} raw food's worth. {HOLDER_nameDef}, as {OFFICE}, would like the council to remember that the stores have to last the winter.</li>
+    </texts>
+    <outcomes>
+      <li>
+        <option>1</option>
+        <lines>
+          <li>[seat] Every grain went into storage, as {HOLDER_nameDef} wanted. {A_nameDef} stood in the barn doorway a long while that evening, looking at the sacks.</li>
+        </lines>
+      </li>
+    </outcomes>
+  </ColonyCouncil.LetterVariantsDef>
+
+</Defs>

@@ -164,6 +164,8 @@
   <!-- ===================== The stores in the rain ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_DlmE_StoresInRain</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
     <label>the stores in the rain</label>
     <workerClass>ColonyCouncil.DilemmaWorker_StoresInRain</workerClass>
     <weight>1.2</weight>

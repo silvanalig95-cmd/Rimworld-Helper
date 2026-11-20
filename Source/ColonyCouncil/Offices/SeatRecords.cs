@@ -101,13 +101,16 @@ namespace ColonyCouncil
         /// The winner of a seat on a plank: the promise goes into the history (never the chronicle: the election's one line
         /// tells the seats), with what the map shows of it now and the seat's work count, to be judged at the next election.
         /// </summary>
-        private void Promised(OfficeDef office, int seat, Pawn winner, string plankKey)
+        private void Promised(OfficeDef office, int seat, Pawn winner, string plankKey, IEnumerable<Pawn> stood = null)
         {
             var plank = office?.planks?.FirstOrDefault(x => x != null && x.key == plankKey);
             string words = PromiseWords(plank, winner);
             if (words == null || winner == null) return;
             float reading = Reading(plank.test, office, winner);
-            var values = RecordMath.Values(office.defName, seat, plank.key, reading < 0f ? PromiseTest.None : plank.test, reading, Measure(office, winner), words);
+            // Who stood against them for the seat, so a promise going badly halfway can be raised by one of them (SeatHalfway.cs).
+            string rivals = stood == null ? null : string.Join(",", stood.Where(x => x != null && x != winner).Select(x => x.thingIDNumber.ToString()).Distinct());
+            var values = RecordMath.Values(office.defName, seat, plank.key, reading < 0f ? PromiseTest.None : plank.test, reading, Measure(office, winner), words,
+                SeatCalls.Count(winner), rivals);
             bool that = words.StartsWith("that ") || words.StartsWith("to ");
             string line = (that ? "CC_Promise_MadeThat" : "CC_Promise_Made").Translate(winner.Named("PAWN"), office.Name.Named("OFFICE"), words.Named("PROMISE")).Resolve();
             History.Add(RecordMath.KindPromise, new List<HistoryActor> { new HistoryActor(Refs.Of(winner), HistoryRole.About) }, Refs.Colony(HomeMap ?? Homes.Seat),
@@ -146,6 +149,8 @@ namespace ColonyCouncil
             float days = (Find.TickManager.TicksGame - promise.tick) / (float)GenDate.TicksPerDay;
             var verdict = after < 0f ? PromiseVerdict.None : RecordMath.Judge(test, before, after, days);
             int work = Measure(race.office, holder) - (int)RecordMath.Number(promise.values, RecordMath.WorkAt);
+            // The questions of the seat's work they spoke in since count with the work (Offices/SeatCalls.cs).
+            int calls = SeatMath.CallsSince(SeatCalls.Count(holder), RecordMath.Number(promise.values, RecordMath.CallsAt));
             race.holder = holder;
             race.promiseId = promise.id;
             race.promise = RecordMath.Get(promise.values, RecordMath.PromiseAt);
@@ -153,7 +158,7 @@ namespace ColonyCouncil
             race.verdict = verdict;
             race.evidence = Evidence(test, verdict, holder, race.office, before, after, false);
             race.evidenceMine = Evidence(test, verdict, holder, race.office, before, after, true);
-            race.lean = RecordMath.Lean(verdict) + RecordMath.WorkLeanOf(true, work);
+            race.lean = RecordMath.Lean(verdict) + RecordMath.WorkLeanOf(true, work + calls);
         }
 
         /// <summary>What the map showed of a promise since, a clause after "and" (<paramref name="mine"/>: in the holder's own words).</summary>
@@ -209,6 +214,19 @@ namespace ColonyCouncil
         // ---------------- A candidate's record ----------------
 
         /// <summary>
+        /// The seat's work and the questions of it they spoke in, since their promise: "tended to the sick and hurt 23 times
+        /// and spoken for the seat in 2 of the council's questions".
+        /// </summary>
+        private static string InSeatWords(OfficeDef office, int work, int calls)
+        {
+            var parts = new List<string>();
+            string measured = Measured(office, work);
+            if (measured != null) parts.Add(measured);
+            if (calls > 0) parts.Add((calls == 1 ? "CC_Record_CallsOne" : "CC_Record_Calls").Translate(calls.Named("COUNT")).Resolve());
+            return TextUtil.JoinAnd(parts);
+        }
+
+        /// <summary>
         /// The record a candidate runs on, as a sentence for the letter, or null: their work in the seat since their
         /// promise when they hold it; the seat's kind of work for the colony in all; a name the colony gave them; a life
         /// goal reached.
@@ -222,13 +240,15 @@ namespace ColonyCouncil
                 .FirstOrDefault(e => RecordMath.Get(e.values, RecordMath.OfficeAt) == office.defName) : null;
             int all = Measure(office, p);
             int inSeat = promise == null ? -1 : all - (int)RecordMath.Number(promise.values, RecordMath.WorkAt);
+            // The questions of the seat's work they spoke in since their promise (Offices/SeatCalls.cs), with the work.
+            int calls = promise == null ? 0 : SeatMath.CallsSince(SeatCalls.Count(p), RecordMath.Number(promise.values, RecordMath.CallsAt));
             // The one name the colony knows them by (KnownAs's short form), as the card and the tables say it.
             string name = KnownAs.Short(p);
             var goal = comp?.aspirations?.Fulfilled(p).OrderByDescending(a => a.doneTick).FirstOrDefault();
-            switch (RecordMath.Record(holds, inSeat, all, !name.NullOrEmpty(), goal != null))
+            switch (RecordMath.Record(holds, inSeat < 0 ? inSeat : inSeat + calls, all, !name.NullOrEmpty(), goal != null))
             {
                 case RecordMath.RecordKind.InSeat:
-                    return "CC_Record_InSeat".Translate(p.Named("PAWN"), Measured(office, inSeat).Named("MEASURED")).Resolve();
+                    return "CC_Record_InSeat".Translate(p.Named("PAWN"), InSeatWords(office, inSeat, calls).Named("MEASURED")).Resolve();
                 case RecordMath.RecordKind.ForColony:
                     return "CC_Record_ForColony".Translate(p.Named("PAWN"), Measured(office, all).Named("MEASURED")).Resolve();
                 case RecordMath.RecordKind.Name:

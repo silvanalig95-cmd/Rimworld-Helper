@@ -99,6 +99,12 @@ vigil the night watch already uses, `DilemmaEffect_Vigil`) with a word for whoev
 work count for elections (`OfficeWordsDef.measure`, `RecordMath`), news, This week. *Mod pool:* RimFridge and the deep
 storage mods' shelves count as stores, as the stores code already reads them. *Size:* M. *Harm:* none. *Text:* plain
 (seats). A bubble: "The medicine shelf is lower than I'd like." (said only when it is).
+**Built** (20 November 2026, the council's integrations, part 1, not released yet; DESIGN.md "The council at its work,
+in its questions and at its meeting"). Each act is a play-out of the colony's own that never takes a gathering's place:
+the speaker sits an hour at a table (trust under 10, every three days); the quartermaster's round of the stores at
+dawn, its count in the news and at the head of This week's plan; the reeve's walk at first light every other day in the
+growing season and the next morning for blight; the marshal's walk on the walls at dusk the two days after an attack.
+The marshal's dusk walk is kept only with "Answers play out on the map" on.
 
 **A2 (I) The seat whose work it is speaks in the question.**
 The questions about a seat's work name its holder as the one asked (role B, which already takes an `office:` tag, as
@@ -114,6 +120,11 @@ stores are spent. Their answer counts toward the seat's record that the next ele
 earlier flavour style. A sample opening: "[b:office:Reeve] {B_nameDef} has walked the bare field twice since sunrise,
 kicking at the clods. As {OFFICE_B} {B_pronoun} would like it sown by tomorrow, and would like it known that nobody
 asked {B_objective} before it went bare."
+**Built** (20 November 2026, part 1, not released yet). The holder is a role of its own (`{HOLDER_...}`, `{OFFICE}`, tags
+`[seat]` and `[seat:Reeve]`) rather than B, since many of these questions already have a B; 34 questions name a seat, every
+seasonal custom is the keeper of days', 26 have an opening and an outcome of their own for the seat and the rest the
+holder's word after the text (69 lines in all). Each one answered counts toward the record the next election reads
+("spoken for the seat in 3 of the council's questions").
 
 **A3 (V) A seat holder asks to step down.**
 A new question when a holder has been worn down or near breaking for five days (the heart), or laid up for ten days,
@@ -145,6 +156,10 @@ sick), have them answer for it at supper (a word at the table; their "weight of 
 A21), or leave it to the vote (nothing now; judged as before).
 *Ties:* `Offices/RecordMath.cs`, `ElectionPlanks`, the history's `office:promise`, PlayOut work parties, Arcs. *Size:* M.
 *Harm:* none. *Text:* council question, flavour style.
+**Built** (20 November 2026, part 1, not released yet). The ballots aren't kept by voter, so the one who raises it is
+someone who stood against the holder for the seat (now kept with the promise), else whoever thinks least of them. Only
+promises hands can help are raised (a watch, the food, the sick, the herd, the spirits); the food is brought in
+(harvest, fishing, hauling) rather than cooked, the game having no cooking work party. Each promise is raised once.
 
 **A6 (I) Any other business: petitions read out at the meeting.**
 After the ambition vote at the seasonal meeting, each open decree petition (for a decree or against one, the existing
@@ -155,6 +170,9 @@ of 7") on the Decrees page, in This week and in the meeting's letter. The counci
 *Ties:* `Ambitions/CouncilMeeting.cs`, `MeetingAttendance`, `Decrees/Decrees.cs`, `Wishes/Petitions.cs`,
 `UI/DecreePanel.cs`, the inbox. One small saved tally a petition (a model in `Tools/save_estimate.py`). *Size:* M.
 *Harm:* none. *Text:* plain (meeting lines and the page), the letter's paragraph in the flavour style of letters.
+**Built** (20 November 2026, part 1, not released yet). Read out during the meeting once the ambitions are put (the
+vote's count is at its very end), four at most; the tally is three numbers on the petition (values, so no new saved
+collection needed a model).
 
 **A7 (V) Two decrees that show on the map: the night watch, and a welcome for newcomers.**
 The night watch (six days): each night two of the colony's fighters take turns walking the walls and the gate from nine
@@ -305,6 +323,9 @@ named in a council question about their seat's work (A2), a decree they backed t
 its journal and chronicle name it. With none in twenty days the story ends quietly instead of claiming a call.
 *Ties:* Arcs (a custom gate, `ArcWorker_Office`), the dilemmas' resolve, decrees. *Size:* S. *Harm:* none. *Text:*
 personal stories, flavour style.
+**Built** (20 November 2026, part 1, not released yet). "A decree they backed" is one they asked for or like, declared
+while someone at home hates it. The quiet end claims no call and brings no mood; the mood of a seat lost too soon now
+comes only when the seat was lost.
 
 ### Character, deeds and names
 

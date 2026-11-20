@@ -857,6 +857,13 @@ namespace ColonyCouncil
                 string heckle = Heckle(m.attendees, m.pitches);
                 if (!heckle.NullOrEmpty()) sb.AppendLine(heckle);
             }
+            // Any other business: the petitions read out at the meeting, and how the room took them (MeetingBusiness.cs).
+            string business = gathered ? MeetingBusiness.LetterParagraph(m) : null;
+            if (!business.NullOrEmpty())
+            {
+                sb.AppendLine();
+                sb.AppendLine(business);
+            }
             sb.AppendLine();
             var fav = m.Favorite;
             if (m.attendees.Count > 1 && fav != null)

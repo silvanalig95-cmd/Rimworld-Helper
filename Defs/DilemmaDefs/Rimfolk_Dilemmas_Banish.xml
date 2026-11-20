@@ -14,6 +14,8 @@
   <!-- ===================== The first: a word ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Rimfolk_Dilemma_Trouble</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Peacemaker</seat>
     <label>trouble at every turn</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Trouble</workerClass>
     <weight>3</weight>

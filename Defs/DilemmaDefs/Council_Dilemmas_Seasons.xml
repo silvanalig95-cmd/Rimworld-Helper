@@ -65,6 +65,8 @@
   <!-- ===================== Harvest home ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_Dilemma_HarvestHome</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
     <label>harvest home</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Feast</workerClass>
     <weight>0.8</weight>

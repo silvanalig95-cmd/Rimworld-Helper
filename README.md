@@ -1719,11 +1719,21 @@ they promised it (wounds tended, plants sown, enemies brought down, quarrels men
 the colony, a name the colony gave them or a life goal reached. The next yearly election judges what the holder
 promised by what the map shows now ("At the last election Toni promised a proper watch at night, and the colony has
 lost nobody since: a promise kept."): a kept promise helps them at the vote, a broken one costs, and it's said in the
-letter, at the hustings and in the results. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
+letter, at the hustings and in the results. Halfway to the vote, once a holder has sat 25 days, a promise the map
+already shows going badly by that same test (someone lost after a promise of a proper watch, the food under three days,
+the medicine short, no sickbed, the herd shrunk, spirits sunk) is raised at the council by someone who stood against
+them: give them a hand with the seat's own work (a night's watch on the walls together, the food brought in, the
+sickroom cleaned, the herd brought home, an evening they call), have them answer for it at supper, or leave it to the
+vote. You can appoint and dismiss from the Decrees tab, but whoever the colony actually voted for will remember
 being overruled. A wish the council took back counts against those sitting on it at the next election, and the
 names the colony gave someone count for them.
 
-The offices also do their jobs in the colony's life: the keeper of days organizes the calendar's feasts and games,
+The offices also do their jobs in the colony's life, on the map: the speaker sits an hour at a table with whoever
+trusts the council least and hears them out (their trust rises a little), the quartermaster walks round the stores at
+dawn once a week and counts them (days of food, cooked meals, medicine and what is shortest, in the news and at the
+head of This week's plan), the reeve walks the fields at first light in the growing season and marks blight for
+cutting at each field, and in the two days after an attack the marshal walks the walls at dusk with a word for whoever
+is on watch. The keeper of days organizes the calendar's feasts and games,
 the peacemaker steps into spats nearby (they're over in half the time), the physician does the rounds of the
 convalescents every morning and counts as a trusted doctor sooner, the reeve deals with neighbors who need goods
 (and they remember it), the herdmaster sits with those whose animal died and minds the animals of those away, the
@@ -1731,6 +1741,13 @@ marshal has a word with everyone who fought beside them, and the steward's compa
 chaplain sits with the grieving, has a word with whoever is losing faith (their certainty rises) and leads the
 calendar's remembrances; the warden of guests spends an hour at the camp's fire (its tension eases) and sees visitors
 welcomed (their people's goodwill rises); the elders sit with the young and pass on what they know best.
+
+The seat whose work a council question is about speaks in it: about thirty questions (the sick and the medicine, the
+fields, the herd, quarrels, the faith, strangers and the camp, the stores, and every seasonal custom for the keeper of
+days) name the seat's holder when they're at home and not already in it, with their word in the letter and in some of
+the outcomes; each one answered counts toward their record in the seat at the next election. A newly seated holder's
+story, the weight of office, now waits for a real hard call (such a question, a decree they backed declared while
+someone hates it, or answering for a promise at supper) and names it, and with none in twenty days it ends quietly.
 
 ### Traditions
 Choose the answer that keeps a seasonal custom (a midsummer feast, a harvest celebration, a vigil on the longest night)
@@ -1828,6 +1845,12 @@ Three colonists pitch an ambition out loud; an idea whose proposer isn't there i
 less support. Others back them, doubt them or wander off topic, and when the meeting ends everyone who came
 votes (only they do). The decision letter shows the votes and tells who came, who was late, who missed it and
 why. Going with the room's favorite pleases its backers; overruling a clear majority costs a little trust.
+
+Once the ambitions are put there is **other business**: the colony's open petitions (a decree asked for or asked to be
+lifted, a want several colonists back together) are read out by their askers, someone says aye or no, the room is
+counted by how each feels about it, and anyone there who wants the same joins it. The tally stays with the petition
+("Backed at the meeting by 5 of 7.") on the Decrees page, in This week and in the meeting's letter; the council still
+answers it from its page.
 
 - **Thin meetings:** with fewer than half there (and never fewer than two), the meeting is put off once to the
   next evening; if it's thin again it's decided anyway, by few, and earns less trust.

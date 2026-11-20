@@ -104,6 +104,8 @@
   <!-- ===================== A rude visitor ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_RudeGuest</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
     <label>a guest's tongue</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
@@ -381,6 +383,8 @@
   <!-- ===================== Hungry at the gate ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_Beggars</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
     <label>hungry at the gate</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
     <weight>1.0</weight>
@@ -1046,6 +1050,8 @@
   <!-- ===================== The traveling healer ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmS_Healer</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>the traveling healer</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>

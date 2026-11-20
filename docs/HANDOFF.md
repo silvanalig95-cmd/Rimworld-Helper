@@ -85,7 +85,8 @@ most sense." So, in this order, three builds at a time:
      (A) and the world (B); the **E** items with them where they belong to the same systems. In eight builds:
      gods 1 (C1, C2, C3, C4, C16, C17; released 0.278.1) and gods 2 (C6, C7, C8, C12, C14, C15, C18, C26, C29;
      released 0.278.0);
-     council (A1, A2, A5, A6, A21), started 20 November; the land and its life (C19, C20, C21, C22, C24, C28, C30);
+     council (A1, A2, A5, A6, A21), built, not released (the entry "The council at its work, in its questions and at
+     its meeting" above the newest release line); the land and its life (C19, C20, C21, C22, C24, C28, C30);
      wishes, ambitions and the calendar (A10, A12, A13, A14, A17, A27, A29); the world brought home (B1, B2, B3, B23,
      B25, B26, B32); the peoples and their ties (B4, B12, B14, B17, B22, B29, B31); the region's years and the camps (B5,
      B11, B13, B19, B27).
@@ -606,6 +607,99 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.279.0, **The council at its work, in its
+  questions and at its meeting** (20 November 2026; the player on `docs/content-update-proposals.md`: "your content
+  proposal overall sounds really good. You can go ahead with this in the order you think makes most sense ... more
+  immersion ... the relations between pawns, the kind of events that generated from it", and "first do all the
+  integrations that you proposed in your document before we add additional content variety"). Colony life's
+  integrations, part 1, the council: A1, A2, A5, A6 and A21 of the proposals, each marked **Built** there; DESIGN.md "The
+  council at its work, in its questions and at its meeting" (after "Seats named by the colony's age") has every rule,
+  and the interplay table its new rows; the Almanac's *offices and elections* (the four seats in "In the colony's life",
+  new sections "The seat in the council's questions" and "A promise halfway"), *decrees* ("When to call one"), *council
+  meetings* ("Who's there matters") and *personal stories* (the weight of office's row), keywords unchanged; README
+  "Offices and elections" and "Ambition: council meetings". A1: the speaker sits an hour at a table with whoever trusts
+  the council least (under 10, every three days at most, the same person not within eight), whose trust rises one to
+  two points, a line each and a news line; the quartermaster walks round the stores at dawn once a week (every stockpile
+  and every room with shelves, deep storage or fridges) and the count goes in the news and at the head of This week's
+  plan (days of food, cooked meals, medicine, what is shortest, said aloud when something is); the reeve walks the
+  fields at first light every other day in the growing season (the next morning when blight is unmarked) and marks
+  each field's blight for cutting with the game's own order; the marshal walks the walls at dusk the two days after an
+  attack with a word for anyone drafted or on watch near a look-out. A2: 34 questions name the seat whose work they
+  are about (and every seasonal custom is the keeper of days'); its holder at home, not A or B, speaks in the opening
+  (26 questions with an opening and an outcome of their own for the seat, the rest the holder's word after the text),
+  and each one answered counts toward their record at the next election ("spoken for the seat in 3 of the council's
+  questions"), leaning voters as the seat's work does. A5: a promise the map shows going badly by the vote's own test
+  25 days or more into the seat is raised by one who stood against the holder (else the one who thinks least of them):
+  a hand with the seat's own work on the map, a word at supper, or the vote. A6: at the meeting, once the ambitions are
+  put, the open petitions are read out (four at most), the room counted, those who want the same join, and the tally
+  ("Backed at the meeting by 5 of 7.") shows on the Decrees page, This week and the meeting's letter. A21: the weight of
+  office's doubtful days wait for a real call (a question of the seat's work, a decree they backed that someone hates, the
+  supper), which its journal and chronicle name; with none in twenty days it ends quietly.
+  - Code: `Offices/SeatMath.cs` (pure, linked: the speaker's pick and trust, the stores' shortest, the reeve's and the
+    marshal's days, `GoingBadly` and `HandsFor`, the ayes, the call's tags and quiet end, `CallsSince`),
+    `Interplay/Interplay_Seats.cs` (the four acts, `SeatWorkOver`, `AtField`, `AtLookOut`, `SeatBeginText`, `DebugSeat`;
+    hooked in `Interplay.Daily` and `Hourly`), `Offices/SeatCalls.cs` (the holder of a question, its tags and word,
+    `Answered`, `Call`, `Notify_Decree`), `Offices/SeatHalfway.cs` (`OfficeTracker.TryHalfway`, `DilemmaContextHalfway`,
+    `DilemmaWorker_SeatHalfway`, `DilemmaEffect_SeatHands`, `DilemmaEffect_SeatSupper`), `Ambitions/MeetingBusiness.cs`
+    (the reading, the tally, the letter's paragraph; `CouncilGameComponent.WantsSame`, `JoinAtMeeting`),
+    `Offices/SeatDebug.cs` (dev actions); changed: `Dilemmas/Dilemmas.cs` (`DilemmaDef.seat`, `SeatOffice`,
+    `DilemmaContext.holder` saved, `{HOLDER_...}` and `{OFFICE}`, the holder picked in `Send` and counted in `Resolve`),
+    `Dilemmas/DilemmaChoices.cs` (the [seat] tags), `Offices/RecordMath.cs` (`CallsAt`, `RivalsAt`, `RivalsOf`),
+    `Offices/SeatRecords.cs` and `OfficesElection.cs` (the calls in the record, the rivals kept with a promise),
+    `Offices/Offices.cs` (the count and the promises raised, saved), `Arcs/Arc.cs` (`call`, saved), `Arcs/ArcText.cs`
+    (`{CALL}`), `Arcs/ArcWorkers_Lives.cs` (`ArcWorker_Office`: the Custom gate, [officegone] and [nocall]),
+    `Decrees/Decrees.cs` (the tally on `DecreeRequest`; the decree call in `Enact`), `Wishes/Wish.cs` (the tally),
+    `Ambitions/CouncilMeeting.cs` and `Ambitions.cs` (the business in the talk and the letter), `PlayOut/PlayRoutes.cs`
+    (the rounds of the stores and the fields), `OnMapPlays.cs` (`PlayAfter` and `PlayVigils.Arrived` hooks),
+    `PlayOuts.cs` (`PlayOut.seat`, saved), `PlayGroups.cs` and `PlayOutTracker.cs` (a seat's work is no gathering, and
+    its begin message is a quiet one), `PlayWords.cs` (its own words as it sets off and on the way, no walk's journal),
+    `UI/DecreePanel.cs` and `UI/InboxProviders.cs` (the tally, the stores' count row). Defs:
+    `Defs/DilemmaDefs/Rimfolk_Dilemmas_SeatHalfway.xml`, `Rimfolk_Dilemmas_Seats_Variants.xml`, `<seat>` on 34
+    questions, `Defs/FlavorPoolDefs/Rimfolk_Seats.xml`, `Defs/Misc/Council_Records.xml` (`Council_SeatCalls`),
+    `Defs/ArcDefs/Rimfolk_Arcs_World.xml` (the weight of office), Keyed `Rimfolk_Seats.xml`. Tests: `SeatWorkTests`
+    (the rules, the halfway test against the vote's for every reading, the defs, the seams), `ArcTests` (the new story
+    tags), `ImmersionTests` (the twelve new spoken pools, one sentence each). `Tools/DefValidator/Program.cs` knows
+    `{HOLDER_...}`, `{CALL}` and `{CROP}`; `Tools/playout_audit.py` the two new play-out effects. Saved: the council's
+    last count (a tick and its words) and the promises raised (`OfficeTracker.raised`, twelve at most, modelled in
+    `Tools/save_estimate.py`); three numbers on a petition; the holder on a question's letter; the call on a story; two
+    more values on a promise in the history; a flag on a seat's play-out.
+  - Decided here (open in the proposals): the holder in a question is a role of its own, not B (many have a B of their
+    own); a question whose holder is already A or B has none. The ballots aren't kept by voter, so A5's "someone who
+    didn't vote for the holder" is one who stood against them (now kept with the promise), else the one who thinks least
+    of them; only promises hands can help are raised (a watch, the food, the sick, the herd, the spirits), each once;
+    the food's hands bring it in (harvest, fishing, hauling), the game having no cooking work party. The speaker's
+    "lowest trust" is under 10; the reeve's "growing season" is spring and summer with something growing, and blight is
+    walked for in any season; the marshal's "after raiders were seen" is the map's last big threat, never with hostiles
+    still on it. A6's reading comes during the meeting once the ambitions are put (the vote's count is at its very end),
+    four petitions at most, up to two joining each. A21's "decree they backed" is one they asked for or like, declared
+    while someone at home hates it; the quiet end brings no mood, and the mood of a seat lost too soon now only comes when
+    the seat was lost (it also came on a timeout before). Each seat's act is a play-out of the colony's own that never
+    takes a gathering's place nor waits for room among them; with play-outs off, the speaker has a word, the count and
+    the marks come without the walk, and the marshal's evening isn't kept.
+  - Harm: none.
+  - Not run here (none of it could be): every play-out in the game (the visit at a table, the rounds' stops and their
+    begin and end messages, the marshal's look-outs and his words to someone drafted), the count's figures against the
+    game's own, a fridge or a deep shelf being a `Building_Storage` (RimFridge, LWM's Deep Storage and Deep Storage Plus
+    are assumed to be), the [seat] lines in the letters with their placeholders filled, the meeting's business between
+    its other talk, the tallies on the Decrees page and This week, a story's hard call and its quiet end.
+  - Try in the game (dev mode, "Rimfolk", "Council seats: ..."): 1. "the speaker hears out the one who trusts the council
+    least, now": the speaker and that colonist sit down at a table ("sit down together at the table"), an hour later
+    each says a line and the news says "... sat an hour with ... and heard ... out, as the speaker"; their trust tooltip
+    shows "+1 the speaker, ..., heard them out". 2. "the quartermaster's count of the stores, now": the quartermaster goes
+    round the stockpiles and shelves; at the end the news has the count, and This week's plan shows it at its head. 3.
+    "the reeve's walk round the fields, now" with blight in a field (dev "Crop blight"): at that field the sick plants
+    get the cut mark and the reeve says so. 4. Raise a raid, then "the marshal's walk on the walls at dusk, now" with a
+    colonist drafted near the edge: the marshal stops at each look-out and has a word for them. 5. "ask a question of a
+    seat's work..." for a seat with a holder: the letter's text names the holder and the seat; answer it and look at the
+    holder's Records tab ("council questions spoken in for a seat"). 6. With a new holder in "the weight of office" (an
+    election in the last 12 days), "give a new holder's weight of office its hard call...": at its next stage the journal
+    names the call. 7. "a promise halfway, asked now" after an election: the question comes; give a hand and watch the two
+    at the seat's work. 8. With a decree asked for open, "read the colony's petitions out now, as at a meeting": the
+    Decrees card and This week say "Backed at the meeting by ..."; at a real meeting, the reading comes after the pitches.
+  - Mods that would help: none needed. RimFridge: Now with Shelves! (Workshop 2898411376; 1.4 to 1.6 by its page, not 1.7
+    yet), LWM's Deep Storage (3532608331, 1.0 to 1.7) and Deep Storage Plus (Continued) (2589072911, 1.2 to 1.7), all
+    active in their list, are counted as stores on the quartermaster's round. A bell that rings for the meeting would
+    still help the most; none for 1.6 or 1.7 was found (the proposals' "Gaps").
 - 0.278.1, **The gods' integrations, part 1:
   festivals, sacred beasts and art** (20 November 2026; the player, on `docs/content-update-proposals.md`: "your content
   proposal overall sounds really good. You can go ahead with this in the order you think makes most sense. In general, I

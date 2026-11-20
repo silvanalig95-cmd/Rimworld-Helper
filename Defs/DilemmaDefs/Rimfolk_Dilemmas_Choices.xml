@@ -64,6 +64,8 @@
   <!-- ===================== Who sits up with the sick ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmC_NightNurse</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Physician</seat>
     <label>who sits up with the sick</label>
     <weight>1</weight>
     <cooldownDays>30</cooldownDays>
@@ -178,6 +180,8 @@
   <!-- ===================== Seed for the neighbours ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmC_NeighboursSeed</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Quartermaster</seat>
     <label>seed for the neighbours</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Faction</workerClass>
     <weight>0.9</weight>

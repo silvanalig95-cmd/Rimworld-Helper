@@ -469,6 +469,8 @@
   <!-- ===================== Open: the guest who won't leave ===================== -->
   <ColonyCouncil.DilemmaDef>
     <defName>Council_DlmR_Overstay</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a guest too comfortable</label>
     <workerClass>ColonyCouncil.DilemmaWorker_Stranger</workerClass>
