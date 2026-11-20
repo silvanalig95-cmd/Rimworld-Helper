@@ -8,6 +8,9 @@
     god's own lines), whether the god is felt only (veiled) or drawn near (near: GodNear), doubt (the speaker wavers), priest, scoffer, the
     moment (pray:sickness, pray:death, pray:raid, pray:drought; offer:meal and the like; vow:nomeat...), and the speaker's own
     (the age, lowtech, hurt, grieving, the tone). Spoken lines are one sentence each, said over the head (Speech.Say).
+    olde: the faith's words in the old voice, beside the plain prayers, thanks and rites (and the saints' prayers and feasts),
+    said only by the priest, the keeper of the colony's book of the gods, a devout elder and a believer of a faith of the old
+    ages (WorshipMath.OldVoice); everyone else says the plain lines.
   -->
 
   <!-- ===================== A place dedicated ===================== -->
@@ -39,6 +42,10 @@
         <li>We have a place for {GOD} now. I went back after supper just to stand there.</li>
         <li>[priest] I dedicated a place to {GOD} on the colony's behalf. It's a heavy thing to speak for everyone.</li>
         <li>[doubt] I set a place aside for {GOD}. Whether anyone lives there or not, it's ours to look after now.</li>
+        <li>I gave a place to {GOD} today. My voice shook on the words, but I got through them.</li>
+        <li>We have somewhere for {GOD} now. It's only a small place, but it's ours to keep.</li>
+        <li>I said the words that make the place {GOD}'s. It felt different afterwards, quieter.</li>
+        <li>[lowtech] I marked the place for {GOD} today and said the old words over it, the ones my grandmother taught me.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -148,6 +155,9 @@
         <li>[!dream] I won't take it without asking, but I think {GOD} has earned something good.</li>
         <li>[dream] {GOD} asked me for it in a dream, so I'll ask the colony for it.</li>
         <li>[priest,!dream] It's time we gave {GOD} something we would miss, if the colony agrees.</li>
+        <li>[!dream] {GOD} has had our scraps long enough, so I'd like to give something better.</li>
+        <li>[!dream] If the colony will let me, I'd give {GOD} something we'd really miss.</li>
+        <li>[dream,!priest] I saw it in a dream, {GOD} wants it, so I'm asking the colony first.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -159,6 +169,11 @@
         <li>Thank you, I'll carry it over to {GOD} now.</li>
         <li>Good, {GOD} will have it today.</li>
         <li>[priest] Thank you, I'll take it to {GOD} with the proper words.</li>
+        <li>I'll take it to {GOD} before the day's out.</li>
+        <li>Thank you for letting me, {GOD} will have the best of us this time.</li>
+        <li>Good, I'll carry it over to {GOD} myself.</li>
+        <li>Thank you, it means a lot that the colony would give it to {GOD}.</li>
+        <li>[priest] Thank you, I'll lay it before {GOD} in the colony's name.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -170,6 +185,11 @@
         <li>Then it stays in the stores, and {GOD} gets what we can spare.</li>
         <li>All right, I won't take it, though I think {GOD} would have liked it.</li>
         <li>[priest] As the colony says, and {GOD} will have to wait for a better year.</li>
+        <li>All right, {GOD} will have to make do with what we can spare.</li>
+        <li>I understand, and I'll tell {GOD} we thought about it.</li>
+        <li>Fine, it stays here, and {GOD} gets the usual.</li>
+        <li>I won't argue with the colony, but {GOD} deserved better.</li>
+        <li>[doubt] Maybe it's for the best, {GOD} might not have noticed it anyway.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -186,6 +206,9 @@
         <li>[theirs,!scoffer,!doubt] Something's been left where the offering was, and the others will say {GOD} left it.</li>
         <li>[doubt,!scoffer] Something was left where the offering was, maybe by {GOD}, maybe by a traveller.</li>
         <li>[scoffer] Someone keeps leaving things at that shrine, and I'd like to know who.</li>
+        <li>[mine,!scoffer,!doubt] We gave to {GOD}, and {GOD} gave back, look at this.</li>
+        <li>[theirs,!scoffer,!doubt] Something's left where the gift was, and the faithful will thank {GOD} for it.</li>
+        <li>[doubt,!scoffer] I can't say who left it, but I'll thank {GOD} just in case.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -246,6 +269,42 @@
         <li>[godkey:murmur,pray:drought] Sing, {GOD}, please, the wells are low.</li>
         <li>[godkey:ducat] {GOD}, I gave what I had, so turn our luck.</li>
         <li>[godkey:revel] {GOD}, I poured your share first, so be kind in the morning.</li>
+        <li>[olde] Hear me, {GOD}, as thou hast heard our elders before us.</li>
+        <li>[olde] {GOD}, I ask but this one thing of thee, so hearken to me.</li>
+        <li>[olde] Look thou upon us, {GOD}, and forget us not in this hour.</li>
+        <li>[olde] {GOD}, be thou near us, for we are few and the world is wide.</li>
+        <li>[olde,priest] {GOD}, I speak for all who dwell here, so hear thou them through me.</li>
+        <li>[olde,old] {GOD}, I have prayed to thee all my long life, so hear me once more.</li>
+        <li>[olde,pray:sickness] {GOD}, lay thy hand upon the sick and raise them up.</li>
+        <li>[olde,pray:sickness] Take thou the fever from them, {GOD}, and give it to the wind.</li>
+        <li>[olde,pray:sickness,inbed] {GOD}, I lie weak abed, so lend me thy strength a while.</li>
+        <li>[olde,pray:sickness,god:healing] {GOD}, thou that mendest all things, mend this one.</li>
+        <li>[olde,pray:death] {GOD}, receive thou the one we have lost, and keep them well.</li>
+        <li>[olde,pray:death] Lead thou them home, {GOD}, by the road we cannot walk with them.</li>
+        <li>[olde,pray:death,god:dead] {GOD}, open thy door to them, and let them rest.</li>
+        <li>[olde,pray:raid] {GOD}, stand thou at our wall, and turn the enemy back.</li>
+        <li>[olde,pray:raid] Strengthen thou our arms, {GOD}, and keep our people this day.</li>
+        <li>[olde,pray:raid,god:war] {GOD}, go thou before us into the fight, and we shall follow.</li>
+        <li>[olde,pray:drought] {GOD}, the earth is parched and the wells run low, so send thou rain.</li>
+        <li>[olde,pray:drought] Open thy heavens, {GOD}, and let the fields drink.</li>
+        <li>[olde,pray:drought,god:harvest] {GOD}, thy fields wither, and we with them.</li>
+        <li>[olde,atshrine] I am come to thy place, {GOD}, that thou mayest know I mean it.</li>
+        <li>[olde,kind:hunger] {GOD}, I know thy price, and I ask of thee all the same.</li>
+        <li>[olde,godkey:hollin] {GOD}, I have planted more than I have felled, so hearken unto me.</li>
+        <li>[olde,godkey:smoulder] {GOD}, sleep thou soundly, and name thy price but softly.</li>
+        <li>[olde,godkey:bellwether] {GOD}, walk thy road in peace, and let us walk ours.</li>
+        <li>[olde,godkey:morel] {GOD}, be thou slow and gentle with us, as is thy way.</li>
+        <li>[olde,godkey:ennu] {GOD}, whatsoever face thou wearest tonight, thou art welcome here.</li>
+        <li>[olde,godkey:pip] {GOD}, keep thou the wheels turning and the lights burning for us.</li>
+        <li>[olde,godkey:cirrus] {GOD}, look thou down upon us but once, and kindly.</li>
+        <li>[olde,godkey:hush] {GOD}, we have laid up our stores, so pass thou by our door.</li>
+        <li>[olde,godkey:undertow] I ask of thee, {GOD}, and I know well what thou shalt take for it.</li>
+        <li>[olde,godkey:helios] {GOD}, thou givest without looking, and I thank thee all the same.</li>
+        <li>[olde,godkey:selene] {GOD}, I tell thee all my day, so give it back to us gently.</li>
+        <li>[olde,godkey:mog] {GOD}, keep thou the door of our dead, and let none trouble them.</li>
+        <li>[olde,godkey:murmur] {GOD}, sing thou in the deep wells, and we shall answer thee.</li>
+        <li>[olde,godkey:ducat] {GOD}, I gave what I had, so turn thou our fortune.</li>
+        <li>[olde,godkey:revel] {GOD}, I poured thy share first, so deal kindly with us at morning.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -266,6 +325,20 @@
         <li>[godkey:murmur,pray:drought] That was {GOD}, croaking under the well before the rain.</li>
         <li>[godkey:undertow] {GOD} said yes, and now I wonder what it'll want for it.</li>
         <li>[godkey:revel] {GOD} was kind, and I'm waiting to find out what it costs.</li>
+        <li>[olde] Thanks be to thee, {GOD}, and I shall not forget it.</li>
+        <li>[olde] {GOD} hath heard us, and to {GOD} be the thanks.</li>
+        <li>[olde] Blessed be {GOD}, who hath heard us in our need.</li>
+        <li>[olde,priest] Give thanks, all of you, for {GOD} hath answered us.</li>
+        <li>[olde,pray:sickness] They are risen from their sickbed, and thanks be unto {GOD} for it.</li>
+        <li>[olde,pray:raid] {GOD} hath stood with us at the wall, and we are here yet.</li>
+        <li>[olde,pray:drought] The rain is come, {GOD}, and the fields drink of it, thanks be unto thee.</li>
+        <li>[olde,pray:death] {GOD} hath received them, I am sure of it, and I give thanks.</li>
+        <li>[olde,godkey:hollin] The roots have held, and thanks be unto {GOD}.</li>
+        <li>[olde,godkey:smoulder] Praise be unto {GOD}, that sleepeth under the mountain.</li>
+        <li>[olde,godkey:selene] What we sent out came back by night, as {GOD} doth.</li>
+        <li>[olde,godkey:murmur] {GOD} hath sung, and the rain came after, thanks be.</li>
+        <li>[olde,godkey:mog] {GOD} hath kept watch, and our dead rest easy, thanks be unto her.</li>
+        <li>[olde,godkey:undertow] {GOD} said yes, and I shall pay what is asked, as I must.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -281,6 +354,8 @@
         <li>[pray:drought] Not a drop, {GOD}, not one drop.</li>
         <li>[pray:raid] Where were you at the wall, {GOD}?</li>
         <li>[doubt] Nobody was listening, were they.</li>
+        <li>I gave {GOD} everything, and got nothing back.</li>
+        <li>[pray:death] I prayed for them, {GOD}, and you let them die.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -293,6 +368,10 @@
         <li>I've said {GOD}'s name every night since I can remember. Tonight I couldn't.</li>
         <li>[veiled] Some say {GOD} turns a face away to test the faithful. If this is a test, I'm failing it.</li>
         <li>[near] {GOD} heard me. I know that much. {GOD} heard me and chose not to answer.</li>
+        <li>I asked {GOD} for help and got silence. I'm still angry about it, and I don't know who to be angry with.</li>
+        <li>Maybe {GOD} never listened. Maybe I was talking to myself all those years.</li>
+        <li>I tried to pray to {GOD} tonight and couldn't think of a single thing to say.</li>
+        <li>[doubt] I don't know what I believe any more. I used to be so sure about {GOD}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -321,6 +400,10 @@
         <li>Don't you dare speak of {GOD} like that.</li>
         <li>One day you'll need {GOD} too, {OTHER_nameDef}.</li>
         <li>I'll pray for you, {OTHER_nameDef}, since you won't.</li>
+        <li>You'll see one day, {OTHER_nameDef}.</li>
+        <li>Mock all you like, I know what I saw.</li>
+        <li>{GOD} doesn't need you to believe, {OTHER_nameDef}.</li>
+        <li>Say that again when you're the one who needs help.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -334,6 +417,10 @@
         <li>Say thank you to {GOD}, {OTHER_nameDef}, it's only polite.</li>
         <li>[mine] I asked {GOD} for it last night, so that's settled.</li>
         <li>[theirs] Your god sent it, maybe, but {GOD} let it through.</li>
+        <li>The rain came the morning after I asked {GOD}, {OTHER_nameDef}, work it out.</li>
+        <li>You can thank {GOD} for the wet boots too, {OTHER_nameDef}.</li>
+        <li>[mine] I've prayed to {GOD} for this all week, so don't you take the credit.</li>
+        <li>[theirs] You can keep your god, {OTHER_nameDef}, I'm thanking {GOD} for the rain.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -346,6 +433,10 @@
         <li>We'll ask at supper whose god it was, and they'll all say {GOD}.</li>
         <li>[theirs] {GOD} would have sent it sooner if you'd asked politely.</li>
         <li>[mine] Fine, {OTHER_nameDef}, but {GOD} was here first.</li>
+        <li>Fine, {GOD} sent it, but I asked first, {OTHER_nameDef}.</li>
+        <li>Have it your way, {OTHER_nameDef}, as long as {GOD} keeps it coming.</li>
+        <li>I'm not arguing about {GOD} with you again, {OTHER_nameDef}.</li>
+        <li>[mine] {GOD} heard me, {OTHER_nameDef}, and that's all there is to it.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -385,6 +476,26 @@
         <li>[visitors] Here, eat something, nobody leaves this gate hungry.</li>
         <li>[visitors] You'll have had a long road, have this.</li>
         <li>[visitors] Take it, {OTHER}, it's yours.</li>
+        <li>[lamp] Topped up, and burning well.</li>
+        <li>[lamp] That's the lamp seen to for today.</li>
+        <li>[lamp] It won't go out while I'm looking after it, {GOD}.</li>
+        <li>[lamp] A bit more fuel, and it'll last till morning.</li>
+        <li>[lamp] Still burning, as I promised.</li>
+        <li>[trees] In you go, and grow tall.</li>
+        <li>[trees] Another tree for the season's count.</li>
+        <li>[trees] There, that one should take well.</li>
+        <li>[trees] That's my tree for the week, {GOD}.</li>
+        <li>[trees] Roots down, little one.</li>
+        <li>[plainbread] Plain food again, and that's fine by me.</li>
+        <li>[plainbread] Nothing fancy on my plate, I promised.</li>
+        <li>[plainbread] The simple bowl, please, I'm keeping my vow.</li>
+        <li>[plainbread] The plain meal is plenty for me this season.</li>
+        <li>[plainbread] No, thank you, I'll stick to the plain food, {GOD} has my word.</li>
+        <li>[visitors] Here, eat before you go any further.</li>
+        <li>[visitors] Sit and eat something first.</li>
+        <li>[visitors] This is for you, there's nothing to pay.</li>
+        <li>[visitors] Nobody leaves here hungry this season.</li>
+        <li>[visitors] Have this, and welcome.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -397,6 +508,11 @@
         <li>[vow:nomeat] They're well, and I never once touched meat. I'm having the biggest stew in the colony tonight.</li>
         <li>[vow:beastspared] The season's over and not one of {GOD}'s beasts fell to us. I watched every hunt.</li>
         <li>[vow:temple] {GOD} has a house now. I swore it, and it stands.</li>
+        <li>The vow to {GOD} is kept, the whole season of it. I feel lighter than I have in months.</li>
+        <li>[vow:lamp] Not one dark night in the whole season. The lamp burned for {GOD} from first to last, and I saw to it every day.</li>
+        <li>[vow:trees] A tree every week, all season, by my own hand. {GOD} has a little wood now that wasn't there before.</li>
+        <li>[vow:plainbread] A whole season of plain bread for {GOD}, and not one fine plate. I'm looking forward to a proper supper.</li>
+        <li>[vow:visitors] Every caller fed, all season, for {GOD}. Some of them won't forget it, and neither will I.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -409,6 +525,10 @@
         <li>[vow:nomeat] I ate meat. I was hungry and I didn't think, and now I can't stop thinking.</li>
         <li>[vow:beastspared] One of {GOD}'s beasts is dead at our hands. I swore it wouldn't be.</li>
         <li>[veiled] Some say {GOD} turned away from me the moment I broke it. I felt the cold of it.</li>
+        <li>[vow:lamp] The lamp went out in the night, and with it my vow to {GOD}. I should have checked it one more time.</li>
+        <li>[vow:trees] My vow of the trees to {GOD} is broken. I knew what I'd promised and I broke it anyway.</li>
+        <li>[vow:plainbread] I ate a fine meal, and my vow to {GOD} was gone with the first mouthful.</li>
+        <li>[vow:visitors] A caller left our gate hungry, and my vow to {GOD} went with them.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -421,6 +541,11 @@
         <li>Don't wait supper for me, I'm walking to {GOD}.</li>
         <li>I made {GOD} a promise, and today I keep it.</li>
         <li>[lowtech] I'm going out to {GOD}'s place, and I'm going on foot.</li>
+        <li>I'll be back once I've stood at {GOD}'s place.</li>
+        <li>Keep my bed for me, I'm off to {GOD} on foot.</li>
+        <li>I've waited long enough to make this walk to {GOD}, so I'm going today.</li>
+        <li>[lowtech] Pack me some bread, I've a long walk to {GOD}'s place ahead of me.</li>
+        <li>[!lowtech] No ride for me, I'm walking to {GOD} the old way.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -434,6 +559,9 @@
         <li>[god:wild] Old tree, tell {GOD} I came.</li>
         <li>[god:waters] {GOD}, I came to your water, and I'm not leaving dry.</li>
         <li>[god:dead] {GOD}, I've come to sit with your dead an hour.</li>
+        <li>I made it, {GOD}, and my feet will tell you how far it was.</li>
+        <li>Here at last, {GOD}, I'll sit a while before I start back.</li>
+        <li>[god:harvest] {GOD}, I've come to your place to say thank you for our fields.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -459,6 +587,24 @@
         <li>[about:way] {GOD}, for every road walked and every guest who came down it.</li>
         <li>[about:machine] {GOD}, the machines turned all year, keep them turning.</li>
         <li>[about:void] {GOD}, we keep your day so that you keep your distance.</li>
+        <li>[olde] This day is thine, {GOD}, and we keep it as we were taught.</li>
+        <li>[olde] {GOD}, {GODEPITHET}, we keep thy day as our elders kept it.</li>
+        <li>[olde,priest] Hear ye, all of you, for this is the day of {GOD}.</li>
+        <li>[olde,old] Many a year have I kept the day of {GOD}, and I shall keep it still.</li>
+        <li>[olde,about:harvest] {GOD}, we bring thee the first sheaf, as thou hast given us the field.</li>
+        <li>[olde,about:night] On this longest night we keep a light for thee, {GOD}, till morning.</li>
+        <li>[olde,about:dead] {GOD}, this night we name our dead, and thou shalt keep them.</li>
+        <li>[olde,about:hearth] The fire is lit and the bread broken, so come thou, {GOD}, and sit with us.</li>
+        <li>[olde,about:storm] {GOD}, we hear thy thunder, and we thank thee for the rain.</li>
+        <li>[olde,about:hunt] {GOD}, grant thou us a clean kill and a full table, and we ask no more.</li>
+        <li>[olde,about:wild] {GOD}, the first green is left to thee, uncut and growing.</li>
+        <li>[olde,about:waters] Unto {GOD}, for every river crossed and every net drawn full.</li>
+        <li>[olde,about:war] We stand before thee, {GOD}, this day, every one of us, unafraid.</li>
+        <li>[olde,about:healing] For all who rose again this year, {GOD}, we give thee thanks.</li>
+        <li>[olde,about:craft] All that our hands made well this year was made under thine eye, {GOD}.</li>
+        <li>[olde,about:way] {GOD}, for every road walked and every stranger fed, we thank thee.</li>
+        <li>[olde,about:machine] {GOD}, the wheels turned all the year, so keep thou them turning.</li>
+        <li>[olde,about:void] {GOD}, we keep thy day, that thou mayest keep thy distance from us.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -473,6 +619,18 @@
         <li>Whatever comes this year, we'll meet it with {GOD}.</li>
         <li>[lowtech] Touch the stone, and say the name: {GOD}.</li>
         <li>[doubt] It's for the colony as much as for {GOD}, and that's fine.</li>
+        <li>{GOD}, the colony has spoken, and we stand by what it said.</li>
+        <li>Remember tonight, all of you, and that {GOD} heard it.</li>
+        <li>[olde] {GOD}, {GODEPITHET}, hear what the colony hath decided.</li>
+        <li>[olde] We stand here before thee, {GOD}, all of us together, as one.</li>
+        <li>[olde] Say it with me, all: {GOD} keep us, and we shall keep faith.</li>
+        <li>[olde] Whatsoever cometh this year, we shall meet it with {GOD}.</li>
+        <li>[olde] Let it be known unto all here that we have spoken before {GOD}.</li>
+        <li>[olde,priest] In the name of {GOD}, I bid ye hear and remember.</li>
+        <li>[olde,lowtech] Lay ye your hands upon the stone and say the name of {GOD}.</li>
+        <li>[olde] {GOD}, bear thou witness to what we have promised here this evening.</li>
+        <li>[olde] Thus it is said before {GOD}, and thus it shall be done.</li>
+        <li>[olde] {GOD}, look upon thy people gathered here, and keep them.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -483,6 +641,12 @@
       <plain>
         <li>Go on then, {GOD} is waiting for you.</li>
         <li>Off you go, and tell {GOD} we kept our side.</li>
+        <li>Go on, the wild is yours now.</li>
+        <li>Off you go, and don't look back at us.</li>
+        <li>You belong to {GOD} now, so go gently.</li>
+        <li>We'll miss you, but you're {GOD}'s now.</li>
+        <li>Walk on to {GOD}, and keep to the open ground.</li>
+        <li>[lowtech] Go back to the wild, little one, and take our thanks with you.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -552,6 +716,12 @@
       <plain>
         <li>{NAME} went by unkept. {A_nameDef} said {SUBJECT}'s words alone, and some say {SUBJECT} noticed who didn't.</li>
         <li>No {NAME} this year. {A_nameDef} left a little something at the shrine anyway, and didn't tell anyone.</li>
+        <li>{NAME} went by without a feast this year, and {A_nameDef} hopes {SUBJECT} will understand.</li>
+        <li>Nobody kept {NAME} this year. {A_nameDef} noticed, and minded more than {A_pronoun} let on.</li>
+        <li>{NAME} passed quietly this year, with no feast and no rite for {SUBJECT}.</li>
+        <li>The colony let {NAME} go by. {A_nameDef} says {SUBJECT} has seen leaner years than this one.</li>
+        <li>[years] {NAME} went unkept for once. {A_nameDef} remembers every year it was kept, and will miss it.</li>
+        <li>[first] The first {NAME} came and went without a feast, and {A_nameDef} hopes next year's will be kept.</li>
       </plain>
       <warm><li>{NAME} passed without a feast. {A_nameDef} says {SUBJECT} is forgiving, and next year will do.</li></warm>
       <blunt><li>No {NAME} this year. {A_nameDef} says {SUBJECT} won't forget it.</li></blunt>
@@ -566,6 +736,10 @@
         <li>[first] Our first {NAME}. Nobody knew all the words, and {SUBJECT} didn't seem to mind.</li>
         <li>[years] Another {NAME}. I remember the first one, and how few of us there were.</li>
         <li>[tradition] {NAME}, as we always keep it. The children know the rite better than I do.</li>
+        <li>We kept {NAME} today, and for an evening everyone's mind was on {SUBJECT}.</li>
+        <li>[first] Our first {NAME}. I didn't know what to expect, and I enjoyed it more than I thought I would.</li>
+        <li>[years] {NAME} again, another year round. It comes faster every time.</li>
+        <li>[tradition] {NAME}, the way the colony has always kept it. I like that some things don't change.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -577,6 +751,11 @@
         <li>{A_nameDef} told {B_nameDef} the story of how {SUBJECT} came to be called {WHO}.</li>
         <li>{A_nameDef} and {B_nameDef} argued happily over how {NAME} ought to be kept.</li>
         <li>{A_nameDef} asked {B_nameDef} what {SUBJECT} is called where {B_pronoun} grew up.</li>
+        <li>{A_nameDef} asked {B_nameDef} what {B_pronoun} would bring to {NAME} this year.</li>
+        <li>[years] {A_nameDef} and {B_nameDef} talked about last year's {NAME} and what they liked best about it.</li>
+        <li>{A_nameDef} told {B_nameDef} the old words said at {NAME}, and {B_nameDef} tried to learn them.</li>
+        <li>{A_nameDef} and {B_nameDef} talked over what dish should be made for {NAME}.</li>
+        <li>{A_nameDef} asked {B_nameDef} whether {SUBJECT} is kept the same way in other places.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

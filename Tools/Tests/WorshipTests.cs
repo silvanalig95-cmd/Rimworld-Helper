@@ -121,6 +121,18 @@ public static class WorshipTests
         int scoffers = Enumerable.Range(1000, 7000).Count(i => WorshipMath.Scoffer(false, false, 1f, i));
         C(scoffers > 700 && scoffers < 1300, $"without Ideology, about one in seven scoffs ({scoffers} of 7000), the same each time");
 
+        // ================= The old voice =================
+
+        C(WorshipMath.OldVoice(true, false, false, 30f, null, false) && WorshipMath.OldVoice(false, true, false, 30f, null, false)
+          && WorshipMath.OldVoice(false, false, true, 64f, null, false) && WorshipMath.OldVoice(false, false, false, 30f, WorldAge.Medieval, false)
+          && WorshipMath.OldVoice(false, false, false, 30f, WorldAge.Tribal, false),
+            "the old voice: the priest, the book's keeper, a devout elder, a believer of a faith of the bow and the spear or of the sword and the keep");
+        C(!WorshipMath.OldVoice(false, false, false, 30f, null, false) && !WorshipMath.OldVoice(false, false, true, 59f, null, false)
+          && !WorshipMath.OldVoice(false, false, false, 70f, null, false) && !WorshipMath.OldVoice(false, false, false, 30f, WorldAge.Industrial, false)
+          && !WorshipMath.OldVoice(false, false, false, 30f, WorldAge.Spacer, false) && !WorshipMath.OldVoice(true, true, true, 70f, WorldAge.Tribal, true),
+            "everyone else keeps the plain words: a devout younger one, an elder not devout, a faith of engines or of the stars, and never a scoffer");
+        C(WorshipMath.OldVoiceTag == "olde" && WorshipMath.ElderAge == 60f, "the old voice's lines are tagged as the letters' medieval ones are, and an elder is sixty");
+
         // ================= Festivals =================
 
         C(WorshipMath.FestivalWhen(GodDomain.Harvest).season == 2 && WorshipMath.FestivalWhen(GodDomain.Night) == (3, 7) && WorshipMath.FestivalWhen(GodDomain.Dead).season == 2
@@ -244,6 +256,31 @@ public static class WorshipTests
             C(lines.All(l => l.Contains("{GOD}") || l.Contains("{OTHER") || s.EndsWith("GiveBeast") || s.EndsWith("PilgrimOut") || s.EndsWith("Crisis") || s.EndsWith("ScoffReply")),
                 "spoken to or of the god by name: " + s);
         }
+        // The old voice ([olde]): a set beside the plain prayers, thanks, rites and words at a god's place, and the saints' prayers
+        // and feasts, each line in the old words; only these pools have it, and the four who speak it get it wherever a
+        // worship line is picked (Worship.LineWith), the words at a god's place too (filled in for the one who leads them).
+        var oldWord = new Regex(@"\b(thou|thee|thy|thine|ye|hath|doth|dost|shalt|shall|art|ere|naught|whoso|whatsoever|unto|wherefore|\w+est|\w+eth)\b", RegexOptions.IgnoreCase);
+        bool Olde(string l) => Regex.IsMatch(l, @"^\[([^\]]*,)?olde(,[^\]]*)?\]");
+        var scripture = new[] { "Rimfolk_Pool_Worship_Pray", "Rimfolk_Pool_Worship_Thanks", "Rimfolk_Pool_Worship_Rite", "Rimfolk_Pool_Worship_RiteWords",
+                                "Rimfolk_Pool_Saint_Prayer", "Rimfolk_Pool_Saint_Feast" };
+        int oldLines = 0;
+        foreach (var s in scripture)
+        {
+            var li = pools.TryGetValue(s, out var el) ? el.Descendants("li").Select(l => l.Value).ToList() : new List<string>();
+            var olde = li.Where(Olde).ToList();
+            oldLines += olde.Count;
+            C(olde.Count >= 10 && li.Count - olde.Count >= 8, $"{s}: an old-voice set beside the plain lines ({olde.Count} and {li.Count - olde.Count})");
+            C(olde.All(l => oldWord.IsMatch(Regex.Replace(l, @"^\[[^\]]*\]\s*|\{[A-Z_]+\}", ""))), $"{s}: every line of the set is in the old words");
+        }
+        C(oldLines >= 100, $"about a hundred lines in the old voice ({oldLines})");
+        C(pools.Where(p => !scripture.Contains(p.Key)).All(p => !p.Value.Descendants("li").Any(l => Olde(l.Value) && p.Key.StartsWith("Rimfolk_Pool_Worship"))),
+            "no other worship pool has the old voice: everyone else keeps the plain words");
+        C(Read("Gods/Worship/Worship.cs").Contains("if (OldVoice(p)) tags.Add(WorshipMath.OldVoiceTag);")
+          && Read("Gods/Worship/Worship.cs").Contains("WorshipMath.OldVoice(IsPriest(p), keeper, Devout(p), Flavor.HumanAge(p), FaithAge(p), Scoffer(p))")
+          && Read("Gods/Worship/Worship.cs").Contains("f.IsPlayer || f.ideos?.PrimaryIdeo != ideo"),
+            "the four speak it wherever a worship line is picked: the priest, the keeper (GodLore.Keeper), a devout elder, a believer of another people's faith of the old ages");
+        C(Read("Gods/Worship/WorshipCouncil.cs").Contains("p.lines.AddRange(Worship.Lines(p.pool, speaker, g, 5));") && Read("Gods/Worship/WorshipCouncil.cs").Contains("p.pool = null;"),
+            "the words at a god's place are filled in for the one who leads them, and the god's placeholder is never said");
         string keyed = string.Join("\n", Directory.GetFiles(Path.Combine(root, "Languages", "English", "Keyed"), "*.xml").Select(File.ReadAllText));
         var keys = new HashSet<string>(Regex.Matches(keyed, @"<([A-Za-z0-9_]+)>").Cast<Match>().Select(m => m.Groups[1].Value));
         foreach (Match m in Regex.Matches(all, "\"(CC_Wsh_[A-Za-z_]+[A-Za-z])\"(?!\\s*\\+)"))

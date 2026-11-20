@@ -192,6 +192,20 @@
         <li>[place:relic] I'll keep this safe for you, {SAINT}, I promise.</li>
         <li>[tribal] Ancestor, walk beside us when we go out past the fires.</li>
         <li>[spacer] {SAINT}, if any part of you is out there, we're still listening.</li>
+        <li>[olde] {SAINT}, thou knewest this place, so watch over it for us.</li>
+        <li>[olde] Remember us, {SAINT}, as we remember thee.</li>
+        <li>[olde] {SAINT}, pray for us, that we may do as well as thou didst.</li>
+        <li>[olde] {SAINT}, I know not if thou hearest me, yet I speak all the same.</li>
+        <li>[olde] {SAINT}, give us of thy courage, for we have need of it.</li>
+        <li>[olde,priest] {SAINT}, look thou upon the people of this place and keep them.</li>
+        <li>[olde,old] {SAINT}, I am old, and I ask thee to keep a place for me.</li>
+        <li>[olde,known] {SAINT}, speak a word to {GOD} for us, for thou art nearer.</li>
+        <li>[olde,known] Ask thou {GOD} to deal gently with us this season, {SAINT}.</li>
+        <li>[olde,known] {SAINT}, that walkest now with {GOD}, forget us not.</li>
+        <li>[olde,place:grave] Rest thou easy, {SAINT}, for we are here and we keep faith.</li>
+        <li>[olde,place:grave] I bring naught but myself this day, {SAINT}, and my prayer.</li>
+        <li>[olde,place:statue] {SAINT}, this likeness of thee is poor, yet it was made with love.</li>
+        <li>[olde,place:relic] I shall keep this safe for thee, {SAINT}, all my days.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -210,6 +224,16 @@
         <li>[known] {GOD} took {DEAD} home, and we keep the day for both of them.</li>
         <li>[tribal] The fire is lit for {SAINT}, so the Ancestors can find their way here tonight.</li>
         <li>[spacer] We kept {DEAD}'s voice, and tonight we let it speak again.</li>
+        <li>[olde] A year hath passed since we lost {DEAD}, and still we speak of them.</li>
+        <li>[olde] {SAINT}, {DEED}, is the cause wherefore we stand here this night.</li>
+        <li>[olde] Say ye the name of {DEAD}, all of you, that it be not forgotten.</li>
+        <li>[olde] We keep the day of {SAINT}, that they who come after us shall keep it too.</li>
+        <li>[olde] Whoso is new among us, ask of {DEAD}, and any here shall tell thee.</li>
+        <li>[olde] Let none here forget what {SAINT} hath done for us.</li>
+        <li>[olde] Blessed be the memory of {DEAD}, and blessed be ye that keep it.</li>
+        <li>[olde] {SAINT} gave much for us, and unto them we give this night.</li>
+        <li>[olde,known] {SAINT} walketh with {GOD} now, and speaketh for us.</li>
+        <li>[olde,known] {GOD} hath taken {DEAD} home, and we keep this day for both.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -223,6 +247,10 @@
         <li>This is {SAINT}'s now, so treat it kindly.</li>
         <li>Let this be {SAINT}'s, for as long as it stands.</li>
         <li>[known] For {SAINT}, and for {GOD} who keeps them.</li>
+        <li>This place is {SAINT}'s, so remember them when you pass.</li>
+        <li>Here stands {SAINT}, and here we'll come to remember.</li>
+        <li>For {SAINT}, who did more for us than we can say.</li>
+        <li>[known] Let {SAINT} keep watch here, close to {GOD}.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -238,6 +266,8 @@
         <li>We'll keep their day every year, on the day we lost them.</li>
         <li>Nobody here will forget what they did, I'll see to that.</li>
         <li>They'd laugh at all this, but they'd be glad of it too.</li>
+        <li>From today, whoever needs them can come here and ask.</li>
+        <li>We'll tell the children about them, so they're never forgotten.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -253,6 +283,8 @@
         <li>They were the best of us, whatever anyone calls them.</li>
         <li>Rest well, and thank you for everything.</li>
         <li>A few words for them, and then we'll get on, as they would want.</li>
+        <li>They gave everything, and we'll remember it here.</li>
+        <li>We'll say their name at supper, and that's enough for them.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>
@@ -266,6 +298,10 @@
         <li>{SAINT}. It still sounds strange. It also sounds right.</li>
         <li>I asked for it and they said yes. {DEAD} would have rolled their eyes at the fuss, and been pleased.</li>
         <li>[known] {SAINT}, with {GOD} now. I hope they're looking after each other.</li>
+        <li>{SAINT}. I keep saying it under my breath to get used to it.</li>
+        <li>The council named {DEAD} a saint today. I didn't expect it to move me as much as it did.</li>
+        <li>I asked the council to remember {DEAD}, and they did more than that. {SAINT} now.</li>
+        <li>[known] {SAINT} keeps company with {GOD} now, or so we believe. I hope it's true.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

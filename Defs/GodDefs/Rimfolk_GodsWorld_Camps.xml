@@ -54,6 +54,10 @@
       <li>[lowtech] A small band of {FACTION}'s faithful walked in carrying bundles of dried flowers and a clay lamp. {X_nameDef} told {A_nameDef} they had come a long way to pray at {SITE}, which {X_possessive} grandmother said is where {GOD} once stood, and asked only to be let alone with it.</li>
       <li>[!lowtech] A handful of pilgrims of {FACTION} are setting up a fire {PLACE}, within sight of {SITE}. {X_nameDef} showed {A_nameDef} a worn drawing of it in a prayer book: their people call it one of {GOD}'s places, and they come to it when they can.</li>
       <li>[sameFaith] Pilgrims of {FACTION}, who keep the same faith as some of the colony, have come to pray at {SITE}. {X_nameDef} told {A_nameDef} that the colony is welcome to join them at dusk.</li>
+      <li>[winter] Pilgrims of {FACTION} have come through the snow to the colony's land and are making camp {PLACE}. {X_nameDef} told {A_nameDef} that their people walk to {SITE} in winter, when the road is quiet, and that they will pray to {GOD} there at dawn and at dusk for a few days and then go home.</li>
+      <li>A few pilgrims of {FACTION} have come onto the colony's land, tired from the road. {X_nameDef} told {A_nameDef} that {SITE} is holy to {GOD} among their people, and asked leave to camp {PLACE} and pray there at dawn and at dusk before they go home.</li>
+      <li>[lowtech] Pilgrims of {FACTION} have walked a long way to reach {SITE}, and have stopped {PLACE} to make their fire. {X_nameDef} told {A_nameDef} that their elders taught them the way there as children, and that they mean to pray to {GOD}, {GODEPITHET}, at dawn and at dusk and touch nothing while they stay.</li>
+      <li>[!lowtech] A small group of pilgrims of {FACTION} have come off the road and set up camp {PLACE}. {X_nameDef} told {A_nameDef} that their people keep a list of {GOD}'s places, that {SITE} is on it, and that {X_pronoun} has hoped to see it for years.</li>
     </texts>
     <settled>
       <li>The pilgrims' fire is lit {PLACE}, and their lamp is already burning by {SITE}.</li>
@@ -74,12 +78,18 @@
       <li>We'll be gone in a few days, and we'll touch nothing.</li>
       <li>[evening] Dusk, and time to pray.</li>
       <li>[morning] The first light belongs to {GOD}.</li>
+      <li>We'll keep out of your way, don't worry.</li>
+      <li>It's quieter here than I thought it would be.</li>
     </lines>
     <momentLines>
       <li>[pray] To {SITE}, all of us, it's time.</li>
       <li>[pray] Bring the lamp, we pray at {SITE} now.</li>
       <li>[grief] It's gone, the holy place is gone.</li>
       <li>[grief] Who could have done this to {SITE}?</li>
+      <li>[pray] The light's turning, so it's time to pray at {SITE}.</li>
+      <li>[pray] Come on, everyone, {SITE} is waiting.</li>
+      <li>[grief] {SITE} is gone, and we came all this way to pray at it.</li>
+      <li>[grief] There's nothing left of {SITE} to pray at.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat at the pilgrims' fire while {X_nameDef} told the story of {GOD} and {SITE} the way {X_possessive} people tell it.</li>
@@ -158,6 +168,11 @@
       <li>A hermit of {FACTION} has come to the very edge of the colony's land and is building a hut {PLACE}. {X_nameDef} told {A_nameDef}, without being asked, that the gods talk more where the land runs out, and that anyone who wants to know what they say may come and sit by the fire.</li>
       <li>[lowtech] An old seer, once of {FACTION}, has settled {PLACE} with a bag of bones and a bundle of smoke-herbs. {X_nameDef} looked at {A_nameDef} for a long moment and said that the gods had a lot to say about this place.</li>
       <li>[!lowtech] {X_nameDef}, who left {FACTION} to live on the edges of things, has pitched a hut {PLACE}. {X_nameDef} told {A_nameDef} that {X_pronoun} reads the gods the way others read the weather, and gets about as much thanks for it.</li>
+      <li>[winter] A hermit seer of {FACTION} has come through the snow to the edge of the colony's land and is building a hut {PLACE}. {X_nameDef} told {A_nameDef} that the gods speak most clearly in winter, when there is less noise, and that anyone who wants to hear them may come and sit by the fire.</li>
+      <li>An old seer has come out of the wilds to the edge of the colony's land and is putting up a hut {PLACE}. {X_nameDef} told {A_nameDef} that {X_pronoun} once lived among {FACTION}, and left them to live alone with the smoke and the stones.</li>
+      <li>[lowtech] A seer of {FACTION} has settled {PLACE} with a fire, a few herbs and nothing else. {X_nameDef} told {A_nameDef} that the smoke had shown {X_objective} this place, and that {X_pronoun} would stay until it showed {X_objective} another.</li>
+      <li>[!lowtech] {X_nameDef}, who once kept the records for {FACTION}, has given that up and pitched a hut {PLACE}. {X_nameDef} told {A_nameDef} that {X_pronoun} reads the smoke now instead of the ledgers, and finds it more honest.</li>
+      <li>A hermit has come to the edge of the land and is building a hut {PLACE}. {X_nameDef}, once of {FACTION}, told {A_nameDef} that {X_pronoun} goes wherever the gods are loudest, and that here they have not stopped talking since {X_pronoun} arrived.</li>
     </texts>
     <settled>
       <li>[shelter:hut] The seer's hut is up {PLACE}, with a fire before its door and a smell of strange smoke on the wind.</li>
@@ -176,10 +191,19 @@
       <li>The smoke goes where it wants.</li>
       <li>[night] They're loud tonight, the gods.</li>
       <li>[evening] Come and hear, if you dare to.</li>
+      <li>The fire tells me more than people do.</li>
+      <li>[night] The smoke's thicker after dark, and it says more.</li>
+      <li>I came here because it's quiet enough to listen.</li>
     </lines>
     <momentLines>
       <li>[foretell] Listen, all of you, the gods are speaking.</li>
       <li>[foretell] I saw it in the smoke, and the smoke doesn't lie.</li>
+      <li>[foretell] Come close, the smoke is showing me something.</li>
+      <li>[foretell] Hush now, and let me read it.</li>
+      <li>[foretell] The smoke's thick tonight, so it has a lot to say.</li>
+      <li>[foretell] There, in the smoke, can you see it?</li>
+      <li>[foretell] I'll tell you what I see, and you may not like it.</li>
+      <li>[foretell] Quiet, the gods are close tonight.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat by the seer's fire and came back pale, saying only that {X_nameDef} had known things {X_pronoun} couldn't have.</li>
