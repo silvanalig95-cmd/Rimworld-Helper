@@ -409,6 +409,8 @@ namespace ColonyCouncil
             Section("CC_SetSec_Story");
             Toggle("journals", "CC_Settings_Journals", "CC_SetNote_Journals");
             Toggle("epithets", "CC_Settings_Epithets", "CC_SetNote_Epithets", tip: "CC_Name_Settings_Epithets_Tip");
+            // The colony's own names for its places (Places/PlaceNames.cs).
+            Toggle("placeNames", "CC_Settings_PlaceNames", "CC_SetNote_PlaceNames");
             Toggle("anniversaries", "CC_Settings_Anniversaries", "CC_SetNote_Anniversaries");
             Toggle("annals", "CC_Settings_Annals", "CC_SetNote_Annals");
             Toggle("eulogies", "CC_Settings_Eulogies", "CC_SetNote_Eulogies");
@@ -640,6 +642,8 @@ namespace ColonyCouncil
             // The game's temperature readout at the bottom right in colour (Hud/Patch_TemperatureReadout.cs).
             Toggle("tempReadoutColour", "CC_Settings_TempReadoutColour", "CC_SetNote_TempReadoutColour", "deepHooks");
             Toggle("heartInspector", "CC_Settings_HeartInspector", "CC_SetNote_HeartInspector", "heart");
+            // The names of places as quiet labels on the map (Places/PlaceNames.cs), off by default.
+            Toggle("placeLabels", "CC_Settings_PlaceLabels", "CC_SetNote_PlaceLabels", "placeNames");
             Toggle("socialTabColumn", "CC_Settings_SocialTabColumn", "CC_SetNote_SocialTabColumn", "deepHooks");
             Section("CC_Settings_Alerts");
             Toggle("advisorAlert", "CC_Settings_AdvisorAlert", "CC_SetNote_AdvisorAlert", "enableAdvisor");

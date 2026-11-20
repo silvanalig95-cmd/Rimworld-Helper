@@ -33,7 +33,9 @@ public static class LetterFormTests
         // What their letter tells of their god (Gods/World/GodLetters.cs): a sign or curse's god, a myth's two, a holy war's enemy.
         "SIGNGOD", "SIGNGODEPITHET", "MYTHGOD", "MYTHOTHER", "ENEMYGOD", "ENEMYPEOPLE",
         // A RimWorld of Magic's crafts among one of Rimfolk's peoples (Peoples/Magic/PeoplesMagic.cs, LetterTags): "druids and rangers".
-        "AMONG"
+        "AMONG",
+        // A place at home the colony has named (Places/PlaceNames.cs, the facts service's colony:place).
+        "OURPLACE"
     };
 
     /// <summary>The values every letter has (the coverage asks only for these).</summary>

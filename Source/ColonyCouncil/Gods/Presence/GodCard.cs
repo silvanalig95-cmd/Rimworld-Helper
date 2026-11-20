@@ -39,6 +39,8 @@ namespace ColonyCouncil
             label = label.CapitalizeFirst();
             string body = !text.NullOrEmpty() ? text : ("CC_GodP_Card_Text_" + kind + (veiled ? "_Veiled" : "")).Translate(name.Named("NAME")).Resolve().CapitalizeFirst();
             body = GodMarkMath.WithLeft(body, left);
+            // Where it was, when the colony has a name for that place (Places/PlaceNames.cs).
+            body = PlaceNames.WithPlace(body, map, at);
             var look2 = avatar != null && avatar.Spawned ? new LookTargets(avatar) : new LookTargets(at, map);
             pending = new GodLetter { look = look, godName = name, epithet = epithet, kind = kind, veiled = veiled, colorA = a, colorB = b, sign = veiled ? null : sign };
             try

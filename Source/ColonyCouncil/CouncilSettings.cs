@@ -89,6 +89,10 @@ namespace ColonyCouncil
         /// <summary>Goods and people that events move between the colony and the outside world come and go on the map, carried by real people (Couriers/).</summary>
         public bool goodsComeAndGo = true;
         public bool epithets = true;
+        /// <summary>Places on the home map get names from what first happened there (Places/PlaceNames.cs).</summary>
+        public bool placeNames = true;
+        /// <summary>The names of places show on the map as quiet labels (off by default).</summary>
+        public bool placeLabels = false;
         public bool journals = true;
         public bool offices = true;
         /// <summary>An election is an event on the map: announced for a date, a campaign, the hustings, polling day and the count aloud (off: the instant letter).</summary>
@@ -920,6 +924,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref answersPlayOut, "answersPlayOut", true);
             Scribe_Values.Look(ref goodsComeAndGo, "goodsComeAndGo", true);
             Scribe_Values.Look(ref epithets, "epithets", true);
+            Scribe_Values.Look(ref placeNames, "placeNames", true);
+            Scribe_Values.Look(ref placeLabels, "placeLabels", false);
             Scribe_Values.Look(ref journals, "journals", true);
             Scribe_Values.Look(ref offices, "offices", true);
             Scribe_Values.Look(ref electionEvent, "electionEvent", true);
