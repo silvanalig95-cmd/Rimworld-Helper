@@ -73,6 +73,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the hostel has watched the colony's people come to the evening blessing night after night, and asks whether the colony could use someone who keeps a door open for strangers.</li>
+      <li>{X_nameDef} of the pilgrims' hostel says {X_pronoun} has walked enough roads for one life, and asks whether the colony would take in someone who would keep its door open to travellers.</li>
     </joinTexts>
     <farewell>
       <li>[faces] The hostel's fellowship blessed every door of the colony as they left, open or shut, and left their long hut standing as a shelter for the road. {GUESTS} travellers slept there while they kept it.</li>
@@ -86,14 +87,22 @@
       <li>The flame stays lit until we go.</li>
       <li>Bread first, then news.</li>
       <li>[evening] The blessing's at dusk, and everyone's welcome.</li>
+      <li>[morning] Fold your bedroll before you eat, someone else will need it tonight.</li>
+      <li>[rain] Bring the wet ones in by the fire, there's room.</li>
+      <li>Peace on this house, and on the next one down the road.</li>
     </lines>
     <momentLines>
       <li>[quarrel] Keep that quarrel off the road, both of you.</li>
       <li>[gift] Leave the hut for the next walker.</li>
+      <li>[quarrel] I won't share a fire with one of your people.</li>
+      <li>[quarrel] You've a nerve sitting at this table, after what your people did.</li>
+      <li>[quarrel] Say that again and we'll settle it outside the posts.</li>
+      <li>[quarrel] Your people and mine have never got on, and tonight won't change it.</li>
     </momentLines>
     <helpTexts>
       <li>[medicine] {X_nameDef} brought the colony a bundle of healing herbs the travellers had left in thanks for their beds: {THING}.</li>
       <li>[tales] {A_nameDef} sat at the hostel's bread table while the travellers traded news of every town on the road, and came back knowing who was feuding with whom.</li>
+      <li>[tales] {A_nameDef} sat by the shrine's flame at the hostel and heard {X_nameDef} tell how old Brannoc was turned out of his town and walked to every shrine he had heard of.</li>
     </helpTexts>
     <asks>
       <li>
@@ -185,7 +194,13 @@
     <texts>
       <li>Lantern Wardens of {FACTION} are making camp {PLACE}, three of them and two hounds, because {BEAST} is on the colony's land. {X_nameDef} told {A_nameDef} they will light the lantern every night and follow its trail by day until it falls, or ten days.</li>
       <li>[lowtech] Three Wardens of {FACTION} with boar-spears and two lean hounds are making camp {PLACE}. {X_nameDef} told {A_nameDef} that where a lantern burns, someone was taken, and {BEAST} is out there.</li>
+      <li>[winter] Three Lantern Wardens of {FACTION} have come with their hounds to make camp {PLACE}, winter or not. {BEAST} is on the colony's land, {X_nameDef} told {A_nameDef}, and they will hang the lantern tonight and keep it lit until it is dead or ten days have passed.</li>
+      <li>{X_nameDef} of {FACTION} and two more Wardens are pitching a post {PLACE}, their hounds pulling at the leash. They have followed {BEAST}'s trail for days, {X_pronoun} told {A_nameDef}, and they mean to end it on the colony's land.</li>
     </texts>
+    <joinTexts>
+      <li>{X_nameDef} of the Wardens' post has hunted from one end of the region to the other, and asks whether the colony could use someone who knows how to track and how to keep a lantern lit through the night.</li>
+      <li>{X_nameDef}, one of the Wardens camped {PLACE}, says {X_possessive} lodge has hunters enough, and asks whether {X_pronoun} might stay and watch the colony's treeline instead.</li>
+    </joinTexts>
     <settled>
       <li>The Wardens' post is up {PLACE}: a fire, three bedrolls, the hounds tied by the woodpile and the lantern on its pole, ready for dark.</li>
       <li>The lantern post stands {PLACE}, and {X_nameDef} has opened the Wardens' book at {BEAST}'s page.</li>
@@ -204,6 +219,9 @@
       <li>A beast that takes a person answers for it.</li>
       <li>Eleven years Garrow waited by his lantern.</li>
       <li>[night] Light it, and keep it lit.</li>
+      <li>[morning] Fresh tracks by first light, or none at all.</li>
+      <li>[rain] Rain washes the trail out, so we look twice.</li>
+      <li>Feed the hounds before yourself.</li>
     </lines>
     <momentLines>
       <li>[lantern] Light the lantern, it's getting dark.</li>
@@ -216,6 +234,7 @@
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat up at the Wardens' lantern while {X_nameDef} told of Tobin Garrow and the eleven years at the crossroads, and of every red cord in the book.</li>
+      <li>[tales] {A_nameDef} sat by the Wardens' fire and heard {X_nameDef} read out a page of the lodge's book: the beast's name, where it was hunted down and who hunted it.</li>
     </helpTexts>
     <asks>
       <li>
@@ -307,10 +326,22 @@
     <works><li>Gather</li></works>
     <titles>
       <li>Scholars at the old place</li>
+      <li>Fellows of the learned society at {OLDPLACE}</li>
     </titles>
     <texts>
       <li>Two fellows of {FACTION} have pitched a small camp {PLACE}, beside {OLDPLACE}, to measure it. {X_nameDef} told {A_nameDef} they would say exactly what lies inside before they go.</li>
+      <li>[spring] Two fellows of {FACTION} have come with chains, stakes and a ledger and pitched their tent {PLACE}, beside {OLDPLACE}. The archive has nothing written about it, {X_nameDef} told {A_nameDef}, and that will not do.</li>
+      <li>{X_nameDef} and another fellow of {FACTION} have set up a small camp {PLACE}, beside {OLDPLACE}. They will measure every wall and step of it, {X_pronoun} told {A_nameDef}, and tell the colony what they find before they go.</li>
+      <li>[winter] Two fellows of {FACTION} have made camp {PLACE} beside {OLDPLACE}, though it is winter. The archive wants it measured, {X_nameDef} told {A_nameDef}, and the archive does not wait for the weather.</li>
     </texts>
+    <joinTexts>
+      <li>{X_nameDef} of the society's camp says the colony has more worth writing down than anywhere {X_pronoun} has measured, and asks whether there is room here for someone who keeps records.</li>
+      <li>{X_nameDef}, one of the fellows at the old place, asks whether {X_pronoun} might stay on at the colony and copy out what it knows, instead of going back to the archive.</li>
+    </joinTexts>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the fellows by their lamp and heard how a clerk carried eleven books and a ledger out of the fire at Hesk in a handcart.</li>
+      <li>[tales] {A_nameDef} sat with the fellows while they wrote up the day's measuring, and heard what the archive already says about places like this one.</li>
+    </helpTexts>
     <settled>
       <li>The scholars' camp is up beside {OLDPLACE}: two tents, a fire and a table of instruments, and a chain already pegged out along the old walls.</li>
     </settled>
@@ -324,11 +355,19 @@
       <li>Hold the chain straight, I'll read it.</li>
       <li>Strictly speaking, that is two questions.</li>
       <li>Write it down before you forget it.</li>
+      <li>Thirty paces from the corner, mark it.</li>
+      <li>Mind the step, the stone is loose.</li>
+      <li>[evening] Light the lamp, I want to copy this out tonight.</li>
+      <li>[rain] Cover the ledger, the ink will run.</li>
+      <li>Nobody has written this place down before us.</li>
     </lines>
     <momentLines>
       <li>[measure] Forty paces, and the wall still going.</li>
       <li>[measure] The stone sounds hollow here, write that down.</li>
       <li>[read] Here is what lies inside, as exactly as we can say it.</li>
+      <li>[measure] Note the depth, and the angle of that wall.</li>
+      <li>[measure] Stake it here, and run the chain to the far corner.</li>
+      <li>[read] We have written down everything we found, and here it is.</li>
     </momentLines>
   </ColonyCouncil.CampKindDef>
 

@@ -53,6 +53,7 @@
       <li>Bell-keepers and sextons of {FACTION} are walking in {PLACE} with spades and bundles of linen, {X_nameDef} at the front. They have come to bury the dead lying on the colony's land.</li>
       <li>[lowtech] {FACTION}'s bell-keepers and sextons are walking in {PLACE} with spades over their shoulders and a small bell on every cord. They have come to bury the dead.</li>
       <li>[industrial|spacer] {FACTION}'s bell-keepers and sextons are coming in {PLACE} with spades, bundles of shrouds and their bells. They have come to bury the dead.</li>
+      <li>{X_nameDef} of {FACTION} has brought sextons and bell-keepers in {PLACE} with spades and linen. Nobody should lie unburied on anyone's land, friend or enemy, {X_pronoun} told {A_nameDef}, and they will not leave until the ground is quiet.</li>
     </texts>
     <settled>
       <li>The Bell's people have made camp {PLACE}: a fire, a lamp, and their spades stacked ready for the morning.</li>
@@ -60,6 +61,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the Bell says the colony's land has given {X_objective} a great deal of work, and asks whether {X_pronoun} might stay and keep its graves.</li>
+      <li>{X_nameDef}, one of the sextons in the field, says the colony would do well with someone who knows how to bury the dead properly, and asks whether there is a place for {X_objective} here.</li>
     </joinTexts>
     <farewell>
       <li>[buried,claimed] The Bell's people packed their spades and went. Their dead's own people took some of them home, and the rest lie in the row of graves beyond the wall.</li>
@@ -73,6 +75,10 @@
       <li>Wrap this one in the good linen.</li>
       <li>Everyone is owed a bell.</li>
       <li>The ground keeps what it is given.</li>
+      <li>[evening] Ring the last one before the light goes.</li>
+      <li>Friend or foe, they all get the same depth.</li>
+      <li>[rain] Cover the open graves, the rain fills them.</li>
+      <li>Speak softly near the graves.</li>
     </lines>
     <momentLines>
       <li>[dig] That one is deep enough.</li>
@@ -85,6 +91,7 @@
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat by the Bell's fire and heard how they came to bury the dead of the long war.</li>
+      <li>[tales] {A_nameDef} sat with the sextons at the end of the day's digging and heard why every grave gets one ring of the bell, and never two.</li>
     </helpTexts>
     <asks>
       <li>
@@ -184,6 +191,8 @@
     <texts>
       <li>Tamers of {FACTION} are walking in {PLACE} with their animals, {X_nameDef} at the front. They will mark out a ring with torches and hold a bout there every afternoon.</li>
       <li>[ws:fair] On their way to {SITUATION}, tamers of {FACTION} are walking in {PLACE} with their animals. They will hold a bout every afternoon at their ring.</li>
+      <li>{X_nameDef} and the other tamers of {FACTION} are leading their animals in {PLACE}, each with a violet sash full of tokens. They will mark out a ring and hold a bout every afternoon, {X_pronoun} told {A_nameDef}, and anyone with an animal may step in.</li>
+      <li>[spring] With the spring roads open, tamers of {FACTION} are walking in {PLACE} with their animals to mark out a ring. {X_nameDef} told {A_nameDef} there would be a bout every afternoon they stay.</li>
     </texts>
     <settled>
       <li>The Circuit's tamers have made camp {PLACE}, with a ring marked out by torches beside their tents.</li>
@@ -191,6 +200,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the Circuit says the colony's hands are as good with animals as anyone on the road, and asks whether {X_pronoun} might stay and learn from them.</li>
+      <li>{X_nameDef}, one of the tamers camped {PLACE}, says {X_possessive} animal has taken to the colony's land, and asks whether the two of them might stay.</li>
     </joinTexts>
     <farewell>
       <li>[champion] The tamers pulled up their torches and went on to the fair. Before they left, {X_nameDef} tied the Circuit's token on the arm of the colony's best challenger.</li>
@@ -203,6 +213,10 @@
       <li>To be beaten fairly is an honour.</li>
       <li>Feed them first, then yourself.</li>
       <li>Who is next in the ring?</li>
+      <li>[morning] Feed them, then the ring.</li>
+      <li>Gently, she's still learning.</li>
+      <li>A token is only worth having if it was won fairly.</li>
+      <li>[evening] Walk them round once more before they sleep.</li>
     </lines>
     <momentLines>
       <li>[challenge] Step into the ring when you are ready.</li>
@@ -210,6 +224,7 @@
       <li>[won] Well fought, that was a fair win.</li>
       <li>[lost] Not this time, but you kept your feet.</li>
       <li>[champion] This token is yours, you earned it in the ring.</li>
+      <li>[spar] Better, now let it come to you.</li>
     </momentLines>
     <helpTexts>
       <li>[show] {X_nameDef} put two of the Circuit's animals through their paces by the ring, and {A_nameDef} watched the whole thing.</li>
@@ -307,6 +322,7 @@
       <li>The yard of {FACTION} is coming in {PLACE} with its pack animals, {X_nameDef} walking in front. They will set up a scrap market and a mending tent for three days.</li>
       <li>[lowtech] {FACTION}'s yard is coming in {PLACE} with pack animals piled high with scrap and tools. They will trade and mend things for three days.</li>
       <li>[industrial|spacer] {FACTION}'s yard is coming in {PLACE}, pack animals loaded with scrap, tools and spare parts. They will trade and mend things for three days.</li>
+      <li>{X_nameDef} has brought the yard of {FACTION} in {PLACE}, everything they own on their backs and their beasts. Three days of buying, selling and mending, {X_pronoun} told {A_nameDef}, and then they move on, as the Wheel always does.</li>
     </texts>
     <settled>
       <li>The Wheel's yard has set up {PLACE}: pack animals tethered, a mending tent, and scrap laid out for sale at the stall.</li>
@@ -314,6 +330,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the yard says {X_pronoun} has had enough of the road for a while, and asks whether the colony could use someone who can fix almost anything.</li>
+      <li>{X_nameDef}, one of the yard's fixers, says {X_pronoun} is tired of moving every month, and asks whether the colony would keep someone who can mend almost anything.</li>
     </joinTexts>
     <farewell>
       <li>[stayed,mended] The yard loaded everything back onto its pack animals and moved on, a few days later than it meant to. The colony's mended things are back where they belong.</li>
@@ -327,15 +344,23 @@
       <li>Hand me the big wrench.</li>
       <li>If it rolls, it comes with us.</li>
       <li>We'll have that running by supper.</li>
+      <li>[night] Sparks up, we're welding till late.</li>
+      <li>Everything's worth something to someone.</li>
+      <li>[morning] Stalls up, and the haggling starts.</li>
+      <li>Mind the carts, they're loaded.</li>
     </lines>
     <momentLines>
       <li>[haggle] That price is fair, and you know it.</li>
       <li>[haggle] I'm not mending it for nothing, friend.</li>
       <li>[stay] We'll stay a couple of days longer, the trade here is good.</li>
+      <li>[haggle] Meet me halfway and we have a deal.</li>
+      <li>[haggle] That's my last price, and it's a fair one.</li>
+      <li>[stay] Trade's good here, we're not moving on just yet.</li>
     </momentLines>
     <helpTexts>
       <li>[mend] {X_nameDef} came over from the yard and mended {COUNT} {THING} of the colony's for nothing.</li>
       <li>[tales] {A_nameDef} sat by the yard's fire and heard about the night their valley burned.</li>
+      <li>[tales] {A_nameDef} sat by the yard's fire and heard why nobody at the Wheel has ever voted to stop moving.</li>
     </helpTexts>
     <asks>
       <li>

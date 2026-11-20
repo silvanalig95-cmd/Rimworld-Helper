@@ -50,6 +50,7 @@
       <li>{FACTION}'s summer school is walking in to the colony's land {PLACE}: {X_nameDef} and the other fellows, with their books and slates. They will teach every afternoon at their table.</li>
       <li>[tribal] The fellows of {FACTION} are walking in {PLACE} with counting sticks and bundles of told lessons. They will teach every afternoon at their fire.</li>
       <li>[spacer] {FACTION}'s fellows are walking in {PLACE} with their data slates in a case. They will give a lesson every afternoon at their table.</li>
+      <li>[summer] {X_nameDef} and the fellows of {FACTION}'s summer school have come for the long days, walking in {PLACE} with their books. Anyone who wants to learn may sit at their table in the afternoons, {X_pronoun} told {A_nameDef}.</li>
     </texts>
     <settled>
       <li>The summer school has made camp {PLACE}: two tents, a fire and a table under a lamp, with the afternoon's lesson already laid out on it.</li>
@@ -57,6 +58,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the summer school says {X_pronoun} has learned as much from the colony's questions as the colony learned from the lessons, and asks whether there is room for a teacher here.</li>
+      <li>{X_nameDef} of the summer school says {X_pronoun} has liked teaching the colony's people better than any class at the archive, and asks whether the colony would keep a teacher.</li>
     </joinTexts>
     <farewell>
       <li>[books,lessons] The summer school packed its tents and went on, after setting the colony's books down by its camp and thanking everyone who came to the lessons.</li>
@@ -70,6 +72,10 @@
       <li>Write it down, or you will forget it by supper.</li>
       <li>Who can tell me why?</li>
       <li>We'll go over it again tomorrow.</li>
+      <li>[morning] Lesson after noon, bring your questions.</li>
+      <li>Nobody is too old to learn something new.</li>
+      <li>Copy it out neatly, someone else will read it.</li>
+      <li>[evening] Good work today, all of you.</li>
     </lines>
     <momentLines>
       <li>[dispute] That is not what the text says, and you know it.</li>
@@ -77,9 +83,11 @@
       <li>[dispute] You are confusing the copy with the original.</li>
       <li>[settled] All right, we'll agree to disagree.</li>
       <li>[sulk] I have nothing more to say about it today.</li>
+      <li>[settled] Fine, the archive can decide between us.</li>
     </momentLines>
     <helpTexts>
       <li>[tales] {A_nameDef} sat with the fellows of the summer school by their fire and heard about the archive and what it has lost over the years.</li>
+      <li>[tales] {A_nameDef} sat with the fellows after the lesson and heard them argue about what the archive held that nobody saved from the fire at Hesk.</li>
     </helpTexts>
     <asks>
       <li>
@@ -236,6 +244,8 @@
     <texts>
       <li>The families of {FACTION} are bringing their boats in to the colony's bank {PLACE}, with whatever they could save from the flood. {X_nameDef} is at the front, pointing out where to tie up.</li>
       <li>[ws:water] With {SITUATION} downstream, the families of {FACTION} are bringing their boats in to the colony's bank {PLACE}, wet and tired.</li>
+      <li>{X_nameDef} is bringing the families of {FACTION} in to the colony's bank {PLACE} in a line of small boats, with children and bundles in every one. The flood took their landing, {X_pronoun} told {A_nameDef}, and they need somewhere dry to wait for the water to go down.</li>
+      <li>[rain] In the rain, the families of {FACTION} are tying their boats up along the colony's bank {PLACE}. They lost most of what they had to the flood, {X_nameDef} told {A_nameDef}, but they still have their boats and their nets.</li>
     </texts>
     <settled>
       <li>The flooded families have made camp on the bank {PLACE}: tents, a fire, nets spread out to dry over a line, and children asleep in the boats.</li>
@@ -257,13 +267,22 @@
       <li>Keep the children away from the edge.</li>
       <li>We'll mend that one tonight.</li>
       <li>Bring the boat round, the current's easier there.</li>
+      <li>[morning] Nets out early, the fish come close in the morning.</li>
+      <li>[night] Keep a lamp by the boats tonight.</li>
+      <li>[child] When can we go home?</li>
+      <li>At least we still have the boats.</li>
     </lines>
     <momentLines>
       <li>[fish] A good one, and it'll feed two.</li>
       <li>[fish] The fish are back near the bank.</li>
+      <li>[fish] Pull it in slowly, it's a big one.</li>
+      <li>[fish] Another one for the pot.</li>
+      <li>[fish] That'll do for supper tonight.</li>
+      <li>[fish] Throw the small ones back.</li>
     </momentLines>
     <helpTexts>
       <li>[fish] {X_nameDef} brought {COUNT} {THING} up from the families' catch and left it at the edge of their camp for the colony.</li>
+      <li>[fish] {X_nameDef} set aside {COUNT} {THING} from the families' nets at the edge of their camp, for the colony that gave them its bank.</li>
     </helpTexts>
     <asks>
       <li>
@@ -366,6 +385,8 @@
     <texts>
       <li>{FACTION}'s boatwrights are walking in to the colony's water {PLACE} with their tools: {X_nameDef} and the others, adzes, saws and a pot of pitch.</li>
       <li>[age0] The boatwrights of {FACTION} are walking in {PLACE} with stone adzes and bundles of rope, to build a boat by the colony's water.</li>
+      <li>{X_nameDef} of {FACTION} and the other boatwrights have come to the colony's water {PLACE} with their tools. They will build a boat on the bank, {X_pronoun} told {A_nameDef}, and see it float before they go.</li>
+      <li>[summer] With the river low and the weather fair, {FACTION}'s boatwrights have walked in to the colony's water {PLACE} to build a boat. {X_nameDef} told {A_nameDef} it would take them a week, and that anyone who wanted to watch was welcome.</li>
     </texts>
     <settled>
       <li>The boat-builders have put up a shed by the water {PLACE}, and {X_nameDef} has marked out where the hull will be laid on the bank.</li>
@@ -373,6 +394,7 @@
     </settled>
     <joinTexts>
       <li>{X_nameDef} of the boat-builders says the colony's water would suit a boatwright, and asks whether there is room for one here.</li>
+      <li>{X_nameDef}, one of the boatwrights camped {PLACE}, says {X_pronoun} has built boats for every landing on the river, and asks whether the colony could use a boatwright of its own.</li>
     </joinTexts>
     <farewell>
       <li>[sold] The boat-builders packed their tools and walked home along the river, leaving the colony its dinghy and the shed standing on the bank.</li>
@@ -387,15 +409,23 @@
       <li>One more plank and we stop for the day.</li>
       <li>Measure it twice before you cut.</li>
       <li>It'll float, but not yet.</li>
+      <li>[morning] Keel first, everything else after.</li>
+      <li>Plane it smooth, the water finds every rough edge.</li>
+      <li>[rain] Cover the planks, we need them dry.</li>
+      <li>Keep the pitch warm, we'll want it after noon.</li>
     </lines>
     <momentLines>
       <li>[hull] Another strake on, and it's starting to look like a boat.</li>
       <li>[hull] Hold it steady while I drive the peg.</li>
       <li>[storm] The water's up over the slip, there's no working today.</li>
+      <li>[hull] Fit it close, a gap here and she'll leak.</li>
+      <li>[hull] That's the last strake on this side.</li>
+      <li>[storm] Pull the boat up higher, the water's rising.</li>
     </momentLines>
     <helpTexts>
       <li>[wood] {X_nameDef} brought over {COUNT} logs the boat-builders could not use and left them at the edge of their camp for the colony.</li>
       <li>[tales] {A_nameDef} sat with the boat-builders by their fire and heard about every boat their people have built since the flood that started them.</li>
+      <li>[tales] {A_nameDef} sat with the boatwrights while the pitch cooled and heard how the ferries pulled people off the rooftops for three days after the dam broke.</li>
     </helpTexts>
     <asks>
       <li>
