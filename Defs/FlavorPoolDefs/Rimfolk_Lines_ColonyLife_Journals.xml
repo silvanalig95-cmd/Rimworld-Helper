@@ -24,7 +24,7 @@
         <li>I'm {OFFICE} now. I don't feel any different, but people already look at me differently.</li>
         <li>Made {OFFICE} today. I'll start with the jobs nobody else wanted and go from there.</li>
         <li>Everyone here already does a bit of everything. Now I'm {OFFICE} as well.</li>
-        <li>I've spent the rest of the day trying to look like I know what a good {OFFICE} does.</li>
+        <li>I keep trying to look like I know what a good {OFFICE} does.</li>
         <li>I'm {OFFICE} now. I hope I can make things a little easier for people here.</li>
         <li>They made me {OFFICE}. I'll have to talk to a lot more people than I'm used to.</li>
       </plain>
@@ -44,7 +44,7 @@
         <li>[loss] Losing someone close changes what matters. I've given up trying to {OLDGOAL}, and I want to {GOAL} instead.</li>
         <li>[loss] After this loss, trying to {OLDGOAL} feels like it belongs to someone else. I'm going to {GOAL}.</li>
         <li>[loss] I keep thinking about how little time anyone gets here. I'd rather {GOAL} than keep trying to {OLDGOAL}.</li>
-        <li>[loss] I've thought about it all day and decided: no more trying to {OLDGOAL}. I want to {GOAL}.</li>
+        <li>[loss] I've thought it over and decided: no more trying to {OLDGOAL}. I want to {GOAL}.</li>
         <li>[loss] The people we've lost had plans of their own. I've dropped my plan to {OLDGOAL} and mean to {GOAL} while I can.</li>
         <li>[loss] Grieving has made me think about what I really want. It isn't to {OLDGOAL} any more. It's to {GOAL}.</li>
         <li>[downed] I was lying on the ground thinking I might not get up. I'm done trying to {OLDGOAL}. I want to {GOAL}.</li>
@@ -132,7 +132,7 @@
         <li>Fought next to {OTHER_nameDef}. {OTHER_nameDef} can be trusted in a fight.</li>
       </blunt>
       <cheerful>
-        <li>{OTHER_nameDef} and I came through it together, and we've been laughing about it since.</li>
+        <li>{OTHER_nameDef} and I came through it together, and we're already joking about it.</li>
         <li>With {OTHER_nameDef} beside me I was a lot less scared than I expected to be.</li>
       </cheerful>
       <gloomy>
@@ -204,10 +204,10 @@
     <pool>Council_Journal_Homecoming</pool>
     <lines>
       <plain>
-        <li>Back home after {DAYS} away. The first thing I did was check on my things.</li>
-        <li>Home after {DAYS}. Everyone wanted to hear about the trip, and I told it three times.</li>
-        <li>[winter] Home after {DAYS} in the cold. It took me a long time to warm up.</li>
-        <li>[summer] Back after {DAYS} on hot, dusty roads. I drank a lot of water before I did anything else.</li>
+        <li>Back home after {DAYS} away. Before anything else I want to check on my things.</li>
+        <li>Home after {DAYS}. Everyone will want to hear about the trip, and I'll be telling it for days.</li>
+        <li>[winter] Home after {DAYS} in the cold. I can't wait to be warm again.</li>
+        <li>[summer] Back after {DAYS} on hot, dusty roads. The first thing I want is a long drink of water.</li>
         <li>Back after {DAYS}. I'm still catching up on what happened here while I was gone.</li>
       </plain>
       <warm><li>Home after {DAYS}. It was good to see everyone's faces again.</li></warm>

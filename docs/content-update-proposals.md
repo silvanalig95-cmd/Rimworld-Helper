@@ -477,6 +477,7 @@ loss, a brush with death: the only two that change a goal now). `Council_Journal
 `Council_Journal_Epithet` 22 (only 2.7 effective for a speaker): +14. `Council_Journal_TieFormed_Comrades` 22 and
 `_Friends` 25: +12 each. `Council_Journal_Anniversary` 23: +10. `Council_Journal_Homecoming` 9: +10. About 100 lines,
 plain. Sample: "They made me {OFFICE}. I went back to work afterwards, because nobody said what else to do." *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). Recounted first (unchanged): 99 lines in `Rimfolk_Lines_ColonyLife_Journals.xml`, the counts as proposed. The changed goal's entry is now written with its spark (`WriteTagged`), its new lines tagged `[loss]` or `[downed]`. A voice of one line got one more, so it is still drawn with the plain lines.
 
 **A32 (T) Teasing, jokes and shared memories in talk.** Eighteen teasing pools (`Rimfolk_TL_*_Tease`: food, work,
 growing, the council, the future, the colony's project, outside, art, prisoners, the calendar, drugs, wealth, tech,
@@ -485,30 +486,36 @@ raids, children, love, the camp, health) have 8 to 14 lines each, only in the pl
 `_Repaid_Close`, `Rimfolk_TL_Joke_Downpour_Close`, `_Snowball_Close`): +7 each. `Rimfolk_TL_Joke_JokeHeard_Close` 10:
 +6. `Rimfolk_TL_Mem_ChildFound_Open`, `_Reply`, `_Close` 11, 11 and 7: +6 each. About 170 lines, plain, one sentence each
 where said aloud; old talk left as it is. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 167 lines in `Rimfolk_Talk_Lines_Teasing.xml`: six for each teasing topic, two plain and one each in the cheerful, warm and blunt voices and the gloomy or the cold, since those who tease in their own voice draw them (`TalkMath.Voice`); the closing words as proposed, one in each voice and the rest plain.
 
 **A33 (T) Decree voices for the thinnest decrees.** Lines for and against, extension files counted: every faith its
 evening 4 and 3, foraging days 5 and 3, saving the power 5 and 3, wood for the winter 6 and 3, one ideoligion 4 and 7,
 a hunting season 8 and 4, days of rest 8 and 7. +6 on each side under 8 (about 70), tagged by the traits that care, as
 `Extra_DecreeLines.xml` does, and by age where the decree's form changes (banked fires for a tribe). Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 72 lines on the twelve sides under eight (a hunting season's and days of rest's support already had eight), in `Rimfolk_DecreeLines_ColonyLife.xml`; four plain lines a side, most tagged by a trait or faith of the decree's reactions or by the age of its form (the berry days, the gleaning, the hunters' moon, a cull), and two in voices that had none or one. Saving the power is for a colony on the grid, so its lines are for the industrial and spacer ages.
 
 **A34 (T) The council's answers to wishes.** The wish scene pools of `Council_Scenes.xml`: `Council_Pool_MeToo` 32
 (about 10 draws a year), `_Bitter` 24, `_BrokenPromise` 21, `_PassedOver` 22, `_SelfHelp` 25, `_Promised` 26: +10 each
 (60). Wishes, so the flavour style. Samples: "Ask the council? I did. I've still got the answer somewhere, folded very
 small." / "If {OTHER_nameDef} is getting one, I'd like it noted that I asked first, quietly." *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 60 lines in `Rimfolk_Lines_ColonyLife_Wishes.xml`, one in each voice and five plain for each pool, each one sentence since it is said aloud; the pools' own people kept (`{ENVIED_...}` for asking because someone got one, `{OTHER_...}`, `{WISH}` and `{MINE}` for passed over).
 
 **A35 (T) Gossip and council talk in the social log.** `Council_Gossip_Devoted` 12 lines, `Council_Gossip_Bitter` 23,
 `Council_Decree_Gripe` 17, `Council_Decree_Argue` 15 (about 10 a year each): +10 to 12 each (about 45). The four newest
 deeds' gossip has 3 lines each (`Rimfolk_GossipTopic_Jailbreak`, `_Binge`, `_DugUpDead`, `_RanWild`): +5 each; six each
 for A23's deeds. Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 45 rules for the council's talk and 23 things the gossip was about, in `Defs/InteractionDefs/Rimfolk_LogLines_ColonyLife.xml`. Of A23's deeds only the first is built (a seat put down, in colony life's variety, part 1): its three things to six; the others get theirs when they are built.
 
 **A36 (T) Social events with two texts.** About 25 social events of the elders' and the quirks' (in
 `Rimfolk_SocialEvents_Lives.xml`, `Rimfolk_SocialEvents_Quirks.xml`, `Council_SocialEvents_Lives.xml`) have 2 or 3
 texts each: +2 each (about 50), by age where it matters. Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). All 35 social events of the three files, the six of the old, the 23 of the quirks and the six of secrets, vendettas and life goals beside them: two texts more each (70), written into the defs, since no file joins texts to a social event. None turned on the age.
 
 **A37 (T) The seats' first words and the year letter's last.** Each seat has three lines for what a new holder means to
 do (`elected`, 12 seats): +3 each (36), plain, each something the seat really does on the map (A1). The year letter's
 closing word (`Council_Pool_AnnalsClose`, 36 lines) and the anniversary's (`Council_Pool_Anniversary`, 17 lines,
 8/2/2/2/2/1): +10 each, as letters, in the flavour style. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). The seats' 36 first words written into `Defs/OfficeDefs/` (no file joins words to a seat), about the seats' work as A1 and the duties show it; the 20 last words in `Rimfolk_Lines_ColonyLife_Letters.xml`. The anniversary's lines are said aloud, so one sentence each, nine plain and one cold (its voices keep under three).
 
 ---
 

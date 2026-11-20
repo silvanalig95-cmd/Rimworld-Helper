@@ -101,7 +101,7 @@ public static class ColonyLifeTextTests
         }
 
         // ---------- A33, the decrees' voices for and against ----------
-        var decrees = defs.Where(x => x.e.Name.LocalName == "ColonyCouncil.DecreeDef").ToDictionary(x => Name(x.e), x => x.e);
+        var decrees = defs.Where(x => x.e.Name.LocalName == "ColonyCouncil.DecreeDef" && Name(x.e) != "").GroupBy(x => Name(x.e)).ToDictionary(g => g.Key, g => g.First().e);
         int Side(string decree, string side) => Lines(decrees.TryGetValue(decree, out var d) ? d.Element(side) : null).Count
             + defs.Where(x => x.e.Name.LocalName == "ColonyCouncil.FlavorExtensionDef" && (string)x.e.Element("decree") == decree).Sum(x => Lines(x.e.Element(side)).Count);
         foreach (var (decree, side, min) in new[] { ("Rimfolk_Decree_EveryFaith", "support", 10), ("Rimfolk_Decree_EveryFaith", "oppose", 9),
@@ -115,7 +115,7 @@ public static class ColonyLifeTextTests
         }
 
         // ---------- A35, the social log: roots of the council's talk, and what the gossip was about ----------
-        var interactions = defs.Where(x => x.e.Name.LocalName == "InteractionDef").ToDictionary(x => Name(x.e), x => x.e);
+        var interactions = defs.Where(x => x.e.Name.LocalName == "InteractionDef" && Name(x.e) != "").GroupBy(x => Name(x.e)).ToDictionary(g => g.Key, g => g.First().e);
         var logLines = defs.Where(x => x.e.Name.LocalName == "ColonyCouncil.LogLinesDef").Select(x => x.e).ToList();
         int Roots_(IEnumerable<string> rules) => rules.Count(r => r.StartsWith("r_logentry->"));
         foreach (var (inter, min) in new[] { ("Council_Gossip_Devoted", 16), ("Council_Gossip_Bitter", 17), ("Council_Decree_Gripe", 15), ("Council_Decree_Argue", 15) })
@@ -125,7 +125,7 @@ public static class ColonyLifeTextTests
             int have = Roots_(own.Concat(more));
             C(have >= min, $"{inter}: {min} shapes of the log line or more ({have})");
         }
-        var packs = defs.Where(x => x.e.Name.LocalName == "RulePackDef").ToDictionary(x => Name(x.e), x => x.e);
+        var packs = defs.Where(x => x.e.Name.LocalName == "RulePackDef" && Name(x.e) != "").GroupBy(x => Name(x.e)).ToDictionary(g => g.Key, g => g.First().e);
         foreach (var (pack, min) in new[] { ("Rimfolk_GossipTopic_Jailbreak", 8), ("Rimfolk_GossipTopic_Binge", 8), ("Rimfolk_GossipTopic_DugUpDead", 8),
                      ("Rimfolk_GossipTopic_RanWild", 8), ("Rimfolk_GossipTopic_SteppedDown", 6) })
         {
@@ -166,11 +166,14 @@ public static class ColonyLifeTextTests
                 string pool = (string)ext.Element("pool");
                 var lines = Lines(ext.Element("lines")).Concat(Lines(ext.Element("support"))).Concat(Lines(ext.Element("oppose"))).ToList();
                 foreach (var l in lines)
-                    C(!l.Contains('—') && !l.Contains('!'), $"{Name(ext)}: plain, no dash or exclamation: {l}");
+                    C(!Body(l).Contains('—') && !Body(l).Contains('!'), $"{Name(ext)}: plain, no dash or exclamation: {l}");
                 if (pool != null)
                 {
                     var allowed = poolOwn.TryGetValue(pool, out var own) ? Roots(own) : new HashSet<string>();
                     allowed.Add("PAWN");
+                    // A wish's scene lines are filled in by the wish (Wish.Format, or the passed-over grumble's own): {WISH} is always there.
+                    if (new[] { "Council_Pool_MeToo", "Council_Pool_Promised", "Council_Pool_SelfHelp", "Council_Pool_BrokenPromise", "Council_Pool_PassedOver" }.Contains(pool))
+                        allowed.Add("WISH");
                     foreach (var l in lines)
                         C(Roots(new[] { l }).IsSubsetOf(allowed), $"{Name(ext)}: only the people and values {pool}'s own lines use: {l}");
                 }
@@ -185,10 +188,10 @@ public static class ColonyLifeTextTests
             }
             foreach (var t in el.Elements("ColonyCouncil.TalkLinesDef"))
                 foreach (var l in Lines(t.Element("lines")))
-                    C(!l.Contains('—') && !l.Contains('!'), $"{Name(t)}: plain, no dash or exclamation: {l}");
+                    C(!Body(l).Contains('—') && !Body(l).Contains('!'), $"{Name(t)}: plain, no dash or exclamation: {l}");
             foreach (var log in el.Elements("ColonyCouncil.LogLinesDef"))
                 foreach (var r in Lines(log.Element("rulePack")?.Element("rulesStrings")))
-                    C(!r.Contains('—') && !r.Contains('!'), $"{Name(log)}: plain, no dash or exclamation: {r}");
+                    C(!Body(r).Contains('—') && !Body(r).Contains('!'), $"{Name(log)}: plain, no dash or exclamation: {r}");
         }
 
         // ---------- A changed life goal, written with what changed it ----------
