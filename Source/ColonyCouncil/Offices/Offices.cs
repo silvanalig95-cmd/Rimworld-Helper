@@ -290,6 +290,8 @@ namespace ColonyCouncil
                 }
             }
             SyncHediffs();
+            // A deputy's ten days are over, or the seat changed hands (CouncilLife/StepDown.cs).
+            DeputiesDaily();
             if (!S.offices)
             {
                 election = null;
@@ -419,6 +421,8 @@ namespace ColonyCouncil
             public readonly HashSet<Pawn> campaigned = new HashSet<Pawn>();
             /// <summary>Each seat filled and who took it, in the order counted: the chronicle's one line for the election.</summary>
             public readonly List<(Pawn who, OfficeDef office)> seated = new List<(Pawn, OfficeDef)>();
+            /// <summary>How many days each holder voted out had held the seat they lost (-1 not known), for the story after the vote (CouncilLife/LifeArcs.cs).</summary>
+            public readonly Dictionary<Pawn, float> heldDays = new Dictionary<Pawn, float>();
         }
 
         /// <summary>The seats few people can fill go first, so the colony's only doctor isn't spent on the speaker's chair.</summary>
@@ -503,6 +507,9 @@ namespace ColonyCouncil
             string key = Key(office, seat);
             var winner = ranked[0].Key;
             var previous = HolderOf(office, seat);
+            // How long the one voted out had held it, before the seat changes hands (CouncilLife/StepDown.cs).
+            if (previous != null && previous != winner) round.heldDays[previous] = HeldDays(key, previous);
+            if (previous != winner) NoteSeated(key, winner);
             holders[key] = winner;
             elected[key] = winner;
             round.taken.Add(winner);
@@ -618,7 +625,12 @@ namespace ColonyCouncil
             {
                 if (HoldersOf(office).Contains(who) || !told.Add((office, who))) continue;
                 var now = OfficeOf(who);
-                if (now == null) LostOffice(comp, office, who, to, round.campaigned.Contains(who));
+                if (now == null)
+                {
+                    LostOffice(comp, office, who, to, round.campaigned.Contains(who));
+                    // Kept in the history for the story after the vote (CouncilLife/LifeArcs.cs).
+                    LifeArcs.VotedOut(this, office, who, to, round.heldDays.TryGetValue(who, out float held) ? held : -1f, round.byElection);
+                }
                 else if (moved.Add(who)) MovedSeat(comp, office, now, who, stood);
             }
             told.Clear();
@@ -783,6 +795,7 @@ namespace ColonyCouncil
             var current = HolderOf(office, seat);
             if (current == p) return;
             foreach (var k in holders.Where(kv => kv.Value == p).Select(kv => kv.Key).ToList()) holders.Remove(k);
+            NoteSeated(key, p);
             holders[key] = p;
             // An election under way doesn't vote on this seat any more, nor put them up for another.
             ElectionSeated(office, seat, p);
@@ -816,6 +829,7 @@ namespace ColonyCouncil
             if (office == null || p == null || !Valid(p) || !office.CanHold(p) || OfficeOf(p) != null) return false;
             seat = Mathf.Clamp(seat, 0, office.Seats - 1);
             if (HolderOf(office, seat) != null) return false;
+            NoteSeated(Key(office, seat), p);
             holders[Key(office, seat)] = p;
             var map = HomeMap ?? Find.AnyPlayerHomeMap;
             if (map != null)
@@ -887,9 +901,14 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref storesCountTick, "storesCountTick", -1);
             Scribe_Values.Look(ref storesCount, "storesCount");
             Scribe_Collections.Look(ref raised, "raised", LookMode.Value);
+            Scribe_Collections.Look(ref seatFrom, "seatFrom", LookMode.Value, LookMode.Value);
+            Scribe_Collections.Look(ref deputies, "deputies", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 if (raised == null) raised = new List<int>();
+                if (seatFrom == null) seatFrom = new Dictionary<string, string>();
+                if (deputies == null) deputies = new List<SeatDeputy>();
+                deputies.RemoveAll(d => d == null || d.deputy == null || DefDatabase<OfficeDef>.GetNamedSilentFail(d.office) == null);
                 if (election != null && (election.races.Count == 0 || election.map == null)) election = null;
                 if (holders == null) holders = new Dictionary<string, Pawn>();
                 if (elected == null) elected = new Dictionary<string, Pawn>();

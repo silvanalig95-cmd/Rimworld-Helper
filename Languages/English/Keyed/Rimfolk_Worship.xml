@@ -170,6 +170,40 @@
   <CC_Wsh_Goal_PilgrimNot>not yet walked to {GOD}'s holy place</CC_Wsh_Goal_PilgrimNot>
   <CC_Wsh_Goal_TempleNone>{GOD} has no {SHRINE} in the colony yet</CC_Wsh_Goal_TempleNone>
   <CC_Wsh_Goal_TempleSome>{GOD}'s best room is {PERCENT} of the way to a temple</CC_Wsh_Goal_TempleSome>
+  <!-- The four vows of a season (Gods/Worship/VowsSeason.cs): their words, how each was broken, and the life goal's progress. -->
+  <CC_Wsh_Vow_What_Lamp>a lamp kept lit at its place for a season</CC_Wsh_Vow_What_Lamp>
+  <CC_Wsh_Vow_What_Trees>a tree planted each week for a season</CC_Wsh_Vow_What_Trees>
+  <CC_Wsh_Vow_What_PlainBread>plain bread for a season</CC_Wsh_Vow_What_PlainBread>
+  <CC_Wsh_Vow_What_Visitors>every caller at the gate fed for a season</CC_Wsh_Vow_What_Visitors>
+  <CC_Wsh_Vowed_Lamp>{PAWN} has vowed to {GOD} to keep the lamp at its place lit for a season.</CC_Wsh_Vowed_Lamp>
+  <CC_Wsh_Vowed_Trees>{PAWN} has vowed to {GOD} to plant a tree by hand each week for a season.</CC_Wsh_Vowed_Trees>
+  <CC_Wsh_Vowed_PlainBread>{PAWN} has vowed to {GOD} to eat only plain food for a season.</CC_Wsh_Vowed_PlainBread>
+  <CC_Wsh_Vowed_Visitors>{PAWN} has vowed to {GOD} that every caller at the gate will be fed this season.</CC_Wsh_Vowed_Visitors>
+  <CC_Wsh_VowKept_Lamp>{PAWN} kept the vow to {GOD}: the lamp burned the whole season.</CC_Wsh_VowKept_Lamp>
+  <CC_Wsh_VowKept_Trees>{PAWN} kept the vow to {GOD}: a tree planted every week of the season.</CC_Wsh_VowKept_Trees>
+  <CC_Wsh_VowKept_PlainBread>{PAWN} kept the vow to {GOD}: plain food for the whole season.</CC_Wsh_VowKept_PlainBread>
+  <CC_Wsh_VowKept_Visitors>{PAWN} kept the vow to {GOD}: every caller this season was fed.</CC_Wsh_VowKept_Visitors>
+  <CC_Wsh_VowBroken_Lamp>{PAWN} broke the vow to {GOD}: the lamp at its place went out.</CC_Wsh_VowBroken_Lamp>
+  <CC_Wsh_VowBroken_Trees>{PAWN} broke the vow to {GOD} of a tree a week.</CC_Wsh_VowBroken_Trees>
+  <CC_Wsh_VowBroken_PlainBread>{PAWN} broke the vow to {GOD} of plain food.</CC_Wsh_VowBroken_PlainBread>
+  <CC_Wsh_VowBroken_Visitors>{PAWN} broke the vow to {GOD}: callers left the gate unfed.</CC_Wsh_VowBroken_Visitors>
+  <CC_Wsh_How_LampOut>The {LAMP} went dark.</CC_Wsh_How_LampOut>
+  <CC_Wsh_How_NoTree>A week went by with no tree planted.</CC_Wsh_How_NoTree>
+  <CC_Wsh_How_Felled>{PAWN} cut down a tree.</CC_Wsh_How_Felled>
+  <CC_Wsh_How_FineMeal>It was {FOOD} that broke it.</CC_Wsh_How_FineMeal>
+  <CC_Wsh_How_Unfed>The callers went on their way without a meal.</CC_Wsh_How_Unfed>
+  <CC_Wsh_Why_GreatVow_Lamp>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_Lamp>
+  <CC_Wsh_Why_GreatVow_Trees>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_Trees>
+  <CC_Wsh_Why_GreatVow_PlainBread>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_PlainBread>
+  <CC_Wsh_Why_GreatVow_Visitors>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_Visitors>
+  <CC_Wsh_Goal_Season_Lamp>{GOD}'s lamp kept lit, {PERCENT} of the season</CC_Wsh_Goal_Season_Lamp>
+  <CC_Wsh_Goal_Season_Trees>a tree a week for {GOD}, {PERCENT} of the season</CC_Wsh_Goal_Season_Trees>
+  <CC_Wsh_Goal_Season_PlainBread>plain food for {GOD}, {PERCENT} of the season</CC_Wsh_Goal_Season_PlainBread>
+  <CC_Wsh_Goal_Season_Visitors>every caller fed for {GOD}, {PERCENT} of the season</CC_Wsh_Goal_Season_Visitors>
+  <CC_Wsh_Goal_SeasonDone_Lamp>kept {GOD}'s lamp lit a whole season</CC_Wsh_Goal_SeasonDone_Lamp>
+  <CC_Wsh_Goal_SeasonDone_Trees>planted a tree a week for {GOD} a whole season</CC_Wsh_Goal_SeasonDone_Trees>
+  <CC_Wsh_Goal_SeasonDone_PlainBread>ate plain food for {GOD} a whole season</CC_Wsh_Goal_SeasonDone_PlainBread>
+  <CC_Wsh_Goal_SeasonDone_Visitors>fed every caller for {GOD} a whole season</CC_Wsh_Goal_SeasonDone_Visitors>
 
   <!-- ===================== Festivals ===================== -->
   <CC_Wsh_Festival_Harvest>the Thanksgiving of {GOD}</CC_Wsh_Festival_Harvest>
@@ -226,6 +260,26 @@
   <CC_Wsh_Impact_DryMaybe>{PAWN} fears the rain may stay away a while</CC_Wsh_Impact_DryMaybe>
   <CC_Wsh_Impact_GiveBeast>{PET} is walked out and let go into the wild</CC_Wsh_Impact_GiveBeast>
   <CC_Wsh_Impact_GiveBeastBrief>a beast given</CC_Wsh_Impact_GiveBeastBrief>
+  <!-- More council questions of faith (Gods/Worship/WorshipCouncilMore.cs): what each answer does, plainly. -->
+  <CC_Wsh_Unavailable_NotMovable>{PLACE} can't be taken up and moved.</CC_Wsh_Unavailable_NotMovable>
+  <CC_Wsh_Unavailable_NoOtherGod>The one asking holds no other god to give it to.</CC_Wsh_Unavailable_NoOtherGod>
+  <CC_Wsh_Impact_Shrine_move>{SHRINE} marked to be taken up and moved, after words said over it</CC_Wsh_Impact_Shrine_move>
+  <CC_Wsh_Impact_Shrine_moveBrief>the place moved</CC_Wsh_Impact_Shrine_moveBrief>
+  <CC_Wsh_Impact_Shrine_round>The plans against {SHRINE} cancelled, so the building goes round it</CC_Wsh_Impact_Shrine_round>
+  <CC_Wsh_Impact_Shrine_roundBrief>built round it</CC_Wsh_Impact_Shrine_roundBrief>
+  <CC_Wsh_Impact_Shrine_down>{SHRINE} is the god's no longer, and is marked to be taken down</CC_Wsh_Impact_Shrine_down>
+  <CC_Wsh_Impact_Shrine_downBrief>the place taken down</CC_Wsh_Impact_Shrine_downBrief>
+  <CC_Wsh_Impact_Eve_lean>{FESTIVAL} kept tomorrow without an offering or guests</CC_Wsh_Impact_Eve_lean>
+  <CC_Wsh_Impact_Eve_leanBrief>kept with less</CC_Wsh_Impact_Eve_leanBrief>
+  <CC_Wsh_Impact_Eve_rite>The rite of {FESTIVAL} held this evening; tomorrow is an ordinary day</CC_Wsh_Impact_Eve_rite>
+  <CC_Wsh_Impact_Eve_riteBrief>the rite only</CC_Wsh_Impact_Eve_riteBrief>
+  <CC_Wsh_Impact_Eve_pass>{FESTIVAL} let pass this year</CC_Wsh_Impact_Eve_pass>
+  <CC_Wsh_Impact_Eve_passBrief>let pass</CC_Wsh_Impact_Eve_passBrief>
+  <CC_Wsh_Impact_Barred>{B} kept away from the god's rites for {DAYS} days</CC_Wsh_Impact_Barred>
+  <CC_Wsh_Impact_BarredBrief>kept from the rites</CC_Wsh_Impact_BarredBrief>
+  <CC_Wsh_Impact_ScofferCarries>{B} carries the next offering to {SHRINE}</CC_Wsh_Impact_ScofferCarries>
+  <CC_Wsh_Impact_ShrineGiven>Someone walks out and gives the place to {GOD}</CC_Wsh_Impact_ShrineGiven>
+  <CC_Wsh_Impact_ShrineGivenBrief>given to another god</CC_Wsh_Impact_ShrineGivenBrief>
   <CC_Wsh_Impact_Offering>An offering carried to {SHRINE}</CC_Wsh_Impact_Offering>
   <CC_Wsh_Impact_OfferingBrief>an offering</CC_Wsh_Impact_OfferingBrief>
   <CC_Wsh_DryBegins_Title>The rain stays away</CC_Wsh_DryBegins_Title>
@@ -248,6 +302,14 @@
   <CC_Wsh_Week_VowTip_Pilgrimage>A life goal: on a free day they walk out to the god's holy place on the colony's land and pray there a while.</CC_Wsh_Week_VowTip_Pilgrimage>
   <CC_Wsh_Week_VowTip_Temple>Kept when a place of the god's stands indoors, in a room fine enough to be called a temple.</CC_Wsh_Week_VowTip_Temple>
   <CC_Wsh_Week_VowTip_BeastSpared>Broken if anyone of the colony kills an animal of that kind before the season is out.</CC_Wsh_Week_VowTip_BeastSpared>
+  <CC_Wsh_Week_Vow_Lamp>{PAWN} keeps a lamp lit at {GOD}'s place this season</CC_Wsh_Week_Vow_Lamp>
+  <CC_Wsh_Week_Vow_Trees>{PAWN} plants a tree a week for {GOD} this season</CC_Wsh_Week_Vow_Trees>
+  <CC_Wsh_Week_Vow_PlainBread>{PAWN} eats only plain food for {GOD} this season</CC_Wsh_Week_Vow_PlainBread>
+  <CC_Wsh_Week_Vow_Visitors>{PAWN} feeds every caller at the gate for {GOD} this season</CC_Wsh_Week_Vow_Visitors>
+  <CC_Wsh_Week_VowTip_Lamp>A life goal for a season: each day they see to the light by the god's place, and fill it from the stores when it burns low. Broken the night it goes out or is gone.</CC_Wsh_Week_VowTip_Lamp>
+  <CC_Wsh_Week_VowTip_Trees>A life goal for a season: each week they set a sapling in the ground by hand. Broken by a week with none planted, or by their felling a tree.</CC_Wsh_Week_VowTip_Trees>
+  <CC_Wsh_Week_VowTip_PlainBread>A life goal for a season: simple meals only. A fine or a lavish meal eaten breaks it.</CC_Wsh_Week_VowTip_PlainBread>
+  <CC_Wsh_Week_VowTip_Visitors>A life goal for a season: when callers come to the gate, they carry a meal from the stores to one of them. Broken if callers leave unfed; keep meals in the stores.</CC_Wsh_Week_VowTip_Visitors>
   <CC_Wsh_Week_Demand>{PAWN} dreamt that {GOD} wants {WHAT} at {SHRINE}</CC_Wsh_Week_Demand>
   <CC_Wsh_Week_DemandNote>dreamt</CC_Wsh_Week_DemandNote>
   <CC_Wsh_Week_DemandTip>{PAWN} told the dream. Someone will carry it there when they are free.</CC_Wsh_Week_DemandTip>

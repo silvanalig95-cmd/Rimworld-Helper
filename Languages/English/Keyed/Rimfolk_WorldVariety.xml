@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The content update's variety, the world (Source/ColonyCouncil/World/Variety/; docs/content-update-proposals.md, part B). Plain words. -->
+
+  <!-- A season of games: the colony's games day (GamesDay.cs; Diplomacy/Feasts.cs, FeastPurpose.Games). -->
+  <CC_Variety_GamesDay_Off>Feasts with guests are switched off in the settings.</CC_Variety_GamesDay_Off>
+  <CC_Variety_GamesDay_Busy>The colony already has guests coming for a feast.</CC_Variety_GamesDay_Busy>
+  <CC_Variety_GamesDay_Impact>In two days or so, on the first fine morning, the young people of the two peoples come for bouts, a race and a shooting match where the colony has targets, eat at its table and stay the night.</CC_Variety_GamesDay_Impact>
+  <CC_Variety_GamesDay_ImpactBrief>a games day at the colony</CC_Variety_GamesDay_ImpactBrief>
+
+  <!-- The games day's words at the feast, the hopes by people and the singing contest are in Rimfolk_Feasts.xml. -->
+
+  <!-- A stud visit (Missions/Workers_MissionStud.cs; B24). -->
+  <CC_Stud_Coming>{DROVER} of {FACTION} is bringing their animal, {NAME}, to the colony's gate.</CC_Stud_Coming>
+  <CC_Stud_YoungLater>{NAME} has taken, and {FACTION}'s drover has led her home. Their courier will bring one of the young to the colony's gate once it is born.</CC_Stud_YoungLater>
+  <CC_Stud_YoungComing>{DROVER} of {FACTION} is bringing one of {NAME}'s young to the colony's gate, as promised.</CC_Stud_YoungComing>
+  <CC_Stud_Status0>{DROVER} is bringing {NAME} to the colony.</CC_Stud_Status0>
+  <CC_Stud_Status2_Theirs>{NAME} is standing in the colony's pen with its {KIND}s.</CC_Stud_Status2_Theirs>
+  <CC_Stud_Status2_Ours>{NAME} is standing in the colony's pen with its male {KIND}.</CC_Stud_Status2_Ours>
+  <CC_Stud_Status3>{FACTION}'s drover is coming for {NAME}.</CC_Stud_Status3>
+  <CC_Stud_Status4>{NAME} has taken at {FACTION}'s, and their courier will bring one of the young once it is born.</CC_Stud_Status4>
+
+  <!-- A pardon proclaimed (Pardon.cs). -->
+  <CC_Variety_Pardon_Impact>The colony's {0} prisoners of their people are walked out to the edge of its land by a warden and let go.</CC_Variety_Pardon_Impact>
+  <CC_Variety_Pardon_ImpactBrief>prisoners sent home</CC_Variety_Pardon_ImpactBrief>
+  <CC_Variety_Pardon_Released>The wardens are walking the colony's {0} prisoners of {1} out to the edge of its land, to go home under the pardon.</CC_Variety_Pardon_Released>
+
+  <!-- The great burying: the colony's unburied dead taken to the old field (VarietyWorkers.cs, DilemmaEffect_BuryingTake). -->
+  <CC_Variety_Burying_Impact>The sextons carry the {0} dead lying out on the colony's land to their beast and take them away to be buried.</CC_Variety_Burying_Impact>
+  <CC_Variety_Burying_ImpactBrief>the dead taken away</CC_Variety_Burying_ImpactBrief>
+
+  <!-- The new camps (Camps/CampVariety.cs). -->
+  <CC_CampVariety_NoHive>None of the beekeepers' hives is standing yet.</CC_CampVariety_NoHive>
+  <CC_CampVariety_NoHandler>They need someone who works with animals.</CC_CampVariety_NoHandler>
+  <CC_CampVariety_Hives_Impact>{0} spends a couple of hours beside one of the beekeepers' hives, learning to handle bees (animals), and may come away stung.</CC_CampVariety_Hives_Impact>
+  <CC_CampVariety_Hives_ImpactBrief>an afternoon at the hives</CC_CampVariety_Hives_ImpactBrief>
+  <CC_CampVariety_NoBeekeeping>The colony must learn to keep bees first (basic beekeeping).</CC_CampVariety_NoBeekeeping>
+  <CC_CampVariety_BadCap>{0} of the {1} ate a mushroom that looked right and wasn't, and is sick by their fire.</CC_CampVariety_BadCap>
+
+</LanguageData>

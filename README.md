@@ -497,7 +497,7 @@ a wound or an illness likes rest when ill and a clean sweep, and asks for either
 and wounded, children, prisoners and cooking still come first, and so do sleep, meals and washing. This is one of the
 deeper game hooks.
 
-Thirty-six decrees in all. The five newest each mean one thing on the map: **a hunting season** (two head of safe game
+Thirty-eight decrees in all. The two newest show on the map each day: **the night watch** (six days, asked for after an attack: two of the colony's fighters in turn walk the walls and the gate from nine until one and start late the next morning; what a night watch keeps away it keeps away, and each night walked counts toward the name Night-Watch) and **a welcome for newcomers** (ten days, asked for when someone new stands outside every group: each evening a settled colonist who likes them spends an hour with each newcomer at a table, which counts as welcomes from the group they are finding their way into). The five before them each mean one thing on the map: **a hunting season** (two head of safe game
 marked for the hunters each morning), **wood for the winter** (the nearest wild trees marked for the cutters each
 morning until the stores hold the winter's wood, more for a colony that heats with it), **foraging days** (wild plants
 ripe for picking marked each morning), **saving the power** (for a colony on the grid: the lamps switched off from
@@ -581,7 +581,7 @@ stash of beer, a cook who wants to spend the stores on one magnificent feast, a 
 can't cope. Kind, greedy, industrious and teetotal colonists all react differently. Leave a dilemma unanswered and
 the council's silence decides for you.
 
-There are 227 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
+There are 291 of them, and many grow out of everyday life: a sick colonist when the medicine is nearly gone,
 whether to keep someone with a fever apart, a cook with a cold, an old family remedy, a visitor's strange cure, the
 camp on the colony's land asking for medicine, food or searchers for a lost child (and, new, one of them who wants to
 stay, a purse gone from their stash with a colonist blamed, one of theirs caught in the storeroom, their beasts standing
@@ -593,7 +593,17 @@ put down the tools, a child's question, a broken promise, the same meal every da
 own: a broken window and nobody owning up, a child frightened after a fight or grieving a parent, lessons or play,
 a youngster who wants to see the world, an elder who wants one last walk in the hills, won't see the doctor, has a
 tale to tell or feels the cold in their bones. Some come only when they fit the day: the mess after a fight, a sick
-night, lessons in a busy time, seed for a neighbour in spring. Many answers call on whoever is
+night, lessons in a busy time, seed for a neighbour in spring. Twenty-five more come from the colony's everyday
+life and set two people toward or against each other, each answer done on the map: the only one who knows a craft and
+someone keen to learn it, the one who always cleans, a hard worker who won't stop, every hand to a ripe harvest, the
+best cooking eaten tonight or kept, seconds when food is short, a helper in the kitchen, a patch of one's own, company
+for someone bored in the sickbed, the doctoring shared, a dirty sickroom, a child and one of the animals (Biotech), a
+chair for old bones, a young person who wants a say, the herd left to one pair of hands, a name for a newborn animal,
+two who want the same animal, visitors at supper or their news by the fire, two friends who fell out, an old friend
+left out, talk behind a back, the first warm day, a cold bedroom and a storm at night. The seat whose work it is
+speaks in its own. And two of the council's own: a seat holder worn down or laid up who asks to step down (let go, a
+deputy for ten days, or asked to stay), and two wishes that each need the same stuff when the stores hold enough for
+one (first come first served, the other first, or neither yet; whoever waits is told why). Many answers call on whoever is
 best placed (the doctor, a forager, a tracker, the best talker), and their skill decides how it goes. Many have
 several openings and several ways to turn out, picked to fit the moment, and a letter doesn't repeat the text it used
 last time when another fits.
@@ -917,7 +927,7 @@ a year.
 Every colonist has a character on eight sides (warmth, nerve, temper, humour, trust, pride, openness, outlook). Their
 nature sets where they start: traits (the base game's and DLCs', and 74 from Vanilla Traits Expanded, RimTraits,
 Medieval Overhaul, Vanilla Ideology Expanded - Memes, Alpha Memes and Alpha Genes), the Social skill, age and a small
-lean of their own. Then life marks them, with 64 kinds of mark: downed in a raid, carried out of one, holding the
+lean of their own. Then life marks them, with 65 kinds of mark: downed in a raid, carried out of one, holding the
 line or breaking under fire, a friend, lover, child or parent lost, nursed through an illness or nursing someone through one, forgiven after a
 breakdown, a secret betrayed, a seat won or lost, a craft mastered, a child raised, a hungry season, an addiction
 beaten, a new ideoligion, a crisis of faith (with Ideology), a brush with what lies past the world, and from the
@@ -1256,7 +1266,7 @@ fulfilment need counts toward the heart's purpose, and Rimfolk's own goals come 
 
 ### Personal stories
 A few times a year, one colonist's own story begins, and plays out in three to five stages over days to a season.
-There are 39 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
+There are 42 of them: the long way home (away for days, missing someone; home; the road told), somewhere to belong (a
 homesick newcomer finds a friendly face, a room, roots), a companion (an animal that follows its master about, until
 they bond), grudging respect (rivals who are good at the same thing), old wounds (former lovers, family at odds, a
 friend who let a secret slip), an old debt (a rescue or a kindness repaid with something made by hand), second chances
@@ -1271,7 +1281,12 @@ the new leg (the first steps on a fitted leg with a friend at their side, a frus
 work) and back to it (one of the land's dangers hurt them: a shaken day, a talk with the one closest to them, real
 work again at what it happened at). Others grow out of the world and the colony's offices: the road calls (a friend made at a camp, and the itch to
 go with them), the weight of office (a new seat on the council that sits heavy) and word from far away (family out in
-the world when sickness, famine or war comes there). Six grow out of the colony's own life: a custom of their own (the
+the world when sickness, famine or war comes there). Three come from the council's and the heart's life: after the vote
+(voted out of a seat held a year: sour days, a word with the winner, then helping them into the seat or meaning to stand
+again), the one sent away (the colonist closest to someone the council banished: a hard day, a walk out to the edge of
+the land, a talk with the chaplain or a friend, and better days, or a walk out to meet them if they come back to the
+gate) and worn thin (after coming apart under the strain: a friend comes to sit with them, a day off taken, the heart's
+or a rest day, and back to themselves, the friend marked by it). Six grow out of the colony's own life: a custom of their own (the
 custom someone first asked for, kept again the next year and the one after until it is a tradition), a promise waited on
 (a wish the council promised, still open: two days of hoping, then restless until it's met), ready for the seat (a life
 goal of a seat, practised for at the seat's work and stood for at the election), a prayer for a friend (a believer whose
@@ -1283,7 +1298,7 @@ spring (an elder in poor health) and the last two of us (two old rivals, the las
 **stories of three**: a rival in love (two people fond of the same one, who chooses, or doesn't), torn between two
 students (a mentor with two learners), brothers and sisters (a parent and two children at odds) and caught in the
 middle (someone between two friends who can't stand each other). Their talks need the two people together, they can
-end with either one ahead, and the third keeps a journal of it too. With A RimWorld of Magic there's a 39th, the long
+end with either one ahead, and the third keeps a journal of it too. With A RimWorld of Magic there's a 42nd, the long
 discipline (a mage or a fighter hits a wall in their art and works through it). Each starts from what Rimfolk already
 knows about the colonist (their losses, rivals, secrets, life goal, feelings, skills, animals, trust) and moves on
 only when something happens in play: a skill reached, a talk between the two of them in the social log, a piece of
@@ -1427,7 +1442,12 @@ Colonists meet everyone else on the map, too:
 - **What their people remember:** a visitor whose people the colony once rescued thanks them, a trader of a grateful
   people gives a friend's price, one whose people hold a grudge charges double or won't haggle, and a visitor whose
   people helped the colony mentions it, and one whose people remember a colonist by name stops them to say thank
-  you. 225 kinds of encounter in all. Most of these small
+  you.
+- **The peoples' own moments** (not released yet): a visitor or trader of each of Rimfolk's 23 peoples has two of its
+  own, one showing their ways on the map (a hospitaller looks at a colonist's old injury, a herder or tamer looks over
+  one of the colony's animals, a pilgrim or sexton stands at its graves, a scholar at its books, a salvager crouches by
+  a broken machine, a linesman at the comms console, a mechanitor over a mech) and one telling how their people began.
+  285 kinds of encounter in all. Most of these small
   moments give something other than mood: recreation for a herd going by or a clear night, comfort for a trick
   against the cold, practice, a little research, awe, and for the smallest only a line in the journal.
 - **Mechs, slaves and what the platforms hold:** with Biotech the colony's own mechs have small moments with those
@@ -1795,6 +1815,11 @@ days) name the seat's holder when they're at home and not already in it, with th
 the outcomes; each one answered counts toward their record in the seat at the next election. A newly seated holder's
 story, the weight of office, now waits for a real hard call (such a question, a decree they backed declared while
 someone hates it, or answering for a promise at supper) and names it, and with none in twenty days it ends quietly.
+
+A holder worn down or near breaking five days running, or ten days in a sickbed, asks to step down (never during an
+election): the seat empties with no hard feelings and goes to a by-election, someone good at its work stands in for ten
+days while the holder has a day off (the deputy does the seat's walks, counts and words), or they're asked to stay. Voted
+out of a seat held a year or more, a colonist may have a story of their own, after the vote.
 
 ### Traditions
 Choose the answer that keeps a seasonal custom (a midsummer feast, a harvest celebration, a vigil on the longest night)
@@ -3681,6 +3706,14 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   people's age) comes to a colony with children (Biotech): a lesson at their camp for up to three of them, a colonist
   sitting in, a supper for the pupils. **Wounded fighters** come with the game's own wounds, a cut bandaged on the road
   and a fresh bruise, most often while a war runs in the region: send the colony's doctor, medicine or a hot supper.
+  Not released yet: with Alpha Bees, **beekeepers** camp in spring and summer with their beehouses at the edge of the
+  camp: buy honey or wax, send a colonist to help at their hives (practice with animals, a sting now and then), or,
+  once the colony knows basic beekeeping, buy a young queen. **Mushroom pickers** come to wooded land in the fall, or
+  soon after the colony's own mushrooms after rain, pick the land's wild caps, sell truffles and fungus and teach which
+  are safe; now and then one eats the wrong cap and they ask for the colony's doctor. And six come with the region's
+  world events: **young hands** walking to a hiring fair, **carters** stuck by the spring mud or going round a fallen
+  bridge, **gleaners** who ask to walk the harvested rows in the fall, a **games team**, **outlaws walking home** under
+  a pardon, and **star-watchers** who lie out under the colony's sky through falling stars or a comet.
 
   Some come for something the land near the colony has, and say so: the letter names it and looks at it. **Scholars**
   (a tale-seeker, a scholar with a mule of books, a professor and two students, or an archaeotech survey team, by their
@@ -3767,7 +3800,11 @@ collected on the day; a **sick animal** of theirs is handed over at the gate to 
 when well; a **caravan camps** one night at the edge of the land, where raiders or wild animals may come for it (a real
 fight, within the harm budget); their **seed** is kept in the cold store at freezing or colder, untouched, until the
 sowing; a scholar's **book is copied** at a research bench (research work, done before the research), and the colony
-keeps a copy; and **musicians** stay a night and play at the colony's party. One more (not released yet) is the only one
+keeps a copy; and **musicians** stay a night and play at the colony's party. A herding people may also ask to let one of
+their animals **stand at stud** in the colony's pen for five to seven days (not released yet), of a kind the colony keeps
+that breeds by mating: while it stands it is the colony's and mates as its own do; a female of yours pregnant by their
+male when their drover comes for him is yours for a small fee, and if their female has taken, their courier brings one
+of the young to the gate once it is born (answered by letter, ask for silver for the keep instead). One more (not released yet) is the only one
 that sends the colony's people out, and only when the place is within three tiles: a neighbour's old map shows a **cache in
 old ruins** close by; a caravan brings it home, their people collect it and pay, and what else lay with it is the colony's.
 A tribe pays in goods of its own, everyone else in silver. When the region knows the
@@ -4068,6 +4105,21 @@ Some days or weeks after a world event ends, its people may come back about it, 
 of a plague the colony helped with come to give thanks, the first harvest after a famine is shared, a flooded town
 looks for what the water took, those sheltered through a hard winter bring seed in spring, old friends send seed grain
 after locusts or a drought, and after a hard year the colony looked away from, an elder comes to say what it cost.
+
+Ten more world events, not released yet, each in the form of its people's age: **cloth gone scarce** (a tailor buys
+the colony's cloth or teaches coats made from worn ones; more readily after a murrain or closed markets) and **timber
+gone scarce** after a great fire, a flood or rebuilding (timber bought dear, a carpenter's apprentice asks for a day's
+teaching), both making their goods dear with that people's traders; a **season of games** (travelling champions come
+oftener, and the colony may hold a games day: young people of two friendly peoples come for bouts, a race and a
+shooting match, eat at its table and stay the night, and a colonist who wins is named when the games end); a
+**pardon** after a kind new head takes the seat or in a holy year (outlaws walk home past the colony, prisoners of
+that people may be walked out under it, and no bounty hunters come while it lasts); a **hiring fair** (one of the
+region's young may ask for a place at the colony); a town's **founding day** (a gift for the day, or a colonist sent to
+sit at it when the town is within three tiles); **roads gone to mud** in spring (fewer caravans, carters stuck on the
+road, a cheap load that would spoil); **falling stars** (a finder sells a piece of one, star-iron or, in a later age,
+plasteel; star-watchers camp, and some at the colony take them for a god's sign); **the great burying** of an old
+battlefield's dead (linen for the shrouds, and its sextons carry off the enemy dead on the colony's land); and a
+**bridge down** (travellers come the long way round past the colony, and its builders ask for timber).
 
 The **World** page shows what's going on at the top, under "In the world": each world event with the people it's
 about, what it means for the colony, what the colony has done so far, and how long it may last (hover for what it
@@ -4518,7 +4570,11 @@ conversation pieces, 24 letter lines and 47 spoken lines speak of it. Setting: *
 in a world event now brings its year: from a hard year they think more of the meal than of the contests and, with meals
 to spare, ask to take some home, and a colonist brings two a party out of the stores to them that night; from a good year (their fair, a bumper harvest) they bring a gift of silver; and the
 host's toast names their town. A new head of a people asked to the next feast at the colony's gate is on its guest list
-already.
+already. A guest of one of Rimfolk's peoples hopes for their own people's contest (the hunt for hunters and herders, the
+bouts for soldiers and ship's crews, a game at the tables for traders and scholars, the race for salvagers and river
+folk, a fine meal and music for pilgrims and hospitallers), and a feast can hold a **singing contest** (not released
+yet): up to six singers, guests and colonists in turn, each sings one song at the colony's instrument (its own music
+plays) or by a fire, judged on artistic and social skill with some luck; it answers a hope for music.
 
 **Ties bring a people's own.** A people bound to the colony (a pact, a marriage, a ward or hostage either way, an envoy
 either way, fealty either way, a debt of honour either way) sends its own events and camps about half again as often,
@@ -5160,6 +5216,32 @@ keep a day against it. The room planner offers a shrine room for each god your b
 your people picture it. With Vanilla Christmas Expanded, midwinter brings the festive tree switched on, the gingerbread
 and warm drinks set out, a present handed to each of your people and a snow sculpture. Dev mode has *Gods among: ...*
 actions for each.
+
+**The gods between your people** (not released yet). Every god has two or more happenings of its own that set your
+colonists toward or against each other, each played out on the map and told as it was seen: two who fought find two
+saplings come up between their beds and stand at them together; a woodcutter is shown the brambles round their last
+stump; the forge flares at a masterwork and the next-best hand resents it; under the mountain one pulls another back as
+stones come down where they stood; the eldest tells a child of the white beast at dusk as the grazers drift close; a
+hunter lets the beast go when it turns to look, and the cook grumbles; two argue over food let rot, or dig it into the
+field together; white threads on a sealed stone set two faiths arguing; the kindest carries a bowl to a newcomer;
+someone waits up at the edge with a light for one late home; two hands on a broken machine start it again; a machine
+hums for the one who talks to it while a doubter laughs; two out at night watch a star cross; two see their own gods'
+shapes in the clouds; a warm coat carried to one taking a chill melts the frost round them; one who holds the cold asks
+the loud ones for quiet on a winter night; someone with a grudge is seen whispering into the dark at the edge; a lamp
+by a sleeper goes out and two argue whose it was; one getting over an illness is walked out to sit an hour in the noon
+sun; the noon light on two at odds; a friend calls someone into the shade; one who said a cruel word stands under the
+moon all night and says sorry in the morning; two tell the same dream at breakfast; a cat sits on a grave and the two
+who loved the dead sit with it; riddles at supper and a cat at the winner's heel; a splash at the water and the frogs
+croaking; a frog in a bedroom in the rain; a gold coin passed hand to hand; a miser's silver found scattered in heaps;
+one cup set between two at odds; a drunken wager paid by scrubbing a floor. How it ends between them (closer, a quarrel,
+made up, ashamed, resentful, wary, laughed at, a kindness remembered) stays in their opinions of each other and is a
+plain line in the news. The devout may vow their god a season as a life goal: a lamp kept lit by its place, a tree a
+week, plain food only, every caller at the gate fed, each kept day by day on the map and broken by what anyone can see.
+The council is asked about a plan laid over a god's place, a feast day in a hard season, a scoffer at the rites and a
+place nobody keeps. Very rarely a named weapon of Possessed Weapons lies in a ring of scorched ground where something
+strange happened, or a warm drake's egg of Dragons Descent in the deep after the mountain shook. More of your mods'
+xenotypes lean toward a god by what they are, every god's card comes in three wordings, and with Alpha Bees the one who
+tends the hives tells the bees of a death or someone new. Dev mode has *Gods: ...* and *Bees: ...* actions for each.
 
 ## Scenarios with stakes
 Seventeen scenarios, marked "(Rimfolk)" on the scenario page with how hard they are. Each starts the game with

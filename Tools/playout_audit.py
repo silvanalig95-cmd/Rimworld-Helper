@@ -92,6 +92,11 @@ PLAY = {
     "DilemmaEffect_SaintWords": "words",
     "DilemmaEffect_GiveBeast": "beast given",
     "DilemmaEffect_LesserOffering": "offering carried",
+    # More council questions of faith (Gods/Worship/WorshipCouncilMore.cs): the offering carried by the scoffer, the place
+    # given to another god (someone walks out and says the words), the place in the way taken up, built round or taken down.
+    "DilemmaEffect_ScofferCarries": "offering carried",
+    "DilemmaEffect_ShrineGiven": "place given",
+    "DilemmaEffect_ShrineInTheWay": "place moved",
     # The colony's own settings changed for a while and put back (Dilemmas/AnswerShifts.cs), and the game's own orders
     # (Dilemmas/DilemmaWorkers_Variety.cs): timetables shifted, work handed over, an operation on the medical tab, drug
     # bills suspended, a slave freed by the game's emancipation, self-tend or the best medicine for a patient.
@@ -158,6 +163,13 @@ PLAY = {
     # Visitors set to what they came for at the colony's relic, anima tree, gravship or bookcase, or kept by the gate
     # for a word or a lesson (Visitors/VisitorsMore2.cs).
     "VisitEffect_WorkHere": "visitors at it",
+    # The content update's variety, the world (World/Variety/, Camps/CampVariety.cs): the young of two peoples come for a
+    # games day (a feast with them at it), prisoners walked out free under a pardon, the sextons carrying the colony's
+    # unburied dead to their beast, a colonist beside the beekeepers' hives.
+    "DilemmaEffect_GamesDay": "a games day",
+    "DilemmaEffect_PardonRelease": "walked out free",
+    "DilemmaEffect_BuryingTake": "the dead taken away",
+    "DilemmaEffect_HelpAtHives": "at the hives",
     # Visitors who came to do something, doing it on the map (Visitors/Callers.cs): a piece of art carried out to its
     # buyer, a sculpture made for a collector, a wedding party's night, graves dug and the dead laid in them or loaded on
     # the undertakers' beast, a captive walked out to their kin or talked with at their door, haircuts, animals tended.
@@ -369,6 +381,13 @@ PLAY = {
     # A world event's answer that sends a colonist to a far town (World/FarErrands.cs): a caravan of one there, their days
     # there and the road home, the season away's own (Peoples/Events2/SeasonAway.cs).
     "WorldEffect_Away": "a caravan of one to a far town and home",
+    # Colony life's variety, part 1 (CouncilLife/): the heart's day off given from an answer (or the rest of today), the
+    # night watch's rota and a welcome's evening hour each morning of their decrees, and the one sent away met at the gate.
+    "DilemmaEffect_HeartDayOff": "rest",
+    "DilemmaEffect_MadeChair": "handed over",
+    "DilemmaEffect_WatchRota": "vigil",
+    "DilemmaEffect_WelcomeEvening": "visit",
+    "ArcEffect_MeetSentAway": "visit",
     # A promise halfway (Offices/SeatHalfway.cs): the seat's own work with a hand (a watch on the walls, the food brought in,
     # the sickroom seen to, the herd brought home, an evening), and the holder's word at supper.
     "DilemmaEffect_SeatHands": "the seat's work with a hand",

@@ -188,6 +188,11 @@ namespace ColonyCouncil
         public string offWhy;
         /// <summary>The last day off they were given and the last bad afternoon they had (for their cooldowns).</summary>
         public int lastDayOffTick = -999999, lastBadDayTick = -999999;
+        /// <summary>
+        /// Since when they have stood worn down or near breaking (strain 55 or more), and near breaking (75 or more), as the
+        /// heart's hour last saw it; -1 when not (a seat holder asking to step down, worn thin: CouncilLife/).
+        /// </summary>
+        public int wornSince = -1, breakingSince = -1;
 
         // ---------------- Worked out each hour, not saved ----------------
 
@@ -429,6 +434,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref offWhy, "offWhy");
             Scribe_Values.Look(ref lastDayOffTick, "lastDayOffTick", -999999);
             Scribe_Values.Look(ref lastBadDayTick, "lastBadDayTick", -999999);
+            Scribe_Values.Look(ref wornSince, "wornSince", -1);
+            Scribe_Values.Look(ref breakingSince, "breakingSince", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 good = HeartMath.Clamp(good);

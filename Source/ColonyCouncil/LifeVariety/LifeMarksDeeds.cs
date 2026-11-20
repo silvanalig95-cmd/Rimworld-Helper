@@ -52,8 +52,7 @@ namespace ColonyCouncil
     /// <summary>
     /// Deeds and names of the council's life (A23): kept a promise in the seat and broke one (the promise judged at the
     /// yearly election, SeatRecords.Judged), spoke up for someone before the council (the one named objecting when the
-    /// council is asked to send someone away), stepped down from a seat (<see cref="SteppedDown"/>, for the question of a
-    /// holder asking to step down); and the records of days in the seats that had none (the quartermaster's, the reeve's,
+    /// council is asked to send someone away; stepping down from a seat is A3's own deed, CouncilLife/StepDown.cs); and the records of days in the seats that had none (the quartermaster's, the reeve's,
     /// the herdmaster's, the steward's, the elders') and of promises in a seat judged kept, for the names that grow on them
     /// (Defs/EpithetDefs/Rimfolk_Epithets_Council.xml: Old Keys, Old Furrow, the Drover, the Host, the Old Voice, Word-Kept).
     /// </summary>
@@ -92,19 +91,6 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A holder stepped down from their seat of their own will (the question of a holder asking to step down).</summary>
-        public static void SteppedDown(Pawn holder, OfficeDef office)
-        {
-            if (holder == null) return;
-            try
-            {
-                Deeds.Record("Rimfolk_Deed_SteppedDown", holder, null, -1f, null, office?.Name, null, false);
-            }
-            catch (Exception e)
-            {
-                CouncilLog.ErrorOnce("colony life, part 2: stepped down", e);
-            }
-        }
 
         /// <summary>Once a day with the names (NameRecords.Daily): a day more in each of the seats that had no record of days.</summary>
         public static void SeatDays(OfficeTracker offices)

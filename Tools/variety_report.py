@@ -841,6 +841,9 @@ def estimate(pools):
                             ("preachedat", 0.15), ("nopreaching", 0.15))
         if p.name.startswith("Council_Journal_Day_"):
             p.extra = (("good|bad", 1.0),)
+        # A changed life goal is written with what changed it (Aspirations.TryChangeOfHeart): a loss or a brush with death.
+        if p.name == "Council_Journal_GoalChanged":
+            p.extra = (("loss|downed", 1.0),)
         if p.field in ("request", "requestForOther", "thanks", "expired", "reminder") or p.name.startswith("Council_Pool_"):
             p.extra = (("promised", 0.1), ("petition", 0.1), ("forother", 0.1), ("repeat", 0.15))
         # The caller always adds the kind of thing: the item planned for a personal touch, the kind of outpost.

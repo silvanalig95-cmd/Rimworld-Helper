@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two decrees that show on the map (the content update's A7, the player's go of 20 November 2026), each meaning one thing
+    (the player's decision 13), run each morning by the decrees' day (DecreeDef.daily, Decrees/DecreeWork.RunDaily;
+    Source/ColonyCouncil/CouncilLife/WatchAndWelcome.cs):
+
+    The night watch (six days): each night two of the colony's fighters, in turn by a rota, walk the walls and the gate from
+    nine until one (the patrolling vigil of the night watch) and start late the next morning. What a night watch already
+    keeps away it keeps away (hungry strangers at the fields in a famine come half as often), and each night walked is the
+    deed "kept the night watch", toward the name Night-Watch. A long watch in a hard frost can bring a chill, as any watch
+    on the walls can (Harm/ColdHurts.cs, through the shared harm budget).
+
+    A welcome for newcomers (ten days; asked for when someone here fewer than twenty days stands outside every group, the
+    moment Outsider): each evening a settled colonist who likes them sits an hour with each newcomer; an hour sat counts as
+    welcomes for the group the newcomer is finding their way into, and as the welcome their "somewhere to belong" story
+    waits for when the host is its friendly face.
+
+    Every age declares them in its own words (the description, and the play-outs' labels: CC_Life_WatchLabel_*,
+    CC_Life_WelcomeLabel_*). Text is plain (decrees). Moods in Rimfolk_Thoughts_CouncilLife.xml.
+  -->
+
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_Decree_NightWatch</defName>
+    <kind>order</kind>
+    <label>the night watch</label>
+    <description>Six nights of a watch on the walls. Each night two of the colony's fighters walk the walls and the gate from nine until one, taking it in turn so each walks as often as the others, and start late the next morning. A tribe keeps a watch at the edge of the camp, a village sets watchmen on its walls, an industrial colony keeps a sentry roster and a spacer colony a night shift; the walking is the same. What a night watch already keeps away it keeps away on those nights: hungry strangers at the fields in a famine come half as often. Each night walked counts toward the name Night-Watch. In a hard frost a long watch can bring a chill, as any watch on the walls can. Night owls and the nervous like it; the lazy hate their turn.</description>
+    <requestWhen><li>RecentThreat</li></requestWhen>
+    <order>44</order>
+    <durationDays>6</durationDays>
+    <cooldownDays>20</cooldownDays>
+    <ways><toil>1</toil><tradition>1</tradition></ways>
+    <thought>Rimfolk_Decree_NightWatch</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Hate</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Hate</reaction></li>
+      <li><trait>NightOwl</trait><reaction>Like</reaction></li>
+      <li><trait>Nerves</trait><degree>-1</degree><reaction>Like</reaction></li>
+      <li><trait>Nerves</trait><degree>-2</degree><reaction>Like</reaction></li>
+      <li><trait>Bloodlust</trait><reaction>Like</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each night for six nights, two of the colony's fighters walk the walls and the gate from nine until one, from one look-out to the next, in turn by a rota so each walks as often as the others; with only one fighter, that one walks alone.</li>
+      <li>The two start late the next morning.</li>
+      <li>What a night watch already keeps away it keeps away on those nights: hungry strangers at the fields in a famine come half as often. Each night walked counts toward the name Night-Watch.</li>
+      <li>In a hard frost a long watch can bring a chill, as any watch on the walls can.</li>
+      <li>Night owls, the nervous and the bloodthirsty like it; the lazy hate it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>Raiders came once, and I'd like someone awake on the walls if they come again.</li>
+        <li>[tribal] Let two keep the fire at the edge of the camp each night, as my people always did.</li>
+        <li>[medieval] Set a watch on the walls, two a night, and the rest of us can sleep.</li>
+        <li>[industrial] A sentry roster, two a night, nine till one.</li>
+        <li>[spacer] A night shift on the perimeter until we know they're not coming back.</li>
+      </plain>
+      <blunt><li>Two on the walls every night, or we wake up with knives at our throats.</li></blunt>
+      <cheerful><li>I'll take the first night, I'm up anyway.</li></cheerful>
+      <gloomy><li>They'll come at night next time, they always do.</li></gloomy>
+    </support>
+    <oppose>
+      <plain>
+        <li>Two of us up half the night means two of us useless in the morning.</li>
+        <li>We've got walls, and walls don't need to be watched every night.</li>
+      </plain>
+      <blunt><li>I'm not walking in circles in the dark for nothing.</li></blunt>
+      <cold><li>Six nights of lost sleep for a raid that may never come.</li></cold>
+    </oppose>
+    <daily>
+      <li Class="ColonyCouncil.DilemmaEffect_WatchRota" />
+    </daily>
+  </ColonyCouncil.DecreeDef>
+
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_Decree_Welcome</defName>
+    <kind>spirit</kind>
+    <label>a welcome for newcomers</label>
+    <description>Ten days of making the newest people feel at home. Each evening a colonist who has been here twenty days or more and likes them spends an hour with each newcomer (someone here fewer than twenty days), sitting down with them at a table where there is one. An hour sat counts as welcomes from the group the newcomer is finding their way into, so groups take newcomers in faster, and someone of that group who thinks well of them may speak for them there. A tribe calls it a welcome at the fire, a village a welcome at the hearth, an industrial colony a settling-in week and a spacer colony an orientation week; the hour is the same. The kind and the warm like it; the aloof and the wary dislike it.</description>
+    <requestWhen><li>Outsider</li></requestWhen>
+    <order>45</order>
+    <durationDays>10</durationDays>
+    <cooldownDays>30</cooldownDays>
+    <ways><openness>2</openness><generosity>1</generosity></ways>
+    <thought>Rimfolk_Decree_Welcome</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><tags>persona:warm</tags><reaction>Like</reaction></li>
+      <li><tags>persona:cold</tags><reaction>Dislike</reaction></li>
+      <li><tags>persona:wary</tags><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each evening for ten days, a colonist who has been here twenty days or more and likes them spends an hour with each newcomer, sitting down with them at a table where there is one: the newcomer's friendly face from their story of finding a home when they have one, else whoever thinks best of them.</li>
+      <li>An hour sat counts as welcomes from the group the newcomer is finding their way into (two from one of its own people), so groups take newcomers in faster; someone of that group who thinks well of them may speak for them there.</li>
+      <li>The kind and the warm like it; the aloof and the wary dislike it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>Somebody new has been eating alone every night, and I don't like it.</li>
+        <li>[tribal] A newcomer should be sat at the fire and talked to, not left at the edge of the camp.</li>
+        <li>[medieval] Have the new folk to the hearth of an evening, a different one of us each night.</li>
+        <li>[industrial] A settling-in week, so the new people know who's who.</li>
+        <li>[spacer] An orientation week for the new arrivals, a different one of us each evening.</li>
+      </plain>
+      <warm><li>I remember being new here, and I'd like someone to sit with them.</li></warm>
+      <cheerful><li>I'll take tonight, I've got stories they haven't heard.</li></cheerful>
+    </support>
+    <oppose>
+      <plain>
+        <li>They'll settle in their own time, same as the rest of us did.</li>
+      </plain>
+      <cold><li>I'm not making conversation by order of the council.</li></cold>
+      <gloomy><li>Ten evenings of small talk, and they'll still keep to themselves.</li></gloomy>
+    </oppose>
+    <daily>
+      <li Class="ColonyCouncil.DilemmaEffect_WelcomeEvening" />
+    </daily>
+  </ColonyCouncil.DecreeDef>
+
+</Defs>

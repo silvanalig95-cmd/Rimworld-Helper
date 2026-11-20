@@ -57,7 +57,7 @@
         <outcome>Each of the children is to be given something from the stores by the grown-up fondest of them, handed over after supper.</outcome>
         <ways><generosity>2</generosity><tradition>1</tradition></ways>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_GivingDay"><label>the children's giving supper</label><childrenOnly>true</childrenOnly><hours>17~21</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GivingDay"><label>the children's giving supper</label><giftsToChildren>true</giftsToChildren><hours>17~21</hours><duration>1.5~2</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_Thought_GivingDay</thought><childrenOnly>true</childrenOnly></li>
         </effects>
       </li>

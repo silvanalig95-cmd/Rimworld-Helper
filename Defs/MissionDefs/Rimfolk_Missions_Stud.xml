@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- B24 of docs/content-update-proposals.md, a stud visit: a herding people asks the colony to let one of their animals
+       stand in its pen for five to seven days, of a kind the colony keeps (any kind the game breeds by mating, mods' kinds
+       included). [theirs]: their best male stands with the colony's females, and a young one born of him is the colony's for a
+       small fee. [ours]: their female stands with the colony's male, and if she takes, their courier brings one of the young
+       once it is born. By letter, the second answer asks them for silver for the keep instead. Worker:
+       Source/ColonyCouncil/Missions/Workers_MissionStud.cs; the pure rules in World/Variety/VarietyMath.cs. {THING} the kind,
+       {DEAD} their animal's name, {ITEM} the fee (or the silver), {DAYS} the days, {A_nameDef} who of the colony is best
+       with animals. Plain words. -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Mission_StudVisit</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a stud visit</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionStud</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
+        <group>Challenge</group>
+        <answerDays>1</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A stud visit from {PLACE}</li>
+          <li>{FACTION}'s {THING}</li>
+        </titles>
+        <texts>
+          <li>[theirs] {FACTION} have a fine male {THING}, {DEAD}, and they would like his line carried on among the colony's own. They ask the colony to let {DEAD} stand in its pen with its females for a few days.</li>
+          <li>[theirs,their:herders] The herding folk of {PLACE} have heard the colony keeps {THING}s, and they have a male of theirs, {DEAD}, whose line they are proud of. They ask the colony to let him stand with its females for a few days.</li>
+          <li>[ours] {FACTION} have a female {THING}, {DEAD}, and they have heard well of the colony's male. They ask the colony to let her stand in its pen with him for a few days.</li>
+          <li>[ours,their:herders] The herding folk of {PLACE} want new blood in their {THING}s, and they have heard of the colony's male. They ask the colony to let their female, {DEAD}, stand with him for a few days.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>{FACTION} have the colony's answer, and their drover will bring {DEAD} soon.</outcome>
+          </li>
+          <li>
+            <label>Accept, but ask them for silver for the keep</label>
+            <outcome>{FACTION} agree to pay for the keep, and their drover will bring {DEAD} soon.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will ask someone else.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionPeople">
+        <prefers>herders</prefers>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>[theirs] Their drover will bring {DEAD} to the colony's gate soon after it agrees and hand him over. For about {DAYS}, {DEAD} is the colony's to keep and feed in its pen with its own females ({A_nameDef} is best with animals), and the game's own mating does the rest. If one of the colony's has taken by the time their drover comes back for him, the young is the colony's, and their courier takes a fee of {ITEM} silver for it. If {DEAD} dies or is lost while at the colony, {FACTION} will hold it against the colony.</li>
+          <li>[ours] Their drover will bring {DEAD} to the colony's gate soon after it agrees and hand her over. For about {DAYS}, {DEAD} is the colony's to keep and feed in its pen with its male ({A_nameDef} is best with animals), and the game's own mating does the rest. If she has taken by the time their drover comes back for her, their courier will bring one of the young to the colony's gate once it is born. If {DEAD} dies or is lost while at the colony, {FACTION} will hold it against the colony.</li>
+        </terms>
+        <accepted>
+          <li>{FACTION}'s drover is bringing {DEAD} to the colony.</li>
+        </accepted>
+        <ready>
+          <li>[theirs] {DEAD} is in the colony's keeping now. Keep him fed and in the pen with the colony's {THING}s until their drover comes back for him.</li>
+          <li>[ours] {DEAD} is in the colony's keeping now. Keep her fed and in the pen with the colony's male until their drover comes back for her.</li>
+        </ready>
+        <doneTitles>
+          <li>[foal] One of the colony's has taken</li>
+          <li>[took] {DEAD} has taken</li>
+          <li>[young] A young {THING} from {PLACE}</li>
+          <li>[nottook] {DEAD} goes home</li>
+          <li>[silver] {DEAD} goes home</li>
+          <li>[bonded] {DEAD} stays</li>
+        </doneTitles>
+        <done>
+          <li>[foal] One of the colony's {THING}s has taken by {DEAD}, and the young will be the colony's. {FACTION}'s drover came back for {DEAD}, and their courier took the fee of {ITEM} silver.</li>
+          <li>[took] {DEAD} has taken, and {FACTION}'s drover has led her home.</li>
+          <li>[young] {FACTION}'s courier has brought one of {DEAD}'s young to the colony's gate, as promised. It is the colony's now.</li>
+          <li>[nottook] None of the colony's {THING}s took this time. {FACTION}'s drover came back for {DEAD}, and they thank the colony for keeping it.</li>
+          <li>[silver] {FACTION}'s drover came back for {DEAD} and paid {ITEM} for the keep, as agreed.</li>
+          <li>[bonded] {DEAD} has bonded with someone of the colony. {FACTION} will leave {DEAD} where it is. They won't pay anything, but they are not angry.</li>
+        </done>
+        <failTitles>
+          <li>[died] {DEAD} died</li>
+          <li>[lost] {DEAD} is gone</li>
+          <li>[ended] {FACTION}'s {THING}</li>
+          <li>[cancelled] {FACTION}'s {THING}</li>
+        </failTitles>
+        <fail>
+          <li>[died] {DEAD} died at the colony. {FACTION} had trusted the colony to keep {DEAD}, and they blame it.</li>
+          <li>[lost] {DEAD} is no longer in the colony's keeping. {FACTION} had trusted the colony with {DEAD}, and they are angry.</li>
+          <li>[ended] {FACTION} will not be bringing {DEAD} to the colony after all.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} are no longer on terms with the colony, and the arrangement about {DEAD} is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

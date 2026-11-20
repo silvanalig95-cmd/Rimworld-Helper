@@ -161,8 +161,7 @@ namespace ColonyCouncil
             {
                 new FloatMenuOption("kept a promise in a seat", () => ForEachColonist(p => LifeDeeds.Judged(p, seat, true))),
                 new FloatMenuOption("broke a promise in a seat", () => ForEachColonist(p => LifeDeeds.Judged(p, seat, false))),
-                new FloatMenuOption("spoke up for someone", () => ForEachColonist(p => LifeDeeds.SpokeUp(p, Colonists.FirstOrDefault(o => o != p)))),
-                new FloatMenuOption("stepped down from a seat", () => ForEachColonist(p => LifeDeeds.SteppedDown(p, seat)))
+                new FloatMenuOption("spoke up for someone", () => ForEachColonist(p => LifeDeeds.SpokeUp(p, Colonists.FirstOrDefault(o => o != p))))
             };
             Menu(options, "(none)");
         }

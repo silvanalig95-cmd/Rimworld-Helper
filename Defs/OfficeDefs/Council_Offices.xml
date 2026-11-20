@@ -22,6 +22,9 @@
       <li>{PAWN_nameDef} plans to say a few words at the next supper, and hopes people will listen.</li>
       <li>{PAWN_nameDef} promises to keep meetings short.</li>
       <li>{PAWN_nameDef} expects to spend the first week settling arguments.</li>
+      <li>{PAWN_nameDef} means to sit down with whoever trusts the council least and hear them out.</li>
+      <li>{PAWN_nameDef} says every meeting will end with something decided.</li>
+      <li>{PAWN_nameDef} wants to hear from the people who don't usually speak at meetings.</li>
     </elected>
     <planks>
       <li><key>trust</key><when>LowTrust</when><text>{PAWN_nameDef} says the council has stopped listening, and promises meetings where everyone gets a word in.</text></li>
@@ -50,6 +53,9 @@
       <li>{PAWN_nameDef} says the first job is to walk the wall and see where it is weak.</li>
       <li>{PAWN_nameDef} talks about drills at dawn, and people groan.</li>
       <li>{PAWN_nameDef} wants to know where everyone sleeps, so they can be found quickly in a raid.</li>
+      <li>{PAWN_nameDef} plans to walk the walls at dusk after every attack, to see what the raiders found.</li>
+      <li>{PAWN_nameDef} wants a word with everyone who fought, after every fight, to see how they are holding up.</li>
+      <li>{PAWN_nameDef} wants everyone who can hold a weapon at the drills.</li>
     </elected>
     <planks>
       <li><key>raid</key><when>RecentRaid</when><text>{PAWN_nameDef} talks of the last raid, and wants the weak side of the wall seen to before the next one.</text></li>
@@ -74,6 +80,9 @@
       <li>{PAWN_nameDef} means to count everything in the stores, twice.</li>
       <li>{PAWN_nameDef} wants a written record of what goes in and out of the stores.</li>
       <li>{PAWN_nameDef} means to drive a hard bargain with the next trader.</li>
+      <li>{PAWN_nameDef} will walk the storerooms at dawn once a week and tell everyone what is running short.</li>
+      <li>{PAWN_nameDef} wants to be the one who talks to the next trader.</li>
+      <li>{PAWN_nameDef} says the council will spend less from the stores on its answers from now on.</li>
     </elected>
     <planks>
       <li><key>meals</key><when>MealsShort</when><text>{PAWN_nameDef} points at the empty shelves and promises meals put by before anyone goes hungry.</text></li>
@@ -99,6 +108,9 @@
       <li>{PAWN_nameDef} plans to wash {PAWN_possessive} hands, look over the sickbeds and make a list of what they lack.</li>
       <li>{PAWN_nameDef} intends to ask everyone how they are sleeping, and write the answers down.</li>
       <li>{PAWN_nameDef} says the first rule is clean hands, and the second rule is also clean hands.</li>
+      <li>{PAWN_nameDef} means to look in on everyone who is recovering, every day.</li>
+      <li>{PAWN_nameDef} wants the medicine counted and kept where it can be found quickly.</li>
+      <li>{PAWN_nameDef} says anyone who is hurt should come straight to {PAWN_objective}, day or night.</li>
     </elected>
     <planks>
       <li><key>sick</key><when>Sick</when><text>{PAWN_nameDef} has been at the sickbeds lately, and wants a proper place for the ill and the hurt.</text></li>
@@ -123,6 +135,9 @@
       <li>{PAWN_nameDef} wants to know what everyone would like for the next feast.</li>
       <li>{PAWN_nameDef} says the colony should celebrate more often, and means to see that it does.</li>
       <li>{PAWN_nameDef} wants the common room kept warm and lit in the evenings, so people have somewhere to gather.</li>
+      <li>{PAWN_nameDef} plans to be at every gathering, to keep spirits up.</li>
+      <li>{PAWN_nameDef} wants to know who has been working too hard and needs an evening off.</li>
+      <li>{PAWN_nameDef} says a colony that never stops to enjoy itself won't last, and means to make time for it.</li>
     </elected>
     <planks>
       <li><key>spirits</key><when>LowMood</when><text>{PAWN_nameDef} says spirits are low, and promises more evenings worth staying up for.</text></li>

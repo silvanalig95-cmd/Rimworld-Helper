@@ -372,19 +372,18 @@ namespace ColonyCouncil
     /// <summary>The giving day kept (A26): the supper, and the names drawn and the gifts chosen for after it (<see cref="GivingDay"/>).</summary>
     public class DilemmaEffect_GivingDay : DilemmaEffect_Feast
     {
-        /// <summary>Only the children are given to.</summary>
-        public bool childrenOnly;
+        /// <summary>Only the children are given to; the supper is still everyone's (the base's childrenOnly would seat only them).</summary>
+        public bool giftsToChildren;
 
         public override string Unavailable(DilemmaContext ctx) =>
-            childrenOnly && ctx?.map != null && !ctx.map.mapPawns.FreeColonistsSpawned.Any(p => p.DevelopmentalStage.Child()) ? "CC_Life2_NoChildren".Translate().Resolve() : null;
+            giftsToChildren && ctx?.map != null && !ctx.map.mapPawns.FreeColonistsSpawned.Any(p => p.DevelopmentalStage.Child()) ? "CC_Life2_NoChildren".Translate().Resolve() : null;
 
-        protected override string Extra(DilemmaContext ctx) => (childrenOnly ? "CC_Life2_Giving_ImpactChildren" : "CC_Life2_Giving_ImpactAll").Translate().Resolve();
+        protected override string Extra(DilemmaContext ctx) => (giftsToChildren ? "CC_Life2_Giving_ImpactChildren" : "CC_Life2_Giving_ImpactAll").Translate().Resolve();
 
         protected override PlayOut Create(DilemmaContext ctx)
         {
             var p = base.Create(ctx);
-            if (p == null) return null;
-            if (GivingDay.Start(ctx.map, childrenOnly, false, p.id) == null) return p;
+            if (p != null) GivingDay.Start(ctx.map, giftsToChildren, false, p.id);
             return p;
         }
     }

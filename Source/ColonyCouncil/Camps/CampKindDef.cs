@@ -128,6 +128,11 @@ namespace ColonyCouncil
         /// <summary>Their callings: the day's work they come to do, first first (CampDayMath.Order); the camp's common work (wood, gathering, a catch) comes after.</summary>
         public List<CampLabour> works;
         /// <summary>
+        /// The wild plants their gathering looks for first (plant defNames, a mod's by MayRequire: the mushroom pickers' caps);
+        /// with none of them ripe near the camp, they gather what grows wild as any camp does (CampDay.GatherJob).
+        /// </summary>
+        public List<string> gathers;
+        /// <summary>
         /// What they may leave behind (CampPackMath.Leaves), each only when the stay made it: none listed, any that their stay
         /// brings about.
         /// </summary>
@@ -144,9 +149,9 @@ namespace ColonyCouncil
         /// <summary>How tidy they keep their ground: their own word, else orderly for those who leave no trace, careless for those who come to fight.</summary>
         public CampTidy Tidy => tidy != CampTidy.Usual ? tidy : leaves == CampLeaves.NoTrace ? CampTidy.Orderly : fights ? CampTidy.Careless : CampTidy.Usual;
         /// <summary>
-        /// World events that put this kind of camp on the road (a famine, a plague, a war: their kinds): while one
-        /// runs, the camp comes <see cref="situationWeight"/> times as often, and its lines can ask for [ws:kind] and
-        /// name it ({SITUATION}).
+        /// World events that put this kind of camp on the road (a famine, a plague, a war: their kinds, or one world event by
+        /// its defName: cloth gone scarce for the shearers): while one runs, the camp comes <see cref="situationWeight"/>
+        /// times as often, and its lines can ask for [ws:kind] and name it ({SITUATION}).
         /// </summary>
         public List<string> situationKinds;
         public float situationWeight = 3f;

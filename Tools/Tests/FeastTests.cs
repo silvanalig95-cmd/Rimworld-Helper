@@ -87,7 +87,7 @@ public static class FeastTests
 
         // ---------------- The contests ----------------
 
-        C(Enum.GetNames(typeof(ContestKind)).SequenceEqual(new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting" }), "the five contests of decision 7");
+        C(Enum.GetNames(typeof(ContestKind)).SequenceEqual(new[] { "Wrestling", "Race", "Hunt", "Tables", "Shooting", "Singing" }), "the five contests of decision 7, and the singing (B28)");
         C(!FeastMath.Outdoor(ContestKind.Tables) && FeastMath.Outdoor(ContestKind.Race) && FeastMath.Outdoor(ContestKind.Hunt), "only the tables are indoors");
         foreach (ContestKind k in Enum.GetValues(typeof(ContestKind))) C(FeastMath.MaxTicks(k) > 0 && FeastMath.MaxTicks(k) <= 5 * FeastMath.HourTicks, $"{k} ends within hours");
         C(Math.Abs(FeastMath.HardBlowChance - 0.04f) < 0.0001f && Math.Abs(FeastMath.HardBlowChance - OutsiderMath.SparHardBlowChance(0, 0)) < 0.0001f,
@@ -171,7 +171,7 @@ public static class FeastTests
         string feasts = Code("Diplomacy/Feasts.cs");
         C(feasts.Contains("public static GuestFeast Host(Map home, Faction people, List<Notable> guests, FeastPurpose purpose, int when, string tag")
           && feasts.Contains("public static event Action<GuestFeast, Map, FeastStage> StageChanged"), "the entry point for 2b.2's weddings: hosting guests who agreed, and the stage's news");
-        C(Enum.GetNames(typeof(FeastPurpose)).SequenceEqual(new[] { "Feast", "Wedding" }), "a feast, or a wedding's guests");
+        C(Enum.GetNames(typeof(FeastPurpose)).SequenceEqual(new[] { "Feast", "Wedding", "Games" }), "a feast, a wedding's guests, or a games day's young (B7)");
         string hub = Code("Diplomacy/Diplomacy.cs");
         C(hub.Contains("Feasts.Hourly(now)") && hub.Contains("Feasts.Daily(now)"), "the hour and the day ride on diplomacy's");
         string book = Code("Diplomacy/DiplomacyBook.cs");

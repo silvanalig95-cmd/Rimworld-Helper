@@ -129,7 +129,7 @@ public static class LifeVarietyTests
                      "Rimfolk_Thought_ToyGiven", "Rimfolk_Thought_ToyHanded", "Rimfolk_Amb_NobodyOutside", "Rimfolk_Amb_KeptPromises", "Rimfolk_Amb_LighterSeason",
                      "Rimfolk_Habit_Fishing", "Rimfolk_Habit_Bath", "Rimfolk_Habit_Cup", "Rimfolk_Habit_Cards", "Rimfolk_Topic_Vote", "Rimfolk_Talk_Vote",
                      "Rimfolk_Dilemma_GivingDay", "Rimfolk_Dilemma_EldersDay", "Rimfolk_Deed_SeatPromiseKept", "Rimfolk_Deed_SeatPromiseBroken", "Rimfolk_Deed_SpokeUp",
-                     "Rimfolk_Deed_SteppedDown", "Rimfolk_Epithet_OldKeys", "Rimfolk_Epithet_OldFurrow", "Rimfolk_Epithet_Drover", "Rimfolk_Epithet_Host", "Rimfolk_Epithet_OldVoice",
+                     "Rimfolk_Epithet_OldKeys", "Rimfolk_Epithet_OldFurrow", "Rimfolk_Epithet_Drover", "Rimfolk_Epithet_Host", "Rimfolk_Epithet_OldVoice",
                      "Rimfolk_Epithet_WordKept", "Council_SeatPromisesKept"
                  })
             C(byName.ContainsKey(d), "def " + d);

@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More council questions of faith (Source/ColonyCouncil/Gods/Worship/WorshipCouncilMore.cs; C13 of
+    docs/content-update-proposals.md), in the flavour style of the council's questions. {GOD} the god of the question (the
+    colony's name for it), {GOD2} A's own where it is another's, {PLACE} the god's place. Each answer plays out on the map:
+    words at the god's place, the place taken up, the plan drawn round it, the place taken down, an offering carried by a
+    scoffer, the festival's eve kept as the council says.
+  -->
+
+  <!-- ===================== The shrine in the way ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_ShrineInTheWay</defName>
+    <label>the shrine in the way</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ShrineInTheWay</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>3</minColonists>
+    <roleB />
+    <texts>
+      <li>The new plans run straight into {PLACE}. {B_nameDef} would sooner build through it and be done; {A_nameDef} has stepped in front of it and says {GOD} was there first. The council is asked to settle where the walls go.</li>
+      <li>{A_nameDef} came to the council with chalk on {A_possessive} hands: somebody has marked out a wall right over {PLACE}. Move it with the proper words, {A_pronoun} says, or build round it, but nobody tears it down without asking.</li>
+      <li>[lowtech] The stakes for the new building cross the stones of {PLACE}. {B_nameDef} says stones can be carried. {A_nameDef} says {GOD} cannot.</li>
+    </texts>
+    <defaultOption>1</defaultOption>
+    <options>
+      <li>
+        <label>Move it, with a rite</label>
+        <outcome>{A_nameDef} said the words over {PLACE} that evening, asking {GOD} to bear with being moved, and it was marked to be taken up and set down somewhere better.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>words for moving {PLACE}</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>17~21</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineInTheWay"><how>move</how></li>
+        </effects>
+      </li>
+      <li>
+        <label>Build round it</label>
+        <outcome>The plans were drawn again around {PLACE}, and {B_nameDef} grumbled over the lost room. {A_nameDef} went out to it at dusk to say it would stay where it stood.</outcome>
+        <ways><tradition>1</tradition><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineInTheWay"><how>round</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>a word at {PLACE}</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>17~21</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Take it down</label>
+        <outcome>The council said the building comes first. {PLACE} is {GOD}'s no longer, and it is to come down. {A_nameDef} went out alone to say goodbye to it, and came back without a word to anyone.</outcome>
+        <ways><toil>2</toil><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>a last word at {PLACE}</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>16~21</hours><duration>0.4~0.6</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineInTheWay"><how>down</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The feast in a hard season ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_FeastHardSeason</defName>
+    <label>the feast in a hard season</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_FeastHardSeason</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>20</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>{GOD}'s festival falls tomorrow, and the larder is thin and the walls still scarred. {A_nameDef} asks the council how it is to be kept: as it ought, with less on the table, or with the rite alone, or not at all this year.</li>
+      <li>{A_nameDef} has been counting what is left in the stores and does not like the sum. Tomorrow is {GOD}'s day, {A_pronoun} says, and the god will be watching what the colony does with it.</li>
+      <li>[lowtech] The hard days have not ended, and {GOD}'s day is on us at sunrise. {A_nameDef} asks whether there is bread to spare for a feast, or only for a prayer.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Keep it, with less</label>
+        <outcome>The council said {GOD}'s day would be kept, but lean: no offering carried from the stores this year and no guests sent for. {A_nameDef} went to {PLACE} that evening to say so.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FestivalEve"><how>lean</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>a word for {GOD}'s day</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>17~21</hours><duration>0.4~0.6</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+      </li>
+      <li>
+        <label>Keep only the rite</label>
+        <outcome>No feast this year. The faithful gathered at {PLACE} that evening, and the rite was said in full; tomorrow will be an ordinary working day.</outcome>
+        <ways><toil>1</toil><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FestivalEve"><how>rite</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>true</priest><label>{GOD}'s rite</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it pass this year</label>
+        <outcome>The council let {GOD}'s day go by. {A_nameDef} went to {PLACE} alone at dusk and stayed there longer than anyone thought needful.</outcome>
+        <ways><toil>2</toil><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FestivalEve"><how>pass</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>{A_nameDef} alone at {PLACE}</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>17~21</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== The scoffer at the rite ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_ScofferAtRite</defName>
+    <label>the scoffer at the rite</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ScofferAtRite</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>3</minColonists>
+    <roleB />
+    <texts>
+      <li>{B_nameDef} laughed at {GOD} in front of the faithful the other day, loud enough for all to hear. {A_nameDef} wants {B_objective} kept away from {GOD}'s rites for a season; {B_nameDef} says a joke never hurt a god that was really there.</li>
+      <li>{A_nameDef} has not forgiven {B_nameDef} for the laughing. Let {B_pronoun} stay away from {PLACE}, {A_pronoun} says, or let {B_pronoun} carry the next offering there with {B_possessive} own hands and see how funny it is then.</li>
+      <li>[lowtech] {B_nameDef} mocked the old ways before {GOD}'s faithful. {A_nameDef} asks the council what a mocker is owed: the door, or the load.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Keep {B_nameDef} from the rites</label>
+        <outcome>The council told {B_nameDef} to keep away from {GOD}'s rites for a season. {A_nameDef} said the words at {PLACE} that evening without {B_objective}, and {B_nameDef} has had a sour face about it since.</outcome>
+        <ways><tradition>2</tradition><openness>-1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_BarScoffer" />
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>{GOD}'s rite, without {B_nameDef}</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{B_nameDef} carries the next offering</label>
+        <outcome>The council set {B_nameDef} to carry {GOD}'s next offering to {PLACE} with {B_possessive} own hands. {B_nameDef} went, rolling {B_possessive} eyes the whole way there, and set it down all the same.</outcome>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ScofferCarries" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it be</label>
+        <outcome>The council would not quarrel over a laugh. {A_nameDef} said nothing more of it, though some say {GOD} was not so ready to forget.</outcome>
+        <ways><openness>2</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>-1</amount><source>Neglect</source><offence>Scoffing</offence><why>the council let a scoffer be</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== A shrine nobody keeps ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_ShrineUnkept</defName>
+    <label>a shrine nobody keeps</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_ShrineUnkept</workerClass>
+    <weight>0.7</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>Nobody left at home keeps {GOD} any more, and {PLACE} stands with dust on it. {A_nameDef} asks the council what is to become of it: kept for the god all the same, given over to another, or left to fall.</li>
+      <li>The last of {GOD}'s faithful is gone from among us, and {A_nameDef} has noticed that nobody walks out to {PLACE} now. A place of a god left untended sits ill, {A_pronoun} says, one way or the other.</li>
+      <li>[lowtech] {GOD}'s stones stand with nobody to sweep them. {A_nameDef} asks: tend them still, give them to a god somebody here keeps, or let the weeds have them.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Keep it for {GOD}</label>
+        <outcome>The council said {PLACE} would be kept, faithful or no. {A_nameDef} swept it that evening and said a word there for a god nobody here holds.</outcome>
+        <ways><tradition>2</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>{PLACE} swept and kept</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>16~21</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>2</amount><why>the council kept its place though nobody held it</why></li>
+        </effects>
+      </li>
+      <li>
+        <label>Give it to {GOD2}</label>
+        <outcome>The council gave {PLACE} to {GOD2}. Someone of {GOD2}'s will walk out and say the words there, and some say {GOD} was not asked.</outcome>
+        <ways><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineGiven" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it fall</label>
+        <outcome>The council let {PLACE} go. It is nobody's god's now, and {A_nameDef} walked out to it once more at dusk before leaving it to the weather.</outcome>
+        <ways><toil>1</toil><tradition>-1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><label>a last look at {PLACE}</label><spots><li>Outdoors</li><li>Gather</li></spots><hours>16~21</hours><duration>0.3~0.5</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineLetFall" />
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

@@ -212,6 +212,18 @@ namespace ColonyCouncil
                 foundingWaitUntil = Find.TickManager.TicksGame + GenDate.TicksPerDay * 3;
                 return;
             }
+            // A god's festival the council already answered for on its eve (Gods/Worship/WorshipCouncilMore.cs, the feast in a
+            // hard season): only its rite, held that evening, so the day itself is not kept; or let pass.
+            if (d.kind == CalendarKind.GodFestival)
+            {
+                string eve = WorshipCouncilMore.EveAnswer(GodOfDay(d), map);
+                if (eve == "rite") return;
+                if (eve == "pass")
+                {
+                    PassDay(d, map);
+                    return;
+                }
+            }
             SendLetter(d, occurrence, map, home, years);
         }
 
@@ -836,6 +848,10 @@ namespace ColonyCouncil
             if (given.Count > 0) restDate = today;
             return given;
         }
+
+        /// <summary>Someone has today's rest timetable from the calendar: a rest day, or the rest of a day given off (worn thin, CouncilLife/LifeArcs.cs).</summary>
+        public bool RestingToday(Map map, Pawn p) =>
+            p != null && map != null && restDate >= 0 && restDate == DateKey(map) && restHours.TryGetValue(p.ThingID, out var had) && !had.NullOrEmpty();
 
         /// <summary>
         /// What an hour was before today's rest day turned it (Work, Anything), or null when the day didn't touch it. Taking

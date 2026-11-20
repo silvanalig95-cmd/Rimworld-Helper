@@ -136,6 +136,11 @@ every card does.
 *Ties:* Offices (`OfficeTracker`, by-elections), Heart (bands, `HeartTimeOff`), A1, A23. *Size:* M. *Harm:* none.
 *Text:* council question, flavour style: "{A_nameDef} came to the council with the {OFFICE}'s keys wrapped in a cloth
 and set them on the table. 'Someone else should carry these for a while,' {A_pronoun} said, and didn't sit down."
+**Built** (20 November 2026, colony life's variety, part 1, not released yet; DESIGN.md "Colony life's variety, part 1: the council's situations and its everyday questions"). "Five days worn" is read from the
+heart's new since-when (strain 55 or more), "laid up ten days" from the game's own age of the illness or wound keeping
+them abed; B, the one who would stand in, is named in the letter (the most able at the seat's work holding no seat). The
+deputy does every act and word of the seat for ten days (`OfficeTracker.Acting`); the holder has the heart's day off at
+once, or the rest of the day when one can't be given yet. The deed "stepped down from a seat" is the first of A23's deeds.
 
 **A4 (V) Two wishes, one pile of steel.**
 When two colonists' open wishes each need the same stuff to build and the stores hold enough for only one (steel,
@@ -146,6 +151,10 @@ one who notices, when there is one.
 *Ties:* Wishes (the worker's thing, promises, `Kept`, trust), council questions, A2. *Size:* M. *Harm:* none.
 *Text:* council question, flavour style: "There are ninety bars of steel in the store and two people with plans for
 every one of them. {A_nameDef} has chalked an outline on the bedroom floor. {B_nameDef} has chalked one over it."
+**Built** (20 November 2026, part 1, not released yet). A is always the one who asked first, so the answers are first
+come first served (A's), B's first, and neither until there's more; whoever waits is told why face to face by the
+quartermaster or the other asker. The stuff is the wish's thing's fixed costs and its stuff (the kind the stores hold
+most of), ten at least each.
 
 **A5 (I) A promise in the seat, halfway through.**
 The election's promises are judged only at the next yearly vote. Halfway (25 days or more in the seat), when the map
@@ -185,6 +194,11 @@ sponsor and welcome the groups already have), and the newcomer's "somewhere to b
 the wary dislike it. Each age has its words (a tribe's welcome at the fire, a spacer colony's orientation week).
 *Ties:* `DecreeDef.daily`, a new `DecreeMoment`, Groups (`GroupMath`), Arcs (`ArcWorker_Newcomer`), deeds and names,
 setbacks. *Size:* M. *Harm:* none added; a watcher out at night meets whatever the game sends. *Text:* plain (decrees).
+**Built** (20 November 2026, part 1, not released yet). The rota goes round the colony's fighters in a fixed order, two a
+night (one when there is only one); the watch is asked for after an attack. The welcome's hour is a sitting at a table
+where there is one; it counts as welcomes for the group the newcomer is finding their way into (two from its own people),
+the host speaks for them there when fond enough, and it is the welcome the newcomer's story waits for when the host is
+its friendly face. "Sponsor" read as the group's own speaking for a newcomer; groups' "welcome" as their daily welcomes.
 
 **A8 (V) Coming of age: four more paths.**
 A child who comes of age is offered one of four apprenticeships today (crafting, medicine, scholarship, fighting:
@@ -333,6 +347,9 @@ at the next election noted. Each gate passes only on what happened.
 *Ties:* Offices (voted out, the grudge), a new arc worker, the social web, A16. *Size:* M. *Harm:* none. *Text:*
 personal stories, flavour style: "{PAWN_nameDef} handed over the {OFFICE}'s ledger with every page in order, and one
 page more that said only: good luck."
+**Built** (20 November 2026, part 1, not released yet). The word comes from the winner, so it begins only with the winner
+at home; helping them is an afternoon's lesson at their side and the rivalry eased; "a run at the next election noted"
+is in the journal and the chronicle. The council now keeps when each seat's holder took it.
 
 **A19 (V) The one sent away.**
 After a banishment, for the colonist closest to the one sent out (the one who objected in the letter, else the closest
@@ -341,6 +358,10 @@ friend or the chaplain; then better days, or, if the one sent away ever comes ba
 (the "joining the colony" wish already there).
 *Ties:* `Social/BanishDilemmas.cs`, Arcs, Wishes, the chaplain's day. *Size:* M. *Harm:* none. *Text:* personal stories,
 flavour style.
+**Built** (20 November 2026, part 1, not released yet). The closest is the one who would stand by them (the banishment
+letter's own rule), else the one who thinks best of them. If they come back to the gate, the colonist walks out to meet
+them; the game's own joiner letter is the choice to let them in, so no wish is made (the "joining the colony" wish holds
+only for prisoners).
 
 **A20 (V) Worn thin.**
 After the heart's own episode ends (`Council_Heart_WornOut`), or a week near breaking. A quiet day; a word from the
@@ -349,6 +370,9 @@ the story); then back to themselves (strain at 30 or under for two days, a gate 
 lifts some of the weight and gives the friend a small mark of kindness.
 *Ties:* `Heart/Episodes.cs`, `HeartTimeOff`, `HeartLogic`, Arcs (`ArcHold.Strain`), A9. *Size:* S/M. *Harm:* none.
 *Text:* personal stories, flavour style.
+**Built** (20 November 2026, part 1, not released yet). The friend sits with them at a table; a day off is the heart's
+(running or given since the stage began) or the calendar's rest timetable today; with none in twelve days it comes to
+nothing. The friend's mark is a new small one, "stood by a friend" (warmth, outlook).
 
 **A21 (E) The weight of office: the hard call made real.**
 The third stage of "the weight of office" (`Rimfolk_Arcs_World.xml`) says "Had to make a call today that somebody won't
@@ -385,10 +409,10 @@ name at 120 days (to choose; for instance Old Keys, Old Furrow, the Drover, the 
 two promises judged kept.
 *Ties:* `Defs/DeedDefs/`, `Epithets/` (`NameRecords`), Offices. *Size:* S/M. *Harm:* none. *Text:* plain.
 **Built** (20 November 2026, colony life's variety part 2, not released yet; DESIGN.md "Colony life's variety, part 2").
-Four deeds (`Defs/DeedDefs/Rimfolk_Deeds_Council.xml`) and six names (`Defs/EpithetDefs/Rimfolk_Epithets_Council.xml`)
+Three deeds (`Defs/DeedDefs/Rimfolk_Deeds_Council.xml`) and six names (`Defs/EpithetDefs/Rimfolk_Epithets_Council.xml`)
 on records of days in five seats and of promises kept (`Defs/Misc/Rimfolk_Records_Council.xml`). Spoke up for someone is
-the one named objecting in the council's question about sending someone away. Stepped down waits on A3:
-`LifeDeeds.SteppedDown(holder, office)` is the hook for its "let them step down" answer.
+the one named objecting in the council's question about sending someone away. Stepped down is A3's own deed
+(`Rimfolk_Deeds_CouncilLife.xml`, recorded by `CouncilLife/StepDown.cs`), not made twice.
 
 ### Groups, gossip and talk
 
@@ -503,6 +527,7 @@ loss, a brush with death: the only two that change a goal now). `Council_Journal
 `Council_Journal_Epithet` 22 (only 2.7 effective for a speaker): +14. `Council_Journal_TieFormed_Comrades` 22 and
 `_Friends` 25: +12 each. `Council_Journal_Anniversary` 23: +10. `Council_Journal_Homecoming` 9: +10. About 100 lines,
 plain. Sample: "They made me {OFFICE}. I went back to work afterwards, because nobody said what else to do." *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). Recounted first (unchanged): 99 lines in `Rimfolk_Lines_ColonyLife_Journals.xml`, the counts as proposed. The changed goal's entry is now written with its spark (`WriteTagged`), its new lines tagged `[loss]` or `[downed]`. A voice of one line got one more, so it is still drawn with the plain lines.
 
 **A32 (T) Teasing, jokes and shared memories in talk.** Eighteen teasing pools (`Rimfolk_TL_*_Tease`: food, work,
 growing, the council, the future, the colony's project, outside, art, prisoners, the calendar, drugs, wealth, tech,
@@ -511,30 +536,36 @@ raids, children, love, the camp, health) have 8 to 14 lines each, only in the pl
 `_Repaid_Close`, `Rimfolk_TL_Joke_Downpour_Close`, `_Snowball_Close`): +7 each. `Rimfolk_TL_Joke_JokeHeard_Close` 10:
 +6. `Rimfolk_TL_Mem_ChildFound_Open`, `_Reply`, `_Close` 11, 11 and 7: +6 each. About 170 lines, plain, one sentence each
 where said aloud; old talk left as it is. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 167 lines in `Rimfolk_Talk_Lines_Teasing.xml`: six for each teasing topic, two plain and one each in the cheerful, warm and blunt voices and the gloomy or the cold, since those who tease in their own voice draw them (`TalkMath.Voice`); the closing words as proposed, one in each voice and the rest plain.
 
 **A33 (T) Decree voices for the thinnest decrees.** Lines for and against, extension files counted: every faith its
 evening 4 and 3, foraging days 5 and 3, saving the power 5 and 3, wood for the winter 6 and 3, one ideoligion 4 and 7,
 a hunting season 8 and 4, days of rest 8 and 7. +6 on each side under 8 (about 70), tagged by the traits that care, as
 `Extra_DecreeLines.xml` does, and by age where the decree's form changes (banked fires for a tribe). Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 72 lines on the twelve sides under eight (a hunting season's and days of rest's support already had eight), in `Rimfolk_DecreeLines_ColonyLife.xml`; four plain lines a side, most tagged by a trait or faith of the decree's reactions or by the age of its form (the berry days, the gleaning, the hunters' moon, a cull), and two in voices that had none or one. Saving the power is for a colony on the grid, so its lines are for the industrial and spacer ages.
 
 **A34 (T) The council's answers to wishes.** The wish scene pools of `Council_Scenes.xml`: `Council_Pool_MeToo` 32
 (about 10 draws a year), `_Bitter` 24, `_BrokenPromise` 21, `_PassedOver` 22, `_SelfHelp` 25, `_Promised` 26: +10 each
 (60). Wishes, so the flavour style. Samples: "Ask the council? I did. I've still got the answer somewhere, folded very
 small." / "If {OTHER_nameDef} is getting one, I'd like it noted that I asked first, quietly." *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 60 lines in `Rimfolk_Lines_ColonyLife_Wishes.xml`, one in each voice and five plain for each pool, each one sentence since it is said aloud; the pools' own people kept (`{ENVIED_...}` for asking because someone got one, `{OTHER_...}`, `{WISH}` and `{MINE}` for passed over).
 
 **A35 (T) Gossip and council talk in the social log.** `Council_Gossip_Devoted` 12 lines, `Council_Gossip_Bitter` 23,
 `Council_Decree_Gripe` 17, `Council_Decree_Argue` 15 (about 10 a year each): +10 to 12 each (about 45). The four newest
 deeds' gossip has 3 lines each (`Rimfolk_GossipTopic_Jailbreak`, `_Binge`, `_DugUpDead`, `_RanWild`): +5 each; six each
 for A23's deeds. Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). 45 rules for the council's talk and 23 things the gossip was about, in `Defs/InteractionDefs/Rimfolk_LogLines_ColonyLife.xml`. Of A23's deeds only the first is built (a seat put down, in colony life's variety, part 1): its three things to six; the others get theirs when they are built.
 
 **A36 (T) Social events with two texts.** About 25 social events of the elders' and the quirks' (in
 `Rimfolk_SocialEvents_Lives.xml`, `Rimfolk_SocialEvents_Quirks.xml`, `Council_SocialEvents_Lives.xml`) have 2 or 3
 texts each: +2 each (about 50), by age where it matters. Plain. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). All 35 social events of the three files, the six of the old, the 23 of the quirks and the six of secrets, vendettas and life goals beside them: two texts more each (70), written into the defs, since no file joins texts to a social event. None turned on the age.
 
 **A37 (T) The seats' first words and the year letter's last.** Each seat has three lines for what a new holder means to
 do (`elected`, 12 seats): +3 each (36), plain, each something the seat really does on the map (A1). The year letter's
 closing word (`Council_Pool_AnnalsClose`, 36 lines) and the anniversary's (`Council_Pool_Anniversary`, 17 lines,
 8/2/2/2/2/1): +10 each, as letters, in the flavour style. *Size:* S.
+**Built** (20 November 2026, not released yet; DESIGN.md "Colony life's text variety"). The seats' 36 first words written into `Defs/OfficeDefs/` (no file joins words to a seat), about the seats' work as A1 and the duties show it; the 20 last words in `Rimfolk_Lines_ColonyLife_Letters.xml`. The anniversary's lines are said aloud, so one sentence each, nine plain and one cold (its voices keep under three).
 
 ---
 
@@ -747,6 +778,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B6. Two more scarcities: cloth, and timber** (V; S)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_WS_Variety4.xml`, `World/Variety/`). Decided: cloth gone scarce comes on its own, three times as readily within 40 days after a murrain or closed markets; its tailor buys the colony's cloth dear or teaches a day's Crafting (coats from worn ones); timber gone scarce comes only after a great fire, a flood, rebuilding or a great work, and its carpenter's apprentice asks the colony's best builder for a day's teaching; both make their goods a quarter dearer with that people's traders (the region's prices), and the shearers and the woodcutters come with them.
 - **Cloth gone scarce.** This comes alone, or after sickness in the herds or markets closed:
   - Weavers and tailors buy cloth, wool and leather dear.
   - A tailor of theirs at the gate wants the colony's cloth or teaches Crafting.
@@ -761,6 +793,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B7. The games: a season of contests in the region** (V, with I; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_WS_Games`, `World/Variety/GamesDay.cs`, `FeastPurpose.Games`). Decided: the four names by age as proposed; champions on the road three times as often, travelling groups and camps a third more; the games day is a letter's answer with two days' notice, then the feast's own day without notables or a meal hope: young people of 16 to 25, two of the games' people and one of a second friendly people (three of the one when there is none), the bouts, the race and the shooting match where the colony has targets, by the feast's rules; the end letter names a champion of the region, and a colonist who won at the games day is named in it and gets the feast's contest deed; a games team camps on the road.
 - **On the map.** A town within reach holds its games. Each age has its own form:
   - **Tribal:** the gathering games.
   - **Medieval:** a tourney.
@@ -780,6 +813,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** bouts as at feasts, a hard blow now and then at the game's rate, shown.
 
 **B8. A pardon proclaimed** (V; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_WS_Pardon`, `World/Variety/Pardon.cs`). Decided: it follows the succession ended with a kind head (its `kind` flag), or comes from a people in a holy year; the outlaw's meal is the road beat at the gate; the prisoners' beat comes only while the colony holds prisoners of that people, and its answer sets them all free by the game's own release (the wardens walk them out), counted as help to that people (the small favour) with goodwill at its end; bounty hunters don't come while it runs (weight 0), the outlaw quest at 0.3; outlaws walking home camp nearby; merciful in the colony's ways.
 - **On the map.** After a kind new head takes their seat, or in a holy year, that people proclaims a pardon:
   - Outlaws of theirs walk home along the roads, and one asks a meal at the gate.
   - The colony may send home its prisoners of that people, pardoned. They walk out as a ransomed captive does, their
@@ -901,6 +935,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Built** (20 November 2026, not released yet; DESIGN.md "The peoples and their ties"; `Peoples/PeopleTies.cs`). Decided: 77 of the peoples' events name their callings (every one that comes by itself; follow-ups and the art handed on are as ever); bound 1.5, a broken word 0.67 while still felt; the speaker carries a pact, fealty or an envoy; the gift goes to the carrier first, else as ever.
 
 **B15. The peoples' own encounters** (V, with I; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Encounters_Peoples.xml`, `StrangerRole.calling`, `WorldScenes`). Decided: two for each of the 23 callings, one showing their ways and one telling how their people began; five new scenes that must be true on the map and play out (a grave, a broken machine, a colony animal, a mech with Biotech, a building: books or the comms console), the old injury by the colonist's own hediffs; the linesman looks over the comms console rather than climbing a roof, and the Kiln Guild's moment is a mason judging a piece the colony made; small thoughts (+1 to +3).
 - **What happens now.** An encounter with a visitor of one of Rimfolk's peoples is a general one: road news, a recipe
   swap.
 - **On the map.** Two moments per people, by their ways, 46 in all. Some examples:
@@ -992,6 +1027,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B20. Beekeepers on the move** (V; M; only with Alpha Bees or VFE Medieval 2)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Camp_Beekeepers`, `Camps/CampVariety.cs`). Decided: only with Alpha Bees, whose beehouses are the camp's hives at its edge (straw skeps without them were left out); spring and summer, five to eight days; honey, wax and mead in their pack and on their page (Alpha Bees' or VFE Medieval 2's); helping at their hives is two hours at a beehouse, practice with animals and Alpha Bees' own stings; the queen once the colony knows Alpha Bees' basic beekeeping, woodland or temperate by the land; they don't ask the colony to keep fires and axes away (no such rule plays out on the map).
 - **On the map.** In summer, a beekeeping family camps by the colony's flowering ground for five to eight days:
   - They set their hives at the edge of the camp (Alpha Bees' `RB_Beehouse` as a camp piece, else straw skeps by the
     fire).
@@ -1008,6 +1044,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** a sting now and then on a colonist who helps at their hives, by the existing bee-sting ailment.
 
 **B21. Mushroom and truffle pickers** (V; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Camp_MushroomPickers`, `CampKindDef.gathers`). Decided: in the fall, or within six days after the mushrooms after rain; only on wooded land; they gather the listed caps first (VPE's, else the caves' agarilux and bryolux), then the camps' usual gathering; truffles with Alpha Animals, else raw fungus, and a pig or dog with them; in one stay in four, one of them falls ill with the game's food poisoning in the evening and they ask for the colony's doctor; the ask to keep the herd out of the wood is left out (nothing would keep it).
 - **On the map.** In autumn, or after the "mushrooms after rain" event, a few pickers camp on wooded or cave land. They
   gather the wild mushrooms that grow there (the camps' existing gather work):
   - with Vanilla Plants Expanded - Mushrooms, from its plants (`VPE_Plant_Healtruffle`, `VPE_Plant_Glowcap`,
@@ -1054,6 +1091,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 - **Harm:** none.
 
 **B24. A stud visit** (V; M)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `Rimfolk_Mission_StudVisit`, `Missions/Workers_MissionStud.cs`). Decided: any people at peace that keeps a kind the colony keeps and that breeds by mating (egg layers excluded), herding peoples first; their male to the colony's females or their female to its male; it stands five to seven days as the colony's own, so the game's mating does the rest; the fee is a seventh of the beast's worth, 30 to 200 silver, taken from the stores when the drover comes for him; their goodwill +8 for a stand kept to its end, -10 if their animal is lost; their courier brings the young once born; the silver for his keep is half the fee (at least 20), asked by letter only, and then no fee is paid and no young is owed.
 - **On the map.** Herders, the Circuit of Tamers or any herding people ask the colony to let their best male of a kind
   the colony keeps stand in its pen for five to seven days. Then:
   - the game's own mating does the rest;
@@ -1122,6 +1160,7 @@ are marked **V** (variety), **E** (enhancing), **I** (integrating) and **T** (te
 
 **B28. A feast's guests hope for their own people's contest, and a singing contest** (V, with I; S for the hopes, M for
 the contest)
+- **Built** (20 November 2026, not released yet; DESIGN.md, "The world's variety: new world events, camps and encounters"; `FeastMath`, `Diplomacy/FeastSinging.cs`, `FeastContests`). Decided: the hopes as listed, gene-editors and mechanitors at the tables, river folk at the race, the vault's folk and the Choir a fine meal and music; up to six singers, the guests and the colony's people in turn, at any instrument the colony has built (the game's and any mod's), else by a lit fire; the score is artistic and social skill with a little for an instrument and some luck; it answers a hope for music as a concert does, and its champion is named as any contest's.
 - **What happens now.** Guests hope for a contest by their world age only (`Diplomacy/FeastMath.cs`, `FeastHope`).
 - **The hopes, by people.**
   - **The hunt:** hunters, herders, grovekeepers.
@@ -1240,7 +1279,7 @@ Finding one would need a search outside the catalogue.
 ## Content update, part C: the gods and faith, the land and its life, and the other mods
 
 A list to pick from (the player's request of 20 November 2026, "another large content update"). Nothing here is built
-until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); so are C19, C20, C21, C22, C24, C28 and C30 (the land and its life, not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
+until the player picks. C1, C2, C3, C4, C16 and C17 are built (not released yet); so are C19, C20, C21, C22, C24, C28 and C30 (the land and its life, not released yet), and C5, C9, C10, C11, C13, C23 and C31 (the gods' variety, with thirty-one new happenings between the colony's people, not released yet); each says so. Every item was checked against the code, the defs, DESIGN.md and HANDOFF.md, and against the
 active rows of `docs/player-mods/`. Nothing here was dropped by the player before, and each item builds on something
 that already exists.
 
@@ -1426,6 +1465,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `Vows`, `VowKind`, life goals (`Rimfolk_Worship_Goals.xml`), `WorshipJobs`, the visitors at the gate.
   Life-goal text is in the flavour style.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Worship/VowsSeason.cs`). Decided: each a life goal (weight 0.35) set by the devout or the priest, only to its gods (`WorshipMath.VowFits`), fifteen days; the lamp is the light within eight cells of the god's place, filled from the stores below six tenths, broken the night it is out or gone; a tree a week near its place, broken by a week with none or by felling a tree; plain bread broken by a fine or lavish meal; callers are a party of visitors or traders, broken when one leaves unfed.
 
 **C6 (I) A vowed pilgrimage that really walks out** (M)
 - **When:** today the pilgrimage vow walks to the far edge of the colony's own land. When a holy place of that god lies
@@ -1471,6 +1511,7 @@ Each item that adds text says which of these it follows.
   - Only for someone up and about, never someone on bed rest (`BedRest`). Never in a heat wave.
 - **Ties:** ailments, `Health/BedRest`, `OwnHelios` (a fourth happening for him), belief.
 - **Harm:** the sunburn ailment keeps its own rate; an hour adds nothing to it.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/OnMap/Between/BetweenHelios.cs`, `HeliosSun`). Decided: 11 to 14 o'clock, clear, 15 to 34 degrees, no heat wave; an illness or ailment the body is fighting off, up and about and not to be kept abed (`HealthAIUtility.ShouldSeekMedicalRest`); the severity eased by 0.06 once after the hour; the one walked out remembers the kindness.
 
 **C10 (V) The gods' rarest gifts, from the mods** (M)
 - **What changes:** the great tier of the gods' touch (one in 40 days at most for any god, `GodTouchMath`) may, once in
@@ -1495,6 +1536,7 @@ Each item that adds text says which of these it follows.
 - **Harm:** the weapons are persona weapons (`CompProperties_BladelinkWeapon`), with the game's own bonds and traits;
   what the mod's weapons do (`GhostlySickness` among its hediffs) is the mod's own, to be read before building.
   Rimfolk adds no harm.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Touch/GodRareGifts.cs`). Decided: after a god's great effect (not an anger), half the time once 120 days have passed since the last rare gift for the whole colony; a masterwork in a ring of ash; the egg after Smoulder's waking on the same wait, its hatchling the colony's. Read before building: the mod's JavelinShock and RockSmash are its weapons' hit effects, GhostlySickness the ghostly flintlock's (not given).
 
 **C11 (V) Who is drawn to which god: the rest of the player's xenotypes** (S)
 - **What changes:** about 30 active xenotypes draw nobody today. Each would get a pull by what it is
@@ -1520,6 +1562,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** belief, the Culture tab, the book.
 - **Mod pool:** every row checked against `xenotypes.tsv`.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `PawnGodsMath.XenotypeDraws`). Decided: weights 12 to 20 by how plainly the xenotype fits; beside the table, Paws of Interest's Skitty (a kitten) to Tamiu and Goodra (a rain dragon) to Murmur.
 
 **C12 (E) The keeper at work** (M)
 - **On the map:** the book's keeper is chosen today but never seen at the work.
@@ -1544,6 +1587,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** `WorshipCouncil`, the room planner and the defense lines, `Festivals`, `PawnGods`, the book's verse on what
   was chosen.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Gods/Worship/WorshipCouncilMore.cs`, `Defs/GodDefs/Rimfolk_Worship_Dilemmas_More.xml`). Decided: "in the way" is a blueprint or frame of the colony's within a cell and a half of the place; the hard season is under five days of food or a raid in the last three days, asked on the festival's eve, its answer kept on the day (with less: no offering and no guests; the rite only: held that evening, the day not kept; let pass); "laughed at the rite" is the scoffer's mockery before the faithful (`FaithHeart`) within five days, kept from the rites for fifteen days; a shrine nobody keeps is a dedicated place whose god nobody at home holds, given to the asker's own god.
 
 **C14 (I) The raiders' gods, heard at the wall** (S to M)
 - **On the map:** today the colony learns a raiding people's gods silently (`Pantheon.LearnFromVisitors`). Instead:
@@ -1675,6 +1719,7 @@ Each item that adds text says which of these it follows.
 - **Ties:** deaths and grief, newcomers, the journal.
 - **Mod pool:** Alpha Bees; never comes without it.
 - **Harm:** none.
+- **Built** (20 November 2026, not released yet; `Source/ColonyCouncil/Immersion/TellingBees.cs`). Decided: the beekeeper by Alpha Bees' own beekeeping priority, then skill with animals (else the best with animals); up to four hives in a round, in daylight on a quiet day; after a death +2 for two days; the news let go after three days; under the small habits setting.
 
 **C24 (I) A cup for the sick** (S to M) Built, not released yet (the player's go of 20 November 2026; DESIGN.md, "The land and its life").
 - **On the map:** the first-pot habit already carries coffee or tea to a friend in the morning (`Immersion/FirstPot.cs`).
@@ -1802,6 +1847,7 @@ Each item that adds text says which of these it follows.
   `Rimfolk_GodsOnMap*.xml`) have one wording each. The player has seen the same card three times.
 - **Add:** two more wordings each, about 156 lines, saying the same thing seen, with the same placeholders.
 - **Style:** plain words; the cards are the world's voice, not a god's.
+- **Built** (20 November 2026, not released yet; `Languages/English/Keyed/Rimfolk_GodCards_Wordings.xml`). The 99 card texts of the gods' own happenings, the gods on the map and the festivals, each with two more wordings, told through `TextVariants.Vary`; the 31 new happenings between the colony's people (DESIGN.md, "The gods between the colony's people") come in three wordings from the start.
 
 **T2 / C32 (T) The gods' own lines** (M)
 - **Now and to add**, each god's lines in `Rimfolk_Gods.xml`:

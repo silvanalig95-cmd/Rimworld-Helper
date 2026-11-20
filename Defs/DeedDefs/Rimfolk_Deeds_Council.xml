@@ -5,8 +5,9 @@
     Deeds of the council's life (the content update's A23, 20 November 2026; Source/ColonyCouncil/LifeVariety/
     LifeMarksDeeds.cs), recorded by hooks in the code: a promise in a seat judged kept or broken at the yearly election
     ({DETAIL} the seat), speaking up for someone before the council (the one named objecting when the council is asked to
-    send someone away; {VICTIM} the one they spoke for), and stepping down from a seat ({DETAIL} the seat). Same rules as
-    Rimfolk_Deeds.xml; their gossip topics follow.
+    send someone away; {VICTIM} the one they spoke for). Stepping down from a seat, A23's fourth, is A3's own deed
+    (Rimfolk_Deeds_CouncilLife.xml, recorded by CouncilLife/StepDown.cs). Same rules as Rimfolk_Deeds.xml; their gossip
+    topics follow.
   -->
 
   <ColonyCouncil.DeedDef>
@@ -46,17 +47,6 @@
     <logTopic>Rimfolk_GossipTopic_SpokeUp</logTopic>
   </ColonyCouncil.DeedDef>
 
-  <ColonyCouncil.DeedDef>
-    <defName>Rimfolk_Deed_SteppedDown</defName>
-    <label>stepped down from a seat</label>
-    <theme>steppeddown</theme>
-    <facets><discretion>4</discretion><diligence>-2</diligence></facets>
-    <fadeDays>120</fadeDays>
-    <interest>1</interest>
-    <text>stepped down as {DETAIL}</text>
-    <labelText>the council on the {DATE}</labelText>
-    <logTopic>Rimfolk_GossipTopic_SteppedDown</logTopic>
-  </ColonyCouncil.DeedDef>
 
   <RulePackDef>
     <defName>Rimfolk_GossipTopic_SeatKept</defName>
@@ -91,15 +81,5 @@
     </rulePack>
   </RulePackDef>
 
-  <RulePackDef>
-    <defName>Rimfolk_GossipTopic_SteppedDown</defName>
-    <rulePack>
-      <rulesStrings>
-        <li>gossip_topic->a councillor who stepped down</li>
-        <li>gossip_topic->the empty seat and why it's empty</li>
-        <li>gossip_topic->who will take the seat now</li>
-      </rulesStrings>
-    </rulePack>
-  </RulePackDef>
 
 </Defs>

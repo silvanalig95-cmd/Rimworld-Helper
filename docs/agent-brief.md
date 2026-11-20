@@ -12,9 +12,11 @@ compiles against the 1.6 reference assemblies.
 **Read first:** `CLAUDE.md` (the player's binding rules: soft integrations only, harm only at the game's own rate and
 shown, every age its own form, the colony is the family (no dynasties), the full mod pool from `docs/player-mods`
 active rows (check every def name you use; `python3 Tools/poolcheck.py`), the gods are unseen, words match the map,
-speech through `Speech.Say`/`Together` and one sentence per bubble, plain neutral text with the medieval voice only in
-the letters' `olde` lines and the gods' and faiths' texts, bug fixes before features, no filler); `docs/HANDOFF.md`
-(your task's entry is quoted below with the player's words); `docs/text-style-samples.md` for the plain-text style.
+speech through `Speech.Say`/`Together` and one sentence per bubble, plain neutral text, except the flavour style the
+player kept on 20 November for letters, wishes, ambitions, life goals, personal stories, council questions, camps and
+world events, and the medieval voice in the letters' `olde` lines and the gods' and faiths' texts; bug fixes before
+features, no filler); `docs/HANDOFF.md`
+(your task's entry is quoted below with the player's words); `docs/text-style-samples.md` for the plain-text style (the flavour parts match the lines already around them).
 Code conventions: Harmony patches as `[HarmonyPatch]` classes applied by `RimfolkPatches.ApplyAll`; `Sched` offsets
 unique; comments and player text in plain, concrete prose like the surrounding code. No em dashes and no exclamation
 marks in text you write. No model names anywhere.

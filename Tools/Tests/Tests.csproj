@@ -303,6 +303,7 @@
     <Compile Include="../../Source/ColonyCouncil/RoomUseMath.cs" Link="RoomUseMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/GuestGroupBedsMath.cs" Link="GuestGroupBedsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/YearFourMath.cs" Link="YearFourMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/CouncilLife/CouncilLifeMath.cs" Link="CouncilLifeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/LandingMath.cs" Link="LandingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/HandOverMath.cs" Link="HandOverMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Colonies/TownAfterMath.cs" Link="TownAfterMath.cs" />
@@ -368,6 +369,9 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/MogMath.cs" Link="MogMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnHappeningsMath.cs" Link="OwnHappeningsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnSevenMath.cs" Link="OwnSevenMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnBetweenMath.cs" Link="OwnBetweenMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Immersion/TellingBeesMath.cs" Link="TellingBeesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Gods/Touch/GodRareGiftsMath.cs" Link="GodRareGiftsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnFeastsMath.cs" Link="OwnFeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/GodBeastsMath.cs" Link="GodBeastsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Things/ArtTalesMath.cs" Link="ArtTalesMath.cs" />
@@ -378,6 +382,7 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/Among/GodsAmongMath.cs" Link="GodsAmongMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Home/WorldHomeMath.cs" Link="WorldHomeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/RegionPricesMath.cs" Link="RegionPricesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Variety/VarietyMath.cs" Link="VarietyMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/RaidersCampSignsMath.cs" Link="RaidersCampSignsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/TakenInMath.cs" Link="TakenInMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Diplomacy/CallsFromHomeMath.cs" Link="CallsFromHomeMath.cs" />

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More of the colony's answers to the council about their wishes (the content update's A34, 20 November 2026), joined
+    to the scene pools of Council_Scenes.xml: asking because someone else got one ({ENVIED_...}), a promise heard, a
+    promise broken, someone who asked later served first ({OTHER_...} got {WISH}, theirs was {MINE}), seeing to it
+    themselves, and the bitter's grumbling. Wishes, so the flavour style (CLAUDE.md, "Plain, neutral text"). Said aloud
+    as well as written, so each is one sentence. One more line a voice, the rest plain.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_MeToo</defName>
+    <pool>Council_Pool_MeToo</pool>
+    <lines>
+      <plain>
+        <li>{ENVIED_nameDef} has one now, and I've been looking at it every day since.</li>
+        <li>If {ENVIED_nameDef} could ask and get one, I thought I'd try my luck as well.</li>
+        <li>I'm not jealous of {ENVIED_nameDef}, I'd just like the same, that's all.</li>
+        <li>[trait:Jealous] Everyone keeps telling me how nice {ENVIED_nameDef}'s is, as if I hadn't noticed.</li>
+        <li>[newcomer] I'm new here, but I've seen what {ENVIED_nameDef} was given, and I'd like my turn.</li>
+      </plain>
+      <warm><li>I asked {ENVIED_nameDef} how it felt to get one, and the answer made me want to ask too.</li></warm>
+      <blunt><li>{ENVIED_nameDef} has one, so put my name down next.</li></blunt>
+      <cheerful><li>{ENVIED_nameDef} showed me {ENVIED_possessive}, and I've been thinking about it ever since.</li></cheerful>
+      <gloomy><li>I watched {ENVIED_nameDef} get one and told myself I didn't mind, which wasn't true.</li></gloomy>
+      <cold><li>{ENVIED_nameDef}'s request was granted, so mine should be judged by the same standard.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_BrokenPromise</defName>
+    <pool>Council_Pool_BrokenPromise</pool>
+    <lines>
+      <plain>
+        <li>You promised me "{WISH}", and I told people it was coming.</li>
+        <li>I waited because you promised, and now I've nothing to show for the waiting.</li>
+        <li>I'll remember this promise longer than you did.</li>
+        <li>I trusted the council more than most, and this is what it gets me.</li>
+        <li>A promise from the council turns out to be worth about as much as a no.</li>
+      </plain>
+      <warm><li>I'd have understood a no, but I can't understand a promise that just went away.</li></warm>
+      <blunt><li>You broke your word, and I'll not forget it.</li></blunt>
+      <cheerful><li>So much for counting the days, then.</li></cheerful>
+      <gloomy><li>I should have known better than to hope, after all this time here.</li></gloomy>
+      <cold><li>The promise lapsed, and I'll weigh the council's next one accordingly.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- {OTHER} got {WISH}; theirs was {MINE}. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_PassedOver</defName>
+    <pool>Council_Pool_PassedOver</pool>
+    <lines>
+      <plain>
+        <li>{OTHER_nameDef} has "{WISH}" already, and I'm still waiting on "{MINE}".</li>
+        <li>I asked first, but I suppose {OTHER_nameDef} asked louder.</li>
+        <li>Funny how {OTHER_nameDef}'s request went straight to the top of the pile.</li>
+        <li>[trait:Jealous] I saw {OTHER_nameDef} get it, and I'll be thinking about that for a while.</li>
+        <li>There must be a list somewhere, and I'd like to know who wrote my name so far down it.</li>
+      </plain>
+      <warm><li>I'm glad for {OTHER_nameDef}, truly, but I was hoping it would be my turn first.</li></warm>
+      <blunt><li>{OTHER_nameDef} jumped the queue, and everybody saw it.</li></blunt>
+      <cheerful><li>Good news for {OTHER_nameDef}, and I'll take it as a sign mine is coming soon.</li></cheerful>
+      <gloomy><li>Of course {OTHER_nameDef}'s came first, mine never does.</li></gloomy>
+      <cold><li>I asked earlier, so I'd like to know what {OTHER_nameDef} had that I didn't.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_Promised</defName>
+    <pool>Council_Pool_Promised</pool>
+    <lines>
+      <plain>
+        <li>Good, I'll stop bringing up "{WISH}" at every meal.</li>
+        <li>Then I'll take you at your word and wait a little longer.</li>
+        <li>[repeat] At last, after all the times I've asked.</li>
+        <li>[petition] I'll tell the others who put their names to it, they'll be glad to hear.</li>
+        <li>I'll tell the others it's coming, so don't make a liar of me.</li>
+      </plain>
+      <warm><li>Thank you for listening, it means a lot that someone did.</li></warm>
+      <blunt><li>Good, now see that it happens.</li></blunt>
+      <cheerful><li>I knew if I asked nicely enough it would come round.</li></cheerful>
+      <gloomy><li>[bitter] Another promise, and I'll believe this one when it's in front of me.</li></gloomy>
+      <cold><li>Then I'll expect it, and I'll ask again if it doesn't come.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_SelfHelp</defName>
+    <pool>Council_Pool_SelfHelp</pool>
+    <lines>
+      <plain>
+        <li>I stopped waiting for "{WISH}" and got on with it myself.</li>
+        <li>It took me a while, but I've seen to it with my own hands.</li>
+        <li>Nobody else had the time, so I made the time myself.</li>
+        <li>I'd rather have had help, but it's done now and that's what matters.</li>
+        <li>[trait:Lazy|trait:Slothful] I've done it myself, and you've no idea how much that cost me.</li>
+      </plain>
+      <warm><li>I knew everyone was busy, so I sorted it out and didn't want to make a fuss.</li></warm>
+      <blunt><li>Waited, got nothing, did it myself.</li></blunt>
+      <cheerful><li>It turns out I'm quite handy when nobody else is available.</li></cheerful>
+      <gloomy><li>I did it myself, and nobody even noticed I'd been waiting.</li></gloomy>
+      <cold><li>I've dealt with it myself and saved the council the trouble of deciding.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <!-- Said by those whose trust in the council has gone bitter. Only {PAWN_...}. -->
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_ColonyLife_Pool_Bitter</defName>
+    <pool>Council_Pool_Bitter</pool>
+    <lines>
+      <plain>
+        <li>I've asked the council for things before, and I've stopped keeping count of the answers.</li>
+        <li>They say the council is there for everyone, but it's never been there for me.</li>
+        <li>[lowmood] I'm tired, I'm fed up, and the council is the last place I'd go for help.</li>
+        <li>I put my name to things, and the council puts them at the bottom of the pile.</li>
+        <li>The council has its favourites, and I'm not one of them.</li>
+      </plain>
+      <warm><li>I want to trust the council again, I just don't know how any more.</li></warm>
+      <blunt><li>The council can sort out its own problems, since it won't sort out mine.</li></blunt>
+      <cheerful><li>Ask the council for something, I dare you, and see how long you wait.</li></cheerful>
+      <gloomy><li>Nothing I say to the council ever changes anything.</li></gloomy>
+      <cold><li>I've stopped counting on the council, and I've arranged things accordingly.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

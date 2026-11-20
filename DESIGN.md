@@ -232,6 +232,50 @@ tone draws on its own lines alone only with three or more; a tone of one or two 
 one person, the unlucky one of ten, would say their own line again within a year, with no memory and with the speaker's
 (`--by-speaker` ranks by it; some journal pools' draws are read from the save).
 
+### Colony life's text variety (the content update's A31 to A37; the player's go, 20 November 2026; released 0.284.0)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good", with "adding more
+text variety" in the first request. The thin pools part A counted with `Tools/variety_report.py`, recounted after the
+integrations and colony life's variety, part 1 (none of them had grown), each brought up as proposed, about 600 lines:
+
+- **A31, journals of the council's life** (`Rimfolk_Lines_ColonyLife_Journals.xml`): a seat taken (8 to 24 lines), a
+  life goal changed (8 to 24), a lower seat (3 to 12), a name earned (22 to 36), comrades in a fight (22 to 34), a
+  friendship (25 to 37), a year in the colony (23 to 33) and home from a journey (9 to 19). A changed goal is now written
+  with what changed it (`Aspirations.TryChangeOfHeart`, `WriteTagged` with the spark), so its lines are tagged `[loss]`
+  or `[downed]`, the only two sparks that change a goal (`GoalMath.Big`).
+- **A32, teasing, jokes and shared memories** (`Rimfolk_Talk_Lines_Teasing.xml`, `TalkLinesDef`s joined by topic or
+  memory, turn and outcome): six more openings for each of the eighteen thin teasing topics (8 to 14 lines each before,
+  14 to 20 after), in the plain and cheerful voices and in the warm, blunt, gloomy and cold ones of those who tease in
+  their own voice (`TalkMath.Voice`); seven more closing words for being nursed, a close call, a debt and the downpour
+  and snowball jokes (3 to 10 each), six for the joke passed on (10 to 16) and six for each turn of the lost child (11,
+  11 and 7 to 17, 17 and 13).
+- **A33, the thinnest decrees' voices** (`Rimfolk_DecreeLines_ColonyLife.xml`, as `Extra_DecreeLines.xml`): six more on
+  every side under eight lines, twelve sides: every faith its evening (4 and 3 to 10 and 9), foraging days (5 and 3 to 11
+  and 9), saving the power (5 and 3 to 11 and 9), wood for the winter (6 and 3 to 12 and 9), one ideoligion (4 and 7 to
+  10 and 13), against a hunting season (4 to 10) and against days of rest (7 to 13). Tagged by the traits and faiths of
+  the decree's own reactions, and by the age where its form changes (the berry days, the hunters' moon, a cull).
+- **A34, the council's answers to wishes** (`Rimfolk_Lines_ColonyLife_Wishes.xml`): ten more for asking because someone
+  else got one (32 to 42), the bitter (24 to 34), a broken promise (21 to 31), passed over (22 to 32), seeing to it
+  themselves (25 to 35) and a promise heard (26 to 36), in the flavour style the wishes keep.
+- **A35, the social log** (`Defs/InteractionDefs/Rimfolk_LogLines_ColonyLife.xml`, `LogLinesDef`s): speaking well of the
+  council (12 rules to 24), grumbling about it (23 to 33), griping and arguing about a decree (17 to 29, 15 to 26), and what
+  the gossip was about for the four newest deeds (3 to 8 each) and for A23's first deed, a seat put down (3 to 6).
+- **A36, social events**: two more texts for each of the 35 social events of the old, the quirks, secrets, vendettas and
+  life goals (`Rimfolk_SocialEvents_Lives.xml`, `Rimfolk_SocialEvents_Quirks.xml`, `Council_SocialEvents_Lives.xml`; 2 or
+  3 texts to 4 or 5), written into the defs, since no file joins texts to a social event.
+- **A37, the seats' first words and the year's last** (`Defs/OfficeDefs/`, in the defs for the same reason; and
+  `Rimfolk_Lines_ColonyLife_Letters.xml`): three more first words for each of the twelve seats (3 to 6), each about the
+  seat's own work on the map (the speaker's hour with the one who trusts least, the quartermaster's count, the reeve's
+  walk, the marshal on the walls at dusk, the physician's rounds); ten more last words for the year letter (36 to 46) and
+  for a year in the colony (17 to 27).
+
+Journals, talk, the social log, social events and the seats' words are the colony's people speaking or writing, in plain
+words; the answers to wishes and the year's letters in the flavour style. Every line said aloud is one sentence. A voice
+of one line got at most one more, so it stays below three and is still drawn with the plain lines
+(`LineMemory.ToneDrawsAlone`); a voice of three or more, drawn on its own, got one or two more. Tags that win a pick (a trait,
+a mood, a passion, a season) were kept to the people a line is really for, so the unlucky speaker isn't handed the same
+tagged line every time. Tests: `Tools/Tests/ColonyLifeTextTests.cs`.
+
 ### Example letter
 
 > **Engie wants a proper workshop**
@@ -447,6 +491,140 @@ offices' setting.
   marshal's dusk now (their waits forgotten, their hours from now), a question of a seat's work, a promise halfway asked
   now (any promise hands can help), the colony's petitions read out as at a meeting, and a new holder's story given its
   call.
+
+### Colony life's variety, part 1: the council's situations and its everyday questions (the content update's A3, A4, A7, A18, A19 and A20, and twenty-five questions of everyday life; the player's go, 20 November 2026; released 0.283.0)
+
+The player: "just variety, further kind of events, camps, world events, normal storyteller events, dilemmas, etc." and
+"yes, I want more events, camps, world events, and dilemmas, but first do all the integrations". With the integrations
+built, colony life's first round of variety: a seat holder asking to step down (A3), two wishes for one pile of stuff
+(A4), two decrees that show on the map (A7), three personal stories of the council's and the heart's life (A18, A19, A20),
+and twenty-five council questions of the colony's everyday life. The rules without game types are
+`CouncilLife/CouncilLifeMath.cs` (tested in `CouncilLifeTests`). Everything uses what the integrations made: the seat
+speaking in its questions (A2), the seats' acts (A1), the heart's day off, the groups' welcomes, the play-outs.
+
+- **A seat holder asks to step down (A3, `CouncilLife/StepDown.cs`, `Rimfolk_Dilemmas_CouncilLife.xml`).** A holder at
+  home who has stood worn down or near breaking five days running (strain 55 or more; the heart now keeps since when,
+  `PawnHeart.wornSince` and `breakingSince`, looked at each hour in `HeartLogic.Evaluate`), or has lain ten days in a
+  sickbed with the same illness or wound (`Life.LaidUpDays`: in bed resting by the doctor's word, the oldest such hediff's
+  own age), never while an election is under way, asks the council (A the holder, B the one who would stand in: the most
+  able at the seat's work at home who holds no seat). Answers: let them step down (`OfficeTracker.StepDown`: the seat
+  empties with no mood of a seat lost and no trust lost, the strain eases by 12, a journal line, a chronicle line, the
+  history's `office:stepped` and the deed "stepped down from a seat"; the by-election comes as for any empty seat); B
+  stands in for ten days (`OfficeTracker.deputies`, saved: `Acting` is the deputy for their days, and `Interplay.Officer`,
+  `OfficerOf`, `Holds` and `Officers` ask for the one acting, so the seat's acts, A1's and the older ones, and the seat's
+  voice in its questions are the deputy's; the holder has the heart's day off at once, `DilemmaEffect_HeartDayOff`, or the
+  rest of the day off when one can't be given yet; told when the days are over); or ask them to stay (the devoted, trust
+  60 or more, trust the council 2 more, `DilemmaEffect_TrustDevoted`; their strain stays). The council's silence asks
+  them to stay. Decided here: "laid up" is read from the game's own age of the illness or wound keeping them abed, and
+  the deputy is B, so the letter can name them.
+- **Two wishes, one pile (A4, `CouncilLife/OneSteel.cs`).** Two colonists' open wishes, not promised and not part of a
+  petition, each for a thing that costs something to make (its fixed costs and its stuff, the stuff the stores hold most
+  of), sharing a stuff the stores hold enough of for either but not both, ten at least each (`OneSteelMath.OneOnly`). A is
+  whoever asked first. The quartermaster speaks in it ([seat]). Answers: first come, first served (A's), B's first, or
+  neither until there's more. The first is promised as the council's Promise does it (its own play-out runs: a plan laid
+  in their room and the like); whoever waits has their deadline moved on three days and is told why face to face
+  (`Together.When`, `Rimfolk_Pool_LifeYourTurn` or `_LifeBothWait`, one sentence), by the quartermaster or else the other
+  asker, and takes it as waiting a turn (a small mood), not as being passed over. Decided here: the proposal's third
+  answer, "the one who asked first", is the first answer itself, since A always asked first; the third is "neither yet".
+- **Two decrees that show on the map (A7, `CouncilLife/WatchAndWelcome.cs`, `Rimfolk_Decrees_CouncilLife.xml`).** Run
+  each morning by the decrees' day (`DecreeDef.daily`).
+  - The night watch (six days, asked for after an attack): each night two of the colony's fighters, in turn by a rota
+    over the fighters in a fixed order (`NightWatchMath.Pair`: over n nights every fighter walks), walk the walls and the
+    gate from nine until one (the patrolling vigil, `DilemmaEffect_Vigil` with `patrol`, torches for a tribe or a village)
+    and start late the next morning (the late start, `DilemmaEffect_Hours`). What a running night watch already halves it
+    halves (hungry strangers at the fields in a famine, `GateTroubles.Watched`), each night walked is the deed "kept the
+    night watch" and counts toward Night-Watch (`SharedTimes.PlayDone`), and a long watch in a hard frost can bring a chill
+    through the shared harm budget (`ColdHurts`, as any watch on the walls). Night owls, the nervous and the bloodthirsty
+    like it; the lazy hate it. Its watch is named in the colony's age (the watch at the edge of the camp, the night watch on
+    the walls, the sentry roster, the night shift on the perimeter).
+  - A welcome for newcomers (ten days, asked for when someone here fewer than twenty days stands outside every group, the
+    new `DecreeMoment.Outsider`): each evening a colonist here twenty days or more who doesn't think badly of them spends
+    an hour with each newcomer, sitting down with them at a table where there is one (`DilemmaEffect_Visit` with `sit`):
+    the friendly face of their "somewhere to belong" story when there is one, else whoever thinks best of them. When the
+    hour happened (`PlayOut.afterward` "life:welcome", `LifePlays.Over`), it counts as welcomes for the group the newcomer
+    is finding their way into (two from one of its own people, one from anyone else, `GroupNewcomer.welcomes`), the host
+    speaks for them there when they think well of them (opinion over 24) and nobody does yet, and the newcomer's story
+    counts it as the welcome its first stage waits for when the host is its friendly face. The kind and the warm like it;
+    the aloof and the wary dislike it.
+- **After the vote (A18, `CouncilLife/LifeArcs.cs`, `Rimfolk_Arcs_CouncilLife.xml`).** The council now notes when each
+  seat's holder took it (`OfficeTracker.seatFrom`, saved), and at the count the history keeps who was voted out, of which
+  seat, after how many days, to whom (`office:votedout`). Someone voted out of a seat held a year (60 days) or more, in the
+  last six days, with the winner at home: a sour few days; the winner sits down with them about the seat's work (a visit
+  at a table); then, settled by what they think of the winner (opinion -10 or more and no rivalry of 40), they spend an
+  afternoon at the winner's side teaching what they know (a lesson, and the rivalry eases by 15) or keep the grudge; it
+  ends at peace with it (a small good mood) or with a run at the next election in their journal and the chronicle. Held
+  a seat again before the end, it ends without a word. Decided here: the word comes from the winner, so the story begins
+  only with the winner at home (the proposal's "or with a friend" is left out); an older save's seat with no start on
+  record counts as a year held at a yearly vote.
+- **The one sent away (A19).** For the colonist closest to someone the council banished in the last four days (the one
+  who would stand by them, by the banishment letter's own rule, else the one who thinks best of them, opinion 10 or
+  more): a hard day; a walk out alone to the edge of the colony's land, where the road comes in (`PlaySpot.Edge`); the
+  chaplain, else a friend, sits down with them; then better days, or, when the one sent away is on a home map again, at
+  the gate (the story moves on early, `CustomGate`) they walk out to meet them (`ArcEffect_MeetSentAway`), or they are one
+  of the colony again. Decided here: the game's own joiner letter at the gate is already the choice to let them in, so the
+  story asks it with the colonist's journal and the walk out to them rather than with a wish the council couldn't meet
+  (the "joining the colony" wish holds only for prisoners).
+- **Worn thin (A20).** After the heart's own episode (within three days, once it is over) or a week near breaking: a
+  quiet day; the closest friend comes over and sits with them; a day off taken (the custom gate: the heart's day off
+  running or given since the stage began, or the calendar's rest timetable today, `ColonyCalendar.RestingToday`), so the
+  player's own button moves it on, with no day off in twelve days it comes to nothing; back to themselves (strain 30 or
+  under for two days). Its end eases strain by 10, gives a good mood, and the friend a small mark of character,
+  `Rimfolk_Mark_StoodBy` at six tenths of its size (warmth and outlook).
+- **Twenty-five questions of everyday life (`CouncilLife/EverydayQuestions.cs`, `Rimfolk_Dilemmas_Everyday.xml`).** In the
+  usual rhythm of the council's questions (never timely, never a custom, so no more questions a year), each only while
+  the colony is as its letter says, each setting two of the colony toward or against each other, with forms for a
+  low-tech colony and the rest. Every answer that says something is done does it on the map with the play-outs the
+  questions already use (`playout_audit` 0 candidates); the council's silence sets nothing going; the seat whose work it
+  is speaks in its own ([seat] openings and outcomes naming {HOLDER} and {OFFICE}). No answer hurts anyone; no Bonded mood
+  where it would make the choice plain (`dilemma_balance.py`: trade-offs, none dominated or plain).
+  - Work and rest: *the only one who knows how* (someone at 12 in a craft nobody else has at 6, and someone keen to learn
+    it: a lesson, the craft kept, or left to them); *the broom and the bucket* (one cleans, another who could never does,
+    the home dirty: a turn with the broom, a cleaning day of four, or left); *dawn to dark* (a hard worker strained, a
+    friend wants them stopped: an evening sat down at a table, the heart's day off, or left); *every hand to the harvest*
+    (the reeve's: forty ripe plants waiting: a harvest of five, the two of them, or the growers' own time).
+  - Food and the stores: *the good meals* (the quartermaster's: a fine meal in store for everyone: a supper of them
+    tonight, or kept); *a second helping* (the quartermaster's: a gourmand taking seconds with food under six days: a word
+    at supper, bringing food in, or let be); *a helper in the kitchen* (the cook, and someone keen to cook: a lesson, the
+    cooking handed over a few days, or kept); *a patch of one's own* (the reeve's: a grower wants a corner: a fenced
+    patch sown by the fields, a corner out of the way, or every row the colony's).
+  - Sickness and care: *laid up and bored* (the physician's: two days abed and bored: a friend's evening at the bedside,
+    friends in turn, or rest); *the doctor's rounds* (the physician's: one doctor, someone able who doesn't doctor, someone
+    hurt or ill: a round of the colony, the doctoring handed over, or kept); *the sickroom* (the physician's: filth in a
+    room with a patient abed: three scrubbing it, the doctor alone, or its turn).
+  - The young and the old: *a child and an animal* (the herdmaster's; Biotech: chase with a gentle animal, an afternoon
+    learning the animals, or not yet); *a chair for old bones* (someone of sixty with a room: a chair made and set in it,
+    the best seat by the fire tonight, or not); *a young voice* (eighteen to twenty-three against fifty and over: their say
+    at supper, heard out first one to one, or their turn later).
+  - Animals: *the same hands with the herd* (the herdmaster's: an afternoon at the pens together, a lesson, or left); *a
+    name for the newborn* (an animal born in five days, no herdmaster to name it: either name, given in the game, or none
+    yet); *two hands for one animal* (the herdmaster's: an animal with no master and two who could handle it: either is
+    its master, the game's own, or the herd).
+  - Guests and strangers: *a visitor at supper* (the warden's: a supper with the visitors as guests, a meal carried out to
+    one, or left); *a traveller's news* (the warden's: an evening at the fire with them, an hour with the visitor, or work).
+  - Quarrels and friendships: *two friends who fell out* (the peacemaker's: friends with a fresh friction: a supper for the
+    two, a talk, or left to cool); *an old friend left out* (someone jealous whose friend has a closer friend now: an
+    evening together, brought along to the fire, or left); *talk behind a back* (the peacemaker's: sorry said at supper, had
+    out in private, or let be).
+  - The seasons: *the first warm day* (spring, 18 degrees out at midday: supper out of doors, half an hour in the sun at
+    noon, or the sowing); *a cold bedroom* (a room under 12 degrees, another five warmer: a fire kept in it, the rooms
+    traded, or left); *the storm at night* (a thunderstorm in the evening and someone nervous or a child: everyone up in
+    one room, a friend sits with them, or bed).
+  - Decided here: the questions where a fire is the place say "at a table" where a fire might not be there; the newborn's
+    question comes only with no herdmaster (who names newborns themselves); the sickroom's scrubbing starts at its beds
+    (the work party's new "sickroom" place, `PlayWork.At`).
+- **Every age.** Each question has a low-tech opening; the watch and the welcome are named in each age; the seats in the
+  colony's age (`{OFFICE}`).
+- **Text.** The council's questions, the stories' journals and chronicles in their flavour style (CLAUDE.md, 20 November
+  2026); the decrees, moods, messages, the deed, the mark and the spoken lines plain; every spoken line one sentence.
+- **Saved.** On the council: when each seat's holder took it (a dictionary, one per seat) and the deputies (a list, one
+  per seat at most, dropped at the end of their days), both modelled in `Tools/save_estimate.py`; on the heart, two values;
+  on a question's letter, its context (`DilemmaContextLife`: the seat, the two wishes, the two names). The voted-out
+  record is a history entry.
+- **Harm.** None of Rimfolk's own; the night watch's cold is the watch's, through the shared budget, as before.
+- **Dev mode** ("Rimfolk", "Colony life (council): ..."): each new question asked now (the step-down question taking any
+  holder, two wishes for one pile any two wishes sharing a stuff), each of the three stories begun for a chosen colonist
+  (voted out of a seat held a year to whoever thinks least of them, an episode a day ago; the one sent away needs a real
+  banishment), the night watch's and the welcome's day now, and every deputy's days ended.
 
 ---
 
@@ -18572,6 +18750,168 @@ Harm: only the fellowship's cough from a crowded town (C6), already in the budge
 Not checked without the game: the catch hook's list, the trader lord's timer, a sculpture from a snowman, the trade
 window's line, the shrine rooms' layouts with the mods' pieces.
 
+### The gods between the colony's people, and the gods' variety (the player's go, 20 November 2026; released 0.281.0)
+
+The player on the content update: "In general, I just want additional God events, more immersion, more just further also
+building up on the gods in general, how they're integrated, the effects they have, the relations between pawns, the kind
+of events that generated from it ... And then also, just variety", and "first do all the integrations that you proposed
+in your document before we add additional content variety". With the integrations released (0.278.0, 0.278.1, 0.279.1,
+0.280.0), this is the first of the variety, the gods first: C5, C9, C10, C11, C13, C23 and C31 of part C of
+`docs/content-update-proposals.md`, and, beyond the doc, thirty-one new happenings of the gods' own (two or more for each
+of the fifteen) that set the colony's people toward or against each other. The gods stay unseen in all of it: a card's
+words never name a god; a letter's title names it only where the colony knows it was that god (`Gods.CardName`), the
+Hunger never; what people say is their own guess, one sentence a bubble; the colony's book keeps it as its witness saw
+it; nothing shows a favour, a want or a rule.
+
+**The gods between the colony's people** (`Source/ColonyCouncil/Gods/OnMap/Between/`; the pure rules
+`Gods/OnMap/OwnBetweenMath.cs`, linked into the tests). Each is an `OwnHappening` like the gods' others (added at the end
+of the list, so a save keeps its order), on the gods' pace (`OwnHappeningsMath.BetweenPaceOf`: its own gap, a chance
+growing after it, never without a reason in the world, a near god a little likelier, `GodTouch.Turn` giving the other
+gods their turn; those that follow something, a fight, a fine piece, a sealed body, a newcomer, a hunt, an insult, at
+their own chance once a gap is past, `FollowChance`). The frame (`Between.cs`): one scene at a home at a time
+(`BetweenState`, saved with the gods' own happenings' book, its lists kept small); the kinds looked at in the gods' hour
+in a random order; who stands where (`BetweenStance`: holding the god, a rival's, another's, none, doubting it all); the
+card in three wordings (`CC_GodB_<happening>_Text`, `_2`, `_3`, `TextVariants`), shown with the god's own look where it
+acted (`GodTouchFx`) and the camera; the book (`CC_GodB_Saw_<happening>`, so those who saw it feel it by their belief,
+`GodTouch`; listed in `GodTouchMath.OwnEffectKeys`, so the touch's random effect never comes on top), a doubter's word set
+beside it (`GodLore.Disputed`); and how it ends between the two (`BetweenOutcome`): closer, a quarrel (each held to their
+god the harder, `BeliefEvent.Bickered`), made it up (the old quarrel's memories let go), ashamed, resentful, wary, laughed
+at, a kindness remembered; each a memory of the other in the game's own opinions (`Rimfolk_Between_*`, small: +6 to +8,
+-4 to -6; ashamed -3 and proud +3 are moods), a plain line in the news in three wordings and the journals. Dev mode: "Gods:
+<god>'s ... now" for each (`Gods/OwnBetweenDebug.cs`). No harm: nobody is hurt, no fight.
+
+- **Hollin.** *The saplings between them* (`HollinBound`): two who had an angering fight find two saplings side by side
+  at the next dawn between where they sleep, and stand at them together: made it up, unless one scoffs (a quarrel).
+  *Brambles round the stump* (`HollinStumps`): one who felled twelve trees or more in fifteen days while few were planted
+  finds brambles round their last stump; one who holds her walks out with them: ashamed, or, for a doubter or a rival's
+  man, a quarrel.
+- **Smoulder.** *The forge flares* (`SmoulderPraise`): a masterwork (half the time) or a legend (nearly always) makes the
+  bench throw heat and sparks; the maker is proud, and the next-best hand at that work walks over and resents it.
+  *Pulled back from the fall* (`SmoulderNearMiss`): two at work under the mountain close together; the rock grumbles,
+  one pulls the other back and a scatter of stones comes down where they stood (rubble, never on anyone); a kindness
+  remembered.
+- **Bellwether.** *The old one and the child* (`BellwetherTold`): at dusk the eldest takes a child to the edge and tells
+  of the white beast, and the wild grazers drift close round them; closer. *The hunter who let it go* (`BellwetherSpared`):
+  on a hunt, while the colony has ten days of food and never by a scoffer, the beast turns and looks and the hunter lets
+  it walk off the land; at home one who holds the Old Horn says they did right (closer), else the cook grumbles about the
+  meat (a quarrel).
+- **Morel.** *Whose rot is it* (`MorelWasted`): food let go to rot at home; the cook and another walk to it: if either
+  holds her and neither scoffs, they carry it out to the soil together (closer), else they argue whose fault it was.
+  *Threads on the sealed stone* (`MorelSealed`): one of the colony dead lately sealed in a sarcophagus; at dawn white
+  threads over the stone (her own drawn threads); one who holds her and one who holds Tamiu or Hush (or a doubter)
+  argue over it.
+- **Ennu.** *A bowl for the newcomer* (`EnnuWelcomed`): someone joins; the colony's kindest carries a meal from the
+  stores and sits with them (a kindness remembered); one near who already dislikes the newcomer hears a word from them
+  and is ashamed. *Waiting up for the late one* (`EnnuWaitedUp`): one out far on the land late at night; the one who
+  likes them best waits at the colony's edge with a light until they come in; closer.
+- **Pip.** *It wanted both of them* (`PipTwoHands`): a machine broken four hours or more with nobody at it; two lay
+  their hands on it together and it starts again with a spark, no part used; closer, or a quarrel when one scoffs at it.
+  *Talking to the machine* (`PipTalked`): one who holds the Hum talks to a machine or a bench, a doubter walks over to
+  laugh, the machine hums and brightens, and the doubter is shaken a little; a good sport laughs along, else it stings.
+- **Cirrus.** *A star for two* (`CirrusTwoWatchers`): at night under a clear sky two out of doors watch a star cross
+  (a line of small lights across the sky); closer. *A shape in the clouds* (`CirrusCloudShape`): two under a clouded sky
+  each see their own god's shape: of the same god closer, of two gods a quarrel, a doubter's laugh.
+- **Hush.** *A coat for the cold one* (`HushCoat`): one taking a chill while a warmer coat lies in the stores; one who
+  holds her (else the one who likes them best) carries it out, they put it on, and the frost round them melts; a
+  kindness remembered. *Quiet asked on the cold night* (`HushNoise`): a winter night, someone loud at a party, a game or
+  a long talk; one who holds her asks for quiet: the faithful say sorry and stop, the rest grumble and stop, a doubter or
+  the Open Cup's own refuses, and they argue.
+- **Undertow** (never named). *Seen whispering at the edge* (`UndertowWhisper`): late at night one with a deep grudge
+  (opinion -50) or in despair walks to a dark place at the edge and whispers into the dark; another awake sees it and is
+  wary of them after. *The light let go out* (`UndertowLampOut`): in the small hours a fuelled light by a sleeper goes
+  out; in the morning the sleeper and another argue whose it was to keep, unless they are good friends.
+- **Helios.** *Out into the sun* (`HeliosSun`, C9). *His light on both alike* (`HeliosAlike`): at a clear noon two at
+  odds out of doors near each other; the light lies gold on both, and one who holds the Giver (one of them, or someone
+  near) says he gives to all alike: they make it up, unless one scoffs. *Called into the shade* (`HeliosShade`): a hot
+  noon (33 degrees or more); a friend calls one working in the sun into the shade, and they sit together a while; closer.
+- **Selene.** *Sorry in the morning* (`SeleneSorry`): one who insulted another today stands out under a moon at least
+  half full in the night, and in the morning goes to say sorry: taken (made it up) unless the hurt runs deep (opinion
+  below -40, a quarrel). *The same dream at breakfast* (`SeleneSameDream`): two rested in the morning tell the same dream:
+  friends closer, others uneasy.
+- **Tamiu.** *A cat on the grave* (`MogGraveCat`): at dusk a cat (the colony's, else a stray who goes again after) sits
+  on the grave of one dead within two seasons, and the two who loved them most sit with it; closer. *Riddles at supper*
+  (`MogRiddle`): two quick minds trade riddles; the better wit mostly wins (luck between equals), is proud, and a cat
+  walks at their heel the evening through; a good loser closer, a sore one resentful.
+- **Murmur.** *A splash at the water* (`MurmurSplash`): on a hot afternoon two walk down to the still water and one
+  splashes the other; frogs (Odyssey's bullfrogs) come up croaking; a good sport splashes back, else they take offence.
+  *A frog in the bedroom* (`MurmurFrogIn`): in the rain, with Odyssey's bullfrog, a frog in a bedroom; the sleeper and
+  another come: of one mind about it they laugh and see it out, else one who holds the toad would leave it be and they
+  argue; it hops off into the wet.
+- **Ducat.** *A coin passed on* (`DucatPassed`): a gold coin by one of the colony, carried to the one lowest in spirits,
+  who passes it on a day later, and the third leaves it for the stores; each given it remembers the kindness. *The
+  miser's silver scattered* (`DucatMiser`): one with a greedy heart sits up counting the stores' silver, and by morning
+  it lies in little heaps (none lost); someone laughs at them: ashamed, or, for a doubter, stung.
+- **Revel.** *One cup between them* (`RevelRivalsCup`): late in the evening two at odds; one carries a drink from the
+  stores and sets it down by the other, who drinks it as their drug policy and faith allow (`FirstPot.WillDrink`): made
+  it up; one who won't says so. *A wager lost* (`RevelWager`): two drunk late make a wager, and in the morning the loser
+  scrubs the winner's room: a good loser closer, a sore one laughed at.
+
+**C9, out into the sun** (`HeliosSun`, a fourth happening of his): on a clear, warm noon (11 to 14 o'clock, 15 to 34
+degrees, never a heat wave), one who holds the Giver (else the best doctor) walks someone getting over an illness or an
+ailment, up and about and not to be kept abed (`HealthAIUtility.ShouldSeekMedicalRest`, so Rimfolk's bed rest), out into
+the sun; they sit an hour together, and the illness moves on a little (severity eased by 0.06, once); the one walked out
+remembers the kindness. Its pace: six days apart, about every three when called for.
+
+**C31, three wordings for every god happening card** (`Languages/English/Keyed/Rimfolk_GodCards_Wordings.xml`): the
+second and third wording of each of the 99 cards of the gods' own happenings, the gods on the map and the festivals (the
+first in each god's own file), the same placeholders, plain words; each told through `TextVariants.Vary` where it is made
+(`OwnHappenings.Card`, each god's own file, the gods on the map, the festivals). The new happenings' cards and lines are
+in three wordings from the start.
+
+**C5, four more vows** (`Gods/Worship/VowsSeason.cs`): a life goal each, set by the devout or the priest to the god they
+hold, only to the gods its words are for (`WorshipMath.VowFits`), for a season (15 days), kept on the map by the vower's
+own walk and broken by what anyone can see: *a lamp kept lit* (Pip, Selene, Helios, the Hunger; a light within eight
+cells of the god's place: each day they fill it from the stores when it burns below six tenths, or walk over and see to
+it; broken the night it goes out or is gone); *a tree a week* (Hollin: a sapling set by hand near its place each week;
+broken by a week with none, or by felling a tree); *plain bread* (Hush, Morel: simple meals only, a word over their head
+once a day; broken by a fine or a lavish meal eaten); *every caller fed* (Ennu, Ducat: when callers stand at the gate, a
+meal from the stores set down by one of them; broken when a party leaves unfed). New `VowKind`s at the end of the list;
+the vow's lamp and counts saved on its record; the life goals' text in the flavour style (`Rimfolk_Worship_Goals.xml`).
+
+**C10, the gods' rarest gifts** (`Gods/Touch/GodRareGifts.cs`, `GodRareGiftsMath.cs`): after one of a god's great effects
+(not an anger), half the time once two colony-years (120 days) have passed since the last, a named weapon of Possessed
+Weapons lies where it happened in a ring of scorched ground (ash), masterwork: the glacial cleaver for Hush, the
+lightning javelin for Cirrus, the volcanic maul or the craghammer for Smoulder, the verdant bow for Hollin, the gilded
+arquebus for Ducat, the shrouded dagger for Tamiu, the sanctified sword for Helios, the automaton crossbow for Pip. After
+Smoulder's waking, on the same wait, half the time a warm drake's egg of Dragons Descent (`DD_EggDrakeFertilized`) lies
+among the fallen rock of the deep and hatches as the colony's. The words say what lay there (three wordings), never
+whose; the book keeps it. The weapons are the mod's persona weapons with the game's own bonds and traits (the mod's
+JavelinShock and RockSmash hit whoever the javelin or the craghammer strikes, and its GhostlySickness belongs to the
+ghostly flintlock, not given): Rimfolk adds no harm. None without the mods.
+
+**C11, who is drawn to which god** (`PawnGodsMath.XenotypeDraws`): the proposal's 28 rows (the animusen to Hush, the
+malachai and the wretch to the Hunger, the lapis to Smoulder, the uredd and the åskbarn to Cirrus, the taukai, the
+helixan and the archon to Pip, the hiveling and the insector to Morel, the ocularkin to Hollin, the saurid to Helios, the
+highmate and the waster to Revel, the fleetkind to Ennu, the avaloi to Selene, Paws of Interest's kinds by their own, the
+awakened apes to Bellwether), and, decided here, Paws of Interest's Skitty (a kitten) to Tamiu and Goodra (a rain dragon)
+to Murmur. As belief, never favour; each checked against the player's active xenotypes.
+
+**C13, more council questions of faith** (`Gods/Worship/WorshipCouncilMore.cs`, `Rimfolk_Worship_Dilemmas_More.xml`, in
+the flavour style): *the shrine in the way* (a blueprint or frame of the colony's against a god's place: moved with a rite,
+the place marked to be taken up; the plan drawn round it, those blueprints cancelled; or taken down, undedicated and
+marked to come down); *the feast in a hard season* (a god's festival tomorrow with under five days of food or a raid in
+the last three days: kept with less, no offering carried and no guests sent for, `Festivals.Kept`; the rite only, held
+that evening and the day itself not kept, `ColonyCalendar`; or let pass when it comes); *the scoffer at the rite*
+(someone who laughed at a god before its faithful lately, a "mocked" mark from `FaithHeart`: kept from its rites for
+fifteen days, left out of the festival's gathering; set to carry the next offering, which they carry; or let be); *a
+shrine nobody keeps* (a god's place whose god nobody at home holds: kept and swept, given to the god of the one asking,
+who walks out and says the words, `Shrines.Ask`; or let fall, undedicated). Each answer plays out on the map
+(`Tools/playout_audit.py` counts the new effects).
+
+**C23, telling the bees** (`Immersion/TellingBees.cs`, `TellingBeesMath.cs`): when one of the colony dies, or someone new
+joins, the one who tends the hives most (Alpha Bees' own beekeeping priority, then skill with animals; else the best with
+animals) walks round up to four of Alpha Bees' beehouses (`RB_Beehouse`, `RB_AdvancedBeehouse`), stands a moment at each,
+and tells them, one sentence at the first (`JobDriver_TellBees`). After a death the teller's grief eases a little
+(`Rimfolk_Bees_Told`, +2 for two days); a journal line and a plain line in the news. No penalty if nobody goes: the news
+waits three days and is let go. Under the small habits setting; never without Alpha Bees. Dev mode: "Bees: ...".
+
+Harm: none (no wound, no fight, no illness; the rare gifts' weapons are the mod's own). Saved: `BetweenState` (scenes,
+woodcutters, newcomers welcomed, fights and insults answered, sealed stones seen) and `TellingBeesBook` (news waiting,
+newcomers told), each kept small and modelled in `Tools/save_estimate.py`; the vows' record and the offering's asked
+carrier gain a field each. Not checked without the game: the happenings' timing at the colony's hours, the jobs' walking
+and standing, the frog and the cat strays' leaving, the coat put on, the shrine taken up and the frames cancelled, the
+drake's egg hatching as the colony's, Alpha Bees' hives reached.
+
 ### The world brought home (the player's go, 20 November 2026; released 0.280.0)
 
 The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with
@@ -18774,6 +19114,142 @@ arms' wounded come now...), "Camps: one with the mods' beasts and goods here now
 price, the courier saying the carter's word, the scouts' standing and walking off under their lord and the turrets' answer
 to them, a guest's bed rest and going home (the game's own guest rules beside `TakenIn`'s), the camps' mod beasts in the
 weather.
+
+### The world's variety: new world events, camps and encounters (the player's go, 20 November 2026; released 0.282.0)
+
+The player on the content update: "just variety, further kind of events, camps, world events, normal storyteller events,
+dilemmas, etc. ... So for the content update, yes, I want more events, camps, world events, and dilemmas, but first do
+all the integrations that you proposed in your document before we add additional content variety." With the
+integrations released (0.278.0 to 0.280.2), this is the first round of the variety for the world: B6, B7, B8, B15, B20,
+B21, B24 and B28 of `docs/content-update-proposals.md`, part B, as proposed, and six world events and six camps more of
+the lead's own choosing in the player's direction, each tied into what exists. The code is `Source/ColonyCouncil/World/
+Variety/` (`VarietyWorkers.cs` the world events' workers, `GamesDay.cs`, `Pardon.cs`, `VarietyDebug.cs`), the camps'
+ways `Camps/CampVariety.cs`, the singing `Diplomacy/FeastContests.cs` and `FeastSinging.cs`, the stud visit
+`Missions/Workers_MissionStud.cs`; the pure rules `VarietyMath` (and FeastMath's hopes and singing; linked into the tests,
+`Tools/Tests/WorldVarietyTests.cs`). Nothing new is saved: the world events' own flags, the camps' own state (the pickers'
+roll, `CampWorkState`), the stud visit's mission record and the feast's plan carry it. Words: `Languages/English/Keyed/
+Rimfolk_WorldVariety.xml`; the world events, camps and the council's question in their flavour style, the encounters,
+the stud visit and the messages plain.
+
+Every world event of this round takes its people's age as a tag (`SituationWorker_Variety`: [theirTribal],
+[theirMedieval], [theirIndustrial], [theirSpacer]), so its names and letters have each age's form, and [bound] when its
+people is bound to the colony by a tie (`PeopleTies.Bound`: a pact, a marriage, a ward, an envoy, fealty, a debt of
+honour); one that prefers one of Rimfolk's peoples has a start and an ending paragraph in their ways (B1's `theirs` and
+`theirEnds`). A world event's worker may now make it likelier for the moment (`WorldSituationWorker.WeightFactor`, read by
+`WorldSituations.Weight`), and a camp kind's `situationKinds` may name one world event by its defName as well as a kind
+(`CampKinds.Situation`).
+
+- **B6, two more scarcities.** Cloth gone scarce (`Rimfolk_WS_ClothScarce`, kind scarcity) comes on its own, or three times
+  as readily within 40 days of a sickness in the herds or markets closed, taking over that world event's people with
+  [after:defName] lines (`SituationWorker_ClothScarce`). A tailor of theirs at the gate buys cloth at twice its worth or
+  its plain worth; an old tailor teaches a colonist a way of making coats out of worn ones (a lesson at the gate, Crafting).
+  Timber gone scarce (`Rimfolk_WS_TimberScarce`, kind scarcity) follows a great fire, a flood, rebuilding or a great work
+  (`after`): timber bought dear (carried out, nearly twice its worth, or given), and a young carpenter's apprentice asks
+  the colony's best builder for a day's teaching (a lesson at the gate, Construction). Shearers come more often while cloth
+  is scarce, woodcutters while timber is (their `situationKinds`, by name); their traders pay more for cloth and leather,
+  or wood, at their towns (B5's `RegionPricesMath`, as for iron and medicine).
+- **B7, a season of games** (`Rimfolk_WS_Games`, kind games, spring to fall). A town within reach holds its games in its
+  age's form: the gathering games, a tourney, an athletics meet, a league season. The region's best is one of theirs ({X},
+  made for it and named in the ending). Travelling champions stop three times as often (`Council_Evt_Champion`), a games
+  team camps on the road. The colony may hold a games day (`DilemmaEffect_GamesDay`, `GamesDay.cs`): two young people of
+  the first people and one of the second (the event's `{ENEMY}`, at peace with both), or three of one, each with one or two
+  friends (the feast's retinue), come in two days on the first fine morning for the feast's bouts, race and a shooting
+  match where the colony has targets, eat at the colony's table and stay the night: a feast of its own purpose
+  (`FeastPurpose.Games`: its own arrival and card words, no notables, no hopes). A colonist who wins a contest there is
+  named in the games' ending ([ourWin], `GamesHooks` on `Feasts.StageChanged`) and counts it for their own name as any
+  contest won at a feast. Not offered while guests are coming for another feast. Harm: the bouts' real blow at the feast's
+  own rate, under the shared cap.
+- **B8, a pardon proclaimed** (`Rimfolk_WS_Pardon`, kind pardon). After a kind new head (the succession's follow-up, its
+  flag "kind"), or while a holy year runs (by that year's own people, [holyYear]; `SituationWorker_Pardon`). Outlaws walk
+  home past the colony (on the road), one asks a meal at the gate (carried out to them). Only when the colony holds
+  prisoners of theirs, they ask that those walk home under it: the wardens walk them out by the game's own release
+  (`DilemmaEffect_PardonRelease`), so their people's goodwill and memory ("released") and the debt of honour that follows
+  are the game's and Rimfolk's own. While it lasts no bounty hunters come and the outlaw quest is a third as likely; a camp
+  of outlaws walking home may stop a night.
+- **B15, the peoples' own encounters** (`Defs/EncounterDefs/Rimfolk_Encounters_Peoples.xml`). Two moments for each of the
+  23 peoples (46): `StrangerRole.calling` picks a visitor (or their trader) of that people. One of each pair is their ways
+  (the Waystone Book's ink, a hospitaller looking at a colonist's old injury, a herder looking over the colony's animals, a
+  pilgrim standing at the colony's graves, a scholar at its books, a river-folk knot, a warden's rule, a sexton at the
+  graves, a tamer and a colony animal, a Wheel salvager at a broken machine, a reader under the night sky, the Mossborn's
+  count, a soldier comparing scars, a guild mason asking after a colonist's work, a linesman at the comms console, the
+  union's vote, the census-taker's notebook, the crew's log, the Helix Works asking first, a Lattice mechanitor at a colony
+  mech, a Choir listener humming, a vault dweller's old part), the other how their people began, as their descriptions tell
+  it. Where a moment says the visitor does something, it is true on the map and plays out: five new scenes
+  (`WorldScenes`: grave, broken, beast, mech, building, with the jobs `Rimfolk_PE_StandAt` and `Rimfolk_PE_LookOver`), the
+  old ones (sky, hum), and a colonist's own state (an old injury, a passion, able to fight).
+- **B20, beekeepers on the move** (`Rimfolk_Camp_Beekeepers`, spring and summer). Decided: they come only with Alpha Bees,
+  whose beehouse is their hive (two set at the edge of the camp, built by them and taken with them); with VFE Medieval 2
+  too, its honey and mead are among their goods. They tend the hives by day, sell honey, wax and mead at their stall, and on
+  asks a crock of honey or their wax (the first of the mods' that exists), a colonist's afternoon at their hives (a job
+  beside the beehouse, Animals, so the game's own bee-sting ailment comes at its own rule), and a queen (temperate, or
+  woodland for a home among trees) only once the colony has Alpha Bees' basic beekeeping. Decided: no ask to keep fires and
+  axes from the hives, as nothing on the map would hold it.
+- **B21, mushroom and truffle pickers** (`Rimfolk_Camp_MushroomPickers`). In the fall, or within six days of the colony's
+  own mushrooms after rain, by the woods (`needs` woods; `CampWorker_MushroomPickers`). Their gathering takes the land's
+  caps first (`CampKindDef.gathers`: Vanilla Plants Expanded - Mushrooms' healtruffle, timbercap and glowcap, the caves'
+  agarilux and bryolux), else what grows wild; they sell Alpha Animals' black truffles (else raw fungus) and raw fungus,
+  with their truffle pig or dog. One stay in four, one of them eats a cap that looked right and wasn't: the game's food
+  poisoning, on them, told, and they ask for the colony's doctor (the camps' own tend at their fire).
+- **B24, a stud visit** (`Rimfolk_Mission_StudVisit`). A herding people (the herders preferred) asks the colony to let one
+  of their animals stand in its pen for five to seven days, of a kind the colony keeps that the game breeds by mating
+  (mods' kinds included; egg layers left out). Their male with the colony's females, or their female with the colony's
+  male; while it stands it is the colony's, so the game's own mating pairs them. Theirs: if one of the colony's is
+  pregnant by him when their drover comes back, the young is the colony's and their courier takes a fee (a seventh of his
+  worth, 30 to 200). Ours: if she has taken, their courier brings one of the young to the gate once it is born (the rest of
+  her gestation and a few days). By letter, the colony may ask them for silver for the keep instead (half the fee, no fee
+  and no young owed). Dead or lost, it ends badly; bonded to a colonist, they leave it.
+- **B28, a feast's guests hope for their own people's contest, and a singing contest.** By calling (`FeastMath.HopeOfCalling`):
+  the hunt for the hunters, herders and grovekeepers; the bouts for the mercenaries, drillers, citizens and crew; the tables
+  for the traders, brokers, scholars, artisans, seers, and (decided) the editors and mechanitors; the race for the
+  salvagers, linesmen, tamers, and (decided) the fishers; a fine meal and music for the pilgrims, sextons, healers,
+  listeners, and (decided) the vault's folk. Any other people hopes by its age, the Empire by its own ways. The singing
+  (`ContestKind.Singing`): up to six singers, guests and colonists in turn, each sings one song at the colony's instrument
+  (the game's or a mod's, its own music playing while they sing) or, without one, by a fire, each with a word as they start;
+  the best by Artistic and half Social, two more for an instrument, and up to four of luck. It answers a hope of music, as a
+  concert does, and a neighbour's feast of such a people holds one.
+
+Six world events more (`Defs/WorldSituationDefs/Rimfolk_WS_Variety5.xml`):
+- **A hiring fair** (kind hiring, spring and fall): the young of the region walk past to find places (the gathering of the
+  young, a hiring fair, a labour exchange, a crew call), one asks at the gate whether the colony has a place (taken in, or
+  sent on); the young hands camp on the road; the peoples' own ways of hiring.
+- **A town's founding day** (kind jubilee): a people at peace keeps the day its town began; a runner asks a gift for it
+  (silver carried out), good wishes, or, when the town is within three tiles, a colonist who goes to sit at it (away two
+  days); each of the 23 peoples tells how its ways began, in a start and an ending paragraph, as its description has it.
+- **The roads gone to mud** (kind mud, spring, the road league preferred): caravans and visitors fewer; a carter sells a
+  load of potatoes that would spoil for half its worth (paid and set down at the gate); travellers stuck by the mud ask two
+  nights indoors; carters sit it out in a camp on the colony's land.
+- **Falling stars** (kind stars, the Stormglass Conclave preferred): a finder sells a piece of a fallen star at the gate
+  (star-iron for a colony of the old ways, plasteel for a later one); star-watchers camp under the colony's sky; the
+  colony's believers take it for a god's doing (one of B32's great events, Cirrus or Selene, in the book as they believe
+  it); a council question asks for a night out under the stars (a gathering outdoors).
+- **The great burying** (kind burial, the Quiet Bell preferred): a flood opens an old battlefield and its people bury the
+  dead; a sexton asks linen for the shrouds (cloth carried out); when the colony has unburied enemy dead on its land,
+  sextons with their beast ask to take them (the undertakers' own load and carry, `DilemmaEffect_BuryingTake`).
+- **The bridge down** (kind bridge, the river folk preferred): travellers go the long way round past the colony; timber for
+  the new bridge bought dear or given; travellers rest a night by the wall; carters camp; wood is dear at their towns.
+
+Six camps more (`Defs/CampDefs/Rimfolk_CampKinds_Variety4.xml`):
+- **Hands on the road** (with a hiring fair): young people walking to find places, a night or two; they work for their
+  supper (most will hire), one may stay.
+- **Stranded carters** (spring and fall, ten times as often in the mud or with a bridge down): they wait out the road and
+  sell from their load; the colony can send hot meals over.
+- **Gleaners** (fall, more in a hungry year, drawn by a generous colony): a family asks to walk the colony's harvested
+  rows (three of them in the fields for a couple of hours); the colony can send a sack of food.
+- **A games team** (with the games): young people training on their way; a colonist can train with them (Melee).
+- **Outlaws walking home** (only with a pardon): a night's camp on the way home; food for the road.
+- **Star-watchers** (with falling stars or a comet): they lie out under the open sky from dusk to one and sleep by day
+  (`CampWorker_StarWatchers`); a colonist can watch with them in the evening (Intellectual).
+
+Harm: the games day's bouts at the feast's own rate; a sting now and then for a colonist at the beekeepers' hives by the
+game's own ailment; a picker's food poisoning on them, one stay in four, shown. Nothing else new hurts anyone.
+
+Dev mode: "World variety: start one of the new world events now...", "... one of the new camps here now...", "... a
+people's own encounter now...", "... a stud visit offered now", "... the stud visit's days up now", "... what the pardon
+would cover here (log)"; the feast's own "a feast with a people's notables, set for today..." holds the singing among its
+contests. Not checked without the game: the games day's young people at the gate and in the contests, the pardon's walk
+out, the new scenes' jobs on visitors under their lords, the beehouses built and taken down by the beekeepers, a colonist's
+sting at them, the pickers' preference among the caps, the poisoned picker's ask, the star-watchers' nights, the stud's
+mating and the young one's arrival, a singer at an instrument with its music, and how often each comes in a real colony.
 
 ### Four small asks (the player's request, 12 November 2026; released 0.222.0)
 
@@ -19450,8 +19926,8 @@ once an hour with its life (`LifeVariety.Hourly`: the giving day's lamps and end
 - **A23, deeds and names of the council's life** (`LifeMarksDeeds.cs`, `Rimfolk_Deeds_Council.xml`,
   `Rimfolk_Epithets_Council.xml`, `Rimfolk_Records_Council.xml`). Deeds told round the colony: kept a promise in a seat and
   broke one (judged at the yearly election), spoke up for someone before the council (the one named objecting when the
-  council is asked to send someone away), stepped down from a seat (`LifeDeeds.SteppedDown`, for the question of a holder
-  asking to step down). Records of days in the seats that had none, counted with the names each day (the
+  council is asked to send someone away); stepped down from a seat is A3's own deed (`CouncilLife/StepDown.cs`,
+  `Rimfolk_Deeds_CouncilLife.xml`), not made twice. Records of days in the seats that had none, counted with the names each day (the
   quartermaster's, the reeve's, the herdmaster's, the steward's, the elders'), and names at 120 days, as Old Doc and Old
   Iron are: Old Keys, Old Furrow, the Drover, the Host, the Old Voice; and Word-Kept for two promises in a seat judged
   kept. Plain.

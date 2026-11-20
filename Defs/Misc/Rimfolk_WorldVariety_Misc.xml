@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- A singer's turn in a feast's singing contest (Source/ColonyCouncil/Diplomacy/FeastSinging.cs; the content update's B28). -->
+  <JobDef>
+    <defName>Rimfolk_FeastSing</defName>
+    <driverClass>ColonyCouncil.JobDriver_FeastSing</driverClass>
+    <reportString>singing for the feast's contest.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>

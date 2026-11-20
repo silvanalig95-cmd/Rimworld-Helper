@@ -1,0 +1,929 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content update's camps (docs/content-update-proposals.md, part B): B20 beekeepers on the move, B21 mushroom and
+    truffle pickers, and six more of this round, each tied to what exists: hands on the road to a hiring fair, stranded
+    carters in the mud, gleaners after the harvest, a games team on its way to the games, pardoned outlaws walking home,
+    and star-watchers come for the falling stars or a comet. Their ways in Source/ColonyCouncil/Camps/CampVariety.cs (the
+    beekeepers' hives and the colonist who helps at them, the pickers' season and their bad cap, the star-watchers' nights).
+    Each in its people's age's form ([their:tribal]...). Camps' letters in their flavour style; bubbles are speech, one
+    sentence each. Herds, dogs and goods from the player's mods first (MayRequire), the game's own after.
+  -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampTendHives</defName>
+    <reportString>tending the hives.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2400</ticks><effecterNamed>Harvest_Plant</effecterNamed></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampSortCaps</defName>
+    <reportString>sorting the day's mushrooms.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampTrain</defName>
+    <reportString>training for the games.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1800</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampWatchSky</defName>
+    <reportString>watching the sky.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>3000</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- A colonist helping the beekeepers at their hives (CampVariety.cs): beside one of the beehouses, by the game's own
+       bee-sting ailment's rule (Ailments/AilmentChecks.cs, the Beekeeping trigger). -->
+  <JobDef>
+    <defName>Rimfolk_HelpAtHives</defName>
+    <driverClass>ColonyCouncil.JobDriver_HelpAtHives</driverClass>
+    <reportString>helping at the beekeepers' hives.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== Beekeepers on the move (B20) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Beekeepers</defName>
+    <label>beekeepers</label>
+    <workerClass>ColonyCouncil.CampWorker_Beekeepers</workerClass>
+    <arrives>7~12</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.5</weight>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+    </seasons>
+    <family>true</family>
+    <people>3~5</people>
+    <days>5~8</days>
+    <ages>14~65</ages>
+    <trader>true</trader>
+    <task>Rimfolk_CampTendHives</task>
+    <taskAt>spot</taskAt>
+    <hireChance>0.15</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>mend</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>stall</role></li>
+      <li><role>spot</role><defs><li MayRequire="sarg.rimbees">RB_Beehouse</li></defs><stuff><li>WoodLog</li></stuff><count>2</count></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>beekeepers carry their hives with them to the next flowering ground</leavesWhy>
+    <works><li>Gather</li><li>Chop</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li MayRequire="sarg.rimbees">RB_BaseHoney</li><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Honey</li></defs><count>10~20</count><at>stall</at></li>
+      <li><defs><li MayRequire="sarg.rimbees">RB_Beeswax</li></defs><count>8~14</count><at>stall</at></li>
+      <li><defs><li MayRequire="sarg.rimbees">RB_Mead</li><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Mead</li></defs><count>3~6</count><at>stall</at></li>
+    </campGoods>
+    <titles>
+      <li>Beekeepers come</li>
+      <li>[their:tribal] Honey-gatherers come</li>
+      <li>[their:medieval] Beekeepers on the road</li>
+      <li>[their:industrial] An apiarist's wagon</li>
+      <li>[their:spacer] A bee-keeping family</li>
+    </titles>
+    <texts>
+      <li>A beekeeping family of {FACTION} has come along the road with their hives roped to a pack beast, following the flowers. {X_nameDef} told {A_nameDef} the colony's land is in bloom, and asked to camp {PLACE} for a few days and let the bees work it.</li>
+      <li>[their:tribal] Honey-gatherers of {FACTION} have come with their hives slung on poles and a beast to carry the rest. {X_nameDef} said the flowers here called their bees, and asked {A_nameDef} whether they might camp {PLACE} until the bloom is over.</li>
+      <li>[their:medieval] A beekeeper of {FACTION} and the family have come up the track with their hives and a pack beast that walks very carefully. {X_nameDef} asked {A_nameDef} for leave to set the hives {PLACE} while the flowers last. They will sell honey and wax, {X_pronoun} says, and keep the bees to themselves.</li>
+      <li>[their:industrial] An apiarist of {FACTION} has brought a wagon of hives and a family to work them. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for a week of the colony's flowers, and sell honey at the stall in return.</li>
+    </texts>
+    <settled>
+      <li>The beekeepers' camp {PLACE} is up. Their hives stand at the edge of it with the bees already out over the colony's flowers, and their stall smells of honey.</li>
+      <li>The beekeepers from {FACTION} have made camp {PLACE}, with the hives set at the far side from the fire so the smoke stays off them.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the beekeepers {PLACE}, says the bees like it here better than anywhere on the road, and asks whether the colony would like someone who knows them to stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>The beekeepers from {FACTION} have roped their hives back onto the pack beast and gone on after the flowers.</li>
+      <li>The beekeepers' camp {PLACE} is empty. The bees went with them, mostly.</li>
+      <li>[back] The beekeepers who came before have gone on again, and {X_nameDef} says the bees will want to come back next summer.</li>
+    </farewell>
+    <lines>
+      <li>Move slowly near the hives.</li>
+      <li>They're on the clover today.</li>
+      <li>Smoke them first, then lift the lid.</li>
+      <li>That's a good heavy frame.</li>
+      <li>Don't swat it, it'll call the others.</li>
+      <li>The queen's laying well.</li>
+      <li>Never take the last of their honey.</li>
+      <li>[rain] They won't fly in this.</li>
+      <li>[their:tribal] The bees know whose hand it is.</li>
+      <li>[their:industrial] The frames are full, we'll spin them tonight.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Mind, it's sticky.</li>
+      <li>[gift] For the colony's table, from the bees.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[mend] {X_nameDef} of the beekeepers saw a colonist's torn sleeve and sat down to mend it, the way {X_pronoun} mends the hive cloths.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>honey</key>
+        <label>Buy a crock of their honey ({COUNT} silver)</label>
+        <tip>One of the beekeepers carries a crock of honey to the colony's gate.</tip>
+        <silver>45</silver>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver and filled a crock from the best of the frames. One of them is carrying it over to the colony's gate.</li>
+          <li>The beekeepers will carry a crock of honey over to the colony's gate today, wrapped in a cloth against the flies.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBringsAny"><things><li MayRequire="sarg.rimbees">RB_BaseHoney</li><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Honey</li></things><count>12</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>wax</key>
+        <label>Buy their beeswax ({COUNT} silver)</label>
+        <tip>One of the beekeepers carries a bundle of beeswax to the colony's gate.</tip>
+        <silver>40</silver>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver and wrapped the wax in a leaf. One of the beekeepers is carrying it over to the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBringsAny"><things><li MayRequire="sarg.rimbees">RB_Beeswax</li></things><count>10</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>hives</key>
+        <label>Have {A_nameDef} help at their hives</label>
+        <tip>{A_nameDef} spends a couple of hours beside the beekeepers' hives, learning how they handle them. Practice in animals, and a sting now and then, as at any beehouse.</tip>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} will spend a couple of hours at the beekeepers' hives today, learning how they lift the frames without upsetting the bees.</li>
+          <li>{X_nameDef} has given {A_nameDef} a veil and a smoker, and will show {A_objective} the hives this afternoon.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HelpAtHives" />
+        </effects>
+      </li>
+      <li>
+        <key>queen</key>
+        <label>Buy a queen from them ({COUNT} silver)</label>
+        <tip>Once the colony knows how to keep bees, the beekeepers will sell it a young queen of their own, a temperate or a woodland one, carried to the gate in her box.</tip>
+        <silver>220</silver>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>{X_nameDef} took a long look at the colony's beehouses and then at the silver, and picked out one of their young queens. It is being carried to the colony's gate in its box.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_BeeQueen" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Mushroom and truffle pickers (B21) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_MushroomPickers</defName>
+    <label>mushroom pickers</label>
+    <workerClass>ColonyCouncil.CampWorker_MushroomPickers</workerClass>
+    <arrives>6~11</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.5</weight>
+    <needs>woods</needs>
+    <people>2~4</people>
+    <days>3~5</days>
+    <ages>16~70</ages>
+    <trader>true</trader>
+    <task>Rimfolk_CampSortCaps</task>
+    <taskAt>stall</taskAt>
+    <gathers>
+      <li MayRequire="vanillaexpanded.vplantsemushrooms">VPE_Plant_Healtruffle</li>
+      <li MayRequire="vanillaexpanded.vplantsemushrooms">VPE_Plant_Timbercap</li>
+      <li MayRequire="vanillaexpanded.vplantsemushrooms">VPE_Plant_Glowcap</li>
+      <li>Agarilux</li>
+      <li>Bryolux</li>
+    </gathers>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>medicine</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.06</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>stall</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><kinds><li>Pig</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Beagle</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <campGoods>
+      <li><defs><li MayRequire="sarg.alphaanimals">AA_BlackTruffles</li><li>RawFungus</li></defs><count>8~15</count><at>stall</at></li>
+      <li><defs><li>RawFungus</li></defs><count>20~35</count><at>stall</at></li>
+    </campGoods>
+    <titles>
+      <li>Mushroom pickers come</li>
+      <li>[their:tribal] Cap-gatherers come</li>
+      <li>[their:medieval] Truffle hunters in the woods</li>
+      <li>[their:industrial] Mushroom pickers with their baskets</li>
+    </titles>
+    <texts>
+      <li>Mushroom pickers of {FACTION} have come with baskets and a truffle beast on a lead. {X_nameDef} told {A_nameDef} the colony's woods are good ground after the rain, and asked to camp {PLACE} for a few days and pick.</li>
+      <li>[their:tribal] Cap-gatherers of {FACTION} have come down to the colony's woods with their baskets and a snuffling beast. {X_nameDef} said every cap in the wood has a name, and asked {A_nameDef} whether they might camp {PLACE} and gather.</li>
+      <li>[their:medieval] Truffle hunters of {FACTION} have come up the track with a pig on a rope, which they say is worth more than the cart. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and walk the colony's woods for a few days.</li>
+      <li>[their:industrial] A family of mushroom pickers from {FACTION} has turned up with folding baskets and a dog that finds truffles. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and pick the colony's woods while the season lasts.</li>
+    </texts>
+    <settled>
+      <li>The mushroom pickers' camp {PLACE} is up, with their baskets drying by the fire and the day's caps laid out on the stall.</li>
+      <li>The pickers from {FACTION} have made camp {PLACE}. Their beast is tied to a stake with its nose in the leaf litter, and their stall already smells of the woods.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the mushroom pickers {PLACE}, says the colony's woods are the best picking {X_pronoun} has had in years, and asks whether there might be a place here for someone who knows them.</li>
+    </joinTexts>
+    <farewell>
+      <li>The mushroom pickers from {FACTION} have gone on with their baskets full and their beast still sniffing.</li>
+      <li>The pickers' camp {PLACE} is empty, and the woods are quiet again.</li>
+    </farewell>
+    <lines>
+      <li>Never eat one you can't name.</li>
+      <li>Cut it at the stem and leave the root.</li>
+      <li>That one's a liar, it only looks like the good one.</li>
+      <li>Under the old trees, that's where they are.</li>
+      <li>He's found something, get the trowel.</li>
+      <li>Don't let him eat it.</li>
+      <li>Smell that, that's a truffle.</li>
+      <li>[rain] There'll be more by morning.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Careful, they bruise.</li>
+      <li>[gift] A basket for the colony's table, all safe ones.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[medicine] {X_nameDef} of the pickers came back from the woods with healing herbs as well as caps, and has left {COUNT} bundles on the colony's side of their camp.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>caps</key>
+        <label>Buy a basket of their mushrooms ({COUNT} silver)</label>
+        <tip>One of the pickers carries a basket of good mushrooms to the colony's gate.</tip>
+        <silver>30</silver>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver and filled a basket, turning every cap over first. One of them is carrying it over to the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBrings"><thing>RawFungus</thing><count>25</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn the safe ones with them</label>
+        <tip>{A_nameDef} spends a few hours beside the pickers, learning which caps are food and which only look like it. Practice in plants.</tip>
+        <skill>Plants</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has taken {A_nameDef} aside with a basket of caps, to show {A_objective} the good ones and the liars.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Plants</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <!-- A picker who ate the wrong one (CampVariety.cs, CampWorker_MushroomPickers): asked only then, the game's food
+           poisoning on them, tended by the colony's doctor at their fire (the camps' own tend). -->
+      <li>
+        <key>badcap</key>
+        <theyAsk>true</theyAsk>
+        <label>Send {A_nameDef} to see to the one who ate the wrong cap</label>
+        <refuseLabel>The pickers can see to their own</refuseLabel>
+        <skill>Medicine</skill>
+        <tension>-8</tension>
+        <warm>2</warm>
+        <deed>campHealed</deed>
+        <askTexts>
+          <li>{X_nameDef} came to the colony's gate pale and in a hurry: {SICK}, one of the pickers camped {PLACE}, ate a cap that looked right and wasn't, and has been sick since. Would the colony's doctor come?</li>
+          <li>[their:medieval] {X_nameDef} of the truffle hunters is at the gate. {SICK} tasted one of the caps raw, as they all swear never to do, and has been sick all afternoon. {X_pronoun} asks for the colony's doctor.</li>
+        </askTexts>
+        <tip>The colony's doctor walks over to their fire with a medicine and sees to the one who is ill.</tip>
+        <outcomes>
+          <li>{A_nameDef} went over to the pickers' camp {PLACE} with the colony's medicine and sat with {SICK} until the worst was over.</li>
+        </outcomes>
+        <refused>
+          <li>The pickers nursed {SICK} themselves by the fire, and {X_nameDef} said nothing more about it.</li>
+        </refused>
+        <refuseTension>6</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTendSick" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Hands on the road to a hiring fair ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_YoungHands</defName>
+    <label>hands on the road</label>
+    <arrives>14~19</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.08</weight>
+    <situationKinds>
+      <li>hiring</li>
+    </situationKinds>
+    <situationWeight>10</situationWeight>
+    <people>3~5</people>
+    <days>1.5~3</days>
+    <ages>16~25</ages>
+    <hireChance>0.8</hireChance>
+    <joinChance>0.08</joinChance>
+    <helpChance>0.25</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.15</pride>
+    <breakTerms>0.06</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>young people walking to a fair carry everything they have on their backs</leavesWhy>
+    <works><li>Chop</li><li>Gather</li></works>
+    <titles>
+      <li>Hands on the road</li>
+      <li>[ws:hiring] On the way to {SITUATION}</li>
+    </titles>
+    <texts>
+      <li>A handful of young people of {FACTION} with bundles on their shoulders have stopped at the colony's land for the night. {X_nameDef} told {A_nameDef} they are going to look for places, and asked whether they might camp {PLACE} a night or two. They would work for their supper, {X_pronoun} said, if the colony had any.</li>
+      <li>[ws:hiring] Young people of {FACTION} walking to {SITUATION} have stopped at the edge of the colony's land. {X_nameDef}, the eldest of them, asked {A_nameDef} whether they might camp {PLACE} for a night or two, and said every one of them would work a day for a meal.</li>
+    </texts>
+    <settled>
+      <li>The young people have made camp {PLACE}, a fire and a ring of bundles round it, and somebody is already practising what to say to a master.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the young people camped {PLACE}, came to {A_nameDef} and said {X_pronoun} had stopped looking for a better place than this one. {X_pronoun} asks whether the colony will have {X_objective}.</li>
+      <li>[ws:hiring] {X_nameDef} of the young people camped {PLACE} has decided {X_pronoun} doesn't need to go on to {SITUATION} after all, if the colony will take {X_objective} on.</li>
+    </joinTexts>
+    <farewell>
+      <li>The young people have picked up their bundles and gone on down the road to look for places.</li>
+      <li>[ws:hiring] The young people have gone on toward {SITUATION}, still arguing about who will be hired first.</li>
+    </farewell>
+    <lines>
+      <li>I can drive a cart and mend a fence.</li>
+      <li>Do you think they'd take me on?</li>
+      <li>Stand up straight when they look at you.</li>
+      <li>I'm not going back to my aunt's.</li>
+      <li>A year's wage and a bed, that's all I want.</li>
+      <li>Who has the bread?</li>
+      <li>[their:tribal] The elders will look at our hands first.</li>
+      <li>[their:industrial] They say the mill pays in coin, not in kind.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Where does this go?</li>
+    </momentLines>
+    <helpTexts>
+      <li>[wood] The young people camped {PLACE} cut wood for the colony to show they're worth hiring, and have stacked {COUNT} logs on the colony's side of their fire.</li>
+    </helpTexts>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Stranded carters ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_StrandedCarters</defName>
+    <label>stranded carters</label>
+    <arrives>10~17</arrives>
+    <minTech>Medieval</minTech>
+    <maxTech>Industrial</maxTech>
+    <weight>0.08</weight>
+    <seasons>
+      <li>Spring</li>
+      <li>Fall</li>
+    </seasons>
+    <situationKinds>
+      <li>mud</li>
+      <li>bridge</li>
+    </situationKinds>
+    <situationWeight>10</situationWeight>
+    <people>2~3</people>
+    <days>2~4</days>
+    <ages>22~60</ages>
+    <trader>true</trader>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>mend</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Feed</li>
+    </buys>
+    <pride>0.25</pride>
+    <breakTerms>0.06</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Horse</li><li MayRequire="sarg.alphaanimals">AA_Thunderox</li><li MayRequire="spino.megafauna">Aurochs</li><li>Donkey</li></kinds><count>2~2</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Carters stuck on the road</li>
+      <li>[ws:mud] Carters sitting out the mud</li>
+      <li>[ws:bridge] Carters going the long way round</li>
+    </titles>
+    <texts>
+      <li>Carters of {FACTION} have brought their beasts up off the road to the colony's land. The road ahead is no good for a loaded cart, {X_nameDef} told {A_nameDef}, and they would sooner wait {PLACE} than sit in a ditch. They will sell from their load while they wait.</li>
+      <li>[ws:mud] Carters of {FACTION} have given up on the road for now: {SITUATION} has swallowed it to the axles. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} until it dries, and said they would sell from their load to pay their way.</li>
+      <li>[ws:bridge] Carters of {FACTION} going the long way round have stopped at the colony to rest their beasts. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a couple of days before the next stretch, and said they would trade from their load.</li>
+    </texts>
+    <settled>
+      <li>The carters' camp {PLACE} is up: a fire, their beasts on a line, and their goods stacked under a sheet for anyone who wants to look.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the carters camped {PLACE}, says {X_pronoun} has spent enough of {X_possessive} life waiting for roads to dry, and asks whether the colony could use someone who can drive a team.</li>
+    </joinTexts>
+    <farewell>
+      <li>The carters from {FACTION} have put their beasts back in the traces and gone on down the road.</li>
+      <li>[ws:mud] The carters have decided the road is dry enough, or nearly, and set off before anyone could argue.</li>
+    </farewell>
+    <lines>
+      <li>Another day, maybe two.</li>
+      <li>Feed the beasts before us.</li>
+      <li>That wheel won't last the season.</li>
+      <li>I've seen worse roads, not many.</li>
+      <li>Keep the sheet over the load.</li>
+      <li>[rain] And there it goes again.</li>
+      <li>[ws:mud] You could lose a cart in that mud.</li>
+    </lines>
+    <momentLines>
+      <li>[repair] That'll get us home.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[mend] {X_nameDef} of the carters had a needle and a strap out anyway, and mended a colonist's worn gear while the beasts rested.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>meal</key>
+        <label>Send them a hot meal for each of them</label>
+        <tip>Hot meals are carried over to the carters' camp from the colony's stores, one each.</tip>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>{A_nameDef} is carrying hot meals over to the carters' camp. {X_nameDef} said it was the first warm thing they'd had since the road went bad.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>hot meals for the carters</label><what>meals</what><count>3</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Gleaners ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Gleaners</defName>
+    <label>gleaners</label>
+    <arrives>6~10</arrives>
+    <minTech>Neolithic</minTech>
+    <maxTech>Industrial</maxTech>
+    <weight>0.3</weight>
+    <seasons>
+      <li>Fall</li>
+    </seasons>
+    <situationKinds>
+      <li>hunger</li>
+    </situationKinds>
+    <family>true</family>
+    <people>3~6</people>
+    <days>2~4</days>
+    <ages>8~70</ages>
+    <hireChance>0.4</hireChance>
+    <joinChance>0.05</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RawFood</li>
+      <li>Clothes</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.2</extendChance>
+    <drawnBy>
+      <li>Generous</li>
+    </drawnBy>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>gleaners have nothing to leave and carry everything they have</leavesWhy>
+    <works><li>Gather</li></works>
+    <titles>
+      <li>Gleaners come</li>
+      <li>[ws:hunger] Gleaners in a hungry year</li>
+    </titles>
+    <texts>
+      <li>A family of {FACTION} with sacks and children has come along the road, looking for fields already harvested. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few days and glean what the reapers left, as is the custom where they come from.</li>
+      <li>[ws:hunger] A family of {FACTION} has come with empty sacks, with {SITUATION} on at home. {X_nameDef} asked {A_nameDef}, not quite meeting {A_possessive} eyes, whether they might camp {PLACE} and glean what the colony's reapers left in the stubble.</li>
+      <li>[their:tribal] A band of {FACTION} has come with baskets, walking the edges of the land the way their people do after a harvest. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and gather what was left.</li>
+    </texts>
+    <settled>
+      <li>The gleaners' camp {PLACE} is small: a fire, the sacks, and the children asleep in a heap before it's even dark.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the gleaners camped {PLACE}, asked {A_nameDef} very quietly whether the colony had work for someone who would do anything.</li>
+    </joinTexts>
+    <farewell>
+      <li>The gleaners have shouldered their sacks, heavier than when they came, and gone on to the next fields.</li>
+      <li>The gleaners' camp {PLACE} is gone, and there is no trace of it but a ring of ash.</li>
+    </farewell>
+    <lines>
+      <li>Every ear counts.</li>
+      <li>Stay close where I can see you.</li>
+      <li>Bend your knees, not your back.</li>
+      <li>There's a good handful here.</li>
+      <li>We'll have bread this week.</li>
+      <li>Say thank you to the lady.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Nearly a full sack.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[wood] The gleaners have gathered fallen wood from the edges of the land for the colony, {COUNT} logs, stacked by their fire, to say thank you.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>glean</key>
+        <theyAsk>true</theyAsk>
+        <minDays>0.5</minDays>
+        <label>Let them walk the colony's fields</label>
+        <refuseLabel>Keep them out of the fields</refuseLabel>
+        <tension>-8</tension>
+        <warm>2</warm>
+        <askTexts>
+          <li>{X_nameDef} asks whether the gleaners might walk the colony's fields, in the rows already cut, for what the reapers missed. They would not touch a standing plant, {X_pronoun} says.</li>
+        </askTexts>
+        <tip>Three of the gleaners walk the colony's fields for a couple of hours, along the rows already cut.</tip>
+        <outcomes>
+          <li>Three of the gleaners will walk the colony's fields today, bent over the stubble.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} nodded as if {X_pronoun} had expected it, and the gleaners kept to the wild ground.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampComes">
+            <to>fields</to>
+            <count>3</count>
+            <doing>herbwalk</doing>
+            <hours>2~3</hours>
+            <when>7~16</when>
+            <lines>
+              <li>Here's some they missed.</li>
+              <li>Mind the plants that are still growing.</li>
+              <li>The colony's reapers are careful, there's not much.</li>
+            </lines>
+          </li>
+        </effects>
+      </li>
+      <li>
+        <key>bread</key>
+        <label>Send them a sack of food (30 raw food)</label>
+        <tip>Thirty raw food is carried over to the gleaners' camp from the colony's stores.</tip>
+        <tension>-8</tension>
+        <warm>2</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>{A_nameDef} is carrying a sack of food over to the gleaners' camp. {X_nameDef} tried twice to say something and gave up.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the gleaners</label><what>rawfood</what><count>30</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== A games team ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_GamesTeam</defName>
+    <label>a games team</label>
+    <arrives>9~15</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.04</weight>
+    <situationKinds>
+      <li>games</li>
+    </situationKinds>
+    <situationWeight>15</situationWeight>
+    <people>3~5</people>
+    <days>1.5~3</days>
+    <ages>17~28</ages>
+    <armedHunters>true</armedHunters>
+    <huntsPerDay>0.3</huntsPerDay>
+    <task>Rimfolk_CampTrain</task>
+    <hireChance>0.3</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>meat</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.7</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Hunt</li><li>Chop</li></works>
+    <titles>
+      <li>A games team on the road</li>
+      <li>[ws:games] On the way to {SITUATION}</li>
+    </titles>
+    <texts>
+      <li>A team of young people of {FACTION} have stopped on the colony's land to rest their legs on the way to the games. {X_nameDef}, who runs them harder than anyone, asked {A_nameDef} whether they might camp {PLACE} and train a day or two.</li>
+      <li>[ws:games] {FACTION}'s team for {SITUATION} has stopped on the colony's land to rest and train before the last stretch. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} a day or two, and said they would be no trouble, which nobody on the team believed.</li>
+    </texts>
+    <settled>
+      <li>The games team has made camp {PLACE}. Two of them are already racing each other round it, and the rest are pretending not to watch.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the games team camped {PLACE} says {X_pronoun} will never be the region's best, and would sooner be useful somewhere. {X_pronoun} asks whether the colony has a place.</li>
+    </joinTexts>
+    <farewell>
+      <li>The games team has packed up and gone on toward the games at a jog, because their trainer made them.</li>
+      <li>[ws:games] The games team has gone on to {SITUATION}, still arguing about who is fastest.</li>
+    </farewell>
+    <lines>
+      <li>Again, from the top.</li>
+      <li>Your left foot, watch your left foot.</li>
+      <li>I'll beat you to the tree.</li>
+      <li>Save it for the day.</li>
+      <li>Drink some water.</li>
+      <li>One more lap and then supper.</li>
+      <li>[their:tribal] The elders will be watching.</li>
+      <li>[their:medieval] A purse and a garland, think of it.</li>
+      <li>[their:industrial] Mind your time on the turn.</li>
+    </lines>
+    <momentLines>
+      <li>[kill] Good shot, that counts as practice.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[meat] The games team brought back more from their hunting than they could eat, and left {COUNT} meat on the colony's side of their camp.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>train</key>
+        <label>Have {A_nameDef} train with them</label>
+        <tip>{A_nameDef} spends a few hours training beside the games team. Practice in melee.</tip>
+        <skill>Melee</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has put {A_nameDef} through the team's paces, and will keep at it until {A_pronoun} begs to stop.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Melee</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Pardoned, walking home ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_WalkingHome</defName>
+    <label>outlaws walking home</label>
+    <arrives>15~20</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0</weight>
+    <situationKinds>
+      <li>pardon</li>
+    </situationKinds>
+    <situationWeight>1</situationWeight>
+    <people>2~4</people>
+    <days>1~2</days>
+    <ages>25~60</ages>
+    <hireChance>0.5</hireChance>
+    <joinChance>0.08</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Clothes</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>1</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.1</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>people walking home after years away carry what they have left</leavesWhy>
+    <works><li>Gather</li><li>Chop</li></works>
+    <titles>
+      <li>Walking home</li>
+      <li>[ws:pardon] Walking home under {SITUATION}</li>
+    </titles>
+    <texts>
+      <li>A few worn travelers of {FACTION} have stopped for the night at the edge of the colony's land, on their way home. {X_nameDef} told {A_nameDef}, plainly, that they were outlaws until the pardon, and asked whether they might camp {PLACE} a night before the last of the road.</li>
+      <li>[ws:pardon] Outlaws of {FACTION} walking home under {SITUATION} have stopped at the edge of the colony's land. {X_nameDef} asked {A_nameDef} for a night's camp {PLACE}, and said they wanted nothing else, which was clearly not quite true.</li>
+    </texts>
+    <settled>
+      <li>The travelers walking home have made a small fire {PLACE}. They sit close round it and talk about what they will find.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of those camped {PLACE} on the way home, says there is nobody left at home for {X_objective} after all these years, and asks whether the colony would take {X_objective} instead.</li>
+    </joinTexts>
+    <farewell>
+      <li>The travelers walking home have gone on at first light, faster than they came.</li>
+      <li>The camp {PLACE} is empty. They left early, to be home before dark.</li>
+    </farewell>
+    <lines>
+      <li>Do you think they'll know me?</li>
+      <li>Eleven years, it's been.</li>
+      <li>Nobody will say anything, it's a pardon.</li>
+      <li>My mother will still be cross.</li>
+      <li>One more day's walk.</li>
+      <li>I wonder if the old mill's still there.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] Last of the wood for tonight.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[wood] Those camped {PLACE} on the way home cut wood for the colony before they slept, {COUNT} logs, to pay for the night.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>road</key>
+        <label>Send them food for the road (20 raw food)</label>
+        <tip>Twenty raw food is carried over to their camp from the colony's stores, for the last of the road.</tip>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>{A_nameDef} is carrying food over to the travelers' camp for the last of their road. {X_nameDef} said they would tell their people at home where it came from.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the road home</label><what>rawfood</what><count>20</count><to>Camp</to></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== Star-watchers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_StarWatchers</defName>
+    <label>star-watchers</label>
+    <workerClass>ColonyCouncil.CampWorker_StarWatchers</workerClass>
+    <arrives>16~20</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.03</weight>
+    <situationKinds>
+      <li>stars</li>
+      <li>comet</li>
+    </situationKinds>
+    <situationWeight>20</situationWeight>
+    <people>2~3</people>
+    <days>2~4</days>
+    <ages>20~70</ages>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>mend</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.04</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li></works>
+    <titles>
+      <li>Star-watchers come</li>
+      <li>[ws:stars] Watchers of the falling stars</li>
+      <li>[ws:comet] Watchers of the comet</li>
+    </titles>
+    <texts>
+      <li>Star-watchers of {FACTION} have come with their charts and a lot of blankets. {X_nameDef} told {A_nameDef} the colony's land has a clear, dark sky, and asked to camp {PLACE} a few nights and watch it.</li>
+      <li>[ws:stars] Star-watchers of {FACTION} have come for the falling stars, with charts, a lantern with a red cloth over it and very little sleep between them. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, where the sky is dark, and watch through the nights.</li>
+      <li>[ws:comet] Watchers of {FACTION} have come out to see {SITUATION} away from the lights of the towns. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} a few nights and mark its path.</li>
+      <li>[their:tribal] Sky-readers of {FACTION} have come to the colony's land to lie on their backs under its sky. {X_nameDef} told {A_nameDef} the stars here are close, and asked to camp {PLACE} a few nights.</li>
+    </texts>
+    <settled>
+      <li>The star-watchers' camp {PLACE} is up, with their blankets laid out on the open ground and their charts weighted down with stones.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the star-watchers {PLACE}, says {X_pronoun} has never seen a sky like the colony's, and asks whether {X_pronoun} might stay under it for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>The star-watchers from {FACTION} have rolled up their charts and gone, yawning, in the middle of the day.</li>
+      <li>[ws:stars] The star-watchers have gone home with a book full of falling stars, and say the colony's sky was the best they had.</li>
+    </farewell>
+    <lines>
+      <li>There, did you see it?</li>
+      <li>Mark the time.</li>
+      <li>Keep the lantern covered.</li>
+      <li>That one's been there all night.</li>
+      <li>Clear tonight, we're lucky.</li>
+      <li>[ws:stars] That's forty since dusk.</li>
+      <li>[ws:comet] It's moved since last night.</li>
+      <li>[rain] No sky tonight, then.</li>
+    </lines>
+    <momentLines>
+      <li>[carry] More blankets for the night.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[mend] {X_nameDef} of the star-watchers had nothing to do in the daylight, and spent it mending a colonist's worn gear.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>watch</key>
+        <needs>evening</needs>
+        <label>Have {A_nameDef} watch the sky with them tonight</label>
+        <tip>{A_nameDef} goes over to the star-watchers' camp in the evening and sits with them a while. Practice in intellectual.</tip>
+        <skill>Intellectual</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is going over to the star-watchers' camp this evening, to lie on a blanket and learn the names they have for the stars.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Intellectual</skill><hours>18~23</hours><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

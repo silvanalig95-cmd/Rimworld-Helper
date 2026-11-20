@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The gods between the colony's people (Source/ColonyCouncil/Gods/OnMap/Between/). Each card says only what was seen, in
+    three wordings (_Text, _Text_2, _Text_3: TextVariants), never why and never naming the god; a letter's ...TitleNamed
+    names it ({GOD}) only where the colony knows it was that god (never the Hunger's). _What is the happening in a few words
+    for the news line that says how it ended between the two (CC_GodB_Out_*). CC_GodB_Saw_ is what the colony's book keeps,
+    in the witness's words ({WHO}). {A} and {B} are the two it is between.
+  -->
+
+  <!-- ===================== Hollin: the saplings between them ===================== -->
+
+  <CC_GodB_HollinBound_Text>Two saplings have come up side by side overnight at {HOME}, on open ground between where {A} and {B} sleep. The two of them fought yesterday.</CC_GodB_HollinBound_Text>
+  <CC_GodB_HollinBound_Text_2>At {HOME} this morning there are two young trees standing side by side where there was only grass last night, between the beds of {A} and {B}, who fought the day before.</CC_GodB_HollinBound_Text_2>
+  <CC_GodB_HollinBound_Text_3>Overnight two saplings grew up together on open ground at {HOME}, halfway between where {A} and {B} sleep. The two fought yesterday and have not spoken since.</CC_GodB_HollinBound_Text_3>
+  <CC_GodB_HollinBound_What>the two saplings</CC_GodB_HollinBound_What>
+  <CC_GodB_Saw_HollinBound>{WHO} and {OTHER} stood together at the two saplings that came up between them overnight at {HOME}, the day after they fought.</CC_GodB_Saw_HollinBound>
+
+  <!-- ===================== Hollin: brambles round the stump ===================== -->
+
+  <CC_GodB_HollinStumps_Text>Brambles have grown up overnight round the last stump {A} left at {HOME}. {A} has felled {COUNT} trees in the past few days.</CC_GodB_HollinStumps_Text>
+  <CC_GodB_HollinStumps_Text_2>The last stump {A} cut at {HOME} is ringed with brambles this morning, thick and green, though it was bare ground yesterday. {A} has cut down {COUNT} trees lately.</CC_GodB_HollinStumps_Text_2>
+  <CC_GodB_HollinStumps_Text_3>At {HOME} a tangle of brambles has come up round a fresh stump, the last of the {COUNT} trees {A} has felled in the past few days.</CC_GodB_HollinStumps_Text_3>
+  <CC_GodB_HollinStumps_What>the brambles round the stump</CC_GodB_HollinStumps_What>
+  <CC_GodB_Saw_HollinStumps>{WHO} showed {OTHER} the brambles grown up round {OTHER}'s last stump at {HOME}, after many trees cut and few planted.</CC_GodB_Saw_HollinStumps>
+
+  <!-- ===================== Smoulder: the forge flares at a fine piece ===================== -->
+
+  <CC_GodB_SmoulderPraise_Text>As {A} finished the {THING} at {HOME}, the bench threw up a burst of heat and sparks.</CC_GodB_SmoulderPraise_Text>
+  <CC_GodB_SmoulderPraise_Text_2>{A} has made a fine {THING} at {HOME}. At the last stroke the forge flared up hot and bright, and sparks flew round the bench.</CC_GodB_SmoulderPraise_Text_2>
+  <CC_GodB_SmoulderPraise_Text_3>The {THING} {A} just finished at {HOME} is the best work seen there in a long while. The bench gave off a burst of heat and sparks as it was done.</CC_GodB_SmoulderPraise_Text_3>
+  <CC_GodB_SmoulderPraise_What>the {THING}</CC_GodB_SmoulderPraise_What>
+  <CC_GodB_Saw_SmoulderPraise>{WHO} finished a fine {THING} at {HOME}, and the forge flared up with heat and sparks as it was done.</CC_GodB_Saw_SmoulderPraise>
+
+  <!-- ===================== Smoulder: pulled back from the falling stones ===================== -->
+
+  <CC_GodB_SmoulderNearMiss_Title>Stones from the rock</CC_GodB_SmoulderNearMiss_Title>
+  <CC_GodB_SmoulderNearMiss_TitleNamed>{GOD} turns in his sleep</CC_GodB_SmoulderNearMiss_TitleNamed>
+  <CC_GodB_SmoulderNearMiss_Text>Under the mountain at {HOME} the rock grumbled, and {B} pulled {A} back by the arm. A moment later a scatter of stones came down where {A} had been standing. Nobody was hurt.</CC_GodB_SmoulderNearMiss_Text>
+  <CC_GodB_SmoulderNearMiss_Text_2>The rock overhead at {HOME} shifted with a low sound. {B} grabbed {A} and pulled them clear, and loose stones fell on the spot {A} had just left. Neither of them was hurt.</CC_GodB_SmoulderNearMiss_Text_2>
+  <CC_GodB_SmoulderNearMiss_Text_3>Dust came down from the rock at {HOME}, and {B} hauled {A} back two steps just before a shower of stones landed where {A} stood. Both are unhurt.</CC_GodB_SmoulderNearMiss_Text_3>
+  <CC_GodB_SmoulderNearMiss_What>the stones that fell where they stood</CC_GodB_SmoulderNearMiss_What>
+  <CC_GodB_Saw_SmoulderNearMiss>{WHO} pulled {OTHER} back as the rock grumbled under the mountain at {HOME}, and stones came down where {OTHER} had stood.</CC_GodB_Saw_SmoulderNearMiss>
+
+  <!-- ===================== Bellwether: the old one and the child ===================== -->
+
+  <CC_GodB_BellwetherTold_Text>At dusk {A} took {B} out to the edge of {HOME} and told the story of the white beast, and the wild grazers drifted close and grazed round the two of them.</CC_GodB_BellwetherTold_Text>
+  <CC_GodB_BellwetherTold_Text_2>{A} and {B} sat at the edge of {HOME} at dusk while {A} told the old story of the Old Horn. The wild beasts on the land came near and grazed quietly round them.</CC_GodB_BellwetherTold_Text_2>
+  <CC_GodB_BellwetherTold_Text_3>Out at the edge of {HOME} in the evening, {A} told {B} about the great white beast, and the grazing animals came in close around them while they talked.</CC_GodB_BellwetherTold_Text_3>
+  <CC_GodB_BellwetherTold_TextAlone>At dusk {A} took {B} out to the edge of {HOME} and told the story of the white beast while the light went.</CC_GodB_BellwetherTold_TextAlone>
+  <CC_GodB_BellwetherTold_TextAlone_2>{A} and {B} sat at the edge of {HOME} at dusk while {A} told the old story of the Old Horn.</CC_GodB_BellwetherTold_TextAlone_2>
+  <CC_GodB_BellwetherTold_TextAlone_3>Out at the edge of {HOME} in the evening, {A} told {B} about the great white beast.</CC_GodB_BellwetherTold_TextAlone_3>
+  <CC_GodB_BellwetherTold_What>the story at the edge</CC_GodB_BellwetherTold_What>
+  <CC_GodB_Saw_BellwetherTold>{WHO} told {OTHER} of the white beast at the edge of {HOME} at dusk, and the wild grazers came close round them.</CC_GodB_Saw_BellwetherTold>
+
+  <!-- ===================== Bellwether: the hunter who let it go ===================== -->
+
+  <CC_GodB_BellwetherSpared_Title>The beast let go</CC_GodB_BellwetherSpared_Title>
+  <CC_GodB_BellwetherSpared_TitleNamed>Let pass for {GOD}</CC_GodB_BellwetherSpared_TitleNamed>
+  <CC_GodB_BellwetherSpared_Text>Out hunting at {HOME}, {A} had the {BEAST} in sight when it stopped, turned and looked straight back. {A} lowered the weapon, and the {BEAST} walked off the land.</CC_GodB_BellwetherSpared_Text>
+  <CC_GodB_BellwetherSpared_Text_2>The {BEAST} {A} was hunting at {HOME} stopped and stood looking at {A}. {A} let the weapon drop and stood still, and the {BEAST} went on its way and left the land.</CC_GodB_BellwetherSpared_Text_2>
+  <CC_GodB_BellwetherSpared_Text_3>{A} gave up the hunt at {HOME}: the {BEAST} turned to face {A} and the two stood looking at each other, and then it walked away and was gone from the land.</CC_GodB_BellwetherSpared_Text_3>
+  <CC_GodB_BellwetherSpared_What>the {BEAST} let go</CC_GodB_BellwetherSpared_What>
+  <CC_GodB_Saw_BellwetherSpared>{WHO} let a {BEAST} go at {HOME} when it turned and looked back at them on the hunt.</CC_GodB_Saw_BellwetherSpared>
+
+  <!-- ===================== Morel: food gone to rot ===================== -->
+
+  <CC_GodB_MorelWasted_Text>The {THING} at {HOME} has been left to go off. Two of the colony have gone to see who let it happen.</CC_GodB_MorelWasted_Text>
+  <CC_GodB_MorelWasted_Text_2>Someone at {HOME} noticed the {THING} going soft and grey with rot, and two of the colony went over to look at it.</CC_GodB_MorelWasted_Text_2>
+  <CC_GodB_MorelWasted_Text_3>The {THING} has started to rot where it was left at {HOME}, and two of the colony are on their way to it.</CC_GodB_MorelWasted_Text_3>
+  <CC_GodB_MorelWasted_What>the {THING} gone to rot</CC_GodB_MorelWasted_What>
+  <CC_GodB_Saw_MorelWasted>{WHO} and {OTHER} found the {THING} gone to rot at {HOME}.</CC_GodB_Saw_MorelWasted>
+
+  <!-- ===================== Morel: threads on the sealed stone ===================== -->
+
+  <CC_GodB_MorelSealed_Title>Threads on the stone</CC_GodB_MorelSealed_Title>
+  <CC_GodB_MorelSealed_TitleNamed>{GOD}'s threads on the stone</CC_GodB_MorelSealed_TitleNamed>
+  <CC_GodB_MorelSealed_Text>At first light, pale threads have grown over the sarcophagus where {DEAD} lies at {HOME}, and spread across the floor round it.</CC_GodB_MorelSealed_Text>
+  <CC_GodB_MorelSealed_Text_2>The stone that holds {DEAD} at {HOME} is covered this morning in fine white threads, like a web of roots, and they reach out across the ground about it.</CC_GodB_MorelSealed_Text_2>
+  <CC_GodB_MorelSealed_Text_3>Overnight a net of white threads has grown over {DEAD}'s sarcophagus at {HOME} and out round its foot.</CC_GodB_MorelSealed_Text_3>
+  <CC_GodB_MorelSealed_What>the threads on {DEAD}'s stone</CC_GodB_MorelSealed_What>
+  <CC_GodB_Saw_MorelSealed>{WHO} found white threads grown over the stone where {DEAD} lies sealed at {HOME}.</CC_GodB_Saw_MorelSealed>
+
+  <!-- ===================== Ennu: a bowl for the newcomer ===================== -->
+
+  <CC_GodB_EnnuWelcomed_Text>{B} carried a {MEAL} from the stores to {A}, new to {HOME}, and sat with them while they ate.</CC_GodB_EnnuWelcomed_Text>
+  <CC_GodB_EnnuWelcomed_Text_2>{A}'s first day at {HOME}: {B} brought over a {MEAL} from the stores and stayed to talk.</CC_GodB_EnnuWelcomed_Text_2>
+  <CC_GodB_EnnuWelcomed_Text_3>{B} set a {MEAL} down beside {A}, who has only just come to {HOME}, and sat down with them.</CC_GodB_EnnuWelcomed_Text_3>
+  <CC_GodB_EnnuWelcomed_TextNoBowl>{B} went over to {A}, new to {HOME}, and sat with them a while. There was nothing in the stores to bring.</CC_GodB_EnnuWelcomed_TextNoBowl>
+  <CC_GodB_EnnuWelcomed_TextNoBowl_2>{A}'s first day at {HOME}: {B} came and sat with them, empty-handed, as the stores had no meal to spare.</CC_GodB_EnnuWelcomed_TextNoBowl_2>
+  <CC_GodB_EnnuWelcomed_TextNoBowl_3>{B} sat down beside {A}, who has only just come to {HOME}, and talked with them a while.</CC_GodB_EnnuWelcomed_TextNoBowl_3>
+  <CC_GodB_EnnuWelcomed_What>the newcomer's welcome</CC_GodB_EnnuWelcomed_What>
+  <CC_GodB_Saw_EnnuWelcomed>{WHO} brought {OTHER} a bowl and sat with them on their first day at {HOME}.</CC_GodB_Saw_EnnuWelcomed>
+
+  <!-- ===================== Ennu: waiting up for the late one ===================== -->
+
+  <CC_GodB_EnnuWaitedUp_Text>{B} waited up at the edge of {HOME} with a light until {A} came in late from far out on the land.</CC_GodB_EnnuWaitedUp_Text>
+  <CC_GodB_EnnuWaitedUp_Text_2>{A} came back late at night from the far side of the land and found {B} still up and waiting at the edge of {HOME}.</CC_GodB_EnnuWaitedUp_Text_2>
+  <CC_GodB_EnnuWaitedUp_Text_3>It was past midnight when {A} got back to {HOME}, and {B} was standing waiting for them at the edge of the colony.</CC_GodB_EnnuWaitedUp_Text_3>
+  <CC_GodB_EnnuWaitedUp_What>the long wait up</CC_GodB_EnnuWaitedUp_What>
+  <CC_GodB_Saw_EnnuWaitedUp>{WHO} waited up with a light at the edge of {HOME} until {OTHER} came in late from far out.</CC_GodB_Saw_EnnuWaitedUp>
+
+  <!-- ===================== Pip: two hands on the machine ===================== -->
+
+  <CC_GodB_PipTwoHands_Text>The {MACHINE} at {HOME} had stood broken for hours. {A} and {B} went over to it together, and when they both laid a hand on it, it started up again with a spark.</CC_GodB_PipTwoHands_Text>
+  <CC_GodB_PipTwoHands_Text_2>{A} and {B} put their hands on the broken {MACHINE} at {HOME} at the same moment, and it gave a spark and hummed back into life. No part was used.</CC_GodB_PipTwoHands_Text_2>
+  <CC_GodB_PipTwoHands_Text_3>The broken {MACHINE} at {HOME} came back to life when {A} and {B} touched it together, with a crackle of sparks and a hum.</CC_GodB_PipTwoHands_Text_3>
+  <CC_GodB_PipTwoHands_What>the {MACHINE} that started again</CC_GodB_PipTwoHands_What>
+  <CC_GodB_Saw_PipTwoHands>{WHO} and {OTHER} laid their hands on the broken {MACHINE} at {HOME} together, and it hummed back to life.</CC_GodB_Saw_PipTwoHands>
+
+  <!-- ===================== Pip: the machine that hums for its talker ===================== -->
+
+  <CC_GodB_PipTalked_Text>{A} was talking to the {MACHINE} at {HOME}, and {B} came over to laugh. The {MACHINE} hummed louder and its light brightened.</CC_GodB_PipTalked_Text>
+  <CC_GodB_PipTalked_Text_2>{B} laughed at {A} for talking to the {MACHINE} at {HOME}. Just then it gave a hum and its lights came up brighter.</CC_GodB_PipTalked_Text_2>
+  <CC_GodB_PipTalked_Text_3>As {B} mocked {A} for speaking to the {MACHINE} at {HOME}, the machine hummed and glowed, and {B} went quiet.</CC_GodB_PipTalked_Text_3>
+  <CC_GodB_PipTalked_What>the {MACHINE} humming</CC_GodB_PipTalked_What>
+  <CC_GodB_Saw_PipTalked>{WHO} was talking to the {MACHINE} at {HOME} when {OTHER} laughed, and it hummed and brightened for {WHO}.</CC_GodB_Saw_PipTalked>
+
+  <!-- ===================== Cirrus: a star for two ===================== -->
+
+  <CC_GodB_CirrusTwoWatchers_Text>A star crossed the night sky over {HOME}, and {A} and {B}, out under it, stood and watched it together.</CC_GodB_CirrusTwoWatchers_Text>
+  <CC_GodB_CirrusTwoWatchers_Text_2>{A} and {B} were both out of doors at {HOME} when a falling star went across the whole sky, and they stayed out talking afterwards.</CC_GodB_CirrusTwoWatchers_Text_2>
+  <CC_GodB_CirrusTwoWatchers_Text_3>Under the clear sky at {HOME}, {A} pointed up as a star streaked over, and {B} came to stand beside them.</CC_GodB_CirrusTwoWatchers_Text_3>
+  <CC_GodB_CirrusTwoWatchers_What>the falling star</CC_GodB_CirrusTwoWatchers_What>
+  <CC_GodB_Saw_CirrusTwoWatchers>{WHO} and {OTHER} watched a star cross the night sky over {HOME}.</CC_GodB_Saw_CirrusTwoWatchers>
+
+  <!-- ===================== Cirrus: shapes in the clouds ===================== -->
+
+  <CC_GodB_CirrusCloudShape_Text>{A} and {B} stopped under the clouds at {HOME} and pointed up, each seeing a different shape.</CC_GodB_CirrusCloudShape_Text>
+  <CC_GodB_CirrusCloudShape_Text_2>Out in the open at {HOME}, {A} and {B} stood looking up at the clouds and disagreeing about what was in them.</CC_GodB_CirrusCloudShape_Text_2>
+  <CC_GodB_CirrusCloudShape_Text_3>{A} stopped to point at a shape in the clouds over {HOME}, and {B} saw something else in it.</CC_GodB_CirrusCloudShape_Text_3>
+  <CC_GodB_CirrusCloudShape_What>the shape in the clouds</CC_GodB_CirrusCloudShape_What>
+  <CC_GodB_Saw_CirrusCloudShape>{WHO} and {OTHER} saw shapes in the clouds over {HOME}, and could not agree whose they were.</CC_GodB_Saw_CirrusCloudShape>
+
+  <!-- ===================== Hush: a coat for the cold one ===================== -->
+
+  <CC_GodB_HushCoat_Text>{B} carried a {COAT} from the stores out to {A}, who was going numb with cold at {HOME}. {A} put it on, and the frost round them melted away.</CC_GodB_HushCoat_Text>
+  <CC_GodB_HushCoat_Text_2>{A} was taking a chill at {HOME}. {B} brought a {COAT} from the stores, and as {A} put it on the frost on the ground about them melted.</CC_GodB_HushCoat_Text_2>
+  <CC_GodB_HushCoat_Text_3>{B} fetched a {COAT} for {A}, who was half frozen at {HOME}, and once it was on, the frost round {A}'s feet was gone.</CC_GodB_HushCoat_Text_3>
+  <CC_GodB_HushCoat_What>the {COAT}</CC_GodB_HushCoat_What>
+  <CC_GodB_Saw_HushCoat>{WHO} brought {OTHER} a {COAT} in the cold at {HOME}, and the frost melted round them as they put it on.</CC_GodB_Saw_HushCoat>
+
+  <!-- ===================== Hush: quiet asked on the cold night ===================== -->
+
+  <CC_GodB_HushNoise_Text>On a cold night at {HOME}, {A} went over to {B} and asked for quiet, and {B} stopped.</CC_GodB_HushNoise_Text>
+  <CC_GodB_HushNoise_Text_2>{B} was being loud late on a winter night at {HOME} until {A} came over and asked them to stop, and they did.</CC_GodB_HushNoise_Text_2>
+  <CC_GodB_HushNoise_Text_3>At {HOME}, late on a bitter night, {A} asked {B} to keep the noise down, and it went quiet.</CC_GodB_HushNoise_Text_3>
+  <CC_GodB_HushNoise_TextRefused>On a cold night at {HOME}, {A} went over to {B} and asked for quiet, and {B} would not stop.</CC_GodB_HushNoise_TextRefused>
+  <CC_GodB_HushNoise_TextRefused_2>{A} asked {B} to keep the noise down late on a winter night at {HOME}, and {B} told {A} to go to bed.</CC_GodB_HushNoise_TextRefused_2>
+  <CC_GodB_HushNoise_TextRefused_3>At {HOME}, late on a bitter night, {A} asked {B} for quiet and was refused.</CC_GodB_HushNoise_TextRefused_3>
+  <CC_GodB_HushNoise_What>the noise on the cold night</CC_GodB_HushNoise_What>
+  <CC_GodB_Saw_HushNoise>{WHO} asked {OTHER} for quiet on a cold night at {HOME}.</CC_GodB_Saw_HushNoise>
+
+  <!-- ===================== Undertow: the whisperer at the edge ===================== -->
+
+  <CC_GodB_UndertowWhisper_Title>Whispering at the edge</CC_GodB_UndertowWhisper_Title>
+  <CC_GodB_UndertowWhisper_TitleNamed>Whispering at the edge</CC_GodB_UndertowWhisper_TitleNamed>
+  <CC_GodB_UndertowWhisper_Text>In the small hours {B} saw {A} out at the dark edge of {HOME}, standing alone and whispering into the dark.</CC_GodB_UndertowWhisper_Text>
+  <CC_GodB_UndertowWhisper_Text_2>{A} walked out to the edge of {HOME} in the middle of the night and stood there whispering to nothing. {B} was awake and saw it.</CC_GodB_UndertowWhisper_Text_2>
+  <CC_GodB_UndertowWhisper_Text_3>{B}, up in the night, saw {A} standing at the dark edge of {HOME}, speaking low into the dark where there was nobody.</CC_GodB_UndertowWhisper_Text_3>
+  <CC_GodB_UndertowWhisper_What>the whispering at the edge</CC_GodB_UndertowWhisper_What>
+  <CC_GodB_Saw_UndertowWhisper>{WHO} saw {OTHER} out at the dark edge of {HOME} in the night, whispering into the dark.</CC_GodB_Saw_UndertowWhisper>
+
+  <!-- ===================== Undertow: the light let go out ===================== -->
+
+  <CC_GodB_UndertowLampOut_Text>In the night the {LIGHT} near where {A} sleeps at {HOME} went out, its fuel gone.</CC_GodB_UndertowLampOut_Text>
+  <CC_GodB_UndertowLampOut_Text_2>The {LIGHT} by {A}'s bed at {HOME} burned out in the small hours, and it was dark there till morning.</CC_GodB_UndertowLampOut_Text_2>
+  <CC_GodB_UndertowLampOut_Text_3>Sometime in the night the {LIGHT} near {A} at {HOME} ran out of fuel and went dark.</CC_GodB_UndertowLampOut_Text_3>
+  <CC_GodB_UndertowLampOut_What>the {LIGHT} that went out</CC_GodB_UndertowLampOut_What>
+  <CC_GodB_Saw_UndertowLampOut>The {LIGHT} by where {WHO} sleeps at {HOME} went out in the night.</CC_GodB_Saw_UndertowLampOut>
+
+  <!-- ===================== Helios: out into the sun ===================== -->
+
+  <CC_GodB_HeliosSun_Text>{B} walked {A}, still getting over the {ILLNESS}, out into the noon sun at {HOME}, and the two sat there an hour.</CC_GodB_HeliosSun_Text>
+  <CC_GodB_HeliosSun_Text_2>At noon {B} took {A} out of doors at {HOME} to sit in the sun a while, to help shake off the {ILLNESS}.</CC_GodB_HeliosSun_Text_2>
+  <CC_GodB_HeliosSun_Text_3>{A}, recovering from the {ILLNESS}, sat out in the warm noon light at {HOME} for an hour with {B}.</CC_GodB_HeliosSun_Text_3>
+  <CC_GodB_HeliosSun_What>the hour in the sun</CC_GodB_HeliosSun_What>
+  <CC_GodB_Saw_HeliosSun>{WHO} walked {OTHER} out into the noon sun at {HOME} to sit an hour while they got over their illness.</CC_GodB_Saw_HeliosSun>
+
+  <!-- ===================== Helios: his light on two at odds ===================== -->
+
+  <CC_GodB_HeliosAlike_Text>{A} and {B}, who have not been getting on, were both out in the clear noon at {HOME}, and the light lay gold on the two of them alike.</CC_GodB_HeliosAlike_Text>
+  <CC_GodB_HeliosAlike_Text_2>The noon sun shone gold on {A} and {B} at {HOME}, two who have been at odds, as they stood a few steps apart.</CC_GodB_HeliosAlike_Text_2>
+  <CC_GodB_HeliosAlike_Text_3>At a clear noon at {HOME}, the same golden light fell on {A} and on {B}, who have hardly spoken lately.</CC_GodB_HeliosAlike_Text_3>
+  <CC_GodB_HeliosAlike_What>the noon light on both of them</CC_GodB_HeliosAlike_What>
+  <CC_GodB_Saw_HeliosAlike>{WHO} saw the noon light lie gold on {OTHER} and {THIRD} alike at {HOME}, two at odds.</CC_GodB_Saw_HeliosAlike>
+
+  <!-- ===================== Helios: called into the shade ===================== -->
+
+  <CC_GodB_HeliosShade_Text>It was too hot to work in the sun at {HOME}, and {B} called {A} into the shade, where the two of them sat a while.</CC_GodB_HeliosShade_Text>
+  <CC_GodB_HeliosShade_Text_2>{B} went out to {A}, working in the hot noon sun at {HOME}, and brought them into the shade to sit.</CC_GodB_HeliosShade_Text_2>
+  <CC_GodB_HeliosShade_Text_3>At the hottest part of the day at {HOME}, {A} and {B} sat together in the shade until the worst of it passed.</CC_GodB_HeliosShade_Text_3>
+  <CC_GodB_HeliosShade_What>the rest in the shade</CC_GodB_HeliosShade_What>
+  <CC_GodB_Saw_HeliosShade>{WHO} called {OTHER} out of the hot noon sun at {HOME} and sat with them in the shade.</CC_GodB_Saw_HeliosShade>
+
+  <!-- ===================== Selene: sorry after the moonlit night ===================== -->
+
+  <CC_GodB_SeleneSorry_Text>{A} spent part of the night out under the moon at {HOME}, and in the morning went to {B} to say sorry for something said the day before. {B} accepted it.</CC_GodB_SeleneSorry_Text>
+  <CC_GodB_SeleneSorry_Text_2>After a night standing out in the moonlight at {HOME}, {A} found {B} in the morning and apologised, and {B} took it well.</CC_GodB_SeleneSorry_Text_2>
+  <CC_GodB_SeleneSorry_Text_3>{A} could not settle last night and stood a long time under the moon at {HOME}. This morning {A} said sorry to {B}, and the two made peace.</CC_GodB_SeleneSorry_Text_3>
+  <CC_GodB_SeleneSorry_TextRefused>{A} spent part of the night out under the moon at {HOME}, and in the morning went to {B} to say sorry for something said the day before. {B} would not hear it.</CC_GodB_SeleneSorry_TextRefused>
+  <CC_GodB_SeleneSorry_TextRefused_2>After a night standing out in the moonlight at {HOME}, {A} found {B} in the morning and apologised, and {B} turned away.</CC_GodB_SeleneSorry_TextRefused_2>
+  <CC_GodB_SeleneSorry_TextRefused_3>{A} stood a long time under the moon at {HOME} last night. This morning {A} tried to say sorry to {B}, and {B} refused it.</CC_GodB_SeleneSorry_TextRefused_3>
+  <CC_GodB_SeleneSorry_What>the apology</CC_GodB_SeleneSorry_What>
+  <CC_GodB_Saw_SeleneSorry>{WHO} stood under the moon at {HOME} through the night, and in the morning said sorry to {OTHER}.</CC_GodB_Saw_SeleneSorry>
+
+  <!-- ===================== Selene: the same dream at breakfast ===================== -->
+
+  <CC_GodB_SeleneSameDream_Text>Over breakfast at {HOME}, {A} and {B} found they had dreamt the same dream last night.</CC_GodB_SeleneSameDream_Text>
+  <CC_GodB_SeleneSameDream_Text_2>{A} told a dream at breakfast at {HOME}, and {B} said it was the same one they had dreamt.</CC_GodB_SeleneSameDream_Text_2>
+  <CC_GodB_SeleneSameDream_Text_3>At {HOME} this morning {A} and {B} compared dreams and found they had seen the same thing in their sleep.</CC_GodB_SeleneSameDream_Text_3>
+  <CC_GodB_SeleneSameDream_What>the same dream</CC_GodB_SeleneSameDream_What>
+  <CC_GodB_Saw_SeleneSameDream>{WHO} and {OTHER} told the same dream at breakfast at {HOME}.</CC_GodB_Saw_SeleneSameDream>
+
+  <!-- ===================== Tamiu: the cat on the grave ===================== -->
+
+  <CC_GodB_MogGraveCat_Text>At dusk a cat walked to {DEAD}'s grave at {HOME} and sat down on it, and {A} and {B} came and sat with it.</CC_GodB_MogGraveCat_Text>
+  <CC_GodB_MogGraveCat_Text_2>A cat has settled on {DEAD}'s grave at {HOME} in the evening light, and {A} and {B}, who were close to {DEAD}, sat down beside it.</CC_GodB_MogGraveCat_Text_2>
+  <CC_GodB_MogGraveCat_Text_3>{A} and {B} found a cat sitting on {DEAD}'s grave at {HOME} at dusk, and stayed there with it a while.</CC_GodB_MogGraveCat_Text_3>
+  <CC_GodB_MogGraveCat_TextStray>At dusk a stray cat walked in from the edge of {HOME} to {DEAD}'s grave and sat down on it, and {A} and {B} came and sat with it.</CC_GodB_MogGraveCat_TextStray>
+  <CC_GodB_MogGraveCat_TextStray_2>A cat nobody had seen before came in at dusk and settled on {DEAD}'s grave at {HOME}, and {A} and {B} sat down beside it.</CC_GodB_MogGraveCat_TextStray_2>
+  <CC_GodB_MogGraveCat_TextStray_3>{A} and {B} found a strange cat sitting on {DEAD}'s grave at {HOME} at dusk, and stayed with it a while.</CC_GodB_MogGraveCat_TextStray_3>
+  <CC_GodB_MogGraveCat_What>the cat on {DEAD}'s grave</CC_GodB_MogGraveCat_What>
+  <CC_GodB_Saw_MogGraveCat>{WHO} and {OTHER} sat with a cat on {DEAD}'s grave at {HOME} at dusk.</CC_GodB_Saw_MogGraveCat>
+
+  <!-- ===================== Tamiu: riddles at supper ===================== -->
+
+  <CC_GodB_MogRiddle_Text>{A} and {B} traded riddles at supper at {HOME}, and {A} won. A cat has been following {A} about ever since.</CC_GodB_MogRiddle_Text>
+  <CC_GodB_MogRiddle_Text_2>At supper at {HOME}, {A} beat {B} at riddles, and afterwards a cat came and walked at {A}'s heel.</CC_GodB_MogRiddle_Text_2>
+  <CC_GodB_MogRiddle_Text_3>{B} could not answer {A}'s last riddle at supper at {HOME}. Since then a cat has kept close to {A}.</CC_GodB_MogRiddle_Text_3>
+  <CC_GodB_MogRiddle_TextNoCat>{A} and {B} traded riddles at supper at {HOME}, and {A} won.</CC_GodB_MogRiddle_TextNoCat>
+  <CC_GodB_MogRiddle_TextNoCat_2>At supper at {HOME}, {A} beat {B} at riddles.</CC_GodB_MogRiddle_TextNoCat_2>
+  <CC_GodB_MogRiddle_TextNoCat_3>{B} could not answer {A}'s last riddle at supper at {HOME}.</CC_GodB_MogRiddle_TextNoCat_3>
+  <CC_GodB_MogRiddle_What>the riddles at supper</CC_GodB_MogRiddle_What>
+  <CC_GodB_Saw_MogRiddle>{WHO} lost at riddles to {OTHER} at supper at {HOME}, and a cat walked at {OTHER}'s heel after.</CC_GodB_Saw_MogRiddle>
+
+  <!-- ===================== Murmur: a splash at the water ===================== -->
+
+  <CC_GodB_MurmurSplash_Text>Down at the water's edge at {HOME} on a hot afternoon, {A} splashed {B}, and the frogs in the reeds started croaking.</CC_GodB_MurmurSplash_Text>
+  <CC_GodB_MurmurSplash_Text_2>{A} and {B} went down to the water at {HOME} to cool off, and {A} soaked {B} with a splash. Frogs came up out of the reeds, croaking.</CC_GodB_MurmurSplash_Text_2>
+  <CC_GodB_MurmurSplash_Text_3>On a hot afternoon at {HOME}, {A} splashed {B} at the water's edge, and a couple of frogs climbed out of the water croaking.</CC_GodB_MurmurSplash_Text_3>
+  <CC_GodB_MurmurSplash_TextNoFrogs>Down at the water's edge at {HOME} on a hot afternoon, {A} splashed {B}, and something in the reeds started croaking.</CC_GodB_MurmurSplash_TextNoFrogs>
+  <CC_GodB_MurmurSplash_TextNoFrogs_2>{A} and {B} went down to the water at {HOME} to cool off, and {A} soaked {B} with a splash.</CC_GodB_MurmurSplash_TextNoFrogs_2>
+  <CC_GodB_MurmurSplash_TextNoFrogs_3>On a hot afternoon at {HOME}, {A} splashed {B} at the water's edge.</CC_GodB_MurmurSplash_TextNoFrogs_3>
+  <CC_GodB_MurmurSplash_What>the splash at the water</CC_GodB_MurmurSplash_What>
+  <CC_GodB_Saw_MurmurSplash>{WHO} splashed {OTHER} at the water's edge at {HOME}, and the frogs set up croaking.</CC_GodB_Saw_MurmurSplash>
+
+  <!-- ===================== Murmur: a frog in the bedroom ===================== -->
+
+  <CC_GodB_MurmurFrogIn_Text>A frog has come in out of the rain and is sitting on the floor of {A}'s room at {HOME}.</CC_GodB_MurmurFrogIn_Text>
+  <CC_GodB_MurmurFrogIn_Text_2>There is a frog in {A}'s bedroom at {HOME}, brought in by the rain.</CC_GodB_MurmurFrogIn_Text_2>
+  <CC_GodB_MurmurFrogIn_Text_3>With the rain coming down, a frog has found its way into {A}'s room at {HOME}.</CC_GodB_MurmurFrogIn_Text_3>
+  <CC_GodB_MurmurFrogIn_What>the frog in the bedroom</CC_GodB_MurmurFrogIn_What>
+  <CC_GodB_Saw_MurmurFrogIn>{WHO} and {OTHER} found a frog in a bedroom at {HOME} in the rain.</CC_GodB_Saw_MurmurFrogIn>
+
+  <!-- ===================== Ducat: a coin passed on ===================== -->
+
+  <CC_GodB_DucatPassed_Text>A gold coin was lying on the ground by {A} at {HOME}. {A} picked it up and is taking it to {B}.</CC_GodB_DucatPassed_Text>
+  <CC_GodB_DucatPassed_Text_2>{A} found a single gold coin at {HOME} that nobody claims, and carried it off to give to {B}.</CC_GodB_DucatPassed_Text_2>
+  <CC_GodB_DucatPassed_Text_3>There was a gold coin at {A}'s feet at {HOME}, and {A} decided {B} should have it.</CC_GodB_DucatPassed_Text_3>
+  <CC_GodB_DucatPassed_TextEnd>The gold coin has been passed from hand to hand at {HOME}, and {A}, the last to have it, has left it for the stores.</CC_GodB_DucatPassed_TextEnd>
+  <CC_GodB_DucatPassed_TextEnd_2>After going round {HOME} from one to another, the gold coin is with {A}, who is putting it in the stores.</CC_GodB_DucatPassed_TextEnd_2>
+  <CC_GodB_DucatPassed_TextEnd_3>{A} was the last at {HOME} to be given the gold coin, and is leaving it in the stores.</CC_GodB_DucatPassed_TextEnd_3>
+  <CC_GodB_DucatPassed_What>the gold coin</CC_GodB_DucatPassed_What>
+  <CC_GodB_Saw_DucatPassed>{WHO} found a gold coin at {HOME} and carried it to {OTHER}, and it went from hand to hand after.</CC_GodB_Saw_DucatPassed>
+
+  <!-- ===================== Ducat: the miser's silver scattered ===================== -->
+
+  <CC_GodB_DucatMiser_Text>{A} sat up late counting the silver in the stores at {HOME}. This morning it lies scattered across the floor in little heaps. None of it is missing.</CC_GodB_DucatMiser_Text>
+  <CC_GodB_DucatMiser_Text_2>The silver {A} counted last night at {HOME} has been found spread over the storeroom floor in small piles, all of it still there.</CC_GodB_DucatMiser_Text_2>
+  <CC_GodB_DucatMiser_Text_3>At {HOME} the colony's silver, which {A} spent the evening counting, is lying in heaps all over the floor this morning. Nothing was taken.</CC_GodB_DucatMiser_Text_3>
+  <CC_GodB_DucatMiser_What>the scattered silver</CC_GodB_DucatMiser_What>
+  <CC_GodB_Saw_DucatMiser>{WHO} laughed at {OTHER} over the silver found scattered at {HOME} the morning after {OTHER} sat up counting it.</CC_GodB_Saw_DucatMiser>
+
+  <!-- ===================== Revel: one cup between two at odds ===================== -->
+
+  <CC_GodB_RevelRivalsCup_Text>Late in the evening at {HOME}, {A} set a {DRINK} down in front of {B}, who has been at odds with {A}, and {B} drank it.</CC_GodB_RevelRivalsCup_Text>
+  <CC_GodB_RevelRivalsCup_Text_2>{A} brought {B} a {DRINK} late at {HOME}, and the two of them, who had not been speaking, shared a moment over it.</CC_GodB_RevelRivalsCup_Text_2>
+  <CC_GodB_RevelRivalsCup_Text_3>At {HOME} late tonight, {A} offered {B} a {DRINK}, and {B} took it.</CC_GodB_RevelRivalsCup_Text_3>
+  <CC_GodB_RevelRivalsCup_TextRefused>Late in the evening at {HOME}, {A} set a {DRINK} down in front of {B}, who would not drink it.</CC_GodB_RevelRivalsCup_TextRefused>
+  <CC_GodB_RevelRivalsCup_TextRefused_2>{A} brought {B} a {DRINK} late at {HOME}, and {B} turned it down.</CC_GodB_RevelRivalsCup_TextRefused_2>
+  <CC_GodB_RevelRivalsCup_TextRefused_3>At {HOME} late tonight, {A} offered {B} a {DRINK}, and {B} left it standing.</CC_GodB_RevelRivalsCup_TextRefused_3>
+  <CC_GodB_RevelRivalsCup_What>the {DRINK} between them</CC_GodB_RevelRivalsCup_What>
+  <CC_GodB_Saw_RevelRivalsCup>{WHO} set a {DRINK} down for {OTHER} late in the evening at {HOME}, the two of them at odds.</CC_GodB_Saw_RevelRivalsCup>
+
+  <!-- ===================== Revel: a wager lost ===================== -->
+
+  <CC_GodB_RevelWager_Text>{A} lost a bet to {B} last night at {HOME}, both of them drunk, and this morning {A} is scrubbing the floor of {B}'s room.</CC_GodB_RevelWager_Text>
+  <CC_GodB_RevelWager_Text_2>At {HOME} {A} is on their knees cleaning {B}'s room this morning, paying off a bet made over drinks last night.</CC_GodB_RevelWager_Text_2>
+  <CC_GodB_RevelWager_Text_3>{A} and {B} made a drunken wager last night at {HOME}. {A} lost, and is now scrubbing {B}'s floor.</CC_GodB_RevelWager_Text_3>
+  <CC_GodB_RevelWager_What>the lost wager</CC_GodB_RevelWager_What>
+  <CC_GodB_Saw_RevelWager>{WHO} lost a drunken wager to {OTHER} at {HOME} and scrubbed {OTHER}'s floor the next morning.</CC_GodB_Saw_RevelWager>
+
+  <!-- ===================== How it ended between them (the news) ===================== -->
+
+  <CC_GodB_Out_Closer>{A} and {B} came away from {WHAT} on better terms.</CC_GodB_Out_Closer>
+  <CC_GodB_Out_Closer_2>{WHAT} brought {A} and {B} a little closer.</CC_GodB_Out_Closer_2>
+  <CC_GodB_Out_Closer_3>{A} and {B} have been friendlier since {WHAT}.</CC_GodB_Out_Closer_3>
+  <CC_GodB_Out_Quarrel>{A} and {B} argued over {WHAT} and parted on worse terms.</CC_GodB_Out_Quarrel>
+  <CC_GodB_Out_Quarrel_2>{WHAT} ended in an argument between {A} and {B}.</CC_GodB_Out_Quarrel_2>
+  <CC_GodB_Out_Quarrel_3>{A} and {B} could not agree about {WHAT}, and are cool with each other now.</CC_GodB_Out_Quarrel_3>
+  <CC_GodB_Out_MadeUp>{A} and {B}, who were at odds, made it up over {WHAT}.</CC_GodB_Out_MadeUp>
+  <CC_GodB_Out_MadeUp_2>After {WHAT}, {A} and {B} put their quarrel behind them.</CC_GodB_Out_MadeUp_2>
+  <CC_GodB_Out_MadeUp_3>{A} and {B} are speaking again since {WHAT}.</CC_GodB_Out_MadeUp_3>
+  <CC_GodB_Out_Ashamed>{A} was ashamed in front of {B} over {WHAT}.</CC_GodB_Out_Ashamed>
+  <CC_GodB_Out_Ashamed_2>{WHAT} left {A} ashamed in front of {B}.</CC_GodB_Out_Ashamed_2>
+  <CC_GodB_Out_Ashamed_3>{A} could not look {B} in the eye after {WHAT}.</CC_GodB_Out_Ashamed_3>
+  <CC_GodB_Out_AshamedAlone>{A} was ashamed of {WHAT}.</CC_GodB_Out_AshamedAlone>
+  <CC_GodB_Out_Jealous>{A} looked at {WHAT} and resented {B} for it.</CC_GodB_Out_Jealous>
+  <CC_GodB_Out_Jealous_2>{A} said little about {WHAT}, but has been short with {B} since.</CC_GodB_Out_Jealous_2>
+  <CC_GodB_Out_Jealous_3>{WHAT} left {A} sore at {B}.</CC_GodB_Out_Jealous_3>
+  <CC_GodB_Out_Wary>{A} saw {WHAT} and has kept away from {B} since.</CC_GodB_Out_Wary>
+  <CC_GodB_Out_Wary_2>After {WHAT}, {A} has been uneasy around {B}.</CC_GodB_Out_Wary_2>
+  <CC_GodB_Out_Wary_3>{A} has watched {B} warily since {WHAT}.</CC_GodB_Out_Wary_3>
+  <CC_GodB_Out_Laughed>{B} laughed at {A} over {WHAT}, and {A} has not forgotten it.</CC_GodB_Out_Laughed>
+  <CC_GodB_Out_Laughed_2>{A} did not like being laughed at by {B} over {WHAT}.</CC_GodB_Out_Laughed_2>
+  <CC_GodB_Out_Laughed_3>{WHAT} made {A} the joke of the day, and {A} blames {B}.</CC_GodB_Out_Laughed_3>
+  <CC_GodB_Out_Kind>{A} won't forget {WHAT}, or that it was {B} who did it.</CC_GodB_Out_Kind>
+  <CC_GodB_Out_Kind_2>{A} thinks well of {B} since {WHAT}.</CC_GodB_Out_Kind_2>
+  <CC_GodB_Out_Kind_3>{B} looked out for {A}, and {A} is grateful for {WHAT}.</CC_GodB_Out_Kind_3>
+
+  <!-- ===================== Their journals ===================== -->
+
+  <CC_GodB_Journal_Closer>{OTHER} and I were there together for {WHAT}. I'm glad it was them.</CC_GodB_Journal_Closer>
+  <CC_GodB_Journal_Quarrel>{OTHER} and I argued over {WHAT}. Neither of us gave an inch.</CC_GodB_Journal_Quarrel>
+  <CC_GodB_Journal_MadeUp>{OTHER} and I made it up over {WHAT}. It feels better than I thought it would.</CC_GodB_Journal_MadeUp>
+  <CC_GodB_Journal_Ashamed>{OTHER} showed me {WHAT}. I didn't have an answer.</CC_GodB_Journal_Ashamed>
+  <CC_GodB_Journal_Jealous>Everyone made a fuss about {WHAT}. I don't see why it had to be {OTHER}.</CC_GodB_Journal_Jealous>
+  <CC_GodB_Journal_Wary>I saw {WHAT}. I don't know what {OTHER} was doing, and I don't like it.</CC_GodB_Journal_Wary>
+  <CC_GodB_Journal_Laughed>{OTHER} laughed at me over {WHAT}.</CC_GodB_Journal_Laughed>
+  <CC_GodB_Journal_Kind>{OTHER} looked out for me today: {WHAT}.</CC_GodB_Journal_Kind>
+  <CC_GodB_Journal_Proud>Today: {WHAT}. I'm proud of it.</CC_GodB_Journal_Proud>
+
+</LanguageData>

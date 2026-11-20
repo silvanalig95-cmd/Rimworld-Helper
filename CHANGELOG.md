@@ -5,6 +5,50 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More words in colony life
+
+*20 November 2026, version 0.284.0*
+
+- New journal entries for a seat taken or lost, a name earned, friends and comrades, a year in the colony and coming home.
+- A changed life goal's journal entry now says whether a loss or a brush with death changed it.
+- More teasing on eighteen topics in every voice, and more closing words when colonists remember being nursed, a close call, a debt, a lost child or an old joke.
+- More voices for and against seven decrees, and more answers to wishes.
+- More council talk and gossip in the social log, and two more texts for each of 35 social events.
+- Three more first words for every council seat, and more last words for the year letter and the colony's anniversary.
+
+## The council's situations and everyday questions
+
+*20 November 2026, version 0.283.0*
+
+- A council seat holder who is worn down or laid up asks to step down: let them go, give them a deputy for ten days and a day off, or ask them to stay.
+- When two colonists' wished-for things need the same steel, wood or cloth and there is only enough for one, the council says who goes first, and whoever waits is told why face to face.
+- Two new decrees show on the map: the night watch, two fighters in turn on the walls from nine until one, and a welcome for newcomers, an evening hour with each new face.
+- Three new personal stories: after the vote, the one sent away, and worn thin.
+- Twenty-five new council questions from everyday life, from the broom and the bucket to a storm at night, with every answer done on the map.
+
+## New world events, camps and encounters
+
+*20 November 2026, version 0.282.0*
+
+- Ten new world events, each in its people's age: cloth or timber gone scarce, a season of games, a pardon, a hiring fair, a town's founding day, roads gone to mud, falling stars, the great burying and a bridge down.
+- In a season of games the colony can hold a games day: young people of two friendly peoples come for bouts, a race and a shooting match, and a colonist who wins is named when the games end.
+- A pardon sends outlaws home past the colony, prisoners of that people can be walked out under it, and no bounty hunters come while it lasts.
+- Eight new camps: beekeepers with Alpha Bees, mushroom pickers in the fall, and six that come with the region's world events.
+- Each of Rimfolk's 23 peoples has two encounters of its own, one showing their ways on the map and one telling how their people began.
+- A herding people may ask to let an animal stand at stud in the colony's pen, for the young or a small fee.
+- Feast guests hope for their own people's contest, and a feast can hold a singing contest at the colony's instrument or by a fire.
+
+## The gods between the people
+
+*20 November 2026, version 0.281.0*
+
+- Every god has two or more new happenings that bring your colonists together or set them against each other, thirty-one in all: saplings between two who fought, a coat carried to someone cold, riddles at supper, one cup set between two at odds.
+- How it ends between the two (closer, a quarrel, made up, ashamed, resentful, wary, laughed at, a kindness remembered) stays in their opinions of each other and is told in the news.
+- The devout may vow their god a season as a life goal: a lamp kept lit, a tree a week, plain food only, or every caller at the gate fed, each kept on the map.
+- Four new council questions of faith: a plan laid over a god's place, a feast day in a hard season, a scoffer at the rites, and a shrine nobody keeps.
+- Every god's card now comes in three wordings.
+- Very rarely a named weapon of Possessed Weapons or a warm drake's egg of Dragons Descent is found after something strange; more of your mods' xenotypes lean toward a god, and with Alpha Bees the bees are told of a death or someone new.
+
 ## The region's years and the camps
 
 *20 November 2026, version 0.280.2*
