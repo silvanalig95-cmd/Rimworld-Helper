@@ -36,7 +36,7 @@
         <li>You promised me "{WISH}", and I told people it was coming.</li>
         <li>I waited because you promised, and now I've nothing to show for the waiting.</li>
         <li>I'll remember this promise longer than you did.</li>
-        <li>[trusting] I trusted the council more than most, and this is what it gets me.</li>
+        <li>I trusted the council more than most, and this is what it gets me.</li>
         <li>A promise from the council turns out to be worth about as much as a no.</li>
       </plain>
       <warm><li>I'd have understood a no, but I can't understand a promise that just went away.</li></warm>
@@ -92,7 +92,7 @@
     <lines>
       <plain>
         <li>I stopped waiting for "{WISH}" and got on with it myself.</li>
-        <li>[skill:Crafting|skill:Construction] It took me a while, but I've seen to it with my own hands.</li>
+        <li>It took me a while, but I've seen to it with my own hands.</li>
         <li>Nobody else had the time, so I made the time myself.</li>
         <li>I'd rather have had help, but it's done now and that's what matters.</li>
         <li>[trait:Lazy|trait:Slothful] I've done it myself, and you've no idea how much that cost me.</li>
