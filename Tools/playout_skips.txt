@@ -654,3 +654,21 @@ Rimfolk_Dlm_WS_Mourning [option 0] done at once by DilemmaEffect_WorldMourning: 
 
 # Defs/WorldSituationDefs/Rimfolk_WS_NewHead.xml
 Rimfolk_WS_NewHead [end:visited] told after it happened: the supper, the gift and the feast promised were the gate's answers (a feast with them at it, the gift carried out), and the next feast is only promised
+
+# Defs/WorldSituationDefs/Rimfolk_WS_Variety4.xml and _Variety5.xml (the content update's variety, the world)
+Rimfolk_WS_Games [end:ourWin] far away, told: the games at the town; the colonist's win was played out at the colony's games day
+Rimfolk_WS_Games [end:held] told after it happened: the games day was a feast with the young people at it
+Rimfolk_WS_Games [end:over] far away, told
+Rimfolk_WS_Pardon [road] the outlaws really walk past on the road (VisitEffect_Come) and go on
+Rimfolk_WS_Pardon [meal/1] a refusal: the outlaw at the gate goes on when the answer comes (Visitors/)
+Rimfolk_WS_Pardon [end:sentHome] told after it happened: the prisoners were walked out by the wardens (DilemmaEffect_PardonRelease)
+Rimfolk_WS_HiringFair [road] the young people really walk past on the road (VisitEffect_Come) and go on
+Rimfolk_WS_HiringFair [seeker/1] a refusal: the young one at the gate goes on when the answer comes (Visitors/)
+Rimfolk_WS_FoundingDay [end:honoured] far away, told: the gift was carried out to the runner, or the colonist went (WorldEffect_Away)
+Rimfolk_WS_MudRoads [load/0] the carter's part: paid at the gate, the sacks set down (DilemmaEffect_Spawn by Outsiders), then they go on
+Rimfolk_WS_MudRoads [load/1] a refusal: the carter at the gate goes on when the answer comes (Visitors/)
+Rimfolk_WS_MudRoads [shelter/1] a refusal: the travelers at the gate go on when the answer comes (Visitors/)
+Rimfolk_WS_FallingStars [starIron/0] the finder's part: paid at the gate, the star-iron set down (DilemmaEffect_Spawn by Outsiders), then they go on
+Rimfolk_WS_GreatBurying [linen/1] a refusal: the sexton at the gate goes on when the answer comes (Visitors/)
+Rimfolk_WS_GreatBurying [end:quiet] far away, told
+Rimfolk_WS_BridgeDown [end:rebuilt] far away, told

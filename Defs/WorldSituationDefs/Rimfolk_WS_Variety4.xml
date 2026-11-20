@@ -114,7 +114,7 @@
           </li>
           <li>
             <label>Thank them and send them on</label>
-            <outcome>The old tailor goes on to {PLACE}, to teach the trick to someone there.</outcome>
+            <outcome>The old tailor thanks the colony for its time and goes on toward {PLACE}.</outcome>
           </li>
         </options>
       </li>
@@ -273,7 +273,7 @@
           </li>
           <li>
             <label>{A_nameDef} is needed here</label>
-            <outcome>The apprentice goes back to {PLACE} with {X_possessive} tools still clean.</outcome>
+            <outcome>The young carpenter thanks the colony anyway and goes back toward {PLACE}.</outcome>
           </li>
         </options>
       </li>

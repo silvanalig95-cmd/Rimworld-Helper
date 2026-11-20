@@ -379,7 +379,7 @@
         <options>
           <li>
             <label>Buy the {COUNT} potatoes for half their worth</label>
-            <outcome>The carter is paid at the gate and sets the sacks down there, and goes back down to the road lighter in every way.</outcome>
+            <outcome>The carter is paid at the gate and sets the sacks down there, and goes back the way {X_pronoun} came, lighter in every way.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Pay"><factor>0.9</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>RawPotatoes</thing><by>Outsiders</by></li>
@@ -390,7 +390,7 @@
           </li>
           <li>
             <label>The colony has enough</label>
-            <outcome>The carter goes back down to the road to see what can be saved.</outcome>
+            <outcome>The carter goes back the way {X_pronoun} came, to see what can be saved.</outcome>
           </li>
         </options>
       </li>
@@ -423,7 +423,7 @@
           </li>
           <li>
             <label>Send them on</label>
-            <outcome>The travelers squelch back down to the road.</outcome>
+            <outcome>The travelers squelch back the way they came.</outcome>
           </li>
         </options>
       </li>
@@ -507,7 +507,7 @@
         <options>
           <li>
             <label>Buy the star-iron</label>
-            <outcome>The finder is paid at the gate and sets the star-iron down there, and goes off to look for more.</outcome>
+            <outcome>The finder is paid at the gate and sets the star-iron down there, and goes back toward the hills.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Pay"><factor>1.2</factor><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Steel</thing><by>Outsiders</by></li>
@@ -848,7 +848,7 @@
           <li>A new bridge at {PLACE}</li>
         </titles>
         <texts>
-          <li>The new bridge at {PLACE} is open, and the road goes the short way again. Some of its beams are the colony's, and {FACTION} say so to everyone who crosses.</li>
+          <li>The new bridge at {PLACE} is open, and the road goes the short way again. Some of its beams are the colony's, and {FACTION} say so to anyone who will listen.</li>
           <li>[their:artisans] The new bridge at {PLACE} is open, with a mason's mark on every stone and the colony's name on one of them.</li>
         </texts>
         <chronicle>A new bridge was built at {PLACE}, with the colony's timber.</chronicle>
