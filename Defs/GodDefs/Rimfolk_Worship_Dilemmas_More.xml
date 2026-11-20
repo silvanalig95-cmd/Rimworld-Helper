@@ -19,7 +19,7 @@
     <minColonists>3</minColonists>
     <roleB />
     <texts>
-      <li>The new plans run straight into {PLACE}. {B_nameDef} would sooner build through it and be done; {A_nameDef} is standing in front of it and says {GOD} was there first. The council is asked to settle where the walls go.</li>
+      <li>The new plans run straight into {PLACE}. {B_nameDef} would sooner build through it and be done; {A_nameDef} has stepped in front of it and says {GOD} was there first. The council is asked to settle where the walls go.</li>
       <li>{A_nameDef} came to the council with chalk on {A_possessive} hands: somebody has marked out a wall right over {PLACE}. Move it with the proper words, {A_pronoun} says, or build round it, but nobody tears it down without asking.</li>
       <li>[lowtech] The stakes for the new building cross the stones of {PLACE}. {B_nameDef} says stones can be carried. {A_nameDef} says {GOD} cannot.</li>
     </texts>

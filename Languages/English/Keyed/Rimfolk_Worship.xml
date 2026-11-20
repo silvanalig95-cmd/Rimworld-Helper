@@ -302,6 +302,14 @@
   <CC_Wsh_Week_VowTip_Pilgrimage>A life goal: on a free day they walk out to the god's holy place on the colony's land and pray there a while.</CC_Wsh_Week_VowTip_Pilgrimage>
   <CC_Wsh_Week_VowTip_Temple>Kept when a place of the god's stands indoors, in a room fine enough to be called a temple.</CC_Wsh_Week_VowTip_Temple>
   <CC_Wsh_Week_VowTip_BeastSpared>Broken if anyone of the colony kills an animal of that kind before the season is out.</CC_Wsh_Week_VowTip_BeastSpared>
+  <CC_Wsh_Week_Vow_Lamp>{PAWN} keeps a lamp lit at {GOD}'s place this season</CC_Wsh_Week_Vow_Lamp>
+  <CC_Wsh_Week_Vow_Trees>{PAWN} plants a tree a week for {GOD} this season</CC_Wsh_Week_Vow_Trees>
+  <CC_Wsh_Week_Vow_PlainBread>{PAWN} eats only plain food for {GOD} this season</CC_Wsh_Week_Vow_PlainBread>
+  <CC_Wsh_Week_Vow_Visitors>{PAWN} feeds every caller at the gate for {GOD} this season</CC_Wsh_Week_Vow_Visitors>
+  <CC_Wsh_Week_VowTip_Lamp>A life goal for a season: each day they see to the light by the god's place, and fill it from the stores when it burns low. Broken the night it goes out or is gone.</CC_Wsh_Week_VowTip_Lamp>
+  <CC_Wsh_Week_VowTip_Trees>A life goal for a season: each week they set a sapling in the ground by hand. Broken by a week with none planted, or by their felling a tree.</CC_Wsh_Week_VowTip_Trees>
+  <CC_Wsh_Week_VowTip_PlainBread>A life goal for a season: simple meals only. A fine or a lavish meal eaten breaks it.</CC_Wsh_Week_VowTip_PlainBread>
+  <CC_Wsh_Week_VowTip_Visitors>A life goal for a season: when callers come to the gate, they carry a meal from the stores to one of them. Broken if callers leave unfed; keep meals in the stores.</CC_Wsh_Week_VowTip_Visitors>
   <CC_Wsh_Week_Demand>{PAWN} dreamt that {GOD} wants {WHAT} at {SHRINE}</CC_Wsh_Week_Demand>
   <CC_Wsh_Week_DemandNote>dreamt</CC_Wsh_Week_DemandNote>
   <CC_Wsh_Week_DemandTip>{PAWN} told the dream. Someone will carry it there when they are free.</CC_Wsh_Week_DemandTip>

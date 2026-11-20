@@ -18450,6 +18450,168 @@ Harm: only the fellowship's cough from a crowded town (C6), already in the budge
 Not checked without the game: the catch hook's list, the trader lord's timer, a sculpture from a snowman, the trade
 window's line, the shrine rooms' layouts with the mods' pieces.
 
+### The gods between the colony's people, and the gods' variety (the player's go, 20 November 2026; not released yet)
+
+The player on the content update: "In general, I just want additional God events, more immersion, more just further also
+building up on the gods in general, how they're integrated, the effects they have, the relations between pawns, the kind
+of events that generated from it ... And then also, just variety", and "first do all the integrations that you proposed
+in your document before we add additional content variety". With the integrations released (0.278.0, 0.278.1, 0.279.1,
+0.280.0), this is the first of the variety, the gods first: C5, C9, C10, C11, C13, C23 and C31 of part C of
+`docs/content-update-proposals.md`, and, beyond the doc, thirty-one new happenings of the gods' own (two or more for each
+of the fifteen) that set the colony's people toward or against each other. The gods stay unseen in all of it: a card's
+words never name a god; a letter's title names it only where the colony knows it was that god (`Gods.CardName`), the
+Hunger never; what people say is their own guess, one sentence a bubble; the colony's book keeps it as its witness saw
+it; nothing shows a favour, a want or a rule.
+
+**The gods between the colony's people** (`Source/ColonyCouncil/Gods/OnMap/Between/`; the pure rules
+`Gods/OnMap/OwnBetweenMath.cs`, linked into the tests). Each is an `OwnHappening` like the gods' others (added at the end
+of the list, so a save keeps its order), on the gods' pace (`OwnHappeningsMath.BetweenPaceOf`: its own gap, a chance
+growing after it, never without a reason in the world, a near god a little likelier, `GodTouch.Turn` giving the other
+gods their turn; those that follow something, a fight, a fine piece, a sealed body, a newcomer, a hunt, an insult, at
+their own chance once a gap is past, `FollowChance`). The frame (`Between.cs`): one scene at a home at a time
+(`BetweenState`, saved with the gods' own happenings' book, its lists kept small); the kinds looked at in the gods' hour
+in a random order; who stands where (`BetweenStance`: holding the god, a rival's, another's, none, doubting it all); the
+card in three wordings (`CC_GodB_<happening>_Text`, `_2`, `_3`, `TextVariants`), shown with the god's own look where it
+acted (`GodTouchFx`) and the camera; the book (`CC_GodB_Saw_<happening>`, so those who saw it feel it by their belief,
+`GodTouch`; listed in `GodTouchMath.OwnEffectKeys`, so the touch's random effect never comes on top), a doubter's word set
+beside it (`GodLore.Disputed`); and how it ends between the two (`BetweenOutcome`): closer, a quarrel (each held to their
+god the harder, `BeliefEvent.Bickered`), made it up (the old quarrel's memories let go), ashamed, resentful, wary, laughed
+at, a kindness remembered; each a memory of the other in the game's own opinions (`Rimfolk_Between_*`, small: +6 to +8,
+-4 to -6; ashamed -3 and proud +3 are moods), a plain line in the news in three wordings and the journals. Dev mode: "Gods:
+<god>'s ... now" for each (`Gods/OwnBetweenDebug.cs`). No harm: nobody is hurt, no fight.
+
+- **Hollin.** *The saplings between them* (`HollinBound`): two who had an angering fight find two saplings side by side
+  at the next dawn between where they sleep, and stand at them together: made it up, unless one scoffs (a quarrel).
+  *Brambles round the stump* (`HollinStumps`): one who felled twelve trees or more in fifteen days while few were planted
+  finds brambles round their last stump; one who holds her walks out with them: ashamed, or, for a doubter or a rival's
+  man, a quarrel.
+- **Smoulder.** *The forge flares* (`SmoulderPraise`): a masterwork (half the time) or a legend (nearly always) makes the
+  bench throw heat and sparks; the maker is proud, and the next-best hand at that work walks over and resents it.
+  *Pulled back from the fall* (`SmoulderNearMiss`): two at work under the mountain close together; the rock grumbles,
+  one pulls the other back and a scatter of stones comes down where they stood (rubble, never on anyone); a kindness
+  remembered.
+- **Bellwether.** *The old one and the child* (`BellwetherTold`): at dusk the eldest takes a child to the edge and tells
+  of the white beast, and the wild grazers drift close round them; closer. *The hunter who let it go* (`BellwetherSpared`):
+  on a hunt, while the colony has ten days of food and never by a scoffer, the beast turns and looks and the hunter lets
+  it walk off the land; at home one who holds the Old Horn says they did right (closer), else the cook grumbles about the
+  meat (a quarrel).
+- **Morel.** *Whose rot is it* (`MorelWasted`): food let go to rot at home; the cook and another walk to it: if either
+  holds her and neither scoffs, they carry it out to the soil together (closer), else they argue whose fault it was.
+  *Threads on the sealed stone* (`MorelSealed`): one of the colony dead lately sealed in a sarcophagus; at dawn white
+  threads over the stone (her own drawn threads); one who holds her and one who holds Tamiu or Hush (or a doubter)
+  argue over it.
+- **Ennu.** *A bowl for the newcomer* (`EnnuWelcomed`): someone joins; the colony's kindest carries a meal from the
+  stores and sits with them (a kindness remembered); one near who already dislikes the newcomer hears a word from them
+  and is ashamed. *Waiting up for the late one* (`EnnuWaitedUp`): one out far on the land late at night; the one who
+  likes them best waits at the colony's edge with a light until they come in; closer.
+- **Pip.** *It wanted both of them* (`PipTwoHands`): a machine broken four hours or more with nobody at it; two lay
+  their hands on it together and it starts again with a spark, no part used; closer, or a quarrel when one scoffs at it.
+  *Talking to the machine* (`PipTalked`): one who holds the Hum talks to a machine or a bench, a doubter walks over to
+  laugh, the machine hums and brightens, and the doubter is shaken a little; a good sport laughs along, else it stings.
+- **Cirrus.** *A star for two* (`CirrusTwoWatchers`): at night under a clear sky two out of doors watch a star cross
+  (a line of small lights across the sky); closer. *A shape in the clouds* (`CirrusCloudShape`): two under a clouded sky
+  each see their own god's shape: of the same god closer, of two gods a quarrel, a doubter's laugh.
+- **Hush.** *A coat for the cold one* (`HushCoat`): one taking a chill while a warmer coat lies in the stores; one who
+  holds her (else the one who likes them best) carries it out, they put it on, and the frost round them melts; a
+  kindness remembered. *Quiet asked on the cold night* (`HushNoise`): a winter night, someone loud at a party, a game or
+  a long talk; one who holds her asks for quiet: the faithful say sorry and stop, the rest grumble and stop, a doubter or
+  the Open Cup's own refuses, and they argue.
+- **Undertow** (never named). *Seen whispering at the edge* (`UndertowWhisper`): late at night one with a deep grudge
+  (opinion -50) or in despair walks to a dark place at the edge and whispers into the dark; another awake sees it and is
+  wary of them after. *The light let go out* (`UndertowLampOut`): in the small hours a fuelled light by a sleeper goes
+  out; in the morning the sleeper and another argue whose it was to keep, unless they are good friends.
+- **Helios.** *Out into the sun* (`HeliosSun`, C9). *His light on both alike* (`HeliosAlike`): at a clear noon two at
+  odds out of doors near each other; the light lies gold on both, and one who holds the Giver (one of them, or someone
+  near) says he gives to all alike: they make it up, unless one scoffs. *Called into the shade* (`HeliosShade`): a hot
+  noon (33 degrees or more); a friend calls one working in the sun into the shade, and they sit together a while; closer.
+- **Selene.** *Sorry in the morning* (`SeleneSorry`): one who insulted another today stands out under a moon at least
+  half full in the night, and in the morning goes to say sorry: taken (made it up) unless the hurt runs deep (opinion
+  below -40, a quarrel). *The same dream at breakfast* (`SeleneSameDream`): two rested in the morning tell the same dream:
+  friends closer, others uneasy.
+- **Tamiu.** *A cat on the grave* (`MogGraveCat`): at dusk a cat (the colony's, else a stray who goes again after) sits
+  on the grave of one dead within two seasons, and the two who loved them most sit with it; closer. *Riddles at supper*
+  (`MogRiddle`): two quick minds trade riddles; the better wit mostly wins (luck between equals), is proud, and a cat
+  walks at their heel the evening through; a good loser closer, a sore one resentful.
+- **Murmur.** *A splash at the water* (`MurmurSplash`): on a hot afternoon two walk down to the still water and one
+  splashes the other; frogs (Odyssey's bullfrogs) come up croaking; a good sport splashes back, else they take offence.
+  *A frog in the bedroom* (`MurmurFrogIn`): in the rain, with Odyssey's bullfrog, a frog in a bedroom; the sleeper and
+  another come: of one mind about it they laugh and see it out, else one who holds the toad would leave it be and they
+  argue; it hops off into the wet.
+- **Ducat.** *A coin passed on* (`DucatPassed`): a gold coin by one of the colony, carried to the one lowest in spirits,
+  who passes it on a day later, and the third leaves it for the stores; each given it remembers the kindness. *The
+  miser's silver scattered* (`DucatMiser`): one with a greedy heart sits up counting the stores' silver, and by morning
+  it lies in little heaps (none lost); someone laughs at them: ashamed, or, for a doubter, stung.
+- **Revel.** *One cup between them* (`RevelRivalsCup`): late in the evening two at odds; one carries a drink from the
+  stores and sets it down by the other, who drinks it as their drug policy and faith allow (`FirstPot.WillDrink`): made
+  it up; one who won't says so. *A wager lost* (`RevelWager`): two drunk late make a wager, and in the morning the loser
+  scrubs the winner's room: a good loser closer, a sore one laughed at.
+
+**C9, out into the sun** (`HeliosSun`, a fourth happening of his): on a clear, warm noon (11 to 14 o'clock, 15 to 34
+degrees, never a heat wave), one who holds the Giver (else the best doctor) walks someone getting over an illness or an
+ailment, up and about and not to be kept abed (`HealthAIUtility.ShouldSeekMedicalRest`, so Rimfolk's bed rest), out into
+the sun; they sit an hour together, and the illness moves on a little (severity eased by 0.06, once); the one walked out
+remembers the kindness. Its pace: six days apart, about every three when called for.
+
+**C31, three wordings for every god happening card** (`Languages/English/Keyed/Rimfolk_GodCards_Wordings.xml`): the
+second and third wording of each of the 99 cards of the gods' own happenings, the gods on the map and the festivals (the
+first in each god's own file), the same placeholders, plain words; each told through `TextVariants.Vary` where it is made
+(`OwnHappenings.Card`, each god's own file, the gods on the map, the festivals). The new happenings' cards and lines are
+in three wordings from the start.
+
+**C5, four more vows** (`Gods/Worship/VowsSeason.cs`): a life goal each, set by the devout or the priest to the god they
+hold, only to the gods its words are for (`WorshipMath.VowFits`), for a season (15 days), kept on the map by the vower's
+own walk and broken by what anyone can see: *a lamp kept lit* (Pip, Selene, Helios, the Hunger; a light within eight
+cells of the god's place: each day they fill it from the stores when it burns below six tenths, or walk over and see to
+it; broken the night it goes out or is gone); *a tree a week* (Hollin: a sapling set by hand near its place each week;
+broken by a week with none, or by felling a tree); *plain bread* (Hush, Morel: simple meals only, a word over their head
+once a day; broken by a fine or a lavish meal eaten); *every caller fed* (Ennu, Ducat: when callers stand at the gate, a
+meal from the stores set down by one of them; broken when a party leaves unfed). New `VowKind`s at the end of the list;
+the vow's lamp and counts saved on its record; the life goals' text in the flavour style (`Rimfolk_Worship_Goals.xml`).
+
+**C10, the gods' rarest gifts** (`Gods/Touch/GodRareGifts.cs`, `GodRareGiftsMath.cs`): after one of a god's great effects
+(not an anger), half the time once two colony-years (120 days) have passed since the last, a named weapon of Possessed
+Weapons lies where it happened in a ring of scorched ground (ash), masterwork: the glacial cleaver for Hush, the
+lightning javelin for Cirrus, the volcanic maul or the craghammer for Smoulder, the verdant bow for Hollin, the gilded
+arquebus for Ducat, the shrouded dagger for Tamiu, the sanctified sword for Helios, the automaton crossbow for Pip. After
+Smoulder's waking, on the same wait, half the time a warm drake's egg of Dragons Descent (`DD_EggDrakeFertilized`) lies
+among the fallen rock of the deep and hatches as the colony's. The words say what lay there (three wordings), never
+whose; the book keeps it. The weapons are the mod's persona weapons with the game's own bonds and traits (the mod's
+JavelinShock and RockSmash hit whoever the javelin or the craghammer strikes, and its GhostlySickness belongs to the
+ghostly flintlock, not given): Rimfolk adds no harm. None without the mods.
+
+**C11, who is drawn to which god** (`PawnGodsMath.XenotypeDraws`): the proposal's 28 rows (the animusen to Hush, the
+malachai and the wretch to the Hunger, the lapis to Smoulder, the uredd and the åskbarn to Cirrus, the taukai, the
+helixan and the archon to Pip, the hiveling and the insector to Morel, the ocularkin to Hollin, the saurid to Helios, the
+highmate and the waster to Revel, the fleetkind to Ennu, the avaloi to Selene, Paws of Interest's kinds by their own, the
+awakened apes to Bellwether), and, decided here, Paws of Interest's Skitty (a kitten) to Tamiu and Goodra (a rain dragon)
+to Murmur. As belief, never favour; each checked against the player's active xenotypes.
+
+**C13, more council questions of faith** (`Gods/Worship/WorshipCouncilMore.cs`, `Rimfolk_Worship_Dilemmas_More.xml`, in
+the flavour style): *the shrine in the way* (a blueprint or frame of the colony's against a god's place: moved with a rite,
+the place marked to be taken up; the plan drawn round it, those blueprints cancelled; or taken down, undedicated and
+marked to come down); *the feast in a hard season* (a god's festival tomorrow with under five days of food or a raid in
+the last three days: kept with less, no offering carried and no guests sent for, `Festivals.Kept`; the rite only, held
+that evening and the day itself not kept, `ColonyCalendar`; or let pass when it comes); *the scoffer at the rite*
+(someone who laughed at a god before its faithful lately, a "mocked" mark from `FaithHeart`: kept from its rites for
+fifteen days, left out of the festival's gathering; set to carry the next offering, which they carry; or let be); *a
+shrine nobody keeps* (a god's place whose god nobody at home holds: kept and swept, given to the god of the one asking,
+who walks out and says the words, `Shrines.Ask`; or let fall, undedicated). Each answer plays out on the map
+(`Tools/playout_audit.py` counts the new effects).
+
+**C23, telling the bees** (`Immersion/TellingBees.cs`, `TellingBeesMath.cs`): when one of the colony dies, or someone new
+joins, the one who tends the hives most (Alpha Bees' own beekeeping priority, then skill with animals; else the best with
+animals) walks round up to four of Alpha Bees' beehouses (`RB_Beehouse`, `RB_AdvancedBeehouse`), stands a moment at each,
+and tells them, one sentence at the first (`JobDriver_TellBees`). After a death the teller's grief eases a little
+(`Rimfolk_Bees_Told`, +2 for two days); a journal line and a plain line in the news. No penalty if nobody goes: the news
+waits three days and is let go. Under the small habits setting; never without Alpha Bees. Dev mode: "Bees: ...".
+
+Harm: none (no wound, no fight, no illness; the rare gifts' weapons are the mod's own). Saved: `BetweenState` (scenes,
+woodcutters, newcomers welcomed, fights and insults answered, sealed stones seen) and `TellingBeesBook` (news waiting,
+newcomers told), each kept small and modelled in `Tools/save_estimate.py`; the vows' record and the offering's asked
+carrier gain a field each. Not checked without the game: the happenings' timing at the colony's hours, the jobs' walking
+and standing, the frog and the cat strays' leaving, the coat put on, the shrine taken up and the frames cancelled, the
+drake's egg hatching as the colony's, Alpha Bees' hives reached.
+
 ### The world brought home (the player's go, 20 November 2026; released 0.280.0)
 
 The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead with
