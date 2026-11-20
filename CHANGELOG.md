@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More words for the gods, and prayers in the old voice
+
+*20 November 2026, version 0.286.0*
+
+- Fixed: the words said at a god's place after the council's answers showed the god's placeholder instead of its name.
+- The gods have more said about them: what people answer back, what the colony's book sets down in the old voice, and what the neighbours write after a god's hand.
+- The priest, the keeper of the book, a devout elder and those of a faith of the old ages now pray, give thanks and keep the rites and the saints' days in the old voice.
+- More talk around worship: each god's way of taking an offering, each god's presence, true dreams, vows, pilgrimages, saints and the festival on the calendar.
+- The pilgrims' and the seer's camps have more to say, and the weather talk and the land's journals have more lines.
+
 ## Life, customs and stories
 
 *20 November 2026, version 0.285.0*
