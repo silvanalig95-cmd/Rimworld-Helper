@@ -62,6 +62,12 @@ namespace ColonyCouncil
         public bool hostileAsked;
         /// <summary>How many hamlets this home has seen stand.</summary>
         public int count;
+        /// <summary>
+        /// The region's hard year its last ask followed (a world event's defName, World/Region/HamletLife.cs) and where it is
+        /// ("at Ashford", or empty in the region at large); until when their carter at the gate speaks of it, or -1.
+        /// </summary>
+        public string hardEvent, hardWhere;
+        public int wordUntil = -1;
 
         public void ExposeData()
         {
@@ -101,6 +107,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref grown, "grown");
             Scribe_Values.Look(ref hostileAsked, "hostileAsked");
             Scribe_Values.Look(ref count, "count");
+            Scribe_Values.Look(ref hardEvent, "hardEvent");
+            Scribe_Values.Look(ref hardWhere, "hardWhere");
+            Scribe_Values.Look(ref wordUntil, "wordUntil", -1);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 settlers ??= new List<Pawn>();

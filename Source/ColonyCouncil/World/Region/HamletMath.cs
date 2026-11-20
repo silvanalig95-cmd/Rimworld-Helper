@@ -236,6 +236,71 @@ namespace ColonyCouncil
             return need;
         }
 
+        // ---------------- The region's hard seasons (docs/content-update-proposals.md, B11) ----------------
+
+        /// <summary>A world event this near the hamlet (in tiles, from its town or the nearest town of its people) reaches it.</summary>
+        public const float RegionTiles = 15f;
+
+        /// <summary>With a hard year near, it asks for help already below this fortune (help comes due a little sooner).</summary>
+        public const float HardYearUnder = 30f;
+
+        /// <summary>A bumper year near: the harvest's carter brings half again as much.</summary>
+        public const float BumperFactor = 1.5f;
+
+        public const string Bumper = "Council_WS_Bumper";
+
+        /// <summary>
+        /// What the hamlet needs when a world event (its defName) reaches it: a doctor in a plague; food in a famine, a blight,
+        /// a locust year, a drought or a year without a summer; tools after a great fire, a flood or in rebuilding. Null for
+        /// one that brings no need.
+        /// </summary>
+        public static HamletNeed? RegionNeed(string situation)
+        {
+            switch (situation)
+            {
+                case "Council_WS_Plague": return HamletNeed.Doctor;
+                case "Council_WS_Famine":
+                case "Rimfolk_WS_Blight":
+                case "Council_WS_Locusts":
+                case "Council_WS_Drought":
+                case "Rimfolk_WS_ColdYear":
+                    return HamletNeed.Food;
+                case "Council_WS_GreatFire":
+                case "Council_WS_Flood":
+                case "Council_WS_Rebuilding":
+                    return HamletNeed.Tools;
+                default:
+                    return null;
+            }
+        }
+
+        /// <summary>Every world event that brings the hamlet a need (for the tests and the words).</summary>
+        public static readonly string[] RegionEvents =
+        {
+            "Council_WS_Plague", "Council_WS_Famine", "Rimfolk_WS_Blight", "Council_WS_Locusts", "Council_WS_Drought", "Rimfolk_WS_ColdYear",
+            "Council_WS_GreatFire", "Council_WS_Flood", "Council_WS_Rebuilding"
+        };
+
+        /// <summary>A world event this far off (tiles; below 0 for none known) reaches the hamlet.</summary>
+        public static bool Reaches(float tiles) => tiles >= 0f && tiles <= RegionTiles;
+
+        /// <summary>Its hard season, with or without a hard year near: the region's need when there is one, else <see cref="NeedFor"/>'s roll.</summary>
+        public static HamletNeed NeedFor(HamletNeed? region, float roll, int last) => region ?? NeedFor(roll, last);
+
+        /// <summary>Help is due: struggling (below <see cref="HungryUnder"/>), or, with a hard year near, below <see cref="HardYearUnder"/>.</summary>
+        public static bool HelpDue(float prosperity, int lastAt, int founded, int now, bool hardYear) =>
+            prosperity >= 0f && prosperity < (hardYear ? HardYearUnder : HungryUnder) && founded >= 0 && now - founded >= (long)HelpGapDays * DayTicks
+            && (lastAt < 0 || now - lastAt >= (long)HelpGapDays * DayTicks);
+
+        /// <summary>The harvest load, more in a bumper year near.</summary>
+        public static int Harvest(int usual, bool bumper) => bumper ? (int)Math.Round(Math.Max(1, usual) * BumperFactor) : usual;
+
+        /// <summary>The carter's word at the gate is said while their courier comes for the help, within this many days of it going out.</summary>
+        public const int WordDays = 2;
+
+        /// <summary>The family of words for a world event's need (the letter's sentence and the carter's word): sickness, hunger or damage.</summary>
+        public static string WordFamily(HamletNeed need) => need == HamletNeed.Doctor ? "Sick" : need == HamletNeed.Food ? "Hungry" : "Damage";
+
         /// <summary>A season (days): refused twice within one, the tie is broken.</summary>
         public const int SeasonDays = 15;
         public const int BreakRefusals = 2;

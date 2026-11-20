@@ -76,9 +76,9 @@
     <!-- The herd grazes beyond the camp (beasts that suit the cold here, those that live wild on this land likelier), and
          a dog keeps to a herder's heels. The beast the colony can buy is one of these. -->
     <animals>
-      <li><kinds><li>Yak</li><li>Muffalo</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Alpaca</li></kinds><count>6~8</count><at>pasture</at></li>
+      <li><kinds><li>Yak</li><li>Muffalo</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Alpaca</li><li MayRequire="sarg.alphaanimals">AA_ChameleonYak</li><li MayRequire="ve.vanillachristmasexpanded">VCE_Megareindeer</li><li MayRequire="spino.megafauna">Aurochs</li></kinds><count>6~8</count><at>pasture</at></li>
       <li><kinds><li>Muffalo</li><li>Yak</li><li>Sheep</li><li>Goat</li><li>Cow</li><li>Dromedary</li><li>Horse</li></kinds><count>3~4</count><at>pasture</at></li>
-      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
     </animals>
     <!-- Their thanks for the grazing: a young beast of the herd's own kind, handed over at the gate as they go. -->
     <leaveBehind>

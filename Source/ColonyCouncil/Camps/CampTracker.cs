@@ -1055,6 +1055,22 @@ namespace ColonyCouncil
                 value += unit * t.stackCount;
                 p.inventory.innerContainer.TryAdd(t);
             }
+            // What this kind of camp always has to sell (the salt caravan's salt), beyond the budget: it is what they carry.
+            foreach (var g in c.kind.traderGoods ?? new List<CampGoods>())
+            {
+                var def = g?.Def;
+                if (def == null) continue;
+                try
+                {
+                    var t = ThingMaker.MakeThing(def, g.StuffFor(def));
+                    t.stackCount = Mathf.Clamp(g.count.RandomInRange, 1, Mathf.Max(1, def.stackLimit));
+                    p.inventory.innerContainer.TryAdd(t);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("camp trader's own goods", e);
+                }
+            }
             c.trader = p;
             c.traderSilver = p.inventory.innerContainer.TotalStackCountOfDef(ThingDefOf.Silver);
             return true;

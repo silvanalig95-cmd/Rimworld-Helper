@@ -145,17 +145,22 @@ namespace ColonyCouncil
     /// <summary>
     /// A ruling at the moot over the old wood (item 96) moves a price for a season: steel with the shaft sunk, the Mossborn's herbal medicine
     /// with the wood kept. Every trader the colony deals with (caravans, visitors, towns, ships) asks and pays that much less for it while
-    /// it holds; buying and selling move together, so the spread between them stays the game's.
+    /// it holds; buying and selling move together, so the spread between them stays the game's. The region's hard and good years
+    /// (World/Region/RegionPrices.cs) ride on the same hook, by the trader's people: one factor on the price, the moot's and the
+    /// region's together and kept within half and one and a half (RegionPricesMath.Combined), so the two never pull against each other.
     /// </summary>
     [HarmonyPatch(typeof(Tradeable), nameof(Tradeable.GetPriceFor))]
     public static class Patch_SeasonPrices
     {
         public static void Postfix(Tradeable __instance, ref float __result)
         {
-            if (!PeopleEvents10Book.AnyPrice || !RimfolkPatches.On || __instance == null) return;
+            if (!RimfolkPatches.On || __instance == null) return;
+            bool moot = PeopleEvents10Book.AnyPrice;
+            if (!moot && !RegionPrices.Any) return;
             try
             {
-                float f = PeopleEvents10Book.Factor(__instance.ThingDef);
+                var def = __instance.ThingDef;
+                float f = RegionPricesMath.Combined(moot ? PeopleEvents10Book.Factor(def) : 1f, RegionPrices.Factor(def, RegionPrices.Trader));
                 if (f != 1f) __result = PeopleEvents10Math.Priced(__result, f);
             }
             catch (Exception e)

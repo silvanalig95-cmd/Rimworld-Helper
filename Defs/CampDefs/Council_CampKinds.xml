@@ -762,6 +762,13 @@
     </structures>
     <sleep>Tents</sleep>
     <works><li>Chop</li></works>
+    <!-- Raw honey in pots at the stall, and some for sale: Vanilla Factions Expanded - Medieval 2's or Alpha Bees', else berries. -->
+    <campGoods>
+      <li><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Honey</li><li MayRequire="sarg.rimbees">RB_BaseHoney</li><li>RawBerries</li></defs><count>10~20</count><at>stall</at></li>
+    </campGoods>
+    <traderGoods>
+      <li><defs><li MayRequire="oskarpotocki.vfe.medieval2">VFEM2_Honey</li><li MayRequire="sarg.rimbees">RB_BaseHoney</li></defs><count>15~30</count></li>
+    </traderGoods>
     <situationKinds>
       <li>trade</li>
       <li>road</li>
@@ -1065,6 +1072,10 @@
     <sleep>Hut</sleep>
     <tidy>Orderly</tidy>
     <works><li>Chop</li><li>Gather</li><li>Fish</li><li>Hunt</li></works>
+    <!-- A cat at the hermit's heels and by the fire at night: the game's own, or one of the animal mods' cats. -->
+    <animals>
+      <li><kinds><li>Cat</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_CatBritishShorthair</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_CatMaineCoon</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_CatNorwegianForest</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_CatSiamese</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_CatPersian</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
     <!-- Firewood stacked by the hut's door, which feeds the fire and is left with the hut. At the end of the season the
          hermit walks to the colony's door and leaves a carved bird there, in its crate. -->
     <campGoods>

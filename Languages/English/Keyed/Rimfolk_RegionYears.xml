@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===== The region's years in the traders' prices (B5; Source/ColonyCouncil/World/Region/RegionPrices.cs) ===== -->
+  <CC_RegionPrice_Where>{EVENT}, {PLACE}</CC_RegionPrice_Where>
+  <CC_RegionPrice_Dear>{GOODS}: {PCT}% dearer with {PEOPLE}, bought or sold ({WHY}).</CC_RegionPrice_Dear>
+  <CC_RegionPrice_Cheap>{GOODS}: {PCT}% cheaper with {PEOPLE}, bought or sold ({WHY}).</CC_RegionPrice_Cheap>
+  <CC_RegionPrice_MootCheap>{GOODS}: {PCT}% cheaper with every trader this season, bought or sold (the moot's ruling for {PEOPLE}).</CC_RegionPrice_MootCheap>
+  <CC_RegionPrice_MootDear>{GOODS}: {PCT}% dearer with every trader this season, bought or sold (the moot's ruling for {PEOPLE}).</CC_RegionPrice_MootDear>
+  <CC_RegionPrice_Goods_Food>Food</CC_RegionPrice_Goods_Food>
+  <CC_RegionPrice_Goods_Medicine>Medicine</CC_RegionPrice_Goods_Medicine>
+  <CC_RegionPrice_Goods_Steel>Steel</CC_RegionPrice_Goods_Steel>
+  <CC_RegionPrice_Goods_Wood>Wood</CC_RegionPrice_Goods_Wood>
+  <CC_RegionPrice_Goods_Textiles>Cloth and leather</CC_RegionPrice_Goods_Textiles>
+
+  <!-- ===== The hamlet's hard seasons follow the region (B11; Source/ColonyCouncil/World/Region/HamletLife.cs, HamletWords.cs) ===== -->
+  <!-- {WHERE}: "at Ashford", or "in the region" when the hard year is at the hamlet itself or has no place named. -->
+  <CC_Hamlet_Region_At>at {PLACE}</CC_Hamlet_Region_At>
+  <CC_Hamlet_Region_InRegion>in the region</CC_Hamlet_Region_InRegion>
+  <CC_Hamlet_Region_Council_WS_Plague>The plague {WHERE} has reached the families of {HAMLET}.</CC_Hamlet_Region_Council_WS_Plague>
+  <CC_Hamlet_Region_Council_WS_Famine>The famine {WHERE} has reached {HAMLET}, and nobody nearby has grain to sell.</CC_Hamlet_Region_Council_WS_Famine>
+  <CC_Hamlet_Region_Rimfolk_WS_Blight>The blight {WHERE} has spread to {HAMLET}'s fields.</CC_Hamlet_Region_Rimfolk_WS_Blight>
+  <CC_Hamlet_Region_Council_WS_Locusts>The locusts {WHERE} came down on {HAMLET}'s fields as well.</CC_Hamlet_Region_Council_WS_Locusts>
+  <CC_Hamlet_Region_Council_WS_Drought>The drought {WHERE} has dried out {HAMLET}'s fields along with everyone else's.</CC_Hamlet_Region_Council_WS_Drought>
+  <CC_Hamlet_Region_Rimfolk_WS_ColdYear>The summer never came {WHERE}, and {HAMLET}'s crops never ripened.</CC_Hamlet_Region_Rimfolk_WS_ColdYear>
+  <CC_Hamlet_Region_Council_WS_GreatFire>The great fire {WHERE} reached {HAMLET} as well, and took some of its roofs.</CC_Hamlet_Region_Council_WS_GreatFire>
+  <CC_Hamlet_Region_Council_WS_Flood>The flood {WHERE} came through {HAMLET} and carried off its fences and tools.</CC_Hamlet_Region_Council_WS_Flood>
+  <CC_Hamlet_Region_Council_WS_Rebuilding>Everyone {WHERE} is rebuilding, and nobody has tools or timber to spare for {HAMLET}.</CC_Hamlet_Region_Council_WS_Rebuilding>
+  <!-- Their courier at the gate, come for the help: one sentence, said aloud. -->
+  <CC_Hamlet_Word_Sick>The sickness {WHERE} has reached our farms, so this will be put to good use.</CC_Hamlet_Word_Sick>
+  <CC_Hamlet_Word_Sick_2>Half of {HAMLET} is in bed with the fever that's going round {WHERE}.</CC_Hamlet_Word_Sick_2>
+  <CC_Hamlet_Word_Hungry>Our stores ran out a week ago, and nobody {WHERE} has food to sell.</CC_Hamlet_Word_Hungry>
+  <CC_Hamlet_Word_Hungry_2>Nothing came up in our fields this year, the same as everywhere {WHERE}.</CC_Hamlet_Word_Hungry_2>
+  <CC_Hamlet_Word_Damage>We lost half our tools, and nobody {WHERE} has any to spare.</CC_Hamlet_Word_Damage>
+  <CC_Hamlet_Word_Damage_2>This will get the roofs back on at {HAMLET}, thank you.</CC_Hamlet_Word_Damage_2>
+  <CC_Hamlet_Harvest_Bumper>The region has had a bumper harvest, so the load is half again as big as usual.</CC_Hamlet_Harvest_Bumper>
+
+  <!-- ===== Signs of the raiders' camp on the map (B13; Source/ColonyCouncil/World/Region/RaidersCampSigns.cs) ===== -->
+  <CC_RaidCamp_Scouts>Two scouts from the {KIND} of {PEOPLE} are watching the colony from the {SIDE} edge of the map. When they have seen enough, its raiders are likely to come in from that side.</CC_RaidCamp_Scouts>
+  <CC_RaidCamp_Scouts_2>Two of the {KIND}'s people are standing at the {SIDE} edge of the map, watching the colony. {PEOPLE} send their scouts ahead of a raid, and the raid comes in where they stood.</CC_RaidCamp_Scouts_2>
+  <CC_RaidCamp_RaidScouted>They came in from the {SIDE}, where their scouts were seen.</CC_RaidCamp_RaidScouted>
+  <!-- Someone on the walls at dusk: one sentence, said aloud. {DIR}: north, northeast... -->
+  <CC_RaidCamp_Smoke>There's smoke to the {DIR} again, so that {KIND} is still there.</CC_RaidCamp_Smoke>
+  <CC_RaidCamp_Smoke_2>You can see their cook fires to the {DIR} from up here.</CC_RaidCamp_Smoke_2>
+  <CC_RaidCamp_Smoke_3>Smoke over to the {DIR} again, from that {KIND}.</CC_RaidCamp_Smoke_3>
+  <CC_RaidCamp_Impact_Sooner>The {KIND}'s next raid may come sooner, with its people out looking for {NAME}.</CC_RaidCamp_Impact_Sooner>
+  <CC_RaidCamp_Impact_SoonerBrief>their next raid sooner</CC_RaidCamp_Impact_SoonerBrief>
+  <CC_Memory_Deed_rescued>took in one of their people who ran from raiders</CC_Memory_Deed_rescued>
+  <CC_Memory_Deed_rescued_Name>took in {NAME}, who ran from raiders</CC_Memory_Deed_rescued_Name>
+  <CC_Memory_Deed_rescued_Many>took in {COUNT} of their people who ran from raiders</CC_Memory_Deed_rescued_Many>
+  <CC_Dip_For_rescued>a runaway taken in</CC_Dip_For_rescued>
+
+  <!-- ===== Other peoples' hurt in the colony's beds (Source/ColonyCouncil/World/Region/TakenIn.cs) ===== -->
+  <CC_TakenIn_Impact>{0} is taken in as the colony's guest, put to bed and tended by its doctors until {0} can walk home.</CC_TakenIn_Impact>
+  <CC_TakenIn_ImpactBrief>taken in and tended</CC_TakenIn_ImpactBrief>
+  <CC_TakenIn_Home>{PAWN_nameDef} is well enough to travel and sets off home to {PEOPLE}.</CC_TakenIn_Home>
+  <CC_TakenIn_HomeHurt>{PAWN_nameDef} has been at the colony a long while and sets off home to {PEOPLE}, not fully healed.</CC_TakenIn_HomeHurt>
+  <CC_TakenIn_Died>{PAWN_nameDef} of {PEOPLE} died of {PAWN_possessive} wounds in the colony's care.</CC_TakenIn_Died>
+
+  <!-- ===== A call to arms answered from home (B27; Source/ColonyCouncil/Diplomacy/CallsFromHome.cs) ===== -->
+  <CC_Arms_FromHome>If the colony can't spare fighters, it can still answer from home: food, medicine and spare weapons from its stores, carried down to the gate for the runners of {PEOPLE}, or its beds for their wounded once the fighting is done. Either keeps its word, though not as well as fighters at their side would.</CC_Arms_FromHome>
+  <CC_Arms_FromHome_Silver>If the colony can't spare {WORD}, it can pay {COUNT} silver in place of service, as vassals have long done, or open its beds to the wounded of {PEOPLE} once the fighting is done. Either keeps the oath, though not as well as {WORD} in the field would.</CC_Arms_FromHome_Silver>
+  <CC_Arms_Opt_Supplies>Send supplies instead ({GOODS})</CC_Arms_Opt_Supplies>
+  <CC_Arms_Opt_Silver>Pay {COUNT} silver in place of {WORD}</CC_Arms_Opt_Silver>
+  <CC_Arms_Opt_Wounded>Take in their wounded after the fight</CC_Arms_Opt_Wounded>
+  <CC_Arms_NoDoctor>Nobody at the colony can tend wounds.</CC_Arms_NoDoctor>
+  <CC_Arms_NoHome>The colony has no home to answer from.</CC_Arms_NoHome>
+  <CC_Arms_CarryLabel>supplies for the fight at {TOWN}</CC_Arms_CarryLabel>
+  <CC_Arms_Hist_Supplies>The colony sent {GOODS} to {PEOPLE} for the fight at {TOWN}, in place of fighters.</CC_Arms_Hist_Supplies>
+  <CC_Arms_Hist_Silver>The colony paid {PEOPLE} {COUNT} silver in place of {WORD}.</CC_Arms_Hist_Silver>
+  <CC_Arms_Hist_Wounded>The colony took in the wounded of {PEOPLE} from the fight at {TOWN}.</CC_Arms_Hist_Wounded>
+  <CC_Arms_Deed_Supplies>supplies sent for the fight at {TOWN}</CC_Arms_Deed_Supplies>
+  <CC_Arms_Deed_Silver>{COUNT} silver paid in place of service</CC_Arms_Deed_Silver>
+  <CC_Arms_Deed_Wounded>their wounded from {TOWN} taken in</CC_Arms_Deed_Wounded>
+  <CC_Arms_Msg_Supplies>The colony will send {GOODS} instead of fighters. Its people will carry them to the gate, where the runners of {PEOPLE} will collect them.</CC_Arms_Msg_Supplies>
+  <CC_Arms_Msg_Silver>The colony will pay {GOODS} in place of service. One of its people will carry it to the gate for the collector of {PEOPLE}.</CC_Arms_Msg_Silver>
+  <CC_Arms_Msg_Wounded>{PEOPLE} will bring their wounded from {TOWN} to the colony's beds once the fighting there is done.</CC_Arms_Msg_Wounded>
+  <CC_Arms_Wounded_Label>The wounded from {TOWN}</CC_Arms_Wounded_Label>
+  <CC_Arms_Wounded_Label_2>Wounded at the gate</CC_Arms_Wounded_Label_2>
+  <CC_Arms_Wounded_Text>{COUNT} of the wounded of {PEOPLE} have come up the road from the fight at {TOWN}, as the colony offered. They are cut, bruised and tired, and some are leaning on the others.\n\nThey are making for the colony's beds. Anyone who falls on the way will need to be carried the rest of it.</CC_Arms_Wounded_Text>
+  <CC_Arms_Wounded_Text_2>The fighting at {TOWN} is over, and {PEOPLE} have sent {COUNT} of their wounded to the colony, as it offered. They walked most of the way and look it.\n\nThey are going in to the colony's beds now, and its doctors will have work for the next few days.</CC_Arms_Wounded_Text_2>
+  <CC_Play_Arms>weapons</CC_Play_Arms>
+
+</LanguageData>
