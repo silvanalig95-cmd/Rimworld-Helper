@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples and their ties
+
+*20 November 2026, version 0.280.1*
+
+- A people's new head stops at the colony's gate a few days after taking the seat: sit them at the table, give a gift or say a word, and their temper shows in what they do.
+- A town's fortune shows on its people: from a struggling town they come in worn clothes and ask for a meal, and from a flourishing one they come better dressed and sometimes bring a small gift.
+- A people bound to the colony by a pact, a marriage, a ward, an envoy, fealty or a debt of honour sends its own events and camps more often, names the tie in its letters, and gives its gifts first to the colonist who carries the tie.
+- When a hard year strikes a people, colonists who came from them hear of it by courier or the road, worry, and may ask the council to send food or medicine home.
+- The neighbours for good come to the colony's feast days with a dish, stand at a new grave, and ask a friend over to their fire on their own good days.
+- A feast's guests bring their town's year: silver from a good year, and from a hard year meals to take home, carried out to them by a colonist.
+- A camp that comes back tells what happened at home while it was away.
+
 ## The world brought home
 
 *20 November 2026, version 0.280.0*

@@ -146,6 +146,10 @@ Every town in detail has a fortune, from 0 to 100, that the world's events move 
         </table>
       </li>
       <li>
+        <heading>A town's fortune at the gate</heading>
+        <text>The fortune of a people's town nearest the colony shows on the people who come from it, but only at the two ends. From a struggling town, visitors, traders and their guards, and camps arrive in clothes worn to under two thirds of their condition, a caravan or camp has one pack animal fewer, and one of a visiting group asks the colony for a meal once one of your people is nearby. Your colonists see to that meal first when they are free (or share it yourself from the right-click menu), and their people remember it. From a flourishing town they are a quality step better dressed, and about one group in three brings a small gift of silver, carried in and set down at the colony.</text>
+      </li>
+      <li>
         <heading>With and without other mods</heading>
         <text>With Faction Territories and Vassalage, its builders give most new towns (each people one about every 30 days somewhere in its territory, ten days to build), and Rimfolk gives those within reach their faces; a town taken in one of its invasions starts its fortune again. Rimfolk founds its own towns beside them at its own pace, and its builders' sites and territories are left alone. Without it, new towns come from Rimfolk's world events and its own foundings. Real Ruins may dress a ruin Rimfolk made as it does any abandoned settlement; its own sites are left alone. The settings in The region switch the fortunes, their say in the trade stock, the new towns' faces and towns rising and falling off: then nothing is moved, made or told, and what is kept stays.</text>
       </li>

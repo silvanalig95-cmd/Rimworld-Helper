@@ -21,6 +21,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>drillers</li><li>grovekeepers</li></callings>
         <group>Visitors</group>
         <ages>30~60</ages>
         <stayHours>10~14</stayHours>
@@ -96,6 +97,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>traders</li><li>salvagers</li></callings>
         <group>Visitors</group>
         <ages>25~60</ages>
         <stayHours>10~14</stayHours>
@@ -179,6 +181,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>healers</li><li>sextons</li></callings>
         <group>Visitors</group>
         <ages>28~60</ages>
         <stayHours>8~12</stayHours>
@@ -248,6 +251,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>scholars</li><li>vaultfolk</li></callings>
         <group>Visitors</group>
         <ages>25~60</ages>
         <stayHours>8~12</stayHours>

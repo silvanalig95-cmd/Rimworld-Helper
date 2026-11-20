@@ -792,7 +792,9 @@ namespace ColonyCouncil
             var tone = OutsiderMath.Tone(Input(c, x, act), Rand.Value);
             Remember(c, x, act, null, 0f, 0f);
             string no = drink ? "drinkno" : "mealno";
-            if (tone >= TalkTone.Cool || x.jobs == null)
+            // One from a struggling town who asked for a meal takes it (World/Region/FortuneShows.cs).
+            bool asked = !drink && FortuneShows.Asked(x);
+            if (tone >= TalkTone.Cool && !asked || x.jobs == null)
             {
                 // together: asked and answered face to face, in a bubble only.
                 Say(x, no, c);
@@ -803,7 +805,8 @@ namespace ColonyCouncil
                 Msg(drink ? "CC_Out_Msg_NoDrink" : "CC_Out_Msg_NoFood", c, c.Named("PAWN"), x.Named("OTHER"));
                 return null;
             }
-            Say(x, drink ? "drinkyes" : "mealyes", c);
+            // The meal they asked for: their thanks in place of the usual yes, and their people remember it.
+            if (!asked || !FortuneShows.Fed(x, c)) Say(x, drink ? "drinkyes" : "mealyes", c);
             if (KeepOut.KeptFrom(x, fx.Position))
             {
                 // The outsider's portion lies where visitors don't go (a cold store): the colonist brings it out and hands

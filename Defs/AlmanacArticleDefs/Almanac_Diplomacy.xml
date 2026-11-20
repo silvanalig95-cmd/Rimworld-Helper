@@ -165,6 +165,14 @@ Against their nature. Some of what diplomacy asks goes against a colonist's natu
         </table>
         <after>The Dealings tab of a people on Peoples has each dealing in a line, what, with whom, its terms and where it stands, and the town's card has its own. All the better terms from dealings together are 8% at most, beside what the world market's prices already carry. The setting "Dealings with a whole people or town" in the neighbors' section switches them off; what is under way ends.</after>
       </li>
+      <li>
+        <heading>Ties bring a people's own events and camps</heading>
+        <text>A people bound to the colony sends its own events and its own camps about half again as often. Bound means a defense or trade pact, a marriage between the two, a ward or hostage of theirs at the colony or of the colony's at theirs, an envoy either way, fealty either way, or a debt of honor either way. Their event letters end by naming the tie, and when such an event brings a gift for one of your people, it goes first to the colonist the tie rests on: the guardian of their ward, the one who married in, the colonist a debt is about, otherwise your speaker. If that colonist can't take it, it goes to someone else as usual. A people the colony broke its word with (a pact or truce broken, fealty renounced, a contract broken) sends them about a third less often while they still remember it.</text>
+      </li>
+      <li>
+        <heading>A feast's guests and their town's year</heading>
+        <text>A guest whose town is in the middle of a world event brings it with them. From a town having a hard year, they value the meal more than the contests, and after the feast, if the colony has meals to spare, they ask to take some home: one of your colonists brings two meals per party out of the stores to them, and they leave with them in the morning. From a town having a good year (its fair, or a bumper harvest), they bring a gift of silver when they arrive. The host's toast at the feast names their town.</text>
+      </li>
     </sections>
     <keywords><li>debt of honor</li><li>favors owed</li><li>calling in a debt</li><li>diplomacy page</li><li>household page</li><li>owed favor</li></keywords>
     <seeAlso><li>Council_Alm_C_Neighbours</li><li>Council_Alm_C_WorldMemory</li><li>Council_Alm_C_Region</li></seeAlso>

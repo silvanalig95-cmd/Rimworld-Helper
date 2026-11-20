@@ -76,6 +76,13 @@ namespace ColonyCouncil
             if (s.Has("sameCreed")) Goodwill(f, 5, GoodwillWhy.WorldEvent);
         }
 
+        /// <summary>Settled in: the new head will ride out to the colony's gate in a few days (World/Region/NewHeads.cs).</summary>
+        public override void Ended(WorldSituation s, SituationEnding ending)
+        {
+            if (ending == null) return;
+            string temper = s.Has("kind") ? "kind" : s.Has("greedy") ? "greedy" : s.Has("harsh") ? "harsh" : "steady";
+            NewHeads.Remember(s, s.ctx.stranger, temper);
+        }
     }
 
     // ===================== Two claimants =====================
@@ -170,6 +177,8 @@ namespace ColonyCouncil
             if (old != null && old != winner && !old.Dead) DieOffscreen(old);
             // Exile: gone from the story.
             if (loser != null && !loser.Dead && !loser.Spawned) Vanish(loser);
+            // The winner will ride out to the colony's gate in a few days (World/Region/NewHeads.cs).
+            if (f.leader == winner) NewHeads.Remember(s, winner, NewHeads.TemperOf(winner));
         }
     }
 

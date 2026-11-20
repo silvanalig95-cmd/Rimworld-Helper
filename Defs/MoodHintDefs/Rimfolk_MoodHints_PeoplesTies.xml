@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The peoples and their ties (the content update's B17; Source/ColonyCouncil/World/KinNews.cs). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_KinWorried</defName>
+    <thoughts>
+      <li>Rimfolk_KinWorried</li>
+    </thoughts>
+    <fix>A hard world event has struck a people this person has a tie to (they married in from them, came from them, or are their ward, hostage or envoy), and the word reached the colony. It fades in four days. When one of the colony's own asks the council to send food or medicine home, agreeing helps.</fix>
+    <act>Passes in a few days</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldSituations</article>
+  </ColonyCouncil.MoodHintDef>
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_Mood_KinSentHelp</defName>
+    <thoughts>
+      <li>Rimfolk_KinSentHelp</li>
+    </thoughts>
+    <fix>The council agreed to send food or medicine home to this person's people in their hard year. It lasts five days.</fix>
+    <act>Passes in a few days</act>
+    <actionable>false</actionable>
+    <article>Council_Alm_C_WorldSituations</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

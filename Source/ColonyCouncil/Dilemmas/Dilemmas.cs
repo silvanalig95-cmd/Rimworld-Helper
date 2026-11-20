@@ -1401,6 +1401,8 @@ namespace ColonyCouncil
             // What it does, as it stands before it's done (the tradition too), for Council -> Dilemmas.
             string impact = DilemmaImpact.Record(ctx, option, ctx.def.options.IndexOf(option), out string impactHint, out string impactFlavour);
             if (ctx.def.traditionOption >= 0 && comp != null) Tradition(ctx, index == ctx.def.traditionOption, comp);
+            // A custom kept with a gathering brings the neighbours for good to it (Camps/HoldingDays.cs).
+            if (ctx.def.traditionOption >= 0 && index == ctx.def.traditionOption) HoldingDays.CustomKept(ctx, index);
             bool risk = option.riskChance > 0f && Rand.Chance(DilemmaChoices.RiskChance(option, ctx, option.riskChance));
             // What the answer sets going on the map comes first, so it can hold the moods of those taking part.
             List<PlayOut> plays;

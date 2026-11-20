@@ -22,6 +22,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>traders</li></callings>
         <group>Visitors</group>
         <ages>35~70</ages>
         <stayHours>4~6</stayHours>
@@ -96,6 +97,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>traders</li></callings>
         <group>Visitors</group>
         <ages>35~65</ages>
         <stayHours>4~6</stayHours>
@@ -225,6 +227,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>healers</li></callings>
         <group>Visitors</group>
         <ages>28~65</ages>
         <stayHours>4~6</stayHours>
@@ -291,6 +294,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>healers</li></callings>
         <group>Visitors</group>
         <ages>28~65</ages>
         <stayHours>4~6</stayHours>
@@ -356,6 +360,7 @@
     <earliestDay>12</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>herders</li></callings>
         <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <ages>20~60</ages>
@@ -484,6 +489,7 @@
     <earliestDay>10</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>herders</li></callings>
         <leans><li>beasts</li></leans>
         <group>Visitors</group>
         <ages>40~75</ages>
@@ -625,6 +631,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>pilgrims</li></callings>
         <group>Visitors</group>
         <ages>24~75</ages>
         <stayHours>4~6</stayHours>
@@ -692,6 +699,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>pilgrims</li></callings>
         <group>Visitors</group>
         <ages>30~75</ages>
         <stayHours>14~20</stayHours>

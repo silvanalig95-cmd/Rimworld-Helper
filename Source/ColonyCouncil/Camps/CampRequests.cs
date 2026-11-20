@@ -171,6 +171,8 @@ namespace ColonyCouncil
                         return grave == null ? IntVec3.Invalid : PlaySpots.FreeCellNear(grave.Position, map, walker);
                     }
                     case "colony": return PlaySpots.OpenCell(map, walker);
+                    // One place the errand was set for: the grave the neighbours come to (Camps/HoldingDays.cs).
+                    case "spot": return errandSpot.IsValid && errandSpot.InBounds(map) ? PlaySpots.FreeCellNear(errandSpot, map, walker) : IntVec3.Invalid;
                     case "A": return a != null && a.Spawned && a.Map == map && !a.Dead ? a.Position : IntVec3.Invalid;
                     default: return LandErrandCell(to, walker);
                 }

@@ -589,13 +589,14 @@ namespace ColonyCouncil
             for (int tries = 0; tries < 6; tries++)
             {
                 // A refugee family comes more often while a town in reach struggles, and is likeliest of its people (World/Region/RiseFallEffects.cs).
+                // A people's own camp comes more often while the colony is bound to them, less after it broke its word (Peoples/PeopleTies.cs).
                 var kind = kinds.RandomElementByWeight(k => k.WeightNow(map) * k.HourFit(hourNow) * TravelLand.SeekWeight(k, map, land) * RiseFallEffects.CampFactor(k, map)
-                                                            * (k.trader ? StoryDirection.Factor(StoryWaysMath.Traders) : 1f));
+                                                            * (k.trader ? StoryDirection.Factor(StoryWaysMath.Traders) : 1f) * PeopleTies.CampKindFactor(k));
                 // Peoples the colony did good turns for camp here more often, those with grudges less (Interplay/), and a kind
                 // one of Rimfolk's peoples favours (their drovers, their healers on the road) likelier from them (Peoples/).
                 // Two peoples at war never camp on the same land (CampCrowds.AtPeaceHere).
                 var f = Arrivals.Friendly(x => kind.FitsFaction(x) && CampCrowds.AtPeaceHere(map, x),
-                    x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x) * Peoples.CampFactor(kind, x));
+                    x => Interplay.CampWeight(x) * RiseFallEffects.CampPeople(kind, map, x) * Peoples.CampFactor(kind, x) * PeopleTies.CampPeopleFactor(x));
                 if (f == null)
                 {
                     why?.Add(kind.label + ": no friendly people for it");
@@ -862,6 +863,8 @@ namespace ColonyCouncil
             try
             {
                 Equip(c);
+                // Their clothes show their town's year: worn thin, or a step better (World/Region/FortuneShows.cs).
+                FortuneShows.CampCame(c);
             }
             catch (Exception e)
             {
@@ -870,7 +873,8 @@ namespace ColonyCouncil
             // The animals they bring (pack beasts, a herd, a dog) walk in with them, in their group (CampLook.cs).
             try
             {
-                foreach (var a in Camp.MakeAnimals(s.kind, s.faction, map))
+                // From a struggling town, one pack beast fewer (World/Region/FortuneShows.cs).
+                foreach (var a in FortuneShows.CampAnimals(Camp.MakeAnimals(s.kind, s.faction, map), s.faction, map))
                 {
                     GenSpawn.Spawn(a, CellFinder.RandomClosewalkCellNear(entry, map, 5), map);
                     c.herd.Add(a);

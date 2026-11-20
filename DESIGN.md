@@ -675,6 +675,128 @@ so the game's alerts and Rimfolk's alerts panel, which stack on the letters' top
 isn't there the corner stays empty. Built at most every two seconds. No world event names a god (none of their defs or
 workers do), so the gods stay unseen here too.
 
+### The peoples and their ties (the content update's B4, B12, B14, B17, B22, B29 and B31; the player's go, 20 November 2026; released 0.280.1)
+
+The player on `docs/content-update-proposals.md`: "your content proposal overall sounds really good. You can go ahead
+with this in the order you think makes most sense ... more immersion ... the relations between pawns, the kind of events
+that generated from it", and "first do all the integrations that you proposed in your document before we add additional
+content variety". The world's integrations, part 2: the peoples and their ties. Seven items of part B of the proposals
+(each marked **Built** there): the new head at the gate, a town's fortune on its people, ties bringing a people's own
+events and camps, kin hearing of their town's hard year, the neighbours for good at the colony's days, a feast's guests
+bringing their town's year, and camps that come back with the world's news. The rules without game types are
+`Peoples/PeoplesTiesMath.cs` (tested in `PeoplesTiesTests`); the hour and the day run with the region's own
+(`Peoples/PeoplesTies.cs`, from `RegionBook.Hourly` and `Daily`). Nothing new is a saved collection: what is due is kept
+on the world event (its flags), the follow-ups, the holding and the council's letter.
+
+- **The new head comes to the gate (B4, `World/Region/NewHeads.cs`, `Defs/WorldSituationDefs/Rimfolk_WS_NewHead.xml`).**
+  When "a new leader" or "a contested seat" ends at a people at peace with the colony with someone in the seat (the
+  succession's new leader, the claimant who won), a follow-up of kind `head` is noted (`NewHeads.Remember`, from each
+  worker's `Ended`): three to eight days on (`NewHeadMath.DueTick`), when a world event's slot is free, the new head
+  sets out (`SituationWorker_NewHead`, started by `FollowUps.Daily` like the warlord's son). Let go when they no longer
+  lead or are not free in the world, or after thirty days without a slot (`NewHeadMath.Lapsed`). Their temper is the
+  succession's own reading of their traits (kind, greedy, harsh, steady; `NewHeads.TemperOf` for a claimant). A rider
+  comes ahead with the start letter; within the day the head stands at the gate with two to four of their people
+  (`VisitEffect_AtGate` with the head). The answers: sit them at the table (a feast play-out with them as guests, the
+  colony's best talker hosting, and beds for the night), a gift from the stores (silver carried out to them), or a word
+  at the gate from the best talker (the default: unanswered, the word is played out all the same and the head remembers
+  it as given). The words fit every age: a messenger comes ahead (no saddles or horses in the lines), and a high-tech
+  people's head sends a message and makes a round of the settlements. What each temper does, as decided here: a kind head hands over a gift of
+  their own whatever the answer (silver, carried in and set down: `Couriers.PaySilver` with the head as bearer); a greedy
+  head asks the colony's trade terms, thinks more of a gift, and a caravan of theirs follows two to three days later; a
+  harsh head wants a token of respect: the table pleases them more than anyone, a word alone costs goodwill; a steady
+  head, where goodwill allows (20 or more, and a trade pact could be made: `Pacts.WhyNot`), has their trade pact offer
+  sent as its own letter once answered. The head's regard moves by the answer (`NewHeadMath.Regard`, on their notable
+  when the colony knows them as one, with a note), the host's own regard with them by their Social at the table, and a
+  head sat at the table or given a gift is asked to the colony's next feast with guests: a promise on the world ledger
+  (`Tie.Kind.Promise`, origin `headfeast`, a year) that the feast dialog reads (the head is on its guest list already)
+  and the plan keeps. The ending tells it all after, four to five days on.
+- **A town's fortune shows on its people (B12, `World/Region/FortuneShows.cs`).** For a people's town nearest the colony
+  (`WorldSituationWorker.NearestTown`) whose fortune is at one of the two ends (`FortuneShowsMath.Shows`, with the
+  region's fortunes on): the game's own groups of a people at peace (visitors, a trader's caravan and its guards,
+  travellers: a postfix on `IncidentWorker_NeutralGroup.SpawnPawns`, before they are made a group), Rimfolk's own
+  visitors (`Visitors.MakePeople`, never the robbed) and camps (`CampTracker.Start`). From a struggling town each garment
+  is worn to 40 to 65% of its hit points, never mended by it; a caravan and a camp have one pack beast fewer (never the
+  last, its load put on another's back first, else it stays); and one grown of a visiting group (not its trader) will ask
+  for a meal: once a colonist is within twelve cells, they ask in a bubble and the news says so ("Ula of the Road League
+  has asked the colony for a meal. Ashford is struggling, since the plague, and their clothes show it."). The colonists
+  see to it first by themselves (`OutsiderAutoMath`: a meal asked for weighs 8.5, hungry or not), or the player through
+  the right-click's meal; the one who asked takes it whatever their mood and thanks them, and their people remember it
+  ("gaveGift"). Asks are the session's only (a reload lets one lapse) and stand eighteen hours. From a flourishing town
+  their clothes are a quality step better (never to legendary), and about a third of the time one of them carries in a
+  small gift of 20 to 45 silver by the colony's wealth, set down at the colony (`Couriers.Deliver` with them as bearer).
+  Decided here: only the two ends show (poor and thriving towns look ordinary), camps are dressed and lose a pack beast but
+  don't ask for meals (their asks are their own), and the gifts are visitors'.
+- **Ties make a people's own events and camps come (B14, `Peoples/PeopleTies.cs`).** What binds a people to the colony
+  (`PeopleTies.Of`): a marriage between the two, a ward or hostage of theirs at the colony or the colony's at theirs, an
+  envoy either way, a pact, fealty either way (the colony sworn to them, or a vassal town of theirs), a debt of honour
+  either way. A broken word (`PeopleTiesMath.BrokenDeeds`: a pact or truce broken, the word broken, fealty renounced, a
+  contract broken) counts while its memory is still 3 strong. The peoples' own events name their callings on their defs
+  (`HappeningExtension.callings`, 77 events: every one that comes by itself; a follow-up comes of what started it, and the
+  art handed on, which any of a dozen peoples sends, is weighed as ever): a bound people's come half again as often, a
+  broken word's a third less (`PeopleTiesMath.Factor`, both together about even), on Rimfolk's own rhythm
+  (`HappeningTracker.Weight`) and the storyteller's (`ChanceFactorNow`). The same for their camps: a kind only their
+  calling sends (`CampKindDef.calling`), and the people a camp is drawn from. Their letters close with the tie in a line
+  (`PeopleTies.LetterLine`, the strongest: a marriage, a ward, a hostage, fealty, a pact, an envoy, a debt; in the
+  letters' style; each either way round where it can be: theirs at the colony or the colony's own with them, for a ward,
+  a hostage, a spouse, an envoy and fealty). Their gifts go first to the colonist who carries the tie (`PeopleTiesMath.CarrierRank`: the ward's
+  guardian, the one married in, the colonist a debt is about, else the colony's speaker for a pact, fealty or an envoy):
+  the event is cast first with `PeopleEvents.Takers` yielding only them (`PeopleTies.Giving`), and when the event's own
+  needs rule them out it is cast again as ever. Read once an hour; nothing saved.
+- **Kin hear of their town's hard year (B17, `World/KinNews.cs`).** When a bad world event runs at a people, those at the
+  colony's homes with a tie to them (`KinNews.KinOf`: their ward or hostage here, one of theirs married into the colony,
+  their envoy here, a colonist who came from them, that is of one of Rimfolk's peoples' own kinds and theirs alone) hear
+  of it with the next courier to reach the colony (`CourierTracker`, as they come in, beside the courier's own line) or by
+  the road after two and a half days: a letter from home at each home with any of them (`CC_Kin_Letter_*`, by courier or
+  road, the event's kind, the tie, one or several; the letters' style), a mood (`Rimfolk_KinWorried`, -3 for four days),
+  and the worry on the heart's card while it runs (`KinNews.Worry`, the worry feeling's feed). Six times in ten, when food
+  or medicine would answer it (`KinNewsMath.SendFor`) and a colonist is among them, the council is asked (when its pace
+  allows: `Rimfolk_Dilemma_KinSendHome`, `DilemmaWorker_KinSendHome`): send a fifth of the stores' raw food (10 to 60) or
+  medicine (2 to 6) home with the next courier, carried out to the gate for a runner of theirs
+  (`DilemmaEffect_KinSendHome`, the carry's own play-out); it counts as the colony's help in the world event (its help,
+  and its deed in the ending's letter), their people remember it ("hardship"), and the one who asked is glad
+  (`Rimfolk_KinSentHelp`). The colony's own ward or envoy at the struck town writes of it after a day; from a plague town
+  half the time they come home early (the card's own recall). Flavour and mood only: nothing binds a family line.
+- **The neighbours for good keep the colony's days (B22, `Camps/HoldingDays.cs`).** The holding at ease with the colony
+  (tension under 50) comes to a day of the calendar kept with a feast, a bonfire or games, or the harvest's day
+  (`ColonyCalendar.KeepDay`), and to a custom whose kept answer gathers the colony (harvest home, the midsummer bonfire:
+  `DilemmaTracker`'s tradition): within eighteen hours, once the gathering is under way, up to three of their grown
+  walk over to join it as its guests (`LordJob_PlayOut.guests`, kept at places round it and served at a feast; a message
+  says they are walking over), and the first of them to come within seven cells of its spot sets down a dish from their
+  own stores (`HoldingDays.SetDownDish`: simple meals, one each, from their provisions, `HoldingDaysMath.Dish`), with a
+  line and a message as it is set down; a gathering over before any of them got there leaves the dish at home. A colonist of the
+  colony buried in the last two days brings two of them to the grave (the holding's errand to one spot, `"spot"`, a line
+  or two while they stand there), each grave once. Their own good days (decided here: the day in the year they settled,
+  from the first year on; a birthday of one of theirs; and, rarely, a wedding in the family when two of their grown who
+  are free and not kin are there, made a marriage in the game) ask the colonist warmest with them (two or more) over to
+  their fire for the evening (a visit play-out to the holding's own fire). Decided here: a birth is left out, as a camp's
+  people can't care for a newborn on the map. Saved on the holding: what is due, the last grave, the last good day.
+- **A feast's guests bring their town's year (B29, `Diplomacy/FeastYear.cs`).** A guest whose town has a world event
+  running there now: a hard year (any bad world event) or a good one (their fair, a bumper harvest). As they come, a
+  good year's guest hands over a gift of 60 to 120 silver by the colony's wealth (decided here: guests bring no gift
+  otherwise, so the good year's is the gift), and the arrival's letter says each guest's year. The host's toast names it,
+  one sentence. At the end a hard year's guest who ate thinks of the meal twice and of each contest half
+  (`FeastYearMath.Welcome`). As the night begins after the feast, the hard years' guests who ate ask leave to carry home
+  what is left: a free colonist brings two meals a party out of the stores to each of them, never past half of what is
+  spare and only plain cooked meals (the keep-out errand's job for food to take home, `Rimfolk_BringOutToKeep`, which
+  hands the meals into their pack instead of having them eaten), and they leave with them in the morning. A message
+  names who brings what to whom as they set off (decided here: the host grants the ask; there is no question).
+- **Camps that come back bring the world's news (B31, `Camps/CampMemory.cs`).** The letter of a remembered camp coming
+  back already says what became of them; it now says what they lived through at home too: the newest world event that
+  ended at their people since they left (the world events' history), told by its kind and ending (`CampNewsMath.Topic`:
+  the fever and who they lost, the drought and whether the rains came, the fire and the new mill, a flood, a hard winter,
+  the herds' sickness, a good harvest, the fair, a new head, a war, a raid held or not, rebuilding, holy days, mourning),
+  and when the colony helped them in it, that they know. In the camps' style.
+- **Seams with the world brought home (0.280.0).** B1 (world events in the peoples' own ways) and B3 (messengers telling
+  the road's news) are its own and are reused, not repeated: the kin's word comes with the courier at the moment it
+  reaches the colony, after the courier's own spoken line (`CourierTracker`), and touches neither the courier's lines,
+  the road's news at the mailbag (`RoadNews`) nor the world events' paragraphs in the peoples' ways; a people's own event
+  is cast with both the world event's steer (`WorldSteer.During`) and the tie's gift carrier (`PeopleTies.Giving`).
+- **Dev mode** ("Rimfolk", "Peoples' ties: ..."): what binds each people (log); one of a bound people's own events now
+  (the tie's line in its letter, the gift's carrier first); the new head comes to the gate now; a
+  visitor from a struggling town asks for a meal; the visitors here dressed as from a flourishing town; the word of each
+  hard year now; help sent home asked now; the neighbours join the gathering under way, come to a colony grave, ask the
+  colony's friend over; a feast's guests and their towns' years (log); what each remembered camp would say of home (log).
+
 ## Layer 7: The heart (feelings and strain)
 
 Comfort is easy to buy in RimWorld, so mood alone stops meaning much once a colony is rich. The heart adds a slower,

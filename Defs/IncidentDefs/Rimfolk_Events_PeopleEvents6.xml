@@ -156,6 +156,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>seers</li></callings>
         <group>Visitors</group>
         <ages>28~60</ages>
         <stayHours>4~6</stayHours>
@@ -288,6 +289,7 @@
     <earliestDay>15</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>grovekeepers</li></callings>
         <group>Visitors</group>
         <ages>25~60</ages>
         <stayHours>6~10</stayHours>
@@ -414,6 +416,7 @@
     <earliestDay>30</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>mercenaries</li></callings>
         <group>Visitors</group>
         <ages>35~60</ages>
         <stayHours>6~10</stayHours>
@@ -481,6 +484,7 @@
     <earliestDay>30</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>mercenaries</li></callings>
         <group>Visitors</group>
         <addsPeople>true</addsPeople>
         <ages>45~62</ages>
@@ -672,6 +676,7 @@
     <earliestDay>20</earliestDay>
     <modExtensions>
       <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>mercenaries</li></callings>
         <group>Visitors</group>
         <ages>28~50</ages>
         <stayHours>3~5</stayHours>
