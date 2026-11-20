@@ -790,7 +790,7 @@
         <options>
           <li>
             <label>Take them in</label>
-            <outcome>The colony makes room. The newcomer eats like someone who has never been sure of the next meal, and then sleeps as if for a week.</outcome>
+            <outcome>The colony makes room. The newcomer eats like someone who has never been sure of the next meal, and then sleeps like the dead.</outcome>
             <effects>
               <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count></li>
             </effects>

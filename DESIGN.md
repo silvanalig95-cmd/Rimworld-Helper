@@ -2908,6 +2908,33 @@ peace talks' two delegations come to the gate a day or two after the colony agre
 that send a colonist to a far town for days (to advise, build, teach, read, speak or keep watch) are told as set going,
 and the colonist now really goes (the next section).
 
+### The flavour words back in eight parts (the player's choice, 20 November 2026; not released yet)
+
+The player, after the plain-words pass: "please restore letters, wishes, ambitions, life goals, personal stories,
+council questions, camps, and world events to just the previous text, to kind of the flavor style text that you
+created before". Those eight parts have their words from before their plain-words batches again (letters 0.266.9,
+wishes, ambitions and life goals 0.268.2, personal stories 0.268.4, council questions 0.268.5 and 0.269.2, camps
+0.269.1, world events 0.270.1), and new text for them is written in that style (CLAUDE.md, "Plain, neutral text").
+Each batch's own text diff was reversed onto the present files with a three-way merge (the present file, the batch's
+result as the base, the words before the batch with the batch's def-only commits applied), so every def setting and
+code change made since stays: the camps' `<guests>camp</guests>` and the minstrel's `organizer`, the guardian walking
+with the youngster (the second `DilemmaEffect_Visit`) and the first hunter free for the hurt animal, the prospector,
+the preachers and the peace delegations at the gate (`VisitEffect_AtGate`, `VisitEffect_Come`), the far-town errands
+of 0.275.1 with their own lines (already in the flavour voice), and the peoples' events of rounds 5 to 10.
+
+Where an old line claimed what the map doesn't show, the old line is back and only its false part says what the code
+does, in the old voice, by the same rules as above: no hour a letter can't know (a camp's join or request comes between
+9 and 18 h, its farewell whenever the stay ends, a world event's letter at any hour); nobody at the gate that no effect
+brings (a message came); silver and prizes still on their way with a courier; no well, wall, stream, creek, ridge, hill,
+old stones or trees a colony may not have (the comet's watch by a fire, the stargazer on the far ground, the mage up
+with the surge); no leftover a camp's farewell can't promise; the shows and songs a camp's good turn announces are about
+to happen; the hunting asks send the colony's own hunters on the camp's word; nobody picked as "the eldest" or "the
+youngest". A sentence never opens with a pronoun placeholder, which the game shows lowercase: the name stands there
+instead. The names that came back (the ambitions "a ring of iron", "teeth in the mud", "the long store", "nobody is the
+only one", the stories' stages, the questions' names such as "a path: the workshop" and "the shakes") are the names in
+the play-out list above, the Almanac (keywords unchanged) and `docs/dilemma-balance.md`. Every line put right, with its
+reason and its words before and after: `docs/flavour-restore.md`.
+
 ### A colonist a world event sends to a far town goes (the player's go, 20 November 2026; released 0.275.1)
 
 Sixteen answers of fourteen world events send a colonist to another people's town, or to a place just beyond the

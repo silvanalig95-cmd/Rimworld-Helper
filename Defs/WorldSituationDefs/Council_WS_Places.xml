@@ -361,7 +361,7 @@
         </titles>
         <texts>
           <li>[toll] The caravans are going home for the season, and the colony's toll jar did well out of them. The merchants have been telling every town on the road about it, and not kindly.</li>
-          <li>[reststop] The last caravans of the season stopped at the colony's shelter by the track on their way home, and left their thanks. The merchants who warmed themselves at that fire will be back next year, and they will bring friends.</li>
+          <li>[reststop] The last caravans of the season stopped at the colony's shelter on their way home, and left their thanks. The merchants who warmed themselves at that fire will be back next year, and they will bring friends.</li>
           <li>[!toll,!reststop] The caravans are going home with lighter wagons and heavier purses, and the roads will be quieter for a while.</li>
         </texts>
         <chronicle>A busy trading season came to an end.</chronicle>
