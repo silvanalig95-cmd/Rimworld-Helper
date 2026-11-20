@@ -519,6 +519,9 @@ to the closest who has no room of their own. The words still say what they were 
 *Ties:* `Legacy`, `FamilyInheritance`, `FamilyLifeMath`, `VendettaMath` shared, the tests. *Size:* S. *Harm:* none.
 This one is a rule fix and comes before the rest (CLAUDE.md: bug fixes before features).
 
+**Built** (released 0.276.2, with the medal read at the gate): the heirloom and the room pass by closeness, the same
+measure as the vendetta's.
+
 ### Text variety (counted with `Tools/variety_report.py`)
 
 **A31 (T) Journals of the council's life.** `Council_Journal_Elected` has 8 lines (3 plain, one in each tone) for about
