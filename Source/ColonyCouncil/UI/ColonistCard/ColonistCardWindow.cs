@@ -233,8 +233,9 @@ namespace ColonyCouncil
             {
                 if (UiKit.OwnLook) UiKit.RoundBox(tile, UiKit.PortraitBack, UiKit.Edge, SkinMath.RadiusCard);
                 else Widgets.DrawBoxSolidWithOutline(tile, UiKit.PortraitBack, UiKit.CardBorder, 1);
-                // Their whole figure from the face engine: framed by their head, the steady face, on their own colour.
-                FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure);
+                // Their whole figure from the face engine: framed by their head, the steady face, on their own colour, in their
+                // pose and moving a little.
+                FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure, null, 1f, true);
             }
             // The heart's line under the portrait, as the colonist bar draws it under theirs.
             if (m.heartOn)

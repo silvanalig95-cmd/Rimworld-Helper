@@ -14,15 +14,6 @@ namespace ColonyCouncil
     }
 
     /// <summary>
-    /// Which way the portrait faces. Only the front is drawn so far; the side views and poses (the head and body drawn
-    /// apart) are the face engine's next step, and come in here.
-    /// </summary>
-    public enum FacePose
-    {
-        Front
-    }
-
-    /// <summary>
     /// The portrait camera for one picture: its offset from the pawn's middle in world units (x to the right, z up the
     /// screen) and its zoom as the game's portrait cache takes them, and where the head lands in the picture.
     /// </summary>

@@ -195,7 +195,7 @@ namespace ColonyCouncil
                 if (UiKit.OwnLook) UiKit.RoundBox(r, UiKit.PortraitBack, UiKit.Edge, SkinMath.RadiusCard);
                 else Widgets.DrawBoxSolidWithOutline(r, UiKit.PortraitBack, UiKit.CardBorder, 1);
                 float rs = Mathf.Max(1f, render - 2f * FaceMath.Border);
-                FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs));
+                FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs), 1f, true);
                 if (r.width >= FaceMath.NamedFrom) NameBand(inner);
                 if (dragging || Mouse.IsOver(r)) Grip(grip);
             }

@@ -665,9 +665,9 @@ namespace ColonyCouncil
             UiKit.Zebra(r, i);
             UiKit.RowHover(r);
             var color = UiKit.TieColor(t.kind);
-            // The two of them: overlapping portraits, then their names.
-            UiKit.Portrait(new Rect(r.x + 4f, r.y + 3f, 22f, 22f), t.a, color);
-            UiKit.Portrait(new Rect(r.x + 20f, r.y + 3f, 22f, 22f), t.b, color);
+            // The two of them: overlapping portraits facing each other, then their names.
+            UiKit.Portrait(new Rect(r.x + 4f, r.y + 3f, 22f, 22f), t.a, color, 1f, FaceTurn.Right);
+            UiKit.Portrait(new Rect(r.x + 20f, r.y + 3f, 22f, 22f), t.b, color, 1f, FaceTurn.Left);
             // The two names lead to their cards; the rest of the row shows the first of them on the map.
             float nameW = Mathf.Min(280f, r.width * 0.42f);
             var nameRect = new Rect(r.x + 48f, r.y, nameW - 50f, r.height);

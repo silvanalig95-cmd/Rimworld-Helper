@@ -883,8 +883,10 @@ namespace ColonyCouncil
         /// A person's face in a circle, with a colored ring around it: the face engine's steady face (UI/Faces/FaceEngine.cs),
         /// framed by their own head so a child or another race's head fills it as a grown-up's does, on their own colour with
         /// a soft light behind the head, and from <see cref="PortraitMarkFrom"/> across the mark of their people at its foot.
+        /// It faces <paramref name="turn"/> (two people side by side face each other), takes their pose from
+        /// <see cref="FacePoseMath.PoseFrom"/> across, and shows the dead grey at any size.
         /// </summary>
-        public static void Portrait(Rect r, Pawn p, Color ring, float alpha = 1f)
+        public static void Portrait(Rect r, Pawn p, Color ring, float alpha = 1f, FaceTurn turn = FaceTurn.Front)
         {
             if (p == null || Event.current.type != EventType.Repaint) return;
             var back = FaceEngine.Backdrop(p);
@@ -893,11 +895,7 @@ namespace ColonyCouncil
             else Widgets.DrawBoxSolid(r, WithAlpha(back, alpha));
             float inset = Mathf.Max(1f, Mathf.Round(r.width * 0.07f));
             var inner = r.ContractedBy(inset);
-            var tex = FaceEngine.Picture(p, inner.size, FaceFrame.Face, out var cam);
-            if (inner.width >= 30f) FaceEngine.DrawGlow(inner, cam, FaceEngine.GlowColour(p), alpha);
-            GUI.color = WithAlpha(Plain, alpha);
-            if (tex != null) DrawInCircle(inner, tex);
-            else Widgets.ThingIcon(inner, p);
+            FaceEngine.DrawRound(inner, p, FaceEngine.PoseOf(p, turn, r.width >= FacePoseMath.PoseFrom), alpha);
             GUI.color = WithAlpha(ring, ring.a * alpha);
             if (Ring != null) GUI.DrawTexture(r, Ring);
             else Widgets.DrawBox(r, 2);
@@ -949,8 +947,12 @@ namespace ColonyCouncil
             if (icon != null) Icon(r.ContractedBy(Mathf.Round(r.width * 0.24f)), icon, color);
         }
 
-        /// <summary>A square texture drawn as a circle, in horizontal strips each as wide as the circle is there.</summary>
-        private static void DrawInCircle(Rect r, Texture tex)
+        /// <summary>
+        /// A texture drawn as a circle, in horizontal strips each as wide as the circle is there; the picture moved inside the
+        /// circle by <paramref name="right"/> and <paramref name="down"/> shares of it (the face engine sets a head on its
+        /// body so), the circle itself staying put.
+        /// </summary>
+        public static void DrawInCircle(Rect r, Texture tex, float right = 0f, float down = 0f)
         {
             int n = Mathf.Clamp(Mathf.RoundToInt(r.height / 2.5f), 6, 28);
             float h = r.height / n;
@@ -965,7 +967,7 @@ namespace ColonyCouncil
                 float half = Mathf.Sqrt(rad * rad - dy * dy);
                 var strip = new Rect(cx - half, y0, half * 2f, h);
                 // Texture coordinates start at the bottom.
-                var uv = new Rect((strip.x - r.x) / r.width, 1f - (y1 - r.y) / r.height, strip.width / r.width, h / r.height);
+                var uv = new Rect((strip.x - r.x) / r.width - right, 1f - (y1 - r.y) / r.height + down, strip.width / r.width, h / r.height);
                 GUI.DrawTextureWithTexCoords(strip, tex, uv);
             }
         }

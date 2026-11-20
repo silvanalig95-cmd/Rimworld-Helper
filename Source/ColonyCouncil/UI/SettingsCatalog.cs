@@ -696,6 +696,9 @@ namespace ColonyCouncil
                 "inspectPortrait");
             Toggle("portraitHeadgear", "CC_Settings_PortraitHeadgear", "CC_SetNote_PortraitHeadgear");
             Toggle("portraitClothes", "CC_Settings_PortraitClothes", "CC_SetNote_PortraitClothes");
+            // Portraits, phase 2 (UI/Faces/FaceEnginePoses.cs, FaceEngineSplit.cs): poses, and the large portraits' movement.
+            Toggle("portraitPoses", "CC_Settings_PortraitPoses", "CC_SetNote_PortraitPoses");
+            Toggle("portraitsMove", "CC_Settings_PortraitsMove", "CC_SetNote_PortraitsMove");
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");
