@@ -160,6 +160,10 @@ namespace ColonyCouncil
         public ThingDef beast;
         public int until = -1;
         public bool done;
+        /// <summary>The vows of a season (Gods/Worship/VowsSeason.cs): the lamp kept lit, how many trees planted or callers fed, the day last kept, the callers now at the gate (their party's id).</summary>
+        public Thing thing;
+        public int count, lastDay = -1;
+        public string pending;
 
         public void ExposeData()
         {
@@ -172,6 +176,10 @@ namespace ColonyCouncil
             Scribe_Defs.Look(ref beast, "beast");
             Scribe_Values.Look(ref until, "until", -1);
             Scribe_Values.Look(ref done, "done");
+            Scribe_References.Look(ref thing, "thing");
+            Scribe_Values.Look(ref count, "count");
+            Scribe_Values.Look(ref lastDay, "lastDay", -1);
+            Scribe_Values.Look(ref pending, "pending");
         }
     }
 

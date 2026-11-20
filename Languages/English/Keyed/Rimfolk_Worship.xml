@@ -170,6 +170,40 @@
   <CC_Wsh_Goal_PilgrimNot>not yet walked to {GOD}'s holy place</CC_Wsh_Goal_PilgrimNot>
   <CC_Wsh_Goal_TempleNone>{GOD} has no {SHRINE} in the colony yet</CC_Wsh_Goal_TempleNone>
   <CC_Wsh_Goal_TempleSome>{GOD}'s best room is {PERCENT} of the way to a temple</CC_Wsh_Goal_TempleSome>
+  <!-- The four vows of a season (Gods/Worship/VowsSeason.cs): their words, how each was broken, and the life goal's progress. -->
+  <CC_Wsh_Vow_What_Lamp>a lamp kept lit at its place for a season</CC_Wsh_Vow_What_Lamp>
+  <CC_Wsh_Vow_What_Trees>a tree planted each week for a season</CC_Wsh_Vow_What_Trees>
+  <CC_Wsh_Vow_What_PlainBread>plain bread for a season</CC_Wsh_Vow_What_PlainBread>
+  <CC_Wsh_Vow_What_Visitors>every caller at the gate fed for a season</CC_Wsh_Vow_What_Visitors>
+  <CC_Wsh_Vowed_Lamp>{PAWN} has vowed to {GOD} to keep the lamp at its place lit for a season.</CC_Wsh_Vowed_Lamp>
+  <CC_Wsh_Vowed_Trees>{PAWN} has vowed to {GOD} to plant a tree by hand each week for a season.</CC_Wsh_Vowed_Trees>
+  <CC_Wsh_Vowed_PlainBread>{PAWN} has vowed to {GOD} to eat only plain food for a season.</CC_Wsh_Vowed_PlainBread>
+  <CC_Wsh_Vowed_Visitors>{PAWN} has vowed to {GOD} that every caller at the gate will be fed this season.</CC_Wsh_Vowed_Visitors>
+  <CC_Wsh_VowKept_Lamp>{PAWN} kept the vow to {GOD}: the lamp burned the whole season.</CC_Wsh_VowKept_Lamp>
+  <CC_Wsh_VowKept_Trees>{PAWN} kept the vow to {GOD}: a tree planted every week of the season.</CC_Wsh_VowKept_Trees>
+  <CC_Wsh_VowKept_PlainBread>{PAWN} kept the vow to {GOD}: plain food for the whole season.</CC_Wsh_VowKept_PlainBread>
+  <CC_Wsh_VowKept_Visitors>{PAWN} kept the vow to {GOD}: every caller this season was fed.</CC_Wsh_VowKept_Visitors>
+  <CC_Wsh_VowBroken_Lamp>{PAWN} broke the vow to {GOD}: the lamp at its place went out.</CC_Wsh_VowBroken_Lamp>
+  <CC_Wsh_VowBroken_Trees>{PAWN} broke the vow to {GOD} of a tree a week.</CC_Wsh_VowBroken_Trees>
+  <CC_Wsh_VowBroken_PlainBread>{PAWN} broke the vow to {GOD} of plain food.</CC_Wsh_VowBroken_PlainBread>
+  <CC_Wsh_VowBroken_Visitors>{PAWN} broke the vow to {GOD}: callers left the gate unfed.</CC_Wsh_VowBroken_Visitors>
+  <CC_Wsh_How_LampOut>The {LAMP} went dark.</CC_Wsh_How_LampOut>
+  <CC_Wsh_How_NoTree>A week went by with no tree planted.</CC_Wsh_How_NoTree>
+  <CC_Wsh_How_Felled>{PAWN} cut down a tree.</CC_Wsh_How_Felled>
+  <CC_Wsh_How_FineMeal>It was {FOOD} that broke it.</CC_Wsh_How_FineMeal>
+  <CC_Wsh_How_Unfed>The callers went on their way without a meal.</CC_Wsh_How_Unfed>
+  <CC_Wsh_Why_GreatVow_Lamp>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_Lamp>
+  <CC_Wsh_Why_GreatVow_Trees>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_Trees>
+  <CC_Wsh_Why_GreatVow_PlainBread>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_PlainBread>
+  <CC_Wsh_Why_GreatVow_Visitors>{PAWN} kept a vow</CC_Wsh_Why_GreatVow_Visitors>
+  <CC_Wsh_Goal_Season_Lamp>{GOD}'s lamp kept lit, {PERCENT} of the season</CC_Wsh_Goal_Season_Lamp>
+  <CC_Wsh_Goal_Season_Trees>a tree a week for {GOD}, {PERCENT} of the season</CC_Wsh_Goal_Season_Trees>
+  <CC_Wsh_Goal_Season_PlainBread>plain food for {GOD}, {PERCENT} of the season</CC_Wsh_Goal_Season_PlainBread>
+  <CC_Wsh_Goal_Season_Visitors>every caller fed for {GOD}, {PERCENT} of the season</CC_Wsh_Goal_Season_Visitors>
+  <CC_Wsh_Goal_SeasonDone_Lamp>kept {GOD}'s lamp lit a whole season</CC_Wsh_Goal_SeasonDone_Lamp>
+  <CC_Wsh_Goal_SeasonDone_Trees>planted a tree a week for {GOD} a whole season</CC_Wsh_Goal_SeasonDone_Trees>
+  <CC_Wsh_Goal_SeasonDone_PlainBread>ate plain food for {GOD} a whole season</CC_Wsh_Goal_SeasonDone_PlainBread>
+  <CC_Wsh_Goal_SeasonDone_Visitors>fed every caller for {GOD} a whole season</CC_Wsh_Goal_SeasonDone_Visitors>
 
   <!-- ===================== Festivals ===================== -->
   <CC_Wsh_Festival_Harvest>the Thanksgiving of {GOD}</CC_Wsh_Festival_Harvest>

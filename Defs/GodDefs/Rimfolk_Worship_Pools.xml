@@ -360,6 +360,31 @@
         <li>[vow:pilgrimage] I'll walk to you on my own feet, {GOD}, I swear it.</li>
         <li>[vow:temple] You'll have a house worthy of you, {GOD}, I swear it.</li>
         <li>[vow:beastspared] Not one of your beasts falls to us this season, {GOD}.</li>
+        <li>[vow:lamp] Your lamp stays lit all season, {GOD}, I swear it.</li>
+        <li>[vow:trees] A tree a week by my own hand, {GOD}, and no axe from me.</li>
+        <li>[vow:plainbread] Plain bread and nothing finer this season, {GOD}, I swear it.</li>
+        <li>[vow:visitors] No caller leaves our gate hungry this season, {GOD}, I swear it.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A vow of a season kept day by day (Gods/Worship/VowsSeason.cs): one sentence as the vower sees to it. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_VowKeep</defName>
+    <lines>
+      <plain>
+        <li>[lamp] There, it'll burn through the night.</li>
+        <li>[lamp] Still lit, good.</li>
+        <li>[lamp] Another day and the light's still going, {GOD}.</li>
+        <li>[trees] That's this week's tree in the ground.</li>
+        <li>[trees] Grow straight, little one.</li>
+        <li>[trees] One more for you, {GOD}.</li>
+        <li>[plainbread] Plain bread for me, thanks, I made a vow.</li>
+        <li>[plainbread] Just the simple bowl, it's all I need.</li>
+        <li>[plainbread] Nothing fancy, {GOD} has my word.</li>
+        <li>[visitors] Here, eat something, nobody leaves this gate hungry.</li>
+        <li>[visitors] You'll have had a long road, have this.</li>
+        <li>[visitors] Take it, {OTHER}, it's yours.</li>
       </plain>
     </lines>
   </ColonyCouncil.FlavorPoolDef>

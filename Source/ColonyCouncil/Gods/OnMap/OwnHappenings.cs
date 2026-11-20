@@ -884,6 +884,8 @@ namespace ColonyCouncil
             OwnFeasts.Felled(b);
             // Counted for the one who felled it: the brambles round their stump (Gods/OnMap/Between/BetweenHollin.cs).
             HollinStumps.Felled(b, plant, by);
+            // A vow of a tree a week broken by its vower's axe (Gods/Worship/VowsSeason.cs).
+            VowsSeason.Felled(by);
         }
 
         /// <summary>One of the game's events happened at a home (Patch_OwnEventHappened): thrumbos passing.</summary>
