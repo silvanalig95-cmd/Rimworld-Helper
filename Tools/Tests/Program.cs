@@ -519,6 +519,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {BondsTests.Run(root, Check)} things about how bonds come about (knowing each other, limits, comrades, grudges, seats).");
         Console.WriteLine($"Checked {ReputationTests.Run(root, Check)} things about gossip and reputation (slants, belief, fading, caps, the deeds).");
         Console.WriteLine($"Checked {TraitChangeTests.Run(root, Check)} things about traits that change (steps, limits, absorbing, conflicts, the rules).");
+        Console.WriteLine($"Checked {TraitGainTests.Run(root, Check)} things about traits that fit a life (which gains are looked at, who gave them, the setting, how someone fights by the past year, the brawler's reading, the words).");
         Console.WriteLine($"Checked {CouncilUiTests.Run(root, Check)} things about the council window (This week, the tables, page links, shortcuts).");
         Console.WriteLine($"Checked {PagesTests.Run(root, Check)} things about Rimfolk's four windows (which page is where, views and modes, old addresses, each view's \"?\", the view header, the table beside the drawer, the buttons, the world's history list, the world events above the letters).");
         Console.WriteLine($"Checked {CardsTests.Run(root, Check)} things about names that lead somewhere (things, links and their layout, no marker in the game's text, the way back, cards' slots, the drawer's place).");
