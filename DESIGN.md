@@ -9845,7 +9845,7 @@ bed), plus 8 times the tend quality's factor when tended; immunity comes a tenth
 | An illness that can kill | a lethal severity or a stage that threatens life, until immune (the flu, the plague, malaria, an infection, the mods' killers) | the immunity race: a fifth faster in a bed |
 | A serious stage of any illness | its pain 15% or more, or 30% or more off consciousness, moving or breathing (`SeriousDrop`, leaving it poor) | too much to work through |
 | One of Rimfolk's ailments | from the severity its def names (`restFrom` on `HediffCompProperties_Ailment`, at the start of a stage); without it, the rows above | reviewed one by one, below |
-| What the game makes urgent | down, an operation due, labor, and something to tend now, but someone with only small things to tend (nothing serious by medicine by what is treated) and not losing blood (10% a day) keeps working while no doctor is free to come (`WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor`, and a medical care that allows any) | to be tended, then up again |
+| What the game makes urgent | down, an operation due, labor, and something to tend now, but someone with nothing serious to tend (by medicine by what is treated) and not losing blood (10% a day) keeps working while no doctor is free to come (`WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor`, and a medical care that allows any) | to be tended, then up again |
 
 Everything else, they keep working with it: a sunburn, a cold, lice, an itchy rash, bruises, small tended cuts, a sprain,
 a strained back. Its pain, capacities, mood and work speed go on costing them, and a stage that tires them (its
@@ -9855,6 +9855,48 @@ hours of sleep against the game's seven). The game's and other mods' conditions 
 (`Sends`: only what the game's own bed rest counts); one it doesn't rest for (gut worms, a carcinoma, lung rot) stays as the
 game has it. Rimfolk's own ailments follow the rule alone, so some get bed at their worst where the game gave none
 (scurvy, rabies, a torn back, a migraine, a kidney stone).
+
+**What is to tend, in three kinds** (a fix, 21 November 2026; not released yet). The player, with League_of_Toba_10:
+"now I have a bunch of pawns having the common cold, and they are just continuing to work, which in general is good, but
+some of them are not tended yet and are still working ... if it's just a bruise ... they don't necessarily have to
+prioritize attending as much ... But for these viruses and stuff that, you know, you have to develop immunity, or where
+tending really impacts whether the illness or whatever it is becomes permanent or escalates, it's important, I think,
+that they get tended and then go about their business if it allows." In the save (day 137, 7:36) Soot, Ape and Ettrian
+had had a head cold since about one in the night, untended, working, with three doctors awake (Soot himself, Lorena, and
+Bautista on a rescue); Lorena's was tended because she tends herself.
+
+- **The bug.** The rule asked whether a doctor was free (`BedRest.DoctorFree`) and kept the answer a second, from the
+  tick of the look (`Seen.doctorTick`). That tick started at `int.MinValue`, and `now - doctorTick` overflowed to a
+  negative number, so the first look was never taken and "no doctor free" was kept for good: since that look came nobody with
+  only small things to tend lay down to be tended. They were tended only when they happened to lie in bed anyway (asleep
+  at night). The look now goes through `Fresh.Holds` (Lean/Fresh.cs: a look never taken never holds), and the look
+  at their conditions too (`Conditions`, which a count kept right before).
+- **Guido's wound infection was not one.** In the save it was beaten: immune (100%), at 0.10 and falling, tended twice
+  before. The game tends nothing a body is immune to (`Hediff.TendableNow` is false once fully immune) and its own bed
+  rest ends at immunity, so there was nothing to tend. Before immunity an infection counts as serious by medicine by
+  what is treated at any severity (`MedicineChoiceMath.Judge`: not a wound, not one of Rimfolk's everyday ailments, so
+  `Why.Infection`), and as an illness that can kill (the game's `lethalSeverity`): to bed at once until immune.
+- **Three kinds** (`BedRestMath.Tend`, `KindOf`, `WhyMatters`): what is to tend now is serious (medicine by what is
+  treated: an illness of the game's or the mods', an infection, a deep wound, heavy bleeding, Rimfolk's serious illnesses),
+  to bed to be tended at once, a doctor free or not; or **what tending decides** (`Matters`): an illness the body builds
+  immunity to and isn't immune to yet (the game's immunizable conditions and the mods', read generically; among
+  Rimfolk's everyday ones the stomach bug and dreamfever), a wound that may still get infected (untended, a chance of
+  3% or more, `MedicineChoiceMath.MayInfectChance`, and younger than the game's longest delay of its one infection roll,
+  `HealthTuning.InfectionDelayRange.max`, 18 hours), and Rimfolk's ailments their def marks (`tendingMatters` on
+  `HediffCompProperties_Ailment`: the head cold and the chest cold, which can turn into pneumonia,
+  `AilmentTracker.AfterCold`, and lice, which make typhus three times as likely); or a small thing (a bruise, a small cut
+  under 3%, a sunburn, blisters, an old cut past its infection roll). What tending decides goes as small things do, to
+  bed to be tended once a doctor is free and up again once tended, and the doctor sees to it first.
+- **The doctor's order** (`Patch_BedRestTendFirst`, `Patch_BedRestTendOrder`): the game's tending of other people
+  (`WorkGiver_TendOther_Humanlike`) takes the closest patient waiting in bed. With the rule on it asks the scanner's
+  order (`WorkGiver_Scanner.Prioritized`, `GetPriority`), each patient's most pressing kind (`BedRest.TendOrderOf`,
+  `BedRestMath.TendOrder`: 2 serious, 1 what tending decides, 0 small), the closest first within each. The urgent
+  tending (bleeding to death), self tending and animals stay the game's. The kind is kept a second, or until a condition
+  comes or goes (`KindToTend`), and also gives the urgent mark's "something serious" it gave before.
+- **Shown**: a condition of the kind says "Keeps working, and lies down to be tended once a doctor is free, before small
+  things: tending slows the illness while her body builds immunity." (or "a wound tended in its first hours is less likely
+  to get infected", "left untended, it can lead to something worse"), and a small thing "... once a doctor is free, after
+  anything more pressing.". The dev log's look at a patient names the kinds and the doctor's order.
 
 **Who it leaves alone, and what stays the game's.** A baby, a creature not of flesh, a mutant: the game's own. The player's
 order to a medical bed ("Use medical bed", which sets the job's `restUntilHealed`): offered, and kept, for whatever the game
@@ -20154,6 +20196,38 @@ game was paused. The job was saved with him.
   kind or without its driver back to choosing a job when a game loads, and takes such jobs out of the queues.
 - Since harm parts 5 to 7 (7 November 2026) none of those eight walks had played out: each try left the pawn so, or
   failed with an error. They now play out as written in their sections above.
+
+## Pawns turn to the way they walk (the player's report, 21 November 2026; not released yet)
+
+The player, of the thorn-guards at a run (`Rimfolk_Events_PeopleEvents6.xml`, `Peoples/Events6/CanopyFire.cs`): "When
+they were walking, the pawns were not actually using the walk, animation ... Instead, they were kind of a static sprite,
+just looking in one direction, and even walking in another direction ... They should always, NPCs should actually use
+the walking animation or action, which is the same as when the player like right clicks it". The game's rotation
+tracker (`Pawn_RotationTracker.UpdateRotation`, called after each tick for the drawing) turns a walking pawn to its next
+step, unless the job's toil handles its own facing (`Toil.handlingFacing`): then it leaves the pawn as the toil turned
+it. The thorn-guards' job (`JobDriver_PEv6Firefight`) walked by the game's own path following, but its one toil handled
+its facing for the whole job, so they ran facing whichever way they last faced.
+
+- **Every toil read.** 82 files set `handlingFacing` on 141 toils. Five of them also started a walk: the thorn-guards'
+  firefight, an animal keeping at someone's side (`JobDriver_AnimalRunTo`, Animals/AnimalDayJobs.cs), a bout's fighters
+  closing in (`JobDriver_OutsiderBout`, Outsiders/OutsiderJobs.cs), keeping someone company (`JobDriver_PlayOutVisit`,
+  PlayOut/PlayOutJobs.cs) and a walk together, a vigil or a search (`JobDriver_PlayOutGroup`, PlayOut/PlayOutGroupJobs.cs).
+  In Visitors/IdleHoursJobs.cs the walks (to a book and back) are toils of their own that leave the facing to the game.
+- **The five, the walk and the facing apart.** The firefight, the animal at someone's side and the bout leave the facing
+  to the game: to the path while they walk, to their target while they stand (the job's target to face, `rotateToFace`:
+  the fire's cell as target B for the thorn-guards, a cell so the job keeps no reference to a fire once it is out; the
+  person or the opponent, target A, for the others), and to what they strike while they swing. Keeping company and the
+  walk together face their own way only while the pawn stands (`WalkFacing.FacingWhileStill`, Lean/WalkFacing.cs: a
+  pre-tick action sets the toil's `handlingFacing` to whether the pawn is still).
+- **The safety net** (`Patch_WalkFacesPath`, a postfix on `Pawn_RotationTracker.UpdateRotation`): a pawn whose job driver
+  is Rimfolk's (its type in Rimfolk's assembly), whose toil handles its facing, walking a path, is turned to its next
+  step as the game turns a walker (`WalkFacingMath.Toward`: east or west for any sideways step, else north or south),
+  whatever the toil says. Not while it aims at something, is stunned so it can't turn, or is of a kind that always faces
+  one way; never the game's or other mods' jobs; off with the deeper game hooks. Cheap: most pawns' toils don't handle
+  their facing, and those leave at the first check.
+- **The test** (`WalkFacingTests`): every toil of Rimfolk's with `handlingFacing = true` is read from the source, with
+  its actions (init, tick, pre-actions, finish) and every method they call that starts a pawn's walk (directly, or
+  through another such method by name in its file or as `Class.Method`); none may. A caravan's journey is no pawn's walk.
 
 ## The medal read at the gate, and visitors' errands past a barred door (the player's report, 20 November 2026; released 0.276.2)
 

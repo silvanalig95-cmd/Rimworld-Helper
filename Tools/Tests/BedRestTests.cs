@@ -138,6 +138,70 @@ public static class BedRestTests
         C(D(p => { p.decree = true; p.gameRest = true; p.gameOwnReasons = true; return p; }) == BedRestMath.InBed.Decree, "the council's rest when ill decree: the game's rest for anyone ill or hurt");
         C(D(p => { p.gameRest = true; return p; }) == BedRestMath.InBed.GameOwn, "another mod's reason for rest, not one the rule covers, is left as it is");
 
+        // ---------- The doctor's look: taken, and kept a second (the stuck look of 21 November 2026) ----------
+        const int LookTicks = 60; // BedRest.ConditionTicks
+        int saveTick = 8238911, never = int.MinValue;
+        C(unchecked(saveTick - never) < LookTicks, "the old look: now minus a tick never taken (int.MinValue) overflowed below a second, so it counted as fresh");
+        C(!Fresh.Holds(never, 0, LookTicks) && !Fresh.Holds(never, saveTick, LookTicks) && !Fresh.Holds(never, int.MaxValue, LookTicks),
+            "a look never taken is never fresh, so the first look at the doctors is taken (\"no doctor\" was kept for good)");
+        C(Fresh.Holds(61, 100, LookTicks) && Fresh.Holds(100, 100, LookTicks) && !Fresh.Holds(59, 100, LookTicks) && !Fresh.Holds(150, 100, LookTicks),
+            "a look holds within its second, and one from a later tick (another game) never does");
+
+        // ---------- What is to tend: serious, what tending decides, small things ----------
+        BedRestMath.Condition Tends(BedRestMath.Condition c, MedicineChoiceMath.Facts f)
+        {
+            c.tendNow = true;
+            c.threat = MedicineChoiceMath.Judge(f, out c.threatWhy);
+            return c;
+        }
+        var everyday = new MedicineChoiceMath.Facts { rimfolkAilment = true };
+        var headCold = Tends(new BedRestMath.Condition { illness = true, immunizable = true, rimfolk = true, worse = true }, everyday);
+        var stomachBug = Tends(new BedRestMath.Condition { illness = true, immunizable = true, rimfolk = true }, everyday);
+        var lice = Tends(new BedRestMath.Condition { illness = true, rimfolk = true, worse = true }, everyday);
+        var sunburn = Tends(new BedRestMath.Condition { illness = true, rimfolk = true }, everyday);
+        C(BedRestMath.KindOf(headCold) == BedRestMath.Tend.Matters && BedRestMath.WhyMatters(headCold) == BedRestMath.Matters.Worse,
+            "a head cold: tending decides (it can turn into pneumonia), so the doctor sees to it before small things");
+        C(BedRestMath.KindOf(stomachBug) == BedRestMath.Tend.Matters && BedRestMath.WhyMatters(stomachBug) == BedRestMath.Matters.Immunity,
+            "an illness the body builds immunity to: tending slows it while the immunity comes");
+        C(BedRestMath.KindOf(lice) == BedRestMath.Tend.Matters && BedRestMath.WhyMatters(lice) == BedRestMath.Matters.Worse, "lice (typhus): tending decides");
+        C(BedRestMath.KindOf(sunburn) == BedRestMath.Tend.Small && BedRestMath.WhyMatters(sunburn) == BedRestMath.Matters.No, "a sunburn: a small thing");
+        var immuneCold = stomachBug;
+        immuneCold.immune = true;
+        immuneCold.tendNow = false;
+        C(BedRestMath.WhyMatters(immuneCold) == BedRestMath.Matters.No && BedRestMath.KindOf(immuneCold) == BedRestMath.Tend.None,
+            "once immune, nothing is left to tend (the game tends nothing a body is immune to)");
+        var waiting = headCold;
+        waiting.tendNow = false;
+        C(BedRestMath.KindOf(waiting) == BedRestMath.Tend.None, "tended a while ago and not due again: nothing to tend now");
+        var flu = Tends(new BedRestMath.Condition { illness = true, immunizable = true, lethal = true }, new MedicineChoiceMath.Facts { lethal = true });
+        var infection = Tends(new BedRestMath.Condition { illness = true, immunizable = true, lethal = true }, new MedicineChoiceMath.Facts { infection = true, lethal = true });
+        var gutWorms = Tends(new BedRestMath.Condition { illness = true }, new MedicineChoiceMath.Facts());
+        C(BedRestMath.KindOf(flu) == BedRestMath.Tend.Serious && BedRestMath.KindOf(infection) == BedRestMath.Tend.Serious && BedRestMath.KindOf(gutWorms) == BedRestMath.Tend.Serious,
+            "the flu, a wound infection at any severity, the game's other illnesses: serious, to bed to be tended at once");
+        const int Window = 45000;
+        BedRestMath.Condition NewWound(MedicineChoiceMath.Facts f, int age, bool tended = false)
+        {
+            var c = Tends(new BedRestMath.Condition { wound = true, tended = tended }, f);
+            c.tendNow = !tended;
+            c.mayInfect = BedRestMath.MayInfect(MedicineChoiceMath.WoundInfectionChance(f.infectionChance, f.severity, f.animal), tended, age, Window);
+            return c;
+        }
+        var cutFacts = W(CutBleed, CutInf, 4f, Hand);
+        C(BedRestMath.KindOf(NewWound(cutFacts, 2500)) == BedRestMath.Tend.Matters && BedRestMath.WhyMatters(NewWound(cutFacts, 2500)) == BedRestMath.Matters.MayInfect,
+            $"a cut in its first hours that may get infected ({MedicineChoiceMath.WoundInfectionChance(CutInf, 4f, false):0.#%}): tending decides");
+        C(BedRestMath.KindOf(NewWound(cutFacts, Window)) == BedRestMath.Tend.Small, "the same cut once the game's roll for an infection is past: a small thing");
+        C(!NewWound(cutFacts, 2500, tended: true).mayInfect && BedRestMath.KindOf(NewWound(cutFacts, 2500, tended: true)) == BedRestMath.Tend.None, "the cut tended: nothing to tend");
+        C(BedRestMath.KindOf(NewWound(W(0f, BruiseInf, 4f, Leg), 2500)) == BedRestMath.Tend.Small && BedRestMath.KindOf(NewWound(W(CutBleed, CutInf, 2f, Arm), 2500)) == BedRestMath.Tend.Small,
+            "a bruise (it can't get infected) and a small cut (under 3%): small things");
+        C(BedRestMath.KindOf(NewWound(W(CutBleed, CutInf, 16f, Leg), 2500)) == BedRestMath.Tend.Serious && BedRestMath.KindOf(NewWound(W(BulletBleed, CutInf, 10f, Torso), 2500)) == BedRestMath.Tend.Serious,
+            "a deep wound or one that bleeds heavily: serious");
+        C(!BedRestMath.MayInfect(0.05f, false, -1, Window), "a wound of unknown age is no fresh wound");
+        C(BedRestMath.TendOrder(BedRestMath.Tend.Serious) > BedRestMath.TendOrder(BedRestMath.Tend.Matters) && BedRestMath.TendOrder(BedRestMath.Tend.Matters) > BedRestMath.TendOrder(BedRestMath.Tend.Small)
+          && BedRestMath.TendOrder(BedRestMath.Tend.Small) == BedRestMath.TendOrder(BedRestMath.Tend.None),
+            "the doctor's order: something serious, then what tending decides, then small things");
+        C(D(p => { p.needsTending = true; p.doctorFree = true; return p; }) == BedRestMath.InBed.Tending && D(p => { p.needsTending = true; return p; }) == BedRestMath.InBed.No,
+            "what tending decides and small things: they lie down once a doctor is free and keep working until then; up again once tended");
+
         // ---------- Rimfolk's ailments, one by one, from their defs ----------
         string root = Root();
         var ailments = LoadAilments(Path.Combine(root, "Defs", "HediffDefs"));
@@ -201,6 +265,25 @@ public static class BedRestTests
                 && BedRestMath.Sends(new BedRestMath.Condition { illness = true, immunizable = true, rimfolk = true, severity = Math.Max(s.min, 0.001f), stage = s.stage }, fine) == None),
                 $"{name}: the game kept them in bed until immune; now they keep working at every stage");
         }
+        // What tending decides, from the defs: the everyday ailments that build immunity, and those their def marks.
+        var marked = ailments.Where(a => a.tendingMatters).Select(a => a.name).OrderBy(x => x, StringComparer.Ordinal).ToList();
+        C(marked.SequenceEqual(new[] { "Council_Ail_ChestCold", "Council_Ail_HeadCold", "Council_Ail_Lice" }),
+            $"the colds (pneumonia) and lice (typhus) are marked as what tending decides ({string.Join(", ", marked)})");
+        C(ailments.Where(a => a.tendingMatters).All(a => a.tendable && !a.serious), "only everyday ailments that are tended are marked");
+        var first = new List<string>();
+        foreach (var a in ailments.Where(x => x.tendable))
+        {
+            var c = Tends(new BedRestMath.Condition { illness = true, immunizable = a.immunizable, lethal = a.lethal, rimfolk = true, worse = a.tendingMatters },
+                new MedicineChoiceMath.Facts { rimfolkAilment = true, rimfolkSerious = a.serious, lethal = a.lethal });
+            var want = a.serious ? BedRestMath.Tend.Serious : a.immunizable || a.tendingMatters ? BedRestMath.Tend.Matters : BedRestMath.Tend.Small;
+            var got = BedRestMath.KindOf(c);
+            if (got == BedRestMath.Tend.Matters) first.Add(a.name);
+            C(got == want, $"{a.name} to tend is {want} ({got})");
+        }
+        C(new[] { "Council_Ail_HeadCold", "Council_Ail_ChestCold", "Council_Ail_StomachBug", "Council_Ail_Dreamfever", "Council_Ail_Lice" }.All(first.Contains)
+          && !first.Contains("Council_Ail_Sunburn") && !first.Contains("Council_Ail_Blisters"),
+            $"tended before small things: the colds, the stomach bug, dreamfever and lice; a sunburn and blisters are small ({string.Join(", ", first)})");
+
         // Once immune, the killers without a restFrom pass on their feet unless the stage itself needs bed.
         var pneumonia = ailments.FirstOrDefault(x => x.name == "Council_Ail_Pneumonia");
         if (pneumonia != null)
@@ -243,6 +326,15 @@ public static class BedRestTests
             "a doctor free to tend is the game's own look for one");
         C(rest.Contains("ConditionTicks = 60") && rest.Contains("s.tick != now || s.count != count"), "cheap: the patient looked at once a tick, their conditions once a second or when one comes or goes");
         C(defsCode.Contains("public float restFrom;") && defsCode.Contains("restFrom above the ailment's highest severity never comes"), "Rimfolk's ailments say where rest starts, checked at load");
+        C(defsCode.Contains("public bool tendingMatters;") && defsCode.Contains("tendingMatters on an ailment that is never tended"), "Rimfolk's ailments say whether tending decides, checked at load");
+        C(rest.Contains("Fresh.Holds(s.doctorTick, now, ConditionTicks)") && !rest.Contains("now - s.doctorTick") && !rest.Contains("now - s.condTick"),
+            "the doctor's look is taken the first time and kept a second (no overflow on the first look)");
+        C(rest.Contains("c.worse = ail.tendingMatters;") && rest.Contains("HealthTuning.InfectionDelayRange.max") && rest.Contains("tendNow = h.TendableNow()"),
+            "what tending decides is read from the game: immunity, the infection's roll still to come, the def's mark");
+        C(patches.Contains("[HarmonyPatch(typeof(WorkGiver_Scanner), nameof(WorkGiver_Scanner.Prioritized), MethodType.Getter)]")
+          && patches.Contains("[HarmonyPatch(typeof(WorkGiver_Scanner), nameof(WorkGiver_Scanner.GetPriority), new[] { typeof(Pawn), typeof(TargetInfo) })]")
+          && patches.Contains("__instance is WorkGiver_TendOther_Humanlike") && patches.Contains("__result = BedRest.TendOrderOf(patient);"),
+            "the doctor sees to the patients waiting in bed by the order, only the game's tending of other people (not the urgent one, self tending or animals)");
         C(!rest.Contains("Messages.Message") && !rest.Contains("LetterStack") && !patches.Contains("Messages.Message"), "no letters and no messages");
         var keyed = XDocument.Load(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_BedRest.xml")).Root!.Elements().ToDictionary(e => e.Name.LocalName, e => e.Value);
         foreach (BedRestMath.Why w in Enum.GetValues(typeof(BedRestMath.Why)))
@@ -252,10 +344,12 @@ public static class BedRestTests
         }
         foreach (BedRestMath.InBed s in Enum.GetValues(typeof(BedRestMath.InBed)))
             if (s != BedRestMath.InBed.No) C(keyed.ContainsKey("CC_Rest_InBed_" + s), $"in bed {s} has its words");
+        foreach (BedRestMath.Matters m in Enum.GetValues(typeof(BedRestMath.Matters)))
+            if (m != BedRestMath.Matters.No) C(keyed.ContainsKey("CC_Rest_Matters_" + m), $"why tending decides, {m}, has its words");
         foreach (var w in new[] { "BleedingOut", "BleedsHeavily", "VitalPart", "Organ", "Deep", "LifeThreatening", "Other" })
             C(keyed.ContainsKey("CC_Rest_Wound_" + w), $"a serious wound's reason {w} has its words");
         foreach (var k in new[] { "CC_Rest_Line_Rests", "CC_Rest_Line_Heals", "CC_Rest_Line_Stage", "CC_Rest_Line_Works", "CC_Rest_Line_WorksSleeps", "CC_Rest_Line_WorksTend",
-                     "CC_Rest_Line_WorksTendSleeps", "CC_Rest_Line_WorksTendLater", "CC_Rest_Line_WorksTendLaterSleeps", "CC_Rest_Line_WorksBut", "CC_Rest_Line_ByHand",
+                     "CC_Rest_Line_WorksTendSleeps", "CC_Rest_Line_WorksTendLater", "CC_Rest_Line_WorksTendLaterSleeps", "CC_Rest_Line_WorksTendFirst", "CC_Rest_Line_WorksTendFirstSleeps", "CC_Rest_Line_WorksBut", "CC_Rest_Line_ByHand",
                      "CC_Rest_InBed_Other", "CC_Rest_Report", "CC_Settings_RestByNeed", "CC_Settings_RestByNeed_Tip", "CC_SetNote_RestByNeed" })
             C(keyed.ContainsKey(k), $"{k} exists");
         C(keyed["CC_Rest_Line_Works"] == "Keeps working." && keyed["CC_Rest_Line_WorksSleeps"] == "Keeps working, and sleeps a little more.", "the line says plainly that they keep working");
@@ -266,7 +360,7 @@ public static class BedRestTests
     private sealed class Ailment
     {
         public string name;
-        public bool immunizable, lethal;
+        public bool immunizable, lethal, serious, tendable, tendingMatters;
         public float restFrom, maxSeverity = 999f;
         public List<StageRow> stages = new List<StageRow>();
     }
@@ -295,7 +389,11 @@ public static class BedRestTests
                 var comps = d.Element("comps")?.Elements("li").ToList() ?? new List<XElement>();
                 var ail = comps.FirstOrDefault(li => ((string)li.Attribute("Class") ?? "").EndsWith("HediffCompProperties_Ailment"));
                 if (ail == null) continue;
-                var a = new Ailment { name = d.Element("defName")?.Value ?? "", restFrom = F(ail, "restFrom", 0f) };
+                var a = new Ailment
+                {
+                    name = d.Element("defName")?.Value ?? "", restFrom = F(ail, "restFrom", 0f), serious = (ail.Element("serious")?.Value ?? "") == "true",
+                    tendable = (d.Element("tendable")?.Value ?? "") == "true", tendingMatters = (ail.Element("tendingMatters")?.Value ?? "") == "true"
+                };
                 a.maxSeverity = F(d, "maxSeverity", (string)d.Attribute("ParentName") == "Council_AilmentBase" ? 1f : 999f);
                 a.immunizable = comps.Any(li => ((string)li.Attribute("Class") ?? "").EndsWith("Immunizable") && (F(li, "immunityPerDaySick", 0f) > 0f || F(li, "immunityPerDayNotSick", 0f) > 0f));
                 var stages = d.Element("stages")?.Elements("li").ToList() ?? new List<XElement>();

@@ -208,6 +208,7 @@
     <Compile Include="../../Source/ColonyCouncil/World/YearLetterMath.cs" Link="YearLetterMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/World/WorldMath.cs" Link="WorldMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Lean/AgesMath.cs" Link="AgesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Lean/WalkFacingMath.cs" Link="WalkFacingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/MemoryMath.cs" Link="MemoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsCatalog.cs" Link="SettingsCatalog.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/SettingsLayoutMath.cs" Link="SettingsLayoutMath.cs" />

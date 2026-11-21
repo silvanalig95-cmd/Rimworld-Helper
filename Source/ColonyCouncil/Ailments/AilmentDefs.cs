@@ -271,6 +271,12 @@ namespace ColonyCouncil
         /// </summary>
         public float restFrom;
         /// <summary>
+        /// Bed rest only when it makes sense (Health/BedRest.cs): left untended it can lead to something worse (a cold to
+        /// pneumonia, lice to typhus), so the doctor sees to it before small things (BedRestMath.Matters.Worse). An
+        /// everyday ailment only: a serious one is tended first anyway.
+        /// </summary>
+        public bool tendingMatters;
+        /// <summary>
         /// Its name in the colony's age, each tagged with the ages it's called so in ([tribal|medieval] pond itch,
         /// [industrial|spacer] swimmer's itch): the health tab, its message, letter and journal lines use it
         /// (<see cref="AilmentCauseMath.NameFor"/>). Without one, the def's label.
@@ -333,6 +339,7 @@ namespace ColonyCouncil
             if (!names.NullOrEmpty() && !typeof(Hediff_Ailment).IsAssignableFrom(parentDef.hediffClass)) yield return "an ailment named by the age needs hediffClass ColonyCouncil.Hediff_Ailment";
             if (restFrom < 0f) yield return "restFrom is a severity: 0 for the general rule, or the severity bed rest starts at";
             if (restFrom > 0f && restFrom > parentDef.maxSeverity) yield return "restFrom above the ailment's highest severity never comes";
+            if (tendingMatters && !parentDef.tendable) yield return "tendingMatters on an ailment that is never tended";
             if (causes != null)
                 foreach (var c in causes)
                     if (c != null && (c.trigger == AilmentTrigger.AfterIllness || c.trigger == AilmentTrigger.Healed) && c.after.NullOrEmpty())

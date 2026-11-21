@@ -36,6 +36,8 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>HeadCold</key>
+        <!-- Tending first: a cold that takes hold can turn into pneumonia (AilmentTracker.AfterCold), and tending slows it. -->
+        <tendingMatters>true</tendingMatters>
         <afterEffects>
           <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.2</chance><severity>0.2~0.35</severity></li>
           <li><hediff>Council_Ail_ColdSore</hediff><chance>0.1</chance><severity>0.3~0.5</severity></li>
@@ -161,6 +163,8 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>ChestCold</key>
+        <!-- Tending first: a cold that takes hold can turn into pneumonia (AilmentTracker.AfterCold), and tending slows it. -->
+        <tendingMatters>true</tendingMatters>
         <afterEffects>
           <li><hediff>Council_Ail_LingeringCough</hediff><chance>0.3</chance><severity>0.25~0.4</severity></li>
         </afterEffects>
@@ -1485,6 +1489,8 @@
     <comps>
       <li Class="ColonyCouncil.HediffCompProperties_Ailment">
         <key>Lice</key>
+        <!-- Tending first: lice in dirty quarters make typhus three times as likely, and tending clears them in a day or two. -->
+        <tendingMatters>true</tendingMatters>
         <causes><li><trigger>CrowdedDirty</trigger><hours>4</hours><chance>0.016</chance></li></causes>
         <childFactor>1.5</childFactor>
         <cooldownDays>10</cooldownDays>

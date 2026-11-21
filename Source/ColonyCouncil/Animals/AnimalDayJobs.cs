@@ -131,7 +131,7 @@ namespace ColonyCouncil
             };
             meet.defaultCompleteMode = ToilCompleteMode.Delay;
             meet.defaultDuration = Math.Max(60, job.count);
-            meet.handlingFacing = true;
+            // The game turns it: to its path when it trots after them, to them (target A, the job's target to face) beside them.
             meet.socialMode = RandomSocialMode.Off;
             meet.tickIntervalAction = delta =>
             {
