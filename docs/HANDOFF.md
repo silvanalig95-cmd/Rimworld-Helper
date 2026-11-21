@@ -165,6 +165,26 @@ most sense." So, in this order, three builds at a time:
   head and body drawn apart with the game's flags, a pose by character and mood, the side views for two facing each
   other, the dead grey, breathing, a sway and a turn now and then on the large portraits); the entry "Portraits, phase
   2" above the newest release line. With it, the to-do is done; the painted art (A, B, E) stays dropped.
+- **To do, gathered for the next batch (21 November 2026, the player, with League_of_Toba_10): the sick tended first
+  where tending matters.** The player: "now I have a bunch of pawns having the common cold, and they are just
+  continuing to work, which in general is good, but some of them are not tended yet and are still working ... I think
+  it's important, especially if it's a matter of infections, that you have to develop an immunity, and anything that
+  works like this, that the pawn, you know, prioritizes getting tended first and then continues working if the injury
+  allows it ... if it's just a bruise ... they don't necessarily have to prioritize attending as much ... But for these
+  viruses and stuff that, you know, you have to develop immunity, or where tending really impacts whether the illness or
+  whatever it is becomes permanent or escalates, it's important, I think, that they get tended and then go about their
+  business if it allows." Seen in the save (day 137, 7:36): Soot, Ape and Ettrian with a head cold, untended, working;
+  Guido with a wound infection, untended, cutting plants; Bautista (the doctor) on a rescue. Why: "Bed rest only when it
+  makes sense" (DESIGN.md, the player's 8 November rule, `Health/BedRest.cs`, `BedRestMath`) keeps someone with only
+  small things to tend working until a doctor is free (`AnyAvailableDoctorFor`: awake, not in bed, doctoring on), then
+  sends them to bed to be tended; a head cold counts as small. The infection should have counted as serious (an illness
+  that can kill) and sent Guido at once: to check (`SeriousToTend`, `MedicineChoiceMath.Judge` at an infection's low
+  severity) and fix if so. To do: a third kind beside "small" and "serious": what tending changes (an illness that
+  builds immunity, an infection, a condition whose tending decides if it turns lasting or worse, Rimfolk's ailments that
+  can turn to pneumonia): the patient lies down to be tended at once when a doctor is anywhere about (asleep: woken for
+  an infection only), the doctor takes them first among small things, and they are up and back at work once tended; the
+  rest keep working as now. Perhaps the doctor tends a small thing where the patient stands (a minute sitting down)
+  instead of a walk to bed. Shown on the condition's tooltip as now.
 - **To do, gathered for the next batch (21 November 2026, the player, after 0.290.0's portraits): pawns people can tell
   apart as persons.** With a screenshot of the large portrait (Bautista, "the Healer"): "I like the positioning where
   it is ... I feel like a lot of the square is still, so to say, empty space ... The pawn could be centered further, and
@@ -184,6 +204,11 @@ most sense." So, in this order, three builds at a time:
      without having one of these tabs open, story mode, log, whatever. Once you click one of these tabs, the image of
      the pawn can, disappear in favor of the tab. I don't need to be it for it to be constantly visible." So the large
      portrait shows only while no inspect tab is open, and hides while one is (the placement beside a tab goes).
+     And (the same day, with League_of_Toba_10): "now it also shows the pawn always in the direction they are facing in
+     this preview, but yeah, it looks a bit weird if they're facing back sidewards ... just show them from the front
+     angle when I select them, even if they're happening to be standing or walking sideways." So the large portrait is
+     always front-on: no turn to a side in its movement and no shy half-turn there (pairs in letters still face each
+     other).
   2. More to the face, drawn by Rimfolk over the game's head in portraits only, the same for any pawn of any mod: soft
      light and shade for depth; what the body really carries (a scar or a burn on the head from its health, a lost eye's
      patch, the lines of age for the old); and one small mark of their own picked once and kept (a mole, freckles, a
@@ -205,6 +230,19 @@ most sense." So, in this order, three builds at a time:
      earned names), from Rimfolk's own records.
   Mods: HD textures for heads and hair only sharpen the large portrait; Facial Animation and Nice Facial Animation,
   Vanilla Hair Expanded, Vanilla Hair Retextured and Rimsenal's hair are on.
+  The player, after: "I first really want to kind of work on the visual enhancement. So either we do something together,
+  or you provide me mods that already exist and make the pawns just more recognizable with their faces and body and
+  physique, you know, with maybe also you see hands and arms and better faces and stuff. And if not, if you could give
+  me detailed instructions how we can do that with other AI-generated image files". Mods named to the player on 21
+  November (Workshop pages read logged out; each showed a "removed / incompatible" banner as every page does from here,
+  so to be checked in Steam): Vanilla Pawns Retextured (2275310562, 1.6 and 1.7, updated 29 October: 512 px human heads
+  and bodies, by the author of Vanilla Hair Retextured, which is on), Show Me Your Hands (2475965842, on in the list,
+  1.7 tagged: hands on weapons), Faces of the Rim - Facial Animation (2555107849, 1.5 tag, reported to work on 1.6: more
+  eyes, mouths, brows for Facial Animation), Despicable 2 - Core (3684988510, 1.6 only: face parts that replace the eyes),
+  HD Faces (Nonvanilla) (2475246250, 1.6, legacy), [RH2] Detailed Body Textures 3 (2873235836, 1.6: 512 px bodies). The
+  AI way, if mods fall short: upscaled (or redrawn in the same style) textures of the pieces every pawn is built from
+  (the Facial Animation face parts, the heads and bodies), a pack Rimfolk loads over them; the lead's instructions given
+  to the player the same day.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
