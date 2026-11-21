@@ -292,6 +292,15 @@ most sense." So, in this order, three builds at a time:
   (the player asked; told no). The lead's concept sheet (scratchpad `concept/concepts2.png`, its generator
   `scripts/concept.py`) shows four styles of two busts: A ink and flat colour, B comic with a hard shadow, C soft painted
   without outlines, D woodcut on parchment; the build keeps the style a setting, A until the player picks.
+  Then the player found the concepts (and a second round: anime, chibi, comic, flat vector, pixel art) "really silly
+  looking" and asked for image AIs to make the art from exact prompts: "recommend me other AI systems that are really
+  good at creating images and that I can ... provide exact prompts to these AIs so they can, yeah, create all the
+  necessary image data to have really nice looking interpretation of all the possible pawns ... it just has to be
+  aesthetically pleasing." So the way now: a library of complete painted portraits made by the player with an image AI
+  (`docs/portrait-art/README.md`: tools, four style lines, the steps; `docs/portrait-art/prompts.csv`: 200 rows, 16 marked
+  for a trial, each file name carrying the tags Rimfolk matches by; written by `Tools/PortraitArt/make_prompts.py`), the
+  lead keying out the green background and lining them up, and Rimfolk matching each pawn to the nearest picture and
+  keeping it. The portrait build was redirected to the library and the matcher (phase 3).
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
