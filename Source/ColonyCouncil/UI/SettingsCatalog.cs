@@ -402,6 +402,9 @@ namespace ColonyCouncil
             Toggle("loveFeelings", "CC_Settings_LoveFeelings", "CC_SetNote_LoveFeelings", "socialWeb");
             Toggle("socialLife", "CC_Settings_SocialLife", "CC_SetNote_SocialLife");
             Toggle("traitChanges", "CC_Settings_TraitChanges", "CC_SetNote_TraitChanges", "socialLife");
+            // Traits other mods give during play (Persona/TraitGains.cs): the player's wish of 21 November 2026, after a shotgunner was made a brawler.
+            Choice("otherTraitGains", "CC_Settings_OtherTraitGains", "CC_Settings_OtherTraitGains_Tip", "CC_OtherTraitGains_", "CC_SetNote_OtherTraitGains_",
+                new[] { "AsTheyCome", "WhereTheyFit", "None" }, "deepHooks");
             Toggle("faithLife", "CC_Settings_FaithLife", "CC_SetNote_FaithLife");
             Toggle("secrets", "CC_Settings_Secrets", "CC_SetNote_Secrets");
             Toggle("vendettas", "CC_Settings_Vendettas", "CC_SetNote_Vendettas");

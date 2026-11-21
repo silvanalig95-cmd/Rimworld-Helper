@@ -154,6 +154,14 @@ namespace ColonyCouncil
         /// </summary>
         public static bool Stows(StowFacts f) => f.theirs && f.atCamp && !f.corpse && !f.putOut && !f.inStore && !f.inColony && !f.busy && f.storeTakes;
 
+        /// <summary>
+        /// A stack they brought to build with goes back in a pack (Camps/CampStore.cs): once their camp stands and nothing of
+        /// theirs is under way, and no piece of theirs still needs it; never what they put out on purpose, what someone has in
+        /// hand, or what the colony took. Until 21 November 2026 it lay where it was set down for the rest of the stay (the
+        /// grove-keepers' leather in the player's save of that day, half gone in the weather).
+        /// </summary>
+        public static bool Repacks(RepackFacts f) => f.brought && f.theirs && f.atCamp && f.settled && !f.underWay && !f.needed && !f.putOut && !f.busy && !f.inColony;
+
         /// <summary>How much of a stack one trip carries into the store: what the cell has room for and the carrier can lift, at least one.</summary>
         public static int StowCount(int stack, int room, int carry) => Math.Max(1, Math.Min(stack, Math.Min(Math.Max(1, room), Math.Max(1, carry))));
 
@@ -224,6 +232,29 @@ namespace ColonyCouncil
         public bool busy;
         /// <summary>One of their stores takes it and has room for it.</summary>
         public bool storeTakes;
+    }
+
+    /// <summary>What there is to know about a stack they brought to build with, for whether it goes back in a pack (CampDayMath.Repacks).</summary>
+    public struct RepackFacts
+    {
+        /// <summary>They carried it in and set it down at their stash to build with.</summary>
+        public bool brought;
+        /// <summary>One of their goods (the camp owns it).</summary>
+        public bool theirs;
+        /// <summary>Lying within their camp's reach.</summary>
+        public bool atCamp;
+        /// <summary>Their camp stands and they live in it (not packing up to go).</summary>
+        public bool settled;
+        /// <summary>Something of theirs is still being built, or something added to the camp.</summary>
+        public bool underWay;
+        /// <summary>A piece of theirs still needs some of it.</summary>
+        public bool needed;
+        /// <summary>Put out on purpose: bales by the beasts, a woodpile by the door, a stall's wares.</summary>
+        public bool putOut;
+        /// <summary>Someone has it in hand or reserved.</summary>
+        public bool busy;
+        /// <summary>In the colony's storage or its home area: taken, not theirs to fetch.</summary>
+        public bool inColony;
     }
 
     /// <summary>What there is to know about a bit of filth near a camp, for whether they clean it (CampDayMath.Cleans).</summary>

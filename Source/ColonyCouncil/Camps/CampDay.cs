@@ -14,6 +14,7 @@ namespace ColonyCouncil
         public static JobDef Rimfolk_CampCraft;
         public static JobDef Rimfolk_CampMend;
         public static JobDef Rimfolk_CampPack;
+        public static JobDef Rimfolk_CampRepack;
 
         static CampDayDefOf()
         {

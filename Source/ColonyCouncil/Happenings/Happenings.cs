@@ -1105,6 +1105,8 @@ namespace ColonyCouncil
         {
             if (victim == null) return;
             if (note.foe) CouncilGameComponent.Instance?.social.Notify_EnemyFell(note.afterFight ? null : dinfo?.Instigator as Pawn, note.map);
+            // How the one who killed them fights, up close or at range, for the traits of a close fighter (Persona/TraitChanges.cs).
+            if (note.foe && !note.afterFight) TraitChanges.Notify_Killed(dinfo?.Instigator as Pawn, dinfo);
             if (note.beast) HappeningWorker_GreatBeast.Slain(this, victim, dinfo);
             if (note.wild && !note.beast) HappeningWorker_Orphan.Killed(this, victim, dinfo, note.cell);
             if (note.prisonerOf != null) Grudges.Add(note.prisonerOf, note.name, Now);

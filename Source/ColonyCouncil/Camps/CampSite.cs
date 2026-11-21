@@ -423,7 +423,11 @@ namespace ColonyCouncil
             spec.stall = kind.structures.Any(s => s.role == "stall") && pieces.ContainsKey("stall");
             spec.spot = kind.structures.Any(s => s.role == "spot") && pieces.ContainsKey("spot");
             spec.picket = pieces.ContainsKey("picket") && (kind.animals?.Any(a => a != null && (a.pack || a.kinds?.Count > 0)) ?? false);
-            spec.stash = pieces.ContainsKey("stash") && days >= 3f;
+            // Their goods kept out of the weather from a day and a half (CampBuildMath.StoreKind): on a shelf of theirs where
+            // their people know one that keeps the weather off (CampKit.Keeps), else in a store tent of their tent walls.
+            string store = CampBuildMath.StoreKind(days, pieces.ContainsKey("stash"), pieces.ContainsKey("tentwall") && pieces.ContainsKey("tentdoor"));
+            spec.stash = store == "shelf";
+            spec.cover = store == "tent";
             spec.lights = CampBuildMath.LightsFor(people, pieces.ContainsKey("light"));
             return spec;
         }
@@ -496,7 +500,9 @@ namespace ColonyCouncil
             {
                 string role = p.role == "bed" && spec.tentBeds ? "tent" : p.role == "hutbed" ? "bed"
                     : p.role == "hut" ? (spec.sleep == CampSleepForm.Hut ? "hut" : "tentwall")
-                    : p.role == "door" ? (spec.sleep == CampSleepForm.Hut ? "door" : "tentdoor") : p.role;
+                    : p.role == "door" ? (spec.sleep == CampSleepForm.Hut ? "door" : "tentdoor")
+                    // The store tent is of their tent walls and door.
+                    : p.role == "storewall" ? "tentwall" : p.role == "storedoor" ? "tentdoor" : p.role;
                 if (!pieces.TryGetValue(role, out var s) || s.Def == null) continue;
                 var plan = PlanFor(s, p, center, bestTurn);
                 if (plan == null) continue;

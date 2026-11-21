@@ -48,7 +48,8 @@ namespace ColonyCouncil
             return Buildings().Where(b => !b.Destroyed && b.Spawned && PackFateOf(b, true, hands) is PackFate f && (f == PackFate.Pack || f == PackFate.TakeDown)).ToList();
         }
 
-        private PackFate PackFateOf(Building b, bool orderly, bool hands) => CampPackMath.Fate(kind.leaves, Portable(b), orderly, hands, ending != "unpaid");
+        private PackFate PackFateOf(Building b, bool orderly, bool hands) =>
+            CampPackMath.Fate(kind.leaves, Portable(b), orderly, hands, ending != "unpaid", StoreTentRole(plans.FirstOrDefault(x => x.def == b.def && x.cell == b.Position)?.role));
 
         /// <summary>
         /// Leaving in their own time: they pack first, on the map, for a few hours (CampPackMath.PackHours). False when there
@@ -101,6 +102,9 @@ namespace ColonyCouncil
             try
             {
                 var fate = PackFateOf(b, true, true);
+                var planned = plans.FirstOrDefault(x => x.def == b.def && x.cell == b.Position);
+                // Their store tent's roof comes off before its door or a wall does.
+                if (planned != null && StoreTentRole(planned.role)) UnroofStoreTent();
                 if (fate == PackFate.Pack)
                 {
                     if (LordAlive) lord.ownedBuildings.Remove(b);
@@ -206,6 +210,10 @@ namespace ColonyCouncil
                     return "CC_CampLeft_What_dining".Translate();
                 case "spot":
                     return "CC_CampLeft_What_spot".Translate(b.def.label.Named("THING"));
+                // Their store tent (CampStore.cs), left when they had no time or hands to take it down.
+                case "storewall":
+                case "storedoor":
+                    return "CC_CampLeft_What_store".Translate();
                 // What they added over the stay (CampGrow.cs): a lean-to, a pen, seats round the fire.
                 case "post":
                 case "fence":

@@ -5,6 +5,32 @@
   <CC_Settings_TraitChanges>Traits can change</CC_Settings_TraitChanges>
   <CC_Settings_TraitChanges_Tip>Now and then, after a long stretch of the same kind of life, one of a colonist's traits grows, appears or fades: steadier nerves after raid after raid held, kindness after years of kindnesses, a pessimist after a year of graves. Each change comes with a letter that tells what led to it, with dates, and is kept on the character page. Rare: at most one change per colonist in 60 days (a trait Rimfolk gave can go sooner), and one in the colony in 10 (a way out of a bad trait doesn't wait for the colony's 10 days). Traits of the body, sexuality and traits from genes or a backstory never change.</CC_Settings_TraitChanges_Tip>
   <CC_SetNote_TraitChanges>Rarely, a trait grows, appears or fades after what a colonist went through.</CC_SetNote_TraitChanges>
+  <!-- Traits other mods give during play (Persona/TraitGains.cs). -->
+  <CC_Settings_OtherTraitGains>Traits other mods give</CC_Settings_OtherTraitGains>
+  <CC_Settings_OtherTraitGains_Tip>What becomes of a trait another mod gives one of the colony's people during play (Vanilla Social Interactions Expanded, for one, gives a trait after an illness or a talk). Only where it fits, the default: a trait Rimfolk's own trait changes know is refused when it doesn't fit the person as they are: no brawler for someone who fights at range (Shooting near or above their Melee, or more of the past year's fights at range than up close); the same for a skill the trait asks for, a trait that rules it out, their character, their faith and their age. A trait Rimfolk has no rule for comes as it is. As they come: every one, as the other mod gives it. None: every one is refused. Never touched: the traits a newcomer comes with, traits from genes or the scenario, the game's own (a growth moment), Rimfolk's own trait changes, and traits the player gives (an editor, a letter's choice). A refused trait is told in a message with the mod that gave it and why. Needs the deeper game hooks.</CC_Settings_OtherTraitGains_Tip>
+  <CC_OtherTraitGains_AsTheyCome>As they come</CC_OtherTraitGains_AsTheyCome>
+  <CC_OtherTraitGains_AsTheyCome_Tip>Every trait another mod gives during play, as it gives it.</CC_OtherTraitGains_AsTheyCome_Tip>
+  <CC_OtherTraitGains_WhereTheyFit>Only where they fit</CC_OtherTraitGains_WhereTheyFit>
+  <CC_OtherTraitGains_WhereTheyFit_Tip>A trait another mod gives is refused when it doesn't fit the person as Rimfolk reads them: no brawler for someone who fights at range.</CC_OtherTraitGains_WhereTheyFit_Tip>
+  <CC_OtherTraitGains_None>None</CC_OtherTraitGains_None>
+  <CC_OtherTraitGains_None_Tip>Every trait another mod gives during play is refused.</CC_OtherTraitGains_None_Tip>
+  <CC_SetNote_OtherTraitGains_AsTheyCome>Other mods give traits during play as they like.</CC_SetNote_OtherTraitGains_AsTheyCome>
+  <CC_SetNote_OtherTraitGains_WhereTheyFit>A trait another mod gives is refused when it doesn't fit the person: no brawler for someone who fights at range.</CC_SetNote_OtherTraitGains_WhereTheyFit>
+  <CC_SetNote_OtherTraitGains_None>No other mod gives the colony's people a trait during play.</CC_SetNote_OtherTraitGains_None>
+  <!-- A trait another mod gave, refused: the message ({MOD} the mod's name as the mod list shows it, {WHY} one of the reasons below). -->
+  <CC_TraitGain_Refused>{MOD} would have given {PAWN_nameDef} the trait {TRAIT}, and Rimfolk didn't let it, as {WHY}. The setting "Traits other mods give" decides this.</CC_TraitGain_Refused>
+  <CC_TraitGain_AnotherMod>another mod</CC_TraitGain_AnotherMod>
+  <CC_TraitGain_Why_None>the setting lets no other mod give traits during play</CC_TraitGain_Why_None>
+  <CC_TraitGain_Why_Blocked>{PAWN_nameDef} has the trait {TRAIT}, which rules it out</CC_TraitGain_Why_Blocked>
+  <CC_TraitGain_Why_Skill>{PAWN_nameDef}'s {SKILL} is {HAVE}, and the trait asks for {NEED} or more</CC_TraitGain_Why_Skill>
+  <CC_TraitGain_Why_SkillMost>{PAWN_nameDef}'s {SKILL} is {HAVE}, and the trait asks for {NEED} or less</CC_TraitGain_Why_SkillMost>
+  <CC_TraitGain_Why_Shoots>{PAWN_nameDef} fights at range, with Shooting {SHOOTING} and Melee {MELEE}</CC_TraitGain_Why_Shoots>
+  <CC_TraitGain_Why_Range>{PAWN_nameDef} fought at range on {RANGE} days of the past year and up close on {CLOSE}</CC_TraitGain_Why_Range>
+  <CC_TraitGain_Why_NoMelee>{PAWN_nameDef} can't fight in melee</CC_TraitGain_Why_NoMelee>
+  <CC_TraitGain_Why_WithTrait>the trait comes only with {TRAIT}, which {PAWN_nameDef} doesn't have</CC_TraitGain_Why_WithTrait>
+  <CC_TraitGain_Why_Character>it doesn't fit {PAWN_nameDef}'s character as it is</CC_TraitGain_Why_Character>
+  <CC_TraitGain_Why_Faith>{PAWN_nameDef}'s faith is against it</CC_TraitGain_Why_Faith>
+  <CC_TraitGain_Why_Age>{PAWN_nameDef} is younger than {AGE}</CC_TraitGain_Why_Age>
 
   <!-- What changed, on the character page: "gained kind", "lost abrasive", "steadfast became iron-willed". -->
   <CC_TC_Gained>gained {0}</CC_TC_Gained>
@@ -65,7 +91,8 @@
   <CC_TCB_CalmSince>Days without a breakdown since becoming {2}: {0} of {1}</CC_TCB_CalmSince>
   <CC_TCB_VowUnpaid>A vow of vengeance unpaid, none of them fallen yet: {0} of {1} days</CC_TCB_VowUnpaid>
   <CC_TCB_VowOver>No vow of vengeance still standing (avenged, laid down, lapsed after two years, or those who did it at peace with the colony)</CC_TCB_VowOver>
-  <CC_TCB_Melee>Fights in melee</CC_TCB_Melee>
+  <!-- {0} days of the past year they fought up close, {1} at range, {2} the fewest close days it asks (Persona/TraitGainMath.cs). -->
+  <CC_TCB_Melee>Fights up close, with Melee well above Shooting: {0} days of fighting up close and {1} at range this past year (needs {2} up close, and at least twice as many as at range)</CC_TCB_Melee>
   <CC_TCB_Practice>{0}: about {1} hours lately (needs {2})</CC_TCB_Practice>
   <CC_TCB_NoHabit>The habit "{0}"</CC_TCB_NoHabit>
   <CC_TCB_HabitHeld>The habit "{0}": held {1} of {2} days</CC_TCB_HabitHeld>
@@ -99,7 +126,7 @@
   <CC_TCB_MissCalmSince>{0} days without a breakdown since becoming {2} ({1} so far)</CC_TCB_MissCalmSince>
   <CC_TCB_MissVowUnpaid>a vow of vengeance unpaid for {0} days ({1} so far)</CC_TCB_MissVowUnpaid>
   <CC_TCB_MissVowOver>no vow of vengeance still standing</CC_TCB_MissVowOver>
-  <CC_TCB_MissMelee>fighting in melee</CC_TCB_MissMelee>
+  <CC_TCB_MissMelee>more fights up close than at range this past year, with Melee well above Shooting</CC_TCB_MissMelee>
   <CC_TCB_MissFriend>a friend on the Bonds page</CC_TCB_MissFriend>
   <CC_TCB_MissBonded>an animal bonded to them</CC_TCB_MissBonded>
   <CC_TCB_MissBondedDays>bonded for {0} days ({1} so far)</CC_TCB_MissBondedDays>

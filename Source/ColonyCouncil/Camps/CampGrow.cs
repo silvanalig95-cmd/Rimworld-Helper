@@ -238,7 +238,7 @@ namespace ColonyCouncil
                 foreach (var t in inv.ToList())
                 {
                     if (!needs.Contains(t.def) || (p == trader && !p.inventory.NotForSale(t))) continue;
-                    if (inv.TryDrop(t, stash, map, ThingPlaceMode.Near, out var dropped, null, AtStash) && dropped != null) Own(dropped);
+                    if (inv.TryDrop(t, stash, map, ThingPlaceMode.Near, out var dropped, null, AtStash) && dropped != null) Brought(dropped);
                 }
             }
         }
@@ -272,7 +272,7 @@ namespace ColonyCouncil
             foreach (var t in Unfinished())
             {
                 if (!cells.Contains(t.Position)) continue;
-                if (t is Frame f && f.resourceContainer != null) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Own(thing), AtStash);
+                if (t is Frame f && f.resourceContainer != null) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Brought(thing), AtStash);
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
             }
             foreach (var p in mine.Where(p => p.Built(map, faction) == null))

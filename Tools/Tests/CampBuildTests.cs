@@ -387,7 +387,7 @@ public static class CampBuildTests
                     {
                         sleepers = s, sleep = form, tentBeds = tentBeds, tables = CampBuildMath.TablesFor(s, days.Max(), true), butcher = hunts,
                         craft = CampBuildMath.CraftFor(days.Max()) || works.Contains("Craft"), stall = structures.Any(x => x.Element("role")?.Value == "stall"),
-                        spot = structures.Any(x => x.Element("role")?.Value == "spot"), picket = k.Element("animals") != null, stash = days.Max() >= 3f, lights = CampBuildMath.LightsFor(s, true),
+                        spot = structures.Any(x => x.Element("role")?.Value == "spot"), picket = k.Element("animals") != null, stash = days.Max() >= CampBuildMath.StoreFromDays, lights = CampBuildMath.LightsFor(s, true),
                         windbreak = form == CampSleepForm.Ring
                     };
                     foreach (var (ground, cost) in new (string, Func<int, int, int>)[] { ("open ground", (x, z) => 0), ("a map full of trees", (x, z) => CampBuildMath.Cost(CellFate.Fell)) })

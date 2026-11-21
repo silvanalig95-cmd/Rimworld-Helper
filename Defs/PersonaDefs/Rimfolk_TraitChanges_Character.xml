@@ -91,6 +91,9 @@
     </journal>
   </ColonyCouncil.TraitChangeDef>
 
+  <!-- meleeFighter: how they fought over the past year, not the weapon in hand (Persona/TraitGainMath.cs, 21 November 2026):
+       Melee two above Shooting, three days or more of fighting up close (a foe killed, a fight's mark) and twice as many as
+       at range. The same reading keeps another mod's brawler from one who fights at range (Persona/TraitGains.cs). -->
   <ColonyCouncil.TraitChangeDef>
     <defName>Rimfolk_TC_BrawlerGained</defName>
     <label>a brawler made in close fighting</label>

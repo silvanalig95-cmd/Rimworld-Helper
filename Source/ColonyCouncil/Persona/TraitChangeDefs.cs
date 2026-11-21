@@ -201,7 +201,11 @@ namespace ColonyCouncil
         /// <summary>Days in the colony (0: no condition).</summary>
         public int daysHere;
         public int minAge;
-        /// <summary>A melee fighter: their Melee two above their Shooting, and no ranged weapon in hand.</summary>
+        /// <summary>
+        /// A close fighter by how they fought over the past year (TraitGainMath.Fights): Melee at least two above Shooting, three
+        /// days or more of fighting up close and at least twice as many as at range; not the weapon in hand (until 21 November
+        /// 2026 a melee weapon in hand that day was enough).
+        /// </summary>
         public bool meleeFighter;
         /// <summary>
         /// A habit they hold (a QuirkDef's defName): had at least <see cref="habitDays"/> days, and lived on at least

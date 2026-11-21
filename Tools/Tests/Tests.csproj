@@ -247,6 +247,7 @@
     <Compile Include="../../Source/ColonyCouncil/Social/Groups/GroupMath.cs" Link="GroupMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Social/Groups/GroupNaming.cs" Link="GroupNaming.cs" />
     <Compile Include="../../Source/ColonyCouncil/Persona/TraitChangeMath.cs" Link="TraitChangeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Persona/TraitGainMath.cs" Link="TraitGainMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Immersion/SpeechMath.cs" Link="SpeechMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/ChangeMath.cs" Link="ChangeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Defense/DefenseLayout.cs" Link="DefenseLayout.cs" />
