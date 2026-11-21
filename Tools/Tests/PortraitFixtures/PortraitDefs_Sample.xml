@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Sample portrait defs for the tests only (Tools/Tests/PortraitLibraryTests.cs), never loaded by the game: the shape the
+     lead writes the library's defs in (Defs/PortraitDefs/), with two placeholder pictures. A face with three variants
+     (its base, a lost eye, older), a woman, and a dark elf of a xenotype. -->
+<Defs>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_Sample_Aldo</defName>
+    <texPath>Rimfolk/Portraits/Library/sample_a</texPath>
+    <sex>male</sex>
+    <age>adult</age>
+    <skinColor>#e0b898</skinColor>
+    <hairColor>#4a3020</hairColor>
+    <hair>short</hair>
+    <beard>full</beard>
+    <build>broad</build>
+    <era>medieval</era>
+    <dress>work</dress>
+    <facing>threeQuarterLeft</facing>
+    <character>sample_aldo</character>
+    <variant>base</variant>
+  </ColonyCouncil.PortraitDef>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_Sample_Aldo_LostEye</defName>
+    <texPath>Rimfolk/Portraits/Library/sample_a</texPath>
+    <sex>male</sex>
+    <age>adult</age>
+    <skinColor>#e0b898</skinColor>
+    <hairColor>#4a3020</hairColor>
+    <hair>short</hair>
+    <beard>full</beard>
+    <build>broad</build>
+    <era>medieval</era>
+    <dress>work</dress>
+    <marks>
+      <li>eyePatch</li>
+    </marks>
+    <facing>threeQuarterLeft</facing>
+    <character>sample_aldo</character>
+    <variant>lostEye</variant>
+  </ColonyCouncil.PortraitDef>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_Sample_Aldo_Older</defName>
+    <texPath>Rimfolk/Portraits/Library/sample_a</texPath>
+    <sex>male</sex>
+    <age>old</age>
+    <skinColor>#e0b898</skinColor>
+    <hairColor>(160, 160, 160)</hairColor>
+    <hair>short</hair>
+    <beard>full</beard>
+    <build>broad</build>
+    <era>medieval</era>
+    <dress>work</dress>
+    <facing>threeQuarterLeft</facing>
+    <character>sample_aldo</character>
+    <variant>older</variant>
+  </ColonyCouncil.PortraitDef>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_Sample_Ines</defName>
+    <texPath>Rimfolk/Portraits/Library/sample_b</texPath>
+    <sex>female</sex>
+    <age>young</age>
+    <skinColor>(0.55, 0.35, 0.23)</skinColor>
+    <hairColor>#1e1a18</hairColor>
+    <hair>braids</hair>
+    <beard>none</beard>
+    <build>slim</build>
+    <era>industrial</era>
+    <dress>work</dress>
+    <facing>front</facing>
+  </ColonyCouncil.PortraitDef>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_Sample_DarkElf</defName>
+    <texPath>Rimfolk/Portraits/Library/sample_b</texPath>
+    <xenotypes>
+      <li>DevDesigner_XenotypeDarkElves</li>
+    </xenotypes>
+    <sex>female</sex>
+    <age>adult</age>
+    <skinColor>#6a6f8a</skinColor>
+    <hairColor>#e8e8f0</hairColor>
+    <hair>long</hair>
+    <beard>none</beard>
+    <build>slim</build>
+    <era>medieval</era>
+    <dress>armour</dress>
+    <features>
+      <li>pointedEars</li>
+    </features>
+    <facing>right</facing>
+  </ColonyCouncil.PortraitDef>
+</Defs>

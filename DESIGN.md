@@ -16162,7 +16162,8 @@ race, hair and face comes with it (Facial Animation's eyes and mouth among them)
     middle; for a grown-up this is the framing the round portraits had before (the camera 0.28 above the middle, zoom
     about 1.8 against 1.75), so they look as they did, and children and other races now fill the circle the same way;
   - *the bust* (the large portrait): 1.05 head sizes across, its top 0.44 above the head's middle, so the hair keeps its
-    room, the face sits about two fifths down and the chest is under it;
+    room, the face sits about two fifths down and the chest is under it (since phase 3, 0.8 across and 0.32 above: the
+    head and hair take about half the square);
   - *the figure* (the colonist card): 0.8 head sizes across the tile's width, its top 0.42 above the head, so a
     grown-up is drawn from the hair to the feet.
   An animal or a mechanoid has no head to frame by: its whole drawing, by the size the game draws it at its age, 0.85
@@ -16198,7 +16199,8 @@ race, hair and face comes with it (Facial Animation's eyes and mouth among them)
     height (`GizmoGridDrawer.HeightDrawnRecently`). No tab open: on the tab buttons at the pane's left. A tab open
     (Bio, Gear, Health...): right of it, its foot level with the tab's and lifted above the gizmos where it reaches
     past the pane's right side, so it never covers the tab; with no room there, above the tab at the pane's left; with
-    no room at all, it waits until the tab is closed. Always on the screen, below the top 96 (the colonist bar), and
+    no room at all, it waits until the tab is closed. (Since phase 3 it is shown only while no tab is open: the player
+    wanted it to give way to the tab.) Always on the screen, below the top 96 (the colonist bar), and
     smaller than asked where the room is less (in steps of 8, never under 96). Why beside the tab rather than above
     it: it stays where the eye already is, at the foot of the screen, at its size; above a tall tab there is often no
     room.
@@ -16298,7 +16300,8 @@ drawn apart, the dead's grey, three hooks), `UI/Faces/FaceEngine.cs` (the drawin
   "Portraits move a little", on): breathing (the body up to 0.9% taller from its feet and back every 4.2 seconds, the
   head riding on it), a slow sway of half a degree each way about the feet every 7.3 seconds, and now and then a turn
   (every 24 to 36 seconds, each person their own, one side then the other) to a side view for 2.6 seconds and back,
-  each view full until halfway through the fade, so the figure never thins. All transforms of pictures already made:
+  each view full until halfway through the fade, so the figure never thins. (Since phase 3 the large portraits stay
+  front-on: the turn is gone, and the shy are not turned half away there.) All transforms of pictures already made:
   the side view's pictures are made once as a turn starts. It holds still while the game is paused, as the map does:
   the pawn it shows is still too, and a portrait that breathes on its own while the player reads a paused screen pulls
   the eye. Each person's breath, sway and turns keep their own timing.
@@ -16312,6 +16315,129 @@ drawn apart, the dead's grey, three hooks), `UI/Faces/FaceEngine.cs` (the drawin
   without it, and how the neck looks under a head that moves (the test picture guards against the first); the poses'
   sizes as they read; the side views' framing; the turns, the breath and the sway; the grey; the event cards' dead;
   that Facial Animation's face changes come through as the game draws them.
+
+### Portraits, phase 3: a library of painted portraits (the player's go, 21 November 2026; not released yet)
+
+The player's words (21 November 2026), first of the large portrait: "I feel like a lot of the square is still, so to
+say, empty space ... The pawn could be centered further, and be a bit bigger", "it only needs to be shown when you click
+the pawn, without having one of these tabs open ... Once you click one of these tabs, the image of the pawn can,
+disappear in favor of the tab", and "it looks a bit weird if they're facing back sidewards ... just show them from the
+front angle when I select them". Then, of the faces, after drawn concepts the player found "really silly looking": "we
+will, just basically have a large image library for as many ages and sexes and races and hairstyles and whatever
+combined, kind of have everything accurately described, what each image describes. So you can always select the most
+appropriate one to the pawn ... it's really important to have a lot of variety ... maybe even same characters. Also,
+when they're injured, they might have an eye less ... I want to cover as many races as possible that are already in the
+game ... they don't have to always be in the same angle looking". The plan for making the pictures (an image AI, in
+waves, the lead describing each) is `docs/portrait-art/PLAN.md`; how to make them, `docs/portrait-art/README.md`. Built
+on phases 1 and 2, whose framing, colours, mark, poses and settings stay but for the three fixes below.
+
+The code: `UI/Faces/PortraitSources.cs` (the seam), `UI/Faces/PortraitDef.cs` (a picture's def),
+`UI/Faces/PortraitLibrary.cs` (the library as a source, and the dev actions), `UI/Faces/PortraitReader.cs` (a pawn's
+looks from the game), `UI/Faces/PortraitKeeper.cs` (each person's face, saved), `UI/Faces/FaceEnginePictures.cs` (a
+picture drawn in a portrait), and the rules without game types in `UI/Faces/PortraitLibraryMath.cs` and
+`UI/Faces/PortraitViewMath.cs` (linked in the tests). Tested in `Tools/Tests/PortraitLibraryTests.cs`, with two
+placeholder pictures and sample defs in `Tools/Tests/PortraitFixtures/` (never shipped), which also writes
+`docs/portrait-previews/matcher.md`: who gets which picture of the first wave's prompt list, as there is no art yet.
+
+- **The large portrait, three fixes.**
+  - *Bigger and centred*: the bust is framed 0.8 head sizes across with the picture's top 0.32 above the head's middle
+    (0.289.0 had 1.05 and 0.44), so the head and hair take about half the square, the face two fifths down, the
+    shoulders and chest under it (`FaceMath.BustSpan`, `BustTop`). The round portraits and the card are as before.
+  - *Always front-on*: the large portraits (at the inspect pane and on the colonist card) no longer turn to a side in
+    their movement (the turn of phase 2 is gone: breathing and the sway stay), and the shy are not turned half away
+    there; round portraits in letters and cards keep the shy half-turn and two facing each other.
+  - *Only while no inspect tab is open*: with Bio, Gear, Health, Log or any other tab open, the portrait gives way to
+    it (`FaceMath.Place` returns none); the placement beside or above a tab, and the reading of the tab's rect, are gone.
+- **The seam: portrait sources.** The face engine asks a list of portrait sources (`IPortraitSource`) for a person's
+  picture before it draws the game's own: the first that has one is drawn, else the game's face as in 0.290.0. The
+  library is the one source now; a portrait painted live from the pawn's own data (the pixel portraits the player is
+  weighing) would be another, added to the list, with nothing else to change: the engine frames, poses, turns, greys
+  and lights any source's picture by its layout (where the head is in it, and which way it faces). A source hears when
+  the game marks a portrait dirty and when a game starts.
+- **A def per picture** (`ColonyCouncil.PortraitDef`, in `Defs/PortraitDefs/` of Rimfolk or any mod; none ship yet),
+  written by the lead from the picture itself, every field a word or a colour (unknown words are def errors at
+  start-up): `texPath` (the texture under Textures, a head-and-shoulders picture with a clear background, square, the
+  eyes about two fifths down); `xenotypes` and `races` (def names; none: a baseliner human); `sex` (male, female, any);
+  `age` (child, young, adult, old); `skinColor` (the skin's, or the fur's or scales', mid-tone as `#rrggbb` or
+  `(r, g, b)`); `hairColor`; `hair` (bald, short, medium, long, braids, bun, tied); `beard` (none, stubble, short, full,
+  moustache); `build` (slim, average, heavy, broad); `era` (tribal, medieval, industrial, spacer) and `dress` (rags,
+  work, fine, robes, armour); `headwear` (true where a hat, hood or helmet is on); `features` (pointedEars, longEars,
+  horns, tusks, fur, scales, gills, glowingEyes, markings, tail, snout); `marks` (lostEye, eyePatch, scar, burn,
+  bionicEye, missingEar); `facing` (front, left, right, threeQuarterLeft, threeQuarterRight); `character` (the face it is
+  a variant of; none: a face of its own) and `variant` (base, lostEye, older...); and `headX`, `headY`, `headSize` where
+  the head isn't where the lead lines them up (0.5 across, 0.355 down, 0.45 of the height with the hair). Across the
+  library, a face with variants but no plain base, or variants of two sexes or kinds, is told in the log once.
+- **A pawn's looks** (`PortraitReader`), read from the game's own data for every mod's race, xenotype, hair, beard and
+  clothes: the race and xenotype (one of the player's own making has no name to match); sex; the age band from their
+  biological age and their kind's life expectancy (a child from 4 to 12, young from 13 until three tenths of the life
+  expectancy, 24 for a human, old from three quarters, 60; none for a baby or a toddler); the skin's and hair's colours
+  as the game has them; the hair from its def's words (name, label, texture path, style tags: braids, a bun or knot, a
+  ponytail or pigtails, long, a mohawk or a crop, a bob, bald or shaved), else from the shape of its front texture,
+  measured once (copied small onto a texture of Rimfolk's own: hardly anything drawn is bald, reaching past the jaw
+  long, to it medium), else long for a woman and short for anyone else; the beard from its def's words; the build from
+  the body type's words (thin slim, fat heavy, hulk broad, else average); the clothes' age from the outermost piece on
+  the torso whose tech level the game knows (else their people's) and their kind (nothing on the torso or worn below
+  half its hit points rags, rated 0.4 or more against sharp armour, a robe, cloak or cape robes, excellent or better or
+  a noble's piece fine, else work); headwear where they wear it and the setting shows headgear; features from their
+  active genes' words and drawn textures; marks from their health (a lost eye or ear, a bionic eye, a lasting scar or
+  burn on the head).
+- **The matcher** (`PortraitLibraryMath`):
+  - *The kind first*: a person of a kind the library has pictures of gets only that kind's (a dark elf only the dark
+    elves'). A kind with none gets the baseliners' pictures, a little further (1), where it looks near a human (a
+    hussar); where it looks far from one (another mod's race of its own shape, a skin no human grows, fur, scales,
+    horns, tusks, a snout), the game's own face.
+  - *Then sex and age*: sex must agree (a picture for any sex fits both); the age band must agree where the kind has a
+    picture of that sex and age, else the next band stands in (2.5 further), never further (no child for a grown-up).
+  - *A picture never shows what the body hasn't*: no mark the person lacks (no eye patch on someone with both eyes), and
+    headwear only on someone wearing it with headgear shown.
+  - *The distance on the rest*: the skin's colour (3 for every ten points of difference as the eye sees it past a slack
+    of 6, its lightness in full and its warmth at half, as the game's skin colours are yellower than a painter's
+    mid-tones of the same skin) and the clothes' age (2 for each age apart) weigh most; the hair's colour (0.6 for every
+    ten points of difference, CIE76, past a slack of 8, at most 3); the hair, beard, build and clothes' kind by small
+    tables (0.5 to 1.5); each feature one has and the other hasn't 1; each mark of the person's the picture doesn't show
+    0.5. A face further than 6 is no face: the game's own is kept.
+  - *Faces, not pictures*: of the nearest few faces (within 1 of the nearest, at most four), those fewest others
+    keep, the nearest of them, and among equally near ones one by the pawn's own id: the first person of a look gets the
+    closest face, and two people who look alike get different faces where the library has them.
+- **Kept for good** (`PortraitKeeper`, a game component in the save): each person keeps their face; its variant is
+  chosen anew as the body changes: a lost eye takes the face's variant with the eye patch, old age its older variant, a
+  mark it has no variant for its plain one. Picked again only when they become another kind or sex, the face is gone
+  from the library or has no variant that may stand for them, or a grown library has a face at least 1.5 closer; a
+  person kept with no face is looked at again when the library or their looks change. Their looks are read again every
+  five seconds while their portrait is shown and when the game marks their portrait dirty, and the face is looked up
+  only then, never each frame. Kept by the pawn's id, at most 400, the least lately pictured let go first, and anyone not
+  pictured for 120 days let go on load; someone let go who is pictured again is matched again by the same rules.
+- **Drawn as the game's face was**, with everything else of the portrait as before: their colour behind, the light
+  behind the head where the picture's head is, the mark of their people, the frame, the name band. Framed for each place
+  in head heights as the game's face is (`PortraitViewMath.View`): the round portraits close on the face (the head 0.56
+  of the circle's height), the large portrait as the bust (the head half the square, high in it), the card's tall tile
+  the picture's height with its sides cut; never past the picture's edge. The pose as small moves of the whole
+  picture: the head lifted or lowered by moving the view (the proud up, the sad and prisoners down), the lean and half
+  the head's tilt as a turn about the foot; in round portraits the lift only. Breathing and the sway on the large ones.
+  A picture facing a side is turned (mirrored) to face the other person of a pair, else its text: the round portraits
+  stand left of their names and titles, as the card's tile does, so a picture facing left is turned to the right there;
+  the large portrait has its name under it and shows the picture as drawn. A picture facing the front is never
+  mirrored. The dead are grey, a grey copy of the picture made once (at most 256 across) and let go when no longer
+  shown.
+- **Nothing ships yet**: no defs and no pictures, so every portrait is the game's own face, exactly as before but for
+  the three fixes. The library loads its defs once a session and logs how many pictures and faces it has; a def whose
+  texture is missing is left out with one warning.
+- **Settings** (How you're told, Portraits): "Painted portraits from the library" (on; off, the game's own face
+  everywhere). With headgear shown in portraits, a picture with headwear may stand for someone wearing one.
+- **Dev mode** (Debug actions, "Rimfolk"): "Portraits: the selected people's best matches with their scores (log)":
+  their looks in words, the face they keep, and the nearest six pictures with their scores; "Portraits: pick the
+  selected people's painted portraits again"; "Portraits: pick everyone's painted portrait again".
+- **Saved**: `PortraitKeeper.kept`, a small record per person pictured (`Tools/save_estimate.py` models it).
+- Every member used (the defs' database, the content finder, the genes' xenotype and render nodes, the hediffs' parts
+  and tags, the body type, the apparel's layers and quality, the stat of armour, the render textures read back) is the
+  same in 1.6 and 1.7 (ApiDiff). No new hook.
+- **Not checked without the game**: the bust's new framing as it looks (the head's share is counted from the game's
+  head mesh, not seen); the large portrait hiding while a tab is open (the pane's open tab read as before); the
+  pictures' framing, mirroring, poses and grey (no picture exists yet; the placeholders are only read by the tests);
+  the hair texture's measure (its rows' orientation and the jaw line at 0.72 of the texture are from the game's
+  references, not seen); the skin colour's slack against real painted pictures; the gene words for features across the
+  player's 79 xenotypes; how the game names a texture loaded from a mod's folder (the defs name theirs, so this no
+  longer matters).
 
 ### On-screen panels and the hover card
 

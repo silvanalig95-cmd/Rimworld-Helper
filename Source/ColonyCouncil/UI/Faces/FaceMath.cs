@@ -28,7 +28,7 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The face engine's rules without game types (Tools/Tests try them): framing a picture by the pawn's own head, the
-    /// backdrop in their colour, the large portrait's size and where it goes beside the inspect pane and an open tab.
+    /// backdrop in their colour, the large portrait's size and where it goes at the inspect pane.
     /// <para>
     /// The game's portrait camera is orthographic: at zoom z it sees 2 / z world units from the picture's top to its
     /// foot. A grown-up's head is drawn on a mesh 1.5 units square whose middle sits about 0.34 above the pawn's middle;
@@ -50,10 +50,13 @@ namespace ColonyCouncil
 
         // Each framing: the picture's narrower side in head sizes, and the picture's top above the head's middle in head sizes.
         // The face: as the round portraits were before the engine for a grown-up (zoom about 1.8, the camera 0.28 above
-        // the middle), the hair's top left to the circle. The bust: the hair's top kept, the face about two fifths down,
-        // the chest under it. The figure: the whole of a grown-up from the hair to the feet in a tile 100 by 140.
+        // the middle), the hair's top left to the circle. The bust (the player, 21 November 2026: "a lot of the square is
+        // still, so to say, empty space ... The pawn could be centered further, and be a bit bigger"): closer than in
+        // 0.289.0 (0.8 head sizes across, not 1.05) and with less room above the hair (0.32, not 0.44), so the head and hair
+        // take about half the square's height, the face two fifths down, the shoulders and the chest under it. The figure:
+        // the whole of a grown-up from the hair to the feet in a tile 100 by 140.
         public const float FaceSpan = 0.74f, FaceTop = 0.33f;
-        public const float BustSpan = 1.05f, BustTop = 0.44f;
+        public const float BustSpan = 0.8f, BustTop = 0.32f;
         public const float FigureSpan = 0.8f, FigureTop = 0.42f;
 
         /// <summary>An animal or a mechanoid has no head of its own to frame by: its whole drawing, this share of it across the narrower side.</summary>
@@ -171,7 +174,7 @@ namespace ColonyCouncil
         /// <summary>The row of the inspect pane's tab buttons above it (the game's InspectPaneUtility.TabHeight).</summary>
         public const float TabRowH = 30f;
 
-        /// <summary>The gap to an open tab or the gizmos, and the room kept clear at the top of the screen (the colonist bar).</summary>
+        /// <summary>The gap to the gizmos, and the room kept clear at the top of the screen (the colonist bar).</summary>
         public const float Gap = 6f, TopClear = 96f;
 
         /// <summary>The frame around the picture, the corner that sizes it, and the band with the name from this size up.</summary>
@@ -203,7 +206,7 @@ namespace ColonyCouncil
         /// </summary>
         public static float Dragged(float start, float dx, float dy) => Snap(start + Math.Max(dx, -dy));
 
-        /// <summary>What the large portrait stands beside: the screen, the inspect pane, its tab buttons, an open tab and the gizmos.</summary>
+        /// <summary>What the large portrait stands on: the screen, the inspect pane, its tab buttons, whether a tab is open, and the gizmos.</summary>
         public struct PaneScene
         {
             public float screenW, screenH;
@@ -213,76 +216,45 @@ namespace ColonyCouncil
             public float paneTop;
             /// <summary>The pane has tab buttons on a row above its top.</summary>
             public bool tabs;
-            /// <summary>A tab is open, and where.</summary>
+            /// <summary>One of the pane's tabs (Bio, Gear, Health, Log...) is open.</summary>
             public bool tabOpen;
-            public FrameRect tab;
             /// <summary>The top of the gizmos right of the pane (the screen's height when none show).</summary>
             public float gizmoTop;
         }
 
-        /// <summary>Where the large portrait goes, the four rules in order.</summary>
+        /// <summary>Where the large portrait goes.</summary>
         public enum Placed
         {
             None,
-            /// <summary>On the tab buttons at the pane's left: no tab open.</summary>
-            OnPane,
-            /// <summary>Right of the open tab, its foot level with the tab's.</summary>
-            BesideTab,
-            /// <summary>Above the open tab at the pane's left, where there is no room beside it.</summary>
-            AboveTab
+            /// <summary>On the tab buttons at the pane's left, no tab open.</summary>
+            OnPane
         }
 
         /// <summary>
-        /// The large portrait's place: standing on the pane's tab buttons at its left (no tab open); with a tab open, right
-        /// of it with its foot level with the tab's (lifted above the gizmos where it reaches them), else above it at the
-        /// pane's left, else not shown while that tab is open. Never over the open tab or the pane, never past the
-        /// screen's sides or into the room kept clear at its top; smaller than asked where the room is less.
+        /// The large portrait's place: standing on the pane's tab buttons at its left, lifted above the gizmos where it
+        /// reaches past the pane's right side over them; never past the screen's sides or into the room kept clear at its
+        /// top, smaller than asked where the room is less. Not shown while a tab is open (the player, 21 November 2026: "it
+        /// only needs to be shown when you click the pawn, without having one of these tabs open ... Once you click one of
+        /// these tabs, the image of the pawn can, disappear in favor of the tab"), so it never stands beside or over a tab.
         /// </summary>
         public static Placed Place(PaneScene s, float size, out FrameRect r)
         {
             r = default;
+            if (s.tabOpen) return Placed.None;
             float baseY = Math.Min(s.paneTop, s.pane.y) - (s.tabs ? TabRowH : 0f);
-            if (!s.tabOpen)
+            float x = s.pane.x;
+            float foot = baseY;
+            float fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
+            if (fit <= 0f) return Placed.None;
+            // Reaching right past the pane, over the gizmos: lift it above them.
+            if (x + fit > s.pane.XMax && foot > s.gizmoTop - Gap)
             {
-                float x = s.pane.x;
-                float foot = baseY;
-                float fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
+                foot = s.gizmoTop - Gap;
+                fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
                 if (fit <= 0f) return Placed.None;
-                // Reaching right past the pane, over the gizmos: lift it above them.
-                if (x + fit > s.pane.XMax && foot > s.gizmoTop - Gap)
-                {
-                    foot = s.gizmoTop - Gap;
-                    fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
-                    if (fit <= 0f) return Placed.None;
-                }
-                r = new FrameRect(x, foot - fit, fit, fit);
-                return Placed.OnPane;
             }
-            // Right of the open tab.
-            {
-                float x = s.tab.XMax + Gap;
-                float foot = Math.Min(baseY, s.tab.YMax);
-                // The gizmos stand right of the pane from the screen's foot up: past the pane's right side, keep above them.
-                if (x + Snap(size) > s.pane.XMax) foot = Math.Min(foot, s.gizmoTop - Gap);
-                float fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
-                if (fit > 0f)
-                {
-                    r = new FrameRect(x, foot - fit, fit, fit);
-                    return Placed.BesideTab;
-                }
-            }
-            // Above it, at the pane's left.
-            {
-                float x = s.pane.x;
-                float foot = Math.Min(s.tab.y, baseY) - Gap;
-                float fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
-                if (fit > 0f)
-                {
-                    r = new FrameRect(x, foot - fit, fit, fit);
-                    return Placed.AboveTab;
-                }
-            }
-            return Placed.None;
+            r = new FrameRect(x, foot - fit, fit, fit);
+            return Placed.OnPane;
         }
 
         /// <summary>Whether two rects on the screen overlap (touching edges don't).</summary>

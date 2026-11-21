@@ -99,16 +99,20 @@ one face engine: the game's own drawing of the person, so every mod's gear, race
 head so a child or another race fills it as a grown-up does, drawn without headgear so a helmet or a new hat doesn't
 change who it is, on their own colour (their favourite, else their people's) with the mark of their people or the
 colony, and rendered at the size it is shown so it stays sharp. Select anyone on the map and a **large portrait** of
-them stands above the inspect pane at the bottom left, with their name and the name the colony knows them by; with a
-tab open (Bio, Gear, Health) it stands beside the tab. Drag its top right corner to make it larger or smaller (96 to
-360, kept between games); click it for their card. A portrait shows how a person holds themselves: the chin up for the
-proud (a proud trait, a council seat, the head of their people, a title), the head a little down for the sad or
-grieving, a lean for the angry, turned half away for the shy, a slight stoop for the old, the head low for a prisoner,
-the dead drawn grey; the head is the game's own, drawn apart from the body and set on it. Two people side by side in a
-letter or a tie face each other. The large portrait and the colonist card's breathe, sway a little and now and then turn
-to one side and back, still while the game is paused. **A large portrait at the inspect pane**, **Its size**,
-**Headgear in portraits**, **Clothes in portraits**, **Poses in portraits** and **Portraits move a little** (How you're
-told, Portraits) set it.
+them stands above the inspect pane at the bottom left, head and shoulders filling it, facing the front, with their name
+and the name the colony knows them by; while a tab is open (Bio, Gear, Health) it gives way to the tab. Drag its top
+right corner to make it larger or smaller (96 to 360, kept between games); click it for their card. A portrait shows how
+a person holds themselves: the chin up for the proud (a proud trait, a council seat, the head of their people, a title),
+the head a little down for the sad or grieving, a lean for the angry, turned half away for the shy in letters and cards,
+a slight stoop for the old, the head low for a prisoner, the dead drawn grey; the head is the game's own, drawn apart
+from the body and set on it. Two people side by side in a letter or a tie face each other. The large portrait and the
+colonist card's breathe and sway a little, still while the game is paused. **Painted portraits**: where Rimfolk's
+portrait library has a painted picture close to a person (their kind, sex, age, skin and hair colour, hair, beard,
+build and clothes), their portraits show it, the same face for good, its variant following their body (a lost eye, a
+scar, growing old), turned to face its text or the other person of a pair; anyone with no close picture keeps the
+game's own face. The library is empty until its pictures are added (`docs/portrait-art/`). **A large portrait at the
+inspect pane**, **Its size**, **Headgear in portraits**, **Clothes in portraits**, **Poses in portraits**, **Portraits
+move a little** and **Painted portraits from the library** (How you're told, Portraits) set it.
 
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:

@@ -1,7 +1,8 @@
 # Rimfolk's portrait library: how to make the pictures
 
 Rimfolk shows each person as a painted head-and-shoulders portrait chosen from a library: it picks the picture closest
-to the pawn (sex, age, skin, hair colour and length, beard, the age of their clothes) and keeps it for that pawn for good.
+to the pawn (kind, sex, age, skin, hair colour and length, beard, build, the age of their clothes) and keeps it for that
+pawn for good. The full plan, with the faster ways to make many pictures at once, is `PLAN.md`.
 The pictures are made with an image AI from the prompts in `prompts.csv`, one row per picture. A pawn the library has no
 close picture for keeps the game's own face.
 
@@ -68,8 +69,9 @@ image exactly.").
 
 ## 4. The trial: 16 pictures
 
-Make the rows marked `yes` in the `pilot` column. Save each as PNG under the exact name in the `file` column (the name
-carries what Rimfolk matches by). Square or 4:5, any size from 1024 pixels up. Make again any that comes out with a hat,
+Make the rows marked `yes` in the `pilot` column. Save each as PNG under the name in the `file` column (it keeps them in
+order; what Rimfolk matches by is written by the lead from the picture itself, so a picture that came out a little
+different from its prompt is still described right). Square or 4:5, any size from 1024 pixels up. Make again any that comes out with a hat,
 text, a frame, hands, two people, or hair or a beard different from the prompt.
 
 Zip them with "Zip for upload" and send them. The lead checks each, takes out the green background, lines them up so the

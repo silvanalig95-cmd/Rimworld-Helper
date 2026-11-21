@@ -844,8 +844,10 @@ namespace ColonyCouncil
         public bool portraitClothes = true;
         /// <summary>Poses by who they are and how they are (chin up, the head down, a lean, turned half away, a stoop, the head low, the dead grey; UI/Faces/FaceEnginePoses.cs).</summary>
         public bool portraitPoses = true;
-        /// <summary>The large portraits (at the inspect pane, on the colonist card) breathe, sway and now and then turn; still while the game is paused.</summary>
+        /// <summary>The large portraits (at the inspect pane, on the colonist card) breathe and sway; still while the game is paused.</summary>
         public bool portraitsMove = true;
+        /// <summary>Painted portraits from the library where one is close to the person (UI/Faces/PortraitLibrary.cs); off, or with none close, the game's own face.</summary>
+        public bool portraitLibrary = true;
         /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
         public System.Collections.Generic.List<string> windowPlaces = new System.Collections.Generic.List<string>();
 
@@ -1331,6 +1333,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref portraitClothes, "portraitClothes", true);
             Scribe_Values.Look(ref portraitPoses, "portraitPoses", true);
             Scribe_Values.Look(ref portraitsMove, "portraitsMove", true);
+            Scribe_Values.Look(ref portraitLibrary, "portraitLibrary", true);
             Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 windowPlaces ??= new System.Collections.Generic.List<string>();

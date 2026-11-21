@@ -972,6 +972,28 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// A part of a texture drawn as a circle: <paramref name="view"/> is the part in the texture's coordinates (from its
+        /// foot up; a negative width draws it mirrored), spread over the circle in strips as above.
+        /// </summary>
+        public static void DrawInCircle(Rect r, Texture tex, Rect view)
+        {
+            int n = Mathf.Clamp(Mathf.RoundToInt(r.height / 2.5f), 6, 28);
+            float h = r.height / n;
+            float rad = r.width / 2f;
+            float cx = r.center.x, cy = r.center.y;
+            for (int i = 0; i < n; i++)
+            {
+                float y0 = r.y + i * h, y1 = y0 + h;
+                float dy = Mathf.Max(Mathf.Abs(y0 - cy), Mathf.Abs(y1 - cy));
+                if (dy >= rad) continue;
+                float half = Mathf.Sqrt(rad * rad - dy * dy);
+                var strip = new Rect(cx - half, y0, half * 2f, h);
+                float fx = (strip.x - r.x) / r.width, fw = strip.width / r.width, fy = 1f - (y1 - r.y) / r.height, fh = h / r.height;
+                GUI.DrawTextureWithTexCoords(strip, tex, new Rect(view.x + fx * view.width, view.y + fy * view.height, fw * view.width, fh * view.height));
+            }
+        }
+
         private static Texture2D MakeCircle(int size, float innerFraction)
         {
             try

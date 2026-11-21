@@ -80,8 +80,8 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The face engine's poses and its little movement, without game types (Tools/Tests try them): the pose by who
-    /// someone is and how they are, kept steady; where the head sits for it; two people facing each other; breathing, a
-    /// slow sway and now and then a turn to a side view and back.
+    /// someone is and how they are, kept steady; where the head sits for it; two people facing each other; breathing and
+    /// a slow sway.
     /// </summary>
     public static class FacePoseMath
     {
@@ -269,8 +269,9 @@ namespace ColonyCouncil
         /// <summary>A slow sway about the feet: this many degrees each way, over this many seconds.</summary>
         public const float SwayDegrees = 0.5f, SwaySeconds = 7.3f;
 
-        /// <summary>Now and then a turn to a side view and back: once in a while of these seconds, for so long, faded in and out.</summary>
-        public const float TurnEveryLeast = 24f, TurnEveryMost = 36f, TurnLasts = 2.6f, TurnFade = 0.3f;
+        // Phase 2 also turned the large portraits to a side view now and then; since 21 November 2026 they stay front-on
+        // (the player: "it looks a bit weird if they're facing back sidewards ... just show them from the front angle"), so
+        // the movement is breathing and a sway only.
 
         private static float Phase(int seed, int salt) => unchecked((uint)seed * 2654435761u + (uint)salt * 40503u) % 1000u / 1000f;
 
@@ -280,30 +281,5 @@ namespace ColonyCouncil
 
         /// <summary>The sway at this moment, in degrees.</summary>
         public static float Sway(float clock, int seed) => SwayDegrees * (float)Math.Sin(2.0 * Math.PI * (clock / SwaySeconds + Phase(seed, 2)));
-
-        /// <summary>The length of this person's cycle between turns, its own between the least and the most.</summary>
-        public static float TurnCycle(int seed) => TurnEveryLeast + (TurnEveryMost - TurnEveryLeast) * Phase(seed, 3);
-
-        /// <summary>
-        /// How far into a turn they are at this moment: 0 their usual way, 1 turned, between while it fades; and to which
-        /// side (it changes from one turn to the next).
-        /// </summary>
-        public static float Turned(float clock, int seed, out bool right)
-        {
-            float cycle = TurnCycle(seed);
-            float t = clock + Phase(seed, 4) * cycle;
-            if (t < 0f) t = 0f;
-            int n = (int)Math.Floor(t / cycle);
-            right = ((n + seed) & 1) == 0;
-            float into = t - n * cycle;
-            if (into >= TurnLasts) return 0f;
-            float k = Math.Min(into / TurnFade, (TurnLasts - into) / TurnFade);
-            k = Math.Max(0f, Math.Min(1f, k));
-            return k * k * (3f - 2f * k);
-        }
-
-        /// <summary>The way they face during a turn: the side it goes to from the front, the front from a side view.</summary>
-        public static FaceTurn TurnedTo(FaceTurn usual, bool right) =>
-            usual != FaceTurn.Front ? FaceTurn.Front : right ? FaceTurn.Right : FaceTurn.Left;
     }
 }
