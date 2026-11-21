@@ -165,6 +165,10 @@ most sense." So, in this order, three builds at a time:
   head and body drawn apart with the game's flags, a pose by character and mood, the side views for two facing each
   other, the dead grey, breathing, a sway and a turn now and then on the large portraits); the entry "Portraits, phase
   2" above the newest release line. With it, the to-do is done; the painted art (A, B, E) stays dropped.
+  Phase 3 (21 November 2026, built, not released): the painted art came back as the player's own choice, a library of
+  pictures they make with an image AI, every one described by a def, matched to each pawn and kept (the entry
+  "Portraits, phase 3: a library of painted portraits" above the newest release line, and the entry "pawns people can
+  tell apart as persons" below).
 - **To do, gathered for the next batch (21 November 2026, the player): traits other mods give that don't fit a life,
   and Rimfolk's brawler.** The player: "I have this one pawn, Guido, who just now got the brawler trait ... he or she
   probably was close up, but they were also just having a shotgun for most of their life and shooting all the time. And
@@ -207,8 +211,8 @@ most sense." So, in this order, three builds at a time:
   an infection only), the doctor takes them first among small things, and they are up and back at work once tended; the
   rest keep working as now. Perhaps the doctor tends a small thing where the patient stands (a minute sitting down)
   instead of a walk to bed. Shown on the condition's tooltip as now.
-- **To do, gathered for the next batch (21 November 2026, the player, after 0.290.0's portraits): pawns people can tell
-  apart as persons.** With a screenshot of the large portrait (Bautista, "the Healer"): "I like the positioning where
+- **To do, gathered for the next batch (21 November 2026, the player, after 0.290.0's portraits; point 1 and the
+  faces' library built, not released): pawns people can tell apart as persons.** With a screenshot of the large portrait (Bautista, "the Healer"): "I like the positioning where
   it is ... I feel like a lot of the square is still, so to say, empty space ... The pawn could be centered further, and
   be a bit bigger, I guess, to use the space more. And yeah, you see now there is not a lot of facial detail available
   to kind of make a pawn recognizable. So I really want to find out what options we have to do this. Using, so to say,
@@ -301,6 +305,16 @@ most sense." So, in this order, three builds at a time:
   for a trial, each file name carrying the tags Rimfolk matches by; written by `Tools/PortraitArt/make_prompts.py`), the
   lead keying out the green background and lining them up, and Rimfolk matching each pawn to the nearest picture and
   keeping it. The portrait build was redirected to the library and the matcher (phase 3).
+  Then the player's final choice the same day: the library made with Gemini, "large" and varied, every picture described
+  "accurately", "even same characters" with variants "when they're injured, they might have an eye less", "as many races
+  as possible", "they don't have to always be in the same angle" (`docs/portrait-art/PLAN.md`). **Built** (21 November
+  2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above the newest release line):
+  point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the
+  library's code: a def per picture with PLAN.md's record, the matcher (the kind first, then sex and age, colours, hair,
+  beard, build, clothes, features), each pawn's face kept for good with its variant following the body, pictures turned
+  to face their text or the other of a pair, and a seam where a portrait painted live (the pixel portraits, if the
+  player picks them) would be another source. Point 2 (more to the face) is the library's to give. What waits: the
+  pictures and their defs (PLAN.md's steps: the style, the pilot, the waves), and points 3 to 7.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
@@ -900,6 +914,54 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 3: a library of
+  painted portraits, and the large portrait bigger, front-on and out of a tab's way** (21 November 2026; the player, of
+  the large portrait: "a lot of the square is still, so to say, empty space ... The pawn could be centered further, and
+  be a bit bigger", "it only needs to be shown when you click the pawn, without having one of these tabs open", "just
+  show them from the front angle when I select them"; of the faces: "a large image library for as many ages and sexes
+  and races and hairstyles and whatever combined, kind of have everything accurately described ... So you can always
+  select the most appropriate one to the pawn", "maybe even same characters. Also, when they're injured, they might
+  have an eye less", "as many races as possible"). DESIGN.md "Portraits, phase 3: a library of painted portraits" has
+  every rule; README "Portraits"; the Almanac's guide, its portrait sentence; `docs/portrait-art/PLAN.md` the plan for the
+  pictures.
+  - **The large portrait's three fixes**: framed 0.8 head sizes across with 0.32 above the head (was 1.05 and 0.44), so
+    the head and hair take about half the square; shown only while no inspect tab is open (the placement beside or above
+    a tab gone); the large portraits (inspect pane, colonist card) always front-on: no turn in the movement, no shy
+    half-turn there.
+  - **A seam for portrait sources**: the face engine asks a list of sources for a person's picture before drawing the
+    game's own; the library is the one source; a live-painted portrait (the pixel portraits, if the player picks them)
+    would be added to the list with nothing else to change.
+  - **A def per picture** (`ColonyCouncil.PortraitDef`, `Defs/PortraitDefs/`, none shipped): texPath; xenotypes, races;
+    sex; age; skinColor, hairColor (#rrggbb or (r, g, b)); hair; beard; build; era and dress; headwear; features; marks;
+    facing; character and variant; headX, headY, headSize where the head isn't where the lead lines them up. Every value
+    a word, unknown ones reported as def errors at start-up; the sample defs in `Tools/Tests/PortraitFixtures/` show the
+    shape.
+  - **The matcher**: the kind first (a kind with pictures only gets its own; one without, the baseliners' where it
+    looks near a human, else the game's own face), then sex and age (the next band standing in where the kind has none
+    of theirs), then the distance (skin colour and the clothes' age most, hair colour, then hair, beard, build, the
+    clothes' kind, features); a picture never shows a mark or headwear the person hasn't; a face further than 6 is no face.
+    Of the nearest few faces, the one fewest others keep, then one by the pawn's id.
+  - **Kept for good** (`PortraitKeeper`, saved, at most 400): each person keeps their face; its variant follows the body (a
+    lost eye, old age); picked again only for another kind or sex, a face gone, or a grown library with one clearly closer.
+  - **Facing**: a picture facing a side is mirrored to face the other person of a pair, else its text (round portraits and
+    the card's tile have their text to the right); the large portrait shows it as drawn.
+  - Setting "Painted portraits from the library" (on). Dev actions: the selected people's best matches with their scores
+    (log), pick the selected people's again, pick everyone's again.
+  - Code: `UI/Faces/PortraitSources.cs`, `PortraitDef.cs`, `PortraitLibrary.cs`, `PortraitReader.cs`, `PortraitKeeper.cs`,
+    `FaceEnginePictures.cs`; pure `PortraitLibraryMath.cs`, `PortraitViewMath.cs`; `FaceMath.Place` and the bust's numbers;
+    `FacePoseMath` without the turn; `UiKit.DrawInCircle` with a part of a texture. Tests: `Tools/Tests/PortraitLibraryTests.cs`
+    (with the two placeholder pictures and the sample defs), `FaceEngineTests.cs` and `FacePoseTests.cs` changed; the
+    matcher's table for sample people against the first wave's prompt list in `docs/portrait-previews/matcher.md`.
+  - **Can't be checked without the game**: the new bust framing as it looks; the portrait hiding with a tab open; any
+    picture's framing, mirroring, pose and grey (no picture exists yet); the hair texture's measure; the skin colours'
+    slack against real paintings; the gene words for features across the player's xenotypes.
+  - **Try in the game** (screenshots please): select a colonist with no tab open: the large portrait, head and shoulders
+    filling the square, facing the front, breathing; open the Bio, Gear and Health tabs in turn: it is gone while each is
+    open and back when closed; open their card: its tile front-on too; a letter or an event card with two people: they
+    still face each other. In dev mode, select a few people and run "Portraits: the selected people's best matches with
+    their scores (log)": with no pictures it says the library has none (send the log). When the pilot's pictures and defs
+    are in: the portraits in a list, a letter, the card and the large one, and a pawn who lost an eye.
+  - Mods that would help: none needed; the pictures are the player's (`docs/portrait-art/README.md` names the image AIs).
 - 0.290.0, **Portraits, phase 2: poses and
   a little movement** (20 November 2026; the player: "now they're all looking in the same direction. At least make them
   also, have the other direction", "also angles and kind of positions that are also different from the one that you

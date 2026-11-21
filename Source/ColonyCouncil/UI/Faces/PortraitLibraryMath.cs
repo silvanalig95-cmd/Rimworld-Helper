@@ -452,6 +452,15 @@ namespace ColonyCouncil
             return false;
         }
 
+        /// <summary>A word found inside any of the words (FauxHawk and Fauxhawk alike).</summary>
+        private static bool Has(List<string> tokens, string part)
+        {
+            foreach (var t in tokens)
+                if (t.IndexOf(part, StringComparison.Ordinal) >= 0)
+                    return true;
+            return false;
+        }
+
         private static bool Is(List<string> tokens, params string[] words)
         {
             foreach (var t in tokens)
@@ -470,10 +479,10 @@ namespace ColonyCouncil
         {
             if (tokens == null || tokens.Count == 0) return null;
             if (Starts(tokens, "braid", "plait")) return PortraitHairStyle.Braids;
-            if (Is(tokens, "bun", "buns", "knot", "topknot") || Starts(tokens, "bun")) return PortraitHairStyle.Bun;
             if (Starts(tokens, "pony", "pigtail", "bunches", "tied")) return PortraitHairStyle.Tied;
+            if (Is(tokens, "bun", "buns", "knot", "topknot") || Starts(tokens, "bun")) return PortraitHairStyle.Bun;
             if (Starts(tokens, "long", "dread", "locks", "flowy", "mane")) return PortraitHairStyle.Long;
-            if (Starts(tokens, "mohawk", "hawk", "undercut") || Is(tokens, "half", "side") && Starts(tokens, "shave", "cut")) return PortraitHairStyle.Short;
+            if (Has(tokens, "hawk") || Starts(tokens, "undercut") || Is(tokens, "half", "side") && Starts(tokens, "shave", "cut")) return PortraitHairStyle.Short;
             if (Starts(tokens, "bald", "shave")) return PortraitHairStyle.Bald;
             if (Starts(tokens, "short", "crop", "buzz", "spike", "tuft", "bowl", "pixie", "fringe", "afro", "crew", "flattop")
                 || Is(tokens, "cut", "recruit", "military", "soldier")) return PortraitHairStyle.Short;
@@ -516,11 +525,11 @@ namespace ColonyCouncil
         {
             if (none) return PortraitBeard.None;
             if (tokens == null) return PortraitBeard.Full;
-            if (Starts(tokens, "nobeard", "clean")) return PortraitBeard.None;
+            if (Starts(tokens, "nobeard", "clean") || Is(tokens, "no") && Starts(tokens, "beard")) return PortraitBeard.None;
             if (Starts(tokens, "stubble", "shadow", "scruff")) return PortraitBeard.Stubble;
             bool stache = Starts(tokens, "moustache", "mustache", "stache", "handlebar", "walrus");
             if (stache && !Starts(tokens, "chop", "beard", "full", "goatee", "dutch", "braid", "fork", "side")) return PortraitBeard.Moustache;
-            if (Starts(tokens, "goatee", "soul", "chin", "circle", "anchor", "short", "vandyke", "patch")) return PortraitBeard.Short;
+            if (Starts(tokens, "goatee", "soul", "chin", "circle", "anchor", "short", "patch") || Has(tokens, "vandyke") || Is(tokens, "van") && Is(tokens, "dyke")) return PortraitBeard.Short;
             return PortraitBeard.Full;
         }
 
@@ -624,8 +633,14 @@ namespace ColonyCouncil
 
         // ---------------- The matcher ----------------
 
-        /// <summary>The weights: the skin's colour most (for every ten points of colour difference), the clothes' age, the hair's colour, then the hair, beard, build, clothes' kind, features.</summary>
-        public const float SkinWeight = 2f, EraWeight = 2f, HairColourWeight = 0.8f, HairColourMost = 3f, HairWeight = 1f, BeardWeight = 1f, BuildWeight = 1f, DressWeight = 1f;
+        /// <summary>The weights: the skin's colour most (for every ten points of difference past the slack), the clothes' age, the hair's colour, then the hair, beard, build, clothes' kind, features.</summary>
+        public const float SkinWeight = 3f, EraWeight = 2f, HairColourWeight = 0.6f, HairColourMost = 3f, HairWeight = 1f, BeardWeight = 1f, BuildWeight = 1f, DressWeight = 1f;
+
+        /// <summary>
+        /// Colour differences up to these cost nothing: a painted skin's mid-tone and the game's own skin colour (which its
+        /// textures shade, and which is yellower than a painter's) never quite agree, nor two painters' browns.
+        /// </summary>
+        public const float SkinSlack = 6f, HairSlack = 8f;
 
         /// <summary>A feature one has and the other hasn't; a mark of the person's the picture doesn't show.</summary>
         public const float FeatureCost = 1f, MarkCost = 0.5f;
@@ -637,7 +652,7 @@ namespace ColonyCouncil
         public const float CloseEnough = 6f;
 
         /// <summary>The nearest few characters: within this of the nearest, at most this many.</summary>
-        public const float FewWithin = 0.75f;
+        public const float FewWithin = 1f;
 
         public const int FewMost = 4;
 
@@ -717,17 +732,17 @@ namespace ColonyCouncil
 
         /// <summary>
         /// How far a picture is from a person on their looks (the matcher's kind, sex and age rules aside): the skin's and
-        /// hair's colours by their difference as the eye sees it (CIE76, for every ten points), the hair, beard, build and
+        /// hair's colours by their difference as the eye sees it (CIE76, for every ten points past the slack), the hair, beard, build and
         /// clothes by their tables, the clothes' ages apart, each feature one has and the other hasn't, and each mark of the
         /// person's the picture doesn't show.
         /// </summary>
         public static float Distance(PortraitLook l, PortraitRecord r)
         {
             float d = 0f;
-            if (r.skinSet) d += SkinWeight * ColourApart(l.skin, r.skin) / 10f;
+            if (r.skinSet) d += SkinWeight * Math.Max(0f, SkinApart(l.skin, r.skin) - SkinSlack) / 10f;
             if (r.hairColourSet)
             {
-                float hc = Math.Min(HairColourMost, HairColourWeight * ColourApart(l.hairColour, r.hairColour) / 10f);
+                float hc = Math.Min(HairColourMost, HairColourWeight * Math.Max(0f, ColourApart(l.hairColour, r.hairColour) - HairSlack) / 10f);
                 // Bald on both: the colour hardly shows (a beard's, the brows').
                 d += l.hair == PortraitHairStyle.Bald && r.hair == PortraitHairStyle.Bald ? hc * 0.5f : hc;
             }
@@ -782,9 +797,10 @@ namespace ColonyCouncil
         public static uint Mix(int seed) => unchecked(((uint)seed * 2654435761u) ^ ((uint)seed >> 15) * 40503u);
 
         /// <summary>
-        /// A new pick for a person: the nearest few characters (each by its nearest picture that may stand for them), the
-        /// one fewest others keep (<paramref name="usesOf"/>, by character), then one by their own id; none beyond
-        /// <see cref="CloseEnough"/>.
+        /// A new pick for a person: of the nearest few characters (each by its nearest picture that may stand for them),
+        /// those fewest others keep (<paramref name="usesOf"/>, by character), the nearest of them, and among equally near
+        /// ones one by their own id; none beyond <see cref="CloseEnough"/>. So the first person of a look gets the closest
+        /// face, and the next alike person the next closest.
         /// </summary>
         public static PortraitPick Pick(PortraitLook l, IList<PortraitRecord> records, int seed, Func<string, int> usesOf)
         {
@@ -802,7 +818,10 @@ namespace ColonyCouncil
             var few = best.Values.Where(i => d[i] <= nearest + FewWithin && d[i] <= CloseEnough)
                 .OrderBy(i => d[i]).ThenBy(i => records[i].Character, StringComparer.Ordinal).Take(FewMost).ToList();
             int least = few.Min(i => usesOf?.Invoke(records[i].Character) ?? 0);
+            // Of those fewest others keep, the nearest; among equally near, one by the pawn's own id.
             var free = few.Where(i => (usesOf?.Invoke(records[i].Character) ?? 0) == least).ToList();
+            float closest = free.Min(i => d[i]);
+            free.RemoveAll(i => d[i] > closest + 0.001f);
             int pick = free[(int)(Mix(seed) % (uint)free.Count)];
             return new PortraitPick { index = pick, character = records[pick].Character, distance = d[pick] };
         }
@@ -861,6 +880,16 @@ namespace ColonyCouncil
             l = 116.0 * fy - 16.0;
             a = 500.0 * (fx - fy);
             b = 200.0 * (fy - fz);
+        }
+
+        /// <summary>How far apart two skins look: their lightness in full, their warmth (a* and b*) at half (CIE76 otherwise).</summary>
+        public static float SkinApart(PortraitColour x, PortraitColour y)
+        {
+            // Skins tell apart by how light they are; their warmth counts half (the game's skin colours are yellower than
+            // a painter's mid-tones of the same skin).
+            Lab(x, out double l1, out double a1, out double b1);
+            Lab(y, out double l2, out double a2, out double b2);
+            return (float)Math.Sqrt((l1 - l2) * (l1 - l2) + 0.25 * ((a1 - a2) * (a1 - a2) + (b1 - b2) * (b1 - b2)));
         }
 
         /// <summary>How far apart two colours look (CIE76: 0 the same, about 2 just noticeable, 100 black and white).</summary>
