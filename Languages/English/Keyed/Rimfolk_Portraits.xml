@@ -24,6 +24,9 @@
   <CC_Settings_PortraitsMove>Portraits move a little</CC_Settings_PortraitsMove>
   <CC_Settings_PortraitsMove_Tip>The large portrait at the inspect pane and the one on the colonist card breathe and sway a little, always facing the front. They hold still while the game is paused. The small portraits in lists never move.</CC_Settings_PortraitsMove_Tip>
   <CC_SetNote_PortraitsMove>The large portraits breathe and sway a little; still while paused.</CC_SetNote_PortraitsMove>
+  <CC_Settings_PortraitLibrary>Painted portraits from the library</CC_Settings_PortraitLibrary>
+  <CC_Settings_PortraitLibrary_Tip>Where Rimfolk's portrait library has a painted picture close to how a person looks (sex, age, skin, hair colour and length, beard, and the age of their clothes), their portraits show that picture, the same one for good: a new one is picked only when their look changes (hair dyed or cut, a beard grown, clothes of another age) or the library grows a clearly closer one. Anyone with no picture close enough, and anyone the library can't show (another mod's race, a baby, a xenotype's marks on the head), keeps the game's own face. Off, every portrait is the game's own face. The library is empty until its pictures are added.</CC_Settings_PortraitLibrary_Tip>
+  <CC_SetNote_PortraitLibrary>Portraits show a painted picture close to each person's looks, where the library has one.</CC_SetNote_PortraitLibrary>
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>

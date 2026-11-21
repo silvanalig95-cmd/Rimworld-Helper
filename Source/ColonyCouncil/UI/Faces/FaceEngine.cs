@@ -100,6 +100,7 @@ namespace ColonyCouncil
             failed.Clear();
             bearings.Clear();
             ClearSplits();
+            PortraitSources.NewGame();
             game = Current.Game;
         }
 
@@ -113,6 +114,7 @@ namespace ColonyCouncil
                 {
                     looks.Remove(id);
                     MarkSplitsDirty(id);
+                    PortraitSources.Forget(id);
                 }
                 forgotten.Clear();
                 anyForgotten = false;
@@ -185,9 +187,13 @@ namespace ColonyCouncil
             var size = Whole(renderSize ?? r.size);
             bool dead = pose.bearing == FaceBearing.Dead;
             Widgets.DrawBoxSolid(r, UiKit.WithAlpha(dead ? UiKit.PortraitBack : l.back, alpha));
-            var cam = Camera(p, frame, size.x, size.y, pose.turn);
-            if (!dead) DrawGlow(r, cam, l.glow, alpha);
             int seed = p.thingIDNumber;
+            // A source's picture (the library's painted portrait) where one has them, else the game's own drawing.
+            var pic = PortraitSources.For(p);
+            float turn = 0f;
+            var view = pic != null ? ViewOf(pic, frame, r.size, pose.bearing, seed, out turn) : default;
+            var cam = pic != null ? CameraOf(view) : Camera(p, frame, size.x, size.y, pose.turn);
+            if (!dead) DrawGlow(r, cam, l.glow, alpha);
             float clock = moving && Moves ? Clock : 0f;
             bool animate = moving && Moves && !dead;
             GUI.BeginGroup(r);
@@ -195,7 +201,8 @@ namespace ColonyCouncil
             {
                 var local = new Rect(0f, 0f, r.width, r.height);
                 float breath = animate ? FacePoseMath.Breath(clock, seed) : 1f, sway = animate ? FacePoseMath.Sway(clock, seed) : 0f;
-                DrawLayer(local, p, frame, size, pose, alpha, breath, sway);
+                if (pic != null) DrawPicture(local, pic, view, frame, pose, turn, alpha, breath, sway);
+                else DrawLayer(local, p, frame, size, pose, alpha, breath, sway);
             }
             finally
             {
@@ -262,6 +269,12 @@ namespace ColonyCouncil
         {
             if (p == null || Event.current.type != EventType.Repaint) return;
             Tick();
+            var pic = PortraitSources.For(p);
+            if (pic != null)
+            {
+                DrawPictureRound(inner, p, pic, pose, alpha);
+                return;
+            }
             var size = Whole(inner.size);
             var cam = Camera(p, FaceFrame.Face, size.x, size.y, pose.turn);
             bool dead = pose.bearing == FaceBearing.Dead;
@@ -324,6 +337,7 @@ namespace ColonyCouncil
             DrainForgotten();
             if (!(Find.TickManager?.Paused ?? true)) clock += Mathf.Min(Time.unscaledDeltaTime, 0.1f);
             PruneSplits();
+            PruneGreyPictures();
         }
 
         // ---------------- The mark of their people or the colony ----------------
