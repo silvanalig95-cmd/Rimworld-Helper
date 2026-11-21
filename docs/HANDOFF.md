@@ -165,6 +165,21 @@ most sense." So, in this order, three builds at a time:
   head and body drawn apart with the game's flags, a pose by character and mood, the side views for two facing each
   other, the dead grey, breathing, a sway and a turn now and then on the large portraits); the entry "Portraits, phase
   2" above the newest release line. With it, the to-do is done; the painted art (A, B, E) stays dropped.
+- **To do, gathered for the next batch (21 November 2026, the player): traits other mods give that don't fit a life,
+  and Rimfolk's brawler.** The player: "I have this one pawn, Guido, who just now got the brawler trait ... he or she
+  probably was close up, but they were also just having a shotgun for most of their life and shooting all the time. And
+  now they get just a huge debuff for being a brawler and they can't shoot anymore ... Can you have that undone? It's
+  already in the last save that I uploaded, and be a bit more delicate, I guess, with giving brawler". Found in
+  League_of_Toba_10: the brawler came from Vanilla Social Interactions Expanded (on in the list), not Rimfolk: its letter
+  "The time Guido spent fighting the deadly illness was enough time for a self-reflection, as he has developed the
+  brawler trait" (after his wound infection). Rimfolk's own rule (`Rimfolk_TC_BrawlerGained`) would not have given it:
+  Guido has Shooting 10, Melee 6, and the rule needs Melee 10 and two above Shooting. Undone the same day in a copy of
+  the save given to the player ("League of Toba (Guido fixed)", only the trait's five lines removed). To do: (1) a
+  setting for other mods' trait gains: as they come, only where Rimfolk's sense of the life agrees (no brawler for one
+  who fights at range, the same reading as below), or none; the player told that VSIE's own settings may switch its
+  gains off; (2) Rimfolk's brawler by how they fought over time (kills or days with a melee weapon against a ranged one
+  over the last year, its marks), not the weapon in hand the moment it is read (`TraitChanges.MeleeFighter`), and never
+  for someone whose shooting is at least their melee.
 - **To do, gathered for the next batch (21 November 2026, the player, of League_of_Toba_10): a camp's things kept out of
   the weather.** The player: "this camp that's currently set up has all their stuff just out in the open instead of on a
   shelf or somewhere where it doesn't deteriorate." The camp is the grove-keepers' after the canopy fire
@@ -261,6 +276,14 @@ most sense." So, in this order, three builds at a time:
   (about 10 parts) from a kit the lead makes (each part's guide at 4x on the head, with a box where it goes), drawn or
   AI-assisted on a transparent layer in a layer editor, sent back, scaled and placed by the lead, loaded as a small pack
   after Facial Animation.
+  Then the player: "Can't you please just give me like instructions to have AI generated ... sprites or images that then
+  we can just load into the game or into mods to just enhance the graphics? Otherwise, we just try together, or you
+  create something on your own." The lead drew a test by code the same day (scratchpad `sheets/face_mockup2.png`, shown
+  to the player): Facial Animation's blank head with eyes with an iris and a lid line, a nose, lips, thinner shaped
+  brows and soft shade clipped to the face, in two skins. It works as an idea; the shade under the brows was still heavy.
+  The ways: (a) the lead draws the face parts by code in Facial Animation's places, as a small pack loaded after it (on
+  the map as well), or only in Rimfolk's portraits; (b) the AI kit above. Nice Facial Animation's folder is needed first
+  to match what the player sees.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
