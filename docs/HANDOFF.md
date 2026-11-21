@@ -169,50 +169,21 @@ most sense." So, in this order, three builds at a time:
   pictures they make with an image AI, every one described by a def, matched to each pawn and kept (the entry
   "Portraits, phase 3: a library of painted portraits" above the newest release line, and the entry "pawns people can
   tell apart as persons" below).
-- **To do, gathered for the next batch (21 November 2026, the player): traits other mods give that don't fit a life,
-  and Rimfolk's brawler.** The player: "I have this one pawn, Guido, who just now got the brawler trait ... he or she
-  probably was close up, but they were also just having a shotgun for most of their life and shooting all the time. And
-  now they get just a huge debuff for being a brawler and they can't shoot anymore ... Can you have that undone? It's
-  already in the last save that I uploaded, and be a bit more delicate, I guess, with giving brawler". Found in
-  League_of_Toba_10: the brawler came from Vanilla Social Interactions Expanded (on in the list), not Rimfolk: its letter
-  "The time Guido spent fighting the deadly illness was enough time for a self-reflection, as he has developed the
-  brawler trait" (after his wound infection). Rimfolk's own rule (`Rimfolk_TC_BrawlerGained`) would not have given it:
-  Guido has Shooting 10, Melee 6, and the rule needs Melee 10 and two above Shooting. Undone the same day in a copy of
-  the save given to the player ("League of Toba (Guido fixed)", only the trait's five lines removed). To do: (1) a
-  setting for other mods' trait gains: as they come, only where Rimfolk's sense of the life agrees (no brawler for one
-  who fights at range, the same reading as below), or none; the player told that VSIE's own settings may switch its
-  gains off; (2) Rimfolk's brawler by how they fought over time (kills or days with a melee weapon against a ranged one
-  over the last year, its marks), not the weapon in hand the moment it is read (`TraitChanges.MeleeFighter`), and never
-  for someone whose shooting is at least their melee.
-- **To do, gathered for the next batch (21 November 2026, the player, of League_of_Toba_10): a camp's things kept out of
-  the weather.** The player: "this camp that's currently set up has all their stuff just out in the open instead of on a
-  shelf or somewhere where it doesn't deteriorate." The camp is the grove-keepers' after the canopy fire
-  (`Rimfolk_Camp_AfterFire`, `Peoples/Events6/AfterFire.cs`), its stash a pile on the ground at (141, 132). To do, for
-  every camp kind that keeps a stash or a share: their things on a shelf, crate or table they set up (by their age and
-  what their people have: the game's shelf where the colony's age allows, else a crate or a covered spot of theirs), or
-  under a roof or tarp they put up, or kept in their packs with only what they show on the stall; taken down when they go.
-- **To do, gathered for the next batch (21 November 2026, the player, with League_of_Toba_10): the sick tended first
-  where tending matters.** The player: "now I have a bunch of pawns having the common cold, and they are just
-  continuing to work, which in general is good, but some of them are not tended yet and are still working ... I think
-  it's important, especially if it's a matter of infections, that you have to develop an immunity, and anything that
-  works like this, that the pawn, you know, prioritizes getting tended first and then continues working if the injury
-  allows it ... if it's just a bruise ... they don't necessarily have to prioritize attending as much ... But for these
-  viruses and stuff that, you know, you have to develop immunity, or where tending really impacts whether the illness or
-  whatever it is becomes permanent or escalates, it's important, I think, that they get tended and then go about their
-  business if it allows." Seen in the save (day 137, 7:36): Soot, Ape and Ettrian with a head cold, untended, working;
-  Guido with a wound infection, untended, cutting plants; Bautista (the doctor) on a rescue. Why: "Bed rest only when it
-  makes sense" (DESIGN.md, the player's 8 November rule, `Health/BedRest.cs`, `BedRestMath`) keeps someone with only
-  small things to tend working until a doctor is free (`AnyAvailableDoctorFor`: awake, not in bed, doctoring on), then
-  sends them to bed to be tended; a head cold counts as small. The infection should have counted as serious (an illness
-  that can kill) and sent Guido at once: to check (`SeriousToTend`, `MedicineChoiceMath.Judge` at an infection's low
-  severity) and fix if so. To do: a third kind beside "small" and "serious": what tending changes (an illness that
-  builds immunity, an infection, a condition whose tending decides if it turns lasting or worse, Rimfolk's ailments that
-  can turn to pneumonia): the patient lies down to be tended at once when a doctor is anywhere about (asleep: woken for
-  an infection only), the doctor takes them first among small things, and they are up and back at work once tended; the
-  rest keep working as now. Perhaps the doctor tends a small thing where the patient stands (a minute sitting down)
-  instead of a walk to bed. Shown on the condition's tooltip as now.
+- **Done (21 November 2026, the player's go: "please go all ahead with this and all the next steps that you listed";
+  built, not released): traits other mods give that don't fit a life, and Rimfolk's brawler.** The entry "A camp's things
+  kept out of the weather, and traits that fit a life" above the newest release line has what was built.
+- **Done (21 November 2026, the player's go: "please go all ahead with this and all the next steps that you listed";
+  built, not released): a camp's things kept out of the weather.** The player, of League_of_Toba_10: "this camp that's
+  currently set up has all their stuff just out in the open instead of on a shelf or somewhere where it doesn't
+  deteriorate." The entry "A camp's things kept out of the weather, and traits that fit a life" above the newest
+  release line has what was built.
+- **Done (21 November 2026, the player's go: "please go all ahead with this and all the next steps that you listed";
+  built, not released): the sick tended first where tending matters.** The to-do with the player's words is now one
+  entry above the newest release line ("Fixes: the sick tended first where tending matters, and pawns that turn to the
+  way they walk").
 - **To do, gathered for the next batch (21 November 2026, the player, after 0.290.0's portraits; point 1 and the
-  faces' library built, not released): pawns people can tell apart as persons.** With a screenshot of the large portrait (Bautista, "the Healer"): "I like the positioning where
+  faces' library built, not released): pawns people can tell apart as persons.** With a screenshot of the large
+  portrait (Bautista, "the Healer"): "I like the positioning where
   it is ... I feel like a lot of the square is still, so to say, empty space ... The pawn could be centered further, and
   be a bit bigger, I guess, to use the space more. And yeah, you see now there is not a lot of facial detail available
   to kind of make a pawn recognizable. So I really want to find out what options we have to do this. Using, so to say,
@@ -305,36 +276,49 @@ most sense." So, in this order, three builds at a time:
   for a trial, each file name carrying the tags Rimfolk matches by; written by `Tools/PortraitArt/make_prompts.py`), the
   lead keying out the green background and lining them up, and Rimfolk matching each pawn to the nearest picture and
   keeping it. The portrait build was redirected to the library and the matcher (phase 3).
-  Then the player's final choice the same day: the library made with Gemini, "large" and varied, every picture described
-  "accurately", "even same characters" with variants "when they're injured, they might have an eye less", "as many races
-  as possible", "they don't have to always be in the same angle" (`docs/portrait-art/PLAN.md`). **Built** (21 November
-  2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above the newest release line):
+  Then the player: "your pixel art concepts don't look terrible ... less silly and more proper. Can you really create a
+  couple much more enhanced and detailed and elaborate pixel art proposals ... before um, deciding on an AI", and asked for
+  free step by step instructions ("one where I maybe don't have to necessarily pay for another license"). Made: four 64 by
+  80 pixel portraits by code (scratchpad `concept/pixel3.png`, generator `scripts/pixel2.py`: hue-shifted colour ramps,
+  shading by a sphere's light quantised to them, outlines per part, eyes with a glint, era clothing: a cloak and brooch, fur
+  and bone beads, a duster and scarf, a flight suit with glowing seams, a scene behind). The README gained the free routes
+  (Gemini, Bing Image Creator, Fooocus on the player's own computer) and a pixel-art style line. The choice the player
+  makes next: the AI library (fixed pictures, each pawn matched to the nearest and kept; prettier, made by the player) or
+  live pixel portraits drawn by Rimfolk from each pawn's own looks and clothes (no pictures to make, always current). The
+  portrait build does the large portrait's fixes first and keeps the picture's source a seam, so either fits.
+  Then the player: "these pixel images already look better, but it's just the head shapes look still silly ... there
+  should be much more based on actual humans, maybe with a lot of variety ... of how human head shapes ... can look
+  different. And I guess also ... the neck and body ... the shape of the physique of the human ... the style looks quite
+  all right. It's just really work on how an actual human looks like, the proportions and the physique." Rebuilt (scratchpad
+  `scripts/pixel3.py`, sheets `concept/pixel6.png` and `concept/pixel_variety.png`, 80 by 100 pixels): the face in thirds
+  (the eyes at half the head's height, the brows, the nose's base, the mouth at a third from it to the chin), an outline
+  from half-widths at the crown, the cheekbones, the jaw's angle and the chin (oval, round, square, long, heart, diamond;
+  narrower jaw and chin for women), ears from the brow to the nose, a neck about half the head's width with the jaw's
+  cast shadow and the neck's muscles, sloping shoulders over a round deltoid at about two and a half head-widths for men
+  and less for women, the face's form shaded (eye sockets, the nose's ridge, cheekbones, the lip's shadow, the chin's
+  light), the old with lines; hair grown out from the skull's own shape.
+  The player's choice (21 November 2026): the Gemini library ("The images it creates are quite nice looking and really
+  fast ... a large image library for as many ages and sexes and races and hairstyles ... everything accurately described
+  ... a lot of variety ... maybe even same characters ... when they're injured, they might have an eye less ... as many
+  races as possible ... they don't have to always be in the same angle ... So I don't have to copy paste every single
+  prompt"). The plan: `docs/portrait-art/PLAN.md` (a def per picture described from the picture itself; characters with
+  variants for a lost eye, a scar, a burn, a bionic eye, old age; facing tagged and mirrored; coverage in five waves by
+  what League_of_Toba_11 holds: baseliners 223 pawns, dark elves 48, hussars 19, neanderthals and impids 12, genies 10 and
+  so on, 79 xenotypes active; three ways to make them: the free Gemini app nine to a sheet cut by the lead, Google's paid
+  API by a script (about 3 to 4 cents a picture), or free on the player's own graphics card). Next from the player: 3 to 5
+  Gemini pictures in the style they like, then the pilot of ten sheets of nine. The portrait build was told the schema.
+  **Built** (21 November 2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above
+  the newest release line):
   point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the
   library's code: a def per picture with PLAN.md's record, the matcher (the kind first, then sex and age, colours, hair,
   beard, build, clothes, features), each pawn's face kept for good with its variant following the body, pictures turned
   to face their text or the other of a pair, and a seam where a portrait painted live (the pixel portraits, if the
   player picks them) would be another source. Point 2 (more to the face) is the library's to give. What waits: the
   pictures and their defs (PLAN.md's steps: the style, the pilot, the waves), and points 3 to 7.
-- **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
-  to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
-  the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
-  using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
-  walking in another direction. The sprite was just kind of stuck on. So it's not like the pawn walked there as if you
-  would right click it on the map, but as if something, so to say, dragged it while it's still in the same position.
-  They should always, NPCs should actually use the walking animation or action, which is the same as when the player
-  like right clicks it, and not try to drag it across the map using some other way programming." (The event's wording
-  was "still a bit weird", but the player said to leave that.) Found (League_of_Toba_9, sent after the report): the
-  event is "Thorn-guards at a run" (`Rimfolk_Events_PeopleEvents6.xml`, `Peoples/Events6/CanopyFire.cs`): the
-  grove-keepers' thorn-guards run in to beat out a fire in the colony's woods. Their job (`JobDriver_PEv6Firefight`,
-  `Peoples/Events6/PeopleEvents6.cs`) walks by the game's own path following (`pather.StartPath`), but its one toil
-  sets `handlingFacing = true` for the whole job, and while a toil handles its own facing the game's rotation tracker
-  never turns the pawn to its path: they ran facing whichever way they last faced, as if dragged. The same pattern
-  (a toil that handles its facing and also walks) is in five more files: `Animals/AnimalDayJobs.cs`,
-  `Outsiders/OutsiderJobs.cs`, `PlayOut/PlayOutGroupJobs.cs`, `PlayOut/PlayOutJobs.cs`, `Visitors/IdleHoursJobs.cs`
-  (82 files set `handlingFacing` in all). To do: walking and facing apart (the walk in a toil of its own, or facing
-  handed to the game while the pawn moves: the fire as the job's target to face, `rotateToFace`), one safety net for
-  all of Rimfolk's jobs (while a pawn of a Rimfolk job is moving, it turns to its path whatever the toil says), and a
-  test that no Rimfolk toil handling its facing starts a path.
+- **Done (21 November 2026, the player's go: "yes, please also fix the walking issue", then "please go all ahead with
+  this and all the next steps that you listed"; built, not released): visitors who slide across the map facing one
+  way.** The to-do with the player's words is now one entry above the newest release line ("Fixes: the sick tended
+  first where tending matters, and pawns that turn to the way they walk").
 - **To do when the player asks (20 November 2026, the player; nothing built yet): fewer quests out on the world map,
   more that play out at home, and how the odds of events work.** The player: "the missions that you get, especially the
   ones on the world map, where something pops up somewhere ... where you could go and invade a base or whatever, or find
@@ -962,6 +946,137 @@ repo.
     their scores (log)": with no pictures it says the library has none (send the log). When the pilot's pictures and defs
     are in: the portraits in a list, a letter, the card and the large one, and a pawn who lost an eye.
   - Mods that would help: none needed; the pictures are the player's (`docs/portrait-art/README.md` names the image AIs).
+- 0.291.1, **Fixes: the sick tended first
+  where tending matters, and pawns that turn to the way they walk** (21 November 2026; the player's go: "please go all
+  ahead with this and all the next steps that you listed", the list naming both; of the colds, with League_of_Toba_10: "if it's just a bruise ... they don't necessarily have to
+  prioritize attending as much ... But for these viruses and stuff that, you know, you have to develop immunity, or where
+  tending really impacts whether the illness or whatever it is becomes permanent or escalates, it's important, I think,
+  that they get tended and then go about their business if it allows"; of the thorn-guards: "They should always, NPCs
+  should actually use the walking animation or action, which is the same as when the player like right clicks it").
+  Bug fixes, no new content. DESIGN.md "Bed rest only when it makes sense", the paragraph "What is to tend, in three
+  kinds", and "Pawns turn to the way they walk"; README's bed rest paragraph; the Almanac's health page, a sentence
+  (keywords unchanged).
+  - **The colds untended (a bug)**: bed rest only when it makes sense asked whether a doctor was free and kept the
+    answer a second from the tick of its look; that tick started at `int.MinValue` and `now - tick` overflowed, so the
+    first look was never taken and "no doctor free" stood for good. Nobody with only small things to tend ever lay down
+    to be tended: in the save Soot, Ape and Ettrian had worked untended from one in the night with three doctors awake,
+    and colds got tended only when someone happened to lie in bed (asleep) or tended themselves (Lorena). The looks go
+    through `Fresh.Holds` now. With it fixed, small things work as the rule always said: they lie down to be tended
+    once a doctor is free, and get up after.
+  - **Guido's wound infection was no bug**: in the save it was beaten (immunity 100%, 0.10 and falling, tended twice),
+    and the game tends nothing a body is immune to. Before that an infection counts as serious (medicine by what is
+    treated, `Why.Infection`) and as an illness that can kill: to bed at once until immune.
+  - **What tending decides, a third kind** beside small and serious (`BedRestMath.Tend`, `Matters`): an illness building
+    immunity (the game's and the mods' read generically; among Rimfolk's everyday ones the stomach bug and dreamfever),
+    a wound that may still get infected (untended, 3% or more, younger than the game's infection roll's 18 hours), and
+    Rimfolk's ailments their def marks (`tendingMatters`: the head cold and the chest cold, which can turn into
+    pneumonia, and lice, which make typhus three times as likely). They lie down to be tended once a doctor is free and
+    are up once tended, as small things do, and the doctor sees to them first: the game's tending of other people takes
+    patients in bed by their most pressing kind (serious, then what tending decides, then small), the closest within
+    each (`Patch_BedRestTendFirst`, `Patch_BedRestTendOrder` on `WorkGiver_Scanner.Prioritized` and `GetPriority`, for
+    `WorkGiver_TendOther_Humanlike` only). The tooltip: "Keeps working and sleeps a little more, and lies down to be
+    tended once a doctor is free, before small things: left untended, it can lead to something worse." (or "tending
+    slows the illness while her body builds immunity", "a wound tended in its first hours is less likely to get
+    infected"); a small thing's line ends "after anything more pressing.".
+  - **Pawns that slid facing one way**: the game's rotation tracker leaves a pawn as its toil turned it while the toil
+    handles its facing. 141 toils in 82 files do; five of them also walked: the thorn-guards' firefight
+    (`JobDriver_PEv6Firefight`), an animal keeping at someone's side (`JobDriver_AnimalRunTo`), a bout's fighters closing
+    in (`JobDriver_OutsiderBout`), keeping someone company (`JobDriver_PlayOutVisit`) and a walk together, a vigil or a
+    search (`JobDriver_PlayOutGroup`). The first three leave their facing to the game (their target to face: the fire's
+    cell as target B, the person or opponent as target A); the last two face their way only while still
+    (`WalkFacing.FacingWhileStill`). IdleHoursJobs had none (its walks are toils of their own). The safety net
+    (`Patch_WalkFacesPath`, a postfix on `Pawn_RotationTracker.UpdateRotation`): a pawn on a job of Rimfolk's whose
+    toil handles its facing is turned to its next step while it walks, never the game's or other mods' jobs.
+  - **Code map**: `Health/BedRestMath.cs` (`Tend`, `Matters`, `MayInfect`, `WhyMatters`, `KindOf`, `TendOrder`),
+    `Health/BedRest.cs` (`KindToTend`, `TendKindOf`, `TendOrderOf`, `DoctorFree`, `ConditionOf`, `LineFor`, `Explain`),
+    `Health/BedRestPatches.cs`, `Ailments/AilmentDefs.cs` (`tendingMatters`), `Defs/HediffDefs/Council_Hediffs_Ailments.xml`
+    (the colds, lice), `Languages/English/Keyed/Rimfolk_BedRest.xml`; `Lean/WalkFacing.cs`, `Lean/WalkFacingMath.cs`,
+    `Peoples/Events6/PeopleEvents6.cs`, `Animals/AnimalDayJobs.cs`, `Outsiders/OutsiderJobs.cs`, `PlayOut/PlayOutJobs.cs`,
+    `PlayOut/PlayOutGroupJobs.cs`. Tests: `BedRestTests` (the stuck look, the kinds, every ailment's kind from its def,
+    the doctor's order, the seams), `WalkFacingTests` (every toil that handles its facing read with the methods it calls:
+    none starts a walk; a sample that does is caught; the five; the safety net; a step's facing). Saved: nothing new.
+  - Not checked without the game: that the doctor's order picks the right patient (the scanner's prioritized search,
+    closest by straight line within a kind where the game's own searched by path); how often patients with small things
+    now lie down (it is as the rule always said, but the player has not seen it since it came); the rotation tracker's
+    postfix at 1.7 (the method is the same in the 1.7 reference) and that `UpdateRotation` is what turns a walker each
+    frame; the thorn-guards' facing between beats.
+  - Try in the game: 1. With a cold going round (dev "Add hediff" Council_Ail_HeadCold on two colonists) and a doctor up
+    and about: they lie down to be tended, are tended before someone with a bruise, and go back to work; the cold's
+    tooltip says why it comes first. 2. Dev "Bed rest: why each one rests or works (log)..." on them: the log names each
+    condition's kind and the doctor's order. 3. A fresh cut (dev "Damage" a colonist's arm) and a bruise: the cut's
+    tooltip says it comes before small things for its first hours. 4. Dev "Peoples' events 6: the thorn-guards to a fire
+    now": they run turned to the way they go, and face the fire as they beat it. 5. A dog trotting after its person, a
+    spar between visitors, a vigil or a walk together, someone keeping company with a colonist who walks off: each turns
+    to its path.
+  - Mods that would help: none needed. Smart Medicine (on) still decides its own per-injury care and bed rest boxes;
+    Hospitality's guests are tended in the same order.
+- 0.291.0, **A camp's things kept out of the
+  weather, and traits that fit a life** (21 November 2026; the player, of the grove-keepers' camp in League_of_Toba_10:
+  "this camp that's currently set up has all their stuff just out in the open instead of on a shelf or somewhere where it
+  doesn't deteriorate"; of Guido, given brawler by Vanilla Social Interactions Expanded: "And now they get just a huge
+  debuff for being a brawler and they can't shoot anymore. To be honest, I don't like it ... be a bit more delicate, I
+  guess, with giving brawler"; the go: "please go all ahead with this and all the next steps that you listed"). DESIGN.md
+  "A camp's things kept out of the weather" and "Traits that fit a life: other mods' gains and Rimfolk's brawler" have
+  every rule; README (camps, "Traits that change"); the Almanac's camps page and "traits that change" (a new section,
+  "Traits other mods give", and the brawler's row).
+  - **Why the camp's things lay out**: the game's shelf needs Complex Furniture, a medieval research, so a tribe's kit had
+    no store at all; a shelf came only from a stay of three days; and what they unpacked to build with lay where it was
+    set down all stay. The game (1.6) keeps a thing from deteriorating on a building that keeps things (its shelf), or in
+    a closed room under a roof; a roof alone (a lean-to) only halves it.
+  - **A store from a day and a half**: a shelf where their people know one that keeps things (read from the def, the
+    game's and any mod's), else, for a tribe, a store tent of their kit's tent walls and door (log walls and a hide
+    curtain from the player's mods), two by two inside for up to three and three by two for more, on the far side of the
+    fire, its door toward it; roofed once it stands, so nothing in it deteriorates. Their goods go into their store (a
+    shelf first, then a store of theirs for the thing, then the tent's floor), set down at the stash inside the tent
+    first, never in a doorway. What they brought to build with and didn't use goes back in their packs once the camp
+    stands and nothing needs it; on arrival they unpack only what the camp needs. The store goes home with them (the
+    shelf packed, the tent taken down, its roof first) whatever their kind does with the rest; an old site builds it again.
+    A night's stop puts up none. The share they set out for the colony is the colony's, as before.
+  - **Traits other mods give** (a setting under social life, "Only where they fit" by default; "As they come", "None";
+    needs the deeper game hooks): caught at the game's `TraitSet.GainTrait`, only another mod's gain to one of the
+    colony's people in play, read from the calls that led to it; never a newcomer's traits, a gene's, the scenario's, the
+    game's own, Rimfolk's own, or the player's (anything under the interface's drawing: an editor, a letter's choice).
+    Where they fit: a trait Rimfolk's rules know is refused when none of its rules sees it fitting the person as they
+    are (a trait that rules it out, a skill it asks for, how they fight, a trait it needs, their character, faith, age),
+    with a message: "Vanilla Social Interactions Expanded would have given Guido the trait Brawler, and Rimfolk didn't let
+    it, as Guido fights at range, with Shooting 10 and Melee 6. The setting "Traits other mods give" decides this."
+  - **Rimfolk's brawler** by the past year's fights, not the weapon in hand: Melee two above Shooting, three days or
+    more of fighting up close and twice as many as at range, a fight day being a foe killed (by the killing blow's
+    weapon) or a fight's mark (by the weapon carried then), kept in the trait changes' own tallies.
+  - **Code map**: camps: `Camps/CampBuildMath.cs` (`StoreFromDays`, `StoreKind`, `StoreTent`, `StoreTentInside`,
+    `StoreInside`, `StoreDoorWorks`, `StorePlaces`, the spec's `cover`), `CampDayMath.cs` (`Repacks`), `CampPackMath.cs`
+    (`Fate`'s `store`), `CampKit.cs` (`Keeps`), `CampSite.cs`, `CampStore.cs`, `CampLife.cs`, `CampGrow.cs`,
+    `CampPack.cs`, `CampGround.cs`, `CampWork.cs`, `CampDay.cs`, `Defs/CampDefs/Rimfolk_CampKits.xml`
+    (`Rimfolk_CampRepack`), Keyed `Rimfolk_Camps.xml`. Traits: `Persona/TraitGainMath.cs`, `Persona/TraitGains.cs`
+    (`Patch_OtherModsTraitGains`), `Persona/TraitChanges.cs` (`MeleeFighter`, `Fights`, `FightDays`, `Notify_Fought`,
+    `Notify_Killed`, `Unfit`, `FitLacks`), `Persona/TraitChangeDefs.cs`, `Happenings/Happenings.cs`, `CouncilSettings.cs`,
+    `UI/SettingsCatalog.cs`, Keyed `Rimfolk_TraitChanges.xml`. Tests: `Tools/Tests/CampStoreTests.cs`,
+    `TraitGainTests.cs` (`CampBuildTests` reads the store's day and a half). Saved: `Camp.brought` (a few ids per camp,
+    modelled); one setting; the fight days in the tallies already saved (the model notes them).
+  - Not checked without the game: that the roofed store tent counts as a closed room (no "outdoors" on its things); the
+    camp's people hauling onto its floor and repacking; things set down at the stash landing inside it first; a mod's
+    shelf or the food basket keeping things or not; who gave a trait as read from the calls in the game's runtime (Harmony's
+    frames, Vanilla Social Interactions Expanded's call), the player's click read as theirs, the message; a kill's
+    weapon as the game reports it.
+  - Try in the game: 1. Dev "Peoples' events 6: one of their camps here now..." for the grove-keepers (a tribe): as they
+    pitch, a small store tent of log walls and a curtain stands on the far side of their fire; once it stands it has a
+    roof, and their goods (berries, herbs, what they make) are carried into it; hover one: no "Deteriorating". The
+    leather and logs left over from their bedrolls go back into their packs (a colonist's inspect pane shows "putting ...
+    back in a pack"). When they go, they take the store tent down. 2. A medieval or later camp of two days or more (a
+    market, healers): a shelf from the start, their goods on it. 3. In the save with the grove-keepers already camped,
+    their camp keeps its open stash (it was laid out before); a new camp gets the store. 4. Settings, social life:
+    "Traits other mods give" at "Only where they fit". When Vanilla Social Interactions Expanded next gives a trait (a
+    self-reflection after an illness) to someone it doesn't fit, a message names the mod and why, and the trait isn't
+    there (its own letter may still come). Set "None" and no other mod's trait lands; "As they come" lets them all. 5.
+    The character page of a melee fighter, "Where life is taking them", brawler: the part shows the days of the past year
+    they fought up close and at range.
+  - Mods that would help: none needed; the store tent is built of what the list already has (Vanilla Furniture Expanded -
+    Architect's log walls, https://steamcommunity.com/sharedfiles/filedetails/?id=2608762624, 1.5 to 1.7; Doors Expanded's
+    tribal curtain, https://steamcommunity.com/sharedfiles/filedetails/?id=3532342422, to 1.6). Medieval Overhaul
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3219596926, subscribed, not enabled, 1.4 to 1.6, not tagged
+    1.7) has crates, sacks and barrels that need no research and could be a tribe's or a medieval camp's store instead of
+    the tent, where they keep things; only worth it if the player wants that mod on. For the traits, Vanilla Social
+    Interactions Expanded's own settings can switch its trait gains off altogether.
 - 0.290.0, **Portraits, phase 2: poses and
   a little movement** (20 November 2026; the player: "now they're all looking in the same direction. At least make them
   also, have the other direction", "also angles and kind of positions that are also different from the one that you

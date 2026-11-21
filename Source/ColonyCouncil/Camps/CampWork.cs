@@ -151,7 +151,10 @@ namespace ColonyCouncil
             }
             job = Fetch(camp, pawn);
             if (job != null) return job;
-            // Their goods lying loose carried into their own storage: the shelf, a basket, a firewood rack (CampStore.cs).
+            // What they brought to build with and didn't use, back in a pack once the camp stands (CampStore.cs).
+            job = camp.RepackJob(pawn);
+            if (job != null) return job;
+            // Their goods lying loose carried into their own storage: the shelf, a basket, a firewood rack, their store tent (CampStore.cs).
             job = camp.StowJob(pawn);
             if (job != null) return job;
             if (hour >= 17 && hour < 22) return Evening(camp, pawn, hour);
@@ -699,6 +702,7 @@ namespace ColonyCouncil
                 else if (def == CampDayDefOf.Rimfolk_CampCraft) camp.Crafted(pawn, job.targetB.Thing as Building);
                 else if (def == CampDayDefOf.Rimfolk_CampMend) camp.Mended(pawn, job.targetA.Thing);
                 else if (def == CampDayDefOf.Rimfolk_CampPack) camp.Packed(pawn, job.targetA.Thing as Building);
+                else if (def == CampDayDefOf.Rimfolk_CampRepack) camp.Repacked(pawn, job.targetA.Thing);
                 else if (def == CampGatherDefOf.Rimfolk_CampCutStone) camp.CutStone(pawn, job.targetC.Thing);
                 else camp.LandJobDone(pawn, job);
             }

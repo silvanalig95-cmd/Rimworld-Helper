@@ -356,6 +356,13 @@ namespace ColonyCouncil
         public static void Notify_Mark(Pawn p, PersonaMarkDef def)
         {
             if (def == null || p == null || !Persona.On) return;
+            // A fight's mark counts as a day they fought, up close or at range by the weapon they carry (TraitGainMath.FightMarks).
+            if (Array.IndexOf(TraitGainMath.FightMarks, def.defName) >= 0)
+            {
+                var weapon = p.equipment?.Primary;
+                bool? close = TraitGainMath.Close(weapon != null && weapon.def.IsRangedWeapon, weapon != null && weapon.def.IsMeleeWeapon, weapon == null);
+                if (close.HasValue) Notify_Fought(p, close.Value);
+            }
             Build();
             if (byMark.Count == 0) return;
             try
@@ -868,14 +875,119 @@ namespace ColonyCouncil
             return reqs != null && reqs.Any(r => r != null && r.GetType().Name.IndexOf("Trait", StringComparison.OrdinalIgnoreCase) >= 0);
         }
 
-        private static bool MeleeFighter(Pawn p)
+        /// <summary>
+        /// They fight up close, as Rimfolk's own brawler asks: by how they fought this past year, never by the weapon in hand
+        /// the moment it is read (21 November 2026; until then a melee weapon in hand that day was enough), and never with
+        /// Shooting near their Melee (TraitGainMath.Fights).
+        /// </summary>
+        private static bool MeleeFighter(Pawn p) => Fights(p, Now) == null;
+
+        /// <summary>How they fight as Rimfolk reads it (TraitGainMath.Fights): null when up close, else what speaks against it.</summary>
+        public static string Fights(Pawn p, int now)
         {
-            var melee = p.skills?.GetSkill(SkillDefOf.Melee);
-            var shooting = p.skills?.GetSkill(SkillDefOf.Shooting);
-            if (melee == null || melee.TotallyDisabled) return false;
-            if (shooting != null && !shooting.TotallyDisabled && melee.Level < shooting.Level + 2) return false;
-            var weapon = p.equipment?.Primary;
-            return weapon == null || weapon.def.IsMeleeWeapon;
+            var melee = p?.skills?.GetSkill(SkillDefOf.Melee);
+            var shooting = p?.skills?.GetSkill(SkillDefOf.Shooting);
+            var (close, range) = FightDays(p, now);
+            return TraitGainMath.Fights(melee?.Level ?? 0, melee == null || melee.TotallyDisabled, shooting?.Level ?? 0, shooting == null || shooting.TotallyDisabled, close, range);
+        }
+
+        /// <summary>The days of the past year they fought up close and at range (TraitGainMath.FightDays).</summary>
+        public static (int close, int range) FightDays(Pawn p, int now)
+        {
+            var w = p == null ? null : Tracker?.Watch(p, false);
+            if (w == null) return (0, 0);
+            return TraitGainMath.FightDays(w.tallies.Where(t => t.key == TraitGainMath.CloseKey).Select(t => t.tick).ToList(),
+                w.tallies.Where(t => t.key == TraitGainMath.RangeKey).Select(t => t.tick).ToList(), now, GenDate.TicksPerDay);
+        }
+
+        /// <summary>
+        /// One of the colony fought: a foe killed, or a fight's mark given (PersonaMarks), counted up close or at range by the
+        /// weapon they fought with (TraitGainMath.Close), one occasion in half a day. Kept with their other deeds counted.
+        /// </summary>
+        public static void Notify_Fought(Pawn p, bool close)
+        {
+            try
+            {
+                if (p == null || !On || !CanChange(p)) return;
+                Count(p, close ? TraitGainMath.CloseKey : TraitGainMath.RangeKey, null);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("trait changes: a fight", e);
+            }
+        }
+
+        /// <summary>A foe they killed (Happenings.Notify_Killed), counted by the weapon of the blow that killed: a ranged weapon, a melee weapon, or bare hands.</summary>
+        public static void Notify_Killed(Pawn killer, DamageInfo? dinfo)
+        {
+            if (killer == null || dinfo == null || !killer.RaceProps.Humanlike) return;
+            var weapon = dinfo.Value.Weapon;
+            bool? close = TraitGainMath.Close(weapon != null && weapon.IsRangedWeapon, weapon != null && weapon.IsMeleeWeapon,
+                weapon == null && dinfo.Value.WeaponBodyPartGroup != null);
+            if (close.HasValue) Notify_Fought(killer, close.Value);
+        }
+
+        /// <summary>
+        /// Whether a trait another mod gives them fits their life as Rimfolk reads it (Persona/TraitGains.cs): null when it
+        /// does, or when Rimfolk has no rule for it; else why not, in plain words. It fits when any of Rimfolk's own ways to
+        /// it would see it fitting them as they are (their skills, how they fight, a trait that rules it out, their character,
+        /// their faith, their age, a trait it needs), not by the story Rimfolk's own changes wait for (the deeds, marks and
+        /// records behind them).
+        /// </summary>
+        public static string Unfit(Pawn p, TraitDef td, int degree)
+        {
+            if (p?.story?.traits == null || td == null) return null;
+            string first = null;
+            foreach (var def in TraitChangeDef.All)
+            {
+                if (def?.Trait != td || !TraitGainMath.RuleReads(def.change, def.degree, def.anyDegree || td.degreeDatas.NullOrEmpty() || td.degreeDatas.Count == 1, degree)) continue;
+                string why = FitLacks(p, def);
+                if (why == null) return null;
+                first ??= why;
+            }
+            return first;
+        }
+
+        /// <summary>The first thing about them that rules out this rule's trait, in plain words; null when it fits them.</summary>
+        private static string FitLacks(Pawn p, TraitChangeDef def)
+        {
+            var traits = p.story.traits;
+            foreach (var b in def.blockedBy ?? new List<string>())
+            {
+                var have = traits.allTraits.FirstOrDefault(x => x?.def?.defName == b);
+                if (have != null) return "CC_TraitGain_Why_Blocked".Translate(p.Named("PAWN"), have.LabelCap.Named("TRAIT")).Resolve();
+            }
+            foreach (var f in def.Skills)
+            {
+                var sd = DefDatabase<SkillDef>.GetNamedSilentFail(f.name);
+                var s = sd == null ? null : p.skills?.GetSkill(sd);
+                if (s == null) continue;
+                if (s.TotallyDisabled || !f.Holds(s.Level))
+                    return (f.atLeast ? "CC_TraitGain_Why_Skill" : "CC_TraitGain_Why_SkillMost")
+                        .Translate(p.Named("PAWN"), sd.LabelCap.Named("SKILL"), (s.TotallyDisabled ? 0 : s.Level).Named("HAVE"), Mathf.RoundToInt(f.value).Named("NEED")).Resolve();
+            }
+            if (def.meleeFighter)
+            {
+                string fights = Fights(p, Now);
+                if (!TraitGainMath.FitsCloseFighter(fights))
+                {
+                    var melee = p.skills?.GetSkill(SkillDefOf.Melee);
+                    var shooting = p.skills?.GetSkill(SkillDefOf.Shooting);
+                    var (close, range) = FightDays(p, Now);
+                    return fights == "range"
+                        ? "CC_TraitGain_Why_Range".Translate(p.Named("PAWN"), range.Named("RANGE"), close.Named("CLOSE")).Resolve()
+                        : fights == "melee"
+                            ? "CC_TraitGain_Why_NoMelee".Translate(p.Named("PAWN")).Resolve()
+                            : "CC_TraitGain_Why_Shoots".Translate(p.Named("PAWN"), (shooting?.Level ?? 0).Named("SHOOTING"), (melee?.Level ?? 0).Named("MELEE")).Resolve();
+                }
+            }
+            if (!def.withTrait.NullOrEmpty() && WithTrait(p, def) == null)
+                return "CC_TraitGain_Why_WithTrait".Translate(p.Named("PAWN"), string.Join(", ", def.withTrait.Select(n => DefDatabase<TraitDef>.GetNamedSilentFail(n)?.degreeDatas?.FirstOrDefault()?.label ?? n)).Named("TRAIT")).Resolve();
+            if (def.Now.Count > 0 && Persona.Of(p) != null && !MarksMath.Holds(def.Now, Persona.Values(p)))
+                return "CC_TraitGain_Why_Character".Translate(p.Named("PAWN")).Resolve();
+            if (!FaithAllows(p, def)) return "CC_TraitGain_Why_Faith".Translate(p.Named("PAWN")).Resolve();
+            if (def.minAge > 0 && (p.ageTracker?.AgeBiologicalYears ?? 0) < def.minAge) return "CC_TraitGain_Why_Age".Translate(p.Named("PAWN"), def.minAge.Named("AGE")).Resolve();
+            return null;
         }
 
         /// <summary>The marks behind it: those that match, since this trait last changed, within the days asked, oldest first.</summary>
@@ -1440,7 +1552,12 @@ namespace ColonyCouncil
             }
             else if (def.vendetta == TraitChangeDef.VendettaOver)
                 parts.Add(new TraitPart("CC_TCB_VowOver".Translate().ToString(), VowsOver(p), "CC_TCB_MissVowOver".Translate().ToString()));
-            if (def.meleeFighter) parts.Add(new TraitPart("CC_TCB_Melee".Translate().ToString(), MeleeFighter(p), "CC_TCB_MissMelee".Translate().ToString()));
+            if (def.meleeFighter)
+            {
+                // How they fought this past year, not the weapon in hand today (TraitGainMath.Fights).
+                var (close, range) = FightDays(p, now);
+                parts.Add(new TraitPart("CC_TCB_Melee".Translate(close, range, TraitGainMath.CloseDaysMin).Resolve(), MeleeFighter(p), "CC_TCB_MissMelee".Translate().ToString()));
+            }
             foreach (var f in def.Practice)
             {
                 float h = PracticeHours(p, f.name);

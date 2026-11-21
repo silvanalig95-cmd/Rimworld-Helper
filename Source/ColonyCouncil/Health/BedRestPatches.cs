@@ -60,6 +60,42 @@ namespace ColonyCouncil
         }
     }
 
+    /// <summary>
+    /// The doctor sees to the patients waiting in bed by what their tending decides: something serious first, then what
+    /// tending decides (an illness building immunity, a wound that may still get infected, a cold that can turn into
+    /// pneumonia), then small things, the closest first within each. The game's tending of other people looks for the
+    /// closest patient only (WorkGiver_TendOther_Humanlike leaves the scanner's order off): with the rule on it asks each
+    /// patient's place in that order (<see cref="Patch_BedRestTendOrder"/>). The urgent tending (bleeding to death), self
+    /// tending and animals stay the game's.
+    /// </summary>
+    [HarmonyPatch(typeof(WorkGiver_Scanner), nameof(WorkGiver_Scanner.Prioritized), MethodType.Getter)]
+    public static class Patch_BedRestTendFirst
+    {
+        public static void Postfix(WorkGiver_Scanner __instance, ref bool __result)
+        {
+            if (__result || !(__instance is WorkGiver_TendOther_Humanlike) || !BedRest.On) return;
+            __result = true;
+        }
+    }
+
+    /// <summary>A patient's place in the doctor's order (<see cref="Patch_BedRestTendFirst"/>): 2 serious, 1 what tending decides, 0 small things.</summary>
+    [HarmonyPatch(typeof(WorkGiver_Scanner), nameof(WorkGiver_Scanner.GetPriority), new[] { typeof(Pawn), typeof(TargetInfo) })]
+    public static class Patch_BedRestTendOrder
+    {
+        public static void Postfix(WorkGiver_Scanner __instance, TargetInfo t, ref float __result)
+        {
+            if (!(__instance is WorkGiver_TendOther_Humanlike) || !BedRest.On || !(t.Thing is Pawn patient)) return;
+            try
+            {
+                __result = BedRest.TendOrderOf(patient);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("bed rest only when it makes sense: the doctor's order", e);
+            }
+        }
+    }
+
     /// <summary>The medical bed's "Use medical bed": the player may order rest for anything the game would rest for.</summary>
     [HarmonyPatch(typeof(Building_Bed), nameof(Building_Bed.GetBedRestFloatMenuOption))]
     public static class Patch_BedRestOrder

@@ -2063,6 +2063,63 @@ life is taking them" once a third of their evidence is there.
   none of them bad news, 112 rules); `MarkTests` (the nurse's mark names someone); `Tools/Tests/ModDefNames.txt` has
   dog person, cat person, mountain lover and the fisherman.
 
+### Traits that fit a life: other mods' gains and Rimfolk's brawler (the player's go, 21 November 2026; released 0.291.0)
+
+The player, of Guido: "I have this one pawn, Guido, who just now got the brawler trait ... they were also just having a
+shotgun for most of their life and shooting all the time. And now they get just a huge debuff for being a brawler and
+they can't shoot anymore. To be honest, I don't like it ... be a bit more delicate, I guess, with giving brawler"; the
+go: "please go all ahead with this and all the next steps that you listed". The brawler came from Vanilla Social
+Interactions Expanded after his wound infection ("enough time for a self-reflection"), not from Rimfolk; Rimfolk's own
+rule would not have given it (Shooting 10, Melee 6), but read the weapon in hand the day it looked.
+
+- **The setting "Traits other mods give"** (under social life, after "Traits can change"; needs the deeper game hooks;
+  `CouncilSettings.otherTraitGains`, `OtherTraitGains`): as they come; only where they fit (the default); none.
+- **Where it is caught** (`Persona/TraitGains.cs`, `Patch_OtherModsTraitGains`, a prefix on the game's
+  `TraitSet.GainTrait`, which every mod calls to give a trait): only for one of the colony's own humanlike people, in
+  play (`TraitGainMath.Looks`); never a newcomer's traits as they are made (`PawnGenerator.IsBeingGenerated`), a gene's
+  (`sourceGene`), the scenario's (`ScenForced`). Who gave it (`TraitGainMath.Giver`) is read from the calls that led to
+  it, nearest first, the game's own, the runtime's, Harmony's and the patched method's frames passed over, ten at most:
+  Rimfolk's own code (trait changes, the gods' and the peoples' gifts) is Rimfolk's; another mod's assembly is another
+  mod's, named as the mod list names it; none within reach is the game's own (a growth moment, a quest); anything under
+  the game's drawing of its interface (`Root.OnGUI`, `UIRoot`) is a click of the player's (an editor's window, a
+  letter's choice, the dev tools). Only another mod's gain is weighed (`TraitGainMath.Refused`).
+- **Where they fit** (`TraitChanges.Unfit`, `FitLacks`): a trait Rimfolk's own changes know is weighed by its rules
+  that would give it at that degree (`TraitGainMath.RuleReads`: a gain at that degree or any, a step up or down that
+  way); it fits when any of them sees it fitting the person as they are: a trait that rules it out (`blockedBy`), a skill
+  it asks for (`skills`), how they fight (`meleeFighter`, below; one who fights at range doesn't fit, a quiet life with
+  no fights is no reason to refuse it), a trait it needs (`withTrait`), their character now (`now`, where Rimfolk keeps
+  one), their faith (`notPrecepts`), their age. Not the story Rimfolk's own changes wait for (marks, deeds, records,
+  pace). A trait Rimfolk has no rule for comes as the other mod gives it.
+- **Told**: a refused gain is a message, "Vanilla Social Interactions Expanded would have given Guido the trait
+  Brawler, and Rimfolk didn't let it, as Guido fights at range, with Shooting 10 and Melee 6. The setting "Traits other
+  mods give" decides this." The other mod may still send its own letter of the gain; the message answers it. The gain
+  never lands, so nothing of the trait's effects or thoughts comes.
+- **Rimfolk's brawler** (`Rimfolk_TC_BrawlerGained`, `TraitChanges.MeleeFighter`, `Fights`, `FightDays`,
+  `TraitGainMath.Fights`): by how they fought over the past year, never by the weapon in hand the moment it is read:
+  Melee at least two above Shooting (never someone whose Shooting is at least their Melee), at least three days of
+  fighting up close, and at least twice as many as at range. A day they fought is counted in the trait changes' own
+  tallies (`TraitGainMath.CloseKey`, `RangeKey`, one occasion in half a day, kept 240 days, twelve each): a foe killed
+  at home in a fight (`Happenings.Notify_Killed` to `TraitChanges.Notify_Killed`, by the weapon of the killing blow: a
+  ranged weapon at range, a melee weapon or bare hands up close, anything else, fire or a turret, not at all), and a
+  fight's mark given (`HeldTheLine`, `DownedHardened`, `RaidsHardened`, by the weapon they carry then;
+  `TraitChanges.Notify_Mark`). Its other conditions are as they were (Melee 10, eight humanlike kills, two fight marks,
+  nerve 20, no wimp). On the character page the part reads the year's close and ranged fight days.
+- **Older saves**: the fight days start counting with this version, so Rimfolk's brawler needs three close fights after
+  it; another mod's brawler is weighed by skills at once.
+- **Code map**: `Persona/TraitGainMath.cs` (pure: the setting's enum, `TraitGiver`, `Looks`, `Refused`, `Giver`,
+  `Fights`, `FitsCloseFighter`, `FightDays`, `Close`, `RuleReads`, `FightMarks`), `Persona/TraitGains.cs` (the hook,
+  the callers, the message), `Persona/TraitChanges.cs` (`MeleeFighter`, `Fights`, `FightDays`, `Notify_Fought`,
+  `Notify_Killed`, `Unfit`, `FitLacks`, the fight marks counted, the page's part), `Persona/TraitChangeDefs.cs`
+  (`meleeFighter` reworded), `Happenings/Happenings.cs` (the kill), `CouncilSettings.cs`, `UI/SettingsCatalog.cs`,
+  Keyed `Rimfolk_TraitChanges.xml`, `Defs/PersonaDefs/Rimfolk_TraitChanges_Character.xml` (a comment). Saved: one
+  setting; the fight days in the tallies already saved (`Tools/save_estimate.py` notes them). Tests:
+  `Tools/Tests/TraitGainTests.cs` (which gains are looked at, who gave them, the setting, Guido's numbers and the other
+  ways of fighting, the year's window, the rules that read a trait, the brawler rule and the code that no longer reads
+  the weapon in hand, the words).
+- **Not checked without the game**: who gave a trait as read from the calls in the game's own runtime (Harmony's
+  frames, Vanilla Social Interactions Expanded's call), the player's click under the interface's drawing, the message,
+  and a kill's weapon as the game reports it.
+
 ### The animals' natures (the player's picks, 7 November 2026)
 
 The player chose three from a brainstorm: temperaments (A1), friendships, rivalries and grief among animals (A3, "do it
@@ -5776,6 +5833,72 @@ it), and their own job finishes it.
   at a time, too few trees (given up before one is felled), packing before it's done; the code's seams and the defs.
 - **Not run here**: the construction job on a frame in the game, the felling, fetching and delivering by day, the stone
   dressed at a table or by hand, the save's shelf and stools built after loading.
+
+### A camp's things kept out of the weather (the player's go, 21 November 2026; released 0.291.0)
+
+The player, with League_of_Toba_10: "this camp that's currently set up has all their stuff just out in the open instead
+of on a shelf or somewhere where it doesn't deteriorate"; the go: "please go all ahead with this and all the next steps
+that you listed". The camp was the grove-keepers' week in the burn (`Rimfolk_Camp_AfterFire`, the Mossborn, a tribe):
+leather (48 and 35, at 58 and 55 of 100 hit points), two logs, berries, herbs, a deer skull they made and fish on the
+ground round their stash at (141, 132), and a food basket they had added holding nothing. Why: the game's shelf needs
+Complex Furniture, a medieval research, so a tribe's kit had no store at all (`CampKit.Known`); a stash's shelf came
+only from a stay of three days; and the materials they unpacked to build with lay where they were set down for the rest
+of the stay, the additions' too.
+
+What the game does (1.6): a thing on a building that keeps things on it (`preventDeteriorationOnTop`, the game's shelf)
+doesn't deteriorate; under a roof it loses half (the "unroofed" half of the rate), and only in a closed room under a
+roof none (the "outdoors" half goes too: `SteadyEnvironmentEffects.FinalDeteriorationRate` takes both). So a lean-to
+over the stash halves it, and only a shelf or a closed, roofed room stops it.
+
+- **A store from a day and a half** (`CampBuildMath.StoreFromDays`, `StoreKind`, `CampSite.SpecFor`): a shelf where
+  their people know one that keeps things (`CampKit.Keeps`: storage whose def keeps what is on it, the game's shelf
+  and any mod's that says the same, read from the def; a kind's own stash piece or the kit's that doesn't is passed
+  over), else a store tent; a night's stop puts up none.
+- **The store tent** (`CampBuildMath.StoreTent`, `StoreTentInside`, `StoreInside`, `StoreDoorWorks`, placed by
+  `StorePlaces` in `Plan`): a small room of their kit's tent walls with its tent door (a tribe's: log walls and a hide
+  curtain where the player's mods have them, else the game's wall and door of wood), its inside two by two for up to
+  three of them and three by two for more, four to eight cells out from the fire on the far side first, its door toward
+  the fire with the step outside kept free; their stash is the back of its floor. Its roof goes on once its walls and
+  door stand (`Camp.RoofStoreTent`, each hour with the huts'), so the game counts it a closed room and nothing in it
+  deteriorates. No room for it anywhere: the stash's open ground as before. A camp with a shelf has no store tent and
+  no change; a tribe's camp no longer grows a lean-to (it needs a shelf to cover).
+- **Into the store** (`Camps/CampStore.cs`): the stores are tried in this order, a shelf that keeps first, then a store
+  of theirs for the thing (a firewood rack, a food basket), then the store tent's floor (an empty cell, or a stack of
+  the same with room; `TentCellFor`), carried by the game's own hauling (to a storage cell, or set down on the tent's
+  floor, `HaulMode.ToCellNonStorage`), two of them at it at most. What lies in the tent is in their store
+  (`InOwnStore`), kept theirs like what is on a shelf (`KeepStores`). Things set down at the stash (unpacking, what
+  their work brings in, a frame's materials back) are placed by the game near the stash cell, so inside the tent first;
+  never in a doorway or on a piece of theirs still to be built (`Camp.NotForGoods`).
+- **What they brought, back in their packs** (`CampDayMath.Repacks`, `RepackFacts`, `Camp.RepackJob`, the job
+  `Rimfolk_CampRepack`): a stack they set down to build with (kept by id, `Camp.brought`: unpacking, the materials
+  for an addition, a frame's given back) goes back in a pack once the camp stands and nothing of theirs is under way or
+  still needs it, by a grown hand who isn't their trader, as not for sale; never what they put out, what someone has in
+  hand, or what the colony took. Their hunt's hides, cut logs and what they gather or make stay their goods, in their
+  store. On arrival they unpack only what the camp needs; what they carry for what they add later stays packed until
+  they start on it (`DropMaterials`, as before).
+- **Taken home** (`CampPackMath.Fate` with `store`, `CampPack.Packed`): the store tent goes with them whatever their kind
+  does with the rest, its roof first, a door that can be uninstalled packed, the walls taken down and three quarters of
+  their materials carried; left only when they go in a hurry or have no hands for it ("their store tent" in the leaving
+  words). A shelf is packed as before. An old camp's site builds its store again when it is gone (`CampGround.Core`).
+- **Every age**: by the camp's own people's age and what they know (their kit and the player's mods), the colony's age
+  playing no part. **The camp's own**: the store is of their people (their faction), their goods in it forbidden to the
+  colony; it stands within the camp's reach of ten cells and never on the colony's ground, as every piece of theirs.
+  **The share** they set out for the colony is the colony's, left for its haulers as before.
+- **Code map**: `Camps/CampBuildMath.cs` (pure: `StoreFromDays`, `StoreKind`, `StoreTentInside`, `StoreTent`,
+  `StoreInside`, `StoreDoorWorks`, `StorePlaces`, the spec's `cover`), `CampDayMath.cs` (`Repacks`, `RepackFacts`),
+  `CampPackMath.cs` (`Fate`'s `store`), `CampKit.cs` (`Keeps`, the stash piece), `CampSite.cs` (`SpecFor`, the roles
+  `storewall` and `storedoor` built of the kit's `tentwall` and `tentdoor`), `CampStore.cs` (the tent's floor and roof,
+  the store order, the stow, `RepackJob`, `Repacked`, `brought`), `CampLife.cs` (`Unpack`, `AtStash`, `NotForGoods`, the
+  roof each hour), `CampGrow.cs` (`DropMaterials`), `CampPack.cs`, `CampGround.cs`, `CampWork.cs` (the job's turn and
+  its end), `CampDay.cs` (`CampDayDefOf.Rimfolk_CampRepack`), `Defs/CampDefs/Rimfolk_CampKits.xml` (the job), Keyed
+  `Rimfolk_Camps.xml` (`CC_CampLeft_What_store`). Saved: `brought` per camp (a few ids, `Tools/save_estimate.py`).
+  Tests: `Tools/Tests/CampStoreTests.cs` (which store by the stay and the age; the store tent a room at four sizes and
+  turned, a wall down no roof; its place in every sleep form for 1 to 12 on open ground, among trees and rock, beside
+  the colony's land; every kind as a tribe pitches it; what is repacked and what not; the store taken home whatever the
+  kind leaves); `CampBuildTests` reads the store's day and a half.
+- **Not checked without the game**: that the game counts the roofed store tent a closed room (no "outdoors" on the
+  things in it), the haul onto its floor by a camp's people, things set down at the stash landing inside it first, the
+  repacking job, the walls and door taken down, and a mod's shelf (Deep Storage's, the food basket) keeping or not.
 
 ## Harm from everyday life
 
@@ -9722,7 +9845,7 @@ bed), plus 8 times the tend quality's factor when tended; immunity comes a tenth
 | An illness that can kill | a lethal severity or a stage that threatens life, until immune (the flu, the plague, malaria, an infection, the mods' killers) | the immunity race: a fifth faster in a bed |
 | A serious stage of any illness | its pain 15% or more, or 30% or more off consciousness, moving or breathing (`SeriousDrop`, leaving it poor) | too much to work through |
 | One of Rimfolk's ailments | from the severity its def names (`restFrom` on `HediffCompProperties_Ailment`, at the start of a stage); without it, the rows above | reviewed one by one, below |
-| What the game makes urgent | down, an operation due, labor, and something to tend now, but someone with only small things to tend (nothing serious by medicine by what is treated) and not losing blood (10% a day) keeps working while no doctor is free to come (`WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor`, and a medical care that allows any) | to be tended, then up again |
+| What the game makes urgent | down, an operation due, labor, and something to tend now, but someone with nothing serious to tend (by medicine by what is treated) and not losing blood (10% a day) keeps working while no doctor is free to come (`WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor`, and a medical care that allows any) | to be tended, then up again |
 
 Everything else, they keep working with it: a sunburn, a cold, lice, an itchy rash, bruises, small tended cuts, a sprain,
 a strained back. Its pain, capacities, mood and work speed go on costing them, and a stage that tires them (its
@@ -9732,6 +9855,48 @@ hours of sleep against the game's seven). The game's and other mods' conditions 
 (`Sends`: only what the game's own bed rest counts); one it doesn't rest for (gut worms, a carcinoma, lung rot) stays as the
 game has it. Rimfolk's own ailments follow the rule alone, so some get bed at their worst where the game gave none
 (scurvy, rabies, a torn back, a migraine, a kidney stone).
+
+**What is to tend, in three kinds** (a fix, 21 November 2026; released 0.291.1). The player, with League_of_Toba_10:
+"now I have a bunch of pawns having the common cold, and they are just continuing to work, which in general is good, but
+some of them are not tended yet and are still working ... if it's just a bruise ... they don't necessarily have to
+prioritize attending as much ... But for these viruses and stuff that, you know, you have to develop immunity, or where
+tending really impacts whether the illness or whatever it is becomes permanent or escalates, it's important, I think,
+that they get tended and then go about their business if it allows." In the save (day 137, 7:36) Soot, Ape and Ettrian
+had had a head cold since about one in the night, untended, working, with three doctors awake (Soot himself, Lorena, and
+Bautista on a rescue); Lorena's was tended because she tends herself.
+
+- **The bug.** The rule asked whether a doctor was free (`BedRest.DoctorFree`) and kept the answer a second, from the
+  tick of the look (`Seen.doctorTick`). That tick started at `int.MinValue`, and `now - doctorTick` overflowed to a
+  negative number, so the first look was never taken and "no doctor free" was kept for good: since that look came nobody with
+  only small things to tend lay down to be tended. They were tended only when they happened to lie in bed anyway (asleep
+  at night). The look now goes through `Fresh.Holds` (Lean/Fresh.cs: a look never taken never holds), and the look
+  at their conditions too (`Conditions`, which a count kept right before).
+- **Guido's wound infection was not one.** In the save it was beaten: immune (100%), at 0.10 and falling, tended twice
+  before. The game tends nothing a body is immune to (`Hediff.TendableNow` is false once fully immune) and its own bed
+  rest ends at immunity, so there was nothing to tend. Before immunity an infection counts as serious by medicine by
+  what is treated at any severity (`MedicineChoiceMath.Judge`: not a wound, not one of Rimfolk's everyday ailments, so
+  `Why.Infection`), and as an illness that can kill (the game's `lethalSeverity`): to bed at once until immune.
+- **Three kinds** (`BedRestMath.Tend`, `KindOf`, `WhyMatters`): what is to tend now is serious (medicine by what is
+  treated: an illness of the game's or the mods', an infection, a deep wound, heavy bleeding, Rimfolk's serious illnesses),
+  to bed to be tended at once, a doctor free or not; or **what tending decides** (`Matters`): an illness the body builds
+  immunity to and isn't immune to yet (the game's immunizable conditions and the mods', read generically; among
+  Rimfolk's everyday ones the stomach bug and dreamfever), a wound that may still get infected (untended, a chance of
+  3% or more, `MedicineChoiceMath.MayInfectChance`, and younger than the game's longest delay of its one infection roll,
+  `HealthTuning.InfectionDelayRange.max`, 18 hours), and Rimfolk's ailments their def marks (`tendingMatters` on
+  `HediffCompProperties_Ailment`: the head cold and the chest cold, which can turn into pneumonia,
+  `AilmentTracker.AfterCold`, and lice, which make typhus three times as likely); or a small thing (a bruise, a small cut
+  under 3%, a sunburn, blisters, an old cut past its infection roll). What tending decides goes as small things do, to
+  bed to be tended once a doctor is free and up again once tended, and the doctor sees to it first.
+- **The doctor's order** (`Patch_BedRestTendFirst`, `Patch_BedRestTendOrder`): the game's tending of other people
+  (`WorkGiver_TendOther_Humanlike`) takes the closest patient waiting in bed. With the rule on it asks the scanner's
+  order (`WorkGiver_Scanner.Prioritized`, `GetPriority`), each patient's most pressing kind (`BedRest.TendOrderOf`,
+  `BedRestMath.TendOrder`: 2 serious, 1 what tending decides, 0 small), the closest first within each. The urgent
+  tending (bleeding to death), self tending and animals stay the game's. The kind is kept a second, or until a condition
+  comes or goes (`KindToTend`), and also gives the urgent mark's "something serious" it gave before.
+- **Shown**: a condition of the kind says "Keeps working, and lies down to be tended once a doctor is free, before small
+  things: tending slows the illness while her body builds immunity." (or "a wound tended in its first hours is less likely
+  to get infected", "left untended, it can lead to something worse"), and a small thing "... once a doctor is free, after
+  anything more pressing.". The dev log's look at a patient names the kinds and the doctor's order.
 
 **Who it leaves alone, and what stays the game's.** A baby, a creature not of flesh, a mutant: the game's own. The player's
 order to a medical bed ("Use medical bed", which sets the job's `restUntilHealed`): offered, and kept, for whatever the game
@@ -20157,6 +20322,38 @@ game was paused. The job was saved with him.
   kind or without its driver back to choosing a job when a game loads, and takes such jobs out of the queues.
 - Since harm parts 5 to 7 (7 November 2026) none of those eight walks had played out: each try left the pawn so, or
   failed with an error. They now play out as written in their sections above.
+
+## Pawns turn to the way they walk (the player's report, 21 November 2026; released 0.291.1)
+
+The player, of the thorn-guards at a run (`Rimfolk_Events_PeopleEvents6.xml`, `Peoples/Events6/CanopyFire.cs`): "When
+they were walking, the pawns were not actually using the walk, animation ... Instead, they were kind of a static sprite,
+just looking in one direction, and even walking in another direction ... They should always, NPCs should actually use
+the walking animation or action, which is the same as when the player like right clicks it". The game's rotation
+tracker (`Pawn_RotationTracker.UpdateRotation`, called after each tick for the drawing) turns a walking pawn to its next
+step, unless the job's toil handles its own facing (`Toil.handlingFacing`): then it leaves the pawn as the toil turned
+it. The thorn-guards' job (`JobDriver_PEv6Firefight`) walked by the game's own path following, but its one toil handled
+its facing for the whole job, so they ran facing whichever way they last faced.
+
+- **Every toil read.** 82 files set `handlingFacing` on 141 toils. Five of them also started a walk: the thorn-guards'
+  firefight, an animal keeping at someone's side (`JobDriver_AnimalRunTo`, Animals/AnimalDayJobs.cs), a bout's fighters
+  closing in (`JobDriver_OutsiderBout`, Outsiders/OutsiderJobs.cs), keeping someone company (`JobDriver_PlayOutVisit`,
+  PlayOut/PlayOutJobs.cs) and a walk together, a vigil or a search (`JobDriver_PlayOutGroup`, PlayOut/PlayOutGroupJobs.cs).
+  In Visitors/IdleHoursJobs.cs the walks (to a book and back) are toils of their own that leave the facing to the game.
+- **The five, the walk and the facing apart.** The firefight, the animal at someone's side and the bout leave the facing
+  to the game: to the path while they walk, to their target while they stand (the job's target to face, `rotateToFace`:
+  the fire's cell as target B for the thorn-guards, a cell so the job keeps no reference to a fire once it is out; the
+  person or the opponent, target A, for the others), and to what they strike while they swing. Keeping company and the
+  walk together face their own way only while the pawn stands (`WalkFacing.FacingWhileStill`, Lean/WalkFacing.cs: a
+  pre-tick action sets the toil's `handlingFacing` to whether the pawn is still).
+- **The safety net** (`Patch_WalkFacesPath`, a postfix on `Pawn_RotationTracker.UpdateRotation`): a pawn whose job driver
+  is Rimfolk's (its type in Rimfolk's assembly), whose toil handles its facing, walking a path, is turned to its next
+  step as the game turns a walker (`WalkFacingMath.Toward`: east or west for any sideways step, else north or south),
+  whatever the toil says. Not while it aims at something, is stunned so it can't turn, or is of a kind that always faces
+  one way; never the game's or other mods' jobs; off with the deeper game hooks. Cheap: most pawns' toils don't handle
+  their facing, and those leave at the first check.
+- **The test** (`WalkFacingTests`): every toil of Rimfolk's with `handlingFacing = true` is read from the source, with
+  its actions (init, tick, pre-actions, finish) and every method they call that starts a pawn's walk (directly, or
+  through another such method by name in its file or as `Class.Method`); none may. A caravan's journey is no pawn's walk.
 
 ## The medal read at the gate, and visitors' errands past a barred door (the player's report, 20 November 2026; released 0.276.2)
 

@@ -161,6 +161,7 @@ namespace ColonyCouncil
             // A part of a stack carried into their store on its own is theirs like the rest (CampStore.cs).
             KeepStores();
             Upkeep();
+            KeepBrought();
             WatchRepair();
             WatchErrand();
             WatchCarries();
@@ -345,6 +346,8 @@ namespace ColonyCouncil
                 foreach (var c in CampSite.HutInside(plans, room))
                     if (c.InBounds(map) && !c.Roofed(map)) map.roofGrid.SetRoof(c, RoofDefOf.RoofConstructed);
             }
+            // Their store tent gets its roof once its walls and door stand: what lies in it keeps (CampStore.cs).
+            if (packingFor == null && plans.Any(p => StoreTentRole(p.role) && !p.dropped)) RoofStoreTent();
         }
 
         private void WatchMembers()
@@ -417,11 +420,14 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The materials they carried go down in their stash: for the camp, and for what they mean to add over their stay (CampGrow.cs).</summary>
+        /// <summary>
+        /// The materials they carried for their camp go down in their stash. What they carry for what they mean to add over
+        /// their stay stays in their packs until they start on it (CampGrow.cs), and what is left over goes back in their
+        /// packs once the camp stands (CampStore.cs, RepackJob).
+        /// </summary>
         private void Unpack()
         {
-            var needs = new HashSet<ThingDef>(plans.SelectMany(p => Costs(p)).Select(c => c.thingDef));
-            needs.UnionWith(GrowMaterials().Keys);
+            var needs = new HashSet<ThingDef>(plans.Where(p => !p.reuse).SelectMany(p => Costs(p)).Select(c => c.thingDef));
             foreach (var p in Here)
             {
                 var inv = p.inventory?.innerContainer;
@@ -429,16 +435,37 @@ namespace ColonyCouncil
                 foreach (var t in inv.ToList())
                 {
                     if (!needs.Contains(t.def) || (p == trader && !p.inventory.NotForSale(t))) continue;
-                    if (inv.TryDrop(t, stash, map, ThingPlaceMode.Near, out var dropped, null, AtStash) && dropped != null) Own(dropped);
+                    if (inv.TryDrop(t, stash, map, ThingPlaceMode.Near, out var dropped, null, AtStash) && dropped != null) Brought(dropped);
                 }
             }
         }
 
         /// <summary>
         /// A spot at their stash for their goods: close to it, with nothing on it that isn't theirs (what's put down there
-        /// becomes theirs, so it mustn't land on, or stack onto, anyone else's things).
+        /// becomes theirs, so it mustn't land on, or stack onto, anyone else's things), never in a doorway or on a piece of
+        /// theirs still to be built.
         /// </summary>
-        private bool AtStash(IntVec3 c) => c.InHorDistOf(stash, 3f) && !c.GetThingList(map).Any(t => t.def.category == ThingCategory.Item && !Owns(t));
+        private bool AtStash(IntVec3 c) => c.InHorDistOf(stash, 3f) && !c.GetThingList(map).Any(t => t.def.category == ThingCategory.Item && !Owns(t)) && !NotForGoods().Contains(c);
+
+        [Unsaved] private HashSet<IntVec3> notForGoods;
+        [Unsaved] private int notForGoodsTick = -1;
+
+        /// <summary>The cells round their stash nothing is set down on: their doors, and their pieces not yet built (looked at again every few seconds).</summary>
+        private HashSet<IntVec3> NotForGoods()
+        {
+            if (notForGoods != null && Now - notForGoodsTick < 250) return notForGoods;
+            notForGoodsTick = Now;
+            notForGoods = new HashSet<IntVec3>();
+            if (map == null) return notForGoods;
+            foreach (var p in plans)
+            {
+                if (p.dropped || p.def == null || !p.cell.InHorDistOf(stash, 5f)) continue;
+                bool door = p.role == "door" || p.role == "tentdoor" || p.role == "storedoor" || p.def.IsDoor;
+                if (!door && p.Built(map, faction) != null) continue;
+                foreach (var c in p.Rect) notForGoods.Add(c);
+            }
+            return notForGoods;
+        }
 
         public static List<ThingDefCountClass> Costs(CampPlan p)
         {
@@ -532,7 +559,7 @@ namespace ColonyCouncil
             foreach (var p in plans.Where(p => p.waiting && !p.placed)) p.dropped = true;
             foreach (var t in left)
             {
-                if (t is Frame f && f.resourceContainer != null) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Own(thing), AtStash);
+                if (t is Frame f && f.resourceContainer != null) f.resourceContainer.TryDropAll(stash, map, ThingPlaceMode.Near, (thing, n) => Brought(thing), AtStash);
                 if (!t.Destroyed) t.Destroy(DestroyMode.Vanish);
             }
             foreach (var p in plans.Where(p => p.placed && p.Built(map, faction) == null)) p.dropped = true;

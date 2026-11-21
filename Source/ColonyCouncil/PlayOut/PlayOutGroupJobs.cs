@@ -29,7 +29,8 @@ namespace ColonyCouncil
             this.FailOn(() => !PlayOuts.CanJoin(pawn) || PlayOuts.NeedsPress(pawn));
             var toil = ToilMaker.MakeToil("PlayOutGroup");
             toil.defaultCompleteMode = ToilCompleteMode.Never;
-            toil.handlingFacing = true;
+            // Facing their place's way while they stand; turned to their path by the game while they walk to it.
+            toil.FacingWhileStill();
             toil.socialMode = job.def == PlayOutDefOf.Council_PlayOutVigil ? RandomSocialMode.Quiet : RandomSocialMode.Normal;
             toil.tickIntervalAction = Tick;
             yield return toil;

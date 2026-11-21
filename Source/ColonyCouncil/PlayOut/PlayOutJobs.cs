@@ -75,7 +75,8 @@ namespace ColonyCouncil
             stay.defaultCompleteMode = ToilCompleteMode.Delay;
             stay.defaultDuration = Mathf.Max(600, job.count);
             stay.socialMode = RandomSocialMode.SuperActive;
-            stay.handlingFacing = true;
+            // Facing whom they keep company or the place while they stand; turned to their path by the game when they follow.
+            stay.FacingWhileStill();
             stay.tickIntervalAction = Stay;
             // At work on the place (breaking up a fallen star, stripping a wreck): the game's own effect for it.
             var fx = Play?.workEffect;

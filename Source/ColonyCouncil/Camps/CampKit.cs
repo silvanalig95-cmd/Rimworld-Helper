@@ -64,15 +64,27 @@ namespace ColonyCouncil
         /// </summary>
         public static CampStructure Piece(CampKindDef kind, string role, Faction f)
         {
+            // Their stash's shelf only where it keeps the weather off what is on it (the game's shelf, which a tribe can't
+            // make); else none, and they put up a store tent instead (CampBuildMath.StoreKind).
+            bool stash = role == "stash";
             var own = kind?.structures?.FirstOrDefault(s => s.role == role && !s.defs.NullOrEmpty());
-            if (own != null && Known(own.Def, f)) return own;
+            if (own != null && Known(own.Def, f) && (!stash || Keeps(own.Def))) return own;
+            if (stash) own = null;
             var kit = For(AgeOf(f))?.Part(role);
             if (kit == null) return own?.Def != null ? own : null;
             // The kit's piece, the first the people know how to build.
-            var def = kit.defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && d.category == ThingCategory.Building && Known(d, f));
+            var def = kit.defs?.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n))
+                .FirstOrDefault(d => d != null && d.category == ThingCategory.Building && Known(d, f) && (!stash || Keeps(d)));
             if (def == null) return own?.Def != null ? own : null;
             return new CampStructure { role = role, defs = new List<string> { def.defName }, stuff = kit.stuff, doors = kit.doors, count = kit.count };
         }
+
+        /// <summary>
+        /// A store that keeps the weather off what lies on it: storage the game itself keeps things on without deteriorating
+        /// (its shelf, and any mod's that says the same). Read from the def, so a mod's shelf counts as the game counts it.
+        /// </summary>
+        public static bool Keeps(ThingDef def) =>
+            def?.building != null && def.thingClass != null && typeof(Building_Storage).IsAssignableFrom(def.thingClass) && def.building.preventDeteriorationOnTop;
 
         /// <summary>
         /// The piece a camp adds over its stay for a growth role (CampBuildMath.GrowRoles): seats round the fire are its seat,

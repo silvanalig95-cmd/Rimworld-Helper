@@ -521,7 +521,8 @@ namespace ColonyCouncil
             yield return salute;
             var fight = ToilMaker.MakeToil("OutsiderBoutFight");
             fight.defaultCompleteMode = ToilCompleteMode.Never;
-            fight.handlingFacing = true;
+            // The game turns them: to their path as they close in, to the opponent (target A, the job's target to face) at
+            // close quarters, and to whom they strike while they swing.
             fight.socialMode = RandomSocialMode.Off;
             fight.initAction = () =>
             {

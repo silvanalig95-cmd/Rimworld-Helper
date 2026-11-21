@@ -116,6 +116,11 @@ namespace ColonyCouncil
         public bool socialLife = true;
         /// <summary>The game's traits can grow, appear or fade with what happens to a colonist (Persona/TraitChanges.cs); needs social life.</summary>
         public bool traitChanges = true;
+        /// <summary>
+        /// Traits other mods give the colony's people during play (Persona/TraitGains.cs): as they come, only where they fit
+        /// their life as Rimfolk reads it (the default), or none; needs the deeper game hooks.
+        /// </summary>
+        public OtherTraitGains otherTraitGains = OtherTraitGains.WhereTheyFit;
         /// <summary>Faith in the colony (Faith/, with Ideology): faith talks that move certainty, evenings of faith, crises, the faiths page.</summary>
         public bool faithLife = true;
         public bool socialEvents = true;
@@ -954,6 +959,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref socialTabColumn, "socialTabColumn", true);
             Scribe_Values.Look(ref socialLife, "socialLife", true);
             Scribe_Values.Look(ref traitChanges, "traitChanges", true);
+            Scribe_Values.Look(ref otherTraitGains, "otherTraitGains", OtherTraitGains.WhereTheyFit);
             Scribe_Values.Look(ref faithLife, "faithLife", true);
             Scribe_Values.Look(ref socialEvents, "socialEvents", true);
             Scribe_Values.Look(ref dreams, "dreams", true);

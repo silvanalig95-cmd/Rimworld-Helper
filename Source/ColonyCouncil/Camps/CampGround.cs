@@ -91,9 +91,13 @@ namespace ColonyCouncil
         /// <summary>A bed's place in a layout (the bedroll on the ground, a hut's bed, a tent that is a bed).</summary>
         public static bool IsBed(string role) => role == "bed" || role == "hutbed" || role == "tent";
 
-        /// <summary>What is built anew when it no longer stands: the shelter, the fire, the windbreak, the light, the table and seats.</summary>
+        /// <summary>
+        /// What is built anew when it no longer stands: the shelter, the fire, the windbreak, the light, the table and seats,
+        /// and the store that keeps their goods out of the weather (the shelf or the store tent, CampStore.cs).
+        /// </summary>
         private static bool Core(string role) =>
-            role == "fire" || role == "hut" || role == "door" || role == "tentwall" || role == "tentdoor" || role == "wall" || role == "light" || role == "table" || role == "seat";
+            role == "fire" || role == "hut" || role == "door" || role == "tentwall" || role == "tentdoor" || role == "wall" || role == "light" || role == "table" || role == "seat"
+            || role == "stash" || role == "storewall" || role == "storedoor";
 
         /// <summary>A construction that tells a site (a bed or other furniture goes with whoever leaves).</summary>
         private static bool Stays(string role) => !IsBed(role) && role != "table" && role != "seat";
@@ -293,6 +297,9 @@ namespace ColonyCouncil
                 case "tentwall":
                 case "tentdoor":
                     return "CC_CampLeft_What_tents".Translate();
+                case "storewall":
+                case "storedoor":
+                    return "CC_CampLeft_What_store".Translate();
                 case "fire":
                 case "wall":
                 case "light":

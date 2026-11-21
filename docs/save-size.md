@@ -7,7 +7,7 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 829; modelled: 829; growing without end: 0.
+Saved collections found: 830; modelled: 830; growing without end: 0.
 Rimfolk's part of the save, roughly: **3,154 KB** after a year, **3,929 KB** after two, **4,409 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
@@ -538,6 +538,7 @@ Rimfolk's part of the save, roughly: **3,154 KB** after a year, **3,929 KB** aft
 | `OldPowers/OldPowersBook.cs:cells` | the places of the eyes in the dark, while they are there (six at most) | while | 6 | 6 | 6 | 0.2 |
 | `Animals/HerdStory.cs:sellIds` | the yearlings the council chose to sell at the autumn count (ids), HerdStoryMath.MaxSell at most, until sold or a season | while | 8 | 8 | 8 | 0.2 |
 | `Camps/CampLook.cs:herd` | the camp's animals (CampLookMath.MaxAnimals), while it stays | while | 5 | 5 | 5 | 0.2 |
+| `Camps/CampStore.cs:brought` | the stacks they set down to build with, by id, until back in their packs or used (only those still among their goods) | while | 8 | 8 | 8 | 0.2 |
 | `Decrees/Decrees.cs:threatTicks` | DecreeTracker.MaxThreats: the big threats of the last half month, for how needed a decree is | fixed | 8 | 8 | 8 | 0.2 |
 | `Gods/OnMap/OwnHappenings.cs:watches` | the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most | fixed | 8 | 8 | 8 | 0.2 |
 | `Heart/HeartData.cs:goodRecent` | per heart: one per source of the good side | fixed | 8 | 8 | 8 | 0.2 |
@@ -796,7 +797,7 @@ Rimfolk's part of the save, roughly: **3,154 KB** after a year, **3,929 KB** aft
 | `Persona/PawnPersona.cs:stances` | per person: one per topic (23), and per newcomer for 60 days (counted under people) | fixed | 24 | 24 | 24 | (in its record) |
 | `Persona/TraitChanges.cs:absorbed` | per change: how the trait moved each side (counted under changes) | fixed | 8 | 8 | 8 | (in its record) |
 | `Persona/TraitChanges.cs:snapshots` | per colonist: 10 snapshots, every ten days (counted under watches) | fixed | 10 | 10 | 10 | (in its record) |
-| `Persona/TraitChanges.cs:tallies` | per colonist: deeds, memories (therapy sessions), marks (long peaces, fight marks, hungry seasons) and food binges counted, 240 days, 12 per kind (counted under watches) | fixed | 8 | 8 | 8 | (in its record) |
+| `Persona/TraitChanges.cs:tallies` | per colonist: deeds, memories (therapy sessions), marks (long peaces, fight marks, hungry seasons), food binges and the days they fought up close or at range (TraitGainMath) counted, 240 days, 12 per kind (counted under watches) | fixed | 10 | 10 | 10 | (in its record) |
 | `Persona/TraitChanges.cs:values` | per snapshot: the records a pace reads (counted under watches) | fixed | 3 | 3 | 3 | (in its record) |
 | `PlayOut/PlayOuts.cs:game` | per hunt: 3 animals at most (counted under plays) | fixed | 3 | 3 | 3 | (in its record) |
 | `PlayOut/PlayOuts.cs:hands` | per play-out: who went (counted under plays) | fixed | 6 | 6 | 6 | (in its record) |
