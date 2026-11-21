@@ -2063,7 +2063,7 @@ life is taking them" once a third of their evidence is there.
   none of them bad news, 112 rules); `MarkTests` (the nurse's mark names someone); `Tools/Tests/ModDefNames.txt` has
   dog person, cat person, mountain lover and the fisherman.
 
-### Traits that fit a life: other mods' gains and Rimfolk's brawler (the player's go, 21 November 2026; not released yet)
+### Traits that fit a life: other mods' gains and Rimfolk's brawler (the player's go, 21 November 2026; released 0.291.0)
 
 The player, of Guido: "I have this one pawn, Guido, who just now got the brawler trait ... they were also just having a
 shotgun for most of their life and shooting all the time. And now they get just a huge debuff for being a brawler and
@@ -5834,7 +5834,7 @@ it), and their own job finishes it.
 - **Not run here**: the construction job on a frame in the game, the felling, fetching and delivering by day, the stone
   dressed at a table or by hand, the save's shelf and stools built after loading.
 
-### A camp's things kept out of the weather (the player's go, 21 November 2026; not released yet)
+### A camp's things kept out of the weather (the player's go, 21 November 2026; released 0.291.0)
 
 The player, with League_of_Toba_10: "this camp that's currently set up has all their stuff just out in the open instead
 of on a shelf or somewhere where it doesn't deteriorate"; the go: "please go all ahead with this and all the next steps

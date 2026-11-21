@@ -917,7 +917,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **A camp's things kept out of the
+- 0.291.0, **A camp's things kept out of the
   weather, and traits that fit a life** (21 November 2026; the player, of the grove-keepers' camp in League_of_Toba_10:
   "this camp that's currently set up has all their stuff just out in the open instead of on a shelf or somewhere where it
   doesn't deteriorate"; of Guido, given brawler by Vanilla Social Interactions Expanded: "And now they get just a huge
