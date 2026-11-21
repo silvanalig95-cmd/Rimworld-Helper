@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A bigger portrait, and room for painted faces
+
+*21 November 2026, version 0.292.0*
+
+- The large portrait at the inspect pane is bigger and centred, so head and shoulders fill the square.
+- The large portrait always faces the front and steps aside while an inspect tab such as Bio, Gear or Health is open.
+- Portraits can now come from a library of painted pictures: each person gets the closest one by their kind, sex, age, skin, hair, beard, build and clothes, and keeps that face for good.
+- A painted face follows the body: a lost eye, a scar or old age shows that face's own variant where the library has one, and pictures turn to face their text or the other person in a letter.
+- The library is empty for now, so portraits stay the game's own faces until the pictures are added (setting: Painted portraits from the library).
+
 ## The sick tended, and pawns that face the way they walk
 
 *21 November 2026, version 0.291.1*

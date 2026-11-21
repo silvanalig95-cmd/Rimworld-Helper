@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.292.0</version>
+        <date>21 November 2026</date>
+        <title>A bigger portrait, and room for painted faces</title>
+        <points>
+          <li>The large portrait at the inspect pane is bigger and centred, so head and shoulders fill the square.</li>
+          <li>The large portrait always faces the front and steps aside while an inspect tab such as Bio, Gear or Health is open.</li>
+          <li>Portraits can now come from a library of painted pictures: each person gets the closest one by their kind, sex, age, skin, hair, beard, build and clothes, and keeps that face for good.</li>
+          <li>A painted face follows the body: a lost eye, a scar or old age shows that face's own variant where the library has one, and pictures turn to face their text or the other person in a letter.</li>
+          <li>The library is empty for now, so portraits stay the game's own faces until the pictures are added (setting: Painted portraits from the library).</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.291.1</version>
         <date>21 November 2026</date>
         <title>The sick tended, and pawns that face the way they walk</title>

@@ -16316,7 +16316,7 @@ drawn apart, the dead's grey, three hooks), `UI/Faces/FaceEngine.cs` (the drawin
   sizes as they read; the side views' framing; the turns, the breath and the sway; the grey; the event cards' dead;
   that Facial Animation's face changes come through as the game draws them.
 
-### Portraits, phase 3: a library of painted portraits (the player's go, 21 November 2026; not released yet)
+### Portraits, phase 3: a library of painted portraits (the player's go, 21 November 2026; released 0.292.0)
 
 The player's words (21 November 2026), first of the large portrait: "I feel like a lot of the square is still, so to
 say, empty space ... The pawn could be centered further, and be a bit bigger", "it only needs to be shown when you click

@@ -898,7 +898,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 3: a library of
+- 0.292.0, **Portraits, phase 3: a library of
   painted portraits, and the large portrait bigger, front-on and out of a tab's way** (21 November 2026; the player, of
   the large portrait: "a lot of the square is still, so to say, empty space ... The pawn could be centered further, and
   be a bit bigger", "it only needs to be shown when you click the pawn, without having one of these tabs open", "just
