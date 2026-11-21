@@ -284,6 +284,14 @@ most sense." So, in this order, three builds at a time:
   The ways: (a) the lead draws the face parts by code in Facial Animation's places, as a small pack loaded after it (on
   the map as well), or only in Rimfolk's portraits; (b) the AI kit above. Nice Facial Animation's folder is needed first
   to match what the player sees.
+  The player's go (21 November 2026): "the faces look really good ... we'll definitely try your route. And here also,
+  really enhance everything ... the whole head, clothing, body, limbs ... use kind of the base pawns as reference, but the
+  image doesn't have to necessarily look like it exactly ... creative freedom ... only intended for kind of flavor and
+  identification", "also hair etc.", and "please create me some different "concept" art of how these pawn images could
+  look like". Building: Rimfolk's own drawn portraits (phase 3), drawn from each pawn's data, needing neither facial mod
+  (the player asked; told no). The lead's concept sheet (scratchpad `concept/concepts2.png`, its generator
+  `scripts/concept.py`) shows four styles of two busts: A ink and flat colour, B comic with a hard shadow, C soft painted
+  without outlines, D woodcut on parchment; the build keeps the style a setting, A until the player picks.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
