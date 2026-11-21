@@ -165,7 +165,44 @@ most sense." So, in this order, three builds at a time:
   head and body drawn apart with the game's flags, a pose by character and mood, the side views for two facing each
   other, the dead grey, breathing, a sway and a turn now and then on the large portraits); the entry "Portraits, phase
   2" above the newest release line. With it, the to-do is done; the painted art (A, B, E) stays dropped.
-- **To do when the player asks (20 November 2026, the player; a bug, nothing changed yet): visitors who slide across
+- **To do, gathered for the next batch (21 November 2026, the player, after 0.290.0's portraits): pawns people can tell
+  apart as persons.** With a screenshot of the large portrait (Bautista, "the Healer"): "I like the positioning where
+  it is ... I feel like a lot of the square is still, so to say, empty space ... The pawn could be centered further, and
+  be a bit bigger, I guess, to use the space more. And yeah, you see now there is not a lot of facial detail available
+  to kind of make a pawn recognizable. So I really want to find out what options we have to do this. Using, so to say,
+  the base pawns to start, because then it also works for um, guests and other NPCs that come up, and kind of enhance
+  their recognizability just with further enhanced graphics, etc. In terms of clothing, gear, etc. Maybe there's other
+  also ways to kind of make the pawns more recognizable as a character, as an individual. Um, because now I have like
+  10 pawns, and especially the ones that joins later, I don't even know really remember what context they joined and
+  what's their point ... the way the pawns are kind of represented visually makes it very challenging for me to kind of
+  attribute or build up, so to say, a personality of them in my head that I recognize when I look at them. So let's
+  brainstorm about this." Seen in the screenshot: the bust takes the lower middle of the square, the head about a third
+  of its height, a band of empty colour above and at the sides. Ideas, for the player to pick:
+  1. The framing (a fix to 0.289.0): the head larger and centred, about half the square's height, the shoulders cut
+     lower, so the face fills it; the same rule for the round portraits where they are large.
+  2. More to the face, drawn by Rimfolk over the game's head in portraits only, the same for any pawn of any mod: soft
+     light and shade for depth; what the body really carries (a scar or a burn on the head from its health, a lost eye's
+     patch, the lines of age for the old); and one small mark of their own picked once and kept (a mole, freckles, a
+     notch in a brow), so no two read alike. Must line up with Facial Animation's face and mod races' heads.
+  3. Recognized on the map too: a colonist comes to wear their own colour (the game's own dyeing at the styling station,
+     Ideology, asked as a wish or done in their free time), and keeps one signature piece (the hat, scarf or coat they
+     wear most, or their heirloom) where the outfit allows, so Bautista is the one in blue with the scarf.
+  4. Their own sign: a small emblem by their role, earned name or first passion (a herb for the Healer, a hammer for a
+     builder), in the portrait's corner and under their face on the colonist bar, with the colour band of 0.289.0.
+  5. Who they are, in three lines on the portrait and the colonist card: how they came (the day, the way: a refugee, a
+     prisoner turned, a wanderer, born here; and from which people), what they are known for (earned name, seat, a deed),
+     who matters to them (a partner, a best friend, a rival) and what they want (life goal, wish). Rimfolk keeps no
+     record of how someone joined yet: kept from now on, and for those here already read back from the game's own tales
+     and Rimfolk's chronicle where they show it.
+  6. Getting to know a newcomer: the day they come, a few words of where they come from; at supper in their first days
+     they tell something of their past (their backstory, their people); after about ten days a letter of what the colony
+     has learned of them (passions, quirks, who they get on with, the first friend).
+  7. A life on one page: the colonist card's story as a short timeline (came, first deed, wounds, bonds, seats, children,
+     earned names), from Rimfolk's own records.
+  Mods: HD textures for heads and hair only sharpen the large portrait; Facial Animation and Nice Facial Animation,
+  Vanilla Hair Expanded, Vanilla Hair Retextured and Rimsenal's hair are on.
+- **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
+  to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
   using the walk, animation ... Instead, they were kind of a static sprite, just looking in one direction, and even
   walking in another direction. The sprite was just kind of stuck on. So it's not like the pawn walked there as if you
