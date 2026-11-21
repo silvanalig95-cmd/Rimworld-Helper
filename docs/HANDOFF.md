@@ -301,6 +301,16 @@ most sense." So, in this order, three builds at a time:
   for a trial, each file name carrying the tags Rimfolk matches by; written by `Tools/PortraitArt/make_prompts.py`), the
   lead keying out the green background and lining them up, and Rimfolk matching each pawn to the nearest picture and
   keeping it. The portrait build was redirected to the library and the matcher (phase 3).
+  Then the player: "your pixel art concepts don't look terrible ... less silly and more proper. Can you really create a
+  couple much more enhanced and detailed and elaborate pixel art proposals ... before um, deciding on an AI", and asked for
+  free step by step instructions ("one where I maybe don't have to necessarily pay for another license"). Made: four 64 by
+  80 pixel portraits by code (scratchpad `concept/pixel3.png`, generator `scripts/pixel2.py`: hue-shifted colour ramps,
+  shading by a sphere's light quantised to them, outlines per part, eyes with a glint, era clothing: a cloak and brooch, fur
+  and bone beads, a duster and scarf, a flight suit with glowing seams, a scene behind). The README gained the free routes
+  (Gemini, Bing Image Creator, Fooocus on the player's own computer) and a pixel-art style line. The choice the player
+  makes next: the AI library (fixed pictures, each pawn matched to the nearest and kept; prettier, made by the player) or
+  live pixel portraits drawn by Rimfolk from each pawn's own looks and clothes (no pictures to make, always current). The
+  portrait build does the large portrait's fixes first and keeps the picture's source a seam, so either fits.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually

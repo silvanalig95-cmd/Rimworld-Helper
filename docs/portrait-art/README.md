@@ -18,6 +18,33 @@ Any good image AI works. Ones that do this well (check their current prices and 
 
 If you ever publish the mod with the pictures, check that the tool's terms allow it.
 
+### Free, step by step (no paid licence)
+
+Midjourney has no free plan; ChatGPT's free plan allows only a few pictures a day. These cost nothing (their daily limits
+change, so spread the work over a few days if one runs out):
+
+**Google Gemini (recommended)**
+1. Open https://gemini.google.com in your browser and sign in with a Google account (a free one is enough).
+2. Open `prompts.csv` in Excel or Google Sheets. In this README pick a style line (section 2 below).
+3. In a new Gemini chat, write: the style line, then row 1's `subject`, then row 1's `frame`. Send it.
+4. Not right yet? Answer in plain words ("more detailed", "no hat", "the background plain flat green", "just the head and
+   shoulders"). When it's right, open the picture, press the download button, and rename the file to row 1's `file`
+   name. Keep all pictures in one folder, for example `Rimfolk portraits` on your Desktop.
+5. Next row, in the same chat: "Same style, framing and background as the last picture. Now: " and the row's `subject`.
+   Download and rename as before. If the look starts to drift, attach your best picture and write "Match the style of
+   the attached picture exactly."
+6. After the 16 trial rows: right-click the folder, Send to, "Zip for upload", and send the zip.
+
+**Microsoft Bing Image Creator (a second free one)**: https://www.bing.com/images/create with a free Microsoft account;
+the same prompts; it gives four pictures at a time; download the best and rename it.
+
+**On your own computer, free and without limits (needs a recent NVIDIA graphics card, 6 GB or more)**: Fooocus, a
+one-click app for Stable Diffusion (https://github.com/lllyasviel/Fooocus: download the Windows package, unzip, run
+`run.bat`; the first start downloads the model). Put the style line in its prompt with the row's `subject` and `frame`,
+set the aspect ratio to 896x1152, generate, and save under the row's `file` name.
+
+A small mark or watermark in a corner doesn't matter: the picture is cropped to the head and shoulders anyway.
+
 ## 2. Pick a style
 
 Put one of these in front of every prompt (or write your own):
@@ -29,6 +56,8 @@ Put one of these in front of every prompt (or write your own):
   subtle halftone texture."
 - **Storybook**: "Storybook gouache illustration of a character portrait, soft textured paint, gentle colours, warm and
   charming."
+- **Pixel art**: "Detailed pixel art character portrait, 16-bit RPG style, a clear pixel grid, limited palette with
+  hue-shifted shading, crisp dark outlines." (AI pixel art often has an uneven grid; the lead snaps it to a true one.)
 
 ## 3. Make one picture you love
 
