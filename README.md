@@ -6030,7 +6030,10 @@ consciousness, moving or breathing poor, and what the game makes urgent (down, a
 anything else they keep working, and its pain, weakness and mood go on costing them: a sunburn, a cold, lice, bruises,
 small tended cuts, a sprain, a strained back. A cold, a fever's first days or a sprain has them sleep a little more at
 night, never all day (about two hours more at most). Small things to tend still bring them to bed to be tended and up
-again after; while no doctor is free they keep working rather than wait in bed. Rimfolk's serious illnesses that kill
+again after; while no doctor is free they keep working rather than wait in bed. What tending decides goes the same way
+and is tended first: an illness building immunity (a cold, a stomach bug), a wound in its first hours that may still get
+infected, and lice; the doctor sees to those patients before anyone with only small things, and to anyone with something
+serious before them. Rimfolk's serious illnesses that kill
 fast (cholera, meningitis, pneumonia) keep their bed from the first signs; the others from the stage they are really
 underway (typhus at its rash, tuberculosis once it wastes, scurvy at its worst), and a torn back, a migraine at its
 worst and a kidney stone passing have bed for their strong pain. Your own order to a medical bed ("rest until healed")

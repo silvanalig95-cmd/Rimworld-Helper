@@ -9722,7 +9722,7 @@ bed), plus 8 times the tend quality's factor when tended; immunity comes a tenth
 | An illness that can kill | a lethal severity or a stage that threatens life, until immune (the flu, the plague, malaria, an infection, the mods' killers) | the immunity race: a fifth faster in a bed |
 | A serious stage of any illness | its pain 15% or more, or 30% or more off consciousness, moving or breathing (`SeriousDrop`, leaving it poor) | too much to work through |
 | One of Rimfolk's ailments | from the severity its def names (`restFrom` on `HediffCompProperties_Ailment`, at the start of a stage); without it, the rows above | reviewed one by one, below |
-| What the game makes urgent | down, an operation due, labor, and something to tend now, but someone with only small things to tend (nothing serious by medicine by what is treated) and not losing blood (10% a day) keeps working while no doctor is free to come (`WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor`, and a medical care that allows any) | to be tended, then up again |
+| What the game makes urgent | down, an operation due, labor, and something to tend now, but someone with nothing serious to tend (by medicine by what is treated) and not losing blood (10% a day) keeps working while no doctor is free to come (`WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor`, and a medical care that allows any) | to be tended, then up again |
 
 Everything else, they keep working with it: a sunburn, a cold, lice, an itchy rash, bruises, small tended cuts, a sprain,
 a strained back. Its pain, capacities, mood and work speed go on costing them, and a stage that tires them (its
@@ -9732,6 +9732,48 @@ hours of sleep against the game's seven). The game's and other mods' conditions 
 (`Sends`: only what the game's own bed rest counts); one it doesn't rest for (gut worms, a carcinoma, lung rot) stays as the
 game has it. Rimfolk's own ailments follow the rule alone, so some get bed at their worst where the game gave none
 (scurvy, rabies, a torn back, a migraine, a kidney stone).
+
+**What is to tend, in three kinds** (a fix, 21 November 2026; not released yet). The player, with League_of_Toba_10:
+"now I have a bunch of pawns having the common cold, and they are just continuing to work, which in general is good, but
+some of them are not tended yet and are still working ... if it's just a bruise ... they don't necessarily have to
+prioritize attending as much ... But for these viruses and stuff that, you know, you have to develop immunity, or where
+tending really impacts whether the illness or whatever it is becomes permanent or escalates, it's important, I think,
+that they get tended and then go about their business if it allows." In the save (day 137, 7:36) Soot, Ape and Ettrian
+had had a head cold since about one in the night, untended, working, with three doctors awake (Soot himself, Lorena, and
+Bautista on a rescue); Lorena's was tended because she tends herself.
+
+- **The bug.** The rule asked whether a doctor was free (`BedRest.DoctorFree`) and kept the answer a second, from the
+  tick of the look (`Seen.doctorTick`). That tick started at `int.MinValue`, and `now - doctorTick` overflowed to a
+  negative number, so the first look was never taken and "no doctor free" was kept for good: since that look came nobody with
+  only small things to tend lay down to be tended. They were tended only when they happened to lie in bed anyway (asleep
+  at night). The look now goes through `BedRestMath.Fresh` (no look not yet taken, none from a later tick), and the look
+  at their conditions too (`Conditions`, which a count kept right before).
+- **Guido's wound infection was not one.** In the save it was beaten: immune (100%), at 0.10 and falling, tended twice
+  before. The game tends nothing a body is immune to (`Hediff.TendableNow` is false once fully immune) and its own bed
+  rest ends at immunity, so there was nothing to tend. Before immunity an infection counts as serious by medicine by
+  what is treated at any severity (`MedicineChoiceMath.Judge`: not a wound, not one of Rimfolk's everyday ailments, so
+  `Why.Infection`), and as an illness that can kill (the game's `lethalSeverity`): to bed at once until immune.
+- **Three kinds** (`BedRestMath.Tend`, `KindOf`, `WhyMatters`): what is to tend now is serious (medicine by what is
+  treated: an illness of the game's or the mods', an infection, a deep wound, heavy bleeding, Rimfolk's serious illnesses),
+  to bed to be tended at once, a doctor free or not; or **what tending decides** (`Matters`): an illness the body builds
+  immunity to and isn't immune to yet (the game's immunizable conditions and the mods', read generically; among
+  Rimfolk's everyday ones the stomach bug and dreamfever), a wound that may still get infected (untended, a chance of
+  3% or more, `MedicineChoiceMath.MayInfectChance`, and younger than the game's longest delay of its one infection roll,
+  `HealthTuning.InfectionDelayRange.max`, 18 hours), and Rimfolk's ailments their def marks (`tendingMatters` on
+  `HediffCompProperties_Ailment`: the head cold and the chest cold, which can turn into pneumonia,
+  `AilmentTracker.AfterCold`, and lice, which make typhus three times as likely); or a small thing (a bruise, a small cut
+  under 3%, a sunburn, blisters, an old cut past its infection roll). What tending decides goes as small things do, to
+  bed to be tended once a doctor is free and up again once tended, and the doctor sees to it first.
+- **The doctor's order** (`Patch_BedRestTendFirst`, `Patch_BedRestTendOrder`): the game's tending of other people
+  (`WorkGiver_TendOther_Humanlike`) takes the closest patient waiting in bed. With the rule on it asks the scanner's
+  order (`WorkGiver_Scanner.Prioritized`, `GetPriority`), each patient's most pressing kind (`BedRest.TendOrderOf`,
+  `BedRestMath.TendOrder`: 2 serious, 1 what tending decides, 0 small), the closest first within each. The urgent
+  tending (bleeding to death), self tending and animals stay the game's. The kind is kept a second, or until a condition
+  comes or goes (`KindToTend`), and also gives the urgent mark's "something serious" it gave before.
+- **Shown**: a condition of the kind says "Keeps working, and lies down to be tended once a doctor is free, before small
+  things: tending slows the illness while her body builds immunity." (or "a wound tended in its first hours is less likely
+  to get infected", "left untended, it can lead to something worse"), and a small thing "... once a doctor is free, after
+  anything more pressing.". The dev log's look at a patient names the kinds and the doctor's order.
 
 **Who it leaves alone, and what stays the game's.** A baby, a creature not of flesh, a mutant: the game's own. The player's
 order to a medical bed ("Use medical bed", which sets the job's `restUntilHealed`): offered, and kept, for whatever the game

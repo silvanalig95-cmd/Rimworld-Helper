@@ -23,7 +23,9 @@ namespace ColonyCouncil
     /// <item>The player's own order to bed (the medical bed's "rest until healed") and the council's rest when ill decree
     /// keep the game's rest, and the rule's on top. Smart Medicine's "Bed rest" unticked for a condition keeps it off.</item>
     /// <item>Small things to tend (a sunburn, a bruise) still bring the patient to bed to be tended, as the game has it, and up
-    /// again after; but while no doctor is free to come, they keep working rather than wait in bed.</item>
+    /// again after; but while no doctor is free to come, they keep working rather than wait in bed. What tending decides (an
+    /// illness building immunity, a wound that may still get infected, a cold that can turn into pneumonia) does the same,
+    /// and the doctor sees to it before small things (<see cref="BedRestMath.Tend"/>).</item>
     /// <item>Shown: each condition's tooltip on the health tab says whether it keeps them working or sends them to bed and why,
     /// beside medicine by what is treated's line, and a resting colonist's activity names what they rest for.</item>
     /// </list>
@@ -119,6 +121,8 @@ namespace ColonyCouncil
             public BedRestMath.Why why;
             public int doctorTick = int.MinValue;
             public bool doctorFree;
+            public int kindTick = int.MinValue, kindCount = -1;
+            public BedRestMath.Tend kind;
         }
 
         private static readonly Dictionary<int, Seen> seen = new Dictionary<int, Seen>();
@@ -163,7 +167,7 @@ namespace ColonyCouncil
                     f.labor = set.InLabor();
                     f.needsTending = p.health.HasHediffsNeedingTend();
                     f.bleeding = set.BleedRateTotal >= BedRestMath.LosingBlood;
-                    f.seriousToTend = f.needsTending && SeriousToTend(p);
+                    f.seriousToTend = f.needsTending && KindToTend(p, s, now, count) == BedRestMath.Tend.Serious;
                     f.gameOwnReasons = set.HasTendedAndHealingInjury() || set.HasImmunizableNotImmuneHediff();
                     f.decree = Decree(p);
                     Conditions(p, s, now, count);
@@ -178,29 +182,56 @@ namespace ColonyCouncil
             return r;
         }
 
-        /// <summary>Something to tend now that medicine by what is treated counts serious (an illness, a deep wound, heavy bleeding).</summary>
-        private static bool SeriousToTend(Pawn p)
+        /// <summary>
+        /// The most pressing of what is to tend now (<see cref="BedRestMath.Tend"/>), looked at again each second or when a
+        /// condition comes or goes: something serious (an illness, a deep wound, heavy bleeding), what tending decides, or
+        /// small things.
+        /// </summary>
+        private static BedRestMath.Tend KindToTend(Pawn p, Seen s, int now, int count)
         {
+            if (BedRestMath.Fresh(now, s.kindTick, ConditionTicks) && s.kindCount == count) return s.kind;
+            s.kindTick = now;
+            s.kindCount = count;
+            s.kind = BedRestMath.Tend.None;
             var hs = p.health.hediffSet.hediffs;
-            for (int i = 0; i < hs.Count; i++)
+            for (int i = 0; i < hs.Count && s.kind != BedRestMath.Tend.Serious; i++)
             {
-                var h = hs[i];
-                if (!h.TendableNow()) continue;
-                var f = MedicineChoice.FactsOf(h);
-                f.bestByAnswer = false;
-                if (MedicineChoiceMath.Judge(f, out _) == MedicineChoiceMath.Threat.Serious) return true;
+                var k = TendKindOf(hs[i]);
+                if (k > s.kind) s.kind = k;
             }
-            return false;
+            return s.kind;
+        }
+
+        /// <summary>How one condition is seen to now; one the rule has no word on (a fresh stump) is serious or small by medicine by what is treated.</summary>
+        public static BedRestMath.Tend TendKindOf(Hediff h)
+        {
+            if (h == null || !h.TendableNow()) return BedRestMath.Tend.None;
+            if (Considered(h)) return BedRestMath.KindOf(ConditionOf(h, default));
+            var f = MedicineChoice.FactsOf(h);
+            f.bestByAnswer = false;
+            return MedicineChoiceMath.Judge(f, out _) == MedicineChoiceMath.Threat.Serious ? BedRestMath.Tend.Serious : BedRestMath.Tend.Small;
+        }
+
+        /// <summary>
+        /// Where a patient waiting in bed comes in the doctor's order (<see cref="BedRestMath.TendOrder"/>): something serious
+        /// first, then what tending decides, then small things. 0 for anyone the rule leaves to the game.
+        /// </summary>
+        public static float TendOrderOf(Pawn p)
+        {
+            if (p?.health?.hediffSet == null || p.Dead || p.RaceProps == null || !p.RaceProps.Humanlike || Exempt(p)) return 0f;
+            return BedRestMath.TendOrder(KindToTend(p, SeenOf(p), Now, p.health.hediffSet.hediffs.Count));
         }
 
         /// <summary>
         /// Someone can come and tend them now (the game's own look for a doctor: awake, up, able, doing doctor's work, who can
-        /// reach them), and their medical care allows any. Not one the player tends: the game's own way, so yes.
+        /// reach them), and their medical care allows any. Not one the player tends: the game's own way, so yes. Until 21
+        /// November 2026 the first look was never taken (the tick it was kept from started at int.MinValue, and now minus
+        /// that overflowed), so the answer stayed "no doctor" for good and small things to tend never brought anyone to bed.
         /// </summary>
         private static bool DoctorFree(Pawn p, Seen s, int now)
         {
             if (p.playerSettings == null) return true;
-            if (now - s.doctorTick < ConditionTicks && now >= s.doctorTick) return s.doctorFree;
+            if (BedRestMath.Fresh(now, s.doctorTick, ConditionTicks)) return s.doctorFree;
             s.doctorTick = now;
             s.doctorFree = HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(p) && WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor(p);
             return s.doctorFree;
@@ -223,7 +254,7 @@ namespace ColonyCouncil
         /// <summary>The conditions that send them to bed, looked at again each second or when one comes or goes.</summary>
         private static void Conditions(Pawn p, Seen s, int now, int count)
         {
-            if (now - s.condTick < ConditionTicks && now >= s.condTick && s.condCount == count) return;
+            if (BedRestMath.Fresh(now, s.condTick, ConditionTicks) && s.condCount == count) return;
             s.condTick = now;
             s.condCount = count;
             s.rests = false;
@@ -309,14 +340,19 @@ namespace ColonyCouncil
         /// <summary>What the rule reads of one condition.</summary>
         public static BedRestMath.Condition ConditionOf(Hediff h, BedRestMath.Body body)
         {
-            var c = new BedRestMath.Condition { ignored = SmartMedicineBridge.Present && SmartMedicineBridge.OffBedRest(h), severity = h.Severity };
+            var c = new BedRestMath.Condition
+            {
+                ignored = SmartMedicineBridge.Present && SmartMedicineBridge.OffBedRest(h), severity = h.Severity, tendNow = h.TendableNow()
+            };
+            var f = MedicineChoice.FactsOf(h);
+            f.bestByAnswer = false;
+            c.threat = MedicineChoiceMath.Judge(f, out c.threatWhy);
             if (h is Hediff_Injury)
             {
                 c.wound = true;
                 c.tended = h.IsTended();
-                var f = MedicineChoice.FactsOf(h);
-                f.bestByAnswer = false;
-                c.threat = MedicineChoiceMath.Judge(f, out c.threatWhy);
+                c.mayInfect = BedRestMath.MayInfect(MedicineChoiceMath.WoundInfectionChance(f.infectionChance, f.severity, f.animal), c.tended, h.ageTicks,
+                    HealthTuning.InfectionDelayRange.max);
                 var tags = h.Part?.def?.tags;
                 if (tags != null)
                     for (int i = 0; i < tags.Count; i++)
@@ -341,6 +377,7 @@ namespace ColonyCouncil
             {
                 c.rimfolk = true;
                 c.restFrom = ail.restFrom;
+                c.worse = ail.tendingMatters;
             }
             return c;
         }
@@ -381,13 +418,20 @@ namespace ColonyCouncil
             var own = c.rimfolk || c.wound || BedRestMath.GameCounts(c) ? BedRestMath.Own(c, body) : BedRestMath.Why.None;
             if (own == BedRestMath.Why.None && state == BedRestMath.InBed.Decree && BedRestMath.GameCounts(c)) own = BedRestMath.Why.Decree;
             if (own != BedRestMath.Why.None) return RestsLine(h, p, c, body, own);
-            bool tendNow = h.TendableNow();
+            bool tendNow = c.tendNow;
+            bool cared = tendNow && HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(p);
             // A stage that tires them: they keep working, and sleep a little more at night.
             string sleeps = BedRestMath.SleepsMore(c, body) ? "Sleeps" : "";
+            // What tending decides: they lie down once a doctor is free, the doctor sees to it before small things, and up after.
+            if (cared && (state == BedRestMath.InBed.No || state == BedRestMath.InBed.Tending) && BedRestMath.KindOf(c) == BedRestMath.Tend.Matters)
+            {
+                string matters = ("CC_Rest_Matters_" + BedRestMath.WhyMatters(c)).Translate(p.Named("PAWN")).Resolve();
+                return ("CC_Rest_Line_WorksTendFirst" + sleeps).Translate(p.Named("PAWN"), matters.Named("WHY")).Resolve();
+            }
             if (state == BedRestMath.InBed.No)
             {
                 // Something small to tend while no doctor is free: they keep working and lie down once one is.
-                if (tendNow && HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(p)) return ("CC_Rest_Line_WorksTendLater" + sleeps).Translate(p.Named("PAWN")).Resolve();
+                if (cared) return ("CC_Rest_Line_WorksTendLater" + sleeps).Translate(p.Named("PAWN")).Resolve();
                 return ("CC_Rest_Line_Works" + sleeps).Translate(p.Named("PAWN")).Resolve();
             }
             if (state == BedRestMath.InBed.Tending && tendNow) return ("CC_Rest_Line_WorksTend" + sleeps).Translate(p.Named("PAWN")).Resolve();
@@ -462,7 +506,11 @@ namespace ColonyCouncil
                 .Append(On ? "" : " (the rule is off: the setting, the deeper hooks, or the recovery notice not found)");
             var body = BodyOf(p);
             sb.Append("; wounds' pain ").Append(body.woundPain.ToStringPercent()).Append(", moving ").Append(body.moving.ToStringPercent())
-                .Append(", manipulation ").Append(body.manipulation.ToStringPercent()).Append('\n');
+                .Append(", manipulation ").Append(body.manipulation.ToStringPercent());
+            if (seen.TryGetValue(p.thingIDNumber, out var s) && s.patient.needsTending)
+                sb.Append("; to tend: ").Append(s.kind).Append(s.patient.doctorFree ? ", a doctor free" : s.patient.seriousToTend || s.patient.bleeding ? "" : ", no doctor free")
+                    .Append(", the doctor's order ").Append(TendOrderOf(p).ToString("0"));
+            sb.Append('\n');
             var hs = p.health.hediffSet.hediffs;
             for (int i = 0; i < hs.Count; i++)
             {
@@ -478,7 +526,7 @@ namespace ColonyCouncil
                     .Append(c.rimfolk ? "; Rimfolk's" + (c.restFrom > 0f ? ", rests from " + c.restFrom.ToString("0.##") : "") : "")
                     .Append(BedRestMath.SleepsMore(c, body) ? "; sleeps a little more (rest falls x" + c.stage.restFall.ToString("0.##") + ")" : "")
                     .Append(c.ignored ? "; off bed rest in Smart Medicine" : "")
-                    .Append(h.TendableNow() ? "; to tend now" : "")
+                    .Append(c.tendNow ? "; to tend now: " + BedRestMath.KindOf(c) + (BedRestMath.KindOf(c) == BedRestMath.Tend.Matters ? " (" + BedRestMath.WhyMatters(c) + ")" : "") : "")
                     .Append('\n');
             }
             return sb.ToString().TrimEnd();
