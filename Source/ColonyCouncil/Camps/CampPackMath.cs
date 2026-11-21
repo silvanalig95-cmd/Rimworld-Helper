@@ -125,8 +125,11 @@ namespace ColonyCouncil
         /// a fire pit, a spot) stands, nobody's, unless the kind takes its own down or hands it to its employer (only when the
         /// contract was <paramref name="kept"/>: a squad the colony didn't pay leaves its post to nobody).
         /// </summary>
-        public static PackFate Fate(CampLeaves leaves, bool portable, bool orderly, bool hands, bool kept = true)
+        public static PackFate Fate(CampLeaves leaves, bool portable, bool orderly, bool hands, bool kept = true, bool store = false)
         {
+            // Their store tent is theirs to take home whatever the kind does with the rest (21 November 2026): uninstalled where
+            // it can be, else taken down and its materials carried; left only when they go in a hurry or have no hands for it.
+            if (store) return orderly && hands ? portable ? PackFate.Pack : PackFate.TakeDown : PackFate.Leave;
             if (portable) return orderly && hands ? PackFate.Pack : PackFate.Leave;
             if (!orderly) return PackFate.Leave;
             switch (leaves)

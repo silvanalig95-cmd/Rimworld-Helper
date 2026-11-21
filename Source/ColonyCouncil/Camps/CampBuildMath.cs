@@ -103,7 +103,13 @@ namespace ColonyCouncil
         public int tableW = 1, tableD = 2;
         /// <summary>A seat at each long side of each table cell (stools, cushions); none, and they sit on the ground at it.</summary>
         public bool seats = true;
+        /// <summary>stash: a shelf for their goods (a store their people know that keeps the weather off them).</summary>
         public bool butcher, craft, picket, stash, stall, spot;
+        /// <summary>
+        /// No such shelf for their people (a tribe: the game's shelf needs Complex Furniture, a medieval research): a small
+        /// store tent of their tent walls and door round the stash's ground instead, roofed, so what lies in it keeps.
+        /// </summary>
+        public bool cover;
         public int lights;
 
         /// <summary>How many sit down to eat: everyone who can, a seat each.</summary>
@@ -114,6 +120,7 @@ namespace ColonyCouncil
     public sealed class CampLayout
     {
         public readonly List<CampPiece> pieces = new List<CampPiece>();
+        /// <summary>Where their goods are set down: the stash's ground by its shelf, or inside their store tent.</summary>
         public (int x, int z) stash;
         /// <summary>The roles it wanted and found no room for (on a site with nothing in the way, none).</summary>
         public readonly List<string> missing = new List<string>();
@@ -304,6 +311,76 @@ namespace ColonyCouncil
                 left -= here;
             }
             return list;
+        }
+
+        // ---------------- Their things kept out of the weather ----------------
+
+        /// <summary>
+        /// A store for their goods is put up for a stay of a day and a half or more, as they pitch (until 21 November 2026 a
+        /// shelf only from three days, and none for a tribe, whose goods lay in the open: the grove-keepers' camp in the
+        /// player's save of that day). A night's stop puts up none: what they don't use stays in their packs.
+        /// </summary>
+        public const float StoreFromDays = 1.5f;
+
+        /// <summary>The store they put up: a shelf where their people know one that keeps the weather off, else a store tent, else none.</summary>
+        public static string StoreKind(float days, bool shelf, bool tent)
+        {
+            if (days < StoreFromDays) return null;
+            if (shelf) return "shelf";
+            return tent ? "tent" : null;
+        }
+
+        /// <summary>The inside of a store tent: two by two (four stacks on the ground) for up to three people, three by two for more.</summary>
+        public static (int width, int depth) StoreTentInside(int people) => people <= 3 ? (2, 2) : (3, 2);
+
+        /// <summary>
+        /// A store tent in its own frame: the front wall along z = 0 with the door in its middle, the inside from (1,1) to
+        /// (width, depth), walls ("storewall") all round and one door ("storedoor"). The game counts it a room once it has its
+        /// roof (Camps/CampStore.cs), and nothing in a closed room under a roof deteriorates.
+        /// </summary>
+        public static List<CampPiece> StoreTent(int width, int depth)
+        {
+            width = Math.Max(1, width);
+            depth = Math.Max(1, depth);
+            int doorX = 1 + (width - 1) / 2;
+            var list = new List<CampPiece>();
+            for (int x = 0; x <= width + 1; x++)
+                for (int z = 0; z <= depth + 1; z++)
+                {
+                    bool edge = x == 0 || x == width + 1 || z == 0 || z == depth + 1;
+                    if (!edge) continue;
+                    bool door = z == 0 && x == doorX;
+                    list.Add(new CampPiece { role = door ? "storedoor" : "storewall", minX = x, minZ = z, maxX = x, maxZ = z });
+                }
+            return list;
+        }
+
+        /// <summary>The cells a store tent's walls close in (its floor, under its roof), or none when it isn't closed all round.</summary>
+        public static List<(int x, int z)> StoreInside(IEnumerable<(int x, int z)> walls, (int x, int z) from)
+        {
+            var solid = new HashSet<(int, int)>(walls);
+            if (solid.Count < 8 || solid.Contains(from)) return new List<(int, int)>();
+            return Flood(solid, new[] { from }, solid.Min(c => c.Item1), solid.Max(c => c.Item1), solid.Min(c => c.Item2), solid.Max(c => c.Item2))
+                   ?? new List<(int, int)>();
+        }
+
+        /// <summary>The door of a store tent opens onto its inside on one side and the open on the other.</summary>
+        public static bool StoreDoorWorks(List<CampPiece> tent)
+        {
+            var walls = tent.Where(p => p.role == "storewall" || p.role == "storedoor").SelectMany(p => p.Cells()).ToList();
+            var doors = tent.Where(p => p.role == "storedoor").ToList();
+            if (doors.Count != 1) return false;
+            var d = (doors[0].minX, doors[0].minZ);
+            bool inside = false, outside = false;
+            var solid = new HashSet<(int, int)>(walls);
+            foreach (var (dx, dz) in new[] { (1, 0), (-1, 0), (0, 1), (0, -1) })
+            {
+                var n = (d.Item1 + dx, d.Item2 + dz);
+                if (solid.Contains(n)) continue;
+                if (StoreInside(walls, n).Count > 0) inside = true;
+                else outside = true;
+            }
+            return inside && outside;
         }
 
         /// <summary>
@@ -543,6 +620,25 @@ namespace ColonyCouncil
                     }
         }
 
+        /// <summary>
+        /// A store tent (its front wall along z = 0, the door toward the fire) placed four to eight cells out from the fire:
+        /// behind it first, then its sides, then before it, a little to either side; with the cells it keeps free (the step
+        /// outside its door, its inside) and where their goods are set down (the back of its inside, away from the door).
+        /// </summary>
+        private static IEnumerable<(List<CampPiece> solid, List<(int, int)> keep, (int, int) stash)> StorePlaces(List<CampPiece> tent, List<(int x, int z)> keep, (int x, int z) stash)
+        {
+            int w = tent.Max(p => p.maxX) + 1;
+            foreach (int side in new[] { 0, 1, 3, 2 })
+                for (int gap = 4; gap <= 8; gap++)
+                    foreach (int shift in new[] { 0, -2, 2, -4, 4 })
+                    {
+                        int ox = -(w / 2) + shift;
+                        var moved = tent.Select(p => new CampPiece { role = p.role, minX = p.minX + ox, maxX = p.maxX + ox, minZ = p.minZ + gap, maxZ = p.maxZ + gap }).ToList();
+                        var kept = keep.Select(c => Turn(c.x + ox, c.z + gap, side)).ToList();
+                        yield return (Turned(moved, side, 0, 0), kept, Turn(stash.x + ox, stash.z + gap, side));
+                    }
+        }
+
         /// <summary>The cells round the fire, nearest first, for a piece of the given size, both ways round.</summary>
         private static IEnumerable<CampPiece> Around((int x, int z) at, string role, int w, int d, int from, int to, bool turn)
         {
@@ -663,7 +759,43 @@ namespace ColonyCouncil
                 if (!Place(g, places, layout)) layout.missing.Add("wall");
             }
 
+            // ---- The stash: a store tent where their people know no shelf that keeps the weather off ----
+            bool tentStands = false;
+            if (spec.cover && !spec.stash)
+            {
+                var (iw, id) = StoreTentInside(spec.sleepers);
+                var tent = StoreTent(iw, id);
+                int doorX = 1 + (iw - 1) / 2;
+                var keepAt = new List<(int x, int z)> { (doorX, -1) };
+                for (int x = 1; x <= iw; x++)
+                    for (int z = 1; z <= id; z++)
+                        keepAt.Add((x, z));
+                var places = StorePlaces(tent, keepAt, (doorX, id)).ToList();
+                int best = int.MaxValue, seen = 0;
+                (List<CampPiece> solid, List<(int, int)> keep, (int, int) stash) pick = (null, null, (0, 0));
+                foreach (var pl in places)
+                {
+                    int c = g.Try(pl.solid, pl.keep, true);
+                    if (c < 0) continue;
+                    if (c < best)
+                    {
+                        best = c;
+                        pick = pl;
+                    }
+                    if (++seen >= Weigh || c == 0) break;
+                }
+                if (pick.solid != null)
+                {
+                    g.Put(pick.solid, pick.keep);
+                    layout.pieces.AddRange(pick.solid);
+                    layout.cost += best;
+                    layout.stash = pick.stash;
+                    tentStands = true;
+                }
+                else layout.missing.Add("store");
+            }
             // ---- The stash: room for their goods, out of the way of the rest ----
+            if (!tentStands)
             {
                 int bestCost = int.MaxValue, seen = 0;
                 (int x, int z)? at = null;

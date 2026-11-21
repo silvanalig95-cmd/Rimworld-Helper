@@ -1001,7 +1001,9 @@ Rarely, a long stretch of the same kind of life reaches the game's own traits. 1
 and then iron-willed after raid after raid held, or fray to nervous and volatile after breaking under fire, captivity
 and loss, and a volatile temper softens after two calm years; an optimist darkens after a year of graves and a
 pessimist brightens after a good stretch; kindness appears after many kindnesses, abrasiveness, greed and a wimp's
-weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a melee fighter, rare
+weakness fade; an ascetic after hardship, jealousy after vote on lost vote, a brawler in a close fighter (by the
+past year's fights, at least three up close and twice as many as at range, never someone whose Shooting is near their
+Melee, not the weapon in hand), rare
 bloodlust in a cold killer, an undergrounder who hardly sees the sky; harder work after two seasons of barely
 stopping (by the game's record of time at recreation) and idleness after the opposite; an addiction beaten makes a
 teetotaler; a recluse (Biotech), void fascination (Anomaly) and an ascetic drawn deeper into their ideoligion (Ideology); ten for Vanilla
@@ -1044,7 +1046,13 @@ under "Traits gained and lost". At most one change per colonist in 60 days (a tr
 one in the colony in 10 (a way out of a bad trait doesn't wait for that); sexuality,
 the body and traits from genes or a backstory never change, and the game's trait conflicts always hold. Their
 character doesn't jump: the trait takes the place of the change that earned it. A setting ("Traits can change")
-turns it off; the Almanac page "traits that change" lists every rule.
+turns it off; the Almanac page "traits that change" lists every rule. A second setting, "Traits other mods give",
+weighs the traits other mods give the colony's people during play (Vanilla Social Interactions Expanded's
+self-reflection after an illness, for one): only where they fit, the default, refuses one that doesn't fit the person as
+Rimfolk's own rules read them (no brawler for someone who fights at range; a skill the trait asks for, a trait that
+rules it out, their character, faith and age), with a message saying which mod gave it and why; as they come lets them
+all be; none refuses them all. A newcomer's traits, a gene's, the scenario's, the game's own, Rimfolk's and the
+player's own are never touched.
 
 #### Conversations: views that last, and memories they share
 Two colonists who are together now and then talk about something real, in a short exchange over their heads (two to
@@ -3666,8 +3674,11 @@ medieval things). Many ask the council what to do, with a day or so to answer.
   and their stay, of their people's age: a bed for each of them, round the fire (a war party, mourners, pilgrims), in one
   hut with walls all round, a door and a roof (settlers, refugees, the hermit, the wardens' post), or in tents (traders,
   hunters, healers and the other road folk), and for a longer stay tables with a seat each, lights, a butcher's and a
-  crafting spot, a hitching spot for their beasts and a shelf for their goods, which they keep their goods on (what lies
-  loose at their camp is carried onto it). A longer stay grows: a day or so after the camp stands, and a day or so apart,
+  crafting spot, a hitching spot for their beasts and a store for their goods out of the weather from a stay of a day and
+  a half: a shelf, which the game keeps things on without them deteriorating, or for a tribe, who can't make shelves, a
+  small store tent of their tent walls with a door and a roof (what lies loose at their camp is carried into it, and
+  what they brought to build with and didn't use goes back in their packs once the camp stands; the store goes home
+  with them). A longer stay grows: a day or so after the camp stands, and a day or so apart,
   they add what their kind would as it settles in, from your mods where you have them: seats round the fire, a lean-to
   over their stash, a pen for their beasts, a drying rack for hunters, a stonecutter's table or a tailor's bench for
   their trade, a firewood rack for woodcutters, a small altar for a people of a faith, a banner at the edge, a latrine,

@@ -2063,6 +2063,63 @@ life is taking them" once a third of their evidence is there.
   none of them bad news, 112 rules); `MarkTests` (the nurse's mark names someone); `Tools/Tests/ModDefNames.txt` has
   dog person, cat person, mountain lover and the fisherman.
 
+### Traits that fit a life: other mods' gains and Rimfolk's brawler (the player's go, 21 November 2026; released 0.291.0)
+
+The player, of Guido: "I have this one pawn, Guido, who just now got the brawler trait ... they were also just having a
+shotgun for most of their life and shooting all the time. And now they get just a huge debuff for being a brawler and
+they can't shoot anymore. To be honest, I don't like it ... be a bit more delicate, I guess, with giving brawler"; the
+go: "please go all ahead with this and all the next steps that you listed". The brawler came from Vanilla Social
+Interactions Expanded after his wound infection ("enough time for a self-reflection"), not from Rimfolk; Rimfolk's own
+rule would not have given it (Shooting 10, Melee 6), but read the weapon in hand the day it looked.
+
+- **The setting "Traits other mods give"** (under social life, after "Traits can change"; needs the deeper game hooks;
+  `CouncilSettings.otherTraitGains`, `OtherTraitGains`): as they come; only where they fit (the default); none.
+- **Where it is caught** (`Persona/TraitGains.cs`, `Patch_OtherModsTraitGains`, a prefix on the game's
+  `TraitSet.GainTrait`, which every mod calls to give a trait): only for one of the colony's own humanlike people, in
+  play (`TraitGainMath.Looks`); never a newcomer's traits as they are made (`PawnGenerator.IsBeingGenerated`), a gene's
+  (`sourceGene`), the scenario's (`ScenForced`). Who gave it (`TraitGainMath.Giver`) is read from the calls that led to
+  it, nearest first, the game's own, the runtime's, Harmony's and the patched method's frames passed over, ten at most:
+  Rimfolk's own code (trait changes, the gods' and the peoples' gifts) is Rimfolk's; another mod's assembly is another
+  mod's, named as the mod list names it; none within reach is the game's own (a growth moment, a quest); anything under
+  the game's drawing of its interface (`Root.OnGUI`, `UIRoot`) is a click of the player's (an editor's window, a
+  letter's choice, the dev tools). Only another mod's gain is weighed (`TraitGainMath.Refused`).
+- **Where they fit** (`TraitChanges.Unfit`, `FitLacks`): a trait Rimfolk's own changes know is weighed by its rules
+  that would give it at that degree (`TraitGainMath.RuleReads`: a gain at that degree or any, a step up or down that
+  way); it fits when any of them sees it fitting the person as they are: a trait that rules it out (`blockedBy`), a skill
+  it asks for (`skills`), how they fight (`meleeFighter`, below; one who fights at range doesn't fit, a quiet life with
+  no fights is no reason to refuse it), a trait it needs (`withTrait`), their character now (`now`, where Rimfolk keeps
+  one), their faith (`notPrecepts`), their age. Not the story Rimfolk's own changes wait for (marks, deeds, records,
+  pace). A trait Rimfolk has no rule for comes as the other mod gives it.
+- **Told**: a refused gain is a message, "Vanilla Social Interactions Expanded would have given Guido the trait
+  Brawler, and Rimfolk didn't let it, as Guido fights at range, with Shooting 10 and Melee 6. The setting "Traits other
+  mods give" decides this." The other mod may still send its own letter of the gain; the message answers it. The gain
+  never lands, so nothing of the trait's effects or thoughts comes.
+- **Rimfolk's brawler** (`Rimfolk_TC_BrawlerGained`, `TraitChanges.MeleeFighter`, `Fights`, `FightDays`,
+  `TraitGainMath.Fights`): by how they fought over the past year, never by the weapon in hand the moment it is read:
+  Melee at least two above Shooting (never someone whose Shooting is at least their Melee), at least three days of
+  fighting up close, and at least twice as many as at range. A day they fought is counted in the trait changes' own
+  tallies (`TraitGainMath.CloseKey`, `RangeKey`, one occasion in half a day, kept 240 days, twelve each): a foe killed
+  at home in a fight (`Happenings.Notify_Killed` to `TraitChanges.Notify_Killed`, by the weapon of the killing blow: a
+  ranged weapon at range, a melee weapon or bare hands up close, anything else, fire or a turret, not at all), and a
+  fight's mark given (`HeldTheLine`, `DownedHardened`, `RaidsHardened`, by the weapon they carry then;
+  `TraitChanges.Notify_Mark`). Its other conditions are as they were (Melee 10, eight humanlike kills, two fight marks,
+  nerve 20, no wimp). On the character page the part reads the year's close and ranged fight days.
+- **Older saves**: the fight days start counting with this version, so Rimfolk's brawler needs three close fights after
+  it; another mod's brawler is weighed by skills at once.
+- **Code map**: `Persona/TraitGainMath.cs` (pure: the setting's enum, `TraitGiver`, `Looks`, `Refused`, `Giver`,
+  `Fights`, `FitsCloseFighter`, `FightDays`, `Close`, `RuleReads`, `FightMarks`), `Persona/TraitGains.cs` (the hook,
+  the callers, the message), `Persona/TraitChanges.cs` (`MeleeFighter`, `Fights`, `FightDays`, `Notify_Fought`,
+  `Notify_Killed`, `Unfit`, `FitLacks`, the fight marks counted, the page's part), `Persona/TraitChangeDefs.cs`
+  (`meleeFighter` reworded), `Happenings/Happenings.cs` (the kill), `CouncilSettings.cs`, `UI/SettingsCatalog.cs`,
+  Keyed `Rimfolk_TraitChanges.xml`, `Defs/PersonaDefs/Rimfolk_TraitChanges_Character.xml` (a comment). Saved: one
+  setting; the fight days in the tallies already saved (`Tools/save_estimate.py` notes them). Tests:
+  `Tools/Tests/TraitGainTests.cs` (which gains are looked at, who gave them, the setting, Guido's numbers and the other
+  ways of fighting, the year's window, the rules that read a trait, the brawler rule and the code that no longer reads
+  the weapon in hand, the words).
+- **Not checked without the game**: who gave a trait as read from the calls in the game's own runtime (Harmony's
+  frames, Vanilla Social Interactions Expanded's call), the player's click under the interface's drawing, the message,
+  and a kill's weapon as the game reports it.
+
 ### The animals' natures (the player's picks, 7 November 2026)
 
 The player chose three from a brainstorm: temperaments (A1), friendships, rivalries and grief among animals (A3, "do it
@@ -5776,6 +5833,72 @@ it), and their own job finishes it.
   at a time, too few trees (given up before one is felled), packing before it's done; the code's seams and the defs.
 - **Not run here**: the construction job on a frame in the game, the felling, fetching and delivering by day, the stone
   dressed at a table or by hand, the save's shelf and stools built after loading.
+
+### A camp's things kept out of the weather (the player's go, 21 November 2026; released 0.291.0)
+
+The player, with League_of_Toba_10: "this camp that's currently set up has all their stuff just out in the open instead
+of on a shelf or somewhere where it doesn't deteriorate"; the go: "please go all ahead with this and all the next steps
+that you listed". The camp was the grove-keepers' week in the burn (`Rimfolk_Camp_AfterFire`, the Mossborn, a tribe):
+leather (48 and 35, at 58 and 55 of 100 hit points), two logs, berries, herbs, a deer skull they made and fish on the
+ground round their stash at (141, 132), and a food basket they had added holding nothing. Why: the game's shelf needs
+Complex Furniture, a medieval research, so a tribe's kit had no store at all (`CampKit.Known`); a stash's shelf came
+only from a stay of three days; and the materials they unpacked to build with lay where they were set down for the rest
+of the stay, the additions' too.
+
+What the game does (1.6): a thing on a building that keeps things on it (`preventDeteriorationOnTop`, the game's shelf)
+doesn't deteriorate; under a roof it loses half (the "unroofed" half of the rate), and only in a closed room under a
+roof none (the "outdoors" half goes too: `SteadyEnvironmentEffects.FinalDeteriorationRate` takes both). So a lean-to
+over the stash halves it, and only a shelf or a closed, roofed room stops it.
+
+- **A store from a day and a half** (`CampBuildMath.StoreFromDays`, `StoreKind`, `CampSite.SpecFor`): a shelf where
+  their people know one that keeps things (`CampKit.Keeps`: storage whose def keeps what is on it, the game's shelf
+  and any mod's that says the same, read from the def; a kind's own stash piece or the kit's that doesn't is passed
+  over), else a store tent; a night's stop puts up none.
+- **The store tent** (`CampBuildMath.StoreTent`, `StoreTentInside`, `StoreInside`, `StoreDoorWorks`, placed by
+  `StorePlaces` in `Plan`): a small room of their kit's tent walls with its tent door (a tribe's: log walls and a hide
+  curtain where the player's mods have them, else the game's wall and door of wood), its inside two by two for up to
+  three of them and three by two for more, four to eight cells out from the fire on the far side first, its door toward
+  the fire with the step outside kept free; their stash is the back of its floor. Its roof goes on once its walls and
+  door stand (`Camp.RoofStoreTent`, each hour with the huts'), so the game counts it a closed room and nothing in it
+  deteriorates. No room for it anywhere: the stash's open ground as before. A camp with a shelf has no store tent and
+  no change; a tribe's camp no longer grows a lean-to (it needs a shelf to cover).
+- **Into the store** (`Camps/CampStore.cs`): the stores are tried in this order, a shelf that keeps first, then a store
+  of theirs for the thing (a firewood rack, a food basket), then the store tent's floor (an empty cell, or a stack of
+  the same with room; `TentCellFor`), carried by the game's own hauling (to a storage cell, or set down on the tent's
+  floor, `HaulMode.ToCellNonStorage`), two of them at it at most. What lies in the tent is in their store
+  (`InOwnStore`), kept theirs like what is on a shelf (`KeepStores`). Things set down at the stash (unpacking, what
+  their work brings in, a frame's materials back) are placed by the game near the stash cell, so inside the tent first;
+  never in a doorway or on a piece of theirs still to be built (`Camp.NotForGoods`).
+- **What they brought, back in their packs** (`CampDayMath.Repacks`, `RepackFacts`, `Camp.RepackJob`, the job
+  `Rimfolk_CampRepack`): a stack they set down to build with (kept by id, `Camp.brought`: unpacking, the materials
+  for an addition, a frame's given back) goes back in a pack once the camp stands and nothing of theirs is under way or
+  still needs it, by a grown hand who isn't their trader, as not for sale; never what they put out, what someone has in
+  hand, or what the colony took. Their hunt's hides, cut logs and what they gather or make stay their goods, in their
+  store. On arrival they unpack only what the camp needs; what they carry for what they add later stays packed until
+  they start on it (`DropMaterials`, as before).
+- **Taken home** (`CampPackMath.Fate` with `store`, `CampPack.Packed`): the store tent goes with them whatever their kind
+  does with the rest, its roof first, a door that can be uninstalled packed, the walls taken down and three quarters of
+  their materials carried; left only when they go in a hurry or have no hands for it ("their store tent" in the leaving
+  words). A shelf is packed as before. An old camp's site builds its store again when it is gone (`CampGround.Core`).
+- **Every age**: by the camp's own people's age and what they know (their kit and the player's mods), the colony's age
+  playing no part. **The camp's own**: the store is of their people (their faction), their goods in it forbidden to the
+  colony; it stands within the camp's reach of ten cells and never on the colony's ground, as every piece of theirs.
+  **The share** they set out for the colony is the colony's, left for its haulers as before.
+- **Code map**: `Camps/CampBuildMath.cs` (pure: `StoreFromDays`, `StoreKind`, `StoreTentInside`, `StoreTent`,
+  `StoreInside`, `StoreDoorWorks`, `StorePlaces`, the spec's `cover`), `CampDayMath.cs` (`Repacks`, `RepackFacts`),
+  `CampPackMath.cs` (`Fate`'s `store`), `CampKit.cs` (`Keeps`, the stash piece), `CampSite.cs` (`SpecFor`, the roles
+  `storewall` and `storedoor` built of the kit's `tentwall` and `tentdoor`), `CampStore.cs` (the tent's floor and roof,
+  the store order, the stow, `RepackJob`, `Repacked`, `brought`), `CampLife.cs` (`Unpack`, `AtStash`, `NotForGoods`, the
+  roof each hour), `CampGrow.cs` (`DropMaterials`), `CampPack.cs`, `CampGround.cs`, `CampWork.cs` (the job's turn and
+  its end), `CampDay.cs` (`CampDayDefOf.Rimfolk_CampRepack`), `Defs/CampDefs/Rimfolk_CampKits.xml` (the job), Keyed
+  `Rimfolk_Camps.xml` (`CC_CampLeft_What_store`). Saved: `brought` per camp (a few ids, `Tools/save_estimate.py`).
+  Tests: `Tools/Tests/CampStoreTests.cs` (which store by the stay and the age; the store tent a room at four sizes and
+  turned, a wall down no roof; its place in every sleep form for 1 to 12 on open ground, among trees and rock, beside
+  the colony's land; every kind as a tribe pitches it; what is repacked and what not; the store taken home whatever the
+  kind leaves); `CampBuildTests` reads the store's day and a half.
+- **Not checked without the game**: that the game counts the roofed store tent a closed room (no "outdoors" on the
+  things in it), the haul onto its floor by a camp's people, things set down at the stash landing inside it first, the
+  repacking job, the walls and door taken down, and a mod's shelf (Deep Storage's, the food basket) keeping or not.
 
 ## Harm from everyday life
 
