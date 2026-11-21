@@ -322,6 +322,16 @@ most sense." So, in this order, three builds at a time:
   cast shadow and the neck's muscles, sloping shoulders over a round deltoid at about two and a half head-widths for men
   and less for women, the face's form shaded (eye sockets, the nose's ridge, cheekbones, the lip's shadow, the chin's
   light), the old with lines; hair grown out from the skull's own shape.
+  The player's choice (21 November 2026): the Gemini library ("The images it creates are quite nice looking and really
+  fast ... a large image library for as many ages and sexes and races and hairstyles ... everything accurately described
+  ... a lot of variety ... maybe even same characters ... when they're injured, they might have an eye less ... as many
+  races as possible ... they don't have to always be in the same angle ... So I don't have to copy paste every single
+  prompt"). The plan: `docs/portrait-art/PLAN.md` (a def per picture described from the picture itself; characters with
+  variants for a lost eye, a scar, a burn, a bionic eye, old age; facing tagged and mirrored; coverage in five waves by
+  what League_of_Toba_11 holds: baseliners 223 pawns, dark elves 48, hussars 19, neanderthals and impids 12, genies 10 and
+  so on, 79 xenotypes active; three ways to make them: the free Gemini app nine to a sheet cut by the lead, Google's paid
+  API by a script (about 3 to 4 cents a picture), or free on the player's own graphics card). Next from the player: 3 to 5
+  Gemini pictures in the style they like, then the pilot of ten sheets of nine. The portrait build was told the schema.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
