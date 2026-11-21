@@ -202,6 +202,15 @@
     </modExtensions>
   </JobDef>
 
+  <!-- What they brought to build with and didn't use, back in a pack once their camp stands (Camps/CampStore.cs). -->
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_CampRepack</defName>
+    <reportString>putting TargetA back in a pack.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>120</ticks></li>
+    </modExtensions>
+  </JobDef>
+
   <!-- Building their camp and what they add to it (Camps/CampGather.cs): a frame of theirs finished by their own
        construction job (the game's own work, pace, effect and finishing), and a chunk of the rock they mined dressed into
        stone blocks at their stonecutter's table or, for a tribal or medieval people, by hand at their crafting spot. -->
