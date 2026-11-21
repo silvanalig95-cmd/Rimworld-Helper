@@ -165,6 +165,13 @@ most sense." So, in this order, three builds at a time:
   head and body drawn apart with the game's flags, a pose by character and mood, the side views for two facing each
   other, the dead grey, breathing, a sway and a turn now and then on the large portraits); the entry "Portraits, phase
   2" above the newest release line. With it, the to-do is done; the painted art (A, B, E) stays dropped.
+- **To do, gathered for the next batch (21 November 2026, the player, of League_of_Toba_10): a camp's things kept out of
+  the weather.** The player: "this camp that's currently set up has all their stuff just out in the open instead of on a
+  shelf or somewhere where it doesn't deteriorate." The camp is the grove-keepers' after the canopy fire
+  (`Rimfolk_Camp_AfterFire`, `Peoples/Events6/AfterFire.cs`), its stash a pile on the ground at (141, 132). To do, for
+  every camp kind that keeps a stash or a share: their things on a shelf, crate or table they set up (by their age and
+  what their people have: the game's shelf where the colony's age allows, else a crate or a covered spot of theirs), or
+  under a roof or tarp they put up, or kept in their packs with only what they show on the stall; taken down when they go.
 - **To do, gathered for the next batch (21 November 2026, the player, with League_of_Toba_10): the sick tended first
   where tending matters.** The player: "now I have a bunch of pawns having the common cold, and they are just
   continuing to work, which in general is good, but some of them are not tended yet and are still working ... I think
@@ -242,7 +249,18 @@ most sense." So, in this order, three builds at a time:
   HD Faces (Nonvanilla) (2475246250, 1.6, legacy), [RH2] Detailed Body Textures 3 (2873235836, 1.6: 512 px bodies). The
   AI way, if mods fall short: upscaled (or redrawn in the same style) textures of the pieces every pawn is built from
   (the Facial Animation face parts, the heads and bodies), a pack Rimfolk loads over them; the lead's instructions given
-  to the player the same day.
+  to the player the same day. Then the player sent both mods' folders (Facial Animation 1635901197, Vanilla Pawns
+  Retextured 2275310562, kept in the lead's scratchpad only). Found: every texture is already 512 by 512 (Vanilla Pawns
+  Retextured's heads and bodies, Facial Animation's parts), the head about 186 by 206 of it, both eyes a strip of 88 by
+  23, the mouth a line of 12 by 4, the eyes dots: the faces are plain because they are drawn plain, and an upscale
+  (Upscayl) adds nothing at portrait size. Vanilla Pawns Retextured is still worth having: the game's own heads are
+  smaller, so its outlines are what keeps the large portrait sharp. Real detail needs the face parts drawn anew at their
+  places: Facial Animation has eyes (4 shapes, a tint mask and a highlight each), brows (4), mouths (2), lids (5) and two
+  skin marks, each front and side, per sex, about 150 files; the faces the player sees may be Nice Facial Animation's
+  (on in the list), whose folder is needed before any redraw. The way offered: a pilot of the front view of one sex
+  (about 10 parts) from a kit the lead makes (each part's guide at 4x on the head, with a box where it goes), drawn or
+  AI-assisted on a transparent layer in a layer editor, sent back, scaled and placed by the lead, loaded as a small pack
+  after Facial Animation.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
