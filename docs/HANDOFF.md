@@ -311,6 +311,17 @@ most sense." So, in this order, three builds at a time:
   makes next: the AI library (fixed pictures, each pawn matched to the nearest and kept; prettier, made by the player) or
   live pixel portraits drawn by Rimfolk from each pawn's own looks and clothes (no pictures to make, always current). The
   portrait build does the large portrait's fixes first and keeps the picture's source a seam, so either fits.
+  Then the player: "these pixel images already look better, but it's just the head shapes look still silly ... there
+  should be much more based on actual humans, maybe with a lot of variety ... of how human head shapes ... can look
+  different. And I guess also ... the neck and body ... the shape of the physique of the human ... the style looks quite
+  all right. It's just really work on how an actual human looks like, the proportions and the physique." Rebuilt (scratchpad
+  `scripts/pixel3.py`, sheets `concept/pixel6.png` and `concept/pixel_variety.png`, 80 by 100 pixels): the face in thirds
+  (the eyes at half the head's height, the brows, the nose's base, the mouth at a third from it to the chin), an outline
+  from half-widths at the crown, the cheekbones, the jaw's angle and the chin (oval, round, square, long, heart, diamond;
+  narrower jaw and chin for women), ears from the brow to the nose, a neck about half the head's width with the jaw's
+  cast shadow and the neck's muscles, sloping shoulders over a round deltoid at about two and a half head-widths for men
+  and less for women, the face's form shaded (eye sockets, the nose's ridge, cheekbones, the lip's shadow, the chin's
+  light), the old with lines; hair grown out from the skull's own shape.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
