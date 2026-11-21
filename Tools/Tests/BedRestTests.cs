@@ -140,11 +140,12 @@ public static class BedRestTests
 
         // ---------- The doctor's look: taken, and kept a second (the stuck look of 21 November 2026) ----------
         const int LookTicks = 60; // BedRest.ConditionTicks
-        C(!BedRestMath.Fresh(0, int.MinValue, LookTicks) && !BedRestMath.Fresh(8238911, int.MinValue, LookTicks)
-          && !BedRestMath.Fresh(int.MaxValue, int.MinValue, LookTicks),
-            "a look never taken is never fresh (the doctor's look started at int.MinValue, now minus it overflowed, and \"no doctor\" was kept for good)");
-        C(BedRestMath.Fresh(100, 50, LookTicks) && BedRestMath.Fresh(100, 100, LookTicks) && !BedRestMath.Fresh(100, 40, LookTicks)
-          && !BedRestMath.Fresh(100, 150, LookTicks), "a look holds a second, and one from a later tick (another game) never does");
+        int saveTick = 8238911, never = int.MinValue;
+        C(unchecked(saveTick - never) < LookTicks, "the old look: now minus a tick never taken (int.MinValue) overflowed below a second, so it counted as fresh");
+        C(!Fresh.Holds(never, 0, LookTicks) && !Fresh.Holds(never, saveTick, LookTicks) && !Fresh.Holds(never, int.MaxValue, LookTicks),
+            "a look never taken is never fresh, so the first look at the doctors is taken (\"no doctor\" was kept for good)");
+        C(Fresh.Holds(61, 100, LookTicks) && Fresh.Holds(100, 100, LookTicks) && !Fresh.Holds(59, 100, LookTicks) && !Fresh.Holds(150, 100, LookTicks),
+            "a look holds within its second, and one from a later tick (another game) never does");
 
         // ---------- What is to tend: serious, what tending decides, small things ----------
         BedRestMath.Condition Tends(BedRestMath.Condition c, MedicineChoiceMath.Facts f)
@@ -326,7 +327,7 @@ public static class BedRestTests
         C(rest.Contains("ConditionTicks = 60") && rest.Contains("s.tick != now || s.count != count"), "cheap: the patient looked at once a tick, their conditions once a second or when one comes or goes");
         C(defsCode.Contains("public float restFrom;") && defsCode.Contains("restFrom above the ailment's highest severity never comes"), "Rimfolk's ailments say where rest starts, checked at load");
         C(defsCode.Contains("public bool tendingMatters;") && defsCode.Contains("tendingMatters on an ailment that is never tended"), "Rimfolk's ailments say whether tending decides, checked at load");
-        C(rest.Contains("BedRestMath.Fresh(now, s.doctorTick, ConditionTicks)") && !rest.Contains("now - s.doctorTick") && !rest.Contains("now - s.condTick"),
+        C(rest.Contains("Fresh.Holds(s.doctorTick, now, ConditionTicks)") && !rest.Contains("now - s.doctorTick") && !rest.Contains("now - s.condTick"),
             "the doctor's look is taken the first time and kept a second (no overflow on the first look)");
         C(rest.Contains("c.worse = ail.tendingMatters;") && rest.Contains("HealthTuning.InfectionDelayRange.max") && rest.Contains("tendNow = h.TendableNow()"),
             "what tending decides is read from the game: immunity, the infection's roll still to come, the def's mark");

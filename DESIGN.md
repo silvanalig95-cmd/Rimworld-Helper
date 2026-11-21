@@ -9746,7 +9746,7 @@ Bautista on a rescue); Lorena's was tended because she tends herself.
   tick of the look (`Seen.doctorTick`). That tick started at `int.MinValue`, and `now - doctorTick` overflowed to a
   negative number, so the first look was never taken and "no doctor free" was kept for good: since that look came nobody with
   only small things to tend lay down to be tended. They were tended only when they happened to lie in bed anyway (asleep
-  at night). The look now goes through `BedRestMath.Fresh` (no look not yet taken, none from a later tick), and the look
+  at night). The look now goes through `Fresh.Holds` (Lean/Fresh.cs: a look never taken never holds), and the look
   at their conditions too (`Conditions`, which a count kept right before).
 - **Guido's wound infection was not one.** In the save it was beaten: immune (100%), at 0.10 and falling, tended twice
   before. The game tends nothing a body is immune to (`Hediff.TendableNow` is false once fully immune) and its own bed
@@ -20073,6 +20073,38 @@ game was paused. The job was saved with him.
   kind or without its driver back to choosing a job when a game loads, and takes such jobs out of the queues.
 - Since harm parts 5 to 7 (7 November 2026) none of those eight walks had played out: each try left the pawn so, or
   failed with an error. They now play out as written in their sections above.
+
+## Pawns turn to the way they walk (the player's report, 21 November 2026; not released yet)
+
+The player, of the thorn-guards at a run (`Rimfolk_Events_PeopleEvents6.xml`, `Peoples/Events6/CanopyFire.cs`): "When
+they were walking, the pawns were not actually using the walk, animation ... Instead, they were kind of a static sprite,
+just looking in one direction, and even walking in another direction ... They should always, NPCs should actually use
+the walking animation or action, which is the same as when the player like right clicks it". The game's rotation
+tracker (`Pawn_RotationTracker.UpdateRotation`, called after each tick for the drawing) turns a walking pawn to its next
+step, unless the job's toil handles its own facing (`Toil.handlingFacing`): then it leaves the pawn as the toil turned
+it. The thorn-guards' job (`JobDriver_PEv6Firefight`) walked by the game's own path following, but its one toil handled
+its facing for the whole job, so they ran facing whichever way they last faced.
+
+- **Every toil read.** 82 files set `handlingFacing` on 141 toils. Five of them also started a walk: the thorn-guards'
+  firefight, an animal keeping at someone's side (`JobDriver_AnimalRunTo`, Animals/AnimalDayJobs.cs), a bout's fighters
+  closing in (`JobDriver_OutsiderBout`, Outsiders/OutsiderJobs.cs), keeping someone company (`JobDriver_PlayOutVisit`,
+  PlayOut/PlayOutJobs.cs) and a walk together, a vigil or a search (`JobDriver_PlayOutGroup`, PlayOut/PlayOutGroupJobs.cs).
+  In Visitors/IdleHoursJobs.cs the walks (to a book and back) are toils of their own that leave the facing to the game.
+- **The five, the walk and the facing apart.** The firefight, the animal at someone's side and the bout leave the facing
+  to the game: to the path while they walk, to their target while they stand (the job's target to face, `rotateToFace`:
+  the fire's cell as target B for the thorn-guards, a cell so the job keeps no reference to a fire once it is out; the
+  person or the opponent, target A, for the others), and to what they strike while they swing. Keeping company and the
+  walk together face their own way only while the pawn stands (`WalkFacing.FacingWhileStill`, Lean/WalkFacing.cs: a
+  pre-tick action sets the toil's `handlingFacing` to whether the pawn is still).
+- **The safety net** (`Patch_WalkFacesPath`, a postfix on `Pawn_RotationTracker.UpdateRotation`): a pawn whose job driver
+  is Rimfolk's (its type in Rimfolk's assembly), whose toil handles its facing, walking a path, is turned to its next
+  step as the game turns a walker (`WalkFacingMath.Toward`: east or west for any sideways step, else north or south),
+  whatever the toil says. Not while it aims at something, is stunned so it can't turn, or is of a kind that always faces
+  one way; never the game's or other mods' jobs; off with the deeper game hooks. Cheap: most pawns' toils don't handle
+  their facing, and those leave at the first check.
+- **The test** (`WalkFacingTests`): every toil of Rimfolk's with `handlingFacing = true` is read from the source, with
+  its actions (init, tick, pre-actions, finish) and every method they call that starts a pawn's walk (directly, or
+  through another such method by name in its file or as `Class.Method`); none may. A caravan's journey is no pawn's walk.
 
 ## The medal read at the gate, and visitors' errands past a barred door (the player's report, 20 November 2026; released 0.276.2)
 

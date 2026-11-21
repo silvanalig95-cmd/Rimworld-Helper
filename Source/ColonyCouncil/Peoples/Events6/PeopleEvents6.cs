@@ -344,7 +344,8 @@ namespace ColonyCouncil
     /// <summary>
     /// One of theirs beating out the fires within reach of a spot (TargetA, its reach the job's count): the nearest fire, up to
     /// it, beaten with the game's own beating until it is out, then the next; done when none is left within reach. The game's
-    /// own beating (Pawn_NativeVerbs.TryBeatFire), its burns the game's own.
+    /// own beating (Pawn_NativeVerbs.TryBeatFire), its burns the game's own. The game turns them: to their path as they run,
+    /// to the fire they beat (its cell is TargetB, the target they face), never left facing one way as they go.
     /// </summary>
     public class JobDriver_PEv6Firefight : JobDriver
     {
@@ -354,6 +355,7 @@ namespace ColonyCouncil
 
         protected override IEnumerable<Toil> MakeNewToils()
         {
+            rotateToFace = TargetIndex.B;
             var fight = ToilMaker.MakeToil("PEv6Firefight");
             fight.tickIntervalAction = delta =>
             {
@@ -367,6 +369,8 @@ namespace ColonyCouncil
                         EndJobWith(JobCondition.Succeeded);
                         return;
                     }
+                    // Its cell, not the fire: a fire is gone when beaten out, and a job keeps no reference to it.
+                    job.targetB = fire.Position;
                 }
                 if (pawn.Position.AdjacentTo8WayOrInside(fire.Position))
                 {
@@ -378,7 +382,6 @@ namespace ColonyCouncil
                 else if (!pawn.pather.Moving || pawn.pather.Destination.Cell != fire.Position) pawn.pather.StartPath(fire, PathEndMode.Touch);
             };
             fight.defaultCompleteMode = ToilCompleteMode.Never;
-            fight.handlingFacing = true;
             yield return fight;
         }
     }

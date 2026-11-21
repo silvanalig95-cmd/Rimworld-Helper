@@ -189,7 +189,7 @@ namespace ColonyCouncil
         /// </summary>
         private static BedRestMath.Tend KindToTend(Pawn p, Seen s, int now, int count)
         {
-            if (BedRestMath.Fresh(now, s.kindTick, ConditionTicks) && s.kindCount == count) return s.kind;
+            if (Fresh.Holds(s.kindTick, now, ConditionTicks) && s.kindCount == count) return s.kind;
             s.kindTick = now;
             s.kindCount = count;
             s.kind = BedRestMath.Tend.None;
@@ -231,7 +231,7 @@ namespace ColonyCouncil
         private static bool DoctorFree(Pawn p, Seen s, int now)
         {
             if (p.playerSettings == null) return true;
-            if (BedRestMath.Fresh(now, s.doctorTick, ConditionTicks)) return s.doctorFree;
+            if (Fresh.Holds(s.doctorTick, now, ConditionTicks)) return s.doctorFree;
             s.doctorTick = now;
             s.doctorFree = HealthAIUtility.ShouldEverReceiveMedicalCareFromPlayer(p) && WorkGiver_PatientGoToBedTreatment.AnyAvailableDoctorFor(p);
             return s.doctorFree;
@@ -254,7 +254,7 @@ namespace ColonyCouncil
         /// <summary>The conditions that send them to bed, looked at again each second or when one comes or goes.</summary>
         private static void Conditions(Pawn p, Seen s, int now, int count)
         {
-            if (BedRestMath.Fresh(now, s.condTick, ConditionTicks) && s.condCount == count) return;
+            if (Fresh.Holds(s.condTick, now, ConditionTicks) && s.condCount == count) return;
             s.condTick = now;
             s.condCount = count;
             s.rests = false;

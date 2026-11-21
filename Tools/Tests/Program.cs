@@ -462,6 +462,7 @@ for (int r = 0; r < 4; r++)
         Console.WriteLine($"Checked {BreweryKitchenTests.Run(root, Check)} things about the brewery at home in the kitchen (cooking benches, the kitchen kept a kitchen, the speed, the setting).");
         Console.WriteLine($"Checked {MadeForWearTests.Run(root, Check)} things about a piece made for someone with Nice Inventory Tab (kept out of the crafter's pocket, put on when back near the base).");
         Console.WriteLine($"Checked {JobGuardTests.Run(root, Check)} things about jobs of no kind (every def list marked, the guard and the mending at load).");
+        Console.WriteLine($"Checked {WalkFacingTests.Run(root, Check)} things about pawns turning to the way they walk (no toil of Rimfolk's that handles its facing starts a walk, the five that did, the safety net on the rotation tracker, the facing of a step).");
         Console.WriteLine($"Checked {MaterialChoiceTests.Run(root, Check)} things about choosing the material when ordering a piece from Nice Inventory Tab's gear tab (which materials are offered and in what order, the counts, the bill allowing only the one chosen, the mod's own way kept).");
         Console.WriteLine($"Checked {RoomUseTests.Run(root, Check)} things about rooms judged by what is in them (a room with dining tables is a dining room, one with games a rec room, whatever the game shows; the one it names first; every place that means them).");
         Console.WriteLine($"Checked {HeartDayOffMoodTests.Run(root, Check)} things about a day off's mood (situational, +6, only while it runs).");

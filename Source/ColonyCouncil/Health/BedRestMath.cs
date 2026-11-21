@@ -293,12 +293,6 @@ namespace ColonyCouncil
         /// </summary>
         public static float TendOrder(Tend t) => t == Tend.Serious ? 2f : t == Tend.Matters ? 1f : 0f;
 
-        /// <summary>
-        /// A look taken at tick <paramref name="at"/> still holds at <paramref name="now"/> for <paramref name="ticks"/>.
-        /// Never one not yet taken (int.MinValue, where now minus it overflows an int) or from a later tick (another game).
-        /// </summary>
-        public static bool Fresh(int now, int at, int ticks) => at <= now && (long)now - at < ticks;
-
         /// <summary>Everything about the patient beyond their conditions, as the game and the player have it now.</summary>
         public struct Patient
         {
