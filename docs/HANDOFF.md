@@ -270,6 +270,54 @@ most sense." So, in this order, three builds at a time:
   The ways: (a) the lead draws the face parts by code in Facial Animation's places, as a small pack loaded after it (on
   the map as well), or only in Rimfolk's portraits; (b) the AI kit above. Nice Facial Animation's folder is needed first
   to match what the player sees.
+  The player's go (21 November 2026): "the faces look really good ... we'll definitely try your route. And here also,
+  really enhance everything ... the whole head, clothing, body, limbs ... use kind of the base pawns as reference, but the
+  image doesn't have to necessarily look like it exactly ... creative freedom ... only intended for kind of flavor and
+  identification", "also hair etc.", and "please create me some different "concept" art of how these pawn images could
+  look like". Building: Rimfolk's own drawn portraits (phase 3), drawn from each pawn's data, needing neither facial mod
+  (the player asked; told no). The lead's concept sheet (scratchpad `concept/concepts2.png`, its generator
+  `scripts/concept.py`) shows four styles of two busts: A ink and flat colour, B comic with a hard shadow, C soft painted
+  without outlines, D woodcut on parchment; the build keeps the style a setting, A until the player picks.
+  Then the player found the concepts (and a second round: anime, chibi, comic, flat vector, pixel art) "really silly
+  looking" and asked for image AIs to make the art from exact prompts: "recommend me other AI systems that are really
+  good at creating images and that I can ... provide exact prompts to these AIs so they can, yeah, create all the
+  necessary image data to have really nice looking interpretation of all the possible pawns ... it just has to be
+  aesthetically pleasing." So the way now: a library of complete painted portraits made by the player with an image AI
+  (`docs/portrait-art/README.md`: tools, four style lines, the steps; `docs/portrait-art/prompts.csv`: 200 rows, 16 marked
+  for a trial, each file name carrying the tags Rimfolk matches by; written by `Tools/PortraitArt/make_prompts.py`), the
+  lead keying out the green background and lining them up, and Rimfolk matching each pawn to the nearest picture and
+  keeping it. The portrait build was redirected to the library and the matcher (phase 3).
+  Then the player: "your pixel art concepts don't look terrible ... less silly and more proper. Can you really create a
+  couple much more enhanced and detailed and elaborate pixel art proposals ... before um, deciding on an AI", and asked for
+  free step by step instructions ("one where I maybe don't have to necessarily pay for another license"). Made: four 64 by
+  80 pixel portraits by code (scratchpad `concept/pixel3.png`, generator `scripts/pixel2.py`: hue-shifted colour ramps,
+  shading by a sphere's light quantised to them, outlines per part, eyes with a glint, era clothing: a cloak and brooch, fur
+  and bone beads, a duster and scarf, a flight suit with glowing seams, a scene behind). The README gained the free routes
+  (Gemini, Bing Image Creator, Fooocus on the player's own computer) and a pixel-art style line. The choice the player
+  makes next: the AI library (fixed pictures, each pawn matched to the nearest and kept; prettier, made by the player) or
+  live pixel portraits drawn by Rimfolk from each pawn's own looks and clothes (no pictures to make, always current). The
+  portrait build does the large portrait's fixes first and keeps the picture's source a seam, so either fits.
+  Then the player: "these pixel images already look better, but it's just the head shapes look still silly ... there
+  should be much more based on actual humans, maybe with a lot of variety ... of how human head shapes ... can look
+  different. And I guess also ... the neck and body ... the shape of the physique of the human ... the style looks quite
+  all right. It's just really work on how an actual human looks like, the proportions and the physique." Rebuilt (scratchpad
+  `scripts/pixel3.py`, sheets `concept/pixel6.png` and `concept/pixel_variety.png`, 80 by 100 pixels): the face in thirds
+  (the eyes at half the head's height, the brows, the nose's base, the mouth at a third from it to the chin), an outline
+  from half-widths at the crown, the cheekbones, the jaw's angle and the chin (oval, round, square, long, heart, diamond;
+  narrower jaw and chin for women), ears from the brow to the nose, a neck about half the head's width with the jaw's
+  cast shadow and the neck's muscles, sloping shoulders over a round deltoid at about two and a half head-widths for men
+  and less for women, the face's form shaded (eye sockets, the nose's ridge, cheekbones, the lip's shadow, the chin's
+  light), the old with lines; hair grown out from the skull's own shape.
+  The player's choice (21 November 2026): the Gemini library ("The images it creates are quite nice looking and really
+  fast ... a large image library for as many ages and sexes and races and hairstyles ... everything accurately described
+  ... a lot of variety ... maybe even same characters ... when they're injured, they might have an eye less ... as many
+  races as possible ... they don't have to always be in the same angle ... So I don't have to copy paste every single
+  prompt"). The plan: `docs/portrait-art/PLAN.md` (a def per picture described from the picture itself; characters with
+  variants for a lost eye, a scar, a burn, a bionic eye, old age; facing tagged and mirrored; coverage in five waves by
+  what League_of_Toba_11 holds: baseliners 223 pawns, dark elves 48, hussars 19, neanderthals and impids 12, genies 10 and
+  so on, 79 xenotypes active; three ways to make them: the free Gemini app nine to a sheet cut by the lead, Google's paid
+  API by a script (about 3 to 4 cents a picture), or free on the player's own graphics card). Next from the player: 3 to 5
+  Gemini pictures in the style they like, then the pilot of ten sheets of nine. The portrait build was told the schema.
 - **To do, the player's go for the next batch (21 November 2026: "yes, please also fix the walking issue ... add it to the
   to-do list, and then we'll do like a bigger batch once we have a couple points together"): visitors who slide across
   the map facing one way.** The player, of a "Thorn Guard" event: "When they were walking, the pawns were not actually
