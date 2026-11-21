@@ -179,7 +179,11 @@ most sense." So, in this order, three builds at a time:
   brainstorm about this." Seen in the screenshot: the bust takes the lower middle of the square, the head about a third
   of its height, a band of empty colour above and at the sides. Ideas, for the player to pick:
   1. The framing (a fix to 0.289.0): the head larger and centred, about half the square's height, the shoulders cut
-     lower, so the face fills it; the same rule for the round portraits where they are large.
+     lower, so the face fills it; the same rule for the round portraits where they are large. And, the player with a
+     second screenshot (the Story tab open, the portrait beside it): "it only needs to be shown when you click the pawn,
+     without having one of these tabs open, story mode, log, whatever. Once you click one of these tabs, the image of
+     the pawn can, disappear in favor of the tab. I don't need to be it for it to be constantly visible." So the large
+     portrait shows only while no inspect tab is open, and hides while one is (the placement beside a tab goes).
   2. More to the face, drawn by Rimfolk over the game's head in portraits only, the same for any pawn of any mod: soft
      light and shade for depth; what the body really carries (a scar or a burn on the head from its health, a lost eye's
      patch, the lines of age for the old); and one small mark of their own picked once and kept (a mole, freckles, a
