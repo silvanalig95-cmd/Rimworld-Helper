@@ -81,8 +81,6 @@ public static class FacePoseTests
             "the shy turned half away, each to a side of their own");
         C(FacePoseMath.TurnFor(FaceBearing.Shy, FaceTurn.Left, 2) == FaceTurn.Left && FacePoseMath.TurnFor(FaceBearing.Captive, FaceTurn.Right, 3) == FaceTurn.Right,
             "the way a place asks (two facing each other) comes first");
-        C(FacePoseMath.TurnedTo(FaceTurn.Front, true) == FaceTurn.Right && FacePoseMath.TurnedTo(FaceTurn.Front, false) == FaceTurn.Left && FacePoseMath.TurnedTo(FaceTurn.Left, true) == FaceTurn.Front,
-            "a turn now and then: from the front to a side, from a side to the front");
 
         // ---------------- Where the head sits ----------------
         var all = (FaceBearing[])Enum.GetValues(typeof(FaceBearing));
@@ -116,42 +114,22 @@ public static class FacePoseTests
         C(FacePoseMath.PoseFrom == 64f && FacePoseMath.NeckBelow > 0f && FacePoseMath.NeckBelow < 0.4f, "round portraits take a pose from 64 across (an event card's); the neck under the face");
 
         // ---------------- A little movement ----------------
-        float minB = 9f, maxB = 0f, minS = 9f, maxS = -9f, turned = 0f, lastK = 0f, worst = 0f;
-        int turns = 0;
-        bool? lastSide = null;
-        bool alternates = true, wasTurned = false;
+        // Breathing and a slow sway; no turn to a side since 21 November 2026 (the large portraits stay front-on).
+        float minB = 9f, maxB = 0f, minS = 9f, maxS = -9f;
         const float step = 1f / 60f;
         for (float t = 0f; t < 600f; t += step)
         {
-            float b = FacePoseMath.Breath(t, 1234), s = FacePoseMath.Sway(t, 1234), k = FacePoseMath.Turned(t, 1234, out bool right);
+            float b = FacePoseMath.Breath(t, 1234), s = FacePoseMath.Sway(t, 1234);
             minB = Math.Min(minB, b);
             maxB = Math.Max(maxB, b);
             minS = Math.Min(minS, s);
             maxS = Math.Max(maxS, s);
-            if (k > 0f) turned += step;
-            worst = Math.Max(worst, Math.Abs(k - lastK));
-            lastK = k;
-            if (k > 0.5f && !wasTurned)
-            {
-                turns++;
-                if (lastSide.HasValue && lastSide.Value == right) alternates = false;
-                lastSide = right;
-            }
-            wasTurned = k > 0.5f;
         }
         C(minB >= 1f - 1e-5f && maxB <= 1f + FacePoseMath.BreathDepth + 1e-5f && maxB - minB > FacePoseMath.BreathDepth * 0.9f, $"breathing: the body a little taller and back ({minB:0.0000} to {maxB:0.0000})");
         C(maxS <= FacePoseMath.SwayDegrees + 1e-4f && minS >= -FacePoseMath.SwayDegrees - 1e-4f && maxS > 0.4f, "the sway: half a degree each way");
-        C(turns >= 15 && turns <= 26, $"a turn every 24 to 36 seconds ({turns} in ten minutes)");
-        C(turned / 600f > 0.05f && turned / 600f < 0.15f, $"turned about a tenth of the time ({turned / 600f:0.00})");
-        C(worst <= step / FacePoseMath.TurnFade * 1.6f, $"each turn fades in and out, never a jump ({worst:0.000} a frame)");
-        C(alternates, "the turns go to one side, then the other");
         foreach (int seed in new[] { -5, 0, 1, 99999, int.MaxValue })
-        {
-            float c = FacePoseMath.TurnCycle(seed);
-            C(c >= FacePoseMath.TurnEveryLeast && c <= FacePoseMath.TurnEveryMost, $"seed {seed}: its own cycle ({c:0.0} s)");
-            C(!float.IsNaN(FacePoseMath.Breath(3f, seed)) && !float.IsNaN(FacePoseMath.Sway(3f, seed)) && !float.IsNaN(FacePoseMath.Turned(3f, seed, out _)), $"seed {seed}: no NaN");
-        }
-        C(FacePoseMath.TurnCycle(1) != FacePoseMath.TurnCycle(2) || FacePoseMath.TurnCycle(2) != FacePoseMath.TurnCycle(3), "people don't all turn together");
+            C(!float.IsNaN(FacePoseMath.Breath(3f, seed)) && !float.IsNaN(FacePoseMath.Sway(3f, seed)), $"seed {seed}: no NaN");
+        C(FacePoseMath.Sway(3f, 1) != FacePoseMath.Sway(3f, 2) || FacePoseMath.Sway(3f, 2) != FacePoseMath.Sway(3f, 3), "people don't all sway together");
 
         // ---------------- The head drawn apart: the test picture ----------------
         float[] Rows(params float[] r) => r;
@@ -190,8 +168,9 @@ public static class FacePoseTests
             "the expression comes as the game draws the portrait again, never forced");
         C(engine.Contains("if (!(Find.TickManager?.Paused ?? true)) clock += ") && engine.Contains("bool animate = moving && Moves && !dead;"),
             "the movement holds still while the game is paused, and only where asked, with the setting");
-        C(engine.Contains("UI.RotateAroundPivot(lean, new Vector2(r.center.x, r.yMax))") && engine.Contains("FacePoseMath.Breath(clock, seed)") && engine.Contains("FacePoseMath.Turned(clock, seed, out right)"),
-            "the lean and sway about the feet, the breath, the turn: transforms of the pictures already made");
+        C(engine.Contains("UI.RotateAroundPivot(lean, new Vector2(r.center.x, r.yMax))") && engine.Contains("FacePoseMath.Breath(clock, seed)") && engine.Contains("FacePoseMath.Sway(clock, seed)"),
+            "the lean and sway about the feet, the breath: transforms of the pictures already made");
+        C(engine.Contains("pose.turn = FaceTurn.Front;") && !engine.Contains("Turned("), "the large portraits always front-on: no turn in the movement, no shy half-turn (the player, 21 November 2026)");
         // Only the large portrait at the inspect pane and the colonist card move.
         var moving = new List<string>();
         foreach (var f in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))

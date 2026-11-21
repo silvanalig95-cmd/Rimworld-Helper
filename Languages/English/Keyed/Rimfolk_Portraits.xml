@@ -7,7 +7,7 @@
   <!-- Settings -->
   <CC_SetSec_Portraits>Portraits</CC_SetSec_Portraits>
   <CC_Settings_InspectPortrait>A large portrait at the inspect pane</CC_Settings_InspectPortrait>
-  <CC_Settings_InspectPortrait_Tip>With one person selected on the map (a colonist, a slave, a prisoner, a visitor, a raider), a large portrait of them stands above the inspect pane at the bottom left, with their name and the name the colony knows them by. With a tab open (Bio, Gear, Health) it stands beside the tab. Drag its top right corner to make it larger or smaller; click it for their card. Needs the deeper game hooks.</CC_Settings_InspectPortrait_Tip>
+  <CC_Settings_InspectPortrait_Tip>With one person selected on the map (a colonist, a slave, a prisoner, a visitor, a raider), a large portrait of them stands above the inspect pane at the bottom left, facing the front, with their name and the name the colony knows them by. While a tab is open (Bio, Gear, Health, Log) it is hidden and the tab has the room. Drag its top right corner to make it larger or smaller; click it for their card. Needs the deeper game hooks.</CC_Settings_InspectPortrait_Tip>
   <CC_SetNote_InspectPortrait>The selected person's face, large, above the inspect pane.</CC_SetNote_InspectPortrait>
   <CC_Settings_InspectPortraitSize>Its size</CC_Settings_InspectPortraitSize>
   <CC_Settings_InspectPortraitSize_Tip>How wide and tall the portrait at the inspect pane is, from 96 to 360. Dragging its top right corner sets this too. Where the screen has less room, it is drawn smaller.</CC_Settings_InspectPortraitSize_Tip>
@@ -19,11 +19,11 @@
   <CC_Settings_PortraitClothes_Tip>On, portraits show the clothes and armour on the body as worn. Off, the body without them, so new armour changes nothing in the picture.</CC_Settings_PortraitClothes_Tip>
   <CC_SetNote_PortraitClothes>Portraits show the clothes and armour they wear.</CC_SetNote_PortraitClothes>
   <CC_Settings_PortraitPoses>Poses in portraits</CC_Settings_PortraitPoses>
-  <CC_Settings_PortraitPoses_Tip>A person's portrait shows how they hold themselves: the chin up for the proud (a proud trait, a council seat, the head of a people, a title), the head a little down for the sad or grieving, a lean for the angry (a break, a fresh quarrel), turned half away for the shy, a slight stoop for the old, the head low for a prisoner, and the dead drawn grey. A pose stays for at least an hour of the game unless a break, death or captivity changes it. The large portraits and those in letters and cards take a pose; the small ones in lists face the front. Two people side by side in a letter or a tie face each other either way.</CC_Settings_PortraitPoses_Tip>
+  <CC_Settings_PortraitPoses_Tip>A person's portrait shows how they hold themselves: the chin up for the proud (a proud trait, a council seat, the head of a people, a title), the head a little down for the sad or grieving, a lean for the angry (a break, a fresh quarrel), turned half away for the shy in letters and cards, a slight stoop for the old, the head low for a prisoner, and the dead drawn grey. A pose stays for at least an hour of the game unless a break, death or captivity changes it. The large portraits and those in letters and cards take a pose; the large portraits always face the front, and the small ones in lists face the front too. Two people side by side in a letter or a tie face each other either way.</CC_Settings_PortraitPoses_Tip>
   <CC_SetNote_PortraitPoses>Portraits show the proud, the sad, the angry, the shy, the old, prisoners and the dead each their own way.</CC_SetNote_PortraitPoses>
   <CC_Settings_PortraitsMove>Portraits move a little</CC_Settings_PortraitsMove>
-  <CC_Settings_PortraitsMove_Tip>The large portrait at the inspect pane and the one on the colonist card breathe, sway a little and now and then turn to one side and back. They hold still while the game is paused. The small portraits in lists never move.</CC_Settings_PortraitsMove_Tip>
-  <CC_SetNote_PortraitsMove>The large portraits breathe, sway and now and then turn to one side; still while paused.</CC_SetNote_PortraitsMove>
+  <CC_Settings_PortraitsMove_Tip>The large portrait at the inspect pane and the one on the colonist card breathe and sway a little, always facing the front. They hold still while the game is paused. The small portraits in lists never move.</CC_Settings_PortraitsMove_Tip>
+  <CC_SetNote_PortraitsMove>The large portraits breathe and sway a little; still while paused.</CC_SetNote_PortraitsMove>
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>

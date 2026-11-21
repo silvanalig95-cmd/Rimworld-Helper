@@ -27,8 +27,8 @@ namespace ColonyCouncil
     /// redraws a pawn the game marks dirty, so only the portraits on screen are held, at their size.</item>
     /// <item>Phase 2: the way they face (the game's side views for two facing each other), a pose by who they are and
     /// how they are (the head drawn apart from the body and set on it, <c>FaceEngineSplit.cs</c>; the pose chosen and kept
-    /// steady, <c>FaceEnginePoses.cs</c>), and a little movement on the large portraits: breathing, a slow sway, now and
-    /// then a turn to a side view and back, all as transforms of the pictures already made.</item>
+    /// steady, <c>FaceEnginePoses.cs</c>), and a little movement on the large portraits: breathing and a slow sway, as
+    /// transforms of the pictures already made. The large portraits are always front-on (phase 3).</item>
     /// </list>
     /// </summary>
     [StaticConstructorOnStartup]
@@ -170,7 +170,10 @@ namespace ColonyCouncil
         /// A portrait in a tile (square or tall): their colour behind, the light behind the head, the game's drawing of
         /// them framed by the face in their pose. With <paramref name="renderSize"/>, the pictures are rendered at that size
         /// and drawn into the tile (while the large portrait is being resized, so no picture is made at every step of the
-        /// drag). With <paramref name="moving"/> (the large portrait, the colonist card), a little movement.
+        /// drag). With <paramref name="moving"/> (the large portrait, the colonist card), a little movement: breathing and
+        /// a slow sway. Always front-on (the player, 21 November 2026, of the large portrait: "it looks a bit weird if
+        /// they're facing back sidewards ... just show them from the front angle when I select them"): no turn to a side
+        /// in the movement, and the shy are not turned half away here.
         /// </summary>
         public static void Draw(Rect r, Pawn p, FaceFrame frame, Vector2? renderSize = null, float alpha = 1f, bool moving = false)
         {
@@ -178,6 +181,7 @@ namespace ColonyCouncil
             Tick();
             var l = LookOf(p);
             var pose = PoseOf(p, FaceTurn.Front, true);
+            pose.turn = FaceTurn.Front;
             var size = Whole(renderSize ?? r.size);
             bool dead = pose.bearing == FaceBearing.Dead;
             Widgets.DrawBoxSolid(r, UiKit.WithAlpha(dead ? UiKit.PortraitBack : l.back, alpha));
@@ -186,18 +190,12 @@ namespace ColonyCouncil
             int seed = p.thingIDNumber;
             float clock = moving && Moves ? Clock : 0f;
             bool animate = moving && Moves && !dead;
-            float k = 0f;
-            bool right = false;
-            if (animate) k = FacePoseMath.Turned(clock, seed, out right);
             GUI.BeginGroup(r);
             try
             {
                 var local = new Rect(0f, 0f, r.width, r.height);
                 float breath = animate ? FacePoseMath.Breath(clock, seed) : 1f, sway = animate ? FacePoseMath.Sway(clock, seed) : 0f;
-                // A turn fades one view into the other, each full until halfway, so the figure never thins as it turns.
-                float usual = Mathf.Min(1f, 2f * (1f - k)), turned = Mathf.Min(1f, 2f * k);
-                if (usual > 0.001f) DrawLayer(local, p, frame, size, pose, usual * alpha, breath, sway);
-                if (turned > 0.001f) DrawLayer(local, p, frame, size, new FacePose(FacePoseMath.TurnedTo(pose.turn, right), pose.bearing), turned * alpha, breath, sway);
+                DrawLayer(local, p, frame, size, pose, alpha, breath, sway);
             }
             finally
             {

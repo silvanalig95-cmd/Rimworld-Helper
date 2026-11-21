@@ -18,9 +18,12 @@ namespace ColonyCouncil
     /// <list type="bullet">
     /// <item>The pane is read as it is on the screen (its window and the top the game gives its tabs), so a mod that
     /// makes it taller or wider (RimHUD) moves the portrait with it.</item>
-    /// <item>An open tab (Bio, Gear, Health...) is read from the game's own tab (its rect as the game draws it): the
-    /// portrait stands right of it, its foot level with the tab's and above the gizmos; with no room there, above the
-    /// tab; with no room at all, it waits until the tab is closed (<see cref="FaceMath.Place"/>).</item>
+    /// <item>Shown only while no tab is open (the player, 21 November 2026: "it only needs to be shown when you click the
+    /// pawn, without having one of these tabs open ... Once you click one of these tabs, the image of the pawn can,
+    /// disappear in favor of the tab"): with Bio, Gear, Health or any other tab open it gives way to the tab
+    /// (<see cref="FaceMath.Place"/>).</item>
+    /// <item>Always front-on (the player, the same day: "just show them from the front angle when I select them"): no
+    /// turn to a side in its movement and no shy half-turn (<see cref="FaceEngine.Draw"/>).</item>
     /// <item>Dragging its free corner (the top right) sizes it, 96 to 360, kept in the settings between games; while
     /// dragging, the picture made at the start is shown larger or smaller, and it is drawn sharp again at the new size
     /// when the mouse is let go, so no picture is made at every step.</item>
@@ -47,9 +50,6 @@ namespace ColonyCouncil
 
         private static bool dragging;
         private static float dragStart, dragSize, dragX, dragY;
-
-        private static Func<InspectTabBase, Rect> tabRect;
-        private static bool tabRectBroken;
 
         private static Pawn named;
         private static float namedUntil;
@@ -92,7 +92,7 @@ namespace ColonyCouncil
             return p.RaceProps != null && p.RaceProps.Humanlike ? p : null;
         }
 
-        /// <summary>The inspect pane, its tab buttons, an open tab and the gizmos, as they are on the screen now.</summary>
+        /// <summary>The inspect pane, its tab buttons, whether a tab is open, and the gizmos, as they are on the screen now.</summary>
         private static FaceMath.PaneScene Scene(MainTabWindow_Inspect pane)
         {
             var w = pane.windowRect;
@@ -115,43 +115,16 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("the portrait at the inspect pane: the pane's top and the gizmos", e);
             }
             var type = pane.OpenTabType;
-            InspectTabBase open = null;
             bool any = false;
             foreach (var t in pane.CurTabs ?? Enumerable.Empty<InspectTabBase>())
             {
                 if (t == null || !t.IsVisible || t.Hidden) continue;
                 any = true;
-                if (type != null && t.GetType() == type) open = t;
+                // The tab the pane has open, when it is one it shows for this person: the portrait gives way to it.
+                if (type != null && t.GetType() == type) s.tabOpen = true;
             }
             s.tabs = any;
-            if (open != null)
-            {
-                s.tabOpen = true;
-                // A tab whose place can't be read is taken as filling the screen above the pane: the portrait waits.
-                s.tab = TabRect(open, out var tr)
-                    ? new FrameRect(tr.x, tr.y, tr.width, tr.height)
-                    : new FrameRect(0f, 0f, UI.screenWidth, Mathf.Max(0f, s.paneTop - FaceMath.TabRowH));
-            }
             return s;
-        }
-
-        /// <summary>The open tab's rect as the game draws it (InspectTabBase.TabRect, which other mods may move).</summary>
-        private static bool TabRect(InspectTabBase tab, out Rect r)
-        {
-            r = default;
-            if (tabRectBroken) return false;
-            try
-            {
-                tabRect ??= AccessTools.MethodDelegate<Func<InspectTabBase, Rect>>(AccessTools.PropertyGetter(typeof(InspectTabBase), "TabRect"));
-                r = tabRect(tab);
-                return true;
-            }
-            catch (Exception e)
-            {
-                tabRectBroken = true;
-                CouncilLog.ErrorOnce("the portrait at the inspect pane: an open tab's place (it waits while a tab is open)", e);
-                return false;
-            }
         }
 
         // ---------------- The window ----------------

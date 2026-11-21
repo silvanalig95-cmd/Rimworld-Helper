@@ -47,7 +47,12 @@ public static class FaceEngineTests
         var bust = FaceMath.Frame(FaceFrame.Bust, 0f, 0.34f, 1.5f, 192f, 192f);
         C(bust.headV > 0.35f && bust.headV < 0.48f, $"the bust: the face about two fifths down ({bust.headV:0.00})");
         float bustTop = bust.z + 1f / bust.zoom;
-        C(bustTop >= 0.34f + 0.4f * 1.5f - 0.001f, $"the bust keeps the hair's room above the head ({bustTop:0.00})");
+        C(bustTop >= 0.34f + 0.3f * 1.5f - 0.001f, $"the bust keeps the hair's room above the head ({bustTop:0.00})");
+        // Bigger and centred (the player, 21 November 2026: "The pawn could be centered further, and be a bit bigger"):
+        // closer than in 0.289.0 (1.05 head sizes across, the top 0.44 above the head), the head at least a fifth larger.
+        var bustBefore = FaceMath.Frame(FaceFrame.Bust, 0f, 0.34f, 1.5f, 192f, 192f);
+        C(FaceMath.BustSpan <= 0.85f && FaceMath.BustTop <= 0.34f && bust.headShare >= 1.2f * (1f / 1.05f) && bust.headV <= 0.42f,
+            $"the bust bigger and centred: the head {bust.headShare:0.00} of the height (was {1f / 1.05f:0.00}), its middle {bust.headV:0.00} down");
         C(bust.z - 1f / bust.zoom < 0f, "the bust reaches below the shoulders to the chest");
         var face = FaceMath.Frame(FaceFrame.Face, 0f, 0.34f, 1.5f, 192f, 192f);
         C(face.headShare > bust.headShare, "the round portraits are closer on the face than the bust");
@@ -121,21 +126,11 @@ public static class FaceEngineTests
         var v = Vanilla(1920f, 1080f);
         C(FaceMath.Place(v, 192f, out var r) == FaceMath.Placed.OnPane && r.Near(new FrameRect(0f, 658f, 192f, 192f)),
             $"no tab open: on the tab buttons at the pane's left, 192 across ({r})");
+        // Any tab open (Bio, Gear, Health, Log): it gives way to the tab (the player, 21 November 2026).
         var gear = v;
         gear.tabOpen = true;
-        gear.tab = new FrameRect(0f, 850f - 450f, 460f, 450f);
-        C(FaceMath.Place(gear, 192f, out r) == FaceMath.Placed.BesideTab && r.Near(new FrameRect(466f, 658f, 192f, 192f)), $"the gear tab open: right of it, its foot level with the tab's ({r})");
-        var gizmos = gear;
-        gizmos.gizmoTop = 700f;
-        C(FaceMath.Place(gizmos, 192f, out r) == FaceMath.Placed.BesideTab && r.YMax <= 700f - FaceMath.Gap && r.x == 466f, $"three rows of gizmos: lifted above them ({r})");
-        var wide = v;
-        wide.tabOpen = true;
-        wide.tab = new FrameRect(0f, 100f, 1800f, 750f);
-        C(FaceMath.Place(wide, 192f, out r) == FaceMath.Placed.BesideTab && r.w == 112f, $"a very wide tab: beside it, smaller ({r})");
-        wide.tab = new FrameRect(0f, 400f, 1850f, 450f);
-        C(FaceMath.Place(wide, 192f, out r) == FaceMath.Placed.AboveTab && r.Near(new FrameRect(0f, 202f, 192f, 192f)), $"no room beside a tab: above it at the pane's left ({r})");
-        wide.tab = new FrameRect(0f, 60f, 1900f, 790f);
-        C(FaceMath.Place(wide, 192f, out r) == FaceMath.Placed.None, "a tab that fills the screen: it waits until the tab is closed");
+        C(FaceMath.Place(gear, 192f, out r) == FaceMath.Placed.None && !Enum.GetNames(typeof(FaceMath.Placed)).Any(x => x.Contains("Tab")),
+            "a tab open: not shown, never beside or above the tab");
         // RimHUD's taller pane, read from its window, whether or not it moves the tabs' top too.
         var hud = Vanilla(1920f, 1080f, 265f);
         C(FaceMath.Place(hud, 192f, out r) == FaceMath.Placed.OnPane && r.YMax == 780f - FaceMath.TabRowH, $"a taller pane (RimHUD): on its tab buttons ({r})");
@@ -148,38 +143,33 @@ public static class FaceEngineTests
         int placed = 0, waited = 0;
         foreach (var (sw, sh) in new[] { (1280f, 720f), (1920f, 1080f), (2560f, 1440f), (3840f, 2160f), (960f, 540f), (1366f, 768f) })
         foreach (float paneH in new[] { 165f, 265f })
-        foreach (float tabW in new[] { 0f, 460f, 630f, 800f, 1200f, 1800f, 4000f })
-        foreach (float tabH in new[] { 300f, 450f, 700f, 1000f })
+        foreach (bool tabOpen in new[] { false, true })
         foreach (float gizmoRows in new[] { 0f, 1f, 3f, 5f })
         foreach (float size in new[] { 96f, 192f, 300f, 360f })
         {
             var s = Vanilla(sw, sh, paneH);
             s.gizmoTop = gizmoRows == 0f ? sh : sh - 35f - gizmoRows * 80f;
             float baseY = s.pane.y - FaceMath.TabRowH;
-            if (tabW > 0f)
-            {
-                s.tabOpen = true;
-                s.tab = new FrameRect(0f, Math.Max(0f, baseY - tabH), Math.Min(tabW, sw), Math.Min(tabH, baseY));
-            }
+            s.tabOpen = tabOpen;
             var how = FaceMath.Place(s, size, out r);
-            string at = $"{sw}x{sh}, pane {paneH}, tab {tabW}x{tabH}, {gizmoRows} gizmo rows, {size}";
+            string at = $"{sw}x{sh}, pane {paneH}, a tab {(tabOpen ? "open" : "closed")}, {gizmoRows} gizmo rows, {size}";
             if (how == FaceMath.Placed.None)
             {
                 waited++;
                 C(s.tabOpen || baseY - FaceMath.TopClear < FaceMath.SizeLeast, $"{at}: only waits for a tab or a screen with no room");
                 continue;
             }
+            C(!s.tabOpen, $"{at}: never shown while a tab is open");
             placed++;
             var row = new FrameRect(s.pane.x, baseY, s.pane.w, FaceMath.TabRowH);
             var giz = new FrameRect(s.pane.XMax, s.gizmoTop, Math.Max(0f, sw - s.pane.XMax), Math.Max(0f, sh - s.gizmoTop));
             C(!FaceMath.Overlap(r, s.pane) && !FaceMath.Overlap(r, row), $"{at}: off the pane and its tab buttons ({r})");
-            C(!s.tabOpen || !FaceMath.Overlap(r, s.tab), $"{at}: off the open tab ({r})");
             C(!FaceMath.Overlap(r, giz), $"{at}: off the gizmos ({r})");
             C(r.x >= 0f && r.XMax <= sw && r.y >= FaceMath.TopClear && r.YMax <= baseY, $"{at}: on the screen ({r})");
             C(r.w == r.h && r.w % FaceMath.SizeStep == 0f && r.w >= FaceMath.SizeLeast && r.w <= FaceMath.Snap(size), $"{at}: square, in steps, no larger than asked ({r})");
             C(how != FaceMath.Placed.OnPane || (r.x == s.pane.x && r.YMax == baseY), $"{at}: with no tab, standing on the tab buttons at the left");
         }
-        C(placed > 1500 && waited > 0, $"placed {placed} times, waited {waited} times");
+        C(placed > 150 && waited >= placed, $"placed {placed} times, waited {waited} times");
 
         // ---------------- The seams ----------------
         string engine = Read("UI/Faces/FaceEngine.cs"), inspect = Read("UI/Faces/InspectPortrait.cs"), kit = Read("UI/UiKit.cs"), card = Read("UI/ColonistCard/ColonistCardWindow.cs");
@@ -204,8 +194,8 @@ public static class FaceEngineTests
         C(inspect.Contains("Find.WindowStack.ImmediateWindow(WindowId, rect, WindowLayer.GameUI, DrawAction, false, false, 0f)"),
             "a window the size of the portrait, taking no clicks around it");
         C(inspect.Contains("pane.windowRect") && inspect.Contains("pane.PaneTopY") && inspect.Contains("pane.OpenTabType") && inspect.Contains("pane.CurTabs")
-          && inspect.Contains("AccessTools.PropertyGetter(typeof(InspectTabBase), \"TabRect\")") && inspect.Contains("GizmoGridDrawer.HeightDrawnRecently"),
-            "the pane, an open tab and the gizmos read as they are on the screen");
+          && !inspect.Contains("\"TabRect\"") && inspect.Contains("GizmoGridDrawer.HeightDrawnRecently"),
+            "the pane, whether a tab is open, and the gizmos read as they are on the screen (no open tab's place needed any more)");
         C(inspect.Contains("sel.NumSelected != 1") && inspect.Contains("p.RaceProps.Humanlike"), "one person selected, anyone humanlike");
         C(inspect.Contains("FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs), 1f, true)") && inspect.Contains("if (!dragging) render = rect.width;"),
             "drawn at its size, and while dragged the picture of the start is shown, no new one at every step");
