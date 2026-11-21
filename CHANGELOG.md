@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The sick tended, and pawns that face the way they walk
+
+*21 November 2026, version 0.291.1*
+
+- Fixed: colonists with a cold, a bruise or another small thing to tend now lie down to be tended once a doctor is free, then go back to work; the check for a free doctor never worked, so they went untended until they happened to be in bed.
+- Fixed: what tending decides is seen to before small things: an illness the body builds immunity to, a cold that can turn into pneumonia, lice, and a wound in its first hours that may still get infected; the condition's tooltip says why.
+- Fixed: the thorn-guards at a fire, an animal following someone, visitors sparring, and colonists keeping someone company or walking together now turn to the way they walk instead of sliding across the map facing one way.
+
 ## Camps keep their things dry, and traits that fit a life
 
 *21 November 2026, version 0.291.0*

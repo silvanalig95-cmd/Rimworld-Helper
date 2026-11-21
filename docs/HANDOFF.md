@@ -885,7 +885,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Fixes: the sick tended first
+- 0.291.1, **Fixes: the sick tended first
   where tending matters, and pawns that turn to the way they walk** (21 November 2026; the player's go: "please go all
   ahead with this and all the next steps that you listed", the list naming both; of the colds, with League_of_Toba_10: "if it's just a bruise ... they don't necessarily have to
   prioritize attending as much ... But for these viruses and stuff that, you know, you have to develop immunity, or where

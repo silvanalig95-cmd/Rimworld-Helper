@@ -9856,7 +9856,7 @@ hours of sleep against the game's seven). The game's and other mods' conditions 
 game has it. Rimfolk's own ailments follow the rule alone, so some get bed at their worst where the game gave none
 (scurvy, rabies, a torn back, a migraine, a kidney stone).
 
-**What is to tend, in three kinds** (a fix, 21 November 2026; not released yet). The player, with League_of_Toba_10:
+**What is to tend, in three kinds** (a fix, 21 November 2026; released 0.291.1). The player, with League_of_Toba_10:
 "now I have a bunch of pawns having the common cold, and they are just continuing to work, which in general is good, but
 some of them are not tended yet and are still working ... if it's just a bruise ... they don't necessarily have to
 prioritize attending as much ... But for these viruses and stuff that, you know, you have to develop immunity, or where
@@ -20197,7 +20197,7 @@ game was paused. The job was saved with him.
 - Since harm parts 5 to 7 (7 November 2026) none of those eight walks had played out: each try left the pawn so, or
   failed with an error. They now play out as written in their sections above.
 
-## Pawns turn to the way they walk (the player's report, 21 November 2026; not released yet)
+## Pawns turn to the way they walk (the player's report, 21 November 2026; released 0.291.1)
 
 The player, of the thorn-guards at a run (`Rimfolk_Events_PeopleEvents6.xml`, `Peoples/Events6/CanopyFire.cs`): "When
 they were walking, the pawns were not actually using the walk, animation ... Instead, they were kind of a static sprite,
