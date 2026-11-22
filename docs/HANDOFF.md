@@ -543,6 +543,16 @@ most sense." So, in this order, three builds at a time:
   it (a hard rule; the pawn's own looks a picture lacks only cost), plain pictures are the defaults (to the looks
   build); the catalogue plans defaults first, then showy looks tied to traits, classes, genes and roles, with wide
   range in expression and bearing (to the catalogue build).
+  And on repeats: "it should not be that the same image comes over and over again frequently ... once one of my
+  colonists has an image, that image is definitely locked and exclusive to that colonist per save ... your diplomatic
+  contacts, maybe they also get not that their images are repeated ... I'd rather have pawns ... rather no image than
+  that we keep repeating the images ... with things like raiders or guests ... more lenient ... once I capture a raider,
+  make him a slave, or even recruit him, or if I recruit a guest, that kind of locks in the image ... more specific
+  images like the co-joined twin examples ... you can reuse that more frequently". So (to the looks build): per save;
+  the player's people (prisoners too) and notable people (faction leaders, titled nobles, the colony's contacts) hold
+  their pictures alone; strangers share only when never seen together (a setting: never, when not seen together,
+  always); special looks shared freely among strangers; else the game's drawing, counted in missing.csv as "no free
+  picture" so more get planned.
 - **To do when the player asks (22 November 2026, the player; nothing built yet): pictures checked by what they show.**
   The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
   goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
