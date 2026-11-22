@@ -199,7 +199,6 @@ namespace ColonyCouncil
             foreach (var pin in pins) pinOwners[pin] = PortraitLibraryMath.PinOwner(pin, colonists);
         }
 
-        /// <summary>Whether a pinned picture is this person's (a colonist of the player's the pin names).</summary>
         /// <summary>
         /// One of the colony's own people (a colonist or a slave of the player's; not a prisoner, a guest or a lodger): their
         /// picture is theirs alone (the player, 22 November 2026: "once a pawn is part of my colony, their image should no
@@ -225,6 +224,7 @@ namespace ColonyCouncil
         /// <summary>Whether a face is another's own (a colonist's, or pinned to someone else).</summary>
         private bool Taken(string character, int id) => !character.NullOrEmpty() && owners.TryGetValue(character, out int owner) && owner != id;
 
+        /// <summary>Whether a pinned picture is this person's (a colonist of the player's the pin names).</summary>
         private bool Theirs(PortraitRecord r, Pawn p)
         {
             if (!r.Pinned || p.Faction != Faction.OfPlayerSilentFail) return false;

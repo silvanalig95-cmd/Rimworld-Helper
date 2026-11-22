@@ -425,6 +425,73 @@ most sense." So, in this order, three builds at a time:
   game, with backdrops" above the newest release line): the pictures read from the player's library folder (or a mod's
   Portraits folder) when shown, the backdrop by room, age, contents and land, tinted by the light (the weather's tint
   not built), with the settings; the pictures themselves and the pack script are the lead's.
+- **Go given (22 November 2026, the player: "let's start like this then ... what is the plan to actually get this into
+  the game now? Like a first attempt ... let's just start with the colonists that I have as a first batch"): the painted
+  library in the game.** The player also: "the backgrounds are correctly selected based on age and what it contains and
+  what kind of room it is ... a proper database about what it is ... will this require a lot of performance ... the
+  impact on the gameplay and performance requirements on the device are hopefully not big"; and, binding for how
+  pictures change: "I want to be careful with images changing ... the AI images, they are not consistent with the faces
+  most of the time. So ... it should really select an image once the pawn ... enters the game the first time based on
+  how the pawn looks like at that stage. And if a pawn loses an arm later on ... continue using the same image ... But
+  exceptions ... if a kid is getting older, enters a new life stage, then of course it should be reflected ... but not
+  necessarily on every single new haircut". The in-game part (loading on demand from the pack's own folder, pins for the
+  player's colonists, the closest picture always, babies and toddlers, picked once and kept except at a child's new age
+  band, backdrops by room kind, age, contents and biome, the drawing and its settings) went to a build agent. Done by
+  the lead: the record columns in `batches/colonists.csv` (read from League_of_Toba_11; pins by the name each goes by)
+  and `batches/backdrops.csv` (place, room kinds, outdoor look, age, contents), `batches/colonists-redo.csv` (Ape again:
+  she came out as an old man), and `Tools/PortraitArt/Make-PortraitPack.ps1` (picks into the local mod "Rimfolk
+  Portraits": About, a PortraitDef or BackdropDef per picture from its row, the pictures under `Portraits/`; rebuilt
+  each run; it never touches a folder that isn't its own; tested here), `SETUP-ComfyUI.md` step 7.
+  Then the player: "I play on two computers, and whenever I do any update, I always need to update it on both devices
+  ... I just wonder how that's going to be then done with all these images"; on old age: "eventually, yeah, we should
+  update the image"; and on growing the library: "there's a room that's not yet represented ... a xenotype ... that we
+  can then generate these scripts to create images to just include what is missing and not ... go through the entire
+  list another time ... a constantly evolving database of images for backgrounds, pawns, and also maybe animals and
+  creatures at a later stage." So no second mod: Rimfolk reads a library folder (a setting, set once per computer; the
+  player keeps it in Google Drive, available offline) with `records.xml` and the pictures, a "Reload the library"
+  button, and writes `missing.csv` (what it needed and had none of); entering old age is a new pick (told to the build
+  agent). The lead's script became `Tools/PortraitArt/Update-PortraitLibrary.ps1` (writes `library/records.xml` from the
+  pictures in `library/<batch>/` and their rows; shows `missing.csv`), and `Run-PortraitBatch.ps1` offers to make only
+  the rows the library has no picture of yet (both tested here).
+  And on ages: "there should be perhaps kind of different kind of age ranges that should then also be represented in
+  game, you know, baby, infant, small child, teenager, young adult, middle-aged adult, old person, etc." So the nine
+  bands of `FRAMEWORK.md` (baby, toddler, child, teen, young, adult, middle, old, elder) in the records and the matcher,
+  a new pick at each child stage, at teen to young and into old (told to the build agent); the colonists' records use
+  them (Ape and Webb middle, Trorgakoc, Lorena and Ettrian young).
+  And: "the age range should always be corresponding to the xenotype ... some even can live forever technically ...
+  Not that an ... elf that's still young with a certain age is shown as an old person ... keep our entire list of
+  xenotypes in mind when creating these images." So the band is how old a pawn looks: its biological age (genes that
+  slow, speed or stop ageing count by themselves), the grown-up limits stretched by the race's life expectancy and the
+  pawn's lifespan factor, an ageless pawn growing older in looks slowly, as if it lived ten times as long (the player:
+  "ageless pawns can also look ... old, middle-aged, or even elderly over time if they are like really super old");
+  every prompt says the age a person looks, never their years (told to the build agent; the genes of the
+  player's mods that change ageing are listed in `FRAMEWORK.md` pillar 3, and every look sheet says how its kind ages).
+  And: "I would really like to have as few repeated images as possible ... a hard rule should be once a pawn is part of
+  my colony, their image should no longer be used for anyone else. And even ... replace anyone else who already has
+  that image so that it's really uniquely, individually tied to my pawn. And then also ... on all these event cards or
+  diplomacy cards, where a small image of the pawn is shown, that should also use the pawn's actually new art look and
+  not the in-game pawn." Told to the build agent: unused pictures preferred when picking; a pawn of the player's faction
+  reserves its picture (anyone else holding it gets a new pick; between two colonists the first holder keeps it; kept
+  for the dead too); and every place Rimfolk draws a pawn shows the library picture (the game's own colonist bar, social
+  tab and letters listed as candidates for later).
+  And: "if there is a xenotype appearing in game and there is no image for it, no artwork, it should just show no
+  image, you know, not take another xenotype's image. That will also immediately inform me that I need to generate
+  images for that xenotype as well." So a picture only ever for its own race and xenotype (the near-human fallback to
+  baseliner pictures goes); without one, the game's own drawing, a line in missing.csv, and a picture as soon as one of
+  its kind is in the library (told to the build agent).
+  **Built** (22 November 2026, not released; the entry "Portraits, phase 4: the painted library in the game, with
+  backdrops" above the newest release line): all of the above in the game, the library folder and missing.csv with it.
+- **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
+  varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
+  many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
+  face, for example. I know ultimately it's going to be so many different combinations with all different races and
+  genders and xenotypes and traits, but let's see how far we can go, right? If I can generate these images just on my
+  computer, I don't really mind. And if it ends up being like 20 gigabytes of images, but I then have a ton of variety,
+  it's cool with me. But yeah, first get it working and then really start on expanding the library of images." The
+  lead's thought for then: a "look" word in the records from traits that show on a face (a drinker's red nose and
+  tired eyes, a pyromaniac's singed brows and restless stare, a psychopath's flat cold stare, a jogger's lean face, a
+  beauty's or an ugly one's features), counted by the matcher like features; batch lists written by script across
+  kinds, sexes, ages, skins, hair, looks and poses, the waves of `FRAMEWORK.md`. Storage is no concern to the player.
 - **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
   etc. So I don't know if removing a background for each of them anyways is a sustainable solution. I mean, I cannot

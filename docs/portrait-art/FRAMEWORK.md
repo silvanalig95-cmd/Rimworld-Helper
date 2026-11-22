@@ -48,7 +48,7 @@ key-art look, described in words (no picture of the game's is copied or fed in):
 |---|---|
 | kind | a xenotype or race, by its defName (`Baseliner`, `DevDesigner_XenotypeDarkElves`, `VRESaurids_Saurid` ...) |
 | sex | male, female |
-| age | baby (0 to 1), toddler (1 to 3), child (4 to 12), teen (13 to 17), young (18 to 29), adult (30 to 44), middle (45 to 59), old (60 to 74), elder (75+) |
+| age | how old they look: baby (0 to 1), toddler (1 to 3), child (4 to 12), teen (13 to 17), young (18 to 29), adult (30 to 44), middle (45 to 59), old (60 to 74), elder (75+), the grown-up years for a baseliner, stretched for long-lived kinds |
 | build | slim, average, heavy, muscular |
 | skin | a colour (and for scales, fur or bark the same) |
 | hair colour | a colour |
@@ -76,10 +76,20 @@ and FLUX gets some wrong: those pictures are thrown out.
 ## Pillar 3: the kinds (any race or xenotype, including ones not met yet)
 
 Every kind has a look sheet: what it adds to a human picture (or replaces), in plain words for prompts, and which words of
-pillar 2 it uses. The lead writes it from the kind's own files (its genes and description; a collector script gathers them
-for mods added later), so a kind new to the game gets a sheet the same way. Until a kind has pictures of its own, a near-
-human kind borrows the baseliners' pictures and a far-from-human kind keeps the game's own face (the matcher already does
-this). The order of work follows the player's world (League of Toba, day 138): baseliners, dark elves, then hussars,
+pillar 2 it uses, and how it ages (the player: "the age range should always be corresponding to the xenotype ... some
+... have a much longer age expectancy than others ... some even can live forever technically ... Not that an ... elf
+that's still young with a certain age is shown as an old person"). A picture's age is always how old the person looks,
+and its prompt says so ("looks about 30"), never their years: the game reads the band from the pawn's biological age,
+stretched by its race's life expectancy and its genes' lifespan factor; an ageless pawn (Biotech's Ageless, the elves'
+ageless gene) still grows older in looks, slowly, as if it lived ten times as long (the player: "ageless pawns can also
+look ... old, middle-aged, or even elderly over time if they are like really super old"): young at 200, adult at 300,
+middle-aged around 500, old around 700, elderly past 800. The picture never holds the years, only the look, so one
+picture of "an elf who looks about 30" serves an elf of 30 and an ageless one of 300 alike. The player's active mods change ageing with: Ageless,
+Deathless, DevDesigner_Ageless, DV_LifespanLong, AG_ExtraordinaryLifespan, AG_SlowerAging, AG_FasterAging,
+VRE_SlowAging, VRE_FastAging, VRE_RapidAging, GS_RapidAge. The lead writes it from the kind's own files (its genes and description; a collector script gathers them
+for mods added later), so a kind new to the game gets a sheet the same way. Until a kind has pictures of its own, its people
+keep the game's own drawing (the player: "it should just show no image ... not take another xenotype's image. That will
+also immediately inform me that I need to generate images for that xenotype"), and `missing.csv` lists the kind. The order of work follows the player's world (League of Toba, day 138): baseliners, dark elves, then hussars,
 neanderthals, impids, genies, wasters, saurids, sanguophages, pigskins, starjacks, the elves, avaloi, yttakin, fairies,
 merren and the rest of the 79 active xenotypes.
 
@@ -181,5 +191,12 @@ solution. I mean, I cannot upload that many images to you to edit."
 
 Each round: the player runs a batch (`Tools/PortraitArt/Run-PortraitBatch.ps1`); ComfyUI makes each picture and its
 cut-out. For the first rounds the player zips the output folder with "Zip for upload" and sends it, and the lead checks
-the look. For the hundreds and thousands after, every step per picture has to run on the player's computer by itself (the
-player: "I cannot upload that many images to you"): see "To do: the library at scale" in `docs/HANDOFF.md`.
+the look. For the hundreds and thousands after, every step per picture runs on the player's computer by itself (the player: "I
+cannot upload that many images to you"): the chosen pictures go into the library folder, `Update-PortraitLibrary.ps1`
+writes a record for each from its batch row, and Rimfolk reads the folder directly (`SETUP-ComfyUI.md` step 7).
+
+**An evolving library** (the player: "a constantly evolving database of images for backgrounds, pawns, and also maybe
+animals and creatures at a later stage ... include what is missing and not ... go through the entire list another
+time"): the batch lists only ever grow; Rimfolk writes `library/missing.csv` (the kinds, ages, rooms and biomes it met
+without a picture); the lead turns it into new rows; the batch tool makes only the rows the library has no picture of.
+A new kind of thing (animals, creatures) gets a batch list and record columns of its own the same way.

@@ -493,6 +493,37 @@ public static class PortraitStageTests
                 threw = true;
             }
             C(threw, "a records.xml that is no XML at all: an error the game tells once (the folder's part of the library off)");
+            // The lead's batch lists (docs/portrait-art/batches): every record column the pack script writes reads without a problem.
+            foreach (var (file, backdrop) in new[] { ("colonists.csv", false), ("backdrops.csv", true) })
+            {
+                string path = Path.Combine(root, "docs", "portrait-art", "batches", file);
+                if (!File.Exists(path)) continue;
+                var lines = File.ReadAllLines(path).Where(l => l.Trim().Length > 0).ToList();
+                var head = PortraitFolderMath.Cells(lines[0]);
+                int rows = 0, bad = 0;
+                var said = new List<string>();
+                foreach (var line in lines.Skip(1))
+                {
+                    var cells = PortraitFolderMath.Cells(line);
+                    string? Cell(string col) => head.IndexOf(col) is var at && at >= 0 && at < cells.Count ? cells[at].Trim() : null;
+                    IList<string>? Words(string col) => Cell(col)?.Split(new[] { ';', ',' }, StringSplitOptions.RemoveEmptyEntries).Select(w => w.Trim()).ToList();
+                    var own = new List<string>();
+                    if (backdrop)
+                        BackdropMath.Record(Cell("name"), f => f == "texPath" ? "x" : Cell(f), Words, own);
+                    else
+                    {
+                        string? kind = Cell("kind");
+                        var xenos = string.IsNullOrEmpty(kind) || kind == "Baseliner" ? new List<string>() : new List<string> { kind };
+                        var rec = PortraitLibraryMath.Record(Cell("name"), f => f == "texPath" ? "x" : f == "skinColor" ? Cell("skin") : f == "hairColor" ? Cell("hairColour") : Cell(f),
+                            f => f == "xenotypes" ? xenos : f == "races" ? Words("race") : Words(f), own);
+                        if (!rec.Pinned) own.Add("no pin");
+                    }
+                    rows++;
+                    if (own.Count > 0) bad++;
+                    said.AddRange(own.Select(o => Cell("name") + ": " + o));
+                }
+                C(rows > 0 && bad == 0, $"the batch list {file}: its {rows} rows' records read as Rimfolk's words ({string.Join("; ", said.Take(6))})");
+            }
             C(PortraitFolderMath.CleanFolder("  \"C:\\Users\\Me\\Google Drive\\Rimfolk Portraits\"  ") == "C:\\Users\\Me\\Google Drive\\Rimfolk Portraits" && PortraitFolderMath.CleanFolder(null!) == "",
                 "a folder pasted from Windows in quotes, spaces and a drive letter kept");
             C(PortraitFolderMath.FileKey("colonists/Avila_01") == "colonists/Avila_01.png" && PortraitFolderMath.FileKey("\\backdrops\\a") == "backdrops/a.png", "a picture's path in the folder");
