@@ -543,7 +543,8 @@ most sense." So, in this order, three builds at a time:
   it (a hard rule; the pawn's own looks a picture lacks only cost), plain pictures are the defaults (to the looks
   build); the catalogue plans defaults first, then showy looks tied to traits, classes, genes and roles, with wide
   range in expression and bearing (to the catalogue build).
-- **To do when the player asks (22 November 2026, the player; nothing built yet): pictures checked by what they show.**
+- **Done (22 November 2026, the player's go: "If I can run this model on my PC that does a description database. even
+  more awesome if it's through a comfy UI. Please go ahead."): pictures checked by what they show.**
   The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
   goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
   the image as much as possible." Records come from what the prompt asked, and a picture may show more (a weapon, a
@@ -553,6 +554,26 @@ most sense." So, in this order, three builds at a time:
   features, things held, glowing, wings, fire, armour), compares it with the picture's record, and lists the
   mismatches to throw out or fix, and the things shown that the record should carry as looks. The player looks
   through the list instead of every picture.
+  **Built** (tools and docs only; `SETUP-ComfyUI.md` step 8): `Tools/PortraitArt/Check-Pictures.ps1` with
+  `Check-Pictures.cmd` (a double-click) in the player's `Rimfolk-portraits` folder. The describing model is ComfyUI's
+  own: its Generate Text box with Qwen3.5 (4B, Apache 2.0, from the "Qwen3.5: Text Generation" template, which offers
+  the download; the 9B int8 file of the same size for sharper answers), a Load Image box and a Preview as Text box, no
+  node pack (the ComfyUI-QwenVL pack works the same as a fallback). The player exports it as
+  `rimfolk-check-workflow-api.json` with `%QUESTION%` in the prompt box. For each picture of `library\<batch>\` not
+  asked about before, the script uploads it, asks twenty fixed questions (one "name: answer" line each: people, sex,
+  age in years, skin, hair, beard, ears, horns, tail, wings, eyes, scales or fur, eye marks, hands, weapons, armour,
+  fire or magic, headwear, book or tools, unusual), reads the answer from `/history` (also from numbered, bold,
+  one-line, JSON, table and thinking-first answers) and keeps it in `library\checked.csv` (the description database:
+  name, size, question version, model, each item, the answer). Every run compares all checked pictures with
+  `records.xml` and writes `library\check-report.csv`, worst first: wrong (the other sex, two age bands or more off,
+  more than one person, a person in a backdrop), shows more (a weapon, armour, fire or magic, wings, a crown, a book or
+  tools with no role or look in the row; headwear; features and eye marks the row lacks), shows less (a look or role
+  the picture doesn't show, features the row has), not compared. Look words are matched by their parts ("batWings" is
+  "bat wings"), so the catalogue's new looks count without changes; pictures pinned to a colonist skip the looks and
+  role checks. It never deletes, moves or edits anything but its two files. `Run-PortraitBatch.ps1` now leaves the
+  check's workflow out of its choice. Tested with PowerShell 7 against a stand-in ComfyUI (uploads, queue, history,
+  refusals, errors, a lost prompt, a busy queue) and a fake library; not yet on the player's computer or with the
+  real model, so the first run there shows how well Qwen3.5 answers the form on painted pictures.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the

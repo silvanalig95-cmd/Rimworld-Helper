@@ -527,7 +527,9 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
     $crown = ((Low $hwText) -match $CrownWords) -or ((Low $seen.unusual) -match $CrownWords)
     if ($hw -and (Low $hwText) -match '\bhood' -and (Low $hwText) -match '\b(down|lowered|pushed back|thrown back|back)\b') { $hw = $false }
     if ($hw -and -not $rec.headwear -and -not ($crown -and -not $pinned)) {
-        Add-Issue $issues 2 ('wears headwear ({0})' -f (Short $hwText)) 'throw it out (the portraits are bare-headed; this one would go to people with nothing on their heads)'
+        $fix = 'throw it out (the portraits are bare-headed; this one would go to people with nothing on their heads)'
+        if ($pinned) { $fix = 'throw it out (the portraits are bare-headed)' }
+        Add-Issue $issues 2 ('wears headwear ({0})' -f (Short $hwText)) $fix
     }
 
     # The body: features and marks shown that the row lacks, or that the row has and the picture doesn't show.
