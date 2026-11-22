@@ -113,8 +113,10 @@ $TwinLooks = '\b(conjoined|twins?)\b'
 $WeaponWords = '\b(swords?|sabres?|sabers?|blades?|axes?|hatchets?|spears?|pikes?|halberds?|lances?|bows?|crossbows?|arrows?|guns?|rifles?|pistols?|revolvers?|muskets?|shotguns?|firearms?|knife|knives|daggers?|maces?|clubs?|warhammers?|war hammers?|flails?|shields?|whips?|glaives?|tridents?|katanas?|rapiers?|longswords?|greatswords?|machetes?|javelins?|slings?|grenades?|blasters?|carbines?)\b'
 $MagicWords = '\b(flames?|fire|fireballs?|burning|torch|torches|embers?|blaze|spells?|magic|magical|orbs?|lightning|sparks|aura|runes?|wands?|glowing|frost|arcane|psychic)\b'
 $CrownWords = '\b(crowns?|tiaras?|circlets?|diadems?|coronets?)\b'
+$ArmourWords = '\b(armou?r|armoured|armored|chain ?mail|mail shirt|breastplate|cuirass|gambeson|flak (vest|jacket)|brigandine|pauldrons?|vambraces?|arm guard|military gear|power armou?r)\b'
+$MagicAskWords = '\b(flames?|fire|fireballs?|embers?|sparks?|lightning|glow\w*|runes?|spells?|magic\w*|halo|aura|shimmer\w*|mist|holy light|light about)\b' 
 $ToolRoles = [ordered]@{
-    'scholar'  = '\b(books?|tomes?|scrolls?|quills?|pens?|journals?|notebooks?|maps?|ledgers?|papers?|manuscripts?)\b'
+    'scholar'  = '\b(books?|tomes?|scrolls?|quills?|pens?|journals?|notebooks?|maps?|ledgers?|papers?|manuscripts?|slates?)\b'
     'smith'    = '\b(hammers?|tongs|anvils?|horseshoes?)\b'
     'miner'    = '\b(picks?|pickaxes?|pick-axes?)\b'
     'builder'  = '\b(saws?|chisels?|trowels?|mallets?|bricks?|planks?)\b'
@@ -377,6 +379,43 @@ function Wing-Word([string] $v) {
     return 'otherWings'
 }
 
+function Strip-Glow([string] $t) {
+    # Glowing clothes (a spacer's soft-glowing seams) and glowing eyes are not fire or magic.
+    $t = [regex]::Replace($t, '\b(soft-?|faintly |softly )?glow\w*\s+(seams?|trim|lines|panels?|piping|stitch\w*|circuit\w*|visor|lenses?|buttons?|screens?)\b', ' ')
+    $t = [regex]::Replace($t, 'glow\w*[^.,;]{0,30}\beyes?\b|\beyes?\b[^.,;]{0,30}\bglow\w*', ' ')
+    return $t
+}
+
+function Asks-Of([string] $asked) {
+    # What a row's prompt asks the picture to show.
+    $t = Low $asked
+    $r = @{ weapon = $false; armour = $false; magic = $false; tools = $false; wings = $false; horns = $false; tail = $false; crown = $false; glowEyes = $false; bionicEye = $false }
+    if ($t -eq '') { return $r }
+    $r.weapon = $t -match $WeaponWords
+    $r.armour = $t -match $ArmourWords
+    $r.magic = (Strip-Glow $t) -match $MagicAskWords
+    $r.tools = (Tool-Role $t) -ne ''
+    $r.wings = $t -match '\bwings?\b|glider membranes'
+    $r.horns = $t -match '\b(horns?|antlers?)\b'
+    $r.tail = $t -match '\btails?\b'
+    $r.crown = $t -match $CrownWords
+    $r.glowEyes = $t -match 'glow\w*[^.,;]{0,30}\beyes?\b|\beyes?\b[^.,;]{0,30}\bglow'
+    $r.bionicEye = $t -match '\b(bionic|archotech|artificial|mechanical)\b[^.,;]{0,20}\beye'
+    return $r
+}
+
+function Magic-Seen($seen, [string] $hands) {
+    # The fire or magic the model saw ('' for none): its answer to "fire or magic", else magic in the hands.
+    $t = Low $seen.magic
+    if ((Says $t) -eq 'yes') {
+        $u = Strip-Glow $t
+        if ($u -match $MagicWords) { return $seen.magic }
+        if ($u -eq $t -and $t -notmatch '\b(seams?|trim|lamps?|lanterns?|candles?|screens?)\b') { return $seen.magic }
+    }
+    if ((Strip-Glow (Low $hands)) -match $MagicWords) { return $hands }
+    return ''
+}
+
 function Look-Words([string] $w) {
     # A look word in the words it is made of, for matching: "batWings" -> "bat wings", "fireMage" -> "fire mage".
     return (($w -creplace '([a-z0-9])([A-Z])', '$1 $2') -replace '[_\-]', ' ').ToLowerInvariant()
@@ -486,9 +525,12 @@ function Add-Issue($list, [int] $level, [string] $what, [string] $fix) {
     [void]$list.Add([pscustomobject]@{ level = $level; what = $what; fix = $fix })
 }
 
-function Compare-Picture($rec, $seen, [bool] $cut) {
+function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
     # What doesn't fit between a picture's record and what the model saw, each with a level: 1 wrong (throw it out), 2
     # shows more than its row says (add a look or role to the row, or throw it out), 3 shows less (look at it).
+    # $asked is the row's own prompt (its subject and pose; '' when the batch list isn't there): a thing the prompt asked
+    # for belongs to the row's look or role ("a long rifle resting on one shoulder" of sniperClass, "small dark horns" of
+    # succubus), so a row with a look or role may show it, and should.
     $issues = New-Object System.Collections.ArrayList
     $people = People-Of $seen.people
     if ($rec.kind -eq 'backdrop') {
@@ -498,6 +540,8 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
     $looks = $rec.looks
     $role = $rec.role
     $pinned = $rec.pawn -ne ''
+    $tie = ($looks.Count -gt 0) -or ($role -ne '')
+    $ask = Asks-Of $asked
 
     # Wrong: more than one person, the other sex, two age bands or more apart.
     if ($people -eq 0) { Add-Issue $issues 1 'no person seen' 'look at it; throw it out if there is no one in it' }
@@ -509,8 +553,8 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
     $sex = Sex-Of $seen.sex
     if ($sex -ne '' -and ($rec.sex -eq 'male' -or $rec.sex -eq 'female') -and $sex -ne $rec.sex) {
         $drawn = 'man'; if ($sex -eq 'female') { $drawn = 'woman' }
-        $asked = 'man'; if ($rec.sex -eq 'female') { $asked = 'woman' }
-        Add-Issue $issues 1 ('drawn as a {0}; its row says {1}' -f $drawn, $asked) 'throw it out'
+        $want = 'man'; if ($rec.sex -eq 'female') { $want = 'woman' }
+        Add-Issue $issues 1 ('drawn as a {0}; its row says {1}' -f $drawn, $want) 'throw it out'
     }
     $years = Years-Of $seen.age
     $bandRec = Band-Of-Word $rec.age
@@ -532,7 +576,8 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
         Add-Issue $issues 2 ('wears headwear ({0})' -f (Short $hwText)) $fix
     }
 
-    # The body: features and marks shown that the row lacks, or that the row has and the picture doesn't show.
+    # The body: features and marks shown that the row lacks (unless its prompt asked for them for its look), or that the
+    # row has and the picture doesn't show.
     $feat = $rec.features
     $ears = Ears-Of $seen.ears
     $rowEars = ($feat -contains 'pointedears') -or ($feat -contains 'longears')
@@ -544,12 +589,17 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
         Add-Issue $issues 3 'its row says pointed or long ears; the model saw normal ones' 'look at it: throw it out if they are missing'
     }
     $horns = Says $seen.horns
-    if ($horns -eq 'yes' -and -not ($feat -contains 'horns')) { Add-Issue $issues 2 ('shows horns ({0}); its row has none' -f (Short $seen.horns)) 'add horns to its row''s features if its kind has them, else throw it out' }
-    elseif ($horns -eq 'no' -and ($feat -contains 'horns')) { Add-Issue $issues 3 'its row says horns; the model saw none' 'look at it: throw it out if they are missing' }
-    if ((Says $seen.tail) -eq 'yes' -and -not ($feat -contains 'tail')) { Add-Issue $issues 2 ('shows a tail ({0}); its row has none' -f (Short $seen.tail)) 'add tail to its row''s features if its kind has one, else throw it out' }
+    if ($horns -eq 'yes' -and -not ($feat -contains 'horns') -and -not ($ask.horns -and $tie)) {
+        Add-Issue $issues 2 ('shows horns ({0}); its row has none' -f (Short $seen.horns)) 'add horns to its row''s features if its kind has them, else throw it out'
+    }
+    elseif ($horns -eq 'no' -and (($feat -contains 'horns') -or ($ask.horns -and $tie))) { Add-Issue $issues 3 'its row says horns; the model saw none' 'look at it: throw it out if they are missing' }
+    if ((Says $seen.tail) -eq 'yes' -and -not ($feat -contains 'tail') -and -not ($ask.tail -and $tie)) {
+        Add-Issue $issues 2 ('shows a tail ({0}); its row has none' -f (Short $seen.tail)) 'add tail to its row''s features if its kind has one, else throw it out'
+    }
     $glow = Glow-Of $seen.eyes
-    if ($glow -eq 'yes' -and -not ($feat -contains 'glowingeyes') -and -not (Any-Look $looks $MagicLooks)) { Add-Issue $issues 2 ('shows glowing eyes ({0}); its row has none' -f (Short $seen.eyes)) 'add glowingEyes to its row''s features if its kind has them, else throw it out' }
-    elseif ($glow -eq 'no' -and ($feat -contains 'glowingeyes')) { Add-Issue $issues 3 'its row says glowing eyes; the model saw ordinary ones' 'look at it: throw it out if they are missing' }
+    $glowOk = ($feat -contains 'glowingeyes') -or (Any-Look $looks $MagicLooks) -or ($ask.glowEyes -and $tie)
+    if ($glow -eq 'yes' -and -not $glowOk) { Add-Issue $issues 2 ('shows glowing eyes ({0}); its row has none' -f (Short $seen.eyes)) 'add glowingEyes to its row''s features if its kind has them, else throw it out' }
+    elseif ($glow -eq 'no' -and (($feat -contains 'glowingeyes') -or ($ask.glowEyes -and $tie))) { Add-Issue $issues 3 'its row says glowing eyes; the model saw ordinary ones' 'look at it: throw it out if they are missing' }
     $body = Body-Of $seen.body
     foreach ($b in @('scales', 'fur')) {
         if ($body.$b -and -not ($feat -contains $b)) { Add-Issue $issues 2 ('shows {0} on the body; its row has none' -f $b) ('add {0} to its row''s features if its kind has them, else throw it out' -f $b) }
@@ -559,7 +609,7 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
     $rowLost = ($rec.marks -contains 'losteye') -or ($rec.marks -contains 'eyepatch')
     $rowBionic = $rec.marks -contains 'bioniceye'
     if ($marks.lost -and -not $rowLost) { Add-Issue $issues 2 ('shows {0}; its row has no lost eye' -f (Short $seen.eyemarks)) 'add eyePatch (or lostEye) to its row''s marks, or throw it out' }
-    if ($marks.bionic -and -not $rowBionic) { Add-Issue $issues 2 ('shows {0}; its row has no bionic eye' -f (Short $seen.eyemarks)) 'add bionicEye to its row''s marks, or throw it out' }
+    if ($marks.bionic -and -not $rowBionic -and -not ($ask.bionicEye -and $tie)) { Add-Issue $issues 2 ('shows {0}; its row has no bionic eye' -f (Short $seen.eyemarks)) 'add bionicEye to its row''s marks, or throw it out' }
     if ($marks.none -and $rowLost) { Add-Issue $issues 3 'its row says a lost eye; the model saw both eyes' 'look at it: throw it out if the eye is there' }
     if ($marks.none -and $rowBionic) { Add-Issue $issues 3 'its row says a bionic eye; the model saw none' 'look at it: throw it out if it is missing' }
 
@@ -570,24 +620,26 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
     $hands = Held $seen.hands
     $weaponText = ''
     if ((Says $seen.weapons) -eq 'yes') { $weaponText = $seen.weapons } elseif ((Low $hands) -match $WeaponWords) { $weaponText = $hands }
-    $fighter = ($FightRoles -contains $role) -or (Any-Look $looks $FighterLooks)
     $magicLook = Any-Look $looks $MagicLooks
-    if ($weaponText -ne '' -and -not $fighter -and -not $magicLook) {
+    $weaponOk = ($FightRoles -contains $role) -or (Any-Look $looks $FighterLooks) -or $magicLook -or ($ask.weapon -and $tie)
+    if ($weaponText -ne '' -and -not $weaponOk) {
         $t = Low $weaponText
         $guess = 'warrior'; $others = 'soldier, hunter or scout'
         if ($t -match '\b(guns?|rifles?|pistols?|revolvers?|muskets?|shotguns?|firearms?|carbines?|blasters?|grenades?)\b') { $guess = 'soldier'; $others = 'warrior, hunter or scout' }
         elseif ($t -match '\b(bows?|crossbows?|arrows?|spears?|javelins?|slings?)\b') { $guess = 'hunter'; $others = 'soldier, warrior or scout' }
         $now = 'its row has no fighting role or look'; if ($role -ne '') { $now = 'its row''s role is ' + $role }
+        if ($ask.weapon) { $now += ' (its prompt asks for a weapon)' }
         Add-Issue $issues 2 ('shows a weapon ({0}); {1}' -f (Short $weaponText), $now) ('add the role {0} to its row (or {1}), or throw it out' -f $guess, $others)
     }
     $armour = (Says $seen.armour) -eq 'yes'
-    if ($armour -and $rec.dress -ne 'armour' -and -not ($ArmourRoles -contains $role) -and -not (Any-Look $looks $FighterLooks)) {
+    $armourOk = ($rec.dress -eq 'armour') -or ($ArmourRoles -contains $role) -or (Any-Look $looks $FighterLooks) -or ($ask.armour -and $tie)
+    if ($armour -and -not $armourOk) {
         $dress = $rec.dress; if ($dress -eq '') { $dress = 'not set' }
         Add-Issue $issues 2 ('wears armour ({0}); its row''s dress is {1} and it has no fighting role' -f (Short $seen.armour), $dress) 'set its row''s dress to armour (or add the role soldier or warrior), or throw it out'
     }
-    $magicText = ''
-    if ((Says $seen.magic) -eq 'yes') { $magicText = $seen.magic } elseif ((Low $hands) -match $MagicWords) { $magicText = $hands }
-    if ($magicText -ne '' -and -not $magicLook) {
+    $magicText = Magic-Seen $seen $hands
+    $magicOk = $magicLook -or ($ask.magic -and $tie)
+    if ($magicText -ne '' -and -not $magicOk) {
         $t = Low $magicText
         $guess = 'the look it shows (such as fireMage or iceMage)'
         if ($t -match '\b(fire|flames?|burning|embers?|blaze|fireballs?|torch|torches)\b') { $guess = 'fireMage (or the look it shows)' }
@@ -595,24 +647,24 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
         Add-Issue $issues 2 ('shows fire or magic ({0}); its row has no look for it' -f (Short $magicText)) ('add {0} to its row''s looks, or throw it out' -f $guess)
     }
     $wings = Says $seen.wings
-    $wingLook = Any-Look $looks $WingLooks
-    if ($wings -eq 'yes' -and -not $wingLook) {
+    if ($wings -eq 'yes' -and -not (Any-Look $looks $WingLooks) -and -not ($ask.wings -and $tie)) {
         Add-Issue $issues 2 ('shows wings ({0}); its row''s looks have no wings' -f (Short $seen.wings)) ('add {0} to its row''s looks, or throw it out' -f (Wing-Word $seen.wings))
     }
-    if ($crown -and $role -ne 'leader' -and -not (Any-Look $looks $NobleLooks)) {
+    if ($crown -and $role -ne 'leader' -and -not (Any-Look $looks $NobleLooks) -and -not ($ask.crown -and $tie)) {
         Add-Issue $issues 2 'wears a crown; its row has no leader role or noble look' 'add the role leader to its row, or throw it out'
     }
+    # A book or tools go with any role or look (a scholar's book, a drinker's tankard, a wayfarer's staff).
     $toolText = ''
     if ((Says $seen.tools) -eq 'yes') { $toolText = $seen.tools }
     elseif ((Tool-Role $hands) -ne '') { $toolText = $hands }
-    if ($toolText -ne '' -and $role -eq '' -and -not (Any-Look $looks $BookLooks) -and -not $magicLook) {
+    if ($toolText -ne '' -and -not $tie) {
         $guess = Tool-Role ($toolText + ' ' + $hands)
         $fix = 'add the role of the work it shows to its row, or throw it out'
         if ($guess -ne '') { $fix = ('add the role {0} to its row (or the work it shows), or throw it out' -f $guess) }
         Add-Issue $issues 2 ('holds or shows {0}; its row has no role' -f (Short $toolText)) $fix
     }
 
-    # Shows less than its row says: looks and roles the picture doesn't show.
+    # Shows less than its row says: a look or role whose things the picture doesn't show.
     foreach ($w in $rec.lookWords) {
         $l = Look-Words $w
         if ($l -match $WingLooks -and $wings -eq 'no') {
@@ -621,16 +673,35 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
         elseif ($l -match $TwinLooks -and $people -eq 1) {
             Add-Issue $issues 3 ('its row''s looks say {0}; the model saw one person' -f $w) ('look at it: throw it out if it shows one, or take {0} out of its row''s looks' -f $w)
         }
-        elseif ($l -match $MagicShownLooks -and $magicText -eq '' -and (Says $seen.magic) -eq 'no') {
-            Add-Issue $issues 3 ('its row''s looks say {0}; the model saw no fire or magic' -f $w) ('look at it: the face or clothes may still show it; if not, take {0} out of its row''s looks or throw it out' -f $w)
+    }
+    $look = 'look at it: the clothes or the face may still show it; if not, throw it out'
+    if ($tie -and $asked -ne '') {
+        # The things its prompt asked for, one by one.
+        $none = New-Object System.Collections.ArrayList
+        if ($ask.weapon -and $weaponText -eq '' -and (Says $seen.weapons) -eq 'no') { [void]$none.Add('a weapon') }
+        if ($ask.armour -and (Says $seen.armour) -eq 'no') { [void]$none.Add('armour') }
+        if ($ask.magic -and $magicText -eq '' -and (Says $seen.magic) -eq 'no' -and $glow -ne 'yes') { [void]$none.Add('fire or magic') }
+        if ($ask.tools -and $toolText -eq '' -and $hands -eq '' -and (Says $seen.hands) -ne '') { [void]$none.Add('a book or tools in the hands') }
+        if ($ask.crown -and -not $crown -and (Says $seen.headwear) -eq 'no') { [void]$none.Add('a crown') }
+        if ($none.Count -gt 0) {
+            $for = (@($rec.lookWords) + @(@($role) | Where-Object { $_ -ne '' })) -join ', '
+            Add-Issue $issues 3 ('its prompt asks for {0} (for {1}); the model saw none' -f ($none -join ', '), $for) $look
         }
     }
-    $nothingHeld = ($hands -eq '') -and ((Says $seen.hands) -ne '') -and ((Says $seen.tools) -ne 'yes')
-    if (@('soldier', 'warrior', 'hunter') -contains $role -and $weaponText -eq '' -and (Says $seen.weapons) -eq 'no' -and (Says $seen.armour) -eq 'no') {
-        Add-Issue $issues 3 ('its row''s role is {0}; the model saw no weapon or armour' -f $role) 'look at it: the clothes may still show the work; if not, take the role out of its row or throw it out'
-    }
-    elseif (($role -eq 'scholar' -or $WorkRoles -contains $role) -and $nothingHeld) {
-        Add-Issue $issues 3 ('its row''s role is {0}; the model saw nothing of that work in the hands' -f $role) 'look at it: the clothes may still show the work; if not, take the role out of its row or throw it out'
+    elseif ($tie) {
+        # No batch list to read the prompt from: what the look's or role's name suggests.
+        foreach ($w in $rec.lookWords) {
+            if ((Look-Words $w) -match $MagicShownLooks -and $magicText -eq '' -and (Says $seen.magic) -eq 'no') {
+                Add-Issue $issues 3 ('its row''s looks say {0}; the model saw no fire or magic' -f $w) $look
+            }
+        }
+        $nothingHeld = ($hands -eq '') -and ((Says $seen.hands) -ne '') -and ((Says $seen.tools) -ne 'yes')
+        if (@('soldier', 'warrior', 'hunter') -contains $role -and $weaponText -eq '' -and (Says $seen.weapons) -eq 'no' -and (Says $seen.armour) -eq 'no') {
+            Add-Issue $issues 3 ('its row''s role is {0}; the model saw no weapon or armour' -f $role) $look
+        }
+        elseif (($role -eq 'scholar' -or $WorkRoles -contains $role) -and $nothingHeld) {
+            Add-Issue $issues 3 ('its row''s role is {0}; the model saw nothing of that work in the hands' -f $role) $look
+        }
     }
     return $issues
 }
@@ -888,7 +959,7 @@ try {
             $m = [regex]::Match($stem, '^(?<name>.+?)_(?<style>style[^_]*)_')
             if ($m.Success) { $row = $m.Groups['name'].Value }
             [void]$pictures.Add([pscustomobject]@{
-                key = ($dir.Name + '/' + $f.Name); show = ($dir.Name + '\' + $f.Name); tex = ($dir.Name + '/' + $stem).ToLowerInvariant()
+                key = ($dir.Name + '/' + $f.Name); show = ($dir.Name + '\' + $f.Name); tex = ($dir.Name + '/' + $stem).ToLowerInvariant(); batch = $dir.Name
                 path = $f.FullName; size = [string]$f.Length; row = $row; cut = ($stem -match '_cut(_|$)')
             })
         }
@@ -901,7 +972,7 @@ try {
         $Again -or $old -eq $null -or $old.size -ne $_.size -or $old.question -ne $QuestionVersion
     })
     $unread = New-Object System.Collections.ArrayList
-    $asked = 0
+    $described = 0
 
     if ($todo.Count -gt 0) {
         if (-not (Test-Path -LiteralPath $Workflow)) {
@@ -933,7 +1004,7 @@ try {
             $image = Upload-Picture $pic.path
             $texts = @(Ask-Comfy $image ($n -eq 1))
             if ($texts.Count -eq 0) {
-                if ($asked -eq 0) { throw 'ComfyUI answered with no text. Check that the Generate Text box''s text is wired into a Preview as Text box, and export the workflow again (step 8).' }
+                if ($described -eq 0) { throw 'ComfyUI answered with no text. Check that the Generate Text box''s text is wired into a Preview as Text box, and export the workflow again (step 8).' }
                 [void]$unread.Add([pscustomobject]@{ pic = $pic; text = '(no text)' })
                 continue
             }
@@ -952,7 +1023,7 @@ try {
             foreach ($k in $FieldKeys) { $v = ''; if ($best.ContainsKey($k)) { $v = [string]$best[$k] }; [void]$values.Add($v) }
             [void]$values.Add(((($bestText -replace "`r", '') -split "`n" | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' }) -join ' / '))
             [System.IO.File]::AppendAllText($checkedFile, (Csv-Line ([string[]]$values.ToArray())) + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
-            $asked++
+            $described++
             $seen = [pscustomobject]$best
             Write-Host ('[{0}/{1}] {2}: {3}' -f $n, $todo.Count, $pic.show, (Short (Seen-Says $seen)))
         }
@@ -961,6 +1032,17 @@ try {
         if ($db.rows -gt $db.map.Count) {
             $keep = @($db.map.Keys | Sort-Object | ForEach-Object { $r = $db.map[$_]; Csv-Line ([string[]]@($CheckedColumns | ForEach-Object { Field $r $_ })) })
             Write-CsvFile $checkedFile $CheckedColumns $keep
+        }
+    }
+
+    # The rows' own prompts (subject and pose, from batches\<batch>.csv), which say what a look or role asked to show.
+    $askedOf = @{}
+    foreach ($b in @($pictures | ForEach-Object { $_.batch } | Select-Object -Unique)) {
+        $csv = Join-Path (Join-Path $Folder 'batches') ($b + '.csv')
+        if (-not (Test-Path -LiteralPath $csv)) { continue }
+        foreach ($r in @(Import-Csv -LiteralPath $csv -Encoding UTF8)) {
+            if ([string]::IsNullOrWhiteSpace($r.name)) { continue }
+            $askedOf[$b + '|' + ($r.name -replace '[^A-Za-z0-9_\-]', '_')] = ((Field $r 'subject') + ' ' + (Field $r 'pose')).Trim()
         }
     }
 
@@ -977,7 +1059,9 @@ try {
             continue
         }
         $compared++
-        $issues = @(Compare-Picture $rec $seen $pic.cut)
+        $asked = ''
+        if ($askedOf.ContainsKey($pic.batch + '|' + $pic.row)) { $asked = $askedOf[$pic.batch + '|' + $pic.row] }
+        $issues = @(Compare-Picture $rec $seen $pic.cut $asked)
         if ($issues.Count -eq 0) { continue }
         $issues = @($issues | Sort-Object level)
         $fixes = New-Object System.Collections.ArrayList
@@ -999,8 +1083,9 @@ try {
     foreach ($o in $out) { $count[$o.level]++ }
     Write-Host ''
     if ($todo.Count -gt 0) {
-        $line = 'The model described {0} of {1}.' -f $asked, (Count-Of $todo.Count 'picture' 'pictures')
-        if ($unread.Count -gt 0) { $line += (' {0} could not be read; they are asked again next time.' -f (Count-Of $unread.Count 'answer' 'answers')) }
+        $line = 'The model described {0} of {1}.' -f $described, (Count-Of $todo.Count 'picture' 'pictures')
+        if ($unread.Count -eq 1) { $line += ' 1 answer could not be read; that picture is asked about again next time.' }
+        elseif ($unread.Count -gt 1) { $line += (' {0} answers could not be read; those pictures are asked about again next time.' -f $unread.Count) }
         Write-Host $line
     }
     else { Write-Host ('No new pictures; compared the {0} with the records again.' -f (Count-Of $compared 'checked picture' 'checked pictures')) }
