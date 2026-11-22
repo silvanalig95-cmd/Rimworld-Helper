@@ -519,6 +519,17 @@ most sense." So, in this order, three builds at a time:
   run stamps in every picture's name (`Run-PortraitBatch.ps1`), and `Update-PortraitLibrary.ps1` reading them and
   Windows' renamed copies, plus a `looks` column. Points 1 to 3 went to one build agent, the review and catalogue
   (point 4) to another.
+- **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
+  painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
+  can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
+  screen in some way. I don't know how other games do it, with, so to say, a static image, to make it perhaps a little
+  bit more alive is something we can then think about later also." Already in 0.293.0: the person breathes in front of
+  a still backdrop on the large portrait. Ideas for then, from how other games bring still portraits to life: a slow
+  sway and a slight head tilt now and then (the cut-out moved in parts, like puppet portraits in visual novels); depth
+  that follows the mouse (person and backdrop shifting apart a little); blinking and a few moods (the same face painted
+  again with closed eyes, a smile, a frown, by image-to-image from the kept picture, shown by the pawn's mood); the
+  backdrop alive (a hearth's or lamp's flicker, dust in the light, snow or rain by the map's weather, night falling);
+  a short change of expression when something happens to them (hurt, a death, good news).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
