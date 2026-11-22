@@ -644,6 +644,12 @@ most sense." So, in this order, three builds at a time:
   borders ... not like in an open plain. So it should really not be forcing that at all ... as if it's a camera that
   photographs a specific spot that just happened to be". Done: `style-backdrop.json`'s frame is now a plain camera view
   of part of a larger place that carries on past every edge (the old frame asked for the detail towards the edges).
+  And, with a picture of a child from people-01: "in general i don't like it when the people have these huge "pretty
+  face" eyes compared to the rest of their body and face. they can surely have exagaratted features, but this eye and
+  face thing is such a classic AI giveaway. it's much more prominent on babies, kids and females in genera,l. to be
+  considered for future image prompts". Done: the planner's "big round eyes", "wide-eyed" and "soft, rounded features"
+  gone; small eyes in proportion said in the style line (`style.json`, `style-nosameface.json`), in every grown-up's
+  prompt and in children's ("a plain, real child's face with small eyes"); the lists' prompts rewritten in place.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive; steps 1 and 2 done, step 3 for later.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the

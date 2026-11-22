@@ -38,7 +38,13 @@ key-art look, described in words (no picture of the game's is copied or fed in):
   go with"): the Henry Daubrez painterly LoRA (Civitai 696050, `FLUX-daubrez-DB4RZ.safetensors`, 0.9) with the SameFace
   Fix at -0.7, loose painted brushwork in muted colours; `batches/style.json`. Earlier candidates (`style-A` to `L9s`)
   stay for reference.
-- **Children and babies**: the same style, softer and rounder features as fits their age, never made to look older.
+- **Children and babies**: the same style, as fits their age, never made to look older; plain, real children's faces.
+- **Eyes**: small and in proportion to the face, for everyone (the player, 22 November 2026: "I don't like it when the
+  people have these huge "pretty face" eyes compared to the rest of their body and face. they can surely have
+  exagaratted features, but this eye and face thing is such a classic AI giveaway. it's much more prominent on babies,
+  kids and females in genera,l"). The style line says "natural proportions with small eyes in proportion to the face";
+  grown-ups' prompts add "the eyes of ordinary size for the face", children's "a plain, real child's face with small
+  eyes"; no "big round eyes", "wide-eyed" or "soft, rounded features" anywhere.
 - **What varies, inside the style**: wealth and hardship (pillar 4), the age of their dress, the kind of person, the angle,
   the pose, the expression and the face. Never the brushwork, light or frame.
 

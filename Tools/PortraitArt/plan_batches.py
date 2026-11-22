@@ -92,7 +92,7 @@ FACE_SHAPES = ['an oval face', 'a round face', 'a square face', 'a long face', '
 FACE_PARTS = [
     ['a straight nose', 'a hooked nose', 'a slightly crooked nose', 'a broad nose', 'a flat nose', 'a snub nose',
      'an upturned nose', 'a bulbous nose', 'a long nose'],
-    ['deep-set eyes', 'hooded eyes', 'heavy-lidded eyes', 'wide-set eyes', 'close-set eyes', 'narrow eyes', 'round eyes',
+    ['deep-set eyes', 'hooded eyes', 'heavy-lidded eyes', 'wide-set eyes', 'close-set eyes', 'narrow eyes', 'small eyes',
      'almond-shaped eyes', 'eyes with dark circles under them', 'eyes crinkled at the corners'],
     ['thick brows', 'sparse brows', 'arched brows', 'straight brows', 'heavy brows', 'brows that meet in the middle'],
     ['thin lips', 'full lips', 'a wide mouth', 'a small mouth', 'a lopsided grin', 'a slight overbite', 'a gap between the front teeth',
@@ -101,7 +101,7 @@ FACE_PARTS = [
 ]
 OLDER_FACE = ['deep wrinkles', "crow's feet", 'deep lines across the forehead', 'sagging jowls']
 # Face words that read young, left out of the faces of the middle-aged and older.
-YOUNG_READING = {'a dimple in one cheek', 'round eyes', 'a snub nose', 'an upturned nose'}
+YOUNG_READING = {'a dimple in one cheek', 'a snub nose', 'an upturned nose'}
 # How old a grown-up looks, in the words a painter reads best (the player, 22 November 2026: the ages came out "either
 # ... way too old or ... way too young"): a decade, and the signs of that age on the face, said at the start and again at
 # the end. Numbers alone were followed loosely, and young-reading words (smooth skin, a dimple) pulled older people young.
@@ -128,18 +128,21 @@ def decade(years):
 
 
 NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
-CHILD_FACE = ['a round face', 'full cheeks', 'freckles', 'a snub nose', 'big round eyes', 'a gap-toothed smile',
+# No big eyes (the player, 22 November 2026: "I don't like it when the people have these huge "pretty face" eyes compared
+# to the rest of their body and face ... this eye and face thing is such a classic AI giveaway. it's much more prominent
+# on babies, kids and females"): faces are plain and real, the eyes small and in proportion.
+CHILD_FACE = ['a round face', 'full cheeks', 'freckles', 'a snub nose', 'small, narrow eyes', 'a gap-toothed smile',
               'rosy cheeks', 'a pointed chin', 'a small upturned nose']
-BABY_FACE = ['a round face', 'full cheeks', 'big round eyes', 'rosy cheeks', 'a button nose', 'a tiny mouth']
+BABY_FACE = ['a round face', 'full cheeks', 'small sleepy eyes', 'rosy cheeks', 'a button nose', 'a tiny mouth']
 EXPRESSIONS = ['a calm look', 'a warm look', 'a stern look', 'a weary look', 'a wary look', 'a proud look', 'a cheerful look',
                'a grim look', 'a thoughtful look', 'a determined look', 'a guarded look', 'a curious look', 'a quiet smile',
                'a sceptical look', 'a solemn look', 'a friendly look']
 WIDE_EXPRESSIONS = ['an eccentric, lopsided grin', 'a big, toothy, goofy grin', 'an intense, burning stare',
-                    'a shy, sidelong glance', 'a wild, wide-eyed look', 'a puzzled frown', 'a smug half-smile',
+                    'a shy, sidelong glance', 'a wild, staring look', 'a puzzled frown', 'a smug half-smile',
                     'a distant, dreamy look', 'a startled look', 'a crooked, knowing smile', 'a deadpan stare',
                     'a fierce scowl', 'a mournful look', 'a gleeful look', 'a mischievous smirk', 'a bored, half-lidded look']
 CHILD_EXPRESSIONS = ['a shy look', 'a big grin', 'a curious look', 'a solemn little frown', 'a cheeky smile', 'a sleepy look',
-                     'a wide-eyed look', 'a pout']
+                     'a frowning, squinting look', 'a pout']
 POSES = ['arms crossed', 'arms folded, leaning back slightly', 'hands clasped in front at the waist', 'one hand on the hip',
          'thumbs hooked into the belt', 'standing square, arms at the sides', 'leaning forward a little', 'the shoulders hunched',
          'the chin raised', 'the head tilted to one side', 'one hand resting on the opposite shoulder', 'adjusting the collar',
@@ -666,7 +669,8 @@ class Planner:
             again = 'Clearly a baby of about %s months.' % months
         elif little or age == 'child':
             looks_line = 'about %s years old' % NUMBER_WORDS[min(about, 12)]
-            again = 'Clearly a %s-year-old %s.' % (NUMBER_WORDS[min(about, 12)], 'toddler' if age == 'toddler' else noun)
+            word = NUMBER_WORDS[min(about, 12)]
+            again = 'Clearly %s %s-year-old %s.' % ('an' if word[0] in 'aeiou' else 'a', word, 'toddler' if age == 'toddler' else noun)
         else:
             looks_line = 'in %s %s' % (his, decade(about))
             again = 'Clearly in %s %s.' % (his, decade(about))
@@ -710,7 +714,8 @@ class Planner:
             faces = rng.sample(BABY_FACE if age == 'baby' else CHILD_FACE, 2)
             face = ' and '.join(faces)
             expr = rng.choice(CHILD_EXPRESSIONS)
-            soft = 'Soft, rounded features, as young as ' + ('a baby' if age == 'baby' else 'a toddler' if age == 'toddler' else 'a child') + ' looks.'
+            soft = ('A plain, real ' + ('baby' if age == 'baby' else 'toddler' if age == 'toddler' else 'child') +
+                    "'s face with small eyes in proportion to the face, an ordinary, homely look.")
         else:
             n_face = 1 if k.far else rng.choice([2, 3])
             face_bits = [rng.choice(FACE_SHAPES)] if not k.far else []
@@ -724,6 +729,8 @@ class Planner:
             expr = rng.choice(exprs) if not look else ''
             soft = ''
         sentences = [opening + ': ' + body + '.', face[:1].upper() + face[1:] + (', ' + expr if expr else '') + '.']
+        if not little and not k.far:
+            sentences.append('Natural proportions, the eyes of ordinary size for the face.')
         signs = (FAR_AGE_SIGNS if k.far else AGE_SIGNS).get(age, '')
         if signs and not little:
             sentences.append(signs[:1].upper() + signs[1:] + '.')
