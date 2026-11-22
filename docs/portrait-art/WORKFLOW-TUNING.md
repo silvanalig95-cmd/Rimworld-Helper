@@ -49,6 +49,24 @@ name and a strength). The `style-G1`, `G2`, `G3` files are F1 to F3 with steady 
 6. Run `colonists` with `style-G1`. Then try other strengths (copy the file to `style-G1b.json` and change `0.8` to `0.6`
    or `1.0`, and `-0.7` to `-0.5` or `-1.0`) and other style LoRAs, and send the folders.
 
+### The lead's picks (22 November 2026, from Civitai's own listing of Flux.1 D LoRAs, 373 looked at)
+
+Closest to the game's key art, each with a ready style file (`batches/style-L1` to `L4`, which also set the trigger
+words, strengths and sampler):
+
+| Style file | LoRA (Civitai page) | File to download (the Flux.1 D version) | Trigger | Strength |
+|---|---|---|---|---|
+| L1 | Eldritch Comics, https://civitai.com/models/671064 (version v1.1) | `Eldritch_Comics_for_Flux_1.1.safetensors` | illustration | 0.9 |
+| L2 | COMMIX, https://civitai.com/models/879845 (version "COMMIX (FLUX)") | `commixv3-f.safetensors` | A illustration in the commix style | 1.0 (its page: 0.8 to 2.2) |
+| L3 | Comic Book Realism - CE, https://civitai.com/models/1812625 (version "V01a - Flux.1 D") | `ComicRealism01a_CE_FLUX_AIT2k.safetensors` | cmcrlsmCE_style, comic book realism | 0.9 |
+| L4 | Comic Book Tome 3, https://civitai.com/models/1764315 (version V2) | `Comics_Factory_2.safetensors` | ComicsFact2 style | 0.8 (its page: 0.6 to 1.0, dpmpp_2m, sgm_uniform, 20 steps, guidance 3.5) |
+
+For the second LoRA box, all four use the **Flux Facial Features Softener**, https://civitai.com/models/907580 (version
+"FFS Omni v.6", file `FFS_v.6.safetensors`, strength 0.6): made against FLUX's own face (cleft chin, heavy jaw, blush,
+full lips) and meant to keep art styles intact. The SameFace Fix (https://civitai.com/models/766608) is for women's faces
+only (its page), so it's left out of the mixed library. Not chosen: vintage underground comics (too cartoony), the painted
+and abstract "Tome 1" sets.
+
 ## Step 3 (if faces stay alike): Chroma, a model that obeys a negative prompt
 
 1. In ComfyUI, **Browse Templates**, find **Chroma** (text to image), let it download its files.

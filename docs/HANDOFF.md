@@ -345,6 +345,10 @@ most sense." So, in this order, three builds at a time:
   asks which workflow when there are several (`rimfolk-workflow*.json`), and shows ComfyUI's own reason when it refuses a
   picture; style files `G1` to `G3` (F1 to F3 with steady settings and two LoRA slots) and `H1` (Chroma). All tested here
   against a stand-in server.
+  The player added the LoRA boxes (an unpacked FLUX.1 Dev fp8 template; FluxGuidance to add) and asked for help finding
+  LoRAs. Picked from Civitai's own listing (its public API, 373 Flux.1 D LoRAs looked at, the examples seen): Eldritch
+  Comics, COMMIX, Comic Book Realism - CE, Comic Book Tome 3, with the Flux Facial Features Softener in the second box
+  (the SameFace Fix is for women only); `batches/style-L1` to `L4`, the table in `WORKFLOW-TUNING.md`.
   **Built** (21 November 2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above
   the newest release line):
   point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the
