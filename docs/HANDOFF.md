@@ -721,9 +721,11 @@ most sense." So, in this order, three builds at a time:
   images available, they are not common in the game and not much of a priority overall ... that it makes sense
   percentage-wise ... of how many of the prompts are kids and toddlers, or anyone that can't do work yet". And: "I want
   to use the no same face still. Just want to rather be safe than have all these AI faces tomorrow morning." Done:
-  `plan_batches.py` gives babies, toddlers and children half their flattened share (`LITTLE_SHARE`), and `mix()` makes a
-  kind's little ones after its grown people, so they come at the end of the lists (14 of 599 rows, 2.3%, from 22; none
-  in `characters-01`); teens as before (23). `style-rimworld-people`: the SameFace fix at -0.7 back. Lists planned again.
+  `mix()` makes a kind's little ones (babies, toddlers, children) after its grown people, so they come at the end of the
+  lists (none in `characters-01`). Their share was halved too, then put back: the player, "if they all are at the start
+  of list one, that makes sense that they appear now ... That's already quite an appropriate number, 3.7%"
+  (`LITTLE_SHARE` 1.0: 22 of 599 rows; teens 23). `style-rimworld-people`: the SameFace fix at -0.7 back. Lists planned
+  again.
 - **Done (22 November 2026, the player's own request): the batch tool queues one list after another.** The player:
   "The run portray batch file should allow me also to start a new job right away." `Run-PortraitBatch.ps1`: the list
   menu takes one number or several (`3,4,5`, queued one after the other in the same style); after each round it shows

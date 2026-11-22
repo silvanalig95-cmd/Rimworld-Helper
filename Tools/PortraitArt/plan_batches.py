@@ -66,9 +66,10 @@ CHAR_ROLES_LOOKS = {1: (18, 18), 2: (2, 2)}
 CHAR_LITTLE = {1: {'baby', 'toddler', 'child', 'teen'}, 2: {'child', 'teen'}, 3: {'teen'}}
 # The longest a characters prompt may be (a longer one loses its least needed words; the tests hold every row to it).
 MAX_SUBJECT = 1050
-# The characters lists' little ones: at this share of their flattened one, and made last in a kind's turn (mix).
+# The characters lists' little ones: at this share of their flattened one (1: the player found 3.7% right), and made
+# last in a kind's turn (mix).
 LITTLE_AGES = ('baby', 'toddler', 'child')
-LITTLE_SHARE = 0.5
+LITTLE_SHARE = 1.0
 HUMAN_SKIN_SLUGS = {s for s, _, _ in W.HUMAN_SKINS}
 # Words a hardship line leaves out when the face already says them ("sun-browned skin" and "Sun-browned, dry skin").
 ECHO_WORDS = ['sun-browned', 'weather', 'hollow', 'wind', 'creased', 'chapped', 'lines', 'grime', 'stare']
