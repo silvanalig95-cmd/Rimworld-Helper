@@ -393,6 +393,8 @@ namespace ColonyCouncil
             {
                 PortraitKeeper.Instance?.Drop(p.thingIDNumber);
                 Source.Forget(p.thingIDNumber);
+                // Looked at again for the missing list too (a trait given in dev mode shows at once).
+                Source.noted.Remove(p.thingIDNumber);
                 n++;
             }
             Messages.Message("Portraits: " + n + " picked again from the library (" + Source.Count + " pictures).", MessageTypeDefOf.SilentInput, false);

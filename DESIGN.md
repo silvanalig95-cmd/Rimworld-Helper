@@ -16643,6 +16643,130 @@ backdrop's softening, the line round the person, the tint), `BackdropMath.cs` (t
   rooms; the room roles and things of the player's mods in real rooms; the life span stat's name and the ageing genes
   across the player's xenotypes; the reservation as colonists join, leave and die; the missing list on a cloud drive.
 
+### Portraits, phase 5: looks, special looks and what the library lacks (not released yet)
+
+The player's words (22 November 2026): "Maybe the mod can also then log in the log files or in the save, ideally,
+because that I regularly provide to you. For example, when pawns are in a certain location/biome where there isn't an
+appropriate background ... or if like a trait appears where they could be visually displayed, but there's no appropriate
+... image for it yet ... the game learns or kind of logs what's could be expanded on and kind of tracks that ... ideally in
+the save ... any other potential special things that a pawn could have that would require a dedicated image ... I know
+there's a co-join twins mod ... That should then, of course, also be visible. Or if there are certain traits like this,
+co-join twin, that the game then rather shows no image than ... a really not fitting one instead", and their go: "your
+proposals sound good!". The same day: "the profession can and should also be reflected in how they look like ... if
+someone is doing a lot of science, has high intelligence, and then it can also look like a scientist ... soldiers being
+soldiers"; "maybe it's holding a flame or something because it's a fire mage ... As long as you don't get like someone
+doing ... a fire spell for someone who can't even do magic, it should always be also based on an actual pawn's
+characteristic, and only then also this image is loaded. Otherwise, it should ... rather choose a default one that
+doesn't have special things like that"; and, after the first painted picture in the game: "it still takes backdrop from
+the library, right? That's the least it can do" (with "that could be toggleable"), "They should, you know, always look
+the same direction if they're represented on different parts of the UI", "I'd rather, you know, see as much as I can
+... It can show as much as the image, so to say, generates", "there's a really minor, small offset between the bottom of
+its body and where the UI continues below". Built on phase 4, whose rules stay but where said below.
+
+The code: `UI/Faces/PortraitLookDef.cs` (the looks' def, and a pawn's looks read from the game), `PortraitLookMath.cs`
+(pure: a look's rule, the book of looks, work from backstories and skills), `PortraitLibraryMath.cs` (the records'
+looks and role, the matcher's gate and costs, special looks, what is lacking), `PortraitReader.cs` (a pawn's looks and
+work), `PortraitLibrary.cs` (special looks for kept pictures, the missing list once a person), `PortraitNeeds.cs` (the
+list in the save, `PortraitNeedsKept`, and the dev action), `PortraitFolderMath.cs` (the list's columns, its lines in the
+save, the cap), `FaceEngineStage.cs`, `InspectPortrait.cs`, `FaceMath.cs`, `FaceEngine.cs`, `FaceEnginePictures.cs`,
+`PortraitViewMath.cs`, `PortraitPictureMath.cs`, `PortraitComposeMath.cs`, `PortraitStore.cs` (the large portrait and the
+pictures' drawing); the starter list `Defs/PortraitLookDefs/PortraitLooks.xml`. Tested in `Tools/Tests/PortraitLookTests.cs`
+(new), `PortraitLibraryTests.cs` and `PortraitStageTests.cs`.
+
+- **Looks** (`ColonyCouncil.PortraitLookDef`): something on a person a picture can show beyond their kind, sex and age.
+  Its fields: `word` (what records write in `<looks>`), `label`, `special`, `traits` (a trait's def name, or its name
+  and one degree: `DrugDesire:2`, `Beauty:-1`), `genes` (active genes), `hediffs`, `bodies` (the race's body def, such as
+  Conjoined Twins' `MultiMind_ConjoinedHumanBody`), and `prompt` (words for the image prompts; the game doesn't read it).
+  A person has the look when they have any one of them; a trait the genes suppress and an inactive gene give none. Every
+  name is soft: one naming a def of a mod not loaded never matches (one note in the log in dev mode). A look with no
+  word, a word with spaces or commas, a trait line whose degree is no number, nothing that gives it, or a word another
+  look already has: def errors at start-up. The looks are read into one book once, before any record is read (the
+  defs' and the library folder's alike), so an unknown word in a record's `<looks>` is a record problem as any unknown
+  word is. A pawn's looks are read when their picture is picked, with the rest of their looks, and kept in their words.
+- **What a picture may show** (the player: "it should always be also based on an actual pawn's characteristic"): a
+  picture showing a look stands only for people who have it, a hard rule in both settings of "Portraits from the
+  library"; a look of a person's the picture doesn't show costs 0.75 (`LookMissingCost`, a little less than a feature),
+  so a fire mage takes a fire mage's picture before a plain one and a plain one where there is none. Plain pictures (no
+  looks, no work) are the defaults anyone of the kind, sex and age can take.
+- **Special looks** (`special`: the conjoined twins, wings): a person with one only ever gets a picture showing it, and
+  such a picture only stands for people who have it, so a picture and a person agree on every special look or the
+  picture doesn't stand for them; with no such picture, the game's own drawing (the player: "rather shows no image than
+  ... a really not fitting one"). Picked once and kept still holds, with one exception: someone who gains a special look
+  their picture doesn't show loses it (looked at every few seconds, as the stage is), the game's drawing until a picture
+  with it comes; someone who loses one keeps their picture. A colonist's own pinned picture is held to their special
+  looks too, but not to their ordinary looks and work (a pin is made from them).
+- **Work** (a record's `role`: scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer,
+  herder, cook, artist, trader, leader, priest, labourer; empty for any): a picture with a work stands only for people
+  of that work; a person's work a picture doesn't show costs 0.75 (`RoleMissingCost`). A person's work, read with their
+  looks: none for a child; their grown-up backstory where its title, name or spawn categories clearly name one (a small
+  table of words, the head of the phrase counting: an infantry medic a doctor, a military chaplain a priest, an army
+  cook a cook; the game's, Vanilla Backstories Expanded's and Medieval 2's backstories in `docs/player-mods` among
+  them); else a leader for their people's leader, a royal title of knight or higher, or their faith's leader; else a
+  priest for their faith's moral guide or a priest's role; else the work of their best skill with a passion (Intellectual
+  a scholar, Medicine a doctor, Shooting a soldier or among people of the bow a hunter, Melee a warrior, Construction a
+  builder, Mining a miner, Crafting a crafter, Plants a farmer, Animals a herder, Cooking a cook, Artistic an artist,
+  Social a trader; the highest level, then the burning passion).
+- **The starter list** (`Defs/PortraitLookDefs/PortraitLooks.xml`, every name checked against `docs/player-mods`'s active
+  rows; the lead's catalogue adds the rest in a file of its own): special: the conjoined twins of Conjoined Twins (its
+  race's body and its trait), bat wings, insect wings (Vanilla Races Expanded - Insector's, Alpha Genes' and Fairycore's
+  beetle, cicada, dragonfly and kin), butterfly wings (Alpha Genes' moth wings, Fairycore's butterflies and moths),
+  feathered wings, dragon wings, and the wings whose shape isn't known here (Alpha Genes' drainer, rainbow and single
+  malformed wing, Hussar's glidewings), so every active wing gene of the player's mods keeps a wingless picture away;
+  ordinary: a pyromaniac, a psychopath, beautiful, pretty, ugly, staggeringly ugly (Beauty's degrees), a drinker (alcohol
+  addiction, chemical interest or fascination), a drug addict (the other addictions of the game and the player's mods;
+  caffeine, tobacco and antibiotics left out), A RimWorld of Magic's fire and ice mages (by their class traits).
+- **What the library lacks, kept in the save** (`PortraitNeedsKept`, a game component): every line missing.csv gets
+  (people, rooms, the land) and the new look lines, one line per need (missing.csv's columns as a CSV line, with the
+  game's day last seen), the counts added and the newest dates kept, at most 200, the least recently seen let go. Saved
+  with its columns, so its lines read back by their names whatever columns come later; on load the same needs are
+  merged, nothing lost. Noted whether or not a library folder is set (the save is where the list reaches the lead),
+  while the painted library is on and has pictures or backdrops; missing.csv is still written only with a folder. The
+  dev action "Portraits: what the library lacks (log)" writes the save's list to the log as CSV.
+- **The new lines and columns**: look lines (what `look`, the look's word in the new column `look`, the person's kind,
+  sex and age band, the mod of what gave it, special or ordinary in `why`, what they have instead): a look of theirs no
+  picture of their kind, sex and age shows (another colonist's pin aside; their own counts). People's lines carry their
+  work in the new column `role`. Each person is looked at once each time the library is read, kept pictures too (so a
+  colony picked before this round is counted), and counted once a session for each need. A missing.csv or a save of
+  before reads by its own columns.
+- **The backdrop behind the game's own drawing too** (the new setting "Backdrop behind the game's own drawing too", on;
+  next to "Backdrop"): where the library has no painted picture for someone (no picture of their kind, a special look,
+  or a library of backdrops only, the player's case for now), the large portrait shows the backdrop of where they are
+  behind the game's drawing, chosen, softened, darkened by the light and kept as for a painted picture
+  (`PortraitComposeMath.WhatToDraw`: a painted picture on a backdrop or its ground; the game's drawing on a backdrop
+  where the setting is on, a backdrop was found and "Backdrop" isn't Plain; else on the portrait's own colour). Behind
+  the drawing a soft dark shadow (two soft round spots behind the head and shoulders); with "Line round the person" on,
+  a thin dark line as dark copies of the drawing a pixel or so to each side (no read-back from the graphics card, so no
+  pale edge); tinted toward the room's light where that setting is on. Only the backdrop is made on a worker; the
+  drawing is the game's as before. Off: the game's drawing on the plain panel as in 0.293.0.
+- **Painted pictures never mirrored**: phase 3's turning of a picture to face its text or the other of a pair is gone
+  for painted pictures, so a picture looks the same way everywhere; the game's own drawing still turns in its side views.
+- **The whole picture on the large portrait** (replaces phase 4's crop by size): with a painted picture the large
+  portrait takes the picture's shape (`PortraitPictureMath.TallFor`: 5:4 tall for the library's 1024 x 1280, never
+  shorter than square nor taller than 1.6; the library's shape while it loads), the size setting its width and its
+  height following (`FaceMath.Place` keeps it under the room kept clear at the top, narrower where the room is short),
+  and shows the whole picture, from the top of the head to where the body runs off the picture's foot; the backdrop's
+  middle fills the same shape. With the game's drawing it stays square. Elsewhere the round portraits keep the head and
+  shoulders; the colonist card's tall tile shows as much of the picture as fits it, its whole height where the tile is
+  narrower than the picture, the head at the top.
+- **No gap under the body**: when a picture loads, the person is made solid where they meet its foot
+  (`PortraitPictureMath.SolidFoot`: in each column whose last row has any of the person, the lowest solid pixel within
+  3% of the foot carried down to it, as a background remover leaves those rows half clear; the ground beside an arm left
+  clear), and wherever a painted body meets a frame's foot (the large portrait, a tile) the picture carries on below the
+  frame's edge by an eighth of its width (the picture itself where there is more of it, else its foot row), cut off by
+  the frame, so neither the pose's lift nor the sway's turn about the foot ever shows a strip of backdrop under the body.
+  Breathing was already anchored at the foot.
+- **Saved**: `PortraitNeedsKept.columns` and `lines` (`Tools/save_estimate.py` models it: at most 200 lines of about 150
+  characters). A pick kept from 0.293.0 stays; a person kept with no picture who has looks or a work is looked at once
+  again, as their words now carry them.
+- Every game member used (traits' degrees and suppression, genes' activity, hediffs, the race's body, backstories'
+  titles, names and spawn categories, skills and passions, royal titles' seniority by the knight's def read by name,
+  the faith's roles, `Graphics.Blit` with scale and offset) is the same in 1.6 and 1.7 (ApiDiff). No new hook.
+- **Not checked without the game**: a conjoined twin's body and trait as Conjoined Twins gives them, and its pawns'
+  drawing on the large portrait; the wing genes as their mods give them; how the game's drawing looks on a backdrop with
+  its shadow and line; the whole picture's framing and the panel's height on the player's screens; the foot carried
+  below the edge with a real cut-out's last rows; the roles read from real backstories, titles and skills across the
+  player's mods; the save's list over a long game.
+
 ### On-screen panels and the hover card
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of

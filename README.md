@@ -110,14 +110,21 @@ colonist card's breathe and sway a little, still while the game is paused. **Pai
 library holds painted pictures from the player's own folder (set in the settings; `docs/portrait-art/`) or from a mod's
 `Portraits` folder, each described by a record. A picture made for a colonist (pinned to them by name) is theirs;
 everyone else gets the one closest to how they look (their kind, sex, how old they look by their kind's life span and
-their genes, skin and hair colour, hair, beard, build and clothes), one nobody else holds where it can, and a
-colonist's picture is never anyone else's. It is chosen the first time it is needed and kept: injuries, haircuts and
+their genes, skin and hair colour, hair, beard, build and clothes, their looks and their work), one nobody else holds
+where it can, and a colonist's picture is never anyone else's. Looks are what traits, genes, health and body give a face
+(a drinker, a pyromaniac, beauty or ugliness, a fire mage), and a work is read from a person's backstory, title, faith
+role or best passion (a scholar, a soldier, a cook): a picture showing a look or a work goes only to people who have it,
+plain pictures are for anyone. A special look (the conjoined twins of Conjoined Twins, wings) only ever gets a picture
+made with it, else the game's own drawing. It is chosen the first time it is needed and kept: injuries, haircuts and
 clothes don't change it, only growing into the next stage of life (a toddler, a child, a teen, a grown-up, old) does;
-a right click on the large portrait chooses another. Pictures are read only when shown and kept in a small cache. In
-the large portrait the person stands in front of a painted backdrop of where they are (the kind of room, the colony's
-age and what is in the room, or the land outdoors), darker at night; elsewhere on the portrait's own colour. A race or
-xenotype with no pictures of its own keeps the game's own face, never another kind's. Rimfolk writes what it found missing (people, rooms,
-land) into the folder for the next batches. **A large portrait at the inspect pane**, **Its size**, **Backdrop**, **Line
+a right click on the large portrait chooses another. Pictures are read only when shown and kept in a small cache, and
+always shown as painted, never mirrored. The large portrait shows the whole picture at its own shape, a little taller
+than wide, the body running to its foot, in front of a painted backdrop of where they are (the kind of room, the
+colony's age and what is in the room, or the land outdoors), darker at night; the game's own drawing stands in front of
+the backdrop too where there is no picture for someone; elsewhere on the portrait's own colour. A race or xenotype with
+no pictures of its own keeps the game's own face, never another kind's. Rimfolk keeps what it found missing (people,
+looks, rooms, land) in the save, and writes it into the folder for the next batches. **A large portrait at the inspect
+pane**, **Its size**, **Backdrop**, **Backdrop behind the game's own drawing too**, **Line
 round the person**, **Tint the person to the room's light**, **Headgear in portraits**, **Clothes in portraits**,
 **Poses in portraits**, **Portraits move a little**, **Painted portraits from the library**, **Portraits from the
 library** and **Portrait library folder** (How you're told, Portraits) set it.
