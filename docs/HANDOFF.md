@@ -640,6 +640,10 @@ most sense." So, in this order, three builds at a time:
   kind the sexes and ages take turns, plain before roles and looks), writes `people-NN`; the 728 rows re-mixed into
   `people-01` to `04` (the wave lists gone); `Update-PortraitLibrary.ps1` finds a picture's row in any list, and
   `Run-PortraitBatch.ps1` looks for a row's pictures in the whole library.
+  And on the backdrops: "There's always something right at the border and it revolves around the space between the
+  borders ... not like in an open plain. So it should really not be forcing that at all ... as if it's a camera that
+  photographs a specific spot that just happened to be". Done: `style-backdrop.json`'s frame is now a plain camera view
+  of part of a larger place that carries on past every edge (the old frame asked for the detail towards the edges).
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the

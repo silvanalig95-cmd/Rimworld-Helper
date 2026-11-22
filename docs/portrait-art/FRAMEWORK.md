@@ -174,6 +174,12 @@ solution. I mean, I cannot upload that many images to you to edit."
   room, dining room, common room, kitchen, workshop, study, shrine, storeroom), sixteen outdoor looks that the player's
   56 biomes fall into (temperate and boreal forest, tundra, ice, grassland, shrubland, desert, jungle, swamp, coast,
   wasteland, volcanic, glowforest, cave, space, mountain), and three plain painted grounds. 67 places, two of each.
+  Framed like a camera's view of part of a larger place (the player, 22 November 2026: "There's always something right
+  at the border and it revolves around the space between the borders, which doesn't always make sense, like in a cave
+  or a canyon it might do, but not like in an open plain ... It should rather be imagining kind of as if it's a camera
+  that photographs a specific spot that just happened to be, and the camera only takes up the specific rectangle"):
+  the place carries on past every edge, nothing arranged around the borders (the first style asked for "the detail
+  towards the edges", which caused it).
 - **In the game** (to build once the backdrops are made): behind the cut-out person, the backdrop of where they are: the
   room's kind and the colony's age indoors, the biome outdoors; day or night and the weather as a tint; drawn softer,
   darker and out of focus, with a light shadow behind the figure, so the face stays first. A plain painted ground is the
