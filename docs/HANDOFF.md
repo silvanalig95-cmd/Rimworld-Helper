@@ -659,6 +659,16 @@ most sense." So, in this order, three builds at a time:
   Then: "the image analysis mod also analyses the backdrops" (and on an empty scene the model made up a person; it also
   called a baby girl a man). Done: `Check-Pictures.ps1` leaves backdrops out and doesn't compare the sex of babies and
   toddlers. And the player: "now again only provide me the files that change" (kits only with the changed files again).
+- **To do when the player asks (22 November 2026, the player; proposal sent, waiting for the go): delete a picture for
+  good from the game.** The player: "what i would like in the game is a feature that when i really don't like an image,
+  that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this way i
+  could cycle out all the basic ai faces. it would actually delete the image files directly through the rimworld
+  client". The proposal: "Delete this picture for good" (and "... this backdrop ...") on the large portrait's menu, with a
+  confirmation; the picture and its expressions moved into `Rimfolk-portraits\deleted pictures\` (a bin the player
+  empties; a setting deletes outright instead); its record taken out of `records.xml` at once (so the other computer
+  drops it after the sync); its name into `library\deleted.csv`, which `Copy-ToLibrary.ps1`, `Update-PortraitLibrary.ps1`
+  and `Check-Pictures.ps1` honour (never copied, recorded or checked again); whoever held it gets a new pick by the usual
+  rules (their pins, the nearest free face, else the game's drawing).
 - **To do when the player asks (22 November 2026, the lead's offer; nothing built yet): back to their own picture.** The
   player: "i accidentally unselected apes images, does this get recovered after a game reload?" ("Choose another
   picture" twice, 3 of 8: a stranger's face kept for Ape). The answer: a save from before the change brings it back; else
