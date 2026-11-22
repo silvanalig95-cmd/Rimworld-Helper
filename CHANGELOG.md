@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Quests nearer home and an events record
+
+*22 November 2026, version 0.296.0*
+
+- Quests out on the world map come less often: when the storyteller picks a quest, they weigh half as much by default (setting: Quests out on the world map), so more of the quests offered play out at home.
+- Quest sites are picked nearer home, at most 16 tiles away instead of 27 by default (setting: How far quest sites may be), or as the game picks them when nothing that near fits.
+- The Overview shows the events of the last 30 days by kind with the newest of each, how Rimfolk's events and the game's quests come now, and what was held back and why.
+- Rimfolk's events can also come on their own timer besides the storyteller's draw, with a new setting that starts at none.
+- In dev mode, a log lists every quest with where it plays out and why.
+
 ## Portraits that come alive
 
 *22 November 2026, version 0.295.0*

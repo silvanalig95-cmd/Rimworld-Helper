@@ -1302,7 +1302,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Fewer quests out on the world map,
+- 0.296.0, **Fewer quests out on the world map,
   their sites nearer home, Rimfolk's own timer besides the storyteller's, and the events record** (22 November 2026; the
   player, 20 November 2026: "the missions that you get, especially the ones on the world map, where something pops up
   somewhere ... where you could go and invade a base or whatever, or find some loot on the world map. I mean, these again,

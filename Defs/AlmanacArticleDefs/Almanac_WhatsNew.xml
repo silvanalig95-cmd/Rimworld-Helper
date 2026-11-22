@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.296.0</version>
+        <date>22 November 2026</date>
+        <title>Quests nearer home and an events record</title>
+        <points>
+          <li>Quests out on the world map come less often: when the storyteller picks a quest, they weigh half as much by default (setting: Quests out on the world map), so more of the quests offered play out at home.</li>
+          <li>Quest sites are picked nearer home, at most 16 tiles away instead of 27 by default (setting: How far quest sites may be), or as the game picks them when nothing that near fits.</li>
+          <li>The Overview shows the events of the last 30 days by kind with the newest of each, how Rimfolk's events and the game's quests come now, and what was held back and why.</li>
+          <li>Rimfolk's events can also come on their own timer besides the storyteller's draw, with a new setting that starts at none.</li>
+          <li>In dev mode, a log lists every quest with where it plays out and why.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.295.0</version>
         <date>22 November 2026</date>
         <title>Portraits that come alive</title>

@@ -809,7 +809,7 @@ and the flavour's hover is the hints.
   an older settings file loads (its exact numbers and off carry over, its hints, the default then, become flavour), as
   `showImpact` was before it.
 
-### Fewer quests out on the world map, their sites nearer home, the events record (the player's go, 22 November 2026; not released yet)
+### Fewer quests out on the world map, their sites nearer home, the events record (the player's go, 22 November 2026; released 0.296.0)
 
 The player, 20 November 2026: "the missions that you get, especially the ones on the world map, where something pops up
 somewhere ... I rarely do because it's just a huge price to pay ... to travel on the world map ... if you could just
