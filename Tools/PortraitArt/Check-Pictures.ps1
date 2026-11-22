@@ -1079,6 +1079,12 @@ function Apply-Yes($rec, $lines) {
     return $r
 }
 
+function Why-Key([string] $t) {
+    # A line's why for matching: its letters and digits only, so a line saved again by Excel (which may change the
+    # model's own characters, such as a curly apostrophe) still matches its issue.
+    return ((Low $t) -replace '[^a-z0-9]', '')
+}
+
 function Corr-Text($c, [string] $note) {
     # A correction line in short: "age child (yes)", "out (ask, new)".
     $t = $c.field
@@ -1236,7 +1242,8 @@ try {
         foreach ($i in $issues) {
             if ($i.field -eq '') { [void]$kept.Add($i); continue }
             $same = $null
-            foreach ($c in $mine) { if ($c.field -eq $i.field -and $c.why -eq $i.what.Trim()) { $same = $c; break } }
+            $key = Why-Key $i.what
+            foreach ($c in $mine) { if ($c.field -eq $i.field -and (Why-Key $c.why) -eq $key) { $same = $c; break } }
             if ($same -ne $null) {
                 if ($same.apply -eq 'no') { continue }
                 [void]$notes.Add((Corr-Text $same '')); [void]$kept.Add($i); continue
