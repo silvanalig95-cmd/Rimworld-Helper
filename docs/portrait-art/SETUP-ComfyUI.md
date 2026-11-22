@@ -91,7 +91,7 @@ Rimfolk reads your chosen pictures straight from a folder, the **library**: `lib
 with one folder per batch (`library\colonists`, `library\backdrops`, `library\people-01` ...: the batch's name, as
 in `batches\<batch>.csv`). Which lists to make next, and in what order, is in `docs/portrait-art/catalogue/README.md`.
 **With one double-click**: put `Copy-ToLibrary.ps1` and `Copy-ToLibrary.cmd` into ComfyUI's `output\Rimfolk` folder
-(or into one batch's folder in it). Throw out the pictures you don't want there, then double-click
+itself, next to the batch folders (if they sit in one batch's folder, they still do every batch). Throw out the pictures you don't want there, then double-click
 `Copy-ToLibrary.cmd`: it copies every new picture into the library folder of its batch (people's cut-outs only,
 backdrops all), skips what is already there, never renames anything, and writes the records again. The first time it
 asks where your `Rimfolk-portraits` folder is. Then "Reload the library" in the game. By hand it goes like this:

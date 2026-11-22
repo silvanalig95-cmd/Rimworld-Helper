@@ -1,7 +1,7 @@
 # Copy-ToLibrary.ps1, for Rimfolk's portraits.
 #
-# Put this file (and Copy-ToLibrary.cmd, which starts it with a double-click) into ComfyUI's output\Rimfolk folder, or
-# into one batch's folder in it (output\Rimfolk\colonists). It copies the pictures there into Rimfolk's library, each
+# Put this file (and Copy-ToLibrary.cmd, which starts it with a double-click) into ComfyUI's output\Rimfolk folder (put
+# into one batch's folder in it, it still does every batch). It copies the pictures there into Rimfolk's library, each
 # batch into the library folder of the same name (output\Rimfolk\colonists -> library\colonists), and then writes the
 # library's records again (Update-PortraitLibrary.ps1), so the game finds them after "Reload the library".
 # - People: only the cut-outs (..._cut_...png); the pictures with their painted background stay in ComfyUI's output.
@@ -44,11 +44,13 @@ try {
     @{ kit = $Kit } | ConvertTo-Json | Set-Content -LiteralPath $settingsFile -Encoding UTF8
     $library = Join-Path $Kit 'library'
 
-    # This folder holds pictures itself (one batch's folder), or one folder per batch (output\Rimfolk).
-    $sources = @()
-    if (@(Get-ChildItem -LiteralPath $here -Filter '*.png' -File).Count -gt 0) { $sources = @(Get-Item -LiteralPath $here) }
-    else { $sources = @(Get-ChildItem -LiteralPath $here -Directory) }
-    if ($sources.Count -eq 0) { throw ('No pictures here, and no batch folders: put this file into output\Rimfolk or into a batch folder in it ({0}).' -f $here) }
+    # Every batch folder of output\Rimfolk, wherever in it this file sits: in output\Rimfolk itself, or in one batch's
+    # folder (then its folder's parent is output\Rimfolk, and all the batches in it are copied, not only that one).
+    $root = $here
+    if (@(Get-ChildItem -LiteralPath $here -Filter '*.png' -File).Count -gt 0) { $root = Split-Path -Parent $here }
+    $sources = @(Get-ChildItem -LiteralPath $root -Directory | Where-Object { @(Get-ChildItem -LiteralPath $_.FullName -Filter '*.png' -File).Count -gt 0 })
+    if ($sources.Count -eq 0) { throw ('No batch folders with pictures in {0}: put this file into ComfyUI''s output\Rimfolk folder.' -f $root) }
+    Write-Host ('Batch folders in {0}: {1}' -f $root, (($sources | ForEach-Object { $_.Name }) -join ', '))
 
     $copied = 0; $skipped = 0; $renamed = 0; $extraCopied = 0
     $extraPattern = '_(depth|v-[A-Za-z]+)\.png$'
