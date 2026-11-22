@@ -43,9 +43,11 @@ game should check is written into the row's `looks` or `role`.
 
 1. **Make the next list.** Run `Run-PortraitBatch.ps1`, choose the list (start with `wave1-people-01`) and the style
    `style`. Each row makes two pictures.
-2. **Keep the good ones.** Copy the cut-outs you like into `library\<list>\` (for example `library\wave1-people-01\`),
-   with the names ComfyUI gave them. Throw out the misses (wrong age, wrong kind, broken hands).
-3. **Update the library.** Run `Update-PortraitLibrary.ps1`, then "Reload the library" in Rimfolk's settings.
+2. **Keep the good ones.** In ComfyUI's `output\Rimfolk\<list>` folder, throw out the misses (wrong age, wrong kind,
+   broken hands, something held or shown that the row doesn't stand for), then double-click `Copy-ToLibrary.cmd`: it
+   copies the rest into `library\<list>\` (for example `library\wave1-people-01\`) with the names ComfyUI gave them.
+3. **Update the library.** `Copy-ToLibrary` writes the records itself (by hand: `Update-PortraitLibrary.ps1`), then
+   "Reload the library" in Rimfolk's settings.
 4. **Play.** Rimfolk writes `library\missing.csv` with what it needed and had no picture for.
 5. **Send** your save, `library\missing.csv` and `library\records.xml` when you send a save anyway.
 6. **The lead plans the next lists**: the census reads the save into the catalogue, the planner writes the next lists

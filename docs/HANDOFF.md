@@ -519,6 +519,30 @@ most sense." So, in this order, three builds at a time:
   run stamps in every picture's name (`Run-PortraitBatch.ps1`), and `Update-PortraitLibrary.ps1` reading them and
   Windows' renamed copies, plus a `looks` column. Points 1 to 3 went to one build agent, the review and catalogue
   (point 4) to another.
+  Then the player, testing with backdrops only: "when no appropriate image can be found for a pawn, and it just shows its
+  default sprite ... it still takes backdrop from the library, right? That's the least it can do." It didn't (0.293.0
+  puts the backdrop behind painted pictures only): added to the looks build, the backdrop behind the game's own drawing
+  on the large portrait too (with a setting, the player: "that could be toggleable").
+  The player's first look at 0.293.0 in the game (Avila's picture on the large portrait and the colonist card: "it's
+  working and looking pretty great, not gonna lie"), three changes, sent to the same build: "They should ... always
+  look the same direction if they're represented on different parts of the UI" (painted pictures never mirrored); "I'd
+  rather ... see as much as I can ... It can show as much as the image ... generates" (the large portrait shows the
+  whole picture, its shape 5:4 tall); "a really minor, small offset between the bottom of its body and where the UI
+  continues below" (the body runs to the panel's bottom edge; breathing and sway anchored at the bottom).
+  And: "the profession can and should also be reflected in how they look like. For example, if someone is doing a lot
+  of science, has high intelligence, and then it can also look like a scientist ... for the whole database ... and
+  soldiers being soldiers". So a `role` in the records (scholar, doctor, soldier, warrior, hunter, scout, builder,
+  miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer), read by the game from a
+  pawn's adulthood backstory or best passionate skill and matched softly (to the looks build), planned as an axis with
+  its clothes, tools and poses per age of dress (to the catalogue build); the library script writes a `role` column.
+  And: "you can also include, more eccentric and noticeable and special visuals ... a lot of variety and range,
+  especially when it comes to the NPCs ... but it should always be thematically fitting and based on an actual
+  combination ... maybe it's holding a flame or something because it's a fire mage ... As long as you don't get like
+  someone doing ... a fire spell for someone who can't even do magic ... Otherwise, it should ... rather choose a default
+  one that doesn't have special things like that." So a picture showing a look or a role goes only to pawns who have
+  it (a hard rule; the pawn's own looks a picture lacks only cost), plain pictures are the defaults (to the looks
+  build); the catalogue plans defaults first, then showy looks tied to traits, classes, genes and roles, with wide
+  range in expression and bearing (to the catalogue build).
   **Done (22 November 2026, point 4: the review, the catalogue and the batch planner; docs and tools, no mod code):**
   `docs/portrait-art/catalogue/` (its README in plain words for the player): `kinds.csv` (82 kinds: the 79 active
   xenotypes and the creepjoiner, conjoined and spirit races, each with its save count from League_of_Toba_11, 405 people,
@@ -536,6 +560,27 @@ most sense." So, in this order, three builds at a time:
   (474 rows: 128 plain, 66 roles, 280 looks) and `wave2-people-01` to `02` (254 plain rows), 728 rows, about 1,450
   pictures. Next from the player: run them, keep the good cut-outs in `library\<list>\`, send the save, `missing.csv`
   and `records.xml`.
+- **To do when the player asks (22 November 2026, the player; nothing built yet): pictures checked by what they show.**
+  The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
+  goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
+  the image as much as possible." Records come from what the prompt asked, and a picture may show more (a weapon, a
+  flame, a crown, wings) or less (a woman drawn as a man, as Ape was). The lead's proposal: a captioning model on the
+  player's computer (Florence-2 or JoyCaption through a ComfyUI node pack, a one-time install of a few GB), run by a
+  script over the new pictures in the library; it writes what each picture shows (sex, how old they look, kind
+  features, things held, glowing, wings, fire, armour), compares it with the picture's record, and lists the
+  mismatches to throw out or fix, and the things shown that the record should carry as looks. The player looks
+  through the list instead of every picture.
+- **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
+  painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
+  can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
+  screen in some way. I don't know how other games do it, with, so to say, a static image, to make it perhaps a little
+  bit more alive is something we can then think about later also." Already in 0.293.0: the person breathes in front of
+  a still backdrop on the large portrait. Ideas for then, from how other games bring still portraits to life: a slow
+  sway and a slight head tilt now and then (the cut-out moved in parts, like puppet portraits in visual novels); depth
+  that follows the mouse (person and backdrop shifting apart a little); blinking and a few moods (the same face painted
+  again with closed eyes, a smile, a frown, by image-to-image from the kept picture, shown by the pawn's mood); the
+  backdrop alive (a hearth's or lamp's flicker, dust in the light, snow or rain by the map's weather, night falling);
+  a short change of expression when something happens to them (hurt, a death, good news).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
