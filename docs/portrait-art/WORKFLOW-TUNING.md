@@ -83,6 +83,21 @@ storybook, flat colour, vector, sketch, retro sci-fi, pulp and more; the example
 Left out: too realistic (Painterly Fantasy, the fantasy digital-painting sets, Mythic Fantasy), too surreal (Daubrez),
 anime looks, minimal vector silhouettes, and the Fallout pack (no people in its examples).
 
+### Z-Image Turbo, a second model (22 November 2026)
+
+Comic Book Tome 3's newer versions, V3 and V4, whose examples fit the game best (inked European-comic portraits with
+washed colour and faces with character), are made for **Z-Image Turbo**, not FLUX; its V1 and V2 are for FLUX. Z-Image
+Turbo is a newer, fast model (about 8 steps a picture) that ComfyUI supports, with a licence that allows publishing. To
+use it as a second workflow:
+1. **Browse Templates**, search `Z-Image`, open the Z-Image Turbo text-to-image template and let it download its files.
+2. If it is one bundled box, unpack it (right-click, Unpack Subgraph) as before; type `%PROMPT%` in its prompt box.
+3. Add one `LoraLoaderModelOnly` box between its Load Diffusion Model and the box the model went to.
+4. **Export (API)** as `rimfolk-workflow-zimage.json` next to the other one; the batch tool asks which to use.
+5. Put Tome 3's V4 file (`Comic Book V4T3_E10.safetensors`) and, to compare, V3 (`comics_factory_V3.safetensors`) in
+   `models\loras`; run `colonists` with `style-Z4` (V4: trigger `Bradhamel art style`, 0.75, 8 steps, heunpp2, normal)
+   or `style-Z3` (V3: `ComFact_V3 art style`, 0.75, 8 steps, heunpp2, beta), choosing the Z-Image workflow.
+FLUX LoRAs (the SameFace Fix, the softener) don't work with Z-Image Turbo.
+
 ## Step 3 (if faces stay alike): Chroma, a model that obeys a negative prompt
 
 1. In ComfyUI, **Browse Templates**, find **Chroma** (text to image), let it download its files.
