@@ -1166,7 +1166,7 @@ class Planner:
         looks_text = ' '.join(C.plain_words(self.looks[lw].prompt) for lw in looks if lw in self.looks)
         fit = LOOK_FIT.get(look.word, {}) if look else {}
         skin_human = skin[0] in HUMAN_SKIN_SLUGS
-        surface = C.surface_of(body_text, k.features, skin_human)
+        surface = C.surface_of(body_text + ' ' + skin[2], k.features, skin_human)
         rrow = self.roles.get(role) if role else None
         # the record's words (a word listed alone in kinds.csv, such as a genie's build slim, is that kind's only one)
         hair_word = 'bald' if hair[0] == 'bald' or not hair[1] else (weighted(rng, even(k.hair)) or 'short')
@@ -1223,7 +1223,7 @@ class Planner:
         wears = 'wear' if twins else 'wears'
         # the body: the kind, its shape, skin, hair, beard and build
         parts = []
-        for text in (kind_look, k.shape):
+        for text in (kind_look, k.shape if age in W.GROWN else ''):   # the body's shape is a grown body's
             if text:
                 parts.append(child_look(text) if little else text)
         parts.append(skin[2])
@@ -1270,7 +1270,8 @@ class Planner:
         faces = []
         for _ in range(2 if twins else 1):
             for _try in range(60):
-                base, feats = C.face(rng, age, body_text, k.features, skin_human, k.far, strong, marks, own_text)
+                base, feats = C.face(rng, age, body_text, k.features, skin_human, k.far, strong, marks, own_text,
+                                     light=skin[0] in ('veryfair', 'fair', 'light'), build=build, skin_words=skin[2])
                 key = '%s; %s' % (base, '; '.join(sorted(feats)))
                 if key not in self.ledger.faces and key not in [f[2] for f in faces]:
                     break
@@ -1295,8 +1296,10 @@ class Planner:
             if twins:
                 other = weighted(rng, [(m, w) for m, w in moods if m != mood] or moods)
                 expr = 'the left face with %s, the right with %s' % (expr, rng.choice(C.MOODS[other][0]))
-            if (look and FACE_WORDS.search(own_text)) or re.search(r'blank expression', kind_look):
-                expr = ''     # the look says the face (a drinker's tired eyes, a psychopath's cold stare, an android's blank one)
+            if look and FACE_WORDS.search(own_text):
+                expr, mood_adj = '', ''     # the look says the face (a drinker's tired eyes, a psychopath's cold stare)
+            elif re.search(r'blank expression', kind_look):
+                expr = ''                   # an android's blank face, its mood only in the pose
         # the clothes
         acc = rng.choice(C.ACCESSORIES[era]) if rng.random() < 0.4 else ''
         bare = ''
@@ -1349,8 +1352,9 @@ class Planner:
         hard = ''
         if not little:
             said = ' '.join(sentences).lower()
-            opts = [h for h in (C.FAR_HARDSHIP if k.far or surface != 'human' else C.HARDSHIP)[hardship]
-                    if not any(w in said and w in h.lower() for w in ECHO_WORDS)]
+            table = C.FAR_HARDSHIP if k.far or surface != 'human' else C.HARDSHIP
+            opts = [h for h in table[hardship] if not any(w in said and w in h.lower() for w in ECHO_WORDS)
+                    and (skin_human or not C.SKIN_COLOUR_WORDS.search(h.lower()))]
             hard = rng.choice(opts) if opts else ''
             sentences.append(hard)
         line = ''

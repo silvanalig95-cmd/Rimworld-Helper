@@ -149,16 +149,16 @@ SURFACES = {
     'fur': ['coarse, scruffy fur', 'thick, glossy fur', 'patchy, uneven fur', 'short, bristly fur'],
     'scales': ['dull, dusty scales', 'rough, thick scales', 'blotchy, uneven scales', 'small, tight scales',
                'a few chipped scales at the brow'],
-    'chitin': ['dull, scuffed chitin', 'glossy, dark chitin', 'uneven, lumpy chitin plates', 'pale streaks across the chitin'],
-    'bark': ['rough, knotted bark', 'deeply furrowed bark', 'pale, peeling bark', 'bark with moss in the cracks'],
+    'chitin': ['dull, scuffed chitin', 'glossy chitin', 'uneven, lumpy chitin plates', 'faint streaks across the chitin'],
+    'bark': ['rough, knotted bark', 'deeply furrowed bark', 'peeling bark at the brow', 'bark with moss in the cracks'],
     'fungus': ['spongy, mottled skin', 'dry, powdery skin', 'damp, glistening patches on the skin'],
     'stone': ['rough, pitted stony skin', 'stony skin with pale veins', 'chalky, cracked stony skin'],
-    'fish': ['dull, blotchy fish skin', 'pale, speckled fish skin', 'skin with a wet, oily gleam'],
+    'fish': ['blotchy, speckled fish skin', 'skin with a wet, oily gleam', 'fine, tight scales at the cheeks'],
     'synthetic': ['matte synthetic skin', 'synthetic skin a shade too even', 'synthetic skin with a scuff on one cheek'],
     'spirit': ['a faint, wavering outline', 'a blurred, smoky edge to the face', 'a cold, pale tint'],
     'slime': ['glistening, slimy skin', 'skin with drips of slime at the chin'],
     'leather': ['tough, creased leathery skin', 'thick, cracked leathery skin'],
-    'waxy': ['greasy, waxy skin', 'lumpy, shiny skin'],
+    'waxy': ['greasy, waxy skin', 'lumpy, shiny skin', 'a cluster of growths over one eye', 'skin like candle wax around the mouth'],
 }
 
 CHILD_SHAPES = ['a round, plain face', 'a thin, serious face', 'a long face', 'full cheeks', 'a pointed chin', 'a square little jaw',
@@ -182,6 +182,12 @@ BABY_FEATURES = {'eyes': ['puffy eyelids', 'small, squinting eyes', 'small, slee
 # How often a group of features comes up against the others (a nose or a jaw more often than a mole).
 GROUP_WEIGHT = {'nose': 1.2, 'jaw': 1.1, 'mouth': 1.1, 'eyes': 0.9, 'brows': 1.0, 'ears': 0.6, 'lines': 0.5, 'marks': 0.5,
                 'muzzle': 1.2, 'coat': 0.8}
+# Face words a build contradicts (a gaunt face over a big belly).
+BUILD_UNFIT = {'heavy': re.compile(r'gaunt|hollow|bony|thin, pinched|narrow face'),
+               'slim': re.compile(r'round, fleshy|moon|full, heavy cheeks|double chin|big, heavy-boned')}
+# Face words a kind's look contradicts (a pinched face under a neanderthal's heavy jaw).
+LOOK_UNFIT = [(r'heavy jaw|broad|brutish|stocky|big, heavy|massive', re.compile(r'gaunt|hollow|thin, pinched|narrow face|weak chin|narrow jaw')),
+              (r'gaunt|\bthin\b|\blean\b|narrow|slender|slight', re.compile(r'round, fleshy|moon|full, heavy|double chin|big, heavy-boned|wide, open|short, wide'))]
 # A face's features: one to three, mostly one or two (the player: "Someone could have one, someone could have three").
 FEATURE_COUNTS = [(1, 0.42), (2, 0.4), (3, 0.18)]
 
@@ -221,6 +227,12 @@ def surface_of(look, features, skin_human):
     return 'human'
 
 
+def fresh(options, said):
+    """The options that repeat no longer word of what is already said (a taukai's look says waxy and greasy)."""
+    words = {w for w in re.findall(r'[a-z]{5,}', (said or '').lower())}
+    return [o for o in options if not words & set(re.findall(r'[a-z]{5,}', o.lower()))] or options
+
+
 def _ok(item, age):
     return age in AGE_OK[item[2]]
 
@@ -229,22 +241,25 @@ def _word(rng, item, strong_share):
     return item[1] if item[1] and rng.random() < strong_share else item[0]
 
 
-def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extra_block=''):
+def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extra_block='', light=True, build='average',
+         skin_words=''):
     """The face as (base, [features]): its shape and skin, and one to three features of its own (a scar through the brow
     only with the scar mark). look is the kind's look sheet (with the row's look words, which may say more about the
-    face); features the record's feature words; far a kind far from human in looks."""
+    face); features the record's feature words; far a kind far from human in looks; light a light human skin; build
+    the record's build (a heavy one gets no gaunt face, a slim one no fleshy one); skin_words the palette's words for
+    the skin ("bark-textured skin"), which say what the skin is when the look doesn't."""
     text = (look or '') + ' ' + (extra_block or '')
     blocks = blocked(text)
     animal = bool(ANIMAL_HEAD.search(look or ''))
-    surface = surface_of(look, features, skin_human)
+    surface = surface_of((look or '') + ' ' + skin_words, features, skin_human)
     if age in ('baby', 'toddler', 'child'):
         shapes = BABY_SHAPES if age == 'baby' else CHILD_SHAPES
         pools = BABY_FEATURES if age == 'baby' else CHILD_FEATURES
         base = [] if 'shape' in blocks or animal else [rng.choice(shapes)]
         if surface == 'human' and 'skin' not in blocks and age != 'baby':
-            base.append(rng.choice(CHILD_SKINS))
+            base.append(rng.choice([c for c in CHILD_SKINS if (light or 'pale' not in c) and (skin_human or 'sun' not in c)]))
         elif surface != 'human':
-            base.append(rng.choice(SURFACES[surface]))
+            base.append(rng.choice(fresh(SURFACES[surface], look)))
         groups = [g for g in pools if g not in blocks and not (animal and g in ('nose', 'mouth', 'skin'))
                   and not (far and g not in ('mouth', 'brows'))]
         n = 1 if age == 'baby' else (1 if rng.random() < 0.6 else 2)
@@ -252,8 +267,9 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
         feats = [rng.choice(pools[g]) for g in groups[:n]]
         if not feats:
             feats = [rng.choice(CHILD_FEATURES['ears' if 'ears' not in blocks else 'brows'])]
-        if not base:
-            base = [rng.choice(CHILD_SHAPES)]
+        if not base:   # the kind's look sets the face: the skin says who this child is
+            base = [rng.choice(BABY_FEATURES['skin'] if age == 'baby' else [c for c in CHILD_SKINS if light or 'pale' not in c])]
+            feats = [f for f in feats if f not in base] or feats
         return ', '.join(base), feats
     # grown-ups and teens
     if animal:
@@ -274,15 +290,18 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
                 pools['brows'] = ANIMAL_FEATURES['brows']
         shape_blocked = 'shape' in blocks
     base = []
+    unfit = [x.pattern for x in [BUILD_UNFIT.get(build)] + [u for rx, u in LOOK_UNFIT if re.search(rx, look or '')] if x]
+    unfit = re.compile('|'.join(unfit)) if unfit else None
     if not shape_blocked:
-        base.append(_word(rng, rng.choice([s for s in shapes if _ok(s, age)]), strong_share))
+        base.append(_word(rng, rng.choice([s for s in shapes if _ok(s, age) and not (unfit and unfit.search(s[0]))]), strong_share))
     if surface == 'human' and 'skin' not in blocks:
         said = ' '.join(base)     # the skin names no part the shape already did ("a big forehead, an oily forehead")
         base.append(rng.choice([s for s, tag in SKINS if (skin_human or tag != 'hc')
                                 and (tag not in AGE_OK or age in AGE_OK[tag])
-                                and not any(p in s and p in said for p in ('forehead', 'cheek', 'chin', 'face'))]))
+                                and not any(p in s and p in said for p in ('forehead', 'cheek', 'chin', 'face'))
+                                and (light or 'pale' not in s)]))
     elif surface != 'human':
-        base.append(rng.choice(SURFACES[surface]))
+        base.append(rng.choice(fresh(SURFACES[surface], look)))
     if not base:
         base.append(_word(rng, rng.choice([s for s in (ANIMAL_SHAPES if animal else FACE_SHAPES) if _ok(s, age)]), strong_share))
     n, x = 1, rng.random()
@@ -299,7 +318,7 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
     for g in groups:
         if len(feats) >= n:
             break
-        items = [i for i in pools[g] if _ok(i, age) and (skin_human or 'sunburnt' not in i[0])
+        items = [i for i in pools[g] if _ok(i, age) and (skin_human or 'sunburnt' not in i[0]) and not (unfit and unfit.search(i[0]))
                  and not (g in ('marks', 'lines') and any(w in i[0] for b, w in SAID_BY if b in blocks))]
         if not items:
             continue
@@ -460,7 +479,7 @@ KIND_MOODS = [
     (r'regal', ['haughty', 'proud', 'stoic', 'intense', 'weary']),
     (r'calm|gentle', ['warm', 'stoic', 'weary', 'shy', 'eccentric', 'droll']),
     (r'hard|fierce|intimidating|unflinching|wild stare|soldier', ['intense', 'gruff', 'sly', 'sullen', 'proud', 'suspicious',
-                                                                 'stoic', 'haughty', 'droll']),
+                                                                 'stoic', 'haughty']),
     (r'watchful', ['sly', 'haughty', 'proud', 'stoic', 'intense', 'warm']),
 ]
 # Looks a kind's own look sheet says the opposite of (a gourmand's full belly on a waster's gaunt face): not given it.
@@ -557,5 +576,7 @@ HARDSHIP = {
              'Grime in the creases of the face.'],
     'brutal': ['Deep lines and a hard stare.', 'A hard-worn, weather-beaten face.', 'Hollow cheeks and cracked lips.'],
 }
+# Hardship words that speak of a human skin's colour (a tan, wind-burn), left out on other skins.
+SKIN_COLOUR_WORDS = re.compile(r'sun-browned|sun-blackened|wind-burned|wind-reddened|weather-beaten face|tanned')
 FAR_HARDSHIP = {'sheltered': ['A well-kept, well-fed look.'], 'ordinary': ['A little travel-worn.'],
                 'hard': ['A worn, weather-beaten look.', 'Dust in every crease.'], 'brutal': ['A hard, hungry look.', 'A rough, half-starved look.']}
