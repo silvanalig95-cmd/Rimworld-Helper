@@ -697,6 +697,12 @@ namespace ColonyCouncil
             Toggle("inspectPortrait", "CC_Settings_InspectPortrait", "CC_SetNote_InspectPortrait", "deepHooks");
             Slider("inspectPortraitSize", "CC_Settings_InspectPortraitSize", "CC_SetNote_InspectPortraitSize", FaceMath.SizeLeast, FaceMath.SizeMost, FaceMath.SizeStep, "0",
                 "inspectPortrait");
+            // Portraits, phase 4 (UI/Faces/FaceEngineStage.cs): the large portrait's painted picture in front of a backdrop of where they are.
+            Choice("portraitBackdrop", "CC_SetLabel_PortraitBackdrop", "CC_SetTip_PortraitBackdrop", "CC_PortraitBackdrop_", "CC_SetNote_PortraitBackdrop_",
+                new[] { "AsPainted", "LightlySoftened", "Softened", "Plain" }, "inspectPortrait,portraitLibrary");
+            Choice("portraitOutline", "CC_SetLabel_PortraitOutline", "CC_SetTip_PortraitOutline", "CC_PortraitOutline_", "CC_SetNote_PortraitOutline_",
+                new[] { "Off", "Subtle", "Stronger" }, "inspectPortrait,portraitLibrary");
+            Toggle("portraitLightTint", "CC_Settings_PortraitLightTint", "CC_SetNote_PortraitLightTint", "inspectPortrait,portraitLibrary");
             Toggle("portraitHeadgear", "CC_Settings_PortraitHeadgear", "CC_SetNote_PortraitHeadgear");
             Toggle("portraitClothes", "CC_Settings_PortraitClothes", "CC_SetNote_PortraitClothes");
             // Portraits, phase 2 (UI/Faces/FaceEnginePoses.cs, FaceEngineSplit.cs): poses, and the large portraits' movement.
@@ -704,6 +710,8 @@ namespace ColonyCouncil
             Toggle("portraitsMove", "CC_Settings_PortraitsMove", "CC_SetNote_PortraitsMove");
             // Portraits, phase 3 (UI/Faces/PortraitLibrary.cs): painted portraits from the library, where one is close to the person.
             Toggle("portraitLibrary", "CC_Settings_PortraitLibrary", "CC_SetNote_PortraitLibrary");
+            Choice("portraitPick", "CC_SetLabel_PortraitPick", "CC_SetTip_PortraitPick", "CC_PortraitPick_", "CC_SetNote_PortraitPick_", new[] { "Closest", "OnlyClose" },
+                "portraitLibrary");
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");

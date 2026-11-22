@@ -25,10 +25,44 @@
   <CC_Settings_PortraitsMove_Tip>The large portrait at the inspect pane and the one on the colonist card breathe and sway a little, always facing the front. They hold still while the game is paused. The small portraits in lists never move.</CC_Settings_PortraitsMove_Tip>
   <CC_SetNote_PortraitsMove>The large portraits breathe and sway a little; still while paused.</CC_SetNote_PortraitsMove>
   <CC_Settings_PortraitLibrary>Painted portraits from the library</CC_Settings_PortraitLibrary>
-  <CC_Settings_PortraitLibrary_Tip>Where Rimfolk's portrait library has a painted picture close to how a person looks (sex, age, skin, hair colour and length, beard, and the age of their clothes), their portraits show that picture, the same one for good: a new one is picked only when their look changes (hair dyed or cut, a beard grown, clothes of another age) or the library grows a clearly closer one. Anyone with no picture close enough, and anyone the library can't show (another mod's race, a baby, a xenotype's marks on the head), keeps the game's own face. Off, every portrait is the game's own face. The library is empty until its pictures are added.</CC_Settings_PortraitLibrary_Tip>
-  <CC_SetNote_PortraitLibrary>Portraits show a painted picture close to each person's looks, where the library has one.</CC_SetNote_PortraitLibrary>
+  <CC_Settings_PortraitLibrary_Tip>Portraits show a painted picture from the library where one may stand for the person: a picture made for that colonist (pinned to them by name), else the one closest to how they look (their kind, sex, age, skin, hair colour and length, beard, build and the age of their clothes). The picture is chosen the first time it is needed and kept for good: injuries, a new haircut or new clothes don't change it. A child gets a new one when they grow into the next stage (a baby, a toddler, a child, a grown-up). Right-click the large portrait to choose another picture. A kind that looks far from human with no pictures of its own keeps the game's own face. The pictures come from the player's own pack of painted portraits; the library is empty until it is added. Off, every portrait is the game's own face.</CC_Settings_PortraitLibrary_Tip>
+  <CC_SetNote_PortraitLibrary>Portraits show a painted picture for each person, chosen once and kept.</CC_SetNote_PortraitLibrary>
+  <CC_SetLabel_PortraitPick>Portraits from the library</CC_SetLabel_PortraitPick>
+  <CC_SetTip_PortraitPick>Which people get a painted picture. "The closest": everyone the library has a picture for that may stand for them (the same sex, an age of the same stage), even if it doesn't look much like them. "Only close ones": only where a picture looks close to them; the rest keep the game's own face. Pictures pinned to a colonist and pictures chosen by hand show either way.</CC_SetTip_PortraitPick>
+  <CC_PortraitPick_Closest>The closest</CC_PortraitPick_Closest>
+  <CC_PortraitPick_OnlyClose>Only close ones</CC_PortraitPick_OnlyClose>
+  <CC_SetNote_PortraitPick_Closest>Everyone gets the picture closest to their looks, as long as it is the same sex and stage of life.</CC_SetNote_PortraitPick_Closest>
+  <CC_SetNote_PortraitPick_OnlyClose>Only pictures that look close to the person are shown; the others keep the game's own face.</CC_SetNote_PortraitPick_OnlyClose>
+  <CC_SetLabel_PortraitBackdrop>Backdrop</CC_SetLabel_PortraitBackdrop>
+  <CC_SetTip_PortraitBackdrop>Behind a painted picture in the large portrait, a painted backdrop of where the person is: indoors the kind of room, the colony's age and what is in the room; outdoors the kind of land; darker and cooler at night. "As painted" shows it as it was painted. "Lightly softened" blurs it a little and makes it slightly darker and less colourful. "Softened" blurs it more and makes it darker, so the person stands out more. "Plain" shows no backdrop, only the portrait's own colour.</CC_SetTip_PortraitBackdrop>
+  <CC_PortraitBackdrop_AsPainted>As painted</CC_PortraitBackdrop_AsPainted>
+  <CC_PortraitBackdrop_LightlySoftened>Lightly softened</CC_PortraitBackdrop_LightlySoftened>
+  <CC_PortraitBackdrop_Softened>Softened</CC_PortraitBackdrop_Softened>
+  <CC_PortraitBackdrop_Plain>Plain</CC_PortraitBackdrop_Plain>
+  <CC_SetNote_PortraitBackdrop_AsPainted>The backdrop of where they are, as it was painted.</CC_SetNote_PortraitBackdrop_AsPainted>
+  <CC_SetNote_PortraitBackdrop_LightlySoftened>The backdrop a little blurred, darker and less colourful.</CC_SetNote_PortraitBackdrop_LightlySoftened>
+  <CC_SetNote_PortraitBackdrop_Softened>The backdrop clearly blurred and darker, so the person stands out.</CC_SetNote_PortraitBackdrop_Softened>
+  <CC_SetNote_PortraitBackdrop_Plain>No backdrop: the portrait's own colour behind the person.</CC_SetNote_PortraitBackdrop_Plain>
+  <CC_SetLabel_PortraitOutline>Line round the person</CC_SetLabel_PortraitOutline>
+  <CC_SetTip_PortraitOutline>A line round the person in the large portrait's painted picture, so they stand apart from the backdrop: a soft dark shadow just round them, a faint pale edge and a thin dark line, following their shape. "Subtle" is light, "Stronger" firmer.</CC_SetTip_PortraitOutline>
+  <CC_PortraitOutline_Off>Off</CC_PortraitOutline_Off>
+  <CC_PortraitOutline_Subtle>Subtle</CC_PortraitOutline_Subtle>
+  <CC_PortraitOutline_Stronger>Stronger</CC_PortraitOutline_Stronger>
+  <CC_SetNote_PortraitOutline_Off>No line round the person.</CC_SetNote_PortraitOutline_Off>
+  <CC_SetNote_PortraitOutline_Subtle>A light shadow and thin line round the person.</CC_SetNote_PortraitOutline_Subtle>
+  <CC_SetNote_PortraitOutline_Stronger>A firmer shadow and line round the person.</CC_SetNote_PortraitOutline_Stronger>
+  <CC_Settings_PortraitLightTint>Tint the person to the room's light</CC_Settings_PortraitLightTint>
+  <CC_Settings_PortraitLightTint_Tip>The person in the large portrait's painted picture takes on a little of the backdrop's colour (about a fifth), so a warm firelit room makes them warmer and a cold night cooler.</CC_Settings_PortraitLightTint_Tip>
+  <CC_SetNote_PortraitLightTint>The person takes on a little of the backdrop's light.</CC_SetNote_PortraitLightTint>
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>
+  <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture.</CC_Portrait_TipLibrary>
   <CC_Portrait_GripTip>Drag to make the portrait larger or smaller.</CC_Portrait_GripTip>
+  <CC_Portrait_ChooseAnother>Choose another picture</CC_Portrait_ChooseAnother>
+  <CC_Portrait_ChooseEmpty>the library has no pictures</CC_Portrait_ChooseEmpty>
+  <CC_Portrait_ChooseOff>painted portraits are off in the settings</CC_Portrait_ChooseOff>
+  <CC_Portrait_ChooseNoneShort>no picture fits them</CC_Portrait_ChooseNoneShort>
+  <CC_Portrait_ChooseNone>No other painted picture fits {PAWN_nameDef}.</CC_Portrait_ChooseNone>
+  <CC_Portrait_ChooseDone>{PAWN_nameDef} now has another painted picture ({AT} of {OF}), kept from now on.</CC_Portrait_ChooseDone>
 </LanguageData>

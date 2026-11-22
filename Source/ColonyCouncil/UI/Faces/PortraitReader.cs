@@ -13,7 +13,7 @@ namespace ColonyCouncil
     /// <list type="bullet">
     /// <item>their race and xenotype (a xenotype of the player's own making has no name to match); whether the race is
     /// built as a human is;</item>
-    /// <item>sex; the age band from their biological age and their kind's life expectancy (none for a baby or a toddler);</item>
+    /// <item>sex; the age band from the game's own stage of life (a baby under one, else a toddler; a child), else their biological age and their kind's life expectancy;</item>
     /// <item>the skin's and hair's colours as the game has them (genes' colours in them);</item>
     /// <item>the hair from its def's words (name, label, texture path, style tags), else the shape of its front texture
     /// measured once, else long for a woman and short for anyone else; bald where the game draws no hair;</item>
@@ -35,13 +35,27 @@ namespace ColonyCouncil
         private static readonly Dictionary<ThingDef, List<string>> apparelWords = new Dictionary<ThingDef, List<string>>();
         private static readonly List<PortraitLibraryMath.WornPiece> worn = new List<PortraitLibraryMath.WornPiece>();
 
-        /// <summary>A pawn's looks; false for anyone the library has no pictures for at all (not humanlike, a baby or a toddler).</summary>
+        /// <summary>The game's own stage of a pawn's life: a baby (a newborn too), a child, a grown-up.</summary>
+        public static GameStage GameStageOf(Pawn p)
+        {
+            var s = p.DevelopmentalStage;
+            return s.Baby() ? GameStage.Baby : s.Child() ? GameStage.Child : s.Adult() ? GameStage.Adult : GameStage.Unknown;
+        }
+
+        /// <summary>A pawn's age band (a baby, a toddler, a child, then young, adult, old), cheaply; false for anyone not humanlike.</summary>
+        public static bool AgeOf(Pawn p, out PortraitAge age)
+        {
+            age = PortraitAge.Adult;
+            if (p?.RaceProps == null || !p.RaceProps.Humanlike) return false;
+            return PortraitLibraryMath.AgeOf(p.ageTracker?.AgeBiologicalYearsFloat ?? 30f, p.RaceProps.lifeExpectancy, GameStageOf(p), out age);
+        }
+
+        /// <summary>A pawn's looks; false for anyone the library has no pictures for at all (not humanlike).</summary>
         public static bool LookOf(Pawn p, out PortraitLook l)
         {
             l = null;
             if (p?.RaceProps == null || !p.RaceProps.Humanlike || p.story == null) return false;
-            if (p.DevelopmentalStage.Baby()) return false;
-            if (!PortraitLibraryMath.AgeOf(p.ageTracker?.AgeBiologicalYearsFloat ?? 30f, p.RaceProps.lifeExpectancy, out var age)) return false;
+            if (!AgeOf(p, out var age)) return false;
             l = new PortraitLook
             {
                 race = p.def.defName.ToLowerInvariant(),

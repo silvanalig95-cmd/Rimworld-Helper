@@ -168,13 +168,20 @@ namespace ColonyCouncil
                 if (UiKit.OwnLook) UiKit.RoundBox(r, UiKit.PortraitBack, UiKit.Edge, SkinMath.RadiusCard);
                 else Widgets.DrawBoxSolidWithOutline(r, UiKit.PortraitBack, UiKit.CardBorder, 1);
                 float rs = Mathf.Max(1f, render - 2f * FaceMath.Border);
-                FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs), 1f, true);
+                // A painted picture from the library stands in front of the backdrop of where they are; else the game's drawing as before.
+                if (!FaceEngine.DrawStaged(inner, p, new Vector2(rs, rs), true)) FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs), 1f, true);
                 if (r.width >= FaceMath.NamedFrom) NameBand(inner);
                 if (dragging || Mouse.IsOver(r)) Grip(grip);
             }
             float ms = Mathf.Clamp(Mathf.Round(r.width * 0.14f), 18f, 32f);
             var mark = new Rect(inner.x + 4f, inner.y + 4f, ms, ms);
             FaceEngine.DrawMark(mark, p);
+            // A right click: its menu (another painted picture for them).
+            if (!dragging && ev.type == EventType.MouseDown && ev.button == 1 && Mouse.IsOver(r))
+            {
+                Menu(p);
+                ev.Use();
+            }
             if (!dragging)
             {
                 // One tooltip at a time: the mark's people, the corner's sizing, else the portrait's own.
@@ -190,6 +197,27 @@ namespace ColonyCouncil
                 }
             }
             if ((ev.type == EventType.MouseDown || ev.type == EventType.MouseUp) && Mouse.IsOver(r)) ev.Use();
+        }
+
+        /// <summary>
+        /// The portrait's menu: "Choose another picture" (the next painted picture that may stand for them: their own pinned
+        /// pictures, then the nearest faces), kept for them from then on; greyed out with the reason where there is none.
+        /// </summary>
+        private static void Menu(Pawn p)
+        {
+            var options = new System.Collections.Generic.List<FloatMenuOption>();
+            var lib = PortraitLibrary.Source;
+            string label = "CC_Portrait_ChooseAnother".Translate().Resolve();
+            if (lib.Count == 0) options.Add(new FloatMenuOption(label + " (" + "CC_Portrait_ChooseEmpty".Translate().Resolve() + ")", null));
+            else if (!(ColonyCouncilMod.Settings?.portraitLibrary ?? true)) options.Add(new FloatMenuOption(label + " (" + "CC_Portrait_ChooseOff".Translate().Resolve() + ")", null));
+            else if (!lib.CanChoose(p)) options.Add(new FloatMenuOption(label + " (" + "CC_Portrait_ChooseNoneShort".Translate().Resolve() + ")", null));
+            else
+                options.Add(new FloatMenuOption(label, () =>
+                {
+                    string said = lib.ChooseAnother(p);
+                    Messages.Message(said, MessageTypeDefOf.SilentInput, false);
+                }));
+            Find.WindowStack.Add(new FloatMenu(options));
         }
 
         /// <summary>Their name and the name the colony knows them by, on a dark band at the foot of the picture.</summary>
@@ -233,7 +261,7 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("the portrait at the inspect pane: the name the colony knows them by", e);
             }
-            tip = "CC_Portrait_Tip".Translate(p.Named("PAWN")).Resolve();
+            tip = (PortraitLibrary.Source.Count > 0 ? "CC_Portrait_TipLibrary" : "CC_Portrait_Tip").Translate(p.Named("PAWN")).Resolve();
             gripTip ??= "CC_Portrait_GripTip".Translate().Resolve();
         }
 

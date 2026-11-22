@@ -4,12 +4,18 @@ using Verse;
 
 namespace ColonyCouncil
 {
-    /// <summary>A whole picture of a person from a portrait source: the texture, where the head is in it, and its name for the log.</summary>
+    /// <summary>
+    /// A whole picture of a person from a portrait source: the texture (null while it loads), where the head is in it, its
+    /// name for the log, and for the painted library its file (the large portrait makes its own picture from it).
+    /// </summary>
     public sealed class PortraitPicture
     {
         public Texture2D texture;
         public PictureLayout layout;
         public string name;
+        /// <summary>Still loading: the portrait shows its ground only until it is ready.</summary>
+        public bool loading;
+        public PictureFile file;
     }
 
     /// <summary>
@@ -41,7 +47,7 @@ namespace ColonyCouncil
     {
         private static readonly IPortraitSource[] Sources = { PortraitLibrary.Source };
 
-        /// <summary>The first picture a source has for this person, or null for the game's own face.</summary>
+        /// <summary>The first picture a source has for this person (its texture null while it loads), or null for the game's own face.</summary>
         public static PortraitPicture For(Pawn p)
         {
             if (p == null) return null;
@@ -52,7 +58,7 @@ namespace ColonyCouncil
                 {
                     if (!s.On) continue;
                     var pic = s.PictureFor(p);
-                    if (pic?.texture != null) return pic;
+                    if (pic != null && (pic.texture != null || pic.loading)) return pic;
                 }
                 catch (Exception e)
                 {

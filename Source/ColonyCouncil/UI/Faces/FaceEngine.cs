@@ -100,6 +100,7 @@ namespace ColonyCouncil
             failed.Clear();
             bearings.Clear();
             ClearSplits();
+            ClearStaged();
             PortraitSources.NewGame();
             game = Current.Game;
         }
@@ -190,6 +191,8 @@ namespace ColonyCouncil
             int seed = p.thingIDNumber;
             // A source's picture (the library's painted portrait) where one has them, else the game's own drawing.
             var pic = PortraitSources.For(p);
+            // A painted picture still loading: the ground only, for the moment it takes.
+            if (pic != null && pic.texture == null) return;
             float turn = 0f;
             var view = pic != null ? ViewOf(pic, frame, r.size, pose.bearing, seed, out turn) : default;
             var cam = pic != null ? CameraOf(view) : Camera(p, frame, size.x, size.y, pose.turn);
@@ -272,7 +275,8 @@ namespace ColonyCouncil
             var pic = PortraitSources.For(p);
             if (pic != null)
             {
-                DrawPictureRound(inner, p, pic, pose, alpha);
+                // Still loading: the disc's ground only, for the moment it takes.
+                if (pic.texture != null) DrawPictureRound(inner, p, pic, pose, alpha);
                 return;
             }
             var size = Whole(inner.size);
@@ -338,6 +342,7 @@ namespace ColonyCouncil
             if (!(Find.TickManager?.Paused ?? true)) clock += Mathf.Min(Time.unscaledDeltaTime, 0.1f);
             PruneSplits();
             PruneGreyPictures();
+            PortraitStore.Pump();
         }
 
         // ---------------- The mark of their people or the colony ----------------

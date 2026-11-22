@@ -13,12 +13,46 @@ namespace ColonyCouncil
         Female
     }
 
+    /// <summary>
+    /// The age bands, youngest first: a baby (under one), a toddler (one until the game counts them a child, three for a
+    /// human), a child (until 13), then the grown-ups' three bands by their kind's life expectancy (young, adult, old).
+    /// </summary>
     public enum PortraitAge : byte
     {
+        Baby,
+        Toddler,
         Child,
         Young,
         Adult,
         Old
+    }
+
+    /// <summary>
+    /// The stages a picture is kept through (a kept picture changes only when a child moves to the next stage, the player's
+    /// rule of 22 November 2026): a baby, a toddler, a child, a grown-up (young, adult and old alike).
+    /// </summary>
+    public enum PortraitStage : byte
+    {
+        Baby,
+        Toddler,
+        Child,
+        Grown
+    }
+
+    /// <summary>The game's own developmental stage, where known: a baby (a newborn too), a child, a grown-up.</summary>
+    public enum GameStage : byte
+    {
+        Unknown,
+        Baby,
+        Child,
+        Adult
+    }
+
+    /// <summary>"Portraits from the library": the closest picture for everyone it may stand for, or only pictures close to them (phase 3's way).</summary>
+    public enum PortraitPickMode : byte
+    {
+        Closest,
+        OnlyClose
     }
 
     public enum PortraitHairStyle : byte
@@ -118,6 +152,10 @@ namespace ColonyCouncil
         public HashSet<string> features = new HashSet<string>(), marks = new HashSet<string>();
         public PortraitFacing facing;
         public string character = "", variant = "base";
+        /// <summary>The colonist it is pinned to (their nickname, first, last, shown or full name), or "": used for them only, never for anyone else.</summary>
+        public string pawn = "";
+
+        public bool Pinned => pawn.Length > 0;
 
         /// <summary>The character it belongs to: its own name where it is no variant of another.</summary>
         public string Character => string.IsNullOrEmpty(character) ? name : character;
@@ -244,6 +282,46 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// The framework's other words for the same thing (<c>docs/portrait-art/FRAMEWORK.md</c>, pillar 2), so a def written
+        /// with them reads as the matcher's own: a teen is young, middle-aged an adult, an elder old; buzzed hair or a mohawk
+        /// short, a topknot a bun, dreadlocks long, curly medium; a short or full beard, a goatee short; muscular broad.
+        /// </summary>
+        public static string Synonym(string field, string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return text;
+            string t = text.Trim().Replace(" ", "").Replace("_", "").Replace("-", "").ToLowerInvariant();
+            switch (field)
+            {
+                case "age":
+                    if (t == "teen" || t == "teenager") return "young";
+                    if (t == "middle" || t == "middleaged") return "adult";
+                    if (t == "elder" || t == "elderly") return "old";
+                    if (t == "infant" || t == "newborn") return "baby";
+                    break;
+                case "hair":
+                    if (t == "buzzed" || t == "buzz" || t == "buzzcut" || t == "mohawk" || t == "crop" || t == "cropped") return "short";
+                    if (t == "topknot" || t == "knot") return "bun";
+                    if (t == "dreadlocks" || t == "dreads" || t == "locks") return "long";
+                    if (t == "curly") return "medium";
+                    if (t == "ponytail" || t == "pigtails") return "tied";
+                    if (t == "shaved") return "bald";
+                    break;
+                case "beard":
+                    if (t == "shortbeard" || t == "goatee") return "short";
+                    if (t == "fullbeard") return "full";
+                    if (t == "mustache") return "moustache";
+                    if (t == "clean" || t == "cleanshaven" || t == "shaven") return "none";
+                    break;
+                case "build":
+                    if (t == "muscular" || t == "stocky") return "broad";
+                    if (t == "thin" || t == "lean") return "slim";
+                    if (t == "fat" || t == "stout") return "heavy";
+                    break;
+            }
+            return text;
+        }
+
+        /// <summary>
         /// A colour as a def writes it: <c>#c49a6c</c>, <c>c49a6c</c>, or <c>(196, 154, 108)</c> / <c>(0.77, 0.6, 0.42)</c> as
         /// the game writes colours (0 to 255 where any channel is above 1).
         /// </summary>
@@ -301,7 +379,7 @@ namespace ColonyCouncil
             {
                 string text = field(f);
                 if (string.IsNullOrWhiteSpace(text)) return fallback;
-                if (TryEnum(text, out T v)) return v;
+                if (TryEnum(Synonym(f, text), out T v)) return v;
                 Bad(f + ": '" + text + "' is not one of " + string.Join(", ", System.Enum.GetNames(typeof(T))).ToLowerInvariant());
                 return fallback;
             }
@@ -331,6 +409,7 @@ namespace ColonyCouncil
                 else if (!string.IsNullOrWhiteSpace(m)) Bad("marks: '" + m + "' is not one of " + string.Join(", ", Marks));
             }
             r.character = (field("character") ?? "").Trim();
+            r.pawn = (field("pawn") ?? "").Trim();
             string variant = field("variant");
             r.variant = string.IsNullOrWhiteSpace(variant) ? "base" : variant.Trim();
             return r;
@@ -375,8 +454,8 @@ namespace ColonyCouncil
 
         // ---------------- A pawn's looks ----------------
 
-        /// <summary>No picture for the youngest: under this age (a baby, a toddler).</summary>
-        public const float ChildFrom = 4f;
+        /// <summary>A toddler from one year, a child from three (as the game counts a human), where the game's own stage isn't known.</summary>
+        public const float ToddlerFrom = 1f, ChildFrom = 3f;
 
         /// <summary>Young until this share of their kind's life expectancy (24 for a human), old from this share (60).</summary>
         public const float YoungUntilShare = 0.3f, OldFromShare = 0.75f;
@@ -384,18 +463,35 @@ namespace ColonyCouncil
         /// <summary>A child until 13, as the game's own life stages count it.</summary>
         public const float GrownFrom = 13f;
 
-        /// <summary>The age band for a biological age and their kind's life expectancy; false for the youngest (no picture).</summary>
-        public static bool AgeOf(float years, float lifeExpectancy, out PortraitAge age)
+        /// <summary>The age band for a biological age and their kind's life expectancy (the game's stage not known); false for no age.</summary>
+        public static bool AgeOf(float years, float lifeExpectancy, out PortraitAge age) => AgeOf(years, lifeExpectancy, GameStage.Unknown, out age);
+
+        /// <summary>
+        /// The age band: the game's own stage first where it is known (a baby under one, else a toddler; a child; a grown-up),
+        /// else by years (a toddler from one, a child from three, grown from 13); a grown-up young until three tenths of
+        /// their kind's life expectancy (at least 18), old from three quarters. False for no age at all.
+        /// </summary>
+        public static bool AgeOf(float years, float lifeExpectancy, GameStage stage, out PortraitAge age)
         {
             age = PortraitAge.Adult;
-            if (float.IsNaN(years) || years < ChildFrom) return false;
+            if (float.IsNaN(years) || float.IsInfinity(years)) return false;
+            if (years < 0f) years = 0f;
             float le = lifeExpectancy > 20f && lifeExpectancy < 100000f ? lifeExpectancy : 80f;
-            if (years < GrownFrom) age = PortraitAge.Child;
+            bool little = stage == GameStage.Baby || stage == GameStage.Unknown && years < ChildFrom;
+            if (little) age = years < ToddlerFrom ? PortraitAge.Baby : PortraitAge.Toddler;
+            else if (stage == GameStage.Child || stage == GameStage.Unknown && years < GrownFrom) age = PortraitAge.Child;
             else if (years < Math.Max(GrownFrom + 5f, YoungUntilShare * le)) age = PortraitAge.Young;
             else if (years >= OldFromShare * le) age = PortraitAge.Old;
             else age = PortraitAge.Adult;
             return true;
         }
+
+        /// <summary>The stage an age band belongs to: young, adult and old are all grown-ups.</summary>
+        public static PortraitStage StageOf(PortraitAge a) =>
+            a == PortraitAge.Baby ? PortraitStage.Baby : a == PortraitAge.Toddler ? PortraitStage.Toddler : a == PortraitAge.Child ? PortraitStage.Child : PortraitStage.Grown;
+
+        /// <summary>The groups a picture never crosses: the little ones (a baby, a toddler), children, grown-ups.</summary>
+        public static int AgeGroupOf(PortraitAge a) => a <= PortraitAge.Toddler ? 0 : a == PortraitAge.Child ? 1 : 2;
 
         /// <summary>
         /// A skin no human grows (a xenotype's green, blue, purple, deep red, orange or yellow, a waster's grey, ink black, a
@@ -645,10 +741,13 @@ namespace ColonyCouncil
         /// <summary>A feature one has and the other hasn't; a mark of the person's the picture doesn't show.</summary>
         public const float FeatureCost = 1f, MarkCost = 0.5f;
 
-        /// <summary>The next age band standing in where the kind has none of the person's own; a baseliner's picture for a kind with none, near a human.</summary>
-        public const float NearAgeCost = 2.5f, NearKindCost = 1f;
+        /// <summary>
+        /// An age band apart: the next band 2.5, each band past it 4 more (two bands 6.5, three 10.5), never across the
+        /// little ones, children and grown-ups; a baseliner's picture for a kind with none, near a human, 1.
+        /// </summary>
+        public const float NearAgeCost = 2.5f, FarAgeCost = 4f, NearKindCost = 1f;
 
-        /// <summary>The furthest a picture may be and still be theirs; beyond it, the game's own face.</summary>
+        /// <summary>"Only close ones": the furthest a picture may be and still be shown; beyond it, the game's own face.</summary>
         public const float CloseEnough = 6f;
 
         /// <summary>The nearest few characters: within this of the nearest, at most this many.</summary>
@@ -656,8 +755,8 @@ namespace ColonyCouncil
 
         public const int FewMost = 4;
 
-        /// <summary>A grown library takes a person's character away only for one at least this much closer.</summary>
-        public const float BetterBy = 1.5f;
+        /// <summary>"Choose another picture" steps through at most this many: the person's own pinned pictures, then the nearest faces.</summary>
+        public const int ChoicesMost = 8;
 
         private static readonly float[,] HairApart =
         {
@@ -718,8 +817,18 @@ namespace ColonyCouncil
 
         public static bool SexAgrees(PortraitSex person, PortraitSex picture) => person == PortraitSex.Any || picture == PortraitSex.Any || person == picture;
 
-        /// <summary>The next age band (a child and the young, the young and adults, adults and the old).</summary>
-        public static bool NearAge(PortraitAge a, PortraitAge b) => Math.Abs((int)a - (int)b) == 1;
+        /// <summary>
+        /// What a picture of age band <paramref name="picture"/> costs for a person of band <paramref name="person"/>:
+        /// nothing for their own, more for each band apart (2.5, 6.5, 10.5), infinity across the little ones (a baby, a
+        /// toddler), children and grown-ups: a baby or a toddler only ever gets a baby's or a toddler's picture, a child
+        /// never a grown-up's.
+        /// </summary>
+        public static float AgeCost(PortraitAge person, PortraitAge picture)
+        {
+            if (AgeGroupOf(person) != AgeGroupOf(picture)) return float.PositiveInfinity;
+            int n = Math.Abs((int)person - (int)picture);
+            return n == 0 ? 0f : NearAgeCost + FarAgeCost * (n - 1);
+        }
 
         /// <summary>A picture may stand for the person's body: it shows no mark they haven't got, and headwear only where they wear it and the setting shows it.</summary>
         public static bool Shows(PortraitRecord r, PortraitLook l)
@@ -764,10 +873,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The pictures that may stand for a person, with their distances (infinity for those that may not): the kind first
-        /// (their own kind's where the library has any; else the baseliners', a little further, where they look near a
-        /// human; else none), then sex, then the age band (their own where the kind has it for their sex, else the next
-        /// band, further), then the body (<see cref="Shows"/>).
+        /// The pictures that may stand for a person, with their distances (infinity for those that may not): never a
+        /// picture pinned to a colonist (that is theirs alone); the kind first (their own kind's where the library has any;
+        /// else the baseliners', a little further, where they look near a human; else none, so a saurid is never shown as a
+        /// human), then sex, then the age band (their own, or another of their group at a growing cost: a baby or a toddler
+        /// only a baby's or a toddler's, a child only a child's), then the body (<see cref="Shows"/>). No cut-off by
+        /// distance here: "only close ones" is applied to what is shown (<see cref="Shown"/>).
         /// </summary>
         public static float[] Distances(PortraitLook l, IList<PortraitRecord> records)
         {
@@ -776,19 +887,16 @@ namespace ColonyCouncil
             for (int i = 0; i < n; i++) d[i] = float.PositiveInfinity;
             if (n == 0 || l == null) return d;
             bool own = false;
-            for (int i = 0; i < n && !own; i++) own = OwnKind(records[i], l);
+            for (int i = 0; i < n && !own; i++) own = !records[i].Pinned && OwnKind(records[i], l);
             if (!own && (l.FarFromHuman || l.baseliner && l.race == "human")) return d;
             float kindCost = own ? 0f : NearKindCost;
-            bool Pool(PortraitRecord r) => own ? OwnKind(r, l) : Baseliner(r);
-            bool sameAge = false;
-            for (int i = 0; i < n && !sameAge; i++)
-                sameAge = Pool(records[i]) && SexAgrees(l.sex, records[i].sex) && records[i].age == l.age;
             for (int i = 0; i < n; i++)
             {
                 var r = records[i];
-                if (!Pool(r) || !SexAgrees(l.sex, r.sex) || !Shows(r, l)) continue;
-                if (r.age != l.age && (sameAge || !NearAge(r.age, l.age))) continue;
-                d[i] = kindCost + Distance(l, r) + (r.age == l.age ? 0f : NearAgeCost);
+                if (r.Pinned || !(own ? OwnKind(r, l) : Baseliner(r)) || !SexAgrees(l.sex, r.sex) || !Shows(r, l)) continue;
+                float age = AgeCost(l.age, r.age);
+                if (float.IsInfinity(age)) continue;
+                d[i] = kindCost + Distance(l, r) + age;
             }
             return d;
         }
@@ -799,8 +907,9 @@ namespace ColonyCouncil
         /// <summary>
         /// A new pick for a person: of the nearest few characters (each by its nearest picture that may stand for them),
         /// those fewest others keep (<paramref name="usesOf"/>, by character), the nearest of them, and among equally near
-        /// ones one by their own id; none beyond <see cref="CloseEnough"/>. So the first person of a look gets the closest
-        /// face, and the next alike person the next closest.
+        /// ones one by their own id. The closest is picked however far (the setting decides whether it is shown), and where
+        /// the nearest is close enough the few are all close enough. So the first person of a look gets the closest face,
+        /// and the next alike person the next closest.
         /// </summary>
         public static PortraitPick Pick(PortraitLook l, IList<PortraitRecord> records, int seed, Func<string, int> usesOf)
         {
@@ -814,8 +923,7 @@ namespace ColonyCouncil
             }
             if (best.Count == 0) return PortraitPick.None;
             float nearest = best.Values.Min(i => d[i]);
-            if (nearest > CloseEnough) return new PortraitPick { index = -1, character = "", distance = nearest };
-            var few = best.Values.Where(i => d[i] <= nearest + FewWithin && d[i] <= CloseEnough)
+            var few = best.Values.Where(i => d[i] <= nearest + FewWithin && (nearest > CloseEnough || d[i] <= CloseEnough))
                 .OrderBy(i => d[i]).ThenBy(i => records[i].Character, StringComparer.Ordinal).Take(FewMost).ToList();
             int least = few.Min(i => usesOf?.Invoke(records[i].Character) ?? 0);
             // Of those fewest others keep, the nearest; among equally near, one by the pawn's own id.
@@ -827,38 +935,160 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The picture of a kept character that stands for the person as their body is now: of its variants that may (no
-        /// mark they haven't got), the nearest (so a lost eye takes the variant with it, old age the older one), any age
-        /// band apart allowed but further; -1 where none may.
+        /// Whether a kept picture is shown by the setting "Portraits from the library": always for "the closest"; for "only
+        /// close ones" a pinned picture or one chosen by hand, or one that was close enough when it was picked.
         /// </summary>
-        public static PortraitPick Variant(PortraitLook l, IList<PortraitRecord> records, string character)
+        public static bool Shown(PortraitPickMode mode, bool pinnedOrChosen, float distance) =>
+            mode == PortraitPickMode.Closest || pinnedOrChosen || distance <= CloseEnough;
+
+        // ---------------- Pinned pictures ----------------
+
+        /// <summary>A colonist's names a pin is read against: the nickname, the name on the colonist bar, the first, the last and the full name.</summary>
+        public struct PinNames
+        {
+            public string nick, shown, first, last, full;
+
+            public PinNames(string nick, string shown, string first, string last, string full)
+            {
+                this.nick = nick;
+                this.shown = shown;
+                this.first = first;
+                this.last = last;
+                this.full = full;
+            }
+        }
+
+        private static bool SameName(string a, string b) =>
+            !string.IsNullOrWhiteSpace(a) && !string.IsNullOrWhiteSpace(b) && string.Equals(a.Trim(), b.Trim(), StringComparison.OrdinalIgnoreCase);
+
+        /// <summary>
+        /// How a pin names a colonist, the most telling first: 0 their nickname, 1 the name on the colonist bar, 2 their
+        /// first name, 3 their last name, 4 their full name; -1 not at all. The letters' case and spaces at the ends aside.
+        /// </summary>
+        public static int PinLevel(string pin, PinNames n)
+        {
+            if (string.IsNullOrWhiteSpace(pin)) return -1;
+            if (SameName(pin, n.nick)) return 0;
+            if (SameName(pin, n.shown)) return 1;
+            if (SameName(pin, n.first)) return 2;
+            if (SameName(pin, n.last)) return 3;
+            if (SameName(pin, n.full)) return 4;
+            return -1;
+        }
+
+        /// <summary>
+        /// Whose a pin is among the colony's own people (by id and names): the one it names most tellingly, and of two
+        /// named alike the one with the lower id (the longer in the game); -1 for no one, so the picture stays unused.
+        /// </summary>
+        public static int PinOwner(string pin, IList<KeyValuePair<int, PinNames>> colonists)
+        {
+            int owner = -1, level = int.MaxValue;
+            if (colonists == null) return owner;
+            foreach (var c in colonists)
+            {
+                int l = PinLevel(pin, c.Value);
+                if (l < 0) continue;
+                if (l < level || l == level && c.Key < owner)
+                {
+                    level = l;
+                    owner = c.Key;
+                }
+            }
+            return owner;
+        }
+
+        /// <summary>
+        /// A pinned picture fits the person while its stage is theirs (the player, 22 November 2026): a baby's for a baby, a
+        /// toddler's for a toddler, a child's for a child, and any grown-up band (young, adult, old) for any grown-up.
+        /// </summary>
+        public static bool PinFits(PortraitRecord r, PortraitLook l) => r != null && l != null && StageOf(r.age) == StageOf(l.age);
+
+        /// <summary>
+        /// The person's own pinned picture for their stage now (none: -1): of the pictures pinned to them
+        /// (<paramref name="theirs"/>) that fit their stage, the nearest to their looks, then by name.
+        /// </summary>
+        public static PortraitPick PinFor(PortraitLook l, IList<PortraitRecord> records, Func<PortraitRecord, bool> theirs)
         {
             var pick = PortraitPick.None;
-            if (records == null || string.IsNullOrEmpty(character)) return pick;
+            if (l == null || records == null || theirs == null) return pick;
             for (int i = 0; i < records.Count; i++)
             {
                 var r = records[i];
-                if (r.Character != character || !SexAgrees(l.sex, r.sex) || !Shows(r, l)) continue;
-                float d = Distance(l, r) + NearAgeCost * Math.Abs((int)r.age - (int)l.age);
+                if (!r.Pinned || !PinFits(r, l) || !theirs(r)) continue;
+                float d = Distance(l, r);
                 if (d < pick.distance || d == pick.distance && pick.index >= 0 && string.CompareOrdinal(r.name, records[pick.index].name) < 0)
-                    pick = new PortraitPick { index = i, character = character, distance = d };
+                    pick = new PortraitPick { index = i, character = r.Character, distance = d };
             }
             return pick;
         }
 
+        // ---------------- Kept for good ----------------
+
         /// <summary>
-        /// Whether a person's kept character gives way to a new pick: nothing kept; they are another kind or sex now; the
-        /// character is gone from the library or has no picture that may stand for them; or the library changed and has a
-        /// character at least <see cref="BetterBy"/> closer. A person kept with no picture is looked at again whenever the
-        /// library or their looks change.
+        /// Whether a person's kept picture gives way to a new pick (the player, 22 November 2026: "it should really select an
+        /// image once the pawn, so to say, enters the game the first time based on how the pawn looks like at that stage. And
+        /// if a pawn loses an arm later on, I guess it should just for now continue using the same image ... But exceptions
+        /// ... if a kid is getting older, enters a new life stage"):
+        /// <list type="bullet">
+        /// <item>nothing kept yet: picked;</item>
+        /// <item>a child moved to the next stage (a baby to a toddler, a toddler to a child, a child to a grown-up): picked
+        /// again (their pin for the new stage, else the matcher); young to adult to old keeps it;</item>
+        /// <item>kept with no picture (none fitted): looked at again when the library or their looks change;</item>
+        /// <item>the picture gone from the library: picked again;</item>
+        /// <item>a picture now pinned to them for their stage, where they keep one the matcher gave: the pin (the player's
+        /// own choice); one they chose by hand stays.</item>
+        /// </list>
+        /// Nothing else changes it: no injury, scar or lost eye, no new hair, beard or clothes, no grown library.
         /// </summary>
-        public static bool PickAgain(bool kept, bool keptHasCharacter, string keptKind, string kind, string keptWords, string words, bool variantThere,
-            int keptLibrary, int library, float keptNow, float bestNow)
+        public static bool PickAgain(bool kept, PortraitStage keptStage, PortraitStage stageNow, string keptPicture, bool keptPictureThere, bool keptPinned,
+            bool keptByHand, int keptLibrary, int library, string keptWords, string words, bool pinNow)
         {
             if (!kept) return true;
-            if (!keptHasCharacter) return keptLibrary != library || keptWords != words;
-            if (keptKind != kind || !variantThere) return true;
-            return keptLibrary != library && bestNow + BetterBy <= keptNow;
+            if (keptStage != stageNow) return true;
+            if (string.IsNullOrEmpty(keptPicture)) return keptLibrary != library || keptWords != words;
+            if (!keptPictureThere) return true;
+            return pinNow && !keptPinned && !keptByHand;
+        }
+
+        // ---------------- Choose another picture ----------------
+
+        /// <summary>
+        /// The pictures "Choose another picture" steps through for a person, in order (indices): their own pinned pictures
+        /// that fit their stage, nearest first; then each face the matcher may give them, by its nearest picture, nearest
+        /// first (for "only close ones", those close enough only); at most <see cref="ChoicesMost"/>.
+        /// </summary>
+        public static List<int> Choices(PortraitLook l, IList<PortraitRecord> records, Func<PortraitRecord, bool> theirs, PortraitPickMode mode)
+        {
+            var list = new List<int>();
+            if (l == null || records == null) return list;
+            var pins = new List<KeyValuePair<int, float>>();
+            for (int i = 0; i < records.Count; i++)
+                if (records[i].Pinned && theirs != null && theirs(records[i]) && PinFits(records[i], l))
+                    pins.Add(new KeyValuePair<int, float>(i, Distance(l, records[i])));
+            list.AddRange(pins.OrderBy(x => x.Value).ThenBy(x => records[x.Key].name, StringComparer.Ordinal).Select(x => x.Key));
+            var d = Distances(l, records);
+            var best = new Dictionary<string, int>();
+            for (int i = 0; i < d.Length; i++)
+            {
+                if (float.IsInfinity(d[i]) || mode == PortraitPickMode.OnlyClose && d[i] > CloseEnough) continue;
+                string c = records[i].Character;
+                if (!best.TryGetValue(c, out int j) || d[i] < d[j] || d[i] == d[j] && string.CompareOrdinal(records[i].name, records[j].name) < 0) best[c] = i;
+            }
+            list.AddRange(best.Values.OrderBy(i => d[i]).ThenBy(i => records[i].Character, StringComparer.Ordinal));
+            if (list.Count > ChoicesMost) list.RemoveRange(ChoicesMost, list.Count - ChoicesMost);
+            return list;
+        }
+
+        /// <summary>The choice after the picture shown now (by name; the first where it is none of them), or -1 where there is no other.</summary>
+        public static int NextChoice(IList<int> choices, IList<PortraitRecord> records, string shownNow)
+        {
+            if (choices == null || choices.Count == 0) return -1;
+            int at = -1;
+            for (int k = 0; k < choices.Count; k++)
+                if (records[choices[k]].name == shownNow)
+                    at = k;
+            if (at < 0) return choices[0];
+            return choices.Count == 1 ? -1 : choices[(at + 1) % choices.Count];
         }
 
         // ---------------- Colours ----------------

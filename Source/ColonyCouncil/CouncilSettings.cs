@@ -846,8 +846,16 @@ namespace ColonyCouncil
         public bool portraitPoses = true;
         /// <summary>The large portraits (at the inspect pane, on the colonist card) breathe and sway; still while the game is paused.</summary>
         public bool portraitsMove = true;
-        /// <summary>Painted portraits from the library where one is close to the person (UI/Faces/PortraitLibrary.cs); off, or with none close, the game's own face.</summary>
+        /// <summary>Painted portraits from the library (UI/Faces/PortraitLibrary.cs); off, the game's own face.</summary>
         public bool portraitLibrary = true;
+        /// <summary>Portraits from the library: the closest picture for everyone it may stand for (the player's choice), or only pictures close to them.</summary>
+        public PortraitPickMode portraitPick = PortraitPickMode.Closest;
+        /// <summary>The backdrop behind the large portrait's painted picture: as painted (the player's choice), lightly softened, softened, or none (UI/Faces/FaceEngineStage.cs).</summary>
+        public PortraitBackdropMode portraitBackdrop = PortraitBackdropMode.AsPainted;
+        /// <summary>A line round the person in the large portrait's painted picture: off, subtle or stronger.</summary>
+        public PortraitOutlineMode portraitOutline = PortraitOutlineMode.Off;
+        /// <summary>The person in the large portrait tinted a fifth toward the backdrop's light.</summary>
+        public bool portraitLightTint = false;
         /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
         public System.Collections.Generic.List<string> windowPlaces = new System.Collections.Generic.List<string>();
 
@@ -1334,6 +1342,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref portraitPoses, "portraitPoses", true);
             Scribe_Values.Look(ref portraitsMove, "portraitsMove", true);
             Scribe_Values.Look(ref portraitLibrary, "portraitLibrary", true);
+            Scribe_Values.Look(ref portraitPick, "portraitPick", PortraitPickMode.Closest);
+            Scribe_Values.Look(ref portraitBackdrop, "portraitBackdrop", PortraitBackdropMode.AsPainted);
+            Scribe_Values.Look(ref portraitOutline, "portraitOutline", PortraitOutlineMode.Off);
+            Scribe_Values.Look(ref portraitLightTint, "portraitLightTint", false);
             Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 windowPlaces ??= new System.Collections.Generic.List<string>();

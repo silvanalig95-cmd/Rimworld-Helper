@@ -5,7 +5,8 @@ namespace ColonyCouncil
     /// <summary>
     /// Where the head is in a whole picture of a person that a portrait source gives (a picture of the library, or any
     /// later source): its middle across and down and its height, each as a share of the picture (from the top left),
-    /// and the way the person faces in it.
+    /// the way the person faces in it, and the picture's shape (its width for each unit of height: 0.8 for the library's
+    /// 1024 x 1280 pictures, 1 or 0 for a square one).
     /// </summary>
     public struct PictureLayout
     {
@@ -13,14 +14,20 @@ namespace ColonyCouncil
         public float headU, headV, headH;
         /// <summary>The way the person in the picture faces: the front, or turned to the picture's left or right.</summary>
         public FaceTurn faces;
+        /// <summary>The picture's width for each unit of its height (0 or less: square).</summary>
+        public float shape;
 
-        public PictureLayout(float headU, float headV, float headH, FaceTurn faces)
+        public PictureLayout(float headU, float headV, float headH, FaceTurn faces, float shape = 1f)
         {
             this.headU = headU;
             this.headV = headV;
             this.headH = headH;
             this.faces = faces;
+            this.shape = shape;
         }
+
+        /// <summary>The picture's shape, square where it isn't known.</summary>
+        public float Shape => shape > 0.05f && shape < 20f ? shape : 1f;
     }
 
     /// <summary>
@@ -89,9 +96,12 @@ namespace ColonyCouncil
         /// </summary>
         public static PictureView View(PictureLayout l, FaceFrame frame, float aspect, float liftHeads = 0f)
         {
-            if (!Ok(l.headU) || !Ok(l.headV) || !Ok(l.headH) || l.headH < 0.05f || l.headH > 1f) l = Library;
+            if (!Ok(l.headU) || !Ok(l.headV) || !Ok(l.headH) || l.headH < 0.05f || l.headH > 1f) l = new PictureLayout(LibraryHeadX, LibraryHeadY, LibraryHeadSize, l.faces, l.shape);
             if (!Ok(aspect) || aspect <= 0.05f || aspect > 20f) aspect = 1f;
             if (!Ok(liftHeads)) liftHeads = 0f;
+            // The view's width in shares of the picture's width: a tile as wide as it is high takes 1.25 times the share of
+            // a 1024 x 1280 picture's width that it takes of its height.
+            aspect /= l.Shape;
             float most = 1f - 2f * Margin;
             float h = Math.Min(l.headH / HeadShareOf(frame), most);
             float w = h * aspect;
