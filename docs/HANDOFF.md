@@ -716,6 +716,18 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **Done (22 November 2026, the player's own request): neanderthals that look it, and women not pretty by default.**
+  The player: "Neanderthaler women really look like normal women, to be honest. I mean, that should not be it", and
+  "If there's also any way to not have that, that would be awesome, because I really don't want every woman to be
+  pretty by default." Done: the neanderthal's look says "an Ice Age face like a museum reconstruction of a Neanderthal,
+  not a modern human face, the same on women and men" before the brow ridge, forehead, skull, nose and jaw; no fringe
+  for a kind whose look is on the brow (`OPEN_BROW`: brow ridge, forehead, skull, third eye, ridges, horns), since the
+  neanderthal women's bobs with heavy fringes hid it; each woman's row (not the little ones) says `PLAIN_WOMAN` ("A
+  plain, homely, lived-in face, as rough and ordinary as any man's, her clothes practical and closed up to the
+  collarbone."), and a woman of a kind with a sign keeps two face features, not one; the people style says "of an
+  ordinary, unremarkable person"; the length cap 1200. The rows' names are the same as before (checked), so pictures
+  already made keep their rows. Not tried in FLUX here. If women still come out pretty: a real negative prompt needs a
+  guidance above 1 (twice as slow), or a LoRA trained against it.
 - **Done (22 November 2026, the player's own request): fewer children in the characters lists, and later.** The
   player: "Keep in mind, kids are not that common in the game, so while there should be a bunch of kids and toddler
   images available, they are not common in the game and not much of a priority overall ... that it makes sense

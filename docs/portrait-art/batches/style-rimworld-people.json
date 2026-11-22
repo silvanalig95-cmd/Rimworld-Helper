@@ -1,6 +1,6 @@
 {
   "label": "People in the game's own look: the rmwstyle LoRA (trained on the game's art) at 0.7 with the SameFace fix at -0.7, one picture per row; in full colour, no light outline. Worded like the training captions.",
-  "style": "rmwstyle, a full-colour character portrait with rich colours and cel shading,",
+  "style": "rmwstyle, a full-colour character portrait of an ordinary, unremarkable person, with rich colours and cel shading,",
   "frame": "A medium close-up, cut off by the bottom edge of the picture at the belt: only the head, shoulders, chest and arms are in the picture, large and close, the head near the top and about a third of the picture's height. One person alone, bare-headed with the hair in full view. A plain dark grey background.",
   "style_end": "In full colour.",
   "negative": "",

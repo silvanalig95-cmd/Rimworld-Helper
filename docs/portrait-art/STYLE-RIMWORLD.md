@@ -90,7 +90,8 @@ Windows' virtual memory to 32 to 64 GB and restarting.
    words, "black ink lines and cel shading", made a fair number of pictures black and white (an "ink" drawing, above all
    for pale, grey or white-haired people). So the style now says only "rmwstyle, a full-colour character portrait with
    rich colours and cel shading" and "In full colour." at the end, and nothing about outlines: the LoRA draws the black
-   line by itself.
+   line by itself. Then "of an ordinary, unremarkable person" (the player: "I really don't want every woman to be pretty
+   by default"; each woman's row says her face is plain and lived-in too).
 4. If a light edge still shows: train again with the DLC pictures' captions naming their blue rim light ("a cool blue
    light along his edges"), so the LoRA ties it to those words and not to `rmwstyle`.
 5. Later: train again with 20 to 40 of our own best pictures in this style added, so the LoRA leans less on the eighteen.

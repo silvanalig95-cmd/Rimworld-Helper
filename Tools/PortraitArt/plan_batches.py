@@ -65,11 +65,18 @@ CHAR_ROLES_LOOKS = {1: (18, 18), 2: (2, 2)}
 # up to wave 3, grown-ups everywhere.
 CHAR_LITTLE = {1: {'baby', 'toddler', 'child', 'teen'}, 2: {'child', 'teen'}, 3: {'teen'}}
 # The longest a characters prompt may be (a longer one loses its least needed words; the tests hold every row to it).
-MAX_SUBJECT = 1050
+MAX_SUBJECT = 1200
 # The characters lists' little ones: at this share of their flattened one (1: the player found 3.7% right), and made
 # last in a kind's turn (mix).
 LITTLE_AGES = ('baby', 'toddler', 'child')
 LITTLE_SHARE = 1.0
+# A woman's face in the characters rows, said plainly, since FLUX makes women pretty by default.
+PLAIN_WOMAN = ('A plain, homely, lived-in face, as rough and ordinary as any man\'s, her clothes practical and closed up '
+               'to the collarbone.')
+# A kind whose look is on the brow (a neanderthal's brow ridge, a genie's skull, horns, a third eye): no fringe hides it
+# (the player: the neanderthal women "really look like normal women", their bobs with heavy fringes over the brow).
+OPEN_BROW = re.compile(r'brow ridge|forehead|skull|third eye|ridges|\bhorns\b')
+FRINGE = re.compile(r'fringe|bangs', re.I)
 HUMAN_SKIN_SLUGS = {s for s, _, _ in W.HUMAN_SKINS}
 # Words a hardship line leaves out when the face already says them ("sun-browned skin" and "Sun-browned, dry skin").
 ECHO_WORDS = ['sun-browned', 'weather', 'hollow', 'wind', 'creased', 'chapped', 'lines', 'grime', 'stare']
@@ -1242,17 +1249,21 @@ class Planner:
         parts.append(skin[2])
         colour = hair[2] or ''
         both = ' on both heads' if twins else ''
+        open_brow = bool(OPEN_BROW.search(kind_look))
         if k.noun != 'hair':
             if colour:   # fur as a colour only: the face says what the fur is like
                 parts.append(('{c} fur' if k.noun == 'fur' else NOUN_PHRASE.get(k.noun, '{c} ' + k.noun)).format(c=colour))
         elif hair_word != 'bald' and little:
-            phrase, hair_word = rng.choice(C.LITTLE_HAIR[age])
+            phrase, hair_word = rng.choice([h for h in C.LITTLE_HAIR[age] if not (open_brow and FRINGE.search(h[0]))]
+                                           or C.LITTLE_HAIR[age])
             parts.append(phrase.format(c=colour or 'dark') + both)
         elif hair_word != 'bald':
             if re.search(r'\bhair\b', kind_look):
                 parts.append('%s hair' % (colour or 'dark'))
             else:
                 opts = [p for p, t in C.HAIR[hair_word] if age in C.AGE_OK[t]]
+                if open_brow:       # no fringe over a brow ridge, a low forehead, horns or a third eye
+                    opts = [p for p in opts if not FRINGE.search(p)] or opts
                 if fit.get('tidy'):
                     opts = [p for p in opts if not MESSY.search(p)] or opts
                 if fit.get('messy'):
@@ -1285,8 +1296,8 @@ class Planner:
             for _try in range(60):
                 base, feats = C.face(rng, age, body_text, k.features, skin_human, k.far, strong, marks, own_text,
                                      light=skin[0] in ('veryfair', 'fair', 'light'), build=build, skin_words=skin[2])
-                if k.sign:          # a kind of its own look: one feature of the face, so the kind's look leads
-                    feats = feats[:1]
+                if k.sign:          # a kind of its own look: one feature of the face (a woman two), so the kind's look leads
+                    feats = feats[:2 if sex == 'female' else 1]
                 key = '%s; %s' % (base, '; '.join(sorted(feats)))
                 if key not in self.ledger.faces and key not in [f[2] for f in faces]:
                     break
@@ -1351,6 +1362,10 @@ class Planner:
                              % {'baby': 'baby', 'toddler': 'toddler'}.get(age, 'child'))
         elif not k.far:
             sentences.append('The eyes of ordinary size for the face.')
+        if sex == 'female' and not little:
+            # FLUX draws a woman pretty unless told otherwise (the player: "I really don't want every woman to be pretty
+            # by default"): her face as plain and lived-in as a man's, her clothes as practical.
+            sentences.append(PLAIN_WOMAN)
         signs = (FAR_AGE_SIGNS if k.far else AGE_SIGNS).get(age, '')
         if signs and not little:
             sentences.append(S(signs) + '.')
