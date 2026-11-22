@@ -667,6 +667,28 @@ most sense." So, in this order, three builds at a time:
   backdrop), so near things in the room move more than the far wall, drawn by a small shader or by three or four
   slices of the backdrop; (3) a slight turn of the whole picture toward the mouse (a perspective tilt) only if 1 and 2
   look good.
+  The tools for the extra pictures (22 November 2026, built; the game side is built to the same contract): on the
+  player's computer, through ComfyUI, double-click simple, set up in `docs/portrait-art/SETUP-ComfyUI.md` steps 9 and
+  10. `Tools/PortraitArt/Make-DepthMaps.ps1` (+ `.cmd`, workflow `rimfolk-depth-workflow-api.json` from ComfyUI's own
+  Depth Anything 3 template: core boxes LoadDA3Model, DA3Inference, DA3Render since June 2026, the Mono-Large model,
+  Apache 2.0, output at the picture's own size, near white, far and sky black) writes `<stem>_depth.png` next to every
+  backdrop that lacks one (folder `backdrops`, a list with a `place` column, or a BackdropDef in records.xml).
+  `Make-Variants.ps1` (+ `.cmd`, workflow `rimfolk-variant-workflow-api.json` from ComfyUI's FLUX.1 Kontext Dev
+  template with `%INSTRUCTION%` in its prompt and a core Join Image with Alpha box taking the Load Image box's mask, so
+  the expression has its picture's own outline and no remover is needed) writes `<stem>_v-blink`, `_v-smile`,
+  `_v-frown`, `_v-pain` next to people's pictures: by default the pictures with a `pawn` row first, then those the
+  newest save's PortraitKeeper has given (read from the save, the colony's own, then notable, then the rest by last
+  seen), or every person (`a`); it bypasses the template's FluxKontextImageScale (and ImageScaleToTotalPixels), sets
+  latent and Upscale Image sizes to the picture's, gives each run a new seed, and keeps a result only when it is the
+  picture's size and, for a cut-out, has an alpha channel. Both make only what is missing, fetch the result through
+  `/history` and `/view`, write next to the picture (never anything else), and run `Update-PortraitLibrary.ps1` at the
+  end. That script now writes `<depthPath>` into a backdrop's record and one PortraitDef per expression (the base's
+  record with its corrections, defName `<base>_<word>`, its own texPath, `<variant>` and `<variantOf>`), leaving out an
+  expression whose picture is missing or out; Copy-ToLibrary copies such files only with their picture (under its name
+  in the library), Check-Pictures skips them, Run-PortraitBatch doesn't count them as a row's pictures and ignores the
+  two workflows. Tested with PowerShell 7 against a stand-in ComfyUI; not yet on the player's Windows PowerShell 5.1
+  and real ComfyUI. FLUX 3 Image Klein (October 2026) is named in step 10 as a later, faster alternative with the same
+  script.
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy

@@ -226,6 +226,113 @@ RMBG pack, https://github.com/1038lab/ComfyUI-QwenVL) through the Manager as in 
 `Qwen3-VL-8B-Instruct`, quantization 8-bit), drag Load Image's IMAGE to it and its text output to a Preview as Text box,
 type `%QUESTION%` in its custom prompt box, and export as above. The check works with it the same way.
 
+## 9. Depth maps for the backdrops (once, about 10 minutes)
+
+On the large portrait the person and the backdrop shift apart a little when the mouse moves over them, so the picture
+looks a little three-dimensional. A depth map makes this better: a grey picture the size of the backdrop, white where
+things are near and black where they are far, so the near parts of a room can move more than the far wall. It is made
+by Depth Anything 3, a depth model that ComfyUI has had its own boxes for since mid-2026, so no node pack is needed.
+Its Mono-Large model has the Apache 2.0 licence (free to use, also for a published mod).
+
+**The workflow**
+1. Keep ComfyUI up to date (ComfyUI Desktop offers its updates when it starts).
+2. Menu **Workflow**, **Browse Templates**. Search `Depth Anything 3` and open **Depth Estimation: Depth Anything 3**.
+   ComfyUI says the model file is missing (`depth_anything_3_mono_large.safetensors`, about 1.3 GB) and offers to
+   download it: let it.
+   (If it doesn't offer: open https://huggingface.co/Comfy-Org/Depth-Anything-3/tree/main/geometry_estimation, download
+   that file and put it in ComfyUI's `models\geometry_estimation` folder, for ComfyUI Desktop
+   `Documents\ComfyUI\models\geometry_estimation`. Then press R in ComfyUI so it sees the file.)
+3. Try it: in the **Load Image** box, click "choose file to upload" and pick one of your backdrops from
+   `library\backdrops`. Press **Run**. A grey picture of the room appears in the **Preview Image** box: the near things
+   light, the far wall dark, the sky black.
+4. The template's boxes are already wired: **Load Image** into the **Depth Anything 3** box (it holds the model's three
+   boxes: load, run and render), and that box into **Preview Image**. Leave its settings as they come (the
+   `mono_large` model, resolution 504, output `depth`, normalization `v2_style`). There is also an **Image Compare**
+   box, which shows the backdrop and its depth side by side; you may delete it (click it, press Delete) or leave it.
+5. Menu **Workflow**, **Export (API)**. Save it as `rimfolk-depth-workflow-api.json` in your `Rimfolk-portraits` folder.
+6. Copy `Make-DepthMaps.ps1` and `Make-DepthMaps.cmd` (from Rimfolk's `Tools/PortraitArt`) into the same folder.
+
+**Running it**
+7. Keep ComfyUI open and double-click `Make-DepthMaps.cmd`. For every backdrop in the library that has no depth map yet,
+   it hands the backdrop to ComfyUI and writes the depth map next to it, a few seconds each, with a line for each.
+8. What comes out: next to `library\backdrops\<name>.png` a `<name>_depth.png`, a grey picture of the same size.
+   Nothing else in the library is changed. At the end it writes the records again (as `Update-PortraitLibrary.ps1`
+   does), which now tell the game where each backdrop's depth map is. Then **Reload the library** in the game.
+9. Run it again whenever backdrops have been added: it makes only the depth maps that are missing. To have one made
+   again, delete its `_depth.png` and run it.
+
+A depth map is never a picture of its own: the library script, the picture check, the copy script and the batch tool
+all treat it as part of its backdrop. If the workflow ends in a **Save Image** box instead of Preview Image, ComfyUI
+also keeps a copy of each depth map in its `output\Rimfolk-extras` folder; you can delete that folder at any time.
+
+## 10. Expressions: blink, smile, frown, pain (once, about 30 minutes, most of it downloading)
+
+The large portrait can blink now and then and show the person's mood if each picture also exists with the eyes closed,
+with a small smile, with a frown and with a wince of pain. These are made from the picture itself by an editing model:
+you give it the picture and a plain instruction ("Close the person's eyes ..."), and it changes only that.
+The model is **FLUX.1 Kontext Dev**, the editing model of the FLUX.1 family that painted your pictures, so the
+expressions keep their painting style. Its fp8 file fits your card, and its licence is the same as FLUX.1 Dev's: free
+for your own use.
+The new picture keeps the outline of the one it was made from (a **Join Image with Alpha** box gives it that outline),
+so the person stays exactly in place when the game switches between them, and no background remover is needed.
+
+**The workflow**
+1. Menu **Workflow**, **Browse Templates**. Search `Kontext` and open **Flux Kontext Dev Image Edit**. ComfyUI says
+   which model files are missing: the edit model `flux1-dev-kontext_fp8_scaled.safetensors` (about 12 GB) and the text
+   and picture files that go with it (`clip_l`, `t5xxl_fp8_e4m3fn_scaled` and `ae`, about 5 GB, unless you have them
+   already). Let it download them.
+2. Try it: the template has two **Load Image** boxes; the second is switched off (grey), leave it so. In the first,
+   click "choose file to upload" and pick one of your cut-outs from `library\colonists`. In the **Image Edit** box's
+   prompt, type `Close the person's eyes. Keep everything else exactly the same.` and press **Run**. After about half a
+   minute (the first time longer, while the model loads) the picture with closed eyes appears in **Save Image**.
+3. Delete the text in the Image Edit box's prompt and type exactly `%INSTRUCTION%`. The expressions script puts the
+   instruction for each expression there.
+4. Add the outline: double-click an empty spot, type `Join Image with Alpha` and add it. Then drag three wires:
+   - from the **Image Edit** box's IMAGE output to the Join box's `image` input,
+   - from the first **Load Image** box's MASK output to the Join box's `alpha` input,
+   - from the Join box's IMAGE output to the **Save Image** box's `images` input (this replaces the old wire).
+5. Optional: so that ComfyUI keeps no copies, use a **Preview Image** box instead of Save Image (double-click, type
+   `Preview Image`, add it, drag the Join box's IMAGE to it, delete the Save Image box). With Save Image, a copy of each
+   expression collects in ComfyUI's `output\Rimfolk-extras` folder, which you can delete at any time.
+6. Menu **Workflow**, **Export (API)**. Save it as `rimfolk-variant-workflow-api.json` in your `Rimfolk-portraits`
+   folder. The batch tool leaves this workflow and the depth workflow alone.
+7. Copy `Make-Variants.ps1` and `Make-Variants.cmd` (from Rimfolk's `Tools/PortraitArt`) into the same folder.
+
+**Running it**
+8. Keep ComfyUI open and double-click `Make-Variants.cmd`. It asks which pictures:
+   - **Enter**: the pictures your game has given someone. First the pictures made for your colonists (a name in their
+     row's `pawn` column), then the ones your newest RimWorld save has given people: the colony's own first, then
+     notable people, then the rest. It reads the save from RimWorld's Saves folder and changes nothing in it.
+   - **a**: every person in the library (this takes long: about two minutes a picture).
+9. For each picture it makes the expressions it doesn't have yet, about half a minute each, with a line for each
+   picture. You can close the window at any time: what is made is kept, and the next run carries on where it stopped.
+10. What comes out: next to `library\colonists\<name>.png` the files `<name>_v-blink.png`, `<name>_v-smile.png`,
+    `<name>_v-frown.png` and `<name>_v-pain.png`, each the same size with the same outline. Nothing else in the library
+    is changed. At the end it writes the records again: each expression gets a record of its own, the same as its
+    picture's (with the picture check's corrections) and marked as an expression of that picture. Then **Reload the
+    library** in the game.
+11. Look through them in the folder. If one is not right (the eyes not quite shut, the smile too wide, the face changed),
+    delete that file and run it again: it is made again with a new seed.
+
+What it asks the model for, each time followed by "Keep everything else exactly the same: the same person and face,
+hair, clothes, pose, position, framing, lighting and painting style.":
+- blink: "Close the person's eyes, as in the middle of a blink, the eyelids fully shut and relaxed."
+- smile: "Give the person a small, warm smile with the mouth closed."
+- frown: "Make the person frown, the brows drawn together and down, the mouth set in a slight scowl."
+- pain: "Make the person wince in pain, the eyes squeezed half shut, the brows drawn up and together, the teeth
+  clenched."
+
+Each expression keeps its picture's size: the script takes the template's own resizing box out of the way by itself.
+If a picture comes back in another size or without its clear background, it stops at the first and says what to
+check in the workflow. Expressions, like depth maps, are never pictures of their own for the other scripts. A
+picture left out by the picture check's corrections (`out`) has its expressions left out too.
+
+**A newer model (optional).** FLUX 3 Image Klein (October 2026; its template is **FLUX 3 Image Klein Distilled: Image
+Edit**) is smaller and faster and is said to edit more exactly; its licence is free for your own use too. It is new, and
+its first weeks brought some errors in ComfyUI, so Kontext is the one set up here. To try it later: open that template,
+type `%INSTRUCTION%` where its prompt goes, add the Join Image with Alpha box as in point 4, and export over the same
+file name; the script works with it the same way.
+
 ## If something goes wrong
 
 - "Could not reach ComfyUI": ComfyUI isn't open, or it uses another port; the address is shown in ComfyUI's settings
@@ -238,3 +345,10 @@ type `%QUESTION%` in its custom prompt box, and export as above. The check works
   uses the graphics card, or use the smaller `qwen3.5_2b_bf16.safetensors` from the same page.
 - "Could not write ... is it open in Excel?": close `check-report.csv` or `corrections.csv` in Excel and run the check
   again.
+- The depth maps or expressions stop with "ComfyUI refused the workflow": the message names the box. Most often a model
+  file is missing from ComfyUI's `models` folder (step 9, point 2, or step 10, point 1).
+- The depth maps stop with "the depth map came out ... the backdrop is ...": a box in the workflow changes the size.
+  Add an **Upscale Image** box between the depth box and Preview Image; the script sets its size to each backdrop's.
+- The expressions stop with "it came out without a clear background": the **Join Image with Alpha** box is missing or
+  not wired into the Save Image (or Preview Image) box (step 10, point 4). With "it came out ... x ...": a box in the
+  workflow changes the size; take it out (step 10).
