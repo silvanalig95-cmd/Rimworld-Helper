@@ -535,6 +535,24 @@ most sense." So, in this order, three builds at a time:
   miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer), read by the game from a
   pawn's adulthood backstory or best passionate skill and matched softly (to the looks build), planned as an axis with
   its clothes, tools and poses per age of dress (to the catalogue build); the library script writes a `role` column.
+  And: "you can also include, more eccentric and noticeable and special visuals ... a lot of variety and range,
+  especially when it comes to the NPCs ... but it should always be thematically fitting and based on an actual
+  combination ... maybe it's holding a flame or something because it's a fire mage ... As long as you don't get like
+  someone doing ... a fire spell for someone who can't even do magic ... Otherwise, it should ... rather choose a default
+  one that doesn't have special things like that." So a picture showing a look or a role goes only to pawns who have
+  it (a hard rule; the pawn's own looks a picture lacks only cost), plain pictures are the defaults (to the looks
+  build); the catalogue plans defaults first, then showy looks tied to traits, classes, genes and roles, with wide
+  range in expression and bearing (to the catalogue build).
+- **To do when the player asks (22 November 2026, the player; nothing built yet): pictures checked by what they show.**
+  The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
+  goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
+  the image as much as possible." Records come from what the prompt asked, and a picture may show more (a weapon, a
+  flame, a crown, wings) or less (a woman drawn as a man, as Ape was). The lead's proposal: a captioning model on the
+  player's computer (Florence-2 or JoyCaption through a ComfyUI node pack, a one-time install of a few GB), run by a
+  script over the new pictures in the library; it writes what each picture shows (sex, how old they look, kind
+  features, things held, glowing, wings, fire, armour), compares it with the picture's record, and lists the
+  mismatches to throw out or fix, and the things shown that the record should carry as looks. The player looks
+  through the list instead of every picture.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
