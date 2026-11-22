@@ -24,7 +24,6 @@ param(
 $ErrorActionPreference = 'Stop'
 if ($Folder -eq '') { $Folder = Split-Path -Parent $PSCommandPath }
 $batches = Join-Path $Folder 'batches'
-if ($Workflow -eq '') { $Workflow = Join-Path $Folder 'rimfolk-workflow-api.json' }
 
 function Pick([string] $what, [string[]] $choices) {
     if ($choices.Count -eq 0) { throw "No $what found in $batches." }
@@ -39,15 +38,40 @@ function Pick([string] $what, [string[]] $choices) {
     }
 }
 
-function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [int] $w, [int] $h, [string] $prefix) {
+function Has($o, [string] $name) { return ($o -ne $null) -and ($o.PSObject.Properties.Name -contains $name) }
+
+function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [int] $w, [int] $h, [string] $prefix, $st) {
     $found = $false
+    # The style file may also set the sampler (steps, cfg, sampler_name, scheduler, guidance, denoise) on any node that
+    # has those inputs, and the LoRAs (loras: a list of { name, strength }) on the workflow's LoRA nodes in order.
+    $tune = @('steps', 'cfg', 'sampler_name', 'scheduler', 'guidance', 'denoise')
+    $loraNodes = @($wf.PSObject.Properties | Where-Object { [string]$_.Value.class_type -match 'LoraLoader' } | Sort-Object { [int]($_.Name -replace '\D', '') })
+    if ((Has $st 'loras') -and $st.loras) {
+        for ($k = 0; $k -lt $loraNodes.Count; $k++) {
+            $li = $loraNodes[$k].Value.inputs
+            if ($k -lt @($st.loras).Count) {
+                $L = @($st.loras)[$k]
+                if ((Has $L 'name') -and $L.name) { $li.lora_name = [string]$L.name }
+                $sv = 0.0; if (Has $L 'strength') { $sv = [double]$L.strength }
+                if (Has $li 'strength_model') { $li.strength_model = $sv }
+                if (Has $li 'strength_clip') { $li.strength_clip = $sv }
+            }
+            else {
+                if (Has $li 'strength_model') { $li.strength_model = 0.0 }
+                if (Has $li 'strength_clip') { $li.strength_clip = 0.0 }
+            }
+        }
+    }
     foreach ($node in $wf.PSObject.Properties) {
         $n = $node.Value
         if ($n.inputs -eq $null) { continue }
         $cls = [string]$n.class_type
         foreach ($inp in @($n.inputs.PSObject.Properties)) {
             $v = $inp.Value
-            if ($inp.Name -eq 'filename_prefix' -and $cls -match 'Save') {
+            if (($tune -contains $inp.Name) -and (Has $st $inp.Name) -and -not ($v -is [array])) {
+                $inp.Value = $st.($inp.Name)
+            }
+            elseif ($inp.Name -eq 'filename_prefix' -and $cls -match 'Save') {
                 $inp.Value = $prefix
             }
             elseif ($v -is [string]) {
@@ -66,6 +90,12 @@ function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [in
 }
 
 try {
+    if ($Workflow -eq '') {
+        # Several exported workflows (rimfolk-workflow*.json, e.g. one for FLUX and one for Chroma): pick one.
+        $wfs = @(Get-ChildItem -LiteralPath $Folder -Filter 'rimfolk-workflow*.json' | ForEach-Object { $_.Name })
+        if ($wfs.Count -eq 0) { $Workflow = Join-Path $Folder 'rimfolk-workflow-api.json' }
+        else { $Workflow = Join-Path $Folder (Pick 'workflow' $wfs) }
+    }
     if (-not (Test-Path -LiteralPath $Workflow)) {
         throw "The workflow $Workflow is missing. Export it from ComfyUI with Workflow, Export (API) (see SETUP-ComfyUI.md)."
     }
@@ -102,12 +132,18 @@ try {
             $name = ($r.name -replace '[^A-Za-z0-9_\-]', '_')
             $prefix = 'Rimfolk/{0}/{1}_{2}_{3:00}' -f $Batch, $name, $Style, $i
             $wf = $wfText | ConvertFrom-Json
-            if (-not (Set-Inputs $wf $prompt $negative $seed $w $h $prefix)) { throw 'No prompt box with %PROMPT% was found in the workflow.' }
+            if (-not (Set-Inputs $wf $prompt $negative $seed $w $h $prefix $st)) { throw 'No prompt box with %PROMPT% was found in the workflow.' }
             $body = @{ prompt = $wf; client_id = $client } | ConvertTo-Json -Depth 64 -Compress
             try {
                 $res = Invoke-RestMethod -Uri ($Server.TrimEnd('/') + '/prompt') -Method Post -ContentType 'application/json; charset=utf-8' -Body ([Text.Encoding]::UTF8.GetBytes($body))
             }
             catch {
+                $why = $null
+                if ($_.ErrorDetails -and $_.ErrorDetails.Message) { $why = $_.ErrorDetails.Message }
+                if ($why) {
+                    if ($why.Length -gt 600) { $why = $why.Substring(0, 600) + ' ...' }
+                    throw ("ComfyUI refused the picture (a file name in the style file or the workflow it doesn't have, such as a LoRA's?): {0}" -f $why)
+                }
                 throw ("Could not reach ComfyUI at {0}: is it open? ({1})" -f $Server, $_.Exception.Message)
             }
             $queued++

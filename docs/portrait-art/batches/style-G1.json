@@ -1,0 +1,24 @@
+{
+  "label": "comic key art, clean, tuned, with LoRAs",
+  "style": "A character portrait in the style of a western comic book cover illustration for a sci-fi frontier colony game: clean bold black ink outlines with varied line weight, cel shading in two or three hard-edged tones with a subtle gradient, inked detail lines on the face (eye bags, cheek and nose lines, stubble), angular, characterful features with a strong nose and defined cheekbones, slightly stylised anatomy, rich but grounded colours, a cool cyan rim light from behind and a warm key light from the front left. An ordinary, imperfect, distinctive face with its own character, not a model, not idealised, not glamorous, no makeup.",
+  "frame": "Head and shoulders, one person, the eyes about 40 percent from the top, the shoulders reaching the bottom edge, a plain dark blue-grey background, no text, no border, no hat or helmet.",
+  "style_end": "Drawn in the same comic book cover style throughout: bold ink outlines and cel shading, not painted, not photographic, not 3D, not anime.",
+  "negative": "photograph, photorealistic, 3d render, painterly, oil painting, soft airbrush, anime, beauty, glamour, symmetric perfect face, text, watermark, frame, border, two people, hands, hat, helmet",
+  "width": 1024,
+  "height": 1024,
+  "count": 2,
+  "guidance": 2.5,
+  "steps": 28,
+  "sampler_name": "dpmpp_2m",
+  "scheduler": "beta",
+  "loras": [
+    {
+      "name": "PUT-YOUR-COMIC-STYLE-LORA-FILE-NAME-HERE.safetensors",
+      "strength": 0.8
+    },
+    {
+      "name": "PUT-THE-SAMEFACE-FIX-LORA-FILE-NAME-HERE.safetensors",
+      "strength": -0.7
+    }
+  ]
+}

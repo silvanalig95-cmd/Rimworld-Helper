@@ -335,6 +335,16 @@ most sense." So, in this order, three builds at a time:
   with the style repeated (`style_end`, read by the batch tool), the colonists' rows given features of their own, and a
   face pillar in `FRAMEWORK.md` (face shape, nose, eyes, brows, mouth and jaw, skin detail, two or three drawn per new
   character); a style LoRA trained on the chosen pictures is the next step for consistency.
+  Then the player, after F1 to F3: "still ... the classic AI face. And also just general inconsistency within the style
+  ... maybe by adjusting the workflow ... It should ideally be that each image was kind of created by the same artist or
+  studio ... very consistent in their style, but ... a lot of variety in what they actually image." Done:
+  `docs/portrait-art/WORKFLOW-TUNING.md` (FLUX.1 Dev ignores the negative prompt; steady settings; two LoRA boxes in the
+  workflow; a comic style LoRA and a same-face fix at negative strength from Civitai; Chroma as a model that obeys a
+  negative prompt; our own studio LoRA trained with FluxGym once 25 to 40 pictures are chosen); the batch tool now sets
+  guidance, steps, cfg, sampler, scheduler and the LoRAs (file and strength, in the workflow's order) from the style file,
+  asks which workflow when there are several (`rimfolk-workflow*.json`), and shows ComfyUI's own reason when it refuses a
+  picture; style files `G1` to `G3` (F1 to F3 with steady settings and two LoRA slots) and `H1` (Chroma). All tested here
+  against a stand-in server.
   **Built** (21 November 2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above
   the newest release line):
   point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the
