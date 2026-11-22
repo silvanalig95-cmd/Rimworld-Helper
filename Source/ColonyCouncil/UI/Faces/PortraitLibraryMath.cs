@@ -181,12 +181,9 @@ namespace ColonyCouncil
         /// <summary>Their xenotype's and race's def names in small letters ("" for a xenotype of the player's own making), and whether they are a baseliner.</summary>
         public string xenotype = "", race = "human";
         public bool baseliner = true;
-        /// <summary>A race built as a human is (the human body, drawn as the game draws humans).</summary>
-        public bool humanShaped = true;
         public PortraitSex sex;
         public PortraitAge age = PortraitAge.Adult;
         public PortraitColour skin, hairColour;
-        public bool unusualSkin;
         public PortraitHairStyle hair = PortraitHairStyle.Short;
         public PortraitBeard beard;
         public PortraitBuild build;
@@ -206,21 +203,6 @@ namespace ColonyCouncil
             + (headwear ? "_headwear" : "") + (features.Count > 0 ? "_" + string.Join("+", features.OrderBy(f => f, StringComparer.Ordinal)) : "")
             + (marks.Count > 0 ? "_" + string.Join("+", marks.OrderBy(f => f, StringComparer.Ordinal)) : "");
 
-        /// <summary>
-        /// Far from a human's look (a race of its own shape, a skin no human grows, fur, scales, horns, tusks, a snout): with
-        /// no pictures of their own kind, the game's own face rather than a baseliner's picture.
-        /// </summary>
-        public bool FarFromHuman
-        {
-            get
-            {
-                if (!humanShaped || unusualSkin) return true;
-                foreach (var f in PortraitLibraryMath.FarFeatures)
-                    if (features.Contains(f))
-                        return true;
-                return false;
-            }
-        }
     }
 
     /// <summary>A pick: the picture (an index into the records), its character, and its distance; -1 for none.</summary>
@@ -260,9 +242,6 @@ namespace ColonyCouncil
 
         /// <summary>The features a picture or a pawn may have, as the defs write them.</summary>
         public static readonly string[] Features = { "pointedEars", "longEars", "horns", "tusks", "fur", "scales", "gills", "glowingEyes", "markings", "tail", "snout" };
-
-        /// <summary>The features that make a look far from a human's.</summary>
-        public static readonly string[] FarFeatures = { "horns", "tusks", "fur", "scales", "snout" };
 
         /// <summary>The marks of the body a picture or a pawn may have.</summary>
         public static readonly string[] Marks = { "lostEye", "eyePatch", "scar", "burn", "bionicEye", "missingEar" };
@@ -811,7 +790,7 @@ namespace ColonyCouncil
         /// An age band apart: the next band 2.5, each band past it 4 more (two bands 6.5, three 10.5), never across the
         /// little ones, children and grown-ups; a baseliner's picture for a kind with none, near a human, 1.
         /// </summary>
-        public const float NearAgeCost = 2.5f, FarAgeCost = 4f, NearKindCost = 1f;
+        public const float NearAgeCost = 2.5f, FarAgeCost = 4f;
 
         /// <summary>"Only close ones": the furthest a picture may be and still be shown; beyond it, the game's own face.</summary>
         public const float CloseEnough = 6f;
@@ -873,16 +852,18 @@ namespace ColonyCouncil
             return af || rf ? 1f : 0.75f;
         }
 
-        /// <summary>Whether a picture shows the person's kind: its races (none listed: a human) and its xenotypes (none listed: a baseliner, or any xenotype of another race).</summary>
+        /// <summary>
+        /// Whether a picture shows the person's own kind, exactly: its races (none listed: a human) and its xenotypes (none
+        /// listed: a baseliner; a xenotype of the player's own making by its name). A hybrid or a xenotype with no name
+        /// matches none.
+        /// </summary>
         public static bool OwnKind(PortraitRecord r, PortraitLook l)
         {
             bool race = r.races.Count == 0 ? l.race == "human" : r.races.Contains(l.race);
-            bool xeno = r.xenotypes.Count == 0 ? l.baseliner || l.race != "human" : l.xenotype.Length > 0 && r.xenotypes.Contains(l.xenotype);
+            bool xeno = r.xenotypes.Count == 0 ? l.baseliner : l.xenotype.Length > 0 && r.xenotypes.Contains(l.xenotype);
             return race && xeno;
         }
 
-        /// <summary>A baseliner human's picture (no race or xenotype listed).</summary>
-        public static bool Baseliner(PortraitRecord r) => r.races.Count == 0 && r.xenotypes.Count == 0;
 
         public static bool SexAgrees(PortraitSex person, PortraitSex picture) => person == PortraitSex.Any || picture == PortraitSex.Any || person == picture;
 
@@ -952,9 +933,10 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The pictures that may stand for a person, with their distances (infinity for those that may not): never a
-        /// picture pinned to a colonist (that is theirs alone); the kind first (their own kind's where the library has any;
-        /// else the baseliners', a little further, where they look near a human; else none, so a saurid is never shown as a
-        /// human), then sex, then the age band (their own, or another of their group at a growing cost: a baby or a toddler
+        /// picture pinned to a colonist (that is theirs alone); the kind first, exactly (the player, 22 November 2026: "if
+        /// there is a xenotype appearing in game and there is no image for it ... it should just show no image ... not take
+        /// another xenotype's image": a picture of their own race and xenotype, a baseliner's only for a baseliner, else
+        /// none), then sex, then the age band (their own, or another of their group at a growing cost: a baby or a toddler
         /// only a baby's or a toddler's, a child only a child's), then the body (<see cref="Shows"/>). No cut-off by
         /// distance here: "only close ones" is applied to what is shown (<see cref="Shown"/>).
         /// </summary>
@@ -964,17 +946,13 @@ namespace ColonyCouncil
             var d = new float[n];
             for (int i = 0; i < n; i++) d[i] = float.PositiveInfinity;
             if (n == 0 || l == null) return d;
-            bool own = false;
-            for (int i = 0; i < n && !own; i++) own = !records[i].Pinned && OwnKind(records[i], l);
-            if (!own && (l.FarFromHuman || l.baseliner && l.race == "human")) return d;
-            float kindCost = own ? 0f : NearKindCost;
             for (int i = 0; i < n; i++)
             {
                 var r = records[i];
-                if (r.Pinned || !(own ? OwnKind(r, l) : Baseliner(r)) || !SexAgrees(l.sex, r.sex) || !Shows(r, l)) continue;
+                if (r.Pinned || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !Shows(r, l)) continue;
                 float age = AgeCost(l.age, r.age);
                 if (float.IsInfinity(age)) continue;
-                d[i] = kindCost + Distance(l, r) + age;
+                d[i] = Distance(l, r) + age;
             }
             return d;
         }

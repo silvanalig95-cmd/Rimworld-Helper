@@ -11,9 +11,9 @@ namespace ColonyCouncil
     /// docs: DESIGN.md, "Portraits, phase 3"), from the game's own data, the same for every mod's race, xenotype, hair,
     /// beard, body type and clothes:
     /// <list type="bullet">
-    /// <item>their race and xenotype (a xenotype of the player's own making has no name to match); whether the race is
-    /// built as a human is;</item>
-    /// <item>sex; the age band from the game's own stage of life (a baby under one, else a toddler; a child), else their biological age and their kind's life expectancy;</item>
+    /// <item>their race and xenotype (a xenotype of the player's own making by its name; a hybrid none);</item>
+    /// <item>sex; how old they look (<see cref="AgeOf(Pawn, out PortraitAge)"/>: their biological age, the game's own stages
+    /// for the young ones, their kind's life span and genes for the grown-ups, the ageless by their years on a longer scale);</item>
     /// <item>the skin's and hair's colours as the game has them (genes' colours in them);</item>
     /// <item>the hair from its def's words (name, label, texture path, style tags), else the shape of its front texture
     /// measured once, else long for a woman and short for anyone else; bald where the game draws no hair;</item>
@@ -27,7 +27,6 @@ namespace ColonyCouncil
     /// </summary>
     public static class PortraitReader
     {
-        private static readonly Dictionary<ThingDef, bool> shaped = new Dictionary<ThingDef, bool>();
         private static readonly Dictionary<GeneDef, List<string>> geneFeatures = new Dictionary<GeneDef, List<string>>();
         private static readonly Dictionary<HairDef, PortraitHairStyle?> hairs = new Dictionary<HairDef, PortraitHairStyle?>();
         private static readonly Dictionary<BeardDef, PortraitBeard> beards = new Dictionary<BeardDef, PortraitBeard>();
@@ -121,7 +120,6 @@ namespace ColonyCouncil
             l = new PortraitLook
             {
                 race = p.def.defName.ToLowerInvariant(),
-                humanShaped = HumanShaped(p.def),
                 sex = p.gender == Gender.Male ? PortraitSex.Male : p.gender == Gender.Female ? PortraitSex.Female : PortraitSex.Any,
                 age = age
             };
@@ -133,8 +131,9 @@ namespace ColonyCouncil
             }
             else if (genes.UniqueXenotype)
             {
+                // A xenotype of the player's own making matches pictures listing its name; a hybrid or one with no name, none.
                 l.baseliner = false;
-                l.xenotype = "";
+                l.xenotype = genes.hybrid || genes.xenotypeName.NullOrEmpty() ? "" : genes.xenotypeName.Trim().ToLowerInvariant();
             }
             else
             {
@@ -144,7 +143,6 @@ namespace ColonyCouncil
             }
             var skin = p.story.SkinColor;
             l.skin = new PortraitColour(skin.r, skin.g, skin.b);
-            l.unusualSkin = PortraitLibraryMath.UnusualSkin(l.skin);
             var hc = p.story.HairColor;
             l.hairColour = new PortraitColour(hc.r, hc.g, hc.b);
             var hair = p.story.hairDef;
@@ -155,17 +153,6 @@ namespace ColonyCouncil
             Features(p, l);
             Marks(p, l);
             return true;
-        }
-
-        /// <summary>A race built as a human is: the game's own kind of race def (another mod's race framework uses its own), the human body, the game's humanlike drawing.</summary>
-        private static bool HumanShaped(ThingDef def)
-        {
-            if (def == null) return false;
-            if (shaped.TryGetValue(def, out bool ok)) return ok;
-            ok = def.GetType() == typeof(ThingDef) && def.race != null && def.race.body == BodyDefOf.Human
-                 && (def.race.renderTree == null || def.race.renderTree.defName == "Humanlike");
-            shaped[def] = ok;
-            return ok;
         }
 
         private static string[] Words(Def def, string texPath, IEnumerable<string> tags)

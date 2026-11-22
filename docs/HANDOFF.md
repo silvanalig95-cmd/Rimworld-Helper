@@ -324,7 +324,9 @@ most sense." So, in this order, three builds at a time:
   (`FRAMEWORK.md`), and Luna (2) is in `batches/colonists.csv`. In the game: the matcher's rule that no one under 4 gets a
   picture (phase 3, `PortraitLibraryMath`) goes, with baby and toddler as ages of their own; later the library for
   animals, mechanoids, insectoids and other creatures (by species, young or grown, colour, marks; bonded animals keep
-  theirs), shown where an animal's portrait is drawn.
+  theirs), shown where an animal's portrait is drawn. **The game's part for babies and toddlers built** (22 November
+  2026, not released): the rule is gone, babies and toddlers have bands of their own and only ever get babies' or
+  toddlers' pictures (the entry "Portraits, phase 4" above the newest release line). The animals' library waits.
   The first style test (22 November 2026): the player runs the batches in ComfyUI ("this seems to work overall well"),
   likes C most but "way too realistic ... it should fit the RimWorld style much more ... the actual RimWorld loading
   screens ... the DLC images ... the storytellers", sent the game's key art, the Biotech and the Ideology covers, and named
@@ -419,6 +421,10 @@ most sense." So, in this order, three builds at a time:
   colonists' chosen cut-outs and the backdrops put in the mod by hand for a first look in the game, then the pack for
   the library at scale (the entry below). Then (mod code) the
   backdrop behind the large portrait by room, age and biome, tinted by day and weather, with the setting.
+  **The mod code built** (22 November 2026, not released; the entry "Portraits, phase 4: the painted library in the
+  game, with backdrops" above the newest release line): the pictures read from the player's library folder (or a mod's
+  Portraits folder) when shown, the backdrop by room, age, contents and land, tinted by the light (the weather's tint
+  not built), with the settings; the pictures themselves and the pack script are the lead's.
 - **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
   etc. So I don't know if removing a background for each of them anyways is a sustainable solution. I mean, I cannot
@@ -438,6 +444,10 @@ most sense." So, in this order, three builds at a time:
      player's save against the pack's records, the gaps first).
   Size to weigh: a cut-out at 512 x 640 is about 270 KB as PNG (measured on the test pictures), so 3,000 make a pack of
   about 0.8 GB; smaller or compressed textures bring it down.
+  **The game's side built** (22 November 2026, not released; the entry "Portraits, phase 4" above the newest release
+  line): Rimfolk reads the player's library folder (records.xml in the defs' words and the pictures, full size, loaded
+  only when shown) and writes missing.csv there for the coverage report (people, rooms and land it found no picture
+  for). The pack script and the batch lists from the coverage report are the lead's.
 - **Done (21 November 2026, the player's go: "yes, please also fix the walking issue", then "please go all ahead with
   this and all the next steps that you listed"; built, not released): visitors who slide across the map facing one
   way.** The to-do with the player's words is now one entry above the newest release line ("Fixes: the sick tended
@@ -1021,6 +1031,90 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 4: the painted
+  library in the game, with backdrops** (22 November 2026; the player: "now what is the plan to actually get this into
+  the game now? Like a first attempt ... let's just start with the colonists that I have as a first batch ... the
+  framework should then allow, additions of many, many more images from all kinds of different races, sexes, ages ... It
+  should then find the closest match for this character and assign an image to it", "the backgrounds are correctly
+  selected based on age and what it contains and what kind of room it is ... will this require a lot of performance",
+  "I still think the as painted looks quite good overall, and I would like to try this out"; and the rules of the same
+  day: "it should really select an image once ... if a kid is getting older, enters a new life stage, then of course it
+  should be reflected", "eventually, yeah, we should update the image" (growing old), "the age range should always be
+  corresponding to the xenotype", "ageless pawns can also look ... old, middle-aged, or even elderly over time",
+  "once a pawn is part of my colony, their image should no longer be used for anyone else", "on all these event cards or
+  diplomacy cards ... that should also use the pawn's actually new art look", the pictures in one folder kept in step
+  between their computers, and what is missing written down for the next batches). DESIGN.md "Portraits, phase 4: the
+  painted library in the game, with backdrops" has every rule; README "Portraits"; the Almanac's guide, its portrait
+  sentence.
+  - **Where the pictures come from**: the new setting "Portrait library folder" (a path; empty: none): `records.xml`
+    (the defs' XML, `texPath` from the folder) and the pictures in its subfolders, read after start-up and with "Reload
+    the library" on a worker thread (a cloud drive never holds the game up; a missing folder one message, tried again a
+    minute later); and, as before, `ColonyCouncil.PortraitDef`s of any mod, now with the picture under the mod's
+    `Portraits` folder (else Textures). The new `ColonyCouncil.BackdropDef` (place, rooms, outdoors group, era,
+    contents) read from both.
+  - **Loaded when shown**: read on a worker, decoded by the game at most one a frame, the head measured from the
+    cut-out's alpha, scaled to 450 pixels long at 100% interface scale (at most 720), the clear edge coloured; a cache
+    of 48 pictures and 12 million pixels, the least lately shown let go; the portrait's ground while a picture loads; a
+    file that can't be read one warning and the game's drawing.
+  - **Who gets which**: a picture pinned to a colonist (`pawn`: nickname, colonist bar name, first, last or full name)
+    is theirs ahead of the matcher while it fits their stage, never anyone else's; everyone else the closest picture
+    (the new setting "Portraits from the library": The closest, or Only close ones), the sex agreeing, the kind exactly
+    (their own race and xenotype, a custom xenotype by its name; with none of their kind no picture at all, the game's
+    drawing, and a line in missing.csv; phase 3's baseliner pictures for near-human kinds gone), marks at the first pick, a face nobody holds before a used one; nine age
+    bands (`FRAMEWORK.md`'s) by how old they look: their biological age, the young ones by the game's own stages, the
+    grown-ups' bands scaled by their race's life expectancy times their life span factor, the ageless by their years
+    since birth on a ten-times scale; babies and toddlers only babies' and toddlers' pictures, never a child a
+    grown-up's. Chosen once and kept (phase 3's variant following the body is gone): a new pick only at the next stage
+    of life (toddler, child, teen, young, old), a picture gone, a pin that fits them better, or a colonist owning the
+    face. A colonist's face (a colonist or slave of the player's) is theirs alone, the first to hold it keeps it, anyone
+    else holding it gets another at once; kept while they are remembered, alive or dead. A right click on the large
+    portrait: "Choose another picture" (their pins, then the nearest faces no colonist owns).
+  - **The large portrait**: the crop by its size (the head 45% of the square at 96, 30% at 360), in front of a painted
+    backdrop of where the person is (the room's kind with a table of near kinds, the colony's age, what is in the room;
+    outdoors the biome's group of 16, under a rock roof a cave; else a plain ground), darker and cooler by the light in
+    four steps; looked at again only when the room, map or light step changes, at most every two seconds; made once on
+    a worker thread as two textures (the backdrop still, the person breathing in front), the last four kept. New
+    settings beside its size: "Backdrop" (As painted, the player's choice; Lightly softened; Softened; Plain), "Line
+    round the person" (Off; Subtle; Stronger), "Tint the person to the room's light" (off).
+  - **Everywhere else**: every Rimfolk portrait already comes through the face engine (`UiKit.Portrait`, the colonist
+    card's tile), so the library picture shows there on the place's own ground, cropped to it and mirrored to its text:
+    letters and event cards, the council and its seats, the colonist card, the Story and Culture tabs, the people table,
+    the mood board and hover card, the wishes, faiths, history, defense, journey, group, camp, region people and
+    neighbours panels, the apparel and weapon cards and pickers, founding and handing over a colony, the large portrait.
+    Left on the game's drawing: the founding window's newcomer picker (the game's own starting-pawn page, its pawns
+    rerolled at will). Candidates for a later round (the game's own windows): the colonist bar, the social tab, the
+    game's letters and the inspect pane's own small icons.
+  - **The missing list**: with a folder set, `missing.csv` in it (people with no picture of their kind, of their sex and
+    age, or none close; rooms with no backdrop of their kind or age; land with no backdrop of its group; their defs' mods,
+    what stood in, how many, last seen), written on saving and once a day on a worker, merged with what the file holds.
+  - **Saved**: `PortraitKeeper.kept` with the picture, stage, pinned, chosen by hand, a colonist's own and since when, the
+    distance (`Tools/save_estimate.py` updated).
+  - Code: `UI/Faces/PortraitStore.cs`, `PortraitFolder.cs`, `PortraitNeeds.cs`, `Backdrops.cs`, `BackdropDef.cs`,
+    `FaceEngineStage.cs`, and `PortraitLibrary.cs`, `PortraitKeeper.cs`, `PortraitReader.cs`, `PortraitDef.cs`,
+    `PortraitSources.cs`, `FaceEngine.cs`, `InspectPortrait.cs` changed; pure `PortraitPictureMath.cs`,
+    `PortraitComposeMath.cs`, `BackdropMath.cs`, `PortraitFolderMath.cs`, and `PortraitLibraryMath.cs`,
+    `PortraitViewMath.cs` changed; settings in `CouncilSettings.cs`, `UI/SettingsCatalog.cs`, `UI/SettingsWindow.cs`
+    (the folder's row), words in `Languages/English/Keyed/Rimfolk_Portraits.xml`. Tests: `Tools/Tests/PortraitStageTests.cs`
+    (new) and `PortraitLibraryTests.cs`, fixtures `Tools/Tests/PortraitFixtures/BackdropDefs_Sample.xml` and
+    `records_sample.xml`; the matcher's table `docs/portrait-previews/matcher.md` written again.
+  - **Can't be checked without the game**: the pictures as they look in every place (the measured head's framing, the
+    clear edge after scaling, mirroring); the first-load pause and decoding's real cost on the player's computer and
+    cloud drive; `LoadImage`'s and the graphics card's read-back's rows and colours; how the backdrop's crop, softening,
+    line and tint look (only their maths are tested); the light steps against real nights and lit rooms; real rooms'
+    roles and things across the player's mods; the life span stat and the ageing genes across their xenotypes; the
+    reservation as colonists join, leave and die; missing.csv on the cloud drive.
+  - **Try in the game** (screenshots please): put the pack's pictures and `records.xml` in your library folder (or the
+    pack "Rimfolk Portraits" in Mods, enabled after Rimfolk), paste the folder's path into Options, Rimfolk, How you're
+    told, Portraits, "Portrait library folder", and press "Reload the library" (a message says how many portraits and
+    backdrops it read). Select a colonist with no tab open: their own picture, in front of the backdrop of the room they
+    stand in; drag the corner from 96 to 360 (the face, then the pose); walk them outdoors and indoors, and wait for night;
+    try the settings "Backdrop", "Line round the person" and the tint. Open a letter or the colonist card: the same
+    picture, small and round. Right-click the large portrait: "Choose another picture". Select Luna (the toddler). In
+    dev mode, "Portraits: the selected people's pictures and best matches with their scores (log)" for a few people
+    (send the log), and look at missing.csv in the folder after saving.
+  - Mods that would help: none needed for this round (the pictures are the player's). For the backdrops' rooms the
+    player's mods already give the roles read here (Hospitality's guest rooms, Vanilla Books Expanded's libraries, Dubs
+    Bad Hygiene's bathrooms, Vanilla Factions Expanded - Empire's ballrooms and galleries).
 - 0.292.0, **Portraits, phase 3: a library of
   painted portraits, and the large portrait bigger, front-on and out of a tab's way** (21 November 2026; the player, of
   the large portrait: "a lot of the square is still, so to say, empty space ... The pawn could be centered further, and

@@ -106,13 +106,21 @@ a person holds themselves: the chin up for the proud (a proud trait, a council s
 the head a little down for the sad or grieving, a lean for the angry, turned half away for the shy in letters and cards,
 a slight stoop for the old, the head low for a prisoner, the dead drawn grey; the head is the game's own, drawn apart
 from the body and set on it. Two people side by side in a letter or a tie face each other. The large portrait and the
-colonist card's breathe and sway a little, still while the game is paused. **Painted portraits**: where Rimfolk's
-portrait library has a painted picture close to a person (their kind, sex, age, skin and hair colour, hair, beard,
-build and clothes), their portraits show it, the same face for good, its variant following their body (a lost eye, a
-scar, growing old), turned to face its text or the other person of a pair; anyone with no close picture keeps the
-game's own face. The library is empty until its pictures are added (`docs/portrait-art/`). **A large portrait at the
-inspect pane**, **Its size**, **Headgear in portraits**, **Clothes in portraits**, **Poses in portraits**, **Portraits
-move a little** and **Painted portraits from the library** (How you're told, Portraits) set it.
+colonist card's breathe and sway a little, still while the game is paused. **Painted portraits**: Rimfolk's portrait
+library holds painted pictures from the player's own folder (set in the settings; `docs/portrait-art/`) or from a mod's
+`Portraits` folder, each described by a record. A picture made for a colonist (pinned to them by name) is theirs;
+everyone else gets the one closest to how they look (their kind, sex, how old they look by their kind's life span and
+their genes, skin and hair colour, hair, beard, build and clothes), one nobody else holds where it can, and a
+colonist's picture is never anyone else's. It is chosen the first time it is needed and kept: injuries, haircuts and
+clothes don't change it, only growing into the next stage of life (a toddler, a child, a teen, a grown-up, old) does;
+a right click on the large portrait chooses another. Pictures are read only when shown and kept in a small cache. In
+the large portrait the person stands in front of a painted backdrop of where they are (the kind of room, the colony's
+age and what is in the room, or the land outdoors), darker at night; elsewhere on the portrait's own colour. A race or
+xenotype with no pictures of its own keeps the game's own face, never another kind's. Rimfolk writes what it found missing (people, rooms,
+land) into the folder for the next batches. **A large portrait at the inspect pane**, **Its size**, **Backdrop**, **Line
+round the person**, **Tint the person to the room's light**, **Headgear in portraits**, **Clothes in portraits**,
+**Poses in portraits**, **Portraits move a little**, **Painted portraits from the library**, **Portraits from the
+library** and **Portrait library folder** (How you're told, Portraits) set it.
 
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:

@@ -338,7 +338,7 @@ namespace ColonyCouncil
             string kept = k == null ? "nothing yet"
                 : k.picture.Length == 0 ? "no picture (none fitted)"
                 : k.picture + (k.pinned ? ", pinned" : "") + (k.byHand ? ", chosen by hand" : "") + ", " + k.distance.ToString("0.00") + (Shown(k) ? "" : " (not shown: only close ones)");
-            return p.LabelShort + ": " + look.Words + (look.FarFromHuman ? " (far from a human's look)" : "") + "; keeps " + kept + "; pinned to them: "
+            return p.LabelShort + ": " + look.Words + (PortraitLibraryMath.HasOwnKind(look, records) ? "" : " (no pictures of their kind)") + "; keeps " + kept + "; pinned to them: "
                    + (pins.Any() ? string.Join(", ", pins) : "none") + "; nearest: " + (near.Any() ? string.Join(", ", near) : "none that may stand for them");
         }
 

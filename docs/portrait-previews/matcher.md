@@ -24,15 +24,14 @@ ones" a picture further than 6 gives way to the game's own face. The last column
 | a grown man with dyed blue hair, short, industrial | `m_adult_s2_brown_long_nobeard_industrial_102` (7.7; with only close ones, the game's own face) | `m_adult_s1_black_short_stubble_industrial_111` (4.9) | `m_adult_s1_black_short_stubble_industrial_111` 4.9, `m_adult_s1_black_long_nobeard_industrial_106` 5.4, `m_adult_s1_black_short_beard_industrial_101` 5.9 |
 | a teenage boy of fifteen, very fair, short blond hair, industrial | `m_adult_s1_black_short_beard_spacer_151` (9.6; with only close ones, the game's own face) | `m_young_s1_blond_short_nobeard_industrial_115` (0.6) | `m_young_s1_blond_short_nobeard_industrial_115` 0.6, `m_young_s1_blond_short_nobeard_medieval_065` 2.6, `m_young_s1_blond_short_nobeard_spacer_165` 2.6 |
 | a grown man, a dark skin, short black hair, a moustache, tribal | `m_young_s5_lbrown_long_nobeard_tribal_014` (7.4; with only close ones, the game's own face) | `m_adult_s5_red_short_stubble_tribal_005` (4.6) | `m_adult_s5_red_short_stubble_tribal_005` 4.6, `m_adult_s5_red_long_nobeard_tribal_010` 5.6, `m_adult_s5_red_short_stubble_medieval_055` 6.6 |
-| a hussar woman, a tan skin, long brown hair, spacer (no hussar pictures yet) | `f_adult_s3_lbrown_long_nobeard_spacer_178` (3.1) | `f_adult_s3_lbrown_long_nobeard_spacer_178` (3.1) | `f_adult_s3_lbrown_long_nobeard_spacer_178` 3.1, `f_adult_s2_brown_long_nobeard_spacer_182` 3.6, `f_adult_s3_lbrown_short_nobeard_spacer_183` 4.1 |
+| a hussar woman, a tan skin, long brown hair, spacer (no hussar pictures yet) | the game's own face (none of their kind, sex and stage) | the game's own face (none of their kind, sex and stage) |  |
 | an impid man, horns and pointed ears (no impid pictures yet) | the game's own face (none of their kind, sex and stage) | the game's own face (none of their kind, sex and stage) |  |
 | a dark elf woman (no dark elf pictures yet) | the game's own face (none of their kind, sex and stage) | the game's own face (none of their kind, sex and stage) |  |
 | a girl of two (a toddler) | the game's own face (none of their kind, sex and stage) | the game's own face (none of their kind, sex and stage) |  |
 
 The two men who look alike get different faces: of the nearest few, each person gets the nearest of those fewest others keep, then
 one by their own id.
-A kind with no pictures of its own gets a baseliner's where it looks near a human (the hussar),
-else the game's own face (the impid's horns, the dark elf's grey skin); once a kind's pictures are in, its people get
-only theirs. A baby or a toddler only ever gets a baby's or a toddler's picture, a child a child's (the first wave has
+A kind with no pictures of its own keeps the game's own face, however human it looks (the hussar, the impid, the dark
+elf), and is written in the library folder's missing list; once a kind's pictures are in, its people get only theirs. A baby or a toddler only ever gets a baby's or a toddler's picture, a child a child's (the first wave has
 none, so the girl of two keeps the game's own face). A person keeps the picture first chosen for good, whatever happens
 to their body or clothes; a child gets a new one when they grow into the next stage.

@@ -30,7 +30,7 @@ public static class PortraitLibraryTests
             sex = sex, age = age, skin = Hex(skin), hairColour = Hex(hairColour), hair = hair, beard = beard, build = build, era = era, dress = dress, headwear = headwear,
             xenotype = xenotype, race = race, baseliner = xenotype == "baseliner" && race == "human"
         };
-        l.unusualSkin = PortraitLibraryMath.UnusualSkin(l.skin);
+
         foreach (var f in features ?? Array.Empty<string>()) l.features.Add(f);
         foreach (var m in marks ?? Array.Empty<string>()) l.marks.Add(PortraitLibraryMath.MarkKey(m));
         return l;
@@ -269,17 +269,19 @@ public static class PortraitLibraryTests
         C(!pb.Any || samples[pb.index].xenotypes.Count == 0, "a baseliner never gets a xenotype's picture");
         var hussar = Look(PortraitSex.Female, PortraitAge.Young, "(0.55, 0.35, 0.23)", "#1e1a18", PortraitHairStyle.Braids, PortraitBeard.None, PortraitBuild.Slim, PortraitEra.Industrial, PortraitDress.Work, xenotype: "hussar");
         var ph = Pick(hussar, samples, 3);
-        C(ph.Any && samples[ph.index].name == "Portrait_Sample_Ines" && Near(ph.distance, PortraitLibraryMath.NearKindCost),
-            "a kind with no pictures that looks near a human (a hussar): the nearest baseliner's, a little further");
+        C(!ph.Any && PortraitLibraryMath.Distance(hussar, ines) < 2f,
+            "a kind with no pictures of its own (a hussar), however human it looks: no picture, the game's own drawing (never another kind's)");
         var yttakin = Look(PortraitSex.Female, PortraitAge.Young, "(0.55, 0.35, 0.23)", "#1e1a18", PortraitHairStyle.Braids, xenotype: "yttakin", features: new[] { "fur" });
         var impid = Look(PortraitSex.Female, PortraitAge.Young, "(0.55, 0.35, 0.23)", "#1e1a18", PortraitHairStyle.Braids, xenotype: "impid", features: new[] { "horns", "pointedEars" });
         var green = Look(PortraitSex.Female, PortraitAge.Young, "#73a659", "#1e1a18", PortraitHairStyle.Braids, xenotype: "");
-        C(!Pick(yttakin, samples, 3).Any && !Pick(impid, samples, 3).Any && !Pick(green, samples, 3).Any && yttakin.FarFromHuman && impid.FarFromHuman && green.FarFromHuman,
-            "a kind with no pictures far from a human's look (fur, horns, a skin no human grows): the game's own face");
+        C(!Pick(yttakin, samples, 3).Any && !Pick(impid, samples, 3).Any && !Pick(green, samples, 3).Any,
+            "a kind with no pictures (fur, horns, a xenotype of the player's own making with no name): the game's own face");
+        var custom = Look(PortraitSex.Female, PortraitAge.Young, "(0.55, 0.35, 0.23)", "#1e1a18", PortraitHairStyle.Braids, xenotype: "river folk");
+        var customPic = new PortraitRecord { name = "river", xenotypes = { "river folk" }, sex = PortraitSex.Female, age = PortraitAge.Young, skin = Hex("#8c5a3c"), skinSet = true };
+        C(Pick(custom, samples.Append(customPic).ToList(), 3).character == "river", "a xenotype of the player's own making matches pictures listing its name");
         var alien = Look(PortraitSex.Female, PortraitAge.Young, "(0.55, 0.35, 0.23)", "#1e1a18", PortraitHairStyle.Braids, xenotype: "baseliner", race: "alien_kurin");
-        alien.humanShaped = false;
-        alien.baseliner = false;
-        C(!Pick(alien, samples, 3).Any, "another mod's race of its own shape, with no pictures: the game's own face");
+        alien.baseliner = true;
+        C(!Pick(alien, samples, 3).Any, "another mod's race, with no pictures of its own: the game's own face");
         var kurinPic = new PortraitRecord { name = "kurin", races = { "alien_kurin" }, sex = PortraitSex.Female, age = PortraitAge.Young, skin = Hex("#8c5a3c"), skinSet = true };
         var pk = Pick(alien, samples.Append(kurinPic).ToList(), 3);
         C(pk.Any && pk.character == "kurin", "with its own race's pictures, those");
@@ -551,9 +553,8 @@ public static class PortraitLibraryTests
             sb.AppendLine("that look, each person gets the nearest of the few fewest others keep, then one by their own id (the tests try it).");
         else
             sb.AppendLine("one by their own id.");
-        sb.AppendLine("A kind with no pictures of its own gets a baseliner's where it looks near a human (the hussar),");
-        sb.AppendLine("else the game's own face (the impid's horns, the dark elf's grey skin); once a kind's pictures are in, its people get");
-        sb.AppendLine("only theirs. A baby or a toddler only ever gets a baby's or a toddler's picture, a child a child's (the first wave has");
+        sb.AppendLine("A kind with no pictures of its own keeps the game's own face, however human it looks (the hussar, the impid, the dark");
+        sb.AppendLine("elf), and is written in the library folder's missing list; once a kind's pictures are in, its people get only theirs. A baby or a toddler only ever gets a baby's or a toddler's picture, a child a child's (the first wave has");
         sb.AppendLine("none, so the girl of two keeps the game's own face). A person keeps the picture first chosen for good, whatever happens");
         sb.AppendLine("to their body or clothes; a child gets a new one when they grow into the next stage.");
         string dir = Path.Combine(root, "docs", "portrait-previews");

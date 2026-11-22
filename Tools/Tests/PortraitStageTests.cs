@@ -62,7 +62,7 @@ public static class PortraitStageTests
     private static PortraitLook Look(PortraitSex sex, PortraitAge age, string skin = "#e0b898", string hair = "#4a3020", string xenotype = "baseliner", string[]? features = null, string[]? marks = null)
     {
         var l = new PortraitLook { sex = sex, age = age, skin = Hex(skin), hairColour = Hex(hair), xenotype = xenotype, baseliner = xenotype == "baseliner" };
-        l.unusualSkin = PortraitLibraryMath.UnusualSkin(l.skin);
+
         foreach (var f in features ?? Array.Empty<string>()) l.features.Add(f);
         foreach (var m in marks ?? Array.Empty<string>()) l.marks.Add(PortraitLibraryMath.MarkKey(m));
         return l;
@@ -332,6 +332,27 @@ public static class PortraitStageTests
             C(!PortraitLibraryMath.Pick(saurid, new List<PortraitRecord> { woman }, 1, _ => 0).Any, "a saurid with no saurid pictures is never shown as a human");
             var sauridPic = Rec("soot", PortraitSex.Female, PortraitAge.Adult, "#9aa0a0", "#40a0a0", xenotypes: new[] { "vresaurids_saurid" });
             C(PortraitLibraryMath.Pick(saurid, new List<PortraitRecord> { woman, sauridPic }, 1, _ => 0).index == 1, "with saurid pictures, a saurid gets one");
+            // A colonist's picture is theirs alone (the player: "once a pawn is part of my colony, their image should no longer
+            // be used for anyone else ... replace anyone else who already has that image").
+            var owners = PortraitLibraryMath.Owners(new[] { (7, "face_a", 500), (3, "face_a", 900), (9, "face_b", 100), (4, "face_b", 100) },
+                new[] { new KeyValuePair<string, int>("Avila", 101), new KeyValuePair<string, int>("Nobody", -1) });
+            C(owners["face_a"] == 7 && owners["face_b"] == 4, "of two colonists with the same face, the one who had it first keeps it (then the lower id)");
+            C(owners["Avila"] == 101 && owners["Nobody"] == -1, "a pinned face is its colonist's from the start; a pin naming no one is no one else's either");
+            var faces = new List<PortraitRecord> { Rec("a", PortraitSex.Male, PortraitAge.Adult, character: "face_a"), Rec("b", PortraitSex.Male, PortraitAge.Adult, "#d8b090", character: "face_b") };
+            var stranger2 = Look(PortraitSex.Male, PortraitAge.Adult);
+            var free = PortraitLibraryMath.Pick(stranger2, faces, 1, _ => 0, c => owners.TryGetValue(c, out int o) && o != 55);
+            C(!free.Any, "a stranger is never given a colonist's face, even the closest; with none left, the game's own drawing");
+            var free2 = PortraitLibraryMath.Pick(stranger2, faces, 1, _ => 0, c => c == "face_a");
+            C(free2.Any && faces[free2.index].Character == "face_b", "the closest face no colonist holds");
+            C(PortraitLibraryMath.PickAgain(true, PortraitStage.Grown, PortraitStage.Grown, "a", true, 0, true, 1, 1, "w", "w", 0, true)
+              && !PortraitLibraryMath.PickAgain(true, PortraitStage.Grown, PortraitStage.Grown, "a", true, 0, true, 1, 1, "w", "w", 0, false),
+                "someone holding a face a colonist now owns gets a new pick at once (even one chosen by hand); otherwise kept");
+            var alikeUsed = new List<PortraitRecord> { Rec("near", PortraitSex.Male, PortraitAge.Adult), Rec("bit", PortraitSex.Male, PortraitAge.Adult, "#d2a688") };
+            var fresh = PortraitLibraryMath.Pick(stranger2, alikeUsed, 3, c => c == "near" ? 1 : 0);
+            C(fresh.Any && alikeUsed[fresh.index].name == "bit" && PortraitLibraryMath.Distance(stranger2, alikeUsed[1]) <= PortraitLibraryMath.FewWithin,
+                "a face nobody holds yet before a used one among the near-closest (few repeats)");
+            var takenChoices = PortraitLibraryMath.Choices(stranger2, faces, r => false, PortraitPickMode.Closest, c => c == "face_a");
+            C(takenChoices.Count == 1 && faces[takenChoices[0]].Character == "face_b", "choosing another picture never offers a colonist's face");
             // Choose another picture: their pins first, then the nearest faces, round and round.
             var me = Rec("mine", PortraitSex.Male, PortraitAge.Adult, pawn: "Avila");
             var a1 = Rec("a1", PortraitSex.Male, PortraitAge.Adult);
