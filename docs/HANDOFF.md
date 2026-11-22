@@ -576,7 +576,8 @@ most sense." So, in this order, three builds at a time:
   setting, painted pictures never mirrored, the whole picture on the large portrait and no gap under the body, and who
   may share a picture (the player's own, notables, strangers never seen together; the setting); point 4 (the review
   and the catalogue) is the other build's.
-- **Go given (22 November 2026, the player: "Please go ahead"; with a build agent): pictures checked by what they show.**
+- **Done (22 November 2026, the player's go: "If I can run this model on my PC that does a description database. even
+  more awesome if it's through a comfy UI. Please go ahead."): pictures checked by what they show.**
   The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
   goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
   the image as much as possible." Records come from what the prompt asked, and a picture may show more (a weapon, a
@@ -586,11 +587,44 @@ most sense." So, in this order, three builds at a time:
   features, things held, glowing, wings, fire, armour), compares it with the picture's record, and lists the
   mismatches to throw out or fix, and the things shown that the record should carry as looks. The player looks
   through the list instead of every picture.
-  And: "Would then this AI also kind of rename it or just recognize, hey, looks more like a kid or a teenager and do all
-  the necessary changes accordingly for the game to pick up the new description". So no renaming (the name ties a
-  picture to its row): the check writes `library/corrections.csv` (per picture: age, sex, looks, role, or out; apply
-  yes, ask or no), marks the safe or clear ones yes by itself, and `Update-PortraitLibrary.ps1` applies them when it
-  writes the records (sent to the build).
+  **Built** (tools and docs only; `SETUP-ComfyUI.md` step 8): `Tools/PortraitArt/Check-Pictures.ps1` with
+  `Check-Pictures.cmd` (a double-click) in the player's `Rimfolk-portraits` folder. The describing model is ComfyUI's
+  own: its Generate Text box with Qwen3.5 (4B, Apache 2.0, from the "Qwen3.5: Text Generation" template, which offers
+  the download; the 9B int8 file of the same size for sharper answers), a Load Image box and a Preview as Text box, no
+  node pack (the ComfyUI-QwenVL pack works the same as a fallback). The player exports it as
+  `rimfolk-check-workflow-api.json` with `%QUESTION%` in the prompt box. For each picture of `library\<batch>\` not
+  asked about before, the script uploads it, asks twenty fixed questions (one "name: answer" line each: people, sex,
+  age in years, skin, hair, beard, ears, horns, tail, wings, eyes, scales or fur, eye marks, hands, weapons, armour,
+  fire or magic, headwear, book or tools, unusual), reads the answer from `/history` (also from numbered, bold,
+  one-line, JSON, table and thinking-first answers) and keeps it in `library\checked.csv` (the description database:
+  name, size, question version, model, each item, the answer). Every run compares all checked pictures with
+  `records.xml` and writes `library\check-report.csv`, worst first: wrong (the other sex, two age bands or more off,
+  more than one person, a person in a backdrop), shows more (a weapon, armour, fire or magic, wings, a crown, a book or
+  tools with no role or look in the row; headwear; features and eye marks the row lacks), shows less (a look or role
+  the picture doesn't show, features the row has), not compared. Look words are matched by their parts ("batWings" is
+  "bat wings"), so the catalogue's new looks count without changes; pictures pinned to a colonist skip the looks and
+  role checks; what a look or role asks for is read from the row's own prompt (its subject and pose: sniperClass's
+  rifle, succubus's horns), and a spacer's glowing seams are not magic. `Run-PortraitBatch.ps1` now leaves the check's
+  workflow out of its choice.
+  Then the player (through the lead): "Would then this AI also kind of rename it or just recognize, hey, looks more
+  like a kid or a teenager and do all the necessary changes accordingly for the game to pick up the new description".
+  So the check also corrects, without renaming anything (the name ties a picture to its row, and the row's other
+  pictures may be right): it writes `library\corrections.csv` (picture, field, value, apply yes/ask/no, why; fields
+  age, sex, looks add:/remove:, role or clear, marks add:/remove:, headwear, out), and `Update-PortraitLibrary.ps1`
+  builds each record from its row and then that picture's lines marked yes (`out` leaves it out of records.xml, the
+  file stays), and says how many it applied and how many wait as ask. Yes only where safe or plainly right: an age two
+  bands or more off, a role for a weapon, armour, a crown or a book when the row has none, the wings look, an eye mark,
+  headwear, out for two people; ask for fire or magic (which class can't be told), insect or fairy wings, the other sex
+  when the model hedged, anything taken away (it would give the picture to anyone), and a body its kind doesn't have
+  (pointed ears on a baseliner, an elf without them, horns, a tail or glowing eyes, for which `looks.csv` has no plain
+  look yet: a table in the script takes the word once one is added); a colonist's own picture of the wrong sex is out,
+  ask. The check applies the yes lines in memory before comparing, never changes lines already in the file (so the
+  player's yes and no stay), and leaves an issue marked no out of the report. The loop in SETUP step 8: check, look
+  at the ask lines, run Update-PortraitLibrary (or the copier), Reload the library.
+  Tested with PowerShell 7 against a stand-in ComfyUI (uploads, queue, history, refusals, errors, a lost prompt, a
+  busy queue), a fake library with catalogue-like rows, and corrections.csv saved again by Excel (semicolons, Windows
+  encoding); not yet on the player's computer or with the real model, so the first run there shows how well Qwen3.5
+  answers the form on painted pictures.
   The player, on the first pictures of wave1-people-01: "the ages are really off ... either they look way too old or
   they look way too young ... perhaps it's better if we just say he looks or they look young or middle-aged or old
   without a number". Done: the planner writes ages as a band word and a decade ("a middle-aged man in his early

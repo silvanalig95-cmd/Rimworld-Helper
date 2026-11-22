@@ -99,7 +99,8 @@ asks where your `Rimfolk-portraits` folder is. Then "Reload the library" in the 
    (`..._cut_00001_.png`; Ape's from `colonists-redo` go into `library\colonists` too, her row is in `colonists.csv`),
    for backdrops the scenes. Several backdrops of one room are fine; the game picks among them.
 2. Right-click `Update-PortraitLibrary.ps1`, **Run with PowerShell**. It writes `library\records.xml`: a record for
-   every picture, taken from its row in the batch list (the columns after `seed`), and shows the folder's path.
+   every picture, taken from its row in the batch list (the columns after `seed`) and the picture check's corrections
+   marked yes (step 8), and shows the folder's path.
 3. In RimWorld, Rimfolk's settings, **Portrait library folder**: paste that path (once on each computer). Then
    **Reload the library** (or restart the game). Each time you add or remove pictures: run the script again, then reload.
 
@@ -119,6 +120,112 @@ a biome, an age). `Update-PortraitLibrary.ps1` shows its first lines; send it to
 lists. When the library already holds pictures of a batch, `Run-PortraitBatch.ps1` offers to make only the rows that
 have none yet, so a grown list is never made again from the start.
 
+## 8. The picture check (once, about 20 minutes, most of it downloading)
+
+A picture can show more or less than its batch row asked for: a sword or a flame nobody asked for, a woman drawn as a
+man. The game gives a picture with a look or a role only to people who have it, so a record has to match its picture.
+The check has a describing model on your computer look at each picture in the library, answer a fixed list of
+questions about it (how many people, man or woman, how old they look, ears, horns, wings, eyes, what they hold,
+weapons, armour, fire or magic, headwear, a book or tools, anything unusual), and compares the answers with the
+picture's record. You then look through a short list instead of every picture. It uses ComfyUI's own boxes and
+Qwen3.5, a free model (Apache 2.0 licence) that fits your card well, so no node pack is needed.
+
+**The model**
+1. Keep ComfyUI up to date: ComfyUI Desktop offers its updates when it starts; take them.
+2. Menu **Workflow**, **Browse Templates** (or the Templates button on the left). Search `Qwen3.5` and open
+   **Qwen3.5: Text Generation**. ComfyUI says the model file is missing (`qwen3.5_4b_bf16.safetensors`, about 9 GB) and
+   offers to download it: let it.
+   (If it doesn't offer: open https://huggingface.co/Comfy-Org/Qwen3.5/tree/main/text_encoders, download that file and
+   put it in ComfyUI's `models\text_encoders` folder, for ComfyUI Desktop `Documents\ComfyUI\models\text_encoders`.
+   Then press R in ComfyUI so it sees the file.)
+3. Try it: in the **Load Image** box, click "choose file to upload" and pick one of your portraits. Press **Run**. The
+   first time takes a minute or two while the model loads; then a description of the picture appears in the
+   **Preview as Text** box (called Preview Any in older versions).
+
+**Ready for the check**
+4. The template has four boxes, already wired: **Load CLIP** (the model) into the **Generate Text** box's clip input,
+   **Load Image** into its image input, and its `generated_text` into **Preview as Text**. (The box may be called
+   "Generate Text (DEPRECATED)" in the template: it works the same.) If one is missing, double-click an empty spot,
+   type its name, add it and drag the wire.
+5. In the **Generate Text** box, delete the text in its prompt box and type exactly `%QUESTION%`. Set its
+   **Sampling Mode** to **off**, so the same picture always gets the same answer. Leave the rest: the check turns
+   thinking off and gives the answer enough room by itself.
+6. Menu **Workflow**, **Export (API)**. Save it as `rimfolk-check-workflow-api.json` in your `Rimfolk-portraits` folder
+   (the one with `Update-PortraitLibrary.ps1` and `library`). The batch tool leaves this workflow alone.
+7. Copy `Check-Pictures.ps1` and `Check-Pictures.cmd` (from Rimfolk's `Tools/PortraitArt`) into the same folder.
+
+**Running it**
+8. Keep ComfyUI open and double-click `Check-Pictures.cmd`. It looks at each picture in the library it hasn't looked at
+   before, a few seconds each (the first takes longer while the model loads), and shows a line of what the model saw
+   for each. It finds ComfyUI by itself; if it can't, it asks for the address (ComfyUI's settings, Server-Config) and
+   remembers it. If ComfyUI is still making portraits, the check waits for it.
+9. At the end it shows the pictures to look at, the worst first, and writes two files into `library`:
+   `check-report.csv`, the whole list, and `corrections.csv`, the changes it proposes for single pictures (both open
+   in Excel; Notepad works too).
+10. Open `corrections.csv`. Each line is one change for one picture: `picture`, `field`, `value`, `apply`, `why`. Lines
+    marked **yes** are changes the check is sure of; lines marked **ask** wait for you: look at the picture, then
+    change ask to **yes** (do it) or **no** (keep the picture as it is), and save. You may also change a yes to no, or
+    fill in a value (for example the look's word after `add:`).
+11. Run `Update-PortraitLibrary.ps1` (`Copy-ToLibrary.cmd` runs it too). It writes the records again from the batch
+    lists and puts the corrections marked yes into them, and says how many it used and how many still wait as ask.
+    Then **Reload the library** in the game.
+12. Run the check again whenever pictures have been added. It asks the model only about new pictures (every answer is
+    kept in `library\checked.csv`, a description of every picture in the library), and compares all the pictures with
+    their records again: a picture whose correction was used leaves the list, and an issue you marked no doesn't come
+    back. Lines already in `corrections.csv` are never changed by it; new ones are added at the end.
+
+**What the corrections change.** Nothing is renamed: a picture's name ties it to its batch row, and the row's other
+pictures may be right, so a correction changes only that picture's record. The fields:
+- `age`: the age band the picture shows (yes when it looks two bands or more away from its row, a child drawn for an
+  adult or the other way round; one band apart stays as it is).
+- `sex`: `male` or `female` (yes when the model said it plainly; for a picture made for one colonist it is never
+  changed: that picture gets `out`, ask).
+- `role`: the work it shows (yes when the row has no role: a weapon gives soldier, warrior or hunter, armour soldier or
+  warrior, a crown leader, a book scholar), or `clear` (ask).
+- `looks`: `add:word` or `remove:word` (adding wings' look, such as `batWings`, is yes; fire or magic is ask, because
+  which look it is can't be told; taking a look away is ask, because the picture would then go to anyone).
+- `marks`: `add:eyePatch` and the like (yes), `remove:...` (ask).
+- `headwear`: `true`, so a picture with a hat or hood goes only to people wearing something on the head (yes; ask for
+  a colonist's own picture).
+- `out`: the picture is left out of the records; the file stays where it is (yes for more than one person in a
+  cut-out; ask for a body its kind doesn't have, such as pointed ears on a baseliner or an elf without them, and for
+  a person in a backdrop).
+Adding a look or a role only narrows who gets a picture, which is why those can be yes; anything that would give it to
+more people is ask.
+
+**Reading the report.** One line per picture: the `picture`, its `row` in the batch list, the `check`, `what is
+wrong`, `what the model saw`, what `its row says`, a `suggested fix`, and what is `in corrections.csv` for it. The
+check is one of:
+- **1 wrong**: the other sex than its row, an age two bands or more from its row's, more than one person in a
+  cut-out, no one at all, or a person in a backdrop.
+- **2 shows more**: something its row doesn't have: a weapon, armour, fire or magic, wings, a crown, a book or tools,
+  a hat, hood or helmet, horns, pointed ears, a tail, glowing eyes, scales or fur, an eye patch.
+- **3 shows less**: its row says something the model didn't see (a fire mage with no fire, a soldier with no weapon or
+  armour, a saurid without scales). Look at the picture: the model can miss things, and the clothes or the face may
+  show it.
+- **4 not compared**: the picture has no record yet (run `Update-PortraitLibrary.ps1`), or the model's answer couldn't
+  be read (it is asked again next time).
+What a look or role asks for is taken from the row's own prompt (its subject and pose columns): a row with the
+sniperClass look whose prompt asks for a rifle may show one, and should.
+
+Pictures made for one colonist (a name in their row's `pawn` column) go to that colonist only, so for them only the
+sex, the age, the number of people, headwear and the body (ears, horns, scales, eyes) are checked.
+
+The model can be wrong: the list and the ask lines say what to look at. The check never deletes, moves or renames a
+picture and never changes a batch list or the records. You can still throw a picture out by deleting it from
+`library\<batch>`, or fix a whole row in `batches\<batch>.csv`; then run `Update-PortraitLibrary.ps1`, and the check
+again.
+
+**Sharper answers (optional).** The larger Qwen3.5 model sees more detail and comes in a file of about the same size:
+`qwen3.5_9b_int8_convrot.safetensors` (about 10 GB) from the same page. Put it in `models\text_encoders`, pick it in the
+Load CLIP box, export again over `rimfolk-check-workflow-api.json`, and delete `library\checked.csv` so every picture
+is looked at again.
+
+**If there is no Qwen3.5 template** even after an update: install the ComfyUI-QwenVL node pack (from the makers of the
+RMBG pack, https://github.com/1038lab/ComfyUI-QwenVL) through the Manager as in step 6. Add its **QwenVL** box (model
+`Qwen3-VL-8B-Instruct`, quantization 8-bit), drag Load Image's IMAGE to it and its text output to a Preview as Text box,
+type `%QUESTION%` in its custom prompt box, and export as above. The check works with it the same way.
+
 ## If something goes wrong
 
 - "Could not reach ComfyUI": ComfyUI isn't open, or it uses another port; the address is shown in ComfyUI's settings
@@ -126,3 +233,8 @@ have none yet, so a grown list is never made again from the start.
 - Pictures come out empty or strange: open the workflow in ComfyUI and check that the prompt box says exactly `%PROMPT%`,
   then export again.
 - Out of memory: close games and browsers while it runs, or pick the template's fp8 version.
+- The picture check stops with "ComfyUI refused the question" or "ComfyUI could not answer": the message names the box.
+  Most often the model file is not in `models\text_encoders` (step 8, point 2); for "out of memory", close what else
+  uses the graphics card, or use the smaller `qwen3.5_2b_bf16.safetensors` from the same page.
+- "Could not write ... is it open in Excel?": close `check-report.csv` or `corrections.csv` in Excel and run the check
+  again.

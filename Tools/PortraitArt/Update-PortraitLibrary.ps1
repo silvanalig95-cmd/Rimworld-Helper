@@ -9,6 +9,14 @@
 # "Portrait library folder"), so there is no second mod to install, and keeping this whole folder in a synced folder
 # (Google Drive) keeps both computers the same.
 #
+# Corrections: library\corrections.csv (written by Check-Pictures.ps1, which looks at each picture; you may change it in
+# Excel) holds changes for single pictures, one line each: picture (library\<batch>\<name>.png, or the name alone),
+# field, value, apply (yes, ask or no), why. Each picture's record is taken from its row, then its lines marked yes are
+# applied: age (an age word), sex (male or female), looks (add:word or remove:word), role (a role, or clear), marks
+# (add:word or remove:word), headwear (true or false), and out (the picture is left out of the records; the file stays
+# where it is). Lines marked ask wait for you; no lines are not applied. No picture is renamed: its name ties it to its
+# row, and the row's other pictures may be right.
+#
 # Run it after adding or removing pictures: right-click it, "Run with PowerShell". Then "Reload the library" in Rimfolk's
 # settings (or restart the game). Nothing outside library\records.xml is changed. If Rimfolk has written
 # library\missing.csv (what the game needed and the library didn't have), its first lines are shown at the end.
@@ -61,6 +69,70 @@ function List-Xml([string] $tag, [string[]] $items) {
     return ('    <{0}>{1}</{0}>' -f $tag, (($items | ForEach-Object { '<li>' + (Esc $_) + '</li>' }) -join ''))
 }
 
+function Read-Csv-Any([string] $path) {
+    # A CSV as written by the scripts, or saved again by Excel (with semicolons in some countries).
+    $first = ''
+    foreach ($l in @(Get-Content -LiteralPath $path -Encoding UTF8 -TotalCount 1)) { $first = [string]$l }
+    $delim = ','
+    if ($first.IndexOf(';') -ge 0 -and $first.IndexOf(',') -lt 0) { $delim = ';' }
+    return @(Import-Csv -LiteralPath $path -Encoding UTF8 -Delimiter $delim)
+}
+
+function Read-Corrections([string] $path) {
+    # library\corrections.csv: the lines marked yes by picture (library\<batch>\<name>.png or the name alone, small
+    # letters), and how many are marked ask.
+    $r = @{ yes = @{}; ask = 0 }
+    if (-not (Test-Path -LiteralPath $path)) { return $r }
+    foreach ($c in (Read-Csv-Any $path)) {
+        $pic = (Field $c 'picture').Replace('/', '\').ToLowerInvariant()
+        if ($pic.StartsWith('library\')) { $pic = $pic.Substring(8) }
+        $apply = (Field $c 'apply').ToLowerInvariant()
+        if ($pic -eq '') { continue }
+        if ($apply -eq 'ask') { $r.ask++ }
+        if ($apply -ne 'yes') { continue }
+        if (-not $r.yes.ContainsKey($pic)) { $r.yes[$pic] = New-Object System.Collections.ArrayList }
+        [void]$r.yes[$pic].Add($c)
+    }
+    return $r
+}
+
+function Change-List($list, [string] $v) {
+    # "add:word" or "remove:word" on a list of words (letters' case aside); false when the value is neither.
+    $m = [regex]::Match($v, '^\s*(add|remove)\s*:\s*(\S+)\s*$', 'IgnoreCase')
+    if (-not $m.Success) { return $false }
+    $w = $m.Groups[2].Value
+    $have = @($list | Where-Object { $_ -eq $w })
+    if ($m.Groups[1].Value -eq 'add') { if ($have.Count -eq 0) { [void]$list.Add($w) } }
+    else { foreach ($x in $have) { $list.Remove($x) } }
+    return $true
+}
+
+function Apply-Corrections($rec, $lines, $problems, [string] $where) {
+    # A picture's lines marked yes on its record (a hashtable of the row's fields); the number applied.
+    $n = 0
+    foreach ($c in @($lines)) {
+        $field = (Field $c 'field').ToLowerInvariant()
+        $v = Field $c 'value'
+        $ok = $true
+        switch ($field) {
+            'out' { $rec.out = $true }
+            'age' { if ($v -ne '') { $rec.age = $v.ToLowerInvariant() } else { $ok = $false } }
+            'sex' {
+                if ($v -match '^(?i)(f|female|woman)$') { $rec.sex = 'female' }
+                elseif ($v -match '^(?i)(m|male|man)$') { $rec.sex = 'male' }
+                else { $ok = $false }
+            }
+            'role' { if ($v -match '^(?i)(clear|none|-)$') { $rec.role = '' } elseif ($v -ne '') { $rec.role = $v.ToLowerInvariant() } else { $ok = $false } }
+            'headwear' { if ($v -match '^(?i)(true|yes|1)$') { $rec.headwear = 'true' } elseif ($v -match '^(?i)(false|no|0)$') { $rec.headwear = '' } else { $ok = $false } }
+            'looks' { $ok = Change-List $rec.looks $v }
+            'marks' { $ok = Change-List $rec.marks $v }
+            default { $ok = $false }
+        }
+        if ($ok) { $n++ } else { [void]$problems.Add(('corrections.csv, {0}: "{1} {2}" is not a correction this script knows, left out' -f $where, $field, $v)) }
+    }
+    return $n
+}
+
 function One-Xml([string] $tag, [string] $value) {
     if ($value -eq '') { return '' }
     return ('    <{0}>{1}</{0}>' -f $tag, (Esc $value))
@@ -75,6 +147,8 @@ try {
     $backs = New-Object System.Collections.ArrayList
     $problems = New-Object System.Collections.ArrayList
     $names = @{}
+    $corr = Read-Corrections (Join-Path $library 'corrections.csv')
+    $applied = 0; $leftOut = 0
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory)) {
         $batch = $dir.Name
         $rows = Read-Rows $batch
@@ -83,6 +157,19 @@ try {
             $hit = Row-For $f.Name $rows
             if ($hit -eq $null) { [void]$problems.Add(("library\{0}\{1}: no row in {0}.csv for this name, left out" -f $batch, $f.Name)); continue }
             $r = $hit.row
+            # This picture's corrections marked yes (by library\<batch>\<name>.png or by the name alone).
+            $fixes = @()
+            foreach ($key in @(($batch + '\' + $f.Name).ToLowerInvariant(), $f.Name.ToLowerInvariant())) {
+                if ($corr.yes.ContainsKey($key)) { $fixes += @($corr.yes[$key]) }
+            }
+            $rec = @{
+                out = $false; sex = (Field $r 'sex'); age = (Field $r 'age'); role = (Field $r 'role'); headwear = ''
+                looks = (New-Object System.Collections.ArrayList); marks = (New-Object System.Collections.ArrayList)
+            }
+            foreach ($w in (Words (Field $r 'looks'))) { [void]$rec.looks.Add($w) }
+            foreach ($w in (Words (Field $r 'marks'))) { [void]$rec.marks.Add($w) }
+            if ($fixes.Count -gt 0) { $applied += Apply-Corrections $rec $fixes $problems ($batch + '\' + $f.Name) }
+            if ($rec.out) { $leftOut++; continue }
             $tex = $batch + '/' + [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
             $isBack = (Field $r 'place') -ne ''
             $stem = $(if ($isBack) { 'Backdrop_' } else { 'Portrait_' }) + (Clean $batch) + '_' + $hit.name + '_' + $hit.n
@@ -102,7 +189,7 @@ try {
                 [void]$backs.Add((($lines | Where-Object { $_ -ne '' }) -join "`r`n"))
             }
             else {
-                if ((Field $r 'sex') -eq '') { [void]$problems.Add(("library\{0}\{1}: its row has no record (sex, age ...), left out" -f $batch, $f.Name)); continue }
+                if ($rec.sex -eq '') { [void]$problems.Add(("library\{0}\{1}: its row has no record (sex, age ...), left out" -f $batch, $f.Name)); continue }
                 $kind = Field $r 'kind'
                 $xenos = @(); if ($kind -ne '' -and $kind -ne 'Baseliner') { $xenos = @($kind) }
                 [void]$lines.Add('  <ColonyCouncil.PortraitDef>')
@@ -110,15 +197,16 @@ try {
                 [void]$lines.Add((One-Xml 'pawn' (Field $r 'pawn')))
                 [void]$lines.Add((List-Xml 'xenotypes' $xenos))
                 [void]$lines.Add((List-Xml 'races' (Words (Field $r 'race'))))
-                [void]$lines.Add((One-Xml 'sex' (Field $r 'sex'))); [void]$lines.Add((One-Xml 'age' (Field $r 'age')))
+                [void]$lines.Add((One-Xml 'sex' $rec.sex)); [void]$lines.Add((One-Xml 'age' $rec.age))
                 [void]$lines.Add((One-Xml 'skinColor' (Field $r 'skin'))); [void]$lines.Add((One-Xml 'hairColor' (Field $r 'hairColour')))
                 [void]$lines.Add((One-Xml 'hair' (Field $r 'hair'))); [void]$lines.Add((One-Xml 'beard' (Field $r 'beard')))
                 [void]$lines.Add((One-Xml 'build' (Field $r 'build'))); [void]$lines.Add((One-Xml 'era' (Field $r 'era')))
                 [void]$lines.Add((One-Xml 'dress' (Field $r 'dress')))
                 [void]$lines.Add((List-Xml 'features' (Words (Field $r 'features'))))
-                [void]$lines.Add((List-Xml 'marks' (Words (Field $r 'marks'))))
-                [void]$lines.Add((List-Xml 'looks' (Words (Field $r 'looks'))))
-                [void]$lines.Add((One-Xml 'role' (Field $r 'role')))
+                [void]$lines.Add((List-Xml 'marks' ([string[]]$rec.marks.ToArray())))
+                [void]$lines.Add((List-Xml 'looks' ([string[]]$rec.looks.ToArray())))
+                [void]$lines.Add((One-Xml 'role' $rec.role))
+                [void]$lines.Add((One-Xml 'headwear' $rec.headwear))
                 [void]$lines.Add((One-Xml 'facing' (Field $r 'facing')))
                 [void]$lines.Add((One-Xml 'character' ((Clean $batch) + '_' + $hit.name)))
                 [void]$lines.Add('  </ColonyCouncil.PortraitDef>')
@@ -132,6 +220,12 @@ try {
 
     Write-Host ''
     Write-Host ('Wrote {0}: {1} portraits and {2} backdrops.' -f (Join-Path $library 'records.xml'), $people.Count, $backs.Count) -ForegroundColor Green
+    if ($applied -gt 0 -or $corr.ask -gt 0) {
+        $line = 'Corrections (corrections.csv): {0} applied' -f $applied
+        if ($leftOut -gt 0) { $line += (', {0} of them leaving a picture out' -f $leftOut) }
+        $line += ('; {0} marked ask wait for you (open it and change ask to yes or no).' -f $corr.ask)
+        Write-Host $line
+    }
     foreach ($p in $problems) { Write-Host ('  Note: ' + $p) -ForegroundColor Yellow }
     Write-Host ("In Rimfolk's settings, ""Portrait library folder"" is: {0}" -f $library)
     Write-Host 'Then "Reload the library" there, or restart the game.'

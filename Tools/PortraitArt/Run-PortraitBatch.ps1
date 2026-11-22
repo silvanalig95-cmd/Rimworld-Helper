@@ -185,8 +185,9 @@ try {
         # The exported workflows next to this script (any rimfolk*workflow*.json: one for the people with the background
         # remover, one for the backdrops without it, or one for another model). A style may name its own ("workflow");
         # otherwise the one that fits the style is taken by itself: with the remover for people, without it for a style
-        # with "cut": false. Asked only when that leaves more than one.
-        $wfs = @(Get-ChildItem -LiteralPath $Folder -Filter 'rimfolk*workflow*.json' | ForEach-Object { $_.Name })
+        # with "cut": false. Asked only when that leaves more than one. The picture check's workflow
+        # (rimfolk-check-workflow-api.json, for Check-Pictures.ps1) is not one of them.
+        $wfs = @(Get-ChildItem -LiteralPath $Folder -Filter 'rimfolk*workflow*.json' | Where-Object { $_.Name -notmatch '(?i)check' } | ForEach-Object { $_.Name })
         if ($wfs.Count -eq 0) { $Workflow = Join-Path $Folder 'rimfolk-workflow-api.json' }
         elseif ((Has $st 'workflow') -and $st.workflow -and (Test-Path -LiteralPath (Join-Path $Folder ([string]$st.workflow)))) {
             $Workflow = Join-Path $Folder ([string]$st.workflow)
