@@ -40,6 +40,8 @@ namespace ColonyCouncil
         public string group = "", biome = "";
         /// <summary>A number for the place (the room's id, the map's), so the same place always gets the same backdrop.</summary>
         public int seed;
+        /// <summary>Phase 6, for the backdrop alive (not part of what chooses it): a fire burns in the room; outdoors with no roof over them.</summary>
+        public bool fireLit, open;
 
         /// <summary>What decides the backdrop, in words: when this changes the backdrop is chosen again.</summary>
         public string Key => place + "|" + role + "|" + group + "|" + era + "|" + seed + "|" + string.Join("+", contents.OrderBy(c => c, StringComparer.Ordinal));

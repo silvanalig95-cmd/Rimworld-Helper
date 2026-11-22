@@ -124,11 +124,18 @@ a right click on the large portrait chooses another. Pictures are read only when
 always shown as painted, never mirrored. The large portrait shows the whole picture at its own shape, a little taller
 than wide, the body running to its foot, in front of a painted backdrop of where they are (the kind of room, the
 colony's age and what is in the room, or the land outdoors), darker at night; the game's own drawing stands in front of
-the backdrop too where there is no picture for someone; elsewhere on the portrait's own colour. A race or xenotype with
+the backdrop too where there is no picture for someone; elsewhere on the portrait's own colour. The large portrait has a
+little life and depth: with the mouse over it, the backdrop and the person shift a little apart (the person's shadow on
+the wall between, near things in the room apart from the far wall where a backdrop has a depth map), easing back when
+the mouse leaves; where a picture has its expressions painted (eyes closed, a smile, a frown, pain), the person blinks,
+sleeps with the eyes closed, smiles or frowns by their mood, held a minute at least, and for a while shows pain after a
+wound, a frown after a death close to them, a smile after good news; outdoors the map's weather falls lightly over the
+backdrop, indoors a fire's warm light flickers on it. A race or xenotype with
 no pictures of its own keeps the game's own face, never another kind's. Rimfolk keeps what it found missing (people,
 looks, rooms, land) in the save, and writes it into the folder for the next batches. **A large portrait at the inspect
 pane**, **Its size**, **Backdrop**, **Backdrop behind the game's own drawing too**, **Line
-round the person**, **Tint the person to the room's light**, **Headgear in portraits**, **Clothes in portraits**,
+round the person**, **Tint the person to the room's light**, **Depth that follows the mouse**, **Blinking and
+expressions**, **The backdrop alive**, **Headgear in portraits**, **Clothes in portraits**,
 **Poses in portraits**, **Portraits move a little**, **Painted portraits from the library**, **Portraits from the
 library**, **Strangers may share a picture** and **Portrait library folder** (How you're told, Portraits) set it.
 

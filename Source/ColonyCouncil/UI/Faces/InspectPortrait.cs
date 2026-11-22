@@ -175,6 +175,9 @@ namespace ColonyCouncil
                 else Widgets.DrawBoxSolidWithOutline(r, UiKit.PortraitBack, UiKit.CardBorder, 1);
                 float rs = Mathf.Max(1f, render - 2f * FaceMath.Border);
                 var made = new Vector2(rs, rs * tall);
+                // Phase 6: where the mouse is over it, for the depth that follows it (not while it is being sized).
+                PortraitLifeMath.Pointer(ev.mousePosition.x, ev.mousePosition.y, inner.x, inner.y, inner.width, inner.height, out float mx, out float my);
+                FaceEngine.Hover(!dragging && Mouse.IsOver(r), mx, my);
                 // A painted picture from the library, whole, in front of the backdrop of where they are; else the game's
                 // drawing in front of it (phase 5), or on the portrait's own colour as before.
                 if (!FaceEngine.DrawStaged(inner, p, made, true) && !FaceEngine.DrawGameStaged(inner, p, made, true)) FaceEngine.Draw(inner, p, FaceFrame.Bust, made, 1f, true);

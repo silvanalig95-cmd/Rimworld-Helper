@@ -872,6 +872,12 @@ namespace ColonyCouncil
         public PortraitOutlineMode portraitOutline = PortraitOutlineMode.Off;
         /// <summary>The person in the large portrait tinted a fifth toward the backdrop's light.</summary>
         public bool portraitLightTint = false;
+        /// <summary>Phase 6: the large portrait's layers shift with the mouse over it, for a little depth: off, subtle or stronger (UI/Faces/FaceEngineStage.cs).</summary>
+        public PortraitDepthMode portraitDepth = PortraitDepthMode.Subtle;
+        /// <summary>Phase 6: the large portrait's painted picture blinks and shows the person's mood and what happens to them, where those expressions are painted.</summary>
+        public bool portraitFaces = true;
+        /// <summary>Phase 6: the backdrop behind the large portrait alive: the weather outdoors, a fire's flicker indoors.</summary>
+        public bool portraitBackdropAlive = true;
         /// <summary>The player's portrait library folder (records.xml and the pictures, UI/Faces/PortraitFolder.cs); empty: none.</summary>
         public string portraitFolder = "";
         /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
@@ -1369,6 +1375,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref portraitShare, "portraitShare", PortraitShareMode.NotTogether);
             Scribe_Values.Look(ref portraitOutline, "portraitOutline", PortraitOutlineMode.Off);
             Scribe_Values.Look(ref portraitLightTint, "portraitLightTint", false);
+            Scribe_Values.Look(ref portraitDepth, "portraitDepth", PortraitDepthMode.Subtle);
+            Scribe_Values.Look(ref portraitFaces, "portraitFaces", true);
+            Scribe_Values.Look(ref portraitBackdropAlive, "portraitBackdropAlive", true);
             Scribe_Values.Look(ref portraitFolder, "portraitFolder", "");
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars) portraitFolder ??= "";
             Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);

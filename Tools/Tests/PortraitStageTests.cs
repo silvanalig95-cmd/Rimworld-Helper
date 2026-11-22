@@ -577,7 +577,7 @@ public static class PortraitStageTests
         C(inspect.Contains("FaceEngine.DrawStaged(inner, p, made, true) && !FaceEngine.DrawGameStaged(inner, p, made, true)") && inspect.Contains("var made = new Vector2(rs, rs * tall);")
           && inspect.Contains("FaceMath.Place(Scene(pane), asked, out var fr, tall)") && inspect.Contains("ev.button == 1") && inspect.Contains("CC_Portrait_ChooseAnother"),
             "the large portrait draws the painted picture whole at its shape in front of its backdrop, else the game's drawing in front of one; a right click offers another picture");
-        C(stage.Contains("PortraitGpu.Read(pic.texture, w, h, Vector2.one, Vector2.zero)") && !stage.Contains("CropFor") && stage.Contains("new Rect(0f, -below / ph, 1f, 1f + below / ph)")
+        C(stage.Contains("PortraitGpu.Read(pic.texture, w, h, Vector2.one, Vector2.zero)") && !stage.Contains("CropFor") && stage.Contains("new Rect(-side / local.width, -below / ph, 1f + 2f * side / local.width, 1f + below / ph)")
           && store.Contains("PortraitPictureMath.SolidFoot(small, nw, nh);"),
             "the whole picture, nothing cropped; its foot row carried on below the portrait's edge, and the body made solid at the picture's foot when it loads");
         C(stage.Contains("StageLookEvery = 2f") && stage.Contains("Backdrops.WhereOf(p, out float glow)") && stage.Contains("PortraitPictureMath.LightStep(glow, look.step)")

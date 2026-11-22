@@ -22,6 +22,11 @@ namespace ColonyCouncil
     {
         /// <summary>The picture under its mod's <c>Portraits</c> folder, without ".png" (or a texture under Textures).</summary>
         public string texPath;
+        /// <summary>
+        /// Its depth map (phase 6), found the same way: a grey picture of the same size beside it, white near and black far;
+        /// none given, the picture's own name with "_depth" where that file is there.
+        /// </summary>
+        public string depthPath;
         /// <summary>room, outdoors or plain.</summary>
         public string place;
         /// <summary>The room roles it fits (RoomRoleDef names: Bedroom, Barracks, Hospital, PrisonCell, ...).</summary>
@@ -37,6 +42,8 @@ namespace ColonyCouncil
         [Unsaved] private List<string> problems;
         [Unsaved] private PictureFile file;
         [Unsaved] private bool looked;
+        [Unsaved] private PictureFile depth;
+        [Unsaved] private bool lookedDepth;
 
         public BackdropRecord Record
         {
@@ -58,6 +65,21 @@ namespace ColonyCouncil
                     file = PortraitFiles.For(this, texPath, false);
                 }
                 return file;
+            }
+        }
+
+        /// <summary>The depth map's file (looked up once; null where there is none): <see cref="depthPath"/>, else the picture's own name with "_depth" where that file is there.</summary>
+        public PictureFile DepthFile
+        {
+            get
+            {
+                if (!lookedDepth)
+                {
+                    lookedDepth = true;
+                    if (!depthPath.NullOrEmpty()) depth = PortraitFiles.For(this, depthPath, false);
+                    else if (!texPath.NullOrEmpty()) depth = PortraitFiles.For(this, texPath + "_depth", false, true);
+                }
+                return depth;
             }
         }
 

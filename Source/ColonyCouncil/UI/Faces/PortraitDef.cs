@@ -22,7 +22,9 @@ namespace ColonyCouncil
     /// &lt;/ColonyCouncil.PortraitDef&gt;
     /// </code>
     /// A variant of the same face (a lost eye, a scar, older) has the same <see cref="character"/>, its own
-    /// <see cref="variant"/> and its <see cref="marks"/> or age.
+    /// <see cref="variant"/> and its <see cref="marks"/> or age. An expression of a picture (phase 6: the same picture with
+    /// the eyes closed, a smile, a frown or in pain) names that picture in <see cref="variantOf"/> and its expression in
+    /// <see cref="variant"/>; it is never picked on its own.
     /// </summary>
     public class PortraitDef : Def
     {
@@ -69,8 +71,10 @@ namespace ColonyCouncil
         public string facing;
         /// <summary>The face this picture is a variant of (the same word on each variant); none: a face of its own.</summary>
         public string character;
-        /// <summary>base, or the variant's own word (lostEye, scarred, burned, older...).</summary>
+        /// <summary>base, or the variant's own word (lostEye, scarred, burned, older...); for an expression (<see cref="variantOf"/>) blink, smile, frown or pain.</summary>
         public string variant;
+        /// <summary>The picture (its def's name) this one is an expression of: the same picture with the eyes closed, a smile, a frown or in pain, shown only on the large portrait (phase 6).</summary>
+        public string variantOf;
         /// <summary>Where the head is (its middle across and down, its height with the hair, as shares of the picture), where it isn't measured from the cut-out's shape as it should be.</summary>
         public float headX = float.NaN, headY = float.NaN, headSize = float.NaN;
 
@@ -136,6 +140,7 @@ namespace ColonyCouncil
                 case "facing": return facing;
                 case "character": return character;
                 case "variant": return variant;
+                case "variantOf": return variantOf;
                 case "role": return role;
                 default: return null;
             }
@@ -193,8 +198,8 @@ namespace ColonyCouncil
             return new PictureLayout(PortraitViewMath.LibraryHeadX, PortraitViewMath.LibraryHeadY, PortraitViewMath.LibraryHeadSize, turn, shape);
         }
 
-        /// <summary>The file for a def's picture, or null (told once in the log) where there is none.</summary>
-        public static PictureFile For(Def def, string texPath, bool cutOut)
+        /// <summary>The file for a def's picture, or null where there is none (told once in the log, unless <paramref name="quiet"/>: a depth map looked for by its picture's name).</summary>
+        public static PictureFile For(Def def, string texPath, bool cutOut, bool quiet = false)
         {
             if (def == null || texPath.NullOrEmpty()) return null;
             string rel = texPath.Replace('\\', '/').TrimStart('/') + ".png";
@@ -202,6 +207,7 @@ namespace ColonyCouncil
             if (!root.NullOrEmpty() && Listed(root).Contains(rel))
                 return new PictureFile { key = def.defName, file = Path.Combine(Path.Combine(root, "Portraits"), rel), texPath = texPath, cutOut = cutOut };
             if (ContentFinder<UnityEngine.Texture2D>.Get(texPath, false) != null) return new PictureFile { key = def.defName, file = null, texPath = texPath, cutOut = cutOut };
+            if (quiet) return null;
             CouncilLog.WarnOnce("Portraits: the picture " + def.defName + " has no file at Portraits/" + rel + (root.NullOrEmpty() ? "" : " in " + root) + ", so it is left out.");
             return null;
         }
