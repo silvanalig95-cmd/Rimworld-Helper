@@ -222,6 +222,7 @@ try {
     $log = Join-Path $logDir ('{0}-{1}-{2}.csv' -f $Batch, $Style, (Get-Date -Format 'yyyyMMdd-HHmm'))
     $logRows = New-Object System.Collections.ArrayList
     $client = [guid]::NewGuid().ToString()
+    $run = Get-Date -Format 'yyMMdd-HHmmss'
     $queued = 0
     Write-Host ''
     Write-Host ("Queueing batch '{0}' in style '{1}' ..." -f $Batch, $Style)
@@ -233,7 +234,8 @@ try {
             $prompt = (@($st.style, $r.subject, $r.pose, $st.frame, $st.style_end) | Where-Object { $_ }) -join ' '
             $negative = [string]$st.negative
             $name = ($r.name -replace '[^A-Za-z0-9_\-]', '_')
-            $prefix = 'Rimfolk/{0}/{1}_{2}_{3:00}' -f $Batch, $name, $Style, $i
+            # The run's stamp keeps every file name unique, run after run: ComfyUI numbers within a run, the stamp across.
+            $prefix = 'Rimfolk/{0}/{1}_{2}_{3}_{4:00}' -f $Batch, $name, $Style, $run, $i
             $wf = $wfText | ConvertFrom-Json
             if ((Has $st 'cut') -and -not $st.cut) { Skip-Cut $wf }
             if (-not (Set-Inputs $wf $prompt $negative $seed $w $h $prefix $st)) { throw 'No prompt box with %PROMPT% was found in the workflow.' }

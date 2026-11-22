@@ -481,8 +481,8 @@ most sense." So, in this order, three builds at a time:
   its kind is in the library (told to the build agent).
   **Built** (22 November 2026, not released; the entry "Portraits, phase 4: the painted library in the game, with
   backdrops" above the newest release line): all of the above in the game, the library folder and missing.csv with it.
-- **To do when the player asks (22 November 2026, the player; nothing built yet): what the library lacks kept in the
-  save, and special looks that only their own picture fits.** The player: "Maybe the mod can also then log in the log
+- **Go given (22 November 2026, the player: "your proposals sound good!", with their mod list): what the library lacks
+  kept in the save, and special looks that only their own picture fits.** The player: "Maybe the mod can also then log in the log
   files or in the save, ideally, because that I regularly provide to you. For example, when pawns are in a certain
   location/biome where there isn't an appropriate background ... or if like a trait appears where they could be visually
   displayed, but there's no appropriate background image for it yet ... the game learns or kind of logs what's could be
@@ -505,6 +505,20 @@ most sense." So, in this order, three builds at a time:
      logged as missing.
   4. The player's mod list reviewed when they send it: every xenotype and race (for look sheets and how each ages) and
      every special look, against `docs/player-mods` (rebuilt from the new list).
+  The player with the list (ModsConfig.xml of 22 November, 301 mods): "it's already time to really also review the mod
+  list in depth ... all different features and effects ... that could have an impact on the pawns, how they look like
+  ... create a catalog or a library of how all the possible combinations ... as many scenarios kind of covered as
+  possible eventually, with ... starting out with the likeliest ones, and then over time growing, and including even
+  more ... rarer combinations ... for the rarer combinations, there doesn't have to be several options available ...
+  put weight on what is more likely ... first cover really as many of the combinations as possible, and then building
+  up variety further ... keep track of what we added ... all the races and how old they are, how old they look,
+  gender". And: "I'm going to be running the same scripts over and over again ... optimize it for constant new
+  additions ... naming conventions for the files ... name conflicts ... script everything in a way that doesn't even
+  create name duplicates". Done by the lead: the catalogue's active flags from the new list (Harvest and Haul, Vanilla
+  Food Variety Expanded and Vanilla Christmas Expanded no longer in it; every other mod of the list already catalogued),
+  run stamps in every picture's name (`Run-PortraitBatch.ps1`), and `Update-PortraitLibrary.ps1` reading them and
+  Windows' renamed copies, plus a `looks` column. Points 1 to 3 went to one build agent, the review and catalogue
+  (point 4) to another.
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy

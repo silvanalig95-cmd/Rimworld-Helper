@@ -2707,7 +2707,7 @@ VRESaurids_TownGuard_Saurid	vanillaracesexpanded.saurid	yes	town guard	Human	Out
 VRESaurids_TownTrader_Saurid	vanillaracesexpanded.saurid	yes	town trader	Human	OutlanderCivil	45	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced,BeltDefensePop	Gun,Gun
 VRESaurids_VillagerChild_Saurid	vanillaracesexpanded.saurid	yes	villager	Human	OutlanderCivil	45	IndustrialBasic,IndustrialAdvanced	
 VRESaurids_Villager_Saurid	vanillaracesexpanded.saurid	yes	villager	Human	OutlanderCivil	45	IndustrialBasic,IndustrialAdvanced	Gun,MedievalMeleeBasic,ShortShots,MedievalMeleeBasic
-VCE_Megareindeer	ve.vanillachristmasexpanded	yes	megareindeer	VCE_Megareindeer		280		
+VCE_Megareindeer	ve.vanillachristmasexpanded	no	megareindeer	VCE_Megareindeer		280		
 VR_Artificer	vr.fantasy.biotech	no	artificer	Human	PlayerColony	85	IndustrialBasic	LongSword
 VR_Artificer_Basic	vr.fantasy.biotech	no	artificer	Human		85	IndustrialBasic	LongSword
 VR_Construct_Agrihand	vr.fantasy.biotech	no	farmhand spider	VR_Construct_Agrihand	VR_Construct	10		

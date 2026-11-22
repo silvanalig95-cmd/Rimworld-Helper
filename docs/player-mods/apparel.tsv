@@ -1028,8 +1028,8 @@ VQED_Apparel_MilitaryCoat	vanillaquestsexpanded.deadlife	yes	military coat	Indus
 VQE_Apparel_Parka	vanillaquestsexpanded.generator	yes	ancient tight parka	Spacer		Shell	Torso,Neck,Shoulders,Arms				
 VREA_Apparel_Archoplate	vanillaracesexpanded.archon	yes	archoplate	Archotech	Archon	Middle,Shell	Torso,Neck,Shoulders,Arms,Legs		6250	HiTechArmor	2
 VRE_AncientAstrosuit	vanillaracesexpanded.fungoid	yes	ancient astrosuit	Spacer	AncientAstrosuit	Middle,Shell	Torso,Neck,Shoulders,Arms,Legs		1620		0.5
-VCE_Apparel_WarmHat	ve.vanillachristmasexpanded	yes	warm hat	Medieval		Overhead	UpperHead	Fabric		Clothing,BasicClothing	0.5
-VCE_Apparel_WarmJacket	ve.vanillachristmasexpanded	yes	warm jacket	Neolithic	IndustrialBasic,Neolithic	Shell	Torso,Neck,Shoulders,Arms	Fabric		Clothing,BasicClothing	
+VCE_Apparel_WarmHat	ve.vanillachristmasexpanded	no	warm hat	Medieval		Overhead	UpperHead	Fabric		Clothing,BasicClothing	0.5
+VCE_Apparel_WarmJacket	ve.vanillachristmasexpanded	no	warm jacket	Neolithic	IndustrialBasic,Neolithic	Shell	Torso,Neck,Shoulders,Arms	Fabric		Clothing,BasicClothing	
 VR_Apparel_ArtificeLordHelmet	vr.fantasy.biotech	no	artificelord helmet	Medieval	RoyalTier7,ArtificerArmor	Overhead	UpperHead			Clothing	
 VR_Apparel_ArtificerGoggles	vr.fantasy.biotech	no	artificer goggles	Medieval		Overhead	UpperHead			Clothing	
 VR_Apparel_ArtificerMonocle	vr.fantasy.biotech	no	artificer monocle	Medieval		Overhead	UpperHead			Clothing	

@@ -1144,8 +1144,8 @@ VQE_Gun_StingrayCannon	vanillaquestsexpanded.dronefactory	yes	stingray cannon	In
 VQE_Gun_Stubgun	vanillaquestsexpanded.dronefactory	yes	stubgun	Industrial	VQE_Gun_Stubgun	ranged		1000			None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable,CompProperties_Art		Blunt,Poke
 VQE_ImmobilizedTurret_Gun	vanillaquestsexpanded.dronefactory	yes	immobilized turret		TurretGun	ranged					None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable		
 VREA_MeleeWeapon_ArchobladeBladelink	vanillaracesexpanded.archon	yes	archoblade	Archotech	ArchobladeBladelink,ExcludeFromEmpireTitleReward	melee		6700	WeaponMelee			CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable,CompProperties_BladelinkWeapon,CompProperties_GeneratedName,CompProperties_GraphicCustomization		Blunt,VREA_Sear
-VCE_GunTurret_Snowthrower	ve.vanillachristmasexpanded	yes	snowthrower		TurretGun	ranged					None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable		
-VCE_Gun_SnowcannonTurret	ve.vanillachristmasexpanded	yes	snowcannon		TurretGun	ranged					None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable		
+VCE_GunTurret_Snowthrower	ve.vanillachristmasexpanded	no	snowthrower		TurretGun	ranged					None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable		
+VCE_Gun_SnowcannonTurret	ve.vanillachristmasexpanded	no	snowcannon		TurretGun	ranged					None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable		
 VR_ConstructGun_Crossbow	vr.fantasy.biotech	no	steam crossbow	Medieval	VR_ConstructGun_Crossbow	ranged		1000			None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable,CompProperties_Art		Blunt,Poke
 VR_ConstructGun_Flamer	vr.fantasy.biotech	no	flame cannon	Medieval	VR_Construct_Flamer	melee		1400			None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable,CompProperties_Art		Blunt,Poke
 VR_ConstructGun_HeavyBowGun	vr.fantasy.biotech	no	heavy bow gun	Medieval	VR_ConstructGun_HeavyBowGun	ranged		1000			None	CompProperties_Forbiddable,CompEquippable,CompProperties_Styleable,CompProperties_Art		Blunt,Poke

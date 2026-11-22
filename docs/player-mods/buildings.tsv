@@ -815,9 +815,9 @@ VREA_NeutroTap	vanillaracesexpanded.android	yes	neutro tap		storage	(1,1)			Stee
 VRE_HemogenDrain	vanillaracesexpanded.sanguophage	yes	hemogen drain		storage	(1,1)			Steel:45;Gold:10	Deathrest	Industrial	yes	Biotech	Building_Storage						Standable		600
 VRE_HemogenTap	vanillaracesexpanded.sanguophage	yes	hemogen tap		storage	(1,1)			Steel:50;Gold:10	Deathrest	Industrial	yes	Biotech	Building_Storage						PassThroughOnly		600
 VESWW_RewardDropSpot	vanillastorytellersexpanded.winstonwave	yes	reward drop spot		spot	(1,1)					Undefined		Misc	Building						Standable		0
-VCE_FairyLamps	ve.vanillachristmasexpanded	yes	fairy lamps		lamp	(1,1)			Steel:5	Electricity	Industrial	yes	Furniture	Building	yes		3.11			Standable		330
-VCE_GrandFestiveTree	ve.vanillachristmasexpanded	yes	grand festive tree		lamp	(1,1)			Steel:60;WoodLog:120;Gold:10;Silver:60	Electricity	Industrial	yes	Furniture	VanillaChristmasExpanded.GrandFestiveTree	yes		11.72			PassThroughOnly		300
-VCE_StandingFestiveTree	ve.vanillachristmasexpanded	yes	standing festive tree		lamp	(1,1)			Steel:20;WoodLog:3	Electricity	Industrial	yes	Furniture	Building	yes		4.09			PassThroughOnly		300
+VCE_FairyLamps	ve.vanillachristmasexpanded	no	fairy lamps		lamp	(1,1)			Steel:5	Electricity	Industrial	yes	Furniture	Building	yes		3.11			Standable		330
+VCE_GrandFestiveTree	ve.vanillachristmasexpanded	no	grand festive tree		lamp	(1,1)			Steel:60;WoodLog:120;Gold:10;Silver:60	Electricity	Industrial	yes	Furniture	VanillaChristmasExpanded.GrandFestiveTree	yes		11.72			PassThroughOnly		300
+VCE_StandingFestiveTree	ve.vanillachristmasexpanded	no	standing festive tree		lamp	(1,1)			Steel:20;WoodLog:3	Electricity	Industrial	yes	Furniture	Building	yes		4.09			PassThroughOnly		300
 VRSteam_WallLamp	vr.fantasy.biotech	no	steam wall lamp		lamp	(1,1)			Steel:15	VR_SteamPower	Undefined	yes	Furniture	Building	yes		11			Standable		330
 VR_BasicDeathRestCasket	vr.fantasy.biotech	no	basic deathrest casket	Medieval	bed	(1,2)	Stony,Woody,Metallic	60		Deathrest	Industrial	yes	Biotech	Building_Bed						PassThroughOnly		2500
 VR_SubcoreEncoder_Steam	vr.fantasy.biotech	no	soulcore encoder	Medieval	bench	(3,2)			Steel:100	VR_BasicConstructTech	Undefined	yes	VR_Artifice	Building_WorkTable	yes					PassThroughOnly		8000

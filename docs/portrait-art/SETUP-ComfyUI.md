@@ -97,6 +97,11 @@ with one folder per batch (`library\colonists`, `library\backdrops`: the batch's
 3. In RimWorld, Rimfolk's settings, **Portrait library folder**: paste that path (once on each computer). Then
    **Reload the library** (or restart the game). Each time you add or remove pictures: run the script again, then reload.
 
+**Names never clash**: every picture's name carries its batch row, its style and the run's date and time
+(`Avila_style_261122-143005_01_cut_00001_.png`), so pictures from different runs never share a name, and the same
+lists can be run again and again for more variety. A copy Windows renamed ("... (2).png", "... - Copy.png") still finds
+its row. Never rename a picture by hand: the start of its name is what ties it to its row.
+
 **Two computers**: keep the whole `Rimfolk-portraits` folder (scripts, batches, library) in Google Drive, and in Google
 Drive for desktop set it to **Available offline**, so the pictures are on both disks and the game never waits for a
 download. Then whatever you add on one computer is on the other after Drive syncs; only the setting is set once on each

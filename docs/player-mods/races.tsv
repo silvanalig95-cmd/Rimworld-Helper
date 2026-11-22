@@ -1821,7 +1821,7 @@ VQE_ShufflerDrone	vanillaquestsexpanded.dronefactory	yes	shuffler drone	animal	1
 VQE_StingrayDrone	vanillaquestsexpanded.dronefactory	yes	stingray drone	animal	2	None			
 VQE_TurretDrone	vanillaquestsexpanded.dronefactory	yes	turret drone	animal	0.7	None			
 VRE_CompanionDryad	vanillaracesexpanded.phytokin	yes	companion dryad	animal	2.4	OmnivoreRoughAnimal			
-VCE_Megareindeer	ve.vanillachristmasexpanded	yes	megareindeer	animal	4.0	VegetarianRoughAnimal		true	
+VCE_Megareindeer	ve.vanillachristmasexpanded	no	megareindeer	animal	4.0	VegetarianRoughAnimal		true	
 VR_Construct_Agrihand	vr.fantasy.biotech	no	farmhand spider	animal	0.7	None			
 VR_Construct_Apocriton	vr.fantasy.biotech	no	overseer	animal	1.0	None			
 VR_Construct_Assembler	vr.fantasy.biotech	no	assembler	animal	0.7	None			

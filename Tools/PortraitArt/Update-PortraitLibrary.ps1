@@ -4,7 +4,7 @@
 # library\backdrops\ ...: the batch's name, as in batches\<batch>.csv) holding the pictures you chose, with the names
 # ComfyUI gave them. This script writes library\records.xml: one record per picture, saying what it shows, taken from
 # the picture's row in batches\<batch>.csv (tied by the start of its name; the row's record columns: for people kind,
-# race, sex, age, skin, hairColour, hair, beard, build, era, dress, features, marks, facing, pawn; for backdrops place,
+# race, sex, age, skin, hairColour, hair, beard, build, era, dress, features, marks, looks, facing, pawn; for backdrops place,
 # rooms, outdoors, era, contents). Rimfolk reads records.xml and the pictures straight from this folder (its setting
 # "Portrait library folder"), so there is no second mod to install, and keeping this whole folder in a synced folder
 # (Google Drive) keeps both computers the same.
@@ -42,13 +42,17 @@ function Read-Rows([string] $batch) {
 }
 
 function Row-For([string] $file, $rows) {
-    # ComfyUI's names: <name>_<style>_<NN>[_cut]_<counter>_.png; the name itself may have underscores (room_bedroom_tribal).
+    # ComfyUI's names: <name>_<style>_[<run stamp>_]<NN>[_cut]_<counter>_.png; the name itself may have underscores
+    # (room_bedroom_tribal). A copy Windows renamed ("... (2).png", "... - Copy.png") still counts as its picture.
     $base = [System.IO.Path]::GetFileNameWithoutExtension($file)
-    $m = [regex]::Match($base, '^(?<name>.+?)_(?<style>style[^_]*)_(?<n>\d+)(?<cut>_cut)?(_\d+_?)?$')
+    $base = ($base -replace '\s*\(\d+\)$', '') -replace '\s*-\s*Copy( \(\d+\))?$', ''
+    $m = [regex]::Match($base, '^(?<name>.+?)_(?<style>style[^_]*)_(?:(?<run>\d{6}-\d{4,6})_)?(?<n>\d+)(?<cut>_cut)?(_\d+_?)?$')
     if (-not $m.Success) { return $null }
     $name = $m.Groups['name'].Value
     if (-not $rows.ContainsKey($name)) { return $null }
-    return [pscustomobject]@{ row = $rows[$name]; name = $name; n = $m.Groups['n'].Value }
+    $n = $m.Groups['n'].Value
+    if ($m.Groups['run'].Success) { $n = ($m.Groups['run'].Value -replace '-', '') + '_' + $n }
+    return [pscustomobject]@{ row = $rows[$name]; name = $name; n = $n }
 }
 
 function List-Xml([string] $tag, [string[]] $items) {
@@ -112,6 +116,7 @@ try {
                 [void]$lines.Add((One-Xml 'dress' (Field $r 'dress')))
                 [void]$lines.Add((List-Xml 'features' (Words (Field $r 'features'))))
                 [void]$lines.Add((List-Xml 'marks' (Words (Field $r 'marks'))))
+                [void]$lines.Add((List-Xml 'looks' (Words (Field $r 'looks'))))
                 [void]$lines.Add((One-Xml 'facing' (Field $r 'facing')))
                 [void]$lines.Add((One-Xml 'character' ((Clean $batch) + '_' + $hit.name)))
                 [void]$lines.Add('  </ColonyCouncil.PortraitDef>')
