@@ -447,6 +447,11 @@ most sense." So, in this order, three builds at a time:
   agent). The lead's script became `Tools/PortraitArt/Update-PortraitLibrary.ps1` (writes `library/records.xml` from the
   pictures in `library/<batch>/` and their rows; shows `missing.csv`), and `Run-PortraitBatch.ps1` offers to make only
   the rows the library has no picture of yet (both tested here).
+  And on ages: "there should be perhaps kind of different kind of age ranges that should then also be represented in
+  game, you know, baby, infant, small child, teenager, young adult, middle-aged adult, old person, etc." So the nine
+  bands of `FRAMEWORK.md` (baby, toddler, child, teen, young, adult, middle, old, elder) in the records and the matcher,
+  a new pick at each child stage, at teen to young and into old (told to the build agent); the colonists' records use
+  them (Ape and Webb middle, Trorgakoc, Lorena and Ettrian young).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
