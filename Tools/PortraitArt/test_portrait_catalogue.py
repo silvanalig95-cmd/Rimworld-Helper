@@ -3,6 +3,7 @@
 Run: python3 Tools/PortraitArt/test_portrait_catalogue.py   ("OK" at the end)
 Everything is written into temporary folders; the repository is only read.
 """
+import collections
 import csv
 import glob
 import itertools
@@ -18,6 +19,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
 import catalogue_check  # noqa: E402
 import catalogue_words as W  # noqa: E402
+import character_words as CW  # noqa: E402
 import looks_to_defs  # noqa: E402
 import plan_batches as P  # noqa: E402
 
@@ -54,8 +56,8 @@ class Tmp(unittest.TestCase):
         os.makedirs(self.batches)
         for p in glob.glob(os.path.join(P.BATCHES, '*.csv')):
             name = os.path.basename(p)
-            if re.match(r'((wave\d+|needs)-)?people-\d+\.csv$', name):
-                continue  # start from the hand-made lists only
+            if re.match(r'(((wave\d+|needs)-)?(people|characters)-\d+|[a-z]+-test)\.csv$', name):
+                continue  # start from the hand-made lists only (the age and style tests re-run other lists' rows)
             shutil.copy(p, self.batches)
 
     def tearDown(self):
@@ -244,6 +246,159 @@ class Planner(Tmp):
         self.assertEqual(len(planner.rows), 900)
         capped, _, _, _ = self.run_plan(waves=[1], max_rows=300, dry=True)
         self.assertEqual(len(capped.rows), 300)
+
+
+# What a plain row must not show (Check-Pictures.ps1's words: weapons, armour, crowns, the tools of a trade, fire or
+# magic), and nothing on the head (the pictures are bare-headed).
+HELD = re.compile(
+    r'\b(swords?|sabres?|blades?|axes?|hatchets?|spears?|pikes?|halberds?|lances?|bows?|crossbows?|arrows?|guns?|rifles?|'
+    r'pistols?|revolvers?|muskets?|shotguns?|knife|knives|daggers?|maces?|clubs?|hammers?|flails?|shields?|whips?|slings?|'
+    r'grenades?|machetes?|javelins?|armou?r|armoured|chain ?mail|mail shirt|breastplate|gambeson|flak|arm guard|military gear|'
+    r'crowns?|tiaras?|circlets?|diadems?|coronets?|books?|tomes?|scrolls?|quills?|pens?|journals?|notebooks?|maps?|ledgers?|'
+    r'papers?|slates?|tongs|anvils?|picks?|pickaxes?|saws?|chisels?|trowels?|mallets?|hoes?|rakes?|sickles?|scythes?|'
+    r'baskets?|seeds?|pitchforks?|crooks?|staffs?|staves|leash|reins?|ladles?|spoons?|pans?|pots?|cleavers?|bowls?|'
+    r'brush|brushes|palettes?|lutes?|flutes?|harps?|drums?|instruments?|scalpels?|bandages?|syringes?|vials?|flasks?|'
+    r'potions?|herbs?|needles?|thread|wrench|wrenches|spanners?|tools?|looms?|yarn|shovels?|spades?|buckets?|sacks?|crates?|'
+    r'flames?|fire|embers?|sparks?|lightning|glow\w*|runes?|spells?|magic\w*|halo|aura|shimmer\w*|mist|'
+    r'hats?|caps?|helmets?|hood up|headscarf|bandana|headband|goggles|turban|beret|bonnet)\b', re.I)
+BIG_EYES = re.compile(r'\b(big|large|huge|wide|round|enormous)\b[^.,;]{0,12}\beyes\b|wide-eyed|doe-eyed|bright-eyed', re.I)
+DECADE = re.compile(r'\b(early|mid-|late) ?(teens|twenties|thirties|forties|fifties|sixties|seventies|eighties|nineties)')
+
+
+class Characters(Tmp):
+    """The characters lists (plan_batches.py --phases characters): every kind, distinct faces, nothing held without its
+    role or look, the eye rule and the age wording, no beauty words."""
+
+    def check_rows(self, rows):
+        kinds, looks, marks, roles = P.load(P.CATALOGUE)
+        names = [r['name'] for r in rows]
+        self.assertEqual(len(names), len(set(names)))
+        faces = collections.Counter()
+        for r in rows:
+            k = kinds[r['race'] or r['kind']]
+            subject, pose = r['subject'], r['pose']
+            self.assertEqual(list(r.keys()), P.COLUMNS)
+            self.assertRegex(r['name'], r'^p_[a-z0-9]+_[mf]_[a-z]+_[a-z0-9]+_[a-z0-9]+_[a-z0-9]+_\d{2,}$')
+            for col, words in RECORD_WORDS.items():
+                self.assertIn(r[col], words, '%s %s=%s' % (r['name'], col, r[col]))
+            self.assertEqual(P.split(r['features']), k.features)        # the picture check reads the body from these
+            self.assertTrue(set(P.split(r['marks'])) <= MARKS)
+            own = [lk for lk in P.split(r['looks']) if lk not in k.always]
+            self.assertEqual(P.split(r['looks'])[:len(k.always)], k.always)
+            self.assertEqual(r['name'].split('_')[4], r['role'] or (own[0].lower() if own else 'char'))
+            for lk in own:
+                self.assertFalse(looks[lk].special)
+                self.assertNotIn(lk, P.CHAR_NO_LOOKS)
+            self.assertTrue(r['role'] in roles or r['role'] == '')
+            if r['age'] in W.LITTLE:
+                self.assertEqual((r['role'], own), ('', []))
+            self.assertLessEqual(len(subject), P.MAX_SUBJECT)
+            # the age as it looks, at the start and again at the end
+            self.assertIn('Clearly', subject)
+            if r['age'] not in W.LITTLE:
+                self.assertRegex(subject, DECADE)
+            self.assertNotRegex(subject, r'\d+ years old|aged \d+')
+            # no beauty words, small eyes in proportion (the kind's own eyes aside)
+            self.assertIsNone(CW.BANNED.search(subject + ' ' + pose), r['name'])
+            rest = subject.replace(CW.plain_words(k.look), '')
+            self.assertIsNone(BIG_EYES.search(rest), r['name'])
+            if r['age'] in W.LITTLE:
+                self.assertIn('small eyes in proportion to the face', subject)
+            elif not k.far:
+                self.assertIn('the eyes of ordinary size for the face', subject)
+            # a face of its own: its shape or skin, and one to three features, never the same face twice
+            fs = P.faces_of(subject)
+            self.assertEqual(len(fs), 2 if k.kind == 'MultiMind_ConjoinedHuman' else 1, r['name'])
+            for base, feats in fs:
+                self.assertTrue(base)
+                self.assertTrue(1 <= len(feats) <= 3, (r['name'], feats))
+            faces[P.face_key(subject)] += 1
+            # a body part the prompt names is one the record has, so the picture check expects it
+            said = ' '.join(CW.plain_words(looks[lw].prompt) for lw in P.split(r['looks']) if lw in looks)
+            for word, feature in (('horns?', 'horns'), ('tails?', 'tail')):
+                if re.search(r'\b%s\b' % word, subject):
+                    self.assertTrue(feature in k.features or re.search(r'\b%s\b' % word, said), (r['name'], word))
+            if re.search(r'\bwings?\b', subject):
+                self.assertTrue(any('wing' in lw.lower() for lw in P.split(r['looks'])), r['name'])
+            # a plain row holds and shows nothing a skill or a power would need, and wears nothing on the head
+            if not r['role'] and not own:
+                self.assertIsNone(HELD.search(pose), (r['name'], pose))
+                text = rest
+                for lw in k.always:
+                    text = text.replace(CW.plain_words(looks[lw].prompt)[1:], '')
+                for mw in P.split(r['marks']):        # a recorded mark is the row's own (a bionic eye's lens)
+                    text = text.replace(marks[mw]['prompt'][1:], '')
+                for e in k.skins.entries + k.hairs.entries:
+                    if e[2]:
+                        text = text.replace(e[2], '')
+                text = text.replace(k.shape, '').replace(k.noun, '')       # a saurid's quills are its hair
+                m = HELD.search(text)
+                self.assertIsNone(m, (r['name'], m and m.group(0), text))
+        twice = [f for f, n in faces.items() if n > 1]
+        self.assertEqual(twice, [])
+        return kinds
+
+    def check_spread(self, rows, kinds):
+        """Every plannable kind, by its weight; many kinds, ages and both sexes from the first rows."""
+        by = collections.Counter(r['race'] or r['kind'] for r in rows)
+        plain = collections.Counter(r['race'] or r['kind'] for r in rows if '_char_' in r['name'])
+        for k in kinds.values():
+            if not k.plannable:
+                continue
+            self.assertIn(k.kind, by, k.kind)
+            if k.wave >= 4:
+                self.assertTrue(2 <= plain[k.kind] <= 4, (k.kind, plain[k.kind]))
+            if k.wave == 1:
+                self.assertGreaterEqual(plain[k.kind], 50)
+                self.assertGreater(by[k.kind] - plain[k.kind], 0)      # some with a role or a look
+            sexes = {r['sex'] for r in rows if (r['race'] or r['kind']) == k.kind}
+            self.assertEqual(sexes, set(k.sexes), k.kind)
+        first = rows[:40]
+        self.assertGreaterEqual(len({r['race'] or r['kind'] for r in first}), 15)
+        self.assertGreaterEqual(len({r['age'] for r in first}), 4)
+        self.assertEqual({r['sex'] for r in first}, {'male', 'female'})
+        self.assertEqual({kinds[r['race'] or r['kind']].wave for r in rows[:100]}, {1, 2, 3, 4, 5})
+
+    def test_characters_phase(self):
+        planner, files, text, bad = self.run_plan(phases=['characters'], max_rows=5000)
+        self.assertEqual(bad, [])
+        self.assertTrue(files and all(os.path.basename(f).startswith('characters-') and n <= 200 for f, n in files))
+        self.assertTrue(all(p == P.CHARACTERS for p, _, _ in planner.rows))
+        rows = [r for _, r in rows_of(self.batches, 'characters-*.csv')]
+        self.assertTrue(500 <= len(rows) <= 700, len(rows))
+        self.check_spread(rows, self.check_rows(rows))
+        self.assertIn('## Characters', text)
+        # running again adds nothing, and the other phases don't start the characters lists by themselves
+        planner, files, _, _ = self.run_plan(phases=['characters'], max_rows=5000)
+        self.assertEqual((files, planner.rows), ([], []))
+        planner, files, _, _ = self.run_plan(waves=[1], phases=['defaults'], max_rows=50, dry=True)
+        self.assertNotIn(P.CHARACTERS, {p for p, _, _ in planner.rows})
+
+    def test_face_counts_vary(self):
+        # The player: "Someone could have one, someone could have three ... no basic faces".
+        planner, _, _, _ = self.run_plan(phases=['characters'], max_rows=5000, dry=True)
+        n = collections.Counter(len(f) for _, _, r in planner.rows for _, f in P.faces_of(r['subject']))
+        self.assertTrue(n[1] and n[2] and n[3], n)
+        self.assertEqual(set(n) - {1, 2, 3}, set())
+        women = [r for _, _, r in planner.rows if r['sex'] == 'female' and r['age'] in W.GROWN]
+        strong = [r for r in women if re.search(r'nose|jaw|chin|brows?\b|teeth|ears', r['subject'].split('Face: ')[-1].split('.')[0])]
+        self.assertGreater(len(strong), len(women) // 3)    # women get noses, jaws and brows as often as men
+
+    def test_plain_words(self):
+        self.assertEqual(CW.plain_words('a sanguophage: an unnaturally smooth, ageless and attractive face, small sharp fangs'),
+                         'a sanguophage: an oddly ageless face, small sharp fangs')
+        self.assertIsNone(CW.BANNED.search(CW.plain_words('a beautiful, perfect, elegant woman')))
+        self.assertEqual(CW.for_age('an oddly ageless face, small sharp fangs', 'old'), 'small sharp fangs')
+
+    def test_committed_lists(self):
+        # The lists in the repository: the same rules, and no characters name in any other list (the age test and the
+        # colonists' redo list reuse their own lists' names on purpose).
+        rows = [r for _, r in rows_of(P.BATCHES, 'characters-*.csv')]
+        if not rows:
+            self.skipTest('no characters lists yet')
+        self.check_spread(rows, self.check_rows(rows))
+        others = {r['name'] for f, r in rows_of(P.BATCHES, '*.csv') if 'sex' in r and not f.startswith('characters-')}
+        self.assertEqual({r['name'] for r in rows} & others, set())
 
 
 if __name__ == '__main__':

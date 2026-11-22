@@ -14,11 +14,11 @@ prompt by hand and no two pictures ever get the same name.
 
 | File | What it holds |
 |---|---|
-| `kinds.csv` | Every kind of person your game can have: the 79 xenotypes of your enabled mods and the 3 humanlike races besides the human (Anomaly's creepjoiners, Conjoined Twins' conjoined pair, A RimWorld of Magic's spirit). For each: how common it is (how many your save holds, and a weight from 0 to 1 that also counts the factions that bring it), its wave (1 to 5), the sexes it comes in, its ages, how it ages (ageless or not), the skins and hair colours it can have, and a look in plain words for the prompt. Kinds your save holds have their look from their real genes; the others are marked `guessed`. |
+| `kinds.csv` | Every kind of person your game can have: the 79 xenotypes of your enabled mods and the 3 humanlike races besides the human (Anomaly's creepjoiners, Conjoined Twins' conjoined pair, A RimWorld of Magic's spirit). For each: how common it is (how many your save holds, and a weight from 0 to 1 that also counts the factions that bring it), its wave (1 to 5), the sexes it comes in, its ages, how it ages (ageless or not), the skins and hair colours it can have, a look in plain words for the prompt, and for kinds whose genes change the head or body (a heavy brow, a gorilla's size, a gaunt skull, an animal head) that shape in plain words (`shape`, used by the characters lists). Kinds your save holds have their look from their real genes; the others are marked `guessed`. |
 | `looks.csv` | Everything else a waist-up picture can show, 146 looks: faces and bearing from traits (a drinker, a pyromaniac, a psychopath, a beauty, a brawler ...), A RimWorld of Magic's classes (a fire mage with a flame in hand, an ice mage, a necromancer ...), psycasters, implants and conditions (a bionic arm, a clouded eye, a blindfold ...), genes that show (antennae, a third eye, mandibles ...), and 23 special looks that only their own pictures fit (conjoined twins, wings, extra limbs, ghouls, the undead, warcaskets). Each says what the game finds it by (traits, genes, conditions or a body) and how common it is in your save. |
 | `marks.csv` | The marks of the body the game reads by itself: a lost eye, an eye patch, a bionic eye, a missing ear, a scar or a burn on the head. Two more are proposed (a missing arm, a face tattoo) and wait for the game to read them. |
 | `roles.csv` | The 18 roles a person can have (scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer), how common each is in your save, and what shows it in each of the four ages of dress (a medieval scholar's book, an industrial one's lab coat, a spacer one's data slate). The game reads a person's role from their adult backstory, else their best skill with a passion; children have none. |
-| `COVERAGE.md` | Written by the planner: what the library and the lists hold against the catalogue, by wave and kind, the gaps first. |
+| `COVERAGE.md` | Written by the planner: what the library and the lists hold against the catalogue, by wave and kind, the gaps first, and the characters lists by wave. |
 
 ## How a picture finds its person
 
@@ -60,6 +60,8 @@ that have none yet". Lists are never rewritten: new rows always go into new list
 ## The order of the lists
 
 - `needs-people-NN`: what the game asked for in `missing.csv`. Run these first.
+- `characters-NN`: the characters lists (below), every kind with a face and a mood of its own. Run them beside the
+  `people` lists, in any order.
 - `people-NN`: everything else, mixed (the player, 22 November 2026: not "first white boy, white man, white old man
   ... Not that for the first few hours I only have like white humans"). The kinds take turns, each as often as the
   square root of its count in your world, so baseliners come up most (about a third of the first hundred pictures),
@@ -70,13 +72,53 @@ that have none yet". Lists are never rewritten: new rows always go into new list
   fairies, avaloi, stoneborn, the apes, drakonori and others); wave 5 the rest, seen once or not yet.
 
 The first lists (22 November 2026, mixed the same day): `people-01` to `04`, 728 rows (382 plain, 66 roles, 280 looks),
-about 1,450 pictures with two each. A row may move to another list when lists are mixed again: the library finds a
+about 1,450 pictures with two each.
+
+## The characters lists
+
+The player, 22 November 2026: "i have to say many of the characters looks rather generic, please create me a new list of
+characters to import with all kinds of variety that could appear in the game", and on the faces: "I just don't want this
+traditional AI face ... everyone should have something individual about them. It doesn't have to be many things ...
+Especially on women, this is much more noticeable", "Someone could have one, someone could have three ... no basic faces
+... never a caricature ... especially for other races ... they don't have to be essentially a human in shape".
+
+`characters-01` to `03` (599 rows, about 1,200 pictures) are a second set beside the `people` lists, made with
+`plan_batches.py --phases characters`. They hold every kind `kinds.csv` plans, all five waves: 156 baseliners and 73
+dark elves, 10 of each wave 2 kind, 6 of each wave 3 kind, 4 of each wave 4 kind, 3 of each wave 5 kind (2 for the
+rarest), in every sex the kind comes in and its common ages; babies, toddlers and children for baseliners and dark
+elves, children and teens for wave 2, teens for wave 3. Each row is a distinct person:
+- **The face**: its shape and an ordinary, real skin, and one to three features of its own (a hawk nose, a lantern jaw,
+  a gap between the teeth, heavy brows, laugh lines, freckles across the nose ...), now and then a little stronger than
+  life (an especially big chin, huge ears), now and then a little uneven; the same pools for women and men, so a woman
+  gets a big nose or a heavy jaw as often as a man. No two rows have the same face, and no row has a beauty word
+  (beautiful, pretty, flawless, smooth, delicate ...): kinds whose look sheet has them are said without them here.
+- **Hair, beard and build with shape**: a mohawk, an undercut, cornrows, a wild mane, a single long braid, a topknot;
+  a braided beard, mutton chops, a handlebar moustache; wiry, barrel-chested, big-bellied, lanky. Each phrase says what
+  the record's word says (a mohawk is short hair, dreadlocks long, a topknot a bun).
+- **Clothes with character**, in the row's age of dress and wealth: a patched coat with mismatched buttons, a scarf
+  wound high, a fur-lined cloak, a quilted flight jacket covered in patches, and now and then a trinket (a ring in one
+  ear, a string of beads).
+- **A mood and a pose to match**: sly, gleeful, sullen, haughty, shy, intense, weary, odd, gruff, friendly, proud,
+  anxious, stoic, droll or wary, the rarer kinds more often odd or intense; and a short line that sums them up ("In
+  short, a sly, wiry, hawk-nosed old man").
+- **Other kinds in their own shape**: the kind's look sheet and its `shape` (a neanderthal's big head and low
+  forehead, a gorilla's massive body and long arms, an animal head on a slim body), and features that fit it (a muzzle,
+  a coat of fur, scales or bark instead of a human nose and skin).
+
+Most rows are plain in the game's sense (named `..._char_...`): no role, no look and no mark but what the row records,
+so anyone of the kind, sex and age can get them, and they hold nothing a skill or a power would need. Baseliners, dark
+elves and the wave 2 kinds also have rows with a role or a look (76), written the same way and recorded in their
+`role` or `looks` column so the game gives them only to those who have it. A few plain rows carry a mark (an eye patch,
+a scar), recorded in `marks`. The rows' `kind`, `race` and `features` columns are their kind's, so the picture check
+expects the horns, tails and wings their kind has. The lists are mixed the same way as the `people` lists (`mix`): the
+rarer kinds come up early, so the third list is mostly baseliners and dark elves. A row may move to another list when lists are mixed again: the library finds a
 picture's row in any list, so pictures already made keep their records.
 
 ## Names
 
-A row's name says what it shows: `p_<kind>_<m or f>_<age>_<role, look or plain>_<skin>_<hair>_<number>`, for example
-`p_baseliner_f_adult_plain_fair_brown_01` or `p_darkelf_m_young_hunter_white_black_01`. A name is written once and
+A row's name says what it shows: `p_<kind>_<m or f>_<age>_<role, look, plain or char>_<skin>_<hair>_<number>`, for
+example `p_baseliner_f_adult_plain_fair_brown_01`, `p_darkelf_m_young_hunter_white_black_01` or a characters row
+`p_korg_m_adult_char_green_bald_01` (`char` a plain row of the characters lists). A name is written once and
 never changes or comes back for anything else, so the scripts can run as often as you like without a clash; every
 picture's own file name adds the style and the run's date and time.
 
@@ -89,6 +131,8 @@ All in `Tools/PortraitArt`, Python 3, nothing to install:
   `kinds.csv` has no row for.
 - `plan_batches.py [--waves 1,2] [--phases defaults,roles,looks,variety] [--records records.xml] [--missing
   missing.csv] [--dry-run]`: the next lists and `COVERAGE.md`. Running it again with the same inputs adds nothing.
+  `--phases characters` writes the characters lists instead (all five waves unless `--waves` says otherwise); their
+  words (faces, hair, beards, builds, clothes, moods, poses) are in `character_words.py`.
 - `looks_to_defs.py`: writes `Defs/PortraitLookDefs/PortraitLooks.xml` from `looks.csv` (one look def per row).
 - `catalogue_check.py`: every name in the catalogue against the active rows of `docs/player-mods` ("OK").
 - `test_portrait_catalogue.py`: the tools' tests ("OK").

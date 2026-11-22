@@ -750,6 +750,21 @@ most sense." So, in this order, three builds at a time:
   tired eyes, a pyromaniac's singed brows and restless stare, a psychopath's flat cold stare, a jogger's lean face, a
   beauty's or an ugly one's features), counted by the matcher like features; batch lists written by script across
   kinds, sexes, ages, skins, hair, looks and poses, the waves of `FRAMEWORK.md`. Storage is no concern to the player.
+  **The characters lists** (22 November 2026, built, tools and docs only): the player, "i have to say many of the
+  characters looks rather generic, please create me a new list of characters to import with all kinds of variety that
+  could appear in the game", and on the faces, "I just don't want this traditional AI face ... everyone should have
+  something individual about them ... Especially on women, this is much more noticeable", "Someone could have one,
+  someone could have three ... no basic faces ... never a caricature ... especially for other races ... they don't have
+  to be essentially a human in shape". `plan_batches.py --phases characters` (words in `character_words.py`) wrote
+  `batches/characters-01` to `03`, 599 rows: all 81 plannable kinds of `kinds.csv`, waves 1 to 5 (156 baseliners, 73
+  dark elves, 10 of each wave 2 kind, 6 of wave 3, 4 of wave 4, 2 or 3 of wave 5), 523 plain (`..._char_...`) and 76
+  with a role or a look for the common kinds. Each face has its shape, an ordinary skin and one to three features from
+  the same wide pools for women and men, no face twice, no beauty word; hair, beard and build phrases that say the
+  record's word; clothes with character by age of dress and wealth; a mood and a matching pose; other kinds in their own
+  shape from a new `shape` column in `kinds.csv` (from their genes). The catalogue fixes found on the way: the wretch's
+  single wing (`AG_SingleWing`, a special look) is now its always-look, the absol's horn a feature, and the animal-headed
+  kinds' look sheets reach the prompt (their look has no "kind:" before it). `people-01` to `04` unchanged. The player
+  runs the characters lists like the others (`Run-PortraitBatch.ps1`, list `characters-01`).
 - **Done (22 November 2026; built as the library folder, records from the batch rows, the copier, the picture check and missing.csv, released in 0.293.0 and 0.294.0): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
   etc. So I don't know if removing a background for each of them anyways is a sustainable solution. I mean, I cannot
