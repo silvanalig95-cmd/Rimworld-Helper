@@ -72,7 +72,18 @@ lead's scratchpad (`build2.py`).
 
 ## Using it
 
-`batches/style-rmw.json`: the trigger word and the style above in words, the LoRA at 0.9, the usual frame (from the
-waist up, cut out). Run `style-test` with it and compare with the five comic candidates. If the chosen file has another
-name (an earlier save), change the name in `style-rmw.json`. Later: train again with 20 to 40 of our own best pictures
-in this style added, so the LoRA leans less on the seven.
+The player's first training (22 November 2026): 2,256 steps in 1 hour 50 minutes, three saves (`rmwstyle-000004`,
+`rmwstyle-000008`, `rmwstyle`). First the paging file was too small for FLUX (Windows error 1455): fixed by setting
+Windows' virtual memory to 32 to 64 GB and restarting.
+
+1. Copy `rmwstyle.safetensors` and `rmwstyle-000008.safetensors` into ComfyUI's `models\loras` (ComfyUI Desktop:
+   `Documents\ComfyUI\models\loras`) and press R in ComfyUI (or restart it).
+2. Run `style-test` (ten people, fixed seeds, so each comes out the same way in every style) with each of:
+   - `style-rmw`: the last save at 0.9;
+   - `style-rmw-e8`: the save after epoch 8 at 0.9 (if the last one copies the training faces);
+   - `style-rmw-07`: the last save at 0.7 (more of FLUX's own faces, a little less of the style);
+   - `style`: the Daubrez style of before, to compare.
+   The pictures land side by side in `output\Rimfolk\style-test`, each name carrying its style.
+3. Copy the one you like over `style.json` (keep the old one as `style-daubrez.json`). Every list takes its drawing from
+   `style.json`; a library made in one style stays in it, so choose before making the big lists.
+4. Later: train again with 20 to 40 of our own best pictures in this style added, so the LoRA leans less on the eighteen.

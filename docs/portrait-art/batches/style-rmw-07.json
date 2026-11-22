@@ -1,0 +1,20 @@
+{
+  "label": "The game's own art, the LoRA's last save at 0.7 (lighter than style-rmw): more of FLUX's own faces, less of the training set's",
+  "style": "rmwstyle, a comic illustration of a character for a sci-fi colony game: confident black ink outlines, heavier along the silhouette and finer inside, fine ink lines on the face for the eye sockets, cheekbones, laugh lines and stubble; clean cel shading in two or three tones with hard edges and a soft gradient inside the shadows; saturated colours on the clothing, warm skin with pink and orange shading, crisp white highlights on metal; a semi-realistic, angular face with defined brows, a clear nose line and small, sharply drawn eyes; a characterful expression; a cool rim light along the edges.",
+  "frame": "A medium close-up, cut off by the bottom edge of the picture at the belt: only the head, shoulders, chest and arms are in the picture, large and close, the head near the top and about a third of the picture's height. One person alone, bare-headed with the hair in full view. Behind them one flat, even, dark blue-grey colour fills the whole picture from edge to edge.",
+  "style_end": "In the same comic style throughout.",
+  "negative": "",
+  "width": 1024,
+  "height": 1280,
+  "count": 2,
+  "guidance": 3.5,
+  "steps": 28,
+  "sampler_name": "euler",
+  "scheduler": "simple",
+  "loras": [
+    {
+      "name": "rmwstyle.safetensors",
+      "strength": 0.7
+    }
+  ]
+}
