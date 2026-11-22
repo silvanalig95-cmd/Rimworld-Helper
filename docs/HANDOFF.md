@@ -318,7 +318,13 @@ most sense." So, in this order, three builds at a time:
   Run-PortraitBatch.ps1` (queues a batch list in a style into ComfyUI, tested against a stand-in server here), and
   `docs/portrait-art/batches/` (five candidate styles A to E, and `colonists.csv`: the ten colonists of League_of_Toba_11
   described from the save: Avila, Soot the saurid, Ape, Trorgakoc, Lorena the merren, Darunia, Webb, Bautista, Ettrian,
-  Guido; the baby Luna left out). Next: the player sets up ComfyUI and runs the colonists in the five styles.
+  Guido; the baby Luna added after: see below). Next: the player sets up ComfyUI and runs the colonists in the five styles.
+  **To do, gathered for the next batch (22 November 2026, the player): "babies/kids should also have images, later also
+  animals & other creatures".** The framework now has baby and toddler ages and a sixth pillar for animals and creatures
+  (`FRAMEWORK.md`), and Luna (2) is in `batches/colonists.csv`. In the game: the matcher's rule that no one under 4 gets a
+  picture (phase 3, `PortraitLibraryMath`) goes, with baby and toddler as ages of their own; later the library for
+  animals, mechanoids, insectoids and other creatures (by species, young or grown, colour, marks; bonded animals keep
+  theirs), shown where an animal's portrait is drawn.
   **Built** (21 November 2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above
   the newest release line):
   point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the

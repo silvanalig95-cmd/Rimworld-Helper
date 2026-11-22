@@ -23,6 +23,7 @@ Fixed once the style test is done (below); every prompt starts with it, word for
 - **Rendering**: visible brush texture, clean readable shapes, faces with real anatomy and character, slightly stylised.
 - **Frame**: head and shoulders, the eyes about 40% from the top, the shoulders reaching the bottom edge, one person,
   a plain dark neutral background, no text, no border.
+- **Children and babies**: the same style, softer and rounder features as fits their age, never made to look older.
 - **What varies, inside the style**: wealth and hardship (pillar 4), the age of their dress, the kind of person, the angle
   and the expression. Never the medium, palette treatment, light or frame.
 
@@ -32,7 +33,7 @@ Fixed once the style test is done (below); every prompt starts with it, word for
 |---|---|
 | kind | a xenotype or race, by its defName (`Baseliner`, `DevDesigner_XenotypeDarkElves`, `VRESaurids_Saurid` ...) |
 | sex | male, female |
-| age | child (5 to 12), teen (13 to 17), young (18 to 29), adult (30 to 44), middle (45 to 59), old (60 to 74), elder (75+) |
+| age | baby (0 to 1), toddler (1 to 3), child (4 to 12), teen (13 to 17), young (18 to 29), adult (30 to 44), middle (45 to 59), old (60 to 74), elder (75+) |
 | build | slim, average, heavy, muscular |
 | skin | a colour (and for scales, fur or bark the same) |
 | hair colour | a colour |
@@ -81,6 +82,15 @@ industrial (canvas, denim, wool coats, flak vests), spacer (synthetic flight sui
 A picture is a character. The same character can have variants made from it (with the same seed or from the picture
 itself): a lost eye or eye patch, a fresh scar, a burn, a bionic eye; older (one age step); richer or poorer. A pawn keeps
 its character for life and moves between its variants as its body and life change.
+
+## Pillar 6, later: animals and other creatures
+
+The player: "babies/kids should also have images, later also animals & other creatures". Babies and children are part of
+pillar 2 from the start (a baby or toddler as a head-and-shoulders picture in a blanket, sling or small clothes). Animals,
+mechanoids, insectoids and the other creatures get a library of their own after the people: one look sheet per species
+(the game's and every mod's animals, read from their defs the same way as the kinds), pictures by species, young or grown,
+sex where it shows, colour or coat variant, and marks (a lost eye, a scar, a bionic part), in the same style bible with a
+"creature" framing (head and chest, the animal's own pose). A bonded or named animal keeps its picture like a colonist.
 
 ## The process
 
