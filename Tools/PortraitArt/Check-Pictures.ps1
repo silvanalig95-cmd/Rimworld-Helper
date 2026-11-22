@@ -600,7 +600,7 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
         Add-Issue $issues 2 ('shows wings ({0}); its row''s looks have no wings' -f (Short $seen.wings)) ('add {0} to its row''s looks, or throw it out' -f (Wing-Word $seen.wings))
     }
     if ($crown -and $role -ne 'leader' -and -not (Any-Look $looks $NobleLooks)) {
-        Add-Issue $issues 2 'wears a crown; its row is no leader and has no noble look' 'add the role leader to its row, or throw it out'
+        Add-Issue $issues 2 'wears a crown; its row has no leader role or noble look' 'add the role leader to its row, or throw it out'
     }
     $toolText = ''
     if ((Says $seen.tools) -eq 'yes') { $toolText = $seen.tools }
