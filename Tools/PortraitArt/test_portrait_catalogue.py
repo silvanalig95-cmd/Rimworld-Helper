@@ -56,8 +56,8 @@ class Tmp(unittest.TestCase):
         os.makedirs(self.batches)
         for p in glob.glob(os.path.join(P.BATCHES, '*.csv')):
             name = os.path.basename(p)
-            if re.match(r'((wave\d+|needs)-)?(people|characters)-\d+\.csv$', name):
-                continue  # start from the hand-made lists only
+            if re.match(r'(((wave\d+|needs)-)?(people|characters)-\d+|[a-z]+-test)\.csv$', name):
+                continue  # start from the hand-made lists only (the age and style tests re-run other lists' rows)
             shutil.copy(p, self.batches)
 
     def tearDown(self):
