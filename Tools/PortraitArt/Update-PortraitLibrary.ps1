@@ -215,7 +215,7 @@ try {
         # The folder's depth maps and expressions by their picture's name (small letters); the rest are pictures.
         $extras = @{}
         $pics = New-Object System.Collections.ArrayList
-        foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File | Sort-Object Name)) {
+        foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File)) {
             $x = Extra-Of ([System.IO.Path]::GetFileNameWithoutExtension($f.Name))
             if ($x -eq $null) { [void]$pics.Add($f); continue }
             $key = $x.base.ToLowerInvariant()
@@ -291,8 +291,8 @@ try {
 
     Write-Host ''
     $line = 'Wrote {0}: {1} portraits' -f (Join-Path $library 'records.xml'), ($people.Count - $variants)
-    if ($variants -gt 0) { $line += (' and {0} expressions of them' -f $variants) }
-    $line += (', {0} backdrops' -f $backs.Count)
+    if ($variants -gt 0) { $line += (' (and {0} expressions of them)' -f $variants) }
+    $line += (' and {0} backdrops' -f $backs.Count)
     if ($depths -gt 0) { $line += (' ({0} with a depth map)' -f $depths) }
     Write-Host ($line + '.') -ForegroundColor Green
     if ($extrasOut -gt 0) { Write-Host ('{0} depth maps or expressions left out with their picture (missing, left out, or of the wrong kind).' -f $extrasOut) }

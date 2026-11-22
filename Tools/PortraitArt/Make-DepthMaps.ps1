@@ -43,6 +43,7 @@ function Short([string] $v) {
 }
 function Is-Link($v) { return ($v -is [array]) -and ($v.Count -eq 2) -and ($v[0] -is [string]) }
 function Is-Extra([string] $stem) { return $stem -match '_(depth|v-[A-Za-z]+)$' }
+function Count-Of([int] $n, [string] $one, [string] $many) { if ($n -eq 1) { return ('1 ' + $one) } else { return ('{0} {1}' -f $n, $many) } }
 
 function Png-Info([byte[]] $b) {
     # A PNG's width, height and whether it has transparency (an alpha channel or a tRNS chunk), or $null.
@@ -175,7 +176,7 @@ function Run-Comfy($wf, [bool] $first) {
     $body = @{ prompt = $wf; client_id = $script:Client } | ConvertTo-Json -Depth 64 -Compress
     $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
     $r = Http-Send $script:Http 'POST' ($script:Url + '/prompt') $json
-    if (-not $r.ok) { throw ('ComfyUI refused the workflow: {0}' -f (Error-Of $r.text)) }
+    if (-not $r.ok) { throw ('ComfyUI refused the workflow (is a model file it names missing from ComfyUI''s models folder?): {0}' -f (Error-Of $r.text)) }
     $id = [string](($r.text | ConvertFrom-Json).prompt_id)
     $lastQueue = [DateTime]::MinValue
     $runningSince = $null
@@ -379,7 +380,7 @@ try {
     $problems = New-Object System.Collections.ArrayList
     Write-Host ''
     if ($todo.Count -eq 0) {
-        Write-Host ('All {0} backdrops have their depth map.' -f $backs.Count) -ForegroundColor Green
+        Write-Host ('Every backdrop in the library ({0}) has its depth map.' -f $backs.Count) -ForegroundColor Green
     }
     else {
         if (-not (Test-Path -LiteralPath $Workflow)) {
@@ -397,7 +398,9 @@ try {
         $script:Url = Find-Server
         $script:Client = [guid]::NewGuid().ToString()
         $script:Said = ''
-        Write-Host ('Making depth maps for {0} of {1} backdrops (the others have one). The first takes longer while the model loads.' -f $todo.Count, $backs.Count)
+        $line = 'Making the depth maps of {0}' -f (Count-Of $todo.Count 'backdrop' 'backdrops')
+        if ($todo.Count -lt $backs.Count) { $line += (' ({0} in the library, the rest with one already)' -f $backs.Count) }
+        Write-Host ($line + '. The first takes longer while the model loads.')
         $n = 0
         foreach ($b in $todo) {
             $n++
@@ -422,12 +425,12 @@ try {
             [System.IO.File]::WriteAllBytes($part, $bytes)
             [System.IO.File]::Move($part, $b.depth)
             $made++
-            Write-Host ('[{0}/{1}] {2}: depth map made ({3:0} s)' -f $n, $todo.Count, $b.show, ((Get-Date) - $started).TotalSeconds)
+            Write-Host ('[{0}/{1}] {2}: made ({3:0} s)' -f $n, $todo.Count, $b.show, ((Get-Date) - $started).TotalSeconds)
         }
     }
 
     Write-Host ''
-    if ($todo.Count -gt 0) { Write-Host ('Made {0} depth maps; {1} backdrops had one already.' -f $made, ($backs.Count - $todo.Count)) -ForegroundColor Green }
+    if ($todo.Count -gt 0) { Write-Host ('Made {0}.' -f (Count-Of $made 'depth map' 'depth maps')) -ForegroundColor Green }
     foreach ($p in $problems) { Write-Host ('  Note: ' + $p) -ForegroundColor Yellow }
     if ($made -gt 0) {
         $update = Join-Path $Folder 'Update-PortraitLibrary.ps1'

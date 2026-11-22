@@ -4,9 +4,10 @@
 # frown (frown) and a wince of pain (pain), the same size and framing with the same outline, next to the picture under
 # its name with _v- and the word added (library\colonists\<name>.png gets <name>_v-blink.png, <name>_v-smile.png ...).
 # Rimfolk shows them on the large portrait: a blink now and then, and the face by the person's mood.
-# - Which pictures: by default the ones the game has given someone, the player's colonists first (pictures made for one
+# - Which pictures: by default the ones the game has given someone, your colonists first (pictures made for one
 #   colonist, with a name in their row's pawn column), then the people your newest save has pictures for (the colony's
-#   own first); or every person in the library. It asks when it starts.
+#   own first, then the notable, then the rest, the most lately shown first); or every person in the library. It asks
+#   when it starts. The save is only read, never changed.
 # - The workflow: rimfolk-variant-workflow-api.json next to this script, exported from ComfyUI with Workflow, Export
 #   (API) from ComfyUI's own FLUX.1 Kontext Dev template: a Load Image box, the edit box with %INSTRUCTION% in its prompt,
 #   a Join Image with Alpha box that gives the edited picture the outline of the one it was made from, and a Preview
@@ -64,6 +65,7 @@ function Short([string] $v) {
 }
 function Is-Link($v) { return ($v -is [array]) -and ($v.Count -eq 2) -and ($v[0] -is [string]) }
 function Is-Extra([string] $stem) { return $stem -match '_(depth|v-[A-Za-z]+)$' }
+function Count-Of([int] $n, [string] $one, [string] $many) { if ($n -eq 1) { return ('1 ' + $one) } else { return ('{0} {1}' -f $n, $many) } }
 
 function Png-Info([byte[]] $b) {
     # A PNG's width, height and whether it has transparency (an alpha channel or a tRNS chunk), or $null.
@@ -196,7 +198,7 @@ function Run-Comfy($wf, [bool] $first) {
     $body = @{ prompt = $wf; client_id = $script:Client } | ConvertTo-Json -Depth 64 -Compress
     $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
     $r = Http-Send $script:Http 'POST' ($script:Url + '/prompt') $json
-    if (-not $r.ok) { throw ('ComfyUI refused the workflow: {0}' -f (Error-Of $r.text)) }
+    if (-not $r.ok) { throw ('ComfyUI refused the workflow (is a model file it names missing from ComfyUI''s models folder?): {0}' -f (Error-Of $r.text)) }
     $id = [string](($r.text | ConvertFrom-Json).prompt_id)
     $lastQueue = [DateTime]::MinValue
     $runningSince = $null
@@ -428,10 +430,10 @@ function Read-Given($file) {
 try {
     Add-Type -AssemblyName System.Net.Http
     if (-not (Test-Path -LiteralPath $library)) { throw ('There is no library folder next to this script ({0}): see SETUP-ComfyUI.md, step 7.' -f $library) }
-    $words = @($Instructions.Keys)
+    $wanted = @($Instructions.Keys)
     if ($Words -ne '') {
-        $words = @(($Words -split '[,; ]+') | ForEach-Object { $_.Trim().ToLowerInvariant() } | Where-Object { $_ -ne '' })
-        foreach ($w in $words) { if (-not $Instructions.Contains($w)) { throw ('"{0}" is not an expression this script makes ({1}).' -f $w, (@($Instructions.Keys) -join ', ')) } }
+        $wanted = @(($Words -split '[,; ]+') | ForEach-Object { $_.Trim().ToLowerInvariant() } | Where-Object { $_ -ne '' })
+        foreach ($w in $wanted) { if (-not $Instructions.Contains($w)) { throw ('"{0}" is not an expression this script makes ({1}).' -f $w, (@($Instructions.Keys) -join ', ')) } }
     }
     $people = @(Read-People)
     if ($people.Count -eq 0) { throw 'The records have no pictures of people yet (library\records.xml).' }
@@ -472,7 +474,8 @@ try {
                 if ($taken.ContainsKey($g.picture) -or -not $byDef.ContainsKey($g.picture)) { continue }
                 [void]$order.Add($byDef[$g.picture]); $taken[$g.picture] = $true; $fromSave++
             }
-            Write-Host ('It has given {0} pictures of the library to people ({1} of them to the colony''s own).' -f @($given).Count, @($given | Where-Object { $_.own }).Count)
+            $inLibrary = @($given | Where-Object { $byDef.ContainsKey($_.picture) })
+            Write-Host ('It has given {0} of the library to people, {1} of them to the colony''s own.' -f (Count-Of $inLibrary.Count 'picture' 'pictures'), @($inLibrary | Where-Object { $_.own }).Count)
         }
     }
     if ($all) { foreach ($p in $people) { if (-not $taken.ContainsKey($p.defName)) { [void]$order.Add($p); $taken[$p.defName] = $true } } }
@@ -482,17 +485,17 @@ try {
     $complete = 0; $missingFile = 0
     foreach ($p in $order) {
         if (-not (Test-Path -LiteralPath $p.path)) { $missingFile++; continue }
-        $lack = @($words | Where-Object { -not (Test-Path -LiteralPath (Join-Path $p.dir ($p.stem + '_v-' + $_ + '.png'))) })
+        $lack = @($wanted | Where-Object { -not (Test-Path -LiteralPath (Join-Path $p.dir ($p.stem + '_v-' + $_ + '.png'))) })
         if ($lack.Count -eq 0) { $complete++; continue }
         [void]$todo.Add([pscustomobject]@{ pic = $p; lack = $lack })
     }
     $edits = 0; foreach ($t in $todo) { $edits += $t.lack.Count }
     Write-Host ''
-    Write-Host ('{0} pictures chosen ({1} made for your colonists, {2} from the save{3}); {4} have every expression already.' -f $order.Count, $pinned, $fromSave, $(if ($all) { ', the rest of the library' } else { '' }), $complete)
+    Write-Host ('{0} chosen ({1} made for your colonists, {2} from the save{3}); {4} of them have every expression already.' -f (Count-Of $order.Count 'picture' 'pictures'), $pinned, $fromSave, $(if ($all) { ', the rest of the library' } else { '' }), $complete)
     if ($missingFile -gt 0) { Write-Host ('{0} of them are in the records but not in the library folder: run Update-PortraitLibrary.ps1.' -f $missingFile) -ForegroundColor Yellow }
 
     $made = 0
-    $byWord = [ordered]@{}; foreach ($w in $words) { $byWord[$w] = 0 }
+    $byWord = [ordered]@{}; foreach ($w in $wanted) { $byWord[$w] = 0 }
     $problems = New-Object System.Collections.ArrayList
     if ($todo.Count -gt 0) {
         if (-not (Test-Path -LiteralPath $Workflow)) {
@@ -512,7 +515,7 @@ try {
         $script:Url = Find-Server
         $script:Client = [guid]::NewGuid().ToString()
         $script:Said = ''
-        Write-Host ('Making {0} expressions ({1}) for {2} pictures. Each takes about half a minute; the first longer while the model loads.' -f $edits, ($words -join ', '), $todo.Count)
+        Write-Host ('Making {0} ({1}) for {2}. Each takes about half a minute; the first longer while the model loads.' -f (Count-Of $edits 'expression' 'expressions'), ($wanted -join ', '), (Count-Of $todo.Count 'picture' 'pictures'))
         Write-Host 'You can close this window at any time: what is made is kept, and the next run carries on.'
         $n = 0; $k = 0
         foreach ($t in $todo) {
@@ -556,7 +559,7 @@ try {
     if ($todo.Count -eq 0) { Write-Host 'Every chosen picture has its expressions; nothing to make.' -ForegroundColor Green }
     else {
         $parts = @($byWord.Keys | ForEach-Object { '{0} {1}' -f $_, $byWord[$_] })
-        Write-Host ('Made {0} expressions ({1}).' -f $made, ($parts -join ', ')) -ForegroundColor Green
+        Write-Host ('Made {0} ({1}).' -f (Count-Of $made 'expression' 'expressions'), ($parts -join ', ')) -ForegroundColor Green
     }
     foreach ($q in $problems) { Write-Host ('  Note: ' + $q) -ForegroundColor Yellow }
     if ($made -gt 0) {
