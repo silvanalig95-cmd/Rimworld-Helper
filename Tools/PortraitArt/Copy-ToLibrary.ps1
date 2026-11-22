@@ -4,7 +4,8 @@
 # into one batch's folder in it (output\Rimfolk\colonists). It copies the pictures there into Rimfolk's library, each
 # batch into the library folder of the same name (output\Rimfolk\colonists -> library\colonists), and then writes the
 # library's records again (Update-PortraitLibrary.ps1), so the game finds them after "Reload the library".
-# - People: only the cut-outs (..._cut_...png) are copied when a folder has them; backdrops: every picture.
+# - People: only the cut-outs (..._cut_...png); the pictures with their painted background stay in ComfyUI's output.
+#   Backdrops (a batch whose list has a "place" column): every picture.
 # - A picture already in the library (the same picture under its name or a "(2)" copy of it) is skipped, so running it
 #   again copies only what is new.
 # - Nothing is renamed: a picture's name ties it to its batch row. If the library holds another picture of the same
@@ -50,8 +51,15 @@ try {
     foreach ($dir in $sources) {
         $files = @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File)
         if ($files.Count -eq 0) { continue }
-        $cuts = @($files | Where-Object { $_.Name -match '_cut_' })
-        if ($cuts.Count -gt 0) { $files = $cuts }
+        # People's batches (their list has no "place" column): only the cut-outs, never the pictures with their painted
+        # background, which stay in ComfyUI's output to look at. Backdrops (a "place" column): every picture.
+        $csv = Join-Path (Join-Path $Kit 'batches') ($dir.Name + '.csv')
+        $isBackdrops = $false
+        if (Test-Path -LiteralPath $csv) { $isBackdrops = ((Get-Content -LiteralPath $csv -TotalCount 1 -Encoding UTF8) -split ',') -contains 'place' }
+        if (-not $isBackdrops) {
+            $files = @($files | Where-Object { $_.Name -match '_cut_' })
+            if ($files.Count -eq 0) { Write-Host ('{0}: no cut-outs here (..._cut_...png), nothing copied' -f $dir.Name) -ForegroundColor Yellow; continue }
+        }
         $target = Join-Path $library $dir.Name
         New-Item -ItemType Directory -Force -Path $target | Out-Null
         $n = 0

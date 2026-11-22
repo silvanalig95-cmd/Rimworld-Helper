@@ -177,7 +177,7 @@ public static class LastVarietyTests
             while ((line = reader.ReadLine()) != null)
             {
                 var f = line.Split('\t');
-                if (f.Length >= 4 && f[0] == "ThingDef" && f[3] == "yes") active.Add(f[1]);
+                if (f.Length >= 4 && f[0] == "ThingDef" && OffForNow.Counts(root, f[3], f[2])) active.Add(f[1]);
             }
         }
         var rooms = Root("Defs/RoomTemplateDefs/Rimfolk_RoomTemplates_Mods.xml").Elements("ColonyCouncil.RoomTemplateDef").ToList();

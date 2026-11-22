@@ -1,0 +1,1097 @@
+"""The portrait batch planner: writes the next batch lists from the catalogue and what the library already holds.
+
+Reads docs/portrait-art/catalogue (kinds.csv, looks.csv, marks.csv, roles.csv), every batch list already in
+docs/portrait-art/batches (their rows are taken: a row is never written twice and a name never means anything else),
+and optionally the library's records.xml (the pictures that exist) and missing.csv (what the game needed and lacked).
+Writes the next lists into docs/portrait-art/batches (waveN-people-NN.csv, needs-people-NN.csv; at most --per-file rows
+each, the columns of colonists.csv plus role) and docs/portrait-art/catalogue/COVERAGE.md.
+
+The order (docs/portrait-art/catalogue/README.md has it in plain words):
+  0. needs: missing.csv's people first, a plain picture of each kind, sex, age, skin and hair it lacked;
+  1. defaults: for each wave's kinds, every sex and age band they come in, plain pictures (no role, no look) across a
+     spread of the skins and hair colours they can have: first one each, then the rest of the spread;
+  2. roles: one picture for each common kind, sex, age and role (soldier, scholar ...), dressed and posed for it;
+  3. looks: the special looks of a kind (wings, conjoined) are in all its rows; then one picture of each other special
+     look (ghoul, undead ...) and each ordinary look (a drinker, a fire mage ...) for the common kinds, by how common;
+  4. variety: more of everything where the weight is high, in rounds, until each cell has its share.
+Coverage counts pictures in the library and rows already listed alike, so running the planner again with the same
+inputs adds nothing; with new pictures it leaves out what they cover; a grown catalogue adds rows for what is new.
+
+A row's name says what it shows and never changes: p_<kind>_<m|f>_<age>_<role, look or plain>_<skin>_<hair>_<NN>, NN
+the next number free for that start (p_baseliner_f_adult_plain_fair_brown_01). The prompt says how old the person looks
+("looks about 37"), never their years; nothing is held or shown that the row's role and looks don't stand for.
+
+Run:
+    python3 Tools/PortraitArt/plan_batches.py [--waves 1,2] [--phases defaults,roles,looks,variety] [--max-rows 600]
+        [--records library/records.xml] [--missing library/missing.csv] [--dry-run]
+"""
+import argparse
+import collections
+import csv
+import glob
+import hashlib
+import math
+import os
+import random
+import re
+import sys
+import xml.etree.ElementTree as ET
+
+HERE = os.path.dirname(os.path.abspath(__file__))
+ROOT = os.path.normpath(os.path.join(HERE, '..', '..'))
+sys.path.insert(0, HERE)
+import catalogue_words as W  # noqa: E402
+import catalogue_check  # noqa: E402
+
+CATALOGUE = os.path.join(ROOT, 'docs', 'portrait-art', 'catalogue')
+BATCHES = os.path.join(ROOT, 'docs', 'portrait-art', 'batches')
+COLUMNS = ['name', 'subject', 'pose', 'count', 'seed', 'kind', 'race', 'sex', 'age', 'skin', 'hairColour', 'hair', 'beard',
+           'build', 'era', 'dress', 'features', 'marks', 'looks', 'role', 'facing', 'pawn']
+PHASES = ['defaults', 'roles', 'looks', 'variety']
+
+# How many plain pictures a kind gets in the end, at weight 1 (a kind's share is this times its weight squared).
+VARIETY_TOTAL = 300
+# The share of an age band's spread a coverage pass makes, by band (the likeliest bands get the whole spread).
+AGE_FACTOR = {'young': 1.0, 'adult': 1.0, 'middle': 1.0, 'old': 0.7, 'teen': 0.7, 'child': 0.7, 'elder': 0.5,
+              'toddler': 0.5, 'baby': 0.5}
+ROLE_MIN_WEIGHT = 0.5      # kinds this common get a picture per common role
+ROLE_MIN_SHARE = 0.05      # a role this common among a kind's people is a common one
+ROLE_AGE_SHARE = 0.1       # ages this common among a kind's people get role pictures
+LOOK_MIN_WEIGHT = 0.5      # kinds this common get a picture of each ordinary look seen in the save
+LOOK_ALL_WEIGHT = 0.9      # kinds this common get a picture of every ordinary look, seen or not
+LOOK_SEEN_SHARE = 0.02     # an ordinary look this common counts as seen for the common kinds
+
+# ---------------------------------------------------------------- words for the prompts
+
+SKIN_PHRASE = {'veryfair': 'very fair skin', 'fair': 'fair skin', 'light': 'light skin', 'medium': 'medium-brown skin',
+               'tan': 'tan, olive-brown skin', 'brown': 'brown skin', 'dark': 'dark brown skin'}
+HAIR_STYLE_PHRASE = {
+    'bald': ['a shaved, bald head', 'a bald head'],
+    'short': ['short cropped {c} hair', 'short, messy {c} hair', 'short {c} hair swept back', 'a short {c} crop with shaved sides'],
+    'medium': ['shoulder-length {c} hair', '{c} hair falling to the jaw', 'wavy {c} hair to the collar'],
+    'long': ['long, loose {c} hair', 'long straight {c} hair', 'long wavy {c} hair'],
+    'braids': ['{c} hair in long braids', '{c} hair in a single thick braid'],
+    'bun': ['{c} hair tied up in a bun', '{c} hair in a knot on top of the head'],
+    'tied': ['{c} hair tied back in a ponytail', '{c} hair tied back at the neck'],
+}
+WOMEN_HAIR = {'medium': ['a {c} bob'], 'short': ['a short {c} pixie cut']}
+LITTLE_HAIR = {'baby': [('a soft fuzz of {c} hair', 'short'), ('a few wisps of {c} hair', 'short')],
+               'toddler': [('short, fine {c} hair', 'short'), ('soft {c} curls', 'short'), ('tufty {c} hair', 'short')],
+               'child': [('tousled {c} hair', 'short'), ('short {c} hair', 'short'), ('{c} hair in two little bunches', 'tied'),
+                         ('a messy mop of {c} hair', 'medium'), ('long {c} hair', 'long')]}
+NOUN_PHRASE = {
+    'dreadlocks': 'thick {c} dreadlocks',
+    'fur': 'thick {c} fur', 'quills': 'a crest of {c} quills instead of hair', 'leaves': 'a mane of {c} in place of hair',
+    'coral fans': 'soft {c} coral fans', 'fungal crest': 'a {c} fungal crest',
+}
+BEARD_PHRASE = {'none': 'clean-shaven', 'stubble': 'a few days\' stubble', 'short': 'a short {c} beard',
+                'full': 'a full {c} beard', 'moustache': 'a {c} moustache'}
+BUILD_PHRASE = {'average': 'of average build', 'slim': 'slim', 'heavy': 'heavy-set', 'broad': 'broad and muscular'}
+FACE_SHAPES = ['an oval face', 'a round face', 'a square face', 'a long face', 'a narrow face', 'a heart-shaped face',
+               'a diamond-shaped face', 'a broad face', 'a gaunt face']
+FACE_PARTS = [
+    ['a straight nose', 'a hooked nose', 'a slightly crooked nose', 'a broad nose', 'a flat nose', 'a snub nose',
+     'an upturned nose', 'a bulbous nose', 'a long nose'],
+    ['deep-set eyes', 'hooded eyes', 'heavy-lidded eyes', 'wide-set eyes', 'close-set eyes', 'narrow eyes', 'round eyes',
+     'almond-shaped eyes', 'eyes with dark circles under them', 'eyes crinkled at the corners'],
+    ['thick brows', 'sparse brows', 'arched brows', 'straight brows', 'heavy brows', 'brows that meet in the middle'],
+    ['thin lips', 'full lips', 'a wide mouth', 'a small mouth', 'a lopsided grin', 'a slight overbite', 'a gap between the front teeth',
+     'a weak chin', 'a strong jaw', 'a cleft chin'],
+    ['freckles', 'a few moles', 'a faint birthmark on one cheek', 'a dimple in one cheek'],
+]
+OLDER_FACE = ['deep wrinkles', "crow's feet", 'deep lines across the forehead', 'sagging jowls']
+CHILD_FACE = ['a round face', 'full cheeks', 'freckles', 'a snub nose', 'big round eyes', 'a gap-toothed smile',
+              'rosy cheeks', 'a pointed chin', 'a small upturned nose']
+BABY_FACE = ['a round face', 'full cheeks', 'big round eyes', 'rosy cheeks', 'a button nose', 'a tiny mouth']
+EXPRESSIONS = ['a calm look', 'a warm look', 'a stern look', 'a weary look', 'a wary look', 'a proud look', 'a cheerful look',
+               'a grim look', 'a thoughtful look', 'a determined look', 'a guarded look', 'a curious look', 'a quiet smile',
+               'a sceptical look', 'a solemn look', 'a friendly look']
+WIDE_EXPRESSIONS = ['an eccentric, lopsided grin', 'a big, toothy, goofy grin', 'an intense, burning stare',
+                    'a shy, sidelong glance', 'a wild, wide-eyed look', 'a puzzled frown', 'a smug half-smile',
+                    'a distant, dreamy look', 'a startled look', 'a crooked, knowing smile', 'a deadpan stare',
+                    'a fierce scowl', 'a mournful look', 'a gleeful look', 'a mischievous smirk', 'a bored, half-lidded look']
+CHILD_EXPRESSIONS = ['a shy look', 'a big grin', 'a curious look', 'a solemn little frown', 'a cheeky smile', 'a sleepy look',
+                     'a wide-eyed look', 'a pout']
+POSES = ['arms crossed', 'arms folded, leaning back slightly', 'hands clasped in front at the waist', 'one hand on the hip',
+         'thumbs hooked into the belt', 'standing square, arms at the sides', 'leaning forward a little', 'the shoulders hunched',
+         'the chin raised', 'the head tilted to one side', 'one hand resting on the opposite shoulder', 'adjusting the collar',
+         'rubbing the back of the neck', 'a hand raised to the chin', 'pulling the coat closer', 'arms loosely folded, one shoulder dropped',
+         'turned a little away, looking back over the shoulder', 'hands behind the back']
+CHILD_POSES = ['hands clasped behind the back', 'holding a small carved toy', 'fidgeting with a sleeve', 'looking up shyly',
+               'arms wrapped around the body', 'one hand waving', 'holding a smooth pebble up to look at it']
+TODDLER_POSES = ['clutching a cloth doll', 'a thumb in the mouth', 'pointing at something out of view', 'both hands raised, reaching up',
+                 'holding a wooden spoon']
+BABY_POSES = ['wrapped in a soft blanket, looking up', 'propped up in a cloth sling, one small hand raised',
+              'wrapped in a blanket, a thumb in the mouth', 'reaching a small hand toward the viewer']
+FACINGS = [('front', 'Facing front.', 3), ('threeQuarterLeft', 'Facing three-quarter left.', 3),
+           ('threeQuarterRight', 'Facing three-quarter right.', 3), ('left', 'Turned a little to the left.', 1),
+           ('right', 'Turned a little to the right.', 1)]
+WEALTH = {
+    'destitute': 'ragged, patched clothing, a gaunt face and grime', 'poor': 'worn, mended clothing',
+    'common': 'practical clothing, clean but well used', 'prosperous': 'good, well-fitted clothing, well groomed',
+    'noble': 'rich fabrics, a little jewellery and an air of command',
+}
+HARDSHIP = {'sheltered': 'Smooth skin and rested eyes.', 'ordinary': 'Lightly weathered.',
+            'hard': 'Wind-burned, weathered skin and tired eyes.', 'brutal': 'Deep lines and a hard stare.'}
+DRESS = {
+    'tribal': {'work': ['hide and woven-fibre clothing with bone beads', 'a fur-trimmed leather tunic and a carved pendant'],
+               'rags': ['torn, patched hides'], 'fine': ['finely worked furs and rich beadwork'],
+               'robes': ['a long woven robe hung with bone charms'], 'armour': ['hide armour with bone plates']},
+    'medieval': {'work': ['a wool tunic over a linen shirt', 'a leather jerkin over a linen shirt', 'f:a wool dress with a plain cloak'],
+                 'rags': ['a ragged, patched tunic'], 'fine': ['an embroidered doublet and a fur-trimmed cloak', 'f:an embroidered gown and a fine cloak'],
+                 'robes': ['a plain hooded robe with the hood down'], 'armour': ['a padded gambeson under a mail shirt']},
+    'industrial': {'work': ['a canvas work jacket over a collared shirt', 'a long duster coat and a scarf', 'a buttoned waistcoat with rolled shirt sleeves'],
+                   'rags': ['a torn, patched coat'], 'fine': ['a tailored waistcoat under a long coat', 'a well-cut suit jacket'],
+                   'robes': ['a long dark coat buttoned to the throat'], 'armour': ['a flak vest over a work shirt']},
+    'spacer': {'work': ['a plain synthetic jumpsuit with a high collar', 'a padded flight jacket', 'a clean synthetic jacket with geometric trim'],
+               'rags': ['a worn, patched synthetic suit'], 'fine': ['an elegant high-collared coat with fine trim'],
+               'robes': ['flowing synthetic robes with soft-glowing seams'], 'armour': ['sleek composite armour with soft-glowing seams']},
+}
+LITTLE_DRESS = {'baby': ['a soft wool blanket', 'a small knitted blanket'],
+                'toddler': ['small, simple clothes', 'a little smock'],
+                'child': ['simple, small clothes', 'a little tunic', 'a patched child\'s jacket']}
+
+# ---------------------------------------------------------------- reading
+
+
+def read_csv(path):
+    if not os.path.exists(path):
+        return []
+    with open(path, encoding='utf-8-sig', newline='') as f:
+        return list(csv.DictReader(f))
+
+
+def split(text):
+    return [x.strip() for x in (text or '').split(';') if x.strip()]
+
+
+def seeded(*parts):
+    h = hashlib.sha1('|'.join(parts).encode('utf-8')).hexdigest()
+    return random.Random(int(h[:16], 16))
+
+
+def weighted(rng, items):
+    """A pick from [(value, weight)], the same for the same generator."""
+    items = [(v, w) for v, w in items if w > 0]
+    if not items:
+        return None
+    total = sum(w for _, w in items)
+    x = rng.random() * total
+    for v, w in items:
+        x -= w
+        if x <= 0:
+            return v
+    return items[-1][0]
+
+
+class Palette:
+    """A kind's skins or hair colours: slug, hex and words, lightest or commonest as listed."""
+
+    def __init__(self, text, human, phrases=None):
+        self.entries = []
+        phrases = phrases or {}
+        for part in split(text):
+            if part == 'human':
+                for slug, word, hx in human:
+                    self.entries.append((slug, hx, phrases.get(slug, word)))
+            elif part == 'none':
+                self.entries.append(('bald', '', ''))
+            elif '=' in part:
+                bits = part.split('=', 2)
+                self.entries.append((bits[0].strip(), bits[1].strip(), bits[2].strip() if len(bits) > 2 else bits[0]))
+            else:
+                hit = [h for h in human if h[0] == part]
+                if hit:
+                    slug, word, hx = hit[0]
+                    self.entries.append((slug, hx, phrases.get(slug, word)))
+                else:
+                    raise ValueError('unknown colour word ' + part)
+
+    def nearest(self, hexcolour):
+        if not self.entries:
+            return None
+        if not hexcolour:
+            return next((e for e in self.entries if e[0] == 'bald'), self.entries[0])
+        c = W.hex_rgb(hexcolour)
+        best = None
+        for e in self.entries:
+            if not e[1]:
+                continue
+            d = W.colour_apart(c, W.hex_rgb(e[1]))
+            if best is None or d < best[0]:
+                best = (d, e)
+        return best[1] if best else self.entries[0]
+
+
+HUMAN_HAIR_TABLE = [(s, w, h) for s, w, h in W.HAIR_COLOURS]
+HUMAN_SKIN_TABLE = [(s, w, h) for s, w, h in W.HUMAN_SKINS]
+NATURAL_HAIR = {'black', 'darkbrown', 'brown', 'auburn', 'lightbrown', 'blond', 'red', 'sandyblond'}
+GREY_HAIR = ['saltpepper', 'grey', 'white']
+HAIR_LIGHT_ORDER = ['white', 'blond', 'sandyblond', 'grey', 'red', 'auburn', 'lightbrown', 'saltpepper', 'brown', 'darkbrown',
+                    'black', 'inkblack']
+
+
+class Kind:
+    def __init__(self, r):
+        self.row = r
+        self.kind = r['kind']
+        self.slug = r['slug']
+        self.race = r['race']
+        self.label = r['label']
+        self.weight = float(r['weight'] or 0)
+        self.wave = int(r['wave'] or 5)
+        self.sexes = split(r['sexes']) or ['male', 'female']
+        self.ages = [(a, s) for a, s in W.parse_shares(r['ages']) if a in W.AGES]
+        self.age_share = dict(self.ages)
+        self.skins = Palette(r['skins'], HUMAN_SKIN_TABLE, SKIN_PHRASE)
+        self.hairs = Palette(r['hairColours'], HUMAN_HAIR_TABLE)
+        self.noun = r['hairNoun'] or 'hair'
+        self.hair = W.parse_shares(r['hair']) or [('short', 1.0)]
+        beards = split(r['beards'])
+        self.women_beards = '+women' in beards
+        self.beards = W.parse_shares(';'.join(b for b in beards if b != '+women')) or [('none', 1.0)]
+        self.builds = W.parse_shares(r['builds']) or [('average', 1.0)]
+        self.eras = W.parse_shares(r['eras']) or [('industrial', 1.0)]
+        self.roles = [(ro, s) for ro, s in W.parse_shares(r['roles']) if ro in W.ROLES]
+        self.genes = set(split(r['genes']))
+        self.always = split(r['alwaysLooks'])
+        self.features = split(r['features'])
+        self.far = r['farFromHuman'] == 'yes'
+        look = r['look'] or ''
+        self.has_look = bool(look.strip())
+        # The prompt's words for the kind: what follows "a dark elf:" (the opening already names the kind).
+        self.look = look.split(':', 1)[1].strip() if ':' in look else ''
+        self.ageless = r['ageless'] == 'yes'
+        self.greys = ('Hair_Grayless' not in self.genes and not self.ageless
+                      and any(e[0] in NATURAL_HAIR for e in self.hairs.entries))
+
+    @property
+    def plannable(self):
+        return self.has_look and self.weight > 0
+
+    @property
+    def xenotype(self):
+        return 'Baseliner' if self.race != 'Human' else self.kind
+
+    @property
+    def race_column(self):
+        return '' if self.race == 'Human' else self.race
+
+    def hair_entries(self, age):
+        """The hair colours of an age band: the young ones and grown-ups their own, greying from the middle years."""
+        es = [e for e in self.hairs.entries]
+        if not self.greys:
+            return es
+        natural = [e for e in es if e[0] not in GREY_HAIR]
+        table = {s: (s, h, w) for s, w, h in HUMAN_HAIR_TABLE}
+        greys = [table[s] for s in GREY_HAIR]
+        if age in ('old', 'elder'):
+            return greys
+        if age == 'middle':
+            return natural + [table['saltpepper']]
+        return natural
+
+    def spread(self, age):
+        """(skin, hair) pairs that cover every skin and hair colour of an age band, lightest with lightest."""
+        skins = list(self.skins.entries)
+        hairs = self.hair_entries(age)
+        light = {s: i for i, s in enumerate(HAIR_LIGHT_ORDER)}
+        hairs = sorted(hairs, key=lambda e: (light.get(e[0], 50), e[0])) if all(e[0] in light or e[0] in GREY_HAIR for e in hairs) else hairs
+        n = max(len(skins), len(hairs), 1)
+        pairs = []
+        for i in range(n):
+            s = skins[min(len(skins) - 1, i * len(skins) // n)] if skins else ('none', '', '')
+            h = hairs[min(len(hairs) - 1, i * len(hairs) // n)] if hairs else ('bald', '', '')
+            pairs.append((s, h))
+        return pairs
+
+    def spread_size(self, age):
+        full = len(self.spread(age))
+        return max(1, min(full, math.ceil(full * self.weight * AGE_FACTOR.get(age, 0.5))))
+
+    def pick_spread(self, age, n):
+        """n pairs spread evenly over the full list, the likeliest (middle of the human skins) first."""
+        pairs = self.spread(age)
+        if n >= len(pairs):
+            order = list(range(len(pairs)))
+        elif n == 1:
+            order = [len(pairs) // 2 if len(self.skins.entries) > 3 else 0]
+        else:
+            order = sorted({round(i * (len(pairs) - 1) / (n - 1)) for i in range(n)})
+        mid = len(pairs) // 2
+        order.sort(key=lambda i: (abs(i - mid) if len(self.skins.entries) > 3 else i, i))
+        return [pairs[i] for i in order[:n]]
+
+
+class Look:
+    def __init__(self, r):
+        self.word = r['word']
+        self.label = r['label']
+        self.special = r['special'] == 'yes'
+        self.traits = split(r['traits'])
+        self.genes = split(r['genes'])
+        self.hediffs = split(r['hediffs'])
+        self.bodies = split(r['bodies'])
+        self.kinds = split(r.get('kinds', ''))
+        self.prompt = r['prompt']
+        self.pose = r.get('pose', '')
+        m = re.match(r'\s*(\d+)', r.get('howCommon') or '')
+        self.count = int(m.group(1)) if m else 0
+        tot = re.search(r'of (\d+)', r.get('howCommon') or '')
+        self.share = self.count / float(tot.group(1)) if tot and int(tot.group(1)) else 0.0
+
+    @property
+    def by_genes_only(self):
+        return bool(self.genes) and not (self.traits or self.hediffs or self.bodies)
+
+
+# ---------------------------------------------------------------- what exists
+
+
+class Ledger:
+    """Every row already listed and every picture in the library, as cells the planner counts."""
+
+    def __init__(self, kinds):
+        self.kinds = kinds
+        self.by_xeno = {k.kind.lower(): k for k in kinds.values() if k.race == 'Human'}
+        self.by_race = {k.race.lower(): k for k in kinds.values() if k.race != 'Human'}
+        self.names = set()
+        self.made = set()
+        self.listed = {}          # name -> batch
+        self.cells = collections.Counter()
+        self.made_cells = collections.Counter()
+        self.lists = collections.Counter()
+        self.lists_made = collections.Counter()
+
+    def kind_of(self, xenos, races):
+        for r in races:
+            if r.lower() in self.by_race:
+                return self.by_race[r.lower()]
+        for x in xenos:
+            if x.lower() in self.by_xeno:
+                return self.by_xeno[x.lower()]
+        if not [x for x in xenos if x.lower() != 'baseliner']:
+            return self.by_xeno.get('baseliner')
+        return None
+
+    def cells_of(self, k, sex, age, skin_hex, hair_hex, role, looks):
+        out = []
+        if k is None:
+            return out
+        own = [lk for lk in looks if lk not in k.always]
+        if role:
+            out.append(('r', k.kind, sex, age, role))
+        for lk in own:
+            out.append(('l', k.kind, sex, lk))
+            out.append(('la', k.kind, sex, age, lk))
+        if not role and not own:
+            s = k.skins.nearest(skin_hex)
+            h = k.hairs.nearest(hair_hex) if hair_hex or k.hairs.entries else None
+            if age in ('old', 'elder', 'middle') and hair_hex and k.greys:
+                table = {sl: (sl, hx, w) for sl, w, hx in HUMAN_HAIR_TABLE}
+                cand = [e for e in k.hair_entries(age)]
+                c = W.hex_rgb(hair_hex)
+                h = min(cand, key=lambda e: W.colour_apart(c, W.hex_rgb(e[1])) if e[1] else 999) if cand else h
+            out.append(('d', k.kind, sex, age))
+            out.append(('ds', k.kind, sex, age, s[0] if s else '', h[0] if h else 'bald'))
+        return out
+
+    def add_row(self, batch, r, made=False):
+        name = r.get('name', '').strip()
+        if not name:
+            return
+        self.names.add(name)
+        self.listed[name] = batch
+        self.lists[batch] += 1
+        if (r.get('pawn') or '').strip():
+            return
+        k = self.kind_of([r.get('kind', '')], split(r.get('race', '')))
+        for c in self.cells_of(k, r.get('sex', ''), W_age(r.get('age', '')), r.get('skin', ''), r.get('hairColour', ''),
+                               (r.get('role') or '').strip(), split(r.get('looks', ''))):
+            self.cells[c] += 1
+
+    def add_picture(self, rec, listed):
+        """A picture's cells; one of a row already listed counts once (its row is already counted)."""
+        if rec.get('pawn'):
+            return
+        k = self.kind_of(rec['xenotypes'], rec['races'])
+        for c in self.cells_of(k, rec['sex'], rec['age'], rec['skin'], rec['hair'], rec['role'], rec['looks']):
+            self.made_cells[c] += 1
+            if not listed:
+                self.cells[c] += 1
+
+    def has(self, cell):
+        return self.cells[cell] > 0
+
+
+def W_age(text):
+    t = (text or '').strip().lower().replace('-', '').replace(' ', '')
+    return {'teenager': 'teen', 'middleaged': 'middle', 'elderly': 'elder', 'infant': 'baby', 'newborn': 'baby'}.get(t, t)
+
+
+def read_batches(folder, ledger):
+    """Every people list in the batches folder (one with a sex column), its rows taken."""
+    for path in sorted(glob.glob(os.path.join(folder, '*.csv'))):
+        rows = read_csv(path)
+        if not rows or 'sex' not in rows[0]:
+            continue
+        batch = os.path.splitext(os.path.basename(path))[0]
+        for r in rows:
+            ledger.add_row(batch, r)
+
+
+ROW_RE = re.compile(r'^(?P<name>.+?)_(?P<style>style[^_]*)_(?:(?P<run>\d{6}-\d{4,6})_)?(?P<n>\d+)(?P<cut>_cut)?(_\d+_?)?$')
+
+
+def read_records(path, ledger):
+    """The library's records.xml: each picture's cells counted, and its row (by its file's name) marked made."""
+    if not path or not os.path.exists(path):
+        return 0
+    root = ET.parse(path).getroot()
+    n = 0
+    for e in root:
+        if e.tag != 'ColonyCouncil.PortraitDef':
+            continue
+        n += 1
+
+        def F(f):
+            x = e.find(f)
+            return (x.text or '').strip() if x is not None and x.text else ''
+
+        def L(f):
+            x = e.find(f)
+            return [(li.text or '').strip() for li in x.findall('li')] if x is not None else []
+        rec = {'xenotypes': L('xenotypes'), 'races': L('races'), 'sex': F('sex').lower(), 'age': W_age(F('age')),
+               'skin': hexify(F('skinColor')), 'hair': hexify(F('hairColor')), 'role': F('role'), 'looks': L('looks'),
+               'pawn': F('pawn')}
+        tex = F('texPath')
+        name = None
+        if '/' in tex:
+            batch, file = tex.split('/', 1)
+            base = re.sub(r'\s*\(\d+\)$', '', file)
+            base = re.sub(r'\s*-\s*Copy( \(\d+\))?$', '', base)
+            m = ROW_RE.match(base)
+            if m:
+                name = m.group('name')
+                if name not in ledger.made:
+                    ledger.lists_made[batch] += 1
+                ledger.made.add(name)
+        ledger.add_picture(rec, name in ledger.names)
+    return n
+
+
+def hexify(text):
+    t = (text or '').strip()
+    if re.fullmatch(r'#?[0-9a-fA-F]{6}', t):
+        return '#' + t.lstrip('#').lower()
+    nums = re.findall(r'[\d.]+', t)
+    if len(nums) >= 3:
+        v = [float(x) for x in nums[:3]]
+        scale = 255.0 if any(x > 1 for x in v) else 1.0
+        return '#' + ''.join('%02x' % int(round(min(1.0, x / scale) * 255)) for x in v)
+    return ''
+
+
+def read_missing(path):
+    """The people lines of missing.csv, commonest first."""
+    if not path or not os.path.exists(path):
+        return []
+    out = []
+    with open(path, encoding='utf-8-sig') as f:
+        lines = [ln for ln in f.read().splitlines() if ln.strip() and not ln.startswith('#')]
+    for r in csv.DictReader(lines):
+        if (r.get('what') or '').strip() == 'person':
+            try:
+                r['_n'] = int(r.get('how many') or 0)
+            except ValueError:
+                r['_n'] = 0
+            out.append(r)
+    out.sort(key=lambda r: -r['_n'])
+    return out
+
+
+# ---------------------------------------------------------------- writing rows
+
+
+SKIN_WORD_HEX = {'very fair': '#f6e4d6', 'fair': '#ecc9ae', 'light': '#d9aa86', 'medium': '#c08c66', 'tan': '#a2704c',
+                 'brown': '#7d5236', 'dark': '#4e3322', 'red': '#a3302a', 'orange': '#d9732a', 'yellow': '#e8da86',
+                 'green': '#6f9a5b', 'teal': '#4fa39a', 'blue': '#5d7fa8', 'purple': '#7a5a9a', 'pink': '#e0a0b8',
+                 'grey': '#8a8d90', 'black': '#1c1c20', 'white': '#efefef'}
+HAIR_WORD_HEX = {'black': '#1c1a19', 'brown': '#5a3d27', 'light brown': '#8a6a4a', 'blond': '#cfae74', 'red': '#b23a1a',
+                 'grey': '#8e8c88', 'white': '#e2e0dc', 'green': '#6fbf5a', 'teal': '#2fb3a8', 'blue': '#7fb6e6',
+                 'purple': '#9a6ad0', 'pink': '#e48ab8', 'orange': '#d97a2b', 'yellow': '#e8d070'}
+
+
+GROWN_ONLY = re.compile(r'stare|build|frame|beard|powerful neck|\bwoman\b|\bman\b|wrinkled|muscled|regal|bearing|intimidating|fierce|brutish|'
+                        r'stocky|powerful|alluring|tall|hard soldier')
+
+
+def child_look(text):
+    """A kind's look for its little ones: the parts that grow with age (a stare, a build, a beard) left out."""
+    parts = [p.strip() for p in re.split(r',\s+(?=(?:a|an|the|two|one|small|long|large)\s)|\s+and\s+(?=(?:a|an|the|two|one|small|long|large)\s)', text) if p.strip()]
+    kept = [p for p in parts if not GROWN_ONLY.search(p)]
+    if not kept:
+        return ''
+    return ', '.join(kept[:-1]) + (' and ' if len(kept) > 1 else '') + kept[-1]
+
+
+class Full(Exception):
+    """The run's rows are all planned (--max-rows)."""
+
+
+class Planner:
+    def __init__(self, kinds, looks, marks, roles, ledger, total_people, cap=10 ** 9):
+        self.kinds = kinds
+        self.looks = looks
+        self.marks = marks
+        self.roles = roles
+        self.ledger = ledger
+        self.total_people = total_people
+        self.rows = []            # (phase, wave, row)
+        self.cap = cap
+        self.taken = set(ledger.names)
+        self.stems = collections.Counter()
+        for n in self.taken:
+            m = re.match(r'^(.*)_(\d+)$', n)
+            if m:
+                self.stems[m.group(1)] = max(self.stems[m.group(1)], int(m.group(2)))
+
+    def name(self, stem):
+        n = self.stems[stem] + 1
+        while '%s_%02d' % (stem, n) in self.taken:
+            n += 1
+        self.stems[stem] = n
+        name = '%s_%02d' % (stem, n)
+        self.taken.add(name)
+        return name
+
+    def make(self, phase, wave, k, sex, age, pair, role='', look=None, marks=(), era=None, wide=False, tag=None):
+        """One row: its record columns and its prompt, every choice seeded by the row's name."""
+        if len(self.rows) >= self.cap and phase != 'needs':
+            raise Full()
+        skin, hair = pair
+        sexl = 'm' if sex == 'male' else 'f'
+        tag = tag or (role or (look.word.lower() if look else 'plain'))
+        stem = 'p_%s_%s_%s_%s_%s_%s' % (k.slug, sexl, age, tag, skin[0], hair[0])
+        name = self.name(stem)
+        rng = seeded(name)
+        little = age in W.LITTLE
+        looks = list(k.always) + ([look.word] if look else [])
+        # hair, beard, build
+        hair_word = 'bald' if hair[0] == 'bald' or not hair[1] else (weighted(rng, k.hair) or 'short')
+        if age == 'baby' and hair_word != 'bald':
+            hair_word = 'short'
+        if little or age == 'teen' or (sex == 'female' and not k.women_beards):
+            beard = 'none'
+        else:
+            beard = weighted(rng, k.beards) or 'none'
+        build = 'average' if age in ('baby', 'toddler') else (weighted(rng, k.builds) or 'average')
+        if age in ('child', 'teen') and build in ('heavy', 'broad'):
+            build = weighted(rng, [('average', .6), ('slim', .4)])
+        era = era or weighted(rng, k.eras) or 'industrial'
+        # role and wealth decide the clothes
+        rrow = self.roles.get(role) if role else None
+        wealth = weighted(rng, [('destitute', .05), ('poor', .25), ('common', .45), ('prosperous', .17), ('noble', .08)])
+        if role in ('leader',):
+            wealth = weighted(rng, [('prosperous', .5), ('noble', .5)])
+        elif role in ('trader', 'scholar', 'doctor', 'priest'):
+            wealth = weighted(rng, [('common', .5), ('prosperous', .4), ('poor', .1)])
+        elif role in ('labourer', 'miner', 'farmer', 'herder'):
+            wealth = weighted(rng, [('poor', .5), ('common', .45), ('destitute', .05)])
+        if wealth == 'noble' and (era == 'tribal' or role not in ('', 'leader', 'trader')):
+            wealth = 'prosperous'
+        hardship = weighted(rng, [('sheltered', .1), ('ordinary', .45), ('hard', .35), ('brutal', .1)])
+        if role in ('soldier', 'warrior'):
+            hardship = weighted(rng, [('ordinary', .3), ('hard', .45), ('brutal', .25)])
+        if wealth in ('noble', 'prosperous') and hardship == 'brutal':
+            hardship = 'hard'
+        if rrow:
+            dress = rrow['dress'] or 'work'
+        elif wealth == 'destitute':
+            dress = 'rags'
+        elif wealth == 'noble':
+            dress = 'fine'
+        else:
+            dress = weighted(rng, [('work', .8), ('robes', .1), ('fine', .1 if wealth == 'prosperous' else 0)])
+        facing, facing_text = weighted(rng, [((f, t), w) for f, t, w in FACINGS])
+        # the words
+        he, his = ('he', 'his') if sex == 'male' else ('she', 'her')
+        about = rng.randint(*[int(x) for x in W.LOOKS_ABOUT[age]]) if age != 'baby' else None
+        noun = {'baby': 'baby', 'toddler': 'toddler', 'child': 'boy' if sex == 'male' else 'girl'}.get(age, 'man' if sex == 'male' else 'woman')
+        if age == 'teen':
+            noun = 'boy' if sex == 'male' else 'girl'
+        adj = {'teen': 'teenage', 'young': 'young', 'middle': 'middle-aged', 'old': 'old', 'elder': 'very old'}.get(age, '')
+        kind_word = '' if k.kind == 'Baseliner' else k.label
+        if k.kind == 'MultiMind_ConjoinedHuman':
+            kind_word = 'conjoined twin'
+            noun = {'baby': 'babies', 'toddler': 'toddlers', 'child': 'boys' if sex == 'male' else 'girls'}.get(age, 'men' if sex == 'male' else 'women')
+            if age == 'teen':
+                noun = 'boys' if sex == 'male' else 'girls'
+        person = ' '.join(x for x in (adj, kind_word, noun) if x)
+        if age == 'baby':
+            looks_line = 'who looks about %s' % rng.choice(['six months old', 'eight months old', 'ten months old'])
+        else:
+            looks_line = 'who looks about %d' % about
+        art = 'An' if person[:1].lower() in 'aeiou' else 'A'
+        if k.kind == 'MultiMind_ConjoinedHuman':
+            art, looks_line = 'Two', looks_line.replace('who looks', 'who look')
+        opening = '%s %s %s' % (art, person, looks_line)
+        if age == 'young':
+            opening += ', clearly a grown adult'
+        parts = []
+        if k.look:
+            parts.append(child_look(k.look) if little else k.look)
+        parts.append(skin[2] if skin[2] else '')
+        colour = hair[2] if hair[2] else ''
+        if k.noun != 'hair':
+            if colour:
+                parts.append(NOUN_PHRASE.get(k.noun, '{c} ' + k.noun).format(c=colour))
+            if k.noun == 'fur':
+                pass
+        elif hair_word != 'bald' and little:
+            phrase, hair_word = rng.choice(LITTLE_HAIR[age])
+            parts.append(phrase.format(c=colour or 'dark'))
+        elif hair_word != 'bald':
+            choices = HAIR_STYLE_PHRASE[hair_word] + (WOMEN_HAIR.get(hair_word, []) if sex == 'female' else [])
+            parts.append(rng.choice(choices).format(c=colour or 'dark'))
+        elif hair[0] == 'bald' or not colour:
+            pass
+        else:
+            parts.append(rng.choice(HAIR_STYLE_PHRASE['bald']))
+        if beard != 'none':
+            parts.append(BEARD_PHRASE[beard].format(c=colour or 'dark'))
+        elif sex == 'male' and age in W.GROWN and any(b != 'none' for b, _ in k.beards):
+            parts.append('clean-shaven')
+        if not little:
+            parts.append(BUILD_PHRASE[build])
+        body = ', '.join(p for p in parts if p)
+        if little:
+            faces = rng.sample(BABY_FACE if age == 'baby' else CHILD_FACE, 2)
+            face = ' and '.join(faces)
+            expr = rng.choice(CHILD_EXPRESSIONS)
+            soft = 'Soft, rounded features, as young as ' + ('a baby' if age == 'baby' else 'a toddler' if age == 'toddler' else 'a child') + ' looks.'
+        else:
+            n_face = 1 if k.far else rng.choice([2, 3])
+            face_bits = [rng.choice(FACE_SHAPES)] if not k.far else []
+            pool = list(FACE_PARTS) + ([OLDER_FACE] if age in ('middle', 'old', 'elder') else [])
+            rng.shuffle(pool)
+            for group in pool[:n_face]:
+                face_bits.append(rng.choice(group))
+            face = ', '.join(face_bits[:-1]) + (' and ' if len(face_bits) > 1 else '') + face_bits[-1]
+            exprs = EXPRESSIONS + (WIDE_EXPRESSIONS if (wide or k.far) else [])
+            expr = rng.choice(exprs) if not look else ''
+            soft = ''
+        sentences = [opening + ': ' + body + '.', face[:1].upper() + face[1:] + (', ' + expr if expr else '') + '.']
+        if soft:
+            sentences.append(soft)
+        for lw in looks:
+            lk = self.looks.get(lw)
+            if lk:
+                sentences.append(lk.prompt[:1].upper() + lk.prompt[1:] + '.')
+        for mw in marks:
+            m = self.marks.get(mw)
+            if m:
+                sentences.append(m['prompt'][:1].upper() + m['prompt'][1:] + '.')
+        if rrow:
+            sentences.append('%s: %s.' % (rrow['label'][:1].upper() + rrow['label'][1:], rrow[era]))
+        clothed = any(re.search(r'\b(robe|robes|armour|gear|clothes|clothing|cloak|coat|wrap)\b', self.looks[lw].prompt)
+                      for lw in looks if lw in self.looks)
+        if little:
+            sentences.append('%s wears %s.' % (he.capitalize(), rng.choice(LITTLE_DRESS[age])) if age != 'baby'
+                             else 'Wrapped in %s.' % rng.choice(LITTLE_DRESS['baby']))
+        elif clothed:
+            text = ' '.join(self.looks[lw].prompt for lw in looks if lw in self.looks)
+            dress = ('robes' if re.search(r'\brobes?\b', text) else 'armour' if re.search(r'\b(armour|gear)\b', text)
+                     else 'rags' if re.search(r'stained|rumpled|very little', text) else 'work')
+            sentences.append(HARDSHIP[hardship])
+        else:
+            options = [d[2:] if d.startswith('f:') else d for d in DRESS[era][dress] if sex == 'female' or not d.startswith('f:')]
+            clothes = rng.choice(options) if not rrow else ''
+            wear = '%s wears %s' % (he.capitalize(), clothes + ', ' if clothes else '') if clothes else '%s wears' % he.capitalize()
+            sentences.append('%s %s.' % (wear, 'a gaunt, grimy face' if dress == 'rags' else WEALTH[wealth]))
+            sentences.append(HARDSHIP[hardship])
+        sentences.append(facing_text)
+        subject = ' '.join(sentences)
+        subject = re.sub(r'\s+', ' ', subject).replace(' ,', ',').replace(',.', '.').replace('..', '.')
+        # the pose: from the row's look or role, else a varied one that holds nothing a skill would need
+        if age == 'baby':
+            pose = rng.choice(BABY_POSES)
+        elif age == 'toddler':
+            pose = rng.choice(TODDLER_POSES)
+        elif age == 'child':
+            pose = rng.choice(CHILD_POSES)
+        elif look and look.pose:
+            pose = look.pose
+        elif rrow and rrow['pose']:
+            pose = rrow['pose']
+        else:
+            pose = rng.choice(POSES)
+        pose = pose[:1].upper() + pose[1:] + '.'
+        row = {
+            'name': name, 'subject': subject, 'pose': pose, 'count': '', 'seed': '', 'kind': k.xenotype,
+            'race': k.race_column, 'sex': sex, 'age': age, 'skin': skin[1], 'hairColour': hair[1],
+            'hair': hair_word, 'beard': beard, 'build': build, 'era': era, 'dress': dress if not little else 'work',
+            'features': ';'.join(k.features), 'marks': ';'.join(marks), 'looks': ';'.join(looks), 'role': role,
+            'facing': facing, 'pawn': '',
+        }
+        if not row['hairColour'] and hair_word != 'bald':
+            row['hairColour'] = '#3b2a20'
+        self.rows.append((phase, wave, row))
+        for c in self.ledger.cells_of(k, sex, age, skin[1], hair[1], role, looks):
+            self.ledger.cells[c] += 1
+        return row
+
+    # ------------------------------------------------------------ the phases
+
+    def needs(self, missing):
+        """missing.csv's people first: a plain picture of each kind, sex, age, skin and hair the game lacked."""
+        unknown = []
+        for r in missing:
+            kind = (r.get('kind') or '').strip()
+            race, _, xeno = kind.partition('/')
+            k = None
+            if race and race != 'Human':
+                k = self.kinds.get(race)
+            elif xeno and xeno != 'custom':
+                k = self.kinds.get(xeno)
+            if k is None or not k.plannable:
+                unknown.append((kind, r['_n']))
+                continue
+            sex = (r.get('sex') or '').strip()
+            age = W_age(r.get('age'))
+            if sex not in ('male', 'female') or age not in W.AGES:
+                continue
+            skin = k.skins.nearest(SKIN_WORD_HEX.get((r.get('skin') or '').strip(), ''))
+            hw = (r.get('hair') or '').strip()
+            hair = ('bald', '', '') if hw == 'bald' and not k.hairs.entries else (k.hairs.nearest(HAIR_WORD_HEX.get(hw, '')) if k.hairs.entries else ('bald', '', ''))
+            if hw == 'bald':
+                hair = next((e for e in k.hairs.entries if e[0] == 'bald'), hair)
+            if self.ledger.has(('ds', k.kind, sex, age, skin[0], hair[0])):
+                continue
+            era = (r.get('era') or '').strip()
+            self.make('needs', 0, k, sex, age, (skin, hair), era=era if era in W.ERAS else None)
+        return unknown
+
+    def defaults(self, ks):
+        """Plain pictures: one of every kind, sex and age band first, then the rest of each spread."""
+        for first in (True, False):
+            for k in ks:
+                for age, _ in k.ages:
+                    for sex in k.sexes:
+                        pairs = k.pick_spread(age, k.spread_size(age))
+                        todo = pairs[:1] if first else pairs[1:]
+                        for pair in todo:
+                            if first and self.ledger.has(('d', k.kind, sex, age)):
+                                continue
+                            if self.ledger.has(('ds', k.kind, sex, age, pair[0][0], pair[1][0])):
+                                continue
+                            self.make('defaults', k.wave, k, sex, age, pair)
+
+    def role_list(self, k):
+        n = max(1, min(len(k.roles), round(k.weight * 12)))
+        return [ro for ro, s in k.roles[:n] if s >= ROLE_MIN_SHARE]
+
+    def role_ages(self, k):
+        return [a for a, s in k.ages if s >= ROLE_AGE_SHARE and a in W.GROWN]
+
+    def roles_phase(self, ks):
+        """One picture of each common kind, sex, age and role."""
+        for k in ks:
+            if k.weight < ROLE_MIN_WEIGHT:
+                continue
+            for age in self.role_ages(k):
+                pairs = k.spread(age)
+                for sex in k.sexes:
+                    for i, role in enumerate(self.role_list(k)):
+                        if self.ledger.has(('r', k.kind, sex, age, role)):
+                            continue
+                        pair = pairs[(i * 3 + (1 if sex == 'female' else 0)) % len(pairs)]
+                        self.make('roles', k.wave, k, sex, age, pair, role=role)
+
+    def looks_for(self, k):
+        """The looks a kind's people can show that its own look sheet doesn't already have, commonest first."""
+        out = []
+        for lk in sorted(self.looks.values(), key=lambda l: (-l.count, l.word)):
+            if lk.word in k.always:
+                continue
+            if lk.kinds and k.kind not in lk.kinds:
+                continue
+            if set(lk.genes) & k.genes:
+                continue  # the kind's own look has it: every one of them shows it
+            if lk.genes and not lk.traits and not lk.kinds:
+                continue  # it comes with genes (its conditions too): only on kinds the catalogue doesn't plan yet
+            if lk.word == 'womanBeard' and k.women_beards:
+                continue
+            if lk.word == 'conjoined':
+                continue
+            out.append(lk)
+        return out
+
+    def looks_phase(self, ks):
+        """One picture of each special look for the kinds it occurs in, and of each ordinary look for the common kinds."""
+        for k in ks:
+            ages = [a for a, s in k.ages if a in W.GROWN] or [a for a, _ in k.ages]
+            if not ages:
+                continue
+            for lk in self.looks_for(k):
+                seen = lk.share >= LOOK_SEEN_SHARE
+                if lk.special:
+                    if k.weight < LOOK_MIN_WEIGHT and not lk.kinds:
+                        continue
+                elif not (k.weight >= LOOK_ALL_WEIGHT or (k.weight >= LOOK_MIN_WEIGHT and seen)):
+                    continue
+                for si, sex in enumerate(k.sexes):
+                    if lk.word == 'womanBeard' and sex != 'female':
+                        continue
+                    if self.ledger.has(('l', k.kind, sex, lk.word)):
+                        continue
+                    rng = seeded(k.kind, sex, lk.word)
+                    age = weighted(rng, [(a, s) for a, s in k.ages if a in ages])
+                    pairs = k.spread(age)
+                    pair = pairs[rng.randrange(len(pairs))]
+                    self.make('looks', k.wave, k, sex, age, pair, look=lk, wide=True)
+
+    def variety(self, ks, budget):
+        """More plain, role and look pictures in rounds, each cell up to its share of the kind's pictures."""
+        cells = []
+        for k in ks:
+            total = VARIETY_TOTAL * k.weight * k.weight
+            for age, share in k.ages:
+                for sex in k.sexes:
+                    target = math.ceil(total * share / len(k.sexes))
+                    cells.append(('d', k, sex, age, target, None))
+                    if k.weight >= ROLE_MIN_WEIGHT and age in self.role_ages(k):
+                        for role, rs in k.roles:
+                            if role in self.role_list(k):
+                                cells.append(('r', k, sex, age, math.ceil(total * share * rs * 0.6 / len(k.sexes)), role))
+            if k.weight >= LOOK_MIN_WEIGHT:
+                for lk in self.looks_for(k):
+                    if lk.share >= LOOK_SEEN_SHARE and not lk.special:
+                        for sex in k.sexes:
+                            cells.append(('l', k, sex, None, math.ceil(lk.share * k.weight * 40 / len(k.sexes)), lk))
+        written = 0
+        rnd = 0
+        last = max([c[4] for c in cells] + [0])
+        while written < budget and rnd < last:
+            rnd += 1
+            for typ, k, sex, age, target, extra in cells:
+                if written >= budget:
+                    break
+                if typ == 'd':
+                    have = self.ledger.cells[('d', k.kind, sex, age)]
+                elif typ == 'r':
+                    have = self.ledger.cells[('r', k.kind, sex, age, extra)]
+                else:
+                    have = self.ledger.cells[('l', k.kind, sex, extra.word)]
+                if have >= target or have >= rnd:
+                    continue
+                rng = seeded(k.kind, sex, str(age), typ, str(rnd), extra.word if typ == 'l' else (extra or ''))
+                a = age or weighted(rng, [(x, s) for x, s in k.ages if x in W.GROWN] or k.ages)
+                pairs = k.spread(a)
+                pair = pairs[rng.randrange(len(pairs))]
+                marks = ()
+                if typ == 'd' and a in W.GROWN and rng.random() < 0.08:
+                    marks = (weighted(rng, [('scar', 4), ('lostEye', 2), ('eyePatch', 1), ('bionicEye', 1), ('burn', 1)]),)
+                self.make('variety', k.wave, k, sex, a, pair, role=extra if typ == 'r' else '',
+                          look=extra if typ == 'l' else None, marks=marks, wide=True)
+                written += 1
+
+
+# ---------------------------------------------------------------- the report
+
+
+def coverage_report(kinds, looks, ledger, planner, written_files, unknown, records_n, catalogue_bad):
+    """COVERAGE.md: what the library and the lists hold against the catalogue, the gaps first."""
+    L = ['# Portrait coverage', '',
+         'Written by `Tools/PortraitArt/plan_batches.py` (do not edit by hand). "Pictures" are those in the library\'s',
+         'records.xml the planner was given; "listed" are rows in the batch lists, made or not; a gap is a cell with',
+         'neither. Cells: every sex and age band a kind comes in (plain pictures), its common roles, and the looks.', '']
+    L.append('Library pictures read: %d. Rows in the batch lists before this run: %d (with at least one picture: %d). '
+             'Rows written by this run: %d.' % (records_n, len(ledger.names), len(ledger.made), len(planner.rows)))
+    L.append('')
+    L += ['## By wave', '', '| wave | kinds | plain cells covered (sex and age) | with a picture | plain rows | role rows | look rows |',
+          '|---|---|---|---|---|---|---|']
+    for w in range(1, 6):
+        ks = [k for k in kinds.values() if k.plannable and k.wave == w]
+        if not ks:
+            continue
+        cells = [(k, s, a) for k in ks for a, _ in k.ages for s in k.sexes]
+        cov = sum(1 for k, s, a in cells if ledger.has(('d', k.kind, s, a)))
+        pic = sum(1 for k, s, a in cells if ledger.made_cells[('d', k.kind, s, a)])
+        names = {k.kind for k in ks}
+        rows = collections.Counter()
+        for c, v in ledger.cells.items():
+            if c[1] in names and c[0] in ('d', 'r', 'l'):
+                rows[c[0]] += v
+        L.append('| %d | %d | %d of %d | %d | %d | %d | %d |' % (w, len(ks), cov, len(cells), pic, rows['d'], rows['r'], rows['l']))
+    L.append('')
+    if catalogue_bad:
+        L += ['## Catalogue problems', ''] + ['- ' + b for b in catalogue_bad] + ['']
+    gaps = []
+    for k in sorted(kinds.values(), key=lambda k: (k.wave, -k.weight, k.kind)):
+        if not k.plannable:
+            continue
+        miss = [(sex, a) for a, _ in k.ages for sex in k.sexes if not ledger.has(('d', k.kind, sex, a))]
+        if miss:
+            gaps.append((k, miss))
+    L += ['## Gaps: kinds with ages that have no picture and no row yet', '']
+    if not gaps:
+        L += ['None: every kind, sex and age band has a picture or a listed row.', '']
+    else:
+        L += ['| wave | kind | weight | missing (sex, age) |', '|---|---|---|---|']
+        for k, miss in gaps:
+            shown = ', '.join('%s %s' % ('m' if s == 'male' else 'f', a) for s, a in miss[:10]) + (' ...' if len(miss) > 10 else '')
+            L.append('| %d | %s (%s) | %.2f | %d: %s |' % (k.wave, k.label, k.kind, k.weight, len(miss), shown))
+        L.append('')
+    if unknown:
+        L += ['## Needed in the game, not in the catalogue', '',
+              'missing.csv names these; each needs a row in kinds.csv (a look sheet) before rows can be planned.', '']
+        for kind, n in unknown:
+            L.append('- %s (%d)' % (kind, n))
+        L.append('')
+    L += ['## By wave and kind', '',
+          '| wave | kind | weight | save | plain cells | plain pictures | plain rows | role cells | role rows | look rows |',
+          '|---|---|---|---|---|---|---|---|---|---|']
+    for k in sorted(kinds.values(), key=lambda k: (k.wave, -k.weight, k.kind)):
+        if not k.plannable:
+            continue
+        cells = [(sex, a) for a, _ in k.ages for sex in k.sexes]
+        covered = sum(1 for s, a in cells if ledger.has(('d', k.kind, s, a)))
+        pics = sum(ledger.made_cells[('d', k.kind, s, a)] for s, a in cells)
+        plain = sum(ledger.cells[('d', k.kind, s, a)] for s, a in cells)
+        rcells = [(s, a, r) for a in planner.role_ages(k) for s in k.sexes for r in planner.role_list(k)] if k.weight >= ROLE_MIN_WEIGHT else []
+        rcov = sum(1 for s, a, r in rcells if ledger.has(('r', k.kind, s, a, r)))
+        rrows = sum(v for c, v in ledger.cells.items() if c[0] == 'r' and c[1] == k.kind)
+        lrows = sum(v for c, v in ledger.cells.items() if c[0] == 'l' and c[1] == k.kind)
+        L.append('| %d | %s | %.2f | %s | %d of %d | %d | %d | %s | %d | %d |' % (
+            k.wave, k.label, k.weight, k.row.get('saveCount', '0'), covered, len(cells), pics, plain,
+            ('%d of %d' % (rcov, len(rcells))) if rcells else '-', rrows, lrows))
+    L.append('')
+    not_planned = [k for k in kinds.values() if not k.plannable]
+    if not_planned:
+        L += ['Not planned (no look sheet or never shown): ' + ', '.join('%s (%s)' % (k.label, k.kind) for k in not_planned) + '.', '']
+    lk_rows = collections.Counter()
+    for c, v in ledger.cells.items():
+        if c[0] == 'l':
+            lk_rows[c[3]] += v
+    waiting = [lk for lk in looks.values() if lk_rows[lk.word] == 0]
+    L += ['## Looks', '',
+          'Rows listed per look (all kinds): ' + ', '.join('%s %d' % (w, n) for w, n in sorted(lk_rows.items(), key=lambda x: (-x[1], x[0]))) + '.', '']
+    if waiting:
+        L += ['No row yet (rarer, or waiting for a kind that has them): ' + ', '.join(sorted(lk.word for lk in waiting)) + '.', '']
+    L += ['## The lists', '', '| list | rows | with a picture |', '|---|---|---|']
+    for b in sorted(ledger.lists):
+        L.append('| %s | %d | %d |' % (b, ledger.lists[b], ledger.lists_made.get(b, 0)))
+    for path, n in written_files:
+        L.append('| %s (new) | %d | 0 |' % (os.path.splitext(os.path.basename(path))[0], n))
+    L.append('')
+    return '\n'.join(L)
+
+
+# ---------------------------------------------------------------- main
+
+
+def next_number(folder, prefix):
+    n = 0
+    for p in glob.glob(os.path.join(folder, prefix + '-*.csv')):
+        m = re.search(r'-(\d+)\.csv$', p)
+        if m:
+            n = max(n, int(m.group(1)))
+    return n + 1
+
+
+def write_lists(folder, rows, per_file, dry):
+    """The planned rows into new lists: needs-people-NN for missing.csv's, waveN-people-NN by the kind's wave."""
+    files = []
+    groups = collections.OrderedDict()
+    for phase, wave, row in rows:
+        prefix = 'needs-people' if phase == 'needs' else 'wave%d-people' % wave
+        groups.setdefault(prefix, []).append(row)
+    for prefix, rs in groups.items():
+        n = next_number(folder, prefix)
+        for i in range(0, len(rs), per_file):
+            chunk = rs[i:i + per_file]
+            path = os.path.join(folder, '%s-%02d.csv' % (prefix, n))
+            n += 1
+            if not dry:
+                with open(path, 'w', encoding='utf-8', newline='') as f:
+                    w = csv.DictWriter(f, fieldnames=COLUMNS, lineterminator='\n')
+                    w.writeheader()
+                    for r in chunk:
+                        w.writerow(r)
+            files.append((path, len(chunk)))
+    return files
+
+
+def load(catalogue):
+    kinds = collections.OrderedDict((r['kind'], Kind(r)) for r in read_csv(os.path.join(catalogue, 'kinds.csv')))
+    looks = collections.OrderedDict((r['word'], Look(r)) for r in read_csv(os.path.join(catalogue, 'looks.csv')))
+    marks = {r['word']: r for r in read_csv(os.path.join(catalogue, 'marks.csv')) if r.get('game') == 'yes'}
+    roles = {r['role']: r for r in read_csv(os.path.join(catalogue, 'roles.csv'))}
+    return kinds, looks, marks, roles
+
+
+def plan(catalogue=CATALOGUE, batches=BATCHES, records=None, missing=None, waves=None, phases=None, max_rows=600,
+         per_file=200, dry=False, report=None, check=True):
+    bad = catalogue_check.check(catalogue) if check else []
+    kinds, looks, marks, roles = load(catalogue)
+    ledger = Ledger(kinds)
+    read_batches(batches, ledger)
+    records_n = read_records(records, ledger)
+    planner = Planner(kinds, looks, marks, roles, ledger, 0, cap=max_rows)
+    unknown = planner.needs(read_missing(missing))
+    usable = [k for k in kinds.values() if k.plannable]
+    if not waves:
+        gap_waves = sorted({k.wave for k in usable if any(not ledger.has(('d', k.kind, s, a)) for a, _ in k.ages for s in k.sexes)})
+        first = gap_waves[0] if gap_waves else min(k.wave for k in usable)
+        waves = [first, first + 1]
+    phases = phases or PHASES
+    order = lambda w: sorted([k for k in usable if k.wave == w], key=lambda k: (-k.weight, k.kind))
+    try:
+        for phase in ('defaults', 'roles', 'looks'):
+            if phase not in phases:
+                continue
+            for w in waves:
+                {'defaults': planner.defaults, 'roles': planner.roles_phase, 'looks': planner.looks_phase}[phase](order(w))
+        if 'variety' in phases:
+            planner.variety([k for w in waves for k in order(w)], max_rows - len(planner.rows))
+    except Full:
+        pass
+    files = write_lists(batches, [r for r in planner.rows], per_file, dry)
+    text = coverage_report(kinds, looks, ledger, planner, files, unknown, records_n, bad)
+    if report and not dry:
+        with open(report, 'w', encoding='utf-8', newline='\n') as f:
+            f.write(text)
+    return planner, files, text, bad
+
+
+def main(argv=None):
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument('--catalogue', default=CATALOGUE)
+    ap.add_argument('--batches', default=BATCHES)
+    ap.add_argument('--records', help="the library's records.xml (what pictures exist)")
+    ap.add_argument('--missing', help="the library's missing.csv (what the game needed and lacked)")
+    ap.add_argument('--waves', help='the waves to plan, e.g. 1,2 (default: the first with a gap and the next)')
+    ap.add_argument('--phases', help='which of defaults,roles,looks,variety (default: all)')
+    ap.add_argument('--max-rows', type=int, default=600)
+    ap.add_argument('--per-file', type=int, default=200)
+    ap.add_argument('--report', default=os.path.join(CATALOGUE, 'COVERAGE.md'))
+    ap.add_argument('--dry-run', action='store_true', help='write nothing, say what would be written')
+    a = ap.parse_args(argv)
+    waves = [int(x) for x in a.waves.split(',')] if a.waves else None
+    phases = [p.strip() for p in a.phases.split(',')] if a.phases else None
+    planner, files, text, bad = plan(a.catalogue, a.batches, a.records, a.missing, waves, phases, a.max_rows, a.per_file,
+                                     a.dry_run, a.report)
+    for b in bad:
+        print('Catalogue: ' + b)
+    by = collections.Counter(p for p, _, _ in planner.rows)
+    print('Planned %d rows (%s).' % (len(planner.rows), ', '.join('%s %d' % (p, by[p]) for p in ['needs'] + PHASES if by[p])))
+    for path, n in files:
+        print('  %s %s: %d rows' % ('Would write' if a.dry_run else 'Wrote', os.path.relpath(path, ROOT), n))
+    if not a.dry_run:
+        print('Coverage report: %s' % os.path.relpath(a.report, ROOT))
+    return 0
+
+
+if __name__ == '__main__':
+    sys.exit(main())

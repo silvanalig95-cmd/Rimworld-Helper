@@ -1,0 +1,101 @@
+# The portrait catalogue
+
+The player, 22 November 2026: "create a catalog or a library of how all the possible combinations ... starting out with
+the likeliest ones, and then over time growing, and including even more, also, I guess, rarer combinations ... keep
+track of what we added ... all the races and how old they are, how old they look, gender". And: "I'm going to be
+running the same scripts over and over again ... script everything in a way that doesn't even create name duplicates".
+
+This folder is the list of everything a person in your game can look like, and the record of which pictures exist. It
+is built from your own mod list (`docs/player-mods`, the mods you have enabled) and your save, League of Toba (day 138,
+405 people: 346 alive, 59 dead). A script reads it and writes the next batch lists for ComfyUI, so you never write a
+prompt by hand and no two pictures ever get the same name.
+
+## What is in it
+
+| File | What it holds |
+|---|---|
+| `kinds.csv` | Every kind of person your game can have: the 79 xenotypes of your enabled mods and the 3 humanlike races besides the human (Anomaly's creepjoiners, Conjoined Twins' conjoined pair, A RimWorld of Magic's spirit). For each: how common it is (how many your save holds, and a weight from 0 to 1 that also counts the factions that bring it), its wave (1 to 5), the sexes it comes in, its ages, how it ages (ageless or not), the skins and hair colours it can have, and a look in plain words for the prompt. Kinds your save holds have their look from their real genes; the others are marked `guessed`. |
+| `looks.csv` | Everything else a waist-up picture can show, 146 looks: faces and bearing from traits (a drinker, a pyromaniac, a psychopath, a beauty, a brawler ...), A RimWorld of Magic's classes (a fire mage with a flame in hand, an ice mage, a necromancer ...), psycasters, implants and conditions (a bionic arm, a clouded eye, a blindfold ...), genes that show (antennae, a third eye, mandibles ...), and 23 special looks that only their own pictures fit (conjoined twins, wings, extra limbs, ghouls, the undead, warcaskets). Each says what the game finds it by (traits, genes, conditions or a body) and how common it is in your save. |
+| `marks.csv` | The marks of the body the game reads by itself: a lost eye, an eye patch, a bionic eye, a missing ear, a scar or a burn on the head. Two more are proposed (a missing arm, a face tattoo) and wait for the game to read them. |
+| `roles.csv` | The 18 roles a person can have (scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer), how common each is in your save, and what shows it in each of the four ages of dress (a medieval scholar's book, an industrial one's lab coat, a spacer one's data slate). The game reads a person's role from their adult backstory, else their best skill with a passion; children have none. |
+| `COVERAGE.md` | Written by the planner: what the library and the lists hold against the catalogue, by wave and kind, the gaps first. |
+
+## How a picture finds its person
+
+- **Kind, sex and age first.** A picture only ever goes to its own kind (a dark elf picture never to a human), its own
+  sex, and someone who looks that age. How old someone looks follows their kind: an elf of 300 can still look 25.
+- **Plain pictures are the defaults.** A picture with no role and no look fits anyone of its kind, sex and age.
+- **A role or a look goes only to people who have it.** A picture of a fire mage holding a flame goes only to fire
+  mages; a soldier's picture only to soldiers. So nobody casts a spell they can't, or holds a rifle they never use.
+- **Special looks go both ways.** A conjoined pair, someone with wings or with a crab claw for an arm only gets a picture
+  made for that look, and those pictures go to no one else. With none yet, the game shows its own drawing and notes it
+  in `missing.csv`.
+
+## Character, and only what they have
+
+Every picture gets a face of its own (two or three face words), an expression and a bearing, and these vary widely:
+eccentric, funny, intense, shy, proud, weathered, wild-haired. The rarer kinds and the later rounds get the widest range.
+But a picture never shows a prop, a power or gear that its role and looks don't stand for: a plain picture holds nothing
+a skill would need, a fire is only in a fire mage's hand, a rifle only in a soldier's. Anything a prompt adds that the
+game should check is written into the row's `looks` or `role`.
+
+## The loop
+
+1. **Make the next list.** Run `Run-PortraitBatch.ps1`, choose the list (start with `wave1-people-01`) and the style
+   `style`. Each row makes two pictures.
+2. **Keep the good ones.** In ComfyUI's `output\Rimfolk\<list>` folder, throw out the misses (wrong age, wrong kind,
+   broken hands, something held or shown that the row doesn't stand for), then double-click `Copy-ToLibrary.cmd`: it
+   copies the rest into `library\<list>\` (for example `library\wave1-people-01\`) with the names ComfyUI gave them.
+3. **Update the library.** `Copy-ToLibrary` writes the records itself (by hand: `Update-PortraitLibrary.ps1`), then
+   "Reload the library" in Rimfolk's settings.
+4. **Play.** Rimfolk writes `library\missing.csv` with what it needed and had no picture for.
+5. **Send** your save, `library\missing.csv` and `library\records.xml` when you send a save anyway.
+6. **The lead plans the next lists**: the census reads the save into the catalogue, the planner writes the next lists
+   (what `missing.csv` asked for first), and `COVERAGE.md` shows what is still missing.
+
+To try again for a row whose pictures you all threw out, run the same list again and answer yes to "make only the rows
+that have none yet". Lists are never rewritten: new rows always go into new lists, so the pictures already in
+`library\<list>\` keep their rows.
+
+## The order of the lists
+
+- `needs-people-NN`: what the game asked for in `missing.csv`. Run these first.
+- `waveN-people-NN`: by wave, the commonest kinds first. Wave 1 is baseliners and dark elves; wave 2 hussars,
+  neanderthals, impids, pigskins, wasters and saurids; wave 3 genies, starjacks, yttakin, sanguophages and the high
+  and wood elves; wave 4 the kinds your save holds a few times (lesser fairies, avaloi, stoneborn, the apes, drakonori
+  and others); wave 5 the rest, seen once or not yet. Inside a wave the lists go: plain
+  pictures of every sex and age band (one each, then a spread of skins and hair colours), then one picture for each
+  common role, then the looks (the commonest first), then more variety in rounds where a kind is common.
+
+The first lists (22 November 2026): `wave1-people-01` to `03` (474 rows: 128 plain, 66 roles, 280 looks) and
+`wave2-people-01` to `02` (254 plain rows). 728 rows, about 1,450 pictures with two each.
+
+## Names
+
+A row's name says what it shows: `p_<kind>_<m or f>_<age>_<role, look or plain>_<skin>_<hair>_<number>`, for example
+`p_baseliner_f_adult_plain_fair_brown_01` or `p_darkelf_m_young_hunter_white_black_01`. A name is written once and
+never changes or comes back for anything else, so the scripts can run as often as you like without a clash; every
+picture's own file name adds the style and the run's date and time.
+
+## For the lead: the tools
+
+All in `Tools/PortraitArt`, Python 3, nothing to install:
+- `save_census.py <save.rws> --update` (run with `python3 -I`; a save is someone else's data): counts the save's people
+  in the catalogue's words and writes the counts into the tables (save count, weight, wave, ages, roles and dress ages
+  for kinds seen 8 times or more, how common each look, mark and role is), and lists the kinds the save holds that
+  `kinds.csv` has no row for.
+- `plan_batches.py [--waves 1,2] [--phases defaults,roles,looks,variety] [--records records.xml] [--missing
+  missing.csv] [--dry-run]`: the next lists and `COVERAGE.md`. Running it again with the same inputs adds nothing.
+- `looks_to_defs.py`: writes `Defs/PortraitLookDefs/PortraitLooks.xml` from `looks.csv` (one look def per row).
+- `catalogue_check.py`: every name in the catalogue against the active rows of `docs/player-mods` ("OK").
+- `test_portrait_catalogue.py`: the tools' tests ("OK").
+
+## Adding a new mod's kinds
+
+1. Rebuild `docs/player-mods` from the player's new collection (`Tools/mod_pool.py`, see its README).
+2. Run the census on a save with the mod (`save_census.py ... --update`): it names the kinds it found without a row.
+3. Add a row to `kinds.csv` for each: a short `slug` (small letters, never changed), the kind and race, the look in
+   plain words starting with the kind ("a lapis: rocky ridges along the brow ..."), the skins and hair colours (a
+   human skin word, or `slug=#colour=words`), how it ages, its features, and `guessed` yes until its genes are seen in
+   a save. New looks the mod brings go into `looks.csv` the same way (a new word, never a changed one).
+4. `catalogue_check.py` must say "OK"; run the census again to fill the counts, then the planner.

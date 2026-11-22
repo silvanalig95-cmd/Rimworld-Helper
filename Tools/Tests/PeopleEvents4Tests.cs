@@ -312,7 +312,7 @@ public static class PeopleEvents4Tests
         while ((line = rd.ReadLine()) != null)
         {
             var c = line.Split('\t');
-            if (c.Length >= 4) catalogue.Add((c[0], c[1], c[2], c[3] == "yes"));
+            if (c.Length >= 4) catalogue.Add((c[0], c[1], c[2], OffForNow.Counts(root, c[3], c[2])));
         }
         return catalogue;
     }

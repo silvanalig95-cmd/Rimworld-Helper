@@ -95,10 +95,10 @@ public static class PeoplesGearTests
             }).ToList();
         }
         var mods = new Dictionary<string, bool>();
-        foreach (var r in Table("mods.tsv")) mods[r["packageId"].ToLowerInvariant()] = r["active"] == "yes";
+        foreach (var r in Table("mods.tsv")) mods[r["packageId"].ToLowerInvariant()] = OffForNow.Counts(root, r["active"], r["packageId"]);
         bool ModOn(string id) => id.StartsWith("ludeon.rimworld") || mods.TryGetValue(id, out bool on) && on;
         Dictionary<string, Dictionary<string, string>> Active(string file) =>
-            Table(file).Where(r => r["active"] == "yes").GroupBy(r => r["defName"]).ToDictionary(g => g.Key, g => g.Last());
+            Table(file).Where(r => OffForNow.Counts(root, r["active"], r["mod"])).GroupBy(r => r["defName"]).ToDictionary(g => g.Key, g => g.Last());
         var catApparel = Active("apparel.tsv");
         var catWeapons = Active("weapons.tsv");
         var catXenos = Active("xenotypes.tsv");
