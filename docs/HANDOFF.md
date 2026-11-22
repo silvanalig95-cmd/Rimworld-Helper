@@ -570,7 +570,7 @@ most sense." So, in this order, three builds at a time:
   their pictures alone; strangers share only when never seen together (a setting: never, when not seen together,
   always); special looks shared freely among strangers; else the game's drawing, counted in missing.csv as "no free
   picture" so more get planned.
-- **To do when the player asks (22 November 2026, the player; nothing built yet): pictures checked by what they show.**
+- **Go given (22 November 2026, the player: "Please go ahead"; with a build agent): pictures checked by what they show.**
   The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
   goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
   the image as much as possible." Records come from what the prompt asked, and a picture may show more (a weapon, a
@@ -580,6 +580,11 @@ most sense." So, in this order, three builds at a time:
   features, things held, glowing, wings, fire, armour), compares it with the picture's record, and lists the
   mismatches to throw out or fix, and the things shown that the record should carry as looks. The player looks
   through the list instead of every picture.
+  And: "Would then this AI also kind of rename it or just recognize, hey, looks more like a kid or a teenager and do all
+  the necessary changes accordingly for the game to pick up the new description". So no renaming (the name ties a
+  picture to its row): the check writes `library/corrections.csv` (per picture: age, sex, looks, role, or out; apply
+  yes, ask or no), marks the safe or clear ones yes by itself, and `Update-PortraitLibrary.ps1` applies them when it
+  writes the records (sent to the build).
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
