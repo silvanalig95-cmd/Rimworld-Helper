@@ -80,8 +80,9 @@ Windows' virtual memory to 32 to 64 GB and restarting.
    and press R in ComfyUI (or restart it). The player took the last save.
 2. The style files, `batches/style-rimworld-people.json` and `style-rimworld-backdrops.json`: the LoRA at 0.7 (the
    player's choice after the first test), one picture per row (the player: "you don't necessarily have to always
-   generate two versions of each single prompt ... so that we have a lot of variety soon"), no SameFace fix (the player
-   took it out again).
+   generate two versions of each single prompt ... so that we have a lot of variety soon"), and the SameFace fix at -0.7
+   for people (taken out once, then back: "I want to use the no same face still. Just want to rather be safe than have
+   all these AI faces tomorrow morning").
 3. The first test (`style-test`) gave a white and light-blue border around every figure, like a sticker, while the
    training samples had only the black line on plain grey. The cause was the first style file's words ("a comic
    illustration", "outlines heavier along the silhouette", "a cool rim light along the edges"). The player: "a black

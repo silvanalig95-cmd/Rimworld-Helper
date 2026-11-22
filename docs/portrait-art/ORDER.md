@@ -16,8 +16,9 @@ must run all these programs and scripts". The details of each step are in `SETUP
    - `rimfolk-variant-workflow-api.json`: expressions, FLUX.1 Kontext Dev (step 10).
 4. In RimWorld, Rimfolk's settings, "Portrait library folder": the path of `Rimfolk-portraits\library`.
 5. The style: `style-rimworld-people` for people and `style-rimworld-backdrops` for backdrops (the player's own
-   `rmwstyle` LoRA, trained on the game's art, `STYLE-RIMWORLD.md`), one picture per row. Copy `rmwstyle.safetensors`
-   into ComfyUI's `models\loras`. The workflow needs at least one LoRA box (`SETUP-ComfyUI.md`; a second one is set to 0).
+   `rmwstyle` LoRA, trained on the game's art, `STYLE-RIMWORLD.md`, with the SameFace fix for people), one picture per
+   row. Copy `rmwstyle.safetensors` and `SameFace_Fix.safetensors` into ComfyUI's `models\loras`. The workflow needs two
+   LoRA boxes (`SETUP-ComfyUI.md`).
 
 ### Starting a new library
 1. Move the old `library` folder out of `Rimfolk-portraits` (or rename it `library-old`). The copier makes a new, empty

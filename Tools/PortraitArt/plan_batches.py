@@ -66,6 +66,9 @@ CHAR_ROLES_LOOKS = {1: (18, 18), 2: (2, 2)}
 CHAR_LITTLE = {1: {'baby', 'toddler', 'child', 'teen'}, 2: {'child', 'teen'}, 3: {'teen'}}
 # The longest a characters prompt may be (a longer one loses its least needed words; the tests hold every row to it).
 MAX_SUBJECT = 1050
+# The characters lists' little ones: at this share of their flattened one, and made last in a kind's turn (mix).
+LITTLE_AGES = ('baby', 'toddler', 'child')
+LITTLE_SHARE = 0.5
 HUMAN_SKIN_SLUGS = {s for s, _, _ in W.HUMAN_SKINS}
 # Words a hardship line leaves out when the face already says them ("sun-browned skin" and "Sun-browned, dry skin").
 ECHO_WORDS = ['sun-browned', 'weather', 'hollow', 'wind', 'creased', 'chapped', 'lines', 'grime', 'stare']
@@ -1047,7 +1050,10 @@ class Planner:
         """(sex, age) for each of a kind's n plain character rows. Many rows: every band by its share flattened (so the
         rare ages still come up). A few: the sexes take turns, the bands drawn by share, at least one grown-up of 18 to
         44 and, from three rows, one of 45 or more where the kind has them."""
-        ages = [(a, s ** 0.6) for a, s in self.char_ages(k)]
+        # Little ones (babies, toddlers, children: those who can't work yet) at half their flattened share: the player,
+        # 22 November 2026: "kids are not that common in the game ... there should be a bunch of kids and toddler images
+        # available, they are not common in the game and not much of a priority overall".
+        ages = [(a, s ** 0.6 * (LITTLE_SHARE if a in LITTLE_AGES else 1.0)) for a, s in self.char_ages(k)]
         if not ages or n <= 0:
             return []
         rng = seeded('characters', k.kind)
@@ -1578,10 +1584,13 @@ def mix(rows, kinds):
             rng.shuffle(order)
             for c in order:
                 rng.shuffle(cells[c])
-            while any(cells[c] for c in order):       # sexes and ages take turns
-                for c in order:
-                    if cells[c]:
-                        q.append(cells[c].pop(0))
+            # sexes and ages take turns; the little ones (babies, toddlers, children) after the rest, so a list's first
+            # hours are grown people (the player: kids "not much of a priority overall")
+            for group in ([c for c in order if c[1] not in LITTLE_AGES], [c for c in order if c[1] in LITTLE_AGES]):
+                while any(cells[c] for c in group):
+                    for c in group:
+                        if cells[c]:
+                            q.append(cells[c].pop(0))
         queues[key] = q
     def turns(k):
         # The square root of how many the player's world has: the commonest kinds come up most, the rare ones still early.
