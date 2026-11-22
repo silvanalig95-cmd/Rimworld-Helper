@@ -11,7 +11,7 @@ using System.Xml.Linq;
 namespace ColonyCouncil
 {
     /// <summary>What happens to a picture's files when it is deleted for good in the game: moved to the bin next to the library folder (the default), or deleted.</summary>
-    public enum PortraitDeleteMode : byte
+    public enum PortraitDeleteMode
     {
         Bin,
         Delete
@@ -50,7 +50,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>The step a deletion stopped at, with nothing changed.</summary>
-    public enum DeleteStop : byte
+    public enum DeleteStop
     {
         None,
         NoRecords,
@@ -428,8 +428,17 @@ namespace ColonyCouncil
         /// </summary>
         public static void WriteSafely(string path, string text, bool bom)
         {
+            var enc = new UTF8Encoding(bom);
+            var body = enc.GetBytes(text ?? "");
+            var pre = enc.GetPreamble();
+            WriteSafely(path, pre.Length > 0 ? pre.Concat(body).ToArray() : body);
+        }
+
+        /// <summary><see cref="WriteSafely(string, string, bool)"/> for bytes as they are (a file put back as it was).</summary>
+        public static void WriteSafely(string path, byte[] bytes)
+        {
             string tmp = path + ".tmp";
-            File.WriteAllText(tmp, text, new UTF8Encoding(bom));
+            File.WriteAllBytes(tmp, bytes ?? new byte[0]);
             try
             {
                 if (!File.Exists(path))
@@ -463,6 +472,13 @@ namespace ColonyCouncil
         }
 
         // ---------------- The deletion ----------------
+
+        /// <summary>A file's bytes as text (UTF-8, its mark at the start taken off), or null for none.</summary>
+        public static string TextOf(byte[] bytes)
+        {
+            if (bytes == null) return null;
+            using (var r = new StreamReader(new MemoryStream(bytes), Encoding.UTF8, true)) return r.ReadToEnd();
+        }
 
         /// <summary>
         /// The whole deletion, on a worker thread (<paramref name="wait"/> sleeps it between tries): records.xml read and its
@@ -534,9 +550,9 @@ namespace ColonyCouncil
                 }
 
             // The list first: if it can't be written, nothing has changed.
-            string oldList = null;
-            if (!Attempt(() => oldList = File.Exists(listPath) ? File.ReadAllText(listPath) : null, job.tries, wait, out var listReadErr)
-                || !Attempt(() => WriteSafely(listPath, Append(oldList, job.line), true), job.tries, wait, out listReadErr))
+            byte[] oldList = null;
+            if (!Attempt(() => oldList = File.Exists(listPath) ? File.ReadAllBytes(listPath) : null, job.tries, wait, out var listReadErr)
+                || !Attempt(() => WriteSafely(listPath, Append(TextOf(oldList), job.line), true), job.tries, wait, out listReadErr))
             {
                 r.stop = DeleteStop.WriteList;
                 r.error = listReadErr?.Message ?? "";
@@ -548,7 +564,7 @@ namespace ColonyCouncil
                 Attempt(() =>
                 {
                     if (oldList == null) File.Delete(listPath);
-                    else WriteSafely(listPath, oldList, true);
+                    else WriteSafely(listPath, oldList);
                 }, job.tries, wait, out _);
                 r.stop = DeleteStop.WriteRecords;
                 r.error = writeErr?.Message ?? "";

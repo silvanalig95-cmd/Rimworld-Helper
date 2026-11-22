@@ -15,6 +15,7 @@
 # - It never renames, moves or deletes a picture and changes nothing else in the library; at the end it writes the
 #   records again (Update-PortraitLibrary.ps1), which tell the game where each backdrop's depth map is. Then "Reload the
 #   library" in the game.
+# - A backdrop deleted for good in the game (listed in library\deleted.csv) gets no depth map.
 #
 # Run it: keep ComfyUI open and double-click Make-DepthMaps.cmd (or right-click this file, "Run with PowerShell").
 
@@ -329,6 +330,63 @@ function Prepare-Workflow($wf, [string] $image, [string] $instruction, [int] $w,
     return $found
 }
 
+# ---------------- Pictures deleted in the game ----------------
+# library\deleted.csv: Rimfolk adds a line there when a picture is deleted for good from the large portrait's menu (its
+# files go to the bin, deleted pictures\ beside the library). Such a picture is never copied, recorded, checked or given
+# expressions or a depth map again, even if its file comes back. Matched by its file name, and a " (2)" copy of it by its
+# content (the SHA-256 on its line), so another picture that only shares the start of the name is not held back. To bring
+# a picture back, take its line out of deleted.csv and put its file back into the library.
+
+function Read-Deleted([string] $lib) {
+    # The deleted pictures by their name without .png (small letters), each with the SHA-256 of its file ('' where its
+    # line has none); the names of " (2)" copies also by the name they are a copy of; and the records' names.
+    $d = @{ names = @{}; copies = @{}; records = @() }
+    $path = Join-Path $lib 'deleted.csv'
+    if (-not (Test-Path -LiteralPath $path)) { return $d }
+    try {
+        $first = ''
+        foreach ($l in @(Get-Content -LiteralPath $path -Encoding UTF8 -TotalCount 1)) { $first = [string]$l }
+        $delim = ','
+        if ($first.IndexOf(';') -ge 0 -and $first.IndexOf(',') -lt 0) { $delim = ';' }
+        $rows = @(Import-Csv -LiteralPath $path -Encoding UTF8 -Delimiter $delim)
+    }
+    catch { throw ('{0} could not be read ({1}): is it open in Excel? Close it and run this again.' -f $path, $_.Exception.Message) }
+    foreach ($r in $rows) {
+        $cols = @($r.PSObject.Properties.Name)
+        $f = ''; if ($cols -contains 'file') { $f = ([string]$r.file).Trim() }
+        if ($f -eq '') { continue }
+        $f = @($f -split '[\\/]')[-1]
+        if ($f.ToLowerInvariant().EndsWith('.png')) { $f = $f.Substring(0, $f.Length - 4) }
+        $stem = $f.ToLowerInvariant()
+        $hash = ''; if ($cols -contains 'sha256') { $hash = ([string]$r.sha256).Trim().ToUpperInvariant() }
+        if (-not $d.names.ContainsKey($stem)) { $d.names[$stem] = New-Object System.Collections.ArrayList }
+        [void]$d.names[$stem].Add($hash)
+        $base = $stem -replace '\s*\(\d+\)$', ''
+        if ($base -ne $stem) {
+            if (-not $d.copies.ContainsKey($base)) { $d.copies[$base] = New-Object System.Collections.ArrayList }
+            [void]$d.copies[$base].Add($hash)
+        }
+        if ($cols -contains 'record') { $rec = ([string]$r.record).Trim(); if ($rec -ne '') { $d.records += $rec } }
+    }
+    return $d
+}
+
+function Is-Deleted([string] $path, $deleted, [bool] $fromOutput = $false) {
+    # Whether deleted.csv lists this picture: its own name, or a " (2)" copy of a listed picture with the same content;
+    # for a picture in ComfyUI's output (fromOutput) also one whose " (2)" copy in the library was deleted.
+    if ($deleted.names.Count -eq 0) { return $false }
+    $stem = [System.IO.Path]::GetFileNameWithoutExtension($path).ToLowerInvariant()
+    if ($deleted.names.ContainsKey($stem)) { return $true }
+    $hashes = New-Object System.Collections.ArrayList
+    $base = $stem -replace '\s*\(\d+\)$', ''
+    if ($base -ne $stem -and $deleted.names.ContainsKey($base)) { $hashes.AddRange(@($deleted.names[$base])) }
+    if ($fromOutput -and $deleted.copies.ContainsKey($stem)) { $hashes.AddRange(@($deleted.copies[$stem])) }
+    if ($hashes.Count -eq 0) { return $false }
+    if ($hashes -contains '') { return $true }
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { return $false }
+    return ($hashes -contains (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash)
+}
+
 # ---------------- The backdrops ----------------
 
 function Has-Place([string] $batch) {
@@ -355,11 +413,14 @@ function Find-Backdrops {
         catch { Write-Host ('Note: records.xml could not be read ({0}); the backdrops are found by their folders.' -f $_.Exception.Message) -ForegroundColor Yellow }
     }
     $found = New-Object System.Collections.ArrayList
+    # Backdrops deleted for good in the game (deleted.csv) get no depth map, even where their file is still here.
+    $deleted = Read-Deleted $library
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory | Sort-Object Name)) {
         $isBacks = ($dir.Name -eq 'backdrops') -or (Has-Place $dir.Name)
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File | Sort-Object Name)) {
             $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
             if (Is-Extra $stem) { continue }
+            if (Is-Deleted $f.FullName $deleted) { $script:DeletedSkipped++; continue }
             if (-not ($isBacks -or $listed.ContainsKey(($dir.Name + '/' + $stem).ToLowerInvariant()))) { continue }
             [void]$found.Add([pscustomobject]@{
                 path = $f.FullName; show = ($dir.Name + '\' + $f.Name); stem = $stem
@@ -373,7 +434,9 @@ function Find-Backdrops {
 try {
     Add-Type -AssemblyName System.Net.Http
     if (-not (Test-Path -LiteralPath $library)) { throw ('There is no library folder next to this script ({0}): see SETUP-ComfyUI.md, step 7.' -f $library) }
+    $script:DeletedSkipped = 0
     $backs = @(Find-Backdrops)
+    if ($script:DeletedSkipped -gt 0) { Write-Host ('{0} left out: deleted for good in the game (deleted.csv).' -f (Count-Of $script:DeletedSkipped 'backdrop' 'backdrops')) }
     if ($backs.Count -eq 0) { throw ('No backdrops in the library ({0}) yet: they go into library\backdrops (SETUP-ComfyUI.md, step 7).' -f $library) }
     $todo = @($backs | Where-Object { -not (Test-Path -LiteralPath $_.depth) })
     $made = 0

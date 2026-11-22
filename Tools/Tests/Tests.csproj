@@ -80,6 +80,7 @@
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitLifeMath.cs" Link="PortraitLifeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/BackdropMath.cs" Link="BackdropMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitFolderMath.cs" Link="PortraitFolderMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitDeleteMath.cs" Link="PortraitDeleteMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="ApparelTagMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelReadMath.cs" Link="ApparelReadMath.cs" />
