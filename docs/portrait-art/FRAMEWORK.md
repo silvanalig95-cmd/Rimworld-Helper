@@ -80,8 +80,11 @@ pillar 2 it uses, and how it ages (the player: "the age range should always be c
 ... have a much longer age expectancy than others ... some even can live forever technically ... Not that an ... elf
 that's still young with a certain age is shown as an old person"). A picture's age is always how old the person looks,
 and its prompt says so ("looks about 30"), never their years: the game reads the band from the pawn's biological age,
-stretched by its race's life expectancy and its genes' lifespan factor, and an ageless kind (Biotech's Ageless and
-Deathless, the elves' ageless gene) never reads older than adult. The player's active mods change ageing with: Ageless,
+stretched by its race's life expectancy and its genes' lifespan factor; an ageless pawn (Biotech's Ageless, the elves'
+ageless gene) still grows older in looks, slowly, as if it lived ten times as long (the player: "ageless pawns can also
+look ... old, middle-aged, or even elderly over time if they are like really super old"): young at 200, adult at 300,
+middle-aged around 500, old around 700, elderly past 800. The picture never holds the years, only the look, so one
+picture of "an elf who looks about 30" serves an elf of 30 and an ageless one of 300 alike. The player's active mods change ageing with: Ageless,
 Deathless, DevDesigner_Ageless, DV_LifespanLong, AG_ExtraordinaryLifespan, AG_SlowerAging, AG_FasterAging,
 VRE_SlowAging, VRE_FastAging, VRE_RapidAging, GS_RapidAge. The lead writes it from the kind's own files (its genes and description; a collector script gathers them
 for mods added later), so a kind new to the game gets a sheet the same way. Until a kind has pictures of its own, a near-

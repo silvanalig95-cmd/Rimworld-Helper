@@ -456,7 +456,9 @@ most sense." So, in this order, three builds at a time:
   Not that an ... elf that's still young with a certain age is shown as an old person ... keep our entire list of
   xenotypes in mind when creating these images." So the band is how old a pawn looks: its biological age (genes that
   slow, speed or stop ageing count by themselves), the grown-up limits stretched by the race's life expectancy and the
-  pawn's lifespan factor, ageless and deathless pawns never older than adult (told to the build agent; the genes of the
+  pawn's lifespan factor, an ageless pawn growing older in looks slowly, as if it lived ten times as long (the player:
+  "ageless pawns can also look ... old, middle-aged, or even elderly over time if they are like really super old");
+  every prompt says the age a person looks, never their years (told to the build agent; the genes of the
   player's mods that change ageing are listed in `FRAMEWORK.md` pillar 3, and every look sheet says how its kind ages).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
