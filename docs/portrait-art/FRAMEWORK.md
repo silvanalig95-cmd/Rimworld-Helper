@@ -24,9 +24,11 @@ key-art look, described in words (no picture of the game's is copied or fed in):
   or blue rim light from behind, a warm key light from the front left.
 - **Faces**: angular and characterful, slightly exaggerated (a strong nose, defined cheekbones, real asymmetry), never the
   generic pretty face: every person gets features of their own (pillar 2, face).
-- **Frame**: from the waist up (1024 x 1280), the head in the upper third, the body and arms running past the edges (so
-  no picture ends in a cut-out bust), one person, bare-headed, on one flat, even dark blue-grey colour that is cut away
-  afterwards (see "Backgrounds"). Said only positively: FLUX reads "no border, no hat" as a call for a border and a hat.
+- **Frame**: a medium close-up cut by the picture's bottom edge at the belt (1024 x 1280), the head near the top and about
+  a third of the picture's height, the body and arms running past the edges (so no picture ends in a cut-out bust; "from
+  the waist up" alone gave nearly the whole figure, legs too), one person, bare-headed, on one flat, even dark blue-grey
+  colour that is cut away afterwards (see "Backgrounds"). Said only positively: FLUX reads "no border, no hat" as a call
+  for a border and a hat. Poses keep to what fits that frame (a staff gripped at chest height, a bow over the shoulder).
 - **Holding the style**: every prompt starts with the style and ends with it repeated (`style_end`), so a reptile, an
   elf or a child is drawn the same way as a baseliner. FLUX ignores the negative prompt at its usual settings, so what
   matters is said positively. Once 20 to 40 pictures are chosen, a small style LoRA trained on them on the player's card
@@ -62,7 +64,7 @@ key-art look, described in words (no picture of the game's is copied or fed in):
 | mouth and jaw | thin lips, full lips, wide mouth, small mouth, lopsided grin, overbite, gap teeth, weak chin, strong jaw, cleft chin |
 | skin detail | freckles, moles, acne scars, pockmarks, wrinkles, crow's feet, sunburn, stubble shadow, birthmark |
 | facing | front, left, right, three-quarter left, three-quarter right |
-| pose | arms crossed, arms folded, hands clasped, a hand on the hip, a hand on a weapon, a weapon on the shoulder, the tool of their trade in hand, holding something of their own, leaning forward, hunched, standing square, sitting (small children); the head tilted or the chin raised |
+| pose | arms crossed, arms folded, hands clasped, a hand on the hip, a hand on a weapon, a weapon on the shoulder, the tool of their trade in hand, holding something of their own up to the chest, leaning forward, hunched, standing square; the head tilted or the chin raised |
 
 Every new person in a batch gets two or three face words drawn at random (and kept for that character), so no two
 read alike and none falls back to the generic face. The pose (the player, 22 November 2026: "the poses ... should maybe

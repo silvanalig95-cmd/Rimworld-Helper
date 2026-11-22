@@ -397,7 +397,12 @@ most sense." So, in this order, three builds at a time:
   cut out on their computer in the same run; `batches/backdrops.csv` with `style-backdrop` (67 places: twelve rooms in
   four ages, sixteen outdoor looks for the player's 56 biomes, three plain grounds); `FRAMEWORK.md` has the chosen style,
   the pose axis and a "Backgrounds" section. Tested here against a stand-in server. Next from the player: install the
-  node pack, run `colonists` with `style` and `backdrops` with `style-backdrop`, send a few of each. Then (mod code) the
+  node pack, run `colonists` with `style` and `backdrops` with `style-backdrop`, send a few of each.
+  The player ran them ("Looks really good. However, it's not necessarily from the waist up, but almost including the
+  legs as well. Can you kind of specify that a bit more?"). Done: the frame is now a medium close-up cut by the bottom
+  edge at the belt, only head, shoulders, chest and arms, the head about a third of the height; the poses that pulled the
+  view wider (a staff resting on the ground, a bow at the side, a sitting child) now fit that frame. If still too wide:
+  a shorter picture (1024 x 1152) next. Then (mod code) the
   backdrop behind the large portrait by room, age and biome, tinted by day and weather, with the setting.
 - **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
