@@ -809,6 +809,87 @@ and the flavour's hover is the hints.
   an older settings file loads (its exact numbers and off carry over, its hints, the default then, become flavour), as
   `showImpact` was before it.
 
+### Fewer quests out on the world map, their sites nearer home, the events record (the player's go, 22 November 2026; not released yet)
+
+The player, 20 November 2026: "the missions that you get, especially the ones on the world map, where something pops up
+somewhere ... I rarely do because it's just a huge price to pay ... to travel on the world map ... if you could just
+reduce the chance in favor of other missions that might play out on the map", "how to make it less of a kind of a hurdle
+to even start something like this ... without making it unrealistic", and "does it even work correctly? And I feel like I
+have fewer events than I did in the past". Their save (day 135, Cassandra on Hard) had 77 quests offered, 46 of them out
+on the world map. Their go, 22 November 2026: "just go ahead ... in order that makes sense".
+
+- **Out on the world map, or at home** (`Story/QuestPlaceMath.cs`, pure; `Story/QuestPlaces.cs` reads the scripts). A
+  quest is out on the world map when its script makes or finds a place elsewhere for the colony to go to; everything else
+  plays out at home. Read once per quest script from the script itself, the same way for the game's, the DLCs' and every
+  mod's, no quest named: every node of its tree (by reflection: any field holding a node or a list of nodes), the scripts
+  it runs as parts of itself (a `SlateRef<QuestScriptDef>` naming one outright, as `QuestNode_SubScript` does: the game's
+  `Util_GenerateSite`, VFE Deserters' `VFED_DeserterQuestBase`), each node's type and the types it is built on by name
+  (`QuestNode_GetSiteTile`, `QuestNode_GenerateSite`, `QuestNode_SpawnWorldObjects`, `QuestNode_GetNearbySettlement`, and
+  any name holding `SiteTile`, `GenerateSite`, `SpawnWorldObject` or `NearbySettlement`, as VFE Deserters'
+  `QuestNode_GetSiteTileForComplex`), and the code of each node type (its methods, the closures and iterators inside them,
+  and a mod's own helpers two calls deep, read with Harmony's `PatchProcessor.ReadMethodBody`) for a call that makes or
+  finds a place elsewhere: `TileFinder.TryFindNewSiteTile`, `SiteMaker.*`, `SiteMakerHelper.*`,
+  `QuestGen_Sites.GenerateSite`, `QuestGen_Sites.SpawnWorldObject`, `QuestPart_SpawnWorldObject`,
+  `QuestPart_InitiateTradeRequest`, `WorldObjectMaker.MakeWorldObject` (a generic call's types count as what it makes).
+  Root nodes written in code (Odyssey's, Biotech's, Ideology's, VFE Empire's deserter hideout, every Vanilla Quests
+  Expanded root through its `QuestNode_Site`) are found by their code. A quest the game made in this save that did make
+  one (a `QuestPart_SpawnWorldObject` of a world object not the colony's, or a trade request) marks its script too, for a
+  script whose code hides it. Checked on a sample of the player's active quests modelled from their own files
+  (`QuestPlaceTests`): the game's site quests and trade request, Alpha Crafts' artisan trade request, VFE Medieval 2's
+  siege camp and skirmish, VFE Insectoids 2's hive, VFE Settlers' caravan raid and wanted, VFE Deserters' missions and
+  endgame, Vanilla Genetics Expanded's labs, Alpha Genes' lab, Alpha Memes' sanguophage camp, VPE's eltex meteor, VFE
+  Empire's deserter hideout, VFE Tribals' wild men, Vanilla Quests Expanded's sites out on the map; the wanderers who join
+  (the game's, Alpha Animals', Vanilla Events Expanded's), VFE Empire's grand ball, art exhibit and noble visit, VFE
+  Deserters' chased deserter and the Empire's bargain, the refugees as guests, a raid with a joiner after it at home. The
+  dev action "Quests: where each one plays out (log)" lists every quest of the player's game with where and why.
+- **The share** (`awayQuestShare`, How much happens, 10% to 100%, 50% to begin with; needs the deeper game hooks). While
+  the game's quest slot (`StorytellerComp_RandomQuest`, through `NaturalRandomQuestChooser.ChooseNaturalRandomQuest`) picks
+  a quest, each one out on the world map weighs the share of what it would (`GetNaturalRandomSelectionWeight`, a flag set
+  only while the slot chooses, so the game's debug tables, a mod's list and Rimfolk's ways to play read the weight as it
+  is); the quests at home keep theirs. The slot offers as many quests as before, and more of them play out at home: six in
+  ten out on the map become about four in ten at 50% (`AwayAfter`). An incident of the quest kind that names its own quest
+  (as some mods add) weighs the same in the slot (`IncidentWorker.BaseChanceThisGame`). The work sites come by their own
+  slot (`StorytellerComp_WorkSite`): each one it would send comes at the share, so at 50% half as many. Never touched: a
+  quest given another way (a story or an ending, a ritual, a decree, an item or a book, a trader or an orbital scanner, the
+  storyteller's important and epic quests, a mod's own chain or timer: Vanilla Quests Expanded's chains by Vanilla
+  Expanded Framework's chain timer, Alpha Genes' biotech labs and Alpha Crafts' artisan requests by their own world
+  components). Those come as their mods have them; Alpha Genes' own settings have a rate and an off switch for its labs.
+- **Sites nearer home** (`questSiteRange`, What's on, under the story direction: as the game has it, Nearer to begin
+  with, Near; needs the deeper game hooks). While a quest is being made (`QuestGen.quest` set), a call to
+  `TileFinder.TryFindNewSiteTile` (the game's `QuestNode_GetSiteTile` with its 7 to 27 tiles or the quest's own
+  `siteDistRange`, and every node of a mod's that asks the game for a new site's tile, as VFE Empire's deserter hideout
+  does) has its farthest lowered: to three fifths at Nearer (16 of 27), a third at Near (9 of 27, never below 6), its
+  nearest kept unless it wouldn't fit, then half the new farthest, never below 2 (Near: 4 to 9). Where no tile that near
+  fits, it is asked again as the game asked, so no quest is lost to the setting. Sites made outside a quest, quests that
+  pick their place another way (Vanilla Quests Expanded's own validators), and trade requests (`QuestNode_GetNearbySettlement`:
+  the town is where it is, and a nearer cap would only stop the quest) are as the game has them.
+- **Rimfolk's own timer besides the storyteller's** (`ownTimerShare`, How much happens, under the storyteller's weight: 0%
+  to 100%, none to begin with, as before). With the storyteller drawing Rimfolk's events, the own timer also runs at the
+  share of its usual pace: one about every 4 days at 100%, 8 at 50%, 16 at 25% (`EventRecordMath.BesidesDays`, on a fixed
+  4 days rather than the "About one Rimfolk event every ... days" slider, which stays greyed while the storyteller draws).
+  It is the same timer as the own-timer mode (`HappeningTracker.EventTimers`: one per home, waiting while a question is
+  unanswered or a fight is on), firing the same way into the storyteller's pools, so nothing else changes; the
+  storyteller seldom draws one in the day and a half after it. With the storyteller alone, the timers are let go each hour,
+  so they start afresh when they run again rather than firing the hour they start.
+- **The events record** (`Story/EventRecord.cs`, a game component; `EventRecordMath`, pure; `UI/EventRecordPanel.cs` on
+  Council, Colony, Overview). It keeps one line per event as it comes, "tick|kind|name" (the name as the colony saw it): the
+  storyteller's threats (its big and small threats) and everyday events (everything else it fires), Rimfolk's own events
+  (any incident with a `HappeningExtension`, drawn or on the own timer), from a postfix on `Storyteller.TryFire`; the
+  council's questions (`ChoiceLetter_Dilemma`) and the gods' cards (`GodLetter`, by their title as shown) from a postfix on
+  `LetterStack.ReceiveLetter`. And one line a day for each reason something was held back: the own timer waited for an
+  answer (`wait`) or for a fight to end (`fight`), the storyteller drew an everyday event while a question of Rimfolk's
+  waited at that home, so none of Rimfolk's could be drawn then (`drawwait`). Kept 30 days, at most 200 lines
+  (`Tools/save_estimate.py` models it). The quests are read from the game's own quest list when shown (those that
+  appeared in the 30 days, not hidden, not Rimfolk's own, counted with its events), at home or out on the world map by the
+  rule above, so they cost the save nothing. The section shows a card per kind with its count and the newest three by day,
+  then how Rimfolk's events and the game's quests come now (the mode, the share, the sites' range), then what was held
+  back: the reasons by days, and the half-share cap as it stands today (`HappeningTracker.ShareCut`). The gods' cards are
+  counted by the title the colony saw, never more ("The gods are unseen").
+- **Where it went, and why there** (the brief left the Almanac or the advisor): the Almanac's pages are fixed text read
+  from defs, and the advisor's are things to fix in the base; the record is a look back at the colony's last month, which
+  is what the Overview already is (the last weeks in graphs, the chronicle's last lines), so it is a section there, and the
+  Almanac's page on Rimfolk's events explains it and the settings.
+
 ## Layer 6: World events
 
 Rimfolk events happen to the colony; world events happen to the region, and last. A plague among the neighbors, a

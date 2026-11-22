@@ -503,6 +503,11 @@ MODEL = {
     "UI/WeekMemory.cs:dilemmas": ("cap", (C["DilemmaRecords"], 0.5), 1400, "DilemmaLog.MaxRecords; each with what the answer was to do in numbers (about 500 characters, at most 1600), in words (about 400, at most 1200) and the flavour line under it (about 70, at most 200)"),
     "UI/WeekMemory.cs:trustKeys": ("colonists", 1, 40, "a trail per colonist, forgotten after 10 days away"),
     "UI/WeekMemory.cs:trustValues": ("colonists", 1, 25 + 8 * C["TrailDays"], "8 days of trust each"),
+    # The events record (Story/EventRecord.cs): one short line per event that came and one a day per reason something was
+    # held back, kept 30 days and at most EventRecordMath.MaxLines; the quests are read from the game's own list, not kept.
+    "Story/EventRecord.cs:lines": ("window", (const("Story/EventRecordMath.cs", "WindowDays", 30), 3), 60,
+                                   "one line (\"tick|kind|name\", about 60 characters) per threat, everyday event, Rimfolk event, council question and god's card, "
+                                   "and one a day per held reason; 30 days, at most EventRecordMath.MaxLines (200)"),
     "Scenarios/Scenarios.cs:events": ("fixed", 3, 40, "a scenario part's events"),
     "Scenarios/ScenarioParts.cs:days": ("fixed", 3, 150, "a scenario part's days, fixed by the scenario"),
     "Scenarios/ScenarioParts.cs:offices": ("fixed", 4, 40, "a scenario part's seats, fixed by the scenario"),

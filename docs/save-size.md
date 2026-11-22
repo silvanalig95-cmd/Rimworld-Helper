@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 831; modelled: 831; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,215 KB** after a year, **4,043 KB** after two, **4,532 KB** after five.
+Saved collections found: 832; modelled: 832; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,220 KB** after a year, **4,048 KB** after two, **4,537 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -134,6 +134,7 @@ Rimfolk's part of the save, roughly: **3,215 KB** after a year, **4,043 KB** aft
 | `Visitors/VisitorTracker.cs:trips` | visits waiting or under way: VisitorMath.MaxTrips; ended ones dropped within a day | cap | 8 | 8 | 8 | 5.5 |
 | `ColonyLife/LifeBook.cs:aims` | aims said at the year's first supper, the newest LifeBook.MaxAims (A27) | cap | 18 | 30 | 30 | 5.3 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
+| `Story/EventRecord.cs:lines` | one line ("tick|kind|name", about 60 characters) per threat, everyday event, Rimfolk event, council question and god's card, and one a day per held reason; 30 days, at most EventRecordMath.MaxLines (200) | window | 90 | 90 | 90 | 5.3 |
 | `Apparel/ApparelPickBook.cs:asks` | each colonist's last ask for better clothes (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 5.1 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `Hauling/HaulBook.cs:loads` | one per pawn carrying something for Rimfolk, dropped once it carries nothing | colonists | 20 | 20 | 20 | 5.1 |

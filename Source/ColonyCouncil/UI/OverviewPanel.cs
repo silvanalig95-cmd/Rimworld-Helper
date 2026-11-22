@@ -9,7 +9,8 @@ namespace ColonyCouncil
 {
     /// <summary>
     /// Colony → Overview: the colony at a glance. A few numbers with how they've moved this week, graphs of mood, trust,
-    /// wealth and people over the last weeks, and the one line that matters from each of the other pages.
+    /// wealth and people over the last weeks, the one line that matters from each of the other pages, and the events record
+    /// of the last 30 days (UI/EventRecordPanel.cs).
     /// </summary>
     public static class OverviewPanel
     {
@@ -83,6 +84,8 @@ namespace ColonyCouncil
                 float right = Column(gw + 12f, colY, gw, m.character, "CC_Overview_KnownAs".Translate(), "Ways", Icons.Ways, UiKit.Faint);
                 right = Column(gw + 12f, right + 8f, gw, m.lately, "CC_Overview_Lately".Translate(), "Chronicle", Icons.Chronicle, UiKit.Faint);
                 y = Mathf.Max(left, right) + 10f;
+                // What came in the last 30 days by kind, and what was held back and why (UI/EventRecordPanel.cs).
+                y = EventRecordPanel.Draw(y + UiKit.SectionGap, w) + 10f;
                 height = Mathf.Max(y, 100f);
             }
             finally
