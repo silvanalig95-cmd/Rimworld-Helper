@@ -63,6 +63,9 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   Each round has 2–8 points, no em dashes or exclamation marks. `About/About.xml` modVersion equals the newest round.
 
 ## Checks (run all before pushing)
+- The one exception (the player, 22 November 2026): a commit that only touches the portrait kit (`docs/portrait-art`,
+  `Tools/PortraitArt`) or the notes (`docs/*.md` other than what the checks write) is pushed without them; anything that
+  touches the mod itself (code, defs, textures, `About`, language files, the DLL) runs them all.
 - Build: `cd Source/ColonyCouncil && dotnet build -c Release` (only the CS0108 warning in Decrees.cs is expected; the build rewrites the tracked `1.6/Assemblies/ColonyCouncil.dll`).
 - Defs: `dotnet Tools/DefValidator/bin/Release/net8.0/DefValidator.dll . ~/.nuget/packages/krafs.rimworld.ref/1.6.4871/ref/net472 1.6/Assemblies/ColonyCouncil.dll` (0 errors; rebuild it with `cd Tools/DefValidator && dotnet build -c Release` if its source changed).
 - Tests: `cd Tools/Tests && timeout 900 dotnet run -c Release` ("All tests passed"). Pure code shared with the mod is linked in `Tools/Tests/Tests.csproj`.
