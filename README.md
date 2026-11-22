@@ -140,7 +140,7 @@ beside the title that opens its page of the Almanac:
 | **This week** | | the one inbox: what you follow, what needs you, what is under way, what's coming, how people are and the plan |
 | **People** | Table · Moods · Bonds · Ideoligions · Renown | all colonists in one sortable table, a row opening the colonist's card, and their whole story (their dreams and journal) in the drawer beside it from the card's "Whole story"; every mood added up; friendships, rivalries, groups, vendettas, secrets; with Ideology, the colony's ideoligions; each of its people by their one name, at home and beyond its walls |
 | **Council** | Offices and decrees · Ambition · Our ways · Wishes · Dilemmas | decrees, petitions and the council's offices with their elections (five, up to fourteen seats in a bigger colony); the current ambition and meetings; what the colony is known for and its traditions; open wishes, promises kept and trust; questions waiting and how the answers went |
-| **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks); the colony calendar; everything that happened since the first day, read from the one history, every answer with what came of it (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
+| **Colony** | Overview · Calendar · Chronicle | the colony at a glance (numbers, how they moved this week, graphs of mood, trust, wealth and people over the last weeks, and the events record: what came in the last 30 days by kind and what was held back and why); the colony calendar; everything that happened since the first day, read from the one history, every answer with what came of it (filter by wishes, council, people, strangers, world events, losses, and every dream and journal) |
 
 The **Almanac**, the knowledge base, has a window of its own: the book in every window's corner opens it, and so does
 the "?" on every view, on that view's page. It moves and sizes like any window, so it can sit beside what it
@@ -3513,9 +3513,28 @@ hands, the dead coming up with Anomaly), and a god is named only when the colony
 Every few days, something happens to the colony from outside: Rimfolk's own events. They join your storyteller's own
 random events with about the odds of one of the game's own (a setting scales this, and they never make up more than
 half of its everyday events, so traders and travelers keep coming; they can also come on Rimfolk's own timer instead,
-as often as you choose). Each is written for tribal, medieval, industrial and spacer colonies alike, and finds and
-visitors fit your era (a medieval colony meets medieval folk and digs up
-medieval things). Many ask the council what to do, with a day or so to answer.
+as often as you choose, or some on Rimfolk's own timer besides the storyteller's: the setting "... and on Rimfolk's own
+timer besides", none to begin with, one about every 8 days at 50%, every 4 at 100%). Each is written for tribal,
+medieval, industrial and spacer colonies alike, and finds and visitors fit your era (a medieval colony meets medieval
+folk and digs up medieval things). Many ask the council what to do, with a day or so to answer.
+
+**The events record** (Council, Colony, Overview): what came in the last 30 days by kind (threats, the storyteller's
+everyday events, quests at home, quests out on the world map, Rimfolk's events, council questions, the gods' cards as the
+colony saw them), each with its count and the newest three by name and day; how Rimfolk's events and the game's quests
+come now; and what was held back and why (Rimfolk's own timer waiting for an answer or for a fight to end, the
+storyteller's draw while a question of Rimfolk's waited, the half-share cap as it stands today).
+
+**Fewer quests out on the world map, their sites nearer home.** The storyteller's quest slot offers as many quests as
+before, but each one that sends the colony out on the world map (a camp to raid, a stash or a ruin to find, a site to
+visit, a trade request at a town) weighs the setting "Quests out on the world map" of what it would (50% to begin with;
+100% as the game has it), so more of them play out at home: six in ten out on the map become about four in ten. Work
+sites, which come on a slot of their own, come at the same share. Which quests are out on the map is read from each quest
+script itself, the game's, the DLCs' and every mod's alike: a node that picks a site's tile, makes a site or another
+world object, or finds a town to trade with, or a root node whose code does so. Quests given another way (a story, an
+ending, a ritual, a decree, an item, a book, a trader, a scanner, or a mod's own chain or timer) are never held back.
+"How far quest sites may be" (Nearer to begin with) picks a site's place at most 16 tiles away instead of the game's 27
+(Near: 9, as close as 4), or as the game would when nothing that near fits. Both need the deeper game hooks. In dev mode,
+"Quests: where each one plays out (log)" lists every quest with where it plays out and why.
 - **Pasts catch up.** Who a colonist used to be (read from their backstory: soldier, outlaw, noble, trader...)
   decides what finds them: an **old comrade** or partner in crime asking to stay, **lost family** (a sibling, a
   parent, a grown child) who thought them dead, an **old flame** (with their current partner watching), a

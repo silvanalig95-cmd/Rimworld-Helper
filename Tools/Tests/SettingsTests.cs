@@ -93,7 +93,7 @@ public static class SettingsTests
         var rates = new[]
         {
             "gatheringsAWeek", "daysBetweenWishes", "maxOpenWishes", "daysBetweenDilemmas", "daysBetweenMeetings", "momentFrequency", "socialEventFrequency",
-            "dreamFrequency", "arcFrequency", "daysBetweenPersonalTouches", "outsiderChatterFrequency", "encounterFrequency", "storytellerEventWeight",
+            "dreamFrequency", "arcFrequency", "daysBetweenPersonalTouches", "outsiderChatterFrequency", "encounterFrequency", "storytellerEventWeight", "ownTimerShare", "awayQuestShare",
             "daysBetweenWorldEvents", "daysBetweenWorldSituations", "remoteTravellers", "raidersCamps", "theirSchemes", "newPeoples", "animalMoments", "packAlphas", "beastNemeses", "regionLegends", "greatHerds"
         };
         foreach (var r in rates) Check(SettingsCatalog.Find(r)?.page == SettingsPage.HowMuch, $"the rate {r} is on How much happens");

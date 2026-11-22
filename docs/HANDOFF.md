@@ -705,31 +705,12 @@ most sense." So, in this order, three builds at a time:
   this and all the next steps that you listed"; built, not released): visitors who slide across the map facing one
   way.** The to-do with the player's words is now one entry above the newest release line ("Fixes: the sick tended
   first where tending matters, and pawns that turn to the way they walk").
-- **To do when the player asks (20 November 2026, the player; nothing built yet): fewer quests out on the world map,
-  more that play out at home, and how the odds of events work.** The player: "the missions that you get, especially the
-  ones on the world map, where something pops up somewhere ... where you could go and invade a base or whatever, or find
-  some loot on the world map. I mean, these again, I rarely do because it's just a huge price to pay ... to travel on
-  the world map ... if they have like a separate category ... if you could just reduce the chance in favor of other
-  missions that might play out on the map, you know, it could still be missions, but at least ones where you actually
-  have an impact from it." Also: "how to make it less of a kind of a hurdle to even start something like this ...
-  without making it unrealistic", and "now we have also built so much stuff, and I always wonder, does it even work
-  correctly? And I feel like I have fewer events than I did in the past". What was found (League_of_Toba_8b, day 135,
-  Cassandra on Hard): the quests have a slot of their own in the storyteller, apart from the everyday events and the
-  threats; 77 quests were offered in 135 days, 46 of them out on the world map (19 the game's and Odyssey's, of which 10
-  Odyssey's work sites, and 27 from mods: Alpha Genes' and another mod's labs, Vanilla Quests Expanded, Vanilla Gravship
-  Expanded, Rimworld of Magic, Real Ruins and others), 31 at home. Rimfolk's own events share the storyteller's everyday
-  slot (about one every 4.8 days with Cassandra) up to half of it, so they add variety, not more events; in the save's
-  last 8.5 days one came (the medal), with three council questions, three god cards and the rest on their own timers.
-  Options to put to the player when asked:
-  1. A setting for how often quests out on the world map come (a share of the quest slot's weight for quests that make a
-     site elsewhere, read from their quest nodes, the game's and every mod's; Odyssey's work sites by their own slot);
-     the share given to quests at home, the game's and Rimfolk's (the home quests, the neighbours' missions).
-  2. Quests out on the world map pick a place nearer home (a cap on the distance a site may be).
-  3. More of Rimfolk's events on top of the storyteller's (its own timer, the setting "... drawn by the storyteller" off,
-     or a mix: a share of them drawn on their own).
-  4. An events record (Almanac or the advisor): what came in the last 30 days by kind, and what was held back and why
-     (a question waiting, a fight on, the half-share cap), so the player can see it works.
-  Travel: Vehicle Framework with Vanilla Vehicles Expanded, Giddy-Up 2 and the gravship are already on in the list.
+- **Go given (22 November 2026, the player: "just go ahead if you have capacity and agents to work off the to-do list
+  ... Prioritized or, you know, in order that makes sense"; built, not released): fewer quests out on the world map, more
+  that play out at home, and how the odds of events work.** The to-do with the player's words, what was found in their
+  save and the four options is now one entry above the newest release line ("Fewer quests out on the world map, their
+  sites nearer home, Rimfolk's own timer besides the storyteller's, and the events record"): options 1, 2 and 4 built as
+  the lead chose them, and option 3 as the middle way (none to begin with).
 - **To do when the player asks (20 November 2026, the lead's proposal for the player's "Just more of them"): the
   content update's second round.** `docs/content-update-proposals-2.md`, 44 items: D1 to D15 the gods' events (most
   between the colony's people), D16 to D23 storyteller events, D24 to D32 council questions, D33 to D38 camps, D39 to D44
@@ -1284,6 +1265,75 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Fewer quests out on the world map,
+  their sites nearer home, Rimfolk's own timer besides the storyteller's, and the events record** (22 November 2026; the
+  player, 20 November 2026: "the missions that you get, especially the ones on the world map, where something pops up
+  somewhere ... where you could go and invade a base or whatever, or find some loot on the world map. I mean, these again,
+  I rarely do because it's just a huge price to pay ... to travel on the world map ... if they have like a separate
+  category ... if you could just reduce the chance in favor of other missions that might play out on the map, you know,
+  it could still be missions, but at least ones where you actually have an impact from it", "how to make it less of a
+  kind of a hurdle to even start something like this ... without making it unrealistic", and "now we have also built so
+  much stuff, and I always wonder, does it even work correctly? And I feel like I have fewer events than I did in the
+  past"; the go of 22 November 2026: "just go ahead if you have capacity and agents to work off the to-do list ...
+  Prioritized or, you know, in order that makes sense"). Found in their save (League_of_Toba_8b, day 135, Cassandra on
+  Hard): 77 quests offered in 135 days, 46 out on the world map (19 the game's and Odyssey's, 10 of them work sites; 27
+  from mods: Alpha Genes' and another mod's labs, Vanilla Quests Expanded, Vanilla Gravship Expanded, A RimWorld of
+  Magic, Real Ruins and others), 31 at home; Rimfolk's own events share the storyteller's everyday slot up to half of it,
+  about one every 4.8 days with Cassandra. DESIGN.md "Fewer quests out on the world map, their sites nearer home, the
+  events record (not released yet)" has every rule; README "Rimfolk events"; the Almanac's "Rimfolk events", two new
+  sections ("How often they come, and the record", "The game's quests: fewer out on the world map, their sites nearer
+  home").
+  - **Quests out on the world map** (new setting on How much happens, 10% to 100%, 50% to begin with; needs the deeper
+    game hooks): while the storyteller's quest slot picks a quest, each one that sends the colony out on the world map
+    weighs that share of what it would, the quests at home keep theirs: as many quests, more of them at home (six in ten
+    out on the map become about four in ten at 50%). The work sites' own slot sends each at the share. A quest given
+    another way is never held back (a story or an ending, a ritual, a decree, an item or a book, a trader, a scanner, the
+    storyteller's important and epic quests, a mod's own chain or timer). Which quests are out on the map is read from each
+    script (its nodes, the scripts it runs as parts of itself, each node type's name and code, what the save's own quests
+    made), the game's, the DLCs' and every mod's the same way.
+  - **How far quest sites may be** (new setting on What's on, under the story direction: as the game has it, Nearer the
+    default, Near): a site's tile picked while a quest is made at most 16 tiles away instead of 27 (Near: 9, as close as 4),
+    else as the game asked. Trade requests and quests that pick their place another way stay as they were.
+  - **... and on Rimfolk's own timer besides** (new setting on How much happens, under the storyteller's weight, 0% to
+    100%, none to begin with, so nothing changes until it is raised): with the storyteller drawing Rimfolk's events, the
+    own timer also runs, one about every 8 days at 50%, every 4 at 100%, on top of the storyteller's draw. The story-rich
+    preset sets it to 50% and quests out on the map to 35%; light touch sets it to 0%.
+  - **The events record** (Council, Colony, Overview, under the cards): what came in the last 30 days by kind (threats, the
+    storyteller's everyday events, quests at home, quests out on the world map, Rimfolk's events, council questions, the
+    gods' cards by the title the colony saw), each with its count and the newest three by name and day; how Rimfolk's
+    events and the game's quests come now; what was held back and why (the own timer waiting for an answer or a fight, the
+    storyteller's everyday draw while a question of Rimfolk's waited, the half-share cap today). One short line per event,
+    30 days, at most 200 (modelled in `Tools/save_estimate.py`); quests read from the game's list, not kept. Placed on the
+    Overview rather than the Almanac (fixed pages from defs) or the advisor (things to fix in the base): it is a look back
+    at the colony's month, as the Overview's graphs are.
+  - Code: new `Story/QuestPlaceMath.cs` (pure: the rule, the share, the sites' range), `Story/QuestPlaces.cs` (reads the
+    scripts, the save's quests, the dev action "Quests: where each one plays out (log)"), `Story/QuestPlacePatches.cs` (the
+    quest slot's choosing and weight, a quest incident's weight, the work sites' slot, the site's tile while a quest is
+    made), `Story/EventRecordMath.cs` (pure: lines, window, cap, held reasons, counts, the middle way's pace),
+    `Story/EventRecord.cs` (the game component, the storyteller's and the letters' hooks), `UI/EventRecordPanel.cs` (the
+    section); changed `Happenings/Happenings.cs` (the own timer besides, its waits told, `ShareCut`), `UI/OverviewPanel.cs`,
+    `CouncilSettings.cs` and `UI/SettingsCatalog.cs` (the three settings, the presets); words in
+    `Languages/English/Keyed/Rimfolk_EventRecord.xml`, the story-rich preset's tips. Tests: `Tools/Tests/QuestPlaceTests.cs`
+    (new: the rule on 32 of the player's quests modelled from their own files, the mix, the range, the record, the pace, the
+    settings, the words, the seams), `SettingsTests.cs` (the new rates).
+  - **Can't be checked without the game**: which of the player's quests the code reading calls out on the world map (the
+    game's, Odyssey's and the mods' root nodes written in code are read from their IL in the game; here only their sources
+    were read); the quest slot's mix over a season; that `ChooseNaturalRandomQuest` still reads each quest's weight through
+    `GetNaturalRandomSelectionWeight` in 1.7 as in 1.6 (else the share does nothing, and the record shows the quests as they
+    came); the work sites' slot; the sites' tiles nearer (16 tiles is still several days' ride on rough land); the record on
+    the Overview at the player's screen sizes; the own timer besides the storyteller over a few seasons.
+  - **Try in the game**: open Council, Colony, Overview and scroll under the cards: "Events in the last 30 days" with a card
+    for each kind (a new save's record starts empty, but its quests come from the game's quest list, so they show at once),
+    "How they come now" and "Held back, and why". In dev mode, run "Quests: where each one plays out (log)" and send the
+    log: every quest the quest slot can pick, AWAY or home and why, then those given another way. Play a season with
+    "Quests out on the world map" at 50% (Options, Rimfolk, How much happens) and count the quests offered at home and out
+    on the map in the record; a quest out on the map should have its site nearer (look at the world map, the site's
+    distance in tiles). Set "... and on Rimfolk's own timer besides" to 50% and watch Rimfolk's events in the record: about
+    one more every 8 days. With a question of Rimfolk's left unanswered for a day, "Held back, and why" should say so.
+  - Mods that would help: none needed. For fewer far quests from the mods' own timers: Alpha Genes' own settings have a
+    rate and an off switch for its biotech labs (Options, Alpha Genes); Vanilla Quests Expanded's chains come by Vanilla
+    Expanded Framework's chain timer. For the trek itself: Vehicle Framework with Vanilla Vehicles Expanded, Giddy-Up 2
+    and the gravship are already in the list.
 - 0.294.0, **Portraits, phase 5: looks,
   special looks, work and what the library lacks** (22 November 2026; the player: "Maybe the mod can also then log in the
   log files or in the save, ideally ... if like a trait appears where they could be visually displayed, but there's no
