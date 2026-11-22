@@ -85,20 +85,28 @@ and says which it used. (With only one workflow, it takes the remover out of the
 The guidance number in the style files only counts with a **FluxGuidance** box between the prompt box and the KSampler's
 `positive` input; without one, FLUX uses its built-in 3.5, which is what the chosen pictures were made with.
 
-## 7. Into the game: your picks become the mod "Rimfolk Portraits"
+## 7. Into the game: the library folder
 
-1. Next to `Run-PortraitBatch.ps1`, make a folder `picks`, and in it one folder per batch: `picks\colonists`,
-   `picks\backdrops` (the batch's name, as in `batches\<batch>.csv`).
-2. Copy the pictures you want in the game into them, with the names ComfyUI gave them: for people the cut-outs
-   (`..._cut_00001_.png`), for backdrops the scenes. Several backdrops of one room are fine; the game picks among them.
-3. Right-click `Make-PortraitPack.ps1`, **Run with PowerShell**. The first time it looks for RimWorld's `Mods` folder
-   (or asks for it) and remembers it. It writes `Mods\Rimfolk Portraits`: the pictures, and a record for each, taken from
-   its row in the batch list (the columns after `seed`: what kind of person, sex, age, colours, hair, and so on; for
-   backdrops which room kinds and age, or which outdoor look, and what is in it).
-4. In RimWorld, enable **Rimfolk Portraits** in the mod list, below Rimfolk (once). Each time you add or remove picks,
-   run the script again and restart RimWorld.
-The pictures are read from that folder only when they are shown, so a big library costs disk space, not start-up time
-or memory.
+Rimfolk reads your chosen pictures straight from a folder, the **library**: `library\` next to `Run-PortraitBatch.ps1`,
+with one folder per batch (`library\colonists`, `library\backdrops`: the batch's name, as in `batches\<batch>.csv`).
+1. Copy the pictures you want in the game into those folders, with the names ComfyUI gave them: for people the cut-outs
+   (`..._cut_00001_.png`; Ape's from `colonists-redo` go into `library\colonists` too, her row is in `colonists.csv`),
+   for backdrops the scenes. Several backdrops of one room are fine; the game picks among them.
+2. Right-click `Update-PortraitLibrary.ps1`, **Run with PowerShell**. It writes `library\records.xml`: a record for
+   every picture, taken from its row in the batch list (the columns after `seed`), and shows the folder's path.
+3. In RimWorld, Rimfolk's settings, **Portrait library folder**: paste that path (once on each computer). Then
+   **Reload the library** (or restart the game). Each time you add or remove pictures: run the script again, then reload.
+
+**Two computers**: keep the whole `Rimfolk-portraits` folder (scripts, batches, library) in Google Drive, and in Google
+Drive for desktop set it to **Available offline**, so the pictures are on both disks and the game never waits for a
+download. Then whatever you add on one computer is on the other after Drive syncs; only the setting is set once on each
+(if Drive has another drive letter there, the path differs). The pictures don't go through Rimfolk's GitHub, so a
+Rimfolk update never downloads them again.
+
+**Growing it**: Rimfolk writes `library\missing.csv` with what it needed and had no picture for (a xenotype, a room kind,
+a biome, an age). `Update-PortraitLibrary.ps1` shows its first lines; send it to the lead, who adds new rows to the batch
+lists. When the library already holds pictures of a batch, `Run-PortraitBatch.ps1` offers to make only the rows that
+have none yet, so a grown list is never made again from the start.
 
 ## If something goes wrong
 

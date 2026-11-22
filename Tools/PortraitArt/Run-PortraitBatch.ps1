@@ -10,8 +10,9 @@
 # (or whose title has the word "cut" in it) saves the cut-out under the same name with _cut added; a style with
 # "cut": false (the backdrops) skips the remover, however the workflow is wired. The
 # style file's LoRAs and sampler settings are set on the workflow's boxes for every picture, so changing a LoRA needs no
-# new export. A log of every prompt and seed is written to logs\ next to this script. Nothing else on the computer is
-# changed.
+# new export. When the library (library\<batch>\ next to this script) already has pictures of the batch, it offers to
+# make only the rows that have none yet. A log of every prompt and seed is written to logs\ next to this script. Nothing
+# else on the computer is changed.
 #
 # Run it: keep ComfyUI open, right-click this file, "Run with PowerShell", and choose the batch and the style.
 # See docs/portrait-art/SETUP-ComfyUI.md.
@@ -22,7 +23,8 @@ param(
     [string] $Style = '',
     [string] $Workflow = '',
     [string] $Server = 'http://127.0.0.1:8188',
-    [string] $Folder = ''
+    [string] $Folder = '',
+    [string] $OnlyMissing = ''
 )
 
 $ErrorActionPreference = 'Stop'
@@ -160,6 +162,22 @@ try {
         $Style = Pick 'style' @(Get-ChildItem -LiteralPath $batches -Filter 'style*.json' | ForEach-Object { $_.BaseName })
     }
     $rows = @(Import-Csv -LiteralPath (Join-Path $batches ($Batch + '.csv')) -Encoding UTF8)
+    # Only what the library lacks: rows with no picture of theirs in library\<batch>\ yet (new rows added to a list, or
+    # ones whose pictures were all thrown out), so a grown list is never made again from the start.
+    $libDir = Join-Path (Join-Path $Folder 'library') $Batch
+    $have = @()
+    if (Test-Path -LiteralPath $libDir) { $have = @(Get-ChildItem -LiteralPath $libDir -Filter '*.png' -File | ForEach-Object { $_.Name }) }
+    if ($have.Count -gt 0) {
+        if ($OnlyMissing -eq '') { $OnlyMissing = Read-Host ("The library has {0} pictures of '{1}'. Make only the rows that have none yet? (Enter for yes, n for all rows)" -f $have.Count, $Batch) }
+        if ($OnlyMissing -notmatch '^(?i)n') {
+            $before = $rows.Count
+            $rows = @($rows | Where-Object {
+                $pre = '^' + [regex]::Escape(($_.name -replace '[^A-Za-z0-9_\-]', '_')) + '_style'
+                -not (@($have | Where-Object { $_ -match $pre }).Count -gt 0)
+            })
+            Write-Host ("{0} of {1} rows have no picture in the library yet; making those." -f $rows.Count, $before)
+        }
+    }
     $st = Get-Content -LiteralPath (Join-Path $batches ($Style + '.json')) -Raw -Encoding UTF8 | ConvertFrom-Json
     $wantCut = -not ((Has $st 'cut') -and -not $st.cut)
 

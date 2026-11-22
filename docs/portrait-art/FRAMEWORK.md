@@ -181,5 +181,12 @@ solution. I mean, I cannot upload that many images to you to edit."
 
 Each round: the player runs a batch (`Tools/PortraitArt/Run-PortraitBatch.ps1`); ComfyUI makes each picture and its
 cut-out. For the first rounds the player zips the output folder with "Zip for upload" and sends it, and the lead checks
-the look. For the hundreds and thousands after, every step per picture has to run on the player's computer by itself (the
-player: "I cannot upload that many images to you"): see "To do: the library at scale" in `docs/HANDOFF.md`.
+the look. For the hundreds and thousands after, every step per picture runs on the player's computer by itself (the player: "I
+cannot upload that many images to you"): the chosen pictures go into the library folder, `Update-PortraitLibrary.ps1`
+writes a record for each from its batch row, and Rimfolk reads the folder directly (`SETUP-ComfyUI.md` step 7).
+
+**An evolving library** (the player: "a constantly evolving database of images for backgrounds, pawns, and also maybe
+animals and creatures at a later stage ... include what is missing and not ... go through the entire list another
+time"): the batch lists only ever grow; Rimfolk writes `library/missing.csv` (the kinds, ages, rooms and biomes it met
+without a picture); the lead turns it into new rows; the batch tool makes only the rows the library has no picture of.
+A new kind of thing (animals, creatures) gets a batch list and record columns of its own the same way.

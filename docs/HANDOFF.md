@@ -436,6 +436,17 @@ most sense." So, in this order, three builds at a time:
   she came out as an old man), and `Tools/PortraitArt/Make-PortraitPack.ps1` (picks into the local mod "Rimfolk
   Portraits": About, a PortraitDef or BackdropDef per picture from its row, the pictures under `Portraits/`; rebuilt
   each run; it never touches a folder that isn't its own; tested here), `SETUP-ComfyUI.md` step 7.
+  Then the player: "I play on two computers, and whenever I do any update, I always need to update it on both devices
+  ... I just wonder how that's going to be then done with all these images"; on old age: "eventually, yeah, we should
+  update the image"; and on growing the library: "there's a room that's not yet represented ... a xenotype ... that we
+  can then generate these scripts to create images to just include what is missing and not ... go through the entire
+  list another time ... a constantly evolving database of images for backgrounds, pawns, and also maybe animals and
+  creatures at a later stage." So no second mod: Rimfolk reads a library folder (a setting, set once per computer; the
+  player keeps it in Google Drive, available offline) with `records.xml` and the pictures, a "Reload the library"
+  button, and writes `missing.csv` (what it needed and had none of); entering old age is a new pick (told to the build
+  agent). The lead's script became `Tools/PortraitArt/Update-PortraitLibrary.ps1` (writes `library/records.xml` from the
+  pictures in `library/<batch>/` and their rows; shows `missing.csv`), and `Run-PortraitBatch.ps1` offers to make only
+  the rows the library has no picture of yet (both tested here).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
