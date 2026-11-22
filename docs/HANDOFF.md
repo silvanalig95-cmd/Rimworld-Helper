@@ -576,7 +576,7 @@ most sense." So, in this order, three builds at a time:
   setting, painted pictures never mirrored, the whole picture on the large portrait and no gap under the body, and who
   may share a picture (the player's own, notables, strangers never seen together; the setting); point 4 (the review
   and the catalogue) is the other build's.
-- **To do when the player asks (22 November 2026, the player; nothing built yet): pictures checked by what they show.**
+- **Go given (22 November 2026, the player: "Please go ahead"; with a build agent): pictures checked by what they show.**
   The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
   goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
   the image as much as possible." Records come from what the prompt asked, and a picture may show more (a weapon, a
@@ -586,6 +586,19 @@ most sense." So, in this order, three builds at a time:
   features, things held, glowing, wings, fire, armour), compares it with the picture's record, and lists the
   mismatches to throw out or fix, and the things shown that the record should carry as looks. The player looks
   through the list instead of every picture.
+  And: "Would then this AI also kind of rename it or just recognize, hey, looks more like a kid or a teenager and do all
+  the necessary changes accordingly for the game to pick up the new description". So no renaming (the name ties a
+  picture to its row): the check writes `library/corrections.csv` (per picture: age, sex, looks, role, or out; apply
+  yes, ask or no), marks the safe or clear ones yes by itself, and `Update-PortraitLibrary.ps1` applies them when it
+  writes the records (sent to the build).
+  The player, on the first pictures of wave1-people-01: "the ages are really off ... either they look way too old or
+  they look way too young ... perhaps it's better if we just say he looks or they look young or middle-aged or old
+  without a number". Done: the planner writes ages as a band word and a decade ("a middle-aged man in his early
+  fifties"), the signs of that age on the face, and the age again at the end ("Clearly in his early fifties."); no
+  young-reading words (smooth skin and rested eyes, a dimple, round eyes, a snub nose) for the middle-aged and older,
+  no weathered, tired faces for teenagers; the 728 rows' prompts rewritten in place (names and records unchanged).
+  `batches/age-test.csv` (a baseliner man and woman of each of the nine bands) and `style-nosameface.json` (the chosen
+  style without the SameFace Fix, which was trained on women's faces) to compare before the long runs.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
