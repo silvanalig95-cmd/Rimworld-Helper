@@ -667,6 +667,11 @@ most sense." So, in this order, three builds at a time:
   exaggerated faces): `style-comic-a` (Daubrez 0.55 with Comic Book Tome 3 V1 0.65), `b` (Tome 3 V1 0.9, Daubrez 0.35),
   `c` (Daubrez 0.75 alone with the comic words), `d` (Painted Comic, a download), `e` (COMMIX, a download); and
   `batches/style-test.csv` (ten varied plain people). The player picks; the chosen file becomes `style.json`.
+  Then: "a LoRa based on that, that we can then load into the Comfy UI", with seven pictures of the game's art (the
+  three storytellers, a fourth portrait, three DLC scenes). Done: `docs/portrait-art/STYLE-RIMWORLD.md` (the style in
+  words, the training set, FluxGym steps and settings for the player's card), `batches/style-rmw.json` (the LoRA
+  `rmwstyle` at 0.9 and the style's words); the training set (25 pictures with captions, trigger `rmwstyle`) sent to the
+  player as a zip, not in the repository (the game's art; for the player's own use only).
 - **To do when the player asks (22 November 2026, the player; proposal sent, waiting for the go): delete a picture for
   good from the game.** The player: "what i would like in the game is a feature that when i really don't like an image,
   that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this way i
