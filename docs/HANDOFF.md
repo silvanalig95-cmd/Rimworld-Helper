@@ -519,6 +519,23 @@ most sense." So, in this order, three builds at a time:
   run stamps in every picture's name (`Run-PortraitBatch.ps1`), and `Update-PortraitLibrary.ps1` reading them and
   Windows' renamed copies, plus a `looks` column. Points 1 to 3 went to one build agent, the review and catalogue
   (point 4) to another.
+  **Done (22 November 2026, point 4: the review, the catalogue and the batch planner; docs and tools, no mod code):**
+  `docs/portrait-art/catalogue/` (its README in plain words for the player): `kinds.csv` (82 kinds: the 79 active
+  xenotypes and the creepjoiner, conjoined and spirit races, each with its save count from League_of_Toba_11, 405 people,
+  a weight and wave, sexes, ages, how it ages, skins, hair colours, a look sheet from its real genes or marked guessed),
+  `looks.csv` (146 looks: traits that show, A RimWorld of Magic's 35 classes, psycasters, implants and conditions, genes
+  that show, 23 special looks only their own pictures fit, each with its traits, genes, hediffs or bodies and how common
+  in the save), `marks.csv` (the six marks the game reads, a missing arm and a face tattoo proposed), `roles.csv` (the 18
+  roles of the player's addition, what shows each in the four ages of dress, how common), `COVERAGE.md`. Tools in
+  `Tools/PortraitArt`: `save_census.py` (a save into the catalogue's counts), `plan_batches.py` (the next lists: plain
+  pictures first, then roles, then looks, then variety; names from what a row shows, never reused; lists never
+  rewritten; `missing.csv` first), `looks_to_defs.py` (writes `Defs/PortraitLookDefs/PortraitLooks.xml`; the lead runs it
+  once the game side is merged), `catalogue_check.py` (every name against the active mods), `test_portrait_catalogue.py`;
+  `Update-PortraitLibrary.ps1` writes the new `role` column into the records. `FRAMEWORK.md` points its waves and process
+  to the catalogue and has "Character, and only what they have". The first lists: `batches/wave1-people-01` to `03`
+  (474 rows: 128 plain, 66 roles, 280 looks) and `wave2-people-01` to `02` (254 plain rows), 728 rows, about 1,450
+  pictures. Next from the player: run them, keep the good cut-outs in `library\<list>\`, send the save, `missing.csv`
+  and `records.xml`.
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy

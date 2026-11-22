@@ -88,7 +88,8 @@ The guidance number in the style files only counts with a **FluxGuidance** box b
 ## 7. Into the game: the library folder
 
 Rimfolk reads your chosen pictures straight from a folder, the **library**: `library\` next to `Run-PortraitBatch.ps1`,
-with one folder per batch (`library\colonists`, `library\backdrops`: the batch's name, as in `batches\<batch>.csv`).
+with one folder per batch (`library\colonists`, `library\backdrops`, `library\wave1-people-01` ...: the batch's name, as
+in `batches\<batch>.csv`). Which lists to make next, and in what order, is in `docs/portrait-art/catalogue/README.md`.
 1. Copy the pictures you want in the game into those folders, with the names ComfyUI gave them: for people the cut-outs
    (`..._cut_00001_.png`; Ape's from `colonists-redo` go into `library\colonists` too, her row is in `colonists.csv`),
    for backdrops the scenes. Several backdrops of one room are fine; the game picks among them.

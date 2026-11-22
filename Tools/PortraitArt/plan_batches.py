@@ -410,13 +410,15 @@ class Ledger:
                                (r.get('role') or '').strip(), split(r.get('looks', ''))):
             self.cells[c] += 1
 
-    def add_picture(self, rec):
+    def add_picture(self, rec, listed):
+        """A picture's cells; one of a row already listed counts once (its row is already counted)."""
         if rec.get('pawn'):
             return
         k = self.kind_of(rec['xenotypes'], rec['races'])
         for c in self.cells_of(k, rec['sex'], rec['age'], rec['skin'], rec['hair'], rec['role'], rec['looks']):
             self.made_cells[c] += 1
-            self.cells[c] += 1
+            if not listed:
+                self.cells[c] += 1
 
     def has(self, cell):
         return self.cells[cell] > 0
@@ -462,16 +464,19 @@ def read_records(path, ledger):
         rec = {'xenotypes': L('xenotypes'), 'races': L('races'), 'sex': F('sex').lower(), 'age': W_age(F('age')),
                'skin': hexify(F('skinColor')), 'hair': hexify(F('hairColor')), 'role': F('role'), 'looks': L('looks'),
                'pawn': F('pawn')}
-        ledger.add_picture(rec)
         tex = F('texPath')
+        name = None
         if '/' in tex:
             batch, file = tex.split('/', 1)
             base = re.sub(r'\s*\(\d+\)$', '', file)
             base = re.sub(r'\s*-\s*Copy( \(\d+\))?$', '', base)
             m = ROW_RE.match(base)
             if m:
-                ledger.made.add(m.group('name'))
-                ledger.lists_made[batch] += 1
+                name = m.group('name')
+                if name not in ledger.made:
+                    ledger.lists_made[batch] += 1
+                ledger.made.add(name)
+        ledger.add_picture(rec, name in ledger.names)
     return n
 
 
