@@ -41,11 +41,11 @@ game should check is written into the row's `looks` or `role`.
 
 ## The loop
 
-1. **Make the next list.** Run `Run-PortraitBatch.ps1`, choose the list (start with `wave1-people-01`) and the style
+1. **Make the next list.** Run `Run-PortraitBatch.ps1`, choose the list (start with `people-01`) and the style
    `style`. Each row makes two pictures.
 2. **Keep the good ones.** In ComfyUI's `output\Rimfolk\<list>` folder, throw out the misses (wrong age, wrong kind,
    broken hands, something held or shown that the row doesn't stand for), then double-click `Copy-ToLibrary.cmd`: it
-   copies the rest into `library\<list>\` (for example `library\wave1-people-01\`) with the names ComfyUI gave them.
+   copies the rest into `library\<list>\` (for example `library\people-01\`) with the names ComfyUI gave them.
 3. **Update the library.** `Copy-ToLibrary` writes the records itself (by hand: `Update-PortraitLibrary.ps1`), then
    "Reload the library" in Rimfolk's settings.
 4. **Play.** Rimfolk writes `library\missing.csv` with what it needed and had no picture for.
@@ -60,15 +60,18 @@ that have none yet". Lists are never rewritten: new rows always go into new list
 ## The order of the lists
 
 - `needs-people-NN`: what the game asked for in `missing.csv`. Run these first.
-- `waveN-people-NN`: by wave, the commonest kinds first. Wave 1 is baseliners and dark elves; wave 2 hussars,
-  neanderthals, impids, pigskins, wasters and saurids; wave 3 genies, starjacks, yttakin, sanguophages and the high
-  and wood elves; wave 4 the kinds your save holds a few times (lesser fairies, avaloi, stoneborn, the apes, drakonori
-  and others); wave 5 the rest, seen once or not yet. Inside a wave the lists go: plain
-  pictures of every sex and age band (one each, then a spread of skins and hair colours), then one picture for each
-  common role, then the looks (the commonest first), then more variety in rounds where a kind is common.
+- `people-NN`: everything else, mixed (the player, 22 November 2026: not "first white boy, white man, white old man
+  ... Not that for the first few hours I only have like white humans"). The kinds take turns, each as often as the
+  square root of its count in your world, so baseliners come up most (about a third of the first hundred pictures),
+  dark elves next, and every kind the waves plan shows up within the first dozen. Inside a kind its sexes and age bands
+  take turns, plain pictures before roles and looks. The waves still decide which kinds get planned: wave 1 is
+  baseliners and dark elves; wave 2 hussars, neanderthals, impids, pigskins, wasters and saurids; wave 3 genies,
+  starjacks, yttakin, sanguophages and the high and wood elves; wave 4 the kinds your save holds a few times (lesser
+  fairies, avaloi, stoneborn, the apes, drakonori and others); wave 5 the rest, seen once or not yet.
 
-The first lists (22 November 2026): `wave1-people-01` to `03` (474 rows: 128 plain, 66 roles, 280 looks) and
-`wave2-people-01` to `02` (254 plain rows). 728 rows, about 1,450 pictures with two each.
+The first lists (22 November 2026, mixed the same day): `people-01` to `04`, 728 rows (382 plain, 66 roles, 280 looks),
+about 1,450 pictures with two each. A row may move to another list when lists are mixed again: the library finds a
+picture's row in any list, so pictures already made keep their records.
 
 ## Names
 

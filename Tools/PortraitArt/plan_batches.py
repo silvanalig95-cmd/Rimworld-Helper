@@ -3,7 +3,7 @@
 Reads docs/portrait-art/catalogue (kinds.csv, looks.csv, marks.csv, roles.csv), every batch list already in
 docs/portrait-art/batches (their rows are taken: a row is never written twice and a name never means anything else),
 and optionally the library's records.xml (the pictures that exist) and missing.csv (what the game needed and lacked).
-Writes the next lists into docs/portrait-art/batches (waveN-people-NN.csv, needs-people-NN.csv; at most --per-file rows
+Writes the next lists into docs/portrait-art/batches (people-NN.csv, needs-people-NN.csv, mixed: see mix(); at most --per-file rows
 each, the columns of colonists.csv plus role) and docs/portrait-art/catalogue/COVERAGE.md.
 
 The order (docs/portrait-art/catalogue/README.md has it in plain words):
@@ -1046,12 +1046,80 @@ def next_number(folder, prefix):
     return n + 1
 
 
-def write_lists(folder, rows, per_file, dry):
-    """The planned rows into new lists: needs-people-NN for missing.csv's, waveN-people-NN by the kind's wave."""
+PHASE_ORDER = ['needs', 'defaults', 'roles', 'looks', 'variety']
+
+
+def mix(rows, kinds):
+    """
+    The rows in the order they are made, mixed (the player, 22 November 2026: "I don't want it to be like in order, like
+    first white boy, white man, white old man ... it should be shuffled a bit, so that like the additions to the game
+    are still varied. Not that for the first few hours I only have like white humans"): the kinds take turns, each as
+    often as the square root of its count in the player's world (so a rarer kind still comes up early), and within a kind
+    its sexes and ages
+    take turns, plain pictures before roles and looks. The same rows always give the same order.
+    """
+    def key_of(r):
+        for k in (r.get('kind', ''), r.get('race', '')):
+            if k in kinds:
+                return k
+        return r.get('kind', '') or r.get('race', '') or '?'
+    by_kind = collections.OrderedDict()
+    for item in rows:
+        by_kind.setdefault(key_of(item[2]), []).append(item)
+    queues = {}
+    for key, items in by_kind.items():
+        rng = seeded('mix', key)
+        q = []
+        phases = collections.OrderedDict()
+        for it in sorted(items, key=lambda it: it[2]['name']):
+            phases.setdefault(it[0], []).append(it)
+        for ph in sorted(phases, key=lambda p: PHASE_ORDER.index(p) if p in PHASE_ORDER else len(PHASE_ORDER)):
+            cells = collections.OrderedDict()
+            for it in phases[ph]:
+                cells.setdefault((it[2].get('sex', ''), it[2].get('age', '')), []).append(it)
+            order = list(cells)
+            rng.shuffle(order)
+            for c in order:
+                rng.shuffle(cells[c])
+            while any(cells[c] for c in order):       # sexes and ages take turns
+                for c in order:
+                    if cells[c]:
+                        q.append(cells[c].pop(0))
+        queues[key] = q
+    def turns(k):
+        # The square root of how many the player's world has: the commonest kinds come up most, the rare ones still early.
+        n = 0.0
+        if k in kinds:
+            try:
+                n = float(kinds[k].row.get('saveCount') or 0)
+            except ValueError:
+                n = 0.0
+        return math.sqrt(n) if n >= 1 else max(0.5, 3.0 * (kinds[k].weight if k in kinds else 0.2))
+    weight = {k: turns(k) for k in queues}
+    credit = {k: 0.0 for k in queues}
+    out = []
+    while queues:                                     # smooth weighted turns
+        total = sum(weight[k] for k in queues)
+        for k in queues:
+            credit[k] += weight[k]
+        best = max(sorted(queues), key=lambda k: credit[k])
+        credit[best] -= total
+        out.append(queues[best].pop(0))
+        if not queues[best]:
+            del queues[best], credit[best]
+    return out
+
+
+def write_lists(folder, rows, per_file, dry, kinds=None):
+    """The planned rows into new lists, mixed (see mix): needs-people-NN for missing.csv's, people-NN for the rest."""
     files = []
     groups = collections.OrderedDict()
-    for phase, wave, row in rows:
-        prefix = 'needs-people' if phase == 'needs' else 'wave%d-people' % wave
+    needs = [x for x in rows if x[0] == 'needs']
+    rest = [x for x in rows if x[0] != 'needs']
+    if kinds is not None:
+        needs, rest = mix(needs, kinds), mix(rest, kinds)
+    for phase, wave, row in needs + rest:
+        prefix = 'needs-people' if phase == 'needs' else 'people'
         groups.setdefault(prefix, []).append(row)
     for prefix, rs in groups.items():
         n = next_number(folder, prefix)
@@ -1103,7 +1171,7 @@ def plan(catalogue=CATALOGUE, batches=BATCHES, records=None, missing=None, waves
             planner.variety([k for w in waves for k in order(w)], max_rows - len(planner.rows))
     except Full:
         pass
-    files = write_lists(batches, [r for r in planner.rows], per_file, dry)
+    files = write_lists(batches, [r for r in planner.rows], per_file, dry, kinds)
     text = coverage_report(kinds, looks, ledger, planner, files, unknown, records_n, bad)
     if report and not dry:
         with open(report, 'w', encoding='utf-8', newline='\n') as f:

@@ -210,7 +210,7 @@ solution. I mean, I cannot upload that many images to you to edit."
    them in the game tied to those pawns.
 4. **The starter set**: the planner's first lists (`Tools/PortraitArt/plan_batches.py`, `catalogue/README.md`): wave 1
    (baseliners and dark elves: plain pictures of every sex and age band across their skins and hair, one per common
-   role, the looks) and wave 2's plain pictures, 728 rows (`batches/wave1-people-01` to `03`, `wave2-people-01` to `02`).
+   role, the looks) and wave 2's plain pictures, 728 rows (`batches/people-01` to `04`, mixed so kinds, sexes and ages take turns).
 5. **Waves**, by `catalogue/kinds.csv`'s waves, each the same way (plain, roles, looks, then more variety where a kind is
    common), then variants (pillar 5) for the characters most used.
 6. **Growing for good**: the census (`Tools/PortraitArt/save_census.py`) reads each save the player sends into the

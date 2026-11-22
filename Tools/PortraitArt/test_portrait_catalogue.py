@@ -5,6 +5,7 @@ Everything is written into temporary folders; the repository is only read.
 """
 import csv
 import glob
+import itertools
 import os
 import re
 import shutil
@@ -38,7 +39,7 @@ def read(path):
         return f.read()
 
 
-def rows_of(folder, pattern='*-people-*.csv'):
+def rows_of(folder, pattern='*people-*.csv'):
     out = []
     for path in sorted(glob.glob(os.path.join(folder, pattern))):
         with open(path, encoding='utf-8', newline='') as f:
@@ -53,7 +54,7 @@ class Tmp(unittest.TestCase):
         os.makedirs(self.batches)
         for p in glob.glob(os.path.join(P.BATCHES, '*.csv')):
             name = os.path.basename(p)
-            if re.match(r'(wave\d+|needs)-people-\d+\.csv$', name):
+            if re.match(r'((wave\d+|needs)-)?people-\d+\.csv$', name):
                 continue  # start from the hand-made lists only
             shutil.copy(p, self.batches)
 
@@ -210,13 +211,29 @@ class Planner(Tmp):
         self.assertIn('SomeNewKind', text)
         self.assertTrue(any(f.endswith('needs-people-01.csv') for f, _ in files))
 
+    def test_mixed_kinds_take_turns(self):
+        # The player: not "first white boy, white man, white old man ..."; the kinds and ages take turns from the start.
+        self.run_plan(waves=[1, 2], phases=['defaults'], max_rows=400, per_file=400)
+        rows = [r for _, r in rows_of(self.batches)]
+        self.assertTrue(len(rows) >= 60)
+        first = rows[:30]
+        self.assertGreaterEqual(len({r['kind'] or r['race'] for r in first}), 4)
+        self.assertGreaterEqual(len({r['age'] for r in first}), 4)
+        self.assertGreaterEqual(len({r['sex'] for r in first}), 2)
+        # While every kind still has rows left, no kind runs on for long (at the very end only the commonest are left).
+        kinds_of = [r['kind'] or r['race'] for r in rows]
+        cut = min(max(i for i, x in enumerate(kinds_of) if x == k) for k in set(kinds_of))  # the first kind to run out
+        stretch = kinds_of[:cut + 1]
+        run = max(len(list(g)) for _, g in itertools.groupby(stretch))
+        self.assertLessEqual(run, 4)
+
     def test_files_at_most_per_file_and_numbered_on(self):
         self.run_plan(waves=[1], phases=['defaults', 'roles'], max_rows=5000, per_file=50)
-        sizes = [len(rows_of(self.batches, os.path.basename(p))) for p in glob.glob(os.path.join(self.batches, 'wave1-people-*.csv'))]
+        sizes = [len(rows_of(self.batches, os.path.basename(p))) for p in glob.glob(os.path.join(self.batches, 'people-*.csv'))]
         self.assertTrue(sizes and max(sizes) <= 50)
         n_before = len(sizes)
         self.run_plan(waves=[1], phases=['looks'], max_rows=60, per_file=50)
-        after = sorted(glob.glob(os.path.join(self.batches, 'wave1-people-*.csv')))
+        after = sorted(glob.glob(os.path.join(self.batches, 'people-*.csv')))
         self.assertGreater(len(after), n_before)
         self.assertTrue(after[-1].endswith('-%02d.csv' % len(after)))
 

@@ -633,6 +633,13 @@ most sense." So, in this order, three builds at a time:
   no weathered, tired faces for teenagers; the 728 rows' prompts rewritten in place (names and records unchanged).
   `batches/age-test.csv` (a baseliner man and woman of each of the nine bands) and `style-nosameface.json` (the chosen
   style without the SameFace Fix, which was trained on women's faces) to compare before the long runs.
+  And: "I do want ... the likeliest characters to be prioritized, but I don't want it to be like in order, like first
+  white boy, white man, white old man, white old woman ... it should be shuffled a bit, so that like the additions to
+  the game are still varied. Not that for the first few hours I only have like white humans". Done: the planner mixes
+  its lists (`mix()` in `plan_batches.py`: the kinds take turns by the square root of their count in the save, within a
+  kind the sexes and ages take turns, plain before roles and looks), writes `people-NN`; the 728 rows re-mixed into
+  `people-01` to `04` (the wave lists gone); `Update-PortraitLibrary.ps1` finds a picture's row in any list, and
+  `Run-PortraitBatch.ps1` looks for a row's pictures in the whole library.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the

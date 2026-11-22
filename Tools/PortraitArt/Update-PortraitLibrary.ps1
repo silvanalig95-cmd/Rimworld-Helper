@@ -149,13 +149,22 @@ try {
     $names = @{}
     $corr = Read-Corrections (Join-Path $library 'corrections.csv')
     $applied = 0; $leftOut = 0
+    # Every batch list's rows by name, so a picture finds its row even when its row has moved to another list (lists
+    # are mixed and renumbered now and then) or its folder's list is gone; its own folder's list comes first.
+    $allRows = @{}
+    foreach ($csvFile in @(Get-ChildItem -LiteralPath $batches -Filter '*.csv' -File)) {
+        $one = Read-Rows $csvFile.BaseName
+        if ($one -eq $null) { continue }
+        foreach ($k in $one.Keys) { if (-not $allRows.ContainsKey($k)) { $allRows[$k] = $one[$k] } }
+    }
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory)) {
         $batch = $dir.Name
         $rows = Read-Rows $batch
-        if ($rows -eq $null) { [void]$problems.Add(("library\{0}: no batches\{0}.csv, left out" -f $batch)); continue }
+        if ($rows -eq $null) { $rows = @{} }
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File)) {
             $hit = Row-For $f.Name $rows
-            if ($hit -eq $null) { [void]$problems.Add(("library\{0}\{1}: no row in {0}.csv for this name, left out" -f $batch, $f.Name)); continue }
+            if ($hit -eq $null) { $hit = Row-For $f.Name $allRows }
+            if ($hit -eq $null) { [void]$problems.Add(("library\{0}\{1}: no row of this name in any batch list, left out" -f $batch, $f.Name)); continue }
             $r = $hit.row
             # This picture's corrections marked yes (by library\<batch>\<name>.png or by the name alone).
             $fixes = @()

@@ -164,9 +164,12 @@ try {
     $rows = @(Import-Csv -LiteralPath (Join-Path $batches ($Batch + '.csv')) -Encoding UTF8)
     # Only what the library lacks: rows with no picture of theirs in library\<batch>\ yet (new rows added to a list, or
     # ones whose pictures were all thrown out), so a grown list is never made again from the start.
-    $libDir = Join-Path (Join-Path $Folder 'library') $Batch
+    # A row's pictures may sit in any library folder (lists are mixed and renumbered now and then), so look in all.
+    $libRoot = Join-Path $Folder 'library'
     $have = @()
-    if (Test-Path -LiteralPath $libDir) { $have = @(Get-ChildItem -LiteralPath $libDir -Filter '*.png' -File | ForEach-Object { $_.Name }) }
+    if (Test-Path -LiteralPath $libRoot) { $have = @(Get-ChildItem -LiteralPath $libRoot -Filter '*.png' -File -Recurse | ForEach-Object { $_.Name }) }
+    $rowNames = @{}; foreach ($r in $rows) { $rowNames[($r.name -replace '[^A-Za-z0-9_\-]', '_')] = $true }
+    $have = @($have | Where-Object { $m = [regex]::Match($_, '^(.+?)_style'); $m.Success -and $rowNames.ContainsKey($m.Groups[1].Value) })
     if ($have.Count -gt 0) {
         if ($OnlyMissing -eq '') { $OnlyMissing = Read-Host ("The library has {0} pictures of '{1}'. Make only the rows that have none yet? (Enter for yes, n for all rows)" -f $have.Count, $Batch) }
         if ($OnlyMissing -notmatch '^(?i)n') {

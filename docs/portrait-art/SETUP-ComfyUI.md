@@ -88,7 +88,7 @@ The guidance number in the style files only counts with a **FluxGuidance** box b
 ## 7. Into the game: the library folder
 
 Rimfolk reads your chosen pictures straight from a folder, the **library**: `library\` next to `Run-PortraitBatch.ps1`,
-with one folder per batch (`library\colonists`, `library\backdrops`, `library\wave1-people-01` ...: the batch's name, as
+with one folder per batch (`library\colonists`, `library\backdrops`, `library\people-01` ...: the batch's name, as
 in `batches\<batch>.csv`). Which lists to make next, and in what order, is in `docs/portrait-art/catalogue/README.md`.
 **With one double-click**: put `Copy-ToLibrary.ps1` and `Copy-ToLibrary.cmd` into ComfyUI's `output\Rimfolk` folder
 (or into one batch's folder in it). Throw out the pictures you don't want there, then double-click
