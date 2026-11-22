@@ -650,6 +650,9 @@ most sense." So, in this order, three builds at a time:
   considered for future image prompts". Done: the planner's "big round eyes", "wide-eyed" and "soft, rounded features"
   gone; small eyes in proportion said in the style line (`style.json`, `style-nosameface.json`), in every grown-up's
   prompt and in children's ("a plain, real child's face with small eyes"); the lists' prompts rewritten in place.
+  The player asked whether the zips sent are full: from 22 November 2026 every kit sent is full
+  (`Rimfolk-portrait-kit-N.zip`: the scripts, guides, all batch lists, the current styles, the copier pair and a READ
+  ME FIRST; never a library, logs, settings or workflows), so the newest one is all they need.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive; steps 1 and 2 done, step 3 for later.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
@@ -1318,7 +1321,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 6: the large
+- 0.295.0, **Portraits, phase 6: the large
   portrait alive and with depth** (22 November 2026; the player: "perhaps we can make the pawns, even though their image
   is generated, a little bit more alive", "if I, for example, hover my mouse, it kind of centers towards the mouse in a
   way, like this kind of fake 3D effect", and the go: "just go ahead ... work off the to-do list with all the things that

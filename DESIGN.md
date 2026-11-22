@@ -16797,7 +16797,7 @@ pictures' drawing); the starter list `Defs/PortraitLookDefs/PortraitLooks.xml`. 
   player's mods; the save's list over a long game; who is a notable as the game and Rimfolk's contacts make them, and
   strangers' faces shared and given up as they come and go.
 
-### Portraits, phase 6: the large portrait alive and with depth (not released yet)
+### Portraits, phase 6: the large portrait alive and with depth (released 0.295.0)
 
 The player's words (22 November 2026): "what we can also do with animations, in a sense that perhaps we can make the
 pawns, even though their image is generated, a little bit more alive ... to make it perhaps a little bit more alive",

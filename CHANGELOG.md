@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Portraits that come alive
+
+*22 November 2026, version 0.295.0*
+
+- The large portrait follows the mouse: the backdrop and the person shift a little apart, with the person's shadow on the wall between them, for a sense of depth.
+- Backdrops with a depth map move in layers, so near things in a room move apart from the far wall.
+- Painted pictures with their expressions blink, keep their eyes closed while asleep, and smile or frown by their mood.
+- For a while after a wound, a death close to them or good news, the face shows pain, a frown or a smile.
+- Outdoors the map's weather falls lightly over the backdrop, and indoors a fire's warm light flickers on it.
+- New settings: Depth that follows the mouse, Blinking and expressions, The backdrop alive.
+
 ## Looks, work and faces kept apart
 
 *22 November 2026, version 0.294.0*
