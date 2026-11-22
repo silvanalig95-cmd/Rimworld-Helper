@@ -145,9 +145,14 @@ solution. I mean, I cannot upload that many images to you to edit."
 - **How they go together** (tried on the player's first pictures, 22 November 2026, the player: "whether the
   backgrounds are then too noisy or ... distracting from the pawn ... think about how to best kind of put it
   together"): the backdrop as painted is too busy (a stone wall fights a saurid's quills); far back or only its colours
-  loses the place. Best: the backdrop's middle band behind the head, blurred a little (about 1% of the panel), at about
-  60% brightness and 75% colour, darker towards the edges, a soft shadow behind the person, its brightest spots (a
-  window behind the head) dimmed, and the person tinted lightly (about a fifth) towards the room's light. The crop
+  loses the place. The player then: "I don't mind the as is painted version because the background images look really,
+  really cool and I don't mind seeing more of it ... maybe ... a very, very small, minor, softened effect ... Perhaps
+  there could be a little bit of a border around the colonists, kind of a line around it that fits, that highlights them
+  a bit without losing details on the background." So: the backdrop's middle band behind the head, kept almost as
+  painted (a blur of 0.3% of the panel, 86% brightness, 92% colour, a light darkening at the corners), and the person
+  set off by its own edge: a soft dark halo just round them, a faint pale edge (which keeps dark hair apart from dark
+  beams) and a thin dark ink line, all following the cut-out's shape. A pale line on its own looks like a sticker and is
+  left out. Optional: the person tinted lightly (about a fifth) towards the room's light. The crop
   follows the panel's size: at 96 pixels the head fills 45% of it, at 360 pixels 30%, so a small panel shows the face
   and a large one the pose; the head is found from the cut-out's own shape (its top and the neck).
 

@@ -412,7 +412,10 @@ most sense." So, in this order, three builds at a time:
   The player's first backdrops ("looking pretty good") and cut-outs, laid together here at the game's own sizes (the
   large portrait's square, 96 to 360 pixels, with its name band): the way that works is in `FRAMEWORK.md`
   ("Backgrounds": softened backdrop, crop by the panel's size, the person tinted to the room). Seen in the pictures: Ape
-  (a woman of 48) drawn as an old man, so pictures need a look before they are kept. Next, for the player's go: the ten
+  (a woman of 48) drawn as an old man, so pictures need a look before they are kept. The player prefers the backdrops
+  nearly as painted, with a line round the person; tried here: as painted, very lightly softened, a dark ink line, a
+  pale rim, a soft dark halo and mixes; the halo, a faint pale edge and the ink line together on the very light
+  softening is the proposal (`FRAMEWORK.md`), the edge's strength a setting. Next, for the player's go: the ten
   colonists' chosen cut-outs and the backdrops put in the mod by hand for a first look in the game, then the pack for
   the library at scale (the entry below). Then (mod code) the
   backdrop behind the large portrait by room, age and biome, tinted by day and weather, with the setting.
