@@ -55,7 +55,9 @@ key-art look, described in words (no picture of the game's is copied or fed in):
 | hair | bald, buzzed, short, medium, long, braids, tied, bun, topknot, mohawk, curly, dreadlocks |
 | face hair | none, stubble, short beard, full beard, moustache, goatee |
 | features | from the kind: pointed ears, long ears, fins, frills, horns, tusks, snout, fur, scales, gills, glowing eyes, markings, extra eyes ... |
-| marks | lost eye, eye patch, bionic eye, scar, burn, missing ear, tattoo |
+| marks | lost eye, eye patch, bionic eye, scar, burn, missing ear (the game reads these from the body; a missing arm and a face tattoo are proposed: `catalogue/marks.csv`) |
+| looks | the catalogue's look words (`catalogue/looks.csv`): faces and bearing from traits, A RimWorld of Magic's classes, psycasters, implants, genes that show, and the special looks (conjoined, wings, extra limbs, ghouls, the undead) |
+| role | scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer (the game reads it from the adult backstory, else the best skill with a passion; none for children; `catalogue/roles.csv` has what shows each in the four ages of dress) |
 | expression | calm, warm, stern, weary, wary, proud, cheerful, grim |
 | face shape | oval, round, square, long, narrow, heart, diamond, gaunt, broad |
 | nose | straight, hooked, crooked, broad, flat, snub, upturned, bulbous, long, broken |
@@ -86,12 +88,36 @@ look ... old, middle-aged, or even elderly over time if they are like really sup
 middle-aged around 500, old around 700, elderly past 800. The picture never holds the years, only the look, so one
 picture of "an elf who looks about 30" serves an elf of 30 and an ageless one of 300 alike. The player's active mods change ageing with: Ageless,
 Deathless, DevDesigner_Ageless, DV_LifespanLong, AG_ExtraordinaryLifespan, AG_SlowerAging, AG_FasterAging,
-VRE_SlowAging, VRE_FastAging, VRE_RapidAging, GS_RapidAge. The lead writes it from the kind's own files (its genes and description; a collector script gathers them
-for mods added later), so a kind new to the game gets a sheet the same way. Until a kind has pictures of its own, its people
+VRE_SlowAging, VRE_FastAging, VRE_RapidAging, GS_RapidAge. The look sheets are the rows of `catalogue/kinds.csv` (82 kinds:
+every active xenotype and the three humanlike races besides the human), written from the kinds' genes in the player's save
+where it holds them and from the mods' gene names and descriptions otherwise (marked `guessed`); a kind new to the game
+gets a row the same way (`catalogue/README.md`, "Adding a new mod's kinds"). Until a kind has pictures of its own, its people
 keep the game's own drawing (the player: "it should just show no image ... not take another xenotype's image. That will
-also immediately inform me that I need to generate images for that xenotype"), and `missing.csv` lists the kind. The order of work follows the player's world (League of Toba, day 138): baseliners, dark elves, then hussars,
-neanderthals, impids, genies, wasters, saurids, sanguophages, pigskins, starjacks, the elves, avaloi, yttakin, fairies,
-merren and the rest of the 79 active xenotypes.
+also immediately inform me that I need to generate images for that xenotype"), and `missing.csv` lists the kind. The order of work follows the player's world (League of Toba, day 138): the waves of `catalogue/kinds.csv`, by
+each kind's weight (how many of its people the save holds, and the factions that bring it): wave 1 baseliners and dark
+elves; wave 2 hussars, neanderthals, impids, pigskins, wasters and saurids; wave 3 genies, starjacks, yttakin,
+sanguophages and the high and wood elves; wave 4 the kinds the save holds a few times; wave 5 the rest.
+
+## Character, and only what they have
+
+The player, 22 November 2026: "in the prompt description, you can also include, more eccentric and noticeable and
+special visuals also ... there can definitely be a lot of variety and range, especially when it comes to the NPCs ...
+but it should always be thematically fitting and based on an actual combination and only applied in this combination
+of pawn characteristics ... maybe it's holding a flame or something because it's a fire mage ... As long as you don't
+get like someone doing ... a fire spell for someone who can't even do magic ... Otherwise, it should ... rather choose a
+default one that doesn't have special things like that." And: "the profession can and should also be reflected in how
+they look like ... science ... a scientist ... soldiers being soldiers".
+- **Defaults first**: every kind, sex and age band gets plain pictures (no look, no role, nothing held that a skill
+  would need) before any showy one, varied in face, expression, hair, build and bearing.
+- **A look or a role only for those who have it**: the game gives a picture with a look (a pyromaniac's lit match, a fire
+  mage's flame, a brawler's taped knuckles) or a role (a soldier's rifle, a scholar's book) only to people who have that
+  trait, class, condition, gene or role; plain pictures go to anyone of their kind, sex and age.
+- **Special looks both ways**: conjoined twins, wings, extra limbs and the like only get pictures made for them, and
+  those pictures go to no one else.
+- **Range**: within a row's real characteristics the subject can be eccentric, funny, intense, shy, proud, weathered or
+  wild-haired; the rarer kinds and the later rounds get the widest range. A prompt never adds a prop, a power or gear
+  the row's looks and role don't stand for; anything it adds that the game should check goes into the row's `looks` or
+  `role`.
 
 ## Pillar 4: life on them (wealth and hardship, in the same style)
 
@@ -182,12 +208,16 @@ solution. I mean, I cannot upload that many images to you to edit."
    into `batches/style.json`, which every later batch uses.
 3. **The colonists' own portraits**: the ten again in the chosen style, four each; the player keeps the best; the lead puts
    them in the game tied to those pawns.
-4. **The starter set**: the commonest looks (baseliners of every age, sex, skin and hair in the four ages of dress, then
-   the dark elves), a few hundred, made overnight from batch files the lead writes.
-5. **Waves**, by the kinds' order above, then variants (pillar 5) for the characters most used.
-6. **Growing for good**: the lead's coverage report compares the library with the pawns in a save and lists the gaps (a
-   kind, an age, a look with too few pictures); each new batch fills the biggest ones. A new mod's kind gets a look sheet
-   and its first batch the same way.
+4. **The starter set**: the planner's first lists (`Tools/PortraitArt/plan_batches.py`, `catalogue/README.md`): wave 1
+   (baseliners and dark elves: plain pictures of every sex and age band across their skins and hair, one per common
+   role, the looks) and wave 2's plain pictures, 728 rows (`batches/wave1-people-01` to `03`, `wave2-people-01` to `02`).
+5. **Waves**, by `catalogue/kinds.csv`'s waves, each the same way (plain, roles, looks, then more variety where a kind is
+   common), then variants (pillar 5) for the characters most used.
+6. **Growing for good**: the census (`Tools/PortraitArt/save_census.py`) reads each save the player sends into the
+   catalogue, and the planner compares the library's `records.xml` and the lists with it, writes `catalogue/COVERAGE.md`
+   (the gaps first) and the next lists, `missing.csv`'s needs before everything else. A new mod's kind gets a row in
+   `kinds.csv` and its first rows the same way. Lists are never rewritten: new rows go into new lists, and a row's name
+   says what it shows and never changes.
 
 Each round: the player runs a batch (`Tools/PortraitArt/Run-PortraitBatch.ps1`); ComfyUI makes each picture and its
 cut-out. For the first rounds the player zips the output folder with "Zip for upload" and sends it, and the lead checks
