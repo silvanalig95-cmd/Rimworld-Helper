@@ -307,6 +307,18 @@ most sense." So, in this order, three builds at a time:
   so on, 79 xenotypes active; three ways to make them: the free Gemini app nine to a sheet cut by the lead, Google's paid
   API by a script (about 3 to 4 cents a picture), or free on the player's own graphics card). Next from the player: 3 to 5
   Gemini pictures in the style they like, then the pilot of ten sheets of nine. The portrait build was told the schema.
+  Then (22 November 2026) the player: a framework to grow for good ("as many possible combinations as possible. All the
+  different races, ages, genders, perhaps, even injuries ... haircuts ... expand that continuously ... applicable to all
+  characters ... that could even appear in the game"), the tests on their own colonists, a style "not too realistic ...
+  not like photographic ... still fit a bit to the RimWorld theme ... rugged survivalist", richer or poorer looks in the
+  same style, and to make them on their own graphics card (an NVIDIA GeForce RTX 4070 Ti SUPER, 16 GB). Written:
+  `docs/portrait-art/FRAMEWORK.md` (five pillars: the style bible, the person's words, the kinds and their look sheets,
+  wealth and hardship, characters and variants; the process and the coverage report), `docs/portrait-art/SETUP-ComfyUI.md`
+  (ComfyUI Desktop, a FLUX.1 model from its templates, the workflow exported with %PROMPT%), `Tools/PortraitArt/
+  Run-PortraitBatch.ps1` (queues a batch list in a style into ComfyUI, tested against a stand-in server here), and
+  `docs/portrait-art/batches/` (five candidate styles A to E, and `colonists.csv`: the ten colonists of League_of_Toba_11
+  described from the save: Avila, Soot the saurid, Ape, Trorgakoc, Lorena the merren, Darunia, Webb, Bautista, Ettrian,
+  Guido; the baby Luna left out). Next: the player sets up ComfyUI and runs the colonists in the five styles.
   **Built** (21 November 2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above
   the newest release line):
   point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the

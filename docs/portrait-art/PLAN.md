@@ -1,5 +1,9 @@
 # The portrait library: the plan (21 November 2026)
 
+Superseded in its steps by `FRAMEWORK.md` (22 November 2026: the pillars and the process) and `SETUP-ComfyUI.md` (making
+the pictures on the player's own computer, an RTX 4070 Ti SUPER, with `Tools/PortraitArt/Run-PortraitBatch.ps1`). The
+coverage and the three ways below still hold.
+
 The player: "we will, just basically have a large image library for as many ages and sexes and races and hairstyles and
 whatever combined, kind of have everything accurately described, what each image describes. So you can always select the
 most appropriate one to the pawn ... it's really important to have a lot of variety. So if it requires a ton of token and
