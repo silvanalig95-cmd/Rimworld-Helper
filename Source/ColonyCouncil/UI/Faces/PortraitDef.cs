@@ -61,6 +61,10 @@ namespace ColonyCouncil
         public List<string> features = new List<string>();
         /// <summary>lostEye, eyePatch, scar, burn, bionicEye, missingEar.</summary>
         public List<string> marks = new List<string>();
+        /// <summary>The looks it shows, by their words (<see cref="PortraitLookDef.word"/>: drinker, pyromaniac, conjoinedTwins...); a special look's picture stands only for those who have it.</summary>
+        public List<string> looks = new List<string>();
+        /// <summary>The work it shows (scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer); empty for any.</summary>
+        public string role;
         /// <summary>front, left, right, threeQuarterLeft or threeQuarterRight: where the person looks in the picture.</summary>
         public string facing;
         /// <summary>The face this picture is a variant of (the same word on each variant); none: a face of its own.</summary>
@@ -107,6 +111,8 @@ namespace ColonyCouncil
 
         private void Read()
         {
+            // The looks' words are known before any record is read.
+            PortraitLooks.Ensure();
             problems = new List<string>();
             record = PortraitLibraryMath.Record(defName, Field, List, problems);
         }
@@ -130,11 +136,13 @@ namespace ColonyCouncil
                 case "facing": return facing;
                 case "character": return character;
                 case "variant": return variant;
+                case "role": return role;
                 default: return null;
             }
         }
 
-        private IList<string> List(string name) => name == "xenotypes" ? xenotypes : name == "races" ? races : name == "features" ? features : name == "marks" ? marks : null;
+        private IList<string> List(string name) =>
+            name == "xenotypes" ? xenotypes : name == "races" ? races : name == "features" ? features : name == "marks" ? marks : name == "looks" ? looks : null;
 
         public override IEnumerable<string> ConfigErrors()
         {

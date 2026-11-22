@@ -34,7 +34,7 @@
   <CC_SetNote_PortraitPick_Closest>Everyone gets the picture closest to their looks, of their own kind and sex and a near age.</CC_SetNote_PortraitPick_Closest>
   <CC_SetNote_PortraitPick_OnlyClose>Only pictures that look close to the person are shown; the others keep the game's own face.</CC_SetNote_PortraitPick_OnlyClose>
   <CC_SetLabel_PortraitBackdrop>Backdrop</CC_SetLabel_PortraitBackdrop>
-  <CC_SetTip_PortraitBackdrop>Behind a painted picture in the large portrait, a painted backdrop of where the person is: indoors the kind of room, the colony's age and what is in the room; outdoors the kind of land; darker and cooler at night. "As painted" shows it as it was painted. "Lightly softened" blurs it a little and makes it slightly darker and less colourful. "Softened" blurs it more and makes it darker, so the person stands out more. "Plain" shows no backdrop, only the portrait's own colour.</CC_SetTip_PortraitBackdrop>
+  <CC_SetTip_PortraitBackdrop>Behind the person in the large portrait (a painted picture, and the game's own drawing where "Backdrop behind the game's own drawing too" is on), a painted backdrop of where the person is: indoors the kind of room, the colony's age and what is in the room; outdoors the kind of land; darker and cooler at night. "As painted" shows it as it was painted. "Lightly softened" blurs it a little and makes it slightly darker and less colourful. "Softened" blurs it more and makes it darker, so the person stands out more. "Plain" shows no backdrop, only the portrait's own colour.</CC_SetTip_PortraitBackdrop>
   <CC_PortraitBackdrop_AsPainted>As painted</CC_PortraitBackdrop_AsPainted>
   <CC_PortraitBackdrop_LightlySoftened>Lightly softened</CC_PortraitBackdrop_LightlySoftened>
   <CC_PortraitBackdrop_Softened>Softened</CC_PortraitBackdrop_Softened>
@@ -70,6 +70,11 @@
   <CC_PortraitNeed_NoRoom>no backdrop of this kind of room</CC_PortraitNeed_NoRoom>
   <CC_PortraitNeed_NoAge>none of the colony's age</CC_PortraitNeed_NoAge>
   <CC_PortraitNeed_NoLand>no backdrop for {GROUP}</CC_PortraitNeed_NoLand>
+  <CC_PortraitNeed_NoLook>no picture of their kind shows this look</CC_PortraitNeed_NoLook>
+  <CC_PortraitNeed_NoSpecialLook>a special look no picture of their kind shows, so the game's own drawing</CC_PortraitNeed_NoSpecialLook>
+  <CC_Settings_PortraitBackdropGame>Backdrop behind the game's own drawing too</CC_Settings_PortraitBackdropGame>
+  <CC_Settings_PortraitBackdropGame_Tip>When the library has no painted picture for someone and the large portrait shows the game's own drawing of them, the backdrop of where they are stands behind it too, softened and darkened at night as the setting "Backdrop" says, with a soft shadow behind them. Off: the game's drawing stays on the portrait's own colour, and painted pictures keep their backdrop.</CC_Settings_PortraitBackdropGame_Tip>
+  <CC_SetNote_PortraitBackdropGame>The backdrop stands behind the game's own drawing as well as behind painted pictures.</CC_SetNote_PortraitBackdropGame>
   <CC_Settings_PortraitLightTint>Tint the person to the room's light</CC_Settings_PortraitLightTint>
   <CC_Settings_PortraitLightTint_Tip>The person in the large portrait's painted picture takes on a little of the backdrop's colour (about a fifth), so a warm firelit room makes them warmer and a cold night cooler.</CC_Settings_PortraitLightTint_Tip>
   <CC_SetNote_PortraitLightTint>The person takes on a little of the backdrop's light.</CC_SetNote_PortraitLightTint>

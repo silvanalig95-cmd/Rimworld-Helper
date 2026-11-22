@@ -700,6 +700,8 @@ namespace ColonyCouncil
             // Portraits, phase 4 (UI/Faces/FaceEngineStage.cs): the large portrait's painted picture in front of a backdrop of where they are.
             Choice("portraitBackdrop", "CC_SetLabel_PortraitBackdrop", "CC_SetTip_PortraitBackdrop", "CC_PortraitBackdrop_", "CC_SetNote_PortraitBackdrop_",
                 new[] { "AsPainted", "LightlySoftened", "Softened", "Plain" }, "inspectPortrait,portraitLibrary");
+            // Portraits, phase 5 (the player, 22 November 2026): the backdrop behind the game's own drawing too.
+            Toggle("portraitBackdropGame", "CC_Settings_PortraitBackdropGame", "CC_SetNote_PortraitBackdropGame", "inspectPortrait,portraitLibrary");
             Choice("portraitOutline", "CC_SetLabel_PortraitOutline", "CC_SetTip_PortraitOutline", "CC_PortraitOutline_", "CC_SetNote_PortraitOutline_",
                 new[] { "Off", "Subtle", "Stronger" }, "inspectPortrait,portraitLibrary");
             Toggle("portraitLightTint", "CC_Settings_PortraitLightTint", "CC_SetNote_PortraitLightTint", "inspectPortrait,portraitLibrary");

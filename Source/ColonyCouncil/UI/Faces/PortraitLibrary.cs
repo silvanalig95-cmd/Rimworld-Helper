@@ -62,6 +62,8 @@ namespace ColonyCouncil
         private readonly Dictionary<string, int> byName = new Dictionary<string, int>();
         private readonly HashSet<string> characters = new HashSet<string>();
         private readonly Dictionary<int, Looked> looked = new Dictionary<int, Looked>();
+        /// <summary>The people already looked at for the missing list since the library was read (once each).</summary>
+        private readonly HashSet<int> noted = new HashSet<int>();
         private readonly Dictionary<string, int> pinOwners = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         private float namesUntil = -1f;
         /// <summary>Whose each face is (a colonist's own, a pinned one's): read again when the keeper or the pins change.</summary>
@@ -103,6 +105,7 @@ namespace ColonyCouncil
                 byName.Clear();
                 characters.Clear();
                 looked.Clear();
+                noted.Clear();
                 namesUntil = -1f;
                 void Add(Entry e)
                 {
@@ -243,11 +246,14 @@ namespace ColonyCouncil
             var k = keeper?.Get(id);
             ReadOwners(keeper);
             bool colony = ColonyOwn(p);
-            // The plain case, every few seconds for everyone shown: kept, the same library and stage, theirs to keep.
+            // The plain case, every few seconds for everyone shown: kept, the same library and stage, theirs to keep, and
+            // no special look gained that the picture doesn't show.
             if (k != null && k.picture.Length > 0 && k.library == signature && !Taken(k.character, id) && (k.reserved || !colony) && byName.TryGetValue(k.picture, out int keptAt)
-                && PortraitReader.AgeOf(p, out var ageNow) && (int)PortraitLibraryMath.StageOf(ageNow) == k.stage)
+                && PortraitReader.AgeOf(p, out var ageNow) && (int)PortraitLibraryMath.StageOf(ageNow) == k.stage
+                && !PortraitLibraryMath.LacksSpecial(records[keptAt], PortraitLooks.SpecialsOf(p)))
             {
                 keeper.Seen(k);
+                NoteOnce(p, null, keptAt, k.distance, k.pinned || k.byHand);
                 return Shown(k) ? keptAt : -1;
             }
             if (!PortraitReader.LookOf(p, out var look)) return -1;
@@ -259,17 +265,20 @@ namespace ColonyCouncil
             bool kept = k != null && k.stage >= 0;
             bool there = kept && byName.ContainsKey(k.picture);
             int keptFit = there && k.pinned ? PortraitLibraryMath.PinFit(records[byName[k.picture]], look) : 0;
+            bool lacks = there && PortraitLibraryMath.LacksSpecial(records[byName[k.picture]], look.specials);
             bool again = PortraitLibraryMath.PickAgain(kept, kept ? (PortraitStage)k.stage : stage, stage, k?.picture, there, keptFit, k?.byHand ?? false,
-                k?.library ?? 0, signature, k?.words, words, pinFit, there && Taken(k.character, id));
+                k?.library ?? 0, signature, k?.words, words, pinFit, there && Taken(k.character, id), lacks);
             if (!again)
             {
                 k.library = signature;
                 keeper.Seen(k);
                 if (colony) keeper.Reserve(k);
-                return k.picture.Length > 0 && Shown(k) ? byName[k.picture] : -1;
+                int at = k.picture.Length > 0 ? byName[k.picture] : -1;
+                NoteOnce(p, look, at, k.distance, k.pinned || k.byHand);
+                return at >= 0 && Shown(k) ? at : -1;
             }
             var pick = pin.Any ? pin : PortraitLibraryMath.Pick(look, records, id, c => keeper?.UsesOf(c, id) ?? 0, c => Taken(c, id));
-            if (!pin.Any) NoteNeed(p, look, pick);
+            NoteOnce(p, look, pick.index, pick.distance, pin.Any);
             if (keeper == null) return pick.Any && PortraitLibraryMath.Shown(Mode, pin.Any, pick.distance) ? pick.index : -1;
             keeper.Set(id, pick.Any ? records[pick.index].name : "", pick.character, look.Kind, words, signature, stage, pin.Any, false, pick.distance);
             k = keeper.Get(id);
@@ -277,14 +286,30 @@ namespace ColonyCouncil
             return pick.Any && Shown(k) ? pick.index : -1;
         }
 
-        /// <summary>For the library folder's missing list: a person with no picture of their own kind, none of their sex and stage, or none close to their looks.</summary>
-        private void NoteNeed(Pawn p, PortraitLook look, PortraitPick pick)
+        /// <summary>
+        /// For the missing list (the save's and the library folder's), once a person each time the library is read: no
+        /// picture of their own kind, none of their sex and stage, or none close to their looks (not for a picture pinned
+        /// to them or chosen by hand); and each of their looks no picture that may stand for them shows
+        /// (<see cref="PortraitLibraryMath.LooksLacking"/>), special and ordinary alike. <paramref name="at"/> is the
+        /// picture they have (-1 none), <paramref name="look"/> null where it isn't read yet.
+        /// </summary>
+        private void NoteOnce(Pawn p, PortraitLook look, int at, float distance, bool ownPicture)
         {
-            if (!PortraitNeeds.On) return;
-            if (!PortraitLibraryMath.HasOwnKind(look, records))
-                PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoKind", pick.Any ? records[pick.index].name : "");
-            else if (!pick.Any) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoStage", "");
-            else if (pick.distance > PortraitLibraryMath.CloseEnough) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoneClose", records[pick.index].name);
+            if (!PortraitNeeds.On || noted.Contains(p.thingIDNumber)) return;
+            noted.Add(p.thingIDNumber);
+            if (look == null && !PortraitReader.LookOf(p, out look)) return;
+            string instead = at >= 0 ? records[at].name : "";
+            if (!ownPicture)
+            {
+                if (!PortraitLibraryMath.HasOwnKind(look, records)) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoKind", instead);
+                else if (at < 0) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoStage", "");
+                else if (distance > PortraitLibraryMath.CloseEnough) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoneClose", instead);
+            }
+            foreach (var w in PortraitLibraryMath.LooksLacking(look, records, r => Theirs(r, p)))
+            {
+                bool special = look.specials.Contains(w);
+                PortraitNeeds.NoteLook(p, look, w, special, special ? "" : instead);
+            }
         }
 
         private static bool Shown(KeptPortrait k) => k != null && PortraitLibraryMath.Shown(Mode, k.pinned || k.byHand, k.distance);
@@ -294,6 +319,7 @@ namespace ColonyCouncil
         public void NewGame()
         {
             looked.Clear();
+            noted.Clear();
             namesUntil = -1f;
         }
 
@@ -338,7 +364,8 @@ namespace ColonyCouncil
             string kept = k == null ? "nothing yet"
                 : k.picture.Length == 0 ? "no picture (none fitted)"
                 : k.picture + (k.pinned ? ", pinned" : "") + (k.byHand ? ", chosen by hand" : "") + ", " + k.distance.ToString("0.00") + (Shown(k) ? "" : " (not shown: only close ones)");
-            return p.LabelShort + ": " + look.Words + (PortraitLibraryMath.HasOwnKind(look, records) ? "" : " (no pictures of their kind)") + "; keeps " + kept + "; pinned to them: "
+            return p.LabelShort + ": " + look.Words + (PortraitLibraryMath.HasOwnKind(look, records) ? "" : " (no pictures of their kind)")
+                   + (look.specials.Count > 0 ? " (special looks: " + string.Join(", ", look.specials) + ")" : "") + "; keeps " + kept + "; pinned to them: "
                    + (pins.Any() ? string.Join(", ", pins) : "none") + "; nearest: " + (near.Any() ? string.Join(", ", near) : "none that may stand for them");
         }
 

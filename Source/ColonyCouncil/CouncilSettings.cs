@@ -852,6 +852,8 @@ namespace ColonyCouncil
         public PortraitPickMode portraitPick = PortraitPickMode.Closest;
         /// <summary>The backdrop behind the large portrait's painted picture: as painted (the player's choice), lightly softened, softened, or none (UI/Faces/FaceEngineStage.cs).</summary>
         public PortraitBackdropMode portraitBackdrop = PortraitBackdropMode.AsPainted;
+        /// <summary>The backdrop behind the large portrait's game drawing too, where the library has no painted picture for them (on; the player's wish of 22 November 2026).</summary>
+        public bool portraitBackdropGame = true;
         /// <summary>A line round the person in the large portrait's painted picture: off, subtle or stronger.</summary>
         public PortraitOutlineMode portraitOutline = PortraitOutlineMode.Off;
         /// <summary>The person in the large portrait tinted a fifth toward the backdrop's light.</summary>
@@ -1346,6 +1348,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref portraitLibrary, "portraitLibrary", true);
             Scribe_Values.Look(ref portraitPick, "portraitPick", PortraitPickMode.Closest);
             Scribe_Values.Look(ref portraitBackdrop, "portraitBackdrop", PortraitBackdropMode.AsPainted);
+            Scribe_Values.Look(ref portraitBackdropGame, "portraitBackdropGame", true);
             Scribe_Values.Look(ref portraitOutline, "portraitOutline", PortraitOutlineMode.Off);
             Scribe_Values.Look(ref portraitLightTint, "portraitLightTint", false);
             Scribe_Values.Look(ref portraitFolder, "portraitFolder", "");
