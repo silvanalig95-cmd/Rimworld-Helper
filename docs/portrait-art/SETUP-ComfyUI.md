@@ -32,9 +32,19 @@ steps don't change.
 1. In the template's prompt box, delete the text and type exactly `%PROMPT%`.
    If the workflow has a second, negative prompt box, type `%NEGATIVE%` there.
 2. Set the picture size to **1024 x 1024** (the "Empty Latent Image" box, or the size box in the template).
-3. Save the workflow for the batches: menu **Workflow**, **Export (API)**. Save it as
+   (The batch tool sets the size from the style file anyway.)
+3. Two LoRA boxes, so the styles' LoRAs have somewhere to go: double-click an empty spot, type `Load LoRA` and add it,
+   twice. Wire them in a chain between the model and everything that used it: the model loader's MODEL and CLIP
+   outputs into the first LoRA box's model and clip inputs, the first box's MODEL and CLIP outputs into the second's,
+   and the second box's MODEL output to where the loader's MODEL went (the KSampler, or a ModelSamplingFlux box), its
+   CLIP output to the prompt box's clip input (drag each new wire onto the same input; it replaces the old one). Pick
+   any LoRA in them: the batch tool sets the LoRA names and strengths from the style file for every picture, and turns
+   a box the style doesn't use down to 0.
+4. Save the workflow for the batches: menu **Workflow**, **Export (API)**. Save it as
    `rimfolk-workflow-api.json` in the same folder as the batch files (step 4).
    (Older versions: Settings, enable "Dev mode options", then "Save (API Format)".)
+   Also **Workflow, Save** it under a name of your own (for example `rimfolk`): an export can't be opened again for
+   changes, a saved workflow can (the Workflows list on the left), and exported again into a new folder at any time.
 
 ## 4. The batch files
 
