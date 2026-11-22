@@ -1,0 +1,24 @@
+{
+  "label": "The chosen style (22 November 2026): Henry Daubrez painterly LoRA, from the waist up, for cutting out",
+  "style": "DB4RZ style painting. A stylised painted character for a rugged sci-fi frontier colony game, painterly game art. An ordinary, imperfect, distinctive face with its own character, plain and unidealised, bare skin.",
+  "frame": "Seen from the waist up, one person alone, bare-headed with the hair in full view, the head in the upper third of the picture, the body and arms running past the bottom and side edges of the picture. Behind them one flat, even, dark blue-grey colour fills the whole picture from edge to edge.",
+  "style_end": "Painterly game art throughout, loose stylised brushwork.",
+  "negative": "",
+  "width": 1024,
+  "height": 1280,
+  "count": 2,
+  "guidance": 3.0,
+  "steps": 28,
+  "sampler_name": "euler",
+  "scheduler": "simple",
+  "loras": [
+    {
+      "name": "FLUX-daubrez-DB4RZ.safetensors",
+      "strength": 0.9
+    },
+    {
+      "name": "SameFace_Fix.safetensors",
+      "strength": -0.7
+    }
+  ]
+}

@@ -359,8 +359,8 @@ most sense." So, in this order, three builds at a time:
   to face their text or the other of a pair, and a seam where a portrait painted live (the pixel portraits, if the
   player picks them) would be another source. Point 2 (more to the face) is the library's to give. What waits: the
   pictures and their defs (PLAN.md's steps: the style, the pilot, the waves), and points 3 to 7.
-- **To do when the player asks (22 November 2026, the player, after the first runs with LoRAs; nothing built yet): the
-  portraits' backgrounds, bodies cut off, and poses.** The player: "the background from the images. It's most of the
+- **Go given (22 November 2026, the player: "please also above regarding the to-do list from the last message, please
+  go ahead and adapt everything"): the portraits' backgrounds, bodies cut off, and poses.** The player: "the background from the images. It's most of the
   time it's consistent, but sometimes it has kind of strange shapes in the background and it's not just a blank color
   ... Is there like a plan to have transparent backgrounds and kind of fill this with something else? Or kind of have
   also background images that can be applied to each of the kind of character images, or should the character images
@@ -385,6 +385,39 @@ most sense." So, in this order, three builds at a time:
      room), outdoors by the biome and the weather, day or night; soft, darker and out of focus so the face stays first,
      with a light shadow behind the figure. The plain colour with a vignette is the fallback and a setting. One picture
      then serves a pawn everywhere, and 40 or so backdrops serve every picture.
+  The player chose the style the same day: the Henry Daubrez LoRA (`style-L9s`: "really, really cool ... that is the one
+  I want to go with"), and asked whether its brushy backgrounds can be cut out ("maybe you can give it a try here").
+  Done (art kit, no mod code): five of the player's pictures cut out here with BiRefNet (open, MIT) and ISNet: BiRefNet
+  clean even on loose hair, the painted corner seal removed with the background. `batches/style.json` is the chosen
+  style with the new frame (waist up, 1024 x 1280, said positively, one flat colour behind); `colonists.csv` has a `pose`
+  column (each from the person's traits, work and bearing; Avila written as "clearly an adult": the style drew him as a
+  boy); the batch tool adds the pose to the prompt, saves the picture of a Save Image box titled "cut" as `..._cut`,
+  leaves the cut-out out for a style with `"cut": false`, and warns when a style names more LoRAs than the workflow has
+  boxes; `SETUP-ComfyUI.md` step 6 puts BiRefNet (ComfyUI-RMBG node pack) in the player's workflow, so every picture is
+  cut out on their computer in the same run; `batches/backdrops.csv` with `style-backdrop` (67 places: twelve rooms in
+  four ages, sixteen outdoor looks for the player's 56 biomes, three plain grounds); `FRAMEWORK.md` has the chosen style,
+  the pose axis and a "Backgrounds" section. Tested here against a stand-in server. Next from the player: install the
+  node pack, run `colonists` with `style` and `backdrops` with `style-backdrop`, send a few of each. Then (mod code) the
+  backdrop behind the large portrait by room, age and biome, tinted by day and weather, with the setting.
+- **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
+  "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
+  etc. So I don't know if removing a background for each of them anyways is a sustainable solution. I mean, I cannot
+  upload that many images to you to edit. It's not really sustainable." The cut-out now runs in ComfyUI (above); the
+  rest of PLAN.md's per-picture work done by the lead (looking at each picture, writing its record) can't scale either.
+  The lead's proposal: every step per picture on the player's computer, by itself.
+  1. The batch lists written by a script of the lead's from the framework's words (kind, sex, age, skin, hair, beard,
+     build, the age of dress, wealth, hardship, face words, pose), each row carrying its words in columns; the batch
+     tool's log ties every picture to its row, so a picture's record is what was asked for.
+  2. The player throws out the misses (wrong kind or age, broken hands) by looking through the folder; a small review
+     page with keep and bin keys if that is too slow.
+  3. A pack script on the player's computer (PowerShell, like the batch tool) takes the kept cut-outs, scales them to
+     game size, works out where the head is from the cut-out's shape, and writes a local mod, "Rimfolk Portraits":
+     the textures and one `PortraitDef` per picture (the def phase 3 already reads: kind, sex, age, colours, hair,
+     beard, build, era, dress, features, marks, facing, the head's place), so no mod code changes for the records.
+  4. The lead sees a sample now and then for the look, and writes the next batch lists from a coverage report (the
+     player's save against the pack's records, the gaps first).
+  Size to weigh: a cut-out at 512 x 640 is about 270 KB as PNG (measured on the test pictures), so 3,000 make a pack of
+  about 0.8 GB; smaller or compressed textures bring it down.
 - **Done (21 November 2026, the player's go: "yes, please also fix the walking issue", then "please go all ahead with
   this and all the next steps that you listed"; built, not released): visitors who slide across the map facing one
   way.** The to-do with the player's words is now one entry above the newest release line ("Fixes: the sick tended

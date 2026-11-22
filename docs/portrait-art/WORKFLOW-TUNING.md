@@ -94,6 +94,10 @@ anime looks, minimal vector silhouettes, and the Fallout pack (no people in its 
 All three put `SameFace_Fix.safetensors` at -0.7 in the second box. Daubrez paints loosely and leans abstract; if faces
 melt into the brushwork, try 0.7.
 
+**Chosen: L9s, Henry Daubrez** (the player, 22 November 2026: "that is the one I want to go with"). It is now
+`batches/style.json`, with the frame from the waist up at 1024 x 1280 and said only positively, and the poses
+(`FRAMEWORK.md`).
+
 ### Z-Image Turbo, a second model (22 November 2026)
 
 Comic Book Tome 3's newer versions, V3 and V4, whose examples fit the game best (inked European-comic portraits with

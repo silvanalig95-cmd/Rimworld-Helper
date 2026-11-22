@@ -24,17 +24,21 @@ key-art look, described in words (no picture of the game's is copied or fed in):
   or blue rim light from behind, a warm key light from the front left.
 - **Faces**: angular and characterful, slightly exaggerated (a strong nose, defined cheekbones, real asymmetry), never the
   generic pretty face: every person gets features of their own (pillar 2, face).
-- **Frame**: head and shoulders, the eyes about 40% from the top, the shoulders reaching the bottom edge, one person, a
-  plain dark blue-grey background, no text, no border.
+- **Frame**: from the waist up (1024 x 1280), the head in the upper third, the body and arms running past the edges (so
+  no picture ends in a cut-out bust), one person, bare-headed, on one flat, even dark blue-grey colour that is cut away
+  afterwards (see "Backgrounds"). Said only positively: FLUX reads "no border, no hat" as a call for a border and a hat.
 - **Holding the style**: every prompt starts with the style and ends with it repeated (`style_end`), so a reptile, an
   elf or a child is drawn the same way as a baseliner. FLUX ignores the negative prompt at its usual settings, so what
   matters is said positively. Once 20 to 40 pictures are chosen, a small style LoRA trained on them on the player's card
   holds the look for every later picture.
-- Candidates: `style-F1` (clean, like the game's key art), `F2` (inked and gritty, like the Biotech art), `F3` (softer
-  colour, like the Ideology art). The player picks; the chosen one becomes `style.json`.
+- **Chosen** (the player, 22 November 2026, after the LoRA tests: "this Henry Daubrez one, the style L9S looks really,
+  really cool ... these paintings ... already have a lot of character just from the style. So that is the one I want to
+  go with"): the Henry Daubrez painterly LoRA (Civitai 696050, `FLUX-daubrez-DB4RZ.safetensors`, 0.9) with the SameFace
+  Fix at -0.7, loose painted brushwork in muted colours; `batches/style.json`. Earlier candidates (`style-A` to `L9s`)
+  stay for reference.
 - **Children and babies**: the same style, softer and rounder features as fits their age, never made to look older.
 - **What varies, inside the style**: wealth and hardship (pillar 4), the age of their dress, the kind of person, the angle,
-  the expression and the face. Never the linework, shading, light or frame.
+  the pose, the expression and the face. Never the brushwork, light or frame.
 
 ## Pillar 2: the person (what every picture's record says)
 
@@ -58,9 +62,14 @@ key-art look, described in words (no picture of the game's is copied or fed in):
 | mouth and jaw | thin lips, full lips, wide mouth, small mouth, lopsided grin, overbite, gap teeth, weak chin, strong jaw, cleft chin |
 | skin detail | freckles, moles, acne scars, pockmarks, wrinkles, crow's feet, sunburn, stubble shadow, birthmark |
 | facing | front, left, right, three-quarter left, three-quarter right |
+| pose | arms crossed, arms folded, hands clasped, a hand on the hip, a hand on a weapon, a weapon on the shoulder, the tool of their trade in hand, holding something of their own, leaning forward, hunched, standing square, sitting (small children); the head tilted or the chin raised |
 
 Every new person in a batch gets two or three face words drawn at random (and kept for that character), so no two
-read alike and none falls back to the generic face.
+read alike and none falls back to the generic face. The pose (the player, 22 November 2026: "the poses ... should maybe
+also allow some variety ... give character ... more fitting to the pawn and the traits and how they look like") comes
+from the person: their traits, work and bearing (a guarded scout with arms crossed and a sidelong look, a calm surgeon
+with hands clasped, a warrior with a sword on the shoulder); it goes in the batch list's `pose` column. Hands show now
+and FLUX gets some wrong: those pictures are thrown out.
 
 ## Pillar 3: the kinds (any race or xenotype, including ones not met yet)
 
@@ -110,6 +119,28 @@ mechanoids, insectoids and the other creatures get a library of their own after 
 sex where it shows, colour or coat variant, and marks (a lost eye, a scar, a bionic part), in the same style bible with a
 "creature" framing (head and chest, the animal's own pose). A bonded or named animal keeps its picture like a colonist.
 
+## Backgrounds
+
+The player, 22 November 2026: "Is there like a plan to have transparent backgrounds and kind of fill this with something
+else? Or ... background images that can be applied to each of the kind of character images ... It shouldn't ... distract
+too much, but just having a blank color can also be a bit ... boring", and then: "I will want to have hundreds, if not
+thousands of different images ... So I don't know if removing a background for each of them anyways is a sustainable
+solution. I mean, I cannot upload that many images to you to edit."
+
+- **Cut out on the player's computer, in the same run**: a background remover in the ComfyUI workflow (BiRefNet, from
+  the ComfyUI-RMBG node pack; `SETUP-ComfyUI.md` step 6) saves a transparent copy of every picture next to it
+  (`..._cut.png`), with no work per picture. Tested here on the first five Daubrez pictures: clean edges even on the
+  loose, brushy hair, and the painted seal the style sometimes adds in a corner goes with the background.
+- **Backdrops, in the same style**: `batches/backdrops.csv` with `style-backdrop` (no cut-out): twelve kinds of room in
+  the four ages of the colony (tribal, medieval, industrial, spacer: bedroom, barracks, hospital, prison cell, throne
+  room, dining room, common room, kitchen, workshop, study, shrine, storeroom), sixteen outdoor looks that the player's
+  56 biomes fall into (temperate and boreal forest, tundra, ice, grassland, shrubland, desert, jungle, swamp, coast,
+  wasteland, volcanic, glowforest, cave, space, mountain), and three plain painted grounds. 67 places, two of each.
+- **In the game** (to build once the backdrops are made): behind the cut-out person, the backdrop of where they are: the
+  room's kind and the colony's age indoors, the biome outdoors; day or night and the weather as a tint; drawn softer,
+  darker and out of focus, with a light shadow behind the figure, so the face stays first. A plain painted ground is the
+  fallback, and a setting chooses backdrops, plain, or the picture's own background.
+
 ## The process
 
 1. **Set up** the image tool on the player's computer (`SETUP-ComfyUI.md`).
@@ -125,6 +156,7 @@ sex where it shows, colour or coat variant, and marks (a lost eye, a scar, a bio
    kind, an age, a look with too few pictures); each new batch fills the biggest ones. A new mod's kind gets a look sheet
    and its first batch the same way.
 
-Each round: the player runs a batch (`Tools/PortraitArt/Run-PortraitBatch.ps1`), zips the output folder with "Zip for
-upload" and sends it; the lead cuts out the background, lines them up, describes each picture from what it shows, writes
-their records and releases them.
+Each round: the player runs a batch (`Tools/PortraitArt/Run-PortraitBatch.ps1`); ComfyUI makes each picture and its
+cut-out. For the first rounds the player zips the output folder with "Zip for upload" and sends it, and the lead checks
+the look. For the hundreds and thousands after, every step per picture has to run on the player's computer by itself (the
+player: "I cannot upload that many images to you"): see "To do: the library at scale" in `docs/HANDOFF.md`.

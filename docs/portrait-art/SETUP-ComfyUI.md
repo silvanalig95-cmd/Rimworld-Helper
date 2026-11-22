@@ -54,6 +54,28 @@ Put these in one folder, for example `Documents\Rimfolk portraits`:
    `Documents\ComfyUI\output\Rimfolk`), named by batch, person and style, with a `batch-log.csv` of every prompt and seed.
 5. Zip the folder (right-click, Send to, "Zip for upload") and send it.
 
+Changing a LoRA, its strength, the steps or the sampler needs no new export: the batch tool sets them on the workflow's
+boxes from the style file for every picture it queues (the LoRAs in the order of the LoRA boxes). What ComfyUI's canvas
+shows is not what the batch uses. Export again only when boxes are added or removed (as in step 6).
+
+## 6. The cut-out (once, 10 minutes)
+
+Every picture is also saved without its background, so the game can put the person in front of a backdrop. This adds a
+node pack (code made by others, run by ComfyUI): ComfyUI-RMBG, widely used, from https://github.com/1038lab/ComfyUI-RMBG.
+1. In ComfyUI, open the **Manager** (the Manager button, or the puzzle-piece Extensions icon), **Custom Nodes Manager**,
+   search `ComfyUI-RMBG`, **Install**, then restart ComfyUI when it asks. (Its page: if the Windows app crashes after
+   the install, its requirements need installing again with `PYTHONUTF8=1` set; tell the lead and it writes the steps.)
+2. Open your Rimfolk FLUX workflow. Double-click an empty spot, type `BiRefNet` and add the BiRefNet node of the RMBG
+   pack. Set its model to **BiRefNet-general** (an open model, MIT licence; the one tested here) and its background to
+   **Alpha**. Leave the other settings as they are.
+3. Drag from the **VAE Decode** box's IMAGE output to the BiRefNet node's image input. (The VAE Decode output can feed
+   both the old Save Image and the new node.)
+4. Add a second **Save Image** box and drag the BiRefNet node's IMAGE output to its images input.
+5. Rename that box: double-click its title (or right-click it, Title) and type `Save cut`. The batch tool finds it by
+   the word "cut" and saves its pictures as `..._cut.png`.
+6. **Workflow, Export (API)** over `rimfolk-workflow-api.json`.
+The first picture after this downloads the BiRefNet model (a few hundred MB) by itself.
+
 ## If something goes wrong
 
 - "Could not reach ComfyUI": ComfyUI isn't open, or it uses another port; the address is shown in ComfyUI's settings

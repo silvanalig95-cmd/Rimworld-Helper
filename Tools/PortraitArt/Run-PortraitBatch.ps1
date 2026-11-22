@@ -1,13 +1,16 @@
 # Run-PortraitBatch.ps1, for Rimfolk's portraits.
 #
 # Sends a whole batch of portrait prompts to ComfyUI on this computer, so no prompt has to be copied by hand. It reads a
-# batch list (batches\<name>.csv: one row per person, with the columns name, subject and optionally count and seed) and a
-# style file (batches\style-<x>.json: the style words, the framing words, the negative words, the size and how many of
-# each, and optionally style_end: words repeated after the framing to hold the style), builds each prompt as style +
-# subject + framing + style_end, fills it into your exported ComfyUI workflow
+# batch list (batches\<name>.csv: one row per person, with the columns name, subject and optionally pose, count and seed)
+# and a style file (batches\style-<x>.json: the style words, the framing words, the negative words, the size and how many
+# of each, and optionally style_end: words repeated after the framing to hold the style), builds each prompt as style +
+# subject + pose + framing + style_end, fills it into your exported ComfyUI workflow
 # (rimfolk-workflow-api.json, whose prompt box says %PROMPT% and negative box %NEGATIVE%) and queues it in ComfyUI.
-# ComfyUI then makes the pictures into its output\Rimfolk\<batch> folder. A log of every prompt and seed is written to
-# logs\ next to this script. Nothing else on the computer is changed.
+# ComfyUI then makes the pictures into its output\Rimfolk\<batch> folder. A second Save Image box whose title has the
+# word "cut" in it (the one after the background remover) saves the cut-out under the same name with _cut added. The
+# style file's LoRAs and sampler settings are set on the workflow's boxes for every picture, so changing a LoRA needs no
+# new export. A log of every prompt and seed is written to logs\ next to this script. Nothing else on the computer is
+# changed.
 #
 # Run it: keep ComfyUI open, right-click this file, "Run with PowerShell", and choose the batch and the style.
 # See docs/portrait-art/SETUP-ComfyUI.md.
@@ -40,12 +43,16 @@ function Pick([string] $what, [string[]] $choices) {
 
 function Has($o, [string] $name) { return ($o -ne $null) -and ($o.PSObject.Properties.Name -contains $name) }
 
+function Lora-Nodes($wf) {
+    return @($wf.PSObject.Properties | Where-Object { [string]$_.Value.class_type -match 'LoraLoader' } | Sort-Object { [int]($_.Name -replace '\D', '') })
+}
+
 function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [int] $w, [int] $h, [string] $prefix, $st) {
     $found = $false
     # The style file may also set the sampler (steps, cfg, sampler_name, scheduler, guidance, denoise) on any node that
     # has those inputs, and the LoRAs (loras: a list of { name, strength }) on the workflow's LoRA nodes in order.
     $tune = @('steps', 'cfg', 'sampler_name', 'scheduler', 'guidance', 'denoise')
-    $loraNodes = @($wf.PSObject.Properties | Where-Object { [string]$_.Value.class_type -match 'LoraLoader' } | Sort-Object { [int]($_.Name -replace '\D', '') })
+    $loraNodes = Lora-Nodes $wf
     if ((Has $st 'loras') -and $st.loras) {
         for ($k = 0; $k -lt $loraNodes.Count; $k++) {
             $li = $loraNodes[$k].Value.inputs
@@ -72,7 +79,9 @@ function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [in
                 $inp.Value = $st.($inp.Name)
             }
             elseif ($inp.Name -eq 'filename_prefix' -and $cls -match 'Save') {
-                $inp.Value = $prefix
+                # The Save Image box after the background remover (its title says "cut") keeps the cut-out apart.
+                $title = ''; if ((Has $n '_meta') -and (Has $n._meta 'title')) { $title = [string]$n._meta.title }
+                if ($title -match '(?i)cut') { $inp.Value = $prefix + '_cut' } else { $inp.Value = $prefix }
             }
             elseif ($v -is [string]) {
                 if ($v.Contains('%PROMPT%')) { $inp.Value = $v.Replace('%PROMPT%', $prompt); $found = $true }
@@ -113,6 +122,11 @@ try {
     $w = 1024; if ($st.width) { $w = [int]$st.width }
     $h = 1024; if ($st.height) { $h = [int]$st.height }
     $each = 1; if ($st.count) { $each = [int]$st.count }
+    $boxes = @(Lora-Nodes ($wfText | ConvertFrom-Json)).Count
+    $wanted = 0; if ((Has $st 'loras') -and $st.loras) { $wanted = @($st.loras).Count }
+    if ($wanted -gt $boxes) {
+        Write-Host ("Note: the style names {0} LoRAs but the workflow has only {1} LoRA box(es), so only the first {1} are used. Add boxes in ComfyUI and export again to use all." -f $wanted, $boxes) -ForegroundColor Yellow
+    }
 
     $logDir = Join-Path $Folder 'logs'
     New-Item -ItemType Directory -Force -Path $logDir | Out-Null
@@ -127,11 +141,18 @@ try {
         $count = $each; if ($r.count) { $count = [int]$r.count }
         for ($i = 1; $i -le $count; $i++) {
             if ($r.seed) { $seed = [long]$r.seed + $i - 1 } else { $seed = [long](Get-Random -Minimum 1 -Maximum 2147483647) }
-            $prompt = (@($st.style, $r.subject, $st.frame, $st.style_end) | Where-Object { $_ }) -join ' '
+            $prompt = (@($st.style, $r.subject, $r.pose, $st.frame, $st.style_end) | Where-Object { $_ }) -join ' '
             $negative = [string]$st.negative
             $name = ($r.name -replace '[^A-Za-z0-9_\-]', '_')
             $prefix = 'Rimfolk/{0}/{1}_{2}_{3:00}' -f $Batch, $name, $Style, $i
             $wf = $wfText | ConvertFrom-Json
+            if ((Has $st 'cut') -and -not $st.cut) {
+                # A style with "cut": false (the backdrops) skips the cut-out: its Save box is left out, so ComfyUI skips
+                # the background remover too.
+                foreach ($k in @($wf.PSObject.Properties | Where-Object { ([string]$_.Value.class_type -match 'Save') -and (Has $_.Value '_meta') -and ([string]$_.Value._meta.title -match '(?i)cut') } | ForEach-Object { $_.Name })) {
+                    $wf.PSObject.Properties.Remove($k)
+                }
+            }
             if (-not (Set-Inputs $wf $prompt $negative $seed $w $h $prefix $st)) { throw 'No prompt box with %PROMPT% was found in the workflow.' }
             $body = @{ prompt = $wf; client_id = $client } | ConvertTo-Json -Depth 64 -Compress
             try {
