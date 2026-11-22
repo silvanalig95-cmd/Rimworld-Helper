@@ -1163,6 +1163,11 @@ MODEL = {
     # for 120 days let go on load. Colonists and the strangers seen in letters and on the map, a few new a day.
     "UI/Faces/PortraitKeeper.cs:kept": ("cap", (const("UI/Faces/PortraitKeeper.cs", "MaxKept", 400), 3), R + 8 * V,
                                         "each person pictured keeps their picture from the portrait library: at most 400, the least lately pictured let go first (a colonist's own last), and anyone else not pictured for 120 days let go on load"),
+    # What the portrait library lacks, kept in the save (UI/Faces/PortraitNeeds.cs, PortraitNeedsKept): one CSV line per
+    # need (a person's kind, a look, a room, the land; about 150 characters with its count and dates), at most 200, the
+    # least recently seen let go. New needs come fast in the first days (every kind, look and room met), then a few a day.
+    "UI/Faces/PortraitNeeds.cs:lines": ("cap", (const("UI/Faces/PortraitNeeds.cs", "MostLines", 200), 2), 180,
+                                        "what the portrait library lacks, one line per need: at most 200, the least recently seen let go"),
     # The animals' natures (Animals/AnimalBook.cs), all kept by id: a temperament for each named or bonded animal (three
     # values), let go 120 days after it was last seen (a herd of twenty named head and a few pets, a new one every couple of
     # days at the most); pairs seen asleep side by side, friends and rivals (eleven values and two names), the pairs not yet

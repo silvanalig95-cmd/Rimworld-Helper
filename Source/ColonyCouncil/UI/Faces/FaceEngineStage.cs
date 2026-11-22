@@ -407,10 +407,14 @@ namespace ColonyCouncil
             float clock = animate ? Clock : 0f;
             float breath = animate ? FacePoseMath.Breath(clock, seed) : 1f, sway = animate ? FacePoseMath.Sway(clock, seed) : 0f;
             float inkPx = ink > 0f ? Mathf.Max(1f, reach * r.width) : 0f;
+            var tint = UiKit.Plain;
+            tint.r *= s.tr;
+            tint.g *= s.tg;
+            tint.b *= s.tb;
             GUI.BeginGroup(r);
             try
             {
-                DrawLayer(new Rect(0f, 0f, r.width, r.height), p, FaceFrame.Bust, size, pose, 1f, breath, sway, new Color(s.tr, s.tg, s.tb, 1f), inkPx, ink);
+                DrawLayer(new Rect(0f, 0f, r.width, r.height), p, FaceFrame.Bust, size, pose, 1f, breath, sway, tint, inkPx, ink);
             }
             finally
             {
@@ -425,7 +429,7 @@ namespace ColonyCouncil
             if (GlowTex == null || strength <= 0f) return;
             float side = Mathf.Min(r.width, r.height), head = cam.headShare * r.height;
             float cx = r.x + r.width * cam.headU, cy = r.y + r.height * cam.headV;
-            GUI.color = new Color(0.03f, 0.025f, 0.03f, strength);
+            GUI.color = UiKit.WithAlpha(UiKit.WindowGround, strength);
             float d1 = Mathf.Clamp(1.5f * head, 0.3f * side, side);
             GUI.DrawTexture(new Rect(cx - d1 / 2f, cy - d1 / 2f, d1, d1), GlowTex);
             float d2 = Mathf.Clamp(2.6f * head, 0.5f * side, 1.3f * side), cy2 = cy + 1.1f * head;

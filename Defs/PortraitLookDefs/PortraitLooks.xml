@@ -34,8 +34,9 @@
     <prompt>large dark leathery bat wings folded behind the shoulders, their clawed tips rising above the head</prompt>
   </ColonyCouncil.PortraitLookDef>
 
-  <!-- Thin, veined wings of insects: Vanilla Races Expanded - Insector (vanillaracesexpanded.insector), Alpha Genes, and
-       the beetle, cicada, dragonfly and kin of Fairycore (homebrew.fairycore). -->
+  <!-- Thin, veined wings of insects: Vanilla Races Expanded - Insector (vanillaracesexpanded.insector), Alpha Genes (its
+       genes and the cosmetic ones of its insect geneline), and the beetle, cicada, dragonfly and kin of Fairycore
+       (homebrew.fairycore). -->
   <ColonyCouncil.PortraitLookDef>
     <defName>Look_InsectWings</defName>
     <word>insectWings</word>
@@ -47,6 +48,8 @@
       <li>VRE_LocustWings</li>
       <li>AG_WaspWings</li>
       <li>AG_BumbledroneWings</li>
+      <li>AG_GenelineCosmetic_WaspWings</li>
+      <li>AG_GenelineCosmetic_BumbledroneWings</li>
       <li>FG_Wings_Beetle</li>
       <li>FG_Wings_Cicada</li>
       <li>FG_Wings_Damselfly</li>
@@ -68,6 +71,7 @@
     <special>true</special>
     <genes>
       <li>AG_MothWings</li>
+      <li>AG_GenelineCosmetic_MothWings</li>
       <li>FG_Wings_Birdwing</li>
       <li>FG_Wings_BlueMorpho</li>
       <li>FG_Wings_CommonBlue</li>
@@ -116,6 +120,7 @@
     <special>true</special>
     <genes>
       <li>AG_DrainerWings</li>
+      <li>AG_GenelineCosmetic_DrainerWings</li>
       <li>AG_RainbowWings</li>
       <li>AG_SingleWing</li>
       <li>VREH_Glidewings</li>

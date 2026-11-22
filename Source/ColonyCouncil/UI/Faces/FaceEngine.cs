@@ -296,7 +296,7 @@ namespace ColonyCouncil
         private static void Ink(Rect r, Texture tex, float px, float strength)
         {
             if (tex == null) return;
-            GUI.color = new Color(0.09f, 0.07f, 0.06f, Mathf.Clamp01(strength));
+            GUI.color = UiKit.WithAlpha(UiKit.WindowGround, Mathf.Clamp01(strength));
             foreach (var w in InkWays) GUI.DrawTexture(new Rect(r.x + w.x * px, r.y + w.y * px, r.width, r.height), tex);
         }
 

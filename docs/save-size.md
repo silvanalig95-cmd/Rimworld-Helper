@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 830; modelled: 830; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,189 KB** after a year, **3,999 KB** after two, **4,487 KB** after five.
+Saved collections found: 831; modelled: 831; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,211 KB** after a year, **4,034 KB** after two, **4,522 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -34,6 +34,7 @@ Rimfolk's part of the save, roughly: **3,189 KB** after a year, **3,999 KB** aft
 | `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
 | `Lives/LifeNew.cs:read` | books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead) | fixed | 600 | 600 | 600 | 35.2 |
 | `Persona/TraitChanges.cs:changes` | known pawns only, 8 per person, 200 at most; with their story | cap | 6 | 12 | 30 | 35.2 |
+| `UI/Faces/PortraitNeeds.cs:lines` | what the portrait library lacks, one line per need: at most 200, the least recently seen let go | cap | 120 | 200 | 200 | 35.2 |
 | `Dealings/DealingBook.cs:deals` | dealings asked, under way and closed: closed ones kept 60 days (a work built together kept while it stands), DealingBook.MaxDeals at most | cap | 24 | 48 | 80 | 32.8 |
 | `Journeys/Journeys.cs:slots` | timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off | fixed | 240 | 240 | 240 | 32.8 |
 | `Gods/GodBook.cs:standings` | the colony's standing with a god at a home, once it has moved; let go once at rest at unknown and left a year | cap | 120 | 200 | 200 | 29.3 |
