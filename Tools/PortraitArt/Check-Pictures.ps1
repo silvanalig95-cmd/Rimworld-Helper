@@ -94,21 +94,21 @@ $FieldNames = @{
 }
 
 # ---------------- What a shown thing needs in the record ----------------
-# Look words grow with the library (Rimfolk's PortraitLookDefs and the catalogue's), so a look is matched by its word's
-# parts: any look word with "wing" in it allows wings, any with "mage", "magic", "pyro", "fire", "ice" ... allows fire or
-# magic. Add parts here when new kinds of looks come.
+# Look words grow with the library (Rimfolk's PortraitLookDefs and the catalogue's), so a look is matched by the words it
+# is made of ("batWings" is "bat wings", "fireMage" "fire mage"): any look with the word "wings" allows wings, any with
+# "mage", "magic", "pyromaniac", "fire", "ice" ... allows fire or magic. Add words here when new kinds of looks come.
 
 $FightRoles = @('soldier', 'warrior', 'hunter', 'scout')
 $ArmourRoles = @('soldier', 'warrior')
 $WorkRoles = @('smith', 'miner', 'builder', 'crafter', 'farmer', 'herder', 'cook', 'doctor', 'artist', 'labourer')
-$WingLooks = 'wing'
-$MagicLooks = 'mage|magic|psy|witch|wizard|sorcer|caster|arcan|necro|shaman|druid|pyro|fire|flame|ice|frost|storm|lightn|spell|warlock|elemental|mystic|occult'
+$WingLooks = '\bwings?\b'
+$MagicLooks = '\b(mage|magic|magical|psycaster|psychic|witch|wizard|sorcerer|sorceress|caster|arcane|necromancer|shaman|druid|pyromaniac|pyro|fire|flame|ice|frost|storm|lightning|spell|warlock|elemental|mystic|occult)\b'
 # Looks that should show fire or magic in the picture (a pyromaniac's or a psycaster's look may be only in the face).
-$MagicShownLooks = 'mage|magic|witch|wizard|sorcer|warlock|elemental|necro|arcan|spell'
-$FighterLooks = 'knight|soldier|warrior|guard|merc|raider|bandit|pirate|gladiator|berserk|hunter|archer|barbarian|veteran|fighter|duel'
-$NobleLooks = 'noble|royal|king|queen|emperor|empress|crown|lord|lady|prince|regal|baron|duke'
-$BookLooks = 'scholar|scribe|sage|monk|priest|bookish|librar'
-$TwinLooks = 'conjoin|twin'
+$MagicShownLooks = '\b(mage|magic|witch|wizard|sorcerer|sorceress|warlock|elemental|necromancer|arcane|spell)\b'
+$FighterLooks = '\b(knight|soldier|warrior|guard|mercenary|raider|bandit|pirate|gladiator|berserker|hunter|archer|barbarian|veteran|fighter|duelist)\b'
+$NobleLooks = '\b(noble|royal|king|queen|emperor|empress|crown|crowned|lord|lady|prince|princess|regal|baron|duke)\b'
+$BookLooks = '\b(scholar|scribe|sage|monk|priest|bookish|librarian)\b'
+$TwinLooks = '\b(conjoined|twins?)\b'
 
 $WeaponWords = '\b(swords?|sabres?|sabers?|blades?|axes?|hatchets?|spears?|pikes?|halberds?|lances?|bows?|crossbows?|arrows?|guns?|rifles?|pistols?|revolvers?|muskets?|shotguns?|firearms?|knife|knives|daggers?|maces?|clubs?|warhammers?|war hammers?|flails?|shields?|whips?|glaives?|tridents?|katanas?|rapiers?|longswords?|greatswords?|machetes?|javelins?|slings?|grenades?|blasters?|carbines?)\b'
 $MagicWords = '\b(flames?|fire|fireballs?|burning|torch|torches|embers?|blaze|spells?|magic|magical|orbs?|lightning|sparks|aura|runes?|wands?|glowing|frost|arcane|psychic)\b'
@@ -186,7 +186,7 @@ function Read-Answer([string] $text) {
         $cut = $before.LastIndexOfAny([char[]]"`n,;|.:")
         if ($cut -ge 0) { $before = $before.Substring($cut + 1) }
         $offset = $c - $before.Length
-        foreach ($w in [regex]::Matches($before, '\S+')) {
+        foreach ($w in [regex]::Matches($before, '[A-Za-z]\S*')) {
             $key = Key-Of ($before.Substring($w.Index))
             if ($key) { [void]$starts.Add([pscustomobject]@{ key = $key; at = $offset + $w.Index; value = $c + 1 }); break }
         }
@@ -197,6 +197,12 @@ function Read-Answer([string] $text) {
         if ($s + 1 -lt $starts.Count) { $end = $starts[$s + 1].at }
         $v = ''
         if ($end -gt $st.value) { $v = $t.Substring($st.value, $end - $st.value) }
+        # An answer is one line (on the line after its name, if the model put it there): the next item's number or bullet
+        # ("Man\n3.") and any words after the form are not part of it.
+        $v = $v.TrimStart()
+        $nl = $v.IndexOf("`n")
+        if ($nl -ge 0) { $v = $v.Substring(0, $nl) }
+        $v = [regex]::Replace($v, '(?<=\S)\s+(?:\d+\s*[.)]|[-*+\u2022])\s*$', '')
         $v = (($v -replace '\s+', ' ').Trim()).Trim([char[]]' ,;|/.-*')
         if (-not $found.ContainsKey($st.key)) { $found[$st.key] = $v }
     }
@@ -292,8 +298,8 @@ function Years-Of([string] $v) {
     if ($t -match '\btoddler\b') { return 2.0 }
     if ($t -match '\b(teen|teenager|teenage|adolescent)\b') { return 15.0 }
     if ($t -match '\b(child|kid|boy|girl)\b') { return 8.0 }
-    if ($t -match '\b(elder|elderly|very old|ancient|aged)\b') { return 80.0 }
     if ($t -match '\bmiddle') { return 50.0 }
+    if ($t -match '\b(elder|elderly|very old|ancient)\b') { return 80.0 }
     if ($t -match '\b(old|senior)\b') { return 67.0 }
     if ($t -match '\byoung\b') { return 24.0 }
     if ($t -match '\badult\b') { return 35.0 }
@@ -371,6 +377,11 @@ function Wing-Word([string] $v) {
     return 'otherWings'
 }
 
+function Look-Words([string] $w) {
+    # A look word in the words it is made of, for matching: "batWings" -> "bat wings", "fireMage" -> "fire mage".
+    return (($w -creplace '([a-z0-9])([A-Z])', '$1 $2') -replace '[_\-]', ' ').ToLowerInvariant()
+}
+
 function Any-Look($looks, [string] $pattern) {
     foreach ($l in $looks) { if ($l -match $pattern) { return $true } }
     return $false
@@ -380,6 +391,10 @@ function Tool-Role([string] $text) {
     $t = Low $text
     foreach ($k in $ToolRoles.Keys) { if ($t -match $ToolRoles[$k]) { return $k } }
     return ''
+}
+
+function Count-Of([int] $n, [string] $one, [string] $many) {
+    if ($n -eq 1) { return ('1 ' + $one) } else { return ('{0} {1}' -f $n, $many) }
 }
 
 function Short([string] $v) {
@@ -412,8 +427,9 @@ function Read-Records([string] $path) {
             headwear  = ((Low (& $one 'headwear')) -eq 'true')
             kinds     = @(& $list 'xenotypes') + @(& $list 'races')
             features  = @(& $list 'features' | ForEach-Object { $_.ToLowerInvariant() })
+            featureWords = @(& $list 'features')
             marks     = @(& $list 'marks' | ForEach-Object { $_.ToLowerInvariant() })
-            looks     = @(& $list 'looks' | ForEach-Object { $_.ToLowerInvariant() })
+            looks     = @(& $list 'looks' | ForEach-Object { Look-Words $_ })
             lookWords = @(& $list 'looks')
             place     = & $one 'place'
         }
@@ -430,7 +446,7 @@ function Row-Says($rec) {
     $age = $rec.age; if ($age -eq '') { $age = 'adult' }
     [void]$parts.Add($who + ', ' + $age)
     if ($rec.kinds.Count -gt 0) { [void]$parts.Add(($rec.kinds -join ', ')) } else { [void]$parts.Add('baseliner') }
-    if ($rec.features.Count -gt 0) { [void]$parts.Add('features: ' + ($rec.features -join ', ')) }
+    if ($rec.featureWords.Count -gt 0) { [void]$parts.Add('features: ' + ($rec.featureWords -join ', ')) }
     if ($rec.marks.Count -gt 0) { [void]$parts.Add('marks: ' + ($rec.marks -join ', ')) }
     if ($rec.lookWords.Count -gt 0) { [void]$parts.Add('looks: ' + ($rec.lookWords -join ', ')) }
     if ($rec.role -ne '') { [void]$parts.Add('role: ' + $rec.role) }
@@ -445,8 +461,9 @@ function Seen-Says($seen) {
     $parts = New-Object System.Collections.ArrayList
     $p = People-Of $seen.people
     if ($p -eq 1) { [void]$parts.Add('1 person') } elseif ($p -ge 0) { [void]$parts.Add(('{0} people' -f $p)) }
-    $who = Short $seen.sex
-    if ($seen.age -ne '') { $who = ($who + ', looks ' + (Short $seen.age)).Trim(' ', ',') }
+    $who = ''
+    if ((Says $seen.sex) -eq 'yes') { $who = Short $seen.sex }
+    if ((Years-Of $seen.age) -ge 0) { $who = ($who + ', looks ' + (Short $seen.age)).Trim(' ', ',') }
     if ($who -ne '') { [void]$parts.Add($who) }
     foreach ($k in @('hands', 'weapons', 'armour', 'magic', 'headwear', 'tools', 'wings', 'horns', 'tail', 'eyemarks', 'unusual')) {
         if ((Says $seen.$k) -eq 'yes') {
@@ -510,7 +527,7 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
     $crown = ((Low $hwText) -match $CrownWords) -or ((Low $seen.unusual) -match $CrownWords)
     if ($hw -and (Low $hwText) -match '\bhood' -and (Low $hwText) -match '\b(down|lowered|pushed back|thrown back|back)\b') { $hw = $false }
     if ($hw -and -not $rec.headwear -and -not ($crown -and -not $pinned)) {
-        Add-Issue $issues 2 ('wears {0} on the head' -f (Short $hwText)) 'throw it out (the portraits are bare-headed; this one would go to people with nothing on their heads)'
+        Add-Issue $issues 2 ('wears headwear ({0})' -f (Short $hwText)) 'throw it out (the portraits are bare-headed; this one would go to people with nothing on their heads)'
     }
 
     # The body: features and marks shown that the row lacks, or that the row has and the picture doesn't show.
@@ -558,7 +575,7 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
         $guess = 'warrior'; $others = 'soldier, hunter or scout'
         if ($t -match '\b(guns?|rifles?|pistols?|revolvers?|muskets?|shotguns?|firearms?|carbines?|blasters?|grenades?)\b') { $guess = 'soldier'; $others = 'warrior, hunter or scout' }
         elseif ($t -match '\b(bows?|crossbows?|arrows?|spears?|javelins?|slings?)\b') { $guess = 'hunter'; $others = 'soldier, warrior or scout' }
-        $now = 'it has no fighting role or look'; if ($role -ne '') { $now = 'its role is ' + $role }
+        $now = 'its row has no fighting role or look'; if ($role -ne '') { $now = 'its row''s role is ' + $role }
         Add-Issue $issues 2 ('shows a weapon ({0}); {1}' -f (Short $weaponText), $now) ('add the role {0} to its row (or {1}), or throw it out' -f $guess, $others)
     }
     $armour = (Says $seen.armour) -eq 'yes'
@@ -570,7 +587,7 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
     if ((Says $seen.magic) -eq 'yes') { $magicText = $seen.magic } elseif ((Low $hands) -match $MagicWords) { $magicText = $hands }
     if ($magicText -ne '' -and -not $magicLook) {
         $t = Low $magicText
-        $guess = 'the look it shows, such as fireMage or iceMage'
+        $guess = 'the look it shows (such as fireMage or iceMage)'
         if ($t -match '\b(fire|flames?|burning|embers?|blaze|fireballs?|torch|torches)\b') { $guess = 'fireMage (or the look it shows)' }
         elseif ($t -match '\b(ice|frost|snow|cold|frozen)\b') { $guess = 'iceMage (or the look it shows)' }
         Add-Issue $issues 2 ('shows fire or magic ({0}); its row has no look for it' -f (Short $magicText)) ('add {0} to its row''s looks, or throw it out' -f $guess)
@@ -595,7 +612,7 @@ function Compare-Picture($rec, $seen, [bool] $cut) {
 
     # Shows less than its row says: looks and roles the picture doesn't show.
     foreach ($w in $rec.lookWords) {
-        $l = $w.ToLowerInvariant()
+        $l = Look-Words $w
         if ($l -match $WingLooks -and $wings -eq 'no') {
             Add-Issue $issues 3 ('its row''s looks say {0}; the model saw no wings' -f $w) ('look at it: throw it out if it has none, or take {0} out of its row''s looks' -f $w)
         }
@@ -793,12 +810,17 @@ function Ask-Comfy([string] $image, [bool] $first) {
         }
         if (((Get-Date) - $lastQueue).TotalSeconds -ge 5) {
             $lastQueue = Get-Date
+            # Where the question is in ComfyUI's queue, read from the text: the queue holds every waiting job's whole
+            # workflow, too much for Windows PowerShell's JSON reader when a long batch of portraits waits there.
             $q = Http-Send $script:Http 'GET' ($script:Url + '/queue') $null
             $state = 'gone'
             if ($q.ok) {
-                $qj = $q.text | ConvertFrom-Json
-                foreach ($item in @($qj.queue_running)) { if (@($item).Count -ge 2 -and [string]$item[1] -eq $id) { $state = 'running' } }
-                foreach ($item in @($qj.queue_pending)) { if (@($item).Count -ge 2 -and [string]$item[1] -eq $id) { $state = 'waiting' } }
+                $at = $q.text.IndexOf('"' + $id + '"')
+                if ($at -ge 0) {
+                    $run = $q.text.LastIndexOf('"queue_running"', $at)
+                    $wait = $q.text.LastIndexOf('"queue_pending"', $at)
+                    if ($run -gt $wait) { $state = 'running' } else { $state = 'waiting' }
+                }
             }
             if ($state -eq 'running') {
                 if ($runningSince -eq $null) { $runningSince = Get-Date }
@@ -902,7 +924,7 @@ try {
             [System.IO.File]::WriteAllText($checkedFile, (Csv-Line $CheckedColumns) + "`r`n", (New-Object System.Text.UTF8Encoding($true)))
         }
         Write-Host ''
-        Write-Host ('Asking the model about {0} pictures ({1} were checked before). The first takes longer while the model loads.' -f $todo.Count, ($pictures.Count - $todo.Count))
+        Write-Host ('Asking the model about {0} ({1} checked before). The first takes longer while the model loads.' -f (Count-Of $todo.Count 'picture' 'pictures'), ($pictures.Count - $todo.Count))
         $n = 0
         foreach ($pic in $todo) {
             $n++
@@ -974,13 +996,23 @@ try {
     $count = @{ 1 = 0; 2 = 0; 3 = 0; 4 = 0 }
     foreach ($o in $out) { $count[$o.level]++ }
     Write-Host ''
-    if ($todo.Count -gt 0) { Write-Host ('Asked about {0} new pictures; {1} were checked before.' -f $asked, ($pictures.Count - $todo.Count)) }
-    else { Write-Host ('No new pictures; compared the {0} checked pictures with their records again.' -f $compared) }
+    if ($todo.Count -gt 0) {
+        $line = 'The model described {0} of {1}.' -f $asked, (Count-Of $todo.Count 'picture' 'pictures')
+        if ($unread.Count -gt 0) { $line += (' {0} could not be read; they are asked again next time.' -f (Count-Of $unread.Count 'answer' 'answers')) }
+        Write-Host $line
+    }
+    else { Write-Host ('No new pictures; compared the {0} with the records again.' -f (Count-Of $compared 'checked picture' 'checked pictures')) }
     if ($out.Count -eq 0) {
-        Write-Host ('All {0} checked pictures match their records.' -f $compared) -ForegroundColor Green
+        Write-Host ('All {0} match their records.' -f (Count-Of $compared 'checked picture' 'checked pictures')) -ForegroundColor Green
     }
     else {
-        Write-Host ('{0} pictures to look at: {1} wrong, {2} show more than their rows say, {3} show less, {4} not compared.' -f $out.Count, $count[1], $count[2], $count[3], $count[4])
+        $parts = New-Object System.Collections.ArrayList
+        if ($count[1] -gt 0) { [void]$parts.Add(('{0} wrong' -f $count[1])) }
+        if ($count[2] -eq 1) { [void]$parts.Add('1 shows more than its row says') }
+        elseif ($count[2] -gt 1) { [void]$parts.Add(('{0} show more than their rows say' -f $count[2])) }
+        if ($count[3] -gt 0) { [void]$parts.Add(('{0} less' -f (Count-Of $count[3] 'shows' 'show'))) }
+        if ($count[4] -gt 0) { [void]$parts.Add(('{0} not compared' -f $count[4])) }
+        Write-Host ('{0} to look at: {1}.' -f (Count-Of $out.Count 'picture' 'pictures'), ($parts -join ', '))
         Write-Host 'The worst first:'
         $colours = @{ 1 = 'Red'; 2 = 'Yellow'; 3 = 'Cyan'; 4 = 'Gray' }
         foreach ($o in @($sorted | Select-Object -First 15)) {
