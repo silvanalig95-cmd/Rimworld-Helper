@@ -419,6 +419,34 @@ most sense." So, in this order, three builds at a time:
   colonists' chosen cut-outs and the backdrops put in the mod by hand for a first look in the game, then the pack for
   the library at scale (the entry below). Then (mod code) the
   backdrop behind the large portrait by room, age and biome, tinted by day and weather, with the setting.
+- **Go given (22 November 2026, the player: "let's start like this then ... what is the plan to actually get this into
+  the game now? Like a first attempt ... let's just start with the colonists that I have as a first batch"): the painted
+  library in the game.** The player also: "the backgrounds are correctly selected based on age and what it contains and
+  what kind of room it is ... a proper database about what it is ... will this require a lot of performance ... the
+  impact on the gameplay and performance requirements on the device are hopefully not big"; and, binding for how
+  pictures change: "I want to be careful with images changing ... the AI images, they are not consistent with the faces
+  most of the time. So ... it should really select an image once the pawn ... enters the game the first time based on
+  how the pawn looks like at that stage. And if a pawn loses an arm later on ... continue using the same image ... But
+  exceptions ... if a kid is getting older, enters a new life stage, then of course it should be reflected ... but not
+  necessarily on every single new haircut". The in-game part (loading on demand from the pack's own folder, pins for the
+  player's colonists, the closest picture always, babies and toddlers, picked once and kept except at a child's new age
+  band, backdrops by room kind, age, contents and biome, the drawing and its settings) went to a build agent. Done by
+  the lead: the record columns in `batches/colonists.csv` (read from League_of_Toba_11; pins by the name each goes by)
+  and `batches/backdrops.csv` (place, room kinds, outdoor look, age, contents), `batches/colonists-redo.csv` (Ape again:
+  she came out as an old man), and `Tools/PortraitArt/Make-PortraitPack.ps1` (picks into the local mod "Rimfolk
+  Portraits": About, a PortraitDef or BackdropDef per picture from its row, the pictures under `Portraits/`; rebuilt
+  each run; it never touches a folder that isn't its own; tested here), `SETUP-ComfyUI.md` step 7.
+- **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
+  varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
+  many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
+  face, for example. I know ultimately it's going to be so many different combinations with all different races and
+  genders and xenotypes and traits, but let's see how far we can go, right? If I can generate these images just on my
+  computer, I don't really mind. And if it ends up being like 20 gigabytes of images, but I then have a ton of variety,
+  it's cool with me. But yeah, first get it working and then really start on expanding the library of images." The
+  lead's thought for then: a "look" word in the records from traits that show on a face (a drinker's red nose and
+  tired eyes, a pyromaniac's singed brows and restless stare, a psychopath's flat cold stare, a jogger's lean face, a
+  beauty's or an ugly one's features), counted by the matcher like features; batch lists written by script across
+  kinds, sexes, ages, skins, hair, looks and poses, the waves of `FRAMEWORK.md`. Storage is no concern to the player.
 - **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
   etc. So I don't know if removing a background for each of them anyways is a sustainable solution. I mean, I cannot

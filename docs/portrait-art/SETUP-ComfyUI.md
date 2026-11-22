@@ -85,6 +85,21 @@ and says which it used. (With only one workflow, it takes the remover out of the
 The guidance number in the style files only counts with a **FluxGuidance** box between the prompt box and the KSampler's
 `positive` input; without one, FLUX uses its built-in 3.5, which is what the chosen pictures were made with.
 
+## 7. Into the game: your picks become the mod "Rimfolk Portraits"
+
+1. Next to `Run-PortraitBatch.ps1`, make a folder `picks`, and in it one folder per batch: `picks\colonists`,
+   `picks\backdrops` (the batch's name, as in `batches\<batch>.csv`).
+2. Copy the pictures you want in the game into them, with the names ComfyUI gave them: for people the cut-outs
+   (`..._cut_00001_.png`), for backdrops the scenes. Several backdrops of one room are fine; the game picks among them.
+3. Right-click `Make-PortraitPack.ps1`, **Run with PowerShell**. The first time it looks for RimWorld's `Mods` folder
+   (or asks for it) and remembers it. It writes `Mods\Rimfolk Portraits`: the pictures, and a record for each, taken from
+   its row in the batch list (the columns after `seed`: what kind of person, sex, age, colours, hair, and so on; for
+   backdrops which room kinds and age, or which outdoor look, and what is in it).
+4. In RimWorld, enable **Rimfolk Portraits** in the mod list, below Rimfolk (once). Each time you add or remove picks,
+   run the script again and restart RimWorld.
+The pictures are read from that folder only when they are shown, so a big library costs disk space, not start-up time
+or memory.
+
 ## If something goes wrong
 
 - "Could not reach ComfyUI": ComfyUI isn't open, or it uses another port; the address is shown in ComfyUI's settings
