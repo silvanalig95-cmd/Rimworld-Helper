@@ -1104,11 +1104,13 @@ try {
     if (-not (Test-Path -LiteralPath $recordsFile)) { throw 'The library has no records yet: run Update-PortraitLibrary.ps1 (or Copy-ToLibrary.cmd) first, then this again.' }
     $records = Read-Records $recordsFile
 
-    # The pictures: library\<batch>\*.png.
+    # The pictures: library\<batch>\*.png. A backdrop's depth map (<picture>_depth.png) and a person's expressions
+    # (<picture>_v-blink.png ...) belong to their picture, which is checked; they are not looked at.
     $pictures = New-Object System.Collections.ArrayList
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory | Sort-Object Name)) {
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File | Sort-Object Name)) {
             $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
+            if ($stem -match '_(depth|v-[A-Za-z]+)$') { continue }
             $row = ''
             $m = [regex]::Match($stem, '^(?<name>.+?)_(?<style>style[^_]*)_')
             if ($m.Success) { $row = $m.Groups['name'].Value }

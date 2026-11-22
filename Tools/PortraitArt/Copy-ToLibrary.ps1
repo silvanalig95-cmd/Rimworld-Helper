@@ -12,6 +12,9 @@
 #   name, the new one is copied as "name (2).png", which the library script still reads as its row's.
 # - Nothing is deleted or moved: throw out the pictures you don't want before running it (or delete them from the
 #   library afterwards and run Update-PortraitLibrary.ps1 again).
+# - A depth map (<picture>_depth.png) or an expression (<picture>_v-blink.png ...) here belongs to its picture: it is
+#   copied only with its picture, under its picture's name in the library, and never counts as a picture of its own.
+#   (Make-DepthMaps.ps1 and Make-Variants.ps1 write them straight into the library, so they are seldom here.)
 # The first time it asks where your Rimfolk-portraits folder is (the one with Update-PortraitLibrary.ps1 and library\)
 # and remembers it in copy-settings.json next to this file.
 
@@ -47,9 +50,12 @@ try {
     else { $sources = @(Get-ChildItem -LiteralPath $here -Directory) }
     if ($sources.Count -eq 0) { throw ('No pictures here, and no batch folders: put this file into output\Rimfolk or into a batch folder in it ({0}).' -f $here) }
 
-    $copied = 0; $skipped = 0; $renamed = 0
+    $copied = 0; $skipped = 0; $renamed = 0; $extraCopied = 0
+    $extraPattern = '_(depth|v-[A-Za-z]+)\.png$'
     foreach ($dir in $sources) {
-        $files = @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File)
+        $all = @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File)
+        $files = @($all | Where-Object { $_.Name -notmatch $extraPattern })
+        $extras = @($all | Where-Object { $_.Name -match $extraPattern })
         if ($files.Count -eq 0) { continue }
         # People's batches (their list has no "place" column): only the cut-outs, never the pictures with their painted
         # background, which stay in ComfyUI's output to look at. Backdrops (a "place" column): every picture.
@@ -63,30 +69,47 @@ try {
         $target = Join-Path $library $dir.Name
         New-Item -ItemType Directory -Force -Path $target | Out-Null
         $n = 0
+        $inLibrary = @{}   # each picture here (its name without .png, small letters) -> its name in the library
         foreach ($f in $files) {
+            $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
             $to = Join-Path $target $f.Name
             if (Test-Path -LiteralPath $to) {
                 # Already there under this name or as one of its "(2)" copies, with the same content: skip it.
-                $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
                 $pattern = '^' + [regex]::Escape($stem) + '( \(\d+\))?\.png$'
-                $hash = $null; $same = $false
+                $hash = $null; $same = $null
                 foreach ($e in @(Get-ChildItem -LiteralPath $target -Filter '*.png' -File | Where-Object { $_.Name -match $pattern -and $_.Length -eq $f.Length })) {
                     if ($hash -eq $null) { $hash = (Get-FileHash -LiteralPath $f.FullName -Algorithm SHA256).Hash }
-                    if ((Get-FileHash -LiteralPath $e.FullName -Algorithm SHA256).Hash -eq $hash) { $same = $true; break }
+                    if ((Get-FileHash -LiteralPath $e.FullName -Algorithm SHA256).Hash -eq $hash) { $same = $e; break }
                 }
-                if ($same) { $skipped++; continue }
+                if ($same -ne $null) { $skipped++; $inLibrary[$stem.ToLowerInvariant()] = [System.IO.Path]::GetFileNameWithoutExtension($same.Name); continue }
                 $k = 2
                 do { $to = Join-Path $target ('{0} ({1}).png' -f $stem, $k); $k++ } while (Test-Path -LiteralPath $to)
                 $renamed++
             }
             Copy-Item -LiteralPath $f.FullName -Destination $to
+            $inLibrary[$stem.ToLowerInvariant()] = [System.IO.Path]::GetFileNameWithoutExtension($to)
             $copied++; $n++
         }
-        if ($n -gt 0) { Write-Host ('{0}: {1} new pictures into library\{0}' -f $dir.Name, $n) }
+        # Depth maps and expressions go with their picture, under its name in the library; one already there stays.
+        $xn = 0
+        foreach ($x in $extras) {
+            $m = [regex]::Match([System.IO.Path]::GetFileNameWithoutExtension($x.Name), '^(?<base>.+)(?<end>_(depth|v-[A-Za-z]+))$')
+            $base = $m.Groups['base'].Value.ToLowerInvariant()
+            if (-not $inLibrary.ContainsKey($base)) { continue }
+            $to = Join-Path $target ($inLibrary[$base] + $m.Groups['end'].Value + '.png')
+            if (Test-Path -LiteralPath $to) { continue }
+            Copy-Item -LiteralPath $x.FullName -Destination $to
+            $extraCopied++; $xn++
+        }
+        if ($n -gt 0 -or $xn -gt 0) {
+            $line = '{0}: {1} new pictures into library\{0}' -f $dir.Name, $n
+            if ($xn -gt 0) { $line += (', and {0} depth maps or expressions with their pictures' -f $xn) }
+            Write-Host $line
+        }
     }
     Write-Host ''
     Write-Host ('Copied {0} pictures ({1} already there, {2} under a "(2)" name).' -f $copied, $skipped, $renamed) -ForegroundColor Green
-    if ($copied -gt 0) {
+    if ($copied -gt 0 -or $extraCopied -gt 0) {
         Write-Host 'Writing the library records ...'
         & (Join-Path $Kit 'Update-PortraitLibrary.ps1') -NoPause
     }
