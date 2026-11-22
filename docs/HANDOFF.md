@@ -325,6 +325,16 @@ most sense." So, in this order, three builds at a time:
   picture (phase 3, `PortraitLibraryMath`) goes, with baby and toddler as ages of their own; later the library for
   animals, mechanoids, insectoids and other creatures (by species, young or grown, colour, marks; bonded animals keep
   theirs), shown where an animal's portrait is drawn.
+  The first style test (22 November 2026): the player runs the batches in ComfyUI ("this seems to work overall well"),
+  likes C most but "way too realistic ... it should fit the RimWorld style much more ... the actual RimWorld loading
+  screens ... the DLC images ... the storytellers", sent the game's key art, the Biotech and the Ideology covers, and named
+  two faults: "this super classic AI face ... very pretty, really basic face", and "the styles are not really consistently
+  generated ... suit the Soroid ... looks quite different to how like a human is generated." Done: three comic key-art
+  styles described in words (`batches/style-F1` clean, `F2` inked and gritty, `F3` softer colour; ink outlines of varied
+  weight, cel shading in hard tones, inked facial detail, characterful features, a cool rim light), each prompt ending
+  with the style repeated (`style_end`, read by the batch tool), the colonists' rows given features of their own, and a
+  face pillar in `FRAMEWORK.md` (face shape, nose, eyes, brows, mouth and jaw, skin detail, two or three drawn per new
+  character); a style LoRA trained on the chosen pictures is the next step for consistency.
   **Built** (21 November 2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above
   the newest release line):
   point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the

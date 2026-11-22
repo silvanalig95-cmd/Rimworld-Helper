@@ -13,19 +13,28 @@ picture made today and one made in a year describe themselves the same way, and 
 
 ## Pillar 1: the style bible (one look for every picture)
 
-Fixed once the style test is done (below); every prompt starts with it, word for word.
-- **Medium**: an illustrated, painted character portrait; not a photograph, not a 3D render, not anime.
-- **World**: a rugged frontier of a far-future rim world: people who make do, mend, scavenge and survive; low-tech next to
-  salvaged high-tech.
-- **Palette**: earthy and muted (dust, rust, leather, wool, bone), one or two warm accents; saturated colour only where
-  the person owns something bright.
-- **Light**: soft key light from the upper left, a faint warm rim light, no harsh studio look.
-- **Rendering**: visible brush texture, clean readable shapes, faces with real anatomy and character, slightly stylised.
-- **Frame**: head and shoulders, the eyes about 40% from the top, the shoulders reaching the bottom edge, one person,
-  a plain dark neutral background, no text, no border.
+The direction (the player, 22 November 2026, after the first test: style C liked best but "way too realistic ... it
+should fit the RimWorld style much more ... look at the actual RimWorld loading screens ... the DLC images ... the
+storytellers", with the game's own key art, the Biotech and the Ideology covers as references): the game's own comic
+key-art look, described in words (no picture of the game's is copied or fed in):
+- **Linework**: clean bold black ink outlines of varied weight; inked detail on faces (eye bags, cheek and nose lines,
+  stubble, scars, wrinkles); hatching only in deep shadow.
+- **Shading**: cel shading in two or three hard-edged tones, a subtle gradient inside the shadow shapes.
+- **Colour and light**: rich but grounded colours, earthy for the poor and the tribal, cleaner for spacers; a cool cyan
+  or blue rim light from behind, a warm key light from the front left.
+- **Faces**: angular and characterful, slightly exaggerated (a strong nose, defined cheekbones, real asymmetry), never the
+  generic pretty face: every person gets features of their own (pillar 2, face).
+- **Frame**: head and shoulders, the eyes about 40% from the top, the shoulders reaching the bottom edge, one person, a
+  plain dark blue-grey background, no text, no border.
+- **Holding the style**: every prompt starts with the style and ends with it repeated (`style_end`), so a reptile, an
+  elf or a child is drawn the same way as a baseliner. FLUX ignores the negative prompt at its usual settings, so what
+  matters is said positively. Once 20 to 40 pictures are chosen, a small style LoRA trained on them on the player's card
+  holds the look for every later picture.
+- Candidates: `style-F1` (clean, like the game's key art), `F2` (inked and gritty, like the Biotech art), `F3` (softer
+  colour, like the Ideology art). The player picks; the chosen one becomes `style.json`.
 - **Children and babies**: the same style, softer and rounder features as fits their age, never made to look older.
-- **What varies, inside the style**: wealth and hardship (pillar 4), the age of their dress, the kind of person, the angle
-  and the expression. Never the medium, palette treatment, light or frame.
+- **What varies, inside the style**: wealth and hardship (pillar 4), the age of their dress, the kind of person, the angle,
+  the expression and the face. Never the linework, shading, light or frame.
 
 ## Pillar 2: the person (what every picture's record says)
 
@@ -42,7 +51,16 @@ Fixed once the style test is done (below); every prompt starts with it, word for
 | features | from the kind: pointed ears, long ears, fins, frills, horns, tusks, snout, fur, scales, gills, glowing eyes, markings, extra eyes ... |
 | marks | lost eye, eye patch, bionic eye, scar, burn, missing ear, tattoo |
 | expression | calm, warm, stern, weary, wary, proud, cheerful, grim |
+| face shape | oval, round, square, long, narrow, heart, diamond, gaunt, broad |
+| nose | straight, hooked, crooked, broad, flat, snub, upturned, bulbous, long, broken |
+| eyes | deep-set, hooded, heavy-lidded, wide-set, close-set, narrow, round, almond, with dark circles, crinkled |
+| brows | thick, sparse, arched, straight, heavy, scarred, joined |
+| mouth and jaw | thin lips, full lips, wide mouth, small mouth, lopsided grin, overbite, gap teeth, weak chin, strong jaw, cleft chin |
+| skin detail | freckles, moles, acne scars, pockmarks, wrinkles, crow's feet, sunburn, stubble shadow, birthmark |
 | facing | front, left, right, three-quarter left, three-quarter right |
+
+Every new person in a batch gets two or three face words drawn at random (and kept for that character), so no two
+read alike and none falls back to the generic face.
 
 ## Pillar 3: the kinds (any race or xenotype, including ones not met yet)
 

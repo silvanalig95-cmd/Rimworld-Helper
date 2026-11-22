@@ -3,7 +3,8 @@
 # Sends a whole batch of portrait prompts to ComfyUI on this computer, so no prompt has to be copied by hand. It reads a
 # batch list (batches\<name>.csv: one row per person, with the columns name, subject and optionally count and seed) and a
 # style file (batches\style-<x>.json: the style words, the framing words, the negative words, the size and how many of
-# each), builds each prompt as style + subject + framing, fills it into your exported ComfyUI workflow
+# each, and optionally style_end: words repeated after the framing to hold the style), builds each prompt as style +
+# subject + framing + style_end, fills it into your exported ComfyUI workflow
 # (rimfolk-workflow-api.json, whose prompt box says %PROMPT% and negative box %NEGATIVE%) and queues it in ComfyUI.
 # ComfyUI then makes the pictures into its output\Rimfolk\<batch> folder. A log of every prompt and seed is written to
 # logs\ next to this script. Nothing else on the computer is changed.
@@ -96,7 +97,7 @@ try {
         $count = $each; if ($r.count) { $count = [int]$r.count }
         for ($i = 1; $i -le $count; $i++) {
             if ($r.seed) { $seed = [long]$r.seed + $i - 1 } else { $seed = [long](Get-Random -Minimum 1 -Maximum 2147483647) }
-            $prompt = (@($st.style, $r.subject, $st.frame) | Where-Object { $_ }) -join ' '
+            $prompt = (@($st.style, $r.subject, $st.frame, $st.style_end) | Where-Object { $_ }) -join ' '
             $negative = [string]$st.negative
             $name = ($r.name -replace '[^A-Za-z0-9_\-]', '_')
             $prefix = 'Rimfolk/{0}/{1}_{2}_{3:00}' -f $Batch, $name, $Style, $i
