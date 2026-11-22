@@ -245,6 +245,17 @@ Its Mono-Large model has the Apache 2.0 licence (free to use, also for a publish
 3. Try it: in the **Load Image** box, click "choose file to upload" and pick one of your backdrops from
    `library\backdrops`. Press **Run**. A grey picture of the room appears in the **Preview Image** box: the near things
    light, the far wall dark, the sky black.
+   **If the template takes a video** (its first box is **Load Video**, the depth box is called "Video Depth Estimation
+   (Depth Anything 3)" and the last is **Create Video**; the player found only this one, 22 November 2026): look for
+   a template without "Video" in its name first. If there is none, make the video one take a picture:
+   a. Right-click the "Video Depth Estimation" box, **Unpack Subgraph**: its inner boxes appear.
+   b. Delete **Load Video** and the box that splits the video into frames (such as **Get Video Components**).
+   c. Add a **Load Image** box (double-click an empty spot, type it) and drag its IMAGE output into the input the
+      frames went into (the first Depth Anything box's image input).
+   d. Delete **Create Video** (and any Save Video box). Switch the purple, bypassed **Depth Preview** box on (click it,
+      Ctrl+B), or add a **Preview Image** box, and give it the depth IMAGE from the last Depth Anything box.
+   e. Leave the depth settings as they are (resolution 504, output depth, normalization v2_style); start time and
+      duration belong to the video part and go with it. Then point 3's test, and on to point 5.
 4. The template's boxes are already wired: **Load Image** into the **Depth Anything 3** box (it holds the model's three
    boxes: load, run and render), and that box into **Preview Image**. Leave its settings as they come (the
    `mono_large` model, resolution 504, output `depth`, normalization `v2_style`). There is also an **Image Compare**
