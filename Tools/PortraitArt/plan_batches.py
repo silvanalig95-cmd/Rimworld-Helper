@@ -14,6 +14,9 @@ The order (docs/portrait-art/catalogue/README.md has it in plain words):
   3. looks: the special looks of a kind (wings, conjoined) are in all its rows; then one picture of each other special
      look (ghoul, undead ...) and each ordinary look (a drinker, a fire mage ...) for the common kinds, by how common;
   4. variety: more of everything where the weight is high, in rounds, until each cell has its share.
+And only when asked (--phases characters): the characters lists, characters-NN.csv, distinct people of every kind of
+all five waves (see Planner.characters and character_words.py), plain ones named p_..._char_..., and for the common
+kinds some with a role or a look.
 Coverage counts pictures in the library and rows already listed alike, so running the planner again with the same
 inputs adds nothing; with new pictures it leaves out what they cover; a grown catalogue adds rows for what is new.
 
@@ -24,6 +27,7 @@ the next number free for that start (p_baseliner_f_adult_plain_fair_brown_01). T
 Run:
     python3 Tools/PortraitArt/plan_batches.py [--waves 1,2] [--phases defaults,roles,looks,variety] [--max-rows 600]
         [--records library/records.xml] [--missing library/missing.csv] [--dry-run]
+    python3 Tools/PortraitArt/plan_batches.py --phases characters      (the characters lists, all five waves)
 """
 import argparse
 import collections
