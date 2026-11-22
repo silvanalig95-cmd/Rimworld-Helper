@@ -468,6 +468,11 @@ most sense." So, in this order, three builds at a time:
   reserves its picture (anyone else holding it gets a new pick; between two colonists the first holder keeps it; kept
   for the dead too); and every place Rimfolk draws a pawn shows the library picture (the game's own colonist bar, social
   tab and letters listed as candidates for later).
+  And: "if there is a xenotype appearing in game and there is no image for it, no artwork, it should just show no
+  image, you know, not take another xenotype's image. That will also immediately inform me that I need to generate
+  images for that xenotype as well." So a picture only ever for its own race and xenotype (the near-human fallback to
+  baseliner pictures goes); without one, the game's own drawing, a line in missing.csv, and a picture as soon as one of
+  its kind is in the library (told to the build agent).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy

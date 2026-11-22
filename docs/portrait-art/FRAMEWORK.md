@@ -87,9 +87,9 @@ middle-aged around 500, old around 700, elderly past 800. The picture never hold
 picture of "an elf who looks about 30" serves an elf of 30 and an ageless one of 300 alike. The player's active mods change ageing with: Ageless,
 Deathless, DevDesigner_Ageless, DV_LifespanLong, AG_ExtraordinaryLifespan, AG_SlowerAging, AG_FasterAging,
 VRE_SlowAging, VRE_FastAging, VRE_RapidAging, GS_RapidAge. The lead writes it from the kind's own files (its genes and description; a collector script gathers them
-for mods added later), so a kind new to the game gets a sheet the same way. Until a kind has pictures of its own, a near-
-human kind borrows the baseliners' pictures and a far-from-human kind keeps the game's own face (the matcher already does
-this). The order of work follows the player's world (League of Toba, day 138): baseliners, dark elves, then hussars,
+for mods added later), so a kind new to the game gets a sheet the same way. Until a kind has pictures of its own, its people
+keep the game's own drawing (the player: "it should just show no image ... not take another xenotype's image. That will
+also immediately inform me that I need to generate images for that xenotype"), and `missing.csv` lists the kind. The order of work follows the player's world (League of Toba, day 138): baseliners, dark elves, then hussars,
 neanderthals, impids, genies, wasters, saurids, sanguophages, pigskins, starjacks, the elves, avaloi, yttakin, fairies,
 merren and the rest of the 79 active xenotypes.
 
