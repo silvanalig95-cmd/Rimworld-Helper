@@ -587,7 +587,9 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
         Add-Issue $issues 1 ('{0} people in the picture' -f $people) $fix 'out' '' 'yes'
     }
     $sex = Sex-Of $seen.sex
-    if ($sex -ne '' -and ($rec.sex -eq 'male' -or $rec.sex -eq 'female') -and $sex -ne $rec.sex) {
+    # A baby's or toddler's sex can't be told from a painting (the model called a baby girl a man): not compared.
+    $little = $rec.age -eq 'baby' -or $rec.age -eq 'toddler'
+    if (-not $little -and $sex -ne '' -and ($rec.sex -eq 'male' -or $rec.sex -eq 'female') -and $sex -ne $rec.sex) {
         $drawn = 'man'; if ($sex -eq 'female') { $drawn = 'woman' }
         $want = 'man'; if ($rec.sex -eq 'female') { $want = 'woman' }
         $what = 'drawn as a {0}; its row says {1}' -f $drawn, $want
@@ -1107,10 +1109,15 @@ try {
     # The pictures: library\<batch>\*.png. A backdrop's depth map (<picture>_depth.png) and a person's expressions
     # (<picture>_v-blink.png ...) belong to their picture, which is checked; they are not looked at.
     $pictures = New-Object System.Collections.ArrayList
+    $skippedBackdrops = 0
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory | Sort-Object Name)) {
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File | Sort-Object Name)) {
             $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
             if ($stem -match '_(depth|v-[A-Za-z]+)$') { continue }
+            # Backdrops are not looked at (the player: "the image analysis ... also analyses the backdrops"): the questions
+            # are about a person, and on an empty scene the model made one up. Only people's pictures are checked.
+            $rec = $records[($dir.Name + '/' + $stem).ToLowerInvariant()]
+            if ($rec -ne $null -and $rec.kind -eq 'backdrop') { $skippedBackdrops++; continue }
             $row = ''
             $m = [regex]::Match($stem, '^(?<name>.+?)_(?<style>style[^_]*)_')
             if ($m.Success) { $row = $m.Groups['name'].Value }
@@ -1120,7 +1127,8 @@ try {
             })
         }
     }
-    if ($pictures.Count -eq 0) { throw ('No pictures in the library ({0}) yet.' -f $library) }
+    if ($skippedBackdrops -gt 0) { Write-Host ('{0} backdrops left out: only people are checked.' -f $skippedBackdrops) }
+    if ($pictures.Count -eq 0) { throw ('No pictures of people in the library ({0}) yet.' -f $library) }
 
     $db = Read-Checked
     $todo = @($pictures | Where-Object {

@@ -171,6 +171,8 @@ try {
     if (Test-Path -LiteralPath $libRoot) { $have = @(Get-ChildItem -LiteralPath $libRoot -Filter '*.png' -File -Recurse | ForEach-Object { $_.Name } | Where-Object { $_ -notmatch '_(depth|v-[A-Za-z]+)\.png$' }) }
     $rowNames = @{}; foreach ($r in $rows) { $rowNames[($r.name -replace '[^A-Za-z0-9_\-]', '_')] = $true }
     $have = @($have | Where-Object { $m = [regex]::Match($_, '^(.+?)_style'); $m.Success -and $rowNames.ContainsKey($m.Groups[1].Value) })
+    # A test list (a name ending in -test: the same people in a new style, to compare) always makes every row.
+    if ($Batch -match '(?i)-test$') { $have = @() }
     if ($have.Count -gt 0) {
         if ($OnlyMissing -eq '') { $OnlyMissing = Read-Host ("The library has {0} pictures of '{1}'. Make only the rows that have none yet? (Enter for yes, n for all rows)" -f $have.Count, $Batch) }
         if ($OnlyMissing -notmatch '^(?i)n') {

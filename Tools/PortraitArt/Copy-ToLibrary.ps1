@@ -48,7 +48,8 @@ try {
     # folder (then its folder's parent is output\Rimfolk, and all the batches in it are copied, not only that one).
     $root = $here
     if (@(Get-ChildItem -LiteralPath $here -Filter '*.png' -File).Count -gt 0) { $root = Split-Path -Parent $here }
-    $sources = @(Get-ChildItem -LiteralPath $root -Directory | Where-Object { @(Get-ChildItem -LiteralPath $_.FullName -Filter '*.png' -File).Count -gt 0 })
+    # A style test (style-test: the same people in several styles, only to compare) is never copied into the library.
+    $sources = @(Get-ChildItem -LiteralPath $root -Directory | Where-Object { $_.Name -notmatch '(?i)^style-test' -and @(Get-ChildItem -LiteralPath $_.FullName -Filter '*.png' -File).Count -gt 0 })
     if ($sources.Count -eq 0) { throw ('No batch folders with pictures in {0}: put this file into ComfyUI''s output\Rimfolk folder.' -f $root) }
     Write-Host ('Batch folders in {0}: {1}' -f $root, (($sources | ForEach-Object { $_.Name }) -join ', '))
 

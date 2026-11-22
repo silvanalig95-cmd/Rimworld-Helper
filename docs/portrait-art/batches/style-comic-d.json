@@ -1,0 +1,20 @@
+{
+  "label": "Style test D: the Painted Comic LoRA (Shrekman Style MIX, version PaintedComic-Flux; download first)",
+  "style": "PaintedComicstyleV1. Comic book key art, like the cover illustration of a rugged sci-fi frontier colony game: clean, bold black ink outlines of varied weight, inked lines on the face (the lines around the eyes and mouth, stubble, wrinkles where the age fits), cel shading in two or three hard-edged tones, rich but grounded colours, a warm light from the front left and a cool rim light from behind. A stylised, characterful comic character with simplified, slightly exaggerated features, natural proportions with small eyes in proportion to the face, plain and unidealised.",
+  "frame": "A medium close-up, cut off by the bottom edge of the picture at the belt: only the head, shoulders, chest and arms are in the picture, large and close, the head near the top and about a third of the picture's height. One person alone, bare-headed with the hair in full view. Behind them one flat, even, dark blue-grey colour fills the whole picture from edge to edge.",
+  "style_end": "Comic book key art throughout: ink outlines and flat cel shading.",
+  "negative": "",
+  "width": 1024,
+  "height": 1280,
+  "count": 2,
+  "guidance": 3.5,
+  "steps": 28,
+  "sampler_name": "euler",
+  "scheduler": "simple",
+  "loras": [
+    {
+      "name": "PaintedComicFLUX-000015.safetensors",
+      "strength": 0.9
+    }
+  ]
+}

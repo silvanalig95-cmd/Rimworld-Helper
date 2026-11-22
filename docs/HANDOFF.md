@@ -656,6 +656,37 @@ most sense." So, in this order, three builds at a time:
   The player: "the copy script does not recognize that these are all in different folders, i think it only picks up the
   backdrop and colonist folders" (their copies of it sat in those two batch folders, which made it do only that one).
   Done: `Copy-ToLibrary.ps1` always does every batch folder of `output\Rimfolk`, wherever in it it sits, and names them.
+  Then: "the image analysis mod also analyses the backdrops" (and on an empty scene the model made up a person; it also
+  called a baby girl a man). Done: `Check-Pictures.ps1` leaves backdrops out and doesn't compare the sex of babies and
+  toddlers. And the player: "now again only provide me the files that change" (kits only with the changed files again).
+  Then on the style: "maybe I do still want something that's closer to the Rimworld style, where how it draws, for
+  example, its own storytellers and DLC characters ... could we have a more closer to that style, comical style, even
+  with this model that we're using now? Because like how the brushes are and everything, the colors, it's really nice,
+  but the characters look a bit too just realistic ... it's like a huge contrast". Made: five style candidates for a
+  side-by-side test, all with the game's key-art look in words (ink outlines, hard cel shading, simplified, slightly
+  exaggerated faces): `style-comic-a` (Daubrez 0.55 with Comic Book Tome 3 V1 0.65), `b` (Tome 3 V1 0.9, Daubrez 0.35),
+  `c` (Daubrez 0.75 alone with the comic words), `d` (Painted Comic, a download), `e` (COMMIX, a download); and
+  `batches/style-test.csv` (ten varied plain people). The player picks; the chosen file becomes `style.json`.
+  Then: "a LoRa based on that, that we can then load into the Comfy UI", with seven pictures of the game's art (the
+  three storytellers, a fourth portrait, three DLC scenes). Done: `docs/portrait-art/STYLE-RIMWORLD.md` (the style in
+  words, the training set, FluxGym steps and settings for the player's card), `batches/style-rmw.json` (the LoRA
+  `rmwstyle` at 0.9 and the style's words); the training set (25 pictures with captions, trigger `rmwstyle`) sent to the
+  player as a zip, not in the repository (the game's art; for the player's own use only).
+- **To do when the player asks (22 November 2026, the player; proposal sent, waiting for the go): delete a picture for
+  good from the game.** The player: "what i would like in the game is a feature that when i really don't like an image,
+  that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this way i
+  could cycle out all the basic ai faces. it would actually delete the image files directly through the rimworld
+  client". The proposal: "Delete this picture for good" (and "... this backdrop ...") on the large portrait's menu, with a
+  confirmation; the picture and its expressions moved into `Rimfolk-portraits\deleted pictures\` (a bin the player
+  empties; a setting deletes outright instead); its record taken out of `records.xml` at once (so the other computer
+  drops it after the sync); its name into `library\deleted.csv`, which `Copy-ToLibrary.ps1`, `Update-PortraitLibrary.ps1`
+  and `Check-Pictures.ps1` honour (never copied, recorded or checked again); whoever held it gets a new pick by the usual
+  rules (their pins, the nearest free face, else the game's drawing).
+- **To do when the player asks (22 November 2026, the lead's offer; nothing built yet): back to their own picture.** The
+  player: "i accidentally unselected apes images, does this get recovered after a game reload?" ("Choose another
+  picture" twice, 3 of 8: a stranger's face kept for Ape). The answer: a save from before the change brings it back; else
+  choose on round the circle (her pins come first). The offer: a "Back to their own picture" entry on the large
+  portrait's menu for a pinned colonist, jumping straight to their first pin that fits.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive; steps 1 and 2 done, step 3 for later.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
