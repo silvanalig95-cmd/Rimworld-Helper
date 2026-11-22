@@ -682,6 +682,17 @@ most sense." So, in this order, three builds at a time:
   these new style templates", and "the naming conventions for the styles could be a bit more descriptive". Done:
   `style-rimworld-people` (rmwstyle 0.7, SameFace -0.7, worded like the training captions, no outline or rim light words)
   and `style-rimworld-backdrops`; the `style-rmw*` files removed; ORDER.md lists what the batches folder needs.
+- **To do when the player asks (22 November 2026, the player; proposal sent, waiting for the go): the picture check's
+  age question for the new comic style.** The player: "will the qwen image analyser also be able to analyse this new
+  comic style, also in regards to what age a character looks like?", then "Do you need to adapt anything for kind of the
+  AI to better judge the characters? Does it make more sense if it's an age range over a specific age, or is, what do you
+  think?" The proposal, all in `Check-Pictures.ps1` (no mod code): (1) ask for one of the nine bands by name with their
+  years (baby under 1 ... elderly 75 and over) instead of a number, since only the band is used and a small model's
+  numbers for drawn adults bunch up around 25 to 35; (2) name the signs of age to look at (grey or white hair, wrinkles
+  at the eyes, mouth and forehead, sagging skin at the jaw and neck; for children the head's size and the face's
+  proportions), without telling it to ignore ink lines (which could make old people read young); (3) an age two bands
+  off becomes "ask", only three or more stays "yes" (changed without asking); (4) raise `$QuestionVersion` (the library
+  is new, nothing to ask again). Reading a band word as an answer is already there (`Band-Of-Word`).
 - **Go given (22 November 2026, the player: "go ahead with the image delete feature"); built, not released: delete a
   picture for good from the game.** The entry "Delete a picture for good from the game" above the newest release line
   says what was built. The player: "what i would like in the game is a feature that when i really don't like an image,
