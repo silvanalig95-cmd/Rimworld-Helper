@@ -856,6 +856,8 @@ namespace ColonyCouncil
         public PortraitOutlineMode portraitOutline = PortraitOutlineMode.Off;
         /// <summary>The person in the large portrait tinted a fifth toward the backdrop's light.</summary>
         public bool portraitLightTint = false;
+        /// <summary>The player's portrait library folder (records.xml and the pictures, UI/Faces/PortraitFolder.cs); empty: none.</summary>
+        public string portraitFolder = "";
         /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
         public System.Collections.Generic.List<string> windowPlaces = new System.Collections.Generic.List<string>();
 
@@ -1346,6 +1348,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref portraitBackdrop, "portraitBackdrop", PortraitBackdropMode.AsPainted);
             Scribe_Values.Look(ref portraitOutline, "portraitOutline", PortraitOutlineMode.Off);
             Scribe_Values.Look(ref portraitLightTint, "portraitLightTint", false);
+            Scribe_Values.Look(ref portraitFolder, "portraitFolder", "");
+            if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars) portraitFolder ??= "";
             Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 windowPlaces ??= new System.Collections.Generic.List<string>();

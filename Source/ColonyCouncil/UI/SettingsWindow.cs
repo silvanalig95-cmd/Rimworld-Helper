@@ -581,6 +581,32 @@ namespace ColonyCouncil
                 case "resetAll":
                     if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f))) SettingsPresets.ConfirmReset(s);
                     break;
+                case "portraitFolderRow":
+                {
+                    // The portrait library folder (UI/Faces/PortraitFolder.cs): its path typed or pasted, and a button to read it again.
+                    float bw = Mathf.Min(170f, width * 0.35f);
+                    var field = new Rect(x, y + 2f, width - bw - 6f, ButtonH - 4f);
+                    var b = new Rect(field.xMax + 6f, y, bw, ButtonH);
+                    string was = s.portraitFolder ?? "";
+                    string now = Widgets.TextField(field, was);
+                    if (now != was) s.portraitFolder = now;
+                    if (now.NullOrEmpty())
+                    {
+                        GUI.color = UiKit.Faint;
+                        Text.Anchor = TextAnchor.MiddleLeft;
+                        Widgets.Label(new Rect(field.x + 6f, field.y, field.width - 8f, field.height), "CC_Settings_PortraitFolder_Empty".Translate());
+                        Text.Anchor = TextAnchor.UpperLeft;
+                        GUI.color = Color.white;
+                    }
+                    TooltipHandler.TipRegion(field, t.tip + (PortraitFolder.Status.NullOrEmpty() ? "" : "\n\n" + PortraitFolder.Status));
+                    if (Widgets.ButtonText(b, UiKit.Fit("CC_Settings_PortraitFolder_Reload".Translate(), bw - 12f), true, true, on) && on)
+                    {
+                        s.Write();
+                        PortraitFolder.Start(true);
+                    }
+                    TooltipHandler.TipRegion(b, "CC_Settings_PortraitFolder_ReloadTip".Translate() + (PortraitFolder.Status.NullOrEmpty() ? "" : "\n\n" + PortraitFolder.Status));
+                    return;
+                }
             }
             if (e.id != "quickSetup" && !t.tip.NullOrEmpty()) TooltipHandler.TipRegion(one, t.tip);
         }

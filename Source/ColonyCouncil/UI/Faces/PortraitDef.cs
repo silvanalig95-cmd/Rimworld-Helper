@@ -85,24 +85,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>Where the head is set by the def itself (all three given).</summary>
-        public bool HeadSet => !float.IsNaN(headX) && !float.IsNaN(headY) && !float.IsNaN(headSize);
-
         /// <summary>
         /// Where the head is and the way the person faces: the def's own numbers where it gives them, else as measured from
         /// the cut-out when it loaded, else where the library's older square pictures had it.
         /// </summary>
-        public PictureLayout Layout
-        {
-            get
-            {
-                var turn = PortraitViewMath.FacesOf(Record.facing);
-                float shape = file != null && file.height > 0 ? file.Shape : 1f;
-                if (HeadSet) return new PictureLayout(headX, headY, headSize, turn, shape);
-                if (file != null && file.head.found) return file.head.Layout(turn, shape);
-                return new PictureLayout(PortraitViewMath.LibraryHeadX, PortraitViewMath.LibraryHeadY, PortraitViewMath.LibraryHeadSize, turn, shape);
-            }
-        }
+        public PictureLayout Layout => PortraitFiles.LayoutOf(Record, File, headX, headY, headSize);
 
         /// <summary>The picture's file (looked up once; null where neither the PNG nor a texture is there).</summary>
         public PictureFile File
@@ -183,6 +170,19 @@ namespace ColonyCouncil
             }
             listed[root] = set;
             return set;
+        }
+
+        /// <summary>
+        /// Where the head is and the way the person faces in a library picture: the record's own numbers where it gives all
+        /// three, else as measured from the cut-out when it loaded, else where the library's older square pictures had it.
+        /// </summary>
+        public static PictureLayout LayoutOf(PortraitRecord r, PictureFile file, float headX, float headY, float headSize)
+        {
+            var turn = PortraitViewMath.FacesOf(r.facing);
+            float shape = file != null && file.height > 0 ? file.Shape : 1f;
+            if (!float.IsNaN(headX) && !float.IsNaN(headY) && !float.IsNaN(headSize)) return new PictureLayout(headX, headY, headSize, turn, shape);
+            if (file != null && file.head.found) return file.head.Layout(turn, shape);
+            return new PictureLayout(PortraitViewMath.LibraryHeadX, PortraitViewMath.LibraryHeadY, PortraitViewMath.LibraryHeadSize, turn, shape);
         }
 
         /// <summary>The file for a def's picture, or null (told once in the log) where there is none.</summary>

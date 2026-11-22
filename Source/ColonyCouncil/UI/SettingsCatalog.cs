@@ -712,6 +712,9 @@ namespace ColonyCouncil
             Toggle("portraitLibrary", "CC_Settings_PortraitLibrary", "CC_SetNote_PortraitLibrary");
             Choice("portraitPick", "CC_SetLabel_PortraitPick", "CC_SetTip_PortraitPick", "CC_PortraitPick_", "CC_SetNote_PortraitPick_", new[] { "Closest", "OnlyClose" },
                 "portraitLibrary");
+            // The player's own library folder (UI/Faces/PortraitFolder.cs): its path, and reading it again.
+            var folder = Action("portraitFolderRow", "CC_Settings_PortraitFolder", "CC_Settings_PortraitFolder_Tip", "CC_SetNote_PortraitFolder", "portraitLibrary");
+            folder.covers = new[] { "portraitFolder" };
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");

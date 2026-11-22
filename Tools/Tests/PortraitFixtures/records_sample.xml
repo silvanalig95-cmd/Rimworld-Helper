@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A sample of the player's library folder's records.xml for the tests only (Tools/Tests/PortraitStageTests.cs): the
+     same XML as the defs, texPath from the folder. One record has a word Rimfolk doesn't know, and one element is of no
+     known kind, to try how they are told. -->
+<Defs>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_colonists_Avila_01</defName>
+    <texPath>colonists/Avila_style_01_cut_00001_</texPath>
+    <pawn>Avila</pawn>
+    <xenotypes><li>Baseliner</li></xenotypes>
+    <sex>male</sex> <age>young</age> <skinColor>#c9a27e</skinColor> <hairColor>#1a1a1a</hairColor>
+    <hair>tied</hair> <beard>none</beard> <build>slim</build> <era>medieval</era> <dress>work</dress>
+    <features /> <marks /> <facing>threeQuarterLeft</facing> <character>Avila</character>
+  </ColonyCouncil.PortraitDef>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_colonists_Luna_01</defName>
+    <texPath>colonists/Luna_style_01_cut_00001_</texPath>
+    <pawn>Luna</pawn>
+    <sex>female</sex> <age>toddler</age> <skinColor>#e8c8a8</skinColor> <hairColor>#3a2a1a</hairColor>
+    <hair>short</hair> <era>medieval</era> <dress>work</dress> <facing>front</facing> <character>Luna</character>
+    <headX>0.5</headX> <headY>0.3</headY> <headSize>0.4</headSize>
+  </ColonyCouncil.PortraitDef>
+  <ColonyCouncil.PortraitDef>
+    <defName>Portrait_bad</defName>
+    <texPath>colonists/bad_cut_00001_</texPath>
+    <sex>male</sex> <age>adult</age> <skinColor>#c9a27e</skinColor> <hairColor>#1a1a1a</hairColor>
+    <features><li>wizardhat</li></features>
+  </ColonyCouncil.PortraitDef>
+  <ColonyCouncil.BackdropDef>
+    <defName>Backdrop_room_bedroom_medieval_01</defName>
+    <texPath>backdrops/room_bedroom_medieval_style-backdrop_01_00001_</texPath>
+    <place>room</place>
+    <rooms><li>Bedroom</li><li>GuestRoom</li></rooms>
+    <outdoors></outdoors>
+    <era>medieval</era>
+    <contents><li>bed</li><li>hearth</li><li>window</li></contents>
+  </ColonyCouncil.BackdropDef>
+  <ColonyCouncil.BackdropDef>
+    <defName>Backdrop_out_jungle_01</defName>
+    <texPath>backdrops/out_jungle_style-backdrop_01_00001_</texPath>
+    <place>outdoors</place>
+    <outdoors>jungle</outdoors>
+    <era>any</era>
+  </ColonyCouncil.BackdropDef>
+  <Unknown.Thing>
+    <defName>Something</defName>
+  </Unknown.Thing>
+</Defs>

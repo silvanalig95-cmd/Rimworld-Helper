@@ -10,15 +10,17 @@ namespace ColonyCouncil
     /// <summary>
     /// The painted backdrops behind the large portrait (docs: DESIGN.md, "Portraits, phase 4"; the player, 22 November 2026:
     /// "the backgrounds are correctly selected based on age and what it contains and what kind of room it is"): every
-    /// <see cref="BackdropDef"/> of any mod, where a person is in the backdrops' words (<see cref="WhereOf"/>), and the
-    /// backdrop for it (<see cref="BackdropMath.Choose"/>). Read only for the person at the inspect pane, at most every
-    /// couple of seconds; what is in a room is read when the room changes and every half minute.
+    /// <see cref="BackdropDef"/> of any mod and every backdrop of the library folder's records.xml, where a person is in the
+    /// backdrops' words (<see cref="WhereOf"/>), and the backdrop for it (<see cref="BackdropMath.Choose"/>). Read only for
+    /// the person at the inspect pane, at most every couple of seconds; what is in a room is read when the room changes
+    /// and every half minute.
     /// </summary>
     public static class Backdrops
     {
         private static readonly List<BackdropRecord> records = new List<BackdropRecord>();
         private static readonly List<PictureFile> files = new List<PictureFile>();
-        private static bool loaded;
+        private static List<KeyValuePair<BackdropRecord, PictureFile>> fromDefs;
+        private static int loadedVersion = -1;
 
         private sealed class RoomThings
         {
@@ -43,19 +45,37 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>Every mod's backdrop defs (those whose file is there; read once a session) and the library folder's backdrops (again whenever the folder is read).</summary>
         private static void Load()
         {
-            if (loaded) return;
-            loaded = true;
+            if (loadedVersion == PortraitFolder.Version) return;
+            loadedVersion = PortraitFolder.Version;
             try
             {
-                foreach (var d in DefDatabase<BackdropDef>.AllDefsListForReading.OrderBy(x => x.defName, StringComparer.Ordinal))
+                if (fromDefs == null)
                 {
-                    var f = d.File;
-                    if (f == null) continue;
-                    records.Add(d.Record);
-                    files.Add(f);
+                    fromDefs = new List<KeyValuePair<BackdropRecord, PictureFile>>();
+                    foreach (var d in DefDatabase<BackdropDef>.AllDefsListForReading.OrderBy(x => x.defName, StringComparer.Ordinal))
+                    {
+                        var f = d.File;
+                        if (f != null) fromDefs.Add(new KeyValuePair<BackdropRecord, PictureFile>(d.Record, f));
+                    }
                 }
+                records.Clear();
+                files.Clear();
+                var names = new HashSet<string>(StringComparer.Ordinal);
+                foreach (var kv in fromDefs)
+                    if (names.Add(kv.Key.name))
+                    {
+                        records.Add(kv.Key);
+                        files.Add(kv.Value);
+                    }
+                foreach (var b in PortraitFolder.Backdrops.OrderBy(x => x.record.name, StringComparer.Ordinal))
+                    if (names.Add(b.record.name))
+                    {
+                        records.Add(b.record);
+                        files.Add(PortraitFolder.FileOf(b.record.name, b.texPath, false));
+                    }
             }
             catch (Exception e)
             {
@@ -63,13 +83,21 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The backdrop's file for where a person is (null for none: the portrait's own ground), and why.</summary>
-        public static PictureFile For(BackdropWhere w, out string why)
+        /// <summary>The backdrop's file for where a person is (null for none: the portrait's own ground), and the choice with why.</summary>
+        public static PictureFile For(BackdropWhere w, out BackdropChoice choice)
         {
             Load();
-            var c = BackdropMath.Choose(w, records);
-            why = c.why;
-            return c.index >= 0 ? files[c.index] : null;
+            choice = BackdropMath.Choose(w, records);
+            return choice.index >= 0 ? files[choice.index] : null;
+        }
+
+        /// <summary>For the library folder's missing list: a room or the land with no backdrop of its own, by the choice for it.</summary>
+        public static void Note(BackdropWhere w, int who)
+        {
+            if (!PortraitNeeds.On || w == null) return;
+            For(w, out var c);
+            Def def = w.place == BackdropPlace.Room ? DefDatabase<RoomRoleDef>.GetNamedSilentFail(w.role) : DefDatabase<BiomeDef>.GetNamedSilentFail(w.biome);
+            PortraitNeeds.NotePlace(w, c, def, who);
         }
 
         // ---------------- Where a person is ----------------
@@ -90,42 +118,52 @@ namespace ColonyCouncil
         public static BackdropWhere WhereOf(Pawn p, out float glow)
         {
             glow = 1f;
-            var w = new BackdropWhere();
             var map = p?.MapHeld;
-            if (map == null) return w;
+            if (map == null) return new BackdropWhere();
             var pos = p.PositionHeld;
-            if (!pos.InBounds(map)) return w;
+            if (!pos.InBounds(map)) return new BackdropWhere();
             glow = map.glowGrid.GroundGlowAt(pos);
             var room = pos.GetRoom(map);
             var roof = map.roofGrid.RoofAt(pos);
             bool rock = roof != null && roof.isNatural;
             if (room != null && !room.PsychologicallyOutdoors)
             {
-                var role = room.Role;
-                string name = role == null || role == RoomRoleDefOf.None || role.defName == "Room" ? "" : role.defName;
-                if (!(rock && name.Length == 0))
-                {
-                    w.place = BackdropPlace.Room;
-                    w.role = name;
-                    w.seed = room.ID;
-                    var owner = map.ParentFaction;
-                    w.era = map.IsPlayerHome || owner == null || owner == Faction.OfPlayerSilentFail ? ColonyEra() : PortraitLibraryMath.EraOf((int)Peoples.TechOf(owner));
-                    w.contents = ThingsIn(room);
-                    return w;
-                }
+                var w = WhereOfRoom(room, map);
+                if (!(rock && w.role.Length == 0)) return w;
             }
-            w.place = BackdropPlace.Outdoors;
-            w.seed = map.uniqueID;
-            if (rock)
+            var land = WhereOfLand(map);
+            if (rock) land.group = "cave";
+            return land;
+        }
+
+        /// <summary>A room in the backdrops' words: its role ("" for none in particular), what is in it, the age.</summary>
+        public static BackdropWhere WhereOfRoom(Room room, Map map)
+        {
+            var role = room.Role;
+            var owner = map.ParentFaction;
+            return new BackdropWhere
             {
-                w.group = "cave";
-                return w;
-            }
+                place = BackdropPlace.Room,
+                role = role == null || role == RoomRoleDefOf.None || role.defName == "Room" ? "" : role.defName,
+                seed = room.ID,
+                era = map.IsPlayerHome || owner == null || owner == Faction.OfPlayerSilentFail ? ColonyEra() : PortraitLibraryMath.EraOf((int)Peoples.TechOf(owner)),
+                contents = ThingsIn(room)
+            };
+        }
+
+        /// <summary>A map's land in the backdrops' words: its biome's group (an unknown biome by its warmth, rain and plants).</summary>
+        public static BackdropWhere WhereOfLand(Map map)
+        {
             var biome = map.Biome;
             var tile = map.TileInfo;
-            w.group = BackdropMath.GroupOf(biome?.defName, tile?.temperature ?? float.NaN, tile?.rainfall ?? float.NaN, biome?.plantDensity ?? float.NaN, biome?.isExtremeBiome ?? false,
-                biome?.inVacuum ?? false, biome != null && biome.defName.IndexOf("cave", StringComparison.OrdinalIgnoreCase) >= 0);
-            return w;
+            return new BackdropWhere
+            {
+                place = BackdropPlace.Outdoors,
+                seed = map.uniqueID,
+                biome = biome?.defName ?? "",
+                group = BackdropMath.GroupOf(biome?.defName, tile?.temperature ?? float.NaN, tile?.rainfall ?? float.NaN, biome?.plantDensity ?? float.NaN, biome?.isExtremeBiome ?? false,
+                    biome?.inVacuum ?? false, biome != null && biome.defName.IndexOf("cave", StringComparison.OrdinalIgnoreCase) >= 0)
+            };
         }
 
         /// <summary>What is in a room in the backdrops' words (kept by the room's id a while).</summary>
@@ -142,7 +180,7 @@ namespace ColonyCouncil
                 lists.Add(WordsOf(t.def));
             }
             var words = BackdropMath.RoomContents(lists);
-            if (rooms.Count > 64) rooms.Clear();
+            if (rooms.Count > 256) rooms.Clear();
             rooms[room.ID] = new RoomThings { words = words, until = now + RoomFor };
             return words;
         }
@@ -174,9 +212,9 @@ namespace ColonyCouncil
         public static string Explain(Pawn p)
         {
             var w = WhereOf(p, out float glow);
-            var f = For(w, out string why);
+            var f = For(w, out var c);
             int step = PortraitPictureMath.LightStep(glow);
-            return w + ", light " + glow.ToString("0.00") + " (step " + step + "): " + (f != null ? f.key : "none") + " (" + why + ")"
+            return w + ", light " + glow.ToString("0.00") + " (step " + step + "): " + (f != null ? f.key : "none") + " (" + c.why + ")"
                    + (ColonyCouncilMod.Settings?.portraitBackdrop == PortraitBackdropMode.Plain ? "; the setting shows no backdrop" : "");
         }
     }

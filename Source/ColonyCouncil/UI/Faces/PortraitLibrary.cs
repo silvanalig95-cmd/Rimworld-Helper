@@ -45,7 +45,18 @@ namespace ColonyCouncil
             public float until;
         }
 
-        private readonly List<PortraitDef> defs = new List<PortraitDef>();
+        /// <summary>A picture of the library: its record, its file, and the head's place where its record gives it (else measured).</summary>
+        private sealed class Entry
+        {
+            public PortraitRecord record;
+            public PictureFile file;
+            public float headX = float.NaN, headY = float.NaN, headSize = float.NaN;
+
+            public PictureLayout Layout => PortraitFiles.LayoutOf(record, file, headX, headY, headSize);
+        }
+
+        private readonly List<Entry> entries = new List<Entry>();
+        private List<Entry> fromDefs;
         private readonly List<PortraitRecord> records = new List<PortraitRecord>();
         private readonly List<PortraitPicture> pictures = new List<PortraitPicture>();
         private readonly Dictionary<string, int> byName = new Dictionary<string, int>();
@@ -53,7 +64,11 @@ namespace ColonyCouncil
         private readonly Dictionary<int, Looked> looked = new Dictionary<int, Looked>();
         private readonly Dictionary<string, int> pinOwners = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         private float namesUntil = -1f;
-        private bool loaded;
+        /// <summary>Whose each face is (a colonist's own, a pinned one's): read again when the keeper or the pins change.</summary>
+        private Dictionary<string, int> owners = new Dictionary<string, int>(StringComparer.Ordinal);
+        private int ownersVersion = -1;
+        private PortraitKeeper ownersKeeper;
+        private int loadedVersion = -1;
         private int signature;
 
         public string Name => "the portrait library";
@@ -66,28 +81,50 @@ namespace ColonyCouncil
 
         // ---------------- The library ----------------
 
-        /// <summary>Reads the pictures' defs once a session (those whose file is there; nothing is loaded); what is wrong across them in the log once.</summary>
+        /// <summary>The library: every mod's picture defs (those whose file is there; read once a session) and the library folder's records (again whenever the folder is read); nothing is loaded. What is wrong across them in the log once.</summary>
         private bool Load()
         {
-            if (loaded) return true;
-            loaded = true;
+            if (loadedVersion == PortraitFolder.Version) return true;
+            loadedVersion = PortraitFolder.Version;
             try
             {
-                foreach (var d in DefDatabase<PortraitDef>.AllDefsListForReading.OrderBy(x => x.defName, StringComparer.Ordinal))
+                if (fromDefs == null)
                 {
-                    var file = d.File;
-                    if (file == null) continue;
-                    byName[d.defName] = records.Count;
-                    defs.Add(d);
-                    records.Add(d.Record);
-                    pictures.Add(new PortraitPicture { layout = d.Layout, name = d.defName, file = file, loading = true });
-                    characters.Add(d.Record.Character);
+                    fromDefs = new List<Entry>();
+                    foreach (var d in DefDatabase<PortraitDef>.AllDefsListForReading.OrderBy(x => x.defName, StringComparer.Ordinal))
+                    {
+                        var file = d.File;
+                        if (file != null) fromDefs.Add(new Entry { record = d.Record, file = file, headX = d.headX, headY = d.headY, headSize = d.headSize });
+                    }
                 }
+                entries.Clear();
+                records.Clear();
+                pictures.Clear();
+                byName.Clear();
+                characters.Clear();
+                looked.Clear();
+                namesUntil = -1f;
+                void Add(Entry e)
+                {
+                    if (byName.ContainsKey(e.record.name))
+                    {
+                        CouncilLog.WarnOnce("Portraits: two pictures named " + e.record.name + "; the one from the library folder is left out.");
+                        return;
+                    }
+                    byName[e.record.name] = records.Count;
+                    entries.Add(e);
+                    records.Add(e.record);
+                    pictures.Add(new PortraitPicture { layout = e.Layout, name = e.record.name, file = e.file, loading = true });
+                    characters.Add(e.record.Character);
+                }
+                foreach (var e in fromDefs) Add(e);
+                foreach (var p in PortraitFolder.People.OrderBy(x => x.record.name, StringComparer.Ordinal))
+                    Add(new Entry { record = p.record, file = PortraitFolder.FileOf(p.record.name, p.texPath, true), headX = p.headX, headY = p.headY, headSize = p.headSize });
                 signature = PortraitLibraryMath.LibrarySignature(records.Select(r => r.name));
                 foreach (var problem in PortraitLibraryMath.LibraryProblems(records)) CouncilLog.WarnOnce("Portraits: " + problem);
                 if (records.Count > 0)
-                    Log.Message("[Rimfolk] Portraits: " + records.Count + " painted portraits of " + characters.Count + " faces in the library, " + records.Count(r => r.Pinned)
-                                + " of them pinned to colonists; " + Backdrops.Count + " backdrops.");
+                    Log.Message("[Rimfolk] Portraits: " + records.Count + " painted portraits of " + characters.Count + " faces in the library (" + fromDefs.Count + " from mods, "
+                                + PortraitFolder.People.Count + " from the library folder), " + records.Count(r => r.Pinned) + " of them pinned to colonists; " + Backdrops.Count + " backdrops.");
             }
             catch (Exception e)
             {
@@ -130,7 +167,7 @@ namespace ColonyCouncil
                 if (pic.texture != tex)
                 {
                     pic.texture = tex;
-                    pic.layout = defs[i].Layout;
+                    pic.layout = entries[i].Layout;
                 }
                 pic.loading = false;
                 return pic;
@@ -163,6 +200,31 @@ namespace ColonyCouncil
         }
 
         /// <summary>Whether a pinned picture is this person's (a colonist of the player's the pin names).</summary>
+        /// <summary>
+        /// One of the colony's own people (a colonist or a slave of the player's; not a prisoner, a guest or a lodger): their
+        /// picture is theirs alone (the player, 22 November 2026: "once a pawn is part of my colony, their image should no
+        /// longer be used for anyone else").
+        /// </summary>
+        private static bool ColonyOwn(Pawn p) => p.Faction != null && p.Faction == Faction.OfPlayerSilentFail && !p.IsQuestLodger();
+
+        /// <summary>Whose each face is now: the keeper's colonists' (the first to have it) and the pinned pictures' (their colonist's).</summary>
+        private void ReadOwners(PortraitKeeper keeper)
+        {
+            int v = (keeper?.Version ?? 0) * 31 + signature;
+            if (v == ownersVersion && keeper == ownersKeeper) return;
+            ReadNames();
+            ownersVersion = v;
+            ownersKeeper = keeper;
+            var pinned = records.Where(r => r.Pinned).Select(r => new KeyValuePair<string, int>(r.Character, pinOwners.TryGetValue(r.pawn, out int o) ? o : -1));
+            var was = owners;
+            owners = PortraitLibraryMath.Owners(keeper?.Reserved, pinned);
+            // A face newly someone's own: everyone shown is looked at again now, so whoever else had it gets another.
+            if (was.Count != owners.Count || owners.Any(kv => !was.TryGetValue(kv.Key, out int o) || o != kv.Value)) looked.Clear();
+        }
+
+        /// <summary>Whether a face is another's own (a colonist's, or pinned to someone else).</summary>
+        private bool Taken(string character, int id) => !character.NullOrEmpty() && owners.TryGetValue(character, out int owner) && owner != id;
+
         private bool Theirs(PortraitRecord r, Pawn p)
         {
             if (!r.Pinned || p.Faction != Faction.OfPlayerSilentFail) return false;
@@ -179,8 +241,10 @@ namespace ColonyCouncil
             int id = p.thingIDNumber;
             var keeper = PortraitKeeper.Instance;
             var k = keeper?.Get(id);
-            // The plain case, every few seconds for everyone shown: kept, the same library and stage.
-            if (k != null && k.picture.Length > 0 && k.library == signature && byName.TryGetValue(k.picture, out int keptAt)
+            ReadOwners(keeper);
+            bool colony = ColonyOwn(p);
+            // The plain case, every few seconds for everyone shown: kept, the same library and stage, theirs to keep.
+            if (k != null && k.picture.Length > 0 && k.library == signature && !Taken(k.character, id) && (k.reserved || !colony) && byName.TryGetValue(k.picture, out int keptAt)
                 && PortraitReader.AgeOf(p, out var ageNow) && (int)PortraitLibraryMath.StageOf(ageNow) == k.stage)
             {
                 keeper.Seen(k);
@@ -190,22 +254,37 @@ namespace ColonyCouncil
             var stage = PortraitLibraryMath.StageOf(look.age);
             string words = look.Words;
             var pin = PortraitLibraryMath.PinFor(look, records, r => Theirs(r, p));
+            int pinFit = pin.Any ? PortraitLibraryMath.PinFit(records[pin.index], look) : 0;
             // Kept from before this round (no stage written): as if nothing were kept.
             bool kept = k != null && k.stage >= 0;
             bool there = kept && byName.ContainsKey(k.picture);
-            bool again = PortraitLibraryMath.PickAgain(kept, kept ? (PortraitStage)k.stage : stage, stage, k?.picture, there, k?.pinned ?? false, k?.byHand ?? false,
-                k?.library ?? 0, signature, k?.words, words, pin.Any);
+            int keptFit = there && k.pinned ? PortraitLibraryMath.PinFit(records[byName[k.picture]], look) : 0;
+            bool again = PortraitLibraryMath.PickAgain(kept, kept ? (PortraitStage)k.stage : stage, stage, k?.picture, there, keptFit, k?.byHand ?? false,
+                k?.library ?? 0, signature, k?.words, words, pinFit, there && Taken(k.character, id));
             if (!again)
             {
                 k.library = signature;
                 keeper.Seen(k);
+                if (colony) keeper.Reserve(k);
                 return k.picture.Length > 0 && Shown(k) ? byName[k.picture] : -1;
             }
-            var pick = pin.Any ? pin : PortraitLibraryMath.Pick(look, records, id, c => keeper?.UsesOf(c, id) ?? 0);
+            var pick = pin.Any ? pin : PortraitLibraryMath.Pick(look, records, id, c => keeper?.UsesOf(c, id) ?? 0, c => Taken(c, id));
+            if (!pin.Any) NoteNeed(p, look, pick);
             if (keeper == null) return pick.Any && PortraitLibraryMath.Shown(Mode, pin.Any, pick.distance) ? pick.index : -1;
             keeper.Set(id, pick.Any ? records[pick.index].name : "", pick.character, look.Kind, words, signature, stage, pin.Any, false, pick.distance);
             k = keeper.Get(id);
+            if (colony) keeper.Reserve(k);
             return pick.Any && Shown(k) ? pick.index : -1;
+        }
+
+        /// <summary>For the library folder's missing list: a person with no picture of their own kind, none of their sex and stage, or none close to their looks.</summary>
+        private void NoteNeed(Pawn p, PortraitLook look, PortraitPick pick)
+        {
+            if (!PortraitNeeds.On) return;
+            if (!PortraitLibraryMath.HasOwnKind(look, records))
+                PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoKind", pick.Any ? records[pick.index].name : "");
+            else if (!pick.Any) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoStage", "");
+            else if (pick.distance > PortraitLibraryMath.CloseEnough) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoneClose", records[pick.index].name);
         }
 
         private static bool Shown(KeptPortrait k) => k != null && PortraitLibraryMath.Shown(Mode, k.pinned || k.byHand, k.distance);
@@ -221,7 +300,7 @@ namespace ColonyCouncil
         // ---------------- Choose another picture ----------------
 
         /// <summary>Whether "Choose another picture" has anything to offer this person (the library is on and has a picture that may stand for them).</summary>
-        public bool CanChoose(Pawn p) => On && PortraitReader.LookOf(p, out var look) && PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode).Count > 0;
+        public bool CanChoose(Pawn p) => On && PortraitReader.LookOf(p, out var look) && PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode, c => Taken(c, p.thingIDNumber)).Count > 0;
 
         /// <summary>
         /// The next of the pictures that may stand for them (their pins, then the nearest faces), kept for them as chosen by
@@ -230,7 +309,7 @@ namespace ColonyCouncil
         public string ChooseAnother(Pawn p)
         {
             if (!On || !PortraitReader.LookOf(p, out var look)) return "CC_Portrait_ChooseNone".Translate(p.Named("PAWN")).Resolve();
-            var choices = PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode);
+            var choices = PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode, c => Taken(c, p.thingIDNumber));
             var keeper = PortraitKeeper.Instance;
             var k = keeper?.Get(p.thingIDNumber);
             int next = PortraitLibraryMath.NextChoice(choices, records, k?.picture ?? "");
@@ -238,6 +317,7 @@ namespace ColonyCouncil
             var r = records[next];
             float d = r.Pinned ? PortraitLibraryMath.Distance(look, r) : PortraitLibraryMath.Distances(look, records)[next];
             keeper.Set(p.thingIDNumber, r.name, r.Character, look.Kind, look.Words, signature, PortraitLibraryMath.StageOf(look.age), r.Pinned, true, d);
+            if (ColonyOwn(p)) keeper.Reserve(keeper.Get(p.thingIDNumber));
             Forget(p.thingIDNumber);
             PortraitSources.Forget(p.thingIDNumber);
             return "CC_Portrait_ChooseDone".Translate(p.Named("PAWN"), (choices.IndexOf(next) + 1).Named("AT"), choices.Count.Named("OF")).Resolve();

@@ -255,8 +255,15 @@ public static class PortraitStageTests
             Func<PortraitRecord, bool> AvilaOwns = r => r.pawn == "Avila", LunaOwns = r => r.pawn == "Luna", NoneOwn = r => false;
             var pin = PortraitLibraryMath.PinFor(avilaLook, lib, AvilaOwns);
             C(pin.Any && lib[pin.index] == avila, "a colonist's pinned picture is theirs, ahead of the matcher (a young picture for one the game counts adult)");
-            C(PortraitLibraryMath.PinFits(avila, Look(PortraitSex.Male, PortraitAge.Old)) && !PortraitLibraryMath.PinFits(avila, Look(PortraitSex.Male, PortraitAge.Child)),
-                "a grown-up's pin fits young, adult and old alike, never a child");
+            C(PortraitLibraryMath.PinFit(avila, Look(PortraitSex.Male, PortraitAge.Middle)) == 2 && PortraitLibraryMath.PinFit(avila, Look(PortraitSex.Male, PortraitAge.Old)) == 1
+              && PortraitLibraryMath.PinFit(avila, Look(PortraitSex.Male, PortraitAge.Teen)) == 1 && !PortraitLibraryMath.PinFits(avila, Look(PortraitSex.Male, PortraitAge.Child)),
+                "a young pin fits young, adult and middle-aged alike; a teen or someone grown old as a stand-in (their own face before a stranger's); never a child");
+            var avilaOld = Rec("Portrait_colonists_Avila_old", PortraitSex.Male, PortraitAge.Old, "#c9a27e", "#9a9a9a", "Avila", "Avila");
+            var withOld = new List<PortraitRecord> { avila, avilaOld, stranger };
+            var oldAvila = Look(PortraitSex.Male, PortraitAge.Elder, "#c9a27e", "#9a9a9a");
+            var po = PortraitLibraryMath.PinFor(oldAvila, withOld, AvilaOwns);
+            C(po.Any && withOld[po.index] == avilaOld && PortraitLibraryMath.PinFor(oldAvila, lib, AvilaOwns).index == 0,
+                "grown old: their old pin where there is one, else their younger one stands in");
             var lookAlike = Look(PortraitSex.Male, PortraitAge.Young, "#c9a27e", "#1a1a1a");
             var other = PortraitLibraryMath.Pick(lookAlike, lib, 5, _ => 0);
             C(other.Any && lib[other.index] == stranger && float.IsInfinity(PortraitLibraryMath.Distances(lookAlike, lib)[0]),
@@ -269,9 +276,29 @@ public static class PortraitStageTests
             var lunaChild = Rec("Portrait_colonists_Luna_child", PortraitSex.Female, PortraitAge.Child, "#e8c8a8", "#3a2a1a", "Luna", "Luna");
             var lib2 = new List<PortraitRecord>(lib) { lunaChild };
             var later = PortraitLibraryMath.PinFor(lunaLater, lib2, LunaOwns);
-            C(later.Any && lib2[later.index] == lunaChild && PortraitLibraryMath.PickAgain(true, PortraitStage.Toddler, PortraitStage.Child, "Portrait_colonists_Luna_01", true, true, false, 1, 1, "w", "w2", true),
+            C(later.Any && lib2[later.index] == lunaChild && PortraitLibraryMath.PickAgain(true, PortraitStage.Toddler, PortraitStage.Child, "Portrait_colonists_Luna_01", true, 0, false, 1, 1, "w", "w2", 2),
                 "grown into a child: picked again, her pin for the new stage");
             C(PortraitLibraryMath.PinFor(Look(PortraitSex.Female, PortraitAge.Baby), lib2, LunaOwns).index < 0, "a baby's stage: no toddler's pin (pins keep to their own stage)");
+        }
+
+        // ---------------- How old a person looks ----------------
+        {
+            PortraitAge Looks(float bio, float born = float.NaN, float life = 80f, float span = 1f, GameStage stage = GameStage.Grown, bool ageless = false) =>
+                PortraitLibraryMath.AgeOf(bio, float.IsNaN(born) ? bio : born, life, span, stage, ageless, out var a) ? a : (PortraitAge)255;
+            // An ageless elf (DevDesigner_Ageless: its ageing stopped at about 25) by its years since birth, ten times as slow.
+            C(Looks(25f, 20f, ageless: true) == PortraitAge.Young && Looks(25f, 200f, ageless: true) == PortraitAge.Young, "an ageless elf of 20 or 200 looks young");
+            C(Looks(25f, 300f, ageless: true) == PortraitAge.Adult, "an ageless elf of 300 looks adult");
+            C(Looks(25f, 500f, ageless: true) == PortraitAge.Middle && Looks(25f, 740f, ageless: true) == PortraitAge.Old && Looks(25f, 760f, ageless: true) == PortraitAge.Elder,
+                "an ageless elf of 500 middle-aged, of 740 old, past 750 an elder (75 years of a human's, ten times over)");
+            C(Looks(62f, 100f, ageless: true) == PortraitAge.Old, "an ageless pawn never looks younger than its biological age reads");
+            C(PortraitLibraryMath.AgelessLifeScale == 10f, "the ageless scale: ten times their kind's life");
+            C(Looks(60f, 120f) == PortraitAge.Old, "a slow-ageing 120-year-old with a biological age of 60 reads by it: old, not an elder");
+            C(Looks(150f, 150f, 400f) == PortraitAge.Adult, "a race living 400 years, at 150 biologically: adult, not an elder");
+            C(Looks(62f, 40f) == PortraitAge.Old, "a fast-ageing 40-year-old human with a biological age of 62 reads by it: old");
+            C(Looks(150f, 150f, 80f, 5f) == PortraitAge.Adult && Looks(70f, 70f, 80f, 0.5f) == PortraitAge.Elder,
+                "the life span factor of their genes (a long life five times a human's, a short one half) scales the grown-ups' bands");
+            C(Looks(2f, 2f, 400f, 1f, GameStage.Baby) == PortraitAge.Toddler && Looks(30f, 30f, 400f, 1f, GameStage.Child) == PortraitAge.Child
+              && Looks(40f, 40f, 400f, 1f, GameStage.Teen) == PortraitAge.Teen, "the young ones by the game's own stages of life, however long their kind lives");
         }
 
         // ---------------- The matcher: the closest, and the little ones ----------------
@@ -284,14 +311,18 @@ public static class PortraitStageTests
               && PortraitLibraryMath.Shown(PortraitPickMode.OnlyClose, true, p.distance), "only close ones: a far one not shown, unless pinned or chosen by hand");
             var woman = Rec("woman", PortraitSex.Female, PortraitAge.Adult);
             C(!PortraitLibraryMath.Pick(fair, new List<PortraitRecord> { woman }, 1, _ => 0).Any, "the closest: the sex must agree");
-            C(PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Adult) == PortraitLibraryMath.NearAgeCost && PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Old) == 6.5f
-              && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Young)) && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Toddler, PortraitAge.Child))
-              && PortraitLibraryMath.AgeCost(PortraitAge.Baby, PortraitAge.Toddler) == PortraitLibraryMath.NearAgeCost,
-                "an age band further than the next at a growing cost (2.5, then 6.5), never across children and grown-ups or the little ones and children");
+            C(PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Adult) == PortraitLibraryMath.NearAgeCost && PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Middle) == 6.5f
+              && PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Old) == 10.5f && PortraitLibraryMath.AgeCost(PortraitAge.Baby, PortraitAge.Toddler) == PortraitLibraryMath.NearAgeCost,
+                "the own band first, the next at a cost (2.5), two bands at a larger one (6.5), further more again");
+            C(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Teen) == PortraitLibraryMath.NearAgeCost && PortraitLibraryMath.AgeCost(PortraitAge.Teen, PortraitAge.Child) == PortraitLibraryMath.NearAgeCost
+              && PortraitLibraryMath.AgeCost(PortraitAge.Teen, PortraitAge.Young) == PortraitLibraryMath.NearAgeCost && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Young))
+              && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Adult, PortraitAge.Child)) && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Toddler, PortraitAge.Child))
+              && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Toddler)),
+                "a child may take a teen's picture and a teen a child's or a young one's, at a cost; never a child a grown-up's, nor the little ones anything but theirs");
             var old = Rec("old", PortraitSex.Male, PortraitAge.Old);
             var young = Look(PortraitSex.Male, PortraitAge.Young);
             var py = PortraitLibraryMath.Pick(young, new List<PortraitRecord> { old }, 1, _ => 0);
-            C(py.Any && Near(py.distance, 6.5f, 0.01f), "the closest: a young man gets an old man's picture where there is no other, two bands further");
+            C(py.Any && Near(py.distance, 10.5f, 0.01f), "the closest: a young man gets an old man's picture where there is no other, three bands further");
             var baby = Look(PortraitSex.Female, PortraitAge.Baby);
             var babies = new List<PortraitRecord> { Rec("girl", PortraitSex.Female, PortraitAge.Child), Rec("woman", PortraitSex.Female, PortraitAge.Young), Rec("toddler", PortraitSex.Female, PortraitAge.Toddler) };
             var pb = PortraitLibraryMath.Pick(baby, babies, 1, _ => 0);
@@ -415,6 +446,56 @@ public static class PortraitStageTests
         C(BackdropMath.RoomContents(new[] { W("Bed", BackdropMath.ThingIs.Bed), W("Bed", BackdropMath.ThingIs.Bed), W("Shelf", BackdropMath.ThingIs.Storage) }).SetEquals(new[] { "bed", "beds", "shelves" })
           && !BackdropMath.RoomContents(new[] { W("Bed", BackdropMath.ThingIs.Bed) }).Contains("beds"), "two beds or more: beds");
         C(BackdropMath.ContentWordsOf("Anything", (BackdropMath.ThingIs)2047).All(w => BackdropMath.Contents.Contains(w)), "every word given is one of the content words");
+
+        // ---------------- The library folder ----------------
+        {
+            var people = new List<FolderPortrait>();
+            var backs2 = new List<FolderBackdrop>();
+            var problems = new List<string>();
+            PortraitFolderMath.Parse(File.ReadAllText(Path.Combine(fixtures, "records_sample.xml")), people, backs2, problems);
+            C(people.Count == 3 && backs2.Count == 2, $"records.xml read: its people and its backdrops ({people.Count}, {backs2.Count})");
+            var av = people.FirstOrDefault(p => p.record.name == "Portrait_colonists_Avila_01");
+            C(av != null && av.record.pawn == "Avila" && av.texPath == "colonists/Avila_style_01_cut_00001_" && av.record.age == PortraitAge.Young && av.record.hair == PortraitHairStyle.Tied
+              && float.IsNaN(av.headX), "a person's record: its pin, its path from the folder, its words; the head's place measured (none given)");
+            var luna = people.FirstOrDefault(p => p.record.name == "Portrait_colonists_Luna_01");
+            C(luna != null && luna.record.age == PortraitAge.Toddler && Near(luna.headY, 0.3f), "a toddler's record; the head's place where a record gives it");
+            C(backs2.Any(b => b.record.place == BackdropPlace.Room && b.record.rooms.Contains("Bedroom") && b.texPath.StartsWith("backdrops/")), "a backdrop's record, its path from the folder");
+            C(problems.Any(p => p.Contains("Portrait_bad") && p.Contains("wizardhat")) && problems.Any(p => p.Contains("Unknown.Thing")) && people.Any(p => p.record.name == "Portrait_bad"),
+                $"an unknown word told with its record's name, the record kept; an element of no known kind told ({string.Join("; ", problems)})");
+            bool threw = false;
+            try
+            {
+                PortraitFolderMath.Parse("not xml", people, backs2, problems);
+            }
+            catch (Exception)
+            {
+                threw = true;
+            }
+            C(threw, "a records.xml that is no XML at all: an error the game tells once (the folder's part of the library off)");
+            C(PortraitFolderMath.CleanFolder("  \"C:\\Users\\Me\\Google Drive\\Rimfolk Portraits\"  ") == "C:\\Users\\Me\\Google Drive\\Rimfolk Portraits" && PortraitFolderMath.CleanFolder(null!) == "",
+                "a folder pasted from Windows in quotes, spaces and a drive letter kept");
+            C(PortraitFolderMath.FileKey("colonists/Avila_01") == "colonists/Avila_01.png" && PortraitFolderMath.FileKey("\\backdrops\\a") == "backdrops/a.png", "a picture's path in the folder");
+            // missing.csv: words for the looks, the merge, the text.
+            C(PortraitFolderMath.SkinWord(Hex("#f2ede0")) == "very fair" && PortraitFolderMath.SkinWord(Hex("#402917")) == "dark" && PortraitFolderMath.SkinWord(Hex("#73a659")) == "green",
+                "a skin in a word: very fair to dark, a xenotype's by its hue");
+            C(PortraitFolderMath.HairWord(Hex("#1a1a1a")) == "black" && PortraitFolderMath.HairWord(Hex("#e8cc90")) == "blond" && PortraitFolderMath.HairWord(Hex("#a8481e")) == "red"
+              && PortraitFolderMath.HairWord(Hex("#a6a6a6")) == "grey" && PortraitFolderMath.HairWord(Hex("#3359cc")) == "blue" && PortraitFolderMath.HairWord(Hex("#594030")) == "brown",
+                "a hair colour in a word");
+            PortraitNeed Need(string what, string kind, int count, string date, string why = "no pictures of their kind", string instead = "") =>
+                new PortraitNeed { what = what, kind = kind, sex = "female", age = "adult", skin = "fair", hair = "black", era = "medieval", why = why, instead = instead, count = count, lastSeen = date };
+            var old = new List<PortraitNeed> { Need("person", "Human/VRESaurids_Saurid", 2, "2026-11-20"), Need("room", "Barracks", 1, "2026-11-21", "no backdrop of this kind of room") };
+            var fresh = new List<PortraitNeed> { Need("person", "Human/VRESaurids_Saurid", 1, "2026-11-22", instead: "x"), Need("outdoors", "AB_MycoticJungle", 1, "2026-11-22", "no backdrop for jungle") };
+            var merged = PortraitFolderMath.Merge(old, fresh);
+            var saurid = merged.First(n => n.kind == "Human/VRESaurids_Saurid");
+            C(merged.Count == 3 && saurid.count == 3 && saurid.lastSeen == "2026-11-22" && saurid.instead == "x", "merged with the file: one line per need, the counts added, the newest date kept");
+            C(merged[0].what == "person" && merged[1].what == "room" && merged[2].what == "outdoors", "people first, then rooms, then the land");
+            string csv = PortraitFolderMath.Csv(merged);
+            var back = PortraitFolderMath.Read(csv);
+            C(csv.StartsWith("# What Rimfolk needed") && csv.Contains("what,kind,mod,sex,age,skin,hair,era,why,used instead,how many,last seen") && back.Count == 3
+              && back.Select(n => n.Key).SequenceEqual(merged.Select(n => n.Key)) && back.Sum(n => n.count) == 5, "written with a plain header and read back the same");
+            var comma = PortraitFolderMath.Read(PortraitFolderMath.Csv(new[] { Need("room", "VFEE_Ballroom", 1, "2026-11-22", "none, at all", "a \"plain\" ground") }));
+            C(comma.Count == 1 && comma[0].why == "none, at all" && comma[0].instead == "a \"plain\" ground", "commas and quotes in a cell kept");
+        }
 
         // ---------------- The seams ----------------
         string store = Read("UI/Faces/PortraitStore.cs"), stage = Read("UI/Faces/FaceEngineStage.cs"), inspect = Read("UI/Faces/InspectPortrait.cs"), engine = Read("UI/Faces/FaceEngine.cs");

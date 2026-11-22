@@ -19,6 +19,9 @@ namespace ColonyCouncil
         public string words = "";
         public int stage = -1;
         public bool pinned, byHand;
+        /// <summary>Their face is theirs alone: they are (or were) one of the colony's own people; and since when they have kept it.</summary>
+        public bool reserved;
+        public int since;
         public float distance;
         public int library;
         public int seen;
@@ -33,6 +36,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref stage, "stage", -1);
             Scribe_Values.Look(ref pinned, "pinned");
             Scribe_Values.Look(ref byHand, "byHand");
+            Scribe_Values.Look(ref reserved, "reserved");
+            Scribe_Values.Look(ref since, "since");
             Scribe_Values.Look(ref distance, "distance");
             Scribe_Values.Look(ref library, "library");
             Scribe_Values.Look(ref seen, "seen");
@@ -97,12 +102,15 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             base.ExposeData();
+            // Saving the game writes the library folder's missing list too (on a worker thread).
+            if (Scribe.mode == LoadSaveMode.Saving) PortraitNeeds.Write();
             Scribe_Collections.Look(ref kept, "kept", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 kept ??= new List<KeptPortrait>();
                 int now = Find.TickManager?.TicksGame ?? 0;
-                kept.RemoveAll(k => k == null || now - k.seen > ForgetAfterDays * GenDate.TicksPerDay);
+                // A colonist's face is kept while they are remembered, alive or dead: never let go for not being pictured.
+                kept.RemoveAll(k => k == null || !k.reserved && now - k.seen > ForgetAfterDays * GenDate.TicksPerDay);
                 Index();
             }
         }
@@ -154,6 +162,7 @@ namespace ColonyCouncil
                 if (kept.Count > MaxKept) LetGoOldest(id);
             }
             else Use(k.character, -1);
+            if (k.picture != (picture ?? "")) k.since = now;
             k.picture = picture ?? "";
             k.character = k.picture.Length > 0 ? character ?? "" : "";
             k.kind = kind ?? "";
@@ -165,6 +174,7 @@ namespace ColonyCouncil
             k.distance = float.IsInfinity(distance) || float.IsNaN(distance) ? 999f : distance;
             k.seen = now;
             Use(k.character, 1);
+            Version++;
         }
 
         /// <summary>They were pictured now (counted at most once a day, so nothing is written each frame).</summary>
@@ -183,6 +193,7 @@ namespace ColonyCouncil
             Use(k.character, -1);
             kept.Remove(k);
             byId.Remove(id);
+            Version++;
         }
 
         /// <summary>Everyone's faces let go (the dev action to pick everyone's again).</summary>
@@ -190,13 +201,37 @@ namespace ColonyCouncil
         {
             kept.Clear();
             Index();
+            Version++;
         }
 
+        /// <summary>Changes whenever a picture is kept, let go or reserved, so the library reads whose each face is again.</summary>
+        public int Version;
+
+        /// <summary>A colonist's face made theirs alone (they joined, or were found among the colony's own); no one else is given it from now on.</summary>
+        public void Reserve(KeptPortrait k)
+        {
+            if (k == null || k.reserved || k.picture.NullOrEmpty()) return;
+            k.reserved = true;
+            Version++;
+        }
+
+        /// <summary>The faces kept as a colonist's own: who, which face, since when.</summary>
+        public IEnumerable<(int id, string character, int since)> Reserved
+        {
+            get
+            {
+                foreach (var k in kept)
+                    if (k.reserved && !k.character.NullOrEmpty())
+                        yield return (k.id, k.character, k.since);
+            }
+        }
+
+        /// <summary>The least lately pictured let go, a colonist's own face last of all.</summary>
         private void LetGoOldest(int besides)
         {
             KeptPortrait oldest = null;
             foreach (var k in kept)
-                if (k.id != besides && (oldest == null || k.seen < oldest.seen))
+                if (k.id != besides && (oldest == null || !k.reserved && oldest.reserved || k.reserved == oldest.reserved && k.seen < oldest.seen))
                     oldest = k;
             if (oldest != null) Drop(oldest.id);
         }

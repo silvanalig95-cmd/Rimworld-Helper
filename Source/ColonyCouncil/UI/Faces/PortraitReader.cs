@@ -39,15 +39,77 @@ namespace ColonyCouncil
         public static GameStage GameStageOf(Pawn p)
         {
             var s = p.DevelopmentalStage;
-            return s.Baby() ? GameStage.Baby : s.Child() ? GameStage.Child : s.Adult() ? GameStage.Adult : GameStage.Unknown;
+            if (s.Baby()) return GameStage.Baby;
+            if (s.Child()) return GameStage.Child;
+            if (!s.Adult()) return GameStage.Unknown;
+            // The game's teenage stage (HumanlikeTeenager; a race of another mod by its stage's name), and past it.
+            string stage = p.ageTracker?.CurLifeStage?.defName ?? "";
+            if (stage.IndexOf("teen", StringComparison.OrdinalIgnoreCase) >= 0 && stage.IndexOf("preteen", StringComparison.OrdinalIgnoreCase) < 0) return GameStage.Teen;
+            return stage == "HumanlikeAdult" ? GameStage.Grown : GameStage.Adult;
         }
 
-        /// <summary>A pawn's age band (a baby, a toddler, a child, then young, adult, old), cheaply; false for anyone not humanlike.</summary>
+        private static StatDef lifespan;
+        private static bool lifespanLooked;
+        private static readonly Dictionary<GeneDef, bool> stopsAgeing = new Dictionary<GeneDef, bool>();
+
+        /// <summary>The game's life span factor of a pawn (the genes for a long or short life), 1 where the game has none.</summary>
+        private static float LifespanOf(Pawn p)
+        {
+            if (!lifespanLooked)
+            {
+                lifespanLooked = true;
+                lifespan = DefDatabase<StatDef>.GetNamedSilentFail("LifespanFactor");
+            }
+            if (lifespan == null) return 1f;
+            try
+            {
+                return p.GetStatValue(lifespan);
+            }
+            catch (Exception)
+            {
+                return 1f;
+            }
+        }
+
+        /// <summary>
+        /// Whether a pawn's ageing has stopped: an active gene that stops it (Biotech's Ageless, the dark
+        /// elves' DevDesigner_Ageless), or any gene whose ageing curve stops at nothing; each gene read once.
+        /// </summary>
+        private static bool Ageless(Pawn p)
+        {
+            var genes = p.genes?.GenesListForReading;
+            if (genes == null) return false;
+            for (int i = 0; i < genes.Count; i++)
+            {
+                var g = genes[i];
+                if (g?.def == null || !g.Active) continue;
+                if (!stopsAgeing.TryGetValue(g.def, out bool stops))
+                {
+                    string n = g.def.defName;
+                    stops = n == "Ageless" || n == "DevDesigner_Ageless";
+                    var curve = g.def.biologicalAgeTickFactorFromAgeCurve;
+                    if (!stops && curve != null)
+                        foreach (var point in curve)
+                            if (point.y <= 0.001f)
+                                stops = true;
+                    stopsAgeing[g.def] = stops;
+                }
+                if (stops) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// How old a pawn looks as an age band (<see cref="PortraitLibraryMath.AgeOf(float, float, float, float, GameStage, bool, out PortraitAge)"/>):
+        /// their biological age, the game's stage of life, their race's life expectancy times their life span factor, and for
+        /// someone whose ageing has stopped their years since birth on a much longer scale. False for anyone not humanlike.
+        /// </summary>
         public static bool AgeOf(Pawn p, out PortraitAge age)
         {
             age = PortraitAge.Adult;
             if (p?.RaceProps == null || !p.RaceProps.Humanlike) return false;
-            return PortraitLibraryMath.AgeOf(p.ageTracker?.AgeBiologicalYearsFloat ?? 30f, p.RaceProps.lifeExpectancy, GameStageOf(p), out age);
+            float bio = p.ageTracker?.AgeBiologicalYearsFloat ?? 30f, born = p.ageTracker?.AgeChronologicalYearsFloat ?? bio;
+            return PortraitLibraryMath.AgeOf(bio, born, p.RaceProps.lifeExpectancy, LifespanOf(p), GameStageOf(p), Ageless(p), out age);
         }
 
         /// <summary>A pawn's looks; false for anyone the library has no pictures for at all (not humanlike).</summary>

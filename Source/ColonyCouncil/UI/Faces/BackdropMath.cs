@@ -36,7 +36,8 @@ namespace ColonyCouncil
         public string role = "";
         public HashSet<string> contents = new HashSet<string>();
         public PortraitEra era;
-        public string group = "";
+        /// <summary>Outdoors: the land's group, and the biome it is from (for the missing list).</summary>
+        public string group = "", biome = "";
         /// <summary>A number for the place (the room's id, the map's), so the same place always gets the same backdrop.</summary>
         public int seed;
 
@@ -48,11 +49,16 @@ namespace ColonyCouncil
             : place == BackdropPlace.Outdoors ? "outdoors (" + group + ")" : "no map";
     }
 
-    /// <summary>A backdrop chosen (an index, -1 for none: the portrait's own ground) and why, for the log.</summary>
+    /// <summary>
+    /// A backdrop chosen (an index, -1 for none: the portrait's own ground), why (for the log), what was used (a near kind
+    /// of room or land, "a plain ground"), and for the library's missing list whether a backdrop of the place's own kind
+    /// was there and one of the colony's age (or any age) among those.
+    /// </summary>
     public struct BackdropChoice
     {
         public int index;
-        public string why;
+        public string why, used;
+        public bool ownKind, ownEra;
     }
 
     /// <summary>
@@ -226,8 +232,9 @@ namespace ColonyCouncil
         /// <summary>The backdrop for where a person is (see the class's notes); -1 for none.</summary>
         public static BackdropChoice Choose(BackdropWhere w, IList<BackdropRecord> records)
         {
-            var none = new BackdropChoice { index = -1, why = "no backdrop in the library" };
-            if (records == null || records.Count == 0 || w == null) return none;
+            var none = new BackdropChoice { index = -1, why = "no backdrop in the library", used = "nothing" };
+            if (w == null) return none;
+            if (records == null || records.Count == 0) return w.place == BackdropPlace.Plain ? new BackdropChoice { index = -1, why = none.why, used = "nothing", ownKind = true, ownEra = true } : none;
             var all = Enumerable.Range(0, records.Count).ToList();
             if (w.place == BackdropPlace.Room)
             {
@@ -243,15 +250,26 @@ namespace ColonyCouncil
                     if (fit.Count == 0) continue;
                     // The age first, then what is in the room (each thing shown counts a little less than an age apart).
                     int pick = Best(records, fit, i => EraApart(w.era, records[i].era) * 100 - Matching(records[i], w.contents), w.seed);
-                    return new BackdropChoice { index = pick, why = role == w.role ? "the room's own kind, " + role : "the nearest kind to " + w.role + ", " + role };
+                    bool own = role == w.role;
+                    return new BackdropChoice
+                    {
+                        index = pick, why = own ? "the room's own kind, " + role : "the nearest kind to " + w.role + ", " + role, used = role, ownKind = own,
+                        ownEra = own && fit.Any(i => EraApart(w.era, records[i].era) < 1f)
+                    };
                 }
                 var byThings = all.Where(i => records[i].place == BackdropPlace.Room && Matching(records[i], w.contents) > 0).ToList();
                 if (byThings.Count > 0)
                 {
                     int pick = Best(records, byThings, i => -Matching(records[i], w.contents) * 100 + EraApart(w.era, records[i].era), w.seed);
-                    return new BackdropChoice { index = pick, why = (w.role.Length > 0 ? "no backdrop for " + w.role + " or its like" : "a room of no particular kind") + ": by what is in it" };
+                    return new BackdropChoice
+                    {
+                        index = pick, why = (w.role.Length > 0 ? "no backdrop for " + w.role + " or its like" : "a room of no particular kind") + ": by what is in it",
+                        used = "by what is in it", ownKind = w.role.Length == 0, ownEra = w.role.Length == 0
+                    };
                 }
-                return Plain(records, all, w.seed, w.role.Length > 0 ? "no backdrop for " + w.role + " or its like" : "a room with nothing a backdrop shows");
+                var plainRoom = Plain(records, all, w.seed, w.role.Length > 0 ? "no backdrop for " + w.role + " or its like" : "a room with nothing a backdrop shows");
+                plainRoom.ownKind = plainRoom.ownEra = w.role.Length == 0;
+                return plainRoom;
             }
             if (w.place == BackdropPlace.Outdoors && w.group.Length > 0)
             {
@@ -262,20 +280,21 @@ namespace ColonyCouncil
                     var fit = all.Where(i => records[i].place == BackdropPlace.Outdoors && records[i].outdoors == g).ToList();
                     if (fit.Count == 0) continue;
                     int pick = Best(records, fit, i => 0, w.seed);
-                    return new BackdropChoice { index = pick, why = g == w.group ? "outdoors, " + g : "outdoors, " + w.group + " like " + g };
+                    return new BackdropChoice { index = pick, why = g == w.group ? "outdoors, " + g : "outdoors, " + w.group + " like " + g, used = g, ownKind = g == w.group, ownEra = true };
                 }
                 return Plain(records, all, w.seed, "no backdrop for " + w.group + " or its like");
             }
-            return Plain(records, all, w.seed, "no map");
+            var plain = Plain(records, all, w.seed, "no map");
+            plain.ownKind = plain.ownEra = true;
+            return plain;
         }
 
         private static BackdropChoice Plain(IList<BackdropRecord> records, List<int> all, int seed, string why)
         {
             var plain = all.Where(i => records[i].place == BackdropPlace.Plain).ToList();
-            if (plain.Count == 0) return new BackdropChoice { index = -1, why = why + "; no plain ground in the library: the portrait's own" };
-            return new BackdropChoice { index = Best(records, plain, i => 0, seed), why = why + ": a plain ground" };
+            if (plain.Count == 0) return new BackdropChoice { index = -1, why = why + "; no plain ground in the library: the portrait's own", used = "the portrait's own ground" };
+            return new BackdropChoice { index = Best(records, plain, i => 0, seed), why = why + ": a plain ground", used = "a plain ground" };
         }
-
         // ---------------- What is in a room ----------------
 
         /// <summary>What the game says of one building or thing in a room, besides its name: the flags <see cref="ContentWordsOf"/> reads.</summary>

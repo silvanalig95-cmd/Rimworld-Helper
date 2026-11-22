@@ -135,6 +135,7 @@ namespace ColonyCouncil
                 {
                     look.whereKey = wk;
                     look.backdrop = Backdrops.For(where, out _);
+                    Backdrops.Note(where, where.seed);
                 }
             }
             catch (Exception e)

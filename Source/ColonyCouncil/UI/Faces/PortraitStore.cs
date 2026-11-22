@@ -135,6 +135,8 @@ namespace ColonyCouncil
             for (int i = 0; i < 3 && lightDone.TryDequeue(out var light); i++) Timed(light);
             // A few files read at once on the worker threads; their decoding waits its turn.
             while (loading < 3 && queued.Count > 0) Start(queued.Dequeue());
+            PortraitFolder.Pump();
+            PortraitNeeds.Pump();
         }
 
         private static void Timed(Action a)

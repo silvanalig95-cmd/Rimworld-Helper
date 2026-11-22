@@ -113,13 +113,18 @@ public static class PortraitLibraryTests
 
         // ---------------- A pawn's looks read from the game's words ----------------
         bool Age(float y, float le, out PortraitAge a) => PortraitLibraryMath.AgeOf(y, le, out a);
-        C(Age(0.4f, 80f, out var b0) && b0 == PortraitAge.Baby && Age(1f, 80f, out var b1) && b1 == PortraitAge.Toddler && Age(2.9f, 80f, out var b2) && b2 == PortraitAge.Toddler
+        C(Age(0.4f, 80f, out var b0) && b0 == PortraitAge.Baby && Age(1f, 80f, out var b1) && b1 == PortraitAge.Toddler && Age(3.9f, 80f, out var b2) && b2 == PortraitAge.Toddler
           && !Age(float.NaN, 80f, out _), "under one a baby, one to three a toddler (the youngest get pictures now)");
-        C(Age(3f, 80f, out var a1) && a1 == PortraitAge.Child && Age(12.9f, 80f, out var a2) && a2 == PortraitAge.Child, "three to twelve: a child");
+        C(Age(4f, 80f, out var a1) && a1 == PortraitAge.Child && Age(12.9f, 80f, out var a2) && a2 == PortraitAge.Child, "four to twelve: a child");
         C(PortraitLibraryMath.AgeOf(2.5f, 80f, GameStage.Baby, out var g1) && g1 == PortraitAge.Toddler && PortraitLibraryMath.AgeOf(0.5f, 80f, GameStage.Baby, out var g2) && g2 == PortraitAge.Baby
-          && PortraitLibraryMath.AgeOf(3.5f, 80f, GameStage.Child, out var g3) && g3 == PortraitAge.Child && PortraitLibraryMath.AgeOf(11f, 80f, GameStage.Adult, out var g4) && g4 == PortraitAge.Young,
-            "the game's own stage first: a baby under one, else a toddler; a child; a grown-up of another race grown early is young");
-        foreach (var (word, want) in new[] { ("baby", PortraitAge.Baby), ("toddler", PortraitAge.Toddler), ("child", PortraitAge.Child), ("young", PortraitAge.Young), ("adult", PortraitAge.Adult), ("old", PortraitAge.Old), ("teen", PortraitAge.Young), ("elder", PortraitAge.Old), ("middle", PortraitAge.Adult) })
+          && PortraitLibraryMath.AgeOf(3.5f, 80f, GameStage.Child, out var g3) && g3 == PortraitAge.Child && PortraitLibraryMath.AgeOf(11f, 80f, GameStage.Adult, out var g4) && g4 == PortraitAge.Teen
+          && PortraitLibraryMath.AgeOf(17f, 80f, GameStage.Teen, out var g5) && g5 == PortraitAge.Teen && PortraitLibraryMath.AgeOf(17.5f, 80f, GameStage.Grown, out var g6) && g6 == PortraitAge.Young,
+            "the game's own stage first: a baby under one, else a toddler; a child; its teenage stage a teen; grown early (another race) a teen by years; past the teens young");
+        foreach (var (word, want) in new[]
+                 {
+                     ("baby", PortraitAge.Baby), ("toddler", PortraitAge.Toddler), ("child", PortraitAge.Child), ("teen", PortraitAge.Teen), ("young", PortraitAge.Young), ("adult", PortraitAge.Adult),
+                     ("middle", PortraitAge.Middle), ("old", PortraitAge.Old), ("elder", PortraitAge.Elder), ("teenager", PortraitAge.Teen), ("middle-aged", PortraitAge.Middle), ("elderly", PortraitAge.Elder)
+                 })
         {
             var problems = new List<string>();
             var r = PortraitLibraryMath.Record("A", k => k == "age" ? word : k == "texPath" ? "x" : k == "skinColor" || k == "hairColor" ? "#808080" : null, _ => null, problems);
@@ -136,11 +141,14 @@ public static class PortraitLibraryTests
             var r = PortraitLibraryMath.Record("A", k => k == field ? word : k == "texPath" ? "x" : k == "skinColor" || k == "hairColor" ? "#808080" : null, _ => null, problems);
             C(problems.Count == 0 && isRead(r), $"the framework's word '{word}' for {field} read as the matcher's own");
         }
-        C(Age(13f, 80f, out var a3) && a3 == PortraitAge.Young && Age(23.9f, 80f, out var a4) && a4 == PortraitAge.Young, "13 to 23: young");
-        C(Age(24f, 80f, out var a5) && a5 == PortraitAge.Adult && Age(59f, 80f, out var a6) && a6 == PortraitAge.Adult, "24 to 59: grown");
-        C(Age(60f, 80f, out var a7) && a7 == PortraitAge.Old && Age(110f, 80f, out var a8) && a8 == PortraitAge.Old, "60 and over: old");
+        foreach (var (years, want) in new[]
+                 {
+                     (13f, PortraitAge.Teen), (17.9f, PortraitAge.Teen), (18f, PortraitAge.Young), (29.9f, PortraitAge.Young), (30f, PortraitAge.Adult), (44.9f, PortraitAge.Adult), (45f, PortraitAge.Middle),
+                     (59.9f, PortraitAge.Middle), (60f, PortraitAge.Old), (74.9f, PortraitAge.Old), (75f, PortraitAge.Elder), (110f, PortraitAge.Elder)
+                 })
+            C(Age(years, 80f, out var band) && band == want, $"a human of {years}: {want} (read {band})");
         C(Age(150f, 400f, out var a9) && a9 == PortraitAge.Adult && Age(320f, 400f, out var a10) && a10 == PortraitAge.Old && Age(30f, 0f, out var a11) && a11 == PortraitAge.Adult,
-            "a long-lived kind ages by its own life expectancy; none known, a human's");
+            "a long-lived kind ages by its own life expectancy (400 years: 150 is adult, not an elder); none known, a human's");
         // The game's skin colours (its melanin genes', approximately): all human. Others no human grows.
         var melanin = new[] { "f2ede0", "ffefd5", "ffefbd", "e4c699", "e49e5a", "b3804d", "825b30", "634624", "402917" };
         foreach (var m in melanin) C(!PortraitLibraryMath.UnusualSkin(Hex(m)), $"skin #{m}: a human skin");
@@ -328,19 +336,23 @@ public static class PortraitLibraryTests
         var nearUses = new Dictionary<string, int> { ["near"] = 1 };
         C(Pick(twinLook, nearer, 5, c => nearUses.TryGetValue(c, out int u) ? u : 0).character == "browner", "the next alike person the next closest");
         // Picking again: chosen once and kept (the player, 22 November 2026), a child's next stage the one exception.
-        bool Again(bool kept = true, PortraitStage was = PortraitStage.Grown, PortraitStage now = PortraitStage.Grown, string pic = "p", bool there = true, bool pinned = false,
-            bool byHand = false, int keptLib = 1, int lib = 1, string keptWords = "w", string words = "w", bool pin = false) =>
-            PortraitLibraryMath.PickAgain(kept, was, now, pic, there, pinned, byHand, keptLib, lib, keptWords, words, pin);
+        bool Again(bool kept = true, PortraitStage was = PortraitStage.Grown, PortraitStage now = PortraitStage.Grown, string pic = "p", bool there = true, int keptFit = 0,
+            bool byHand = false, int keptLib = 1, int lib = 1, string keptWords = "w", string words = "w", int pin = 0) =>
+            PortraitLibraryMath.PickAgain(kept, was, now, pic, there, keptFit, byHand, keptLib, lib, keptWords, words, pin);
         C(Again(kept: false), "nothing kept: picked");
         C(!Again(words: "w2") && !Again(lib: 2), "kept for good: an injury, a lost eye, new hair, a beard, new clothes (their looks' words change) or a grown library keep it");
-        C(Again(was: PortraitStage.Baby, now: PortraitStage.Toddler) && Again(was: PortraitStage.Toddler, now: PortraitStage.Child) && Again(was: PortraitStage.Child, now: PortraitStage.Grown),
-            "a child moving to the next stage (baby to toddler, toddler to child, child to grown-up): picked again");
-        C(!Again(was: PortraitStage.Grown, now: PortraitStage.Grown), "young to adult to old (one stage): kept");
+        C(Again(was: PortraitStage.Baby, now: PortraitStage.Toddler) && Again(was: PortraitStage.Toddler, now: PortraitStage.Child) && Again(was: PortraitStage.Child, now: PortraitStage.Teen)
+          && Again(was: PortraitStage.Teen, now: PortraitStage.Grown) && Again(was: PortraitStage.Grown, now: PortraitStage.Old),
+            "the next stage of life (baby to toddler, toddler to child, child to teen, teen to young, into old): picked again");
+        C(!Again(was: PortraitStage.Grown, now: PortraitStage.Grown) && !Again(was: PortraitStage.Old, now: PortraitStage.Old), "young, adult and middle-aged (one stage), old and elder (one): kept");
         C(Again(there: false), "the picture gone from the library: picked again");
         C(Again(pic: "", lib: 2) && Again(pic: "", words: "w2") && !Again(pic: "", lib: 1), "kept with no picture: looked at again when the library or their looks change");
-        C(Again(pin: true) && !Again(pin: true, pinned: true) && !Again(pin: true, byHand: true), "a pin made for them takes the place of the matcher's pick, not of one chosen by hand");
-        C(PortraitLibraryMath.StageOf(PortraitAge.Young) == PortraitStage.Grown && PortraitLibraryMath.StageOf(PortraitAge.Old) == PortraitStage.Grown && PortraitLibraryMath.StageOf(PortraitAge.Toddler) == PortraitStage.Toddler,
-            "young, adult and old are one stage; a toddler its own");
+        C(Again(pin: 2) && !Again(pin: 2, keptFit: 2) && !Again(pin: 2, byHand: true) && Again(pin: 2, keptFit: 1) && !Again(pin: 1, keptFit: 1),
+            "a pin made for them takes the place of the matcher's pick (and a pin of their own stage that of a stand-in pin), not of one chosen by hand");
+        C(PortraitLibraryMath.StageOf(PortraitAge.Young) == PortraitStage.Grown && PortraitLibraryMath.StageOf(PortraitAge.Middle) == PortraitStage.Grown
+          && PortraitLibraryMath.StageOf(PortraitAge.Old) == PortraitStage.Old && PortraitLibraryMath.StageOf(PortraitAge.Elder) == PortraitStage.Old
+          && PortraitLibraryMath.StageOf(PortraitAge.Teen) == PortraitStage.Teen && PortraitLibraryMath.StageOf(PortraitAge.Toddler) == PortraitStage.Toddler,
+            "young, adult and middle-aged one stage; old and elder one; a teen and a toddler each their own");
 
         // ---------------- The views of a whole picture ----------------
         var lib = PortraitViewMath.Library;
