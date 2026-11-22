@@ -22,10 +22,23 @@ learns from the game artist's own work, so neither it nor the pictures made with
 
 ## The training set
 
-25 pictures made from the seven (each portrait whole and its top part, on a dark and a light plain grey ground, one of
-each mirrored; each scene whole, mirrored, and a crop around the figure), each with a caption of what it shows and the
-trigger word `rmwstyle` first. The captions describe the content only, so the LoRA learns the drawing, not these people.
-The pictures are not in the repository (they are the game's art); the script that cut them is in the lead's scratchpad.
+Round 2 (47 pictures, from 18 characters), each with a caption of what it shows and the trigger word `rmwstyle` first.
+The captions describe the content only, so the LoRA learns the drawing, not these people.
+- The three storytellers at full size (2,500 pixels, from the RimWorld wiki; the player's copies were 560): each whole on
+  a dark and a light plain grey ground (one mirrored), its head and shoulders, and a close-up of the face, where the fine
+  ink lines and the hatching show at full detail.
+- The fourth portrait (the bald man with the bionic headset), as in round 1: whole and its top part, dark and light.
+- The three DLC pictures (Royalty, Biotech, Ideology), as in round 1: whole, mirrored, and a crop around the figure.
+- Eleven portraits from the storyteller mods in the player's list (screenshots of the storyteller screen, on its
+  near-black ground): each whole, and its head and shoulders mirrored (not the one with writing on its armour).
+  Three of the fourteen the player sent are left out: two women drawn closer to an anime pin-up, with large glossy eyes
+  and idealised faces (the look the player doesn't want), and a second faceless armoured soldier like one already in.
+
+Not used: the wiki's and Steam's Biotech, Anomaly and Odyssey pictures are screenshots of the game or small banners.
+More that would help: the Anomaly and Odyssey key art at full size (the woman with long brown hair; the red-bearded man
+with the raven), each a new face; and any other mod portrait drawn this way with an ordinary, characterful face.
+The pictures are not in the repository (they are the game's and the mods' art); the script that cut them is in the
+lead's scratchpad (`build2.py`).
 
 ## Training it with FluxGym (on the player's computer)
 
@@ -34,20 +47,21 @@ The pictures are not in the repository (they are the game's art); the script tha
 2. Start FluxGym from Pinokio. Fill in:
    - **The name of your LoRA**: `rmwstyle`; **Trigger word**: `rmwstyle`.
    - **Base model**: `flux-dev`; **VRAM**: `16G`.
-   - **Repeat trains per image**: `6`; **Max train epochs**: `16` (about 2,400 steps; 1 to 2 hours on your card).
-   - **Resize dataset images**: `512` (the pictures are about 600 pixels; larger only slows it down).
+   - **Repeat trains per image**: `4`; **Max train epochs**: `12` (47 pictures: about 2,250 steps; a guess of 1 to 3
+     hours on your card).
+   - **Resize dataset images**: `512` (fast; `768` keeps more of the fine lines but takes about twice as long).
    - **Sample Image Prompts** (one per line), and **Sample Image Every N Steps**: `400`:
      - `rmwstyle, a weathered old man with a grey beard and a scar across his cheek, a patched brown coat, seen from the waist up, a plain dark grey background`
      - `rmwstyle, a young woman with short black hair and freckles, a green work jacket, arms crossed, a plain dark grey background`
      - `rmwstyle, a saurid man with fine green scales and amber eyes, a leather vest, a plain dark grey background`
-3. **Upload** all 25 pictures and all 25 `.txt` files together (drag them in at once): the captions fill in by
+3. **Upload** all 47 pictures and all 47 `.txt` files together (drag them in at once): the captions fill in by
    themselves (each `.txt` belongs to the picture of the same name). Check that each caption starts with `rmwstyle`.
 4. In **Advanced options** set: `network_dim` (the LoRA's rank) `16`, `learning_rate` `4e-4`, `save_every_n_epochs` `4`.
    Leave the rest.
 5. **Start training**. The sample pictures appear as it goes: they should look more and more like the game's art.
 6. When it ends, the files are in FluxGym's `outputs\rmwstyle\` folder (Pinokio, FluxGym, Files): `rmwstyle.safetensors`
-   (the last) and `rmwstyle-000004`, `-000008`, `-000012` (the earlier saves). The last is usually best; if its samples
-   copy the seven people too closely, an earlier one is better.
+   (the last) and `rmwstyle-000004`, `-000008` (the earlier saves). The last is usually best; if its samples copy the
+   training faces too closely (Randy's grin, Cassandra's face), an earlier one is better.
 7. Copy the chosen file into ComfyUI's `models\loras` and press R in ComfyUI.
 
 ## Using it

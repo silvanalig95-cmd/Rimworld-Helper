@@ -672,6 +672,10 @@ most sense." So, in this order, three builds at a time:
   words, the training set, FluxGym steps and settings for the player's card), `batches/style-rmw.json` (the LoRA
   `rmwstyle` at 0.9 and the style's words); the training set (25 pictures with captions, trigger `rmwstyle`) sent to the
   player as a zip, not in the repository (the game's art; for the player's own use only).
+  Then: "help me find images ... more images that look like this very much, that I could include in the training", and
+  fourteen portraits from their storyteller mods. Done: round 2 of the set (47 pictures, 18 characters: the storytellers
+  at full size from the wiki with face close-ups, eleven of the mods' portraits; STYLE-RIMWORLD.md), sent as a zip.
+  Asked of the player: the Anomaly and Odyssey key art at full size, if they have it.
 - **To do when the player asks (22 November 2026, the player; proposal sent, waiting for the go): delete a picture for
   good from the game.** The player: "what i would like in the game is a feature that when i really don't like an image,
   that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this way i
