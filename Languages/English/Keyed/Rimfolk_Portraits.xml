@@ -132,9 +132,10 @@
   <CC_Portrait_DeleteBackdropTitle>Delete this backdrop for good</CC_Portrait_DeleteBackdropTitle>
   <CC_Portrait_DeleteWhat>The painted picture {FILE} in the library folder will be deleted for good.</CC_Portrait_DeleteWhat>
   <CC_Portrait_DeleteWhatExpressions>Its {COUNT} expressions go with it.</CC_Portrait_DeleteWhatExpressions>
+  <CC_Portrait_DeleteWhatExpression>Its expression goes with it.</CC_Portrait_DeleteWhatExpression>
   <CC_Portrait_DeleteBackdropWhat>The backdrop {FILE} in the library folder will be deleted for good.</CC_Portrait_DeleteBackdropWhat>
   <CC_Portrait_DeleteWhatDepth>Its depth map goes with it.</CC_Portrait_DeleteWhatDepth>
-  <CC_Portrait_DeleteHeld>It is held now by {NAMES}. Each of them gets another picture by the usual rules: a picture made for them first, then the closest one nobody holds, else the game's own drawing.</CC_Portrait_DeleteHeld>
+  <CC_Portrait_DeleteHeld>It is held now by {NAMES}. Whoever holds it gets another picture by the usual rules: a picture made for them first, then the closest one nobody holds, else the game's own drawing.</CC_Portrait_DeleteHeld>
   <CC_Portrait_DeleteHeldNone>Nobody holds it now.</CC_Portrait_DeleteHeldNone>
   <CC_Portrait_DeleteBackdropShown>It is shown now behind {PAWN_nameDef}. The large portrait then chooses another backdrop for where they are, else a plain one.</CC_Portrait_DeleteBackdropShown>
   <CC_Portrait_DeleteToBin>Its files are moved into the bin, the folder {BIN} beside the library folder, which you empty yourself.</CC_Portrait_DeleteToBin>
@@ -142,7 +143,7 @@
   <CC_Portrait_DeleteRecord>Its record is taken out of records.xml and its name is written into deleted.csv, so the portrait scripts never copy, record or check it again.</CC_Portrait_DeleteRecord>
   <CC_Portrait_DeleteNoUndo>This can't be undone in the game.</CC_Portrait_DeleteNoUndo>
   <CC_Portrait_DeleteGone>{NAME} is no longer in the library, so nothing was deleted.</CC_Portrait_DeleteGone>
-  <CC_Portrait_DeleteNoLonger>{COUNT} no longer in the world</CC_Portrait_DeleteNoLonger>
+  <CC_Portrait_DeleteNoLonger>{COUNT} more no longer in the world</CC_Portrait_DeleteNoLonger>
   <CC_Portrait_DeleteOthers>{COUNT} others</CC_Portrait_DeleteOthers>
   <CC_Portrait_DeleteFailed>Could not delete {FILE}: {WHY}. Nothing was changed. A cloud drive may be holding the file for a moment; try again shortly.</CC_Portrait_DeleteFailed>
   <CC_Portrait_DeleteWhyNoRecords>the library folder has no records.xml</CC_Portrait_DeleteWhyNoRecords>
@@ -153,6 +154,7 @@
   <CC_Portrait_Deleted>Deleted the picture {FILE} for good.</CC_Portrait_Deleted>
   <CC_Portrait_DeletedBackdrop>Deleted the backdrop {FILE} for good.</CC_Portrait_DeletedBackdrop>
   <CC_Portrait_DeletedExpressions>Its {COUNT} expressions went with it.</CC_Portrait_DeletedExpressions>
+  <CC_Portrait_DeletedExpression>Its expression went with it.</CC_Portrait_DeletedExpression>
   <CC_Portrait_DeletedDepth>Its depth map went with it.</CC_Portrait_DeletedDepth>
   <CC_Portrait_DeletedToBin>The files are in {BIN} beside the library folder.</CC_Portrait_DeletedToBin>
   <CC_Portrait_DeletedFiles>The files are deleted.</CC_Portrait_DeletedFiles>

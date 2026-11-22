@@ -97,7 +97,8 @@ namespace ColonyCouncil
             var holders = NamesOf(PortraitKeeper.Instance?.HoldersOfPicture(name) ?? new List<int>(), shown);
             var text = new StringBuilder();
             text.Append("CC_Portrait_DeleteWhat".Translate(FileShown(fp.texPath).Named("FILE")).Resolve());
-            if (expressions > 0) text.Append(' ').Append("CC_Portrait_DeleteWhatExpressions".Translate(expressions.Named("COUNT")).Resolve());
+            if (expressions == 1) text.Append(' ').Append("CC_Portrait_DeleteWhatExpression".Translate().Resolve());
+            else if (expressions > 1) text.Append(' ').Append("CC_Portrait_DeleteWhatExpressions".Translate(expressions.Named("COUNT")).Resolve());
             text.Append("\n\n").Append(holders.Count > 0
                 ? "CC_Portrait_DeleteHeld".Translate(Listed(holders).Named("NAMES")).Resolve()
                 : "CC_Portrait_DeleteHeldNone".Translate().Resolve());
@@ -260,7 +261,8 @@ namespace ColonyCouncil
             text.Append((job.backdrop ? "CC_Portrait_DeletedBackdrop" : "CC_Portrait_Deleted").Translate(file.Named("FILE")).Resolve());
             int extras = r.files.Count(f => !string.Equals(f, PortraitFolderMath.FileKey(job.texPath), StringComparison.OrdinalIgnoreCase));
             if (extras > 0)
-                text.Append(' ').Append((job.backdrop ? "CC_Portrait_DeletedDepth" : "CC_Portrait_DeletedExpressions").Translate(extras.Named("COUNT")).Resolve());
+                text.Append(' ').Append((job.backdrop ? "CC_Portrait_DeletedDepth" : extras == 1 ? "CC_Portrait_DeletedExpression" : "CC_Portrait_DeletedExpressions")
+                    .Translate(extras.Named("COUNT")).Resolve());
             if (r.files.Count > 0)
                 text.Append(' ').Append(job.bin != null ? "CC_Portrait_DeletedToBin".Translate(BinShown(job.texPath).Named("BIN")).Resolve() : "CC_Portrait_DeletedFiles".Translate().Resolve());
             if (job.backdrop) text.Append(' ').Append("CC_Portrait_DeletedBackdropAgain".Translate().Resolve());
