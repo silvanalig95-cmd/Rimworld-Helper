@@ -22,15 +22,22 @@ namespace ColonyCouncil
         public string texPath;
     }
 
-    /// <summary>One line of missing.csv: what was needed and not there, how often, and when last.</summary>
+    /// <summary>
+    /// One line of missing.csv and of the save's list: what was needed and not there (a person, a look, a room, the land),
+    /// how often, and when last (the day's date, and in the save the game's day as well).
+    /// </summary>
     public sealed class PortraitNeed
     {
-        public string what = "", kind = "", mod = "", sex = "", age = "", skin = "", hair = "", era = "", why = "", instead = "";
+        public string what = "", kind = "", look = "", role = "", mod = "", sex = "", age = "", skin = "", hair = "", era = "", why = "", instead = "";
         public int count;
         public string lastSeen = "";
+        /// <summary>The game's day it was last seen (days since the game began), for the save's list; -1 where not known.</summary>
+        public int day = -1;
 
-        /// <summary>What makes two needs the same line: everything but the mod, what was used instead, the count and the date.</summary>
-        public string Key => string.Join("|", what, kind, sex, age, skin, hair, era, why).ToLowerInvariant();
+        /// <summary>What makes two needs the same line: everything but the mod, what was used instead, the count and the dates.</summary>
+        public string Key => string.Join("|", what, kind, look, role, sex, age, skin, hair, era, why).ToLowerInvariant();
+
+        public PortraitNeed Copy() => (PortraitNeed)MemberwiseClone();
     }
 
     /// <summary>
@@ -41,9 +48,10 @@ namespace ColonyCouncil
     /// <item>its <c>records.xml</c> read as the defs are (<see cref="Parse"/>): <c>ColonyCouncil.PortraitDef</c> and
     /// <c>ColonyCouncil.BackdropDef</c> elements under <c>Defs</c>, their <c>texPath</c> from the folder;</item>
     /// <item>what the game needed and the library didn't have, kept in its <c>missing.csv</c> for the next batches
-    /// (<see cref="Merge"/>, <see cref="Csv"/>): people with no picture of their kind or none close, rooms with no
-    /// backdrop of their kind or their age, land with no backdrop of its own; one line per need, the counts added and the
-    /// newest date kept.</item>
+    /// (<see cref="Merge"/>, <see cref="Csv"/>): people with no picture of their kind or none close, looks no picture of
+    /// their kind shows, rooms with no backdrop of their kind or their age, land with no backdrop of its own; one line per
+    /// need, the counts added and the newest date kept; and the same lines kept in the save (<see cref="Line"/>,
+    /// <see cref="ReadLines"/>, <see cref="Keep"/>: at most a few hundred, the least recently seen let go).</item>
     /// </list>
     /// </summary>
     public static class PortraitFolderMath
@@ -146,13 +154,16 @@ namespace ColonyCouncil
 
         // ---------------- missing.csv ----------------
 
-        public static readonly string[] Columns = { "what", "kind", "mod", "sex", "age", "skin", "hair", "era", "why", "used instead", "how many", "last seen" };
+        public static readonly string[] Columns = { "what", "kind", "look", "role", "mod", "sex", "age", "skin", "hair", "era", "why", "used instead", "how many", "last seen" };
+
+        /// <summary>The save's columns: the file's, and the game's day last seen.</summary>
+        public static readonly string[] SaveColumns = Columns.Concat(new[] { "day" }).ToArray();
 
         /// <summary>The file's first lines: what it is, in plain words, then the columns.</summary>
         public static readonly string[] Header =
         {
             "# What Rimfolk needed and the portrait library did not have, for the next batches. One line per need; the counts add up and the newest date is kept each time it is written.",
-            "# what: person, room or outdoors. kind: a person's race/xenotype, a room's kind, or the land's biome. how many: people, rooms or maps seen with that need."
+            "# what: person, look, room or outdoors. kind: a person's race/xenotype, a room's kind, or the land's biome. look: the look no picture of their kind shows (a look line). role: a person's work. how many: people, rooms or maps seen with that need, each once a session."
         };
 
         private static string Quote(string v)
@@ -192,29 +203,102 @@ namespace ColonyCouncil
             return cells;
         }
 
-        /// <summary>The needs a missing.csv's text holds (its header and lines not its own passed over).</summary>
+        /// <summary>
+        /// The needs a missing.csv's text holds, each line read by its file's own columns line (so a file written before
+        /// the look and role columns reads too); comment lines and lines not its own passed over.
+        /// </summary>
         public static List<PortraitNeed> Read(string text)
         {
             var list = new List<PortraitNeed>();
             if (string.IsNullOrEmpty(text)) return list;
+            List<string> head = null;
             foreach (var raw in text.Replace("\r\n", "\n").Split('\n'))
             {
                 string line = raw.Trim();
-                if (line.Length == 0 || line.StartsWith("#") || line.StartsWith("what,")) continue;
-                var c = Cells(line);
-                if (c.Count < Columns.Length) continue;
-                list.Add(new PortraitNeed
+                if (line.Length == 0 || line.StartsWith("#")) continue;
+                if (line.StartsWith("what,"))
                 {
-                    what = c[0], kind = c[1], mod = c[2], sex = c[3], age = c[4], skin = c[5], hair = c[6], era = c[7], why = c[8], instead = c[9],
-                    count = int.TryParse(c[10], NumberStyles.Integer, CultureInfo.InvariantCulture, out int k) ? k : 0, lastSeen = c[11]
-                });
+                    head = Cells(line);
+                    continue;
+                }
+                var n = FromCells(head ?? Columns.ToList(), Cells(line));
+                if (n != null) list.Add(n);
             }
             return list;
         }
 
+        /// <summary>A need from a line's cells by the columns' names; null where it has fewer cells than the columns or no 'what'.</summary>
+        private static PortraitNeed FromCells(IList<string> head, IList<string> c)
+        {
+            if (c.Count < head.Count) return null;
+            string Cell(string col)
+            {
+                int at = head.IndexOf(col);
+                return at >= 0 && at < c.Count ? c[at] : "";
+            }
+            var n = new PortraitNeed
+            {
+                what = Cell("what"), kind = Cell("kind"), look = Cell("look"), role = Cell("role"), mod = Cell("mod"), sex = Cell("sex"), age = Cell("age"), skin = Cell("skin"),
+                hair = Cell("hair"), era = Cell("era"), why = Cell("why"), instead = Cell("used instead"), lastSeen = Cell("last seen"),
+                count = int.TryParse(Cell("how many"), NumberStyles.Integer, CultureInfo.InvariantCulture, out int k) ? k : 0,
+                day = int.TryParse(Cell("day"), NumberStyles.Integer, CultureInfo.InvariantCulture, out int d) ? d : -1
+            };
+            return n.what.Length == 0 ? null : n;
+        }
+
+        /// <summary>One need as a CSV line in the file's columns, or with <paramref name="withDay"/> the save's (the game's day at its end).</summary>
+        public static string Line(PortraitNeed n, bool withDay)
+        {
+            var cells = new List<string>
+            {
+                n.what, n.kind, n.look, n.role, n.mod, n.sex, n.age, n.skin, n.hair, n.era, n.why, n.instead, n.count.ToString(CultureInfo.InvariantCulture), n.lastSeen
+            };
+            if (withDay) cells.Add(n.day.ToString(CultureInfo.InvariantCulture));
+            return string.Join(",", cells.Select(Quote));
+        }
+
+        /// <summary>The save's lines read back by the columns it saved with them (<paramref name="columns"/>, a CSV line; the save's own where empty).</summary>
+        public static List<PortraitNeed> ReadLines(string columns, IEnumerable<string> lines)
+        {
+            var head = string.IsNullOrWhiteSpace(columns) ? SaveColumns.ToList() : Cells(columns.Trim());
+            var list = new List<PortraitNeed>();
+            if (lines == null) return list;
+            foreach (var l in lines)
+            {
+                if (string.IsNullOrWhiteSpace(l)) continue;
+                var n = FromCells(head, Cells(l.Trim()));
+                if (n != null) list.Add(n);
+            }
+            return list;
+        }
+
+        /// <summary>The save's columns as one CSV line, saved with the lines so they read back by name.</summary>
+        public static string SaveColumnsLine => string.Join(",", SaveColumns.Select(Quote));
+
         /// <summary>
-        /// The file's needs and the new ones together: one line per need, the counts added, the newest date kept, the mod
-        /// and what was used instead the newest where given; people first, then rooms, then the land, the commonest first.
+        /// At most <paramref name="most"/> needs (the save's list): the most recently seen kept (the game's day, then the
+        /// date, then the most often seen), the rest let go; in the list's own order (<see cref="Order"/>).
+        /// </summary>
+        public static List<PortraitNeed> Keep(IEnumerable<PortraitNeed> needs, int most)
+        {
+            var list = (needs ?? Enumerable.Empty<PortraitNeed>()).Where(n => n != null).ToList();
+            if (list.Count > most)
+                list = list.OrderByDescending(n => n.day).ThenByDescending(n => n.lastSeen ?? "", StringComparer.Ordinal).ThenByDescending(n => n.count)
+                    .ThenBy(n => n.Key, StringComparer.Ordinal).Take(Math.Max(0, most)).ToList();
+            return Order(list);
+        }
+
+        /// <summary>The list's order: people, then looks, then rooms, then the land; the commonest first.</summary>
+        public static List<PortraitNeed> Order(IEnumerable<PortraitNeed> needs)
+        {
+            int Rank(string what) => what == "person" ? 0 : what == "look" ? 1 : what == "room" ? 2 : 3;
+            return needs.OrderBy(n => Rank(n.what)).ThenByDescending(n => n.count).ThenBy(n => n.kind, StringComparer.Ordinal).ThenBy(n => n.Key, StringComparer.Ordinal).ToList();
+        }
+
+        /// <summary>
+        /// The file's needs and the new ones together: one line per need, the counts added, the newest date and game day
+        /// kept, the mod and what was used instead the newest where given; people first, then looks, rooms and the land, the
+        /// commonest first. Nothing is lost: every line of either is in the result.
         /// </summary>
         public static List<PortraitNeed> Merge(IEnumerable<PortraitNeed> old, IEnumerable<PortraitNeed> fresh)
         {
@@ -225,16 +309,13 @@ namespace ColonyCouncil
                 if (n == null) return;
                 if (!byKey.TryGetValue(n.Key, out var had))
                 {
-                    had = new PortraitNeed
-                    {
-                        what = n.what, kind = n.kind, mod = n.mod, sex = n.sex, age = n.age, skin = n.skin, hair = n.hair, era = n.era, why = n.why, instead = n.instead,
-                        count = n.count, lastSeen = n.lastSeen
-                    };
+                    had = n.Copy();
                     byKey[n.Key] = had;
                     order.Add(had);
                     return;
                 }
                 had.count += n.count;
+                if (n.day > had.day) had.day = n.day;
                 if (string.CompareOrdinal(n.lastSeen ?? "", had.lastSeen ?? "") >= 0)
                 {
                     had.lastSeen = n.lastSeen;
@@ -244,21 +325,16 @@ namespace ColonyCouncil
             }
             foreach (var n in old ?? Enumerable.Empty<PortraitNeed>()) Add(n);
             foreach (var n in fresh ?? Enumerable.Empty<PortraitNeed>()) Add(n);
-            int Rank(string what) => what == "person" ? 0 : what == "room" ? 1 : 2;
-            return order.OrderBy(n => Rank(n.what)).ThenByDescending(n => n.count).ThenBy(n => n.kind, StringComparer.Ordinal).ThenBy(n => n.Key, StringComparer.Ordinal).ToList();
+            return Order(order);
         }
 
-        /// <summary>The needs as missing.csv's text: the header, the columns, a line each.</summary>
-        public static string Csv(IEnumerable<PortraitNeed> needs)
+        /// <summary>The needs as missing.csv's text: the header, the columns, a line each (with <paramref name="withDay"/> the save's columns, for the log).</summary>
+        public static string Csv(IEnumerable<PortraitNeed> needs, bool withDay = false)
         {
             var sb = new StringBuilder();
             foreach (var h in Header) sb.Append(h).Append('\n');
-            sb.Append(string.Join(",", Columns)).Append('\n');
-            foreach (var n in needs)
-                sb.Append(string.Join(",", new[]
-                {
-                    n.what, n.kind, n.mod, n.sex, n.age, n.skin, n.hair, n.era, n.why, n.instead, n.count.ToString(CultureInfo.InvariantCulture), n.lastSeen
-                }.Select(Quote))).Append('\n');
+            sb.Append(string.Join(",", withDay ? SaveColumns : Columns)).Append('\n');
+            foreach (var n in needs) sb.Append(Line(n, withDay)).Append('\n');
             return sb.ToString();
         }
     }

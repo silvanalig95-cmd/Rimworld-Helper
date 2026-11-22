@@ -6,19 +6,25 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Portraits, phase 4: the large portrait at the inspect pane with a painted picture from the library, in front of a
-    /// backdrop of where the person is (docs: DESIGN.md, "Portraits, phase 4: the painted library in the game, with
-    /// backdrops"; <c>docs/portrait-art/FRAMEWORK.md</c>, "How they go together").
+    /// Portraits, phases 4 and 5: the large portrait at the inspect pane in front of a backdrop of where the person is
+    /// (docs: DESIGN.md, "Portraits, phase 4: the painted library in the game, with backdrops" and "Portraits, phase 5";
+    /// <c>docs/portrait-art/FRAMEWORK.md</c>, "How they go together").
     /// <list type="bullet">
-    /// <item>The crop follows the portrait's size (<see cref="PortraitPictureMath.CropFor"/>): at 96 the face, at 360 the
-    /// pose; past the picture's edges it is clear.</item>
+    /// <item>A painted picture is shown whole (the player, 22 November 2026: "I'd rather, you know, see as much as I can"):
+    /// the portrait takes the picture's shape (<see cref="StageTall"/>, the size setting its width), the person from the
+    /// top of the head to where the body runs off the picture's foot.</item>
+    /// <item>The game's own drawing, where the library has no picture for them, stands in front of the backdrop too (the
+    /// player: "it still takes backdrop from the library, right? That's the least it can do"), with a soft shadow behind
+    /// it, while "Backdrop behind the game's own drawing too" is on (<see cref="DrawGameStaged"/>); the portrait stays
+    /// square.</item>
     /// <item>The backdrop by the room's kind, the colony's age and what is in the room, or the land outdoors
     /// (<see cref="Backdrops"/>); looked at again only when the person's room, map or the light's step changes, at most
     /// every two seconds.</item>
     /// <item>Made once per person, picture, backdrop, size, settings and step of light, on a worker thread from the small
-    /// pictures already loaded (<see cref="PortraitComposeMath"/>), and kept as two textures (the backdrop, and the person
+    /// pictures already loaded (<see cref="PortraitComposeMath"/>), and kept as textures (the backdrop, and the person
     /// with the line round them), so each frame only draws them; the person breathes and sways in front of a backdrop that
-    /// stays still. The last few are kept, so turning back to someone shows them at once.</item>
+    /// stays still, the body's foot carried on below the portrait's edge so no gap ever shows under it. The last few are
+    /// kept, so turning back to someone shows them at once.</item>
     /// <item>While a picture is made the one before for the same person shows, or the portrait's ground for a moment.</item>
     /// </list>
     /// </summary>
@@ -30,9 +36,10 @@ namespace ColonyCouncil
             public int pawn;
             public string picture;
             public Texture2D back, person;
-            public int side;
-            /// <summary>Where the head's middle is down the square, and its share of it (for the pose's lift).</summary>
-            public float headShare;
+            /// <summary>Where the head is in the picture (its middle across and down, its share of the height), for the pose's lift and the light behind it.</summary>
+            public float headU = 0.5f, headV = 0.3f, headShare = 0.3f;
+            /// <summary>The tint toward the room's light, for the game's own drawing (1 for none).</summary>
+            public float tr = 1f, tg = 1f, tb = 1f;
             public float lastUsed;
         }
 
@@ -47,12 +54,19 @@ namespace ColonyCouncil
         private sealed class StageParts
         {
             public byte[] back, person;
+            public float tr = 1f, tg = 1f, tb = 1f;
         }
 
         private const int StagedMost = 4;
 
         /// <summary>How often where the person is and the light are looked at again, in seconds.</summary>
         private const float StageLookEvery = 2f;
+
+        /// <summary>The name the game's own drawing on a backdrop is kept under (no picture of the library is called so).</summary>
+        private const string GameDrawing = "\u0001game";
+
+        /// <summary>How far the body's foot is carried on below the portrait's edge, as a share of its width (the sway's turn about the foot lifts a corner by about this much at most).</summary>
+        private const float FootBelow = 0.12f;
 
         private static readonly List<Staged> staged = new List<Staged>();
         private static readonly Dictionary<int, StageLook> stageLooks = new Dictionary<int, StageLook>();
@@ -65,10 +79,35 @@ namespace ColonyCouncil
 
         private static bool LightTintOn => S?.portraitLightTint ?? false;
 
+        private static bool BehindGame => (S?.portraitLibrary ?? true) && (S?.portraitBackdropGame ?? true);
+
         /// <summary>
-        /// The large portrait at the inspect pane with a painted picture, its backdrop behind it; false where the person has
-        /// no picture from the library (the caller draws the portrait as before). <paramref name="renderSize"/> is the size it
-        /// is made at (the size before a drag, while dragging).
+        /// The large portrait's inside height for each unit of its width for this person: a painted picture's own shape
+        /// (<see cref="PortraitPictureMath.TallFor"/>; the library's 1024 x 1280 while it loads), square for the game's
+        /// own drawing.
+        /// </summary>
+        public static float StageTall(Pawn p)
+        {
+            if (p == null) return 1f;
+            try
+            {
+                var pic = PortraitSources.For(p);
+                if (pic?.file == null) return 1f;
+                return PortraitPictureMath.TallFor(pic.texture != null ? pic.layout.Shape : PortraitPictureMath.LibraryShape);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the large portrait: its shape", e);
+                return 1f;
+            }
+        }
+
+        private static int Px(float size, int most) => Mathf.Clamp(Mathf.RoundToInt(Mathf.Max(1f, size) * Prefs.UIScale), 16, most);
+
+        /// <summary>
+        /// The large portrait with a painted picture, whole, its backdrop behind it; false where the person has no picture
+        /// from the library (the caller draws the portrait as before). <paramref name="renderSize"/> is the size it is made
+        /// at (the size before a drag, while dragging).
         /// </summary>
         public static bool DrawStaged(Rect r, Pawn p, Vector2 renderSize, bool moving)
         {
@@ -81,27 +120,61 @@ namespace ColonyCouncil
             if (pose.bearing == FaceBearing.Dead) return false;
             Widgets.DrawBoxSolid(r, l.back);
             if (pic.texture == null) return true;
-            float size = Mathf.Max(1f, renderSize.x);
-            int side = Mathf.Clamp(Mathf.RoundToInt(size * Prefs.UIScale), 16, 1024);
+            int w = Px(renderSize.x, 1024), h = Px(renderSize.y, 1600);
             var look = StageLookOf(p);
             var mode = BackdropMode;
             Texture2D backTex = null;
             bool waiting = false;
-            if (mode != PortraitBackdropMode.Plain && look.backdrop != null)
+            if (PortraitComposeMath.WhatToDraw(true, look.backdrop != null, mode, BehindGame) == PortraitStageDraw.PaintedOnBackdrop)
             {
                 backTex = PortraitStore.Get(look.backdrop);
                 waiting = backTex == null && !PortraitStore.Failed(look.backdrop);
             }
-            string key = p.thingIDNumber + "|" + pic.name + "|" + (backTex != null ? look.backdrop.key : "-") + "|" + side + "|" + (int)mode + (int)OutlineMode + (LightTintOn ? 1 : 0)
+            string key = p.thingIDNumber + "|" + pic.name + "|" + (backTex != null ? look.backdrop.key : "-") + "|" + w + "x" + h + "|" + (int)mode + (int)OutlineMode + (LightTintOn ? 1 : 0)
                          + "|" + look.step;
             if (stageFailed.Contains(key)) return false;
             var now = staged.Find(s => s.key == key);
-            if (now == null && !waiting && staging == null) StartStage(key, p, pic, backTex, side, size, look.step, mode);
+            if (now == null && !waiting && staging == null) StartStage(key, p, pic, backTex, w, h, look.step, mode);
             // While it is made: the one before for the same person and picture, else the ground.
             var show = now ?? Latest(p.thingIDNumber, pic.name);
             if (show == null) return true;
             show.lastUsed = Time.realtimeSinceStartup;
             DrawStagedParts(r, p, show, pose, l.glow, moving);
+            return true;
+        }
+
+        /// <summary>
+        /// The large portrait with the game's own drawing in front of the backdrop of where they are (the player, 22
+        /// November 2026: "when no appropriate image can be found for a pawn, and it just shows its default sprite ... it
+        /// still takes backdrop from the library, right? That's the least it can do"): where the library has no painted
+        /// picture for them, the setting "Backdrop behind the game's own drawing too" is on, "Backdrop" isn't plain and a
+        /// backdrop was found for where they are (<see cref="PortraitComposeMath.WhatToDraw"/>). The backdrop is chosen,
+        /// softened, darkened by the light and kept as for a painted picture; the drawing in front as the portrait draws it,
+        /// with a soft shadow behind it and the line round it where that is on. False otherwise (the caller draws the
+        /// portrait on its own colour), and for the moment the backdrop takes to load.
+        /// </summary>
+        public static bool DrawGameStaged(Rect r, Pawn p, Vector2 renderSize, bool moving)
+        {
+            if (p == null || Event.current.type != EventType.Repaint) return false;
+            var mode = BackdropMode;
+            if (!BehindGame || mode == PortraitBackdropMode.Plain || Backdrops.Count == 0) return false;
+            Tick();
+            if (PortraitSources.For(p) != null) return false;
+            var pose = PoseOf(p, FaceTurn.Front, true);
+            if (pose.bearing == FaceBearing.Dead) return false;
+            var look = StageLookOf(p);
+            if (PortraitComposeMath.WhatToDraw(false, look.backdrop != null, mode, true) != PortraitStageDraw.GameOnBackdrop) return false;
+            int w = Px(renderSize.x, 1024), h = Px(renderSize.y, 1600);
+            var backTex = PortraitStore.Get(look.backdrop);
+            string key = p.thingIDNumber + "|" + GameDrawing + "|" + look.backdrop.key + "|" + w + "x" + h + "|" + (int)mode + (LightTintOn ? 1 : 0) + "|" + look.step;
+            if (stageFailed.Contains(key)) return false;
+            var now = staged.Find(s => s.key == key);
+            if (now == null && backTex != null && staging == null) StartBackStage(key, p, backTex, w, h, look.step, mode);
+            var show = now ?? Latest(p.thingIDNumber, GameDrawing);
+            if (show == null) return false;
+            show.lastUsed = Time.realtimeSinceStartup;
+            GUI.DrawTexture(r, show.back);
+            DrawGameFigure(r, p, pose, renderSize, moving, show);
             return true;
         }
 
@@ -145,61 +218,52 @@ namespace ColonyCouncil
             return look;
         }
 
+        /// <summary>The middle of a backdrop with the portrait's shape, read back from the graphics card at <paramref name="w"/> by <paramref name="h"/> (rows from the foot).</summary>
+        private static byte[] ReadBackdrop(Texture2D backTex, int w, int h)
+        {
+            PortraitPictureMath.BackdropPart(backTex.width, backTex.height, (float)w / h, out float sx, out float sy, out float ox, out float oy);
+            return PortraitGpu.Read(backTex, w, h, new Vector2(sx, sy), new Vector2(ox, oy));
+        }
+
         /// <summary>
-        /// Starts making the picture: the person's crop and the backdrop's square read back small from the graphics card
-        /// (on the game's thread, as it must), then softened, lined and tinted on a worker thread, then made into two
-        /// textures one frame after.
+        /// Starts making the picture: the whole person and the backdrop's middle read back small from the graphics card (on
+        /// the game's thread, as it must), then softened, lined and tinted on a worker thread, then made into two textures one
+        /// frame after.
         /// </summary>
-        private static void StartStage(string key, Pawn p, PortraitPicture pic, Texture2D backTex, int side, float size, int step, PortraitBackdropMode mode)
+        private static void StartStage(string key, Pawn p, PortraitPicture pic, Texture2D backTex, int w, int h, int step, PortraitBackdropMode mode)
         {
             try
             {
-                var tex = pic.texture;
-                int tw = tex.width, th = tex.height;
                 var lay = pic.layout;
-                var head = new HeadMeasure { top = lay.headV - lay.headH / 2f, neck = lay.headV + lay.headH / 2f, centre = lay.headU, found = true };
-                var crop = PortraitPictureMath.CropFor(head, tw, th, size);
-                float k = side / Mathf.Max(1f, crop.side);
-                int rw = Mathf.Max(1, Mathf.RoundToInt(tw * k)), rh = Mathf.Max(1, Mathf.RoundToInt(th * k));
-                var personPx = PortraitGpu.Read(tex, rw, rh, Vector2.one, Vector2.zero);
+                // The whole picture at the portrait's size (its shape is the picture's own): nothing cropped.
+                var personPx = PortraitGpu.Read(pic.texture, w, h, Vector2.one, Vector2.zero);
                 if (personPx == null)
                 {
                     stageFailed.Add(key);
                     return;
                 }
-                int x0 = Mathf.RoundToInt(crop.x * k), y0 = Mathf.RoundToInt(crop.y * k);
-                byte[] backPx = null;
-                if (backTex != null)
-                {
-                    float bw = backTex.width, bh = backTex.height;
-                    // The backdrop's middle square: its full width, the band across its middle (or its full height, the middle of its width).
-                    var scale = bh >= bw ? new Vector2(1f, bw / bh) : new Vector2(bh / bw, 1f);
-                    var offset = new Vector2((1f - scale.x) / 2f, (1f - scale.y) / 2f);
-                    backPx = PortraitGpu.Read(backTex, side, side, scale, offset);
-                }
+                byte[] backPx = backTex != null ? ReadBackdrop(backTex, w, h) : null;
                 var backLook = PortraitComposeMath.LookOf(mode);
                 var lineLook = PortraitComposeMath.LookOf(OutlineMode);
                 bool tint = LightTintOn;
-                float headShare = PortraitPictureMath.HeadFill(size);
                 int pawn = p.thingIDNumber;
                 string picture = pic.name;
                 staging = key;
                 PortraitStore.Run(() =>
                 {
-                    var person = PortraitPictureMath.CropPad(PortraitPictureMath.FlipRows(personPx, rw, rh), rw, rh, x0, y0, side);
                     float tr = 1f, tg = 1f, tb = 1f;
                     if (backPx != null)
                     {
                         PortraitPictureMath.LightTint(step, out float lr, out float lg, out float lb);
-                        PortraitComposeMath.Backdrop(backPx, side, backLook, lr, lg, lb);
+                        PortraitComposeMath.Backdrop(backPx, w, h, backLook, lr, lg, lb);
                         if (tint)
                         {
                             PortraitComposeMath.Average(backPx, out float ar, out float ag, out float ab);
                             PortraitComposeMath.TintToward(ar, ag, ab, out tr, out tg, out tb);
                         }
                     }
-                    var layer = PortraitComposeMath.PersonLayer(person, side, lineLook, tr, tg, tb);
-                    return new StageParts { back = backPx, person = PortraitPictureMath.FlipRows(layer, side, side) };
+                    // Rows from the foot throughout: what is done here is the same either way up.
+                    return new StageParts { back = backPx, person = PortraitComposeMath.PersonLayer(personPx, w, h, lineLook, tr, tg, tb) };
                 }, (parts, ex) =>
                 {
                     staging = null;
@@ -209,13 +273,12 @@ namespace ColonyCouncil
                         if (ex != null) CouncilLog.ErrorOnce("the large portrait: making its picture", ex);
                         return;
                     }
-                    var s = new Staged
+                    staged.Add(new Staged
                     {
-                        key = key, pawn = pawn, picture = picture, side = side, headShare = headShare, lastUsed = Time.realtimeSinceStartup,
-                        back = parts.back != null ? PortraitGpu.Make(parts.back, side, side, "RimfolkPortraitBack") : null,
-                        person = PortraitGpu.Make(parts.person, side, side, "RimfolkPortraitPerson")
-                    };
-                    staged.Add(s);
+                        key = key, pawn = pawn, picture = picture, lastUsed = Time.realtimeSinceStartup, headU = lay.headU, headV = lay.headV, headShare = lay.headH,
+                        back = parts.back != null ? PortraitGpu.Make(parts.back, w, h, "RimfolkPortraitBack") : null,
+                        person = PortraitGpu.Make(parts.person, w, h, "RimfolkPortraitPerson")
+                    });
                     TrimStaged();
                 }, false);
             }
@@ -224,6 +287,57 @@ namespace ColonyCouncil
                 staging = null;
                 stageFailed.Add(key);
                 CouncilLog.ErrorOnce("the large portrait: starting its picture", e);
+            }
+        }
+
+        /// <summary>Starts making the backdrop behind the game's own drawing: read back, softened and darkened by the light on a worker, the tint toward its light worked out.</summary>
+        private static void StartBackStage(string key, Pawn p, Texture2D backTex, int w, int h, int step, PortraitBackdropMode mode)
+        {
+            try
+            {
+                var backPx = ReadBackdrop(backTex, w, h);
+                if (backPx == null)
+                {
+                    stageFailed.Add(key);
+                    return;
+                }
+                var backLook = PortraitComposeMath.LookOf(mode);
+                bool tint = LightTintOn;
+                int pawn = p.thingIDNumber;
+                staging = key;
+                PortraitStore.Run(() =>
+                {
+                    var parts = new StageParts { back = backPx };
+                    PortraitPictureMath.LightTint(step, out float lr, out float lg, out float lb);
+                    PortraitComposeMath.Backdrop(backPx, w, h, backLook, lr, lg, lb);
+                    if (tint)
+                    {
+                        PortraitComposeMath.Average(backPx, out float ar, out float ag, out float ab);
+                        PortraitComposeMath.TintToward(ar, ag, ab, out parts.tr, out parts.tg, out parts.tb);
+                    }
+                    return parts;
+                }, (parts, ex) =>
+                {
+                    staging = null;
+                    if (ex != null || parts == null)
+                    {
+                        stageFailed.Add(key);
+                        if (ex != null) CouncilLog.ErrorOnce("the large portrait: making the backdrop behind the game's drawing", ex);
+                        return;
+                    }
+                    staged.Add(new Staged
+                    {
+                        key = key, pawn = pawn, picture = GameDrawing, lastUsed = Time.realtimeSinceStartup, tr = parts.tr, tg = parts.tg, tb = parts.tb,
+                        back = PortraitGpu.Make(parts.back, w, h, "RimfolkPortraitBack")
+                    });
+                    TrimStaged();
+                }, false);
+            }
+            catch (Exception e)
+            {
+                staging = null;
+                stageFailed.Add(key);
+                CouncilLog.ErrorOnce("the large portrait: starting the backdrop behind the game's drawing", e);
             }
         }
 
@@ -243,16 +357,13 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The two pictures drawn: the backdrop still (or, with no backdrop, the light behind the head on the portrait's
-        /// ground), the person in front, lifted or lowered by the pose, leaning and swaying about the foot, breathing.
+        /// ground), the person in front, lifted or lowered by the pose, leaning and swaying about the foot, breathing; the
+        /// picture's foot row carried on below the portrait's edge (cut off by it), so the body always meets the edge.
         /// </summary>
         private static void DrawStagedParts(Rect r, Pawn p, Staged s, FacePose pose, Color glow, bool moving)
         {
             if (s.back != null) GUI.DrawTexture(r, s.back);
-            else
-            {
-                float mid = PortraitPictureMath.HeadMiddle(r.width);
-                DrawGlow(r, new FaceCamera { headU = 0.5f, headV = mid, headShare = s.headShare, zoom = 1f }, glow);
-            }
+            else DrawGlow(r, new FaceCamera { headU = s.headU, headV = s.headV, headShare = s.headShare, zoom = 1f }, glow);
             int seed = p.thingIDNumber;
             PortraitViewMath.Pose(FacePoseMath.Shift(pose.bearing, FaceTurn.Front, seed), out float lift, out float turn);
             bool animate = moving && Moves;
@@ -265,8 +376,11 @@ namespace ColonyCouncil
                 var local = new Rect(0f, 0f, r.width, r.height);
                 float lean = turn + sway;
                 if (lean != 0f) UI.RotateAroundPivot(lean, new Vector2(local.center.x, local.yMax));
-                float up = lift * s.headShare * local.height;
-                GUI.DrawTexture(new Rect(local.x, local.yMax - local.height * breath - up, local.width, local.height * breath), s.person);
+                float up = Mathf.Max(0f, lift * s.headShare * local.height), down = Mathf.Max(0f, -lift * s.headShare * local.height);
+                float ph = Mathf.Max(1f, local.height * breath);
+                float below = up + FootBelow * local.width;
+                // Lifted by the pose, the picture rises and its foot row is carried on under it; lowered, it sinks past the edge.
+                GUI.DrawTextureWithTexCoords(new Rect(local.x, local.yMax - ph - up + down, local.width, ph + below), s.person, new Rect(0f, -below / ph, 1f, 1f + below / ph));
             }
             finally
             {
@@ -274,6 +388,53 @@ namespace ColonyCouncil
                 GUI.EndGroup();
                 GUI.color = Color.white;
             }
+        }
+
+        /// <summary>
+        /// The game's own drawing in front of a backdrop: a soft dark shadow behind the head and shoulders, then the drawing
+        /// as the portrait draws it (posed, breathing, swaying), tinted toward the room's light where that is on, with a thin
+        /// dark line round it where "Line round the person" is on (<see cref="PortraitComposeMath.GameLine"/>).
+        /// </summary>
+        private static void DrawGameFigure(Rect r, Pawn p, FacePose pose, Vector2 renderSize, bool moving, Staged s)
+        {
+            pose.turn = FaceTurn.Front;
+            var size = Whole(renderSize);
+            var cam = Camera(p, FaceFrame.Bust, size.x, size.y, pose.turn);
+            PortraitComposeMath.GameLine(OutlineMode, out float shadow, out float reach, out float ink);
+            DrawShadow(r, cam, shadow);
+            int seed = p.thingIDNumber;
+            bool animate = moving && Moves;
+            float clock = animate ? Clock : 0f;
+            float breath = animate ? FacePoseMath.Breath(clock, seed) : 1f, sway = animate ? FacePoseMath.Sway(clock, seed) : 0f;
+            float inkPx = ink > 0f ? Mathf.Max(1f, reach * r.width) : 0f;
+            var tint = UiKit.Plain;
+            tint.r *= s.tr;
+            tint.g *= s.tg;
+            tint.b *= s.tb;
+            GUI.BeginGroup(r);
+            try
+            {
+                DrawLayer(new Rect(0f, 0f, r.width, r.height), p, FaceFrame.Bust, size, pose, 1f, breath, sway, tint, inkPx, ink);
+            }
+            finally
+            {
+                GUI.EndGroup();
+                GUI.color = Color.white;
+            }
+        }
+
+        /// <summary>A soft dark shadow behind the head and the shoulders under it, for the game's drawing on a backdrop (two soft round spots, no picture read back).</summary>
+        private static void DrawShadow(Rect r, FaceCamera cam, float strength)
+        {
+            if (GlowTex == null || strength <= 0f) return;
+            float side = Mathf.Min(r.width, r.height), head = cam.headShare * r.height;
+            float cx = r.x + r.width * cam.headU, cy = r.y + r.height * cam.headV;
+            GUI.color = UiKit.WithAlpha(UiKit.WindowGround, strength);
+            float d1 = Mathf.Clamp(1.5f * head, 0.3f * side, side);
+            GUI.DrawTexture(new Rect(cx - d1 / 2f, cy - d1 / 2f, d1, d1), GlowTex);
+            float d2 = Mathf.Clamp(2.6f * head, 0.5f * side, 1.3f * side), cy2 = cy + 1.1f * head;
+            GUI.DrawTexture(new Rect(cx - d2 / 2f, cy2 - d2 / 2f, d2, d2), GlowTex);
+            GUI.color = Color.white;
         }
 
         /// <summary>The made pictures let go (a setting changed, a new game), so they are made again as they are shown.</summary>

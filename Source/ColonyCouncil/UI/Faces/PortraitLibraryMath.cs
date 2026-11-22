@@ -67,6 +67,26 @@ namespace ColonyCouncil
         OnlyClose
     }
 
+    /// <summary>"Strangers may share a picture": never, when not seen together (the player's choice), or always (for a small library).</summary>
+    public enum PortraitShareMode
+    {
+        Never,
+        NotTogether,
+        Always
+    }
+
+    /// <summary>
+    /// Whose a picture may be (the player, 22 November 2026): a stranger's (raiders, traders, visitors, guests), a notable's
+    /// (faction leaders, titled nobles, the colony's named contacts) held by them alone while they live, or one of the
+    /// player's own people's (colonists, slaves, prisoners) held by them alone for good; the higher rank wins.
+    /// </summary>
+    public enum PortraitRank : byte
+    {
+        Stranger,
+        Notable,
+        Own
+    }
+
     public enum PortraitHairStyle : byte
     {
         Bald,
@@ -162,6 +182,10 @@ namespace ColonyCouncil
         public PortraitDress dress;
         public bool headwear;
         public HashSet<string> features = new HashSet<string>(), marks = new HashSet<string>();
+        /// <summary>The looks it shows (the looks' words, <see cref="PortraitLookMath"/>), and those of them that are special.</summary>
+        public HashSet<string> looks = new HashSet<string>(StringComparer.OrdinalIgnoreCase), specials = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        /// <summary>The work it shows (one of <see cref="PortraitLookMath.Roles"/>), or "" for any.</summary>
+        public string role = "";
         public PortraitFacing facing;
         public string character = "", variant = "base";
         /// <summary>The colonist it is pinned to (their nickname, first, last, shown or full name), or "": used for them only, never for anyone else.</summary>
@@ -192,6 +216,18 @@ namespace ColonyCouncil
         /// <summary>Wearing headgear, and the setting shows it.</summary>
         public bool headwear;
         public HashSet<string> features = new HashSet<string>(), marks = new HashSet<string>();
+        /// <summary>Their looks (from their traits, genes, hediffs and body, <see cref="LookBook.Of"/>), and those of them that are special.</summary>
+        public HashSet<string> looks = new HashSet<string>(StringComparer.OrdinalIgnoreCase), specials = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+        /// <summary>Their work (one of <see cref="PortraitLookMath.Roles"/>), or "" (a child, or nothing tells).</summary>
+        public string role = "";
+
+        /// <summary>A look they have, with whether it is special.</summary>
+        public void AddLook(string word, bool special)
+        {
+            if (string.IsNullOrEmpty(word)) return;
+            looks.Add(word);
+            if (special) specials.Add(word);
+        }
 
         /// <summary>Their kind, sex and age in words: kept with a pick, so a person who becomes another kind is matched again.</summary>
         public string Kind => (baseliner && race == "human" ? "baseliner" : race + "/" + xenotype) + "_" + PortraitLibraryMath.Word(sex);
@@ -201,7 +237,8 @@ namespace ColonyCouncil
             Kind + "_" + PortraitLibraryMath.Word(age) + "_skin" + PortraitLibraryMath.Hex(skin) + "_hair" + PortraitLibraryMath.Hex(hairColour) + "_" + hair.ToString().ToLowerInvariant()
             + "_" + beard.ToString().ToLowerInvariant() + "_" + build.ToString().ToLowerInvariant() + "_" + era.ToString().ToLowerInvariant() + "_" + dress.ToString().ToLowerInvariant()
             + (headwear ? "_headwear" : "") + (features.Count > 0 ? "_" + string.Join("+", features.OrderBy(f => f, StringComparer.Ordinal)) : "")
-            + (marks.Count > 0 ? "_" + string.Join("+", marks.OrderBy(f => f, StringComparer.Ordinal)) : "");
+            + (marks.Count > 0 ? "_" + string.Join("+", marks.OrderBy(f => f, StringComparer.Ordinal)) : "")
+            + (looks.Count > 0 ? "_" + string.Join("+", looks.OrderBy(f => f, StringComparer.OrdinalIgnoreCase)) : "") + (role.Length > 0 ? "_" + role : "");
 
     }
 
@@ -211,6 +248,8 @@ namespace ColonyCouncil
         public int index;
         public string character;
         public float distance;
+        /// <summary>No picture given though some would fit them: every fitting one is held by someone else (for the missing list's "no free picture").</summary>
+        public bool crowded;
 
         public bool Any => index >= 0;
 
@@ -399,6 +438,24 @@ namespace ColonyCouncil
                 var k = Known(Marks, m);
                 if (k != null) r.marks.Add(MarkKey(k));
                 else if (!string.IsNullOrWhiteSpace(m)) Bad("marks: '" + m + "' is not one of " + string.Join(", ", Marks));
+            }
+            foreach (var w in list("looks") ?? new string[0])
+            {
+                if (string.IsNullOrWhiteSpace(w)) continue;
+                var look = PortraitLookMath.Book.Find(w);
+                if (look == null)
+                {
+                    Bad("looks: '" + w.Trim() + "' is not the word of any look (ColonyCouncil.PortraitLookDef)");
+                    continue;
+                }
+                r.looks.Add(look.word);
+                if (look.special) r.specials.Add(look.word);
+            }
+            string role = field("role");
+            if (!string.IsNullOrWhiteSpace(role))
+            {
+                r.role = PortraitLookMath.RoleWord(role) ?? "";
+                if (r.role.Length == 0) Bad("role: '" + role.Trim() + "' is not one of " + string.Join(", ", PortraitLookMath.Roles));
             }
             r.character = (field("character") ?? "").Trim();
             r.pawn = (field("pawn") ?? "").Trim();
@@ -787,6 +844,14 @@ namespace ColonyCouncil
         public const float FeatureCost = 1f, MarkCost = 0.5f;
 
         /// <summary>
+        /// An ordinary look of the person's the picture doesn't show (a plain face for a drinker, a plain picture for a fire
+        /// mage where none shows the flame), and the person's work where the picture shows none: 0.75 each, a little less
+        /// than a feature, so a picture showing them is preferred and a plain one still stands in. A picture showing a look
+        /// or a work the person hasn't got never stands for them at all (<see cref="LooksAgree"/>).
+        /// </summary>
+        public const float LookMissingCost = 0.75f, RoleMissingCost = 0.75f;
+
+        /// <summary>
         /// An age band apart: the next band 2.5, each band past it 4 more (two bands 6.5, three 10.5), never across the
         /// little ones, children and grown-ups; a baseliner's picture for a kind with none, near a human, 1.
         /// </summary>
@@ -928,7 +993,91 @@ namespace ColonyCouncil
             foreach (var m in l.marks)
                 if (!r.marks.Contains(m))
                     d += MarkCost;
+            d += LookCost(l, r);
             return d;
+        }
+
+        /// <summary>
+        /// The person's ordinary looks the picture doesn't show (<see cref="LookMissingCost"/> each), and their work where
+        /// the picture shows none (<see cref="RoleMissingCost"/>). Special looks and what the picture shows cost nothing
+        /// here: a picture that may stand for the person shows only looks and work of theirs (<see cref="LooksAgree"/>).
+        /// </summary>
+        public static float LookCost(PortraitLook l, PortraitRecord r)
+        {
+            float d = 0f;
+            foreach (var w in l.looks)
+                if (!l.specials.Contains(w) && !r.looks.Contains(w))
+                    d += LookMissingCost;
+            if (l.role.Length > 0 && r.role.Length == 0) d += RoleMissingCost;
+            return d;
+        }
+
+        /// <summary>
+        /// Whether a picture's looks and work may stand for the person (the player, 22 November 2026: "it should always be
+        /// also based on an actual pawn's characteristic, and only then also this image is loaded. Otherwise, it should ...
+        /// rather choose a default one that doesn't have special things like that"): every look it shows is one of theirs,
+        /// it shows every special look of theirs (<see cref="SpecialsAgree"/>), and its work, where it shows one, is theirs.
+        /// So a plain picture (no looks, no work) stands for anyone of the kind, sex and age.
+        /// </summary>
+        public static bool LooksAgree(PortraitRecord r, PortraitLook l)
+        {
+            foreach (var w in r.looks)
+                if (!l.looks.Contains(w))
+                    return false;
+            if (r.role.Length > 0 && r.role != l.role) return false;
+            return SpecialsAgree(r, l);
+        }
+
+        /// <summary>
+        /// Special looks (the player, 22 November 2026: "rather shows no image than ... a really not fitting one"): a picture
+        /// stands for a person with a special look only if it shows it, and a picture showing one only for people who have
+        /// it; so the two have the same special looks, or none.
+        /// </summary>
+        public static bool SpecialsAgree(PortraitRecord r, PortraitLook l)
+        {
+            if (r.specials.Count != l.specials.Count) return false;
+            foreach (var w in l.specials)
+                if (!r.specials.Contains(w))
+                    return false;
+            return true;
+        }
+
+        /// <summary>
+        /// Whether a kept picture no longer fits someone who has gained a special look it doesn't show (the game's own
+        /// drawing then, until a picture with it comes); one who has lost a special look keeps the picture.
+        /// </summary>
+        public static bool LacksSpecial(PortraitRecord kept, ICollection<string> specialsNow)
+        {
+            if (kept == null || specialsNow == null) return false;
+            foreach (var w in specialsNow)
+                if (!kept.specials.Contains(w))
+                    return true;
+            return false;
+        }
+
+        /// <summary>
+        /// The person's looks no picture shows that may stand for them by kind, sex and age (one of their own kind, its sex
+        /// agreeing, its age band one that may stand for theirs; a pinned picture only where it is theirs,
+        /// <paramref name="theirs"/>), for the missing list: special and ordinary looks alike.
+        /// </summary>
+        public static List<string> LooksLacking(PortraitLook l, IList<PortraitRecord> records, Func<PortraitRecord, bool> theirs = null)
+        {
+            var lacking = new List<string>();
+            if (l == null || l.looks.Count == 0) return lacking;
+            foreach (var w in l.looks.OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
+            {
+                bool shown = false;
+                if (records != null)
+                    foreach (var r in records)
+                    {
+                        if (r.Pinned && (theirs == null || !theirs(r))) continue;
+                        if (!r.looks.Contains(w) || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !AgeMayStand(l.age, r.age)) continue;
+                        shown = true;
+                        break;
+                    }
+                if (!shown) lacking.Add(w);
+            }
+            return lacking;
         }
 
         /// <summary>
@@ -937,8 +1086,9 @@ namespace ColonyCouncil
         /// there is a xenotype appearing in game and there is no image for it ... it should just show no image ... not take
         /// another xenotype's image": a picture of their own race and xenotype, a baseliner's only for a baseliner, else
         /// none), then sex, then the age band (their own, or another of their group at a growing cost: a baby or a toddler
-        /// only a baby's or a toddler's, a child only a child's), then the body (<see cref="Shows"/>). No cut-off by
-        /// distance here: "only close ones" is applied to what is shown (<see cref="Shown"/>).
+        /// only a baby's or a toddler's, a child only a child's), then the body (<see cref="Shows"/>), then its looks and work
+        /// (<see cref="LooksAgree"/>: only looks and work of theirs, and every special look of theirs). No cut-off by distance
+        /// here: "only close ones" is applied to what is shown (<see cref="Shown"/>).
         /// </summary>
         public static float[] Distances(PortraitLook l, IList<PortraitRecord> records)
         {
@@ -949,7 +1099,7 @@ namespace ColonyCouncil
             for (int i = 0; i < n; i++)
             {
                 var r = records[i];
-                if (r.Pinned || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !Shows(r, l)) continue;
+                if (r.Pinned || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !Shows(r, l) || !LooksAgree(r, l)) continue;
                 float age = AgeCost(l.age, r.age);
                 if (float.IsInfinity(age)) continue;
                 d[i] = Distance(l, r) + age;
@@ -971,27 +1121,42 @@ namespace ColonyCouncil
         public static uint Mix(int seed) => unchecked(((uint)seed * 2654435761u) ^ ((uint)seed >> 15) * 40503u);
 
         /// <summary>
-        /// A new pick for a person: of the nearest few characters (each by its nearest picture that may stand for them),
-        /// those fewest others keep (<paramref name="usesOf"/>, by character), the nearest of them, and among equally near
-        /// ones one by their own id. The closest is picked however far (the setting decides whether it is shown), and where
-        /// the nearest is close enough the few are all close enough. So the first person of a look gets the closest face,
-        /// and the next alike person the next closest. A face <paramref name="taken"/> by another (a colonist's own) is
-        /// never picked.
+        /// A new pick for a person (the player, 22 November 2026: "it should not be that the same image comes over and over
+        /// again frequently ... Rather have a pawn assign no image and we build up the library further in the meanwhile"):
+        /// a face nobody else keeps (<paramref name="usesOf"/>, by character) wherever there is one that may stand for them;
+        /// else a face others keep where it may be shared (<paramref name="mayShare"/>, with its nearest picture; none given:
+        /// any); else none (the game's own drawing, <see cref="PortraitPick.crowded"/> where faces fit but none was free).
+        /// Of those, the nearest few characters (each by its nearest picture), the fewest others keep, the nearest of them,
+        /// and among equally near ones one by their own id. The closest is picked however far (the setting decides whether
+        /// it is shown), and where the nearest is close enough the few are all close enough. So the first person of a look
+        /// gets the closest face, and the next alike person the next closest free one. A face <paramref name="taken"/> by
+        /// another (a colonist's or a notable's own) is never picked.
         /// </summary>
-        public static PortraitPick Pick(PortraitLook l, IList<PortraitRecord> records, int seed, Func<string, int> usesOf, Func<string, bool> taken = null)
+        public static PortraitPick Pick(PortraitLook l, IList<PortraitRecord> records, int seed, Func<string, int> usesOf, Func<string, bool> taken = null,
+            Func<string, PortraitRecord, bool> mayShare = null)
         {
             var d = Distances(l, records);
             var best = new Dictionary<string, int>();
+            bool fits = false;
             for (int i = 0; i < d.Length; i++)
             {
                 if (float.IsInfinity(d[i])) continue;
+                fits = true;
                 string c = records[i].Character;
                 if (taken != null && taken(c)) continue;
                 if (!best.TryGetValue(c, out int j) || d[i] < d[j] || d[i] == d[j] && string.CompareOrdinal(records[i].name, records[j].name) < 0) best[c] = i;
             }
-            if (best.Count == 0) return PortraitPick.None;
-            float nearest = best.Values.Min(i => d[i]);
-            var few = best.Values.Where(i => d[i] <= nearest + FewWithin && (nearest > CloseEnough || d[i] <= CloseEnough))
+            // A face nobody else keeps first; else one that may be shared; else none.
+            var pool = best.Values.Where(i => (usesOf?.Invoke(records[i].Character) ?? 0) == 0).ToList();
+            if (pool.Count == 0) pool = best.Values.Where(i => mayShare == null || mayShare(records[i].Character, records[i])).ToList();
+            if (pool.Count == 0)
+            {
+                var none = PortraitPick.None;
+                none.crowded = fits;
+                return none;
+            }
+            float nearest = pool.Min(i => d[i]);
+            var few = pool.Where(i => d[i] <= nearest + FewWithin && (nearest > CloseEnough || d[i] <= CloseEnough))
                 .OrderBy(i => d[i]).ThenBy(i => records[i].Character, StringComparer.Ordinal).Take(FewMost).ToList();
             int least = few.Min(i => usesOf?.Invoke(records[i].Character) ?? 0);
             // Of those fewest others keep, the nearest; among equally near, one by the pawn's own id.
@@ -1085,7 +1250,9 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The person's own pinned picture for their stage now (none: -1): of the pictures pinned to them
-        /// (<paramref name="theirs"/>) that fit them, the best fitting, then the nearest to their looks, then by name.
+        /// (<paramref name="theirs"/>) that fit them and show their special looks (<see cref="SpecialsAgree"/>; a pin is
+        /// made from the person, so its ordinary looks and work are not held against them), the best fitting, then the
+        /// nearest to their looks, then by name.
         /// </summary>
         public static PortraitPick PinFor(PortraitLook l, IList<PortraitRecord> records, Func<PortraitRecord, bool> theirs)
         {
@@ -1096,7 +1263,7 @@ namespace ColonyCouncil
             {
                 var r = records[i];
                 int fit = PinFit(r, l);
-                if (fit == 0 || fit < bestFit || !theirs(r)) continue;
+                if (fit == 0 || fit < bestFit || !SpecialsAgree(r, l) || !theirs(r)) continue;
                 float d = Distance(l, r);
                 if (fit > bestFit || d < pick.distance || d == pick.distance && pick.index >= 0 && string.CompareOrdinal(r.name, records[pick.index].name) < 0)
                 {
@@ -1125,45 +1292,86 @@ namespace ColonyCouncil
         /// theirs alone, and of two colonists the one who had it first keeps it): picked again;</item>
         /// <item>a picture pinned to them that fits them better than what they keep (<see cref="PinFit"/>: a pin made for
         /// them where the matcher gave one, an old picture of their own once they are old): the pin (the player's own
-        /// choice); one they chose by hand stays.</item>
+        /// choice); one they chose by hand stays;</item>
+        /// <item>they have gained a special look their picture doesn't show (<paramref name="lacksSpecial"/>,
+        /// <see cref="LacksSpecial"/>): picked again, the game's own drawing until a picture with it comes (even one chosen
+        /// by hand); one who has lost a special look keeps theirs.</item>
         /// </list>
-        /// Nothing else changes it: no injury, scar or lost eye, no new hair, beard or clothes, no grown library.
+        /// Nothing else changes it: no injury, scar or lost eye, no new hair, beard or clothes, no new work, no grown library.
         /// </summary>
         public static bool PickAgain(bool kept, PortraitStage keptStage, PortraitStage stageNow, string keptPicture, bool keptPictureThere, int keptPinFit,
-            bool keptByHand, int keptLibrary, int library, string keptWords, string words, int pinFitNow, bool takenByAnother = false)
+            bool keptByHand, int keptLibrary, int library, string keptWords, string words, int pinFitNow, bool takenByAnother = false, bool lacksSpecial = false)
         {
             if (!kept) return true;
             if (keptStage != stageNow) return true;
             if (string.IsNullOrEmpty(keptPicture)) return keptLibrary != library || keptWords != words;
-            if (!keptPictureThere || takenByAnother) return true;
+            if (!keptPictureThere || takenByAnother || lacksSpecial) return true;
             return pinFitNow > keptPinFit && !keptByHand;
         }
 
+        /// <summary>Whose each reserved face is, all of the player's own: <see cref="Owners(IEnumerable{ValueTuple{int, string, int, PortraitRank}}, IEnumerable{KeyValuePair{string, int}})"/>.</summary>
+        public static Dictionary<string, int> Owners(IEnumerable<(int id, string character, int since)> reserved, IEnumerable<KeyValuePair<string, int>> pinned) =>
+            Owners(reserved?.Select(r => (r.id, r.character, r.since, PortraitRank.Own)), pinned);
+
         /// <summary>
         /// Whose each reserved face is (the player, 22 November 2026: "once a pawn is part of my colony, their image should no
-        /// longer be used for anyone else"): of those keeping a face reserved (<paramref name="reserved"/>: id, face, since
-        /// when), the one who had it first, then the lower id. A face pinned to a colonist is reserved for them from the start
-        /// (<paramref name="pinned"/>: face, owner; -1 for a pin naming no one, so no one else gets it either).
+        /// longer be used for anyone else", and of the colony's contacts "maybe they also get not that their images are
+        /// repeated"): of those keeping a face reserved (<paramref name="holders"/>: id, face, since when, rank: the player's
+        /// own or a notable; a stranger's holds nothing), the highest rank, then the one who had it first, then the lower
+        /// id. A face pinned to a colonist is reserved for them from the start, above everyone (<paramref name="pinned"/>:
+        /// face, owner; -1 for a pin naming no one, so no one else gets it either).
         /// </summary>
-        public static Dictionary<string, int> Owners(IEnumerable<(int id, string character, int since)> reserved, IEnumerable<KeyValuePair<string, int>> pinned)
+        public static Dictionary<string, int> Owners(IEnumerable<(int id, string character, int since, PortraitRank rank)> holders, IEnumerable<KeyValuePair<string, int>> pinned)
         {
             var owners = new Dictionary<string, int>(StringComparer.Ordinal);
-            var first = new Dictionary<string, (int since, int id)>(StringComparer.Ordinal);
+            var first = new Dictionary<string, (PortraitRank rank, int since, int id)>(StringComparer.Ordinal);
             if (pinned != null)
                 foreach (var kv in pinned)
                     if (!string.IsNullOrEmpty(kv.Key) && (!owners.TryGetValue(kv.Key, out int o) || o < 0))
                         owners[kv.Key] = kv.Value;
-            if (reserved != null)
-                foreach (var r in reserved)
+            if (holders != null)
+                foreach (var r in holders)
                 {
-                    if (string.IsNullOrEmpty(r.character) || owners.ContainsKey(r.character) && !first.ContainsKey(r.character)) continue;
-                    if (!first.TryGetValue(r.character, out var f) || r.since < f.since || r.since == f.since && r.id < f.id)
+                    if (string.IsNullOrEmpty(r.character) || r.rank == PortraitRank.Stranger || owners.ContainsKey(r.character) && !first.ContainsKey(r.character)) continue;
+                    if (!first.TryGetValue(r.character, out var f) || r.rank > f.rank || r.rank == f.rank && (r.since < f.since || r.since == f.since && r.id < f.id))
                     {
-                        first[r.character] = (r.since, r.id);
+                        first[r.character] = (r.rank, r.since, r.id);
                         owners[r.character] = r.id;
                     }
                 }
             return owners;
+        }
+
+        // ---------------- Strangers sharing a face ----------------
+
+        /// <summary>
+        /// Whether a face other strangers keep may be given to a stranger too (the player, 22 November 2026: "with things
+        /// like raiders or guests, then I'm of course more lenient when it comes to repeating certain images, if it makes
+        /// sense", and of special looks: "you can reuse that more frequently also, because these characters are also more
+        /// rare to come up"): a picture with a special look always; else as the setting says: never, only while no one
+        /// keeping it is on a map (<paramref name="holderSeen"/>), or always.
+        /// </summary>
+        public static bool MayShare(PortraitShareMode mode, bool specialPicture, bool holderSeen) =>
+            specialPicture || mode == PortraitShareMode.Always || mode == PortraitShareMode.NotTogether && !holderSeen;
+
+        /// <summary>
+        /// Whether a stranger gives up a face another stranger keeps too (the player: "not that you have this character and
+        /// you have another random character come up and they look exactly the same"): never for a picture with a special
+        /// look or with "always"; with "never", whenever someone who had it first (<paramref name="others"/>: id, since when,
+        /// on a map now) keeps it too; with "when not seen together", when they are on a map (<paramref name="seen"/>) and
+        /// someone who had it first is on one too. The one who came later gives way: a new pick, or the game's own drawing.
+        /// </summary>
+        public static bool GivesWay(PortraitShareMode mode, bool specialPicture, int id, int since, bool seen, IEnumerable<(int id, int since, bool seen)> others)
+        {
+            if (specialPicture || mode == PortraitShareMode.Always || others == null) return false;
+            foreach (var o in others)
+            {
+                if (o.id == id) continue;
+                bool earlier = o.since < since || o.since == since && o.id < id;
+                if (!earlier) continue;
+                if (mode == PortraitShareMode.Never || seen && o.seen) return true;
+            }
+            return false;
         }
 
         // ---------------- Choose another picture ----------------
@@ -1179,7 +1387,7 @@ namespace ColonyCouncil
             if (l == null || records == null) return list;
             var pins = new List<KeyValuePair<int, float>>();
             for (int i = 0; i < records.Count; i++)
-                if (records[i].Pinned && theirs != null && theirs(records[i]) && PinFits(records[i], l))
+                if (records[i].Pinned && theirs != null && theirs(records[i]) && PinFits(records[i], l) && SpecialsAgree(records[i], l))
                     pins.Add(new KeyValuePair<int, float>(i, Distance(l, records[i])));
             list.AddRange(pins.OrderByDescending(x => PinFit(records[x.Key], l)).ThenBy(x => x.Value).ThenBy(x => records[x.Key].name, StringComparer.Ordinal).Select(x => x.Key));
             var d = Distances(l, records);

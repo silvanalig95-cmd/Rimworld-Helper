@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 830; modelled: 830; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,189 KB** after a year, **3,999 KB** after two, **4,487 KB** after five.
+Saved collections found: 831; modelled: 831; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,215 KB** after a year, **4,043 KB** after two, **4,532 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -16,7 +16,7 @@ Rimfolk's part of the save, roughly: **3,189 KB** after a year, **3,999 KB** aft
 | `Letters/LetterBook.cs:exchanges` | letters exchanged with the world, kept to be read: LetterBook.MaxExchanges at most (the newest LetterBook.MaxPerNotable with any one notable), each two or three pages, the newest LetterBook.MaxLong long letters whole | cap | 24 | 48 | 60 | 252.0 |
 | `World/Ledger/History.cs:events` | HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first | cap | 720 | 800 | 800 | 250.0 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
-| `UI/Faces/PortraitKeeper.cs:kept` | each person pictured keeps their picture from the portrait library: at most 400, the least lately pictured let go first (a colonist's own last), and anyone else not pictured for 120 days let go on load | cap | 180 | 360 | 400 | 195.3 |
+| `UI/Faces/PortraitKeeper.cs:kept` | each person pictured keeps their picture from the portrait library: at most 400, the least lately pictured let go first (a colonist's own last), and anyone else not pictured for 120 days let go on load | cap | 180 | 360 | 400 | 205.1 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:peopleSaved` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
 | `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards (a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most) | fixed | 42 | 42 | 42 | 106.6 |
@@ -34,6 +34,7 @@ Rimfolk's part of the save, roughly: **3,189 KB** after a year, **3,999 KB** aft
 | `Defense/DefenseLines.cs:lines` | lines the player made (only their clicks), per map; gone with the map | fixed | 4 | 4 | 4 | 35.7 |
 | `Lives/LifeNew.cs:read` | books read, once each per reader, the newest 600 (Lives/LifeNewMath.MaxRead) | fixed | 600 | 600 | 600 | 35.2 |
 | `Persona/TraitChanges.cs:changes` | known pawns only, 8 per person, 200 at most; with their story | cap | 6 | 12 | 30 | 35.2 |
+| `UI/Faces/PortraitNeeds.cs:lines` | what the portrait library lacks, one line per need: at most 200, the least recently seen let go | cap | 120 | 200 | 200 | 35.2 |
 | `Dealings/DealingBook.cs:deals` | dealings asked, under way and closed: closed ones kept 60 days (a work built together kept while it stands), DealingBook.MaxDeals at most | cap | 24 | 48 | 80 | 32.8 |
 | `Journeys/Journeys.cs:slots` | timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off | fixed | 240 | 240 | 240 | 32.8 |
 | `Gods/GodBook.cs:standings` | the colony's standing with a god at a home, once it has moved; let go once at rest at unknown and left a year | cap | 120 | 200 | 200 | 29.3 |

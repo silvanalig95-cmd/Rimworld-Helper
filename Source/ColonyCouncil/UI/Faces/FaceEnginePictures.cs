@@ -12,8 +12,9 @@ namespace ColonyCouncil
     /// the frame. Framed by the picture's own layout for each place (<see cref="PortraitViewMath.View"/>), so its face
     /// sits where the game's face sat; the pose as small transforms of the whole picture (the head lifted or lowered by
     /// moving the view, the lean and half the head's tilt as a turn about the foot; in round portraits the lift only);
-    /// mirrored to face the other person of a pair, else its text, where the picture faces away; the dead grey, a grey
-    /// copy made once.
+    /// never mirrored (the player, 22 November 2026: "They should, you know, always look the same direction if they're
+    /// represented on different parts of the UI"; the game's own drawing still turns to face its text or the other of a
+    /// pair); the dead grey, a grey copy made once.
     /// </summary>
     public static partial class FaceEngine
     {
@@ -28,27 +29,23 @@ namespace ColonyCouncil
         private static FaceCamera CameraOf(PictureView v) => new FaceCamera { headU = v.headU, headV = v.headV, headShare = v.headShare, zoom = 1f };
 
         /// <summary>
-        /// Where a portrait's text is beside it, for a picture to face it: the round portraits stand left of their names and
-        /// titles (lists, letters, event cards), as the colonist card's tile does; the large portrait has its name under it.
-        /// </summary>
-        private static FaceTurn TextSide(FaceFrame frame) => frame == FaceFrame.Bust ? FaceTurn.Front : FaceTurn.Right;
-
-        /// <summary>
         /// A source's picture in a tile (inside its group): turned about the tile's foot by the pose's turn and the sway,
-        /// breathing from the foot, mirrored to face its text where it faces away from it, grey for the dead.
+        /// breathing from the foot, as painted (never mirrored), grey for the dead. The picture carries on below the tile's
+        /// foot (the group cuts it off), so the sway's turn never shows a gap under the body.
         /// </summary>
         private static void DrawPicture(Rect r, PortraitPicture pic, PictureView view, FaceFrame frame, FacePose pose, float turn, float alpha, float breath, float sway)
         {
             Texture tex = pose.bearing == FaceBearing.Dead ? GreyPicture(pic.texture) ?? pic.texture : pic.texture;
-            bool mirror = PortraitViewMath.Mirror(pic.layout, PortraitViewMath.Asked(pose.turn, TextSide(frame)));
-            PortraitViewMath.TexCoords(view, mirror, out float u, out float v, out float w, out float h);
+            PortraitViewMath.TexCoords(view, out float u, out float v, out float w, out float h);
             var saved = GUI.matrix;
             try
             {
                 float lean = turn + sway;
                 if (lean != 0f) UI.RotateAroundPivot(lean, new Vector2(r.center.x, r.yMax));
                 GUI.color = UiKit.WithAlpha(UiKit.Plain, alpha);
-                GUI.DrawTextureWithTexCoords(new Rect(r.x, r.yMax - r.height * breath, r.width, r.height * breath), tex, new Rect(u, v, w, h));
+                float ph = Mathf.Max(1f, r.height * breath), below = FootBelow * r.width;
+                // Below the view's foot: the picture itself where there is more of it, else its foot row carried on.
+                GUI.DrawTextureWithTexCoords(new Rect(r.x, r.yMax - ph, r.width, ph + below), tex, new Rect(u, v - h * below / ph, w, h * (1f + below / ph)));
             }
             finally
             {
@@ -59,7 +56,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A source's picture in a round portrait: the light behind the head, then the picture in the circle, lifted or
-        /// lowered by the pose, facing the other person of a pair or else its text.
+        /// lowered by the pose, as painted (never mirrored).
         /// </summary>
         private static void DrawPictureRound(Rect inner, Pawn p, PortraitPicture pic, FacePose pose, float alpha)
         {
@@ -67,8 +64,7 @@ namespace ColonyCouncil
             bool dead = pose.bearing == FaceBearing.Dead;
             if (!dead && inner.width >= 30f) DrawGlow(inner, CameraOf(view), GlowColour(p), alpha);
             Texture tex = dead ? GreyPicture(pic.texture) ?? pic.texture : pic.texture;
-            bool mirror = PortraitViewMath.Mirror(pic.layout, PortraitViewMath.Asked(pose.turn, TextSide(FaceFrame.Face)));
-            PortraitViewMath.TexCoords(view, mirror, out float u, out float v, out float w, out float h);
+            PortraitViewMath.TexCoords(view, out float u, out float v, out float w, out float h);
             GUI.color = UiKit.WithAlpha(UiKit.Plain, alpha);
             UiKit.DrawInCircle(inner, tex, new Rect(u, v, w, h));
             GUI.color = Color.white;

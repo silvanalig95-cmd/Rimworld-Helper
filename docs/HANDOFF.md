@@ -570,6 +570,12 @@ most sense." So, in this order, three builds at a time:
   their pictures alone; strangers share only when never seen together (a setting: never, when not seen together,
   always); special looks shared freely among strangers; else the game's drawing, counted in missing.csv as "no free
   picture" so more get planned.
+  **Built** (22 November 2026, not released; the entry "Portraits, phase 5: looks, special looks, work and what the
+  library lacks" above the newest release line): points 1 to 3 (looks and special looks with a starter list, work, the
+  list kept in the save with its dev action and the look lines), the backdrop behind the game's own drawing with its
+  setting, painted pictures never mirrored, the whole picture on the large portrait and no gap under the body, and who
+  may share a picture (the player's own, notables, strangers never seen together; the setting); point 4 (the review
+  and the catalogue) is the other build's.
 - **Go given (22 November 2026, the player: "Please go ahead"; with a build agent): pictures checked by what they show.**
   The player, on eccentric looks only for pawns who have them (sent to both builds: a picture with a look or a role
   goes only to pawns who have it; plain pictures are the defaults): "I guess you have to kind of partially also analyze
@@ -1221,6 +1227,104 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 5: looks,
+  special looks, work and what the library lacks** (22 November 2026; the player: "Maybe the mod can also then log in the
+  log files or in the save, ideally ... if like a trait appears where they could be visually displayed, but there's no
+  appropriate ... image for it yet ... the game learns or kind of logs what's could be expanded on ... ideally in the save
+  ... I know there's a co-join twins mod ... That should then, of course, also be visible. Or if there are certain traits
+  like this, co-join twin, that the game then rather shows no image than ... a really not fitting one instead", "your
+  proposals sound good!"; "the profession can and should also be reflected in how they look like"; "it should always be
+  also based on an actual pawn's characteristic, and only then also this image is loaded"; "it still takes backdrop from
+  the library, right? That's the least it can do", toggleable; "always look the same direction"; "I'd rather, you know,
+  see as much as I can"; "a really minor, small offset between the bottom of its body and where the UI continues
+  below"; "it should not be that the same image comes over and over again frequently ... once one of my colonists has an
+  image, that image is definitely locked and exclusive to that colonist per save ... Rather have a pawn assign no image and
+  we build up the library further in the meanwhile"). DESIGN.md "Portraits, phase 5: looks, special looks and what the
+  library lacks" has every rule; README "Portraits"; the Almanac's guide, its portrait sentence.
+  - **Looks** (the new `ColonyCouncil.PortraitLookDef`: `word`, `label`, `special`, `traits` with an optional `:degree`,
+    `genes`, `hediffs`, `bodies`, `prompt`; every name soft): a person has a look when they have any of them; records
+    name theirs in `<looks>` (an unknown word a record problem). A picture showing a look stands only for those who
+    have it (both settings); a look of theirs a picture doesn't show costs 0.75, so plain pictures are the defaults and
+    a fire mage prefers the fire mage's picture. A **special look** (conjoined twins, wings) only ever gets a picture
+    showing it, and such a picture only stands for those who have it; else the game's drawing. Kept pictures stay, but
+    someone who gains a special look loses a picture that doesn't show it (the game's drawing until one does); someone
+    who loses one keeps theirs. A colonist's pin is held to their special looks only.
+  - **Work** (a record's `role`, one of eighteen words; the lead's script writes the column): a picture with a work
+    only for people of that work; a person's work a picture doesn't show costs 0.75. Read from their grown-up backstory
+    (title, name, spawn categories, the head of the phrase), else the leader, a knight or higher, the faith's leader, else
+    the moral guide or a priest's role, else their best skill with a passion; none for a child.
+  - **The starter list** `Defs/PortraitLookDefs/PortraitLooks.xml` (checked against `docs/player-mods`): special: Conjoined
+    Twins' twins (its body `MultiMind_ConjoinedHumanBody` and its trait `MultiMind_ConjoinedTwins`; its two other hediffs
+    are for after a separation, so left out), bat wings, insect wings, butterfly wings, feathered wings, dragon wings,
+    and the wings whose shape isn't known here (drainer, rainbow, a single malformed wing, Hussar's glidewings): every
+    one of the 39 active wing genes; ordinary: pyromaniac, psychopath, beautiful, pretty, ugly, staggeringly ugly,
+    drinker, drug addict, fire mage, ice mage (A RimWorld of Magic's InnerFire and HeartOfFrost). The catalogue's file
+    (`Tools/PortraitArt/looks_to_defs.py`) takes its place when the lead writes it: tried here, it passes every check but
+    one, the catalogue's `looks.csv` leaves out seven active wing genes as special looks (`VRE_InsectWings`,
+    `VRE_InsectWings_Cosmetic`, `VRE_LocustWings`, Alpha Genes' four `AG_GenelineCosmetic_*Wings`; they are
+    `GenelineGeneDef`s, in `defs.tsv.gz` but not `genes.tsv`), so a pawn with them could get a wingless picture; the
+    test lists them. The mods test leaves `Defs/PortraitLookDefs` to `PortraitLookTests`, which checks every name of
+    every file there against the player's active mods.
+  - **What the library lacks, in the save**: `PortraitNeedsKept` (a game component) keeps every line missing.csv gets,
+    one CSV line per need with its count and the game's day last seen, at most 200, the least recently seen let go,
+    merged on load; noted with or without a library folder. New look lines (`what` look, the word in a new column
+    `look`, the person's kind, sex and age band, the mod of what gave it, special or ordinary in `why`) and a `role`
+    column on people's lines; each person looked at once each time the library is read, kept pictures too. The dev action
+    "Portraits: what the library lacks (log)" writes the list to the log. `Tools/save_estimate.py` models it.
+  - **The backdrop behind the game's own drawing too** (the new setting of that name, on, next to "Backdrop"): no
+    painted picture for someone (no picture of their kind, a special look, a library of backdrops only), so the game's
+    drawing stands in front of the backdrop of where they are, softened and darkened as set, with a soft dark shadow
+    behind it and, with "Line round the person" on, a thin dark line (dark copies of the drawing, nothing read back).
+    Off, or "Backdrop" Plain, or no backdrop found: the plain panel as in 0.293.0.
+  - **Who may share a picture** (replaces 0.293.0's "an unused one before a used one"; per save, a new game starts with
+    every picture free): the player's own (colonists, slaves, and now prisoners) hold their face for good; notables (a
+    faction's leader, a royal title of knight or higher, the colony's named contacts: Rimfolk's towns' heads, heirs,
+    envoys, traders and acquaintances) hold theirs while they live and matter, the player's own outranking them;
+    strangers get a face nobody keeps first, else one another stranger keeps as the new setting "Strangers may share a
+    picture" says (Never; When not seen together, the default: only while that stranger is on no map; Always), else the
+    game's drawing; two strangers with one face on the maps at once: the later gives way. Special looks' pictures may be
+    shared among strangers. Recruiting, enslaving, capturing or becoming notable holds the face at once. Someone with no
+    picture is looked at again every half minute; missing.csv tells "no free picture" apart from "no picture of their
+    kind". `KeptPortrait.notable` saved.
+  - **The three changes from the first look**: painted pictures never mirrored anywhere (the game's drawing still turns);
+    the large portrait shows the whole painted picture at its shape (5:4 tall; the size setting its width; square for
+    the game's drawing), the colonist card as much of the picture as fits, head at the top; no gap under the body (the
+    body made solid at the picture's foot when it loads, and the picture carried on below every frame's foot so the
+    pose's lift and the sway never open a strip).
+  - Code: new `UI/Faces/PortraitLookDef.cs` (the def, `PortraitLooks`), pure `PortraitLookMath.cs` (rules, the book,
+    work); changed `PortraitLibraryMath.cs` (looks and role in records and the matcher, `LooksAgree`, `SpecialsAgree`,
+    `LacksSpecial`, `LooksLacking`), `PortraitReader.cs` (looks and work), `PortraitDef.cs`, `PortraitFolder.cs`,
+    `PortraitLibrary.cs` (special looks for kept pictures, who may share a face, `NoteOnce`), `PortraitKeeper.cs` (a
+    notable's hold), `PortraitNeeds.cs` (`PortraitNeedsKept`, the dev action), `PortraitFolderMath.cs` (columns, save lines, the cap), `FaceEngineStage.cs` (the whole picture,
+    `DrawGameStaged`), `FaceEngine.cs` (the game drawing's tint and line), `FaceEnginePictures.cs` and
+    `PortraitViewMath.cs` (no mirroring, the tall tile, the foot), `PortraitPictureMath.cs` (`TallFor`, `SolidFoot`,
+    `BackdropPart`; the crop by size gone), `PortraitComposeMath.cs` (any shape, `WhatToDraw`, `GameLine`),
+    `PortraitStore.cs`, `FaceMath.cs` (`Place` with a shape), `InspectPortrait.cs`; the setting in `CouncilSettings.cs`
+    and `UI/SettingsCatalog.cs`; words in `Languages/English/Keyed/Rimfolk_Portraits.xml`. Tests: `Tools/Tests/PortraitLookTests.cs`
+    (new), `PortraitLibraryTests.cs`, `PortraitStageTests.cs`, `FaceEngineTests.cs`; `Tools/Tests/ModDefNames.txt` has
+    the Alpha Genes and Classical names.
+  - **Can't be checked without the game**: Conjoined Twins' pawns as the mod makes them (its body and trait) and their
+    drawing on the large portrait; the wing genes as their mods give them; how the game's drawing looks on a backdrop
+    with its shadow and line; the whole picture's framing and the panel's height on the player's screens; the foot
+    carried below the edge with real cut-outs; roles read from real backstories, titles and skills; the save's list over a
+    long game.
+  - **Try in the game** (screenshots please): select a colonist with their picture: the large portrait is a little
+    taller than wide and shows the whole picture, the body running right to the panel's bottom edge with no strip under
+    it, also while they breathe and sway; open their colonist card: the same picture facing the same way, as much of it
+    as fits. Select someone with no picture (a visitor of another kind): the game's drawing in front of the backdrop of
+    where they stand, with a soft shadow behind it; switch off "Backdrop behind the game's own drawing too" (Options,
+    Rimfolk, How you're told, Portraits): the plain panel again. In dev mode, spawn a conjoined twin (Conjoined Twins'
+    conjoined colonist): the game's own drawing, never a painted picture, and a look line "conjoinedTwins" in the list.
+    Give a colonist the pyromaniac trait and pick their picture again ("Portraits: pick the selected people's painted
+    portraits again"): a line "look, ..., pyromaniac" in missing.csv after saving. With a small library, let a few
+    visitors or traders come: each gets a picture nobody holds while there are some, then the game's drawing, never the
+    picture of a stranger on the map at the time ("Portraits: the selected people's pictures ..." says whether they are
+    the colony's own, a notable or a stranger); capture one and look at another stranger with the same picture: they get
+    another or the game's drawing. Try "Strangers may share a picture" on Always and on Never. Run "Portraits: what the
+    library lacks (log)" and send the log, and a save.
+  - Mods that would help: none needed (the pictures are the player's own). Conjoined Twins
+    (https://steamcommunity.com/sharedfiles/filedetails/?id=3808663984) and Alpha Genes, Fairycore and Vanilla Races
+    Expanded - Insector, Hussar are already in the list and give the special looks above.
 - 0.293.0, **Portraits, phase 4: the painted
   library in the game, with backdrops** (22 November 2026; the player: "now what is the plan to actually get this into
   the game now? Like a first attempt ... let's just start with the colonists that I have as a first batch ... the

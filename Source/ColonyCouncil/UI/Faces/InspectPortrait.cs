@@ -24,9 +24,12 @@ namespace ColonyCouncil
     /// (<see cref="FaceMath.Place"/>).</item>
     /// <item>Always front-on (the player, the same day: "just show them from the front angle when I select them"): no
     /// turn to a side in its movement and no shy half-turn (<see cref="FaceEngine.Draw"/>).</item>
-    /// <item>Dragging its free corner (the top right) sizes it, 96 to 360, kept in the settings between games; while
+    /// <item>Dragging its free corner (the top right) sizes it, 96 to 360 wide, kept in the settings between games; while
     /// dragging, the picture made at the start is shown larger or smaller, and it is drawn sharp again at the new size
     /// when the mouse is let go, so no picture is made at every step.</item>
+    /// <item>With a painted picture it shows the whole picture at its own shape, a little taller than wide (phase 5; the
+    /// player, 22 November 2026: "I'd rather, you know, see as much as I can"); with the game's own drawing it is square,
+    /// in front of the backdrop of where they are where "Backdrop behind the game's own drawing too" is on.</item>
     /// <item>A window of its own the size of the portrait (the game's way for the inspect tabs), so it takes clicks only
     /// on itself: a click opens their card.</item>
     /// </list>
@@ -45,6 +48,8 @@ namespace ColonyCouncil
         private static Pawn pawn;
         private static Rect rect;
         private static float render;
+        /// <summary>Its inside's height for each unit of its width: the painted picture's own shape, else 1 (square).</summary>
+        private static float tall = 1f;
         private static int shownFrame = -100;
         private static readonly Action DrawAction = DrawWindow;
 
@@ -75,7 +80,8 @@ namespace ColonyCouncil
                 dragSize = FaceMath.Dragged(dragStart, m.x - dragX, m.y - dragY);
             }
             float asked = dragging ? dragSize : FaceMath.Snap(ColonyCouncilMod.Settings?.inspectPortraitSize ?? FaceMath.SizeFirst);
-            if (FaceMath.Place(Scene(pane), asked, out var fr) == FaceMath.Placed.None) return;
+            if (p != pawn || Event.current.type == EventType.Layout) tall = FaceEngine.StageTall(p);
+            if (FaceMath.Place(Scene(pane), asked, out var fr, tall) == FaceMath.Placed.None) return;
             pawn = p;
             rect = new Rect(fr.x, fr.y, fr.w, fr.h);
             if (!dragging) render = rect.width;
@@ -168,8 +174,10 @@ namespace ColonyCouncil
                 if (UiKit.OwnLook) UiKit.RoundBox(r, UiKit.PortraitBack, UiKit.Edge, SkinMath.RadiusCard);
                 else Widgets.DrawBoxSolidWithOutline(r, UiKit.PortraitBack, UiKit.CardBorder, 1);
                 float rs = Mathf.Max(1f, render - 2f * FaceMath.Border);
-                // A painted picture from the library stands in front of the backdrop of where they are; else the game's drawing as before.
-                if (!FaceEngine.DrawStaged(inner, p, new Vector2(rs, rs), true)) FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs), 1f, true);
+                var made = new Vector2(rs, rs * tall);
+                // A painted picture from the library, whole, in front of the backdrop of where they are; else the game's
+                // drawing in front of it (phase 5), or on the portrait's own colour as before.
+                if (!FaceEngine.DrawStaged(inner, p, made, true) && !FaceEngine.DrawGameStaged(inner, p, made, true)) FaceEngine.Draw(inner, p, FaceFrame.Bust, made, 1f, true);
                 if (r.width >= FaceMath.NamedFrom) NameBand(inner);
                 if (dragging || Mouse.IsOver(r)) Grip(grip);
             }

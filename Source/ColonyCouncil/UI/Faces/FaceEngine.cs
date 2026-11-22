@@ -217,9 +217,12 @@ namespace ColonyCouncil
         /// <summary>
         /// One picture of them in a pose, in a tile (inside its group): the whole figure leaning and swaying about its feet,
         /// the body breathing from its feet, the head set on it where the pose puts it; the whole picture where the head
-        /// can't be drawn apart, or the pose doesn't move it.
+        /// can't be drawn apart, or the pose doesn't move it. On a backdrop (phase 5) tinted by <paramref name="tint"/>, and
+        /// with a thin dark line round the figure where <paramref name="ink"/> is above nothing: dark copies of its pictures
+        /// <paramref name="inkPx"/> to each side, under the figure.
         /// </summary>
-        private static void DrawLayer(Rect r, Pawn p, FaceFrame frame, Vector2 size, FacePose pose, float alpha, float breath, float sway)
+        private static void DrawLayer(Rect r, Pawn p, FaceFrame frame, Vector2 size, FacePose pose, float alpha, float breath, float sway, Color? tint = null, float inkPx = 0f,
+            float ink = 0f)
         {
             var cam = Camera(p, frame, size.x, size.y, pose.turn);
             var shift = FacePoseMath.Shift(pose.bearing, pose.turn, p.thingIDNumber);
@@ -236,9 +239,16 @@ namespace ColonyCouncil
                 float lean = shift.lean + sway;
                 if (lean != 0f) UI.RotateAroundPivot(lean, new Vector2(r.center.x, r.yMax));
                 var bodyRect = new Rect(r.x, r.yMax - r.height * breath, r.width, r.height * breath);
-                GUI.color = UiKit.WithAlpha(UiKit.Plain, alpha);
+                var plain = tint.HasValue ? UiKit.Plain * tint.Value : UiKit.Plain;
+                bool inked = ink > 0f && inkPx > 0f;
+                GUI.color = UiKit.WithAlpha(plain, alpha);
                 if (whole != null)
                 {
+                    if (inked)
+                    {
+                        Ink(bodyRect, whole, inkPx, ink * alpha);
+                        GUI.color = UiKit.WithAlpha(plain, alpha);
+                    }
                     GUI.DrawTexture(bodyRect, whole);
                     return;
                 }
@@ -247,13 +257,26 @@ namespace ColonyCouncil
                     Widgets.ThingIcon(r, p);
                     return;
                 }
-                GUI.DrawTexture(bodyRect, body);
                 // The head rides on the body's breath, moved and turned about the neck as the pose puts it.
                 float headPx = cam.headShare * r.height;
                 float neckY = r.y + (cam.headV + FacePoseMath.NeckBelow * cam.headShare) * r.height;
                 float lift = (r.yMax - neckY) * (breath - 1f);
                 var headRect = new Rect(r.x + shift.dx * headPx, r.y - shift.dy * headPx - lift, r.width, r.height);
+                var bodyMatrix = GUI.matrix;
                 if (shift.tilt != 0f) UI.RotateAroundPivot(shift.tilt, new Vector2(r.x + cam.headU * r.width + shift.dx * headPx, neckY - shift.dy * headPx - lift));
+                var headMatrix = GUI.matrix;
+                if (inked)
+                {
+                    // The line round the whole figure: both pictures' dark copies first, then the figure over them.
+                    GUI.matrix = bodyMatrix;
+                    Ink(bodyRect, body, inkPx, ink * alpha);
+                    GUI.matrix = headMatrix;
+                    Ink(headRect, head, inkPx, ink * alpha);
+                    GUI.color = UiKit.WithAlpha(plain, alpha);
+                }
+                GUI.matrix = bodyMatrix;
+                GUI.DrawTexture(bodyRect, body);
+                GUI.matrix = headMatrix;
                 GUI.DrawTexture(headRect, head);
             }
             finally
@@ -261,6 +284,20 @@ namespace ColonyCouncil
                 GUI.matrix = saved;
                 GUI.color = Color.white;
             }
+        }
+
+        private static readonly Vector2[] InkWays =
+        {
+            new Vector2(1f, 0f), new Vector2(-1f, 0f), new Vector2(0f, 1f), new Vector2(0f, -1f),
+            new Vector2(0.7f, 0.7f), new Vector2(-0.7f, 0.7f), new Vector2(0.7f, -0.7f), new Vector2(-0.7f, -0.7f)
+        };
+
+        /// <summary>A thin dark line round a picture's figure: dark copies of it <paramref name="px"/> to each of eight sides (drawn as the picture is, nothing read back).</summary>
+        private static void Ink(Rect r, Texture tex, float px, float strength)
+        {
+            if (tex == null) return;
+            GUI.color = UiKit.WithAlpha(UiKit.WindowGround, Mathf.Clamp01(strength));
+            foreach (var w in InkWays) GUI.DrawTexture(new Rect(r.x + w.x * px, r.y + w.y * px, r.width, r.height), tex);
         }
 
         /// <summary>

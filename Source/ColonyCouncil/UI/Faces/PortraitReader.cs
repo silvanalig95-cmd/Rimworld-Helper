@@ -22,7 +22,10 @@ namespace ColonyCouncil
     /// kind (rags, armour, robes, fine, work), and headgear where the setting shows it;</item>
     /// <item>features from their active genes' words (ears, horns, tusks, fur, scales, gills, glowing eyes, markings, a
     /// tail, a snout), each gene read once;</item>
-    /// <item>marks from their health: a lost eye or ear, a bionic eye, a scar or a burn on the head.</item>
+    /// <item>marks from their health: a lost eye or ear, a bionic eye, a scar or a burn on the head;</item>
+    /// <item>their looks (phase 5: <see cref="PortraitLooks"/>, from their traits, genes, hediffs and body) and their work
+    /// (<see cref="RoleOf"/>: their grown-up backstory where it names one, else the colony's leader or a titled noble, a
+    /// moral guide, else their best skill with a passion; none for a child).</item>
     /// </list>
     /// </summary>
     public static class PortraitReader
@@ -152,7 +155,71 @@ namespace ColonyCouncil
             Clothes(p, l);
             Features(p, l);
             Marks(p, l);
+            PortraitLooks.Fill(p, l);
+            l.role = RoleOf(p, age);
             return true;
+        }
+
+        private static readonly Dictionary<BackstoryDef, string> backstoryRoles = new Dictionary<BackstoryDef, string>();
+        private static RoyalTitleDef knight;
+        private static bool knightLooked;
+        private static readonly List<PortraitLookMath.SkillSeen> skillBuf = new List<PortraitLookMath.SkillSeen>();
+
+        /// <summary>
+        /// A person's work, for the matcher (the player, 22 November 2026: "the profession can and should also be reflected
+        /// in how they look like"): none for a child; their grown-up backstory where its title, name or spawn categories
+        /// clearly name one (<see cref="PortraitLookMath.RoleFromWords"/>; each backstory read once); else a leader for
+        /// their people's leader, a holder of a royal title of knight or higher, or their faith's leader; else a priest for
+        /// their faith's moral guide or a priest's role; else the work of their best skill with a passion
+        /// (<see cref="PortraitLookMath.RoleFromSkills"/>); else none.
+        /// </summary>
+        public static string RoleOf(Pawn p, PortraitAge age)
+        {
+            if (p == null || age < PortraitAge.Teen) return "";
+            try
+            {
+                var bs = p.story?.Adulthood;
+                if (bs != null)
+                {
+                    if (!backstoryRoles.TryGetValue(bs, out var r))
+                    {
+                        r = PortraitLookMath.RoleFromWords(PortraitLibraryMath.Tokens(bs.title, bs.titleShort), PortraitLibraryMath.Tokens(bs.defName),
+                            PortraitLibraryMath.Tokens(bs.spawnCategories?.ToArray())) ?? "";
+                        backstoryRoles[bs] = r;
+                    }
+                    if (r.Length > 0) return r;
+                }
+                var role = ModsConfig.IdeologyActive ? p.Ideo?.GetRole(p) : null;
+                string roleName = role?.def?.defName ?? "";
+                if (p.Faction != null && p.Faction.leader == p || Titled(p) || roleName == "IdeoRole_Leader") return "leader";
+                if (roleName == "IdeoRole_Moralist" || roleName.IndexOf("priest", StringComparison.OrdinalIgnoreCase) >= 0) return "priest";
+                var skills = p.skills?.skills;
+                if (skills == null) return "";
+                skillBuf.Clear();
+                foreach (var s in skills)
+                    if (s?.def != null)
+                        skillBuf.Add(new PortraitLookMath.SkillSeen(s.def.defName, s.Level, (int)s.passion, s.TotallyDisabled));
+                var tech = p.Faction?.def?.techLevel ?? TechLevel.Undefined;
+                return PortraitLookMath.RoleFromSkills(skillBuf, tech != TechLevel.Undefined && tech <= TechLevel.Neolithic) ?? "";
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("portraits: reading a person's work", e);
+                return "";
+            }
+        }
+
+        /// <summary>A royal title of knight or higher (any title where the game has no knight).</summary>
+        public static bool Titled(Pawn p)
+        {
+            var t = p.royalty?.MostSeniorTitle;
+            if (t?.def == null) return false;
+            if (!knightLooked)
+            {
+                knightLooked = true;
+                knight = DefDatabase<RoyalTitleDef>.GetNamedSilentFail("Knight");
+            }
+            return knight == null || t.def.seniority >= knight.seniority;
         }
 
         private static string[] Words(Def def, string texPath, IEnumerable<string> tags)

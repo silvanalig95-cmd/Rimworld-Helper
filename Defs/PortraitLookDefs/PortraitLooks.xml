@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Looks a painted portrait can show (UI/Faces/PortraitLookDef.cs; DESIGN.md, "Portraits, phase 5"). Rimfolk's starter
+    list: the lead's catalogue adds the rest in a file of its own. A person has a look when they have any of its traits (a
+    line with ":degree" only at that degree), active genes, hediffs or their race's body; names of mods not loaded never
+    match. Records name the looks they show in <looks> by the word. A picture showing a look stands only for people who
+    have it; a special look (special true) also keeps anyone who has it from every picture that doesn't show it, so they
+    keep the game's own drawing until one does. The prompt is for the image prompts only; the game doesn't read it. Every
+    name checked against docs/player-mods (active rows).
+  -->
+
+  <!-- Special looks: only a picture made for them fits. -->
+
+  <!-- Conjoined Twins (multimind.conjoinedtwins): its race's body, and the trait it gives the twins. -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ConjoinedTwins</defName>
+    <word>conjoinedTwins</word>
+    <label>conjoined twins</label>
+    <special>true</special>
+    <traits><li>MultiMind_ConjoinedTwins</li></traits>
+    <bodies><li>MultiMind_ConjoinedHumanBody</li></bodies>
+    <prompt>conjoined twins sharing one broad body, two heads side by side on the shoulders, two faces each with its own expression</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- Alpha Genes (sarg.alphagenes). -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BatWings</defName>
+    <word>batWings</word>
+    <label>bat wings</label>
+    <special>true</special>
+    <genes><li>AG_BatWings</li></genes>
+    <prompt>large dark leathery bat wings folded behind the shoulders, their clawed tips rising above the head</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- Thin, veined wings of insects: Vanilla Races Expanded - Insector (vanillaracesexpanded.insector), Alpha Genes (its
+       genes and the cosmetic ones of its insect geneline), and the beetle, cicada, dragonfly and kin of Fairycore
+       (homebrew.fairycore). -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_InsectWings</defName>
+    <word>insectWings</word>
+    <label>insect wings</label>
+    <special>true</special>
+    <genes>
+      <li>VRE_InsectWings</li>
+      <li>VRE_InsectWings_Cosmetic</li>
+      <li>VRE_LocustWings</li>
+      <li>AG_WaspWings</li>
+      <li>AG_BumbledroneWings</li>
+      <li>AG_GenelineCosmetic_WaspWings</li>
+      <li>AG_GenelineCosmetic_BumbledroneWings</li>
+      <li>FG_Wings_Beetle</li>
+      <li>FG_Wings_Cicada</li>
+      <li>FG_Wings_Damselfly</li>
+      <li>FG_Wings_Dragonfly</li>
+      <li>FG_Wings_Firefly</li>
+      <li>FG_Wings_Grasshopper</li>
+      <li>FG_Wings_Lacewing</li>
+      <li>FG_Wings_PrayingMantis</li>
+      <li>FG_Wings_Wasp</li>
+    </genes>
+    <prompt>a pair of thin translucent insect wings with dark veins rising from the back behind the shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- Butterfly and moth wings: Alpha Genes' moth wings and Fairycore's butterflies and moths. -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ButterflyWings</defName>
+    <word>butterflyWings</word>
+    <label>butterfly wings</label>
+    <special>true</special>
+    <genes>
+      <li>AG_MothWings</li>
+      <li>AG_GenelineCosmetic_MothWings</li>
+      <li>FG_Wings_Birdwing</li>
+      <li>FG_Wings_BlueMorpho</li>
+      <li>FG_Wings_CommonBlue</li>
+      <li>FG_Wings_Glasswing</li>
+      <li>FG_Wings_LunaMoth</li>
+      <li>FG_Wings_Monarch</li>
+      <li>FG_Wings_Moth</li>
+      <li>FG_Wings_PaperKite</li>
+      <li>FG_Wings_Peacock</li>
+      <li>FG_Wings_RedAdmiral</li>
+      <li>FG_Wings_Swallowtail</li>
+    </genes>
+    <prompt>a pair of broad patterned butterfly wings spread behind the shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FeatheredWings</defName>
+    <word>featheredWings</word>
+    <label>feathered wings</label>
+    <special>true</special>
+    <genes>
+      <li>AG_FeatheredWings</li>
+      <li>AG_PegasusWings</li>
+    </genes>
+    <prompt>a pair of large feathered wings folded behind the shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_DragonWings</defName>
+    <word>dragonWings</word>
+    <label>dragon wings</label>
+    <special>true</special>
+    <genes>
+      <li>AG_DemonWings</li>
+      <li>AG_DrakonoriWings</li>
+    </genes>
+    <prompt>a pair of large leathery dragon-like wings with clawed joints folded behind the shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- Wing genes whose shape isn't known here (Alpha Genes' drainer, rainbow and single malformed wing, Vanilla Races
+       Expanded - Hussar's glidewings): special, so no wingless picture stands for them; the catalogue gives each its own. -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_OtherWings</defName>
+    <word>otherWings</word>
+    <label>wings</label>
+    <special>true</special>
+    <genes>
+      <li>AG_DrainerWings</li>
+      <li>AG_GenelineCosmetic_DrainerWings</li>
+      <li>AG_RainbowWings</li>
+      <li>AG_SingleWing</li>
+      <li>VREH_Glidewings</li>
+    </genes>
+    <prompt>wings on the back behind the shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- Ordinary looks: a picture showing one stands only for those who have it; one of theirs a picture doesn't show only
+       costs a little. -->
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Pyromaniac</defName>
+    <word>pyromaniac</word>
+    <label>a pyromaniac's look</label>
+    <special>false</special>
+    <traits><li>Pyromaniac</li></traits>
+    <prompt>singed eyebrows, a few small burn marks on the hands, a restless fixed stare</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Psychopath</defName>
+    <word>psychopath</word>
+    <label>a psychopath's look</label>
+    <special>false</special>
+    <traits><li>Psychopath</li></traits>
+    <prompt>a flat, cold, unblinking stare and a calm expressionless face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Beautiful</defName>
+    <word>beautiful</word>
+    <label>beautiful</label>
+    <special>false</special>
+    <traits><li>Beauty:2</li></traits>
+    <prompt>strikingly beautiful, fine even features and clear skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Pretty</defName>
+    <word>pretty</word>
+    <label>pretty</label>
+    <special>false</special>
+    <traits><li>Beauty:1</li></traits>
+    <prompt>good-looking, pleasant regular features</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Ugly</defName>
+    <word>ugly</word>
+    <label>ugly</label>
+    <special>false</special>
+    <traits><li>Beauty:-1</li></traits>
+    <prompt>plain and rather ugly, uneven features, a crooked nose and blotchy skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_StaggeringlyUgly</defName>
+    <word>staggeringlyUgly</word>
+    <label>staggeringly ugly</label>
+    <special>false</special>
+    <traits><li>Beauty:-2</li></traits>
+    <prompt>very ugly, lumpy misshapen features, a heavy brow, bad teeth and pitted skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- A drinker: alcohol addiction, or a taste for chemicals (chemical interest and chemical fascination). -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Drinker</defName>
+    <word>drinker</word>
+    <label>a drinker's face</label>
+    <special>false</special>
+    <traits>
+      <li>DrugDesire:1</li>
+      <li>DrugDesire:2</li>
+    </traits>
+    <hediffs><li>AlcoholAddiction</li></hediffs>
+    <prompt>a red, bulbous nose, flushed cheeks and tired, watery eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- A drug addict: the other addictions of the game and the player's mods (Alpha Biomes, Dragons Descent, Vanilla
+       Genetics Expanded, A RimWorld of Magic, Vanilla Factions Expanded - Classical and - Insectoids 2); caffeine, tobacco
+       and antibiotics left out, as they don't mark a face. -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_DrugAddict</defName>
+    <word>drugAddict</word>
+    <label>a drug addict's face</label>
+    <special>false</special>
+    <hediffs>
+      <li>SmokeleafAddiction</li>
+      <li>PsychiteAddiction</li>
+      <li>GoJuiceAddiction</li>
+      <li>WakeUpAddiction</li>
+      <li>LuciferiumAddiction</li>
+      <li>AmbrosiaAddiction</li>
+      <li>AB_PsychotropicFungusAddiction</li>
+      <li>DragonsBloodAddiction</li>
+      <li>GR_ElectroEggAddiction</li>
+      <li>GR_FeatherdustAddiction</li>
+      <li>TM_SyrriumAddiction</li>
+      <li>VFEC_OpiumAddiction</li>
+      <li>VFEI2_RoyalJellyAddiction</li>
+    </hediffs>
+    <prompt>a gaunt face, sallow skin, hollow cheeks and dark rings under bloodshot eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <!-- A RimWorld of Magic (torann.arimworldofmagic): its fire and ice mages, by their class traits. -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FireMage</defName>
+    <word>fireMage</word>
+    <label>a fire mage</label>
+    <special>false</special>
+    <traits><li>InnerFire</li></traits>
+    <prompt>a small flame dancing above one open hand, its warm light on the face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_IceMage</defName>
+    <word>iceMage</word>
+    <label>an ice mage</label>
+    <special>false</special>
+    <traits><li>HeartOfFrost</li></traits>
+    <prompt>frost on the hair and brows, a pale blue cold light gathered in one hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+
+</Defs>

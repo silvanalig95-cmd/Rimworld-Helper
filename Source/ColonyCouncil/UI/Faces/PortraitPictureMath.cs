@@ -15,25 +15,17 @@ namespace ColonyCouncil
         public override string ToString() => found ? $"top {top:0.000}, neck {neck:0.000}, centre {centre:0.000}" : "not found";
     }
 
-    /// <summary>A square part of a picture in its own pixels, from its top left; it may run past the picture's edges (padded clear there).</summary>
-    public struct PixelCrop
-    {
-        public float x, y, side;
-
-        public override string ToString() => $"({x:0.0}, {y:0.0}) {side:0.0} square";
-    }
-
     /// <summary>
     /// The painted library's pictures as the game loads them (docs: DESIGN.md, "Portraits, phase 4: the painted library in
     /// the game, with backdrops"), without game types (Tools/Tests try them). Pixels are RGBA bytes, four to a pixel, row
     /// by row from the top:
     /// <list type="bullet">
     /// <item>the head measured once from a cut-out's alpha (<see cref="MeasureHead"/>);</item>
-    /// <item>the large portrait's crop by its size (<see cref="CropFor"/>): at 96 the head fills 45% of the square, its
-    /// middle 0.355 down; at 360 30% and 0.275; in between by a straight line;</item>
-    /// <item>a picture scaled down once to what the largest portrait needs (<see cref="Downscale"/>), its clear edge given
-    /// the colour beside it (<see cref="Bleed"/>) so no dark fringe shows when it is drawn smaller;</item>
-    /// <item>a square cut from a picture, clear where it runs past its edges (<see cref="CropPad"/>);</item>
+    /// <item>the large portrait's shape for a picture (<see cref="TallFor"/>): the whole picture, its own shape, the
+    /// size setting its width (the player, 22 November 2026: "I'd rather, you know, see as much as I can");</item>
+    /// <item>a picture scaled down once to what the largest portrait needs (<see cref="Downscale"/>), the body made solid
+    /// where it meets the picture's foot (<see cref="SolidFoot"/>), its clear edge given the colour beside it
+    /// (<see cref="Bleed"/>) so no dark fringe shows when it is drawn smaller;</item>
     /// <item>the light on the map in a few steps (<see cref="LightStep"/>), each a darker, cooler tint (<see cref="LightTint"/>).</item>
     /// </list>
     /// </summary>
@@ -134,35 +126,100 @@ namespace ColonyCouncil
             return m;
         }
 
-        // ---------------- The large portrait's crop ----------------
+        // ---------------- The large portrait's shape ----------------
 
-        /// <summary>The large portrait's smallest and largest size, and how much of the square the head fills, and where its middle sits, at each.</summary>
-        public const float SmallPanel = 96f, LargePanel = 360f, FillSmall = 0.45f, FillLarge = 0.30f, MiddleSmall = 0.355f, MiddleLarge = 0.275f;
+        /// <summary>The large portrait's largest size (its width).</summary>
+        public const float LargePanel = 360f;
 
-        private static float Along(float size)
-        {
-            if (float.IsNaN(size)) return 0f;
-            float t = (size - SmallPanel) / (LargePanel - SmallPanel);
-            return t < 0f ? 0f : t > 1f ? 1f : t;
-        }
+        /// <summary>The library's pictures' shape (1024 x 1280: 0.8 wide for each unit high), taken while a picture loads.</summary>
+        public const float LibraryShape = 0.8f;
 
-        /// <summary>How much of the square the head (its top to the neck) fills at this size of the large portrait: 45% at 96, 30% at 360.</summary>
-        public static float HeadFill(float size) => FillSmall + (FillLarge - FillSmall) * Along(size);
-
-        /// <summary>Where the head's middle sits down the square at this size: 0.355 at 96, 0.275 at 360.</summary>
-        public static float HeadMiddle(float size) => MiddleSmall + (MiddleLarge - MiddleSmall) * Along(size);
+        /// <summary>The tallest the large portrait grows for a picture, for each unit of its width.</summary>
+        public const float TallMost = 1.6f;
 
         /// <summary>
-        /// The square of a picture (<paramref name="w"/> by <paramref name="h"/> pixels, its head where <paramref name="head"/>
-        /// says) the large portrait shows at <paramref name="size"/>: a small portrait the face, a large one the pose. It may
-        /// run past the picture's edges, which are then clear.
+        /// The large portrait's height for each unit of its width with a painted picture (the player, 22 November 2026: "I'd
+        /// rather, you know, see as much as I can ... It can show as much as the image, so to say, generates"): the whole
+        /// picture at its own shape (<paramref name="shape"/>, its width for each unit of height: 1.25 for the library's 1024
+        /// x 1280), never shorter than square nor taller than <see cref="TallMost"/>; square where the shape isn't known.
         /// </summary>
-        public static PixelCrop CropFor(HeadMeasure head, int w, int h, float size)
+        public static float TallFor(float shape)
         {
-            float headPx = Math.Max(4f, (head.neck - head.top) * h);
-            float side = headPx / HeadFill(size);
-            float middle = (head.top + head.neck) / 2f * h;
-            return new PixelCrop { side = side, x = head.centre * w - side / 2f, y = middle - HeadMiddle(size) * side };
+            if (float.IsNaN(shape) || shape <= 0.05f) return 1f;
+            float t = 1f / shape;
+            return t < 1f ? 1f : t > TallMost ? TallMost : t;
+        }
+
+        /// <summary>The panel's outer height for its width: the inside (within its border) of the picture's shape, the border round it.</summary>
+        public static float PanelHeight(float width, float tall, float border) => (width - 2f * border) * (tall < 1f ? 1f : tall) + 2f * border;
+
+        /// <summary>
+        /// The part of a backdrop (<paramref name="bw"/> by <paramref name="bh"/>) that fills a panel <paramref name="aspect"/>
+        /// wide for each unit high: its middle, as much of it as has that shape, as the scale and offset the graphics card
+        /// takes (shares of the backdrop, from its foot).
+        /// </summary>
+        public static void BackdropPart(float bw, float bh, float aspect, out float sx, out float sy, out float ox, out float oy)
+        {
+            if (!(bw > 0f) || !(bh > 0f) || !(aspect > 0f) || float.IsInfinity(aspect))
+            {
+                sx = sy = 1f;
+                ox = oy = 0f;
+                return;
+            }
+            float own = bw / bh;
+            if (own > aspect)
+            {
+                sx = aspect / own;
+                sy = 1f;
+            }
+            else
+            {
+                sx = 1f;
+                sy = own / aspect;
+            }
+            ox = (1f - sx) / 2f;
+            oy = (1f - sy) / 2f;
+        }
+
+        // ---------------- The foot of the picture ----------------
+
+        /// <summary>The foot of a picture made solid this far up at most, as a share of its height.</summary>
+        public const float FootBand = 0.03f;
+
+        /// <summary>
+        /// The person made solid where they meet the picture's foot (the player, 22 November 2026: "there's a really minor,
+        /// small offset between the bottom of its body and where the UI continues below"): a background remover leaves the
+        /// last rows of a body that runs off the picture half clear. In each column whose last row has any of the person in
+        /// it, the lowest solid pixel within <see cref="FootBand"/> of the foot is carried down to the foot, so the body runs
+        /// to the edge; columns clear at the foot (the ground beside an arm) are left as they are. In place.
+        /// </summary>
+        public static void SolidFoot(byte[] px, int w, int h)
+        {
+            if (px == null || w <= 0 || h <= 1 || px.Length < w * h * 4) return;
+            int band = Math.Max(2, (int)Math.Round(FootBand * h));
+            int last = h - 1;
+            for (int x = 0; x < w; x++)
+            {
+                if (px[(last * w + x) * 4 + 3] <= 8) continue;
+                int solid = -1;
+                for (int y = last; y >= Math.Max(0, h - band); y--)
+                    if (px[(y * w + x) * 4 + 3] >= Solid)
+                    {
+                        solid = y;
+                        break;
+                    }
+                if (solid < 0 || solid == last) continue;
+                int from = (solid * w + x) * 4;
+                for (int y = solid + 1; y <= last; y++)
+                {
+                    int i = (y * w + x) * 4;
+                    px[i] = px[from];
+                    px[i + 1] = px[from + 1];
+                    px[i + 2] = px[from + 2];
+                    px[i + 3] = 255;
+                }
+                px[from + 3] = 255;
+            }
         }
 
         // ---------------- Scaling and the clear edge ----------------
@@ -288,24 +345,6 @@ namespace ColonyCouncil
                 if (next.Count == 0) break;
                 foreach (int i in next) done[i] = true;
             }
-        }
-
-        /// <summary>
-        /// A <paramref name="side"/> by <paramref name="side"/> square cut from a picture (<paramref name="w"/> by
-        /// <paramref name="h"/>) from (<paramref name="x0"/>, <paramref name="y0"/>), clear wherever it runs past the picture.
-        /// </summary>
-        public static byte[] CropPad(byte[] src, int w, int h, int x0, int y0, int side)
-        {
-            var dst = new byte[side * side * 4];
-            for (int y = 0; y < side; y++)
-            {
-                int sy = y0 + y;
-                if (sy < 0 || sy >= h) continue;
-                int from = Math.Max(0, -x0), to = Math.Min(side, w - x0);
-                if (to <= from) continue;
-                Buffer.BlockCopy(src, (sy * w + x0 + from) * 4, dst, (y * side + from) * 4, (to - from) * 4);
-            }
-            return dst;
         }
 
         /// <summary>The rows turned over (the game's textures run from their foot up; these pixels from the top down).</summary>

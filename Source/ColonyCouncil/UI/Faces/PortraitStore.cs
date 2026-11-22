@@ -221,7 +221,7 @@ namespace ColonyCouncil
             Process(f, ToColours(px), w, h, longSide);
         }
 
-        /// <summary>On a worker thread: the head measured, the picture scaled down, its clear edge coloured; then the texture made.</summary>
+        /// <summary>On a worker thread: the head measured, the picture scaled down, the body made solid where it meets the picture's foot, its clear edge coloured; then the texture made.</summary>
         private static void Process(PictureFile f, Color32[] px, int w, int h, int longSide)
         {
             bool cut = f.cutOut;
@@ -231,7 +231,11 @@ namespace ColonyCouncil
                 var head = cut ? PortraitPictureMath.MeasureHead(PortraitPictureMath.AlphaOf(top), w, h) : default;
                 PortraitPictureMath.FitSize(w, h, longSide, out int nw, out int nh);
                 var small = PortraitPictureMath.Downscale(top, w, h, nw, nh);
-                if (cut) PortraitPictureMath.Bleed(small, nw, nh, BleedDepth);
+                if (cut)
+                {
+                    PortraitPictureMath.SolidFoot(small, nw, nh);
+                    PortraitPictureMath.Bleed(small, nw, nh, BleedDepth);
+                }
                 return new Processed { px = ToColours(PortraitPictureMath.FlipRows(small, nw, nh)), w = nw, h = nh, head = head };
             }, (done, ex) => Upload(f, done, ex), false);
         }

@@ -76,6 +76,8 @@ namespace ColonyCouncil
         /// <summary>Reads the folder (again) on a worker thread; <paramref name="byHand"/> (the settings' button) tells the player what came of it.</summary>
         public static void Start(bool byHand)
         {
+            // The looks' words are known before the records are read on a worker.
+            PortraitLooks.Ensure();
             string folder = Asked;
             if (byHand)
             {

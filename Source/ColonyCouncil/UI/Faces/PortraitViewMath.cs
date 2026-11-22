@@ -51,11 +51,14 @@ namespace ColonyCouncil
     /// height, a little room above it, the shoulders' top under it;</item>
     /// <item>the large portrait (<see cref="FaceFrame.Bust"/>): the head about half the square's height, the face two
     /// fifths down, the shoulders and chest under it;</item>
-    /// <item>the colonist card's tall tile (<see cref="FaceFrame.Figure"/>): as much of the picture's height as fits, the
-    /// sides cut to the tile.</item>
+    /// <item>the colonist card's tall tile (<see cref="FaceFrame.Figure"/>): as much of the picture as fits the tile
+    /// (the player, 22 November 2026: "I'd rather, you know, see as much as I can"), its whole height where the tile is
+    /// narrower than the picture, the head at the top, the sides cut to the tile.</item>
     /// </list>
     /// The view never goes past the picture (a small margin kept, so a pose's small move or tilt never shows its edge),
-    /// and keeps the head in the middle across.
+    /// and keeps the head in the middle across. A picture is always shown as painted, never mirrored (the player, the
+    /// same day: "They should, you know, always look the same direction if they're represented on different parts of the
+    /// UI"); the large portrait at the inspect pane shows the whole picture (<see cref="PortraitPictureMath.TallFor"/>).
     /// </summary>
     public static class PortraitViewMath
     {
@@ -71,12 +74,6 @@ namespace ColonyCouncil
         /// <summary>The way a picture faces, as the engine turns it: a little or three-quarter to a side is that side.</summary>
         public static FaceTurn FacesOf(PortraitFacing f) =>
             f == PortraitFacing.Left || f == PortraitFacing.ThreeQuarterLeft ? FaceTurn.Left : f == PortraitFacing.Right || f == PortraitFacing.ThreeQuarterRight ? FaceTurn.Right : FaceTurn.Front;
-
-        /// <summary>
-        /// The way a portrait asks a picture to face: two side by side face each other (the pose's turn), else toward the
-        /// portrait's text where it has some beside it (<paramref name="textSide"/>), else as drawn.
-        /// </summary>
-        public static FaceTurn Asked(FaceTurn poseTurn, FaceTurn textSide) => poseTurn != FaceTurn.Front ? poseTurn : textSide;
 
         /// <summary>The share of the picture kept unshown at each edge.</summary>
         public const float Margin = 0.02f;
@@ -103,7 +100,8 @@ namespace ColonyCouncil
             // a 1024 x 1280 picture's width that it takes of its height.
             aspect /= l.Shape;
             float most = 1f - 2f * Margin;
-            float h = Math.Min(l.headH / HeadShareOf(frame), most);
+            // The tall tile: as much of the picture as fits, from its top; the others framed on the head.
+            float h = frame == FaceFrame.Figure ? most : Math.Min(l.headH / HeadShareOf(frame), most);
             float w = h * aspect;
             if (w > most)
             {
@@ -124,12 +122,6 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Whether the picture is drawn mirrored: when the place asks the person to face one way (two facing each other, or
-        /// toward the text) and the picture faces the other. A picture facing the front is never mirrored.
-        /// </summary>
-        public static bool Mirror(PictureLayout l, FaceTurn asked) => asked != FaceTurn.Front && l.faces != FaceTurn.Front && asked != l.faces;
-
-        /// <summary>
         /// A pose on a whole picture: the head's lift (the picture's content moved up by these head heights, the proud up,
         /// the sad and prisoners down), and its turn in degrees about the foot of the tile (the lean, and half the head's
         /// tilt, since the shoulders turn with it). Round portraits take only the lift.
@@ -140,14 +132,11 @@ namespace ColonyCouncil
             turnDegrees = s.lean + 0.5f * s.tilt;
         }
 
-        /// <summary>
-        /// The view's texture coordinates as the game's drawing takes them (from the foot of the picture up), mirrored where
-        /// asked: x, y, width, height (the width negative when mirrored).
-        /// </summary>
-        public static void TexCoords(PictureView v, bool mirror, out float u, out float vv, out float w, out float h)
+        /// <summary>The view's texture coordinates as the game's drawing takes them (from the foot of the picture up): x, y, width, height.</summary>
+        public static void TexCoords(PictureView v, out float u, out float vv, out float w, out float h)
         {
-            u = mirror ? v.x + v.w : v.x;
-            w = mirror ? -v.w : v.w;
+            u = v.x;
+            w = v.w;
             vv = 1f - v.y - v.h;
             h = v.h;
         }

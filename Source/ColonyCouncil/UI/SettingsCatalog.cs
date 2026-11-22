@@ -700,6 +700,8 @@ namespace ColonyCouncil
             // Portraits, phase 4 (UI/Faces/FaceEngineStage.cs): the large portrait's painted picture in front of a backdrop of where they are.
             Choice("portraitBackdrop", "CC_SetLabel_PortraitBackdrop", "CC_SetTip_PortraitBackdrop", "CC_PortraitBackdrop_", "CC_SetNote_PortraitBackdrop_",
                 new[] { "AsPainted", "LightlySoftened", "Softened", "Plain" }, "inspectPortrait,portraitLibrary");
+            // Portraits, phase 5 (the player, 22 November 2026): the backdrop behind the game's own drawing too.
+            Toggle("portraitBackdropGame", "CC_Settings_PortraitBackdropGame", "CC_SetNote_PortraitBackdropGame", "inspectPortrait,portraitLibrary");
             Choice("portraitOutline", "CC_SetLabel_PortraitOutline", "CC_SetTip_PortraitOutline", "CC_PortraitOutline_", "CC_SetNote_PortraitOutline_",
                 new[] { "Off", "Subtle", "Stronger" }, "inspectPortrait,portraitLibrary");
             Toggle("portraitLightTint", "CC_Settings_PortraitLightTint", "CC_SetNote_PortraitLightTint", "inspectPortrait,portraitLibrary");
@@ -711,6 +713,9 @@ namespace ColonyCouncil
             // Portraits, phase 3 (UI/Faces/PortraitLibrary.cs): painted portraits from the library, where one is close to the person.
             Toggle("portraitLibrary", "CC_Settings_PortraitLibrary", "CC_SetNote_PortraitLibrary");
             Choice("portraitPick", "CC_SetLabel_PortraitPick", "CC_SetTip_PortraitPick", "CC_PortraitPick_", "CC_SetNote_PortraitPick_", new[] { "Closest", "OnlyClose" },
+                "portraitLibrary");
+            // Portraits, phase 5 (the player, 22 November 2026): whether strangers may share a picture.
+            Choice("portraitShare", "CC_SetLabel_PortraitShare", "CC_SetTip_PortraitShare", "CC_PortraitShare_", "CC_SetNote_PortraitShare_", new[] { "Never", "NotTogether", "Always" },
                 "portraitLibrary");
             // The player's own library folder (UI/Faces/PortraitFolder.cs): its path, and reading it again.
             var folder = Action("portraitFolderRow", "CC_Settings_PortraitFolder", "CC_Settings_PortraitFolder_Tip", "CC_SetNote_PortraitFolder", "portraitLibrary");
