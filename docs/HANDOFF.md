@@ -659,6 +659,19 @@ most sense." So, in this order, three builds at a time:
   Then: "the image analysis mod also analyses the backdrops" (and on an empty scene the model made up a person; it also
   called a baby girl a man). Done: `Check-Pictures.ps1` leaves backdrops out and doesn't compare the sex of babies and
   toddlers. And the player: "now again only provide me the files that change" (kits only with the changed files again).
+  Then on the style: "maybe I do still want something that's closer to the Rimworld style, where how it draws, for
+  example, its own storytellers and DLC characters ... could we have a more closer to that style, comical style, even
+  with this model that we're using now? Because like how the brushes are and everything, the colors, it's really nice,
+  but the characters look a bit too just realistic ... it's like a huge contrast". Made: five style candidates for a
+  side-by-side test, all with the game's key-art look in words (ink outlines, hard cel shading, simplified, slightly
+  exaggerated faces): `style-comic-a` (Daubrez 0.55 with Comic Book Tome 3 V1 0.65), `b` (Tome 3 V1 0.9, Daubrez 0.35),
+  `c` (Daubrez 0.75 alone with the comic words), `d` (Painted Comic, a download), `e` (COMMIX, a download); and
+  `batches/style-test.csv` (ten varied plain people). The player picks; the chosen file becomes `style.json`.
+  Then: "a LoRa based on that, that we can then load into the Comfy UI", with seven pictures of the game's art (the
+  three storytellers, a fourth portrait, three DLC scenes). Done: `docs/portrait-art/STYLE-RIMWORLD.md` (the style in
+  words, the training set, FluxGym steps and settings for the player's card), `batches/style-rmw.json` (the LoRA
+  `rmwstyle` at 0.9 and the style's words); the training set (25 pictures with captions, trigger `rmwstyle`) sent to the
+  player as a zip, not in the repository (the game's art; for the player's own use only).
 - **Go given (22 November 2026, the player: "go ahead with the image delete feature"); built, not released: delete a
   picture for good from the game.** The entry "Delete a picture for good from the game" above the newest release line
   says what was built. The player: "what i would like in the game is a feature that when i really don't like an image,
