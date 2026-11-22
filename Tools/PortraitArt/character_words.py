@@ -310,6 +310,7 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
         if x <= 0:
             n = c
             break
+    named = [p for p in ('forehead', 'cheek', 'chin') if p in ' '.join(base)]   # a part of the face said once
     groups = [g for g in sorted(pools) if any(_ok(i, age) for i in pools[g])]
     # the features' groups in a weighted order: noses, jaws, mouths, eyes and brows first more often than moles and lines
     keyed = sorted(groups, key=lambda g: -rng.random() ** (1.0 / GROUP_WEIGHT.get(g, 1.0)))
@@ -319,6 +320,7 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
         if len(feats) >= n:
             break
         items = [i for i in pools[g] if _ok(i, age) and (skin_human or 'sunburnt' not in i[0]) and not (unfit and unfit.search(i[0]))
+                 and not any(p in i[0] for p in named)
                  and not (g in ('marks', 'lines') and any(w in i[0] for b, w in SAID_BY if b in blocks))]
         if not items:
             continue

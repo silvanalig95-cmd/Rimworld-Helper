@@ -10,8 +10,8 @@ Library pictures read: 0. Rows in the batch lists before this run: 742 (with at 
 
 | wave | kinds | plain cells covered (sex and age) | with a picture | plain rows | role rows | look rows |
 |---|---|---|---|---|---|---|
-| 1 | 2 | 36 of 36 | 0 | 375 | 92 | 306 |
-| 2 | 6 | 108 of 108 | 0 | 314 | 12 | 12 |
+| 1 | 2 | 36 of 36 | 0 | 380 | 92 | 306 |
+| 2 | 6 | 108 of 108 | 0 | 319 | 12 | 12 |
 | 3 | 6 | 32 of 108 | 0 | 36 | 0 | 0 |
 | 4 | 13 | 49 of 225 | 0 | 52 | 0 | 0 |
 | 5 | 54 | 139 of 921 | 0 | 146 | 0 | 0 |
@@ -98,13 +98,13 @@ Library pictures read: 0. Rows in the batch lists before this run: 742 (with at 
 
 | wave | kind | weight | save | plain cells | plain pictures | plain rows | role cells | role rows | look rows |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 272 | 54 of 54 | 72 | 230 |
-| 1 | dark elf | 0.74 | 48 | 18 of 18 | 0 | 103 | 12 of 12 | 20 | 76 |
-| 2 | hussar | 0.57 | 19 | 18 of 18 | 0 | 66 | 2 of 42 | 2 | 2 |
-| 2 | impid | 0.57 | 12 | 18 of 18 | 0 | 40 | 2 of 42 | 2 | 2 |
-| 2 | neanderthal | 0.57 | 12 | 18 of 18 | 0 | 66 | 2 of 42 | 2 | 2 |
-| 2 | pigskin | 0.52 | 8 | 18 of 18 | 0 | 66 | 2 of 36 | 2 | 2 |
-| 2 | saurid | 0.52 | 8 | 18 of 18 | 0 | 42 | 2 of 36 | 2 | 2 |
+| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 276 | 54 of 54 | 72 | 230 |
+| 1 | dark elf | 0.74 | 48 | 18 of 18 | 0 | 104 | 12 of 12 | 20 | 76 |
+| 2 | hussar | 0.57 | 19 | 18 of 18 | 0 | 67 | 2 of 42 | 2 | 2 |
+| 2 | impid | 0.57 | 12 | 18 of 18 | 0 | 41 | 2 of 42 | 2 | 2 |
+| 2 | neanderthal | 0.57 | 12 | 18 of 18 | 0 | 67 | 2 of 42 | 2 | 2 |
+| 2 | pigskin | 0.52 | 8 | 18 of 18 | 0 | 67 | 2 of 36 | 2 | 2 |
+| 2 | saurid | 0.52 | 8 | 18 of 18 | 0 | 43 | 2 of 36 | 2 | 2 |
 | 2 | waster | 0.52 | 8 | 18 of 18 | 0 | 34 | 2 of 30 | 2 | 2 |
 | 3 | high elf | 0.47 | 5 | 5 of 18 | 0 | 6 | - | 0 | 0 |
 | 3 | genie | 0.46 | 10 | 4 of 18 | 0 | 6 | - | 0 | 0 |
@@ -211,6 +211,7 @@ No row yet (rarer, or waiting for a kind that has them): antennae, barkSkin, bat
 | people-02 | 200 | 0 |
 | people-03 | 200 | 0 |
 | people-04 | 128 | 0 |
+| style-test | 10 | 0 |
 | characters-01 (new) | 200 | 0 |
 | characters-02 (new) | 200 | 0 |
 | characters-03 (new) | 199 | 0 |
