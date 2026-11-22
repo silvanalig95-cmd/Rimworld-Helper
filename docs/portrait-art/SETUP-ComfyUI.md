@@ -76,6 +76,15 @@ node pack (code made by others, run by ComfyUI): ComfyUI-RMBG, widely used, from
 6. **Workflow, Export (API)** over `rimfolk-workflow-api.json`.
 The first picture after this downloads the BiRefNet model (a few hundred MB) by itself.
 
+Saving only the cut-out (the remover's picture going to the one Save Image box) is fine too: the batch tool names a
+picture `..._cut` whenever it comes from the remover, whatever the box is called. For the backdrops, keep a second
+export without the remover, named with "rimfolk" and "workflow" in it (the player's: `rimfolk-backgrounds-workflow-
+api.json`): the tool takes the one with the remover for people and the one without it for `style-backdrop` by itself,
+and says which it used. (With only one workflow, it takes the remover out of the way for the backdrops.)
+
+The guidance number in the style files only counts with a **FluxGuidance** box between the prompt box and the KSampler's
+`positive` input; without one, FLUX uses its built-in 3.5, which is what the chosen pictures were made with.
+
 ## If something goes wrong
 
 - "Could not reach ComfyUI": ComfyUI isn't open, or it uses another port; the address is shown in ComfyUI's settings

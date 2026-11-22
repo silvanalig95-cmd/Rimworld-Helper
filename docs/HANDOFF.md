@@ -402,7 +402,13 @@ most sense." So, in this order, three builds at a time:
   legs as well. Can you kind of specify that a bit more?"). Done: the frame is now a medium close-up cut by the bottom
   edge at the belt, only head, shoulders, chest and arms, the head about a third of the height; the poses that pulled the
   view wider (a staff resting on the ground, a bow at the side, a sitting child) now fit that frame. If still too wide:
-  a shorter picture (1024 x 1152) next. Then (mod code) the
+  a shorter picture (1024 x 1152) next.
+  Then the backdrops came out cut out too (the player's people workflow saves only the remover's picture), and the
+  player exported a second workflow without the remover (`rimfolk-backgrounds-workflow-api.json`). Done: the batch tool
+  finds any `rimfolk*workflow*.json`, asks for the batch and style first, and takes the workflow that fits by itself
+  (with the remover for people, without it for a style with `"cut": false`; a style may also name one), names any
+  picture from the remover `..._cut`, and with only one workflow takes the remover out of the way for the backdrops
+  (tested with the player's own export and three wirings against a stand-in server). Then (mod code) the
   backdrop behind the large portrait by room, age and biome, tinted by day and weather, with the setting.
 - **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and

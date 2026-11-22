@@ -6,8 +6,9 @@
 # of each, and optionally style_end: words repeated after the framing to hold the style), builds each prompt as style +
 # subject + pose + framing + style_end, fills it into your exported ComfyUI workflow
 # (rimfolk-workflow-api.json, whose prompt box says %PROMPT% and negative box %NEGATIVE%) and queues it in ComfyUI.
-# ComfyUI then makes the pictures into its output\Rimfolk\<batch> folder. A second Save Image box whose title has the
-# word "cut" in it (the one after the background remover) saves the cut-out under the same name with _cut added. The
+# ComfyUI then makes the pictures into its output\Rimfolk\<batch> folder. A Save Image box after the background remover
+# (or whose title has the word "cut" in it) saves the cut-out under the same name with _cut added; a style with
+# "cut": false (the backdrops) skips the remover, however the workflow is wired. The
 # style file's LoRAs and sampler settings are set on the workflow's boxes for every picture, so changing a LoRA needs no
 # new export. A log of every prompt and seed is written to logs\ next to this script. Nothing else on the computer is
 # changed.
@@ -47,6 +48,60 @@ function Lora-Nodes($wf) {
     return @($wf.PSObject.Properties | Where-Object { [string]$_.Value.class_type -match 'LoraLoader' } | Sort-Object { [int]($_.Name -replace '\D', '') })
 }
 
+function Is-Link($v) { return ($v -is [array]) -and ($v.Count -eq 2) -and ($v[0] -is [string]) }
+
+$RemoverPattern = '(?i)rmbg|birefnet|remove.?background|rembg|inspyrenet|\bben2?\b'
+
+function Is-CutSave($wf, $n) {
+    # A Save Image box holds the cut-out when its title says "cut" or its picture comes from a background remover.
+    if (-not ([string]$n.class_type -match 'Save')) { return $false }
+    if ((Has $n '_meta') -and ([string]$n._meta.title -match '(?i)cut')) { return $true }
+    if ((Has $n.inputs 'images') -and (Is-Link $n.inputs.images)) {
+        $from = $wf.PSObject.Properties[[string]$n.inputs.images[0]]
+        if ($from -ne $null -and [string]$from.Value.class_type -match $RemoverPattern) { return $true }
+    }
+    return $false
+}
+
+function Skip-Cut($wf) {
+    # A style with "cut": false (the backdrops) skips the cut-out, however the workflow is wired: a Save Image box titled
+    # "cut" is left out, and every background remover (the RMBG pack's boxes) is taken out of the picture's way, with
+    # whatever took its picture taking the picture it was given instead.
+    $nodes = @($wf.PSObject.Properties)
+    foreach ($p in $nodes) {
+        if (([string]$p.Value.class_type -match 'Save') -and (Has $p.Value '_meta') -and ([string]$p.Value._meta.title -match '(?i)cut')) {
+            $wf.PSObject.Properties.Remove($p.Name)
+        }
+    }
+    $removers = @($wf.PSObject.Properties | Where-Object { [string]$_.Value.class_type -match $RemoverPattern })
+    foreach ($r in $removers) {
+        $src = $null
+        foreach ($inp in @($r.Value.inputs.PSObject.Properties)) {
+            if ((Is-Link $inp.Value) -and ($inp.Name -match '(?i)image')) { $src = $inp.Value; break }
+        }
+        if ($src -eq $null) { continue }
+        $usedOtherwise = $false
+        foreach ($p in @($wf.PSObject.Properties)) {
+            if ($p.Name -eq $r.Name -or $p.Value.inputs -eq $null) { continue }
+            foreach ($inp in @($p.Value.inputs.PSObject.Properties)) {
+                $v = $inp.Value
+                if ((Is-Link $v) -and ([string]$v[0] -eq $r.Name)) {
+                    if ([int]$v[1] -eq 0) { $inp.Value = @([string]$src[0], [int]$src[1]) } else { $usedOtherwise = $true }
+                }
+            }
+        }
+        if (-not $usedOtherwise) { $wf.PSObject.Properties.Remove($r.Name) }
+    }
+    # Two Save Image boxes now taking the same picture would save it twice: the first one stays.
+    $seen = @{}
+    foreach ($p in @($wf.PSObject.Properties | Sort-Object { [int]($_.Name -replace '\D', '') })) {
+        $n = $p.Value
+        if (-not ([string]$n.class_type -match 'Save') -or -not (Has $n.inputs 'images') -or -not (Is-Link $n.inputs.images)) { continue }
+        $key = '{0}:{1}' -f $n.inputs.images[0], $n.inputs.images[1]
+        if ($seen.ContainsKey($key)) { $wf.PSObject.Properties.Remove($p.Name) } else { $seen[$key] = $true }
+    }
+}
+
 function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [int] $w, [int] $h, [string] $prefix, $st) {
     $found = $false
     # The style file may also set the sampler (steps, cfg, sampler_name, scheduler, guidance, denoise) on any node that
@@ -79,9 +134,8 @@ function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [in
                 $inp.Value = $st.($inp.Name)
             }
             elseif ($inp.Name -eq 'filename_prefix' -and $cls -match 'Save') {
-                # The Save Image box after the background remover (its title says "cut") keeps the cut-out apart.
-                $title = ''; if ((Has $n '_meta') -and (Has $n._meta 'title')) { $title = [string]$n._meta.title }
-                if ($title -match '(?i)cut') { $inp.Value = $prefix + '_cut' } else { $inp.Value = $prefix }
+                # The Save Image box after the background remover keeps the cut-out apart, as ..._cut.
+                if (Is-CutSave $wf $n) { $inp.Value = $prefix + '_cut' } else { $inp.Value = $prefix }
             }
             elseif ($v -is [string]) {
                 if ($v.Contains('%PROMPT%')) { $inp.Value = $v.Replace('%PROMPT%', $prompt); $found = $true }
@@ -99,18 +153,6 @@ function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [in
 }
 
 try {
-    if ($Workflow -eq '') {
-        # Several exported workflows (rimfolk-workflow*.json, e.g. one for FLUX and one for Chroma): pick one.
-        $wfs = @(Get-ChildItem -LiteralPath $Folder -Filter 'rimfolk-workflow*.json' | ForEach-Object { $_.Name })
-        if ($wfs.Count -eq 0) { $Workflow = Join-Path $Folder 'rimfolk-workflow-api.json' }
-        else { $Workflow = Join-Path $Folder (Pick 'workflow' $wfs) }
-    }
-    if (-not (Test-Path -LiteralPath $Workflow)) {
-        throw "The workflow $Workflow is missing. Export it from ComfyUI with Workflow, Export (API) (see SETUP-ComfyUI.md)."
-    }
-    $wfText = Get-Content -LiteralPath $Workflow -Raw -Encoding UTF8
-    if (-not $wfText.Contains('%PROMPT%')) { throw 'The workflow has no %PROMPT% in its prompt box. Type %PROMPT% there and export it again.' }
-
     if ($Batch -eq '') {
         $Batch = Pick 'batch' @(Get-ChildItem -LiteralPath $batches -Filter '*.csv' | ForEach-Object { $_.BaseName })
     }
@@ -119,6 +161,35 @@ try {
     }
     $rows = @(Import-Csv -LiteralPath (Join-Path $batches ($Batch + '.csv')) -Encoding UTF8)
     $st = Get-Content -LiteralPath (Join-Path $batches ($Style + '.json')) -Raw -Encoding UTF8 | ConvertFrom-Json
+    $wantCut = -not ((Has $st 'cut') -and -not $st.cut)
+
+    if ($Workflow -eq '') {
+        # The exported workflows next to this script (any rimfolk*workflow*.json: one for the people with the background
+        # remover, one for the backdrops without it, or one for another model). A style may name its own ("workflow");
+        # otherwise the one that fits the style is taken by itself: with the remover for people, without it for a style
+        # with "cut": false. Asked only when that leaves more than one.
+        $wfs = @(Get-ChildItem -LiteralPath $Folder -Filter 'rimfolk*workflow*.json' | ForEach-Object { $_.Name })
+        if ($wfs.Count -eq 0) { $Workflow = Join-Path $Folder 'rimfolk-workflow-api.json' }
+        elseif ((Has $st 'workflow') -and $st.workflow -and (Test-Path -LiteralPath (Join-Path $Folder ([string]$st.workflow)))) {
+            $Workflow = Join-Path $Folder ([string]$st.workflow)
+        }
+        elseif ($wfs.Count -eq 1) { $Workflow = Join-Path $Folder $wfs[0] }
+        else {
+            $fit = @($wfs | Where-Object {
+                $t = Get-Content -LiteralPath (Join-Path $Folder $_) -Raw -Encoding UTF8
+                $hasRemover = $t -match ('"class_type"\s*:\s*"[^"]*(' + ($RemoverPattern -replace '^\(\?i\)', '') + ')[^"]*"')
+                $hasRemover -eq $wantCut
+            })
+            if ($fit.Count -eq 1) { $Workflow = Join-Path $Folder $fit[0] }
+            else { $Workflow = Join-Path $Folder (Pick 'workflow' $wfs) }
+        }
+        Write-Host ("Using the workflow {0}." -f (Split-Path -Leaf $Workflow))
+    }
+    if (-not (Test-Path -LiteralPath $Workflow)) {
+        throw "The workflow $Workflow is missing. Export it from ComfyUI with Workflow, Export (API) (see SETUP-ComfyUI.md)."
+    }
+    $wfText = Get-Content -LiteralPath $Workflow -Raw -Encoding UTF8
+    if (-not $wfText.Contains('%PROMPT%')) { throw 'The workflow has no %PROMPT% in its prompt box. Type %PROMPT% there and export it again.' }
     $w = 1024; if ($st.width) { $w = [int]$st.width }
     $h = 1024; if ($st.height) { $h = [int]$st.height }
     $each = 1; if ($st.count) { $each = [int]$st.count }
@@ -146,13 +217,7 @@ try {
             $name = ($r.name -replace '[^A-Za-z0-9_\-]', '_')
             $prefix = 'Rimfolk/{0}/{1}_{2}_{3:00}' -f $Batch, $name, $Style, $i
             $wf = $wfText | ConvertFrom-Json
-            if ((Has $st 'cut') -and -not $st.cut) {
-                # A style with "cut": false (the backdrops) skips the cut-out: its Save box is left out, so ComfyUI skips
-                # the background remover too.
-                foreach ($k in @($wf.PSObject.Properties | Where-Object { ([string]$_.Value.class_type -match 'Save') -and (Has $_.Value '_meta') -and ([string]$_.Value._meta.title -match '(?i)cut') } | ForEach-Object { $_.Name })) {
-                    $wf.PSObject.Properties.Remove($k)
-                }
-            }
+            if ((Has $st 'cut') -and -not $st.cut) { Skip-Cut $wf }
             if (-not (Set-Inputs $wf $prompt $negative $seed $w $h $prefix $st)) { throw 'No prompt box with %PROMPT% was found in the workflow.' }
             $body = @{ prompt = $wf; client_id = $client } | ConvertTo-Json -Depth 64 -Compress
             try {
