@@ -179,7 +179,7 @@ namespace ColonyCouncil
             string root = PortraitDeleteMath.BinRoot(folder);
             if (folder.NullOrEmpty() || bin && root == null)
             {
-                Messages.Message("CC_Portrait_DeleteFailed".Translate(FileShown(texPath).Named("FILE"), "CC_Portrait_DeleteNoBin".Translate().Named("WHY")).Resolve(),
+                Messages.Message("CC_Portrait_DeleteFailed".Translate(FileShown(texPath).Named("FILE"), "CC_Portrait_DeleteNoBin".Translate().Resolve().Named("WHY")).Resolve(),
                     MessageTypeDefOf.RejectInput, false);
                 return null;
             }

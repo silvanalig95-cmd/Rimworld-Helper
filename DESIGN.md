@@ -17008,6 +17008,92 @@ Tested in `Tools/Tests/PortraitLifeTests.cs`.
   deaths and news, and the holding; the weather tiles and the fire's light against real backdrops at day and night; the
   cost of the extra read-backs.
 
+### Portraits: deleting a picture for good (not released yet)
+
+The player's words (22 November 2026): "what i would like in the game is a feature that when i really don't like an
+image, that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this
+way i could cycle out all the basic ai faces. it would actually delete the image files directly through the rimworld
+client", and the go the same day: "go ahead with the image delete feature". Built on phases 4 to 6, whose rules stay.
+
+The code: `UI/Faces/PortraitDelete.cs` (new: the menu's entries, the dialog, the deletion started on a worker and taken in
+by the game), the pure `PortraitDeleteMath.cs` (new: records.xml's records taken out, a picture's files, the bin's names,
+deleted.csv, trying again, the whole deletion on the folder), `InspectPortrait.cs` (the menu), `PortraitFolder.cs`
+(records dropped without reading the folder again), `PortraitStore.cs` (a texture let go), `PortraitKeeper.cs` (its
+holders let go), `FaceEngineStage.cs` (the backdrop shown). Tested in `Tools/Tests/PortraitDeleteTests.cs` (on a small
+library folder of its own made in a temporary folder). The scripts of `Tools/PortraitArt/` honour the list.
+
+- **On the large portrait's right-click menu**, after "Choose another picture": "Delete this picture for good..." for the
+  painted picture it shows and "Delete this backdrop for good..." for the backdrop it shows behind them (a painted picture
+  or the game's own drawing in front of it). Only for a picture or backdrop of the library folder; one of a mod's
+  `Portraits` folder or Textures is greyed out ("a mod's picture"), as are both while a deletion is being written, while
+  the folder is being read, and with "Move it to the bin" where the library folder has no folder above it for the bin (a
+  drive's root). An expression is never offered on its own: it goes with its picture.
+- **The dialog** is the game's own two-button one (red confirm): the picture's file as the player finds it
+  (`colonists\Avila_style_..._.png` in the library folder), how many expressions go with it (a backdrop: its depth map),
+  who holds it now (the person shown first, then everyone the save keeps it for, by name; "N others" past six; anyone no
+  longer in the world counted) and that each of them gets another picture by the usual rules (a backdrop: shown behind
+  them now, the large portrait chooses again); where the files go; that its record is taken out of records.xml and its
+  name written into deleted.csv, so the scripts never bring it back; and "This can't be undone in the game."
+- **What it does**, confirmed, on a worker thread (`PortraitDeleteMath.Run`; a cloud drive's slow file never holds the
+  game up):
+  1. records.xml read; its records taken out of the text (the picture's and its expressions', those whose `variantOf`
+     names it; a backdrop's own, its depth map being part of it), each with the line it stood on, everything else as it
+     was (the declaration, the comment, the other records, the file's line endings). A records.xml that is no XML at all
+     is left alone and nothing is done.
+  2. Its files found in its folder: its own, the files its other records name, and beside it by name its expressions
+     (`<stem>_v-<word>.png`) or a backdrop's depth map (`<stem>_depth.png`); never a file any other record of the folder
+     uses, never a " (2)" copy or a picture that only starts with the same name. Letters' case aside, as on Windows.
+  3. Its line added to `library\deleted.csv` (a new list gets its columns first; a list Excel saved with semicolons keeps
+     them; every line already in it kept): `file` (its file name), `batch`, `row` (the batch row's name), `record` (its
+     record's name), `date`, `how` ("deleted in the game, moved to the bin" or "... files deleted") and `sha256` (its
+     file's, as PowerShell's Get-FileHash writes it).
+  4. records.xml written (where it still had them).
+  Each is written safely, to a temporary file beside it that then replaces it (a cloud drive sees one change; where the
+  drive can't replace a file, it is copied over it), and each step tried again up to five times, waiting 0.3, 0.6, 1.2
+  and 2.4 seconds (a synced folder may hold a file a moment). The list is written before the records: if the list can't
+  be written nothing has changed; if the records can't, the list is put back byte for byte. Either way the game changes
+  nothing and says so plainly ("Could not delete ...: records.xml could not be written (...). Nothing was changed.").
+  5. Then its files: with the setting "Deleting a picture" on "Move it to the bin" (the default) moved into
+     `<the library folder's parent>\deleted pictures\<batch>\` (never inside the library, where the scripts would read
+     it as a batch; made where needed), all with the same " (2)", " (3)" after the picture's name where a name is taken
+     there, so a picture and its expressions keep going together; on "Delete the files" deleted. Each file tried again
+     the same way; a file that still can't be moved stays in the library, out of the records and in the list, so nothing
+     uses it, and the message names how many.
+- **In the game**, once written: its records dropped from what the folder's reading holds (`PortraitFolder.Forget`), so
+  the library and the backdrops are read again from what is left without reading the folder; their textures let go at
+  once, or as soon as a reading still running comes in, and never loaded again; everyone the save keeps the picture for
+  keeps no picture and no face now (`PortraitKeeper.LetGoPicture`: whether they are the colony's own stays), so each gets
+  a new pick by the usual rules the next time they are shown (a picture pinned to them first, then the closest face no one
+  else holds, else the game's own drawing), and their old face is no longer held for them; the large portrait's made
+  pictures let go, so its backdrop is chosen again. A message: "Deleted the picture ... for good. Its 4 expressions went
+  with it. The files are in deleted pictures\colonists beside the library folder. Another picture is picked for Ape."
+  The log has the records and files.
+- **One at a time**: while a deletion is written, the menu's entries wait and "Reload the library" (and the folder's own
+  reading) waits for it, so a reading never brings back what it takes out.
+- **The scripts honour deleted.csv** (`Tools/PortraitArt/`, each with the same two functions, `Read-Deleted` and
+  `Is-Deleted`): `Copy-ToLibrary.ps1` never copies a listed picture from ComfyUI's output again (nor its depth map or
+  expressions); `Update-PortraitLibrary.ps1` never writes a record for one even if its file comes back, nor for its
+  expressions or depth map, and keeps the listed records' names taken, so the other pictures keep theirs and the game
+  keeps them for whoever holds them; `Check-Pictures.ps1` never looks at one; `Make-Variants.ps1` and
+  `Make-DepthMaps.ps1` make it no expressions or depth map, even where a records.xml from before still names it. Matched
+  by the file name; a " (2)" copy of a listed picture by its content (the SHA-256 on its line; a line typed by hand
+  without one holds back every copy), and a picture in ComfyUI's output also when the library's " (2)" copy of it was
+  deleted. A deleted.csv that can't be read (open in Excel) stops the script with a plain message, so nothing comes back
+  by mistake. To bring a picture back: take its line out of deleted.csv, put its file back, run the library script.
+  `Run-PortraitBatch.ps1` is unchanged: a row whose pictures are all deleted has none in the library, so it is made again
+  when only the rows without pictures are asked for (new faces for a face cycled out).
+- **Settings** (How you're told, Portraits, after the library folder's row): "Deleting a picture" (Move it to the bin;
+  Delete the files).
+- **Saved**: nothing new in the save (the setting is the mod's); deleted.csv is in the library folder.
+- Every game member used (the float menu, the game's confirmation dialog, the pawns alive or dead, the messages) is the
+  same in 1.6 and 1.7 (ApiDiff); the files through .NET's own (File.Replace, File.Move, SHA-256). No new hook.
+- **Not checked without the game**: the dialog and messages as they look; File.Replace and File.Move on the player's
+  Google Drive folder (a drive that can't replace a file is copied over instead; a file Drive holds is tried again); the
+  holders picked again in a running game (a colonist, a stranger, a dead colonist when next shown); the large portrait's
+  backdrop chosen again; the scripts on Windows PowerShell 5.1 (tried with PowerShell 7 on a small library: copied,
+  recorded, checked, given expressions and depth maps, a list saved by Excel, a line typed by hand, a " (2)" copy with the
+  same and with another content, an unreadable list).
+
 ### On-screen panels and the hover card
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of
