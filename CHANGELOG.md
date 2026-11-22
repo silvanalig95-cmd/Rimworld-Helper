@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Deleting a picture for good
+
+*22 November 2026, version 0.297.0*
+
+- Right-click the large portrait to delete a painted picture or backdrop you don't like, for good
+- Its files go to a bin, "deleted pictures", beside the library folder; a new setting can delete them at once instead
+- Its record is taken out right away, and whoever held it gets another picture by the usual rules
+- The portrait scripts read the new list of deleted pictures, so they never copy, record or check one again
+
 ## Quests nearer home and an events record
 
 *22 November 2026, version 0.296.0*

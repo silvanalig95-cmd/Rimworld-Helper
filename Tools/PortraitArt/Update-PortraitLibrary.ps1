@@ -24,6 +24,12 @@
 # variant and the picture's defName as its variantOf. An expression or depth map whose picture is missing or left out
 # is left out too.
 #
+# Pictures deleted for good in the game (Rimfolk's large portrait, right-click, "Delete this picture for good..."): Rimfolk
+# moves their files to the bin (deleted pictures\ beside the library), takes their records out of records.xml at once and
+# lists them in library\deleted.csv. This script never writes a record for a picture listed there, nor for its
+# expressions or depth map, even if its file comes back into the library; and the names their records had stay taken,
+# so the other pictures keep theirs (and the game keeps them for whoever holds them).
+#
 # Run it after adding or removing pictures: right-click it, "Run with PowerShell". Then "Reload the library" in Rimfolk's
 # settings (or restart the game). Nothing outside library\records.xml is changed. If Rimfolk has written
 # library\missing.csv (what the game needed and the library didn't have), its first lines are shown at the end.
@@ -188,6 +194,63 @@ function Unique-Name([string] $stem, $names) {
     return $defName
 }
 
+# ---------------- Pictures deleted in the game ----------------
+# library\deleted.csv: Rimfolk adds a line there when a picture is deleted for good from the large portrait's menu (its
+# files go to the bin, deleted pictures\ beside the library). Such a picture is never copied, recorded, checked or given
+# expressions or a depth map again, even if its file comes back. Matched by its file name, and a " (2)" copy of it by its
+# content (the SHA-256 on its line), so another picture that only shares the start of the name is not held back. To bring
+# a picture back, take its line out of deleted.csv and put its file back into the library.
+
+function Read-Deleted([string] $lib) {
+    # The deleted pictures by their name without .png (small letters), each with the SHA-256 of its file ('' where its
+    # line has none); the names of " (2)" copies also by the name they are a copy of; and the records' names.
+    $d = @{ names = @{}; copies = @{}; records = @() }
+    $path = Join-Path $lib 'deleted.csv'
+    if (-not (Test-Path -LiteralPath $path)) { return $d }
+    try {
+        $first = ''
+        foreach ($l in @(Get-Content -LiteralPath $path -Encoding UTF8 -TotalCount 1)) { $first = [string]$l }
+        $delim = ','
+        if ($first.IndexOf(';') -ge 0 -and $first.IndexOf(',') -lt 0) { $delim = ';' }
+        $rows = @(Import-Csv -LiteralPath $path -Encoding UTF8 -Delimiter $delim)
+    }
+    catch { throw ('{0} could not be read ({1}): is it open in Excel? Close it and run this again.' -f $path, $_.Exception.Message) }
+    foreach ($r in $rows) {
+        $cols = @($r.PSObject.Properties.Name)
+        $f = ''; if ($cols -contains 'file') { $f = ([string]$r.file).Trim() }
+        if ($f -eq '') { continue }
+        $f = @($f -split '[\\/]')[-1]
+        if ($f.ToLowerInvariant().EndsWith('.png')) { $f = $f.Substring(0, $f.Length - 4) }
+        $stem = $f.ToLowerInvariant()
+        $hash = ''; if ($cols -contains 'sha256') { $hash = ([string]$r.sha256).Trim().ToUpperInvariant() }
+        if (-not $d.names.ContainsKey($stem)) { $d.names[$stem] = New-Object System.Collections.ArrayList }
+        [void]$d.names[$stem].Add($hash)
+        $base = $stem -replace '\s*\(\d+\)$', ''
+        if ($base -ne $stem) {
+            if (-not $d.copies.ContainsKey($base)) { $d.copies[$base] = New-Object System.Collections.ArrayList }
+            [void]$d.copies[$base].Add($hash)
+        }
+        if ($cols -contains 'record') { $rec = ([string]$r.record).Trim(); if ($rec -ne '') { $d.records += $rec } }
+    }
+    return $d
+}
+
+function Is-Deleted([string] $path, $deleted, [bool] $fromOutput = $false) {
+    # Whether deleted.csv lists this picture: its own name, or a " (2)" copy of a listed picture with the same content;
+    # for a picture in ComfyUI's output (fromOutput) also one whose " (2)" copy in the library was deleted.
+    if ($deleted.names.Count -eq 0) { return $false }
+    $stem = [System.IO.Path]::GetFileNameWithoutExtension($path).ToLowerInvariant()
+    if ($deleted.names.ContainsKey($stem)) { return $true }
+    $hashes = New-Object System.Collections.ArrayList
+    $base = $stem -replace '\s*\(\d+\)$', ''
+    if ($base -ne $stem -and $deleted.names.ContainsKey($base)) { $hashes.AddRange(@($deleted.names[$base])) }
+    if ($fromOutput -and $deleted.copies.ContainsKey($stem)) { $hashes.AddRange(@($deleted.copies[$stem])) }
+    if ($hashes.Count -eq 0) { return $false }
+    if ($hashes -contains '') { return $true }
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { return $false }
+    return ($hashes -contains (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash)
+}
+
 try {
     if (-not (Test-Path -LiteralPath $library)) {
         New-Item -ItemType Directory -Force -Path (Join-Path $library 'colonists'), (Join-Path $library 'backdrops') | Out-Null
@@ -198,6 +261,10 @@ try {
     $problems = New-Object System.Collections.ArrayList
     $names = @{}
     $corr = Read-Corrections (Join-Path $library 'corrections.csv')
+    # Pictures deleted for good in the game: never recorded again, and their records' names kept taken.
+    $deleted = Read-Deleted $library
+    foreach ($n in $deleted.records) { $names[$n] = $true }
+    $deletedOut = 0; $deletedExtras = 0
     $applied = 0; $leftOut = 0
     # Every batch list's rows by name, so a picture finds its row even when its row has moved to another list (lists
     # are mixed and renumbered now and then) or its folder's list is gone; its own folder's list comes first.
@@ -225,6 +292,11 @@ try {
         foreach ($f in $pics) {
             $own = @(); $fstem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
             if ($extras.ContainsKey($fstem.ToLowerInvariant())) { $own = @($extras[$fstem.ToLowerInvariant()]) }
+            if (Is-Deleted $f.FullName $deleted) {
+                $deletedOut++
+                foreach ($x in $own) { $x.used = $true; $deletedExtras++ }
+                continue
+            }
             $hit = Row-For $f.Name $rows
             if ($hit -eq $null) { $hit = Row-For $f.Name $allRows }
             if ($hit -eq $null) { [void]$problems.Add(("library\{0}\{1}: no row of this name in any batch list, left out" -f $batch, $f.Name)); continue }
@@ -279,6 +351,8 @@ try {
         foreach ($key in $extras.Keys) {
             foreach ($x in $extras[$key]) {
                 if ($x.used) { continue }
+                # The depth map or expression of a picture deleted in the game, left behind: out with it, quietly.
+                if (Is-Deleted (Join-Path $dir.FullName ($x.base + '.png')) $deleted) { $deletedExtras++; continue }
                 $extrasOut++
                 $base = @($pics | Where-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) -eq $x.base })
                 if ($base.Count -eq 0) { [void]$problems.Add(("library\{0}\{1}.png: its picture {2}.png is not in this folder, left out" -f $batch, $x.stem, $x.base)) }
@@ -296,6 +370,9 @@ try {
     if ($depths -gt 0) { $line += (' ({0} with a depth map)' -f $depths) }
     Write-Host ($line + '.') -ForegroundColor Green
     if ($extrasOut -gt 0) { Write-Host ('{0} depth maps or expressions left out with their picture (missing, left out, or of the wrong kind).' -f $extrasOut) }
+    if ($deletedOut -gt 0 -or $deletedExtras -gt 0) {
+        Write-Host ('{0} pictures and {1} depth maps or expressions in the library are deleted for good in the game (deleted.csv), so they have no records. Move them out of the library, or take their lines out of deleted.csv to have them back.' -f $deletedOut, $deletedExtras) -ForegroundColor Yellow
+    }
     if ($applied -gt 0 -or $corr.ask -gt 0) {
         $line = 'Corrections (corrections.csv): {0} applied' -f $applied
         if ($leftOut -gt 0) { $line += (', {0} of them leaving a picture out' -f $leftOut) }

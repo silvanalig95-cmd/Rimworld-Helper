@@ -23,6 +23,7 @@
 #   yes lines count as done when comparing, and an issue marked no stays out of the report.
 # - It never deletes, moves or renames a picture and never changes a batch list or the records: the name ties a
 #   picture to its row, and the row's other pictures may be right.
+# - A picture deleted for good in the game (listed in library\deleted.csv) is never looked at.
 #
 # Run it: keep ComfyUI open and double-click Check-Pictures.cmd (or right-click this file, "Run with PowerShell"). Then
 # look at corrections.csv's ask lines, run Update-PortraitLibrary.ps1 and "Reload the library" in the game.
@@ -1097,6 +1098,63 @@ function Corr-Text($c, [string] $note) {
     return ($t + ' (' + $a + ')')
 }
 
+# ---------------- Pictures deleted in the game ----------------
+# library\deleted.csv: Rimfolk adds a line there when a picture is deleted for good from the large portrait's menu (its
+# files go to the bin, deleted pictures\ beside the library). Such a picture is never copied, recorded, checked or given
+# expressions or a depth map again, even if its file comes back. Matched by its file name, and a " (2)" copy of it by its
+# content (the SHA-256 on its line), so another picture that only shares the start of the name is not held back. To bring
+# a picture back, take its line out of deleted.csv and put its file back into the library.
+
+function Read-Deleted([string] $lib) {
+    # The deleted pictures by their name without .png (small letters), each with the SHA-256 of its file ('' where its
+    # line has none); the names of " (2)" copies also by the name they are a copy of; and the records' names.
+    $d = @{ names = @{}; copies = @{}; records = @() }
+    $path = Join-Path $lib 'deleted.csv'
+    if (-not (Test-Path -LiteralPath $path)) { return $d }
+    try {
+        $first = ''
+        foreach ($l in @(Get-Content -LiteralPath $path -Encoding UTF8 -TotalCount 1)) { $first = [string]$l }
+        $delim = ','
+        if ($first.IndexOf(';') -ge 0 -and $first.IndexOf(',') -lt 0) { $delim = ';' }
+        $rows = @(Import-Csv -LiteralPath $path -Encoding UTF8 -Delimiter $delim)
+    }
+    catch { throw ('{0} could not be read ({1}): is it open in Excel? Close it and run this again.' -f $path, $_.Exception.Message) }
+    foreach ($r in $rows) {
+        $cols = @($r.PSObject.Properties.Name)
+        $f = ''; if ($cols -contains 'file') { $f = ([string]$r.file).Trim() }
+        if ($f -eq '') { continue }
+        $f = @($f -split '[\\/]')[-1]
+        if ($f.ToLowerInvariant().EndsWith('.png')) { $f = $f.Substring(0, $f.Length - 4) }
+        $stem = $f.ToLowerInvariant()
+        $hash = ''; if ($cols -contains 'sha256') { $hash = ([string]$r.sha256).Trim().ToUpperInvariant() }
+        if (-not $d.names.ContainsKey($stem)) { $d.names[$stem] = New-Object System.Collections.ArrayList }
+        [void]$d.names[$stem].Add($hash)
+        $base = $stem -replace '\s*\(\d+\)$', ''
+        if ($base -ne $stem) {
+            if (-not $d.copies.ContainsKey($base)) { $d.copies[$base] = New-Object System.Collections.ArrayList }
+            [void]$d.copies[$base].Add($hash)
+        }
+        if ($cols -contains 'record') { $rec = ([string]$r.record).Trim(); if ($rec -ne '') { $d.records += $rec } }
+    }
+    return $d
+}
+
+function Is-Deleted([string] $path, $deleted, [bool] $fromOutput = $false) {
+    # Whether deleted.csv lists this picture: its own name, or a " (2)" copy of a listed picture with the same content;
+    # for a picture in ComfyUI's output (fromOutput) also one whose " (2)" copy in the library was deleted.
+    if ($deleted.names.Count -eq 0) { return $false }
+    $stem = [System.IO.Path]::GetFileNameWithoutExtension($path).ToLowerInvariant()
+    if ($deleted.names.ContainsKey($stem)) { return $true }
+    $hashes = New-Object System.Collections.ArrayList
+    $base = $stem -replace '\s*\(\d+\)$', ''
+    if ($base -ne $stem -and $deleted.names.ContainsKey($base)) { $hashes.AddRange(@($deleted.names[$base])) }
+    if ($fromOutput -and $deleted.copies.ContainsKey($stem)) { $hashes.AddRange(@($deleted.copies[$stem])) }
+    if ($hashes.Count -eq 0) { return $false }
+    if ($hashes -contains '') { return $true }
+    if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { return $false }
+    return ($hashes -contains (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash)
+}
+
 # ---------------- The run ----------------
 
 try {
@@ -1110,10 +1168,14 @@ try {
     # (<picture>_v-blink.png ...) belong to their picture, which is checked; they are not looked at.
     $pictures = New-Object System.Collections.ArrayList
     $skippedBackdrops = 0
+    # Pictures deleted for good in the game (deleted.csv) are not looked at, even where their file is still here.
+    $deleted = Read-Deleted $library
+    $skippedDeleted = 0
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory | Sort-Object Name)) {
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File | Sort-Object Name)) {
             $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
             if ($stem -match '_(depth|v-[A-Za-z]+)$') { continue }
+            if (Is-Deleted $f.FullName $deleted) { $skippedDeleted++; continue }
             # Backdrops are not looked at (the player: "the image analysis ... also analyses the backdrops"): the questions
             # are about a person, and on an empty scene the model made one up. Only people's pictures are checked.
             $rec = $records[($dir.Name + '/' + $stem).ToLowerInvariant()]
@@ -1128,6 +1190,7 @@ try {
         }
     }
     if ($skippedBackdrops -gt 0) { Write-Host ('{0} backdrops left out: only people are checked.' -f $skippedBackdrops) }
+    if ($skippedDeleted -gt 0) { Write-Host ('{0} pictures left out: deleted for good in the game (deleted.csv).' -f $skippedDeleted) }
     if ($pictures.Count -eq 0) { throw ('No pictures of people in the library ({0}) yet.' -f $library) }
 
     $db = Read-Checked

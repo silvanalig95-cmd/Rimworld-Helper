@@ -120,7 +120,10 @@ role or best passion (a scholar, a soldier, a cook): a picture showing a look or
 plain pictures are for anyone. A special look (the conjoined twins of Conjoined Twins, wings) only ever gets a picture
 made with it, else the game's own drawing. It is chosen the first time it is needed and kept: injuries, haircuts and
 clothes don't change it, only growing into the next stage of life (a toddler, a child, a teen, a grown-up, old) does;
-a right click on the large portrait chooses another. Pictures are read only when shown and kept in a small cache, and
+a right click on the large portrait chooses another, or deletes the picture or the backdrop it shows for good (its
+files go to the bin `deleted pictures` beside the library folder, or are deleted, as **Deleting a picture** says; its
+record is taken out of the folder's `records.xml` and its name written into `deleted.csv`, which the portrait scripts
+honour, so it never comes back; whoever held it gets another). Pictures are read only when shown and kept in a small cache, and
 always shown as painted, never mirrored. The large portrait shows the whole picture at its own shape, a little taller
 than wide, the body running to its foot, in front of a painted backdrop of where they are (the kind of room, the
 colony's age and what is in the room, or the land outdoors), darker at night; the game's own drawing stands in front of
@@ -137,7 +140,7 @@ pane**, **Its size**, **Backdrop**, **Backdrop behind the game's own drawing too
 round the person**, **Tint the person to the room's light**, **Depth that follows the mouse**, **Blinking and
 expressions**, **The backdrop alive**, **Headgear in portraits**, **Clothes in portraits**,
 **Poses in portraits**, **Portraits move a little**, **Painted portraits from the library**, **Portraits from the
-library**, **Strangers may share a picture** and **Portrait library folder** (How you're told, Portraits) set it.
+library**, **Strangers may share a picture**, **Portrait library folder** and **Deleting a picture** (How you're told, Portraits) set it.
 
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:

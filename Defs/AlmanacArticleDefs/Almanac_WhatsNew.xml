@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.297.0</version>
+        <date>22 November 2026</date>
+        <title>Deleting a picture for good</title>
+        <points>
+          <li>Right-click the large portrait to delete a painted picture or backdrop you don't like, for good</li>
+          <li>Its files go to a bin, "deleted pictures", beside the library folder; a new setting can delete them at once instead</li>
+          <li>Its record is taken out right away, and whoever held it gets another picture by the usual rules</li>
+          <li>The portrait scripts read the new list of deleted pictures, so they never copy, record or check one again</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.296.0</version>
         <date>22 November 2026</date>
         <title>Quests nearer home and an events record</title>

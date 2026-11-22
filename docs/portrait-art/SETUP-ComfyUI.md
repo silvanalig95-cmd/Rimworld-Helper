@@ -115,6 +115,17 @@ download. Then whatever you add on one computer is on the other after Drive sync
 (if Drive has another drive letter there, the path differs). The pictures don't go through Rimfolk's GitHub, so a
 Rimfolk update never downloads them again.
 
+**Deleting a picture in the game**: right-click the large portrait, **Delete this picture for good...** (or **Delete
+this backdrop for good...**), and confirm. Rimfolk moves the picture and its expressions (a backdrop and its depth map)
+into the bin, the folder `deleted pictures\<batch>` next to `library\` in your `Rimfolk-portraits` folder, takes its
+record out of `library\records.xml` at once, and writes its name into `library\deleted.csv`; whoever had it gets another
+picture. Empty the bin yourself when you like (the setting **Deleting a picture** can delete the files at once instead).
+The scripts read `deleted.csv`: `Copy-ToLibrary` never copies that picture from ComfyUI's output again,
+`Update-PortraitLibrary` never writes a record for it even if the file comes back, and the picture check, the depth maps
+and the expressions leave it out. To have one back: take its line out of `deleted.csv` (Excel is fine; close it before
+running a script), put its file back into its library folder and run `Update-PortraitLibrary.ps1`. A row whose pictures
+are all deleted counts as having none, so `Run-PortraitBatch.ps1` makes it again when you ask for the missing rows.
+
 **Growing it**: Rimfolk writes `library\missing.csv` with what it needed and had no picture for (a xenotype, a room kind,
 a biome, an age). `Update-PortraitLibrary.ps1` shows its first lines; send it to the lead, who adds new rows to the batch
 lists. When the library already holds pictures of a batch, `Run-PortraitBatch.ps1` offers to make only the rows that

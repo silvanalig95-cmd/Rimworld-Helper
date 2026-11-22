@@ -734,6 +734,9 @@ namespace ColonyCouncil
             // The player's own library folder (UI/Faces/PortraitFolder.cs): its path, and reading it again.
             var folder = Action("portraitFolderRow", "CC_Settings_PortraitFolder", "CC_Settings_PortraitFolder_Tip", "CC_SetNote_PortraitFolder", "portraitLibrary");
             folder.covers = new[] { "portraitFolder" };
+            // Deleting a picture for good from the large portrait's menu (UI/Faces/PortraitDelete.cs): its files to the bin, or deleted.
+            Choice("portraitDelete", "CC_SetLabel_PortraitDelete", "CC_SetTip_PortraitDelete", "CC_PortraitDelete_", "CC_SetNote_PortraitDelete_", new[] { "Bin", "Delete" },
+                "portraitLibrary");
             // The on-screen panels and the hover card (Hud/): the same switches as the panels' own menus.
             Section("CC_SetSec_Panels");
             Toggle("hudShown", "CC_Settings_HudShown", "CC_SetNote_HudShown");

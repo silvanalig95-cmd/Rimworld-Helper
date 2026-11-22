@@ -65,6 +65,12 @@
   <CC_Settings_PortraitFolder_Empty>No folder set</CC_Settings_PortraitFolder_Empty>
   <CC_Settings_PortraitFolder_Reload>Reload the library</CC_Settings_PortraitFolder_Reload>
   <CC_Settings_PortraitFolder_ReloadTip>Read the folder's records.xml and its pictures' names again, after adding a batch. Pictures already kept by your people stay theirs.</CC_Settings_PortraitFolder_ReloadTip>
+  <CC_SetLabel_PortraitDelete>Deleting a picture</CC_SetLabel_PortraitDelete>
+  <CC_SetTip_PortraitDelete>What happens to the files when you delete a painted picture or a backdrop for good (right-click the large portrait, "Delete this picture for good..."). "Move it to the bin": the picture and its expressions, or the backdrop and its depth map, are moved into the folder "deleted pictures" beside the library folder, in a folder of their batch, so you can look at them once more before you empty it. "Delete the files": they are deleted at once. Either way the picture's record is taken out of records.xml and its name is written into deleted.csv in the library folder, so the portrait scripts never copy, record or check it again, and whoever held it gets another picture.</CC_SetTip_PortraitDelete>
+  <CC_PortraitDelete_Bin>Move it to the bin</CC_PortraitDelete_Bin>
+  <CC_PortraitDelete_Delete>Delete the files</CC_PortraitDelete_Delete>
+  <CC_SetNote_PortraitDelete_Bin>A picture deleted for good is moved into the folder "deleted pictures" beside the library folder.</CC_SetNote_PortraitDelete_Bin>
+  <CC_SetNote_PortraitDelete_Delete>A picture deleted for good has its files deleted at once.</CC_SetNote_PortraitDelete_Delete>
   <CC_PortraitFolder_None>No portrait library folder is set.</CC_PortraitFolder_None>
   <CC_PortraitFolder_NotThere>the folder is not there</CC_PortraitFolder_NotThere>
   <CC_PortraitFolder_NoRecords>it has no records.xml</CC_PortraitFolder_NoRecords>
@@ -105,7 +111,7 @@
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>
-  <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture.</CC_Portrait_TipLibrary>
+  <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture or delete one for good.</CC_Portrait_TipLibrary>
   <CC_Portrait_GripTip>Drag to make the portrait larger or smaller.</CC_Portrait_GripTip>
   <CC_Portrait_ChooseAnother>Choose another picture</CC_Portrait_ChooseAnother>
   <CC_Portrait_ChooseEmpty>the library has no pictures</CC_Portrait_ChooseEmpty>
@@ -113,4 +119,46 @@
   <CC_Portrait_ChooseNoneShort>no picture fits them</CC_Portrait_ChooseNoneShort>
   <CC_Portrait_ChooseNone>No other painted picture fits {PAWN_nameDef}.</CC_Portrait_ChooseNone>
   <CC_Portrait_ChooseDone>{PAWN_nameDef} now has another painted picture ({AT} of {OF}), kept from now on.</CC_Portrait_ChooseDone>
+
+  <!-- Deleting a picture for good (UI/Faces/PortraitDelete.cs) -->
+  <CC_Portrait_Delete>Delete this picture for good...</CC_Portrait_Delete>
+  <CC_Portrait_DeleteBackdrop>Delete this backdrop for good...</CC_Portrait_DeleteBackdrop>
+  <CC_Portrait_DeleteFromMod>a mod's picture, not one of the library folder</CC_Portrait_DeleteFromMod>
+  <CC_Portrait_DeleteBackdropFromMod>a mod's backdrop, not one of the library folder</CC_Portrait_DeleteBackdropFromMod>
+  <CC_Portrait_DeleteBusy>the last one is still being deleted</CC_Portrait_DeleteBusy>
+  <CC_Portrait_DeleteReading>the library folder is being read</CC_Portrait_DeleteReading>
+  <CC_Portrait_DeleteNoBin>the library folder has no folder above it for the bin; choose "Delete the files" in the settings</CC_Portrait_DeleteNoBin>
+  <CC_Portrait_DeleteTitle>Delete this picture for good</CC_Portrait_DeleteTitle>
+  <CC_Portrait_DeleteBackdropTitle>Delete this backdrop for good</CC_Portrait_DeleteBackdropTitle>
+  <CC_Portrait_DeleteWhat>The painted picture {FILE} in the library folder will be deleted for good.</CC_Portrait_DeleteWhat>
+  <CC_Portrait_DeleteWhatExpressions>Its {COUNT} expressions go with it.</CC_Portrait_DeleteWhatExpressions>
+  <CC_Portrait_DeleteWhatExpression>Its expression goes with it.</CC_Portrait_DeleteWhatExpression>
+  <CC_Portrait_DeleteBackdropWhat>The backdrop {FILE} in the library folder will be deleted for good.</CC_Portrait_DeleteBackdropWhat>
+  <CC_Portrait_DeleteWhatDepth>Its depth map goes with it.</CC_Portrait_DeleteWhatDepth>
+  <CC_Portrait_DeleteHeld>It is held now by {NAMES}. Whoever holds it gets another picture by the usual rules: a picture made for them first, then the closest one nobody holds, else the game's own drawing.</CC_Portrait_DeleteHeld>
+  <CC_Portrait_DeleteHeldNone>Nobody holds it now.</CC_Portrait_DeleteHeldNone>
+  <CC_Portrait_DeleteBackdropShown>It is shown now behind {PAWN_nameDef}. The large portrait then chooses another backdrop for where they are, else a plain one.</CC_Portrait_DeleteBackdropShown>
+  <CC_Portrait_DeleteToBin>Its files are moved into the bin, the folder {BIN} beside the library folder, which you empty yourself.</CC_Portrait_DeleteToBin>
+  <CC_Portrait_DeleteFiles>Its files are deleted.</CC_Portrait_DeleteFiles>
+  <CC_Portrait_DeleteRecord>Its record is taken out of records.xml and its name is written into deleted.csv, so the portrait scripts never copy, record or check it again.</CC_Portrait_DeleteRecord>
+  <CC_Portrait_DeleteNoUndo>This can't be undone in the game.</CC_Portrait_DeleteNoUndo>
+  <CC_Portrait_DeleteGone>{NAME} is no longer in the library, so nothing was deleted.</CC_Portrait_DeleteGone>
+  <CC_Portrait_DeleteNoLonger>{COUNT} more no longer in the world</CC_Portrait_DeleteNoLonger>
+  <CC_Portrait_DeleteOthers>{COUNT} others</CC_Portrait_DeleteOthers>
+  <CC_Portrait_DeleteFailed>Could not delete {FILE}: {WHY}. Nothing was changed. A cloud drive may be holding the file for a moment; try again shortly.</CC_Portrait_DeleteFailed>
+  <CC_Portrait_DeleteWhyNoRecords>the library folder has no records.xml</CC_Portrait_DeleteWhyNoRecords>
+  <CC_Portrait_DeleteWhyRead>records.xml could not be read ({ERROR})</CC_Portrait_DeleteWhyRead>
+  <CC_Portrait_DeleteWhyList>deleted.csv could not be written ({ERROR})</CC_Portrait_DeleteWhyList>
+  <CC_Portrait_DeleteWhyRecords>records.xml could not be written ({ERROR})</CC_Portrait_DeleteWhyRecords>
+  <CC_Portrait_DeleteWhyError>an error ({ERROR})</CC_Portrait_DeleteWhyError>
+  <CC_Portrait_Deleted>Deleted the picture {FILE} for good.</CC_Portrait_Deleted>
+  <CC_Portrait_DeletedBackdrop>Deleted the backdrop {FILE} for good.</CC_Portrait_DeletedBackdrop>
+  <CC_Portrait_DeletedExpressions>Its {COUNT} expressions went with it.</CC_Portrait_DeletedExpressions>
+  <CC_Portrait_DeletedExpression>Its expression went with it.</CC_Portrait_DeletedExpression>
+  <CC_Portrait_DeletedDepth>Its depth map went with it.</CC_Portrait_DeletedDepth>
+  <CC_Portrait_DeletedToBin>The files are in {BIN} beside the library folder.</CC_Portrait_DeletedToBin>
+  <CC_Portrait_DeletedFiles>The files are deleted.</CC_Portrait_DeletedFiles>
+  <CC_Portrait_DeletedHolders>Another picture is picked for {NAMES}.</CC_Portrait_DeletedHolders>
+  <CC_Portrait_DeletedBackdropAgain>The large portrait chooses its backdrop again.</CC_Portrait_DeletedBackdropAgain>
+  <CC_Portrait_DeletedPartly>{COUNT} of its files could not be moved or deleted ({ERROR}): they are still in the library folder, out of the records and listed in deleted.csv, so nothing uses them. Move or delete them by hand.</CC_Portrait_DeletedPartly>
 </LanguageData>

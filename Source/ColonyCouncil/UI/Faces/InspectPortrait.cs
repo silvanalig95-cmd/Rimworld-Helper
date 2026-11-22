@@ -187,7 +187,7 @@ namespace ColonyCouncil
             float ms = Mathf.Clamp(Mathf.Round(r.width * 0.14f), 18f, 32f);
             var mark = new Rect(inner.x + 4f, inner.y + 4f, ms, ms);
             FaceEngine.DrawMark(mark, p);
-            // A right click: its menu (another painted picture for them).
+            // A right click: its menu (another painted picture for them, or deleting the picture or backdrop shown for good).
             if (!dragging && ev.type == EventType.MouseDown && ev.button == 1 && Mouse.IsOver(r))
             {
                 Menu(p);
@@ -213,6 +213,8 @@ namespace ColonyCouncil
         /// <summary>
         /// The portrait's menu: "Choose another picture" (the next painted picture that may stand for them: their own pinned
         /// pictures, then the nearest faces), kept for them from then on; greyed out with the reason where there is none.
+        /// Then "Delete this picture for good..." and "Delete this backdrop for good..." for the painted picture and the
+        /// backdrop shown, where they come from the library folder (<see cref="PortraitDelete"/>).
         /// </summary>
         private static void Menu(Pawn p)
         {
@@ -228,6 +230,7 @@ namespace ColonyCouncil
                     string said = lib.ChooseAnother(p);
                     Messages.Message(said, MessageTypeDefOf.SilentInput, false);
                 }));
+            PortraitDelete.AddOptions(p, options);
             Find.WindowStack.Add(new FloatMenu(options));
         }
 

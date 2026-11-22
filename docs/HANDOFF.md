@@ -676,8 +676,9 @@ most sense." So, in this order, three builds at a time:
   fourteen portraits from their storyteller mods. Done: round 2 of the set (47 pictures, 18 characters: the storytellers
   at full size from the wiki with face close-ups, eleven of the mods' portraits; STYLE-RIMWORLD.md), sent as a zip.
   Asked of the player: the Anomaly and Odyssey key art at full size, if they have it.
-- **To do when the player asks (22 November 2026, the player; proposal sent, waiting for the go): delete a picture for
-  good from the game.** The player: "what i would like in the game is a feature that when i really don't like an image,
+- **Go given (22 November 2026, the player: "go ahead with the image delete feature"); built, not released: delete a
+  picture for good from the game.** The entry "Delete a picture for good from the game" above the newest release line
+  says what was built. The player: "what i would like in the game is a feature that when i really don't like an image,
   that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this way i
   could cycle out all the basic ai faces. it would actually delete the image files directly through the rimworld
   client". The proposal: "Delete this picture for good" (and "... this backdrop ...") on the large portrait's menu, with a
@@ -1355,6 +1356,64 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.297.0, **Delete a picture for good from
+  the game** (22 November 2026; the player: "what i would like in the game is a feature that when i really don't like an
+  image, that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this
+  way i could cycle out all the basic ai faces. it would actually delete the image files directly through the rimworld
+  client", and the go: "go ahead with the image delete feature"). DESIGN.md "Portraits: deleting a picture for good (not
+  released yet)" has every rule; README "Portraits"; the Almanac's guide, its portrait sentence; SETUP-ComfyUI.md step 7,
+  "Deleting a picture in the game".
+  - **On the large portrait's right-click menu**: "Delete this picture for good..." for the painted picture shown and
+    "Delete this backdrop for good..." for the backdrop shown, only for the library folder's (a mod's greyed out); the
+    game's own two-button dialog names the file, how many expressions (or the depth map) go with it, who holds it now,
+    where the files go, and "This can't be undone in the game."
+  - **Confirmed, on a worker thread**: its line into `library\deleted.csv` (file, batch, row, record, date, how, sha256),
+    then its records (the picture's and its expressions') out of `records.xml`, each written to a temporary file that then
+    replaces it, each step tried five times over about four and a half seconds; on an error nothing is changed (the list
+    put back byte for byte) and a message says so. Then the picture and its expressions (`<stem>_v-*.png`), or the
+    backdrop and its depth map (`<stem>_depth.png`), moved into `<the library folder's parent>\deleted pictures\<batch>\`
+    (made when needed; a name there already gets " (2)", the picture's expressions the same), or deleted with the new
+    setting "Deleting a picture" (Move it to the bin, the default; Delete the files). Never a file another record uses.
+  - **In the game**: its records dropped from what was read without reading the folder again, its textures let go,
+    everyone the save keeps it for keeps nothing now and is picked again when next shown by the usual rules (their pins,
+    the closest free face, else the game's drawing), their old face no longer held for them; the large portrait's backdrop
+    chosen again; a message saying what was done. "Reload the library" waits while a deletion is written.
+  - **The scripts honour deleted.csv** (Windows PowerShell 5.1 compatible; tried with PowerShell 7 on a small library):
+    `Copy-ToLibrary.ps1` never copies a listed picture from ComfyUI's output again (nor its depth map or expressions);
+    `Update-PortraitLibrary.ps1` never writes a record for it even if its file comes back, and keeps the listed records'
+    names taken so the other pictures keep theirs; `Check-Pictures.ps1`, `Make-Variants.ps1` and `Make-DepthMaps.ps1`
+    leave it out. Matched by the file name, and a " (2)" copy by its content (the SHA-256 on its line; a line typed by hand
+    without one holds back every copy). An unreadable list (open in Excel) stops a script with a plain message.
+  - Decided here: one line per picture in deleted.csv (its expressions and depth map go with it by name); the SHA-256 so a
+    different picture under a " (2)" name is not held back; the list written before the records (if the records then
+    fail, the list is put back); a file that still can't be moved stays in the library, out of the records and listed, and
+    the message says how many; holders keep whether they are the colony's own; the bin beside the library folder, never
+    inside it, and the entry greyed where the folder has no parent (a drive's root); `Run-PortraitBatch.ps1` unchanged, so a
+    row whose pictures are all deleted is made again when the missing rows are asked for.
+  - Code: new `UI/Faces/PortraitDelete.cs` (the menu's entries, the dialog, the worker, the game's side) and the pure
+    `UI/Faces/PortraitDeleteMath.cs` (records out of records.xml's text, a picture's files, the bin and its names,
+    deleted.csv written and read, trying again, writing safely, the whole deletion); changed `InspectPortrait.cs` (the
+    menu), `PortraitFolder.cs` (`Forget`, `PersonNamed`, `BackdropNamed`, `Reading`, reading after a deletion),
+    `PortraitStore.cs` (`LetGo`, `gone`), `PortraitKeeper.cs` (`HoldersOfPicture`, `LetGoPicture`), `FaceEngineStage.cs`
+    (`BackdropShown`); the setting in `CouncilSettings.cs` and `UI/SettingsCatalog.cs`; words in
+    `Languages/English/Keyed/Rimfolk_Portraits.xml`; the scripts `Tools/PortraitArt/Copy-ToLibrary.ps1`,
+    `Update-PortraitLibrary.ps1`, `Check-Pictures.ps1`, `Make-Variants.ps1`, `Make-DepthMaps.ps1` (`Read-Deleted`,
+    `Is-Deleted`). Tests: `Tools/Tests/PortraitDeleteTests.cs` (new; linked `PortraitDeleteMath.cs` in `Tests.csproj`), on a
+    small library made in a temporary folder. Nothing new saved.
+  - **Can't be checked without the game**: the dialog and messages as they look; File.Replace and File.Move on the
+    player's Google Drive folder (a drive that can't replace a file is copied over instead); the holders picked again in a
+    running game; the backdrop chosen again; the scripts on Windows PowerShell 5.1 itself.
+  - **Try in the game** (screenshots please): select a colonist with a painted picture you don't like, right-click the
+    large portrait, "Delete this picture for good...": the dialog names the file and who holds it; confirm. A message
+    says what was done, and the colonist shows another picture (their own pinned one first) or the game's drawing. In the
+    `Rimfolk-portraits` folder: `deleted pictures\colonists` holds the picture and its expressions, `library\deleted.csv`
+    a line for it, `library\records.xml` no record of it. Do the same with "Delete this backdrop for good...": the large
+    portrait takes another backdrop. Run `Copy-ToLibrary.cmd`: "... were not copied again". Run
+    `Update-PortraitLibrary.ps1`: no record for it. Put a deleted picture back into its library folder and run it again:
+    still no record ("deleted for good in the game"). Switch "Deleting a picture" to "Delete the files" and delete another:
+    the files are gone, no bin. Then on the other computer after Drive syncs, "Reload the library": the picture is gone
+    there too.
+  - Mods that would help: none needed (the pictures are the player's own; the files are handled by .NET itself).
 - 0.296.0, **Fewer quests out on the world map,
   their sites nearer home, Rimfolk's own timer besides the storyteller's, and the events record** (22 November 2026; the
   player, 20 November 2026: "the missions that you get, especially the ones on the world map, where something pops up
