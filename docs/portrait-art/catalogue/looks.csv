@@ -1,0 +1,147 @@
+word,label,special,traits,genes,hediffs,bodies,kinds,prompt,pose,howCommon,notes
+drinker,a drinker's face,no,VTE_Lush;VTE_DrunkenMaster,,AlcoholAddiction;Cirrhosis,,,"a red, bulbous nose, flushed cheeks with fine broken veins and tired, watery eyes",a battered tankard held loosely at chest height,10 of 405 (2.5%),
+addict,a chemical user's face,no,DrugDesire:2,,PsychiteAddiction;WakeUpAddiction;GoJuiceAddiction;LuciferiumAddiction,,,"glassy, restless eyes, sunken cheeks and a twitchy, hungry look","fidgeting with the hands, the shoulders drawn up",7 of 405 (1.7%),
+stoner,a smoker's ease,no,VTE_Stoner,,SmokeleafAddiction,,,"heavy-lidded, reddened eyes and a slack, easy smile","leaning back loosely, a hand-rolled smoke between two fingers",6 of 405 (1.5%),
+pyromaniac,a fire-lover's stare,no,Pyromaniac,,,,,"singed eyebrows, small burn marks on the fingers and a bright, fixed, restless stare","holding up a lit match close to the face, watching the flame",6 of 405 (1.5%),
+psychopath,a cold stare,no,Psychopath,,,,,"a flat, cold, unblinking stare and a faint, empty smile","standing very still, hands loosely clasped, the head slightly tilted",28 of 405 (6.9%),
+bloodlust,a hungry look for a fight,no,Bloodlust,,,,,"a hard, eager look in the eyes and a cruel twist to the mouth","leaning forward slightly, the jaw set, spoiling for a fight",8 of 405 (2.0%),
+cannibal,a cannibal's stare,no,Cannibal,,,,,"a hungry, unsettling stare and a string of small bone beads at the neck","the chin lowered, staring up from under the brows",2 of 405 (0.5%),
+beautiful,striking beauty,no,Beauty:2;AG_Beauty:2,Beauty_Beautiful;AG_Beauty_Angelic,,,,"strikingly beautiful, with well-proportioned features and clear, even skin","a composed, graceful bearing, the chin slightly raised",13 of 405 (3.2%),
+pretty,a pleasant face,no,Beauty:1,Beauty_Pretty,,,,"pleasant, even features and clear skin",,75 of 405 (18.5%),
+ugly,"a plain, uneven face",no,Beauty:-1,Beauty_Ugly,,,,"plain, uneven features, a lumpy nose and coarse skin",,10 of 405 (2.5%),
+hideous,a hard face to look at,no,Beauty:-2;AG_Beauty:-2,Beauty_VeryUgly;AG_Beauty_VeryVeryUgly;VRE_Repulsive;AG_UnsettlingAppearance,,,,"badly uneven, coarse features, a misshapen nose, blotchy skin and crooked teeth",,3 of 405 (0.7%),
+tough,"a tough, battered look",no,Tough;VTE_ThickSkinned,,,,,"a thick neck, a broad face nicked with old cuts and a solid, sturdy frame","standing square, arms folded across a broad chest",21 of 405 (5.2%),
+wimp,a timid look,no,Wimp;VTE_Coward,,,,,"a soft, timid face and eyes that dart away","the shoulders hunched, the hands held close to the body",21 of 405 (5.2%),
+sickly,a sickly look,no,Immunity:-1,,,,,"pale, slightly sallow skin, dark rings under the eyes and a thin, tired face","a little hunched, a shawl pulled close around the shoulders",4 of 405 (1.0%),
+ascetic,"a spare, plain look",no,Ascetic,,,,,"a lean, spare face, close-cropped hair and plain, simple clothes","standing upright and still, hands folded in front",14 of 405 (3.5%),
+nudist,very little clothing,no,Nudist,,,,,"very little clothing: bare shoulders and arms, only a short sleeveless wrap","relaxed and open, the arms loose at the sides",10 of 405 (2.5%),"Kept modest: bare arms and shoulders, never more."
+kind,a kind face,no,Kind,,,,,"warm, soft eyes, laugh lines and a gentle smile","a hand raised a little in greeting, an open stance",12 of 405 (3.0%),
+abrasive,a sour scowl,no,Abrasive,,,,,"a sour, impatient scowl and narrowed eyes","arms crossed, the chin jutting out",27 of 405 (6.7%),
+greedy,a calculating look,no,Greedy;VTE_Tycoon,,,,,"a calculating look, several rings on the fingers and a heavy coin purse at the belt","rubbing finger and thumb together, a sly sidelong glance",21 of 405 (5.2%),
+runner,a runner's build,no,SpeedOffset:2,,,,,"a lean, wiry runner's build and a light, springy bearing","turned slightly, weight on the toes, as if about to move off",19 of 405 (4.7%),
+nimble,"a quick, agile look",no,Nimble,,,,,"a light, agile build and quick, alert eyes","poised lightly, one shoulder forward",8 of 405 (2.0%),
+brawler,a brawler's look,no,Brawler;VTE_MartialArtist,,,,,"a broken nose, scarred knuckles wrapped in tape and a thick neck",fists raised loosely in front of the chest,16 of 405 (4.0%),
+nervous,a nervous look,no,Nerves:-1;Nerves:-2;VTE_Anxious;Neurotic:2,,,,,"a tense, twitchy face, bitten lips and darting eyes","the arms wrapped around the body, glancing aside",22 of 405 (5.4%),
+ironWilled,an unflinching gaze,no,Nerves:2;VTE_Brave,,,,,"a steady, unflinching gaze and a firmly set jaw","standing straight, looking directly ahead",13 of 405 (3.2%),
+gloomy,a gloomy look,no,NaturalMood:-2;NaturalMood:-1;VTE_WorldWeary,,,,,"downcast, heavy eyes and a drawn, tired mouth","the head lowered a little, the shoulders sagging",19 of 405 (4.7%),
+cheerful,a cheerful face,no,NaturalMood:2;NaturalMood:1;Joyous,,,,,"a bright, ready smile and crinkled, laughing eyes","the head tilted back, laughing",9 of 405 (2.2%),
+idle,an idle look,no,Industriousness:-2;Industriousness:-1;VTE_CouchPotato,,,,,"a slack, sleepy, unhurried look and rumpled clothes","slouching, one hand in a pocket",10 of 405 (2.5%),
+toiler,a hard worker's look,no,Industriousness:2;Industriousness:1;VTE_Workaholic,,,,,"calloused hands, rolled-up sleeves and a busy, intent look","sleeves rolled up, wiping the hands on a rag",22 of 405 (5.4%),
+sharp,"a sharp, searching gaze",no,TooSmart;FastLearner;VTE_Prodigy,,,,,"a sharp, searching gaze and a faint, knowing smirk","one eyebrow raised, studying the viewer",49 of 405 (12.1%),
+sleepless,a sleepless face,no,NightOwl;VTE_Insomniac,,,,,"dark circles under the eyes and a pale, tired face",,12 of 405 (3.0%),
+pallid,a sun-starved face,no,Undergrounder,,,,,"pale, sun-starved skin and eyes narrowed against the light",shading the eyes with one hand,26 of 405 (6.4%),
+slob,an unkempt look,no,VTE_Slob;Hygienic:-2;Hygienic:-1,,,,,"greasy, unkempt hair, a stubbly chin and stained clothes","slouching, scratching the neck",8 of 405 (2.0%),
+neat,"a neat, well-kept look",no,VTE_Neat;Hygienic:1;Hygienic:2;Rimfolk_Tidy,,,,,"neatly combed hair and a clean, well-kept appearance","standing straight, straightening a cuff",19 of 405 (4.7%),
+bigBoned,a big-boned frame,no,VTE_BigBoned,,,,,"a heavy, big-boned frame and a broad face",,6 of 405 (1.5%),
+gourmand,a well-fed look,no,Gourmand;VTE_Gastronomist;VTE_Insatiable,,,,,"a round, well-fed face and a full belly","holding a half-eaten piece of bread, looking content",26 of 405 (6.4%),
+creepy,an unsettling look,no,CreepyBreathing;Disturbing,,,,,"hollow cheeks, a slightly open mouth and an unsettling, unblinking look",leaning a little too close toward the viewer,3 of 405 (0.7%),
+tortured,a brooding look,no,TorturedArtist,,,,,"haunted, intense eyes, untidy hair and a brooding look",running a hand through untidy hair,5 of 405 (1.2%),
+eccentric,an eccentric look,no,VTE_Eccentric,,,,,"odd, mismatched clothes and a cheerfully strange look","a quirky, theatrical pose",7 of 405 (1.7%),
+haughty,a haughty look,no,VTE_Snob;VTE_RefinedPalate,,,,,"a haughty, raised chin and a look of mild disdain",looking down the nose at the viewer,8 of 405 (2.0%),
+vengeful,a grudging glare,no,VTE_Vengeful,,,,,"a cold, brooding glare that holds a grudge","arms crossed, the eyes narrowed",7 of 405 (1.7%),
+rebel,a defiant look,no,VTE_Rebel,,,,,"a defiant smirk and a rough, rebellious look","the chin up, a hand on the hip",6 of 405 (1.5%),
+voidTouched,touched by the void,no,VAEI_VoidTouched,,VoidTouched,,,"faint dark veins at the temples and a distant, unsettling stare",,0 of 405 (0.0%),Guessed: the game draws no change of its own.
+inhumanized,an inhuman calm,no,VAEI_Inhumanized,,Inhumanized,,,"a blank, unnervingly calm face that seems to look through the viewer",,0 of 405 (0.0%),Guessed: the game draws no change of its own.
+psycaster,a psycaster,no,,,PsychicAmplifier;VPE_PsycastAbilityImplant,,,"a faint glow about the eyes and temples and a calm, intense stare",two fingers raised to the temple,159 of 405 (39.3%),"The psylink of Royalty or Vanilla Psycasts Expanded. Psycaster paths are not on the pawn as a trait, gene or hediff, so one look covers them."
+fireMage,a fire mage,no,InnerFire,,,,,"warm firelight on the face, faint ember marks on the hands",one palm held up with a small flame dancing on it,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+iceMage,an ice mage,no,HeartOfFrost,,,,,frost on the eyebrows and a cold blue mist curling from one hand,"one hand raised, wreathed in frost",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+stormMage,a lightning mage,no,StormBorn,,,,,"small sparks of lightning crackling between the fingers, hair lifted by static","fingers spread, lightning arcing between them",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+arcanist,an arcane mage,no,Arcanist,,,,,faint glowing runes circling one hand,one hand raised with a ring of glowing runes around it,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+paladin,a paladin,no,Paladin,,,,,a soft golden light about the shoulders and a holy symbol worn at the chest,one hand on the chest over a holy symbol,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+lightPriest,a magic priest,no,Priest,,,,,"a soft white glow in cupped hands and a calm, kindly face",hands cupped around a soft white light,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+summoner,a summoner,no,Summoner,,,,,a small glowing ring of light hovering at one hand,"one hand held out, a ring of light above it",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+druid,a druid,no,Druid,,,,,thin green vines winding around the forearms and a small green glow in one hand,"one hand open, a sprouting seedling glowing in it",1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+necromancer,a necromancer,no,Necromancer,,,,,"a deathly pallor, dark-ringed eyes and a faint green mist about the hands",holding a small bone charm up to the light,1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+warlock,a warlock,no,Warlock,,,,,dark shadows curling around the hands and intense dark eyes,"one hand raised, wrapped in dark smoke",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+succubus,a succubus,no,Succubus,,,,,"small dark horns, a sly, alluring smile and a faint red glow in the eyes","a hand under the chin, a knowing look",1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+bardMage,a bard,no,TM_Bard,,,,,"a small lute held at the chest and a lively, charming look",strumming a small lute,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+geomancer,a geomancer,no,Geomancer,,,,,stone dust on the hands and a few small pebbles floating above one palm,"one palm up, pebbles floating above it",1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+technomancer,a technomancer,no,Technomancer,,,,,faint glowing circuit lines in the air around one hand,"one hand raised, glowing lines tracing around it",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+bloodMage,a blood mage,no,BloodMage,,,,,"pale skin, dark red marks on the hands and a thin ribbon of blood floating in the air","one hand raised, a ribbon of blood curling above it",1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+enchanter,an enchanter,no,Enchanter,,,,,several softly glowing rings and a shining gem held in one hand,holding a glowing gem up to the eye,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+chronomancer,a chronomancer,no,Chronomancer,,,,,a faint shimmer like a ripple in the air around one hand and a small hourglass charm,one hand raised in a rippling shimmer,2 of 405 (0.5%),A RimWorld of Magic's class (its class trait).
+chaosMage,a chaos mage,no,ChaosMage,,,,,sparks of mismatched colours flaring around the hands and a wild look,"both hands spread, sparks flaring",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+brightmage,a brightmage,no,TM_Brightmage,,,,,a small sphere of bright light hovering over one palm,"one palm up, a sphere of light above it",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+shamanMage,a magic shaman,no,TM_Shaman,,,,,"feathers and small bones tied into the clothes, painted marks and a small carved totem",holding a carved totem up,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+golemancer,a golemancer,no,TM_Golemancer,,,,,rune-marked gloves and a small clay figure held in one hand,holding up a small clay figure,1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+empath,an empath,no,TM_Empath,,,,,"soft, searching eyes and a faint glow at the temples","a hand held out toward the viewer, palm open",1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+apothecary,an apothecary,no,TM_Apothecary,,,,,small glass vials and dried herbs at the belt and stained fingers,holding a small vial up to the light,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+gladiator,a gladiator,no,Gladiator,,,,,a battered fighter with a heavy arm guard and a scarred face,a short sword held ready at the side,1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+sniperClass,a sniper,no,TM_Sniper,,,,,"a long rifle over the shoulder and one eye narrowed, patient",a long rifle resting on one shoulder,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+bladedancer,a bladedancer,no,Bladedancer,,,,,"a slim curved blade held loosely and a light, ready stance","a curved blade held low, ready",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+rangerClass,a ranger,no,Ranger,,,,,a bow over the shoulder and a green hooded cloak with the hood down,drawing an arrow from a quiver over the shoulder,1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+faceless,a faceless one,no,Faceless,,,,,"a plain, forgettable face half in shadow and a dagger held low","half turned away, a dagger held low",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+psionic,a psionic,no,TM_Psionic,,,,,"a faint psychic shimmer around the head and intense, focused eyes","two fingers at the temple, eyes fixed",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+deathKnight,a death knight,no,DeathKnight,,,,,"dark armour, a pale face and a faint red glow in the eyes",a dark blade held upright before the face,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+monk,a monk,no,TM_Monk,,,,,"simple robes, wrapped hands and a calm, centred look",palms pressed together before the chest,0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+commander,a commander,no,TM_Commander,,,,,an officer's bearing and a raised hand giving an order,"one hand raised, giving an order",0 of 405 (0.0%),A RimWorld of Magic's class (its class trait).
+superSoldier,a super soldier,no,TM_SuperSoldier,,,,,"heavy military gear, a hard stare and a scar along the jaw",a heavy rifle held across the chest,1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+wayfarer,a wayfarer,no,TM_Wayfarer,,,,,"a well-travelled look, a pack on the back and a walking staff",gripping a walking staff at chest height,1 of 405 (0.2%),A RimWorld of Magic's class (its class trait).
+shadow,a shadow,no,TM_TheShadow,,,,,"dark close-fitting clothes, the face half hidden and watchful eyes","half in shadow, watching sidelong",5 of 405 (1.2%),A RimWorld of Magic's class (its class trait).
+redEyes,red eyes,no,,Eyes_Red,,,,bright red eyes,,19 of 405 (4.7%),The hussars' and uhlans' own look has them already.
+greyEyes,pale grey eyes,no,,Eyes_Gray,,,,pale grey eyes,,2 of 405 (0.5%),The dirtmoles' own look has them already.
+thirdEye,a third eye,no,,AG_ThirdEye;DV_Head_Avaloi,,,,a third eye in the middle of the forehead,,5 of 405 (1.2%),The avaloi's own look has it already.
+antennae,antennae,no,,AG_DownwardsAntennas;AG_FormicAntennas;AG_LowerAntennas;AG_MothAntennae;AG_OutwardsAntennas;AG_VFEI_Antennae;VRE_InsectAntennae;PoI_Goodra_Antennae,,,,a pair of insect antennae rising from the forehead,,0 of 405 (0.0%),
+mandibles,mandibles,no,,AG_BeeMandibles;AG_BeetleMandibles;AG_PincerMandibles,VRE_InsectMandibles,,,small insect mandibles at the corners of the mouth,,0 of 405 (0.0%),
+faceTentacles,tentacles on the face,no,,AG_FaceTentacles;AG_UpperTentacles;AG_RayHoundTentacles,,,,a cluster of tentacles hanging from the lower face,,1 of 405 (0.2%),
+heavyBrow,a heavy brow and jaw,no,,Brow_Heavy;Jaw_Heavy,,,,a heavy jutting brow ridge and a heavy jaw,,12 of 405 (3.0%),The neanderthals' own look has it already.
+longHead,an elongated head,no,,VRE_ElongatedHead,,,,"a tall, elongated skull",,10 of 405 (2.5%),The genies' own look has it already.
+gaunt,a gaunt face,no,,Head_Gaunt;AG_VeryGauntHead;AG_GauntBody,,,,"a gaunt, hollow-cheeked face and a bony frame",,9 of 405 (2.2%),
+facialRidges,facial ridges,no,,FacialRidges,,,,raised ridges across the face and scalp,,7 of 405 (1.7%),
+womanBeard,a beard on a woman,no,,Beard_Always,,,,"a woman with a full, thick beard",,6 of 405 (1.5%),For women only; the yttakin's and stoneborn's own looks have it already.
+barkSkin,bark skin,no,,VRE_BarkSkin;AG_ArmourMinor,,,,bark-textured skin,,2 of 405 (0.5%),
+foliageHair,leaves for hair,no,,VRE_FoliageHair,,,,a mane of leaves in place of hair,,2 of 405 (0.5%),
+fungalGrowth,mushrooms growing on the head,no,,VRE_FungalCrest;VRE_HairMushroom;AG_FungalSprout;AG_FungalClumps,,,,small mushrooms and fungal clumps growing from the head and shoulders,,0 of 405 (0.0%),
+fangs,fangs,no,,AG_VenomFangs;AG_AcidFangs;DV_ParalyzingFangs,VenomFangs,,,long sharp fangs showing at the lip,,2 of 405 (0.5%),
+claws,clawed hands,no,,AG_ClawedHands;VRESaurids_SauridClaws;VQEA_PlasteelClaws,VRESaurids_SauridClaws;AG_ClawedHands;VQEA_PlasteelClaws,,,hands ending in sharp claws,,8 of 405 (2.0%),
+metalSkin,metallic skin,no,,AG_ArmourMajor;AG_ArmourMedium;VQEA_PlasteelSkin,,,,skin with a dull metallic sheen,,0 of 405 (0.0%),
+rockySkin,rocky ridges,no,,AG_RockyBody;AG_RockSpurs,,,,rocky ridges along the brow and cheekbones and stony skin,,0 of 405 (0.0%),
+eyeStalks,eyes on stalks,no,,AG_Stalks,,,,two extra eyes on short stalks above the brow,,0 of 405 (0.0%),
+proboscis,a proboscis,no,,AG_Proboscis,,,,a long insect proboscis in place of a mouth,,0 of 405 (0.0%),
+terrorMask,a mask-like face,no,,AG_TerrorMask,,,,"a hard, bony, mask-like plate over the face",,0 of 405 (0.0%),
+heavilyScarred,many old scars,no,,AG_HeavilyScarred,,,,a face and arms crossed with many old scars,,0 of 405 (0.0%),
+ritualScars,ritual scars,no,,,Scarification,,,neat rows of raised ritual scars on the cheeks and arms,,0 of 405 (0.0%),
+starjackSheen,a reflective sheen,no,,Skin_SheerWhite,,,,"skin with a faint reflective, pressure-suit-like sheen",,7 of 405 (1.7%),The starjacks' own look has it already.
+blindfold,a blindfold,no,,,Blindfold,,,a cloth blindfold tied over the eyes,"the head tilted, listening",0 of 405 (0.0%),
+blind,blind eyes,no,,,Blindness,,,"clouded, pale, unfocused eyes",,11 of 405 (2.7%),
+cataract,a clouded eye,no,,,Cataract,,,one eye clouded milky white,,0 of 405 (0.0%),
+stooped,a stooped back,no,,,BadBack;Frail,,,a stooped back and rounded shoulders,leaning on a walking stick,12 of 405 (3.0%),
+hearingImplant,a hearing implant,no,,,CochlearImplant,,,a small metal hearing implant behind one ear,,0 of 405 (0.0%),
+bionicEar,a bionic ear,no,,,BionicEar,,,a sleek bionic ear of metal and plastic in place of one ear,,1 of 405 (0.2%),
+bionicJaw,a bionic jaw,no,,,BionicJaw;VREA_ArtificialJaw,,,a metal bionic jaw replacing the lower jaw,,0 of 405 (0.0%),
+artificialNose,an artificial nose,no,,,VREA_ArtificialNose,,,a smooth artificial nose,,0 of 405 (0.0%),
+archotechEye,an archotech eye,no,,,ArchotechEye,,,"one eye replaced by a smooth, faintly glowing archotech eye ringed with gold",,0 of 405 (0.0%),Also the bionicEye mark (the game reads any added eye as one).
+fleshFace,fleshcrafted features,no,,,VME_FleshcraftedEyeHediff;VME_FleshcraftedEarHediff;VME_FleshcraftedJawHediff;VME_FleshcraftedNoseHediff,,,"an eye, ear, nose or jaw regrown from glistening, fleshcrafted tissue",,0 of 405 (0.0%),
+fleshArm,a fleshcrafted arm,no,,,VME_FleshcraftedArmHediff;VME_FleshcraftedHandHediff,,,"one arm or hand regrown from glistening, fleshcrafted tissue",,0 of 405 (0.0%),
+prostheticArm,a prosthetic arm,no,,,SimpleProstheticArm,,,one arm replaced by a simple prosthetic of metal rods and leather straps,,1 of 405 (0.2%),
+bionicArm,a bionic arm,no,,,BionicArm;VREA_AndroidArm;VREA_AndroidHand,,,one arm replaced by a sleek bionic arm of metal and plastic,,0 of 405 (0.0%),
+archotechArm,an archotech arm,no,,,ArchotechArm,,,one arm replaced by a smooth archotech arm with faintly glowing seams,,0 of 405 (0.0%),
+woodenHand,a wooden hand,no,,,WoodenHand,,,one hand replaced by a carved wooden hand,,5 of 405 (1.2%),
+powerClaw,a power claw,no,,,PowerClaw,,,one hand replaced by a heavy mechanical power claw,,1 of 405 (0.2%),
+armBlade,an arm blade,no,,,ElbowBlade;HandTalon;VenomTalon,,,a blade or talon implant jutting from one forearm,,0 of 405 (0.0%),
+drillArm,a drill arm,no,,,DrillArm,,,one arm replaced by a heavy mining drill,,1 of 405 (0.2%),
+fieldHand,a field hand,no,,,FieldHand,,,one hand replaced by a mechanical farming hand,,0 of 405 (0.0%),
+transcendent,transcended,no,,,VRE_Transcendent,,,"a faint halo of light about the head and calm, softly glowing eyes",,0 of 405 (0.0%),Vanilla Races Expanded - Archon's transcendence; guessed.
+conjoined,conjoined twins,yes,MultiMind_ConjoinedTwins,,,MultiMind_ConjoinedHumanBody,MultiMind_ConjoinedHuman,"conjoined twins: two heads side by side on one broad shared body, each face with its own expression",,1 of 405 (0.2%),Conjoined Twins (multimind.conjoinedtwins): their own race and body.
+fairyWings,a fairy's wings,yes,,FG_LesserVenenum;FG_Pixie;FG_Venenum;FG_Wings_Beetle;FG_Wings_Birdwing;FG_Wings_BlueMorpho;FG_Wings_Cicada;FG_Wings_CommonBlue;FG_Wings_Damselfly;FG_Wings_Dragonfly;FG_Wings_Firefly;FG_Wings_Glasswing;FG_Wings_Grasshopper;FG_Wings_Lacewing;FG_Wings_LunaMoth;FG_Wings_Monarch;FG_Wings_Moth;FG_Wings_PaperKite;FG_Wings_Peacock;FG_Wings_PrayingMantis;FG_Wings_RedAdmiral;FG_Wings_Swallowtail;FG_Wings_Wasp,,,FG_LesserFairy;FG_CourtFairy;FG_Fairy;FG_PixieFairy,"a pair of large, delicate translucent insect wings rising from the back",,5 of 405 (1.2%),"Fairycore's wing genes, one per fairy (butterfly, moth, dragonfly, mantis and more)."
+drakonoriWings,dragon wings,yes,,AG_DrakonoriWings,,,AG_Drakonori,a pair of large leathery dragon wings folded at the back,,2 of 405 (0.5%),
+batWings,bat wings,yes,,AG_BatWings;AG_DemonWings;AG_DrainerWings,,,,a pair of large leathery bat-like wings rising from the back,,0 of 405 (0.0%),
+featheredWings,feathered wings,yes,,AG_FeatheredWings;AG_PegasusWings;AG_RainbowWings,,,,a pair of large feathered wings rising from the back,,0 of 405 (0.0%),
+insectWings,insect wings,yes,,AG_MothWings;AG_WaspWings;AG_BumbledroneWings,,,,"a pair of thin, veined insect wings rising from the back",,0 of 405 (0.0%),
+malformedWing,a malformed wing,yes,,AG_SingleWing,,,,"a single small, malformed wing at one shoulder",,0 of 405 (0.0%),
+glidewings,glide wings,yes,,VREH_Glidewings,VREH_Glidewings,,,thin glider membranes stretched between the arms and the body,,0 of 405 (0.0%),
+gasBags,gas bags,yes,,AG_GasBags,,,,large translucent gas bladders swelling from the back,,0 of 405 (0.0%),
+bodyTentacles,tentacles from the body,yes,,AG_BodyTentacles,,,,several thick tentacles growing from the back and shoulders,,0 of 405 (0.0%),
+crabClaw,a crab claw,yes,,AG_CrabClaw,AG_CrabClaw,,,one arm ending in a huge armoured crab claw,,0 of 405 (0.0%),
+scytherBlades,scyther blades,yes,,AG_ScytherHands,AG_ScytherHands,,,"both hands replaced by long, curved scyther blades",,0 of 405 (0.0%),
+chainsawHands,chainsaw hands,yes,,AG_ChainsawHands,AG_ChainsawHands,,,both hands replaced by roaring chainsaw blades,,0 of 405 (0.0%),
+insectoidArms,insectoid arms,yes,,AG_VFEI_InsectoidArm;AG_VFEI_PneumaticClaw,AG_VFEI_InsectoidArm;AG_VFEI_PneumaticClaw,,,"arms of jointed, chitinous insect limbs ending in pincers",,0 of 405 (0.0%),
+tentacleArm,a tentacle arm,yes,,,Tentacle;FleshWhip,,,"one arm replaced by a long, fleshy tentacle",,0 of 405 (0.0%),
+slimeBody,a slime body,yes,,AG_SlimeBody,,,,a translucent body of glistening slime in a human shape,,0 of 405 (0.0%),
+slugBody,a slug body,yes,,AG_SlugBody;AG_SlugFace,,,,"a soft, slimy slug-like head and body",,0 of 405 (0.0%),
+ghoul,a ghoul,yes,,,Ghoul;GhoulPlating;GhoulBarbs,,,"a ghoul: grey, bloodless skin stretched over the bones, ridges of hard flesh, a mouth of sharp teeth and empty, hungry eyes",,0 of 405 (0.0%),Anomaly's ghouls.
+shambler,a shambler,yes,,,Shambler,,,"a dead body walking: grey, rotting skin, clouded eyes and a slack jaw",,0 of 405 (0.0%),Anomaly's shamblers.
+awokenCorpse,an awoken corpse,yes,,,AwokenCorpse,,,"a risen corpse: grey, waxy skin, sunken eyes and torn burial clothes",,0 of 405 (0.0%),
+undead,undead,yes,Undead,,TM_UndeadHD;TM_UndeadStageHD,,,"undead: grey, dead skin, sunken eyes with a faint cold glow",,0 of 405 (0.0%),A RimWorld of Magic's undead.
+lich,a lich,yes,Lich,,TM_LichHD,,,"a lich: a gaunt, skull-like face with tight grey skin, glowing eyes and a cold aura",,0 of 405 (0.0%),A RimWorld of Magic's lich.
+warcasket,a warcasket,yes,VFEP_WarcasketTrait;VFEP_Shellcasket;MDWC_WarcasketTrait_Medic,,,,,"sealed inside a massive armoured warcasket, the face showing behind an open visor",,3 of 405 (0.7%),Vanilla Factions Expanded - Pirates and Medic Warcasket.

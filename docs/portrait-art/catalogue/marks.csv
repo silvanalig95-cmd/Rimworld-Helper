@@ -1,0 +1,9 @@
+word,label,game,hediffs,parts,prompt,howCommon,notes
+lostEye,a lost eye,yes,MissingBodyPart,eye,"one eye lost, the socket closed over by an old scar",13 of 405 (3.2%),Any missing eye.
+eyePatch,an eye patch,yes,AM_Eyepatch,eye,a dark leather patch over one eye,0 of 405 (0.0%),Counts as a lost eye in the matcher; Alpha Memes gives an eye patch condition.
+bionicEye,a bionic eye,yes,BionicEye;ArchotechEye;VME_FleshcraftedEyeHediff;AG_VFEI_SegmentedEye,eye,one eye replaced by a bionic eye with a small glowing lens,7 of 405 (1.7%),Any added part on an eye.
+missingEar,a missing ear,yes,MissingBodyPart,ear,"one ear missing, an old scar in its place",13 of 405 (3.2%),Any missing ear.
+scar,a scar,yes,Cut;Scratch;Stab;Gunshot;Bite;Crush;Shredded,head,an old scar across the face,8 of 405 (2.0%),"Any healed, permanent wound on the head."
+burn,a burn scar,yes,Burn;AcidBurn;ChemicalBurn;VEF_PermanentBurn;VEF_AcidBurn,head,an old burn scar on one side of the face,0 of 405 (0.0%),"Any healed, permanent burn on the head."
+missingArm,a missing arm,no,MissingBodyPart,shoulder;arm,"one arm missing, the sleeve pinned up at the shoulder",14 of 405 (3.5%),Proposed: the game does not read it yet; the planner makes no rows for it until it does.
+tattoo,a face tattoo,no,,face,a tattoo on the face,53 of 405 (13.1%),"Proposed: from the pawn's face tattoo (the game's TattooDefs, Face_*), not a condition; the game does not read it yet."
