@@ -155,6 +155,14 @@ solution. I mean, I cannot upload that many images to you to edit."
   left out. Optional: the person tinted lightly (about a fifth) towards the room's light. The crop
   follows the panel's size: at 96 pixels the head fills 45% of it, at 360 pixels 30%, so a small panel shows the face
   and a large one the pose; the head is found from the cut-out's own shape (its top and the neck).
+- **Nothing of this is baked into the pictures** (the player: "if we do have to regenerate every single image again ...
+  Could this be adjusted also later on, even with a large library"): the library keeps each person as a plain cut-out
+  and each backdrop as painted; the game picks the backdrop, softens it as the setting says, draws the halo, pale edge
+  and ink line from the cut-out's own shape, crops by the panel's size, and keeps the result until the pawn's place, the
+  panel's size or a setting changes. So the backdrop's softening (as painted, light, softened), the line round the
+  person (off, subtle, stronger) and the light tint are settings, changed in play for every picture at once. The pack
+  stores pictures large enough for the 360-pixel panel; the full-size pictures from ComfyUI stay with the player as the
+  archive, so even the pack's size can change by packing again, never by making the pictures again.
 
 ## The process
 
