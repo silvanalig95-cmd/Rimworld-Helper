@@ -298,6 +298,70 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>How far round the head's middle an expression is laid over the picture, as shares of the head's height across and down (the hair and the chin within), and where its edge begins to soften (a share of that reach).</summary>
+        public const float HeadReachX = 0.58f, HeadReachY = 0.64f, HeadSoftFrom = 0.72f;
+
+        /// <summary>
+        /// The head of an expression to lay over the person's picture (the player's tools paint each expression from the
+        /// picture with exactly its cut-out, but may repaint a strand of hair or a fold of cloth elsewhere, so only the head is
+        /// taken and nothing on the body changes with a blink or a mood): the expression's pixels (<paramref name="w"/> by
+        /// <paramref name="h"/>, RGBA, rows from the foot) within a soft oval round the head (its middle at
+        /// <paramref name="headU"/> across and <paramref name="headV"/> down from the top, <paramref name="headH"/> of the
+        /// height tall), only where the person is solid (their soft edge stays the picture's own, so laying it over never
+        /// thickens the edge), tinted as the person was (<paramref name="tr"/>, <paramref name="tg"/>, <paramref name="tb"/>);
+        /// cut to the oval's box (<paramref name="x0"/>, <paramref name="y0"/> from the foot, <paramref name="cw"/> by
+        /// <paramref name="ch"/>). Laid over the picture at full strength it is the expression's face exactly; at part strength
+        /// the two faces mixed.
+        /// </summary>
+        public static byte[] FaceOverlay(byte[] face, int w, int h, float headU, float headV, float headH, float tr, float tg, float tb, out int x0, out int y0, out int cw, out int ch)
+        {
+            if (!(headH > 0.02f) || headH > 1f || float.IsNaN(headU) || float.IsNaN(headV))
+            {
+                headU = 0.5f;
+                headV = 0.3f;
+                headH = 0.3f;
+            }
+            float cx = headU * w, cy = (1f - headV) * h, rx = Math.Max(2f, HeadReachX * headH * h), ry = Math.Max(2f, HeadReachY * headH * h);
+            x0 = Math.Max(0, (int)Math.Floor(cx - rx));
+            y0 = Math.Max(0, (int)Math.Floor(cy - ry));
+            int x1 = Math.Min(w - 1, (int)Math.Ceiling(cx + rx)), y1 = Math.Min(h - 1, (int)Math.Ceiling(cy + ry));
+            cw = Math.Max(1, x1 - x0 + 1);
+            ch = Math.Max(1, y1 - y0 + 1);
+            var px = new byte[cw * ch * 4];
+            for (int y = 0; y < ch; y++)
+            for (int x = 0; x < cw; x++)
+            {
+                int sx = x0 + x, sy = y0 + y;
+                if (sx >= w || sy >= h) continue;
+                int i = (sy * w + sx) * 4, o = (y * cw + x) * 4;
+                float dx = (sx + 0.5f - cx) / rx, dy = (sy + 0.5f - cy) / ry;
+                float m = 1f - Smooth(HeadSoftFrom, 1f, (float)Math.Sqrt(dx * dx + dy * dy));
+                float solid = Smooth(0.85f, 1f, face[i + 3] / 255f);
+                px[o] = Byte(face[i] * tr);
+                px[o + 1] = Byte(face[i + 1] * tg);
+                px[o + 2] = Byte(face[i + 2] * tb);
+                px[o + 3] = Byte(255f * m * solid);
+            }
+            return px;
+        }
+
+        /// <summary>
+        /// How strongly each expression is laid over the picture while one fades into another: the one before whole (or, fading
+        /// back to the plain picture, going), the one now as far as it has come.
+        /// </summary>
+        public static void FadeStrengths(string before, string now, float faded, out float beforeA, out float nowA)
+        {
+            faded = Clamp(faded, 0f, 1f);
+            if (faded >= 1f || before == now)
+            {
+                beforeA = 0f;
+                nowA = string.IsNullOrEmpty(now) ? 0f : 1f;
+                return;
+            }
+            beforeA = string.IsNullOrEmpty(before) ? 0f : string.IsNullOrEmpty(now) ? 1f - faded : 1f;
+            nowA = string.IsNullOrEmpty(now) ? 0f : faded;
+        }
+
         /// <summary>How long, in game ticks, a wound shows as pain on the face, the news of a death as a frown, and good news as a smile (four, six and two hours).</summary>
         public const int HurtFor = 4 * 2500, GriefFor = 6 * 2500, GoodNewsFor = 2 * 2500;
 

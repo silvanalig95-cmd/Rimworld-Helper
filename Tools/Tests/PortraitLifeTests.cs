@@ -293,6 +293,51 @@ public static class PortraitLifeTests
             C(smile && !pain && !PortraitLifeMath.MayBlink(face, 1f), "a smile blinks; pain and sleep don't");
         }
 
+        // ---------------- Only the head of an expression laid over the picture ----------------
+        {
+            int w = 100, h = 125;
+            // An expression painted from a picture: a figure solid from row 20 (from the top) down, its edge soft at the sides.
+            var face = new byte[w * h * 4];
+            for (int top = 0; top < h; top++)
+            for (int x = 0; x < w; x++)
+            {
+                int o = ((h - 1 - top) * w + x) * 4;
+                face[o] = 200;
+                face[o + 1] = 100;
+                face[o + 2] = 50;
+                face[o + 3] = top < 20 || x < 35 || x >= 65 ? (byte)0 : x == 35 || x == 64 ? (byte)128 : (byte)255;
+            }
+            // The head's middle 30% across... at the middle, 30% down, 30% of the height tall.
+            var over = PortraitLifeMath.FaceOverlay(face, w, h, 0.5f, 0.3f, 0.3f, 1f, 1f, 1f, out int ox, out int oy, out int ow, out int oh);
+            float cy = 0.7f * h, ry = PortraitLifeMath.HeadReachY * 0.3f * h, rx = PortraitLifeMath.HeadReachX * 0.3f * h;
+            C(ow < w && oh < h / 2 && ox > 0 && Math.Abs(ox + ow / 2f - w / 2f) <= 1.5f && Math.Abs(oy + oh / 2f - cy) <= 1.5f,
+                $"cut to the box round the head ({ox}, {oy}, {ow} x {oh}), not the whole picture");
+            C(Math.Abs(ow - 2f * rx) <= 3f && Math.Abs(oh - 2f * ry) <= 3f, "the box as wide and tall as the oval round the head");
+            int OA(int x, int rowFromFoot) => over[((rowFromFoot - oy) * ow + (x - ox)) * 4 + 3];
+            C(OA(w / 2, (int)cy) == 255 && over[((((int)cy - oy) * ow) + (w / 2 - ox)) * 4] == 200, "the face itself taken whole, in the expression's colours");
+            C(OA(ox, oy) == 0 && OA(ox + ow - 1, oy + oh - 1) == 0, "the oval's corners left to the picture");
+            int rowEdge = (int)cy;
+            C(OA(35, rowEdge) == 0 && OA(36, rowEdge) == 255 && OA(64, rowEdge) == 0, "the person's soft edge left to the picture (laid over it never thickens the edge); just inside it taken");
+            var softer = new List<int>();
+            for (int row = (int)cy; row >= oy; row--) softer.Add(OA(w / 2, row));
+            C(softer.Zip(softer.Skip(1), (a, b) => b <= a).All(b => b) && softer[0] == 255 && softer[^1] < 30 && softer.Count(v => v > 0 && v < 255) >= 3,
+                "the oval's edge softens toward the body over several rows, so no line shows round the face");
+            var tinted = PortraitLifeMath.FaceOverlay(face, w, h, 0.5f, 0.3f, 0.3f, 0.5f, 1f, 1f, out _, out _, out _, out _);
+            C(tinted[(((int)cy - oy) * ow + (w / 2 - ox)) * 4] == 100, "tinted as the person was");
+            var fallback = PortraitLifeMath.FaceOverlay(face, w, h, float.NaN, 0.3f, 0f, 1f, 1f, 1f, out int fx, out _, out int fw, out _);
+            C(fallback.Length == fw * 4 * ((fallback.Length / 4) / fw) && fw < w && fx > 0, "no head measured: the library's usual place for it");
+            var high = PortraitLifeMath.FaceOverlay(face, w, h, 0.5f, 0.05f, 0.3f, 1f, 1f, 1f, out _, out int hy, out _, out int hh);
+            C(hy + hh <= h && high.Length > 0, "a head at the very top: the box held inside the picture");
+            // Fading: the face before whole, the one now coming; back to the plain picture, the one before going.
+            PortraitLifeMath.FadeStrengths("", "smile", 0.25f, out float b1, out float n1);
+            PortraitLifeMath.FadeStrengths("smile", "frown", 0.4f, out float b2, out float n2);
+            PortraitLifeMath.FadeStrengths("smile", "", 0.25f, out float b3, out float n3);
+            PortraitLifeMath.FadeStrengths("smile", "", 1f, out float b4, out float n4);
+            PortraitLifeMath.FadeStrengths("blink", "blink", 1f, out float b5, out float n5);
+            C(b1 == 0f && n1 == 0.25f && b2 == 1f && n2 == 0.4f && Math.Abs(b3 - 0.75f) < 1e-5f && n3 == 0f && b4 == 0f && n4 == 0f && b5 == 0f && n5 == 1f,
+                "fading: into a face from the plain picture, from one face to another, back to the plain picture, settled, a blink");
+        }
+
         // ---------------- News from the memories ----------------
         foreach (var d in new[] { "KnowColonistDied", "PawnWithGoodOpinionDied", "MySonDied", "MyWifeDied", "WitnessedDeathFamily", "BondedAnimalDied", "PsychicBondTorn" })
             C(PortraitLifeMath.IsGrief(d, -3f), $"grief: {d}");
@@ -349,8 +394,10 @@ public static class PortraitLifeTests
             var probs = new List<string>();
             var blink = Picture("P_01_v-blink", "Blink", "P_01", pawn: "Avila", problems: probs);
             C(probs.Count == 0 && blink.IsExpression && blink.variant == "blink" && blink.variantOf == "P_01", "an expression's record: the picture it belongs to, its word (the case aside)");
-            var bad = Picture("P_01_v-laugh", "laugh", "P_01", problems: probs);
-            C(probs.Any(p => p.Contains("laugh") && p.Contains("blink, smile, frown, pain")), "an expression with a word Rimfolk doesn't know: told");
+            var bad = Picture("P_01_v-Laugh", "Laugh", "P_01", problems: probs);
+            C(probs.Count == 0 && bad.IsExpression && bad.variant == "laugh", "an expression with a word Rimfolk doesn't know yet (the tools may paint more later): kept quietly");
+            Picture("P_01_v-", "", "P_01", problems: probs);
+            C(probs.Any(p => p.Contains("names its expression")), "an expression with no word: told");
             probs.Clear();
             Picture("P_02", "smile", "P_02", problems: probs);
             C(probs.Any(p => p.Contains("itself")), "a picture can't be an expression of itself");
@@ -368,8 +415,8 @@ public static class PortraitLifeTests
             C(own.Select(i => records[i].name).SequenceEqual(new[] { "P_01", "P_03" }), "only the pictures of their own stand: an expression is never picked on its own");
             C(faces.Count == 1 && faces["P_01"].Keys.OrderBy(k => k).SequenceEqual(new[] { "blink", "smile" }) && records[faces["P_01"]["smile"]].name == "P_01_v-smile",
                 "a picture's expressions by their words, the first of each kept");
-            C(split.Any(p => p.Contains("Lost_v-frown") && p.Contains("Gone")) && split.Any(p => p.Contains("P_01_v-smile2")) && split.Any(p => p.Contains("Chain_v-pain"))
-              && split.Any(p => p.Contains("P_01_v-laugh")), "told: one of a picture not in the library, a second smile, an expression of an expression, an unknown word");
+            C(split.Any(p => p.Contains("Lost_v-frown") && p.Contains("Gone")) && split.Any(p => p.Contains("P_01_v-smile2")) && split.Any(p => p.Contains("Chain_v-pain")) && split.Count == 3,
+                "told: one of a picture not in the library, a second smile, an expression of an expression; a later word left out quietly");
             var ownRecords = own.Select(i => records[i]).ToList();
             C(!ownRecords.Any(r => r.IsExpression) && ownRecords.Count(r => r.Pinned) == 1, "a pin copied onto an expression doesn't count: the colonist has one picture");
             // Counted as a variant of the character, the blink would leave "Face" with no base picture without marks.
@@ -423,8 +470,9 @@ public static class PortraitLifeTests
         C(stage.Contains("PortraitStore.Run(") && Regex.Matches(stage, @"PortraitLifeMath\.Shift\(").Count >= 5 && !Regex.IsMatch(stage + alive, @"PortraitLifeMath\.Slices\([^)]*\)\s*;[^\n]*//\s*every frame"),
             "each frame the cached layers only moved");
         C(stage.Contains("+ DepthKey(depth, depthTex != null ? look.depth : null)"), "the depth's strength and map in the made picture's key, so a change of the setting makes it again");
-        C(stage.Contains("StartFace(Staged s, string word, Texture2D tex)") && stage.Contains("PortraitComposeMath.PersonLayer(px, w, h, lineLook, tr, tg, tb)") && stage.Contains("FacesKeptFor = 20f"),
-            "an expression made as the person was, on a worker, one at a time; let go when no longer shown");
+        C(stage.Contains("StartFace(Staged s, string word, Texture2D tex)") && stage.Contains("PortraitLifeMath.FaceOverlay(px, w, h, hu, hv, hh, tr, tg, tb,") && stage.Contains("FacesKeptFor = 20f")
+          && stage.Contains("GUI.DrawTextureWithTexCoords(at, s.person, uv);") && stage.Contains("PortraitLifeMath.FadeStrengths(f.before, f.now, f.faded, out float beforeA, out float nowA);"),
+            "an expression's head made on a worker, one at a time, laid over the picture (the body always the picture's own); let go when no longer shown");
         C(alive.Contains("p.Awake()") && alive.Contains("hs.PainTotal") && alive.Contains("h.ageTicks") && alive.Contains("mood.thoughts?.memories?.Memories") && alive.Contains("BreakThresholdMinor")
           && !alive.Contains("[HarmonyPatch"), "what the person goes through from the game's own health, memories and mood; no new hook");
         C(alive.Contains("PortraitLifeMath.Blinking(st, Clock, p.thingIDNumber)") && alive.Contains("PortraitLifeMath.Want(") && alive.Contains("PortraitLifeMath.Step(st, life.want, why, now)"),

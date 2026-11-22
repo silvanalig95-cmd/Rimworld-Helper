@@ -480,9 +480,9 @@ namespace ColonyCouncil
             r.variantOf = (field("variantOf") ?? "").Trim();
             if (r.variantOf.Length > 0)
             {
-                var face = PortraitLifeMath.FaceWord(variant);
-                if (face != null) r.variant = face;
-                else Bad("variant: '" + (variant ?? "").Trim() + "' is not one of " + string.Join(", ", PortraitLifeMath.Faces) + " (a picture with variantOf is an expression of the picture it names)");
+                // Its word, the case aside; a word Rimfolk doesn't know yet (the tools may paint more later) is kept and simply not shown.
+                r.variant = PortraitLifeMath.FaceWord(variant) ?? (variant ?? "").Trim().ToLowerInvariant();
+                if (string.IsNullOrWhiteSpace(variant)) Bad("variant: an expression (a picture with variantOf) names its expression: " + string.Join(", ", PortraitLifeMath.Faces));
                 if (r.variantOf == name) Bad("variantOf: a picture can't be an expression of itself");
             }
             return r;
@@ -491,8 +491,9 @@ namespace ColonyCouncil
         /// <summary>
         /// The library's pictures split (phase 6): the indices of those that stand on their own (in order), and the expressions
         /// of another picture (<see cref="PortraitRecord.variantOf"/>) by the picture they belong to and their word. An
-        /// expression whose picture isn't in the library (or is itself an expression), with a word Rimfolk doesn't know, or a
-        /// second of the same word, is left out and told in <paramref name="problems"/>.
+        /// expression whose picture isn't in the library (or is itself an expression), or a second of the same word, is left
+        /// out and told in <paramref name="problems"/>; one with a word Rimfolk doesn't know yet is left out quietly (the
+        /// player's tools may paint more expressions later), never a picture of its own.
         /// </summary>
         public static List<int> SplitExpressions(IList<PortraitRecord> records, Dictionary<string, Dictionary<string, int>> expressions, List<string> problems)
         {
@@ -508,14 +509,10 @@ namespace ColonyCouncil
                     own.Add(i);
                     continue;
                 }
+                if (PortraitLifeMath.FaceWord(r.variant) == null) continue;
                 if (!bases.Contains(r.variantOf))
                 {
                     problems?.Add(r.name + ": an expression of " + r.variantOf + ", which isn't a picture of the library, so it is left out");
-                    continue;
-                }
-                if (PortraitLifeMath.FaceWord(r.variant) == null)
-                {
-                    problems?.Add(r.name + ": '" + r.variant + "' is not one of " + string.Join(", ", PortraitLifeMath.Faces) + ", so it is left out");
                     continue;
                 }
                 if (!expressions.TryGetValue(r.variantOf, out var faces)) expressions[r.variantOf] = faces = new Dictionary<string, int>(StringComparer.Ordinal);

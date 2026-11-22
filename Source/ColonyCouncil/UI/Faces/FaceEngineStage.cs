@@ -56,10 +56,17 @@ namespace ColonyCouncil
             public float tr = 1f, tg = 1f, tb = 1f;
             /// <summary>The tint the painted person was made with, for their expressions made later the same way.</summary>
             public float ptr = 1f, ptg = 1f, ptb = 1f;
-            /// <summary>The person's expressions made so far (blink, smile, frown, pain), and those that couldn't be made.</summary>
-            public readonly Dictionary<string, Texture2D> faces = new Dictionary<string, Texture2D>(StringComparer.Ordinal);
+            /// <summary>The person's expressions made so far (blink, smile, frown, pain: the head of each, to lay over the picture), and those that couldn't be made.</summary>
+            public readonly Dictionary<string, StagedFace> faces = new Dictionary<string, StagedFace>(StringComparer.Ordinal);
             public readonly HashSet<string> facesFailed = new HashSet<string>(StringComparer.Ordinal);
             public float lastUsed;
+        }
+
+        /// <summary>The head of one of the person's expressions: its texture, and where it sits in the picture (shares, from the top).</summary>
+        private struct StagedFace
+        {
+            public Texture2D tex;
+            public Rect at;
         }
 
         /// <summary>One slice of a backdrop by its depth: its texture, where it sits in the backdrop (shares, from the top) and how near it is.</summary>
@@ -445,9 +452,18 @@ namespace ColonyCouncil
             }
         }
 
+        private sealed class FaceParts
+        {
+            public byte[] px;
+            public int x, y, w, h;
+        }
+
         /// <summary>
-        /// Starts making one of the person's expressions (phase 6) the way the person was made: read back at the same size,
-        /// lined and tinted the same on a worker, made into a texture a frame after. One at a time, with the pictures.
+        /// Starts making one of the person's expressions (phase 6): read back at the person's size, then on a worker only its
+        /// head taken, in a soft oval, where the person is solid, tinted as the person was
+        /// (<see cref="PortraitLifeMath.FaceOverlay"/>; the player's tools may repaint a strand of hair or a fold of cloth
+        /// elsewhere, so nothing on the body changes with a blink or a mood), made into a small texture a frame after. One at
+        /// a time, with the pictures.
         /// </summary>
         private static void StartFace(Staged s, string word, Texture2D tex)
         {
@@ -459,14 +475,18 @@ namespace ColonyCouncil
                     s.facesFailed.Add(word);
                     return;
                 }
-                var lineLook = PortraitComposeMath.LookOf(OutlineMode);
                 int w = s.w, h = s.h;
-                float tr = s.ptr, tg = s.ptg, tb = s.ptb;
+                float tr = s.ptr, tg = s.ptg, tb = s.ptb, hu = s.headU, hv = s.headV, hh = s.headShare;
                 staging = s.key + "|" + word;
-                PortraitStore.Run(() => PortraitComposeMath.PersonLayer(px, w, h, lineLook, tr, tg, tb), (layer, ex) =>
+                PortraitStore.Run(() =>
+                {
+                    var f = new FaceParts();
+                    f.px = PortraitLifeMath.FaceOverlay(px, w, h, hu, hv, hh, tr, tg, tb, out f.x, out f.y, out f.w, out f.h);
+                    return f;
+                }, (f, ex) =>
                 {
                     staging = null;
-                    if (ex != null || layer == null)
+                    if (ex != null || f?.px == null)
                     {
                         s.facesFailed.Add(word);
                         if (ex != null) CouncilLog.ErrorOnce("the large portrait: making an expression", ex);
@@ -474,8 +494,12 @@ namespace ColonyCouncil
                     }
                     // Let go meanwhile (another picture made, the game left): nothing to keep it for.
                     if (!staged.Contains(s)) return;
-                    if (s.faces.TryGetValue(word, out var old) && old != null) UnityEngine.Object.Destroy(old);
-                    s.faces[word] = PortraitGpu.Make(layer, w, h, "RimfolkPortraitFace");
+                    if (s.faces.TryGetValue(word, out var old) && old.tex != null) UnityEngine.Object.Destroy(old.tex);
+                    s.faces[word] = new StagedFace
+                    {
+                        tex = PortraitGpu.Make(f.px, f.w, f.h, "RimfolkPortraitFace"),
+                        at = new Rect((float)f.x / w, 1f - (float)(f.y + f.h) / h, (float)f.w / w, (float)f.h / h)
+                    };
                 }, false);
             }
             catch (Exception e)
@@ -497,9 +521,9 @@ namespace ColonyCouncil
 
         private static void DestroyFaces(Staged s)
         {
-            foreach (var t in s.faces.Values)
-                if (t != null)
-                    UnityEngine.Object.Destroy(t);
+            foreach (var f in s.faces.Values)
+                if (f.tex != null)
+                    UnityEngine.Object.Destroy(f.tex);
             s.faces.Clear();
             s.facesFailed.Clear();
         }
@@ -600,23 +624,29 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The person, or their expression faded over the face before it: the face before whole, the one now over it as far as it has faded in.</summary>
+        /// <summary>
+        /// The person, and their expression's head laid over the picture's own: the face before whole (or going, back to the
+        /// plain picture), the one now as far as it has faded in (<see cref="PortraitLifeMath.FadeStrengths"/>).
+        /// </summary>
         private static void DrawFaces(Rect at, Rect uv, Staged s, FaceDraw f)
         {
-            var now = FaceTexture(s, f.now);
-            if (f.faded >= 1f || f.before == f.now)
-            {
-                GUI.DrawTextureWithTexCoords(at, now, uv);
-                return;
-            }
-            GUI.DrawTextureWithTexCoords(at, FaceTexture(s, f.before), uv);
-            GUI.color = UiKit.WithAlpha(Color.white, f.faded);
-            GUI.DrawTextureWithTexCoords(at, now, uv);
-            GUI.color = Color.white;
+            GUI.DrawTextureWithTexCoords(at, s.person, uv);
+            PortraitLifeMath.FadeStrengths(f.before, f.now, f.faded, out float beforeA, out float nowA);
+            LayFace(at, uv, s, f.before, beforeA);
+            LayFace(at, uv, s, f.now, nowA);
         }
 
-        /// <summary>An expression's texture where it is made, else the plain picture.</summary>
-        private static Texture2D FaceTexture(Staged s, string word) => !string.IsNullOrEmpty(word) && s.faces.TryGetValue(word, out var t) && t != null ? t : s.person;
+        /// <summary>One expression's head laid over the person drawn at <paramref name="at"/> (its texture spread by <paramref name="uv"/>), where it sits in the picture.</summary>
+        private static void LayFace(Rect at, Rect uv, Staged s, string word, float alpha)
+        {
+            if (alpha <= 0f || string.IsNullOrEmpty(word) || !s.faces.TryGetValue(word, out var face) || face.tex == null) return;
+            float X(float u) => at.x + (u - uv.x) / uv.width * at.width;
+            // A share down from the picture's top, where the picture is drawn (its texture runs from the foot).
+            float Y(float down) => at.yMax - (1f - down - uv.y) / uv.height * at.height;
+            GUI.color = UiKit.WithAlpha(Color.white, alpha);
+            GUI.DrawTexture(Rect.MinMaxRect(X(face.at.xMin), Y(face.at.yMin), X(face.at.xMax), Y(face.at.yMax)), face.tex);
+            GUI.color = Color.white;
+        }
 
         /// <summary>
         /// The game's own drawing in front of a backdrop: a soft dark shadow behind the head and shoulders, then the drawing
