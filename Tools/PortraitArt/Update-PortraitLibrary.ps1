@@ -4,7 +4,7 @@
 # library\backdrops\ ...: the batch's name, as in batches\<batch>.csv) holding the pictures you chose, with the names
 # ComfyUI gave them. This script writes library\records.xml: one record per picture, saying what it shows, taken from
 # the picture's row in batches\<batch>.csv (tied by the start of its name; the row's record columns: for people kind,
-# race, sex, age, skin, hairColour, hair, beard, build, era, dress, features, marks, looks, facing, pawn; for backdrops place,
+# race, sex, age, skin, hairColour, hair, beard, build, era, dress, features, marks, looks, role, facing, pawn; for backdrops place,
 # rooms, outdoors, era, contents). Rimfolk reads records.xml and the pictures straight from this folder (its setting
 # "Portrait library folder"), so there is no second mod to install, and keeping this whole folder in a synced folder
 # (Google Drive) keeps both computers the same.
@@ -117,6 +117,7 @@ try {
                 [void]$lines.Add((List-Xml 'features' (Words (Field $r 'features'))))
                 [void]$lines.Add((List-Xml 'marks' (Words (Field $r 'marks'))))
                 [void]$lines.Add((List-Xml 'looks' (Words (Field $r 'looks'))))
+                [void]$lines.Add((One-Xml 'role' (Field $r 'role')))
                 [void]$lines.Add((One-Xml 'facing' (Field $r 'facing')))
                 [void]$lines.Add((One-Xml 'character' ((Clean $batch) + '_' + $hit.name)))
                 [void]$lines.Add('  </ColonyCouncil.PortraitDef>')
