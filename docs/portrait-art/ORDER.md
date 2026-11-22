@@ -39,7 +39,8 @@ must run all these programs and scripts". The details of each step are in `SETUP
 ## Each round
 
 1. `Run-PortraitBatch.ps1`: a people list with `style-rimworld-people`, overnight. In a new library: first `colonists`
-   (your own people), then `characters-01`, `02`, `03` (every kind of person, each with a face of their own).
+   (your own people), then `characters-01`, `02`, `03` (every kind of person, each with a face of their own). Several
+   lists can be picked at once (`2,3,4`), and after each round it offers the lists again.
 2. `Run-PortraitBatch.ps1` with `backdrops` and `style-rimworld-backdrops`, when you want more backdrops.
 3. In `output\Rimfolk`: delete the pictures you don't want.
 4. `Copy-ToLibrary.cmd` (in `output\Rimfolk`): the new pictures into the library; it writes the records.

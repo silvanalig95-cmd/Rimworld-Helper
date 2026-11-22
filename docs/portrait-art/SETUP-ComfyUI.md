@@ -58,8 +58,10 @@ Put these in one folder, for example `Documents\Rimfolk portraits`:
 
 1. Keep ComfyUI open.
 2. Right-click `Run-PortraitBatch.ps1`, **Run with PowerShell**.
-3. It asks which batch (for example `colonists`) and which style (for example `style-A`), then hands every picture to
-   ComfyUI and closes. ComfyUI works through the queue; you can watch it or leave it running overnight.
+3. It asks which list (for example `characters-01`, or several at once: `3,4,5`) and which style (for example
+   `style-rimworld-people`), then hands every picture to ComfyUI. Then it shows the lists again: pick the next one right
+   away (Enter keeps the same style), or press Enter to close. ComfyUI works through the queue one list after another;
+   you can watch it or leave it running overnight.
 4. The pictures land in ComfyUI's `output\Rimfolk` folder (ComfyUI Desktop: the Output button, or
    `Documents\ComfyUI\output\Rimfolk`), named by batch, person and style, with a `batch-log.csv` of every prompt and seed.
 5. Zip the folder (right-click, Send to, "Zip for upload") and send it.

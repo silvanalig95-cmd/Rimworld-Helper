@@ -14,7 +14,8 @@
 # make only the rows that have none yet. A log of every prompt and seed is written to logs\ next to this script. Nothing
 # else on the computer is changed.
 #
-# Run it: keep ComfyUI open, right-click this file, "Run with PowerShell", and choose the batch and the style.
+# Run it: keep ComfyUI open, right-click this file, "Run with PowerShell", and choose the list (or several: 3,4,5)
+# and the style. When they are queued it shows the lists again: queue the next right away, or press Enter to close.
 # See docs/portrait-art/SETUP-ComfyUI.md.
 
 [CmdletBinding()]
@@ -35,7 +36,7 @@ function Pick([string] $what, [string[]] $choices) {
     if ($choices.Count -eq 0) { throw "No $what found in $batches." }
     if ($choices.Count -eq 1) { return $choices[0] }
     Write-Host ''
-    Write-Host "Which $what?"
+    Write-Host ("Which {0}?" -f $what)
     for ($i = 0; $i -lt $choices.Count; $i++) { Write-Host ("  {0}. {1}" -f ($i + 1), $choices[$i]) }
     while ($true) {
         $a = Read-Host 'Number'
@@ -154,13 +155,8 @@ function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [in
     return $found
 }
 
-try {
-    if ($Batch -eq '') {
-        $Batch = Pick 'batch' @(Get-ChildItem -LiteralPath $batches -Filter '*.csv' | ForEach-Object { $_.BaseName })
-    }
-    if ($Style -eq '') {
-        $Style = Pick 'style' @(Get-ChildItem -LiteralPath $batches -Filter 'style*.json' | ForEach-Object { $_.BaseName })
-    }
+function Queue-List([string] $Batch, [string] $Style, [string] $Workflow, [string] $OnlyMissing) {
+    # Queues one list's rows in one style (the whole of what this script did before it could queue several).
     $rows = @(Import-Csv -LiteralPath (Join-Path $batches ($Batch + '.csv')) -Encoding UTF8)
     # Only what the library lacks: rows with no picture of theirs in library\<batch>\ yet (new rows added to a list, or
     # ones whose pictures were all thrown out), so a grown list is never made again from the start.
@@ -268,9 +264,69 @@ try {
     Write-Host ("Queued {0} pictures. ComfyUI makes them into its output\Rimfolk\{1} folder." -f $queued, $Batch) -ForegroundColor Green
     Write-Host ("The prompts and seeds are logged in {0}." -f $log)
 }
-catch {
+
+function Pick-Lists([string[]] $choices, [bool] $closing) {
+    # One list or several ("3,4,5" or "3 4 5"), queued one after the other; after the first round Enter closes.
+    if ($choices.Count -eq 0) { throw "No batch list found in $batches." }
     Write-Host ''
-    Write-Host ('Something went wrong: ' + $_.Exception.Message) -ForegroundColor Red
+    if ($closing) { Write-Host 'Another list? A number, several (3,4,5), or Enter to close.' }
+    else { Write-Host 'Which list? A number, or several (3,4,5) to queue one after the other.' }
+    for ($i = 0; $i -lt $choices.Count; $i++) { Write-Host ("  {0}. {1}" -f ($i + 1), $choices[$i]) }
+    while ($true) {
+        $a = ([string](Read-Host 'Number')).Trim()
+        if ($a -eq '' -and $closing) { return @() }
+        $parts = @($a -split '[,;\s]+' | Where-Object { $_ -ne '' })
+        $out = New-Object System.Collections.ArrayList
+        $ok = $parts.Count -gt 0
+        foreach ($t in $parts) {
+            $n = 0
+            if ([int]::TryParse($t, [ref]$n) -and $n -ge 1 -and $n -le $choices.Count) { [void]$out.Add($choices[$n - 1]) } else { $ok = $false }
+        }
+        if ($ok) { return @($out) }
+    }
 }
-Write-Host ''
-Read-Host 'Press Enter to close'
+
+function Pick-Style([string[]] $choices, [string] $same) {
+    # The style; after the first round Enter keeps the one used before.
+    if ($same -eq '') { return (Pick 'style' $choices) }
+    if ($choices.Count -eq 1) { return $choices[0] }
+    Write-Host ''
+    Write-Host ("Which style? Enter for the same one ({0})." -f $same)
+    for ($i = 0; $i -lt $choices.Count; $i++) { Write-Host ("  {0}. {1}" -f ($i + 1), $choices[$i]) }
+    while ($true) {
+        $a = ([string](Read-Host 'Number')).Trim()
+        if ($a -eq '') { return $same }
+        $n = 0
+        if ([int]::TryParse($a, [ref]$n) -and $n -ge 1 -and $n -le $choices.Count) { return $choices[$n - 1] }
+    }
+}
+
+# Queue a list (or several), then the menu again: another list right away, or Enter to close.
+$lists = @()
+if ($Batch -ne '') { $lists = @($Batch -split '[,;]' | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' }) }
+$first = $true
+$used = ''
+while ($true) {
+    try {
+        if ($lists.Count -eq 0) {
+            $names = @(Get-ChildItem -LiteralPath $batches -Filter '*.csv' | ForEach-Object { $_.BaseName })
+            $lists = @(Pick-Lists $names (-not $first))
+        }
+        if ($lists.Count -eq 0) { break }
+        $styles = @(Get-ChildItem -LiteralPath $batches -Filter 'style*.json' | ForEach-Object { $_.BaseName })
+        if ($first -and $Style -ne '') { $used = $Style } else { $used = Pick-Style $styles $used }
+        foreach ($b in $lists) {
+            try { Queue-List $b $used $Workflow $OnlyMissing }
+            catch {
+                Write-Host ''
+                Write-Host ("Something went wrong with '{0}': {1}" -f $b, $_.Exception.Message) -ForegroundColor Red
+            }
+        }
+    }
+    catch {
+        Write-Host ''
+        Write-Host ('Something went wrong: ' + $_.Exception.Message) -ForegroundColor Red
+    }
+    $lists = @()
+    $first = $false
+}

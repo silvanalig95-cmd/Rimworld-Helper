@@ -716,6 +716,12 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **Done (22 November 2026, the player's own request): the batch tool queues one list after another.** The player:
+  "The run portray batch file should allow me also to start a new job right away." `Run-PortraitBatch.ps1`: the list
+  menu takes one number or several (`3,4,5`, queued one after the other in the same style); after each round it shows
+  the lists again (another right away, Enter keeps the style, Enter at the lists closes). The list's work moved into
+  `Queue-List`; an error in one list is shown and the next goes on. Also fixed: the menu's heading printed "Which"
+  alone (PowerShell read `$what?` as a variable named "what?"). Tried with pwsh 7 against a stand-in ComfyUI.
 - **To do when the player asks (22 November 2026, the player; noted for later): non-human kinds look too human in the
   game-look style.** The player: "the non-human races still look quite human. There's still some differences, but
   overall ... since we really had not a lot of non-humans to train with, but just to keep that in mind, perhaps for
