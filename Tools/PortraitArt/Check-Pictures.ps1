@@ -14,12 +14,18 @@
 #   and the answer as given): the description database. Running it again asks only about pictures not asked about
 #   before (or changed since).
 # - Every run compares all the checked pictures with their records again and writes library\check-report.csv: what is
-#   wrong, what the model saw, what the row says, and a suggested fix (throw it out, or add a look or a role to its row),
-#   the worst first. So after fixing a row and running Update-PortraitLibrary.ps1, a run here shows the new state without
-#   asking the model again.
-# - It never deletes, moves or renames a picture and never changes a batch list or the records: you decide.
+#   wrong, what the model saw, what the row says, and a suggested fix, the worst first.
+# - And library\corrections.csv: one line per change to one picture's record (age, sex, looks add:/remove:, role or
+#   clear, marks add:/remove:, headwear, out), marked yes where it is safe or plainly right (an age two bands or more
+#   off, a role for the weapon it holds, the wings look for its wings, out for two people in a cut-out) and ask where
+#   you decide (fire or magic, anything taken away, a body its kind doesn't have). Update-PortraitLibrary.ps1 puts the
+#   lines marked yes into the records; you change ask to yes or no. Lines already there are never changed here, the
+#   yes lines count as done when comparing, and an issue marked no stays out of the report.
+# - It never deletes, moves or renames a picture and never changes a batch list or the records: the name ties a
+#   picture to its row, and the row's other pictures may be right.
 #
-# Run it: keep ComfyUI open and double-click Check-Pictures.cmd (or right-click this file, "Run with PowerShell").
+# Run it: keep ComfyUI open and double-click Check-Pictures.cmd (or right-click this file, "Run with PowerShell"). Then
+# look at corrections.csv's ask lines, run Update-PortraitLibrary.ps1 and "Reload the library" in the game.
 # To ask about every picture again (after changing the model), delete library\checked.csv first.
 
 [CmdletBinding()]

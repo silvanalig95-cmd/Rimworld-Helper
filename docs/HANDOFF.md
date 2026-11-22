@@ -597,10 +597,28 @@ most sense." So, in this order, three builds at a time:
   tools with no role or look in the row; headwear; features and eye marks the row lacks), shows less (a look or role
   the picture doesn't show, features the row has), not compared. Look words are matched by their parts ("batWings" is
   "bat wings"), so the catalogue's new looks count without changes; pictures pinned to a colonist skip the looks and
-  role checks. It never deletes, moves or edits anything but its two files. `Run-PortraitBatch.ps1` now leaves the
-  check's workflow out of its choice. Tested with PowerShell 7 against a stand-in ComfyUI (uploads, queue, history,
-  refusals, errors, a lost prompt, a busy queue) and a fake library; not yet on the player's computer or with the
-  real model, so the first run there shows how well Qwen3.5 answers the form on painted pictures.
+  role checks; what a look or role asks for is read from the row's own prompt (its subject and pose: sniperClass's
+  rifle, succubus's horns), and a spacer's glowing seams are not magic. `Run-PortraitBatch.ps1` now leaves the check's
+  workflow out of its choice.
+  Then the player (through the lead): "Would then this AI also kind of rename it or just recognize, hey, looks more
+  like a kid or a teenager and do all the necessary changes accordingly for the game to pick up the new description".
+  So the check also corrects, without renaming anything (the name ties a picture to its row, and the row's other
+  pictures may be right): it writes `library\corrections.csv` (picture, field, value, apply yes/ask/no, why; fields
+  age, sex, looks add:/remove:, role or clear, marks add:/remove:, headwear, out), and `Update-PortraitLibrary.ps1`
+  builds each record from its row and then that picture's lines marked yes (`out` leaves it out of records.xml, the
+  file stays), and says how many it applied and how many wait as ask. Yes only where safe or plainly right: an age two
+  bands or more off, a role for a weapon, armour, a crown or a book when the row has none, the wings look, an eye mark,
+  headwear, out for two people; ask for fire or magic (which class can't be told), insect or fairy wings, the other sex
+  when the model hedged, anything taken away (it would give the picture to anyone), and a body its kind doesn't have
+  (pointed ears on a baseliner, an elf without them, horns, a tail or glowing eyes, for which `looks.csv` has no plain
+  look yet: a table in the script takes the word once one is added); a colonist's own picture of the wrong sex is out,
+  ask. The check applies the yes lines in memory before comparing, never changes lines already in the file (so the
+  player's yes and no stay), and leaves an issue marked no out of the report. The loop in SETUP step 8: check, look
+  at the ask lines, run Update-PortraitLibrary (or the copier), Reload the library.
+  Tested with PowerShell 7 against a stand-in ComfyUI (uploads, queue, history, refusals, errors, a lost prompt, a
+  busy queue), a fake library with catalogue-like rows, and corrections.csv saved again by Excel (semicolons, Windows
+  encoding); not yet on the player's computer or with the real model, so the first run there shows how well Qwen3.5
+  answers the form on painted pictures.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the

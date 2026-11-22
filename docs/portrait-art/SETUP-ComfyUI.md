@@ -99,7 +99,8 @@ asks where your `Rimfolk-portraits` folder is. Then "Reload the library" in the 
    (`..._cut_00001_.png`; Ape's from `colonists-redo` go into `library\colonists` too, her row is in `colonists.csv`),
    for backdrops the scenes. Several backdrops of one room are fine; the game picks among them.
 2. Right-click `Update-PortraitLibrary.ps1`, **Run with PowerShell**. It writes `library\records.xml`: a record for
-   every picture, taken from its row in the batch list (the columns after `seed`), and shows the folder's path.
+   every picture, taken from its row in the batch list (the columns after `seed`) and the picture check's corrections
+   marked yes (step 8), and shows the folder's path.
 3. In RimWorld, Rimfolk's settings, **Portrait library folder**: paste that path (once on each computer). Then
    **Reload the library** (or restart the game). Each time you add or remove pictures: run the script again, then reload.
 
@@ -158,32 +159,62 @@ Qwen3.5, a free model (Apache 2.0 licence) that fits your card well, so no node 
    before, a few seconds each (the first takes longer while the model loads), and shows a line of what the model saw
    for each. It finds ComfyUI by itself; if it can't, it asks for the address (ComfyUI's settings, Server-Config) and
    remembers it. If ComfyUI is still making portraits, the check waits for it.
-9. At the end it shows the pictures to look at, the worst first, and writes the whole list to
-   `library\check-report.csv` (it opens in Excel; Notepad works too).
-10. Run it again whenever pictures have been added. It asks the model only about new pictures: every answer is kept in
-    `library\checked.csv`, a description of every picture in the library. Each run compares all the pictures with
-    their records again, so after fixing a row the list shows it at once, without asking the model again.
+9. At the end it shows the pictures to look at, the worst first, and writes two files into `library`:
+   `check-report.csv`, the whole list, and `corrections.csv`, the changes it proposes for single pictures (both open
+   in Excel; Notepad works too).
+10. Open `corrections.csv`. Each line is one change for one picture: `picture`, `field`, `value`, `apply`, `why`. Lines
+    marked **yes** are changes the check is sure of; lines marked **ask** wait for you: look at the picture, then
+    change ask to **yes** (do it) or **no** (keep the picture as it is), and save. You may also change a yes to no, or
+    fill in a value (for example the look's word after `add:`).
+11. Run `Update-PortraitLibrary.ps1` (`Copy-ToLibrary.cmd` runs it too). It writes the records again from the batch
+    lists and puts the corrections marked yes into them, and says how many it used and how many still wait as ask.
+    Then **Reload the library** in the game.
+12. Run the check again whenever pictures have been added. It asks the model only about new pictures (every answer is
+    kept in `library\checked.csv`, a description of every picture in the library), and compares all the pictures with
+    their records again: a picture whose correction was used leaves the list, and an issue you marked no doesn't come
+    back. Lines already in `corrections.csv` are never changed by it; new ones are added at the end.
+
+**What the corrections change.** Nothing is renamed: a picture's name ties it to its batch row, and the row's other
+pictures may be right, so a correction changes only that picture's record. The fields:
+- `age`: the age band the picture shows (yes when it looks two bands or more away from its row, a child drawn for an
+  adult or the other way round; one band apart stays as it is).
+- `sex`: `male` or `female` (yes when the model said it plainly; for a picture made for one colonist it is never
+  changed: that picture gets `out`, ask).
+- `role`: the work it shows (yes when the row has no role: a weapon gives soldier, warrior or hunter, armour soldier or
+  warrior, a crown leader, a book scholar), or `clear` (ask).
+- `looks`: `add:word` or `remove:word` (adding wings' look, such as `batWings`, is yes; fire or magic is ask, because
+  which look it is can't be told; taking a look away is ask, because the picture would then go to anyone).
+- `marks`: `add:eyePatch` and the like (yes), `remove:...` (ask).
+- `headwear`: `true`, so a picture with a hat or hood goes only to people wearing something on the head (yes; ask for
+  a colonist's own picture).
+- `out`: the picture is left out of the records; the file stays where it is (yes for more than one person in a
+  cut-out; ask for a body its kind doesn't have, such as pointed ears on a baseliner or an elf without them, and for
+  a person in a backdrop).
+Adding a look or a role only narrows who gets a picture, which is why those can be yes; anything that would give it to
+more people is ask.
 
 **Reading the report.** One line per picture: the `picture`, its `row` in the batch list, the `check`, `what is
-wrong`, `what the model saw`, what `its row says`, and a `suggested fix`. The check is one of:
-- **1 wrong**: the other sex than its row, an age two bands or more from its row's (one band apart is fine), more than
-  one person in a cut-out, no one at all, or a person in a backdrop. Throw these out.
+wrong`, `what the model saw`, what `its row says`, a `suggested fix`, and what is `in corrections.csv` for it. The
+check is one of:
+- **1 wrong**: the other sex than its row, an age two bands or more from its row's, more than one person in a
+  cut-out, no one at all, or a person in a backdrop.
 - **2 shows more**: something its row doesn't have: a weapon, armour, fire or magic, wings, a crown, a book or tools,
-  a hat, hood or helmet, horns, pointed ears, a tail, glowing eyes, scales or fur, an eye patch. Either throw it out,
-  or, if the picture is good, add the word the fix names to its row (the `looks`, `role`, `features`, `marks` or
-  `dress` column of `batches\<batch>.csv`), so it goes only to people who have it.
+  a hat, hood or helmet, horns, pointed ears, a tail, glowing eyes, scales or fur, an eye patch.
 - **3 shows less**: its row says something the model didn't see (a fire mage with no fire, a soldier with no weapon or
   armour, a saurid without scales). Look at the picture: the model can miss things, and the clothes or the face may
   show it.
 - **4 not compared**: the picture has no record yet (run `Update-PortraitLibrary.ps1`), or the model's answer couldn't
   be read (it is asked again next time).
+What a look or role asks for is taken from the row's own prompt (its subject and pose columns): a row with the
+sniperClass look whose prompt asks for a rifle may show one, and should.
 
 Pictures made for one colonist (a name in their row's `pawn` column) go to that colonist only, so for them only the
 sex, the age, the number of people, headwear and the body (ears, horns, scales, eyes) are checked.
 
-The model can be wrong: the list says what to look at, not what to throw out. The check never deletes, moves or renames
-a picture and never changes a batch list or the records. To throw a picture out, delete it from `library\<batch>`; to
-fix a row, change it in `batches\<batch>.csv`; then run `Update-PortraitLibrary.ps1`, and the check again.
+The model can be wrong: the list and the ask lines say what to look at. The check never deletes, moves or renames a
+picture and never changes a batch list or the records. You can still throw a picture out by deleting it from
+`library\<batch>`, or fix a whole row in `batches\<batch>.csv`; then run `Update-PortraitLibrary.ps1`, and the check
+again.
 
 **Sharper answers (optional).** The larger Qwen3.5 model sees more detail and comes in a file of about the same size:
 `qwen3.5_9b_int8_convrot.safetensors` (about 10 GB) from the same page. Put it in `models\text_encoders`, pick it in the
@@ -205,3 +236,5 @@ type `%QUESTION%` in its custom prompt box, and export as above. The check works
 - The picture check stops with "ComfyUI refused the question" or "ComfyUI could not answer": the message names the box.
   Most often the model file is not in `models\text_encoders` (step 8, point 2); for "out of memory", close what else
   uses the graphics card, or use the smaller `qwen3.5_2b_bf16.safetensors` from the same page.
+- "Could not write ... is it open in Excel?": close `check-report.csv` or `corrections.csv` in Excel and run the check
+  again.
