@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Fewer quests out on the world map, their sites nearer home, Rimfolk's own timer besides the storyteller's, and the
+       events record (Source/ColonyCouncil/Story/QuestPlaceMath.cs, QuestPlaces.cs, QuestPlacePatches.cs, EventRecord.cs,
+       EventRecordMath.cs, UI/EventRecordPanel.cs, Happenings/Happenings.cs): the player's wish of 20 November 2026 and their
+       go of 22 November 2026. Plain words (interface text). -->
+
+  <!-- ===================== The settings ===================== -->
+
+  <CC_Settings_AwayQuests>Quests out on the world map: {0}</CC_Settings_AwayQuests>
+  <CC_Settings_AwayQuests_Tip>How often the storyteller offers quests that send the colony out on the world map (a camp to raid, a stash or a ruin to find, a site to visit, a trade request at a town), against quests that play out at home. At 100% they come as the game has it. Lower, each one weighs that share of what it would when the storyteller picks a quest, so more of the quests offered play out at home: at 50%, a colony offered six quests in ten out on the map is offered about four in ten. The storyteller offers as many quests as before. Work sites, which come on a slot of their own, come at this share of their usual rate. Quests given another way (a story, an ending, a ritual, a decree, an item, a book, a trader, a scanner, or a mod's chain of quests) are never held back. Needs the deeper game hooks.</CC_Settings_AwayQuests_Tip>
+  <CC_SetNote_AwayQuests>At 100%, as the game has it. Lower, more of the quests offered play out at home.</CC_SetNote_AwayQuests>
+
+  <CC_Settings_QuestSites>How far quest sites may be</CC_Settings_QuestSites>
+  <CC_Settings_QuestSites_Tip>When a quest picks a place for its site (a camp, a stash, a ruin, a wreck), how far from home it may be. The game picks between 7 and 27 tiles away unless the quest asks for its own range. Nearer: at most about three fifths of the farthest (16 tiles of 27). Near: at most about a third (9 tiles), and as close as 4. Where no place that near fits, the site is picked as the game would, so no quest is lost to the setting. Quests that pick their place another way, and trade requests (the town is where it is), stay as the game has them. Needs the deeper game hooks.</CC_Settings_QuestSites_Tip>
+  <CC_QuestSites_AsTheGame>As the game has it</CC_QuestSites_AsTheGame>
+  <CC_QuestSites_AsTheGame_Tip>Quest sites between 7 and 27 tiles away, as the game picks them.</CC_QuestSites_AsTheGame_Tip>
+  <CC_QuestSites_Nearer>Nearer</CC_QuestSites_Nearer>
+  <CC_QuestSites_Nearer_Tip>Quest sites at most about 16 tiles away instead of 27; the nearest as the game has it.</CC_QuestSites_Nearer_Tip>
+  <CC_QuestSites_Near>Near</CC_QuestSites_Near>
+  <CC_QuestSites_Near_Tip>Quest sites at most about 9 tiles away, and as close as 4.</CC_QuestSites_Near_Tip>
+  <CC_SetNote_QuestSites_AsTheGame>Quest sites as far as the game puts them.</CC_SetNote_QuestSites_AsTheGame>
+  <CC_SetNote_QuestSites_Nearer>Quest sites at most about 16 tiles away, from the game's 27.</CC_SetNote_QuestSites_Nearer>
+  <CC_SetNote_QuestSites_Near>Quest sites at most about 9 tiles away.</CC_SetNote_QuestSites_Near>
+
+  <CC_Settings_OwnTimerShare>... and on Rimfolk's own timer besides: {0}</CC_Settings_OwnTimerShare>
+  <CC_Settings_OwnTimerShare_Tip>With the storyteller drawing Rimfolk's events, some can also come on Rimfolk's own timer, on top of what the storyteller draws. At 0%, none: only the storyteller brings them, as before. At 100%, the timer brings one about every 4 days besides; at 50%, about every 8 days; at 25%, about every 16 days. The timer waits while a question of Rimfolk's is not answered or a fight is on, and the storyteller seldom draws one of Rimfolk's events in the day and a half after one came.</CC_Settings_OwnTimerShare_Tip>
+  <CC_SetNote_OwnTimerShare>At 0%, only the storyteller draws them. Higher, more of Rimfolk's events come besides.</CC_SetNote_OwnTimerShare>
+
+  <!-- ===================== The events record (Council, Colony, Overview) ===================== -->
+
+  <CC_Record_Title>Events in the last 30 days</CC_Record_Title>
+  <CC_Record_Intro>What came to the colony, by kind, with the newest of each; then how Rimfolk's events and the game's quests come now, and what was held back and why.</CC_Record_Intro>
+  <CC_Record_Kind_Threat>Threats</CC_Record_Kind_Threat>
+  <CC_Record_Kind_Everyday>The storyteller's everyday events</CC_Record_Kind_Everyday>
+  <CC_Record_Kind_QuestHome>Quests at home</CC_Record_Kind_QuestHome>
+  <CC_Record_Kind_QuestAway>Quests out on the world map</CC_Record_Kind_QuestAway>
+  <CC_Record_Kind_Rimfolk>Rimfolk's events</CC_Record_Kind_Rimfolk>
+  <CC_Record_Kind_Question>Council questions</CC_Record_Kind_Question>
+  <CC_Record_Kind_GodCard>The gods' cards</CC_Record_Kind_GodCard>
+  <CC_Record_Line>Day {DAY}: {WHAT}</CC_Record_Line>
+  <CC_Record_Unnamed>no name</CC_Record_Unnamed>
+  <CC_Record_More>and {COUNT} more</CC_Record_More>
+  <CC_Record_None>None in these 30 days.</CC_Record_None>
+
+  <CC_Record_HowTitle>How they come now</CC_Record_HowTitle>
+  <CC_Record_How_Off>Rimfolk's events are switched off (Options, Rimfolk, What's on, Rimfolk events).</CC_Record_How_Off>
+  <CC_Record_How_Own>Rimfolk's events come on Rimfolk's own timer, about one every {DAYS} days.</CC_Record_How_Own>
+  <CC_Record_How_Both>Rimfolk's events come when the storyteller draws them, and about one every {DAYS} days on Rimfolk's own timer besides.</CC_Record_How_Both>
+  <CC_Record_How_Storyteller>Rimfolk's events come when the storyteller draws them from its everyday events, at most half of them.</CC_Record_How_Storyteller>
+  <CC_Record_How_NoHooks>The deeper game hooks are off, so the game's quests come as the game has them, and this record takes in nothing new.</CC_Record_How_NoHooks>
+  <CC_Record_How_Away>Quests out on the world map weigh {PCT} of what they would when the storyteller picks a quest, so more of those offered play out at home.</CC_Record_How_Away>
+  <CC_Record_How_AwayAll>Quests out on the world map come as the game has them.</CC_Record_How_AwayAll>
+  <CC_Record_How_SitesGame>Quest sites are picked as far as the game picks them, up to {MAX} tiles away.</CC_Record_How_SitesGame>
+  <CC_Record_How_SitesNearer>Quest sites are picked nearer home: up to {MAX} tiles away instead of the game's {GAME}, or as the game picks them when nothing that near fits.</CC_Record_How_SitesNearer>
+
+  <CC_Record_HeldTitle>Held back, and why</CC_Record_HeldTitle>
+  <CC_Record_Held_wait>Rimfolk's own timer waited on {COUNT} day(s) because a question of Rimfolk's was not answered yet.</CC_Record_Held_wait>
+  <CC_Record_Held_fight>Rimfolk's own timer waited on {COUNT} day(s) because a fight was on.</CC_Record_Held_fight>
+  <CC_Record_Held_drawwait>On {COUNT} day(s) the storyteller drew an everyday event while a question of Rimfolk's was not answered, so none of Rimfolk's events could be drawn then.</CC_Record_Held_drawwait>
+  <CC_Record_Held_Cap>Rimfolk's events are held to half of the storyteller's everyday events: today their chance is cut to {PCT} of what it would be.</CC_Record_Held_Cap>
+  <CC_Record_Held_NoCap>Rimfolk's events make up less than half of the storyteller's everyday events today, so the half-share cap holds nothing back.</CC_Record_Held_NoCap>
+  <CC_Record_Held_None>Nothing held back in these 30 days.</CC_Record_Held_None>
+
+</LanguageData>

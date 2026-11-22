@@ -189,6 +189,18 @@ namespace ColonyCouncil
         /// <summary>How likely each of them is, compared with one of the game's own events.</summary>
         public float storytellerEventWeight = 1f;
         /// <summary>
+        /// The middle way (Happenings/Happenings.cs, EventRecordMath.BesidesDays): with the storyteller drawing Rimfolk's events,
+        /// a share of them also comes on Rimfolk's own timer besides, one about every 4 days at 100%; 0 is none, as before.
+        /// </summary>
+        public float ownTimerShare = 0f;
+        /// <summary>
+        /// The game's and the mods' quests out on the world map, as a share of their weight when the storyteller's quest slot
+        /// picks one (Story/QuestPlaceMath.cs); the quests at home keep theirs. 100% is as the game has it.
+        /// </summary>
+        public float awayQuestShare = 0.5f;
+        /// <summary>How far from home a quest's site may be picked (Story/QuestPlaceMath.cs): as the game has it, nearer, near.</summary>
+        public QuestSiteRange questSiteRange = QuestSiteRange.Nearer;
+        /// <summary>
         /// The story direction (Story/StoryDirection.cs): one of Rimfolk's fourteen ways to play leaning whichever storyteller is
         /// playing, through Rimfolk's own happenings and the reasons raids come for; none leaves the storyteller as it is
         /// (and one of Rimfolk's storytellers leans its own way).
@@ -1015,6 +1027,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
             Scribe_Values.Look(ref eventsFromStoryteller, "eventsFromStoryteller", true);
             Scribe_Values.Look(ref storytellerEventWeight, "storytellerEventWeight", 1f);
+            Scribe_Values.Look(ref ownTimerShare, "ownTimerShare", 0f);
+            Scribe_Values.Look(ref awayQuestShare, "awayQuestShare", 0.5f);
+            Scribe_Values.Look(ref questSiteRange, "questSiteRange", QuestSiteRange.Nearer);
             Scribe_Values.Look(ref storyDirection, "storyDirection", StoryWay.None);
             Scribe_Values.Look(ref worldSituations, "worldSituations", true);
             Scribe_Values.Look(ref daysBetweenWorldSituations, "daysBetweenWorldSituations", 45f);

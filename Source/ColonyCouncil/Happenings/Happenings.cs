@@ -615,6 +615,12 @@ namespace ColonyCouncil
             return f;
         }
 
+        /// <summary>
+        /// How much the half-share cap cuts Rimfolk's events in one of the storyteller's pools today (1: nothing; 0.6: to 60% of
+        /// their weight), for the events record.
+        /// </summary>
+        public static float ShareCut(IncidentCategoryDef cat) => S == null ? 1f : ShareFactor(cat);
+
         private static float ShareFactor(IncidentCategoryDef cat)
         {
             if (cat == null) return 1f;
@@ -687,10 +693,23 @@ namespace ColonyCouncil
             Safe("quests", () => Quests(comp));
             // The old powers' own strange happenings, on their own pace and the ways' lever (OldPowers/OldPowers.cs).
             Safe("the old powers", () => OldPowers.Hourly(now));
-            // With the storyteller in charge of them, Rimfolk's own timer stays quiet.
-            if (!S.worldEvents || S.eventsFromStoryteller) return;
+            // With the storyteller in charge of them, Rimfolk's own timer stays quiet, unless the middle way runs it besides.
+            if (!S.worldEvents) return;
+            if (!OwnTimerRuns)
+            {
+                // Its waits start afresh when it runs again, so a wait from long ago doesn't bring an event the hour it starts.
+                if (timers.Count > 0) timers.Clear();
+                nextTick = -1;
+                return;
+            }
             EventTimers(now);
         }
+
+        /// <summary>
+        /// Rimfolk's own timer brings events: on its own (the storyteller doesn't draw them), or besides the storyteller's draw at
+        /// the share of the setting "... and on Rimfolk's own timer besides" (the middle way; none to begin with, as before).
+        /// </summary>
+        public static bool OwnTimerRuns => S != null && S.worldEvents && (!S.eventsFromStoryteller || EventRecordMath.BesidesOn(S.ownTimerShare));
 
         /// <summary>
         /// Rimfolk's own timer, one per home: when a home's comes round, an event that fits comes to that home. The seat
@@ -724,9 +743,11 @@ namespace ColonyCouncil
                 if (!timers.TryGetValue(key, out int next) || next < 0) next = now + Interval();
                 timers[key] = next;
                 if (now < GenDate.TicksPerDay * 3 || now < next || space) continue;
-                // Not on top of a fight, and not while the colony still has an event to answer.
-                if (MapFacts.ThreatOn(map) || WaitingAt(map))
+                // Not on top of a fight, and not while the colony still has an event to answer (the events record says so, once a day).
+                bool waiting = WaitingAt(map);
+                if (waiting || MapFacts.ThreatOn(map))
                 {
+                    EventRecord.Held(waiting ? EventRecordMath.HeldWait : EventRecordMath.HeldFight);
                     timers[key] = now + GenDate.TicksPerHour * 4;
                     continue;
                 }
@@ -754,7 +775,16 @@ namespace ColonyCouncil
             return false;
         }
 
-        private static int Interval() => Mathf.RoundToInt(Mathf.Max(0.5f, S.daysBetweenWorldEvents) * Rand.Range(0.6f, 1.4f) * GenDate.TicksPerDay);
+        /// <summary>
+        /// The wait for the own timer's next event: the days set for it, or besides the storyteller's draw the middle way's
+        /// (4 days at 100%, 8 at 50%: EventRecordMath.BesidesDays); either way between 0.6 and 1.4 times that.
+        /// </summary>
+        private static int Interval()
+        {
+            float days = S.eventsFromStoryteller ? EventRecordMath.BesidesDays(S.ownTimerShare) : S.daysBetweenWorldEvents;
+            if (float.IsInfinity(days) || float.IsNaN(days)) days = EventRecordMath.BesidesBaseDays / 0.05f;
+            return Mathf.RoundToInt(Mathf.Max(0.5f, days) * Rand.Range(0.6f, 1.4f) * GenDate.TicksPerDay);
+        }
 
         /// <summary>Fires one world event that fits now (or one of those <paramref name="only"/> allows).</summary>
         public bool TryFire(Map map, Func<IncidentDef, bool> only)

@@ -261,8 +261,14 @@ namespace ColonyCouncil
             Slider("encounterFrequency", "CC_Settings_FreqEncounters", "CC_SetNote_FreqEncounters", 0.25f, 3f, 0.25f, "%");
             Slider("storytellerEventWeight", "CC_Settings_StorytellerEventWeight", "CC_SetNote_StorytellerEventWeight", 0.25f, 2f, 0.05f, "%",
                 "worldEvents,eventsFromStoryteller");
+            // The middle way (the player, 20 November 2026): with the storyteller drawing them, some also on Rimfolk's own timer besides.
+            Slider("ownTimerShare", "CC_Settings_OwnTimerShare", "CC_SetNote_OwnTimerShare", 0f, EventRecordMath.MaxBesides, 0.05f, "%",
+                "worldEvents,eventsFromStoryteller");
             Slider("daysBetweenWorldEvents", "CC_Settings_DaysBetweenWorldEvents", "CC_SetNote_DaysBetweenWorldEvents", 1f, 20f, 0.5f, "0.#",
                 "worldEvents,!eventsFromStoryteller", "CC_SetWhy_OwnTimer");
+            // The game's and the mods' quests (Story/QuestPlaceMath.cs): fewer out on the world map, so more at home.
+            Slider("awayQuestShare", "CC_Settings_AwayQuests", "CC_SetNote_AwayQuests", QuestPlaceMath.MinAwayShare, QuestPlaceMath.MaxAwayShare, 0.05f, "%",
+                "deepHooks");
             Slider("daysBetweenWorldSituations", "CC_Settings_DaysBetweenWorldSituations", "CC_SetNote_DaysBetweenWorldSituations", 15f, 120f, 5f, "0",
                 "worldSituations");
             // The region (World/Region/): how much a remote home draws travellers, and how likely raiders' camps are.
@@ -349,6 +355,9 @@ namespace ColonyCouncil
                 new[] { "None", "LongRoad", "Neighbours", "TurningYear", "WhatYouSow", "OldPowers", "LeanYears", "RiseAndFall", "Crossroads", "OpenGate", "HomeAndHearth",
                     "TheWilds", "Windfalls", "Sellswords", "FeastDays" });
             direction.notePrefix = "CC_SetNote_StoryDirection_";
+            // The sites of the game's and the mods' quests nearer home (Story/QuestPlaceMath.cs), so going out is less of a trek.
+            Choice("questSiteRange", "CC_Settings_QuestSites", "CC_Settings_QuestSites_Tip", "CC_QuestSites_", "CC_SetNote_QuestSites_",
+                new[] { "AsTheGame", "Nearer", "Near" }, "deepHooks");
             // The council: the advisor and the plan, wishes, meetings, questions, decrees and offices.
             Section("CC_Settings_Layers");
             Toggle("enableAdvisor", "CC_Settings_EnableAdvisor", "CC_SetNote_EnableAdvisor");
@@ -987,7 +996,7 @@ namespace ColonyCouncil
                 // How much happens.
                 V("gatheringsAWeek", "1"), V("daysBetweenWishes", "4"), V("maxOpenWishes", "3"), V("daysBetweenDilemmas", "15"), V("daysBetweenMeetings", "20"),
                 V("momentFrequency", "0.75"), V("socialEventFrequency", "0.5"), V("dreamFrequency", "0.5"), V("arcFrequency", "Rare"),
-                V("outsiderChatterFrequency", "0.5"), V("encounterFrequency", "0.5"), V("storytellerEventWeight", "0.5"),
+                V("outsiderChatterFrequency", "0.5"), V("encounterFrequency", "0.5"), V("storytellerEventWeight", "0.5"), V("ownTimerShare", "0"),
                 V("daysBetweenWorldEvents", "8"), V("daysBetweenWorldSituations", "75"), V("remoteTravellers", "0.5"), V("raidersCamps", "0.5"),
                 V("theirSchemes", "0.5"), V("newPeoples", "0.5"), V("animalMoments", "0.5"), V("packAlphas", "0.5"), V("beastNemeses", "0.5"), V("regionLegends", "0.5"), V("greatHerds", "0.5"),
                 // How hard.
@@ -1016,6 +1025,8 @@ namespace ColonyCouncil
                 V("gatheringsAWeek", "3"), V("daysBetweenDilemmas", "5"),
                 V("momentFrequency", "1.5"), V("socialEventFrequency", "1.5"), V("dreamFrequency", "1.5"), V("arcFrequency", "Frequent"),
                 V("daysBetweenPersonalTouches", "4"), V("outsiderChatterFrequency", "1.5"), V("encounterFrequency", "1.5"), V("storytellerEventWeight", "1.5"),
+                // More of Rimfolk's events besides the storyteller's, and more of the quests at home, where its stories play out.
+                V("ownTimerShare", "0.5"), V("awayQuestShare", "0.35"),
                 V("daysBetweenWorldEvents", "3"), V("daysBetweenWorldSituations", "30"), V("remoteTravellers", "1.5"), V("raidersCamps", "1.25"),
                 V("theirSchemes", "1.25"), V("newPeoples", "1.25"), V("animalMoments", "1.5"), V("packAlphas", "1.25"), V("beastNemeses", "1.25"), V("regionLegends", "1.25"), V("greatHerds", "1.25"),
                 // The heart's good side: brighter dreams and now and then an inspiration.
