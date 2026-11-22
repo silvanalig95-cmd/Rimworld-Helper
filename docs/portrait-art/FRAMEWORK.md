@@ -142,6 +142,14 @@ solution. I mean, I cannot upload that many images to you to edit."
   room's kind and the colony's age indoors, the biome outdoors; day or night and the weather as a tint; drawn softer,
   darker and out of focus, with a light shadow behind the figure, so the face stays first. A plain painted ground is the
   fallback, and a setting chooses backdrops, plain, or the picture's own background.
+- **How they go together** (tried on the player's first pictures, 22 November 2026, the player: "whether the
+  backgrounds are then too noisy or ... distracting from the pawn ... think about how to best kind of put it
+  together"): the backdrop as painted is too busy (a stone wall fights a saurid's quills); far back or only its colours
+  loses the place. Best: the backdrop's middle band behind the head, blurred a little (about 1% of the panel), at about
+  60% brightness and 75% colour, darker towards the edges, a soft shadow behind the person, its brightest spots (a
+  window behind the head) dimmed, and the person tinted lightly (about a fifth) towards the room's light. The crop
+  follows the panel's size: at 96 pixels the head fills 45% of it, at 360 pixels 30%, so a small panel shows the face
+  and a large one the pose; the head is found from the cut-out's own shape (its top and the neck).
 
 ## The process
 

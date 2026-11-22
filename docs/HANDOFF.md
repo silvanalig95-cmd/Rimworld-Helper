@@ -408,7 +408,13 @@ most sense." So, in this order, three builds at a time:
   finds any `rimfolk*workflow*.json`, asks for the batch and style first, and takes the workflow that fits by itself
   (with the remover for people, without it for a style with `"cut": false`; a style may also name one), names any
   picture from the remover `..._cut`, and with only one workflow takes the remover out of the way for the backdrops
-  (tested with the player's own export and three wirings against a stand-in server). Then (mod code) the
+  (tested with the player's own export and three wirings against a stand-in server).
+  The player's first backdrops ("looking pretty good") and cut-outs, laid together here at the game's own sizes (the
+  large portrait's square, 96 to 360 pixels, with its name band): the way that works is in `FRAMEWORK.md`
+  ("Backgrounds": softened backdrop, crop by the panel's size, the person tinted to the room). Seen in the pictures: Ape
+  (a woman of 48) drawn as an old man, so pictures need a look before they are kept. Next, for the player's go: the ten
+  colonists' chosen cut-outs and the backdrops put in the mod by hand for a first look in the game, then the pack for
+  the library at scale (the entry below). Then (mod code) the
   backdrop behind the large portrait by room, age and biome, tinted by day and weather, with the setting.
 - **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
