@@ -186,7 +186,7 @@ GROUP_WEIGHT = {'nose': 1.2, 'jaw': 1.1, 'mouth': 1.1, 'eyes': 0.9, 'brows': 1.0
 BUILD_UNFIT = {'heavy': re.compile(r'gaunt|hollow|bony|thin, pinched|narrow face'),
                'slim': re.compile(r'round, fleshy|moon|full, heavy cheeks|double chin|big, heavy-boned')}
 # Face words a kind's look contradicts (a pinched face under a neanderthal's heavy jaw).
-LOOK_UNFIT = [(r'heavy jaw|broad|brutish|stocky|big, heavy|massive', re.compile(r'gaunt|hollow|thin, pinched|narrow face|weak chin|narrow jaw')),
+LOOK_UNFIT = [(r'heavy jaw|broad|brutish|stocky|big, heavy|massive|fleshy|big, round head|blocky', re.compile(r'gaunt|hollow|thin, pinched|narrow face|narrow head|small head|bony face|high cheekbones|weak chin|narrow jaw')),
               (r'gaunt|\bthin\b|\blean\b|narrow|slender|slight', re.compile(r'round, fleshy|moon|full, heavy|double chin|big, heavy-boned|wide, open|short, wide'))]
 # A face's features: one to three, mostly one or two (the player: "Someone could have one, someone could have three").
 FEATURE_COUNTS = [(1, 0.42), (2, 0.4), (3, 0.18)]
@@ -293,7 +293,7 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
     unfit = [x.pattern for x in [BUILD_UNFIT.get(build)] + [u for rx, u in LOOK_UNFIT if re.search(rx, look or '')] if x]
     unfit = re.compile('|'.join(unfit)) if unfit else None
     if not shape_blocked:
-        base.append(_word(rng, rng.choice([s for s in shapes if _ok(s, age) and not (unfit and unfit.search(s[0]))]), strong_share))
+        base.append(_word(rng, rng.choice([s for s in shapes if _ok(s, age) and not (unfit and (unfit.search(s[0]) or unfit.search(s[1] or '')))]), strong_share))
     if surface == 'human' and 'skin' not in blocks:
         said = ' '.join(base)     # the skin names no part the shape already did ("a big forehead, an oily forehead")
         base.append(rng.choice([s for s, tag in SKINS if (skin_human or tag != 'hc')
@@ -303,7 +303,8 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
     elif surface != 'human':
         base.append(rng.choice(fresh(SURFACES[surface], look)))
     if not base:
-        base.append(_word(rng, rng.choice([s for s in (ANIMAL_SHAPES if animal else FACE_SHAPES) if _ok(s, age)]), strong_share))
+        pool = [s for s in (ANIMAL_SHAPES if animal else FACE_SHAPES) if _ok(s, age)]
+        base.append(_word(rng, rng.choice([s for s in pool if not (unfit and (unfit.search(s[0]) or unfit.search(s[1] or '')))] or pool), strong_share))
     n, x = 1, rng.random()
     for c, w in FEATURE_COUNTS:
         x -= w
@@ -327,8 +328,11 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
         if g == 'brows' and 'scar' in marks and not animal:
             items = items + [SCAR_BROW]
         feats.append(_word(rng, rng.choice(items), strong_share))
-    if not feats:   # every group said by the kind already: one more for the shape or the skin
-        feats.append(_word(rng, rng.choice([s for s in shapes if _ok(s, age)]), strong_share))
+    if not feats:   # every group said by the kind already: one more for the shape or the skin, not the one said
+        said = ' '.join(base)
+        feats.append(_word(rng, rng.choice([s for s in shapes if _ok(s, age) and s[0] not in said and (s[1] or s[0]) not in said
+                                            and not (unfit and (unfit.search(s[0]) or unfit.search(s[1] or '')))]
+                                           or [s for s in shapes if _ok(s, age)]), strong_share))
     if rng.random() < UNEVEN_SHARE and not animal and len(feats) < 3:
         uneven = [u for u in UNEVEN if not ('eye' in u[0] and 'eyes' in blocks) and not ('mouth' in u[0] and 'mouth' in blocks)
                   and not ('smile' in u[0] and 'mouth' in blocks)]

@@ -301,11 +301,13 @@ class Characters(Tmp):
             # no beauty words, small eyes in proportion (the kind's own eyes aside)
             self.assertIsNone(CW.BANNED.search(subject + ' ' + pose), r['name'])
             rest = subject.replace(CW.plain_words(k.look), '')
+            if k.sign:
+                rest = rest.replace(k.sign, '')
             self.assertIsNone(BIG_EYES.search(rest), r['name'])
             if r['age'] in W.LITTLE:
                 self.assertIn('small eyes in proportion to the face', subject)
             elif not k.far:
-                self.assertIn('the eyes of ordinary size for the face', subject)
+                self.assertIn('the eyes of ordinary size for the face', subject.lower())
             # a face of its own: its shape or skin, and one to three features, never the same face twice
             fs = P.faces_of(subject)
             self.assertEqual(len(fs), 2 if k.kind == 'MultiMind_ConjoinedHuman' else 1, r['name'])

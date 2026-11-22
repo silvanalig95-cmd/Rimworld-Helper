@@ -79,13 +79,17 @@ Windows' virtual memory to 32 to 64 GB and restarting.
 1. Copy `rmwstyle.safetensors` into ComfyUI's `models\loras` (ComfyUI Desktop: `Documents\ComfyUI\models\loras`)
    and press R in ComfyUI (or restart it). The player took the last save.
 2. The style files, `batches/style-rimworld-people.json` and `style-rimworld-backdrops.json`: the LoRA at 0.7 (the
-   player's choice after the first test), with the SameFace fix at -0.7 for people.
+   player's choice after the first test), one picture per row (the player: "you don't necessarily have to always
+   generate two versions of each single prompt ... so that we have a lot of variety soon"), no SameFace fix (the player
+   took it out again).
 3. The first test (`style-test`) gave a white and light-blue border around every figure, like a sticker, while the
-   training samples had only the black ink line on plain grey. The cause was the first style file's words ("a comic
-   illustration", "outlines heavier along the silhouette", "a cool rim light along the edges"), which push FLUX to that
-   look. The player: "a black outline is great and fits the theme, but should not be like a light one. It should just be
-   black always." So the style files now use the training captions' own wording: `rmwstyle`, the subject, "a plain dark
-   grey background", and "black ink lines and cel shading", with no outline or rim light words.
+   training samples had only the black line on plain grey. The cause was the first style file's words ("a comic
+   illustration", "outlines heavier along the silhouette", "a cool rim light along the edges"). The player: "a black
+   outline is great and fits the theme, but should not be like a light one. It should just be black always." The next
+   words, "black ink lines and cel shading", made a fair number of pictures black and white (an "ink" drawing, above all
+   for pale, grey or white-haired people). So the style now says only "rmwstyle, a full-colour character portrait with
+   rich colours and cel shading" and "In full colour." at the end, and nothing about outlines: the LoRA draws the black
+   line by itself.
 4. If a light edge still shows: train again with the DLC pictures' captions naming their blue rim light ("a cool blue
    light along his edges"), so the LoRA ties it to those words and not to `rmwstyle`.
 5. Later: train again with 20 to 40 of our own best pictures in this style added, so the LoRA leans less on the eighteen.

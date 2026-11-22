@@ -65,7 +65,7 @@ CHAR_ROLES_LOOKS = {1: (18, 18), 2: (2, 2)}
 # up to wave 3, grown-ups everywhere.
 CHAR_LITTLE = {1: {'baby', 'toddler', 'child', 'teen'}, 2: {'child', 'teen'}, 3: {'teen'}}
 # The longest a characters prompt may be (a longer one loses its least needed words; the tests hold every row to it).
-MAX_SUBJECT = 900
+MAX_SUBJECT = 1050
 HUMAN_SKIN_SLUGS = {s for s, _, _ in W.HUMAN_SKINS}
 # Words a hardship line leaves out when the face already says them ("sun-browned skin" and "Sun-browned, dry skin").
 ECHO_WORDS = ['sun-browned', 'weather', 'hollow', 'wind', 'creased', 'chapped', 'lines', 'grime', 'stare']
@@ -328,6 +328,8 @@ class Kind:
         self.ageless = r['ageless'] == 'yes'
         # How the head and body differ from a human's, from the genes (the characters lists say it; may be empty).
         self.shape = (r.get('shape') or '').strip()
+        # What marks the kind out at a glance, said again at the end of a characters row (may be empty).
+        self.sign = (r.get('sign') or '').strip()
         self.greys = ('Hair_Grayless' not in self.genes and not self.ageless
                       and any(e[0] in NATURAL_HAIR for e in self.hairs.entries))
 
@@ -808,7 +810,7 @@ class Planner:
             soft = ''
         sentences = [opening + ': ' + body + '.', face[:1].upper() + face[1:] + (', ' + expr if expr else '') + '.']
         if not little and not k.far:
-            sentences.append('Natural proportions, the eyes of ordinary size for the face.')
+            sentences.append('The eyes of ordinary size for the face.')
         signs = (FAR_AGE_SIGNS if k.far else AGE_SIGNS).get(age, '')
         if signs and not little:
             sentences.append(signs[:1].upper() + signs[1:] + '.')
@@ -1249,7 +1251,7 @@ class Planner:
                 if fit.get('messy'):
                     opts = [p for p in opts if MESSY.search(p)] or opts
                 parts.append(rng.choice(opts).format(c=colour or 'dark') + both)
-        elif not re.search(r'\bbald\b|\bhair\b', kind_look) and not little:
+        elif not re.search(r'\bbald\b|\bhair\b|\bhairless\b', kind_look) and not little:
             if all(e[0] == 'bald' for e in k.hairs.entries):
                 if not re.search(r'crest|scalp|chitin|insect|mushroom|fung|tentacle|head of|-like head', body_text):
                     parts.append(rng.choice(C.HAIRLESS) + both)
@@ -1276,6 +1278,8 @@ class Planner:
             for _try in range(60):
                 base, feats = C.face(rng, age, body_text, k.features, skin_human, k.far, strong, marks, own_text,
                                      light=skin[0] in ('veryfair', 'fair', 'light'), build=build, skin_words=skin[2])
+                if k.sign:          # a kind of its own look: one feature of the face, so the kind's look leads
+                    feats = feats[:1]
                 key = '%s; %s' % (base, '; '.join(sorted(feats)))
                 if key not in self.ledger.faces and key not in [f[2] for f in faces]:
                     break
@@ -1339,7 +1343,7 @@ class Planner:
             sentences.append("A plain, real %s's face with small eyes in proportion to the face, an ordinary, homely look."
                              % {'baby': 'baby', 'toddler': 'toddler'}.get(age, 'child'))
         elif not k.far:
-            sentences.append('Natural proportions, the eyes of ordinary size for the face.')
+            sentences.append('The eyes of ordinary size for the face.')
         signs = (FAR_AGE_SIGNS if k.far else AGE_SIGNS).get(age, '')
         if signs and not little:
             sentences.append(S(signs) + '.')
@@ -1374,6 +1378,10 @@ class Planner:
                 line = 'In short, %s %s%s%s.' % ('an' if adjs[0][0] in 'aeiou' else 'a', ', '.join(adjs), sep, person)
                 sentences.append(line)
         sentences += [facing_text, again]
+        if k.sign:          # the kind's look said again at the end, so it holds (the player: "really describe ... what the race looks like")
+            sign = child_look(k.sign) if little else k.sign
+            if sign:
+                sentences.append('Clearly %s %s, with %s.' % ('an' if k.label[:1].lower() in 'aeiou' else 'a', k.label, sign))
 
         def tidy(ss):
             return re.sub(r'\s+', ' ', ' '.join(x for x in ss if x)).replace(' ,', ',').replace(',.', '.').replace('..', '.')

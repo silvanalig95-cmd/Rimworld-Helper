@@ -701,6 +701,21 @@ most sense." So, in this order, three builds at a time:
   proportions), without telling it to ignore ink lines (which could make old people read young); (3) an age two bands
   off becomes "ask", only three or more stays "yes" (changed without asking); (4) raise `$QuestionVersion` (the library
   is new, nothing to ask again). Reading a band word as an answer is already there (`Band-Of-Word`).
+- **Done (22 November 2026, the player's own request): the characters lists again, the races described in full, one
+  picture per row.** The player: "for the sake of variety, you don't necessarily have to always generate two versions
+  of each single prompt", "please do me then another update without this natural proportions mention. And also ... do
+  it without the same phase fix and really describe it more better what the race looks like, even much more elaborate
+  ... these two that I don't know if what a Sango fake is supposed to look like, but these look like just normal humans.
+  And then please generate me these lists again", and "There's also a fair amount that is getting generated in black and
+  white." Done: `catalogue/kinds.csv` has each kind's look written out in full (the head, face, ears, nose, horns, fur,
+  scales, eyes and build its genes and its mod give it) and a new `sign` column, what marks the kind out at a glance,
+  said again at the end of each characters row ("Clearly a genie, with the tall, elongated, egg-shaped skull and the
+  long, spidery fingers."); a kind with a sign gets one face feature, not up to three, so its look leads; "Natural
+  proportions" left out ("The eyes of ordinary size for the face." stays, the player's rule on eyes); the length cap
+  1050; faces that contradict a heavy or blocky head kept off (a pigskin's gaunt face, a korg's small head); no
+  "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
+  1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
+  white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
 - **To do when the player asks (22 November 2026, the player; noted for later): non-human kinds look too human in the
   game-look style.** The player: "the non-human races still look quite human. There's still some differences, but
   overall ... since we really had not a lot of non-humans to train with, but just to keep that in mind, perhaps for
