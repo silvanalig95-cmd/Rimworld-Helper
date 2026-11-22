@@ -472,7 +472,7 @@ public static class WeatherDressTests
     {
         var rows = File.ReadAllLines(Path.Combine(root, "docs", "player-mods", "apparel.tsv")).Skip(1).Select(l => l.Split('\t')).Where(r => r.Length > 6)
             .GroupBy(r => r[0]).ToDictionary(g => g.Key, g => g.Last());
-        bool Active(string d) => rows.TryGetValue(d, out var r) && r[2] == "yes";
+        bool Active(string d) => rows.TryGetValue(d, out var r) && OffForNow.Counts(root, r[2], r[1]);
         bool Tagged(string d, string tag) => rows.TryGetValue(d, out var r) && r[5].Split(',').Contains(tag);
         C(Active("Apparel_Parka") && Active("Apparel_Tuque") && Active("Apparel_Duster") && Active("Apparel_CowboyHat") && Active("Apparel_KidParka"),
             "the game's parka, tuque, duster, cowboy hat and children's parka are in the player's pool");

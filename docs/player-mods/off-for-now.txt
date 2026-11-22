@@ -1,0 +1,8 @@
+# Mods the player has subscribed and turned off for now, whose content Rimfolk keeps, soft (MayRequire or by name):
+# it does nothing while the mod is off and works again when it is turned back on. The tests count their defs as the
+# player's; new content still draws only on the active rows. One package id a line.
+# 22 November 2026: Vanilla Christmas Expanded left the player's list (likely for the season); Rimfolk's festive hall,
+# hot cocoa for the sick and warm jacket and hat stay, soft. Vanilla Food Variety Expanded left it the same day; its
+# cookbook among the society's books stays, soft.
+ve.vanillachristmasexpanded
+vanillaexpanded.vanillafoodvarietyexpanded
