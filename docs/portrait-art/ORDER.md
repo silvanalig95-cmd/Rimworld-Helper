@@ -15,6 +15,17 @@ must run all these programs and scripts". The details of each step are in `SETUP
    - `rimfolk-depth-workflow-api.json`: depth maps, Depth Anything 3 (step 9);
    - `rimfolk-variant-workflow-api.json`: expressions, FLUX.1 Kontext Dev (step 10).
 4. In RimWorld, Rimfolk's settings, "Portrait library folder": the path of `Rimfolk-portraits\library`.
+5. The style, until it's chosen: train the `rmwstyle` LoRA (`STYLE-RIMWORLD.md`), then run `style-test` with
+   `style-rmw` and with the comic candidates `style-comic-a` to `e`, and compare them with `style`. Copy the one you like
+   over `style.json` (keep the old one under another name). Every list takes its drawing from `style.json`.
+
+### Starting a new library
+1. Move the old `library` folder out of `Rimfolk-portraits` (or rename it `library-old`). The copier makes a new, empty
+   one the first time it copies, and the batch tool then makes every row of a list again.
+2. Move the old batch folders out of ComfyUI's `output\Rimfolk` (keep the two Copy-ToLibrary files there): the copier
+   copies every batch folder it finds there, so old pictures would come into the new library.
+3. In the game, after the first copy: Rimfolk settings, "Reload the library". Everyone's old picture is no longer in the
+   library, so each pawn gets a new one by the usual rules the next time they are shown.
 
 ### Qwen3.5, the picture check's model (step 8)
 1. Start ComfyUI and take its update if it offers one.
@@ -27,7 +38,8 @@ must run all these programs and scripts". The details of each step are in `SETUP
 
 ## Each round
 
-1. `Run-PortraitBatch.ps1`: a people list (first `age-test`, then `people-01`, `02` ...) with `style`. Overnight.
+1. `Run-PortraitBatch.ps1`: a people list with `style`, overnight. In a new library: first `colonists` (your own people),
+   then `characters-01`, `02`, `03` (every kind of person, each with a face of their own), then `people-01` to `04`.
 2. `Run-PortraitBatch.ps1` with `backdrops` and `style-backdrop`, when you want more backdrops.
 3. In `output\Rimfolk`: delete the pictures you don't want.
 4. `Copy-ToLibrary.cmd` (in `output\Rimfolk`): the new pictures into the library; it writes the records.
