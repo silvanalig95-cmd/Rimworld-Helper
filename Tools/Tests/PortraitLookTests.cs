@@ -337,8 +337,11 @@ public static class PortraitLookTests
             }
         }
         bool Active(string name, params string[] types) => pool.TryGetValue(name, out var l) && l.Any(x => x.active && types.Contains(x.type));
-        string lookFile = Path.Combine(root, "Defs", "PortraitLookDefs", "PortraitLooks.xml");
-        var defs = XDocument.Load(lookFile).Root!.Elements("ColonyCouncil.PortraitLookDef").ToList();
+        // Every file of looks (the starter list, or the catalogue's from Tools/PortraitArt/looks_to_defs.py): the mods test
+        // leaves this folder to these checks.
+        var defs = Directory.GetFiles(Path.Combine(root, "Defs", "PortraitLookDefs"), "*.xml")
+            .SelectMany(f => XDocument.Load(f).Root!.Elements("ColonyCouncil.PortraitLookDef")).ToList();
+        C(defs.Count > 0, $"the looks' defs read ({defs.Count})");
         var words = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         var starter = new List<LookRule>();
         foreach (var d in defs)
@@ -358,18 +361,21 @@ public static class PortraitLookTests
             foreach (var f in d.Elements().Select(x => x.Name.LocalName).Where(x => x != "defName" && x != "label"))
                 C(Regex.IsMatch(Read("UI/Faces/PortraitLookDef.cs"), @"public (string|bool|List<string>) " + f + @"\b"), $"{name}: '{f}' is a field of the def");
         }
+        // By what gives each look, not its word: the catalogue's file (Tools/PortraitArt/looks_to_defs.py) may name them its own way.
         var sb = new LookBook(starter);
-        C(sb.Find("conjoinedTwins")?.special == true && sb.Find("conjoinedTwins")!.bodies.Contains("MultiMind_ConjoinedHumanBody") && sb.Find("batWings")?.special == true
-          && sb.Find("insectWings")!.genes.Contains("VRE_InsectWings"), "special: Conjoined Twins' twins by their body, bat wings, insect wings");
-        C(new[] { "pyromaniac", "psychopath", "beautiful", "pretty", "ugly", "staggeringlyUgly", "drinker", "drugAddict", "fireMage" }.All(w => sb.Find(w) != null && !sb.Find(w)!.special),
+        bool Special(Func<LookRule, bool> by) => sb.rules.Any(r => r.special && by(r));
+        bool Ordinary(Func<LookRule, bool> by) => sb.rules.Any(r => !r.special && by(r));
+        bool Trait(LookRule r, string name, int? degree) => r.traits.Any(t => t.Key == name && t.Value == degree);
+        C(Special(r => r.bodies.Contains("MultiMind_ConjoinedHumanBody")) && Special(r => r.genes.Contains("AG_BatWings")) && Special(r => r.genes.Contains("VRE_InsectWings")),
+            "special: Conjoined Twins' twins by their body, bat wings, insect wings");
+        C(Ordinary(r => Trait(r, "Pyromaniac", null)) && Ordinary(r => Trait(r, "Psychopath", null)) && new[] { 2, 1, -1, -2 }.All(dg => Ordinary(r => Trait(r, "Beauty", dg)))
+          && Ordinary(r => r.hediffs.Contains("AlcoholAddiction")) && Ordinary(r => r.hediffs.Contains("PsychiteAddiction")) && Ordinary(r => Trait(r, "InnerFire", null)),
             "ordinary: a pyromaniac, a psychopath, beauty's four degrees, a drinker, a drug addict, a fire mage");
         var wingGenes = pool.Where(kv => kv.Value.Any(x => x.active && (x.type == "GeneDef" || x.type == "GenelineGeneDef")) && Regex.IsMatch(kv.Key, "Wings?(_|$)|Glidewings")
                                          && !kv.Key.Contains("NoWings") && !kv.Key.Contains("EarWings")).Select(kv => kv.Key).ToList();
         var unlooked = wingGenes.Where(g => !sb.rules.Any(r => r.special && r.genes.Contains(g))).ToList();
         C(wingGenes.Count > 20 && unlooked.Count == 0, $"every active wing gene of the player's mods gives a special look ({wingGenes.Count}; without: {string.Join(", ", unlooked)})");
-        C(sb.Find("drinker")!.traits.Any(t => t.Key == "DrugDesire" && t.Value == 2) && sb.Find("drinker")!.hediffs.Contains("AlcoholAddiction")
-          && !sb.Find("drugAddict")!.hediffs.Contains("AlcoholAddiction") && sb.Find("drugAddict")!.hediffs.Contains("PsychiteAddiction"),
-            "a drinker by alcohol and a taste for chemicals; a drug addict by the other addictions");
+        C(!sb.rules.Any(r => r.hediffs.Contains("AlcoholAddiction") && r.hediffs.Contains("PsychiteAddiction")), "a drinker's look and a drug addict's are two looks");
 
         // ---------------- The seams ----------------
         string lib2 = Read("UI/Faces/PortraitLibrary.cs"), needs = Read("UI/Faces/PortraitNeeds.cs"), reader = Read("UI/Faces/PortraitReader.cs"), lookDef = Read("UI/Faces/PortraitLookDef.cs");

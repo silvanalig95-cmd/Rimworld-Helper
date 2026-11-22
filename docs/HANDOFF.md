@@ -1245,7 +1245,13 @@ repo.
     are for after a separation, so left out), bat wings, insect wings, butterfly wings, feathered wings, dragon wings,
     and the wings whose shape isn't known here (drainer, rainbow, a single malformed wing, Hussar's glidewings): every
     one of the 39 active wing genes; ordinary: pyromaniac, psychopath, beautiful, pretty, ugly, staggeringly ugly,
-    drinker, drug addict, fire mage, ice mage (A RimWorld of Magic's InnerFire and HeartOfFrost).
+    drinker, drug addict, fire mage, ice mage (A RimWorld of Magic's InnerFire and HeartOfFrost). The catalogue's file
+    (`Tools/PortraitArt/looks_to_defs.py`) takes its place when the lead writes it: tried here, it passes every check but
+    one, the catalogue's `looks.csv` leaves out seven active wing genes as special looks (`VRE_InsectWings`,
+    `VRE_InsectWings_Cosmetic`, `VRE_LocustWings`, Alpha Genes' four `AG_GenelineCosmetic_*Wings`; they are
+    `GenelineGeneDef`s, in `defs.tsv.gz` but not `genes.tsv`), so a pawn with them could get a wingless picture; the
+    test lists them. The mods test leaves `Defs/PortraitLookDefs` to `PortraitLookTests`, which checks every name of
+    every file there against the player's active mods.
   - **What the library lacks, in the save**: `PortraitNeedsKept` (a game component) keeps every line missing.csv gets,
     one CSV line per need with its count and the game's day last seen, at most 200, the least recently seen let go,
     merged on load; noted with or without a library folder. New look lines (`what` look, the word in a new column

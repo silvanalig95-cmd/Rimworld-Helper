@@ -299,22 +299,3 @@ VTE_CatPerson
 VTE_ChildOfMountain
 # Vanilla Fishing Expanded 1.6 (vanillaexpanded.vcef): the fisherman
 VCEF_Fisherman
-# The portraits' looks (Defs/PortraitLookDefs/PortraitLooks.xml), read from the player's mods' own defs (docs/player-mods/defs.tsv.gz):
-# Alpha Genes 1.6 (sarg.alphagenes): its wing genes and its insect geneline's cosmetic wings
-AG_BatWings
-AG_WaspWings
-AG_BumbledroneWings
-AG_GenelineCosmetic_WaspWings
-AG_GenelineCosmetic_BumbledroneWings
-AG_MothWings
-AG_GenelineCosmetic_MothWings
-AG_FeatheredWings
-AG_PegasusWings
-AG_DemonWings
-AG_DrakonoriWings
-AG_DrainerWings
-AG_GenelineCosmetic_DrainerWings
-AG_RainbowWings
-AG_SingleWing
-# Vanilla Factions Expanded - Classical 1.6 (oskarpotocki.vfe.classical): opium's addiction
-VFEC_OpiumAddiction
