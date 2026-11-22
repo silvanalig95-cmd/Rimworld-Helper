@@ -15,11 +15,11 @@ namespace ColonyCouncil
         public float headX = float.NaN, headY = float.NaN, headSize = float.NaN;
     }
 
-    /// <summary>A backdrop read from the library folder's records.xml.</summary>
+    /// <summary>A backdrop read from the library folder's records.xml, and its depth map's path from the folder ("" for none given).</summary>
     public sealed class FolderBackdrop
     {
         public BackdropRecord record;
-        public string texPath;
+        public string texPath, depthPath = "";
     }
 
     /// <summary>
@@ -98,7 +98,7 @@ namespace ColonyCouncil
                     p.headSize = Number(F("headSize"));
                     people?.Add(p);
                 }
-                else backdrops?.Add(new FolderBackdrop { record = BackdropMath.Record(name, F, L, own), texPath = tex });
+                else backdrops?.Add(new FolderBackdrop { record = BackdropMath.Record(name, F, L, own), texPath = tex, depthPath = (F("depthPath") ?? "").Trim().Replace('\\', '/').TrimStart('/') });
                 foreach (var o in own) problems?.Add(name + ": " + o);
             }
         }
@@ -114,6 +114,19 @@ namespace ColonyCouncil
 
         /// <summary>A picture's path from the folder, for the folder's listing (forward slashes, ".png" added).</summary>
         public static string FileKey(string texPath) => (texPath ?? "").Replace('\\', '/').TrimStart('/') + ".png";
+
+        /// <summary>
+        /// A backdrop's depth map in the folder (phase 6), as its path from the folder without ".png", or "" for none: the
+        /// record's <c>depthPath</c> where that file is there, else the backdrop's own name with "_depth" beside it where that
+        /// file is there (a depth map made before its record was written again).
+        /// </summary>
+        public static string DepthOf(FolderBackdrop b, ICollection<string> pictures)
+        {
+            if (b == null || pictures == null) return "";
+            if (!string.IsNullOrEmpty(b.depthPath)) return pictures.Contains(FileKey(b.depthPath)) ? b.depthPath : "";
+            string own = (b.texPath ?? "") + "_depth";
+            return !string.IsNullOrEmpty(b.texPath) && pictures.Contains(FileKey(own)) ? own : "";
+        }
 
         // ---------------- Words for missing.csv ----------------
 

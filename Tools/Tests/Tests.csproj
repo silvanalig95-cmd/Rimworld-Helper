@@ -77,6 +77,7 @@
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitViewMath.cs" Link="PortraitViewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitPictureMath.cs" Link="PortraitPictureMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitComposeMath.cs" Link="PortraitComposeMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitLifeMath.cs" Link="PortraitLifeMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/BackdropMath.cs" Link="BackdropMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitFolderMath.cs" Link="PortraitFolderMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />

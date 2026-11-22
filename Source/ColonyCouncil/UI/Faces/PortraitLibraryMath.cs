@@ -187,11 +187,25 @@ namespace ColonyCouncil
         /// <summary>The work it shows (one of <see cref="PortraitLookMath.Roles"/>), or "" for any.</summary>
         public string role = "";
         public PortraitFacing facing;
+        /// <summary>
+        /// The character it is a variant of and the variant's word (phase 3: the same face with a mark or older; "base" for
+        /// the face itself). For an expression of another picture (<see cref="variantOf"/> set) the word is the expression.
+        /// </summary>
         public string character = "", variant = "base";
+        /// <summary>
+        /// Phase 6: the picture this one is an expression of (its def's name), or "": the same picture painted again with the
+        /// eyes closed, a smile, a frown or in pain (<see cref="PortraitLifeMath.Faces"/>, the word in <see cref="variant"/>).
+        /// Such a picture is never picked on its own and never counts in the matching or the missing list; it belongs to its
+        /// base picture and only the large portrait shows it.
+        /// </summary>
+        public string variantOf = "";
         /// <summary>The colonist it is pinned to (their nickname, first, last, shown or full name), or "": used for them only, never for anyone else.</summary>
         public string pawn = "";
 
         public bool Pinned => pawn.Length > 0;
+
+        /// <summary>An expression of another picture (phase 6), not a picture of its own.</summary>
+        public bool IsExpression => variantOf.Length > 0;
 
         /// <summary>The character it belongs to: its own name where it is no variant of another.</summary>
         public string Character => string.IsNullOrEmpty(character) ? name : character;
@@ -461,14 +475,64 @@ namespace ColonyCouncil
             r.pawn = (field("pawn") ?? "").Trim();
             string variant = field("variant");
             r.variant = string.IsNullOrWhiteSpace(variant) ? "base" : variant.Trim();
+            // Phase 6: an expression of another picture (variantOf) names its expression in variant; phase 3's meaning (a
+            // character's variant with a mark or older) stays for every picture without variantOf.
+            r.variantOf = (field("variantOf") ?? "").Trim();
+            if (r.variantOf.Length > 0)
+            {
+                var face = PortraitLifeMath.FaceWord(variant);
+                if (face != null) r.variant = face;
+                else Bad("variant: '" + (variant ?? "").Trim() + "' is not one of " + string.Join(", ", PortraitLifeMath.Faces) + " (a picture with variantOf is an expression of the picture it names)");
+                if (r.variantOf == name) Bad("variantOf: a picture can't be an expression of itself");
+            }
             return r;
         }
 
-        /// <summary>What is wrong across the library: a character with no base variant, two variants of one character of different sex or kind.</summary>
+        /// <summary>
+        /// The library's pictures split (phase 6): the indices of those that stand on their own (in order), and the expressions
+        /// of another picture (<see cref="PortraitRecord.variantOf"/>) by the picture they belong to and their word. An
+        /// expression whose picture isn't in the library (or is itself an expression), with a word Rimfolk doesn't know, or a
+        /// second of the same word, is left out and told in <paramref name="problems"/>.
+        /// </summary>
+        public static List<int> SplitExpressions(IList<PortraitRecord> records, Dictionary<string, Dictionary<string, int>> expressions, List<string> problems)
+        {
+            var own = new List<int>();
+            if (records == null) return own;
+            var bases = new HashSet<string>(records.Where(r => r != null && !r.IsExpression).Select(r => r.name), StringComparer.Ordinal);
+            for (int i = 0; i < records.Count; i++)
+            {
+                var r = records[i];
+                if (r == null) continue;
+                if (!r.IsExpression)
+                {
+                    own.Add(i);
+                    continue;
+                }
+                if (!bases.Contains(r.variantOf))
+                {
+                    problems?.Add(r.name + ": an expression of " + r.variantOf + ", which isn't a picture of the library, so it is left out");
+                    continue;
+                }
+                if (PortraitLifeMath.FaceWord(r.variant) == null)
+                {
+                    problems?.Add(r.name + ": '" + r.variant + "' is not one of " + string.Join(", ", PortraitLifeMath.Faces) + ", so it is left out");
+                    continue;
+                }
+                if (!expressions.TryGetValue(r.variantOf, out var faces)) expressions[r.variantOf] = faces = new Dictionary<string, int>(StringComparer.Ordinal);
+                if (faces.ContainsKey(r.variant)) problems?.Add(r.name + ": a second " + r.variant + " of " + r.variantOf + ", left out");
+                else faces[r.variant] = i;
+            }
+            return own;
+        }
+
+        /// <summary>
+        /// What is wrong across the library: a character with no base variant, two variants of one character of different sex
+        /// or kind. Expressions of another picture (phase 6) are not variants of a character and are left out.
+        /// </summary>
         public static List<string> LibraryProblems(IList<PortraitRecord> records)
         {
             var problems = new List<string>();
-            foreach (var g in records.Where(r => !string.IsNullOrEmpty(r.character)).GroupBy(r => r.character))
+            foreach (var g in records.Where(r => !string.IsNullOrEmpty(r.character) && !r.IsExpression).GroupBy(r => r.character))
             {
                 var list = g.ToList();
                 if (list.Count > 1 && !list.Any(r => r.variant == "base" && r.marks.Count == 0))

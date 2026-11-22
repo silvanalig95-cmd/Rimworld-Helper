@@ -171,15 +171,26 @@ namespace ColonyCouncil
             Folder = folder;
             People.Clear();
             Backdrops.Clear();
-            int missing = 0;
+            int missing = 0, faces = 0, depths = 0;
             foreach (var p in got.people)
-                if (got.pictures.Contains(PortraitFolderMath.FileKey(p.texPath))) People.Add(p);
+                if (got.pictures.Contains(PortraitFolderMath.FileKey(p.texPath)))
+                {
+                    People.Add(p);
+                    if (p.record.IsExpression) faces++;
+                }
                 else missing++;
             foreach (var b in got.backdrops)
-                if (got.pictures.Contains(PortraitFolderMath.FileKey(b.texPath))) Backdrops.Add(b);
+                if (got.pictures.Contains(PortraitFolderMath.FileKey(b.texPath)))
+                {
+                    // Phase 6: its depth map where the file is there (named in the record, else beside it by name).
+                    b.depthPath = PortraitFolderMath.DepthOf(b, got.pictures);
+                    if (b.depthPath.Length > 0) depths++;
+                    Backdrops.Add(b);
+                }
                 else missing++;
             Version++;
-            Status = "CC_PortraitFolder_Read".Translate(People.Count.Named("PEOPLE"), Backdrops.Count.Named("BACKDROPS"), folder.Named("FOLDER")).Resolve()
+            Status = "CC_PortraitFolder_Read".Translate((People.Count - faces).Named("PEOPLE"), Backdrops.Count.Named("BACKDROPS"), folder.Named("FOLDER")).Resolve()
+                     + (faces + depths > 0 ? " " + "CC_PortraitFolder_Alive".Translate(faces.Named("FACES"), depths.Named("DEPTHS")).Resolve() : "")
                      + (missing > 0 ? " " + "CC_PortraitFolder_Missing".Translate(missing.Named("COUNT")).Resolve() : "");
             Log.Message("[Rimfolk] Portraits: " + Status);
             if (got.problems.Count > 0)
