@@ -165,9 +165,10 @@ try {
     # Only what the library lacks: rows with no picture of theirs in library\<batch>\ yet (new rows added to a list, or
     # ones whose pictures were all thrown out), so a grown list is never made again from the start.
     # A row's pictures may sit in any library folder (lists are mixed and renumbered now and then), so look in all.
+    # Depth maps (<picture>_depth.png) and expressions (<picture>_v-<word>.png) belong to their picture and don't count.
     $libRoot = Join-Path $Folder 'library'
     $have = @()
-    if (Test-Path -LiteralPath $libRoot) { $have = @(Get-ChildItem -LiteralPath $libRoot -Filter '*.png' -File -Recurse | ForEach-Object { $_.Name }) }
+    if (Test-Path -LiteralPath $libRoot) { $have = @(Get-ChildItem -LiteralPath $libRoot -Filter '*.png' -File -Recurse | ForEach-Object { $_.Name } | Where-Object { $_ -notmatch '_(depth|v-[A-Za-z]+)\.png$' }) }
     $rowNames = @{}; foreach ($r in $rows) { $rowNames[($r.name -replace '[^A-Za-z0-9_\-]', '_')] = $true }
     $have = @($have | Where-Object { $m = [regex]::Match($_, '^(.+?)_style'); $m.Success -and $rowNames.ContainsKey($m.Groups[1].Value) })
     if ($have.Count -gt 0) {
@@ -189,8 +190,9 @@ try {
         # remover, one for the backdrops without it, or one for another model). A style may name its own ("workflow");
         # otherwise the one that fits the style is taken by itself: with the remover for people, without it for a style
         # with "cut": false. Asked only when that leaves more than one. The picture check's workflow
-        # (rimfolk-check-workflow-api.json, for Check-Pictures.ps1) is not one of them.
-        $wfs = @(Get-ChildItem -LiteralPath $Folder -Filter 'rimfolk*workflow*.json' | Where-Object { $_.Name -notmatch '(?i)check' } | ForEach-Object { $_.Name })
+        # (rimfolk-check-workflow-api.json, for Check-Pictures.ps1), the depth maps' and the expressions'
+        # (rimfolk-depth-workflow-api.json and rimfolk-variant-workflow-api.json) are not among them.
+        $wfs = @(Get-ChildItem -LiteralPath $Folder -Filter 'rimfolk*workflow*.json' | Where-Object { $_.Name -notmatch '(?i)check|depth|variant' } | ForEach-Object { $_.Name })
         if ($wfs.Count -eq 0) { $Workflow = Join-Path $Folder 'rimfolk-workflow-api.json' }
         elseif ((Has $st 'workflow') -and $st.workflow -and (Test-Path -LiteralPath (Join-Path $Folder ([string]$st.workflow)))) {
             $Workflow = Join-Path $Folder ([string]$st.workflow)
