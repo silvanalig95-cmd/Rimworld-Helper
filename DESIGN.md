@@ -16439,6 +16439,210 @@ placeholder pictures and sample defs in `Tools/Tests/PortraitFixtures/` (never s
   player's 79 xenotypes; how the game names a texture loaded from a mod's folder (the defs name theirs, so this no
   longer matters).
 
+### Portraits, phase 4: the painted library in the game, with backdrops (the player's go, 22 November 2026; not released yet)
+
+The player's words (22 November 2026): "now what is the plan to actually get this into the game now? Like a first
+attempt ... let's just start with the colonists that I have as a first batch ... the framework should then allow,
+additions of many, many more images from all kinds of different races, sexes, ages ... It should then find the closest
+match for this character and assign an image to it. If it's not exactly representing them, that's fine"; "the
+backgrounds are correctly selected based on age and what it contains and what kind of room it is ... will this require
+a lot of performance during the game, or is the impact going to be minor?"; of how the person and the backdrop go
+together: "I still think the as painted looks quite good overall, and I would like to try this out". Then, the same
+day: "I want to be careful with images changing ... it should really select an image once ... if a kid is getting older,
+enters a new life stage, then of course it should be reflected", "eventually, yeah, we should update the image" (of
+growing old), "the age range should always be corresponding to the xenotype", "ageless pawns can also look ... old,
+middle-aged, or even elderly over time if they are like really super old", "once a pawn is part of my colony, their image
+should no longer be used for anyone else", and that the pictures stay in one folder kept in step between their two
+computers. The spec for the pictures and their drawing is `docs/portrait-art/FRAMEWORK.md` ("Backgrounds", "How they go
+together", "Nothing of this is baked into the pictures"). Built on phase 3, whose def, matcher and seam stay; what changed
+in them is said below.
+
+The code: `UI/Faces/PortraitStore.cs` (the pictures loaded when shown, and the cache), `PortraitDef.cs` (a picture's
+def, and where its file is), `PortraitFolder.cs` (the player's library folder), `PortraitLibrary.cs` (who gets which
+picture), `PortraitKeeper.cs` (kept in the save), `PortraitReader.cs` (a pawn's looks and how old they look),
+`BackdropDef.cs` and `Backdrops.cs` (the backdrops and where a person is), `FaceEngineStage.cs` (the large portrait's
+picture), `PortraitNeeds.cs` (the missing list), `InspectPortrait.cs` (the large portrait and its menu); the rules
+without game types in `PortraitPictureMath.cs` (the head, the crop, scaling, the light), `PortraitComposeMath.cs` (the
+backdrop's softening, the line round the person, the tint), `BackdropMath.cs` (the backdrop's choice), `PortraitFolderMath.cs`
+(records.xml and missing.csv) and `PortraitLibraryMath.cs` (linked in the tests). Tested in
+`Tools/Tests/PortraitStageTests.cs` and `PortraitLibraryTests.cs`, with sample backdrop defs and a sample records.xml in
+`Tools/Tests/PortraitFixtures/`.
+
+- **Where the pictures come from.**
+  - *The library folder* (the main source): the setting "Portrait library folder" (a path; empty: none) names a folder
+    the player keeps in step between their computers (their cloud drive). In it, `records.xml` (written by the lead's
+    pack script: the same XML as the defs, root `Defs`, elements `ColonyCouncil.PortraitDef` and
+    `ColonyCouncil.BackdropDef`, each `texPath` from the folder, such as `colonists/Avila_style_01_cut_00001_`) and the
+    pictures in its subfolders (`<folder>/<texPath>.png`). Read when the game has started and again with "Reload the
+    library", on a worker thread (a cloud drive's file may take a moment to open; the game never waits): the records
+    parsed with the defs' own words (an unknown word is told once in the log and left out, the record kept), the
+    folder's PNGs listed once, and a record whose picture isn't there left out with a count. A missing or unreadable
+    folder: one message and the log, the folder's part of the library off, tried again a minute later (ten times at
+    most, or with the button). A Windows path with spaces and a drive letter, pasted with or without quotation marks.
+  - *Defs of any mod* as before (phase 3), now with the picture under the def's mod's `Portraits` folder
+    (`<mod>/Portraits/<texPath>.png`, not under Textures, so the game doesn't load it at start-up), else a texture under
+    Textures (phase 3's defs). Both take part in the matching alike; a folder record with a def's name is left out.
+- **Loaded only when shown** (`PortraitStore`): nothing is read at start-up beyond the records. A picture is asked for
+  the first time a portrait shows it; its file is read on a worker thread, decoded by the game
+  (`ImageConversion.LoadImage`, which must run on its thread) at most one a frame, then on a worker its head is measured
+  from its alpha, it is scaled down by area (the colour weighted by alpha, so a clear background never darkens the edge)
+  to what the largest portrait needs (`LongSideFor`: 1.25 times 360 at the interface's scale, 450 pixels long at 100%,
+  at least 320, at most 720), and its clear edge is given the person's colour four pixels deep (so mipmaps never fade
+  it to black); the game makes the texture (with mipmaps, for the small round portraits), at most one a frame. Until it
+  is ready (a fraction of a second) the portrait shows its ground only, never the game's drawing for a moment. Kept in
+  a cache of at most 48 pictures and 12 million pixels, the least lately shown let go (its texture destroyed), never one
+  shown this frame or the last. A file that can't be read: one warning, and the game's drawing for whoever it was for.
+- **Where the head is**, measured once from the cut-out's alpha (`PortraitPictureMath.MeasureHead`) unless the record
+  gives `headX`, `headY` and `headSize`: the top is the first row with the person in it (a speck aside); the neck the
+  narrowest row under the head's widest one, before the shoulders widen, else 0.3 of the picture under the top (long
+  hair over the shoulders hides the neck); the middle across the centre of the person's pixels from the top to the neck.
+  A picture with no clear ground (an older one painted to its edges) keeps phase 3's place for the head. The pictures'
+  shape (1024 x 1280) is part of their layout, so every place frames them without squeezing.
+- **Who gets which picture** (`PortraitLibrary`, `PortraitLibraryMath`):
+  - *Pinned pictures*: a record's `pawn` names a colonist of the player's (their nickname, the name on the colonist bar,
+    their first, last or full name, in that order of how telling; the letters' case aside; of two named alike the one
+    longer in the game). It is theirs ahead of the matcher while it fits their stage, and never anyone else's: the
+    matcher never sees it. Of several pins for one colonist, the best fitting, then the nearest to their looks.
+  - *The setting "Portraits from the library"*: "The closest" (the player's words; the first choice): everyone a picture
+    may stand for gets the nearest, however far. "Only close ones": phase 3's way, a picture shown only where it was
+    within 6 when picked (pinned and hand-chosen ones always). The setting changes what is shown, never what is kept.
+  - *What may stand for whom*: the kind exactly (the player: "if there is a xenotype appearing in game and there is no
+    image for it ... it should just show no image ... not take another xenotype's image. That will also immediately
+    inform me that I need to generate images for that xenotype"): a picture of their own race and xenotype, a baseliner's
+    only for a baseliner, a xenotype of the player's own making by its name in the record's `xenotypes`; a hybrid or
+    anything unclear none. With no picture of their kind they keep the game's own drawing everywhere, are written in the
+    missing list, and get a picture as soon as one of their kind is in the library (phase 3's baseliner pictures for a
+    near-human kind are gone). The sex must agree; no mark the person hasn't got (marks count at the first pick: someone
+    who has already lost an eye gets the face's variant with the eye patch).
+  - *Nine age bands* (`FRAMEWORK.md`'s, the records' words baby, toddler, child, teen, young, adult, middle, old, elder;
+    phase 3's child, young, adult and old keep their words; teenager, middle-aged and elderly read too): the own band
+    first, the next 2.5 further, two bands 6.5, each band past that 4 more; a baby or a toddler only ever gets a baby's
+    or a toddler's picture, a child a child's or a teen's, a teen a child's, a teen's or a grown-up's; never a child a
+    grown-up's or a grown-up a child's.
+  - *How old a person looks* (`PortraitLibraryMath.AgeOf`, one pure rule; the player: "the age range should always be
+    corresponding to the xenotype"): always their biological age, so genes that slow, speed up or stop ageing count by
+    themselves; the young ones by the game's own stages of life (a baby under one, else a toddler; a child; the game's
+    teenage stage a teen), else by a human's years (a toddler from one, a child from four, a teen from 13 until 18); a
+    grown-up by a human's years (young until 30, adult until 45, middle-aged until 60, old until 75, then an elder)
+    scaled by their race's life expectancy times their own life span factor (the game's `LifespanFactor` stat, read by
+    name, from genes such as the stoneborn's long life) against 80, so a race that lives 400 years is adult at 150. Someone
+    whose ageing has stopped (Biotech's Ageless, the dark elves' DevDesigner_Ageless, or any gene whose ageing curve
+    reaches nothing) looks by their years since birth on a scale ten times as long (`AgelessLifeScale`; the player:
+    "ageless pawns can also look ... old ... if they are like really super old"), never younger than their biological
+    age reads: an ageless elf young until 300, adult until 450, middle-aged until 600, old until 750, then an elder.
+  - *Few repeats*: of the nearest few faces (within 1.5 of the nearest, at most six), one nobody holds before a used one,
+    the nearest of those, among equals one by the pawn's id (phase 3's "two alike people apart", widened).
+  - *A colonist's picture is theirs alone* (the player: "once a pawn is part of my colony, their image should no longer be
+    used for anyone else. And even ... replace anyone else who already has that image"): a pawn of the player's faction
+    (a colonist or a slave; not a prisoner, a guest or a lodger) makes its face its own; no one else is given it, and
+    anyone else holding it gets a new pick at once (the closest face no colonist owns; with none, the game's drawing).
+    Of two colonists with the same face, the one who had it first keeps it. A pinned face is its colonist's from the
+    start. A colonist who leaves or dies keeps it, still their own while they are remembered: their record is never let
+    go for not being pictured, and is let go last when the keeper is full. The face counts, not the single picture, so
+    a variant of a colonist's face is never a stranger's.
+  - *Chosen once and kept* (`PortraitKeeper`; replaces phase 3's variant following the body and picking again for a
+    clearly closer face): a person's picture is chosen the first time it is needed, from how they look then, and kept
+    in the save. No injury, lost eye, scar, haircut, beard or clothes changes it, nor a grown library. A new pick only
+    when: they move to the next stage of life (a baby to a toddler, a toddler to a child, a child to a teen, a teen to
+    young, and into old; young, adult and middle-aged keep it, and old to elder); the picture is gone from the library;
+    a colonist now owns its face; a picture pinned to them fits better than what they keep (a pin made for them where
+    the matcher gave one; their own old picture once they are old, where a younger pin stood in); someone kept with no
+    picture gets one when the library or their looks change. A pin for a young or adult picture stands in for its
+    colonist as a teen or once old, where no pin of that stage is theirs (their own face before a stranger's).
+  - *"Choose another picture"* (a right click on the large portrait): the next of the pictures that may stand for them
+    (their fitting pins first, then up to eight nearest faces no colonist owns; for "only close ones" those close
+    enough), kept as chosen by hand: a pin made later doesn't replace it, the next stage of life does. A message says
+    which of how many it is, or that no other fits.
+- **The large portrait at the inspect pane** (`FaceEngine.DrawStaged`, `PortraitComposeMath`), with a library picture:
+  - *The crop follows its size* (`PortraitPictureMath.CropFor`): at 96 the head (its top to the neck) fills 45% of the
+    square with its middle 0.355 down; at 360 30% and 0.275; in between by a straight line: a small portrait shows the
+    face, a large one the pose. Past the picture's edges the crop is clear.
+  - *The backdrop* (`Backdrops`, `BackdropMath.Choose`): only here this round; elsewhere the picture stands on the
+    portrait's usual ground. In a room with a role (other than None or Room, not outdoors): the backdrops listing that
+    role, else the nearest kinds by a short table (a guest room, nursery, deathrest or coma room as a bedroom; a prison
+    barracks or containment cell as a prison cell; a playroom as a rec room; a library, classroom or gene lab as a
+    laboratory; a ballroom or gallery as a dining or rec room; a throne room as a ballroom or dining room; worship rooms,
+    ceremonial chambers and tombs as each other; a factory or reactor room as a workshop; a barn or cooled store as a
+    storeroom; bathrooms and saunas none, a plain ground); then the age nearest the colony's (its tech level as Rimfolk
+    counts it, held to medieval where it lives before the industrial age; on another people's map theirs; a backdrop
+    for any age half an age off); then the most of what is in the room (a small table read once per kind of thing:
+    beds, a table, chairs, a hearth and fire for a fireplace, campfire or hearth, a fire for a torch or brazier, a
+    window, shelves, crates, an altar, a throne, banners, pillars, a workbench, tools, a stove, pots, books for a
+    bookcase or research bench, medicine, bars, games; two beds or more also "beds"); among equals one by the room's
+    number, so it never flickers. A room of no particular kind: the room backdrop showing most of its things, else a
+    plain ground. Outdoors (or no room): the biome's group of land by a table of the player's 56 active biomes into
+    sixteen groups (the game's, Odyssey's, Anomaly's, Alpha Biomes', Alpha Genes', More Vanilla Biomes', ReGrowth's,
+    Vanilla Quests Expanded's), an unknown biome by its warmth, rain, plants and whether it is extreme, in vacuum or
+    underground; under a natural rock roof a cave; a group with no backdrop its near groups'. No map (a caravan, the
+    world), or nothing fits: a plain painted ground; with none, the portrait's own.
+  - *Day and night*: the light where they stand (the game's ground glow) in four steps (daylight, dusk, dim, dark), each
+    darker and a little cooler; a step changes only once the light is clearly past its edge.
+  - *Looked at again* only when the person's room, map or the light's step changes, at most every two seconds; what is in
+    a room read when the room changes and every half minute.
+  - *The drawing*, as the settings say, made once per person, picture, backdrop, size, settings and step of light: the
+    backdrop's middle square and the person's crop read back small from the graphics card, then on a worker thread the
+    backdrop as painted or softened (`Backdrop`: lightly, a blur of 0.3% of the portrait, 86% brightness, 92% colour, a
+    light darkening at the corners; softened, 1.2%, 62%, 75%, darker corners) and tinted by the light, and the person
+    with the line round them where it is on (`PersonLayer`: a soft dark halo just round them, a faint pale edge, a thin
+    dark ink line, all grown a few pixels from the cut-out's alpha and blurred a little; "Stronger" firmer) and tinted a
+    fifth toward the backdrop's light where that is on. Kept as two textures, the backdrop still behind and the person
+    in front breathing, swaying and posed as before; the last four kept, so turning back to someone shows them at once.
+    While a new one is made, the one before for the same person shows, or the ground for a moment. The name band, the
+    mark and the frame as before; while it is resized by dragging, the picture made before is stretched and made again
+    at the new size when the mouse is let go.
+- **Everywhere else Rimfolk shows a person** the picture comes through the face engine as in phase 3, cropped by the
+  place (round portraits close on the face, the colonist card's tile head and shoulders) on the place's own ground,
+  mirrored to face its text or the other of a pair: `UiKit.Portrait` (letters and event cards, the council and its
+  seats, the colonist card, the Story and Culture tabs, the people table, the mood board and the hover card, the
+  panels for wishes, faiths, history, defense, journeys, groups, camps, the region's people and neighbours, the
+  apparel and weapon cards and pickers, founding and handing over a colony). The founding window's choice of newcomers
+  keeps the game's drawing (the game's own starting-pawn picker, its pawns rerolled at will). The game's own windows
+  (the colonist bar, the social tab, the game's letters) are unchanged.
+- **The missing list** (`PortraitNeeds`; the player: "a constantly evolving database of images"): while a library
+  folder is set, what Rimfolk needed and didn't have goes to the folder's `missing.csv` for the next batches: people
+  with no picture of their kind, none of their sex and age, or none close to their looks (their race/xenotype and its
+  mod, sex, age band, skin and hair in a word, the age of their clothes, what they got instead, how many people, last
+  seen); rooms with no backdrop of their kind or none of the colony's age (the RoomRoleDef and its mod, the age, what
+  stood in); the land with no backdrop of its group (the biome and its mod, the group it fell back to). From the people
+  pictured, the person at the inspect pane's place, and once a day every room with a kind on the colony's maps and
+  their land. Each person, room or map counted once a session. Written on saving the game and at most once a day, on a
+  worker thread, merged with what the file holds (one line per need, the counts added, the newest date kept; people,
+  then rooms, then the land, the commonest first), with a two-line header in plain words; a write that fails is kept
+  for the next time.
+- **Settings** (How you're told, Portraits): beside the large portrait's size, "Backdrop" (As painted, the player's
+  choice; Lightly softened; Softened; Plain), "Line round the person" (Off; Subtle; Stronger), "Tint the person to the
+  room's light" (off); with the library, "Portraits from the library" (The closest; Only close ones) and "Portrait
+  library folder" (its path and "Reload the library").
+- **Performance** (the player: "the impact on the gameplay and performance requirements on the device are hopefully
+  not big"). Nothing per frame beyond drawing textures already made: a portrait asks a dictionary for its picture; the
+  matcher runs once per person (kept in the save) and its few-seconds look is a stage check; the backdrop is chosen
+  only on change. Timed in the tests (.NET 8 on the build machine; the game's Mono is slower, perhaps twice), on a
+  1024 x 1280 cut-out: the head measured in about 3 ms, scaled to 360 x 450 in about 20 ms, its edge coloured in about
+  10 ms, all on a worker thread; a large portrait's picture (lightly softened, the subtle line) about 15 to 20 ms at 186
+  pixels, 35 to 55 ms at 354 (360 at 100%), about 100 ms at 720 (360 at 200%), on a worker thread. On the game's thread,
+  not measurable here: the decoding of one PNG (`LoadImage`, about 15 to 30 ms for 1024 x 1280 by Unity's own figures,
+  at most one a frame, so at most one short hitch per new picture shown), the texture made (a few ms, one a frame), and
+  for a new large portrait two small read-backs from the graphics card (a millisecond or two). Memory: at most 48
+  pictures and 12 million pixels in the cache (about 48 MB, 64 MB with mipmaps; at 100% interface scale 48 pictures
+  of 360 x 450 take about 31 MB), and at most four large portraits' two textures (about 1 MB each at 354 pixels, 4 MB at
+  720). The library folder's records read once (a few thousand records in well under a second, on a worker).
+- **Saved**: `PortraitKeeper.kept`, now with the picture, the stage, pinned, chosen by hand, a colonist's own and since
+  when, and the distance (`Tools/save_estimate.py` models it). Phase 3's records (no stage written) are picked anew.
+- **Dev mode**: "Portraits: the selected people's pictures and best matches with their scores (log)" now also gives
+  what they keep (pinned, by hand, a colonist's own), the pictures pinned to them and whether they fit, the backdrop
+  where they stand and why, and the store's counts (loaded, failed, kept, the game's thread's time); the two "pick
+  again" actions as before.
+- Every member used (`ImageConversion.LoadImage`, `Texture2D.LoadRawTextureData`, `Graphics.Blit` with scale and offset,
+  the glow grid, rooms and roles, roofs, biomes and tiles, the ageing curve of genes, the life stages) is the same in 1.6
+  and 1.7 (ApiDiff); the life span stat is read by name. No new hook.
+- **Not checked without the game**: the pictures as they look in every place (framing from the measured head, the
+  mirroring, the dark edge after scaling); the decoding's real cost and the first-load pause on the player's computer
+  and cloud drive; `LoadImage`'s row order and colour (its pixels taken as Unity gives them); the graphics card's read-back
+  of a part of a texture (`Blit` with scale and offset) and its colours (gamma); the backdrop's crop and how the
+  softening, line and tint look (only the maths are tested); the light steps' thresholds against real nights and lit
+  rooms; the room roles and things of the player's mods in real rooms; the life span stat's name and the ageing genes
+  across the player's xenotypes; the reservation as colonists join, leave and die; the missing list on a cloud drive.
+
 ### On-screen panels and the hover card
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of

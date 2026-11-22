@@ -1156,12 +1156,13 @@ MODEL = {
     "Animals/AnimalPowers.cs:omens": ("cap", (const("Animals/AnimalPowersMath.cs", "MaxOmenRecords", 6), 0.05), P + 200,
                                       "the omen animals alive: one in 20 days at most, AnimalPowersMath.MaxOmenRecords kept"),
     "Animals/AnimalPowers.cs:calmTicks": ("window", (2, 1), D, "a Psychic type's calming: the colonist and the Pokémon, each let go two days after"),
-    # The portrait library (UI/Faces/PortraitKeeper.cs): each person pictured keeps their face, kept by id (an id, the face's
-    # name, their kind and their looks in words, the library's number, when last pictured); at most 400, the least lately
-    # pictured let go first, and anyone not pictured for 120 days let go on load. Colonists and the strangers seen in
-    # letters and on the map, a few new a day.
-    "UI/Faces/PortraitKeeper.cs:kept": ("cap", (const("UI/Faces/PortraitKeeper.cs", "MaxKept", 400), 3), R,
-                                        "each person pictured keeps their face from the portrait library: at most 400, the least lately pictured let go first, and anyone not pictured for 120 days let go on load"),
+    # The portrait library (UI/Faces/PortraitKeeper.cs): each person pictured keeps their picture, kept by id (an id, the
+    # picture's and the face's names, their kind and their looks in words, their stage, pinned, by hand, a colonist's own
+    # and since when, its distance, the library's number, when last pictured: a record and eight values more); at most
+    # 400, the least lately pictured let go first (a colonist's own last), and anyone not a colonist's own not pictured
+    # for 120 days let go on load. Colonists and the strangers seen in letters and on the map, a few new a day.
+    "UI/Faces/PortraitKeeper.cs:kept": ("cap", (const("UI/Faces/PortraitKeeper.cs", "MaxKept", 400), 3), R + 8 * V,
+                                        "each person pictured keeps their picture from the portrait library: at most 400, the least lately pictured let go first (a colonist's own last), and anyone else not pictured for 120 days let go on load"),
     # The animals' natures (Animals/AnimalBook.cs), all kept by id: a temperament for each named or bonded animal (three
     # values), let go 120 days after it was last seen (a herd of twenty named head and a few pets, a new one every couple of
     # days at the most); pairs seen asleep side by side, friends and rivals (eleven values and two names), the pairs not yet

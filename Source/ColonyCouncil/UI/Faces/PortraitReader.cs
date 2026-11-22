@@ -11,9 +11,9 @@ namespace ColonyCouncil
     /// docs: DESIGN.md, "Portraits, phase 3"), from the game's own data, the same for every mod's race, xenotype, hair,
     /// beard, body type and clothes:
     /// <list type="bullet">
-    /// <item>their race and xenotype (a xenotype of the player's own making has no name to match); whether the race is
-    /// built as a human is;</item>
-    /// <item>sex; the age band from their biological age and their kind's life expectancy (none for a baby or a toddler);</item>
+    /// <item>their race and xenotype (a xenotype of the player's own making by its name; a hybrid none);</item>
+    /// <item>sex; how old they look (<see cref="AgeOf(Pawn, out PortraitAge)"/>: their biological age, the game's own stages
+    /// for the young ones, their kind's life span and genes for the grown-ups, the ageless by their years on a longer scale);</item>
     /// <item>the skin's and hair's colours as the game has them (genes' colours in them);</item>
     /// <item>the hair from its def's words (name, label, texture path, style tags), else the shape of its front texture
     /// measured once, else long for a woman and short for anyone else; bald where the game draws no hair;</item>
@@ -27,7 +27,6 @@ namespace ColonyCouncil
     /// </summary>
     public static class PortraitReader
     {
-        private static readonly Dictionary<ThingDef, bool> shaped = new Dictionary<ThingDef, bool>();
         private static readonly Dictionary<GeneDef, List<string>> geneFeatures = new Dictionary<GeneDef, List<string>>();
         private static readonly Dictionary<HairDef, PortraitHairStyle?> hairs = new Dictionary<HairDef, PortraitHairStyle?>();
         private static readonly Dictionary<BeardDef, PortraitBeard> beards = new Dictionary<BeardDef, PortraitBeard>();
@@ -35,17 +34,92 @@ namespace ColonyCouncil
         private static readonly Dictionary<ThingDef, List<string>> apparelWords = new Dictionary<ThingDef, List<string>>();
         private static readonly List<PortraitLibraryMath.WornPiece> worn = new List<PortraitLibraryMath.WornPiece>();
 
-        /// <summary>A pawn's looks; false for anyone the library has no pictures for at all (not humanlike, a baby or a toddler).</summary>
+        /// <summary>The game's own stage of a pawn's life: a baby (a newborn too), a child, a grown-up.</summary>
+        public static GameStage GameStageOf(Pawn p)
+        {
+            var s = p.DevelopmentalStage;
+            if (s.Baby()) return GameStage.Baby;
+            if (s.Child()) return GameStage.Child;
+            if (!s.Adult()) return GameStage.Unknown;
+            // The game's teenage stage (HumanlikeTeenager; a race of another mod by its stage's name), and past it.
+            string stage = p.ageTracker?.CurLifeStage?.defName ?? "";
+            if (stage.IndexOf("teen", StringComparison.OrdinalIgnoreCase) >= 0 && stage.IndexOf("preteen", StringComparison.OrdinalIgnoreCase) < 0) return GameStage.Teen;
+            return stage == "HumanlikeAdult" ? GameStage.Grown : GameStage.Adult;
+        }
+
+        private static StatDef lifespan;
+        private static bool lifespanLooked;
+        private static readonly Dictionary<GeneDef, bool> stopsAgeing = new Dictionary<GeneDef, bool>();
+
+        /// <summary>The game's life span factor of a pawn (the genes for a long or short life), 1 where the game has none.</summary>
+        private static float LifespanOf(Pawn p)
+        {
+            if (!lifespanLooked)
+            {
+                lifespanLooked = true;
+                lifespan = DefDatabase<StatDef>.GetNamedSilentFail("LifespanFactor");
+            }
+            if (lifespan == null) return 1f;
+            try
+            {
+                return p.GetStatValue(lifespan);
+            }
+            catch (Exception)
+            {
+                return 1f;
+            }
+        }
+
+        /// <summary>
+        /// Whether a pawn's ageing has stopped: an active gene that stops it (Biotech's Ageless, the dark
+        /// elves' DevDesigner_Ageless), or any gene whose ageing curve stops at nothing; each gene read once.
+        /// </summary>
+        private static bool Ageless(Pawn p)
+        {
+            var genes = p.genes?.GenesListForReading;
+            if (genes == null) return false;
+            for (int i = 0; i < genes.Count; i++)
+            {
+                var g = genes[i];
+                if (g?.def == null || !g.Active) continue;
+                if (!stopsAgeing.TryGetValue(g.def, out bool stops))
+                {
+                    string n = g.def.defName;
+                    stops = n == "Ageless" || n == "DevDesigner_Ageless";
+                    var curve = g.def.biologicalAgeTickFactorFromAgeCurve;
+                    if (!stops && curve != null)
+                        foreach (var point in curve)
+                            if (point.y <= 0.001f)
+                                stops = true;
+                    stopsAgeing[g.def] = stops;
+                }
+                if (stops) return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// How old a pawn looks as an age band (<see cref="PortraitLibraryMath.AgeOf(float, float, float, float, GameStage, bool, out PortraitAge)"/>):
+        /// their biological age, the game's stage of life, their race's life expectancy times their life span factor, and for
+        /// someone whose ageing has stopped their years since birth on a much longer scale. False for anyone not humanlike.
+        /// </summary>
+        public static bool AgeOf(Pawn p, out PortraitAge age)
+        {
+            age = PortraitAge.Adult;
+            if (p?.RaceProps == null || !p.RaceProps.Humanlike) return false;
+            float bio = p.ageTracker?.AgeBiologicalYearsFloat ?? 30f, born = p.ageTracker?.AgeChronologicalYearsFloat ?? bio;
+            return PortraitLibraryMath.AgeOf(bio, born, p.RaceProps.lifeExpectancy, LifespanOf(p), GameStageOf(p), Ageless(p), out age);
+        }
+
+        /// <summary>A pawn's looks; false for anyone the library has no pictures for at all (not humanlike).</summary>
         public static bool LookOf(Pawn p, out PortraitLook l)
         {
             l = null;
             if (p?.RaceProps == null || !p.RaceProps.Humanlike || p.story == null) return false;
-            if (p.DevelopmentalStage.Baby()) return false;
-            if (!PortraitLibraryMath.AgeOf(p.ageTracker?.AgeBiologicalYearsFloat ?? 30f, p.RaceProps.lifeExpectancy, out var age)) return false;
+            if (!AgeOf(p, out var age)) return false;
             l = new PortraitLook
             {
                 race = p.def.defName.ToLowerInvariant(),
-                humanShaped = HumanShaped(p.def),
                 sex = p.gender == Gender.Male ? PortraitSex.Male : p.gender == Gender.Female ? PortraitSex.Female : PortraitSex.Any,
                 age = age
             };
@@ -57,8 +131,9 @@ namespace ColonyCouncil
             }
             else if (genes.UniqueXenotype)
             {
+                // A xenotype of the player's own making matches pictures listing its name; a hybrid or one with no name, none.
                 l.baseliner = false;
-                l.xenotype = "";
+                l.xenotype = genes.hybrid || genes.xenotypeName.NullOrEmpty() ? "" : genes.xenotypeName.Trim().ToLowerInvariant();
             }
             else
             {
@@ -68,7 +143,6 @@ namespace ColonyCouncil
             }
             var skin = p.story.SkinColor;
             l.skin = new PortraitColour(skin.r, skin.g, skin.b);
-            l.unusualSkin = PortraitLibraryMath.UnusualSkin(l.skin);
             var hc = p.story.HairColor;
             l.hairColour = new PortraitColour(hc.r, hc.g, hc.b);
             var hair = p.story.hairDef;
@@ -79,17 +153,6 @@ namespace ColonyCouncil
             Features(p, l);
             Marks(p, l);
             return true;
-        }
-
-        /// <summary>A race built as a human is: the game's own kind of race def (another mod's race framework uses its own), the human body, the game's humanlike drawing.</summary>
-        private static bool HumanShaped(ThingDef def)
-        {
-            if (def == null) return false;
-            if (shaped.TryGetValue(def, out bool ok)) return ok;
-            ok = def.GetType() == typeof(ThingDef) && def.race != null && def.race.body == BodyDefOf.Human
-                 && (def.race.renderTree == null || def.race.renderTree.defName == "Humanlike");
-            shaped[def] = ok;
-            return ok;
         }
 
         private static string[] Words(Def def, string texPath, IEnumerable<string> tags)
