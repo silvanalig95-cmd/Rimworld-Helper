@@ -19,7 +19,7 @@ inputs adds nothing; with new pictures it leaves out what they cover; a grown ca
 
 A row's name says what it shows and never changes: p_<kind>_<m|f>_<age>_<role, look or plain>_<skin>_<hair>_<NN>, NN
 the next number free for that start (p_baseliner_f_adult_plain_fair_brown_01). The prompt says how old the person looks
-("looks about 37"), never their years; nothing is held or shown that the row's role and looks don't stand for.
+(a decade and its signs, "in his late thirties", said at the start and again at the end), never their years; nothing is held or shown that the row's role and looks don't stand for.
 
 Run:
     python3 Tools/PortraitArt/plan_batches.py [--waves 1,2] [--phases defaults,roles,looks,variety] [--max-rows 600]
@@ -100,6 +100,34 @@ FACE_PARTS = [
     ['freckles', 'a few moles', 'a faint birthmark on one cheek', 'a dimple in one cheek'],
 ]
 OLDER_FACE = ['deep wrinkles', "crow's feet", 'deep lines across the forehead', 'sagging jowls']
+# Face words that read young, left out of the faces of the middle-aged and older.
+YOUNG_READING = {'a dimple in one cheek', 'round eyes', 'a snub nose', 'an upturned nose'}
+# How old a grown-up looks, in the words a painter reads best (the player, 22 November 2026: the ages came out "either
+# ... way too old or ... way too young"): a decade, and the signs of that age on the face, said at the start and again at
+# the end. Numbers alone were followed loosely, and young-reading words (smooth skin, a dimple) pulled older people young.
+AGE_SIGNS = {
+    'teen': 'a youthful face still filling out, not yet a grown face',
+    'young': 'an adult face, firm skin, no lines yet',
+    'adult': 'the first fine lines at the corners of the eyes, a settled adult face',
+    'middle': 'lines across the forehead and around the mouth, the skin a little loose at the jaw',
+    'old': 'a deeply lined face, loose skin, a few age spots',
+    'elder': 'a very wrinkled, sagging face, thin papery skin, a frail look',
+}
+FAR_AGE_SIGNS = {'middle': 'a worn, older look', 'old': 'an aged look, the skin dull and creased',
+                 'elder': 'a very aged, frail look, the skin dull and deeply creased'}
+
+
+def decade(years):
+    """'early twenties', 'mid-thirties', 'late fifties' for a number of years (teens: 'mid-teens', 'late teens')."""
+    tens = {1: 'teens', 2: 'twenties', 3: 'thirties', 4: 'forties', 5: 'fifties', 6: 'sixties', 7: 'seventies', 8: 'eighties', 9: 'nineties'}
+    t, u = divmod(int(years), 10)
+    if t == 1:
+        return 'mid-teens' if u <= 15 else 'late teens'
+    part = 'early ' if u <= 3 else 'mid-' if u <= 6 else 'late '
+    return part + tens.get(t, 'eighties')
+
+
+NUMBER_WORDS = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten', 'eleven', 'twelve']
 CHILD_FACE = ['a round face', 'full cheeks', 'freckles', 'a snub nose', 'big round eyes', 'a gap-toothed smile',
               'rosy cheeks', 'a pointed chin', 'a small upturned nose']
 BABY_FACE = ['a round face', 'full cheeks', 'big round eyes', 'rosy cheeks', 'a button nose', 'a tiny mouth']
@@ -601,6 +629,10 @@ class Planner:
         if wealth == 'noble' and (era == 'tribal' or role not in ('', 'leader', 'trader')):
             wealth = 'prosperous'
         hardship = weighted(rng, [('sheltered', .1), ('ordinary', .45), ('hard', .35), ('brutal', .1)])
+        if hardship == 'sheltered' and age not in ('young', 'teen'):
+            hardship = 'ordinary'   # smooth skin and rested eyes read young
+        if age == 'teen' and hardship in ('hard', 'brutal'):
+            hardship = 'ordinary'   # a weathered, tired face reads older
         if role in ('soldier', 'warrior'):
             hardship = weighted(rng, [('ordinary', .3), ('hard', .45), ('brutal', .25)])
         if wealth in ('noble', 'prosperous') and hardship == 'brutal':
@@ -629,12 +661,21 @@ class Planner:
                 noun = 'boys' if sex == 'male' else 'girls'
         person = ' '.join(x for x in (adj, kind_word, noun) if x)
         if age == 'baby':
-            looks_line = 'who looks about %s' % rng.choice(['six months old', 'eight months old', 'ten months old'])
+            months = rng.choice(['six', 'eight', 'ten'])
+            looks_line = 'about %s months old' % months
+            again = 'Clearly a baby of about %s months.' % months
+        elif little or age == 'child':
+            looks_line = 'about %s years old' % NUMBER_WORDS[min(about, 12)]
+            again = 'Clearly a %s-year-old %s.' % (NUMBER_WORDS[min(about, 12)], 'toddler' if age == 'toddler' else noun)
         else:
-            looks_line = 'who looks about %d' % about
+            looks_line = 'in %s %s' % (his, decade(about))
+            again = 'Clearly in %s %s.' % (his, decade(about))
+            if age == 'teen':
+                again = 'Clearly a teenager in %s %s, not yet grown.' % (his, decade(about))
         art = 'An' if person[:1].lower() in 'aeiou' else 'A'
         if k.kind == 'MultiMind_ConjoinedHuman':
-            art, looks_line = 'Two', looks_line.replace('who looks', 'who look')
+            art, looks_line = 'Two', looks_line.replace(' his ', ' their ').replace(' her ', ' their ')
+            again = again.replace(' his ', ' their ').replace(' her ', ' their ')
         opening = '%s %s %s' % (art, person, looks_line)
         if age == 'young':
             opening += ', clearly a grown adult'
@@ -676,12 +717,16 @@ class Planner:
             pool = list(FACE_PARTS) + ([OLDER_FACE] if age in ('middle', 'old', 'elder') else [])
             rng.shuffle(pool)
             for group in pool[:n_face]:
-                face_bits.append(rng.choice(group))
+                choices = [g for g in group if age in ('young', 'teen') or g not in YOUNG_READING] or group
+                face_bits.append(rng.choice(choices))
             face = ', '.join(face_bits[:-1]) + (' and ' if len(face_bits) > 1 else '') + face_bits[-1]
             exprs = EXPRESSIONS + (WIDE_EXPRESSIONS if (wide or k.far) else [])
             expr = rng.choice(exprs) if not look else ''
             soft = ''
         sentences = [opening + ': ' + body + '.', face[:1].upper() + face[1:] + (', ' + expr if expr else '') + '.']
+        signs = (FAR_AGE_SIGNS if k.far else AGE_SIGNS).get(age, '')
+        if signs and not little:
+            sentences.append(signs[:1].upper() + signs[1:] + '.')
         if soft:
             sentences.append(soft)
         for lw in looks:
@@ -711,6 +756,7 @@ class Planner:
             sentences.append('%s %s.' % (wear, 'a gaunt, grimy face' if dress == 'rags' else WEALTH[wealth]))
             sentences.append(HARDSHIP[hardship])
         sentences.append(facing_text)
+        sentences.append(again)
         subject = ' '.join(sentences)
         subject = re.sub(r'\s+', ' ', subject).replace(' ,', ',').replace(',.', '.').replace('..', '.')
         # the pose: from the row's look or role, else a varied one that holds nothing a skill would need

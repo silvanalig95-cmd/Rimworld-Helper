@@ -39,7 +39,7 @@ public static class LandLifeTests
         foreach (var line in File.ReadLines(Path.Combine(root, "docs", "player-mods", "items.tsv")).Skip(1))
         {
             var p = line.Split('\t');
-            if (p.Length > 2 && p[2] == "yes") active.Add(p[0]);
+            if (p.Length > 2 && OffForNow.Counts(root, p[2], p[1])) active.Add(p[0]);
         }
 
         // ================= C19: after the storm =================

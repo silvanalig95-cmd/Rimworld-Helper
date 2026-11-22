@@ -19,6 +19,15 @@ namespace ColonyCouncil
         Stronger
     }
 
+    /// <summary>What the large portrait draws: a painted picture in front of a backdrop or on its own ground; the game's own drawing in front of a backdrop or on the portrait's colour.</summary>
+    public enum PortraitStageDraw
+    {
+        PaintedOnBackdrop,
+        PaintedOnGround,
+        GameOnBackdrop,
+        GameOnGround
+    }
+
     /// <summary>How a backdrop is drawn: its blur (a share of the portrait's side), brightness, colour, and the darkening at its corners.</summary>
     public struct BackdropLook
     {
@@ -70,6 +79,47 @@ namespace ColonyCouncil
     /// </summary>
     public static class PortraitComposeMath
     {
+        /// <summary>
+        /// What the large portrait draws (the player, 22 November 2026, of the game's own drawing: "it still takes backdrop
+        /// from the library, right? That's the least it can do", and that it can be switched off): a backdrop where one was
+        /// found for where they are and the setting "Backdrop" isn't plain, behind a painted picture always, behind the game's
+        /// drawing where "Backdrop behind the game's own drawing too" is on; else the portrait's own ground.
+        /// </summary>
+        public static PortraitStageDraw WhatToDraw(bool painted, bool backdropFound, PortraitBackdropMode mode, bool behindGame)
+        {
+            bool back = backdropFound && mode != PortraitBackdropMode.Plain;
+            if (painted) return back ? PortraitStageDraw.PaintedOnBackdrop : PortraitStageDraw.PaintedOnGround;
+            return back && behindGame ? PortraitStageDraw.GameOnBackdrop : PortraitStageDraw.GameOnGround;
+        }
+
+        /// <summary>
+        /// The game's own drawing in front of a backdrop: the soft dark shadow behind them (its strength; always some, more
+        /// with the line on), and the line round them as dark copies of the drawing a little to each side (its reach as a
+        /// share of the portrait's width, at least a pixel, and its strength; none with the line off). Drawn as the drawing
+        /// is drawn, so nothing is read back from the graphics card; the pale edge of a painted picture's line is left out.
+        /// </summary>
+        public static void GameLine(PortraitOutlineMode mode, out float shadow, out float inkReach, out float ink)
+        {
+            switch (mode)
+            {
+                case PortraitOutlineMode.Subtle:
+                    shadow = 0.5f;
+                    inkReach = 0.003f;
+                    ink = 0.55f;
+                    return;
+                case PortraitOutlineMode.Stronger:
+                    shadow = 0.65f;
+                    inkReach = 0.0045f;
+                    ink = 0.8f;
+                    return;
+                default:
+                    shadow = 0.35f;
+                    inkReach = 0f;
+                    ink = 0f;
+                    return;
+            }
+        }
+
         public static BackdropLook LookOf(PortraitBackdropMode mode)
         {
             switch (mode)
@@ -99,21 +149,26 @@ namespace ColonyCouncil
 
         // ---------------- The backdrop ----------------
 
+        /// <summary>A backdrop cut to a square portrait (<paramref name="side"/> pixels a side): <see cref="Backdrop(byte[], int, int, BackdropLook, float, float, float)"/>.</summary>
+        public static void Backdrop(byte[] px, int side, BackdropLook look, float tr, float tg, float tb) => Backdrop(px, side, side, look, tr, tg, tb);
+
         /// <summary>
-        /// A backdrop cut to the portrait's square (<paramref name="side"/> pixels a side), drawn as <paramref name="look"/>
-        /// says, then tinted by the light (<paramref name="tr"/>, <paramref name="tg"/>, <paramref name="tb"/>), in place.
+        /// A backdrop cut to the portrait's shape (<paramref name="w"/> by <paramref name="h"/> pixels), drawn as
+        /// <paramref name="look"/> says (its blur a share of the shorter side), then tinted by the light (<paramref name="tr"/>,
+        /// <paramref name="tg"/>, <paramref name="tb"/>), in place.
         /// </summary>
-        public static void Backdrop(byte[] px, int side, BackdropLook look, float tr, float tg, float tb)
+        public static void Backdrop(byte[] px, int w, int h, BackdropLook look, float tr, float tg, float tb)
         {
-            if (px == null || side <= 0) return;
+            if (px == null || w <= 0 || h <= 0) return;
+            int side = Math.Min(w, h);
             int radius = (int)Math.Round(look.blur * side);
-            if (radius >= 1) BlurRgb(px, side, side, radius);
+            if (radius >= 1) BlurRgb(px, w, h, radius);
             float bright = Clamp(look.brightness, 0f, 2f), colour = Clamp(look.colour, 0f, 2f), corners = Clamp(look.corners, 0f, 1f);
-            float c = (side - 1) / 2f, far = c * 1.4142f;
-            for (int y = 0; y < side; y++)
-            for (int x = 0; x < side; x++)
+            float cx = (w - 1) / 2f, cy = (h - 1) / 2f, far = (float)Math.Sqrt(cx * cx + cy * cy);
+            for (int y = 0; y < h; y++)
+            for (int x = 0; x < w; x++)
             {
-                int i = (y * side + x) * 4;
+                int i = (y * w + x) * 4;
                 float r = px[i], g = px[i + 1], b = px[i + 2];
                 float lum = 0.299f * r + 0.587f * g + 0.114f * b;
                 r = lum + (r - lum) * colour;
@@ -122,7 +177,7 @@ namespace ColonyCouncil
                 float f = bright;
                 if (corners > 0f)
                 {
-                    float dx = x - c, dy = y - c;
+                    float dx = x - cx, dy = y - cy;
                     float d = (float)Math.Sqrt(dx * dx + dy * dy) / far;
                     f *= 1f - corners * Smooth(0.45f, 1f, d);
                 }
@@ -175,14 +230,18 @@ namespace ColonyCouncil
 
         // ---------------- The person ----------------
 
+        /// <summary>The person's picture for a square portrait: <see cref="PersonLayer(byte[], int, int, OutlineLook, float, float, float)"/>.</summary>
+        public static byte[] PersonLayer(byte[] person, int side, OutlineLook look, float tr = 1f, float tg = 1f, float tb = 1f) => PersonLayer(person, side, side, look, tr, tg, tb);
+
         /// <summary>
-        /// The person's picture for the portrait (<paramref name="side"/> by <paramref name="side"/>, clear around them): the
-        /// halo, the pale edge and the ink line under them where <paramref name="look"/> has them, then the person tinted by
-        /// (<paramref name="tr"/>, <paramref name="tg"/>, <paramref name="tb"/>; 1 for none). A new picture; the person's is left as it was.
+        /// The person's picture for the portrait (<paramref name="w"/> by <paramref name="h"/>, clear around them): the halo,
+        /// the pale edge and the ink line under them where <paramref name="look"/> has them (their widths shares of the
+        /// shorter side), then the person tinted by (<paramref name="tr"/>, <paramref name="tg"/>, <paramref name="tb"/>; 1 for
+        /// none). A new picture; the person's is left as it was.
         /// </summary>
-        public static byte[] PersonLayer(byte[] person, int side, OutlineLook look, float tr = 1f, float tg = 1f, float tb = 1f)
+        public static byte[] PersonLayer(byte[] person, int w, int h, OutlineLook look, float tr = 1f, float tg = 1f, float tb = 1f)
         {
-            int n = side * side;
+            int n = w * h, side = Math.Min(w, h);
             var outPx = new byte[n * 4];
             var a = PortraitPictureMath.AlphaOf(person);
             bool lines = look.halo > 0f || look.pale > 0f || look.ink > 0f;
@@ -192,14 +251,14 @@ namespace ColonyCouncil
                 int inkW = Math.Max(1, (int)Math.Round(look.inkWidth * side));
                 int paleW = Math.Max(1, (int)Math.Round(look.paleWidth * side));
                 int reach = Math.Max(2, (int)Math.Round(look.haloReach * side));
-                var inkShape = Dilate(a, side, side, inkW);
-                var paleShape = Dilate(inkShape, side, side, paleW);
+                var inkShape = Dilate(a, w, h, inkW);
+                var paleShape = Dilate(inkShape, w, h, paleW);
                 ink = Ring(inkShape, a);
                 pale = Ring(paleShape, inkShape);
-                BlurAlpha(ink, side, side, 1, 1);
-                BlurAlpha(pale, side, side, 1, 1);
-                halo = Dilate(a, side, side, Math.Max(1, reach / 2));
-                BlurAlpha(halo, side, side, Math.Max(1, reach / 2), 2);
+                BlurAlpha(ink, w, h, 1, 1);
+                BlurAlpha(pale, w, h, 1, 1);
+                halo = Dilate(a, w, h, Math.Max(1, reach / 2));
+                BlurAlpha(halo, w, h, Math.Max(1, reach / 2), 2);
             }
             for (int i = 0; i < n; i++)
             {

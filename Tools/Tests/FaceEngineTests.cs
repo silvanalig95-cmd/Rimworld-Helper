@@ -197,7 +197,7 @@ public static class FaceEngineTests
           && !inspect.Contains("\"TabRect\"") && inspect.Contains("GizmoGridDrawer.HeightDrawnRecently"),
             "the pane, whether a tab is open, and the gizmos read as they are on the screen (no open tab's place needed any more)");
         C(inspect.Contains("sel.NumSelected != 1") && inspect.Contains("p.RaceProps.Humanlike"), "one person selected, anyone humanlike");
-        C(inspect.Contains("FaceEngine.Draw(inner, p, FaceFrame.Bust, new Vector2(rs, rs), 1f, true)") && inspect.Contains("if (!dragging) render = rect.width;"),
+        C(inspect.Contains("FaceEngine.Draw(inner, p, FaceFrame.Bust, made, 1f, true)") && inspect.Contains("var made = new Vector2(rs, rs * tall);") && inspect.Contains("if (!dragging) render = rect.width;"),
             "drawn at its size, and while dragged the picture of the start is shown, no new one at every step");
         C(inspect.Contains("Input.GetMouseButton(0)") && inspect.Contains("s.inspectPortraitSize = FaceMath.Snap(now)") && inspect.Contains("s.Write()"), "let go, the size is kept in the settings");
         C(inspect.Contains("KnownAs.Short(p)") && inspect.Contains("Cards.Open(p)"), "the name the colony knows them by; a click opens their card");

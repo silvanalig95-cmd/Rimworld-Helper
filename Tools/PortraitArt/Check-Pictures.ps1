@@ -382,10 +382,11 @@ function Eyemarks-Of([string] $v) {
 }
 
 function Wing-Word([string] $v, $kinds) {
-    # The wings look (docs/portrait-art/catalogue/looks.csv) for the wings the model saw, and whether its words make it
-    # plain (bat, feathered, dragon, a single malformed wing, glider membranes) or not (thin insect wings may be a fairy's
-    # or an insector's: the row's kind decides, and it is asked).
+    # The wings look (Rimfolk's PortraitLookDefs, from docs/portrait-art/catalogue/looks.csv) for the wings the model saw,
+    # and whether its words make it plain (bat, feathered, dragon, a single malformed wing, glider membranes) or not
+    # (thin insect wings may be a fairy's or an insector's: the row's kind decides, and it is asked; wings for ears).
     $t = Low $v
+    if ($t -match '\bears?\b') { return @{ word = 'earWings'; sure = $false } }
     if ($t -match 'malformed|single small|one small|stunted') { return @{ word = 'malformedWing'; sure = $true } }
     if ($t -match 'glid|membrane between|stretched between') { return @{ word = 'glidewings'; sure = $true } }
     if ($t -match 'dragon|scaled|scaly') { return @{ word = 'drakonoriWings'; sure = $true } }

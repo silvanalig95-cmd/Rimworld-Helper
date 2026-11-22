@@ -21,6 +21,8 @@ namespace ColonyCouncil
         public bool pinned, byHand;
         /// <summary>Their face is theirs alone: they are (or were) one of the colony's own people; and since when they have kept it.</summary>
         public bool reserved;
+        /// <summary>Their face is theirs alone while they live and matter: a faction's leader, a titled noble, one of the colony's named contacts.</summary>
+        public bool notable;
         public int since;
         public float distance;
         public int library;
@@ -37,6 +39,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pinned, "pinned");
             Scribe_Values.Look(ref byHand, "byHand");
             Scribe_Values.Look(ref reserved, "reserved");
+            Scribe_Values.Look(ref notable, "notable");
             Scribe_Values.Look(ref since, "since");
             Scribe_Values.Look(ref distance, "distance");
             Scribe_Values.Look(ref library, "library");
@@ -109,8 +112,9 @@ namespace ColonyCouncil
             {
                 kept ??= new List<KeptPortrait>();
                 int now = Find.TickManager?.TicksGame ?? 0;
-                // A colonist's face is kept while they are remembered, alive or dead: never let go for not being pictured.
-                kept.RemoveAll(k => k == null || !k.reserved && now - k.seen > ForgetAfterDays * GenDate.TicksPerDay);
+                // A colonist's face is kept while they are remembered, alive or dead, and a notable's while they matter: never
+                // let go for not being pictured.
+                kept.RemoveAll(k => k == null || !k.reserved && !k.notable && now - k.seen > ForgetAfterDays * GenDate.TicksPerDay);
                 Index();
             }
         }
@@ -215,23 +219,54 @@ namespace ColonyCouncil
             Version++;
         }
 
-        /// <summary>The faces kept as a colonist's own: who, which face, since when.</summary>
-        public IEnumerable<(int id, string character, int since)> Reserved
+        /// <summary>A notable's face held for them while they matter, or let go (they died, or are no longer notable).</summary>
+        public void SetNotable(KeptPortrait k, bool notable)
+        {
+            if (k == null || k.notable == notable) return;
+            k.notable = notable;
+            Version++;
+        }
+
+        /// <summary>The faces kept as someone's own: who, which face, since when, and whose (the player's own, or a notable's).</summary>
+        public IEnumerable<(int id, string character, int since, PortraitRank rank)> Holders
         {
             get
             {
                 foreach (var k in kept)
-                    if (k.reserved && !k.character.NullOrEmpty())
-                        yield return (k.id, k.character, k.since);
+                    if ((k.reserved || k.notable) && !k.character.NullOrEmpty())
+                        yield return (k.id, k.character, k.since, k.reserved ? PortraitRank.Own : PortraitRank.Notable);
             }
         }
 
-        /// <summary>The least lately pictured let go, a colonist's own face last of all.</summary>
+        /// <summary>Everyone keeping a face, but <paramref name="besides"/>: who, and since when.</summary>
+        public List<KeptPortrait> HoldersOf(string character, int besides)
+        {
+            var list = new List<KeptPortrait>();
+            if (character.NullOrEmpty() || !uses.ContainsKey(character)) return list;
+            foreach (var k in kept)
+                if (k.id != besides && k.character == character)
+                    list.Add(k);
+            return list;
+        }
+
+        /// <summary>The notables' kept faces, for the library's look whether they still live and matter.</summary>
+        public IEnumerable<KeptPortrait> Notables
+        {
+            get
+            {
+                foreach (var k in kept)
+                    if (k.notable)
+                        yield return k;
+            }
+        }
+
+        /// <summary>The least lately pictured let go, a notable's face after a stranger's, a colonist's own last of all.</summary>
         private void LetGoOldest(int besides)
         {
             KeptPortrait oldest = null;
+            int Rank(KeptPortrait k) => k.reserved ? 2 : k.notable ? 1 : 0;
             foreach (var k in kept)
-                if (k.id != besides && (oldest == null || !k.reserved && oldest.reserved || k.reserved == oldest.reserved && k.seen < oldest.seen))
+                if (k.id != besides && (oldest == null || Rank(k) < Rank(oldest) || Rank(k) == Rank(oldest) && k.seen < oldest.seen))
                     oldest = k;
             if (oldest != null) Drop(oldest.id);
         }

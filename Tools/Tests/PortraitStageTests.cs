@@ -107,26 +107,38 @@ public static class PortraitStageTests
             C(Near(lay.headV, (m.top + m.neck) / 2f) && Near(lay.headH, m.neck - m.top) && lay.faces == FaceTurn.Left && Near(lay.Shape, 0.8f), "the measure as the portraits' layout, with the picture's shape");
         }
 
-        // ---------------- The large portrait's crop ----------------
+        // ---------------- The large portrait's shape (phase 5: the whole picture) ----------------
         {
-            C(Near(PortraitPictureMath.HeadFill(96f), 0.45f) && Near(PortraitPictureMath.HeadMiddle(96f), 0.355f), "at 96: the head fills 45%, its middle 0.355 down");
-            C(Near(PortraitPictureMath.HeadFill(360f), 0.30f) && Near(PortraitPictureMath.HeadMiddle(360f), 0.275f), "at 360: 30% and 0.275");
-            C(Near(PortraitPictureMath.HeadFill(228f), 0.375f) && Near(PortraitPictureMath.HeadMiddle(228f), 0.315f), "in between by a straight line (228: 37.5% and 0.315)");
-            C(Near(PortraitPictureMath.HeadFill(20f), 0.45f) && Near(PortraitPictureMath.HeadFill(900f), 0.30f) && Near(PortraitPictureMath.HeadFill(float.NaN), 0.45f), "outside 96 to 360 held at the ends");
-            var head = new HeadMeasure { top = 0.08f, neck = 0.36f, centre = 0.47f, found = true };
-            foreach (float size in new[] { 96f, 192f, 360f })
-            {
-                var c = PortraitPictureMath.CropFor(head, 1024, 1280, size);
-                float headPx = (head.neck - head.top) * 1280f, mid = (head.top + head.neck) / 2f * 1280f;
-                C(Near(headPx / c.side, PortraitPictureMath.HeadFill(size), 0.001f) && Near((mid - c.y) / c.side, PortraitPictureMath.HeadMiddle(size), 0.001f)
-                  && Near(c.x + c.side / 2f, head.centre * 1024f, 0.01f), $"at {size}: the crop {c} puts the head where it should be, in the middle across");
-            }
-            var big = PortraitPictureMath.CropFor(head, 1024, 1280, 360f);
-            C(big.side > 1024f && big.x < 0f, "a large portrait's crop runs past the picture's sides (padded clear)");
+            C(Near(PortraitPictureMath.TallFor(0.8f), 1.25f) && Near(PortraitPictureMath.TallFor(1f), 1f) && Near(PortraitPictureMath.TallFor(1.5f), 1f)
+              && Near(PortraitPictureMath.TallFor(0.3f), PortraitPictureMath.TallMost) && Near(PortraitPictureMath.TallFor(float.NaN), 1f) && Near(PortraitPictureMath.TallFor(0f), 1f),
+                "the large portrait takes a 1024 x 1280 picture's shape (5:4 tall); never shorter than square, never too tall; square where the shape isn't known");
+            C(Near(PortraitPictureMath.PanelHeight(192f, 1.25f, 3f), 186f * 1.25f + 6f) && Near(PortraitPictureMath.PanelHeight(192f, 1f, 3f), 192f),
+                "its height: the inside at the picture's shape, the border round it; the game's drawing square as before");
+            var scene = new FaceMath.PaneScene { screenW = 1920f, screenH = 1080f, pane = new FrameRect(0f, 900f, 432f, 180f), paneTop = 900f, tabs = true, gizmoTop = 1080f };
+            C(FaceMath.Place(scene, 192f, out var sq) == FaceMath.Placed.OnPane && Near(sq.w, 192f) && Near(sq.h, 192f) && Near(sq.y + sq.h, 870f),
+                "the game's drawing: square, standing on the tab buttons");
+            C(FaceMath.Place(scene, 192f, out var tl, 1.25f) == FaceMath.Placed.OnPane && Near(tl.w, 192f) && Near(tl.h, 186f * 1.25f + 6f) && Near(tl.y + tl.h, 870f),
+                "a painted picture: the same width, taller, its foot on the tab buttons");
+            var low = scene;
+            low.pane = new FrameRect(0f, 400f, 432f, 680f);
+            low.paneTop = 400f;
+            C(FaceMath.Place(low, 360f, out var lw, 1.25f) == FaceMath.Placed.OnPane && lw.y >= FaceMath.TopClear - 0.01f && lw.w < 360f,
+                $"where the room above is short, narrower so its height fits under the room kept clear ({lw.w} x {lw.h})");
+            PortraitPictureMath.BackdropPart(1024f, 1280f, 0.8f, out float bsx, out float bsy, out float box, out float boy);
+            PortraitPictureMath.BackdropPart(1024f, 1280f, 1f, out float qsx, out float qsy, out _, out float qoy);
+            PortraitPictureMath.BackdropPart(1600f, 1000f, 0.8f, out float wsx, out float wsy, out float wox, out _);
+            C(Near(bsx, 1f) && Near(bsy, 1f) && Near(box, 0f) && Near(boy, 0f) && Near(qsx, 1f) && Near(qsy, 0.8f) && Near(qoy, 0.1f) && Near(wsx, 0.5f) && Near(wsy, 1f) && Near(wox, 0.25f),
+                "the backdrop fills the portrait's shape from its middle: whole where the shapes agree, a band across or down where they don't");
+            // No gap under the body: the half-clear last rows a background remover leaves carried down solid.
+            int fw = 6, fh = 100;
+            var foot = Rgba(fw, fh, (x, y) => ((byte)(100 + x), (byte)y, 50, (byte)(x < 2 ? 0 : x == 5 ? (y < 50 ? 255 : 0) : y < 98 ? 255 : y == 98 ? 120 : 60)));
+            PortraitPictureMath.SolidFoot(foot, fw, fh);
+            byte A(int x, int y) => foot[(y * fw + x) * 4 + 3];
+            byte Gr(int x, int y) => foot[(y * fw + x) * 4 + 1];
+            C(A(2, 98) == 255 && A(2, 99) == 255 && A(4, 99) == 255 && Gr(3, 99) == 97 && Gr(3, 98) == 97 && Gr(3, 96) == 96,
+                "the body's last rows made solid down to the foot, in the colour of its lowest solid row");
+            C(A(0, 99) == 0 && A(1, 80) == 0 && A(5, 99) == 0 && A(5, 51) == 0, "the ground beside the body left clear (a column clear at the foot, or whose body ends well above it)");
             var src4 = Rgba(4, 3, (x, y) => ((byte)(10 * x), (byte)(10 * y), 7, 255));
-            var pad = PortraitPictureMath.CropPad(src4, 4, 3, -1, -1, 4);
-            C(pad[3] == 0 && pad[(1 * 4 + 1) * 4 + 3] == 255 && pad[(1 * 4 + 1) * 4] == 0 && pad[(2 * 4 + 3) * 4] == 20 && pad[(2 * 4 + 3) * 4 + 1] == 10 && pad[(3 * 4 + 0) * 4 + 3] == 0,
-                "a square cut from a picture: its pixels in place, clear past its edges");
             var flip = PortraitPictureMath.FlipRows(src4, 4, 3);
             C(flip[1] == 20 && flip[(2 * 4) * 4 + 1] == 0 && PortraitPictureMath.FlipRows(flip, 4, 3).SequenceEqual(src4), "the rows turned over, and back");
         }
@@ -543,7 +555,7 @@ public static class PortraitStageTests
             C(merged[0].what == "person" && merged[1].what == "room" && merged[2].what == "outdoors", "people first, then rooms, then the land");
             string csv = PortraitFolderMath.Csv(merged);
             var back = PortraitFolderMath.Read(csv);
-            C(csv.StartsWith("# What Rimfolk needed") && csv.Contains("what,kind,mod,sex,age,skin,hair,era,why,used instead,how many,last seen") && back.Count == 3
+            C(csv.StartsWith("# What Rimfolk needed") && csv.Contains("what,kind,look,role,mod,sex,age,skin,hair,era,why,used instead,how many,last seen") && back.Count == 3
               && back.Select(n => n.Key).SequenceEqual(merged.Select(n => n.Key)) && back.Sum(n => n.count) == 5, "written with a plain header and read back the same");
             var comma = PortraitFolderMath.Read(PortraitFolderMath.Csv(new[] { Need("room", "VFEE_Ballroom", 1, "2026-11-22", "none, at all", "a \"plain\" ground") }));
             C(comma.Count == 1 && comma[0].why == "none, at all" && comma[0].instead == "a \"plain\" ground", "commas and quotes in a cell kept");
@@ -562,8 +574,12 @@ public static class PortraitStageTests
         C(defSrc.Contains("modContentPack?.RootDir") && defSrc.Contains("\"Portraits\"") && backDef.Contains("public class BackdropDef : Def") && backDef.Contains("PortraitFiles.For(this, texPath, false)"),
             "a picture's file under its mod's Portraits folder; the backdrops' defs the same way");
         C(engine.Contains("PortraitStore.Pump();") && engine.Contains("if (pic != null && pic.texture == null) return;"), "the store pumped once a frame from the portraits; a picture loading shows the ground");
-        C(inspect.Contains("FaceEngine.DrawStaged(inner, p, new Vector2(rs, rs), true)") && inspect.Contains("ev.button == 1") && inspect.Contains("CC_Portrait_ChooseAnother"),
-            "the large portrait draws the painted picture in front of its backdrop, and a right click offers another picture");
+        C(inspect.Contains("FaceEngine.DrawStaged(inner, p, made, true) && !FaceEngine.DrawGameStaged(inner, p, made, true)") && inspect.Contains("var made = new Vector2(rs, rs * tall);")
+          && inspect.Contains("FaceMath.Place(Scene(pane), asked, out var fr, tall)") && inspect.Contains("ev.button == 1") && inspect.Contains("CC_Portrait_ChooseAnother"),
+            "the large portrait draws the painted picture whole at its shape in front of its backdrop, else the game's drawing in front of one; a right click offers another picture");
+        C(stage.Contains("PortraitGpu.Read(pic.texture, w, h, Vector2.one, Vector2.zero)") && !stage.Contains("CropFor") && stage.Contains("new Rect(0f, -below / ph, 1f, 1f + below / ph)")
+          && store.Contains("PortraitPictureMath.SolidFoot(small, nw, nh);"),
+            "the whole picture, nothing cropped; its foot row carried on below the portrait's edge, and the body made solid at the picture's foot when it loads");
         C(stage.Contains("StageLookEvery = 2f") && stage.Contains("Backdrops.WhereOf(p, out float glow)") && stage.Contains("PortraitPictureMath.LightStep(glow, look.step)")
           && stage.Contains("PortraitStore.Run(") && stage.Contains("staged.Find(s => s.key == key)") && stage.Contains("StagedMost = 4"),
             "the backdrop looked at again at most every two seconds; the picture made once on a worker and kept by its key; each frame only drawn");
@@ -607,14 +623,16 @@ public static class PortraitStageTests
             var times = new List<string>();
             foreach (int side in new[] { 186, 354, 720 })
             {
-                var crop = PortraitPictureMath.CropFor(head, nw, nh, side);
-                var cut = PortraitPictureMath.CropPad(small, nw, nh, (int)crop.x, (int)crop.y, side);
-                var back = Rgba(side, side, (x, y) => ((byte)(x % 255), (byte)(y % 255), 90, 255));
+                // The whole picture at the portrait's shape (5:4 tall), as the game reads it back at that size.
+                int pw = side, phh = (int)Math.Round(side * 1.25f);
+                var cut = PortraitPictureMath.Downscale(small, nw, nh, Math.Min(pw, nw), Math.Min(phh, nh));
+                int cw = Math.Min(pw, nw), ch = Math.Min(phh, nh);
+                var back = Rgba(cw, ch, (x, y) => ((byte)(x % 255), (byte)(y % 255), 90, 255));
                 sw.Restart();
-                PortraitComposeMath.Backdrop(back, side, PortraitComposeMath.LookOf(PortraitBackdropMode.LightlySoftened), 0.86f, 0.9f, 0.95f);
-                var layer = PortraitComposeMath.PersonLayer(cut, side, PortraitComposeMath.LookOf(PortraitOutlineMode.Subtle));
-                times.Add($"{side} px {sw.Elapsed.TotalMilliseconds:0} ms");
-                C(layer.Length == side * side * 4, $"composed at {side} pixels");
+                PortraitComposeMath.Backdrop(back, cw, ch, PortraitComposeMath.LookOf(PortraitBackdropMode.LightlySoftened), 0.86f, 0.9f, 0.95f);
+                var layer = PortraitComposeMath.PersonLayer(cut, cw, ch, PortraitComposeMath.LookOf(PortraitOutlineMode.Subtle));
+                times.Add($"{cw} x {ch} px {sw.Elapsed.TotalMilliseconds:0} ms");
+                C(layer.Length == cw * ch * 4, $"composed at {cw} x {ch} pixels");
             }
             C(head.found && measure < 2000 && scale < 4000, "the pure parts run on a picture of the library's size");
             Console.WriteLine($"  (portraits, phase 4: on a 1024 x 1280 cut-out here, the head measured in {measure:0} ms, scaled to {nw} x {nh} in {scale:0} ms, its edge coloured in {bleed:0} ms;"

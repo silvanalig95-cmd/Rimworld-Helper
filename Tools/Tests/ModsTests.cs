@@ -39,6 +39,9 @@ public static class ModsTests
         int named = 0;
         foreach (var file in Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories))
         {
+            // The portraits' looks name hundreds of genes, traits and hediffs, written by the catalogue's script; every one is
+            // checked against the player's active mods' own defs (docs/player-mods) in PortraitLookTests instead.
+            if (file.Replace('\\', '/').Contains("/Defs/PortraitLookDefs/")) continue;
             XDocument doc;
             try
             {

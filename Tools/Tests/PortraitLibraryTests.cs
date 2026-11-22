@@ -374,7 +374,11 @@ public static class PortraitLibraryTests
         var card = PortraitViewMath.View(lib, FaceFrame.Figure, 94f / 134f);
         C(Near(bust.headShare, 0.5f, 0.02f) && bust.headV > 0.28f && bust.headV < 0.42f, $"the large portrait: the head about half the square, high in it ({bust})");
         C(face.headShare > bust.headShare && face.headV > 0.3f && face.headV < 0.48f, $"the round portraits: closer on the face ({face})");
-        C(card.h >= 0.95f && card.w < 0.7f, $"the card's tall tile: the picture's height, its sides cut ({card})");
+        C(card.h >= 0.95f && card.w < 0.7f && Near(card.y, PortraitViewMath.Margin), $"the card's tall tile: as much of the picture as fits, its whole height from the top, its sides cut ({card})");
+        var tallLib = new PictureLayout(0.5f, 0.2f, 0.28f, FaceTurn.Front, 0.8f);
+        var tallCard = PortraitViewMath.View(tallLib, FaceFrame.Figure, 94f / 134f);
+        C(tallCard.h >= 0.95f && tallCard.w > 0.8f && tallCard.w < 0.88f && tallCard.headV < 0.25f,
+            $"a 1024 x 1280 picture on the card's tile: nearly all of it, the head near the top ({tallCard})");
         C(PortraitViewMath.View(lib, FaceFrame.Bust, 1f, 0.025f).headV < bust.headV && PortraitViewMath.View(lib, FaceFrame.Bust, 1f, -0.05f).headV > bust.headV,
             "a pose's lift moves the head up in the portrait, a lowered head down");
         var odd = PortraitViewMath.View(new PictureLayout(float.NaN, 2f, 0f, FaceTurn.Front), FaceFrame.Bust, float.NaN);
@@ -383,14 +387,8 @@ public static class PortraitLibraryTests
         C(Near(off.headU, 0.5f, 0.01f) && Near(off.headShare, PortraitViewMath.HeadShareOf(FaceFrame.Face), 0.01f), "a picture whose head is off the middle (its def says where): framed on the head");
         C(PortraitViewMath.FacesOf(PortraitFacing.ThreeQuarterLeft) == FaceTurn.Left && PortraitViewMath.FacesOf(PortraitFacing.Right) == FaceTurn.Right && PortraitViewMath.FacesOf(PortraitFacing.Front) == FaceTurn.Front,
             "a picture's facing: a little or three-quarter to a side is that side");
-        var leftPic = new PictureLayout(0.5f, 0.36f, 0.45f, FaceTurn.Left);
-        C(PortraitViewMath.Mirror(leftPic, PortraitViewMath.Asked(FaceTurn.Front, FaceTurn.Right)) && !PortraitViewMath.Mirror(leftPic, PortraitViewMath.Asked(FaceTurn.Left, FaceTurn.Right)),
-            "a picture facing left is turned to face its text on the right, but faces left as the right one of a pair");
-        C(!PortraitViewMath.Mirror(leftPic, PortraitViewMath.Asked(FaceTurn.Front, FaceTurn.Front)) && !PortraitViewMath.Mirror(lib, FaceTurn.Right), "no text beside it: as drawn; a picture facing the front never mirrored");
-        PortraitViewMath.TexCoords(bust, false, out float u0, out float v0, out float w0, out float h0);
-        PortraitViewMath.TexCoords(bust, true, out float u1, out _, out float w1, out _);
-        C(Near(u0, bust.x) && Near(v0, 1f - bust.y - bust.h) && Near(w0, bust.w) && Near(h0, bust.h) && Near(u1, bust.x + bust.w) && Near(w1, -bust.w),
-            "the texture's coordinates from its foot up; mirrored, from its right");
+        PortraitViewMath.TexCoords(bust, out float u0, out float v0, out float w0, out float h0);
+        C(Near(u0, bust.x) && Near(v0, 1f - bust.y - bust.h) && Near(w0, bust.w) && Near(h0, bust.h) && w0 > 0f, "the texture's coordinates from its foot up, never mirrored (a positive width)");
         foreach (var b in (FaceBearing[])Enum.GetValues(typeof(FaceBearing)))
         {
             PortraitViewMath.Pose(FacePoseMath.Shift(b, FaceTurn.Front, 2), out float l2, out float turn2);
@@ -420,8 +418,10 @@ public static class PortraitLibraryTests
           && reader.Contains("BodyPartTagDefOf.SightSource") && reader.Contains("g.def.renderNodeProperties"), "a pawn's looks read from the game's own data, for any mod's race, xenotype, hair, beard and clothes");
         C(reader.Contains("ContentFinder<Texture2D>.Get(def.texPath + \"_south\", false)") && reader.Contains("PortraitLibraryMath.HairFromShape(rows, S)") && reader.Contains("hairs[def] = h;"),
             "a hair its words don't tell: its front texture measured once");
-        C(pics.Contains("PortraitViewMath.View(pic.layout, frame,") && pics.Contains("PortraitViewMath.Mirror(pic.layout, PortraitViewMath.Asked(pose.turn, TextSide(") && pics.Contains("GreyPicture(pic.texture)"),
-            "a picture framed by its layout for each place, turned to its text or the other of a pair, grey for the dead");
+        C(pics.Contains("PortraitViewMath.View(pic.layout, frame,") && !pics.Contains("Mirror") && !pics.Contains("TextSide") && pics.Contains("GreyPicture(pic.texture)"),
+            "a picture framed by its layout for each place, always as painted (never mirrored, the player: \"always look the same direction\"), grey for the dead");
+        C(pics.Contains("new Rect(r.x, r.yMax - ph, r.width, ph + below)") && pics.Contains("v - h * below / ph"),
+            "a picture in a tile carried on below the tile's foot, so the sway never shows a gap under the body");
         C(kit.Contains("public static void DrawInCircle(Rect r, Texture tex, Rect view)"), "a part of a picture drawn in a circle");
         string settings = Read("CouncilSettings.cs");
         C(settings.Contains("public bool portraitLibrary = true;") && settings.Contains("Scribe_Values.Look(ref portraitLibrary, \"portraitLibrary\", true);")
