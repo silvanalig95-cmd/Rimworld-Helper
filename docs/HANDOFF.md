@@ -359,6 +359,32 @@ most sense." So, in this order, three builds at a time:
   to face their text or the other of a pair, and a seam where a portrait painted live (the pixel portraits, if the
   player picks them) would be another source. Point 2 (more to the face) is the library's to give. What waits: the
   pictures and their defs (PLAN.md's steps: the style, the pilot, the waves), and points 3 to 7.
+- **To do when the player asks (22 November 2026, the player, after the first runs with LoRAs; nothing built yet): the
+  portraits' backgrounds, bodies cut off, and poses.** The player: "the background from the images. It's most of the
+  time it's consistent, but sometimes it has kind of strange shapes in the background and it's not just a blank color
+  ... Is there like a plan to have transparent backgrounds and kind of fill this with something else? Or kind of have
+  also background images that can be applied to each of the kind of character images, or should the character images
+  have their own background? ... that can also create a lot of immersion ... It shouldn't ... distract too much, but
+  just having a blank color can also be a bit ... boring"; "some generated images ... cut off the body, or they have
+  kind of a strange background. I don't know if there's any way we can avoid this"; "the poses that the characters
+  have. I think this should maybe also allow some variety ... give character and kind of make each image more
+  individual and also more fitting to the pawn and the traits and how they look like. So I don't think they need to
+  have a static pose exactly the same." (Seen in the pictures: busts ending in a curved or heart-shaped cut, a light
+  border down the sides.) The lead's proposal:
+  1. The frame said only positively (FLUX reads "no border, no hat or helmet" as a call for them, and "not a model, no
+     makeup" the same way), the picture made taller (1024 x 1280) from the waist up so the body runs out of the picture
+     instead of ending in a cut bust, the background "one flat, even colour filling the picture from edge to edge"; the
+     lead crops each to head and shoulders afterwards.
+  2. Poses: a `pose` column in the batch lists (added by the batch tool after the subject) and a pose axis in
+     `FRAMEWORK.md`, chosen per person from their traits, work and bearing: arms crossed, a hand on a weapon, the tool of
+     their trade in hand, a three-quarter turn with a look over the shoulder, the chin raised, the head tilted, hands
+     clasped. Hands then show, and FLUX gets some wrong: those are thrown out.
+  3. Backgrounds: every picture cut out (transparent; the lead does it with an open background-removal model, or a node
+     in the player's ComfyUI), and a small library of backdrops in the same style laid behind it in the game by where
+     the pawn is: indoors by the room's kind (bedroom, barracks, hospital, prison cell, throne room, workshop, dining
+     room), outdoors by the biome and the weather, day or night; soft, darker and out of focus so the face stays first,
+     with a light shadow behind the figure. The plain colour with a vignette is the fallback and a setting. One picture
+     then serves a pawn everywhere, and 40 or so backdrops serve every picture.
 - **Done (21 November 2026, the player's go: "yes, please also fix the walking issue", then "please go all ahead with
   this and all the next steps that you listed"; built, not released): visitors who slide across the map facing one
   way.** The to-do with the player's words is now one entry above the newest release line ("Fixes: the sick tended

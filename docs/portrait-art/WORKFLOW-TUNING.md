@@ -83,6 +83,17 @@ storybook, flat colour, vector, sketch, retro sci-fi, pulp and more; the example
 Left out: too realistic (Painterly Fantasy, the fantasy digital-painting sets, Mythic Fantasy), too surreal (Daubrez),
 anime looks, minimal vector silhouettes, and the Fallout pack (no people in its examples).
 
+### With the SameFace Fix in the second box (the player's own downloads, 22 November 2026)
+
+| Style file | First box | Trigger | Strength | Settings |
+|---|---|---|---|---|
+| L4s1 | Comic Book Tome 3 V1, `Comics_Factory.safetensors` | ComicsFact1 style | 1.0 | dpmpp_2m, sgm_uniform, 28 steps, guidance 3.5 (its page) |
+| L6s | Retro Dark Fantasy Illustration, `dark_fantasy_illustration_Flux-000031.safetensors` | dark_fantasy_illustration | 1.0 | euler, beta, 28 steps, guidance 3.0 |
+| L9s | Henry Daubrez FLUX, https://civitai.com/models/696050 (version "Henry Daubrez FLUX v1.0"), `FLUX-daubrez-DB4RZ.safetensors` | DB4RZ style painting | 0.9 | its page gives none: euler, simple, 28 steps, guidance 3.0 |
+
+All three put `SameFace_Fix.safetensors` at -0.7 in the second box. Daubrez paints loosely and leans abstract; if faces
+melt into the brushwork, try 0.7.
+
 ### Z-Image Turbo, a second model (22 November 2026)
 
 Comic Book Tome 3's newer versions, V3 and V4, whose examples fit the game best (inked European-comic portraits with
@@ -97,6 +108,8 @@ use it as a second workflow:
    `models\loras`; run `colonists` with `style-Z4` (V4: trigger `Bradhamel art style`, 0.75, 8 steps, heunpp2, normal)
    or `style-Z3` (V3: `ComFact_V3 art style`, 0.75, 8 steps, heunpp2, beta), choosing the Z-Image workflow.
 FLUX LoRAs (the SameFace Fix, the softener) don't work with Z-Image Turbo.
+The other way round too: `style-Z4` or `Z3` run with the FLUX workflow makes plain FLUX pictures, because ComfyUI skips a
+LoRA made for another model (its console shows "lora key not loaded" lines) and the 8 steps are FLUX's, not Z-Image's.
 
 ## Step 3 (if faces stay alike): Chroma, a model that obeys a negative prompt
 

@@ -1,0 +1,24 @@
+{
+  "label": "Henry Daubrez painterly LoRA (Flux), with the SameFace Fix",
+  "style": "DB4RZ style painting. A stylised character portrait for a rugged sci-fi frontier colony game, painterly game art, not realistic. An ordinary, imperfect, distinctive face with its own character, not a model, not idealised, no makeup.",
+  "frame": "Head and shoulders, one person, the eyes about 40 percent from the top, the shoulders reaching the bottom edge, a plain dark blue-grey background, no text, no border, no hat or helmet.",
+  "style_end": "Painterly game art throughout, not photographic, not 3D.",
+  "negative": "",
+  "width": 1024,
+  "height": 1024,
+  "count": 2,
+  "guidance": 3.0,
+  "steps": 28,
+  "sampler_name": "euler",
+  "scheduler": "simple",
+  "loras": [
+    {
+      "name": "FLUX-daubrez-DB4RZ.safetensors",
+      "strength": 0.9
+    },
+    {
+      "name": "SameFace_Fix.safetensors",
+      "strength": -0.7
+    }
+  ]
+}
