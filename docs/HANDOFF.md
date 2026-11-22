@@ -519,6 +519,10 @@ most sense." So, in this order, three builds at a time:
   run stamps in every picture's name (`Run-PortraitBatch.ps1`), and `Update-PortraitLibrary.ps1` reading them and
   Windows' renamed copies, plus a `looks` column. Points 1 to 3 went to one build agent, the review and catalogue
   (point 4) to another.
+  Then the player, testing with backdrops only: "when no appropriate image can be found for a pawn, and it just shows its
+  default sprite ... it still takes backdrop from the library, right? That's the least it can do." It didn't (0.293.0
+  puts the backdrop behind painted pictures only): added to the looks build, the backdrop behind the game's own drawing
+  on the large portrait too.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
