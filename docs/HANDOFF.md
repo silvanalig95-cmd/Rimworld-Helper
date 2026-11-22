@@ -645,7 +645,7 @@ most sense." So, in this order, three builds at a time:
   photographs a specific spot that just happened to be". Done: `style-backdrop.json`'s frame is now a plain camera view
   of part of a larger place that carries on past every edge (the old frame asked for the detail towards the edges).
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
-  painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
+  painted portraits a little more alive; steps 1 and 2 done, step 3 for later.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
   screen in some way. I don't know how other games do it, with, so to say, a static image, to make it perhaps a little
   bit more alive is something we can then think about later also." Already in 0.293.0: the person breathes in front of
@@ -667,6 +667,12 @@ most sense." So, in this order, three builds at a time:
   backdrop), so near things in the room move more than the far wall, drawn by a small shader or by three or four
   slices of the backdrop; (3) a slight turn of the whole picture toward the mouse (a perspective tilt) only if 1 and 2
   look good.
+  Steps 1 and 2 done (22 November 2026, the player's go: "just go ahead if you have capacity and agents to work off the
+  to-do list with all the things that I've added recently ... the new stuff first"; built, not released: the entry
+  "Portraits, phase 6: the large portrait alive and with depth" above the newest release line), with the ideas above of
+  blinking, a few moods, a short change of expression when something happens to them, and the backdrop alive (the
+  weather outdoors, a fire's flicker indoors). Left for later: step 3 (the tilt, only if 1 and 2 look good in the game),
+  a slight head tilt now and then, dust in the light.
   The tools for the extra pictures (22 November 2026, built; the game side is built to the same contract): on the
   player's computer, through ComfyUI, double-click simple, set up in `docs/portrait-art/SETUP-ComfyUI.md` steps 9 and
   10. `Tools/PortraitArt/Make-DepthMaps.ps1` (+ `.cmd`, workflow `rimfolk-depth-workflow-api.json` from ComfyUI's own
@@ -1306,6 +1312,76 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 6: the large
+  portrait alive and with depth** (22 November 2026; the player: "perhaps we can make the pawns, even though their image
+  is generated, a little bit more alive", "if I, for example, hover my mouse, it kind of centers towards the mouse in a
+  way, like this kind of fake 3D effect", and the go: "just go ahead ... work off the to-do list with all the things that
+  I've added recently ... the new stuff first"). Steps 1 and 2 of the to-do entry "painted portraits a little more
+  alive", with blinking, moods, a short change on what happens to them and the backdrop alive. DESIGN.md "Portraits,
+  phase 6: the large portrait alive and with depth (not released yet)" has every rule; README "Portraits"; the
+  Almanac's guide, its portrait sentence. Only the large portrait at the inspect pane; the same pictures elsewhere stay
+  still.
+  - **The files** (the contract with the tools of `Tools/PortraitArt/`, merged from the lead branch): a backdrop's depth
+    map `<stem>_depth.png` (white near, black far, the same size), named in its record's `<depthPath>` (a mod's
+    BackdropDef takes the field too), else found beside it by name; a picture's expressions `<stem>_v-blink`, `_v-smile`,
+    `_v-frown`, `_v-pain`, each a PortraitDef with the base's record copied, `<variant>` and `<variantOf>` (the base's
+    defName). An expression is never picked on its own and never counts in the matching, the missing list or the
+    library's count; it belongs to its picture. Phase 3's `variant` (the same face with a mark or older, grouped by
+    `character`) stays for records without `variantOf`; `variantOf` alone tells the two apart. A later word (the tools
+    may paint more) is kept out quietly until Rimfolk knows it.
+  - **Depth that follows the mouse** (new setting, Off, Subtle the default, Stronger the mock-up's amounts): with the
+    mouse over it, the backdrop shifts against the mouse, the person with it, the person's soft shadow on the wall
+    between (it moves less), easing toward the mouse and back to the middle when it leaves; with a depth map the
+    backdrop is drawn in up to four layers by depth (cut once when the picture is made), near things moving apart from
+    the far wall. The backdrop is made a little larger than the frame and the person carried on past their sides and
+    foot, so no edge shows and the body stays on the bottom edge. The game's own drawing on a backdrop moves across only.
+    Nothing per frame but moving the cached layers.
+  - **Blinking and expressions** (new setting, on): a blink every few seconds (not while asleep, not over pain); asleep
+    or unconscious, the eyes closed; a smile well above the middle of their mood, a frown well under their minor break
+    line, held a minute at least and faded; pain when hurt in the last hours or in pain, a frown after the death of
+    someone close, a smile after good news, for a while; read from the game's health and memories (no new hook). Only
+    the head of an expression is laid over the picture (a soft oval where the person is solid), so nothing on the body
+    changes (the tools' side's suggestion: Kontext may repaint a strand or a fold elsewhere). A picture without
+    expressions stays as it is.
+  - **The backdrop alive** (new setting, on): outdoors under the open sky the map's weather drawn lightly over the
+    backdrop behind the person (rain, snow, a haze of fog or dust, by the weather's own def, its rain and snow rates and
+    its name; blood rain red, toxic rain green); indoors a soft warm flicker over the lower part where the backdrop shows
+    a hearth or a fire or a fire is lit in the room. Three small tiles made by code and the portraits' soft light.
+  - Decided here: Subtle is six tenths of the mock-up; the shadow on the wall only with depth on and a backdrop; the
+    mouse followed while paused, the life (blinks, weather, flicker) still while paused; the mood's middle halfway
+    between the minor break line and full (a smile from 0.775 for the usual 0.35); pain for four game hours after a wound
+    or at the game's medium pain, a death's frown six hours, good news (a memory of +8 or more) two hours; a blink over
+    a smile or frown shows the plain face's closed eyes for its tenth of a second; a depth map found by name where the
+    record names none; the expressions of the person shown only kept, let go 20 seconds after.
+  - Code: new `UI/Faces/FaceEngineAlive.cs` (the mouse, the face, the backdrop alive) and the pure
+    `UI/Faces/PortraitLifeMath.cs` (moves, easing, margin, slices, shadow, the head of an expression, the fade, which face
+    and when, blinks, news, weather, flicker); changed `FaceEngineStage.cs` (the layers made and moved, the expressions'
+    heads), `InspectPortrait.cs` (where the mouse is), `Backdrops.cs` (depth maps, a lit fire, the open sky),
+    `BackdropDef.cs` (`depthPath`), `BackdropMath.cs` (`fireLit`, `open`), `PortraitDef.cs` (`variantOf`, a quiet look-up),
+    `PortraitLibrary.cs` (`ExpressionsOf`), `PortraitLibraryMath.cs` (`variantOf`, `SplitExpressions`),
+    `PortraitFolder.cs` and `PortraitFolderMath.cs` (`depthPath`, `DepthOf`, the counts); the settings in
+    `CouncilSettings.cs` and `UI/SettingsCatalog.cs`; words in `Languages/English/Keyed/Rimfolk_Portraits.xml`. Tests:
+    `Tools/Tests/PortraitLifeTests.cs` (new; linked `PortraitLifeMath.cs` in `Tests.csproj`), two seam lines in
+    `PortraitStageTests.cs` and `PortraitLookTests.cs`. Nothing new saved.
+  - **Can't be checked without the game**: how the depth looks and feels with real pictures and the mouse; the slices
+    against Depth Anything 3's real maps (a floor's blend, the ghost at a near thing's edge as it moves); the shadow; the
+    expressions' heads over real pictures (the measured head, the oval's size) and the blink's pace; the faces against
+    real moods, wounds, deaths and news; the weather and the fire's light on real backdrops by day and night; the cost
+    of the extra read-backs from the graphics card.
+  - **Try in the game** (screenshots or a short clip please): run `Make-DepthMaps` and `Make-Variants` (SETUP-ComfyUI
+    steps 9 and 10), then Options, Rimfolk, How you're told, Portraits, "Reload the library" (the message counts the
+    expressions and depth maps). Select a colonist with their picture and move the mouse over the large portrait: the
+    backdrop and the person shift a little apart, the person's shadow on the wall between; move it off: it eases back.
+    Try "Depth that follows the mouse" on Stronger and Off. Stand them in a room with a depth map (a bedroom with a bed
+    near and a wall far): the bed moves apart from the wall. Watch the face a minute: a blink every few seconds; let them
+    sleep: the eyes closed; a happy colonist smiles, a colonist under their minor break line frowns; hurt one (dev mode:
+    a cut) and see pain for a while. Walk them outdoors in rain, snow or fog (dev mode: change the weather): it falls
+    over the backdrop behind them; indoors by a lit hearth or campfire: a warm flicker low on the backdrop. Pause: the
+    blinks and weather hold, the mouse still moves the depth. Switch "Blinking and expressions" and "The backdrop
+    alive" off and on.
+  - Mods that would help: none needed (the pictures are the player's own, the weather drawn by code). The player's
+    weather mods already in the list (Alpha Biomes, ReGrowth, Seasonal Weather, Vanilla Expanded's) are read by their
+    defs.
 - 0.294.0, **Portraits, phase 5: looks,
   special looks, work and what the library lacks** (22 November 2026; the player: "Maybe the mod can also then log in the
   log files or in the save, ideally ... if like a trait appears where they could be visually displayed, but there's no
