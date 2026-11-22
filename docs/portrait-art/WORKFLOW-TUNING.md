@@ -67,6 +67,22 @@ full lips) and meant to keep art styles intact. The SameFace Fix (https://civita
 only (its page), so it's left out of the mixed library. Not chosen: vintage underground comics (too cartoony), the painted
 and abstract "Tome 1" sets.
 
+### More picks, not comic (the player: "not necessarily that much on the comic style ... appropriate for a RimWorld ...
+not too realistic ... still be a game style")
+
+From a second search (729 Flux.1 D LoRAs: painterly, stylised, game, concept, splash and card art, gouache, watercolour,
+storybook, flat colour, vector, sketch, retro sci-fi, pulp and more; the examples seen), each with a style file:
+
+| Style file | LoRA (Civitai page) | File (the Flux.1 D version) | Trigger | Strength | Look |
+|---|---|---|---|---|---|
+| L5 | D&D Painterly, https://civitai.com/models/2140031 (version "Flux") | `DD_Painterly-000005.safetensors` | D&D Painterly, | 0.9 | painted tabletop character art, clean shapes, muted colours |
+| L6 | Retro Dark Fantasy Illustration, https://civitai.com/models/1041229 (version "Flux") | `dark_fantasy_illustration_Flux-000031.safetensors` | dark_fantasy_illustration | 1.0 (its page: 0.8 to 1.2) | old RPG-book illustration, limited palette, print texture |
+| L7 | Graphic portrait, https://civitai.com/models/170039 (version "FLUX") | `Graphic Portrait FLUX.safetensors` | raw illustration, Drawing | 0.8 | flat, sketchy pop-art portraits (likes round pink cheeks) |
+| L8 | Shrekman Style MIX, https://civitai.com/models/707010 (version "PaintedComic-Flux") | `PaintedComicFLUX-000015.safetensors` | PaintedComicstyleV1 | 0.9 | warm painted cartoon, cosier than gritty |
+
+Left out: too realistic (Painterly Fantasy, the fantasy digital-painting sets, Mythic Fantasy), too surreal (Daubrez),
+anime looks, minimal vector silhouettes, and the Fallout pack (no people in its examples).
+
 ## Step 3 (if faces stay alike): Chroma, a model that obeys a negative prompt
 
 1. In ComfyUI, **Browse Templates**, find **Chroma** (text to image), let it download its files.

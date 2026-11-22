@@ -1,0 +1,24 @@
+{
+  "label": "Painted Comic LoRA, with the face softener",
+  "style": "PaintedComicstyleV1, A stylised character portrait for a rugged sci-fi frontier colony game, game art, not realistic. An ordinary, imperfect, distinctive face with its own character, not a model, not idealised, no makeup.",
+  "frame": "Head and shoulders, one person, the eyes about 40 percent from the top, the shoulders reaching the bottom edge, a plain dark blue-grey background, no text, no border, no hat or helmet.",
+  "style_end": "Stylised game art throughout, not photographic, not 3D.",
+  "negative": "",
+  "width": 1024,
+  "height": 1024,
+  "count": 2,
+  "guidance": 3.0,
+  "steps": 28,
+  "sampler_name": "euler",
+  "scheduler": "beta",
+  "loras": [
+    {
+      "name": "PaintedComicFLUX-000015.safetensors",
+      "strength": 0.9
+    },
+    {
+      "name": "FFS_v.6.safetensors",
+      "strength": 0.6
+    }
+  ]
+}

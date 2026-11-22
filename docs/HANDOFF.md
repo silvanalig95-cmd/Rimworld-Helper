@@ -349,6 +349,8 @@ most sense." So, in this order, three builds at a time:
   LoRAs. Picked from Civitai's own listing (its public API, 373 Flux.1 D LoRAs looked at, the examples seen): Eldritch
   Comics, COMMIX, Comic Book Realism - CE, Comic Book Tome 3, with the Flux Facial Features Softener in the second box
   (the SameFace Fix is for women only); `batches/style-L1` to `L4`, the table in `WORKFLOW-TUNING.md`.
+  Then, at the player's ask for non-comic game styles "not too realistic": a second search (729 LoRAs) and four more,
+  D&D Painterly, Retro Dark Fantasy Illustration, Graphic portrait and Painted Comic, as `batches/style-L5` to `L8`.
   **Built** (21 November 2026, not released; the entry "Portraits, phase 3: a library of painted portraits" above
   the newest release line):
   point 1's three fixes (the bust bigger and centred, hidden while an inspect tab is open, always front-on), and the
