@@ -179,6 +179,9 @@ BABY_FEATURES = {'eyes': ['puffy eyelids', 'small, squinting eyes', 'small, slee
                  'mouth': ['a toothless, gummy mouth', 'drool on the chin', 'a pouting lower lip'],
                  'skin': ['red, blotchy skin', 'a few milk spots on the nose', 'a red birthmark on the forehead']}
 
+# How often a group of features comes up against the others (a nose or a jaw more often than a mole).
+GROUP_WEIGHT = {'nose': 1.2, 'jaw': 1.1, 'mouth': 1.1, 'eyes': 0.9, 'brows': 1.0, 'ears': 0.6, 'lines': 0.5, 'marks': 0.5,
+                'muzzle': 1.2, 'coat': 0.8}
 # A face's features: one to three, mostly one or two (the player: "Someone could have one, someone could have three").
 FEATURE_COUNTS = [(1, 0.42), (2, 0.4), (3, 0.18)]
 
@@ -274,8 +277,10 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
     if not shape_blocked:
         base.append(_word(rng, rng.choice([s for s in shapes if _ok(s, age)]), strong_share))
     if surface == 'human' and 'skin' not in blocks:
+        said = ' '.join(base)     # the skin names no part the shape already did ("a big forehead, an oily forehead")
         base.append(rng.choice([s for s, tag in SKINS if (skin_human or tag != 'hc')
-                                and (tag not in AGE_OK or age in AGE_OK[tag])]))
+                                and (tag not in AGE_OK or age in AGE_OK[tag])
+                                and not any(p in s and p in said for p in ('forehead', 'cheek', 'chin', 'face'))]))
     elif surface != 'human':
         base.append(rng.choice(SURFACES[surface]))
     if not base:
@@ -287,7 +292,9 @@ def face(rng, age, look, features, skin_human, far, strong_share, marks=(), extr
             n = c
             break
     groups = [g for g in sorted(pools) if any(_ok(i, age) for i in pools[g])]
-    rng.shuffle(groups)
+    # the features' groups in a weighted order: noses, jaws, mouths, eyes and brows first more often than moles and lines
+    keyed = sorted(groups, key=lambda g: -rng.random() ** (1.0 / GROUP_WEIGHT.get(g, 1.0)))
+    groups = keyed
     feats = []
     for g in groups:
         if len(feats) >= n:
@@ -341,7 +348,7 @@ HAIR = {
               ('a receding {c} hairline, cut short', 'A'), ('slicked-back {c} hair, shiny with oil', ''),
               ('short {c} hair standing up in spikes', 'Y'), ('a flat-top of {c} hair', ''), ('{c} cornrows close to the scalp', ''),
               ('a big, round {c} afro', ''), ('short, tight {c} curls', ''), ('thinning {c} hair combed straight back', 'M'),
-              ('a home-cut {c} fringe, cut crooked', ''), ('a {c} crew cut', ''), ('short {c} hair sticking up at the crown', '')],
+              ('a home-cut {c} fringe, cut crooked', ''), ('a {c} crew cut', ''), ('short, unruly {c} hair', '')],
     'medium': [('a curly {c} mop', ''), ('a shaggy {c} mop over the ears', ''), ('thick {c} curls to the jaw', ''),
                ('a {c} bob with a blunt, heavy fringe', ''), ('messy, wind-tangled {c} hair to the collar', ''),
                ('{c} hair parted sharply down the middle', ''), ('frizzy {c} hair standing out round the head', ''),
@@ -396,38 +403,46 @@ LITTLE_BUILDS = {'slim': [('small and skinny', 'skinny'), ('gangly', 'gangly')],
 MOODS = {
     'sly': (['a sly, sidelong grin', 'a crooked, knowing smile', 'a smug half-smile', 'one eyebrow cocked and a sly smirk'],
             ['leaning in a little, as if sharing a secret', 'turned half away, glancing back over the shoulder',
-             'tapping the side of the nose with one finger', 'arms loosely folded, the head cocked'], 'sly'),
+             'tapping the side of the nose with one finger', 'arms loosely folded, the head cocked', 'one hand on the hip, leaning back'], 'sly'),
     'gleeful': (['a gleeful, toothy grin', 'a cheeky wink', 'a big, goofy grin', 'a wide, open-mouthed laugh'],
                 ['a hand pressed to the chest, laughing', 'leaning back, laughing', 'a thumb jabbed back over the shoulder',
                  'both thumbs hooked in the belt, grinning'], 'cheeky'),
     'sullen': (['a sullen pout', 'a sulky glare from under the brows', 'a sour, down-turned mouth'],
                ['slouching, hands jammed in the pockets', 'arms folded tight, the shoulders hunched',
-                'the head lowered, looking up from under the brows'], 'sullen'),
+                'the head lowered, looking up from under the brows', 'turned half away, one shoulder up'], 'sullen'),
     'haughty': (['a haughty look down the nose', 'pursed lips and a cold, disapproving look', 'one eyebrow raised in disdain'],
-                ['the chin raised high', 'hands clasped behind the back, very upright', 'turned a little away, looking back coolly'], 'haughty'),
+                ['the chin raised high', 'hands clasped behind the back, very upright', 'turned a little away, looking back coolly',
+                 'one hand resting at the collar, the chin up'], 'haughty'),
     'shy': (['a shy half-smile', 'a timid look from under the brows', 'a nervous, toothy smile', 'a sheepish look, the eyes cast aside'],
-            ['fiddling with a sleeve', 'the shoulders drawn in, hands clasped at the waist', 'half turned away, peeking back'], 'shy'),
+            ['fiddling with a sleeve', 'the shoulders drawn in, hands clasped at the waist', 'half turned away, peeking back',
+             'rubbing one arm, the head ducked'], 'shy'),
     'intense': (['an intense, burning stare', 'a fierce glare', 'a hard, narrow-eyed look', 'a stubborn set to the jaw'],
                 ['leaning forward, staring straight out', 'standing square, fists on the hips', 'arms crossed, the chin lowered'], 'intense'),
     'weary': (['a tired, faraway look', 'a wry, tired smile', 'a dazed, sleepy look', 'a long-suffering look'],
-              ['rubbing the back of the neck', 'the shoulders sagging, one hand on the hip', 'a hand half covering a yawn'], 'weary'),
+              ['rubbing the back of the neck', 'the shoulders sagging, one hand on the hip', 'a hand half covering a yawn',
+               'rubbing the eyes with finger and thumb'], 'weary'),
     'eccentric': (['an eccentric, lopsided grin', 'a dreamy, distracted look', 'a wild, delighted look', 'a puzzled frown, the head tilted'],
                   ['arms spread wide mid-sentence', 'a finger raised as if about to make a point', 'the head tilted far to one side',
                    'counting something off on the fingers'], 'odd'),
     'gruff': (['a deep scowl', 'a gruff, unimpressed look', 'a scowling squint', 'a flat, bored stare'],
               ['arms folded across the chest', 'thumbs hooked in the belt', 'scratching the jaw', 'hands jammed in the pockets'], 'gruff'),
     'warm': (['a broad, friendly grin', 'an amused smile that crinkles the eyes', 'a warm, easy smile'],
-             ['one hand raised in a wave', 'a hand resting on the opposite shoulder', 'leaning in a little, smiling'], 'friendly'),
+             ['one hand raised in a wave', 'a hand resting on the opposite shoulder', 'leaning in a little, smiling',
+              'arms loosely folded, relaxed'], 'friendly'),
     'proud': (['a proud, defiant look', 'a self-satisfied smirk', 'a confident grin'],
-              ['chest puffed out, thumbs in the belt', 'the chin up, hands on the hips'], 'proud'),
+              ['chest puffed out, thumbs in the belt', 'the chin up, hands on the hips', 'standing tall, one fist on the chest'], 'proud'),
     'worried': (['a worried frown', 'a fretful, pinched look', 'chewing the lower lip'],
-                ['hands clasped tight at the chest', 'one hand at the collar, fidgeting'], 'anxious'),
+                ['hands clasped tight at the chest', 'one hand at the collar, fidgeting', 'biting a thumbnail',
+                 'glancing over one shoulder'], 'anxious'),
     'stoic': (['a solemn, steady look', 'a calm, unreadable face', 'a stony, patient look'],
-              ['standing very straight, hands at the sides', 'hands folded at the waist'], 'stoic'),
+              ['standing very straight, hands at the sides', 'hands folded at the waist', 'arms folded, quite still',
+               'standing square, looking straight ahead'], 'stoic'),
     'droll': (['a deadpan stare', 'a sheepish, guilty grin', 'a mock-serious frown'],
-              ['one finger raised, about to object', 'a shrug, one shoulder up'], 'droll'),
+              ['one finger raised, about to object', 'a shrug, one shoulder up', 'arms folded, one eyebrow up',
+               'a hand on the chest in mock surprise', 'scratching the head'], 'droll'),
     'suspicious': (['a suspicious squint', 'a narrow, doubtful look', 'a wary sidelong look'],
-                   ['leaning back, arms crossed', 'peering sidelong, the head drawn back'], 'wary'),
+                   ['leaning back, arms crossed', 'peering sidelong, the head drawn back', 'turned half away, watching sidelong',
+                    'one hand raised a little, as if to say wait'], 'wary'),
 }
 # How often each mood comes up: the commonest kinds a little more often calm, the rarer ones more often odd or intense
 # (the framework: "the rarer kinds and the later rounds get the widest range").
@@ -532,7 +547,7 @@ LITTLE_CLOTHES = {
     'spacer': ['a small padded jumpsuit in a loud colour', 'a little synthetic jacket two sizes too big', 'a scuffed child\'s jumpsuit'],
 }
 BABY_WRAPS = {'tribal': ['a soft fur wrap'], 'medieval': ['a patched wool blanket'], 'industrial': ['a knitted blanket with a lopsided pattern'],
-              'spacer': ['a padded synthetic sleep sack']}
+              'spacer': ['a padded synthetic sleeping bag for babies']}
 
 # How life has treated them, in a line (no beauty words; 'sheltered' only for the young).
 HARDSHIP = {

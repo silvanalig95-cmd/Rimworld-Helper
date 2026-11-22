@@ -492,7 +492,7 @@ class Ledger:
         return self.cells[cell] > 0
 
 
-FACE_RE = re.compile(r'(?:^|\. )(?:Left |Right )?[Ff]ace: (.+?)\.(?= |$)')
+FACE_RE = re.compile(r'(?:^|(?<=\. ))(?:Left |Right )?[Ff]ace: (.+?)\.(?= |$)')
 
 
 def faces_of(subject):
@@ -1079,7 +1079,7 @@ class Planner:
             items = [(ro, math.sqrt(s)) for ro, s in k.roles if s > 0 and ro in self.roles]
             ages = [(a, s) for a, s in k.ages if a in self.role_ages(k)]
         else:
-            items = [(lk.word, math.sqrt(lk.count + 1)) for lk in self.looks_for(k)
+            items = [(lk.word, math.sqrt(lk.count) if lk.count else 0.3) for lk in self.looks_for(k)   # unseen ones now and then
                      if not lk.special and lk.word not in CHAR_NO_LOOKS and not C.BANNED.search(C.plain_words(lk.prompt))
                      and not re.search(C.LOOK_CONFLICTS.get(lk.word, '^$'), k.row.get('look') or '')]
             ages = [(a, s) for a, s in k.ages if a in W.GROWN and s > 0]
@@ -1481,6 +1481,22 @@ def coverage_report(kinds, looks, ledger, planner, written_files, unknown, recor
     not_planned = [k for k in kinds.values() if not k.plannable]
     if not_planned:
         L += ['Not planned (no look sheet or never shown): ' + ', '.join('%s (%s)' % (k.label, k.kind) for k in not_planned) + '.', '']
+    chars = collections.Counter()
+    for c, v in ledger.cells.items():
+        if c[0] == 'char' and c[2] in kinds:
+            chars[(kinds[c[2]].wave, c[1])] += v
+            chars[(kinds[c[2]].wave, 'kind', c[2])] = 1
+    L += ['## Characters', '',
+          'The characters lists (`characters-NN`, `plan_batches.py --phases characters`): distinct people of every kind, '
+          'plain ones (no role, no look; anyone of the kind, sex and age can get them) and for the common kinds some with '
+          'a role or a look, written the same way.', '',
+          '| wave | kinds | with characters | plain rows | role rows | look rows |', '|---|---|---|---|---|---|']
+    for w in range(1, 6):
+        ks = [k for k in kinds.values() if k.plannable and k.wave == w]
+        if ks:
+            L.append('| %d | %d | %d | %d | %d | %d |' % (w, len(ks), sum(1 for k in ks if chars[(w, 'kind', k.kind)]),
+                                                          chars[(w, 'c')], chars[(w, 'r')], chars[(w, 'l')]))
+    L.append('')
     lk_rows = collections.Counter()
     for c, v in ledger.cells.items():
         if c[0] == 'l':
