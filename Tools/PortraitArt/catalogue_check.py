@@ -18,7 +18,7 @@ POOL = os.path.join(ROOT, 'docs', 'player-mods')
 sys.path.insert(0, HERE)
 import catalogue_words as W  # noqa: E402
 
-GENE_TYPES = {'GeneDef', 'AndroidGeneDef'}
+GENE_TYPES = {'GeneDef', 'AndroidGeneDef', 'GenelineGeneDef'}   # Vanilla Genetics Expanded's genelines are genes too
 RECORD_FEATURES = {'pointedEars', 'longEars', 'horns', 'tusks', 'fur', 'scales', 'gills', 'glowingEyes', 'markings',
                    'tail', 'snout'}
 

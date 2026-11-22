@@ -1,247 +1,1200 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Written by Tools/PortraitArt/looks_to_defs.py from docs/portrait-art/catalogue/looks.csv: change the CSV, not this file. -->
 <Defs>
-
-  <!--
-    Looks a painted portrait can show (UI/Faces/PortraitLookDef.cs; DESIGN.md, "Portraits, phase 5"). Rimfolk's starter
-    list: the lead's catalogue adds the rest in a file of its own. A person has a look when they have any of its traits (a
-    line with ":degree" only at that degree), active genes, hediffs or their race's body; names of mods not loaded never
-    match. Records name the looks they show in <looks> by the word. A picture showing a look stands only for people who
-    have it; a special look (special true) also keeps anyone who has it from every picture that doesn't show it, so they
-    keep the game's own drawing until one does. The prompt is for the image prompts only; the game doesn't read it. Every
-    name checked against docs/player-mods (active rows).
-  -->
-
-  <!-- Special looks: only a picture made for them fits. -->
-
-  <!-- Conjoined Twins (multimind.conjoinedtwins): its race's body, and the trait it gives the twins. -->
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_ConjoinedTwins</defName>
-    <word>conjoinedTwins</word>
-    <label>conjoined twins</label>
-    <special>true</special>
-    <traits><li>MultiMind_ConjoinedTwins</li></traits>
-    <bodies><li>MultiMind_ConjoinedHumanBody</li></bodies>
-    <prompt>conjoined twins sharing one broad body, two heads side by side on the shoulders, two faces each with its own expression</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <!-- Alpha Genes (sarg.alphagenes). -->
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_BatWings</defName>
-    <word>batWings</word>
-    <label>bat wings</label>
-    <special>true</special>
-    <genes><li>AG_BatWings</li></genes>
-    <prompt>large dark leathery bat wings folded behind the shoulders, their clawed tips rising above the head</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <!-- Thin, veined wings of insects: Vanilla Races Expanded - Insector (vanillaracesexpanded.insector), Alpha Genes (its
-       genes and the cosmetic ones of its insect geneline), and the beetle, cicada, dragonfly and kin of Fairycore
-       (homebrew.fairycore). -->
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_InsectWings</defName>
-    <word>insectWings</word>
-    <label>insect wings</label>
-    <special>true</special>
-    <genes>
-      <li>VRE_InsectWings</li>
-      <li>VRE_InsectWings_Cosmetic</li>
-      <li>VRE_LocustWings</li>
-      <li>AG_WaspWings</li>
-      <li>AG_BumbledroneWings</li>
-      <li>AG_GenelineCosmetic_WaspWings</li>
-      <li>AG_GenelineCosmetic_BumbledroneWings</li>
-      <li>FG_Wings_Beetle</li>
-      <li>FG_Wings_Cicada</li>
-      <li>FG_Wings_Damselfly</li>
-      <li>FG_Wings_Dragonfly</li>
-      <li>FG_Wings_Firefly</li>
-      <li>FG_Wings_Grasshopper</li>
-      <li>FG_Wings_Lacewing</li>
-      <li>FG_Wings_PrayingMantis</li>
-      <li>FG_Wings_Wasp</li>
-    </genes>
-    <prompt>a pair of thin translucent insect wings with dark veins rising from the back behind the shoulders</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <!-- Butterfly and moth wings: Alpha Genes' moth wings and Fairycore's butterflies and moths. -->
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_ButterflyWings</defName>
-    <word>butterflyWings</word>
-    <label>butterfly wings</label>
-    <special>true</special>
-    <genes>
-      <li>AG_MothWings</li>
-      <li>AG_GenelineCosmetic_MothWings</li>
-      <li>FG_Wings_Birdwing</li>
-      <li>FG_Wings_BlueMorpho</li>
-      <li>FG_Wings_CommonBlue</li>
-      <li>FG_Wings_Glasswing</li>
-      <li>FG_Wings_LunaMoth</li>
-      <li>FG_Wings_Monarch</li>
-      <li>FG_Wings_Moth</li>
-      <li>FG_Wings_PaperKite</li>
-      <li>FG_Wings_Peacock</li>
-      <li>FG_Wings_RedAdmiral</li>
-      <li>FG_Wings_Swallowtail</li>
-    </genes>
-    <prompt>a pair of broad patterned butterfly wings spread behind the shoulders</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_FeatheredWings</defName>
-    <word>featheredWings</word>
-    <label>feathered wings</label>
-    <special>true</special>
-    <genes>
-      <li>AG_FeatheredWings</li>
-      <li>AG_PegasusWings</li>
-    </genes>
-    <prompt>a pair of large feathered wings folded behind the shoulders</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_DragonWings</defName>
-    <word>dragonWings</word>
-    <label>dragon wings</label>
-    <special>true</special>
-    <genes>
-      <li>AG_DemonWings</li>
-      <li>AG_DrakonoriWings</li>
-    </genes>
-    <prompt>a pair of large leathery dragon-like wings with clawed joints folded behind the shoulders</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <!-- Wing genes whose shape isn't known here (Alpha Genes' drainer, rainbow and single malformed wing, Vanilla Races
-       Expanded - Hussar's glidewings): special, so no wingless picture stands for them; the catalogue gives each its own. -->
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_OtherWings</defName>
-    <word>otherWings</word>
-    <label>wings</label>
-    <special>true</special>
-    <genes>
-      <li>AG_DrainerWings</li>
-      <li>AG_GenelineCosmetic_DrainerWings</li>
-      <li>AG_RainbowWings</li>
-      <li>AG_SingleWing</li>
-      <li>VREH_Glidewings</li>
-    </genes>
-    <prompt>wings on the back behind the shoulders</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <!-- Ordinary looks: a picture showing one stands only for those who have it; one of theirs a picture doesn't show only
-       costs a little. -->
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_Pyromaniac</defName>
-    <word>pyromaniac</word>
-    <label>a pyromaniac's look</label>
-    <special>false</special>
-    <traits><li>Pyromaniac</li></traits>
-    <prompt>singed eyebrows, a few small burn marks on the hands, a restless fixed stare</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_Psychopath</defName>
-    <word>psychopath</word>
-    <label>a psychopath's look</label>
-    <special>false</special>
-    <traits><li>Psychopath</li></traits>
-    <prompt>a flat, cold, unblinking stare and a calm expressionless face</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_Beautiful</defName>
-    <word>beautiful</word>
-    <label>beautiful</label>
-    <special>false</special>
-    <traits><li>Beauty:2</li></traits>
-    <prompt>strikingly beautiful, fine even features and clear skin</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_Pretty</defName>
-    <word>pretty</word>
-    <label>pretty</label>
-    <special>false</special>
-    <traits><li>Beauty:1</li></traits>
-    <prompt>good-looking, pleasant regular features</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_Ugly</defName>
-    <word>ugly</word>
-    <label>ugly</label>
-    <special>false</special>
-    <traits><li>Beauty:-1</li></traits>
-    <prompt>plain and rather ugly, uneven features, a crooked nose and blotchy skin</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <ColonyCouncil.PortraitLookDef>
-    <defName>Look_StaggeringlyUgly</defName>
-    <word>staggeringlyUgly</word>
-    <label>staggeringly ugly</label>
-    <special>false</special>
-    <traits><li>Beauty:-2</li></traits>
-    <prompt>very ugly, lumpy misshapen features, a heavy brow, bad teeth and pitted skin</prompt>
-  </ColonyCouncil.PortraitLookDef>
-
-  <!-- A drinker: alcohol addiction, or a taste for chemicals (chemical interest and chemical fascination). -->
   <ColonyCouncil.PortraitLookDef>
     <defName>Look_Drinker</defName>
     <word>drinker</word>
     <label>a drinker's face</label>
     <special>false</special>
-    <traits>
-      <li>DrugDesire:1</li>
-      <li>DrugDesire:2</li>
-    </traits>
-    <hediffs><li>AlcoholAddiction</li></hediffs>
-    <prompt>a red, bulbous nose, flushed cheeks and tired, watery eyes</prompt>
+    <traits><li>VTE_Lush</li><li>VTE_DrunkenMaster</li></traits>
+    <hediffs><li>AlcoholAddiction</li><li>Cirrhosis</li></hediffs>
+    <prompt>a red, bulbous nose, flushed cheeks with fine broken veins and tired, watery eyes</prompt>
   </ColonyCouncil.PortraitLookDef>
-
-  <!-- A drug addict: the other addictions of the game and the player's mods (Alpha Biomes, Dragons Descent, Vanilla
-       Genetics Expanded, A RimWorld of Magic, Vanilla Factions Expanded - Classical and - Insectoids 2); caffeine, tobacco
-       and antibiotics left out, as they don't mark a face. -->
   <ColonyCouncil.PortraitLookDef>
-    <defName>Look_DrugAddict</defName>
-    <word>drugAddict</word>
-    <label>a drug addict's face</label>
+    <defName>Look_Addict</defName>
+    <word>addict</word>
+    <label>a chemical user's face</label>
     <special>false</special>
-    <hediffs>
-      <li>SmokeleafAddiction</li>
-      <li>PsychiteAddiction</li>
-      <li>GoJuiceAddiction</li>
-      <li>WakeUpAddiction</li>
-      <li>LuciferiumAddiction</li>
-      <li>AmbrosiaAddiction</li>
-      <li>AB_PsychotropicFungusAddiction</li>
-      <li>DragonsBloodAddiction</li>
-      <li>GR_ElectroEggAddiction</li>
-      <li>GR_FeatherdustAddiction</li>
-      <li>TM_SyrriumAddiction</li>
-      <li>VFEC_OpiumAddiction</li>
-      <li>VFEI2_RoyalJellyAddiction</li>
-    </hediffs>
-    <prompt>a gaunt face, sallow skin, hollow cheeks and dark rings under bloodshot eyes</prompt>
+    <traits><li>DrugDesire:2</li></traits>
+    <hediffs><li>PsychiteAddiction</li><li>WakeUpAddiction</li><li>GoJuiceAddiction</li><li>LuciferiumAddiction</li></hediffs>
+    <prompt>glassy, restless eyes, sunken cheeks and a twitchy, hungry look</prompt>
   </ColonyCouncil.PortraitLookDef>
-
-  <!-- A RimWorld of Magic (torann.arimworldofmagic): its fire and ice mages, by their class traits. -->
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Stoner</defName>
+    <word>stoner</word>
+    <label>a smoker's ease</label>
+    <special>false</special>
+    <traits><li>VTE_Stoner</li></traits>
+    <hediffs><li>SmokeleafAddiction</li></hediffs>
+    <prompt>heavy-lidded, reddened eyes and a slack, easy smile</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Pyromaniac</defName>
+    <word>pyromaniac</word>
+    <label>a fire-lover's stare</label>
+    <special>false</special>
+    <traits><li>Pyromaniac</li></traits>
+    <prompt>singed eyebrows, small burn marks on the fingers and a bright, fixed, restless stare</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Psychopath</defName>
+    <word>psychopath</word>
+    <label>a cold stare</label>
+    <special>false</special>
+    <traits><li>Psychopath</li></traits>
+    <prompt>a flat, cold, unblinking stare and a faint, empty smile</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Bloodlust</defName>
+    <word>bloodlust</word>
+    <label>a hungry look for a fight</label>
+    <special>false</special>
+    <traits><li>Bloodlust</li></traits>
+    <prompt>a hard, eager look in the eyes and a cruel twist to the mouth</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Cannibal</defName>
+    <word>cannibal</word>
+    <label>a cannibal's stare</label>
+    <special>false</special>
+    <traits><li>Cannibal</li></traits>
+    <prompt>a hungry, unsettling stare and a string of small bone beads at the neck</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Beautiful</defName>
+    <word>beautiful</word>
+    <label>striking beauty</label>
+    <special>false</special>
+    <traits><li>Beauty:2</li><li>AG_Beauty:2</li></traits>
+    <genes><li>Beauty_Beautiful</li><li>AG_Beauty_Angelic</li></genes>
+    <prompt>strikingly beautiful, with well-proportioned features and clear, even skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Pretty</defName>
+    <word>pretty</word>
+    <label>a pleasant face</label>
+    <special>false</special>
+    <traits><li>Beauty:1</li></traits>
+    <genes><li>Beauty_Pretty</li></genes>
+    <prompt>pleasant, even features and clear skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Ugly</defName>
+    <word>ugly</word>
+    <label>a plain, uneven face</label>
+    <special>false</special>
+    <traits><li>Beauty:-1</li></traits>
+    <genes><li>Beauty_Ugly</li></genes>
+    <prompt>plain, uneven features, a lumpy nose and coarse skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Hideous</defName>
+    <word>hideous</word>
+    <label>a hard face to look at</label>
+    <special>false</special>
+    <traits><li>Beauty:-2</li><li>AG_Beauty:-2</li></traits>
+    <genes><li>Beauty_VeryUgly</li><li>AG_Beauty_VeryVeryUgly</li><li>VRE_Repulsive</li><li>AG_UnsettlingAppearance</li></genes>
+    <prompt>badly uneven, coarse features, a misshapen nose, blotchy skin and crooked teeth</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Tough</defName>
+    <word>tough</word>
+    <label>a tough, battered look</label>
+    <special>false</special>
+    <traits><li>Tough</li><li>VTE_ThickSkinned</li></traits>
+    <prompt>a thick neck, a broad face nicked with old cuts and a solid, sturdy frame</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Wimp</defName>
+    <word>wimp</word>
+    <label>a timid look</label>
+    <special>false</special>
+    <traits><li>Wimp</li><li>VTE_Coward</li></traits>
+    <prompt>a soft, timid face and eyes that dart away</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Sickly</defName>
+    <word>sickly</word>
+    <label>a sickly look</label>
+    <special>false</special>
+    <traits><li>Immunity:-1</li></traits>
+    <prompt>pale, slightly sallow skin, dark rings under the eyes and a thin, tired face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Ascetic</defName>
+    <word>ascetic</word>
+    <label>a spare, plain look</label>
+    <special>false</special>
+    <traits><li>Ascetic</li></traits>
+    <prompt>a lean, spare face, close-cropped hair and plain, simple clothes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Nudist</defName>
+    <word>nudist</word>
+    <label>very little clothing</label>
+    <special>false</special>
+    <traits><li>Nudist</li></traits>
+    <prompt>very little clothing: bare shoulders and arms, only a short sleeveless wrap</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Kind</defName>
+    <word>kind</word>
+    <label>a kind face</label>
+    <special>false</special>
+    <traits><li>Kind</li></traits>
+    <prompt>warm, soft eyes, laugh lines and a gentle smile</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Abrasive</defName>
+    <word>abrasive</word>
+    <label>a sour scowl</label>
+    <special>false</special>
+    <traits><li>Abrasive</li></traits>
+    <prompt>a sour, impatient scowl and narrowed eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Greedy</defName>
+    <word>greedy</word>
+    <label>a calculating look</label>
+    <special>false</special>
+    <traits><li>Greedy</li><li>VTE_Tycoon</li></traits>
+    <prompt>a calculating look, several rings on the fingers and a heavy coin purse at the belt</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Runner</defName>
+    <word>runner</word>
+    <label>a runner's build</label>
+    <special>false</special>
+    <traits><li>SpeedOffset:2</li></traits>
+    <prompt>a lean, wiry runner's build and a light, springy bearing</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Nimble</defName>
+    <word>nimble</word>
+    <label>a quick, agile look</label>
+    <special>false</special>
+    <traits><li>Nimble</li></traits>
+    <prompt>a light, agile build and quick, alert eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Brawler</defName>
+    <word>brawler</word>
+    <label>a brawler's look</label>
+    <special>false</special>
+    <traits><li>Brawler</li><li>VTE_MartialArtist</li></traits>
+    <prompt>a broken nose, scarred knuckles wrapped in tape and a thick neck</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Nervous</defName>
+    <word>nervous</word>
+    <label>a nervous look</label>
+    <special>false</special>
+    <traits><li>Nerves:-1</li><li>Nerves:-2</li><li>VTE_Anxious</li><li>Neurotic:2</li></traits>
+    <prompt>a tense, twitchy face, bitten lips and darting eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_IronWilled</defName>
+    <word>ironWilled</word>
+    <label>an unflinching gaze</label>
+    <special>false</special>
+    <traits><li>Nerves:2</li><li>VTE_Brave</li></traits>
+    <prompt>a steady, unflinching gaze and a firmly set jaw</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Gloomy</defName>
+    <word>gloomy</word>
+    <label>a gloomy look</label>
+    <special>false</special>
+    <traits><li>NaturalMood:-2</li><li>NaturalMood:-1</li><li>VTE_WorldWeary</li></traits>
+    <prompt>downcast, heavy eyes and a drawn, tired mouth</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Cheerful</defName>
+    <word>cheerful</word>
+    <label>a cheerful face</label>
+    <special>false</special>
+    <traits><li>NaturalMood:2</li><li>NaturalMood:1</li><li>Joyous</li></traits>
+    <prompt>a bright, ready smile and crinkled, laughing eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Idle</defName>
+    <word>idle</word>
+    <label>an idle look</label>
+    <special>false</special>
+    <traits><li>Industriousness:-2</li><li>Industriousness:-1</li><li>VTE_CouchPotato</li></traits>
+    <prompt>a slack, sleepy, unhurried look and rumpled clothes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Toiler</defName>
+    <word>toiler</word>
+    <label>a hard worker's look</label>
+    <special>false</special>
+    <traits><li>Industriousness:2</li><li>Industriousness:1</li><li>VTE_Workaholic</li></traits>
+    <prompt>calloused hands, rolled-up sleeves and a busy, intent look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Sharp</defName>
+    <word>sharp</word>
+    <label>a sharp, searching gaze</label>
+    <special>false</special>
+    <traits><li>TooSmart</li><li>FastLearner</li><li>VTE_Prodigy</li></traits>
+    <prompt>a sharp, searching gaze and a faint, knowing smirk</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Sleepless</defName>
+    <word>sleepless</word>
+    <label>a sleepless face</label>
+    <special>false</special>
+    <traits><li>NightOwl</li><li>VTE_Insomniac</li></traits>
+    <prompt>dark circles under the eyes and a pale, tired face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Pallid</defName>
+    <word>pallid</word>
+    <label>a sun-starved face</label>
+    <special>false</special>
+    <traits><li>Undergrounder</li></traits>
+    <prompt>pale, sun-starved skin and eyes narrowed against the light</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Slob</defName>
+    <word>slob</word>
+    <label>an unkempt look</label>
+    <special>false</special>
+    <traits><li>VTE_Slob</li><li>Hygienic:-2</li><li>Hygienic:-1</li></traits>
+    <prompt>greasy, unkempt hair, a stubbly chin and stained clothes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Neat</defName>
+    <word>neat</word>
+    <label>a neat, well-kept look</label>
+    <special>false</special>
+    <traits><li>VTE_Neat</li><li>Hygienic:1</li><li>Hygienic:2</li><li>Rimfolk_Tidy</li></traits>
+    <prompt>neatly combed hair and a clean, well-kept appearance</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BigBoned</defName>
+    <word>bigBoned</word>
+    <label>a big-boned frame</label>
+    <special>false</special>
+    <traits><li>VTE_BigBoned</li></traits>
+    <prompt>a heavy, big-boned frame and a broad face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Gourmand</defName>
+    <word>gourmand</word>
+    <label>a well-fed look</label>
+    <special>false</special>
+    <traits><li>Gourmand</li><li>VTE_Gastronomist</li><li>VTE_Insatiable</li></traits>
+    <prompt>a round, well-fed face and a full belly</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Creepy</defName>
+    <word>creepy</word>
+    <label>an unsettling look</label>
+    <special>false</special>
+    <traits><li>CreepyBreathing</li><li>Disturbing</li></traits>
+    <prompt>hollow cheeks, a slightly open mouth and an unsettling, unblinking look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Tortured</defName>
+    <word>tortured</word>
+    <label>a brooding look</label>
+    <special>false</special>
+    <traits><li>TorturedArtist</li></traits>
+    <prompt>haunted, intense eyes, untidy hair and a brooding look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Eccentric</defName>
+    <word>eccentric</word>
+    <label>an eccentric look</label>
+    <special>false</special>
+    <traits><li>VTE_Eccentric</li></traits>
+    <prompt>odd, mismatched clothes and a cheerfully strange look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Haughty</defName>
+    <word>haughty</word>
+    <label>a haughty look</label>
+    <special>false</special>
+    <traits><li>VTE_Snob</li><li>VTE_RefinedPalate</li></traits>
+    <prompt>a haughty, raised chin and a look of mild disdain</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Vengeful</defName>
+    <word>vengeful</word>
+    <label>a grudging glare</label>
+    <special>false</special>
+    <traits><li>VTE_Vengeful</li></traits>
+    <prompt>a cold, brooding glare that holds a grudge</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Rebel</defName>
+    <word>rebel</word>
+    <label>a defiant look</label>
+    <special>false</special>
+    <traits><li>VTE_Rebel</li></traits>
+    <prompt>a defiant smirk and a rough, rebellious look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_VoidTouched</defName>
+    <word>voidTouched</word>
+    <label>touched by the void</label>
+    <special>false</special>
+    <traits><li>VAEI_VoidTouched</li></traits>
+    <hediffs><li>VoidTouched</li></hediffs>
+    <prompt>faint dark veins at the temples and a distant, unsettling stare</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Inhumanized</defName>
+    <word>inhumanized</word>
+    <label>an inhuman calm</label>
+    <special>false</special>
+    <traits><li>VAEI_Inhumanized</li></traits>
+    <hediffs><li>Inhumanized</li></hediffs>
+    <prompt>a blank, unnervingly calm face that seems to look through the viewer</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Psycaster</defName>
+    <word>psycaster</word>
+    <label>a psycaster</label>
+    <special>false</special>
+    <hediffs><li>PsychicAmplifier</li><li>VPE_PsycastAbilityImplant</li></hediffs>
+    <prompt>a faint glow about the eyes and temples and a calm, intense stare</prompt>
+  </ColonyCouncil.PortraitLookDef>
   <ColonyCouncil.PortraitLookDef>
     <defName>Look_FireMage</defName>
     <word>fireMage</word>
     <label>a fire mage</label>
     <special>false</special>
     <traits><li>InnerFire</li></traits>
-    <prompt>a small flame dancing above one open hand, its warm light on the face</prompt>
+    <prompt>warm firelight on the face, faint ember marks on the hands</prompt>
   </ColonyCouncil.PortraitLookDef>
-
   <ColonyCouncil.PortraitLookDef>
     <defName>Look_IceMage</defName>
     <word>iceMage</word>
     <label>an ice mage</label>
     <special>false</special>
     <traits><li>HeartOfFrost</li></traits>
-    <prompt>frost on the hair and brows, a pale blue cold light gathered in one hand</prompt>
+    <prompt>frost on the eyebrows and a cold blue mist curling from one hand</prompt>
   </ColonyCouncil.PortraitLookDef>
-
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_StormMage</defName>
+    <word>stormMage</word>
+    <label>a lightning mage</label>
+    <special>false</special>
+    <traits><li>StormBorn</li></traits>
+    <prompt>small sparks of lightning crackling between the fingers, hair lifted by static</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Arcanist</defName>
+    <word>arcanist</word>
+    <label>an arcane mage</label>
+    <special>false</special>
+    <traits><li>Arcanist</li></traits>
+    <prompt>faint glowing runes circling one hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Paladin</defName>
+    <word>paladin</word>
+    <label>a paladin</label>
+    <special>false</special>
+    <traits><li>Paladin</li></traits>
+    <prompt>a soft golden light about the shoulders and a holy symbol worn at the chest</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_LightPriest</defName>
+    <word>lightPriest</word>
+    <label>a magic priest</label>
+    <special>false</special>
+    <traits><li>Priest</li></traits>
+    <prompt>a soft white glow in cupped hands and a calm, kindly face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Summoner</defName>
+    <word>summoner</word>
+    <label>a summoner</label>
+    <special>false</special>
+    <traits><li>Summoner</li></traits>
+    <prompt>a small glowing ring of light hovering at one hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Druid</defName>
+    <word>druid</word>
+    <label>a druid</label>
+    <special>false</special>
+    <traits><li>Druid</li></traits>
+    <prompt>thin green vines winding around the forearms and a small green glow in one hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Necromancer</defName>
+    <word>necromancer</word>
+    <label>a necromancer</label>
+    <special>false</special>
+    <traits><li>Necromancer</li></traits>
+    <prompt>a deathly pallor, dark-ringed eyes and a faint green mist about the hands</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Warlock</defName>
+    <word>warlock</word>
+    <label>a warlock</label>
+    <special>false</special>
+    <traits><li>Warlock</li></traits>
+    <prompt>dark shadows curling around the hands and intense dark eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Succubus</defName>
+    <word>succubus</word>
+    <label>a succubus</label>
+    <special>false</special>
+    <traits><li>Succubus</li></traits>
+    <prompt>small dark horns, a sly, alluring smile and a faint red glow in the eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BardMage</defName>
+    <word>bardMage</word>
+    <label>a bard</label>
+    <special>false</special>
+    <traits><li>TM_Bard</li></traits>
+    <prompt>a small lute held at the chest and a lively, charming look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Geomancer</defName>
+    <word>geomancer</word>
+    <label>a geomancer</label>
+    <special>false</special>
+    <traits><li>Geomancer</li></traits>
+    <prompt>stone dust on the hands and a few small pebbles floating above one palm</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Technomancer</defName>
+    <word>technomancer</word>
+    <label>a technomancer</label>
+    <special>false</special>
+    <traits><li>Technomancer</li></traits>
+    <prompt>faint glowing circuit lines in the air around one hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BloodMage</defName>
+    <word>bloodMage</word>
+    <label>a blood mage</label>
+    <special>false</special>
+    <traits><li>BloodMage</li></traits>
+    <prompt>pale skin, dark red marks on the hands and a thin ribbon of blood floating in the air</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Enchanter</defName>
+    <word>enchanter</word>
+    <label>an enchanter</label>
+    <special>false</special>
+    <traits><li>Enchanter</li></traits>
+    <prompt>several softly glowing rings and a shining gem held in one hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Chronomancer</defName>
+    <word>chronomancer</word>
+    <label>a chronomancer</label>
+    <special>false</special>
+    <traits><li>Chronomancer</li></traits>
+    <prompt>a faint shimmer like a ripple in the air around one hand and a small hourglass charm</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ChaosMage</defName>
+    <word>chaosMage</word>
+    <label>a chaos mage</label>
+    <special>false</special>
+    <traits><li>ChaosMage</li></traits>
+    <prompt>sparks of mismatched colours flaring around the hands and a wild look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Brightmage</defName>
+    <word>brightmage</word>
+    <label>a brightmage</label>
+    <special>false</special>
+    <traits><li>TM_Brightmage</li></traits>
+    <prompt>a small sphere of bright light hovering over one palm</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ShamanMage</defName>
+    <word>shamanMage</word>
+    <label>a magic shaman</label>
+    <special>false</special>
+    <traits><li>TM_Shaman</li></traits>
+    <prompt>feathers and small bones tied into the clothes, painted marks and a small carved totem</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Golemancer</defName>
+    <word>golemancer</word>
+    <label>a golemancer</label>
+    <special>false</special>
+    <traits><li>TM_Golemancer</li></traits>
+    <prompt>rune-marked gloves and a small clay figure held in one hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Empath</defName>
+    <word>empath</word>
+    <label>an empath</label>
+    <special>false</special>
+    <traits><li>TM_Empath</li></traits>
+    <prompt>soft, searching eyes and a faint glow at the temples</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Apothecary</defName>
+    <word>apothecary</word>
+    <label>an apothecary</label>
+    <special>false</special>
+    <traits><li>TM_Apothecary</li></traits>
+    <prompt>small glass vials and dried herbs at the belt and stained fingers</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Gladiator</defName>
+    <word>gladiator</word>
+    <label>a gladiator</label>
+    <special>false</special>
+    <traits><li>Gladiator</li></traits>
+    <prompt>a battered fighter with a heavy arm guard and a scarred face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_SniperClass</defName>
+    <word>sniperClass</word>
+    <label>a sniper</label>
+    <special>false</special>
+    <traits><li>TM_Sniper</li></traits>
+    <prompt>a long rifle over the shoulder and one eye narrowed, patient</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Bladedancer</defName>
+    <word>bladedancer</word>
+    <label>a bladedancer</label>
+    <special>false</special>
+    <traits><li>Bladedancer</li></traits>
+    <prompt>a slim curved blade held loosely and a light, ready stance</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_RangerClass</defName>
+    <word>rangerClass</word>
+    <label>a ranger</label>
+    <special>false</special>
+    <traits><li>Ranger</li></traits>
+    <prompt>a bow over the shoulder and a green hooded cloak with the hood down</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Faceless</defName>
+    <word>faceless</word>
+    <label>a faceless one</label>
+    <special>false</special>
+    <traits><li>Faceless</li></traits>
+    <prompt>a plain, forgettable face half in shadow and a dagger held low</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Psionic</defName>
+    <word>psionic</word>
+    <label>a psionic</label>
+    <special>false</special>
+    <traits><li>TM_Psionic</li></traits>
+    <prompt>a faint psychic shimmer around the head and intense, focused eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_DeathKnight</defName>
+    <word>deathKnight</word>
+    <label>a death knight</label>
+    <special>false</special>
+    <traits><li>DeathKnight</li></traits>
+    <prompt>dark armour, a pale face and a faint red glow in the eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Monk</defName>
+    <word>monk</word>
+    <label>a monk</label>
+    <special>false</special>
+    <traits><li>TM_Monk</li></traits>
+    <prompt>simple robes, wrapped hands and a calm, centred look</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Commander</defName>
+    <word>commander</word>
+    <label>a commander</label>
+    <special>false</special>
+    <traits><li>TM_Commander</li></traits>
+    <prompt>an officer's bearing and a raised hand giving an order</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_SuperSoldier</defName>
+    <word>superSoldier</word>
+    <label>a super soldier</label>
+    <special>false</special>
+    <traits><li>TM_SuperSoldier</li></traits>
+    <prompt>heavy military gear, a hard stare and a scar along the jaw</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Wayfarer</defName>
+    <word>wayfarer</word>
+    <label>a wayfarer</label>
+    <special>false</special>
+    <traits><li>TM_Wayfarer</li></traits>
+    <prompt>a well-travelled look, a pack on the back and a walking staff</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Shadow</defName>
+    <word>shadow</word>
+    <label>a shadow</label>
+    <special>false</special>
+    <traits><li>TM_TheShadow</li></traits>
+    <prompt>dark close-fitting clothes, the face half hidden and watchful eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_RedEyes</defName>
+    <word>redEyes</word>
+    <label>red eyes</label>
+    <special>false</special>
+    <genes><li>Eyes_Red</li></genes>
+    <prompt>bright red eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_GreyEyes</defName>
+    <word>greyEyes</word>
+    <label>pale grey eyes</label>
+    <special>false</special>
+    <genes><li>Eyes_Gray</li></genes>
+    <prompt>pale grey eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ThirdEye</defName>
+    <word>thirdEye</word>
+    <label>a third eye</label>
+    <special>false</special>
+    <genes><li>AG_ThirdEye</li><li>DV_Head_Avaloi</li></genes>
+    <prompt>a third eye in the middle of the forehead</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Antennae</defName>
+    <word>antennae</word>
+    <label>antennae</label>
+    <special>false</special>
+    <genes><li>AG_DownwardsAntennas</li><li>AG_FormicAntennas</li><li>AG_LowerAntennas</li><li>AG_MothAntennae</li><li>AG_OutwardsAntennas</li><li>AG_VFEI_Antennae</li><li>VRE_InsectAntennae</li><li>PoI_Goodra_Antennae</li></genes>
+    <prompt>a pair of insect antennae rising from the forehead</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Mandibles</defName>
+    <word>mandibles</word>
+    <label>mandibles</label>
+    <special>false</special>
+    <genes><li>AG_BeeMandibles</li><li>AG_BeetleMandibles</li><li>AG_PincerMandibles</li></genes>
+    <hediffs><li>VRE_InsectMandibles</li></hediffs>
+    <prompt>small insect mandibles at the corners of the mouth</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FaceTentacles</defName>
+    <word>faceTentacles</word>
+    <label>tentacles on the face</label>
+    <special>false</special>
+    <genes><li>AG_FaceTentacles</li><li>AG_UpperTentacles</li><li>AG_RayHoundTentacles</li></genes>
+    <prompt>a cluster of tentacles hanging from the lower face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_HeavyBrow</defName>
+    <word>heavyBrow</word>
+    <label>a heavy brow and jaw</label>
+    <special>false</special>
+    <genes><li>Brow_Heavy</li><li>Jaw_Heavy</li></genes>
+    <prompt>a heavy jutting brow ridge and a heavy jaw</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_LongHead</defName>
+    <word>longHead</word>
+    <label>an elongated head</label>
+    <special>false</special>
+    <genes><li>VRE_ElongatedHead</li></genes>
+    <prompt>a tall, elongated skull</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Gaunt</defName>
+    <word>gaunt</word>
+    <label>a gaunt face</label>
+    <special>false</special>
+    <genes><li>Head_Gaunt</li><li>AG_VeryGauntHead</li><li>AG_GauntBody</li></genes>
+    <prompt>a gaunt, hollow-cheeked face and a bony frame</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FacialRidges</defName>
+    <word>facialRidges</word>
+    <label>facial ridges</label>
+    <special>false</special>
+    <genes><li>FacialRidges</li></genes>
+    <prompt>raised ridges across the face and scalp</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_WomanBeard</defName>
+    <word>womanBeard</word>
+    <label>a beard on a woman</label>
+    <special>false</special>
+    <genes><li>Beard_Always</li></genes>
+    <prompt>a woman with a full, thick beard</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BarkSkin</defName>
+    <word>barkSkin</word>
+    <label>bark skin</label>
+    <special>false</special>
+    <genes><li>VRE_BarkSkin</li><li>AG_ArmourMinor</li></genes>
+    <prompt>bark-textured skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FoliageHair</defName>
+    <word>foliageHair</word>
+    <label>leaves for hair</label>
+    <special>false</special>
+    <genes><li>VRE_FoliageHair</li></genes>
+    <prompt>a mane of leaves in place of hair</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FungalGrowth</defName>
+    <word>fungalGrowth</word>
+    <label>mushrooms growing on the head</label>
+    <special>false</special>
+    <genes><li>VRE_FungalCrest</li><li>VRE_HairMushroom</li><li>AG_FungalSprout</li><li>AG_FungalClumps</li></genes>
+    <prompt>small mushrooms and fungal clumps growing from the head and shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Fangs</defName>
+    <word>fangs</word>
+    <label>fangs</label>
+    <special>false</special>
+    <genes><li>AG_VenomFangs</li><li>AG_AcidFangs</li><li>DV_ParalyzingFangs</li></genes>
+    <hediffs><li>VenomFangs</li></hediffs>
+    <prompt>long sharp fangs showing at the lip</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Claws</defName>
+    <word>claws</word>
+    <label>clawed hands</label>
+    <special>false</special>
+    <genes><li>AG_ClawedHands</li><li>VRESaurids_SauridClaws</li><li>VQEA_PlasteelClaws</li></genes>
+    <hediffs><li>VRESaurids_SauridClaws</li><li>AG_ClawedHands</li><li>VQEA_PlasteelClaws</li></hediffs>
+    <prompt>hands ending in sharp claws</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_MetalSkin</defName>
+    <word>metalSkin</word>
+    <label>metallic skin</label>
+    <special>false</special>
+    <genes><li>AG_ArmourMajor</li><li>AG_ArmourMedium</li><li>VQEA_PlasteelSkin</li></genes>
+    <prompt>skin with a dull metallic sheen</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_RockySkin</defName>
+    <word>rockySkin</word>
+    <label>rocky ridges</label>
+    <special>false</special>
+    <genes><li>AG_RockyBody</li><li>AG_RockSpurs</li></genes>
+    <prompt>rocky ridges along the brow and cheekbones and stony skin</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_EyeStalks</defName>
+    <word>eyeStalks</word>
+    <label>eyes on stalks</label>
+    <special>false</special>
+    <genes><li>AG_Stalks</li></genes>
+    <prompt>two extra eyes on short stalks above the brow</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Proboscis</defName>
+    <word>proboscis</word>
+    <label>a proboscis</label>
+    <special>false</special>
+    <genes><li>AG_Proboscis</li></genes>
+    <prompt>a long insect proboscis in place of a mouth</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_TerrorMask</defName>
+    <word>terrorMask</word>
+    <label>a mask-like face</label>
+    <special>false</special>
+    <genes><li>AG_TerrorMask</li></genes>
+    <prompt>a hard, bony, mask-like plate over the face</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_HeavilyScarred</defName>
+    <word>heavilyScarred</word>
+    <label>many old scars</label>
+    <special>false</special>
+    <genes><li>AG_HeavilyScarred</li></genes>
+    <prompt>a face and arms crossed with many old scars</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_RitualScars</defName>
+    <word>ritualScars</word>
+    <label>ritual scars</label>
+    <special>false</special>
+    <hediffs><li>Scarification</li></hediffs>
+    <prompt>neat rows of raised ritual scars on the cheeks and arms</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_StarjackSheen</defName>
+    <word>starjackSheen</word>
+    <label>a reflective sheen</label>
+    <special>false</special>
+    <genes><li>Skin_SheerWhite</li></genes>
+    <prompt>skin with a faint reflective, pressure-suit-like sheen</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Blindfold</defName>
+    <word>blindfold</word>
+    <label>a blindfold</label>
+    <special>false</special>
+    <hediffs><li>Blindfold</li></hediffs>
+    <prompt>a cloth blindfold tied over the eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Blind</defName>
+    <word>blind</word>
+    <label>blind eyes</label>
+    <special>false</special>
+    <hediffs><li>Blindness</li></hediffs>
+    <prompt>clouded, pale, unfocused eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Cataract</defName>
+    <word>cataract</word>
+    <label>a clouded eye</label>
+    <special>false</special>
+    <hediffs><li>Cataract</li></hediffs>
+    <prompt>one eye clouded milky white</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Stooped</defName>
+    <word>stooped</word>
+    <label>a stooped back</label>
+    <special>false</special>
+    <hediffs><li>BadBack</li><li>Frail</li></hediffs>
+    <prompt>a stooped back and rounded shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_HearingImplant</defName>
+    <word>hearingImplant</word>
+    <label>a hearing implant</label>
+    <special>false</special>
+    <hediffs><li>CochlearImplant</li></hediffs>
+    <prompt>a small metal hearing implant behind one ear</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BionicEar</defName>
+    <word>bionicEar</word>
+    <label>a bionic ear</label>
+    <special>false</special>
+    <hediffs><li>BionicEar</li></hediffs>
+    <prompt>a sleek bionic ear of metal and plastic in place of one ear</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BionicJaw</defName>
+    <word>bionicJaw</word>
+    <label>a bionic jaw</label>
+    <special>false</special>
+    <hediffs><li>BionicJaw</li><li>VREA_ArtificialJaw</li></hediffs>
+    <prompt>a metal bionic jaw replacing the lower jaw</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ArtificialNose</defName>
+    <word>artificialNose</word>
+    <label>an artificial nose</label>
+    <special>false</special>
+    <hediffs><li>VREA_ArtificialNose</li></hediffs>
+    <prompt>a smooth artificial nose</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ArchotechEye</defName>
+    <word>archotechEye</word>
+    <label>an archotech eye</label>
+    <special>false</special>
+    <hediffs><li>ArchotechEye</li></hediffs>
+    <prompt>one eye replaced by a smooth, faintly glowing archotech eye ringed with gold</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FleshFace</defName>
+    <word>fleshFace</word>
+    <label>fleshcrafted features</label>
+    <special>false</special>
+    <hediffs><li>VME_FleshcraftedEyeHediff</li><li>VME_FleshcraftedEarHediff</li><li>VME_FleshcraftedJawHediff</li><li>VME_FleshcraftedNoseHediff</li></hediffs>
+    <prompt>an eye, ear, nose or jaw regrown from glistening, fleshcrafted tissue</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FleshArm</defName>
+    <word>fleshArm</word>
+    <label>a fleshcrafted arm</label>
+    <special>false</special>
+    <hediffs><li>VME_FleshcraftedArmHediff</li><li>VME_FleshcraftedHandHediff</li></hediffs>
+    <prompt>one arm or hand regrown from glistening, fleshcrafted tissue</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ProstheticArm</defName>
+    <word>prostheticArm</word>
+    <label>a prosthetic arm</label>
+    <special>false</special>
+    <hediffs><li>SimpleProstheticArm</li></hediffs>
+    <prompt>one arm replaced by a simple prosthetic of metal rods and leather straps</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BionicArm</defName>
+    <word>bionicArm</word>
+    <label>a bionic arm</label>
+    <special>false</special>
+    <hediffs><li>BionicArm</li><li>VREA_AndroidArm</li><li>VREA_AndroidHand</li></hediffs>
+    <prompt>one arm replaced by a sleek bionic arm of metal and plastic</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ArchotechArm</defName>
+    <word>archotechArm</word>
+    <label>an archotech arm</label>
+    <special>false</special>
+    <hediffs><li>ArchotechArm</li></hediffs>
+    <prompt>one arm replaced by a smooth archotech arm with faintly glowing seams</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_WoodenHand</defName>
+    <word>woodenHand</word>
+    <label>a wooden hand</label>
+    <special>false</special>
+    <hediffs><li>WoodenHand</li></hediffs>
+    <prompt>one hand replaced by a carved wooden hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_PowerClaw</defName>
+    <word>powerClaw</word>
+    <label>a power claw</label>
+    <special>false</special>
+    <hediffs><li>PowerClaw</li></hediffs>
+    <prompt>one hand replaced by a heavy mechanical power claw</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ArmBlade</defName>
+    <word>armBlade</word>
+    <label>an arm blade</label>
+    <special>false</special>
+    <hediffs><li>ElbowBlade</li><li>HandTalon</li><li>VenomTalon</li></hediffs>
+    <prompt>a blade or talon implant jutting from one forearm</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_DrillArm</defName>
+    <word>drillArm</word>
+    <label>a drill arm</label>
+    <special>false</special>
+    <hediffs><li>DrillArm</li></hediffs>
+    <prompt>one arm replaced by a heavy mining drill</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FieldHand</defName>
+    <word>fieldHand</word>
+    <label>a field hand</label>
+    <special>false</special>
+    <hediffs><li>FieldHand</li></hediffs>
+    <prompt>one hand replaced by a mechanical farming hand</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Transcendent</defName>
+    <word>transcendent</word>
+    <label>transcended</label>
+    <special>false</special>
+    <hediffs><li>VRE_Transcendent</li></hediffs>
+    <prompt>a faint halo of light about the head and calm, softly glowing eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Conjoined</defName>
+    <word>conjoined</word>
+    <label>conjoined twins</label>
+    <special>true</special>
+    <traits><li>MultiMind_ConjoinedTwins</li></traits>
+    <bodies><li>MultiMind_ConjoinedHumanBody</li></bodies>
+    <prompt>conjoined twins: two heads side by side on one broad shared body, each face with its own expression</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FairyWings</defName>
+    <word>fairyWings</word>
+    <label>a fairy's wings</label>
+    <special>true</special>
+    <genes><li>FG_LesserVenenum</li><li>FG_Pixie</li><li>FG_Venenum</li><li>FG_Wings_Beetle</li><li>FG_Wings_Birdwing</li><li>FG_Wings_BlueMorpho</li><li>FG_Wings_Cicada</li><li>FG_Wings_CommonBlue</li><li>FG_Wings_Damselfly</li><li>FG_Wings_Dragonfly</li><li>FG_Wings_Firefly</li><li>FG_Wings_Glasswing</li><li>FG_Wings_Grasshopper</li><li>FG_Wings_Lacewing</li><li>FG_Wings_LunaMoth</li><li>FG_Wings_Monarch</li><li>FG_Wings_Moth</li><li>FG_Wings_PaperKite</li><li>FG_Wings_Peacock</li><li>FG_Wings_PrayingMantis</li><li>FG_Wings_RedAdmiral</li><li>FG_Wings_Swallowtail</li><li>FG_Wings_Wasp</li></genes>
+    <prompt>a pair of large, delicate translucent insect wings rising from the back</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_DrakonoriWings</defName>
+    <word>drakonoriWings</word>
+    <label>dragon wings</label>
+    <special>true</special>
+    <genes><li>AG_DrakonoriWings</li></genes>
+    <prompt>a pair of large leathery dragon wings folded at the back</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BatWings</defName>
+    <word>batWings</word>
+    <label>bat wings</label>
+    <special>true</special>
+    <genes><li>AG_BatWings</li><li>AG_DemonWings</li><li>AG_DrainerWings</li><li>AG_GenelineCosmetic_DrainerWings</li></genes>
+    <prompt>a pair of large leathery bat-like wings rising from the back</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_FeatheredWings</defName>
+    <word>featheredWings</word>
+    <label>feathered wings</label>
+    <special>true</special>
+    <genes><li>AG_FeatheredWings</li><li>AG_PegasusWings</li><li>AG_RainbowWings</li></genes>
+    <prompt>a pair of large feathered wings rising from the back</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_InsectWings</defName>
+    <word>insectWings</word>
+    <label>insect wings</label>
+    <special>true</special>
+    <genes><li>AG_MothWings</li><li>AG_WaspWings</li><li>AG_BumbledroneWings</li><li>AG_GenelineCosmetic_MothWings</li><li>AG_GenelineCosmetic_WaspWings</li><li>AG_GenelineCosmetic_BumbledroneWings</li><li>VRE_InsectWings</li><li>VRE_InsectWings_Cosmetic</li><li>VRE_LocustWings</li></genes>
+    <prompt>a pair of thin, veined insect wings rising from the back</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_MalformedWing</defName>
+    <word>malformedWing</word>
+    <label>a malformed wing</label>
+    <special>true</special>
+    <genes><li>AG_SingleWing</li></genes>
+    <prompt>a single small, malformed wing at one shoulder</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_EarWings</defName>
+    <word>earWings</word>
+    <label>small wings for ears</label>
+    <special>true</special>
+    <genes><li>AG_EarWings</li></genes>
+    <prompt>small feathered wings in place of the ears</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Glidewings</defName>
+    <word>glidewings</word>
+    <label>glide wings</label>
+    <special>true</special>
+    <genes><li>VREH_Glidewings</li></genes>
+    <hediffs><li>VREH_Glidewings</li></hediffs>
+    <prompt>thin glider membranes stretched between the arms and the body</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_GasBags</defName>
+    <word>gasBags</word>
+    <label>gas bags</label>
+    <special>true</special>
+    <genes><li>AG_GasBags</li></genes>
+    <prompt>large translucent gas bladders swelling from the back</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_BodyTentacles</defName>
+    <word>bodyTentacles</word>
+    <label>tentacles from the body</label>
+    <special>true</special>
+    <genes><li>AG_BodyTentacles</li></genes>
+    <prompt>several thick tentacles growing from the back and shoulders</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_CrabClaw</defName>
+    <word>crabClaw</word>
+    <label>a crab claw</label>
+    <special>true</special>
+    <genes><li>AG_CrabClaw</li></genes>
+    <hediffs><li>AG_CrabClaw</li></hediffs>
+    <prompt>one arm ending in a huge armoured crab claw</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ScytherBlades</defName>
+    <word>scytherBlades</word>
+    <label>scyther blades</label>
+    <special>true</special>
+    <genes><li>AG_ScytherHands</li></genes>
+    <hediffs><li>AG_ScytherHands</li></hediffs>
+    <prompt>both hands replaced by long, curved scyther blades</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_ChainsawHands</defName>
+    <word>chainsawHands</word>
+    <label>chainsaw hands</label>
+    <special>true</special>
+    <genes><li>AG_ChainsawHands</li></genes>
+    <hediffs><li>AG_ChainsawHands</li></hediffs>
+    <prompt>both hands replaced by roaring chainsaw blades</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_InsectoidArms</defName>
+    <word>insectoidArms</word>
+    <label>insectoid arms</label>
+    <special>true</special>
+    <genes><li>AG_VFEI_InsectoidArm</li><li>AG_VFEI_PneumaticClaw</li></genes>
+    <hediffs><li>AG_VFEI_InsectoidArm</li><li>AG_VFEI_PneumaticClaw</li></hediffs>
+    <prompt>arms of jointed, chitinous insect limbs ending in pincers</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_TentacleArm</defName>
+    <word>tentacleArm</word>
+    <label>a tentacle arm</label>
+    <special>true</special>
+    <hediffs><li>Tentacle</li><li>FleshWhip</li></hediffs>
+    <prompt>one arm replaced by a long, fleshy tentacle</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_SlimeBody</defName>
+    <word>slimeBody</word>
+    <label>a slime body</label>
+    <special>true</special>
+    <genes><li>AG_SlimeBody</li></genes>
+    <prompt>a translucent body of glistening slime in a human shape</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_SlugBody</defName>
+    <word>slugBody</word>
+    <label>a slug body</label>
+    <special>true</special>
+    <genes><li>AG_SlugBody</li><li>AG_SlugFace</li></genes>
+    <prompt>a soft, slimy slug-like head and body</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Ghoul</defName>
+    <word>ghoul</word>
+    <label>a ghoul</label>
+    <special>true</special>
+    <hediffs><li>Ghoul</li><li>GhoulPlating</li><li>GhoulBarbs</li></hediffs>
+    <prompt>a ghoul: grey, bloodless skin stretched over the bones, ridges of hard flesh, a mouth of sharp teeth and empty, hungry eyes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Shambler</defName>
+    <word>shambler</word>
+    <label>a shambler</label>
+    <special>true</special>
+    <hediffs><li>Shambler</li></hediffs>
+    <prompt>a dead body walking: grey, rotting skin, clouded eyes and a slack jaw</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_AwokenCorpse</defName>
+    <word>awokenCorpse</word>
+    <label>an awoken corpse</label>
+    <special>true</special>
+    <hediffs><li>AwokenCorpse</li></hediffs>
+    <prompt>a risen corpse: grey, waxy skin, sunken eyes and torn burial clothes</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Undead</defName>
+    <word>undead</word>
+    <label>undead</label>
+    <special>true</special>
+    <traits><li>Undead</li></traits>
+    <hediffs><li>TM_UndeadHD</li><li>TM_UndeadStageHD</li></hediffs>
+    <prompt>undead: grey, dead skin, sunken eyes with a faint cold glow</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Lich</defName>
+    <word>lich</word>
+    <label>a lich</label>
+    <special>true</special>
+    <traits><li>Lich</li></traits>
+    <hediffs><li>TM_LichHD</li></hediffs>
+    <prompt>a lich: a gaunt, skull-like face with tight grey skin, glowing eyes and a cold aura</prompt>
+  </ColonyCouncil.PortraitLookDef>
+  <ColonyCouncil.PortraitLookDef>
+    <defName>Look_Warcasket</defName>
+    <word>warcasket</word>
+    <label>a warcasket</label>
+    <special>true</special>
+    <traits><li>VFEP_WarcasketTrait</li><li>VFEP_Shellcasket</li><li>MDWC_WarcasketTrait_Medic</li></traits>
+    <prompt>sealed inside a massive armoured warcasket, the face showing behind an open visor</prompt>
+  </ColonyCouncil.PortraitLookDef>
 </Defs>
