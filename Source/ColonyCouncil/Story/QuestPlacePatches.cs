@@ -118,11 +118,13 @@ namespace ColonyCouncil
     /// mod's, that asks the game for a new site's tile within a distance): the farthest it may be is lowered by the setting
     /// "How far quest sites may be" (Nearer to begin with: 16 tiles of the game's 27). Where no tile that near fits, it is
     /// picked again as the game asked, so a quest is never lost to the setting. Sites made outside a quest are left alone.
+    /// Only the outermost call is changed: one overload calling the other, or the second try, keeps the range it is given.
     /// </summary>
     [HarmonyPatch]
     public static class Patch_QuestSitesNearer
     {
-        [ThreadStatic] private static int again;
+        /// <summary>How many of these calls are running on this thread (the outermost one alone is changed).</summary>
+        [ThreadStatic] private static int inside;
 
         public static IEnumerable<MethodBase> TargetMethods() =>
             typeof(TileFinder).GetMethods(BindingFlags.Public | BindingFlags.Static).Where(m => m.Name == nameof(TileFinder.TryFindNewSiteTile)
@@ -131,7 +133,9 @@ namespace ColonyCouncil
         public static void Prefix(ref int minDist, ref int maxDist, out (int min, int max)? __state)
         {
             __state = null;
-            if (again > 0 || !RimfolkPatches.On || QuestGen.quest == null) return;
+            bool outermost = inside == 0;
+            inside++;
+            if (!outermost || !RimfolkPatches.On || QuestGen.quest == null) return;
             try
             {
                 var range = ColonyCouncilMod.Settings?.questSiteRange ?? QuestSiteRange.Nearer;
@@ -150,8 +154,7 @@ namespace ColonyCouncil
         public static void Postfix(ref bool __result, ref PlanetTile tile, object[] __args, MethodBase __originalMethod, (int min, int max)? __state)
         {
             if (__result || __state == null || __originalMethod == null || __args == null) return;
-            // Nothing that near: as the game asked.
-            again++;
+            // Nothing that near: as the game asked (this call still counts as running, so the second try is left as it is).
             try
             {
                 var ps = __originalMethod.GetParameters();
@@ -174,10 +177,8 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("quests: a site as far as the game asked", e);
             }
-            finally
-            {
-                again--;
-            }
         }
+
+        public static void Finalizer() => inside = Math.Max(0, inside - 1);
     }
 }
