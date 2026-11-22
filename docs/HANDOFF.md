@@ -656,6 +656,9 @@ most sense." So, in this order, three builds at a time:
   The player: "the copy script does not recognize that these are all in different folders, i think it only picks up the
   backdrop and colonist folders" (their copies of it sat in those two batch folders, which made it do only that one).
   Done: `Copy-ToLibrary.ps1` always does every batch folder of `output\Rimfolk`, wherever in it it sits, and names them.
+  Then: "the image analysis mod also analyses the backdrops" (and on an empty scene the model made up a person; it also
+  called a baby girl a man). Done: `Check-Pictures.ps1` leaves backdrops out and doesn't compare the sex of babies and
+  toddlers. And the player: "now again only provide me the files that change" (kits only with the changed files again).
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive; steps 1 and 2 done, step 3 for later.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
