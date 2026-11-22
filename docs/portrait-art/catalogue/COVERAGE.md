@@ -4,13 +4,13 @@ Written by `Tools/PortraitArt/plan_batches.py` (do not edit by hand). "Pictures"
 records.xml the planner was given; "listed" are rows in the batch lists, made or not; a gap is a cell with
 neither. Cells: every sex and age band a kind comes in (plain pictures), its common roles, and the looks.
 
-Library pictures read: 0. Rows in the batch lists before this run: 742 (with at least one picture: 0). Rows written by this run: 599.
+Library pictures read: 0. Rows in the batch lists before this run: 742 (with at least one picture: 0). Rows written by this run: 798.
 
 ## By wave
 
 | wave | kinds | plain cells covered (sex and age) | with a picture | plain rows | role rows | look rows |
 |---|---|---|---|---|---|---|
-| 1 | 2 | 36 of 36 | 0 | 380 | 92 | 306 |
+| 1 | 2 | 36 of 36 | 0 | 579 | 92 | 306 |
 | 2 | 6 | 108 of 108 | 0 | 319 | 12 | 12 |
 | 3 | 6 | 32 of 108 | 0 | 36 | 0 | 0 |
 | 4 | 13 | 49 of 225 | 0 | 52 | 0 | 0 |
@@ -98,7 +98,7 @@ Library pictures read: 0. Rows in the batch lists before this run: 742 (with at 
 
 | wave | kind | weight | save | plain cells | plain pictures | plain rows | role cells | role rows | look rows |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 276 | 54 of 54 | 72 | 230 |
+| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 475 | 54 of 54 | 72 | 230 |
 | 1 | dark elf | 0.74 | 48 | 18 of 18 | 0 | 104 | 12 of 12 | 20 | 76 |
 | 2 | hussar | 0.57 | 19 | 18 of 18 | 0 | 67 | 2 of 42 | 2 | 2 |
 | 2 | impid | 0.57 | 12 | 18 of 18 | 0 | 41 | 2 of 42 | 2 | 2 |
@@ -188,7 +188,7 @@ The characters lists (`characters-NN`, `plan_batches.py --phases characters`): d
 
 | wave | kinds | with characters | plain rows | role rows | look rows |
 |---|---|---|---|---|---|
-| 1 | 2 | 2 | 229 | 26 | 26 |
+| 1 | 2 | 2 | 428 | 26 | 26 |
 | 2 | 6 | 6 | 60 | 12 | 12 |
 | 3 | 6 | 6 | 36 | 0 | 0 |
 | 4 | 13 | 13 | 52 | 0 | 0 |
@@ -214,4 +214,5 @@ No row yet (rarer, or waiting for a kind that has them): antennae, barkSkin, bat
 | style-test | 10 | 0 |
 | characters-01 (new) | 200 | 0 |
 | characters-02 (new) | 200 | 0 |
-| characters-03 (new) | 199 | 0 |
+| characters-03 (new) | 200 | 0 |
+| characters-04 (new) | 198 | 0 |

@@ -70,9 +70,25 @@ MAX_SUBJECT = 1200
 # last in a kind's turn (mix).
 LITTLE_AGES = ('baby', 'toddler', 'child')
 LITTLE_SHARE = 1.0
-# A woman's face in the characters rows, said plainly, since FLUX makes women pretty by default.
-PLAIN_WOMAN = ('A plain, homely, lived-in face, as rough and ordinary as any man\'s, her clothes practical and closed up '
-               'to the collarbone.')
+# A woman's looks in the characters rows, drawn per row (the player, 22 November 2026: "I really don't want every
+# woman to be pretty by default", then "I don't want them all to look exactly the same ... There should be some
+# attractive ones and there should be not attractive ones"): a share says nothing (FLUX's own, often good-looking),
+# the rest plain or plainly not good-looking, in words of their own; no beauty words either way.
+WOMAN_LOOKS = [
+    (0.30, ['']),
+    (0.45, ['A plain, ordinary, everyday face.', 'An ordinary, forgettable face you would pass in a crowd.',
+            'A homely, lived-in face.', 'A plain, sensible, unadorned face.', 'A weathered, workaday face.',
+            'A face more practical than striking, nothing done to it.', 'An unremarkable face nobody looks at twice.',
+            'A tired, ordinary face, no care given to looks.']),
+    (0.25, ['A coarse, heavy, rather ugly face.', 'A hard, rough, unappealing face.',
+            'An awkward, ungainly face nobody would call good-looking.', 'A blunt, heavy-featured, rather ugly face.',
+            'A sour, pinched, unappealing face.', 'A lumpy, blotchy, rather ugly face.']),
+]
+WOMAN_CLOTHES = 'Her clothes practical and closed at the neck.'
+# The baseliners' plain characters rows: about half of all the characters rows (the player: "our baseline are still kind
+# of a majority, because ultimately in the game, most of them or a lot of them will be baseliners, while still having a
+# total mix overall of all races"). The other wave-1 kinds keep CHAR_PLAIN[1] scaled by their count.
+CHAR_BASELINER = 355
 # A kind whose look is on the brow (a neanderthal's brow ridge, a genie's skull, horns, a third eye): no fringe hides it
 # (the player: the neanderthal women "really look like normal women", their bobs with heavy fringes over the brow).
 OPEN_BROW = re.compile(r'brow ridge|forehead|skull|third eye|ridges|\bhorns\b')
@@ -1047,6 +1063,8 @@ class Planner:
         return [(a, s) for a, s in k.ages if a in allowed and s > 0]
 
     def char_plain_count(self, k, top):
+        if k.kind == 'Baseliner':
+            return CHAR_BASELINER
         if k.wave == 1:
             n = float(k.row.get('saveCount') or 0)
             return max(4, int(round(CHAR_PLAIN[1] * math.sqrt(n / top)))) if top else CHAR_PLAIN[1]
@@ -1363,9 +1381,19 @@ class Planner:
         elif not k.far:
             sentences.append('The eyes of ordinary size for the face.')
         if sex == 'female' and not little:
-            # FLUX draws a woman pretty unless told otherwise (the player: "I really don't want every woman to be pretty
-            # by default"): her face as plain and lived-in as a man's, her clothes as practical.
-            sentences.append(PLAIN_WOMAN)
+            # FLUX draws a woman pretty unless told otherwise: her looks drawn per row (WOMAN_LOOKS), by her name, so
+            # the rest of the row's choices stay as they were.
+            wr = seeded('characters', 'woman', name)
+            x, line = wr.random(), ''
+            for share, lines in WOMAN_LOOKS:
+                x -= share
+                if x <= 0:
+                    line = wr.choice(lines)
+                    break
+            if line:
+                sentences.append(line)
+            if wr.random() < 0.4:
+                sentences.append(WOMAN_CLOTHES)
         signs = (FAR_AGE_SIGNS if k.far else AGE_SIGNS).get(age, '')
         if signs and not little:
             sentences.append(S(signs) + '.')
@@ -1568,7 +1596,7 @@ def next_number(folder, prefix):
 PHASE_ORDER = ['needs', 'defaults', 'roles', 'looks', 'variety']
 
 
-def mix(rows, kinds):
+def mix(rows, kinds, even=False):
     """
     The rows in the order they are made, mixed (the player, 22 November 2026: "I don't want it to be like in order, like
     first white boy, white man, white old man ... it should be shuffled a bit, so that like the additions to the game
@@ -1617,7 +1645,9 @@ def mix(rows, kinds):
             except ValueError:
                 n = 0.0
         return math.sqrt(n) if n >= 1 else max(0.5, 3.0 * (kinds[k].weight if k in kinds else 0.2))
-    weight = {k: turns(k) for k in queues}
+    # even: each kind's rows spread evenly over the whole run (the characters lists: baseliners about half of every list,
+    # the other kinds through all of them, the player: "still having a total mix overall of all races").
+    weight = {k: (float(len(queues[k])) if even else turns(k)) for k in queues}
     credit = {k: 0.0 for k in queues}
     out = []
     while queues:                                     # smooth weighted turns
@@ -1641,7 +1671,7 @@ def write_lists(folder, rows, per_file, dry, kinds=None):
     chars = [x for x in rows if x[0] == CHARACTERS]
     rest = [x for x in rows if x[0] not in ('needs', CHARACTERS)]
     if kinds is not None:
-        needs, rest, chars = mix(needs, kinds), mix(rest, kinds), mix(chars, kinds)
+        needs, rest, chars = mix(needs, kinds), mix(rest, kinds), mix(chars, kinds, even=True)
     for phase, wave, row in needs + rest + chars:
         prefix = {'needs': 'needs-people', CHARACTERS: CHARACTERS}.get(phase, 'people')
         groups.setdefault(prefix, []).append(row)

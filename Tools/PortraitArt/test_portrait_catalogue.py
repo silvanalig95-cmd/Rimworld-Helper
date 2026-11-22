@@ -367,7 +367,16 @@ class Characters(Tmp):
         self.assertTrue(files and all(os.path.basename(f).startswith('characters-') and n <= 200 for f, n in files))
         self.assertTrue(all(p == P.CHARACTERS for p, _, _ in planner.rows))
         rows = [r for _, r in rows_of(self.batches, 'characters-*.csv')]
-        self.assertTrue(500 <= len(rows) <= 700, len(rows))
+        self.assertTrue(700 <= len(rows) <= 900, len(rows))
+        # baseliners about half, of every list (the player: "our baseline are still kind of a majority ... while still
+        # having a total mix overall of all races"), the other kinds through all the lists
+        base = sum(1 for r in rows if r['kind'] == 'Baseliner')
+        self.assertTrue(0.45 <= base / len(rows) <= 0.55, base)
+        for f, n in files:
+            part = [r for _, r in rows_of(self.batches, os.path.basename(f))]
+            if len(part) >= 100:
+                self.assertTrue(0.4 <= sum(1 for r in part if r['kind'] == 'Baseliner') / len(part) <= 0.6, f)
+                self.assertGreaterEqual(len({r['kind'] for r in part}), 40, f)
         self.check_spread(rows, self.check_rows(rows))
         self.assertIn('## Characters', text)
         # running again adds nothing, and the other phases don't start the characters lists by themselves

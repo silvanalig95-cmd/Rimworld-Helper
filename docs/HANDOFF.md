@@ -716,6 +716,17 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **Done (22 November 2026, the player's own request): women of every look, and baseliners about half.** The player:
+  "I don't want them all to look exactly the same ... I just don't want every woman to be attractive. There should be
+  some attractive ones and there should be not attractive ones", and "our baseline are still kind of a majority,
+  because ultimately in the game, most of them or a lot of them will be baseliners, while still having a total mix
+  overall of all races." Done in `plan_batches.py`: `WOMAN_LOOKS` in place of the one plain line, drawn per row by its
+  name: 30% say nothing (FLUX's own, often good-looking), 45% plain in eight wordings, 25% plainly not good-looking in
+  six; 40% also "Her clothes practical and closed at the neck."; still no beauty words. `CHAR_BASELINER` 355 plain
+  baseliner rows (400 with roles and looks, half of 798); `mix(..., even=True)` for the characters lists spreads each
+  kind over the whole run, so every list is about half baseliners with 56 to 67 kinds. `characters-01` to `04` planned
+  again; all 599 earlier row names kept (199 new rows). Test: 700 to 900 rows, baseliners 45 to 55% overall and 40 to
+  60% in each list.
 - **Done (22 November 2026, the player's own request): neanderthals that look it, and women not pretty by default.**
   The player: "Neanderthaler women really look like normal women, to be honest. I mean, that should not be it", and
   "If there's also any way to not have that, that would be awesome, because I really don't want every woman to be
@@ -724,7 +735,7 @@ most sense." So, in this order, three builds at a time:
   for a kind whose look is on the brow (`OPEN_BROW`: brow ridge, forehead, skull, third eye, ridges, horns), since the
   neanderthal women's bobs with heavy fringes hid it; each woman's row (not the little ones) says `PLAIN_WOMAN` ("A
   plain, homely, lived-in face, as rough and ordinary as any man's, her clothes practical and closed up to the
-  collarbone."), and a woman of a kind with a sign keeps two face features, not one; the people style says "of an
+  collarbone.", then varied, see above), and a woman of a kind with a sign keeps two face features, not one; the people style says "of an
   ordinary, unremarkable person"; the length cap 1200. The rows' names are the same as before (checked), so pictures
   already made keep their rows. Not tried in FLUX here. If women still come out pretty: a real negative prompt needs a
   guidance above 1 (twice as slow), or a LoRA trained against it.
