@@ -689,8 +689,8 @@ most sense." So, in this order, three builds at a time:
   two workflows. Tested with PowerShell 7 against a stand-in ComfyUI; not yet on the player's Windows PowerShell 5.1
   and real ComfyUI. FLUX 3 Image Klein (October 2026) is named in step 10 as a later, faster alternative with the same
   script.
-- **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
-  varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
+- **Under way (22 November 2026; the catalogue, the looks and roles, the mixed lists people-01 to 04 built; more lists
+  as the player's runs and missing.csv show what's needed): the library, big and varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
   face, for example. I know ultimately it's going to be so many different combinations with all different races and
   genders and xenotypes and traits, but let's see how far we can go, right? If I can generate these images just on my
@@ -700,7 +700,7 @@ most sense." So, in this order, three builds at a time:
   tired eyes, a pyromaniac's singed brows and restless stare, a psychopath's flat cold stare, a jogger's lean face, a
   beauty's or an ugly one's features), counted by the matcher like features; batch lists written by script across
   kinds, sexes, ages, skins, hair, looks and poses, the waves of `FRAMEWORK.md`. Storage is no concern to the player.
-- **To do when the player asks (22 November 2026, the player; nothing built yet): the library at scale.** The player:
+- **Done (22 November 2026; built as the library folder, records from the batch rows, the copier, the picture check and missing.csv, released in 0.293.0 and 0.294.0): the library at scale.** The player:
   "ultimately, I will want to have hundreds, if not thousands of different images for all kinds of races and ages and
   etc. So I don't know if removing a background for each of them anyways is a sustainable solution. I mean, I cannot
   upload that many images to you to edit. It's not really sustainable." The cut-out now runs in ComfyUI (above); the
