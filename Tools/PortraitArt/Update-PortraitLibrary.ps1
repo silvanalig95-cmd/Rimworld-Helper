@@ -17,6 +17,13 @@
 # where it is). Lines marked ask wait for you; no lines are not applied. No picture is renamed: its name ties it to its
 # row, and the row's other pictures may be right.
 #
+# Depth maps and expressions belong to their picture and are not pictures of their own: a backdrop's depth map
+# (<picture>_depth.png next to it, made by Make-DepthMaps.ps1) goes into the backdrop's record as its depthPath, and each
+# of a person's expressions (<picture>_v-blink.png, _v-smile, _v-frown, _v-pain next to it, made by Make-Variants.ps1)
+# gets a record of its own: the picture's record with its corrections, its own defName and texPath, the word as its
+# variant and the picture's defName as its variantOf. An expression or depth map whose picture is missing or left out
+# is left out too.
+#
 # Run it after adding or removing pictures: right-click it, "Run with PowerShell". Then "Reload the library" in Rimfolk's
 # settings (or restart the game). Nothing outside library\records.xml is changed. If Rimfolk has written
 # library\missing.csv (what the game needed and the library didn't have), its first lines are shown at the end.
@@ -138,6 +145,49 @@ function One-Xml([string] $tag, [string] $value) {
     return ('    <{0}>{1}</{0}>' -f $tag, (Esc $value))
 }
 
+# A depth map (<picture>_depth) or an expression (<picture>_v-<word>): the picture's own name and the kind, or $null.
+function Extra-Of([string] $stem) {
+    $m = [regex]::Match($stem, '^(?<base>.+)_(?:(?<depth>depth)|v-(?<word>[A-Za-z]+))$')
+    if (-not $m.Success) { return $null }
+    $word = ''; if ($m.Groups['word'].Success) { $word = $m.Groups['word'].Value.ToLowerInvariant() }
+    return [pscustomobject]@{ base = $m.Groups['base'].Value; depth = $m.Groups['depth'].Success; word = $word; stem = $stem; used = $false }
+}
+
+function Person-Xml([string] $defName, [string] $tex, $r, $rec, [string] $character, [string] $variant, [string] $variantOf) {
+    # One PortraitDef: the row's fields with the picture's corrections ($rec); an expression's also says its word and
+    # the defName of the picture it is an expression of.
+    $kind = Field $r 'kind'
+    $xenos = @(); if ($kind -ne '' -and $kind -ne 'Baseliner') { $xenos = @($kind) }
+    $lines = New-Object System.Collections.ArrayList
+    [void]$lines.Add('  <ColonyCouncil.PortraitDef>')
+    [void]$lines.Add((One-Xml 'defName' $defName)); [void]$lines.Add((One-Xml 'texPath' $tex))
+    [void]$lines.Add((One-Xml 'variant' $variant)); [void]$lines.Add((One-Xml 'variantOf' $variantOf))
+    [void]$lines.Add((One-Xml 'pawn' (Field $r 'pawn')))
+    [void]$lines.Add((List-Xml 'xenotypes' $xenos))
+    [void]$lines.Add((List-Xml 'races' (Words (Field $r 'race'))))
+    [void]$lines.Add((One-Xml 'sex' $rec.sex)); [void]$lines.Add((One-Xml 'age' $rec.age))
+    [void]$lines.Add((One-Xml 'skinColor' (Field $r 'skin'))); [void]$lines.Add((One-Xml 'hairColor' (Field $r 'hairColour')))
+    [void]$lines.Add((One-Xml 'hair' (Field $r 'hair'))); [void]$lines.Add((One-Xml 'beard' (Field $r 'beard')))
+    [void]$lines.Add((One-Xml 'build' (Field $r 'build'))); [void]$lines.Add((One-Xml 'era' (Field $r 'era')))
+    [void]$lines.Add((One-Xml 'dress' (Field $r 'dress')))
+    [void]$lines.Add((List-Xml 'features' (Words (Field $r 'features'))))
+    [void]$lines.Add((List-Xml 'marks' ([string[]]$rec.marks.ToArray())))
+    [void]$lines.Add((List-Xml 'looks' ([string[]]$rec.looks.ToArray())))
+    [void]$lines.Add((One-Xml 'role' $rec.role))
+    [void]$lines.Add((One-Xml 'headwear' $rec.headwear))
+    [void]$lines.Add((One-Xml 'facing' (Field $r 'facing')))
+    [void]$lines.Add((One-Xml 'character' $character))
+    [void]$lines.Add('  </ColonyCouncil.PortraitDef>')
+    return (($lines | Where-Object { $_ -ne '' }) -join "`r`n")
+}
+
+function Unique-Name([string] $stem, $names) {
+    $defName = $stem; $k = 2
+    while ($names.ContainsKey($defName)) { $defName = $stem + '_' + $k; $k++ }
+    $names[$defName] = $true
+    return $defName
+}
+
 try {
     if (-not (Test-Path -LiteralPath $library)) {
         New-Item -ItemType Directory -Force -Path (Join-Path $library 'colonists'), (Join-Path $library 'backdrops') | Out-Null
@@ -157,11 +207,24 @@ try {
         if ($one -eq $null) { continue }
         foreach ($k in $one.Keys) { if (-not $allRows.ContainsKey($k)) { $allRows[$k] = $one[$k] } }
     }
+    $variants = 0; $depths = 0; $extrasOut = 0
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory)) {
         $batch = $dir.Name
         $rows = Read-Rows $batch
         if ($rows -eq $null) { $rows = @{} }
+        # The folder's depth maps and expressions by their picture's name (small letters); the rest are pictures.
+        $extras = @{}
+        $pics = New-Object System.Collections.ArrayList
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File)) {
+            $x = Extra-Of ([System.IO.Path]::GetFileNameWithoutExtension($f.Name))
+            if ($x -eq $null) { [void]$pics.Add($f); continue }
+            $key = $x.base.ToLowerInvariant()
+            if (-not $extras.ContainsKey($key)) { $extras[$key] = New-Object System.Collections.ArrayList }
+            [void]$extras[$key].Add($x)
+        }
+        foreach ($f in $pics) {
+            $own = @(); $fstem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
+            if ($extras.ContainsKey($fstem.ToLowerInvariant())) { $own = @($extras[$fstem.ToLowerInvariant()]) }
             $hit = Row-For $f.Name $rows
             if ($hit -eq $null) { $hit = Row-For $f.Name $allRows }
             if ($hit -eq $null) { [void]$problems.Add(("library\{0}\{1}: no row of this name in any batch list, left out" -f $batch, $f.Name)); continue }
@@ -179,16 +242,20 @@ try {
             foreach ($w in (Words (Field $r 'marks'))) { [void]$rec.marks.Add($w) }
             if ($fixes.Count -gt 0) { $applied += Apply-Corrections $rec $fixes $problems ($batch + '\' + $f.Name) }
             if ($rec.out) { $leftOut++; continue }
-            $tex = $batch + '/' + [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
+            $tex = $batch + '/' + $fstem
             $isBack = (Field $r 'place') -ne ''
             $stem = $(if ($isBack) { 'Backdrop_' } else { 'Portrait_' }) + (Clean $batch) + '_' + $hit.name + '_' + $hit.n
-            $defName = $stem; $k = 2
-            while ($names.ContainsKey($defName)) { $defName = $stem + '_' + $k; $k++ }
-            $names[$defName] = $true
+            $defName = Unique-Name $stem $names
+            if (-not $isBack -and $rec.sex -eq '') { [void]$problems.Add(("library\{0}\{1}: its row has no record (sex, age ...), left out" -f $batch, $f.Name)); continue }
             $lines = New-Object System.Collections.ArrayList
             if ($isBack) {
+                $depth = @($own | Where-Object { $_.depth } | Select-Object -First 1)
                 [void]$lines.Add('  <ColonyCouncil.BackdropDef>')
                 [void]$lines.Add((One-Xml 'defName' $defName)); [void]$lines.Add((One-Xml 'texPath' $tex))
+                if ($depth.Count -gt 0) {
+                    [void]$lines.Add((One-Xml 'depthPath' ($batch + '/' + $depth[0].stem)))
+                    $depth[0].used = $true; $depths++
+                }
                 [void]$lines.Add((One-Xml 'place' (Field $r 'place')))
                 [void]$lines.Add((List-Xml 'rooms' (Words (Field $r 'rooms'))))
                 [void]$lines.Add((One-Xml 'outdoors' (Field $r 'outdoors')))
@@ -198,28 +265,23 @@ try {
                 [void]$backs.Add((($lines | Where-Object { $_ -ne '' }) -join "`r`n"))
             }
             else {
-                if ($rec.sex -eq '') { [void]$problems.Add(("library\{0}\{1}: its row has no record (sex, age ...), left out" -f $batch, $f.Name)); continue }
-                $kind = Field $r 'kind'
-                $xenos = @(); if ($kind -ne '' -and $kind -ne 'Baseliner') { $xenos = @($kind) }
-                [void]$lines.Add('  <ColonyCouncil.PortraitDef>')
-                [void]$lines.Add((One-Xml 'defName' $defName)); [void]$lines.Add((One-Xml 'texPath' $tex))
-                [void]$lines.Add((One-Xml 'pawn' (Field $r 'pawn')))
-                [void]$lines.Add((List-Xml 'xenotypes' $xenos))
-                [void]$lines.Add((List-Xml 'races' (Words (Field $r 'race'))))
-                [void]$lines.Add((One-Xml 'sex' $rec.sex)); [void]$lines.Add((One-Xml 'age' $rec.age))
-                [void]$lines.Add((One-Xml 'skinColor' (Field $r 'skin'))); [void]$lines.Add((One-Xml 'hairColor' (Field $r 'hairColour')))
-                [void]$lines.Add((One-Xml 'hair' (Field $r 'hair'))); [void]$lines.Add((One-Xml 'beard' (Field $r 'beard')))
-                [void]$lines.Add((One-Xml 'build' (Field $r 'build'))); [void]$lines.Add((One-Xml 'era' (Field $r 'era')))
-                [void]$lines.Add((One-Xml 'dress' (Field $r 'dress')))
-                [void]$lines.Add((List-Xml 'features' (Words (Field $r 'features'))))
-                [void]$lines.Add((List-Xml 'marks' ([string[]]$rec.marks.ToArray())))
-                [void]$lines.Add((List-Xml 'looks' ([string[]]$rec.looks.ToArray())))
-                [void]$lines.Add((One-Xml 'role' $rec.role))
-                [void]$lines.Add((One-Xml 'headwear' $rec.headwear))
-                [void]$lines.Add((One-Xml 'facing' (Field $r 'facing')))
-                [void]$lines.Add((One-Xml 'character' ((Clean $batch) + '_' + $hit.name)))
-                [void]$lines.Add('  </ColonyCouncil.PortraitDef>')
-                [void]$people.Add((($lines | Where-Object { $_ -ne '' }) -join "`r`n"))
+                $character = (Clean $batch) + '_' + $hit.name
+                [void]$people.Add((Person-Xml $defName $tex $r $rec $character '' ''))
+                # Its expressions, each the same record with its own name, picture, word and the picture's defName.
+                foreach ($x in @($own | Where-Object { -not $_.depth } | Sort-Object word)) {
+                    $vName = Unique-Name ($defName + '_' + $x.word) $names
+                    [void]$people.Add((Person-Xml $vName ($batch + '/' + $x.stem) $r $rec $character $x.word $defName))
+                    $x.used = $true; $variants++
+                }
+            }
+        }
+        # Depth maps and expressions whose picture is not in the folder, or is left out (no row, no record, out).
+        foreach ($key in $extras.Keys) {
+            foreach ($x in $extras[$key]) {
+                if ($x.used) { continue }
+                $extrasOut++
+                $base = @($pics | Where-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) -eq $x.base })
+                if ($base.Count -eq 0) { [void]$problems.Add(("library\{0}\{1}.png: its picture {2}.png is not in this folder, left out" -f $batch, $x.stem, $x.base)) }
             }
         }
     }
@@ -228,7 +290,12 @@ try {
     [System.IO.File]::WriteAllText((Join-Path $library 'records.xml'), $xml, (New-Object System.Text.UTF8Encoding($false)))
 
     Write-Host ''
-    Write-Host ('Wrote {0}: {1} portraits and {2} backdrops.' -f (Join-Path $library 'records.xml'), $people.Count, $backs.Count) -ForegroundColor Green
+    $line = 'Wrote {0}: {1} portraits' -f (Join-Path $library 'records.xml'), ($people.Count - $variants)
+    if ($variants -gt 0) { $line += (' (and {0} expressions of them)' -f $variants) }
+    $line += (' and {0} backdrops' -f $backs.Count)
+    if ($depths -gt 0) { $line += (' ({0} with a depth map)' -f $depths) }
+    Write-Host ($line + '.') -ForegroundColor Green
+    if ($extrasOut -gt 0) { Write-Host ('{0} depth maps or expressions left out with their picture (missing, left out, or of the wrong kind).' -f $extrasOut) }
     if ($applied -gt 0 -or $corr.ask -gt 0) {
         $line = 'Corrections (corrections.csv): {0} applied' -f $applied
         if ($leftOut -gt 0) { $line += (', {0} of them leaving a picture out' -f $leftOut) }
