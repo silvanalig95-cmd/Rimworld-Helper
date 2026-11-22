@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Looks, work and faces kept apart
+
+*22 November 2026, version 0.294.0*
+
+- A painted picture showing a look or a work (a fire mage's flame, a drinker's face, a soldier's gear) goes only to people who have it; plain pictures suit anyone of their kind, sex and age.
+- Conjoined twins and people with wings or other special bodies get only a picture made for them, otherwise the game's own drawing.
+- A colonist's, slave's or prisoner's picture is theirs alone in that game, and so is a faction leader's or a named contact's while they live; strangers share one only when never seen together (setting: Strangers may share a picture).
+- The large portrait shows the whole painted picture, the same way round everywhere, with the body reaching the bottom edge.
+- The game's own drawing also stands in front of the backdrop of where the person is, with a setting to switch it off.
+- What the portrait library lacks (kinds, ages, looks, rooms, land, faces all taken) is kept in the save as well as in missing.csv, for the next batches.
+
 ## Painted portraits in the game
 
 *22 November 2026, version 0.293.0*

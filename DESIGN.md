@@ -16643,7 +16643,7 @@ backdrop's softening, the line round the person, the tint), `BackdropMath.cs` (t
   rooms; the room roles and things of the player's mods in real rooms; the life span stat's name and the ageing genes
   across the player's xenotypes; the reservation as colonists join, leave and die; the missing list on a cloud drive.
 
-### Portraits, phase 5: looks, special looks and what the library lacks (not released yet)
+### Portraits, phase 5: looks, special looks and what the library lacks (released 0.294.0)
 
 The player's words (22 November 2026): "Maybe the mod can also then log in the log files or in the save, ideally,
 because that I regularly provide to you. For example, when pawns are in a certain location/biome where there isn't an

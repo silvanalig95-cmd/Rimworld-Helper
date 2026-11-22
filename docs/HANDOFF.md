@@ -1227,7 +1227,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 5: looks,
+- 0.294.0, **Portraits, phase 5: looks,
   special looks, work and what the library lacks** (22 November 2026; the player: "Maybe the mod can also then log in the
   log files or in the save, ideally ... if like a trait appears where they could be visually displayed, but there's no
   appropriate ... image for it yet ... the game learns or kind of logs what's could be expanded on ... ideally in the save

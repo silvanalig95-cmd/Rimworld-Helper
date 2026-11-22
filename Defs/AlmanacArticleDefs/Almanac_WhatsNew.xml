@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.294.0</version>
+        <date>22 November 2026</date>
+        <title>Looks, work and faces kept apart</title>
+        <points>
+          <li>A painted picture showing a look or a work (a fire mage's flame, a drinker's face, a soldier's gear) goes only to people who have it; plain pictures suit anyone of their kind, sex and age.</li>
+          <li>Conjoined twins and people with wings or other special bodies get only a picture made for them, otherwise the game's own drawing.</li>
+          <li>A colonist's, slave's or prisoner's picture is theirs alone in that game, and so is a faction leader's or a named contact's while they live; strangers share one only when never seen together (setting: Strangers may share a picture).</li>
+          <li>The large portrait shows the whole painted picture, the same way round everywhere, with the body reaching the bottom edge.</li>
+          <li>The game's own drawing also stands in front of the backdrop of where the person is, with a setting to switch it off.</li>
+          <li>What the portrait library lacks (kinds, ages, looks, rooms, land, faces all taken) is kept in the save as well as in missing.csv, for the next batches.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.293.0</version>
         <date>22 November 2026</date>
         <title>Painted portraits in the game</title>
