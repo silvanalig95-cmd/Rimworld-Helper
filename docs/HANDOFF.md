@@ -460,6 +460,14 @@ most sense." So, in this order, three builds at a time:
   "ageless pawns can also look ... old, middle-aged, or even elderly over time if they are like really super old");
   every prompt says the age a person looks, never their years (told to the build agent; the genes of the
   player's mods that change ageing are listed in `FRAMEWORK.md` pillar 3, and every look sheet says how its kind ages).
+  And: "I would really like to have as few repeated images as possible ... a hard rule should be once a pawn is part of
+  my colony, their image should no longer be used for anyone else. And even ... replace anyone else who already has
+  that image so that it's really uniquely, individually tied to my pawn. And then also ... on all these event cards or
+  diplomacy cards, where a small image of the pawn is shown, that should also use the pawn's actually new art look and
+  not the in-game pawn." Told to the build agent: unused pictures preferred when picking; a pawn of the player's faction
+  reserves its picture (anyone else holding it gets a new pick; between two colonists the first holder keeps it; kept
+  for the dead too); and every place Rimfolk draws a pawn shows the library picture (the game's own colonist bar, social
+  tab and letters listed as candidates for later).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
