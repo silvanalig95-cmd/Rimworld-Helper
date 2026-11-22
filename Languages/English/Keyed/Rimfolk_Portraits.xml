@@ -71,6 +71,7 @@
   <CC_PortraitFolder_Failed>Portraits: the library folder {FOLDER} could not be read ({WHY}), so its pictures are not used for now. Rimfolk tries again in a minute.</CC_PortraitFolder_Failed>
   <CC_PortraitFolder_Read>Read {PEOPLE} portraits and {BACKDROPS} backdrops from {FOLDER}.</CC_PortraitFolder_Read>
   <CC_PortraitFolder_Missing>{COUNT} pictures named in records.xml are not in the folder and are left out.</CC_PortraitFolder_Missing>
+  <CC_PortraitFolder_Alive>Also {FACES} expressions of those portraits (eyes closed, a smile, a frown, pain) and {DEPTHS} depth maps of the backdrops, for the large portrait.</CC_PortraitFolder_Alive>
   <CC_PortraitNeed_NoKind>no pictures of their kind</CC_PortraitNeed_NoKind>
   <CC_PortraitNeed_NoStage>none of their sex and age</CC_PortraitNeed_NoStage>
   <CC_PortraitNeed_NoneClose>none close to their looks</CC_PortraitNeed_NoneClose>
@@ -87,6 +88,20 @@
   <CC_Settings_PortraitLightTint>Tint the person to the room's light</CC_Settings_PortraitLightTint>
   <CC_Settings_PortraitLightTint_Tip>The person in the large portrait's painted picture takes on a little of the backdrop's colour (about a fifth), so a warm firelit room makes them warmer and a cold night cooler.</CC_Settings_PortraitLightTint_Tip>
   <CC_SetNote_PortraitLightTint>The person takes on a little of the backdrop's light.</CC_SetNote_PortraitLightTint>
+  <CC_SetLabel_PortraitDepth>Depth that follows the mouse</CC_SetLabel_PortraitDepth>
+  <CC_SetTip_PortraitDepth>While the mouse is over the large portrait, the backdrop moves a few pixels away from it and the person a little toward it, with their shadow on the wall in between, so the picture seems to have depth. When the mouse leaves, it eases back to the middle. Where a backdrop has a depth map, the near things in it move apart from the far wall too. The picture is drawn a little larger than the frame so its edge never shows, and the person stays on the bottom edge. "Subtle" moves it a little, "Stronger" more. Off: the large portrait stays still under the mouse.</CC_SetTip_PortraitDepth>
+  <CC_PortraitDepth_Off>Off</CC_PortraitDepth_Off>
+  <CC_PortraitDepth_Subtle>Subtle</CC_PortraitDepth_Subtle>
+  <CC_PortraitDepth_Stronger>Stronger</CC_PortraitDepth_Stronger>
+  <CC_SetNote_PortraitDepth_Off>The large portrait stays still under the mouse.</CC_SetNote_PortraitDepth_Off>
+  <CC_SetNote_PortraitDepth_Subtle>The backdrop and the person shift a little apart as the mouse moves over the large portrait.</CC_SetNote_PortraitDepth_Subtle>
+  <CC_SetNote_PortraitDepth_Stronger>The backdrop and the person shift clearly apart as the mouse moves over the large portrait.</CC_SetNote_PortraitDepth_Stronger>
+  <CC_Settings_PortraitFaces>Blinking and expressions</CC_Settings_PortraitFaces>
+  <CC_Settings_PortraitFaces_Tip>Where a painted picture has its expressions painted too (eyes closed, a smile, a frown, pain), the large portrait uses them: the person blinks every few seconds, keeps their eyes closed while asleep or unconscious, smiles while their mood is high and frowns while it is well under their minor break line, and for a while shows pain after being hurt or while in pain, a frown after the death of someone close, and a smile after good news. A change of mood holds for at least a minute, and one face fades into the next. A picture without these expressions stays as it is. Still while the game is paused.</CC_Settings_PortraitFaces_Tip>
+  <CC_SetNote_PortraitFaces>The large portrait blinks and shows mood, pain and news where those expressions are painted.</CC_SetNote_PortraitFaces>
+  <CC_Settings_PortraitBackdropAlive>The backdrop alive</CC_Settings_PortraitBackdropAlive>
+  <CC_Settings_PortraitBackdropAlive_Tip>Behind the person in the large portrait, outdoors under the open sky, the map's weather falls lightly over the backdrop: rain, snow, fog or dust, as the weather is. Indoors, where the backdrop shows a hearth or a fire, or a fire is lit in the room, a soft warm light flickers over the lower part of the backdrop. Only the large portrait shows it, and it holds still while the game is paused.</CC_Settings_PortraitBackdropAlive_Tip>
+  <CC_SetNote_PortraitBackdropAlive>The weather outdoors and a fire's flicker indoors show on the large portrait's backdrop.</CC_SetNote_PortraitBackdropAlive>
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>

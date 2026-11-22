@@ -705,6 +705,11 @@ namespace ColonyCouncil
             Choice("portraitOutline", "CC_SetLabel_PortraitOutline", "CC_SetTip_PortraitOutline", "CC_PortraitOutline_", "CC_SetNote_PortraitOutline_",
                 new[] { "Off", "Subtle", "Stronger" }, "inspectPortrait,portraitLibrary");
             Toggle("portraitLightTint", "CC_Settings_PortraitLightTint", "CC_SetNote_PortraitLightTint", "inspectPortrait,portraitLibrary");
+            // Portraits, phase 6 (the player, 22 November 2026): the large portrait alive and with depth.
+            Choice("portraitDepth", "CC_SetLabel_PortraitDepth", "CC_SetTip_PortraitDepth", "CC_PortraitDepth_", "CC_SetNote_PortraitDepth_", new[] { "Off", "Subtle", "Stronger" },
+                "inspectPortrait,portraitLibrary");
+            Toggle("portraitFaces", "CC_Settings_PortraitFaces", "CC_SetNote_PortraitFaces", "inspectPortrait,portraitLibrary");
+            Toggle("portraitBackdropAlive", "CC_Settings_PortraitBackdropAlive", "CC_SetNote_PortraitBackdropAlive", "inspectPortrait,portraitLibrary");
             Toggle("portraitHeadgear", "CC_Settings_PortraitHeadgear", "CC_SetNote_PortraitHeadgear");
             Toggle("portraitClothes", "CC_Settings_PortraitClothes", "CC_SetNote_PortraitClothes");
             // Portraits, phase 2 (UI/Faces/FaceEnginePoses.cs, FaceEngineSplit.cs): poses, and the large portraits' movement.

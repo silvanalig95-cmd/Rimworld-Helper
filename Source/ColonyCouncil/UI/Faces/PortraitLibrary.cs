@@ -60,6 +60,8 @@ namespace ColonyCouncil
         private readonly List<PortraitRecord> records = new List<PortraitRecord>();
         private readonly List<PortraitPicture> pictures = new List<PortraitPicture>();
         private readonly Dictionary<string, int> byName = new Dictionary<string, int>();
+        /// <summary>Phase 6: each picture's expressions (blink, smile, frown, pain) by its name, for the large portrait only.</summary>
+        private readonly Dictionary<string, Dictionary<string, PictureFile>> expressions = new Dictionary<string, Dictionary<string, PictureFile>>(StringComparer.Ordinal);
         private readonly HashSet<string> characters = new HashSet<string>();
         private readonly Dictionary<int, Looked> looked = new Dictionary<int, Looked>();
         /// <summary>The people already looked at for the missing list since the library was read (once each).</summary>
@@ -125,27 +127,41 @@ namespace ColonyCouncil
                 noted.Clear();
                 retryAt.Clear();
                 namesUntil = -1f;
-                void Add(Entry e)
+                expressions.Clear();
+                var all = new List<Entry>();
+                var names = new HashSet<string>(StringComparer.Ordinal);
+                void Take(Entry e)
                 {
-                    if (byName.ContainsKey(e.record.name))
+                    if (!names.Add(e.record.name))
                     {
                         CouncilLog.WarnOnce("Portraits: two pictures named " + e.record.name + "; the one from the library folder is left out.");
                         return;
                     }
+                    all.Add(e);
+                }
+                foreach (var e in fromDefs) Take(e);
+                foreach (var p in PortraitFolder.People.OrderBy(x => x.record.name, StringComparer.Ordinal))
+                    Take(new Entry { record = p.record, file = PortraitFolder.FileOf(p.record.name, p.texPath, true), headX = p.headX, headY = p.headY, headSize = p.headSize });
+                // Phase 6: a picture's expressions (eyes closed, a smile, a frown, pain) belong to it and are never picked on their own.
+                var faces = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
+                var faceProblems = new List<string>();
+                foreach (int i in PortraitLibraryMath.SplitExpressions(all.Select(e => e.record).ToList(), faces, faceProblems))
+                {
+                    var e = all[i];
                     byName[e.record.name] = records.Count;
                     entries.Add(e);
                     records.Add(e.record);
                     pictures.Add(new PortraitPicture { layout = e.Layout, name = e.record.name, file = e.file, loading = true });
                     characters.Add(e.record.Character);
                 }
-                foreach (var e in fromDefs) Add(e);
-                foreach (var p in PortraitFolder.People.OrderBy(x => x.record.name, StringComparer.Ordinal))
-                    Add(new Entry { record = p.record, file = PortraitFolder.FileOf(p.record.name, p.texPath, true), headX = p.headX, headY = p.headY, headSize = p.headSize });
+                foreach (var kv in faces) expressions[kv.Key] = kv.Value.ToDictionary(x => x.Key, x => all[x.Value].file, StringComparer.Ordinal);
+                foreach (var problem in faceProblems) CouncilLog.WarnOnce("Portraits: " + problem);
                 signature = PortraitLibraryMath.LibrarySignature(records.Select(r => r.name));
                 foreach (var problem in PortraitLibraryMath.LibraryProblems(records)) CouncilLog.WarnOnce("Portraits: " + problem);
                 if (records.Count > 0)
-                    Log.Message("[Rimfolk] Portraits: " + records.Count + " painted portraits of " + characters.Count + " faces in the library (" + fromDefs.Count + " from mods, "
-                                + PortraitFolder.People.Count + " from the library folder), " + records.Count(r => r.Pinned) + " of them pinned to colonists; " + Backdrops.Count + " backdrops.");
+                    Log.Message("[Rimfolk] Portraits: " + records.Count + " painted portraits of " + characters.Count + " faces in the library (" + fromDefs.Count(e => !e.record.IsExpression)
+                                + " from mods, " + PortraitFolder.People.Count(p => !p.record.IsExpression) + " from the library folder), " + records.Count(r => r.Pinned) + " of them pinned to colonists; "
+                                + expressions.Values.Sum(x => x.Count) + " expressions of " + expressions.Count + " of them; " + Backdrops.Count + " backdrops.");
             }
             catch (Exception e)
             {
@@ -153,6 +169,13 @@ namespace ColonyCouncil
             }
             return true;
         }
+
+        /// <summary>
+        /// The expressions painted of a picture (phase 6: blink, smile, frown, pain, by their words), or null where it has
+        /// none. Only the large portrait shows them; they never count in the matching or the missing list.
+        /// </summary>
+        public IReadOnlyDictionary<string, PictureFile> ExpressionsOf(string picture) =>
+            picture != null && Load() && expressions.TryGetValue(picture, out var faces) && faces.Count > 0 ? faces : null;
 
         // ---------------- A person's picture ----------------
 

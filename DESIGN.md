@@ -16797,6 +16797,136 @@ pictures' drawing); the starter list `Defs/PortraitLookDefs/PortraitLooks.xml`. 
   player's mods; the save's list over a long game; who is a notable as the game and Rimfolk's contacts make them, and
   strangers' faces shared and given up as they come and go.
 
+### Portraits, phase 6: the large portrait alive and with depth (not released yet)
+
+The player's words (22 November 2026): "what we can also do with animations, in a sense that perhaps we can make the
+pawns, even though their image is generated, a little bit more alive ... to make it perhaps a little bit more alive",
+and "Maybe you can also think about how we can kind of fake a certain depth, Tiefe in Deutsch, to like the images, like
+the character in relations to the background ... You know, like if I, for example, hover my mouse, it kind of centers
+towards the mouse in a way, like this kind of fake 3D effect you can almost create with this"; their go the same day:
+"just go ahead if you have capacity and agents to work off the to-do list with all the things that I've added recently
+... the new stuff first". The lead's mock-up (two layers: the backdrop a few pixels against the mouse, the person with
+it, its shadow on the wall moving less, both drawn a little larger so no edge shows, the body kept on the bottom edge)
+is the measure for the depth. The extra pictures are made on the player's computer by the tools of
+`Tools/PortraitArt/` (`Make-DepthMaps.ps1`, `Make-Variants.ps1`; `docs/portrait-art/SETUP-ComfyUI.md` steps 9 and 10).
+Built on phase 5, whose rules stay. Only the large portrait at the inspect pane changes; the same pictures everywhere
+else stay still.
+
+The code: `UI/Faces/FaceEngineAlive.cs` (new: the mouse and its easing, the face and its expressions, the backdrop
+alive), `FaceEngineStage.cs` (the layers made once and moved each frame), the pure `PortraitLifeMath.cs` (new: the
+layers' moves and easing, the slices by depth, the shadow, the head of an expression, which face shows and when, the
+blinks, the weather and the fire's flicker), `Backdrops.cs` and `BackdropDef.cs` (a backdrop's depth map, a fire lit in
+the room, the open sky), `PortraitLibrary.cs` and `PortraitLibraryMath.cs` (a picture's expressions split off),
+`PortraitDef.cs`, `PortraitFolder.cs`, `PortraitFolderMath.cs` (the records), `InspectPortrait.cs` (where the mouse is).
+Tested in `Tools/Tests/PortraitLifeTests.cs`.
+
+- **The files** (made by the player's tools, read from the library folder or a mod's `Portraits` folder):
+  - *A backdrop's depth map*: a grey picture of the same size beside it, `<stem>_depth.png`, white near and black far.
+    Its record names it in `<depthPath>` (relative like `texPath`); a mod's `BackdropDef` takes the same field. With
+    none named, the backdrop's own name with `_depth` beside it is used where that file is there (a map made before the
+    record was written again). A map named but not there: none, the backdrop kept.
+  - *A picture's expressions*: the same picture painted again with the eyes closed, a smile, a frown, in pain,
+    `<stem>_v-blink.png` and so on, each with its own record: the picture's record copied, `<variant>blink</variant>`
+    (smile, frown, pain) and `<variantOf>` the picture's def name. Such a record is never picked on its own and never
+    counts in the matching, the missing list or the library's count (a pin copied onto it is not a second picture for
+    the colonist); it belongs to its picture, and only the large portrait shows it. An expression of a picture not in
+    the library, of another expression, or a second of the same word is left out with a line in the log; one with a word
+    Rimfolk doesn't know yet (the tools may paint more) is left out quietly. Phase 3's meaning of `variant` (the same face
+    with a mark or older, grouped by `character`) stays for every record without `variantOf`; the two are told apart by
+    `variantOf` alone, and an expression is no variant of a character (`PortraitLibraryMath.SplitExpressions`,
+    `LibraryProblems`). The folder's message says how many expressions and depth maps it read.
+- **Depth that follows the mouse** (the setting of that name: Off, Subtle, the default, or Stronger; the mock-up is
+  Stronger, Subtle six tenths of it). While the mouse is over the large portrait (not while it is sized), its position
+  from -1 to 1 each way is eased toward (about two thirds of the way in 0.18 seconds, steady at any frame rate) and,
+  when it leaves, back to the middle (0.45 seconds); a new person starts in the middle. Each layer moves by how near it
+  is (`PortraitLifeMath.Shift`): the far wall of the backdrop against the mouse (at Stronger 2.4% of the portrait's
+  width across and 1.7% down, 7 and 5 pixels at 288), the person with it (1.7% and 0.7%, 5 and 2 pixels), the person's
+  shadow on the wall two thirds of the way between (it moves less than the person), the nearer slices of the backdrop
+  between the wall and four tenths of the way. Never an edge: the backdrop is made larger than the portrait by the far
+  wall's farthest move and a pixel each way (`Margin`; its middle part with that shape, so the backdrop is a few
+  percent closer than with the setting off), and the person's picture is carried on past its sides as its foot is
+  below, farther than it ever moves, so the body always meets the bottom edge and no strip opens. The game's own
+  drawing on a backdrop (phase 5) moves the same way across only, its shadow less, as it ends at the portrait's foot.
+  Off: the backdrop and the person are made and drawn exactly as in phase 5. The mouse is followed while the game is
+  paused too (it is the player's hand, not the world).
+- **The shadow on the wall** (with depth on and a backdrop): the person's shape a quarter the size, blurred soft, at 42%
+  dark, behind them a little to the right and down (1% of the width), made once with the person.
+- **A backdrop in slices by its depth** (`PortraitLifeMath.Slices`), where it has a depth map and depth is on: the map is
+  read back with the backdrop, the same part at the same size, and cut once on the worker when the picture is made. Its
+  near and far ends are its 2nd and 98th percentile; a spread under 24 of 255 is a flat wall (no slices); otherwise up
+  to four layers, one more for each 24 of spread: the far wall is the backdrop itself, and each nearer slice holds every
+  pixel nearer than its edge (the edges evenly between the ends), so drawn far to near they cover each other and no
+  hole shows behind a near thing as it moves; each edge softened over a third of a step of depth and a pixel or two
+  across, so a floor that recedes slowly blends from one slice into the next instead of tearing; each slice cut to the
+  box of what it holds. The slices are made from the backdrop after its softening and light, so they match it.
+- **Blinking and expressions** (the setting of that name, on), where the person's picture has expressions:
+  - *What they go through*, read every second and a half from the game's own health and memories (no new hook):
+    asleep or unconscious (the game's `Awake`); their pain and the game ticks since their newest wound (an injury not
+    yet a scar, a part freshly lost); since the newest memory of a death close to them (a colonist's, a bonded animal's,
+    kin's, someone they thought well of, a psychic bond torn, a stillbirth, or any other mod's memory named for a death
+    that weighs 5 or more; not a stranger's or an innocent prisoner's) and of good news (a memory that lifts the mood 8
+    or more); their mood and minor break line.
+  - *The face* (`PortraitLifeMath.Want`), each only where the picture has it, else the next: asleep or unconscious, the
+    eyes closed (the blink picture held, else the plain one); hurt in the last four game hours or in the game's medium
+    pain (0.15; let go below 0.1), pain; the news of a death in the last six hours, a frown; good news in the last two
+    hours, a smile; else by the mood: a smile from 0.1 above its middle (halfway between the minor break line and full;
+    0.775 for the usual 0.35), a frown from 0.05 under the minor break line, the plain picture between, each letting go
+    0.03 past where it began.
+  - *Held, never flickering* (`Step`, `SwitchNow`): the first face for a person at once; falling asleep and waking at
+    once; pain or news once the face before has shown three seconds; back to the mood once a pain's or news' face has
+    had eight; a change of mood only once the face before has shown a minute of real time. One face fades into the next
+    over 0.6 seconds (opening the eyes 0.9).
+  - *A blink* now and then (`Blinking`): every 2.5 to 6.5 seconds on the movement clock, by the person and the count
+    (one in eight followed at once by a second, never two in a row), the blink picture for 0.12 seconds; over the plain
+    picture, a smile or a frown, not over pain, while asleep or while a face fades in. Still while the game is paused.
+  - *Only the head* (`FaceOverlay`; the player's tools paint each expression with exactly its picture's cut-out, but may
+    repaint a strand of hair or a fold of cloth elsewhere): an expression is made, when it is first needed, as its head
+    only, a soft oval round the head as measured (0.58 of the head's height across and 0.64 down each way, softening
+    from 0.72 of that), only where the person is solid, tinted as the person was; a small texture laid over the picture.
+    Nothing on the body changes with a blink or a mood, and the person's soft edge stays the picture's own. A blink over
+    a smile shows the plain face's closed eyes for its tenth of a second.
+  - *Made one at a time* with the large portrait's pictures, on the worker (the expression read back at the person's
+    size, then its head cut out): the face shown, the blink, the face it fades from, the face wanted next. Until one is
+    made, the face before stays and the fade waits for it. Kept with the person's picture while it shows, let go 20
+    seconds after it no longer does.
+- **The backdrop alive** (the setting of that name, on), behind the person, only on the large portrait, read with the
+  backdrop every two seconds, eased in and out over a few seconds:
+  - *Outdoors under the open sky* (no roof over them, not a cave, not in a vacuum), the map's weather by its own def
+    (`WeatherOf`): rain and snow by its rain and snow rates (1.5 or more full), a haze where its name or its overlays say
+    fog, mist, a whiteout or a pall (thicker for a blinding fog or a whiteout), dust, sand or ash (tan, grey for ash); a
+    blood rain red, a toxic or acid rain sickly green, a red fog reddish. So the game's, the DLCs' and the player's mods'
+    weathers (Alpha Biomes, ReGrowth, Seasonal Weather, Vanilla Expanded) are read alike. Drawn as rain in two falling
+    layers along their slant, snow in two drifting down, a haze in two slow drifting layers, fainter in the dark.
+  - *Indoors*, a fire's warm light over the lower part of the backdrop (a soft round light, never the whole picture),
+    flickering in three waves out of step, a little stronger in the dark, where the backdrop shows a hearth or a fire or
+    a fire burns in the room (a fireplace, campfire, brazier or torch with fuel and switched on, or a fire), read with
+    what is in the room every half minute.
+  - Drawn with three small tiles made once by code (thin streaks, soft flakes, a soft cloud) and the portraits' soft
+    light, a few draws a frame, moved a little with the mouse as a layer between the wall and the person. Still while
+    the game is paused.
+- **Settings** (How you're told, Portraits, beside the backdrop's): "Depth that follows the mouse" (Off; Subtle;
+  Stronger), "Blinking and expressions" (on), "The backdrop alive" (on). A change of the depth makes the picture again
+  (its strength and depth map are in its key); the other two change only what is drawn.
+- **Performance**: nothing heavy per frame; each frame moves the cached layers (the backdrop, up to three slices, the
+  shadow, the person, at most two expression heads, a few weather tiles) and eases two numbers. Made once on the worker
+  with the rest of the picture: the backdrop a few percent larger, the depth map read back the same (one more small
+  read-back from the graphics card), the slices and the shadow (about 25 to 40 ms for a 362 by 454 backdrop on the build
+  machine, so perhaps twice that in the game's Mono, on a worker), each expression's head (a read-back and a pass over
+  the head's box). Memory: the slices cut to their boxes and the shadow at a quarter size add well under the backdrop's
+  own size again; the expressions' heads are small and kept only for the person shown. What the person goes through is
+  read every second and a half for the person shown only; the weather and the fire with the backdrop's look every two
+  seconds.
+- **Saved**: nothing new in the save (the three settings are the mod's settings).
+- Every game member used (`Awake`, the hediffs' age and permanence, `PainTotal`, the memories' age and mood, the mental
+  breaker's minor line, the weather manager's weather and its def's rain and snow rates and overlays, roofs, the fire
+  overlay, fuel and switch comps, `Fire`) is the same in 1.6 and 1.7 (ApiDiff). No new hook.
+- **Not checked without the game**: how the depth looks and feels with real pictures and the mouse (the amounts are
+  the mock-up's); the slices against real depth maps (Depth Anything 3's ranges, the floor's blend, a near thing's
+  ghost at its edge as it moves); the shadow's look; the expressions' heads over real pictures (the head's measured
+  place and the oval's size, Kontext's changes inside it) and the blink's pace; the faces against real moods, wounds,
+  deaths and news, and the holding; the weather tiles and the fire's light against real backdrops at day and night; the
+  cost of the extra read-backs.
+
 ### On-screen panels and the hover card
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of

@@ -19,12 +19,16 @@ namespace ColonyCouncil
     {
         private static readonly List<BackdropRecord> records = new List<BackdropRecord>();
         private static readonly List<PictureFile> files = new List<PictureFile>();
-        private static List<KeyValuePair<BackdropRecord, PictureFile>> fromDefs;
+        /// <summary>Each backdrop's depth map (phase 6), or null.</summary>
+        private static readonly List<PictureFile> depths = new List<PictureFile>();
+        private static List<(BackdropRecord record, PictureFile file, PictureFile depth)> fromDefs;
         private static int loadedVersion = -1;
 
         private sealed class RoomThings
         {
             public HashSet<string> words;
+            /// <summary>A fire burns in the room: a fireplace, campfire, brazier or torch lit, or a fire (phase 6, for the warm flicker).</summary>
+            public bool lit;
             public float until;
         }
 
@@ -54,27 +58,30 @@ namespace ColonyCouncil
             {
                 if (fromDefs == null)
                 {
-                    fromDefs = new List<KeyValuePair<BackdropRecord, PictureFile>>();
+                    fromDefs = new List<(BackdropRecord, PictureFile, PictureFile)>();
                     foreach (var d in DefDatabase<BackdropDef>.AllDefsListForReading.OrderBy(x => x.defName, StringComparer.Ordinal))
                     {
                         var f = d.File;
-                        if (f != null) fromDefs.Add(new KeyValuePair<BackdropRecord, PictureFile>(d.Record, f));
+                        if (f != null) fromDefs.Add((d.Record, f, d.DepthFile));
                     }
                 }
                 records.Clear();
                 files.Clear();
+                depths.Clear();
                 var names = new HashSet<string>(StringComparer.Ordinal);
                 foreach (var kv in fromDefs)
-                    if (names.Add(kv.Key.name))
+                    if (names.Add(kv.record.name))
                     {
-                        records.Add(kv.Key);
-                        files.Add(kv.Value);
+                        records.Add(kv.record);
+                        files.Add(kv.file);
+                        depths.Add(kv.depth);
                     }
                 foreach (var b in PortraitFolder.Backdrops.OrderBy(x => x.record.name, StringComparer.Ordinal))
                     if (names.Add(b.record.name))
                     {
                         records.Add(b.record);
                         files.Add(PortraitFolder.FileOf(b.record.name, b.texPath, false));
+                        depths.Add(b.depthPath.NullOrEmpty() ? null : PortraitFolder.FileOf(b.record.name + "_depth", b.depthPath, false));
                     }
             }
             catch (Exception e)
@@ -90,6 +97,11 @@ namespace ColonyCouncil
             choice = BackdropMath.Choose(w, records);
             return choice.index >= 0 ? files[choice.index] : null;
         }
+
+        /// <summary>The chosen backdrop's record (what it shows) and its depth map (phase 6), or null.</summary>
+        public static BackdropRecord RecordAt(BackdropChoice c) => c.index >= 0 && c.index < records.Count ? records[c.index] : null;
+
+        public static PictureFile DepthAt(BackdropChoice c) => c.index >= 0 && c.index < depths.Count ? depths[c.index] : null;
 
         /// <summary>For the library folder's missing list: a room or the land with no backdrop of its own, by the choice for it.</summary>
         public static void Note(BackdropWhere w, int who)
@@ -133,6 +145,7 @@ namespace ColonyCouncil
             }
             var land = WhereOfLand(map);
             if (rock) land.group = "cave";
+            land.open = roof == null && !(map.Biome?.inVacuum ?? false);
             return land;
         }
 
@@ -141,13 +154,15 @@ namespace ColonyCouncil
         {
             var role = room.Role;
             var owner = map.ParentFaction;
+            var things = ThingsIn(room);
             return new BackdropWhere
             {
                 place = BackdropPlace.Room,
                 role = role == null || role == RoomRoleDefOf.None || role.defName == "Room" ? "" : role.defName,
                 seed = room.ID,
                 era = map.IsPlayerHome || owner == null || owner == Faction.OfPlayerSilentFail ? ColonyEra() : PortraitLibraryMath.EraOf((int)Peoples.TechOf(owner)),
-                contents = ThingsIn(room)
+                contents = things.words,
+                fireLit = things.lit
             };
         }
 
@@ -166,23 +181,36 @@ namespace ColonyCouncil
             };
         }
 
-        /// <summary>What is in a room in the backdrops' words (kept by the room's id a while).</summary>
-        private static HashSet<string> ThingsIn(Room room)
+        /// <summary>What is in a room in the backdrops' words, and whether a fire burns in it (kept by the room's id a while).</summary>
+        private static RoomThings ThingsIn(Room room)
         {
             float now = Time.realtimeSinceStartup;
-            if (rooms.TryGetValue(room.ID, out var kept) && now < kept.until) return kept.words;
+            if (rooms.TryGetValue(room.ID, out var kept) && now < kept.until) return kept;
             var lists = new List<List<string>>();
             int n = 0;
+            bool lit = false;
             foreach (var t in room.ContainedAndAdjacentThings)
             {
                 if (t?.def == null || ++n > ThingsMost) break;
+                if (t is Fire) lit = true;
                 if (t.def.category != ThingCategory.Building && !t.def.IsMedicine && !(t is Book)) continue;
                 lists.Add(WordsOf(t.def));
+                if (!lit && t is ThingWithComps tc && Burning(tc)) lit = true;
             }
-            var words = BackdropMath.RoomContents(lists);
             if (rooms.Count > 256) rooms.Clear();
-            rooms[room.ID] = new RoomThings { words = words, until = now + RoomFor };
-            return words;
+            kept = new RoomThings { words = BackdropMath.RoomContents(lists), lit = lit, until = now + RoomFor };
+            rooms[room.ID] = kept;
+            return kept;
+        }
+
+        /// <summary>A fireplace, campfire, brazier or torch that is lit: it draws a fire (the game's fire overlay), has fuel where it takes fuel, and is switched on where it can be switched.</summary>
+        private static bool Burning(ThingWithComps t)
+        {
+            if (t.GetComp<CompFireOverlay>() == null) return false;
+            var fuel = t.GetComp<CompRefuelable>();
+            if (fuel != null && !fuel.HasFuel) return false;
+            var flick = t.GetComp<CompFlickable>();
+            return flick == null || flick.SwitchIsOn;
         }
 
         /// <summary>The words for a kind of thing, read once a def from what the game says of it (its class, its seat, its table, its fire).</summary>
