@@ -585,6 +585,14 @@ most sense." So, in this order, three builds at a time:
   picture to its row): the check writes `library/corrections.csv` (per picture: age, sex, looks, role, or out; apply
   yes, ask or no), marks the safe or clear ones yes by itself, and `Update-PortraitLibrary.ps1` applies them when it
   writes the records (sent to the build).
+  The player, on the first pictures of wave1-people-01: "the ages are really off ... either they look way too old or
+  they look way too young ... perhaps it's better if we just say he looks or they look young or middle-aged or old
+  without a number". Done: the planner writes ages as a band word and a decade ("a middle-aged man in his early
+  fifties"), the signs of that age on the face, and the age again at the end ("Clearly in his early fifties."); no
+  young-reading words (smooth skin and rested eyes, a dimple, round eyes, a snub nose) for the middle-aged and older,
+  no weathered, tired faces for teenagers; the 728 rows' prompts rewritten in place (names and records unchanged).
+  `batches/age-test.csv` (a baseliner man and woman of each of the nine bands) and `style-nosameface.json` (the chosen
+  style without the SameFace Fix, which was trained on women's faces) to compare before the long runs.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the

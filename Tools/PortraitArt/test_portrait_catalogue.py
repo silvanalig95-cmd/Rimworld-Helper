@@ -146,7 +146,10 @@ class Planner(Tmp):
                 self.assertEqual(r['role'], '')
                 self.assertEqual(own, [])
             self.assertNotRegex(r['subject'], r'\d+ years old|aged \d+')
-            self.assertIn('looks about', r['subject'])
+            # The age as it looks: a decade (or a child's age in words) at the start, said again at the end.
+            self.assertIn('Clearly', r['subject'])
+            if r['age'] not in W.LITTLE and r['age'] != 'child':
+                self.assertRegex(r['subject'], r'\b(early|mid-|late) ?(teens|twenties|thirties|forties|fifties|sixties|seventies|eighties|nineties)')
             self.assertLessEqual(len(r['subject']), 900)
 
     def test_defaults_first_then_roles_then_looks(self):
