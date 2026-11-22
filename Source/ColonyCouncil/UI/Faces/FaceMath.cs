@@ -236,24 +236,30 @@ namespace ColonyCouncil
         /// top, smaller than asked where the room is less. Not shown while a tab is open (the player, 21 November 2026: "it
         /// only needs to be shown when you click the pawn, without having one of these tabs open ... Once you click one of
         /// these tabs, the image of the pawn can, disappear in favor of the tab"), so it never stands beside or over a tab.
+        /// <paramref name="size"/> is its width; with a painted picture it is taller than wide (<paramref name="tall"/>, its
+        /// inside's height for each unit of its inside's width: the picture's own shape), square with the game's drawing.
         /// </summary>
-        public static Placed Place(PaneScene s, float size, out FrameRect r)
+        public static Placed Place(PaneScene s, float size, out FrameRect r, float tall = 1f)
         {
             r = default;
             if (s.tabOpen) return Placed.None;
+            if (!Finite(tall) || tall < 1f) tall = 1f;
             float baseY = Math.Min(s.paneTop, s.pane.y) - (s.tabs ? TabRowH : 0f);
             float x = s.pane.x;
             float foot = baseY;
-            float fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
+            // The widest whose height still fits under the room kept clear at the top.
+            float WidthFor(float room) => room <= 2f * Border ? 0f : (room - 2f * Border) / tall + 2f * Border;
+            float fit = Fit(size, Math.Min(WidthFor(foot - TopClear), s.screenW - x));
             if (fit <= 0f) return Placed.None;
             // Reaching right past the pane, over the gizmos: lift it above them.
             if (x + fit > s.pane.XMax && foot > s.gizmoTop - Gap)
             {
                 foot = s.gizmoTop - Gap;
-                fit = Fit(size, Math.Min(foot - TopClear, s.screenW - x));
+                fit = Fit(size, Math.Min(WidthFor(foot - TopClear), s.screenW - x));
                 if (fit <= 0f) return Placed.None;
             }
-            r = new FrameRect(x, foot - fit, fit, fit);
+            float h = PortraitPictureMath.PanelHeight(fit, tall, Border);
+            r = new FrameRect(x, foot - h, fit, h);
             return Placed.OnPane;
         }
 
