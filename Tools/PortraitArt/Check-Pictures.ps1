@@ -16,7 +16,7 @@
 # - Every run compares all the checked pictures with their records again and writes library\check-report.csv: what is
 #   wrong, what the model saw, what the row says, and a suggested fix, the worst first.
 # - And library\corrections.csv: one line per change to one picture's record (age, sex, looks add:/remove:, role or
-#   clear, marks add:/remove:, headwear, out), marked yes where it is safe or plainly right (an age two bands or more
+#   clear, marks add:/remove:, headwear, out), marked yes where it is safe or plainly right (an age three bands or more
 #   off, a role for the weapon it holds, the wings look for its wings, out for two people in a cut-out) and ask where
 #   you decide (fire or magic, anything taken away, a body its kind doesn't have). Update-PortraitLibrary.ps1 puts the
 #   lines marked yes into the records; you change ask to yes or no. Lines already there are never changed here, the
@@ -50,13 +50,13 @@ if ($Workflow -eq '') { $Workflow = Join-Path $Folder 'rimfolk-check-workflow-ap
 # ---------------- The question ----------------
 
 # Raise the number when the question changes: pictures asked with an older one are asked again.
-$QuestionVersion = '1'
+$QuestionVersion = '2'
 $Question = @'
 This is a painted portrait made for a game. Look at the picture closely and fill in the form below about the person in it. Write each line's name, a colon, and a short answer of a few words. Answer every line, in this order, and write nothing else. Write none when the thing is not in the picture.
 
 people: how many people are in the picture (a number)
 sex: man or woman
-age: how old the person looks, as one number of years, as if they were human
+age: how old the person looks, as if they were human: one of baby (under 1), toddler (1 to 3), child (4 to 12), teen (13 to 17), young adult (18 to 29), adult (30 to 44), middle-aged (45 to 59), old (60 to 74), elderly (75 and over). Judge it by grey or white hair, wrinkles at the eyes, mouth and forehead, and sagging skin at the jaw and neck; for a child, by the size of the head and the proportions of the face. Write only the name
 skin: the colour of the skin, or of the scales or fur
 hair: the colour and style of the hair, or bald
 beard: none, stubble, short beard, full beard or moustache
@@ -333,6 +333,29 @@ function Band-Of-Years([double] $y) {
     return 8
 }
 
+function Band-Of-Seen([string] $v) {
+    # The age band the model saw, 0 to 8, or -1 for none. The question asks for a band by name ("young adult", "elderly",
+    # perhaps with its years after it): a name at the start of the answer counts first, so "baby (under 1)" isn't read
+    # as 1 year; any other answer ("48", "late 40s", "about 40 years old") goes by its years.
+    $t = (Low $v) -replace '^[^a-z0-9]+', ''
+    if ($t -eq '' -or $t -match '^none\b') { return -1 }
+    $t = $t -replace '^(an?|the)\s+', ''
+    if ($t -match '^(baby|infant|newborn)\b') { return 0 }
+    if ($t -match '^toddler') { return 1 }
+    if ($t -match '^(child|kid|boy|girl)\b') { return 2 }
+    if ($t -match '^(teen|teenager|teenage|adolescent)\b') { return 3 }
+    if ($t -match '^young\s+(child|kid|boy|girl)\b') { return 2 }
+    if ($t -match '^young\s+(teen|teenager|adolescent)\b') { return 3 }
+    if ($t -match '^young\b') { return 4 }
+    if ($t -match '^adult\b') { return 5 }
+    if ($t -match '^middle') { return 6 }
+    if ($t -match '^(elderly|elder|very old|ancient)\b') { return 8 }
+    if ($t -match '^(old|senior)\b') { return 7 }
+    $y = Years-Of $v
+    if ($y -lt 0) { return -1 }
+    return (Band-Of-Years $y)
+}
+
 function Band-Of-Word([string] $w) {
     $t = (Low $w) -replace '[^a-z]', ''
     if ($t -eq '') { $t = 'adult' }
@@ -528,7 +551,7 @@ function Seen-Says($seen) {
     if ($p -eq 1) { [void]$parts.Add('1 person') } elseif ($p -ge 0) { [void]$parts.Add(('{0} people' -f $p)) }
     $who = ''
     if ((Says $seen.sex) -eq 'yes') { $who = Short $seen.sex }
-    if ((Years-Of $seen.age) -ge 0) { $who = ($who + ', looks ' + (Short $seen.age)).Trim(' ', ',') }
+    if ((Band-Of-Seen $seen.age) -ge 0) { $who = ($who + ', looks ' + (Short $seen.age)).Trim(' ', ',') }
     if ($who -ne '') { [void]$parts.Add($who) }
     foreach ($k in @('hands', 'weapons', 'armour', 'magic', 'headwear', 'tools', 'wings', 'horns', 'tail', 'eyemarks', 'unusual')) {
         if ((Says $seen.$k) -eq 'yes') {
@@ -580,7 +603,7 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
     $ask = Asks-Of $asked
     $outAsk = 'look at it: if it is wrong, mark out yes in corrections.csv (or throw it out)'
 
-    # Wrong: more than one person, the other sex, two age bands or more apart.
+    # Wrong: more than one person, the other sex, two age bands or more apart (three or more changed without asking).
     if ($people -eq 0) { Add-Issue $issues 1 'no person seen' 'look at it; throw it out if there is no one in it' 'out' '' 'ask' }
     elseif ($people -ge 2 -and -not ($people -eq 2 -and (Any-Look $looks $TwinLooks))) {
         $fix = 'left out of the records'
@@ -600,12 +623,17 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
             Add-Issue $issues 1 $what ('its record gets the sex {0}; or throw it out' -f $sex) 'sex' $sex $apply
         }
     }
-    $years = Years-Of $seen.age
+    # The age: two bands from the row's is asked (a drawing's lines can read older or younger than they are meant),
+    # three or more is plainly another age and changed without asking.
+    $bandSeen = Band-Of-Seen $seen.age
     $bandRec = Band-Of-Word $rec.age
-    if ($years -ge 0 -and $bandRec -ge 0) {
-        $bandSeen = Band-Of-Years $years
-        if ([Math]::Abs($bandSeen - $bandRec) -ge 2) {
-            Add-Issue $issues 1 ('looks about {0}, {1}; its row says {2}' -f [Math]::Round($years), $BandLabels[$bandSeen], $BandLabels[$bandRec]) ('its record gets the age {0}; or throw it out' -f $BandWords[$bandSeen]) 'age' $BandWords[$bandSeen] 'yes'
+    if ($bandSeen -ge 0 -and $bandRec -ge 0) {
+        $apart = [Math]::Abs($bandSeen - $bandRec)
+        if ($apart -ge 3) {
+            Add-Issue $issues 1 ('looks {0}; its row says {1}' -f $BandLabels[$bandSeen], $BandLabels[$bandRec]) ('its record gets the age {0}; or throw it out' -f $BandWords[$bandSeen]) 'age' $BandWords[$bandSeen] 'yes'
+        }
+        elseif ($apart -eq 2) {
+            Add-Issue $issues 1 ('looks {0}; its row says {1}' -f $BandLabels[$bandSeen], $BandLabels[$bandRec]) ('look at it: yes gives its record the age {0}, no keeps {1}; or throw it out' -f $BandWords[$bandSeen], $BandWords[$bandRec]) 'age' $BandWords[$bandSeen] 'ask'
         }
     }
 

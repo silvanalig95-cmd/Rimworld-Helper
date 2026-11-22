@@ -682,8 +682,16 @@ most sense." So, in this order, three builds at a time:
   these new style templates", and "the naming conventions for the styles could be a bit more descriptive". Done:
   `style-rimworld-people` (rmwstyle 0.7, SameFace -0.7, worded like the training captions, no outline or rim light words)
   and `style-rimworld-backdrops`; the `style-rmw*` files removed; ORDER.md lists what the batches folder needs.
-- **To do when the player asks (22 November 2026, the player; proposal sent, waiting for the go): the picture check's
-  age question for the new comic style.** The player: "will the qwen image analyser also be able to analyse this new
+- **Go given (22 November 2026, the player: "please go ahead with the age proposals, or rather all your proposal from
+  check pictures PowerShell script"); done: the picture check's age question for the new comic style.** All four in
+  `Check-Pictures.ps1` (question version 2, `Band-Of-Seen` reads a band name before any years, so "baby (under 1)" is a
+  baby); tried with the stand-in ComfyUI: two bands off asked, three or more yes, "about 40 years old", "a young child"
+  and "baby (under 1)" read right. SETUP-ComfyUI.md step 8 says so. The player asked too whether the model works from
+  the rows' data: "It should just have like the baseline information to start with, and something, if something is
+  really off, it should adjust it, but not do a full analysis from scratch each time." Answered: the record (from the
+  row) is the baseline and stays; the model looks without being told the row (told it, a small model agrees with it),
+  and only where its look and the record differ is a line written, the plain cases yes, the rest ask.
+  (The proposal as it was sent:) The player: "will the qwen image analyser also be able to analyse this new
   comic style, also in regards to what age a character looks like?", then "Do you need to adapt anything for kind of the
   AI to better judge the characters? Does it make more sense if it's an age range over a specific age, or is, what do you
   think?" The proposal, all in `Check-Pictures.ps1` (no mod code): (1) ask for one of the nine bands by name with their
@@ -693,6 +701,19 @@ most sense." So, in this order, three builds at a time:
   proportions), without telling it to ignore ink lines (which could make old people read young); (3) an age two bands
   off becomes "ask", only three or more stays "yes" (changed without asking); (4) raise `$QuestionVersion` (the library
   is new, nothing to ask again). Reading a band word as an answer is already there (`Band-Of-Word`).
+- **To do when the player asks (22 November 2026, the player; noted for later): non-human kinds look too human in the
+  game-look style.** The player: "the non-human races still look quite human. There's still some differences, but
+  overall ... since we really had not a lot of non-humans to train with, but just to keep that in mind, perhaps for
+  future improvements ... improvements of the model primarily", and "the races might be mentioned as such a race, but
+  it's really not specified how that race really is supposed to look like ... whenever you do a kind of overall
+  description of a pawn that's non-humanoid ... also always describe how the race generally looks like". Already so:
+  every row names its kind's look from `catalogue/kinds.csv` (a genie: "completely bald, a tall elongated skull, a thin,
+  narrow-shouldered frame, long slender fingers"; a pigskin: the snout, the floppy ears, the trotter hands). Ideas for
+  then: (1) the model first: train the LoRA again with non-human pictures in the style added (the good ones from the
+  characters lists, and the storyteller mods' non-human portraits if any), since it learned from humans only; (2) in
+  the rows, the kind's look said twice (first and again at the end, as the age signs are) and "natural proportions"
+  left out where the kind's shape differs; (3) a lighter LoRA for non-human rows (a list of their own with its own
+  style file).
 - **Go given (22 November 2026, the player: "go ahead with the image delete feature"); built, not released: delete a
   picture for good from the game.** The entry "Delete a picture for good from the game" above the newest release line
   says what was built. The player: "what i would like in the game is a feature that when i really don't like an image,

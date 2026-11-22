@@ -197,8 +197,10 @@ Qwen3.5, a free model (Apache 2.0 licence) that fits your card well, so no node 
 
 **What the corrections change.** Nothing is renamed: a picture's name ties it to its batch row, and the row's other
 pictures may be right, so a correction changes only that picture's record. The fields:
-- `age`: the age band the picture shows (yes when it looks two bands or more away from its row, a child drawn for an
-  adult or the other way round; one band apart stays as it is).
+- `age`: the age band the picture shows. The model is asked for a band by name (young adult, middle-aged ...) and what
+  to judge it by (grey hair, wrinkles, sagging skin; a child's head and face). Three bands or more from its row (a child
+  drawn for an adult or the other way round) is yes; two bands is ask, since a drawing's lines can read older or
+  younger than they are meant; one band apart stays as it is.
 - `sex`: `male` or `female` (yes when the model said it plainly; for a picture made for one colonist it is never
   changed: that picture gets `out`, ask).
 - `role`: the work it shows (yes when the row has no role: a weapon gives soldier, warrior or hunter, armour soldier or
@@ -217,7 +219,7 @@ more people is ask.
 **Reading the report.** One line per picture: the `picture`, its `row` in the batch list, the `check`, `what is
 wrong`, `what the model saw`, what `its row says`, a `suggested fix`, and what is `in corrections.csv` for it. The
 check is one of:
-- **1 wrong**: the other sex than its row, an age two bands or more from its row's, more than one person in a
+- **1 wrong**: the other sex than its row, an age two bands or more from its row's (three or more marked yes), more than one person in a
   cut-out, no one at all, or a person in a backdrop.
 - **2 shows more**: something its row doesn't have: a weapon, armour, fire or magic, wings, a crown, a book or tools,
   a hat, hood or helmet, horns, pointed ears, a tail, glowing eyes, scales or fur, an eye patch.
