@@ -16,7 +16,8 @@
 
 [CmdletBinding()]
 param(
-    [string] $Folder = ''
+    [string] $Folder = '',
+    [switch] $NoPause
 )
 
 $ErrorActionPreference = 'Stop'
@@ -146,4 +147,4 @@ catch {
     Write-Host ('Something went wrong: ' + $_.Exception.Message) -ForegroundColor Red
 }
 Write-Host ''
-Read-Host 'Press Enter to close'
+if (-not $NoPause) { Read-Host 'Press Enter to close' }
