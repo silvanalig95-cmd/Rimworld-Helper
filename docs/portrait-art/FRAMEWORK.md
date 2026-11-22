@@ -48,7 +48,7 @@ key-art look, described in words (no picture of the game's is copied or fed in):
 |---|---|
 | kind | a xenotype or race, by its defName (`Baseliner`, `DevDesigner_XenotypeDarkElves`, `VRESaurids_Saurid` ...) |
 | sex | male, female |
-| age | baby (0 to 1), toddler (1 to 3), child (4 to 12), teen (13 to 17), young (18 to 29), adult (30 to 44), middle (45 to 59), old (60 to 74), elder (75+) |
+| age | how old they look: baby (0 to 1), toddler (1 to 3), child (4 to 12), teen (13 to 17), young (18 to 29), adult (30 to 44), middle (45 to 59), old (60 to 74), elder (75+), the grown-up years for a baseliner, stretched for long-lived kinds |
 | build | slim, average, heavy, muscular |
 | skin | a colour (and for scales, fur or bark the same) |
 | hair colour | a colour |
@@ -76,7 +76,14 @@ and FLUX gets some wrong: those pictures are thrown out.
 ## Pillar 3: the kinds (any race or xenotype, including ones not met yet)
 
 Every kind has a look sheet: what it adds to a human picture (or replaces), in plain words for prompts, and which words of
-pillar 2 it uses. The lead writes it from the kind's own files (its genes and description; a collector script gathers them
+pillar 2 it uses, and how it ages (the player: "the age range should always be corresponding to the xenotype ... some
+... have a much longer age expectancy than others ... some even can live forever technically ... Not that an ... elf
+that's still young with a certain age is shown as an old person"). A picture's age is always how old the person looks,
+and its prompt says so ("looks about 30"), never their years: the game reads the band from the pawn's biological age,
+stretched by its race's life expectancy and its genes' lifespan factor, and an ageless kind (Biotech's Ageless and
+Deathless, the elves' ageless gene) never reads older than adult. The player's active mods change ageing with: Ageless,
+Deathless, DevDesigner_Ageless, DV_LifespanLong, AG_ExtraordinaryLifespan, AG_SlowerAging, AG_FasterAging,
+VRE_SlowAging, VRE_FastAging, VRE_RapidAging, GS_RapidAge. The lead writes it from the kind's own files (its genes and description; a collector script gathers them
 for mods added later), so a kind new to the game gets a sheet the same way. Until a kind has pictures of its own, a near-
 human kind borrows the baseliners' pictures and a far-from-human kind keeps the game's own face (the matcher already does
 this). The order of work follows the player's world (League of Toba, day 138): baseliners, dark elves, then hussars,

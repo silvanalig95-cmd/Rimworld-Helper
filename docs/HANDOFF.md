@@ -452,6 +452,12 @@ most sense." So, in this order, three builds at a time:
   bands of `FRAMEWORK.md` (baby, toddler, child, teen, young, adult, middle, old, elder) in the records and the matcher,
   a new pick at each child stage, at teen to young and into old (told to the build agent); the colonists' records use
   them (Ape and Webb middle, Trorgakoc, Lorena and Ettrian young).
+  And: "the age range should always be corresponding to the xenotype ... some even can live forever technically ...
+  Not that an ... elf that's still young with a certain age is shown as an old person ... keep our entire list of
+  xenotypes in mind when creating these images." So the band is how old a pawn looks: its biological age (genes that
+  slow, speed or stop ageing count by themselves), the grown-up limits stretched by the race's life expectancy and the
+  pawn's lifespan factor, ageless and deathless pawns never older than adult (told to the build agent; the genes of the
+  player's mods that change ageing are listed in `FRAMEWORK.md` pillar 3, and every look sheet says how its kind ages).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
