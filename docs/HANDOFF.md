@@ -651,6 +651,18 @@ most sense." So, in this order, three builds at a time:
   again with closed eyes, a smile, a frown, by image-to-image from the kept picture, shown by the pawn's mood); the
   backdrop alive (a hearth's or lamp's flicker, dust in the light, snow or rain by the map's weather, night falling);
   a short change of expression when something happens to them (hurt, a death, good news).
+  Then (22 November 2026): "Maybe you can also think about how we can kind of fake a certain depth, Tiefe in Deutsch,
+  to like the images, like the character in relations to the background, for example, that it could more look like 3D,
+  or at least it's moving a bit. You know, like if I, for example, hover my mouse, it kind of centers towards the mouse
+  in a way, like this kind of fake 3D effect you can almost create with this. Maybe something to experiment with." A
+  mock-up was made (scratchpad `depth/depth-bedroom.gif`: two layers, the backdrop shifting a few pixels against the
+  mouse, the person with it, the shadow on the wall less; both drawn slightly larger so no edge shows; the body kept on
+  the bottom edge). Steps for then: (1) two layers following the mouse over the large portrait, easing back to the
+  middle when the mouse leaves, a setting for its strength and off; (2) more depth from a depth map per backdrop (a
+  depth model such as Depth Anything in the player's ComfyUI writes a grey picture of near and far next to each
+  backdrop), so near things in the room move more than the far wall, drawn by a small shader or by three or four
+  slices of the backdrop; (3) a slight turn of the whole picture toward the mouse (a perspective tilt) only if 1 and 2
+  look good.
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
