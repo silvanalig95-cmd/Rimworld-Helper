@@ -45,19 +45,25 @@ lead's scratchpad (`build2.py`).
 1. Install **Pinokio** (https://pinokio.co), open it, **Discover**, search **FluxGym**, **Install** (one click; it sets up
    its own Python). It downloads FLUX.1 Dev for itself the first time it trains: about 35 GB, so keep space free.
 2. Start FluxGym from Pinokio. Fill in:
-   - **The name of your LoRA**: `rmwstyle`; **Trigger word**: `rmwstyle`.
-   - **Base model**: `flux-dev`; **VRAM**: `16G`.
+   - **The name of your LoRA**: `rmwstyle` (the name of the file it makes, which `style-rmw.json` asks for);
+     **Trigger word/sentence**: `rmwstyle`.
+   - **Base model**: `flux-dev`; **VRAM**: `16G` (not 20G: that needs more memory than your card has).
+   - **Expected training steps** fills in by itself once the pictures are in: it should read 2256.
    - **Repeat trains per image**: `4`; **Max train epochs**: `12` (47 pictures: about 2,250 steps; a guess of 1 to 3
      hours on your card).
    - **Resize dataset images**: `512` (fast; `768` keeps more of the fine lines but takes about twice as long).
-   - **Sample Image Prompts** (one per line), and **Sample Image Every N Steps**: `400`:
-     - `rmwstyle, a weathered old man with a grey beard and a scar across his cheek, a patched brown coat, seen from the waist up, a plain dark grey background`
-     - `rmwstyle, a young woman with short black hair and freckles, a green work jacket, arms crossed, a plain dark grey background`
-     - `rmwstyle, a saurid man with fine green scales and amber eyes, a leather vest, a plain dark grey background`
+   - **Sample Image Prompts** (one per line; `--d 42` keeps the seed, so each round shows the same picture changing),
+     and **Sample Image Every N Steps**: `400`:
+     - `rmwstyle, a weathered old man with a grey beard and a scar across his cheek, a patched brown coat, seen from the waist up, a plain dark grey background --d 42`
+     - `rmwstyle, a young woman with short black hair and freckles, a green work jacket, arms crossed, a plain dark grey background --d 42`
+     - `rmwstyle, a saurid man with fine green scales and amber eyes, a leather vest, a plain dark grey background --d 42`
 3. **Upload** all 47 pictures and all 47 `.txt` files together (drag them in at once): the captions fill in by
    themselves (each `.txt` belongs to the picture of the same name). Check that each caption starts with `rmwstyle`.
-4. In **Advanced options** set: `network_dim` (the LoRA's rank) `16`, `learning_rate` `4e-4`, `save_every_n_epochs` `4`.
-   Leave the rest.
+   Don't press "Add AI captions with Florence-2": it would write over the captions.
+4. Open **Advanced options** (under the fields of step 1) and set **Learning Rate** `4e-4`, **Save every N epochs** `4`
+   and **LoRA Rank** `16`. Leave the rest. The **Train script** on the right shows the settings it will use: it should
+   now say `--network_dim 16`, `--learning_rate 4e-4` and `--max_train_epochs 12`, and the **Train config** below it
+   `num_repeats = 4`.
 5. **Start training**. The sample pictures appear as it goes: they should look more and more like the game's art.
 6. When it ends, the files are in FluxGym's `outputs\rmwstyle\` folder (Pinokio, FluxGym, Files): `rmwstyle.safetensors`
    (the last) and `rmwstyle-000004`, `-000008` (the earlier saves). The last is usually best; if its samples copy the
