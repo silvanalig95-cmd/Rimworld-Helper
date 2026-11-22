@@ -49,7 +49,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>"Portraits from the library": the closest picture for everyone it may stand for, or only pictures close to them (phase 3's way).</summary>
-    public enum PortraitPickMode : byte
+    public enum PortraitPickMode
     {
         Closest,
         OnlyClose

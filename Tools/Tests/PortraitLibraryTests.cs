@@ -85,7 +85,7 @@ public static class PortraitLibraryTests
         // What is wrong with a def is told (the game shows it among the def errors at start-up).
         {
             var problems = new List<string>();
-            var fields = new Dictionary<string, string> { ["sex"] = "boy", ["age"] = "ancient", ["hair"] = "curly", ["era"] = "stone", ["facing"] = "up", ["skinColor"] = "pink" };
+            var fields = new Dictionary<string, string> { ["sex"] = "boy", ["age"] = "ancient", ["hair"] = "frizzy", ["era"] = "stone", ["facing"] = "up", ["skinColor"] = "pink" };
             var lists = new Dictionary<string, IList<string>> { ["features"] = new[] { "wings", "horns" }, ["marks"] = new[] { "missingArm" }, ["xenotypes"] = new[] { "Baseliner", "Impid" } };
             var r = PortraitLibraryMath.Record("Bad", k => fields.TryGetValue(k, out var v) ? v : null, k => lists.TryGetValue(k, out var v) ? v : null, problems);
             foreach (var want in new[] { "texPath", "sex", "age", "hair", "era", "facing", "skinColor", "hairColor", "wings", "missingArm", "baseliner" })
@@ -113,8 +113,29 @@ public static class PortraitLibraryTests
 
         // ---------------- A pawn's looks read from the game's words ----------------
         bool Age(float y, float le, out PortraitAge a) => PortraitLibraryMath.AgeOf(y, le, out a);
-        C(!Age(1f, 80f, out _) && !Age(3.5f, 80f, out _) && !Age(float.NaN, 80f, out _), "a baby or a toddler: no picture");
-        C(Age(4f, 80f, out var a1) && a1 == PortraitAge.Child && Age(12.9f, 80f, out var a2) && a2 == PortraitAge.Child, "four to twelve: a child");
+        C(Age(0.4f, 80f, out var b0) && b0 == PortraitAge.Baby && Age(1f, 80f, out var b1) && b1 == PortraitAge.Toddler && Age(2.9f, 80f, out var b2) && b2 == PortraitAge.Toddler
+          && !Age(float.NaN, 80f, out _), "under one a baby, one to three a toddler (the youngest get pictures now)");
+        C(Age(3f, 80f, out var a1) && a1 == PortraitAge.Child && Age(12.9f, 80f, out var a2) && a2 == PortraitAge.Child, "three to twelve: a child");
+        C(PortraitLibraryMath.AgeOf(2.5f, 80f, GameStage.Baby, out var g1) && g1 == PortraitAge.Toddler && PortraitLibraryMath.AgeOf(0.5f, 80f, GameStage.Baby, out var g2) && g2 == PortraitAge.Baby
+          && PortraitLibraryMath.AgeOf(3.5f, 80f, GameStage.Child, out var g3) && g3 == PortraitAge.Child && PortraitLibraryMath.AgeOf(11f, 80f, GameStage.Adult, out var g4) && g4 == PortraitAge.Young,
+            "the game's own stage first: a baby under one, else a toddler; a child; a grown-up of another race grown early is young");
+        foreach (var (word, want) in new[] { ("baby", PortraitAge.Baby), ("toddler", PortraitAge.Toddler), ("child", PortraitAge.Child), ("young", PortraitAge.Young), ("adult", PortraitAge.Adult), ("old", PortraitAge.Old), ("teen", PortraitAge.Young), ("elder", PortraitAge.Old), ("middle", PortraitAge.Adult) })
+        {
+            var problems = new List<string>();
+            var r = PortraitLibraryMath.Record("A", k => k == "age" ? word : k == "texPath" ? "x" : k == "skinColor" || k == "hairColor" ? "#808080" : null, _ => null, problems);
+            C(problems.Count == 0 && r.age == want, $"the age word '{word}': {want}");
+        }
+        foreach (var (field, word, isRead) in new (string, string, Func<PortraitRecord, bool>)[]
+                 {
+                     ("hair", "buzzed", r => r.hair == PortraitHairStyle.Short), ("hair", "topknot", r => r.hair == PortraitHairStyle.Bun), ("hair", "dreadlocks", r => r.hair == PortraitHairStyle.Long),
+                     ("hair", "curly", r => r.hair == PortraitHairStyle.Medium), ("beard", "goatee", r => r.beard == PortraitBeard.Short), ("beard", "full beard", r => r.beard == PortraitBeard.Full),
+                     ("build", "muscular", r => r.build == PortraitBuild.Broad)
+                 })
+        {
+            var problems = new List<string>();
+            var r = PortraitLibraryMath.Record("A", k => k == field ? word : k == "texPath" ? "x" : k == "skinColor" || k == "hairColor" ? "#808080" : null, _ => null, problems);
+            C(problems.Count == 0 && isRead(r), $"the framework's word '{word}' for {field} read as the matcher's own");
+        }
         C(Age(13f, 80f, out var a3) && a3 == PortraitAge.Young && Age(23.9f, 80f, out var a4) && a4 == PortraitAge.Young, "13 to 23: young");
         C(Age(24f, 80f, out var a5) && a5 == PortraitAge.Adult && Age(59f, 80f, out var a6) && a6 == PortraitAge.Adult, "24 to 59: grown");
         C(Age(60f, 80f, out var a7) && a7 == PortraitAge.Old && Age(110f, 80f, out var a8) && a8 == PortraitAge.Old, "60 and over: old");
@@ -213,17 +234,17 @@ public static class PortraitLibraryTests
         C(!Pick(man, new List<PortraitRecord>(), 1).Any && !Pick(man, null!, 1).Any, "an empty library: no picture (the game's own face)");
         var p1 = Pick(man, samples, 1);
         C(p1.Any && p1.character == "sample_aldo" && samples[p1.index].variant == "base", "the closest face, in its plain variant");
-        // Marks follow the body: a lost eye takes the variant with it; a mark never shown on someone without it.
+        // Marks count in the first pick: someone who has lost an eye when first pictured gets the face's variant with the
+        // eye patch; a mark is never shown on someone without it. After that the picture is kept (PickAgain below).
         var oneEye = Look(PortraitSex.Male, PortraitAge.Adult, "#e0b898", "#4a3020", PortraitHairStyle.Short, PortraitBeard.Full, PortraitBuild.Broad, PortraitEra.Medieval, PortraitDress.Work, marks: new[] { "lostEye" });
-        var v1 = PortraitLibraryMath.Variant(oneEye, samples, "sample_aldo");
-        C(v1.Any && samples[v1.index].variant == "lostEye", "a lost eye: the same face's variant with the eye patch");
-        var v2 = PortraitLibraryMath.Variant(man, samples, "sample_aldo");
-        C(v2.Any && samples[v2.index].variant == "base", "both eyes: never the eye patch");
+        var v1 = Pick(oneEye, samples, 1);
+        C(v1.Any && samples[v1.index].variant == "lostEye", "a lost eye at the first pick: the same face's variant with the eye patch");
+        C(!PortraitLibraryMath.Shows(samples.First(r => r.variant == "lostEye"), man), "both eyes: never the eye patch");
         var oldAldo = Look(PortraitSex.Male, PortraitAge.Old, "#e0b898", "#a0a0a0", PortraitHairStyle.Short, PortraitBeard.Full, PortraitBuild.Broad, PortraitEra.Medieval, PortraitDress.Work);
-        var v3 = PortraitLibraryMath.Variant(oldAldo, samples, "sample_aldo");
-        C(v3.Any && samples[v3.index].variant == "older", "grown old: the same face's older variant");
+        var v3 = Pick(oldAldo, samples, 1);
+        C(v3.Any && samples[v3.index].variant == "older", "old at the first pick: the face's older variant");
         var bionic = Look(PortraitSex.Male, PortraitAge.Adult, "#e0b898", "#4a3020", PortraitHairStyle.Short, PortraitBeard.Full, PortraitBuild.Broad, PortraitEra.Medieval, PortraitDress.Work, marks: new[] { "bionicEye" });
-        var v4 = PortraitLibraryMath.Variant(bionic, samples, "sample_aldo");
+        var v4 = Pick(bionic, samples, 1);
         C(v4.Any && samples[v4.index].variant == "base", "a mark the face has no variant for (a bionic eye): its plain variant");
         C(PortraitLibraryMath.MarkKey("eyePatch") == "lostEye" && PortraitLibraryMath.Shows(samples.First(r => r.variant == "lostEye"), oneEye), "an eye patch is a lost eye");
         // The kind first.
@@ -259,7 +280,7 @@ public static class PortraitLibraryTests
         var pw = Pick(womanAldo, samples, 3);
         C(!pw.Any || samples[pw.index].sex != PortraitSex.Male, "a woman never gets a man's picture");
         var child = Look(PortraitSex.Male, PortraitAge.Child, "#e0b898", "#4a3020", PortraitHairStyle.Short, PortraitBeard.None, PortraitBuild.Average, PortraitEra.Medieval, PortraitDress.Work);
-        C(!Pick(child, samples, 3).Any, "a child never gets a grown man's picture");
+        C(!Pick(child, samples, 3).Any, "a child never gets a grown man's picture, even with the closest");
         var young = Look(PortraitSex.Male, PortraitAge.Young, "#e0b898", "#4a3020", PortraitHairStyle.Short, PortraitBeard.Full, PortraitBuild.Broad, PortraitEra.Medieval, PortraitDress.Work);
         var py = Pick(young, samples, 3);
         C(py.Any && py.character == "sample_aldo" && Near(py.distance, PortraitLibraryMath.NearAgeCost), "no young man's picture: a grown one stands in, further");
@@ -306,15 +327,20 @@ public static class PortraitLibraryTests
         C(Enumerable.Range(1, 30).All(id => Pick(twinLook, nearer, id).character == "near"), "the first person of a look always gets the closest face, not one a little further");
         var nearUses = new Dictionary<string, int> { ["near"] = 1 };
         C(Pick(twinLook, nearer, 5, c => nearUses.TryGetValue(c, out int u) ? u : 0).character == "browner", "the next alike person the next closest");
-        // Picking again.
-        C(PortraitLibraryMath.PickAgain(false, false, null!, "k", null!, "w", false, 0, 1, 9f, 0f), "nothing kept: picked");
-        C(!PortraitLibraryMath.PickAgain(true, true, "k", "k", "w", "w2", true, 1, 1, 3f, 0f), "a face kept for good: new clothes or dyed hair keep it");
-        C(PortraitLibraryMath.PickAgain(true, true, "k", "k2", "w", "w", true, 1, 1, 0f, 0f), "another kind or sex now: picked again");
-        C(PortraitLibraryMath.PickAgain(true, true, "k", "k", "w", "w", false, 1, 1, 0f, 0f), "the face gone from the library, or none of its variants may stand for them: picked again");
-        C(!PortraitLibraryMath.PickAgain(true, true, "k", "k", "w", "w", true, 1, 2, 3f, 2f) && PortraitLibraryMath.PickAgain(true, true, "k", "k", "w", "w", true, 1, 2, 3f, 1.5f),
-            "a grown library: picked again only for a face clearly closer");
-        C(PortraitLibraryMath.PickAgain(true, false, "k", "k", "w", "w", false, 1, 2, 9f, 9f) && PortraitLibraryMath.PickAgain(true, false, "k", "k", "w", "w2", false, 1, 1, 9f, 9f)
-          && !PortraitLibraryMath.PickAgain(true, false, "k", "k", "w", "w", false, 2, 2, 9f, 9f), "kept with no face close enough: looked at again when the library or their looks change");
+        // Picking again: chosen once and kept (the player, 22 November 2026), a child's next stage the one exception.
+        bool Again(bool kept = true, PortraitStage was = PortraitStage.Grown, PortraitStage now = PortraitStage.Grown, string pic = "p", bool there = true, bool pinned = false,
+            bool byHand = false, int keptLib = 1, int lib = 1, string keptWords = "w", string words = "w", bool pin = false) =>
+            PortraitLibraryMath.PickAgain(kept, was, now, pic, there, pinned, byHand, keptLib, lib, keptWords, words, pin);
+        C(Again(kept: false), "nothing kept: picked");
+        C(!Again(words: "w2") && !Again(lib: 2), "kept for good: an injury, a lost eye, new hair, a beard, new clothes (their looks' words change) or a grown library keep it");
+        C(Again(was: PortraitStage.Baby, now: PortraitStage.Toddler) && Again(was: PortraitStage.Toddler, now: PortraitStage.Child) && Again(was: PortraitStage.Child, now: PortraitStage.Grown),
+            "a child moving to the next stage (baby to toddler, toddler to child, child to grown-up): picked again");
+        C(!Again(was: PortraitStage.Grown, now: PortraitStage.Grown), "young to adult to old (one stage): kept");
+        C(Again(there: false), "the picture gone from the library: picked again");
+        C(Again(pic: "", lib: 2) && Again(pic: "", words: "w2") && !Again(pic: "", lib: 1), "kept with no picture: looked at again when the library or their looks change");
+        C(Again(pin: true) && !Again(pin: true, pinned: true) && !Again(pin: true, byHand: true), "a pin made for them takes the place of the matcher's pick, not of one chosen by hand");
+        C(PortraitLibraryMath.StageOf(PortraitAge.Young) == PortraitStage.Grown && PortraitLibraryMath.StageOf(PortraitAge.Old) == PortraitStage.Grown && PortraitLibraryMath.StageOf(PortraitAge.Toddler) == PortraitStage.Toddler,
+            "young, adult and old are one stage; a toddler its own");
 
         // ---------------- The views of a whole picture ----------------
         var lib = PortraitViewMath.Library;
@@ -365,17 +391,18 @@ public static class PortraitLibraryTests
         C(sources.Contains("interface IPortraitSource") && sources.Contains("Sources = { PortraitLibrary.Source }") && libSrc.Contains("public sealed class PortraitLibrary : IPortraitSource"),
             "the library is one portrait source of a list; another (a portrait painted live) is added there");
         C(engine.Contains("PortraitSources.Forget(id);") && engine.Contains("PortraitSources.NewGame();"), "the sources hear when the game marks a portrait dirty and when a game starts");
-        C(libSrc.Contains("DefDatabase<PortraitDef>.AllDefsListForReading") && defSrc.Contains("public class PortraitDef : Def") && defSrc.Contains("ContentFinder<Texture2D>.Get(texPath, false)")
-          && defSrc.Contains("public override IEnumerable<string> ConfigErrors()"), "a def per picture, from any mod; its texture the game's; what is wrong with it among the def errors");
-        C(libSrc.Contains("PortraitLibraryMath.Pick(look, records, id,") && libSrc.Contains("PortraitLibraryMath.Variant(look, records, k.character)") && libSrc.Contains("PortraitLibraryMath.PickAgain(")
-          && libSrc.Contains("keeper?.Set(id, pick.character,"), "each person matched, their face kept and its variant chosen for their body now");
+        C(libSrc.Contains("DefDatabase<PortraitDef>.AllDefsListForReading") && defSrc.Contains("public class PortraitDef : Def") && defSrc.Contains("Path.Combine(root, \"Portraits\")")
+          && defSrc.Contains("ContentFinder<UnityEngine.Texture2D>.Get(texPath, false)") && defSrc.Contains("public override IEnumerable<string> ConfigErrors()"),
+            "a def per picture, from any mod; its file under the mod's Portraits folder, else a texture the game loaded; what is wrong with it among the def errors");
+        C(libSrc.Contains("PortraitLibraryMath.Pick(look, records, id,") && libSrc.Contains("PortraitLibraryMath.PinFor(look, records,") && libSrc.Contains("PortraitLibraryMath.PickAgain(")
+          && libSrc.Contains("keeper.Set(id, pick.Any ? records[pick.index].name") && !libSrc.Contains("Variant("), "each person matched (their pin first), the picture kept for good, no variant following the body");
         C(libSrc.Contains("ColonyCouncilMod.Settings?.portraitLibrary ?? true") && libSrc.Contains("records.Count > 0"), "with the setting off or no pictures, the game's own face");
         C(Regex.Matches(libSrc, @"\[DebugAction\(""Rimfolk"", ""Portraits: ").Count == 3 && libSrc.Contains("best matches with their scores"),
             "dev actions: the best matches with their scores in the log, pick one person's again, everyone's");
         C(keeper.Contains("Scribe_Collections.Look(ref kept, \"kept\", LookMode.Deep);") && keeper.Contains("public const int MaxKept = 400;") && keeper.Contains("ForgetAfterDays"),
             "the faces kept in the save, at most 400, a stranger not pictured for a long while let go");
         C(reader.Contains("p.story.SkinColor") && reader.Contains("p.story.HairColor") && reader.Contains("p.style?.beardDef") && reader.Contains("p.apparel?.WornApparel")
-          && reader.Contains("p.DevelopmentalStage.Baby()") && reader.Contains("genes.Xenotype") && reader.Contains("p.story.bodyType") && reader.Contains("Hediff_MissingPart")
+          && reader.Contains("GameStageOf(p)") && reader.Contains("genes.Xenotype") && reader.Contains("p.story.bodyType") && reader.Contains("Hediff_MissingPart")
           && reader.Contains("BodyPartTagDefOf.SightSource") && reader.Contains("g.def.renderNodeProperties"), "a pawn's looks read from the game's own data, for any mod's race, xenotype, hair, beard and clothes");
         C(reader.Contains("ContentFinder<Texture2D>.Get(def.texPath + \"_south\", false)") && reader.Contains("PortraitLibraryMath.HairFromShape(rows, S)") && reader.Contains("hairs[def] = h;"),
             "a hair its words don't tell: its front texture measured once");
@@ -454,7 +481,7 @@ public static class PortraitLibraryTests
             ("a hussar woman, a tan skin, long brown hair, spacer (no hussar pictures yet)", L(F, PortraitAge.Adult, "e49e5a", "594030", PortraitHairStyle.Long, PortraitBeard.None, PortraitEra.Spacer, "hussar")),
             ("an impid man, horns and pointed ears (no impid pictures yet)", L(M, PortraitAge.Adult, "e49e5a", "1a1a1a", PortraitHairStyle.Short, PortraitBeard.None, PortraitEra.Tribal, "impid", new[] { "horns", "pointedEars" })),
             ("a dark elf woman (no dark elf pictures yet)", L(F, PortraitAge.Adult, "6a6f8a", "e8e8f0", PortraitHairStyle.Long, PortraitBeard.None, PortraitEra.Medieval, "devdesigner_xenotypedarkelves", new[] { "pointedEars" })),
-            ("a toddler of two", null),
+            ("a girl of two (a toddler)", L(F, PortraitAge.Toddler, "ffefbd", "e8cc90", PortraitHairStyle.Short, PortraitBeard.None, PortraitEra.Medieval)),
         };
     }
 
@@ -472,7 +499,8 @@ public static class PortraitLibraryTests
         sb.AppendLine("sheets: the first wave's prompt list (`docs/portrait-art/prompts.csv`) is read as a library, each row a face of its own");
         sb.AppendLine("with the painted mid-tones of its words (skin s1 #f1d6c2 to s5 #5a3a28), and each sample person, with their skin and");
         sb.AppendLine("hair in the game's own colours, is matched against the trial's 16 pictures and against all 200. The score is the");
-        sb.AppendLine("distance (0 is their exact look; above " + PortraitLibraryMath.CloseEnough.ToString("0") + " the game's own face is kept); the last column gives the nearest three of the 200.");
+        sb.AppendLine("distance (0 is their exact look); with \"the closest\" (the setting's first choice) the nearest is shown however far, with \"only close");
+        sb.AppendLine("ones\" a picture further than " + PortraitLibraryMath.CloseEnough.ToString("0") + " gives way to the game's own face. The last column gives the nearest three of the 200.");
         sb.AppendLine();
         sb.AppendLine("| Person | Trial (16) | All 200 | Nearest of the 200 |");
         sb.AppendLine("|---|---|---|---|");
@@ -482,23 +510,18 @@ public static class PortraitLibraryTests
         for (int row = 0; row < samples.Length; row++)
         {
             var (who, look) = samples[row];
-            if (look == null)
-            {
-                C(!PortraitLibraryMath.AgeOf(2f, 80f, out _), "the table: a toddler keeps the game's own face");
-                sb.AppendLine($"| {who} | the game's own face | the game's own face (no picture for a baby or a toddler) | |");
-                continue;
-            }
+            if (look == null) continue;
             int seed = 97 * (row + 1);
             string Cell(List<PortraitRecord> lib, bool count)
             {
                 var pick = PortraitLibraryMath.Pick(look, lib, seed, c => count && used.TryGetValue(c, out int u) ? u : 0);
-                if (!pick.Any) return float.IsInfinity(pick.distance) ? "the game's own face (none of their kind, sex and age)" : $"the game's own face (nearest {pick.distance:0.0})";
+                if (!pick.Any) return "the game's own face (none of their kind, sex and stage)";
                 if (count)
                 {
                     used[pick.character] = used.TryGetValue(pick.character, out int u2) ? u2 + 1 : 1;
                     allPicks.Add(pick.character);
                 }
-                return $"`{lib[pick.index].name}` ({pick.distance:0.0})";
+                return $"`{lib[pick.index].name}` ({pick.distance:0.0}" + (pick.distance > PortraitLibraryMath.CloseEnough ? "; with only close ones, the game's own face)" : ")");
             }
             string trialCell = Cell(trial, false), allCell = Cell(wave, true);
             if (allPicks.Count < row + 1) allPicks.Add("");
@@ -518,8 +541,9 @@ public static class PortraitLibraryTests
             sb.AppendLine("one by their own id.");
         sb.AppendLine("A kind with no pictures of its own gets a baseliner's where it looks near a human (the hussar),");
         sb.AppendLine("else the game's own face (the impid's horns, the dark elf's grey skin); once a kind's pictures are in, its people get");
-        sb.AppendLine("only theirs. A person keeps their face for good; when their body changes (a lost eye, a scar, growing old) the face's");
-        sb.AppendLine("variant with that mark is shown where the library has one.");
+        sb.AppendLine("only theirs. A baby or a toddler only ever gets a baby's or a toddler's picture, a child a child's (the first wave has");
+        sb.AppendLine("none, so the girl of two keeps the game's own face). A person keeps the picture first chosen for good, whatever happens");
+        sb.AppendLine("to their body or clothes; a child gets a new one when they grow into the next stage.");
         string dir = Path.Combine(root, "docs", "portrait-previews");
         Directory.CreateDirectory(dir);
         string path = Path.Combine(dir, "matcher.md");

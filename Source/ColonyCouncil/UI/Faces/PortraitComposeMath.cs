@@ -3,7 +3,7 @@ using System;
 namespace ColonyCouncil
 {
     /// <summary>The setting "Backdrop" behind the large portrait: as painted (the player's choice), lightly softened, softened, or none (the portrait's own ground).</summary>
-    public enum PortraitBackdropMode : byte
+    public enum PortraitBackdropMode
     {
         AsPainted,
         LightlySoftened,
@@ -12,7 +12,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>The setting "Line round the person": off (the player's choice to start with), subtle, or stronger.</summary>
-    public enum PortraitOutlineMode : byte
+    public enum PortraitOutlineMode
     {
         Off,
         Subtle,
