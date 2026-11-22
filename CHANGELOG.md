@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Painted portraits in the game
+
+*22 November 2026, version 0.293.0*
+
+- Painted portraits from your own library folder (setting: Portrait library folder): your colonists get the pictures made for them, and everyone else the closest picture of their own kind, or the game's drawing when their kind has none yet.
+- A picture is chosen once and kept; it changes only when someone grows into the next stage of life or grows old, and a colonist's picture is never given to anyone else.
+- The large portrait shows a painted backdrop of where the person is: the kind of room, its age and what is in it, or the land outdoors, a little darker at night.
+- New settings for the backdrop (as painted, lightly softened, softened or plain), a line round the person and a tint to the room's light; a right click on the large portrait chooses another picture.
+- The painted picture shows on every Rimfolk card and letter, not only on the large portrait.
+- Pictures are read only when shown and kept in a small cache, and Rimfolk writes what it found missing (kinds, ages, rooms, land) into the library folder for the next batches.
+
 ## A bigger portrait, and room for painted faces
 
 *21 November 2026, version 0.292.0*

@@ -16439,7 +16439,7 @@ placeholder pictures and sample defs in `Tools/Tests/PortraitFixtures/` (never s
   player's 79 xenotypes; how the game names a texture loaded from a mod's folder (the defs name theirs, so this no
   longer matters).
 
-### Portraits, phase 4: the painted library in the game, with backdrops (the player's go, 22 November 2026; not released yet)
+### Portraits, phase 4: the painted library in the game, with backdrops (the player's go, 22 November 2026; released 0.293.0)
 
 The player's words (22 November 2026): "now what is the plan to actually get this into the game now? Like a first
 attempt ... let's just start with the colonists that I have as a first batch ... the framework should then allow,

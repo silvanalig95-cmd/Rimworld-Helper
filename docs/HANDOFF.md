@@ -1098,7 +1098,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **Portraits, phase 4: the painted
+- 0.293.0, **Portraits, phase 4: the painted
   library in the game, with backdrops** (22 November 2026; the player: "now what is the plan to actually get this into
   the game now? Like a first attempt ... let's just start with the colonists that I have as a first batch ... the
   framework should then allow, additions of many, many more images from all kinds of different races, sexes, ages ... It
