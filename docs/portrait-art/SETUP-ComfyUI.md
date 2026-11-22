@@ -89,7 +89,7 @@ The first picture after this downloads the BiRefNet model (a few hundred MB) by 
 Saving only the cut-out (the remover's picture going to the one Save Image box) is fine too: the batch tool names a
 picture `..._cut` whenever it comes from the remover, whatever the box is called. For the backdrops, keep a second
 export without the remover, named with "rimfolk" and "workflow" in it (the player's: `rimfolk-backgrounds-workflow-
-api.json`): the tool takes the one with the remover for people and the one without it for `style-backdrop` by itself,
+api.json`): the tool takes the one with the remover for people and the one without it for a backdrop style (`"cut": false`) by itself,
 and says which it used. (With only one workflow, it takes the remover out of the way for the backdrops.)
 
 The guidance number in the style files only counts with a **FluxGuidance** box between the prompt box and the KSampler's

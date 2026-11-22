@@ -175,7 +175,7 @@ solution. I mean, I cannot upload that many images to you to edit."
   the ComfyUI-RMBG node pack; `SETUP-ComfyUI.md` step 6) saves a transparent copy of every picture next to it
   (`..._cut.png`), with no work per picture. Tested here on the first five Daubrez pictures: clean edges even on the
   loose, brushy hair, and the painted seal the style sometimes adds in a corner goes with the background.
-- **Backdrops, in the same style**: `batches/backdrops.csv` with `style-backdrop` (no cut-out): twelve kinds of room in
+- **Backdrops, in the same style**: `batches/backdrops.csv` with `style-rimworld-backdrops` (no cut-out): twelve kinds of room in
   the four ages of the colony (tribal, medieval, industrial, spacer: bedroom, barracks, hospital, prison cell, throne
   room, dining room, common room, kitchen, workshop, study, shrine, storeroom), sixteen outdoor looks that the player's
   56 biomes fall into (temperate and boreal forest, tundra, ice, grassland, shrubland, desert, jungle, swamp, coast,

@@ -1,0 +1,24 @@
+{
+  "label": "People in the game's own look: the rmwstyle LoRA (trained on the game's art) at 0.7 with the SameFace fix at -0.7; black ink lines, no light outline. Worded like the training captions.",
+  "style": "rmwstyle, a character portrait with black ink lines and cel shading,",
+  "frame": "A medium close-up, cut off by the bottom edge of the picture at the belt: only the head, shoulders, chest and arms are in the picture, large and close, the head near the top and about a third of the picture's height. One person alone, bare-headed with the hair in full view. A plain dark grey background.",
+  "style_end": "",
+  "negative": "",
+  "width": 1024,
+  "height": 1280,
+  "count": 2,
+  "guidance": 3.5,
+  "steps": 28,
+  "sampler_name": "euler",
+  "scheduler": "simple",
+  "loras": [
+    {
+      "name": "rmwstyle.safetensors",
+      "strength": 0.7
+    },
+    {
+      "name": "SameFace_Fix.safetensors",
+      "strength": -0.7
+    }
+  ]
+}

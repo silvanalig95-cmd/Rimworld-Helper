@@ -676,6 +676,12 @@ most sense." So, in this order, three builds at a time:
   fourteen portraits from their storyteller mods. Done: round 2 of the set (47 pictures, 18 characters: the storytellers
   at full size from the wiki with face close-ups, eleven of the mods' portraits; STYLE-RIMWORLD.md), sent as a zip.
   Asked of the player: the Anomaly and Odyssey key art at full size, if they have it.
+  Then the LoRA trained (2,256 steps; the paging file had to be made bigger first) and the first test: "the outline is
+  indeed noticeable on almost every one of the pawns. I don't think I like it ... a black outline is great and fits the
+  theme, but should not be like a light one. It should just be black always", "please have the same face fix included in
+  these new style templates", and "the naming conventions for the styles could be a bit more descriptive". Done:
+  `style-rimworld-people` (rmwstyle 0.7, SameFace -0.7, worded like the training captions, no outline or rim light words)
+  and `style-rimworld-backdrops`; the `style-rmw*` files removed; ORDER.md lists what the batches folder needs.
 - **Go given (22 November 2026, the player: "go ahead with the image delete feature"); built, not released: delete a
   picture for good from the game.** The entry "Delete a picture for good from the game" above the newest release line
   says what was built. The player: "what i would like in the game is a feature that when i really don't like an image,

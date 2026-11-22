@@ -45,7 +45,7 @@ lead's scratchpad (`build2.py`).
 1. Install **Pinokio** (https://pinokio.co), open it, **Discover**, search **FluxGym**, **Install** (one click; it sets up
    its own Python). It downloads FLUX.1 Dev for itself the first time it trains: about 35 GB, so keep space free.
 2. Start FluxGym from Pinokio. Fill in:
-   - **The name of your LoRA**: `rmwstyle` (the name of the file it makes, which `style-rmw.json` asks for);
+   - **The name of your LoRA**: `rmwstyle` (the name of the file it makes, which the `style-rimworld-*` files ask for);
      **Trigger word/sentence**: `rmwstyle`.
    - **Base model**: `flux-dev`; **VRAM**: `16G` (not 20G: that needs more memory than your card has).
    - **Expected training steps** fills in by itself once the pictures are in: it should read 2256.
@@ -76,14 +76,16 @@ The player's first training (22 November 2026): 2,256 steps in 1 hour 50 minutes
 `rmwstyle-000008`, `rmwstyle`). First the paging file was too small for FLUX (Windows error 1455): fixed by setting
 Windows' virtual memory to 32 to 64 GB and restarting.
 
-1. Copy `rmwstyle.safetensors` and `rmwstyle-000008.safetensors` into ComfyUI's `models\loras` (ComfyUI Desktop:
-   `Documents\ComfyUI\models\loras`) and press R in ComfyUI (or restart it).
-2. Run `style-test` (ten people, fixed seeds, so each comes out the same way in every style) with each of:
-   - `style-rmw`: the last save at 0.9;
-   - `style-rmw-e8`: the save after epoch 8 at 0.9 (if the last one copies the training faces);
-   - `style-rmw-07`: the last save at 0.7 (more of FLUX's own faces, a little less of the style);
-   - `style`: the Daubrez style of before, to compare.
-   The pictures land side by side in `output\Rimfolk\style-test`, each name carrying its style.
-3. Copy the one you like over `style.json` (keep the old one as `style-daubrez.json`). Every list takes its drawing from
-   `style.json`; a library made in one style stays in it, so choose before making the big lists.
-4. Later: train again with 20 to 40 of our own best pictures in this style added, so the LoRA leans less on the eighteen.
+1. Copy `rmwstyle.safetensors` into ComfyUI's `models\loras` (ComfyUI Desktop: `Documents\ComfyUI\models\loras`)
+   and press R in ComfyUI (or restart it). The player took the last save.
+2. The style files, `batches/style-rimworld-people.json` and `style-rimworld-backdrops.json`: the LoRA at 0.7 (the
+   player's choice after the first test), with the SameFace fix at -0.7 for people.
+3. The first test (`style-test`) gave a white and light-blue border around every figure, like a sticker, while the
+   training samples had only the black ink line on plain grey. The cause was the first style file's words ("a comic
+   illustration", "outlines heavier along the silhouette", "a cool rim light along the edges"), which push FLUX to that
+   look. The player: "a black outline is great and fits the theme, but should not be like a light one. It should just be
+   black always." So the style files now use the training captions' own wording: `rmwstyle`, the subject, "a plain dark
+   grey background", and "black ink lines and cel shading", with no outline or rim light words.
+4. If a light edge still shows: train again with the DLC pictures' captions naming their blue rim light ("a cool blue
+   light along his edges"), so the LoRA ties it to those words and not to `rmwstyle`.
+5. Later: train again with 20 to 40 of our own best pictures in this style added, so the LoRA leans less on the eighteen.

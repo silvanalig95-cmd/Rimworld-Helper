@@ -15,9 +15,9 @@ must run all these programs and scripts". The details of each step are in `SETUP
    - `rimfolk-depth-workflow-api.json`: depth maps, Depth Anything 3 (step 9);
    - `rimfolk-variant-workflow-api.json`: expressions, FLUX.1 Kontext Dev (step 10).
 4. In RimWorld, Rimfolk's settings, "Portrait library folder": the path of `Rimfolk-portraits\library`.
-5. The style, until it's chosen: train the `rmwstyle` LoRA (`STYLE-RIMWORLD.md`), then run `style-test` with
-   `style-rmw` and with the comic candidates `style-comic-a` to `e`, and compare them with `style`. Copy the one you like
-   over `style.json` (keep the old one under another name). Every list takes its drawing from `style.json`.
+5. The style: `style-rimworld-people` for people and `style-rimworld-backdrops` for backdrops (the player's own
+   `rmwstyle` LoRA, trained on the game's art, `STYLE-RIMWORLD.md`). Copy `rmwstyle.safetensors` and
+   `SameFace_Fix.safetensors` into ComfyUI's `models\loras`. The workflow needs two LoRA boxes (`SETUP-ComfyUI.md`).
 
 ### Starting a new library
 1. Move the old `library` folder out of `Rimfolk-portraits` (or rename it `library-old`). The copier makes a new, empty
@@ -38,9 +38,9 @@ must run all these programs and scripts". The details of each step are in `SETUP
 
 ## Each round
 
-1. `Run-PortraitBatch.ps1`: a people list with `style`, overnight. In a new library: first `colonists` (your own people),
-   then `characters-01`, `02`, `03` (every kind of person, each with a face of their own), then `people-01` to `04`.
-2. `Run-PortraitBatch.ps1` with `backdrops` and `style-backdrop`, when you want more backdrops.
+1. `Run-PortraitBatch.ps1`: a people list with `style-rimworld-people`, overnight. In a new library: first `colonists`
+   (your own people), then `characters-01`, `02`, `03` (every kind of person, each with a face of their own).
+2. `Run-PortraitBatch.ps1` with `backdrops` and `style-rimworld-backdrops`, when you want more backdrops.
 3. In `output\Rimfolk`: delete the pictures you don't want.
 4. `Copy-ToLibrary.cmd` (in `output\Rimfolk`): the new pictures into the library; it writes the records.
 5. `Check-Pictures.cmd`: the model looks at each new picture; it writes `library\check-report.csv` and `corrections.csv`.
@@ -53,3 +53,12 @@ must run all these programs and scripts". The details of each step are in `SETUP
 
 The check comes before the depth maps and expressions, so a picture it leaves out gets none. Steps 4 to 9 only ever
 handle what's new and can be run again at any time. Steps 8 and 9 are optional.
+
+## What the batches folder needs
+
+- Lists: `characters-01`, `02`, `03` (the varied people), `colonists` (your own people, with their pins),
+  `backdrops`, and `style-test` (ten people with fixed seeds, to try a style change on before a big run).
+- Styles: `style-rimworld-people` and `style-rimworld-backdrops`.
+Everything else from earlier kits can go (`people-01` to `04`, `colonists-redo`, `age-test`, and the older styles:
+`style`, `style-backdrop`, `style-nosameface`, `style-comic-a` to `e`, `style-rmw`, `style-rmw-07`, `style-rmw-e8`).
+
