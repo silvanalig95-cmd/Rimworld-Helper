@@ -137,8 +137,8 @@ DRESS = {
     'tribal': {'work': ['hide and woven-fibre clothing with bone beads', 'a fur-trimmed leather tunic and a carved pendant'],
                'rags': ['torn, patched hides'], 'fine': ['finely worked furs and rich beadwork'],
                'robes': ['a long woven robe hung with bone charms'], 'armour': ['hide armour with bone plates']},
-    'medieval': {'work': ['a wool tunic over a linen shirt', 'a leather jerkin over a linen shirt', 'a wool dress with a plain cloak'],
-                 'rags': ['a ragged, patched tunic'], 'fine': ['an embroidered doublet and a fur-trimmed cloak', 'an embroidered gown and a fine cloak'],
+    'medieval': {'work': ['a wool tunic over a linen shirt', 'a leather jerkin over a linen shirt', 'f:a wool dress with a plain cloak'],
+                 'rags': ['a ragged, patched tunic'], 'fine': ['an embroidered doublet and a fur-trimmed cloak', 'f:an embroidered gown and a fine cloak'],
                  'robes': ['a plain hooded robe with the hood down'], 'armour': ['a padded gambeson under a mail shirt']},
     'industrial': {'work': ['a canvas work jacket over a collared shirt', 'a long duster coat and a scarf', 'a buttoned waistcoat with rolled shirt sleeves'],
                    'rags': ['a torn, patched coat'], 'fine': ['a tailored waistcoat under a long coat', 'a well-cut suit jacket'],
@@ -517,6 +517,19 @@ HAIR_WORD_HEX = {'black': '#1c1a19', 'brown': '#5a3d27', 'light brown': '#8a6a4a
                  'purple': '#9a6ad0', 'pink': '#e48ab8', 'orange': '#d97a2b', 'yellow': '#e8d070'}
 
 
+GROWN_ONLY = re.compile(r'stare|build|frame|beard|powerful neck|\bwoman\b|\bman\b|wrinkled|muscled|regal|bearing|intimidating|fierce|brutish|'
+                        r'stocky|powerful|alluring|tall|hard soldier')
+
+
+def child_look(text):
+    """A kind's look for its little ones: the parts that grow with age (a stare, a build, a beard) left out."""
+    parts = [p.strip() for p in re.split(r',\s+(?=(?:a|an|the|two|one|small|long|large)\s)|\s+and\s+(?=(?:a|an|the|two|one|small|long|large)\s)', text) if p.strip()]
+    kept = [p for p in parts if not GROWN_ONLY.search(p)]
+    if not kept:
+        return ''
+    return ', '.join(kept[:-1]) + (' and ' if len(kept) > 1 else '') + kept[-1]
+
+
 class Full(Exception):
     """The run's rows are all planned (--max-rows)."""
 
@@ -622,7 +635,7 @@ class Planner:
             opening += ', clearly a grown adult'
         parts = []
         if k.look:
-            parts.append(k.look)
+            parts.append(child_look(k.look) if little else k.look)
         parts.append(skin[2] if skin[2] else '')
         colour = hair[2] if hair[2] else ''
         if k.noun != 'hair':
@@ -676,11 +689,19 @@ class Planner:
                 sentences.append(m['prompt'][:1].upper() + m['prompt'][1:] + '.')
         if rrow:
             sentences.append('%s: %s.' % (rrow['label'][:1].upper() + rrow['label'][1:], rrow[era]))
+        clothed = any(re.search(r'\b(robe|robes|armour|gear|clothes|clothing|cloak|coat|wrap)\b', self.looks[lw].prompt)
+                      for lw in looks if lw in self.looks)
         if little:
             sentences.append('%s wears %s.' % (he.capitalize(), rng.choice(LITTLE_DRESS[age])) if age != 'baby'
                              else 'Wrapped in %s.' % rng.choice(LITTLE_DRESS['baby']))
+        elif clothed:
+            text = ' '.join(self.looks[lw].prompt for lw in looks if lw in self.looks)
+            dress = ('robes' if re.search(r'\brobes?\b', text) else 'armour' if re.search(r'\b(armour|gear)\b', text)
+                     else 'rags' if re.search(r'stained|rumpled|very little', text) else 'work')
+            sentences.append(HARDSHIP[hardship])
         else:
-            clothes = rng.choice(DRESS[era][dress]) if not rrow else ''
+            options = [d[2:] if d.startswith('f:') else d for d in DRESS[era][dress] if sex == 'female' or not d.startswith('f:')]
+            clothes = rng.choice(options) if not rrow else ''
             wear = '%s wears %s' % (he.capitalize(), clothes + ', ' if clothes else '') if clothes else '%s wears' % he.capitalize()
             sentences.append('%s %s.' % (wear, 'a gaunt, grimy face' if dress == 'rags' else WEALTH[wealth]))
             sentences.append(HARDSHIP[hardship])
