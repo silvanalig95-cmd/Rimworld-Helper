@@ -522,7 +522,13 @@ most sense." So, in this order, three builds at a time:
   Then the player, testing with backdrops only: "when no appropriate image can be found for a pawn, and it just shows its
   default sprite ... it still takes backdrop from the library, right? That's the least it can do." It didn't (0.293.0
   puts the backdrop behind painted pictures only): added to the looks build, the backdrop behind the game's own drawing
-  on the large portrait too.
+  on the large portrait too (with a setting, the player: "that could be toggleable").
+  The player's first look at 0.293.0 in the game (Avila's picture on the large portrait and the colonist card: "it's
+  working and looking pretty great, not gonna lie"), three changes, sent to the same build: "They should ... always
+  look the same direction if they're represented on different parts of the UI" (painted pictures never mirrored); "I'd
+  rather ... see as much as I can ... It can show as much as the image ... generates" (the large portrait shows the
+  whole picture, its shape 5:4 tall); "a really minor, small offset between the bottom of its body and where the UI
+  continues below" (the body runs to the panel's bottom edge; breathing and sway anchored at the bottom).
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
