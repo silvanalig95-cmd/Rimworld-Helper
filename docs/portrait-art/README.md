@@ -1,5 +1,9 @@
 # Rimfolk's portrait library: how to make the pictures
 
+Since 22 November 2026 the pictures are made on your own computer with ComfyUI from batch lists the lead writes: the
+framework is `FRAMEWORK.md`, the setup `SETUP-ComfyUI.md`, and which lists to make next, with everything a person in your
+game can look like, `catalogue/README.md`. The rest of this page is the earlier way (prompts typed into an image AI).
+
 Rimfolk shows each person as a painted head-and-shoulders portrait chosen from a library: it picks the picture closest
 to the pawn (kind, sex, age, skin, hair colour and length, beard, build, the age of their clothes) and keeps it for that
 pawn for good. The full plan, with the faster ways to make many pictures at once, is `PLAN.md`.
