@@ -420,8 +420,8 @@ function Find-Backdrops {
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File | Sort-Object Name)) {
             $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
             if (Is-Extra $stem) { continue }
-            if (Is-Deleted $f.FullName $deleted) { $script:DeletedSkipped++; continue }
             if (-not ($isBacks -or $listed.ContainsKey(($dir.Name + '/' + $stem).ToLowerInvariant()))) { continue }
+            if (Is-Deleted $f.FullName $deleted) { $script:DeletedSkipped++; continue }
             [void]$found.Add([pscustomobject]@{
                 path = $f.FullName; show = ($dir.Name + '\' + $f.Name); stem = $stem
                 depth = (Join-Path $dir.FullName ($stem + '_depth.png'))
