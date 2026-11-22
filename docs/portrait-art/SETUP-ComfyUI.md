@@ -89,6 +89,11 @@ The guidance number in the style files only counts with a **FluxGuidance** box b
 
 Rimfolk reads your chosen pictures straight from a folder, the **library**: `library\` next to `Run-PortraitBatch.ps1`,
 with one folder per batch (`library\colonists`, `library\backdrops`: the batch's name, as in `batches\<batch>.csv`).
+**With one double-click**: put `Copy-ToLibrary.ps1` and `Copy-ToLibrary.cmd` into ComfyUI's `output\Rimfolk` folder
+(or into one batch's folder in it). Throw out the pictures you don't want there, then double-click
+`Copy-ToLibrary.cmd`: it copies every new picture into the library folder of its batch (people's cut-outs only,
+backdrops all), skips what is already there, never renames anything, and writes the records again. The first time it
+asks where your `Rimfolk-portraits` folder is. Then "Reload the library" in the game. By hand it goes like this:
 1. Copy the pictures you want in the game into those folders, with the names ComfyUI gave them: for people the cut-outs
    (`..._cut_00001_.png`; Ape's from `colonists-redo` go into `library\colonists` too, her row is in `colonists.csv`),
    for backdrops the scenes. Several backdrops of one room are fine; the game picks among them.
