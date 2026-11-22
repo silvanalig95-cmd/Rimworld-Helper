@@ -481,6 +481,30 @@ most sense." So, in this order, three builds at a time:
   its kind is in the library (told to the build agent).
   **Built** (22 November 2026, not released; the entry "Portraits, phase 4: the painted library in the game, with
   backdrops" above the newest release line): all of the above in the game, the library folder and missing.csv with it.
+- **To do when the player asks (22 November 2026, the player; nothing built yet): what the library lacks kept in the
+  save, and special looks that only their own picture fits.** The player: "Maybe the mod can also then log in the log
+  files or in the save, ideally, because that I regularly provide to you. For example, when pawns are in a certain
+  location/biome where there isn't an appropriate background ... or if like a trait appears where they could be visually
+  displayed, but there's no appropriate background image for it yet ... the game learns or kind of logs what's could be
+  expanded on and kind of tracks that ... ideally in the save. So we always have like ideas where the image library
+  could be enhanced even further. And what I will also do soon is provide you with my current mod list, so you can
+  review that for all the possible xenotypes, and then also about ... any other potential special things that a pawn
+  could have that would require a dedicated image ... I know there's a co-join twins mod ... That should then, of course,
+  also be visible. Or if there are certain traits like this, co-join twin, that the game then rather shows no image than
+  ... a really not fitting one instead." The lead's proposal:
+  1. The list `missing.csv` holds (kinds, ages, rooms by kind and age, land) kept in the save as well, one line per need
+     with a count and the last day seen, capped (about 200 lines, the oldest dropped), with a dev-mode action that
+     writes it to the log; so every save the player sends carries it.
+  2. Looks that traits give a face (a drinker, a pyromaniac, a psychopath, beautiful or ugly, and so on: the "look"
+     words of the big library) logged the same way when a pawn has one and the library has no picture of their kind
+     with it.
+  3. Special looks: a list of bodies, genes and health conditions that change a person so much that only a picture made
+     for them fits (first: the conjoined twins of Conjoined Twins, `multimind.conjoinedtwins`, body
+     `MultiMind_ConjoinedHumanBody`; then wings such as AG_BatWings and VRE_InsectWings, extra arms or heads, and what the
+     review finds). A pawn with one gets no painted picture unless a picture's record names that look, and it is
+     logged as missing.
+  4. The player's mod list reviewed when they send it: every xenotype and race (for look sheets and how each ages) and
+     every special look, against `docs/player-mods` (rebuilt from the new list).
 - **To do when the player asks (22 November 2026, the player; after the first test works): the library, big and
   varied.** "after we did now the first successful test, the library should really be comprehensive and big and include
   many varieties in it. Maybe an alcoholic looks like one. And maybe a pyromaniac or a psychopath has a bit of a crazy
