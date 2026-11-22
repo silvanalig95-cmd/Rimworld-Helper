@@ -529,6 +529,12 @@ most sense." So, in this order, three builds at a time:
   rather ... see as much as I can ... It can show as much as the image ... generates" (the large portrait shows the
   whole picture, its shape 5:4 tall); "a really minor, small offset between the bottom of its body and where the UI
   continues below" (the body runs to the panel's bottom edge; breathing and sway anchored at the bottom).
+  And: "the profession can and should also be reflected in how they look like. For example, if someone is doing a lot
+  of science, has high intelligence, and then it can also look like a scientist ... for the whole database ... and
+  soldiers being soldiers". So a `role` in the records (scholar, doctor, soldier, warrior, hunter, scout, builder,
+  miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer), read by the game from a
+  pawn's adulthood backstory or best passionate skill and matched softly (to the looks build), planned as an axis with
+  its clothes, tools and poses per age of dress (to the catalogue build); the library script writes a `role` column.
 - **To do when the player asks (22 November 2026, the player; for later, after seeing the pictures in the game):
   painted portraits a little more alive.** The player: "what we can also do with animations, in a sense that perhaps we
   can make the pawns, even though their image is generated, a little bit more alive. I don't know if it's moving on the
