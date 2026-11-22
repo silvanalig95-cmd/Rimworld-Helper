@@ -200,6 +200,43 @@ namespace ColonyCouncil
             Version++;
         }
 
+        /// <summary>Who keeps this picture now (their ids).</summary>
+        public List<int> HoldersOfPicture(string picture)
+        {
+            var ids = new List<int>();
+            if (picture.NullOrEmpty()) return ids;
+            foreach (var k in kept)
+                if (k.picture == picture)
+                    ids.Add(k.id);
+            return ids;
+        }
+
+        /// <summary>
+        /// A picture deleted for good (UI/Faces/PortraitDelete.cs): everyone keeping it keeps no picture and no face now, so
+        /// the face is no longer held for them, and each gets a new pick by the usual rules the next time they are shown
+        /// (their pins first, then the closest free face, else the game's own drawing). Whether they are one of the
+        /// colony's own stays, so a colonist's new face is theirs alone as the old one was. Returns their ids.
+        /// </summary>
+        public List<int> LetGoPicture(string picture)
+        {
+            var ids = new List<int>();
+            if (picture.NullOrEmpty()) return ids;
+            foreach (var k in kept)
+            {
+                if (k.picture != picture) continue;
+                Use(k.character, -1);
+                k.picture = "";
+                k.character = "";
+                k.pinned = false;
+                k.byHand = false;
+                // Not the library now: picked again when next shown (PortraitLibraryMath.PickAgain).
+                k.library = 0;
+                ids.Add(k.id);
+            }
+            if (ids.Count > 0) Version++;
+            return ids;
+        }
+
         /// <summary>Everyone's faces let go (the dev action to pick everyone's again).</summary>
         public void DropAll()
         {

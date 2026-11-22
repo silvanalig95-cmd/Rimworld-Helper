@@ -37,6 +37,8 @@ namespace ColonyCouncil
         public int width, height;
         public HeadMeasure head;
         public int lastUsed;
+        /// <summary>Deleted for good (UI/Faces/PortraitDelete.cs): never loaded again, and what is still being read let go when it comes.</summary>
+        public bool gone;
 
         public float Shape => height > 0 ? (float)width / height : 1f;
     }
@@ -82,7 +84,7 @@ namespace ColonyCouncil
         /// <summary>The picture's texture where it is ready (it is marked as shown now), else null and its loading asked for.</summary>
         public static Texture2D Get(PictureFile f)
         {
-            if (f == null) return null;
+            if (f == null || f.gone) return null;
             switch (f.state)
             {
                 case PictureFile.State.Ready:
@@ -156,6 +158,11 @@ namespace ColonyCouncil
         private static void Start(PictureFile f)
         {
             if (f.state != PictureFile.State.Queued) return;
+            if (f.gone)
+            {
+                f.state = PictureFile.State.None;
+                return;
+            }
             f.state = PictureFile.State.Loading;
             loading++;
             int longSide = PortraitPictureMath.LongSideFor(Prefs.UIScale);
@@ -180,6 +187,11 @@ namespace ColonyCouncil
         /// <summary>The game decodes the file (on its own thread, as it must), then the worker measures, scales and edges it.</summary>
         private static void Decode(PictureFile f, byte[] bytes, Exception ex, int longSide)
         {
+            if (f.gone)
+            {
+                Forgotten(f);
+                return;
+            }
             if (ex != null || bytes == null || bytes.Length == 0)
             {
                 Fail(f, ex?.Message ?? "an empty file");
@@ -249,6 +261,11 @@ namespace ColonyCouncil
 
         private static void Upload(PictureFile f, Processed p, Exception ex)
         {
+            if (f.gone)
+            {
+                Forgotten(f);
+                return;
+            }
             if (ex != null || p == null)
             {
                 Fail(f, ex?.Message ?? "nothing came of it");
@@ -292,6 +309,24 @@ namespace ColonyCouncil
             if (f.texture != null) UnityEngine.Object.Destroy(f.texture);
             f.texture = null;
             f.state = PictureFile.State.None;
+        }
+
+        /// <summary>A picture deleted for good while it was being read: nothing is made of it.</summary>
+        private static void Forgotten(PictureFile f)
+        {
+            loading = Math.Max(0, loading - 1);
+            f.state = PictureFile.State.None;
+        }
+
+        /// <summary>
+        /// A picture deleted for good (UI/Faces/PortraitDelete.cs): its texture let go now, or, while it is still being read,
+        /// as soon as the reading is done; it is never loaded again.
+        /// </summary>
+        public static void LetGo(PictureFile f)
+        {
+            if (f == null) return;
+            f.gone = true;
+            if (f.state == PictureFile.State.Ready) Drop(f);
         }
 
         /// <summary>Every picture let go (the dev action, and the settings' size change).</summary>

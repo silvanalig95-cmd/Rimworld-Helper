@@ -250,6 +250,18 @@ namespace ColonyCouncil
             return true;
         }
 
+        /// <summary>
+        /// The backdrop the large portrait shows behind this person now (its record's name, for its menu's "Delete this
+        /// backdrop for good"), or null where it shows none: no backdrop found for where they are, "Backdrop" plain, or the
+        /// game's own drawing with "Backdrop behind the game's own drawing too" off.
+        /// </summary>
+        public static string BackdropShown(Pawn p)
+        {
+            if (p == null || !stageLooks.TryGetValue(p.thingIDNumber, out var look) || look.backdrop == null || look.backRecord == null) return null;
+            var d = PortraitComposeMath.WhatToDraw(PortraitSources.For(p)?.file != null, true, BackdropMode, BehindGame);
+            return d == PortraitStageDraw.PaintedOnBackdrop || d == PortraitStageDraw.GameOnBackdrop ? look.backRecord.name : null;
+        }
+
         private static Staged Latest(int pawn, string picture)
         {
             Staged best = null;

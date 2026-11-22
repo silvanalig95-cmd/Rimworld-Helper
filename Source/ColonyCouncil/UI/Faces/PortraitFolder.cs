@@ -39,9 +39,12 @@ namespace ColonyCouncil
         /// <summary>What the last reading found, for the settings' tooltip and the log.</summary>
         public static string Status = "";
 
-        private static bool reading, told;
+        private static bool reading, told, waitedByHand;
         private static float retryAt = -1f;
         private static int tries;
+
+        /// <summary>The folder is being read on a worker now (a picture isn't deleted meanwhile).</summary>
+        public static bool Reading => reading;
 
         private const float RetryIn = 60f;
         private const int TriesMost = 10;
@@ -64,13 +67,56 @@ namespace ColonyCouncil
         /// <summary>A picture's file in the folder, the same object for the same path across readings (so a picture once loaded stays loaded).</summary>
         public static PictureFile FileOf(string key, string texPath, bool cutOut)
         {
-            string path = Path.Combine(Folder, PortraitFolderMath.FileKey(texPath).Replace('/', Path.DirectorySeparatorChar));
+            string path = PathOf(texPath);
             if (!files.TryGetValue(path, out var f))
             {
                 f = new PictureFile { key = key, file = path, texPath = texPath, cutOut = cutOut };
                 files[path] = f;
             }
             return f;
+        }
+
+        private static string PathOf(string texPath) => Path.Combine(Folder, PortraitFolderMath.FileKey(texPath).Replace('/', Path.DirectorySeparatorChar));
+
+        /// <summary>A person's picture read from the folder (not an expression) by its record's name, or null.</summary>
+        public static FolderPortrait PersonNamed(string name) => name.NullOrEmpty() ? null : People.Find(p => p.record.name == name && !p.record.IsExpression);
+
+        /// <summary>A backdrop read from the folder by its record's name, or null.</summary>
+        public static FolderBackdrop BackdropNamed(string name) => name.NullOrEmpty() ? null : Backdrops.Find(b => b.record.name == name);
+
+        /// <summary>
+        /// Pictures deleted for good in the game (UI/Faces/PortraitDelete.cs): their records taken out of what was read,
+        /// and their files let go (the textures, and their entries here, so a new file at the same place is read anew); the
+        /// library and the backdrops are then read again from what is left, without reading the folder again. Returns how
+        /// many records were taken out.
+        /// </summary>
+        public static int Forget(ICollection<string> names)
+        {
+            if (names == null || names.Count == 0) return 0;
+            int n = 0;
+            foreach (var p in People.Where(x => names.Contains(x.record.name)).ToList())
+            {
+                LetGoFile(p.texPath);
+                People.Remove(p);
+                n++;
+            }
+            foreach (var b in Backdrops.Where(x => names.Contains(x.record.name)).ToList())
+            {
+                LetGoFile(b.texPath);
+                if (!b.depthPath.NullOrEmpty()) LetGoFile(b.depthPath);
+                Backdrops.Remove(b);
+                n++;
+            }
+            if (n > 0) Version++;
+            return n;
+        }
+
+        private static void LetGoFile(string texPath)
+        {
+            string path = PathOf(texPath);
+            if (!files.TryGetValue(path, out var f)) return;
+            PortraitStore.LetGo(f);
+            files.Remove(path);
         }
 
         /// <summary>Reads the folder (again) on a worker thread; <paramref name="byHand"/> (the settings' button) tells the player what came of it.</summary>
@@ -98,6 +144,15 @@ namespace ColonyCouncil
                 return;
             }
             if (reading) return;
+            // A picture being deleted for good: read once it is written, so the reading never brings back what it takes out.
+            if (PortraitDelete.Running)
+            {
+                waitedByHand |= byHand;
+                retryAt = Time.realtimeSinceStartup + 1f;
+                return;
+            }
+            byHand |= waitedByHand;
+            waitedByHand = false;
             reading = true;
             retryAt = -1f;
             PortraitStore.Run(() => Read(folder), (got, ex) => Done(folder, got, ex, byHand), false);

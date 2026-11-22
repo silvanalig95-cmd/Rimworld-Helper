@@ -880,6 +880,8 @@ namespace ColonyCouncil
         public bool portraitBackdropAlive = true;
         /// <summary>The player's portrait library folder (records.xml and the pictures, UI/Faces/PortraitFolder.cs); empty: none.</summary>
         public string portraitFolder = "";
+        /// <summary>A painted picture deleted for good from the large portrait's menu: its files moved to the bin next to the library folder (the default), or deleted (UI/Faces/PortraitDelete.cs).</summary>
+        public PortraitDeleteMode portraitDelete = PortraitDeleteMode.Bin;
         /// <summary>Where each of Rimfolk's windows was left and how big, as "key=x;y;w;h" (UI/WindowFrameMath.cs), set by moving them.</summary>
         public System.Collections.Generic.List<string> windowPlaces = new System.Collections.Generic.List<string>();
 
@@ -1380,6 +1382,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref portraitBackdropAlive, "portraitBackdropAlive", true);
             Scribe_Values.Look(ref portraitFolder, "portraitFolder", "");
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars) portraitFolder ??= "";
+            Scribe_Values.Look(ref portraitDelete, "portraitDelete", PortraitDeleteMode.Bin);
             Scribe_Collections.Look(ref windowPlaces, "windowPlaces", LookMode.Value);
             if (Scribe.mode == LoadSaveMode.PostLoadInit || Scribe.mode == LoadSaveMode.LoadingVars)
                 windowPlaces ??= new System.Collections.Generic.List<string>();
