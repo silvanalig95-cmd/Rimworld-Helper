@@ -33,6 +33,14 @@
   <CC_PortraitPick_OnlyClose>Only close ones</CC_PortraitPick_OnlyClose>
   <CC_SetNote_PortraitPick_Closest>Everyone gets the picture closest to their looks, of their own kind and sex and a near age.</CC_SetNote_PortraitPick_Closest>
   <CC_SetNote_PortraitPick_OnlyClose>Only pictures that look close to the person are shown; the others keep the game's own face.</CC_SetNote_PortraitPick_OnlyClose>
+  <CC_SetLabel_PortraitShare>Strangers may share a picture</CC_SetLabel_PortraitShare>
+  <CC_SetTip_PortraitShare>A painted picture of one of your people (colonists, slaves, prisoners) is theirs alone, and a faction leader's, a titled noble's or one of the colony's named contacts' is theirs alone while they live. Everyone else (raiders, traders, visitors, guests) gets a picture nobody holds where there is one. This says whether they may get one another stranger already holds when none is free. "Never": no, they keep the game's own drawing. "When not seen together": only while the stranger holding it is on no map, and if two with the same picture meet on the maps, the one who got it later gets another or the game's drawing. "Always": yes, for a small library. Pictures of a special look (conjoined twins, wings) may always be shared among strangers.</CC_SetTip_PortraitShare>
+  <CC_PortraitShare_Never>Never</CC_PortraitShare_Never>
+  <CC_PortraitShare_NotTogether>When not seen together</CC_PortraitShare_NotTogether>
+  <CC_PortraitShare_Always>Always</CC_PortraitShare_Always>
+  <CC_SetNote_PortraitShare_Never>A stranger only gets a picture nobody else holds; otherwise the game's own drawing.</CC_SetNote_PortraitShare_Never>
+  <CC_SetNote_PortraitShare_NotTogether>Strangers may share a picture while they are never on the maps at the same time.</CC_SetNote_PortraitShare_NotTogether>
+  <CC_SetNote_PortraitShare_Always>Strangers may share pictures freely, for a small library.</CC_SetNote_PortraitShare_Always>
   <CC_SetLabel_PortraitBackdrop>Backdrop</CC_SetLabel_PortraitBackdrop>
   <CC_SetTip_PortraitBackdrop>Behind the person in the large portrait (a painted picture, and the game's own drawing where "Backdrop behind the game's own drawing too" is on), a painted backdrop of where the person is: indoors the kind of room, the colony's age and what is in the room; outdoors the kind of land; darker and cooler at night. "As painted" shows it as it was painted. "Lightly softened" blurs it a little and makes it slightly darker and less colourful. "Softened" blurs it more and makes it darker, so the person stands out more. "Plain" shows no backdrop, only the portrait's own colour.</CC_SetTip_PortraitBackdrop>
   <CC_PortraitBackdrop_AsPainted>As painted</CC_PortraitBackdrop_AsPainted>
@@ -70,6 +78,7 @@
   <CC_PortraitNeed_NoRoom>no backdrop of this kind of room</CC_PortraitNeed_NoRoom>
   <CC_PortraitNeed_NoAge>none of the colony's age</CC_PortraitNeed_NoAge>
   <CC_PortraitNeed_NoLand>no backdrop for {GROUP}</CC_PortraitNeed_NoLand>
+  <CC_PortraitNeed_NoFree>no free picture: those that fit are other people's</CC_PortraitNeed_NoFree>
   <CC_PortraitNeed_NoLook>no picture of their kind shows this look</CC_PortraitNeed_NoLook>
   <CC_PortraitNeed_NoSpecialLook>a special look no picture of their kind shows, so the game's own drawing</CC_PortraitNeed_NoSpecialLook>
   <CC_Settings_PortraitBackdropGame>Backdrop behind the game's own drawing too</CC_Settings_PortraitBackdropGame>

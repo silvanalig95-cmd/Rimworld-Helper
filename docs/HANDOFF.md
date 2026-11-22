@@ -1196,8 +1196,10 @@ repo.
   also based on an actual pawn's characteristic, and only then also this image is loaded"; "it still takes backdrop from
   the library, right? That's the least it can do", toggleable; "always look the same direction"; "I'd rather, you know,
   see as much as I can"; "a really minor, small offset between the bottom of its body and where the UI continues
-  below"). DESIGN.md "Portraits, phase 5: looks, special looks and what the library lacks" has every rule; README
-  "Portraits"; the Almanac's guide, its portrait sentence.
+  below"; "it should not be that the same image comes over and over again frequently ... once one of my colonists has an
+  image, that image is definitely locked and exclusive to that colonist per save ... Rather have a pawn assign no image and
+  we build up the library further in the meanwhile"). DESIGN.md "Portraits, phase 5: looks, special looks and what the
+  library lacks" has every rule; README "Portraits"; the Almanac's guide, its portrait sentence.
   - **Looks** (the new `ColonyCouncil.PortraitLookDef`: `word`, `label`, `special`, `traits` with an optional `:degree`,
     `genes`, `hediffs`, `bodies`, `prompt`; every name soft): a person has a look when they have any of them; records
     name theirs in `<looks>` (an unknown word a record problem). A picture showing a look stands only for those who
@@ -1227,6 +1229,16 @@ repo.
     drawing stands in front of the backdrop of where they are, softened and darkened as set, with a soft dark shadow
     behind it and, with "Line round the person" on, a thin dark line (dark copies of the drawing, nothing read back).
     Off, or "Backdrop" Plain, or no backdrop found: the plain panel as in 0.293.0.
+  - **Who may share a picture** (replaces 0.293.0's "an unused one before a used one"; per save, a new game starts with
+    every picture free): the player's own (colonists, slaves, and now prisoners) hold their face for good; notables (a
+    faction's leader, a royal title of knight or higher, the colony's named contacts: Rimfolk's towns' heads, heirs,
+    envoys, traders and acquaintances) hold theirs while they live and matter, the player's own outranking them;
+    strangers get a face nobody keeps first, else one another stranger keeps as the new setting "Strangers may share a
+    picture" says (Never; When not seen together, the default: only while that stranger is on no map; Always), else the
+    game's drawing; two strangers with one face on the maps at once: the later gives way. Special looks' pictures may be
+    shared among strangers. Recruiting, enslaving, capturing or becoming notable holds the face at once. Someone with no
+    picture is looked at again every half minute; missing.csv tells "no free picture" apart from "no picture of their
+    kind". `KeptPortrait.notable` saved.
   - **The three changes from the first look**: painted pictures never mirrored anywhere (the game's drawing still turns);
     the large portrait shows the whole painted picture at its shape (5:4 tall; the size setting its width; square for
     the game's drawing), the colonist card as much of the picture as fits, head at the top; no gap under the body (the
@@ -1235,8 +1247,8 @@ repo.
   - Code: new `UI/Faces/PortraitLookDef.cs` (the def, `PortraitLooks`), pure `PortraitLookMath.cs` (rules, the book,
     work); changed `PortraitLibraryMath.cs` (looks and role in records and the matcher, `LooksAgree`, `SpecialsAgree`,
     `LacksSpecial`, `LooksLacking`), `PortraitReader.cs` (looks and work), `PortraitDef.cs`, `PortraitFolder.cs`,
-    `PortraitLibrary.cs` (special looks for kept pictures, `NoteOnce`), `PortraitNeeds.cs` (`PortraitNeedsKept`, the dev
-    action), `PortraitFolderMath.cs` (columns, save lines, the cap), `FaceEngineStage.cs` (the whole picture,
+    `PortraitLibrary.cs` (special looks for kept pictures, who may share a face, `NoteOnce`), `PortraitKeeper.cs` (a
+    notable's hold), `PortraitNeeds.cs` (`PortraitNeedsKept`, the dev action), `PortraitFolderMath.cs` (columns, save lines, the cap), `FaceEngineStage.cs` (the whole picture,
     `DrawGameStaged`), `FaceEngine.cs` (the game drawing's tint and line), `FaceEnginePictures.cs` and
     `PortraitViewMath.cs` (no mirroring, the tall tile, the foot), `PortraitPictureMath.cs` (`TallFor`, `SolidFoot`,
     `BackdropPart`; the crop by size gone), `PortraitComposeMath.cs` (any shape, `WhatToDraw`, `GameLine`),
@@ -1257,8 +1269,12 @@ repo.
     Rimfolk, How you're told, Portraits): the plain panel again. In dev mode, spawn a conjoined twin (Conjoined Twins'
     conjoined colonist): the game's own drawing, never a painted picture, and a look line "conjoinedTwins" in the list.
     Give a colonist the pyromaniac trait and pick their picture again ("Portraits: pick the selected people's painted
-    portraits again"): a line "look, ..., pyromaniac" in missing.csv after saving. Run "Portraits: what the library lacks
-    (log)" and send the log, and a save.
+    portraits again"): a line "look, ..., pyromaniac" in missing.csv after saving. With a small library, let a few
+    visitors or traders come: each gets a picture nobody holds while there are some, then the game's drawing, never the
+    picture of a stranger on the map at the time ("Portraits: the selected people's pictures ..." says whether they are
+    the colony's own, a notable or a stranger); capture one and look at another stranger with the same picture: they get
+    another or the game's drawing. Try "Strangers may share a picture" on Always and on Never. Run "Portraits: what the
+    library lacks (log)" and send the log, and a save.
   - Mods that would help: none needed (the pictures are the player's own). Conjoined Twins
     (https://steamcommunity.com/sharedfiles/filedetails/?id=3808663984) and Alpha Genes, Fairycore and Vanilla Races
     Expanded - Insector, Hussar are already in the list and give the special looks above.

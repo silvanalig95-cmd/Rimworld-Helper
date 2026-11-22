@@ -714,6 +714,9 @@ namespace ColonyCouncil
             Toggle("portraitLibrary", "CC_Settings_PortraitLibrary", "CC_SetNote_PortraitLibrary");
             Choice("portraitPick", "CC_SetLabel_PortraitPick", "CC_SetTip_PortraitPick", "CC_PortraitPick_", "CC_SetNote_PortraitPick_", new[] { "Closest", "OnlyClose" },
                 "portraitLibrary");
+            // Portraits, phase 5 (the player, 22 November 2026): whether strangers may share a picture.
+            Choice("portraitShare", "CC_SetLabel_PortraitShare", "CC_SetTip_PortraitShare", "CC_PortraitShare_", "CC_SetNote_PortraitShare_", new[] { "Never", "NotTogether", "Always" },
+                "portraitLibrary");
             // The player's own library folder (UI/Faces/PortraitFolder.cs): its path, and reading it again.
             var folder = Action("portraitFolderRow", "CC_Settings_PortraitFolder", "CC_Settings_PortraitFolder_Tip", "CC_SetNote_PortraitFolder", "portraitLibrary");
             folder.covers = new[] { "portraitFolder" };

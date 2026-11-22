@@ -212,6 +212,64 @@ public static class PortraitLookTests
           && PortraitLookMath.RoleFromSkills(new[] { S("Fishing", 15, 2) }, false) == null && PortraitLookMath.RoleFromSkills(null!, false) == null,
             "equal levels: the burning passion; a disabled skill, a modded one or none: no work");
 
+        // ---------------- Who holds a face: the player's own, notables, strangers ----------------
+        {
+            var own = PortraitRank.Own;
+            var notable = PortraitRank.Notable;
+            var stranger = PortraitRank.Stranger;
+            var owners = PortraitLibraryMath.Owners(new[]
+            {
+                (1, "a", 100, notable), (2, "a", 500, own), (3, "b", 100, notable), (4, "b", 50, notable), (5, "c", 10, stranger), (6, "d", 900, own),
+                (7, "e", 5, notable)
+            }, new[] { new KeyValuePair<string, int>("e", 8) });
+            C(owners["a"] == 2, "one of the player's own outranks a notable who had the face first (recruiting someone who had it)");
+            C(owners["b"] == 4, "of two notables, the one who had it first");
+            C(!owners.ContainsKey("c"), "a stranger's face is nobody's own");
+            C(owners["d"] == 6 && owners["e"] == 8, "a colonist's face theirs; a face pinned to a colonist theirs above everyone");
+            C(PortraitLibraryMath.Owners(new[] { (3, "x", 9), (4, "x", 2) }, null)["x"] == 4, "the older form: all the player's own, the first to have it");
+
+            // May a stranger get a face another stranger keeps?
+            C(!PortraitLibraryMath.MayShare(PortraitShareMode.Never, false, false) && !PortraitLibraryMath.MayShare(PortraitShareMode.Never, false, true),
+                "\"Never\": a face another stranger keeps never goes to a second");
+            C(PortraitLibraryMath.MayShare(PortraitShareMode.NotTogether, false, false) && !PortraitLibraryMath.MayShare(PortraitShareMode.NotTogether, false, true),
+                "\"When not seen together\": only while the one keeping it is on no map");
+            C(PortraitLibraryMath.MayShare(PortraitShareMode.Always, false, true), "\"Always\": shared freely, for a small library");
+            C(PortraitLibraryMath.MayShare(PortraitShareMode.Never, true, true), "a special look's picture (conjoined twins, wings) may always be shared among strangers");
+
+            // Two strangers with one face on the maps: the later one gives way.
+            var older = new[] { (10, 100, true) };
+            C(PortraitLibraryMath.GivesWay(PortraitShareMode.NotTogether, false, 11, 200, true, older), "two strangers with one face on the maps: the one who got it later gives way");
+            C(!PortraitLibraryMath.GivesWay(PortraitShareMode.NotTogether, false, 11, 200, false, older) && !PortraitLibraryMath.GivesWay(PortraitShareMode.NotTogether, false, 11, 200, true, new[] { (10, 100, false) }),
+                "not while either of them is off the maps (never seen together)");
+            C(!PortraitLibraryMath.GivesWay(PortraitShareMode.NotTogether, false, 9, 50, true, older), "the one who had it first keeps it");
+            C(PortraitLibraryMath.GivesWay(PortraitShareMode.NotTogether, false, 12, 100, true, older) && !PortraitLibraryMath.GivesWay(PortraitShareMode.NotTogether, false, 9, 100, true, older),
+                "got at the same moment: the lower id keeps it");
+            C(PortraitLibraryMath.GivesWay(PortraitShareMode.Never, false, 11, 200, false, new[] { (10, 100, false) }), "\"Never\": the later one gives way wherever they are");
+            C(!PortraitLibraryMath.GivesWay(PortraitShareMode.Always, false, 11, 200, true, older) && !PortraitLibraryMath.GivesWay(PortraitShareMode.NotTogether, true, 11, 200, true, older),
+                "\"Always\", or a special look's picture: nobody gives way");
+
+            // The pick: a free face first, wherever there is one; else a shareable one; else none.
+            PortraitRecord Face(string name, string hair) => new PortraitRecord
+            {
+                name = name, sex = PortraitSex.Male, age = PortraitAge.Adult, skin = Hex("#c9a27e"), skinSet = true, hairColour = Hex(hair), hairColourSet = true
+            };
+            var lib = new List<PortraitRecord> { Face("near", "#2a2a2a"), Face("far", "#e8cc90") };
+            var man = Person();
+            var usedNear = new Dictionary<string, int> { ["near"] = 1 };
+            int Used(string c) => usedNear.TryGetValue(c, out int u) ? u : 0;
+            var free = PortraitLibraryMath.Pick(man, lib, 3, Used, null, (_, _) => true);
+            C(free.Any && free.character == "far" && PortraitLibraryMath.Distance(man, lib[1]) > PortraitLibraryMath.Distance(man, lib[0]),
+                "a face nobody keeps before a nearer one someone keeps (\"it should not be that the same image comes over and over again\")");
+            var allUsed = new Dictionary<string, int> { ["near"] = 1, ["far"] = 2 };
+            var none = PortraitLibraryMath.Pick(man, lib, 3, c => allUsed[c], null, (_, _) => false);
+            C(!none.Any && none.crowded, "every fitting face someone else's and none to share: no picture (the game's drawing), told as no free picture");
+            var shared = PortraitLibraryMath.Pick(man, lib, 3, c => allUsed[c], null, (c, _) => c == "far");
+            C(shared.Any && shared.character == "far", "only a face that may be shared is shared");
+            C(PortraitLibraryMath.Pick(man, lib, 3, c => allUsed[c]).character == "near", "with no rule given, the fewest kept: the nearest");
+            C(!PortraitLibraryMath.Pick(man, lib, 3, _ => 0, c => true).Any && PortraitLibraryMath.Pick(man, lib, 3, _ => 0, c => true).crowded && !PortraitLibraryMath.Pick(man, new List<PortraitRecord>(), 3, _ => 0).crowded,
+                "faces another's own are never given (no free picture); an empty library is no crowding");
+        }
+
         // ---------------- What the library lacks, kept in the save ----------------
         {
             PortraitNeed Need(string what, string kind, int count, int day, string look = "", string date = "2026-11-22") =>
@@ -336,11 +394,25 @@ public static class PortraitLookTests
         C(stage.Contains("public static bool DrawGameStaged(") && stage.Contains("PortraitComposeMath.WhatToDraw(false, look.backdrop != null, mode, true)")
           && stage.Contains("if (PortraitSources.For(p) != null) return false;") && stage.Contains("DrawShadow(r, cam, shadow);"),
             "the game's drawing on a backdrop only where the library has no picture for them, with its shadow");
+        string keeperSrc = Read("UI/Faces/PortraitKeeper.cs");
+        C(lib2.Contains("|| p.IsPrisonerOfColony") && lib2.Contains("p.Faction.leader == p || PortraitReader.Titled(p)") && lib2.Contains("notableIds.Add(n.pawn.thingIDNumber)")
+          && lib2.Contains("PortraitLibraryMath.Owners(keeper?.Holders, pinned)"),
+            "the player's own (colonists, slaves, prisoners) and notables (leaders, titled nobles, the colony's named contacts) hold their faces");
+        C(lib2.Contains("keeper.SetNotable(k, rank == PortraitRank.Notable)") && lib2.Contains("SweepNotables(keeper);") && keeperSrc.Contains("Scribe_Values.Look(ref notable, \"notable\");")
+          && keeperSrc.Contains("!k.reserved && !k.notable && now - k.seen"), "a notable's hold kept in the save, set at once, let go when they die or no longer matter");
+        C(lib2.Contains("!GivesWay(k, id, records[keptAt], rank, keeper)") && lib2.Contains("(c, r) => MayShare(c, r, id, rank, keeper)") && lib2.Contains("map.mapPawns.AllPawnsSpawned")
+          && lib2.Contains("CC_PortraitNeed_NoFree") && lib2.Contains("retryAt[id] = now + RetryEvery;"),
+            "strangers: a free face first, sharing as the setting says, the later of two on the maps giving way, no free picture told and looked at again");
         string settings = Read("CouncilSettings.cs");
+        C(settings.Contains("public PortraitShareMode portraitShare = PortraitShareMode.NotTogether;")
+          && settings.Contains("Scribe_Values.Look(ref portraitShare, \"portraitShare\", PortraitShareMode.NotTogether);") && SettingsCatalog.Find("portraitShare")?.section == "CC_SetSec_Portraits",
+            "the setting \"Strangers may share a picture\", when not seen together by default, under Portraits");
         C(settings.Contains("public bool portraitBackdropGame = true;") && settings.Contains("Scribe_Values.Look(ref portraitBackdropGame, \"portraitBackdropGame\", true);")
           && SettingsCatalog.Find("portraitBackdropGame")?.section == "CC_SetSec_Portraits", "the setting \"Backdrop behind the game's own drawing too\", on, under Portraits");
         string keyed = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Portraits.xml"));
-        foreach (var k in new[] { "CC_Settings_PortraitBackdropGame", "CC_Settings_PortraitBackdropGame_Tip", "CC_SetNote_PortraitBackdropGame", "CC_PortraitNeed_NoLook", "CC_PortraitNeed_NoSpecialLook" })
+        foreach (var k in new[] { "CC_Settings_PortraitBackdropGame", "CC_Settings_PortraitBackdropGame_Tip", "CC_SetNote_PortraitBackdropGame", "CC_PortraitNeed_NoLook", "CC_PortraitNeed_NoSpecialLook",
+                     "CC_PortraitNeed_NoFree", "CC_SetLabel_PortraitShare", "CC_SetTip_PortraitShare", "CC_PortraitShare_Never", "CC_PortraitShare_NotTogether", "CC_PortraitShare_Always",
+                     "CC_SetNote_PortraitShare_Never", "CC_SetNote_PortraitShare_NotTogether", "CC_SetNote_PortraitShare_Always" })
             C(keyed.Contains("<" + k + ">"), $"the words: {k}");
         return n;
     }

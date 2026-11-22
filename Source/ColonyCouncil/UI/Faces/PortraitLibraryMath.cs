@@ -67,6 +67,26 @@ namespace ColonyCouncil
         OnlyClose
     }
 
+    /// <summary>"Strangers may share a picture": never, when not seen together (the player's choice), or always (for a small library).</summary>
+    public enum PortraitShareMode
+    {
+        Never,
+        NotTogether,
+        Always
+    }
+
+    /// <summary>
+    /// Whose a picture may be (the player, 22 November 2026): a stranger's (raiders, traders, visitors, guests), a notable's
+    /// (faction leaders, titled nobles, the colony's named contacts) held by them alone while they live, or one of the
+    /// player's own people's (colonists, slaves, prisoners) held by them alone for good; the higher rank wins.
+    /// </summary>
+    public enum PortraitRank : byte
+    {
+        Stranger,
+        Notable,
+        Own
+    }
+
     public enum PortraitHairStyle : byte
     {
         Bald,
@@ -228,6 +248,8 @@ namespace ColonyCouncil
         public int index;
         public string character;
         public float distance;
+        /// <summary>No picture given though some would fit them: every fitting one is held by someone else (for the missing list's "no free picture").</summary>
+        public bool crowded;
 
         public bool Any => index >= 0;
 
@@ -1099,27 +1121,42 @@ namespace ColonyCouncil
         public static uint Mix(int seed) => unchecked(((uint)seed * 2654435761u) ^ ((uint)seed >> 15) * 40503u);
 
         /// <summary>
-        /// A new pick for a person: of the nearest few characters (each by its nearest picture that may stand for them),
-        /// those fewest others keep (<paramref name="usesOf"/>, by character), the nearest of them, and among equally near
-        /// ones one by their own id. The closest is picked however far (the setting decides whether it is shown), and where
-        /// the nearest is close enough the few are all close enough. So the first person of a look gets the closest face,
-        /// and the next alike person the next closest. A face <paramref name="taken"/> by another (a colonist's own) is
-        /// never picked.
+        /// A new pick for a person (the player, 22 November 2026: "it should not be that the same image comes over and over
+        /// again frequently ... Rather have a pawn assign no image and we build up the library further in the meanwhile"):
+        /// a face nobody else keeps (<paramref name="usesOf"/>, by character) wherever there is one that may stand for them;
+        /// else a face others keep where it may be shared (<paramref name="mayShare"/>, with its nearest picture; none given:
+        /// any); else none (the game's own drawing, <see cref="PortraitPick.crowded"/> where faces fit but none was free).
+        /// Of those, the nearest few characters (each by its nearest picture), the fewest others keep, the nearest of them,
+        /// and among equally near ones one by their own id. The closest is picked however far (the setting decides whether
+        /// it is shown), and where the nearest is close enough the few are all close enough. So the first person of a look
+        /// gets the closest face, and the next alike person the next closest free one. A face <paramref name="taken"/> by
+        /// another (a colonist's or a notable's own) is never picked.
         /// </summary>
-        public static PortraitPick Pick(PortraitLook l, IList<PortraitRecord> records, int seed, Func<string, int> usesOf, Func<string, bool> taken = null)
+        public static PortraitPick Pick(PortraitLook l, IList<PortraitRecord> records, int seed, Func<string, int> usesOf, Func<string, bool> taken = null,
+            Func<string, PortraitRecord, bool> mayShare = null)
         {
             var d = Distances(l, records);
             var best = new Dictionary<string, int>();
+            bool fits = false;
             for (int i = 0; i < d.Length; i++)
             {
                 if (float.IsInfinity(d[i])) continue;
+                fits = true;
                 string c = records[i].Character;
                 if (taken != null && taken(c)) continue;
                 if (!best.TryGetValue(c, out int j) || d[i] < d[j] || d[i] == d[j] && string.CompareOrdinal(records[i].name, records[j].name) < 0) best[c] = i;
             }
-            if (best.Count == 0) return PortraitPick.None;
-            float nearest = best.Values.Min(i => d[i]);
-            var few = best.Values.Where(i => d[i] <= nearest + FewWithin && (nearest > CloseEnough || d[i] <= CloseEnough))
+            // A face nobody else keeps first; else one that may be shared; else none.
+            var pool = best.Values.Where(i => (usesOf?.Invoke(records[i].Character) ?? 0) == 0).ToList();
+            if (pool.Count == 0) pool = best.Values.Where(i => mayShare == null || mayShare(records[i].Character, records[i])).ToList();
+            if (pool.Count == 0)
+            {
+                var none = PortraitPick.None;
+                none.crowded = fits;
+                return none;
+            }
+            float nearest = pool.Min(i => d[i]);
+            var few = pool.Where(i => d[i] <= nearest + FewWithin && (nearest > CloseEnough || d[i] <= CloseEnough))
                 .OrderBy(i => d[i]).ThenBy(i => records[i].Character, StringComparer.Ordinal).Take(FewMost).ToList();
             int least = few.Min(i => usesOf?.Invoke(records[i].Character) ?? 0);
             // Of those fewest others keep, the nearest; among equally near, one by the pawn's own id.
@@ -1272,31 +1309,69 @@ namespace ColonyCouncil
             return pinFitNow > keptPinFit && !keptByHand;
         }
 
+        /// <summary>Whose each reserved face is, all of the player's own: <see cref="Owners(IEnumerable{ValueTuple{int, string, int, PortraitRank}}, IEnumerable{KeyValuePair{string, int}})"/>.</summary>
+        public static Dictionary<string, int> Owners(IEnumerable<(int id, string character, int since)> reserved, IEnumerable<KeyValuePair<string, int>> pinned) =>
+            Owners(reserved?.Select(r => (r.id, r.character, r.since, PortraitRank.Own)), pinned);
+
         /// <summary>
         /// Whose each reserved face is (the player, 22 November 2026: "once a pawn is part of my colony, their image should no
-        /// longer be used for anyone else"): of those keeping a face reserved (<paramref name="reserved"/>: id, face, since
-        /// when), the one who had it first, then the lower id. A face pinned to a colonist is reserved for them from the start
-        /// (<paramref name="pinned"/>: face, owner; -1 for a pin naming no one, so no one else gets it either).
+        /// longer be used for anyone else", and of the colony's contacts "maybe they also get not that their images are
+        /// repeated"): of those keeping a face reserved (<paramref name="holders"/>: id, face, since when, rank: the player's
+        /// own or a notable; a stranger's holds nothing), the highest rank, then the one who had it first, then the lower
+        /// id. A face pinned to a colonist is reserved for them from the start, above everyone (<paramref name="pinned"/>:
+        /// face, owner; -1 for a pin naming no one, so no one else gets it either).
         /// </summary>
-        public static Dictionary<string, int> Owners(IEnumerable<(int id, string character, int since)> reserved, IEnumerable<KeyValuePair<string, int>> pinned)
+        public static Dictionary<string, int> Owners(IEnumerable<(int id, string character, int since, PortraitRank rank)> holders, IEnumerable<KeyValuePair<string, int>> pinned)
         {
             var owners = new Dictionary<string, int>(StringComparer.Ordinal);
-            var first = new Dictionary<string, (int since, int id)>(StringComparer.Ordinal);
+            var first = new Dictionary<string, (PortraitRank rank, int since, int id)>(StringComparer.Ordinal);
             if (pinned != null)
                 foreach (var kv in pinned)
                     if (!string.IsNullOrEmpty(kv.Key) && (!owners.TryGetValue(kv.Key, out int o) || o < 0))
                         owners[kv.Key] = kv.Value;
-            if (reserved != null)
-                foreach (var r in reserved)
+            if (holders != null)
+                foreach (var r in holders)
                 {
-                    if (string.IsNullOrEmpty(r.character) || owners.ContainsKey(r.character) && !first.ContainsKey(r.character)) continue;
-                    if (!first.TryGetValue(r.character, out var f) || r.since < f.since || r.since == f.since && r.id < f.id)
+                    if (string.IsNullOrEmpty(r.character) || r.rank == PortraitRank.Stranger || owners.ContainsKey(r.character) && !first.ContainsKey(r.character)) continue;
+                    if (!first.TryGetValue(r.character, out var f) || r.rank > f.rank || r.rank == f.rank && (r.since < f.since || r.since == f.since && r.id < f.id))
                     {
-                        first[r.character] = (r.since, r.id);
+                        first[r.character] = (r.rank, r.since, r.id);
                         owners[r.character] = r.id;
                     }
                 }
             return owners;
+        }
+
+        // ---------------- Strangers sharing a face ----------------
+
+        /// <summary>
+        /// Whether a face other strangers keep may be given to a stranger too (the player, 22 November 2026: "with things
+        /// like raiders or guests, then I'm of course more lenient when it comes to repeating certain images, if it makes
+        /// sense", and of special looks: "you can reuse that more frequently also, because these characters are also more
+        /// rare to come up"): a picture with a special look always; else as the setting says: never, only while no one
+        /// keeping it is on a map (<paramref name="holderSeen"/>), or always.
+        /// </summary>
+        public static bool MayShare(PortraitShareMode mode, bool specialPicture, bool holderSeen) =>
+            specialPicture || mode == PortraitShareMode.Always || mode == PortraitShareMode.NotTogether && !holderSeen;
+
+        /// <summary>
+        /// Whether a stranger gives up a face another stranger keeps too (the player: "not that you have this character and
+        /// you have another random character come up and they look exactly the same"): never for a picture with a special
+        /// look or with "always"; with "never", whenever someone who had it first (<paramref name="others"/>: id, since when,
+        /// on a map now) keeps it too; with "when not seen together", when they are on a map (<paramref name="seen"/>) and
+        /// someone who had it first is on one too. The one who came later gives way: a new pick, or the game's own drawing.
+        /// </summary>
+        public static bool GivesWay(PortraitShareMode mode, bool specialPicture, int id, int since, bool seen, IEnumerable<(int id, int since, bool seen)> others)
+        {
+            if (specialPicture || mode == PortraitShareMode.Always || others == null) return false;
+            foreach (var o in others)
+            {
+                if (o.id == id) continue;
+                bool earlier = o.since < since || o.since == since && o.id < id;
+                if (!earlier) continue;
+                if (mode == PortraitShareMode.Never || seen && o.seen) return true;
+            }
+            return false;
         }
 
         // ---------------- Choose another picture ----------------

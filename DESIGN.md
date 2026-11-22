@@ -16666,7 +16666,8 @@ its body and where the UI continues below". Built on phase 4, whose rules stay b
 The code: `UI/Faces/PortraitLookDef.cs` (the looks' def, and a pawn's looks read from the game), `PortraitLookMath.cs`
 (pure: a look's rule, the book of looks, work from backstories and skills), `PortraitLibraryMath.cs` (the records'
 looks and role, the matcher's gate and costs, special looks, what is lacking), `PortraitReader.cs` (a pawn's looks and
-work), `PortraitLibrary.cs` (special looks for kept pictures, the missing list once a person), `PortraitNeeds.cs` (the
+work), `PortraitLibrary.cs` (special looks for kept pictures, who may share a face, the missing list once a person),
+`PortraitKeeper.cs` (a notable's hold), `PortraitNeeds.cs` (the
 list in the save, `PortraitNeedsKept`, and the dev action), `PortraitFolderMath.cs` (the list's columns, its lines in the
 save, the cap), `FaceEngineStage.cs`, `InspectPortrait.cs`, `FaceMath.cs`, `FaceEngine.cs`, `FaceEnginePictures.cs`,
 `PortraitViewMath.cs`, `PortraitPictureMath.cs`, `PortraitComposeMath.cs`, `PortraitStore.cs` (the large portrait and the
@@ -16722,6 +16723,34 @@ pictures' drawing); the starter list `Defs/PortraitLookDefs/PortraitLooks.xml`. 
   merged, nothing lost. Noted whether or not a library folder is set (the save is where the list reaches the lead),
   while the painted library is on and has pictures or backdrops; missing.csv is still written only with a folder. The
   dev action "Portraits: what the library lacks (log)" writes the save's list to the log as CSV.
+- **Who may share a picture** (replaces phase 4's "few repeats"; the player: "it should not be that the same image comes
+  over and over again frequently ... once one of my colonists has an image, that image is definitely locked and exclusive
+  to that colonist per save ... your diplomatic contacts, maybe they also get not that their images are repeated ... with
+  things like raiders or guests, then I'm of course more lenient ... Rather have a pawn assign no image and we build up
+  the library further in the meanwhile ... the co-joined twin examples ... you can reuse that more frequently also").
+  All per save, kept with the save's picks; a new game starts with every picture free.
+  - *The player's own* (colonists, slaves, and now the player's prisoners: capturing locks it too): their face is
+    theirs alone for good, as in phase 4 (anyone else holding it gets a new pick or the game's drawing; the dead keep
+    theirs).
+  - *Notables* (a faction's leader, a royal title of knight or higher, the colony's named contacts Rimfolk keeps: the
+    towns' heads, heirs, envoys and traders and the acquaintances of `World/Notables.cs`): their face is theirs alone
+    while they live and matter (`KeptPortrait.notable`, saved), held at once when they are shown as one, let go when they
+    die or no longer matter (looked at every minute for those seen this session, the colony's contacts and the factions'
+    leaders). The player's own outrank them: someone recruited who had a notable's face keeps it, and the notable gets
+    another or the game's drawing (`PortraitLibraryMath.Owners` by rank, then who had it first).
+  - *Strangers* (raiders, traders, visitors, guests, passers-by): a face nobody keeps first, wherever there is one that
+    may stand for them (the nearest of those, as before); else, by the new setting "Strangers may share a picture"
+    (Never; When not seen together, the player's choice; Always, for a small library), a face another stranger keeps,
+    with "when not seen together" only while that stranger is on no map (`MayShare`); else the game's own drawing, not a
+    repeat. If two strangers with the same face are on the maps at once, the one who got it later gives way
+    (`GivesWay`: a new pick or the game's drawing; with "never" wherever they are). A picture with a special look may
+    always be shared among strangers (they are rare), never with the player's own or a notable. A face chosen by hand
+    stays.
+  - *Becoming someone's own*: recruited, enslaved, captured or made notable, their face is held at once, and anyone of
+    lower rank holding it gives way.
+  - *No free picture*: someone kept with no picture is looked at again every half minute, so a face coming free (its
+    stranger gone from the maps) or a new picture reaches them; the missing list tells "no free picture" (pictures fit
+    them, all someone else's) apart from "no picture of their kind", so the lead plans more where they are short.
 - **The new lines and columns**: look lines (what `look`, the look's word in the new column `look`, the person's kind,
   sex and age band, the mod of what gave it, special or ordinary in `why`, what they have instead): a look of theirs no
   picture of their kind, sex and age shows (another colonist's pin aside; their own counts). People's lines carry their
@@ -16756,7 +16785,7 @@ pictures' drawing); the starter list `Defs/PortraitLookDefs/PortraitLooks.xml`. 
   the frame, so neither the pose's lift nor the sway's turn about the foot ever shows a strip of backdrop under the body.
   Breathing was already anchored at the foot.
 - **Saved**: `PortraitNeedsKept.columns` and `lines` (`Tools/save_estimate.py` models it: at most 200 lines of about 150
-  characters). A pick kept from 0.293.0 stays; a person kept with no picture who has looks or a work is looked at once
+  characters), and `KeptPortrait.notable`. A pick kept from 0.293.0 stays; a person kept with no picture who has looks or a work is looked at once
   again, as their words now carry them.
 - Every game member used (traits' degrees and suppression, genes' activity, hediffs, the race's body, backstories'
   titles, names and spawn categories, skills and passions, royal titles' seniority by the knight's def read by name,
@@ -16765,7 +16794,8 @@ pictures' drawing); the starter list `Defs/PortraitLookDefs/PortraitLooks.xml`. 
   drawing on the large portrait; the wing genes as their mods give them; how the game's drawing looks on a backdrop with
   its shadow and line; the whole picture's framing and the panel's height on the player's screens; the foot carried
   below the edge with a real cut-out's last rows; the roles read from real backstories, titles and skills across the
-  player's mods; the save's list over a long game.
+  player's mods; the save's list over a long game; who is a notable as the game and Rimfolk's contacts make them, and
+  strangers' faces shared and given up as they come and go.
 
 ### On-screen panels and the hover card
 

@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 831; modelled: 831; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,211 KB** after a year, **4,034 KB** after two, **4,522 KB** after five.
+Rimfolk's part of the save, roughly: **3,215 KB** after a year, **4,043 KB** after two, **4,532 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -16,7 +16,7 @@ Rimfolk's part of the save, roughly: **3,211 KB** after a year, **4,034 KB** aft
 | `Letters/LetterBook.cs:exchanges` | letters exchanged with the world, kept to be read: LetterBook.MaxExchanges at most (the newest LetterBook.MaxPerNotable with any one notable), each two or three pages, the newest LetterBook.MaxLong long letters whole | cap | 24 | 48 | 60 | 252.0 |
 | `World/Ledger/History.cs:events` | HistoryMath.MaxEvents; small ones past 60 days fold into one per actor, kind and season, milestones stay; over it older seasons go first | cap | 720 | 800 | 800 | 250.0 |
 | `Social/Gossip/Deed.cs:heard` | who knows each deed (30 at most a deed), with its deed | cap | 2,000 | 2,000 | 2,000 | 214.8 |
-| `UI/Faces/PortraitKeeper.cs:kept` | each person pictured keeps their picture from the portrait library: at most 400, the least lately pictured let go first (a colonist's own last), and anyone else not pictured for 120 days let go on load | cap | 180 | 360 | 400 | 195.3 |
+| `UI/Faces/PortraitKeeper.cs:kept` | each person pictured keeps their picture from the portrait library: at most 400, the least lately pictured let go first (a colonist's own last), and anyone else not pictured for 120 days let go on load | cap | 180 | 360 | 400 | 205.1 |
 | `Persona/PersonaTracker.cs:memories` | PersonaTracker.MaxMemories, 8 per pair and 3 of a kind; past it by 60 the faintest go at once; faded ones and those of people the game no longer knows dropped at saving | cap | 300 | 600 | 600 | 187.5 |
 | `Persona/PersonaTracker.cs:peopleSaved` | the colony's own people the game still knows; empty records dropped at saving | known | 33 | 36 | 45 | 159.1 |
 | `World/Notables.cs:notables` | the towns' head, heir, envoy and trader (NotableMath.MaxNear + MaxDealt towns) and NotableMath.MaxAcquaintances faces met; with their notes and regards (a save that handed colonies over has four more for each town the colony was, HandOverMath.MaxTowns at most) | fixed | 42 | 42 | 42 | 106.6 |

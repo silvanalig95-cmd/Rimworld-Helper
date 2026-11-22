@@ -110,8 +110,11 @@ colonist card's breathe and sway a little, still while the game is paused. **Pai
 library holds painted pictures from the player's own folder (set in the settings; `docs/portrait-art/`) or from a mod's
 `Portraits` folder, each described by a record. A picture made for a colonist (pinned to them by name) is theirs;
 everyone else gets the one closest to how they look (their kind, sex, how old they look by their kind's life span and
-their genes, skin and hair colour, hair, beard, build and clothes, their looks and their work), one nobody else holds
-where it can, and a colonist's picture is never anyone else's. Looks are what traits, genes, health and body give a face
+their genes, skin and hair colour, hair, beard, build and clothes, their looks and their work). Within a game, a
+picture of one of the colony's own (colonists, slaves, prisoners) is never anyone else's, nor is a faction leader's, a
+titled noble's or one of the colony's named contacts' while they live; raiders, traders and guests get a picture nobody
+holds, and share one only as **Strangers may share a picture** allows (never, when not seen together, always), else the
+game's own drawing. Looks are what traits, genes, health and body give a face
 (a drinker, a pyromaniac, beauty or ugliness, a fire mage), and a work is read from a person's backstory, title, faith
 role or best passion (a scholar, a soldier, a cook): a picture showing a look or a work goes only to people who have it,
 plain pictures are for anyone. A special look (the conjoined twins of Conjoined Twins, wings) only ever gets a picture
@@ -127,7 +130,7 @@ looks, rooms, land) in the save, and writes it into the folder for the next batc
 pane**, **Its size**, **Backdrop**, **Backdrop behind the game's own drawing too**, **Line
 round the person**, **Tint the person to the room's light**, **Headgear in portraits**, **Clothes in portraits**,
 **Poses in portraits**, **Portraits move a little**, **Painted portraits from the library**, **Portraits from the
-library** and **Portrait library folder** (How you're told, Portraits) set it.
+library**, **Strangers may share a picture** and **Portrait library folder** (How you're told, Portraits) set it.
 
 The **council** window, in four views along its top, each with its modes as small buttons under its title and a "?"
 beside the title that opens its page of the Almanac:

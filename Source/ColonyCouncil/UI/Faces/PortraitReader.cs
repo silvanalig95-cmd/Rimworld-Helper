@@ -210,7 +210,7 @@ namespace ColonyCouncil
         }
 
         /// <summary>A royal title of knight or higher (any title where the game has no knight).</summary>
-        private static bool Titled(Pawn p)
+        public static bool Titled(Pawn p)
         {
             var t = p.royalty?.MostSeniorTitle;
             if (t?.def == null) return false;

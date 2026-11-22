@@ -64,6 +64,21 @@ namespace ColonyCouncil
         private readonly Dictionary<int, Looked> looked = new Dictionary<int, Looked>();
         /// <summary>The people already looked at for the missing list since the library was read (once each).</summary>
         private readonly HashSet<int> noted = new HashSet<int>();
+        /// <summary>When someone kept with no picture is looked at again for a free one (real seconds), by id.</summary>
+        private readonly Dictionary<int, float> retryAt = new Dictionary<int, float>();
+        /// <summary>The people on any map now (their ids), read again every few seconds: strangers sharing a face are never seen together.</summary>
+        private readonly HashSet<int> onMaps = new HashSet<int>();
+        private float onMapsUntil = -1f;
+        /// <summary>The colony's named contacts alive (Rimfolk's notables: heads, heirs, envoys, traders, acquaintances), by id, read again when their book changes.</summary>
+        private readonly HashSet<int> notableIds = new HashSet<int>();
+        private int notablesVersion = -1;
+        private NotableBook notablesBook;
+        /// <summary>The notables seen this session, for the look every minute whether they still live and matter.</summary>
+        private readonly Dictionary<int, Pawn> notablePawns = new Dictionary<int, Pawn>();
+        private float sweepUntil = -1f;
+
+        /// <summary>How often someone kept with no picture is looked at again for a free one, how often who is on a map is read, and the notables looked at, in real seconds.</summary>
+        private const float RetryEvery = 30f, OnMapsEvery = 3f, SweepEvery = 60f;
         private readonly Dictionary<string, int> pinOwners = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
         private float namesUntil = -1f;
         /// <summary>Whose each face is (a colonist's own, a pinned one's): read again when the keeper or the pins change.</summary>
@@ -80,6 +95,8 @@ namespace ColonyCouncil
         public int Count => Load() ? records.Count : 0;
 
         private static PortraitPickMode Mode => ColonyCouncilMod.Settings?.portraitPick ?? PortraitPickMode.Closest;
+
+        private static PortraitShareMode ShareMode => ColonyCouncilMod.Settings?.portraitShare ?? PortraitShareMode.NotTogether;
 
         // ---------------- The library ----------------
 
@@ -106,6 +123,7 @@ namespace ColonyCouncil
                 characters.Clear();
                 looked.Clear();
                 noted.Clear();
+                retryAt.Clear();
                 namesUntil = -1f;
                 void Add(Entry e)
                 {
@@ -203,13 +221,100 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// One of the colony's own people (a colonist or a slave of the player's; not a prisoner, a guest or a lodger): their
+        /// One of the player's own people (a colonist, a slave or a prisoner of the player's; not a guest or a lodger): their
         /// picture is theirs alone (the player, 22 November 2026: "once a pawn is part of my colony, their image should no
-        /// longer be used for anyone else").
+        /// longer be used for anyone else", and "once I capture a raider, make him a slave, or even recruit him ... that kind
+        /// of locks in the image").
         /// </summary>
-        private static bool ColonyOwn(Pawn p) => p.Faction != null && p.Faction == Faction.OfPlayerSilentFail && !p.IsQuestLodger();
+        private static bool ColonyOwn(Pawn p) => p.Faction != null && p.Faction == Faction.OfPlayerSilentFail && !p.IsQuestLodger() || p.IsPrisonerOfColony;
 
-        /// <summary>Whose each face is now: the keeper's colonists' (the first to have it) and the pinned pictures' (their colonist's).</summary>
+        /// <summary>
+        /// Someone who matters to the colony beyond its walls (the player: "your diplomatic contacts, maybe they also get not
+        /// that their images are repeated"): a faction's leader, a royal title of knight or higher, or one of the colony's
+        /// named contacts Rimfolk keeps (heads, heirs, envoys, traders, acquaintances; World/Notables.cs); alive.
+        /// </summary>
+        private bool IsNotable(Pawn p)
+        {
+            if (p == null || p.Dead || p.Discarded) return false;
+            if (p.Faction != null && p.Faction.leader == p || PortraitReader.Titled(p)) return true;
+            var book = NotableBook.Instance;
+            if (book != null && (NotableBook.Version != notablesVersion || book != notablesBook))
+            {
+                notablesVersion = NotableBook.Version;
+                notablesBook = book;
+                notableIds.Clear();
+                foreach (var n in book.notables)
+                    if (n != null && n.Alive)
+                        notableIds.Add(n.pawn.thingIDNumber);
+            }
+            return book != null && notableIds.Contains(p.thingIDNumber);
+        }
+
+        /// <summary>Whose a person's face may be: the player's own, a notable's, or a stranger's.</summary>
+        private PortraitRank RankOf(Pawn p) => ColonyOwn(p) ? PortraitRank.Own : IsNotable(p) ? PortraitRank.Notable : PortraitRank.Stranger;
+
+        /// <summary>Who is on any map now, read again every few seconds.</summary>
+        private void ReadOnMaps()
+        {
+            float now = Time.realtimeSinceStartup;
+            if (now < onMapsUntil) return;
+            onMapsUntil = now + OnMapsEvery;
+            onMaps.Clear();
+            foreach (var map in Find.Maps)
+            foreach (var q in map.mapPawns.AllPawnsSpawned)
+                if (q?.RaceProps != null && q.RaceProps.Humanlike)
+                    onMaps.Add(q.thingIDNumber);
+        }
+
+        /// <summary>
+        /// Every minute at most: a notable's face is let go once they have died or no longer matter (looked at for those seen
+        /// this session, the colony's contacts and the factions' leaders; anyone else keeps it until seen again).
+        /// </summary>
+        private void SweepNotables(PortraitKeeper keeper)
+        {
+            float now = Time.realtimeSinceStartup;
+            if (keeper == null || now < sweepUntil) return;
+            sweepUntil = now + SweepEvery;
+            var known = new Dictionary<int, Pawn>(notablePawns);
+            var book = NotableBook.Instance;
+            if (book != null)
+                foreach (var n in book.notables)
+                    if (n?.pawn != null)
+                        known[n.pawn.thingIDNumber] = n.pawn;
+            foreach (var f in Find.FactionManager.AllFactionsListForReading)
+                if (f?.leader != null)
+                    known[f.leader.thingIDNumber] = f.leader;
+            foreach (var k in keeper.Notables.ToList())
+                if (known.TryGetValue(k.id, out var p) && (k.reserved || !IsNotable(p)))
+                {
+                    keeper.SetNotable(k, false);
+                    notablePawns.Remove(k.id);
+                }
+        }
+
+        /// <summary>
+        /// Whether a stranger gives up the face they keep to another stranger who had it first (the setting "Strangers may
+        /// share a picture"; <see cref="PortraitLibraryMath.GivesWay"/>); never for a picture with a special look, or one
+        /// chosen by hand.
+        /// </summary>
+        private bool GivesWay(KeptPortrait k, int id, PortraitRecord r, PortraitRank rank, PortraitKeeper keeper)
+        {
+            if (rank != PortraitRank.Stranger || k.byHand || k.character.Length == 0 || keeper.UsesOf(k.character, id) == 0) return false;
+            ReadOnMaps();
+            var others = keeper.HoldersOf(k.character, id).Select(h => (h.id, h.since, onMaps.Contains(h.id)));
+            return PortraitLibraryMath.GivesWay(ShareMode, r.specials.Count > 0, id, k.since, onMaps.Contains(id), others);
+        }
+
+        /// <summary>Whether a face others keep may be given to this person: the player's own and notables take it (its stranger gives way); a stranger as the setting says (<see cref="PortraitLibraryMath.MayShare"/>).</summary>
+        private bool MayShare(string character, PortraitRecord r, int id, PortraitRank rank, PortraitKeeper keeper)
+        {
+            if (rank != PortraitRank.Stranger) return true;
+            ReadOnMaps();
+            bool seen = keeper != null && keeper.HoldersOf(character, id).Any(h => onMaps.Contains(h.id));
+            return PortraitLibraryMath.MayShare(ShareMode, r.specials.Count > 0, seen);
+        }
+
+        /// <summary>Whose each face is now: the keeper's colonists' and notables' (the higher rank, then the first to have it) and the pinned pictures' (their colonist's).</summary>
         private void ReadOwners(PortraitKeeper keeper)
         {
             int v = (keeper?.Version ?? 0) * 31 + signature;
@@ -219,7 +324,7 @@ namespace ColonyCouncil
             ownersKeeper = keeper;
             var pinned = records.Where(r => r.Pinned).Select(r => new KeyValuePair<string, int>(r.Character, pinOwners.TryGetValue(r.pawn, out int o) ? o : -1));
             var was = owners;
-            owners = PortraitLibraryMath.Owners(keeper?.Reserved, pinned);
+            owners = PortraitLibraryMath.Owners(keeper?.Holders, pinned);
             // A face newly someone's own: everyone shown is looked at again now, so whoever else had it gets another.
             if (was.Count != owners.Count || owners.Any(kv => !was.TryGetValue(kv.Key, out int o) || o != kv.Value)) looked.Clear();
         }
@@ -244,13 +349,18 @@ namespace ColonyCouncil
             int id = p.thingIDNumber;
             var keeper = PortraitKeeper.Instance;
             var k = keeper?.Get(id);
+            var rank = RankOf(p);
+            bool colony = rank == PortraitRank.Own;
+            if (rank == PortraitRank.Notable) notablePawns[id] = p;
+            // A notable's face held for them at once (and let go when they no longer matter); the player's own outrank them.
+            if (k != null && !k.reserved && k.picture.Length > 0) keeper.SetNotable(k, rank == PortraitRank.Notable);
+            SweepNotables(keeper);
             ReadOwners(keeper);
-            bool colony = ColonyOwn(p);
-            // The plain case, every few seconds for everyone shown: kept, the same library and stage, theirs to keep, and
-            // no special look gained that the picture doesn't show.
+            // The plain case, every few seconds for everyone shown: kept, the same library and stage, theirs to keep, no
+            // special look gained that the picture doesn't show, and no stranger who had it first in sight with it.
             if (k != null && k.picture.Length > 0 && k.library == signature && !Taken(k.character, id) && (k.reserved || !colony) && byName.TryGetValue(k.picture, out int keptAt)
                 && PortraitReader.AgeOf(p, out var ageNow) && (int)PortraitLibraryMath.StageOf(ageNow) == k.stage
-                && !PortraitLibraryMath.LacksSpecial(records[keptAt], PortraitLooks.SpecialsOf(p)))
+                && !PortraitLibraryMath.LacksSpecial(records[keptAt], PortraitLooks.SpecialsOf(p)) && !GivesWay(k, id, records[keptAt], rank, keeper))
             {
                 keeper.Seen(k);
                 NoteOnce(p, null, keptAt, k.distance, k.pinned || k.byHand);
@@ -266,8 +376,19 @@ namespace ColonyCouncil
             bool there = kept && byName.ContainsKey(k.picture);
             int keptFit = there && k.pinned ? PortraitLibraryMath.PinFit(records[byName[k.picture]], look) : 0;
             bool lacks = there && PortraitLibraryMath.LacksSpecial(records[byName[k.picture]], look.specials);
+            bool givesWay = there && GivesWay(k, id, records[byName[k.picture]], rank, keeper);
             bool again = PortraitLibraryMath.PickAgain(kept, kept ? (PortraitStage)k.stage : stage, stage, k?.picture, there, keptFit, k?.byHand ?? false,
-                k?.library ?? 0, signature, k?.words, words, pinFit, there && Taken(k.character, id), lacks);
+                k?.library ?? 0, signature, k?.words, words, pinFit, there && Taken(k.character, id) || givesWay, lacks);
+            // Kept with no picture: looked at again every half minute for one that has come free.
+            if (!again && kept && k.picture.Length == 0)
+            {
+                float now = Time.realtimeSinceStartup;
+                if (!retryAt.TryGetValue(id, out float at0) || now >= at0)
+                {
+                    retryAt[id] = now + RetryEvery;
+                    again = at0 > 0f;
+                }
+            }
             if (!again)
             {
                 k.library = signature;
@@ -277,12 +398,13 @@ namespace ColonyCouncil
                 NoteOnce(p, look, at, k.distance, k.pinned || k.byHand);
                 return at >= 0 && Shown(k) ? at : -1;
             }
-            var pick = pin.Any ? pin : PortraitLibraryMath.Pick(look, records, id, c => keeper?.UsesOf(c, id) ?? 0, c => Taken(c, id));
+            var pick = pin.Any ? pin : PortraitLibraryMath.Pick(look, records, id, c => keeper?.UsesOf(c, id) ?? 0, c => Taken(c, id), (c, r) => MayShare(c, r, id, rank, keeper));
             NoteOnce(p, look, pick.index, pick.distance, pin.Any);
             if (keeper == null) return pick.Any && PortraitLibraryMath.Shown(Mode, pin.Any, pick.distance) ? pick.index : -1;
             keeper.Set(id, pick.Any ? records[pick.index].name : "", pick.character, look.Kind, words, signature, stage, pin.Any, false, pick.distance);
             k = keeper.Get(id);
             if (colony) keeper.Reserve(k);
+            else keeper.SetNotable(k, rank == PortraitRank.Notable && k.picture.Length > 0);
             return pick.Any && Shown(k) ? pick.index : -1;
         }
 
@@ -302,6 +424,8 @@ namespace ColonyCouncil
             if (!ownPicture)
             {
                 if (!PortraitLibraryMath.HasOwnKind(look, records)) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoKind", instead);
+                // Pictures that would fit them, all someone else's: more of their kind are wanted.
+                else if (at < 0 && PortraitLibraryMath.Distances(look, records).Any(d => !float.IsInfinity(d))) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoFree", "");
                 else if (at < 0) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoStage", "");
                 else if (distance > PortraitLibraryMath.CloseEnough) PortraitNeeds.NotePerson(p, look, "CC_PortraitNeed_NoneClose", instead);
             }
@@ -320,6 +444,10 @@ namespace ColonyCouncil
         {
             looked.Clear();
             noted.Clear();
+            retryAt.Clear();
+            notablePawns.Clear();
+            notablesVersion = -1;
+            onMapsUntil = sweepUntil = -1f;
             namesUntil = -1f;
         }
 
@@ -364,7 +492,8 @@ namespace ColonyCouncil
             string kept = k == null ? "nothing yet"
                 : k.picture.Length == 0 ? "no picture (none fitted)"
                 : k.picture + (k.pinned ? ", pinned" : "") + (k.byHand ? ", chosen by hand" : "") + ", " + k.distance.ToString("0.00") + (Shown(k) ? "" : " (not shown: only close ones)");
-            return p.LabelShort + ": " + look.Words + (PortraitLibraryMath.HasOwnKind(look, records) ? "" : " (no pictures of their kind)")
+            var rank = RankOf(p);
+            return p.LabelShort + " (" + (rank == PortraitRank.Own ? "one of the colony's own" : rank == PortraitRank.Notable ? "a notable" : "a stranger") + "): " + look.Words + (PortraitLibraryMath.HasOwnKind(look, records) ? "" : " (no pictures of their kind)")
                    + (look.specials.Count > 0 ? " (special looks: " + string.Join(", ", look.specials) + ")" : "") + "; keeps " + kept + "; pinned to them: "
                    + (pins.Any() ? string.Join(", ", pins) : "none") + "; nearest: " + (near.Any() ? string.Join(", ", near) : "none that may stand for them");
         }
