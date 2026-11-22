@@ -669,7 +669,7 @@ class Planner:
             faces = rng.sample(BABY_FACE if age == 'baby' else CHILD_FACE, 2)
             face = ' and '.join(faces)
             expr = rng.choice(CHILD_EXPRESSIONS)
-            soft = 'Soft, rounded features as fits ' + ('a baby' if age == 'baby' else 'a toddler' if age == 'toddler' else 'a child') + ', never older-looking.'
+            soft = 'Soft, rounded features, as young as ' + ('a baby' if age == 'baby' else 'a toddler' if age == 'toddler' else 'a child') + ' looks.'
         else:
             n_face = 1 if k.far else rng.choice([2, 3])
             face_bits = [rng.choice(FACE_SHAPES)] if not k.far else []
