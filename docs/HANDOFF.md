@@ -1576,6 +1576,24 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.298.1, **The small portraits' smaller copies
+  made by the mod, and the face in the middle** (23 November 2026; the player, with screenshots: the colonist card's tile
+  "looks bogged out. This is for all pawns", the same on the event cards, none of the settings changing it; and "since
+  these are also then smaller previews, usually they should really focus on the face and have that centered").
+  DESIGN.md, "The small portraits' smaller copies, and the face in the middle".
+  - **The smaller copies**: the picture the player sent (a cut-out from the library) was clean: its clear part one even
+    colour, its alpha clean, its head measured right, and its smaller copies as the mod would make them showing no
+    second face. The small portraits are the only ones drawn through the texture's smaller copies (the large portrait
+    reads the picture back near full size), so those copies are now made by the store on its worker, halving down to one
+    pixel, each pixel the average of all it covers weighted by how solid they are, and set level by level
+    (`LoadRawTextureData` of every level in turn, `Apply(false, true)`), where before the graphics card made them
+    (`Apply(true, true)`).
+    If the second face is still there with this, it is not the copies: look next at what else draws under a small
+    portrait.
+  - **The face in the middle**: the Face frame (round portraits, letters, event cards, lists) takes the head at 0.6 of
+    its height with 0.18 above it (was 0.56 and 0.1), and a cut-out's view may reach past the picture's top and sides
+    (`PortraitViewMath.View(..., open)`) so a head near the top is still centred; the card's tall tile and the large
+    portrait unchanged.
 - 0.298.0, **The same age and skin, the hair's
   colour first, a bionic arm, keeping a picture for training** (23 November 2026; the player: "the race, xenotype, the
   gender, also I would say the skin color and age ... always have to match the pawn for sure. And if there's no image

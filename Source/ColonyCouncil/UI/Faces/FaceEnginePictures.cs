@@ -22,7 +22,7 @@ namespace ColonyCouncil
         private static PictureView ViewOf(PortraitPicture pic, FaceFrame frame, Vector2 tile, FaceBearing bearing, int seed, out float turn)
         {
             PortraitViewMath.Pose(FacePoseMath.Shift(bearing, FaceTurn.Front, seed), out float lift, out turn);
-            return PortraitViewMath.View(pic.layout, frame, tile.y > 0f ? tile.x / tile.y : 1f, lift);
+            return PortraitViewMath.View(pic.layout, frame, tile.y > 0f ? tile.x / tile.y : 1f, lift, pic.file != null && pic.file.cutOut);
         }
 
         /// <summary>The camera numbers the light behind the head reads, for a picture's view.</summary>

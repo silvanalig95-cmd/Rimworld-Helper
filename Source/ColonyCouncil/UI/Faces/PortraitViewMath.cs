@@ -79,9 +79,9 @@ namespace ColonyCouncil
         public const float Margin = 0.02f;
 
         /// <summary>The head's share of the view's height for each frame, and the room above the head's top as a share of the view.</summary>
-        public static float HeadShareOf(FaceFrame f) => f == FaceFrame.Bust ? 0.5f : f == FaceFrame.Figure ? 0.42f : 0.56f;
+        public static float HeadShareOf(FaceFrame f) => f == FaceFrame.Bust ? 0.5f : f == FaceFrame.Figure ? 0.42f : 0.6f;
 
-        public static float RoomAboveOf(FaceFrame f) => f == FaceFrame.Bust ? 0.08f : f == FaceFrame.Figure ? 0.05f : 0.1f;
+        public static float RoomAboveOf(FaceFrame f) => f == FaceFrame.Bust ? 0.08f : f == FaceFrame.Figure ? 0.05f : 0.18f;
 
         private static bool Ok(float v) => !float.IsNaN(v) && !float.IsInfinity(v);
 
@@ -91,7 +91,7 @@ namespace ColonyCouncil
         /// The view of a picture for a frame in a tile <paramref name="aspect"/> wide for each unit high, the head moved
         /// <paramref name="liftHeads"/> head heights up (a pose: the picture's content rises, so the view goes down).
         /// </summary>
-        public static PictureView View(PictureLayout l, FaceFrame frame, float aspect, float liftHeads = 0f)
+        public static PictureView View(PictureLayout l, FaceFrame frame, float aspect, float liftHeads = 0f, bool open = false)
         {
             if (!Ok(l.headU) || !Ok(l.headV) || !Ok(l.headH) || l.headH < 0.05f || l.headH > 1f) l = new PictureLayout(LibraryHeadX, LibraryHeadY, LibraryHeadSize, l.faces, l.shape);
             if (!Ok(aspect) || aspect <= 0.05f || aspect > 20f) aspect = 1f;
@@ -110,8 +110,11 @@ namespace ColonyCouncil
             }
             float top = l.headV - l.headH / 2f;
             float y = top - RoomAboveOf(frame) * h + liftHeads * l.headH;
-            y = Clamp(y, Margin, 1f - Margin - h);
-            float x = Clamp(l.headU - w / 2f, Margin, 1f - Margin - w);
+            // A cut-out (open: clear round the person) may be shown past its edges, so a small face is centred even where the
+            // head is near the picture's top or side (the player, 23 November 2026: the smaller previews "should really focus
+            // on the face and have that centered"); a picture with its own ground keeps to it.
+            y = open && frame == FaceFrame.Face ? Clamp(y, -0.5f, 1f - Margin - h) : Clamp(y, Margin, 1f - Margin - h);
+            float x = open && frame == FaceFrame.Face ? l.headU - w / 2f : Clamp(l.headU - w / 2f, Margin, 1f - Margin - w);
             return new PictureView
             {
                 x = x, y = y, w = w, h = h,

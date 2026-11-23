@@ -248,7 +248,22 @@ namespace ColonyCouncil
                     PortraitPictureMath.SolidFoot(small, nw, nh);
                     PortraitPictureMath.Bleed(small, nw, nh, BleedDepth);
                 }
-                return new Processed { px = ToColours(PortraitPictureMath.FlipRows(small, nw, nh)), w = nw, h = nh, head = head };
+                // Every smaller copy made here, each pixel the average of all it covers, weighted by how solid they are,
+                // and given to the graphics card as it is (the player, 23 November 2026: the small portraits showed a second
+                // face behind the picture on every card while the large portrait, which never uses the smaller copies, was
+                // right; the card's own copies are no longer relied on).
+                var levels = new List<Color32[]>();
+                int lw = nw, lh = nh;
+                var cur = small;
+                while (lw > 1 || lh > 1)
+                {
+                    int mw = Math.Max(1, lw / 2), mh = Math.Max(1, lh / 2);
+                    cur = PortraitPictureMath.Downscale(cur, lw, lh, mw, mh);
+                    levels.Add(ToColours(PortraitPictureMath.FlipRows(cur, mw, mh)));
+                    lw = mw;
+                    lh = mh;
+                }
+                return new Processed { px = ToColours(PortraitPictureMath.FlipRows(small, nw, nh)), w = nw, h = nh, head = head, mips = levels };
             }, (done, ex) => Upload(f, done, ex), false);
         }
 
@@ -257,6 +272,8 @@ namespace ColonyCouncil
             public Color32[] px;
             public int w, h;
             public HeadMeasure head;
+            /// <summary>The smaller copies, half the size each time down to one pixel (rows from the foot).</summary>
+            public List<Color32[]> mips;
         }
 
         private static void Upload(PictureFile f, Processed p, Exception ex)
@@ -276,8 +293,19 @@ namespace ColonyCouncil
             {
                 name = "RimfolkPortrait_" + f.key, filterMode = FilterMode.Trilinear, wrapMode = TextureWrapMode.Clamp, anisoLevel = 0
             };
-            tex.SetPixels32(p.px);
-            tex.Apply(true, true);
+            // The picture and all its smaller copies as made above, loaded at once (the raw data of every level in turn, the
+            // way 1.6's and 1.7's Unity both take it); the graphics card's own copies only where the count doesn't fit.
+            var all = p.mips != null && p.mips.Count == tex.mipmapCount - 1 ? AllLevels(p.px, p.mips) : null;
+            if (all != null)
+            {
+                tex.LoadRawTextureData(all);
+                tex.Apply(false, true);
+            }
+            else
+            {
+                tex.SetPixels32(p.px);
+                tex.Apply(true, true);
+            }
             f.texture = tex;
             f.width = p.w;
             f.height = p.h;
@@ -287,6 +315,28 @@ namespace ColonyCouncil
             pixels += (long)p.w * p.h;
             Loaded++;
             Trim();
+        }
+
+        /// <summary>A picture's raw RGBA bytes and then each of its smaller copies', as a mipmapped texture takes them.</summary>
+        private static byte[] AllLevels(Color32[] first, List<Color32[]> rest)
+        {
+            long n = first.Length;
+            foreach (var l in rest) n += l.Length;
+            var bytes = new byte[n * 4];
+            int o = 0;
+            void Put(Color32[] px)
+            {
+                for (int i = 0; i < px.Length; i++)
+                {
+                    bytes[o++] = px[i].r;
+                    bytes[o++] = px[i].g;
+                    bytes[o++] = px[i].b;
+                    bytes[o++] = px[i].a;
+                }
+            }
+            Put(first);
+            foreach (var l in rest) Put(l);
+            return bytes;
         }
 
         /// <summary>The least lately shown pictures let go (their textures destroyed) while the cache is over its count or pixels; never one shown this frame or the last.</summary>

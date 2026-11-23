@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The small portraits fixed
+
+*23 November 2026, version 0.298.1*
+
+- The small portraits on cards, letters and events no longer show a second face behind the picture
+- The small round portraits centre on the face
+
 ## Matching by age and skin, kept for training
 
 *23 November 2026, version 0.298.0*

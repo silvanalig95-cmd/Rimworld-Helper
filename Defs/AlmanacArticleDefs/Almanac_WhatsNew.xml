@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.298.1</version>
+        <date>23 November 2026</date>
+        <title>The small portraits fixed</title>
+        <points>
+          <li>The small portraits on cards, letters and events no longer show a second face behind the picture</li>
+          <li>The small round portraits centre on the face</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.298.0</version>
         <date>23 November 2026</date>
         <title>Matching by age and skin, kept for training</title>

@@ -16656,6 +16656,17 @@ backdrop's softening, the line round the person, the tint), `BackdropMath.cs` (t
     Vanilla Quests Expanded's), an unknown biome by its warmth, rain, plants and whether it is extreme, in vacuum or
     underground; under a natural rock roof a cave; a group with no backdrop its near groups'. No map (a caravan, the
     world), or nothing fits: a plain painted ground; with none, the portrait's own.
+  - *The small portraits' smaller copies, and the face in the middle* (the player, 23 November 2026, with screenshots:
+    the colonist card's tile showed a second, darker face behind the picture, "This is for all pawns", the same on the
+    event cards, none of the settings changing it, while the large portrait was right; and "since these are also then
+    smaller previews, usually they should really focus on the face and have that centered"): the small portraits draw
+    the picture through its smaller copies (mipmaps), which the large portrait never uses; the picture the player sent
+    was clean (its clear part one even colour, its smaller copies as the mod would make them showing no second face),
+    so the copies are now all made by the store on its worker, each pixel the average of all it covers weighted by how
+    solid they are, and handed to the graphics card as they are (`PortraitStore.Process`, `Upload`), instead of the
+    card making them. The round portraits (the Face frame) frame the head at 0.6 of their height with 0.18 above it, so
+    the face sits in the middle, and a cut-out's view may reach past the picture's top and sides to keep it there
+    (`PortraitViewMath.View(..., open)`); the other frames keep inside the picture. (Released 0.298.1.)
   - *Sharp at every size* (the player, 23 November 2026: "there seems to be some threshold below which it kind of makes the
     image a bit more blurry. And once I enlarge it a little bit, it's more sharp. It should ideally be sharp at all
     stages ... we can just load it at high resolution throughout"): a picture is kept at twice what the largest portrait

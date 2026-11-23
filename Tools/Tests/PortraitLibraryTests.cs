@@ -374,7 +374,16 @@ public static class PortraitLibraryTests
         var face = PortraitViewMath.View(lib, FaceFrame.Face, 1f);
         var card = PortraitViewMath.View(lib, FaceFrame.Figure, 94f / 134f);
         C(Near(bust.headShare, 0.5f, 0.02f) && bust.headV > 0.28f && bust.headV < 0.42f, $"the large portrait: the head about half the square, high in it ({bust})");
-        C(face.headShare > bust.headShare && face.headV > 0.3f && face.headV < 0.48f, $"the round portraits: closer on the face ({face})");
+        C(face.headShare > bust.headShare && face.headV > 0.3f && face.headV < 0.52f, $"the round portraits: closer on the face ({face})");
+        // A cut-out's small face view centred on the face, past the picture's edges where the head is near them (the player:
+        // the smaller previews "should really focus on the face and have that centered").
+        var high = new PictureLayout(0.464f, 0.251f, 0.434f, FaceTurn.Front, 0.8f);
+        var shut = PortraitViewMath.View(high, FaceFrame.Face, 1f);
+        var open = PortraitViewMath.View(high, FaceFrame.Face, 1f, 0f, true);
+        C(Near(open.headU, 0.5f, 0.01f) && Near(open.headV, 0.18f + 0.3f, 0.02f) && open.y < 0f && shut.headV < open.headV - 0.05f,
+            $"a cut-out with its head near the top: the round portrait's face in the middle, the clear above it shown ({open}; kept inside: {shut})");
+        var openBust = PortraitViewMath.View(high, FaceFrame.Bust, 1f, 0f, true);
+        C(openBust.y >= PortraitViewMath.Margin - 1e-5f, "the other frames keep inside the picture, open or not");
         C(card.h >= 0.95f && card.w < 0.7f && Near(card.y, PortraitViewMath.Margin), $"the card's tall tile: as much of the picture as fits, its whole height from the top, its sides cut ({card})");
         var tallLib = new PictureLayout(0.5f, 0.2f, 0.28f, FaceTurn.Front, 0.8f);
         var tallCard = PortraitViewMath.View(tallLib, FaceFrame.Figure, 94f / 134f);
