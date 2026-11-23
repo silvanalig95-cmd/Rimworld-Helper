@@ -741,14 +741,54 @@ most sense." So, in this order, three builds at a time:
   effects all look good, but unconscious eyes closed. How exactly is it supposed to see which eyes are closed?" Answered:
   closed eyes (and blinks and expressions) need the picture's painted expressions (Make-Variants); without them the
   unconscious are dimmed only. Asked whether to start building.
-- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the picture check
-  asks only what it hasn't.** The player: "we said that the image gets reanalyzed once something about the script
-  changes. I wonder that we ... can save resources as much as possible, and that it only analyzes things that have not
-  yet been analyzed ... not that I have like a really long analyze job each time I add new images". The proposal:
-  `checked.csv` keeps the model's answer to each form line; a change to the rules (how answers are read, what counts
-  as wrong) is worked out again from the kept answers without asking the model; only a line whose wording changed (or
-  a new line) is asked again, in a short form of just those lines, merged into the kept answers; each line carries its
-  own version instead of the whole question's; `-Again` still asks everything.
+- **Go given (23 November 2026, the player: "yes, please go ahead with all!"); built (tools and docs only; not yet
+  tried on Windows): the picture check asks only what it hasn't, as a proper queue, and the game's corrections win.**
+  The player: "we said that the image gets reanalyzed once something about the script changes. I wonder that we ... can
+  save resources as much as possible, and that it only analyzes things that have not yet been analyzed ... not that I
+  have like a really long analyze job each time I add new images". The proposal: `checked.csv` keeps the model's answer
+  to each form line; a change to the rules (how answers are read, what counts as wrong) is worked out again from the
+  kept answers without asking the model; only a line whose wording changed (or a new line) is asked again, in a short
+  form of just those lines, merged into the kept answers; each line carries its own version instead of the whole
+  question's; `-Again` still asks everything.
+  Built in `Check-Pictures.ps1` (`SETUP-ComfyUI.md` step 8, `ORDER.md`): `$LineVersions`, each form line's version
+  (all 3 now; raise one with its line's wording, and the words before the lines go with every line). `checked.csv` has
+  a `versions` column (`people=3 sex=3 ...`) in place of `question`; a file from before is written again with each line
+  counted as asked with its question's number, so the first run asks nothing (tested on a checked.csv made by the
+  script as it was: the same report and corrections, nothing asked). A new or changed picture (size) gets the whole
+  form, a line whose version changed is asked in a short form of only the changed lines (the same words before them)
+  and merged; the answer column keeps the model's text, a short form's after " // [arms] ..."; every run reads the kept
+  answers again with today's reading (about 10 ms a picture here) and compares, so a rules change asks nothing;
+  `-Again` asks all the whole form. The start says "What the model is asked: 12 new pictures (the whole form), 340 to
+  look at again for the arms line only, 0 asked again (the whole form)."
+  **A proper queue** (the player, 23 November 2026, go given: "when I start the analysis job and while it's running
+  create a new image generation job, it will queue all the image generation jobs but they will start right after the
+  next analysis is done, even if there are hundreds of analysis still left. it should finish all the analysis first and
+  only then start upcoming jobs so it's a proper queue"): the check uploads every picture to ask under a name of its own
+  (`input\rimfolk-check\<hash of its place>.png`, written over on later runs), queues all its questions at once and
+  collects the answers in order (waiting behind other jobs is fine however long; 15 minutes running on one is the
+  limit); a check started behind other jobs says "ComfyUI has N jobs ahead of the check; it starts when they are done".
+  Ctrl+C or an error takes its questions still waiting out of ComfyUI's queue (`POST /queue` with their ids only, never
+  another job's) rather than telling the player to Clear queue, which would drop their portrait jobs too; closing the
+  window leaves them there (said in the window and the guide). The same in `Make-Variants.ps1` and `Make-DepthMaps.ps1`.
+  **The game's corrections win** (the player, 23 November 2026: "the corrections also get updated over time, for
+  example if a later scan picks up new data and then this is also applied? important is also though, that the
+  corrections i make through the game client are always prioritized. for example if an image is generating a man, qwen
+  thinks it's a woman and writes that in the corrections file, i edit the file within the game detail screen to be a
+  man, the library import or other scripts should not override that again with the "correction" from gwen of it being a
+  woman"): a line with the why "set in the game" wins in `Update-PortraitLibrary.ps1` (and the check's own reading of
+  the records) over every other line for the same picture and field, for looks, marks and features the same word,
+  whatever the order; the check writes nothing against it and never changes it, and the report has it as "5 set in the
+  game" ("set in the game: sex male; the model sees otherwise (drawn as a woman ...)"), not counted among the pictures
+  to look at. A later scan changes the check's own line for a picture and field (for a list, the word) where the model
+  answers otherwise now: the new value and yes or ask by the rules, one line, marked "changed" in the report; a no
+  stays no for the same value; every other line keeps its values exactly (written back as read; the file is quoted
+  throughout, as before).
+  Tested with PowerShell 7 against a stand-in ComfyUI that runs its queue in order: migration, a rules-only change, a
+  changed line (short forms, the whole form given back, an answer alone, one that can't be read), new and changed
+  pictures, -Again, jobs ahead, an image job queued during the check (it ran after every question), an error and a stop
+  (both took the rest out of the queue), the game's lines and the check's own lines changed by a later scan. Only on
+  Windows: Windows PowerShell 5.1 itself, real ComfyUI (the upload's subfolder, `GET /prompt`'s queue count, `POST
+  /queue` delete), and Ctrl+C in a real console window (PowerShell runs `finally` then; tested by stopping the pipeline).
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): "About this picture"
   on the large portrait's menu, its record shown and corrected in the game.** The player: "one of the right-click
   options could open kind of a menu where I see the image that is currently assigned to the pawn, and where I could see
@@ -781,6 +821,27 @@ most sense." So, in this order, three builds at a time:
   pictures before anyone's), makes and records them as variants of that file (`variantOf`), so any person given the
   picture later, in any save, a visitor too, gets the variant that fits them; a variant wanted but not yet made shows
   the plain picture as now.
+  **The scripts' part: go given (23 November 2026, the player: "yes, please go ahead with all! it's also important that
+  a variant is then marked as done once it's created and in the game, not that it will get created over and over.
+  unless I delete the variant through the ingame about screen."), built (tools and docs only; the game's part is the
+  other build's).** `Make-Variants.ps1` reads `library\variants-wanted.csv` first (picture, word, instruction, who,
+  priority, first): priority 1 then 2, the oldest first, then as listed; the instruction as given (an expression with
+  none gets the script's own wording; a mark with none is left out with a note); a word it doesn't know, a picture not
+  in the records and duplicates are noted or skipped; it says "The game wants 11 variants (library\variants-wanted.csv):
+  2 there already, 6 to make (3 of them for your colonists), 3 that can't be made" and at the end "Made 6 of the 6 to
+  make (blink 1, lostEyeLeft 1 ...)". Done means a file `<stem>_v-<word>.png` or `<stem>_v-<word>-N.png` in the library
+  not listed in deleted.csv, whatever the list says; a deleted name is passed over (`-2`, `-3` ...). Without the list
+  (or with `-Which`) the old ways, the four expressions only. A mark variant may have expressions of its own (the game
+  lists the variant's file as the picture): `X_v-lostEyeLeft_v-blink.png`. `Update-PortraitLibrary.ps1`: `variant` the
+  word in the contract's spelling without the -N, `variantOf` the picture's record (for an expression of a mark
+  variant, the mark variant's); a mark variant also gets the mark in `marks` (lostEye, eyePatch, bionicEye, scar, burn,
+  missingEar, artificialArm) and `side` left or right from its word (a new `<side>` field, otherwise the picture's);
+  a variant listed in deleted.csv gets no record (nor its own variants), and deleted record names stay taken. It also
+  applies the game's `side` (left, right, clear) and `features` (add:/remove:) corrections. The variant-name pattern
+  (`_v-<word>-N`) also in `Check-Pictures.ps1` and `Run-PortraitBatch.ps1`. Tested with the stand-in (order, skipping
+  what exists, -2 past a deleted name, instructions as sent, the records, the two-level names, the old way, the queue).
+  Not solved: a mark that changes the outline (a missing ear, an arm of another shape) keeps the picture's outline
+  through Join Image with Alpha; said in the guide.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library sorted by
   kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
   race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks

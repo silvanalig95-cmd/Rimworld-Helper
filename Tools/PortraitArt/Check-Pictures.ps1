@@ -5,38 +5,53 @@
 # row by Update-PortraitLibrary.ps1). A record has to match its picture: the game gives a picture with a look or a role
 # only to pawns who have it, so a picture that shows more than its row says (a weapon, a flame, wings, a crown) or less
 # (a woman drawn as a man) goes to the wrong people.
-# - The workflow: rimfolk-check-workflow-api.json next to this script, exported from ComfyUI with Workflow, Export (API):
-#   a Load Image box, ComfyUI's own Generate Text box with a Qwen3.5 model and %QUESTION% in its prompt box, and a
-#   Preview as Text box after it (docs/portrait-art/SETUP-ComfyUI.md, step 8). Another describing box (the QwenVL box of
-#   the ComfyUI-QwenVL pack) works the same way, with %QUESTION% in its prompt box.
-# - Each new picture is uploaded to ComfyUI (as input\rimfolk-check.png, the same name every time), asked a fixed
-#   list of questions, and the answer kept in library\checked.csv (the picture's name and size, the answer item by item,
-#   and the answer as given): the description database. Running it again asks only about pictures not asked about
-#   before (or changed since).
-# - Every run compares all the checked pictures with their records again and writes library\check-report.csv: what is
-#   wrong, what the model saw, what the row says, and a suggested fix, the worst first.
+# - The workflow: rimfolk-check-workflow-api.json next to this script, exported from ComfyUI with Workflow, Export
+#   (API): a Load Image box, ComfyUI's own Generate Text box with a Qwen3.5 model and %QUESTION% in its prompt box, and
+#   a Preview as Text box after it (docs/portrait-art/SETUP-ComfyUI.md, step 8). Another describing box (the QwenVL box
+#   of the ComfyUI-QwenVL pack) works the same way, with %QUESTION% in its prompt box.
+# - It asks only what it hasn't (the player: "it only analyzes things that have not yet been analyzed ... not that I
+#   have like a really long analyze job each time I add new images"). A new picture, or one changed since (another
+#   size), is asked the whole form, a fixed list of questions. Each line of the form has a version of its own
+#   ($LineVersions): when a line's wording changes its number is raised, and the next run asks only the changed lines,
+#   in a short form, about the pictures asked with the older wording, and puts the answers with the ones kept. The
+#   answers are kept in library\checked.csv (the picture's name and size, the version each line was asked with, the
+#   answer item by item, and the answer as given): the description database. -Again asks every picture the whole form
+#   again.
+# - A proper queue (the player: "it should finish all the analysis first and only then start upcoming jobs so it's a
+#   proper queue"): every picture to ask is handed to ComfyUI first (into input\rimfolk-check\, one file for each
+#   picture, written over on later runs), all the questions are queued at once, and the answers are collected in order.
+#   A job queued in ComfyUI after the check started (a batch of portraits) waits until the check is done; a check
+#   started after other jobs waits behind them. Stopped early with Ctrl+C or by an error, it takes its questions still
+#   waiting out of ComfyUI's queue.
+# - Every run reads the kept answers again and compares all the checked pictures with their records, so a change to how
+#   answers are read or compared needs no model. It writes library\check-report.csv: what is wrong, what the model saw,
+#   what the row says, and a suggested fix, the worst first.
 # - The record (from the row) is the baseline: the model is not told the row, and only where what it saw differs is a
 #   correction written. The sex is never changed without asking (the player: the check "should really rely first on the
 #   data that is already provided kind of by the CSV files").
 # - And library\corrections.csv: one line per change to one picture's record (age, sex, looks add:/remove:, role or
 #   clear, marks add:/remove:, headwear, out), marked yes where it is safe or plainly right (an age three bands or more
 #   off, a role for the weapon it holds, the wings look for its wings, a lost eye, a bionic eye or an artificial arm
-#   shown, out for two people in a cut-out) and ask where you decide (the sex, fire or magic, anything taken away, a body
-#   its kind doesn't have, a cut-out cut at the side). Update-PortraitLibrary.ps1 puts the lines marked yes into the
-#   records; you change ask to yes or no. Lines already there are never changed here, the yes lines count as done when
-#   comparing, and an issue marked no stays out of the report.
+#   shown, out for two people in a cut-out) and ask where you decide (the sex, fire or magic, anything taken away, a
+#   body its kind doesn't have, a cut-out cut at the side). Update-PortraitLibrary.ps1 puts the lines marked yes into
+#   the records; you change ask to yes or no. The yes lines count as done when comparing, and an issue marked no stays
+#   out of the report. A later scan may change the check's own line for a picture and field when the model answers
+#   otherwise now (its value, and yes or ask by the rules; a no stays no for the same value). The corrections made in
+#   the game (the why "set in the game") are never changed and always win: no correction is written against them, and
+#   the report only says when the model sees otherwise.
 # - The side check needs no model: a cut-out whose figure runs along the left or right edge is cut at the side (the
 #   player: "if anything is cut off, it's just from the bottom ... not from the side"). It reads the picture's
 #   transparency with Windows' own System.Drawing; a picture it can't read is left to the model's check alone.
-# - At the end it offers a zip of examples to send to the lead (library\check-examples-<date>-<time>.zip): the three
-#   CSV files, examples.csv, and up to 30 pictures, the flagged ones first.
-# - It never deletes, moves or renames a picture and never changes a batch list or the records: the name ties a
-#   picture to its row, and the row's other pictures may be right.
+# - At the end it offers a zip of examples to send to the lead (library\check-examples-<date>-<time>.zip): the three CSV
+#   files, examples.csv, and up to 30 pictures, the flagged ones first.
+# - It never deletes, moves or renames a picture and never changes a batch list or the records: the name ties a picture
+#   to its row, and the row's other pictures may be right.
 # - A picture deleted for good in the game (listed in library\deleted.csv) is never looked at.
 #
 # Run it: keep ComfyUI open and double-click Check-Pictures.cmd (or right-click this file, "Run with PowerShell"). Then
 # look at corrections.csv's ask lines, run Update-PortraitLibrary.ps1 and "Reload the library" in the game.
-# To ask about every picture again (after changing the model), delete library\checked.csv first.
+# To ask about every picture again (after changing the model), run it with -Again, or delete library\checked.csv first.
+# To stop it, press Ctrl+C: closing the window instead leaves its questions in ComfyUI's queue.
 # -Examples yes or no answers the zip's question without asking.
 
 [CmdletBinding()]
@@ -60,8 +75,12 @@ if ($Workflow -eq '') { $Workflow = Join-Path $Folder 'rimfolk-check-workflow-ap
 
 # ---------------- The question ----------------
 
-# Raise the number when the question changes: pictures asked with an older one are asked again.
-$QuestionVersion = '3'
+# The form. Each line has a version of its own in $LineVersions below: when a line's wording changes, raise its number,
+# and the next run asks that line again (with any other changed lines, in a short form of only those) about every
+# picture asked with the older wording; the other answers are kept. A new line gets a key in $FieldKeys and $FieldNames
+# and a version, and is asked the same way. The words before the lines go with every line: when they change, raise every
+# line's number. How the answers are read and compared is worked out again from the kept answers on every run, so a
+# change there needs no new number.
 $Question = @'
 This is a comic-style drawn portrait of a person, made for a game. Look at the picture closely and fill in the form below about the person in it. Write each line's name, a colon, and a short answer of a few words. Answer every line, in this order, and write nothing else. Write none when the thing is not in the picture.
 
@@ -87,6 +106,13 @@ headwear: any hat, helmet, hood, crown or other headwear, or none
 book or tools: any book, scroll or tool in the picture, or none
 unusual: anything else unusual about the person, or none
 '@
+
+# Each line's version (raise a line's number when its wording changes). All are 3: until 23 November 2026 the form had
+# one version for all its lines, the last 3, and a checked.csv from then counts each line as asked with that.
+$LineVersions = [ordered]@{
+    people = 3; sex = 3; age = 3; skin = 3; hair = 3; beard = 3; ears = 3; horns = 3; tail = 3; wings = 3; eyes = 3
+    body = 3; eyemarks = 3; arms = 3; hands = 3; weapons = 3; armour = 3; magic = 3; headwear = 3; tools = 3; unusual = 3
+}
 
 # The answer's items, in the question's order (also checked.csv's columns), and the names a model may give them.
 $FieldKeys = @('people', 'sex', 'age', 'skin', 'hair', 'beard', 'ears', 'horns', 'tail', 'wings', 'eyes', 'body', 'eyemarks', 'arms', 'hands', 'weapons', 'armour', 'magic', 'headwear', 'tools', 'unusual')
@@ -176,13 +202,69 @@ function Key-Of([string] $text) {
     return $null
 }
 
+# ---------------- The form's lines ----------------
+
+function Form-Parts {
+    # The question in parts: the words before the lines, each line by its key, the lines' names as the form writes them
+    # ("eye marks", "fire or magic"), and any line that has no key.
+    if ($script:FormParts -ne $null) { return $script:FormParts }
+    $intro = New-Object System.Collections.ArrayList
+    $lines = @{}; $labels = @{}; $loose = New-Object System.Collections.ArrayList
+    foreach ($l in ($Question -split "`r?`n")) {
+        $c = $l.IndexOf(':')
+        $key = $null
+        if ($c -gt 0) { $key = Key-Of $l.Substring(0, $c) }
+        if ($key -ne $null -and -not $lines.ContainsKey($key)) { $lines[$key] = $l; $labels[$key] = $l.Substring(0, $c).Trim() }
+        elseif ($lines.Count -eq 0) { [void]$intro.Add($l) }
+        elseif ($l.Trim() -ne '') { [void]$loose.Add($l) }
+    }
+    $script:FormParts = @{ intro = (($intro -join "`n").TrimEnd()); lines = $lines; labels = $labels; loose = $loose }
+    return $script:FormParts
+}
+
+function Test-Form {
+    # Every key has a line in the form and a version, and every line of the form a key: else the question was changed
+    # without its tables, and the answers couldn't be kept apart.
+    $f = Form-Parts
+    $wrong = New-Object System.Collections.ArrayList
+    foreach ($k in $FieldKeys) {
+        if (-not $f.lines.ContainsKey($k)) { [void]$wrong.Add(('{0} has no line in the question' -f $k)) }
+        if (-not $LineVersions.Contains($k)) { [void]$wrong.Add(('{0} has no version in $LineVersions' -f $k)) }
+    }
+    foreach ($l in $f.loose) { [void]$wrong.Add(('the line "{0}" has no key in $FieldNames' -f (Short $l))) }
+    if ($wrong.Count -gt 0) { throw ('The question and its tables don''t match (' + ($wrong -join '; ') + '). Send this to the lead.') }
+}
+
+function Form-Of($keys) {
+    # The question for these lines: the whole form, or a short form of only these lines, in the form's order.
+    $keys = @($keys)
+    if ($keys.Count -ge $FieldKeys.Count) { return $Question }
+    $f = Form-Parts
+    $ask = @($FieldKeys | Where-Object { $keys -contains $_ } | ForEach-Object { $f.lines[$_] })
+    return ($f.intro + "`n`n" + ($ask -join "`n"))
+}
+
+function Lines-Text($keys) {
+    # "the arms line", "the age and arms lines", in the form's order.
+    $f = Form-Parts
+    $keys = @($keys)
+    $names = @($FieldKeys | Where-Object { $keys -contains $_ } | ForEach-Object { $f.labels[$_] })
+    if ($names.Count -eq 1) { return ('the {0} line' -f $names[0]) }
+    return ('the {0} and {1} lines' -f (@($names | Select-Object -First ($names.Count - 1)) -join ', '), $names[$names.Count - 1])
+}
+
 # ---------------- Reading an answer ----------------
 
-function Read-Answer([string] $text) {
+function Read-Answer([string] $text, $keys = $null, [bool] $byNumber = $true) {
     # The model's answer to the question, item by item (a hashtable key -> text). It takes the answer as asked (one
     # "name: answer" line each) and the shapes a model drifts into: numbered or bulleted lines, bold names, names with
     # their explanation in brackets, everything on one line, JSON, a table, "name - answer", lines with numbers only, and
     # a thinking part before the answer.
+    # $keys: the lines asked, in the form's order (all of them when not given); only those are taken, and lines with
+    # numbers and no names are read by them. $byNumber false leaves numbered lines out (a kept answer read again, whose
+    # form may have had other lines). The answer to a short form of one line may be the answer alone ("normal").
+    if ($keys -eq $null) { $keys = $FieldKeys }
+    $keys = @($keys)
     $found = @{}
     if ([string]::IsNullOrWhiteSpace($text)) { return $found }
     $t = [regex]::Replace($text, '(?is)<think>.*?</think>', '')
@@ -234,17 +316,29 @@ function Read-Answer([string] $text) {
         if ($nl -ge 0) { $v = $v.Substring(0, $nl) }
         $v = [regex]::Replace($v, '(?<=\S)\s+(?:\d+\s*[.)]|[-*+\u2022])\s*$', '')
         $v = (($v -replace '\s+', ' ').Trim()).Trim([char[]]' ,;|/.-*')
-        if (-not $found.ContainsKey($st.key)) { $found[$st.key] = $v }
+        if (-not $found.ContainsKey($st.key) -and $keys -contains $st.key) { $found[$st.key] = $v }
     }
-    # Lines with numbers and no names: by their number, in the question's order.
-    if ($found.Count -lt 8) {
+    # Lines with numbers and no names: by their number, in the question's order (for the whole form: tried when fewer
+    # than 8 lines were named, taken when 15 are numbered; a short form in proportion).
+    $few = [Math]::Max(1, [int][Math]::Floor($keys.Count * 8 / 21))
+    $most = [Math]::Max(1, [int][Math]::Ceiling($keys.Count * 15 / 21))
+    if ($byNumber -and $found.Count -lt $few) {
         $numbered = @{}
         foreach ($line in $lines) { if ($line -match '^\s*(\d+)[.)]\s*(.+)$') { $numbered[[int]$Matches[1]] = $Matches[2] } }
-        if ($numbered.Count -ge 15) {
-            for ($n = 1; $n -le $FieldKeys.Count; $n++) {
-                $key = $FieldKeys[$n - 1]
+        if ($numbered.Count -ge $most) {
+            for ($n = 1; $n -le $keys.Count; $n++) {
+                $key = $keys[$n - 1]
                 if (-not $found.ContainsKey($key) -and $numbered.ContainsKey($n)) { $found[$key] = ([string]$numbered[$n]).Trim().Trim([char[]]' ,;|/.-*') }
             }
+        }
+    }
+    # A short form of one line answered with the answer alone: its first line.
+    if ($byNumber -and $keys.Count -eq 1 -and $found.Count -eq 0) {
+        foreach ($line in $lines) {
+            $v = (($line -replace '\s+', ' ').Trim()).Trim([char[]]' ,;|/.-*')
+            if ($v -eq '') { continue }
+            if ($v.Length -le 120 -and $v.IndexOf(':') -lt 0) { $found[$keys[0]] = $v }
+            break
         }
     }
     return $found
@@ -1002,15 +1096,24 @@ function Find-Server {
     }
 }
 
-function Upload-Picture([string] $path) {
-    # The picture goes to ComfyUI's input folder, always as rimfolk-check.png, so the folder doesn't fill up.
+function Upload-Name([string] $key) {
+    # A picture's name in ComfyUI's input folder, from its place in the library: the same on every run, so a later run
+    # writes over it and the folder holds at most one copy of each picture.
+    $sha = [System.Security.Cryptography.SHA1]::Create()
+    try { $h = $sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($key.ToLowerInvariant())) } finally { $sha.Dispose() }
+    return ((@($h | Select-Object -First 8 | ForEach-Object { $_.ToString('x2') }) -join '') + '.png')
+}
+
+function Upload-Picture([string] $path, [string] $as, [string] $subfolder) {
+    # The picture goes to ComfyUI's input folder (input\<subfolder>\<as>), written over if it is there.
     $content = New-Object System.Net.Http.MultipartFormDataContent
     $bytes = [System.IO.File]::ReadAllBytes($path)
     $file = [System.Net.Http.ByteArrayContent]::new($bytes)
     $file.Headers.ContentType = [System.Net.Http.Headers.MediaTypeHeaderValue]::Parse('image/png')
-    $content.Add($file, 'image', 'rimfolk-check.png')
+    $content.Add($file, 'image', $as)
     $content.Add([System.Net.Http.StringContent]::new('input'), 'type')
     $content.Add([System.Net.Http.StringContent]::new('true'), 'overwrite')
+    if ($subfolder -ne '') { $content.Add([System.Net.Http.StringContent]::new($subfolder), 'subfolder') }
     $r = Http-Send $script:Http 'POST' ($script:Url + '/upload/image') $content
     if (-not $r.ok) { throw ('ComfyUI would not take the picture ({0}): {1}' -f $r.status, (Short $r.text)) }
     $j = $r.text | ConvertFrom-Json
@@ -1021,9 +1124,9 @@ function Upload-Picture([string] $path) {
 $AskerPattern = '(?i)TextGenerate|QwenVL|Qwen.*VL|Florence|JoyCaption|Caption|Llava|VLM|Ollama|Gemma'
 $TextOutPattern = '(?i)PreviewAny|Show.?Text|Display.?(Any|Text)|Preview.?Text|ShowAny'
 
-function Fill-Workflow($wf, [string] $image) {
-    # The picture into every Load Image box, the question where the prompt says %QUESTION% (else into the describing
-    # box's prompt), thinking off and room for the whole answer.
+function Fill-Workflow($wf, [string] $image, [string] $Question) {
+    # The picture into every Load Image box, the question (the whole form or a short one) where the prompt says
+    # %QUESTION% (else into the describing box's prompt), thinking off and room for the whole answer.
     $loaded = $false; $asked = $false
     foreach ($node in @($wf.PSObject.Properties)) {
         $n = $node.Value
@@ -1084,15 +1187,50 @@ function Error-Of([string] $text) {
     return (Short $text)
 }
 
-function Ask-Comfy([string] $image, [bool] $first) {
-    # Queues the question about the uploaded picture and waits for the answer: the texts of the workflow's text boxes.
+function Queue-Ahead {
+    # How many jobs ComfyUI has running or waiting now, or -1 when it doesn't say.
+    try {
+        $r = Http-Send $script:Http 'GET' ($script:Url + '/prompt') $null
+        if ($r.ok) {
+            $j = $r.text | ConvertFrom-Json
+            if ((Has $j 'exec_info') -and (Has $j.exec_info 'queue_remaining')) { return [int]$j.exec_info.queue_remaining }
+        }
+    }
+    catch { }
+    return -1
+}
+
+function Queue-Question([string] $image, [string] $question) {
+    # Queues the question about an uploaded picture at the end of ComfyUI's queue; its job's id.
     $wf = $script:WfText | ConvertFrom-Json
-    [void](Fill-Workflow $wf $image)
+    [void](Fill-Workflow $wf $image $question)
     $body = @{ prompt = $wf; client_id = $script:Client } | ConvertTo-Json -Depth 64 -Compress
     $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
     $r = Http-Send $script:Http 'POST' ($script:Url + '/prompt') $json
     if (-not $r.ok) { throw ('ComfyUI refused the question: {0}' -f (Error-Of $r.text)) }
-    $id = [string](($r.text | ConvertFrom-Json).prompt_id)
+    return [string](($r.text | ConvertFrom-Json).prompt_id)
+}
+
+function Leave-Queue($ids, [string] $one, [string] $many) {
+    # Stopped before its jobs are done (Ctrl+C or an error): the ones still waiting are taken out of ComfyUI's queue, so
+    # they don't run for nothing (only these, never another job); the one ComfyUI is working on finishes by itself.
+    $list = @($ids)
+    if ($list.Count -eq 0) { return }
+    $ok = $false
+    try {
+        $body = @{ delete = [string[]]$list } | ConvertTo-Json -Compress
+        $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
+        $r = Http-Send $script:Probe 'POST' ($script:Url + '/queue') $json
+        $ok = $r.ok
+    }
+    catch { }
+    if ($ok) { Write-Host ('Stopped early: took the {0} still waiting out of ComfyUI''s queue.' -f (Count-Of $list.Count $one $many)) -ForegroundColor Yellow }
+    else { Write-Host ('Stopped early: the {0} still waiting may be in ComfyUI''s queue. Remove them there (its Queue list), or Clear queue if nothing else is waiting.' -f (Count-Of $list.Count $one $many)) -ForegroundColor Yellow }
+}
+
+function Wait-Answer([string] $id, [bool] $first) {
+    # Waits for a queued question's answer: the texts of the workflow's text boxes. Waiting behind other jobs is fine
+    # however long; 15 minutes on this one is the limit.
     $lastQueue = [DateTime]::MinValue
     $runningSince = $null
     $gone = 0
@@ -1153,25 +1291,150 @@ function Ask-Comfy([string] $image, [bool] $first) {
 
 # ---------------- The description database ----------------
 
-$CheckedColumns = @('picture', 'size', 'question', 'checked', 'model') + $FieldKeys + @('answer')
+# library\checked.csv, one line for each picture asked: its place in the library and size, the version each line of the
+# form was asked with (versions: "people=3 sex=3 ..."), when and with which model, each line's answer as read, and the
+# model's answer as given (answer: its lines joined by " / "; the answer to a later short form after it, behind " // "
+# and the lines it asked in brackets: "... // [arms] arms: a bionic left arm").
+
+$CheckedColumns = @('picture', 'size', 'versions', 'checked', 'model') + $FieldKeys + @('answer')
+
+function Versions-Text($versions) {
+    $parts = @(foreach ($k in $FieldKeys) { if ($versions.ContainsKey($k) -and [string]$versions[$k] -ne '') { $k + '=' + $versions[$k] } })
+    return ($parts -join ' ')
+}
+
+function Versions-Of([string] $text) {
+    $v = @{}
+    foreach ($p in ($text -split '\s+')) {
+        $m = [regex]::Match($p, '^([a-z]+)=(\S+)$')
+        if ($m.Success) { $v[$m.Groups[1].Value] = $m.Groups[2].Value }
+    }
+    return $v
+}
+
+function Current-Versions {
+    $v = @{}
+    foreach ($k in $FieldKeys) { $v[$k] = [string]$LineVersions[$k] }
+    return $v
+}
+
+function Entry-Of($row, $columns) {
+    # One line of checked.csv. A file from before the lines had versions of their own (a question column, version 3 or
+    # earlier): each line it has a column for counts as asked with that question's number.
+    $versions = @{}
+    if ($columns -contains 'versions') { $versions = Versions-Of (Field $row 'versions') }
+    elseif ($columns -contains 'question') {
+        $q = (Field $row 'question').Trim()
+        if ($q -ne '') { foreach ($k in $FieldKeys) { if ($columns -contains $k) { $versions[$k] = $q } } }
+    }
+    $values = @{}
+    foreach ($k in $FieldKeys) { $values[$k] = Field $row $k }
+    return [pscustomobject]@{
+        picture = (Field $row 'picture'); size = (Field $row 'size'); versions = $versions; checked = (Field $row 'checked')
+        model = (Field $row 'model'); values = $values; answer = (Field $row 'answer')
+    }
+}
+
+function Entry-Line($e) {
+    $values = New-Object System.Collections.ArrayList
+    foreach ($v in @($e.picture, $e.size, (Versions-Text $e.versions), $e.checked, $e.model)) { [void]$values.Add([string]$v) }
+    foreach ($k in $FieldKeys) { [void]$values.Add([string]$e.values[$k]) }
+    [void]$values.Add([string]$e.answer)
+    return (Csv-Line ([string[]]$values.ToArray()))
+}
 
 function Read-Checked {
+    # Every picture's line, by its place in the library (small letters); a picture asked again keeps its last line.
     $map = @{}
     $rows = 0
     if (Test-Path -LiteralPath $checkedFile) {
-        foreach ($r in @(Import-Csv -LiteralPath $checkedFile -Encoding UTF8)) {
+        $all = @(Import-Csv -LiteralPath $checkedFile -Encoding UTF8)
+        $columns = @()
+        if ($all.Count -gt 0) { $columns = @($all[0].PSObject.Properties.Name) }
+        foreach ($r in $all) {
             if ([string]::IsNullOrWhiteSpace($r.picture)) { continue }
-            $map[$r.picture.ToLowerInvariant()] = $r
+            $map[$r.picture.ToLowerInvariant()] = Entry-Of $r $columns
             $rows++
         }
     }
     return @{ map = $map; rows = $rows }
 }
 
-function Seen-From-Row($row) {
-    $seen = @{}
-    foreach ($k in $FieldKeys) { $seen[$k] = Field $row $k }
-    return [pscustomobject]$seen
+function Write-Checked($map) {
+    Write-CsvFile $checkedFile $CheckedColumns @($map.Keys | Sort-Object | ForEach-Object { Entry-Line $map[$_] })
+}
+
+function Answer-Text([string] $text) {
+    # The model's answer on one line: its lines joined by " / " (a slash within a line loses its spaces, so the lines
+    # can be told apart again when it is read again).
+    $lines = @(foreach ($l in (([string]$text -replace "`r", '') -split "`n")) { $t = ($l -replace '\s*/+\s*', '/').Trim(); if ($t -ne '') { $t } })
+    return ($lines -join ' / ')
+}
+
+function Add-Short([string] $answer, $keys, [string] $text) {
+    # The kept answer with a short form's answer added: " // [arms, age] arms: ... / age: ...". An earlier short form's
+    # answer for no other lines than these is left out.
+    $keys = @($keys)
+    $parts = New-Object System.Collections.ArrayList
+    $i = 0
+    foreach ($s in ($answer -split ' // ')) {
+        $i++
+        $m = [regex]::Match($s, '^\s*\[([a-z, ]+)\]')
+        if ($i -gt 1 -and $m.Success) {
+            $had = @($m.Groups[1].Value -split '[, ]+' | Where-Object { $_ -ne '' })
+            if (@($had | Where-Object { $keys -notcontains $_ }).Count -eq 0) { continue }
+        }
+        if ($s.Trim() -ne '') { [void]$parts.Add($s) }
+    }
+    [void]$parts.Add('[' + (@($FieldKeys | Where-Object { $keys -contains $_ }) -join ', ') + '] ' + (Answer-Text $text))
+    return ($parts -join ' // ')
+}
+
+function Seen-Of($e) {
+    # What the model saw, line by line: the kept answer read again with today's reading, so a change to how answers are
+    # read needs no model (a later short form's answer for the lines it asked). Where the kept answer can't be read
+    # again (an answer by numbers alone beside a short form's, or none kept), the answers as read when it was asked.
+    $vals = @{}
+    foreach ($k in $FieldKeys) { $vals[$k] = [string]$e.values[$k] }
+    if ([string]::IsNullOrWhiteSpace($e.answer)) { return $vals }
+    $parts = New-Object System.Collections.ArrayList
+    $listed = @{}
+    $i = 0
+    foreach ($s in ($e.answer -split ' // ')) {
+        $i++
+        $keys = $null
+        $m = [regex]::Match($s, '^\s*\[([a-z, ]+)\]\s*')
+        if ($i -gt 1 -and $m.Success) {
+            $keys = @($FieldKeys | Where-Object { @($m.Groups[1].Value -split '[, ]+') -contains $_ })
+            $s = $s.Substring($m.Length)
+            foreach ($k in $keys) { $listed[$k] = $true }
+        }
+        elseif ($i -gt 1) { continue }
+        [void]$parts.Add([pscustomobject]@{ keys = $keys; text = (($s -split ' / ') -join "`n") })
+    }
+    $set = @{}
+    for ($i = $parts.Count - 1; $i -ge 0; $i--) {
+        $p = $parts[$i]
+        if ($p.keys -ne $null) {
+            # A short form's answer: the lines it asked that can be read again.
+            if ($p.keys.Count -eq 0) { continue }
+            $found = Read-Answer $p.text $p.keys
+            foreach ($k in $p.keys) { if (-not $set.ContainsKey($k) -and $found.ContainsKey($k)) { $vals[$k] = [string]$found[$k]; $set[$k] = $true } }
+            continue
+        }
+        # The whole form: read by the lines it had (those with a version), by numbers too when no short form came after;
+        # the lines a short form asked again keep that answer.
+        $had = @($FieldKeys | Where-Object { $e.versions.ContainsKey($_) })
+        if ($had.Count -eq 0) { continue }
+        $found = Read-Answer $p.text $had ($parts.Count -eq 1)
+        if ($found.Count -lt 10) { continue }
+        foreach ($k in $had) {
+            if ($set.ContainsKey($k) -or $listed.ContainsKey($k)) { continue }
+            $v = ''; if ($found.ContainsKey($k)) { $v = [string]$found[$k] }
+            $vals[$k] = $v
+        }
+    }
+    return $vals
 }
 
 function Write-CsvFile([string] $path, [string[]] $header, $lines) {
@@ -1194,18 +1457,67 @@ function Read-Csv-Any([string] $path) {
 }
 
 function Read-Corrections([string] $path) {
-    # library\corrections.csv: picture, field, value, apply (yes, ask, no), why.
+    # library\corrections.csv: picture, field, value, apply (yes, ask, no), why; each line also as it was written (raw),
+    # so a line the check doesn't change is written back exactly as it is.
     $list = New-Object System.Collections.ArrayList
     if (-not (Test-Path -LiteralPath $path)) { return $list }
     foreach ($c in (Read-Csv-Any $path)) {
         $pic = (Field $c 'picture').Trim().Replace('/', '\')
-        if ($pic -eq '') { continue }
+        if ($pic.ToLowerInvariant().StartsWith('library\')) { $pic = $pic.Substring(8) }
         [void]$list.Add([pscustomobject]@{
             picture = $pic; field = (Field $c 'field').Trim().ToLowerInvariant(); value = (Field $c 'value').Trim()
-            apply = (Field $c 'apply').Trim().ToLowerInvariant(); why = (Field $c 'why').Trim()
+            apply = (Field $c 'apply').Trim().ToLowerInvariant(); why = (Field $c 'why').Trim(); changed = $false
+            raw = [string[]]@((Field $c 'picture'), (Field $c 'field'), (Field $c 'value'), (Field $c 'apply'), (Field $c 'why'))
         })
     }
     return $list
+}
+
+# ---------------- Corrections made in the game ----------------
+# The player, 23 November 2026: "the corrections i make through the game client are always prioritized. for example if
+# an image is generating a man, qwen thinks it's a woman and writes that in the corrections file, i edit the file within
+# the game detail screen to be a man, the library import or other scripts should not override that again with the
+# "correction" from gwen of it being a woman". Rimfolk's "About this picture" writes its lines with the why "set in the
+# game": such a line wins over every other line for the same picture and field (for looks, marks and features: the same
+# word), whatever their order, and the check never writes a correction against it.
+
+$ListFields = @('looks', 'marks', 'features')
+
+function Is-Game($c) { return (Low $c.why).StartsWith('set in the game') }
+
+function List-Word([string] $v) {
+    # The word of "add:word" or "remove:word" (small letters), or ''.
+    $m = [regex]::Match([string]$v, '^\s*(add|remove)\s*:\s*(\S+)\s*$', 'IgnoreCase')
+    if ($m.Success) { return $m.Groups[2].Value.ToLowerInvariant() }
+    return ''
+}
+
+function Same-Target($c, $i) {
+    # Whether a correction line is about the same thing as an issue: the same field, for a list the same word (an issue
+    # with no word: the same why), for out the same reason (the game's out: any).
+    if ($c.field -ne $i.field) { return $false }
+    if ($ListFields -contains $i.field) {
+        $w = List-Word $i.value
+        if ($w -eq '') { return (Why-Key $c.why) -eq (Why-Key $i.what) }
+        return (List-Word $c.value) -eq $w
+    }
+    if ($i.field -eq 'out' -and -not (Is-Game $c)) { return (Why-Key $c.why) -eq (Why-Key $i.what) }
+    return $true
+}
+
+function Game-Last($lines) {
+    # A picture's lines marked yes in the order they are applied: the game's last, so they win; a line for a field the
+    # game set (for a list, the same word) is left out.
+    $yes = @($lines | Where-Object { $_.apply -eq 'yes' })
+    $set = @{}
+    foreach ($g in @($yes | Where-Object { Is-Game $_ })) {
+        if ($ListFields -contains $g.field) { $w = List-Word $g.value; if ($w -ne '') { $set[$g.field + '|' + $w] = $true } }
+        else { $set[$g.field] = $true }
+    }
+    $other = @($yes | Where-Object { -not (Is-Game $_) } | Where-Object {
+        if ($ListFields -contains $_.field) { -not $set.ContainsKey($_.field + '|' + (List-Word $_.value)) } else { -not $set.ContainsKey($_.field) }
+    })
+    return @($other) + @($yes | Where-Object { Is-Game $_ })
 }
 
 function Sex-Word([string] $v) {
@@ -1227,14 +1539,15 @@ function Change-List($list, [string] $v, [bool] $lower) {
 }
 
 function Apply-Yes($rec, $lines) {
-    # The record with this picture's corrections marked yes, as Update-PortraitLibrary.ps1 writes it.
+    # The record with this picture's corrections marked yes, as Update-PortraitLibrary.ps1 writes it (the game's last).
     $r = $rec.PSObject.Copy()
     $lw = New-Object System.Collections.ArrayList
     foreach ($w in $rec.lookWords) { [void]$lw.Add($w) }
     $mk = New-Object System.Collections.ArrayList
     foreach ($w in $rec.marks) { [void]$mk.Add($w) }
-    foreach ($c in @($lines)) {
-        if ($c.apply -ne 'yes') { continue }
+    $ft = New-Object System.Collections.ArrayList
+    foreach ($w in $rec.featureWords) { [void]$ft.Add($w) }
+    foreach ($c in @(Game-Last $lines)) {
         $v = [string]$c.value
         switch ($c.field) {
             'age' { if ($v -ne '') { $r.age = $v.ToLowerInvariant() } }
@@ -1243,11 +1556,14 @@ function Apply-Yes($rec, $lines) {
             'headwear' { $r.headwear = ($v -match '^(true|yes|1)$') }
             'looks' { Change-List $lw $v $false }
             'marks' { Change-List $mk $v $true }
+            'features' { Change-List $ft $v $false }
         }
     }
     $r.lookWords = @($lw)
     $r.looks = @($lw | ForEach-Object { Look-Words $_ })
     $r.marks = @($mk)
+    $r.featureWords = @($ft)
+    $r.features = @($ft | ForEach-Object { $_.ToLowerInvariant() })
     return $r
 }
 
@@ -1438,7 +1754,9 @@ try {
     $records = Read-Records $recordsFile
 
     # The pictures: library\<batch>\*.png. A backdrop's depth map (<picture>_depth.png) and a person's expressions
-    # (<picture>_v-blink.png ...) belong to their picture, which is checked; they are not looked at.
+    # (<picture>_v-blink.png, _v-lostEyeLeft-2.png ...) belong to their picture, which is checked; they are not looked
+    # at.
+    Test-Form
     $pictures = New-Object System.Collections.ArrayList
     $skippedBackdrops = 0
     # Pictures deleted for good in the game (deleted.csv) are not looked at, even where their file is still here.
@@ -1447,7 +1765,7 @@ try {
     foreach ($dir in @(Get-ChildItem -LiteralPath $library -Directory | Sort-Object Name)) {
         foreach ($f in @(Get-ChildItem -LiteralPath $dir.FullName -Filter '*.png' -File | Sort-Object Name)) {
             $stem = [System.IO.Path]::GetFileNameWithoutExtension($f.Name)
-            if ($stem -match '_(depth|v-[A-Za-z]+)$') { continue }
+            if ($stem -match '_(depth|v-[A-Za-z]+(-\d+)?)$') { continue }
             if (Is-Deleted $f.FullName $deleted) { $skippedDeleted++; continue }
             # Backdrops are not looked at (the player: "the image analysis ... also analyses the backdrops"): the questions
             # are about a person, and on an empty scene the model made one up. Only people's pictures are checked.
@@ -1467,20 +1785,55 @@ try {
     if ($pictures.Count -eq 0) { throw ('No pictures of people in the library ({0}) yet.' -f $library) }
 
     $db = Read-Checked
-    # A checked.csv from an older question has other columns (version 3 added arms): it is written again with today's
-    # columns first, its answers kept by their names, so the answers added at its end line up with its header.
+    # A checked.csv with another header (written before the lines had versions of their own, or before a line was
+    # added) is written again with today's columns, each line's answer kept with the version it was asked with.
+    $dirty = $db.rows -gt $db.map.Count
     if (Test-Path -LiteralPath $checkedFile) {
         $head = ''
         foreach ($l in @(Get-Content -LiteralPath $checkedFile -Encoding UTF8 -TotalCount 1)) { $head = ([string]$l).TrimStart([char]0xFEFF) }
-        if ($head -ne (Csv-Line $CheckedColumns)) {
-            $keep = @($db.map.Keys | Sort-Object | ForEach-Object { $r = $db.map[$_]; Csv-Line ([string[]]@($CheckedColumns | ForEach-Object { Field $r $_ })) })
-            Write-CsvFile $checkedFile $CheckedColumns $keep
-        }
+        if ($head -ne (Csv-Line $CheckedColumns)) { Write-Checked $db.map; $dirty = $false }
     }
-    $todo = @($pictures | Where-Object {
-        $old = $db.map[$_.key.ToLowerInvariant()]
-        $Again -or $old -eq $null -or $old.size -ne $_.size -or $old.question -ne $QuestionVersion
-    })
+
+    # What to ask: a new picture, or one changed since (another size), the whole form; a picture asked before only the
+    # lines whose version is newer than the one it was asked with, in a short form (the whole form when every line is);
+    # with -Again every picture the whole form.
+    $todo = New-Object System.Collections.ArrayList
+    $newCount = 0; $againCount = 0; $complete = 0
+    $groups = @{}
+    foreach ($pic in $pictures) {
+        $e = $db.map[$pic.key.ToLowerInvariant()]
+        $keys = $FieldKeys; $whole = $true
+        if ($e -eq $null) { $newCount++ }
+        elseif ($Again -or $e.size -ne $pic.size) { $againCount++ }
+        else {
+            $old = @($FieldKeys | Where-Object { [string]$e.versions[$_] -ne [string]$LineVersions[$_] })
+            if ($old.Count -eq 0) { $complete++; continue }
+            if ($old.Count -lt $FieldKeys.Count) {
+                $keys = $old; $whole = $false
+                $g = $old -join ','
+                if ($groups.ContainsKey($g)) { $groups[$g]++ } else { $groups[$g] = 1 }
+            }
+            else { $againCount++ }
+        }
+        [void]$todo.Add([pscustomobject]@{ pic = $pic; keys = @($keys); whole = $whole; image = ''; id = '' })
+    }
+    Write-Host ''
+    if ($todo.Count -eq 0) { Write-Host ('Nothing to ask the model: all {0} have every answer.' -f (Count-Of $pictures.Count 'picture' 'pictures')) }
+    else {
+        $say = New-Object System.Collections.ArrayList
+        [void]$say.Add((Count-Of $newCount 'new picture' 'new pictures') + ' (the whole form)')
+        if ($groups.Count -eq 0) { [void]$say.Add('0 to look at again for single lines') }
+        $firstGroup = $true
+        foreach ($g in @($groups.GetEnumerator() | Sort-Object @{ Expression = { $_.Value }; Descending = $true }, @{ Expression = { $_.Key } })) {
+            $which = Lines-Text ($g.Key -split ',')
+            if ($firstGroup) { [void]$say.Add(('{0} to look at again for {1} only' -f $g.Value, $which)) } else { [void]$say.Add(('{0} for {1}' -f $g.Value, $which)) }
+            $firstGroup = $false
+        }
+        if ($Again) { [void]$say.Add(('{0} asked again (-Again: the whole form)' -f $againCount)) }
+        else { [void]$say.Add(('{0} asked again (the whole form)' -f $againCount)) }
+        Write-Host ('What the model is asked: ' + ($say -join ', ') + '.')
+        if ($complete -gt 0) { Write-Host ('{0} every answer already.' -f (Count-Of $complete 'picture has' 'pictures have')) }
+    }
     $unread = New-Object System.Collections.ArrayList
     $described = 0
 
@@ -1494,7 +1847,7 @@ try {
         $classes = @($probeWf.PSObject.Properties | ForEach-Object { [string]$_.Value.class_type })
         if (-not (@($classes | Where-Object { $_ -match '(?i)^load.?image' }).Count -gt 0)) { throw 'The check''s workflow has no Load Image box. Add one, wire it to the describing box, and export it again (step 8).' }
         if (-not (@($classes | Where-Object { $_ -match $TextOutPattern }).Count -gt 0)) { throw 'The check''s workflow has no Preview as Text box (Preview Any in older versions) to show the answer. Add one after the Generate Text box, wire the text to it, and export it again (step 8).' }
-        $fill = Fill-Workflow ($script:WfText | ConvertFrom-Json) 'test.png'
+        $fill = Fill-Workflow ($script:WfText | ConvertFrom-Json) 'test.png' $Question
         if (-not $fill[1]) { throw 'The check''s workflow has no prompt box with %QUESTION% in it. Type %QUESTION% into the Generate Text box''s prompt and export it again (step 8).' }
         $model = Model-Of $probeWf
 
@@ -1506,43 +1859,71 @@ try {
         if (-not (Test-Path -LiteralPath $checkedFile)) {
             [System.IO.File]::WriteAllText($checkedFile, (Csv-Line $CheckedColumns) + "`r`n", (New-Object System.Text.UTF8Encoding($true)))
         }
-        Write-Host ''
-        Write-Host ('Asking the model about {0} ({1} checked before). The first takes longer while the model loads.' -f (Count-Of $todo.Count 'picture' 'pictures'), ($pictures.Count - $todo.Count))
-        $n = 0
-        foreach ($pic in $todo) {
-            $n++
-            $image = Upload-Picture $pic.path
-            $texts = @(Ask-Comfy $image ($n -eq 1))
-            if ($texts.Count -eq 0) {
-                if ($described -eq 0) { throw 'ComfyUI answered with no text. Check that the Generate Text box''s text is wired into a Preview as Text box, and export the workflow again (step 8).' }
-                [void]$unread.Add([pscustomobject]@{ pic = $pic; text = '(no text)' })
-                continue
+        # Every picture to ask is handed to ComfyUI first, each under a name of its own, then all the questions are
+        # queued at once and the answers collected in order: ComfyUI answers them one after the other, before any job
+        # queued after them (the player: "it should finish all the analysis first and only then start upcoming jobs so
+        # it's a proper queue").
+        Write-Host ('Handing {0} to ComfyUI ...' -f (Count-Of $todo.Count 'picture' 'pictures'))
+        foreach ($t in $todo) { $t.image = Upload-Picture $t.pic.path (Upload-Name $t.pic.key) 'rimfolk-check' }
+        $ahead = Queue-Ahead
+        $waiting = New-Object System.Collections.ArrayList
+        $forms = Form-Parts
+        try {
+            foreach ($t in $todo) { $t.id = Queue-Question $t.image (Form-Of $t.keys); [void]$waiting.Add($t.id) }
+            if ($ahead -eq 1) { Write-Host 'ComfyUI has 1 job ahead of the check; it starts when that is done.' }
+            elseif ($ahead -gt 1) { Write-Host ('ComfyUI has {0} jobs ahead of the check; it starts when they are done.' -f $ahead) }
+            Write-Host ('Queued {0} in ComfyUI. The first takes longer while the model loads.' -f (Count-Of $todo.Count 'question' 'questions'))
+            Write-Host 'To stop, press Ctrl+C (closing the window instead leaves the questions in ComfyUI''s queue).'
+            $n = 0
+            foreach ($t in $todo) {
+                $n++
+                $pic = $t.pic
+                $texts = @(Wait-Answer $t.id ($n -eq 1 -and $ahead -le 0))
+                [void]$waiting.Remove($t.id)
+                if ($texts.Count -eq 0) {
+                    if ($described -eq 0) { throw 'ComfyUI answered with no text. Check that the Generate Text box''s text is wired into a Preview as Text box, and export the workflow again (step 8).' }
+                    [void]$unread.Add([pscustomobject]@{ pic = $pic; text = '(no text)'; keys = $t.keys; whole = $t.whole })
+                    continue
+                }
+                $best = $null; $bestText = ''
+                foreach ($tx in $texts) {
+                    $parsed = Read-Answer $tx $t.keys
+                    if ($best -eq $null -or $parsed.Count -gt $best.Count) { $best = $parsed; $bestText = $tx }
+                }
+                $need = 10; if (-not $t.whole) { $need = 1 }
+                if ($best.Count -lt $need) {
+                    [void]$unread.Add([pscustomobject]@{ pic = $pic; text = $bestText; keys = $t.keys; whole = $t.whole })
+                    Write-Host ('[{0}/{1}] {2}: the answer could not be read' -f $n, $todo.Count, $pic.show) -ForegroundColor Yellow
+                    continue
+                }
+                $when = Get-Date -Format 'yyyy-MM-dd HH:mm'
+                $key = $pic.key.ToLowerInvariant()
+                if ($t.whole) {
+                    $values = @{}
+                    foreach ($k in $FieldKeys) { $v = ''; if ($best.ContainsKey($k)) { $v = [string]$best[$k] }; $values[$k] = $v }
+                    $e = [pscustomobject]@{ picture = $pic.key; size = $pic.size; versions = (Current-Versions); checked = $when; model = $model; values = $values; answer = (Answer-Text $bestText) }
+                    $said = Short (Seen-Says ([pscustomobject]$values))
+                }
+                else {
+                    # The lines asked again go with the answers kept; a line the answer doesn't give is asked again next
+                    # time.
+                    $e = $db.map[$key]
+                    $got = @($t.keys | Where-Object { $best.ContainsKey($_) })
+                    foreach ($k in $got) { $e.values[$k] = [string]$best[$k]; $e.versions[$k] = [string]$LineVersions[$k] }
+                    $e.answer = Add-Short $e.answer $t.keys $bestText
+                    $e.checked = $when; $e.model = $model
+                    $said = (@($got | ForEach-Object { $forms.labels[$_] + ': ' + (Short ([string]$best[$_])) }) -join '; ')
+                    $missed = @($t.keys | Where-Object { -not $best.ContainsKey($_) })
+                    if ($missed.Count -gt 0) { $said += (' (no answer for {0}: asked again next time)' -f (Lines-Text $missed)) }
+                    $said = 'again, ' + $said
+                }
+                $db.map[$key] = $e
+                [System.IO.File]::AppendAllText($checkedFile, (Entry-Line $e) + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
+                $described++; $dirty = $true
+                Write-Host ('[{0}/{1}] {2}: {3}' -f $n, $todo.Count, $pic.show, $said)
             }
-            $best = $null; $bestText = ''
-            foreach ($tx in $texts) {
-                $parsed = Read-Answer $tx
-                if ($best -eq $null -or $parsed.Count -gt $best.Count) { $best = $parsed; $bestText = $tx }
-            }
-            if ($best.Count -lt 10) {
-                [void]$unread.Add([pscustomobject]@{ pic = $pic; text = $bestText })
-                Write-Host ('[{0}/{1}] {2}: the answer could not be read' -f $n, $todo.Count, $pic.show) -ForegroundColor Yellow
-                continue
-            }
-            $values = New-Object System.Collections.ArrayList
-            foreach ($v in @($pic.key, $pic.size, $QuestionVersion, (Get-Date -Format 'yyyy-MM-dd HH:mm'), $model)) { [void]$values.Add([string]$v) }
-            foreach ($k in $FieldKeys) { $v = ''; if ($best.ContainsKey($k)) { $v = [string]$best[$k] }; [void]$values.Add($v) }
-            [void]$values.Add(((($bestText -replace "`r", '') -split "`n" | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' }) -join ' / '))
-            [System.IO.File]::AppendAllText($checkedFile, (Csv-Line ([string[]]$values.ToArray())) + "`r`n", (New-Object System.Text.UTF8Encoding($false)))
-            $described++
-            $seen = [pscustomobject]$best
-            Write-Host ('[{0}/{1}] {2}: {3}' -f $n, $todo.Count, $pic.show, (Short (Seen-Says $seen)))
         }
-        # Pictures asked about again (changed, or a newer question) keep only their newest answer.
-        $db = Read-Checked
-        if ($db.rows -gt $db.map.Count) {
-            $keep = @($db.map.Keys | Sort-Object | ForEach-Object { $r = $db.map[$_]; Csv-Line ([string[]]@($CheckedColumns | ForEach-Object { Field $r $_ })) })
-            Write-CsvFile $checkedFile $CheckedColumns $keep
-        }
+        finally { if ($waiting.Count -gt 0) { Leave-Queue $waiting 'question' 'questions' } }
     }
 
     # The rows' own prompts (subject and pose, from batches\<batch>.csv), which say what a look or role asked to show.
@@ -1561,16 +1942,18 @@ try {
 
     # The corrections (library\corrections.csv, kept from run to run; you may change apply there). Lines marked yes are
     # applied here as Update-PortraitLibrary.ps1 applies them, so a corrected picture leaves the report; a line marked
-    # no keeps its issue out of the report (you decided to keep it so); ask waits for you. New lines are added, and the
-    # lines already there are never changed.
+    # no keeps its issue out of the report (you decided to keep it so); ask waits for you. New lines are added at the
+    # end; the check's own lines may be changed by a later scan, the game's ("set in the game") never.
     $corrections = @(Read-Corrections $correctionsFile)
     $byPic = @{}
     foreach ($c in $corrections) {
+        if ($c.picture -eq '') { continue }
         $k = $c.picture.ToLowerInvariant()
         if (-not $byPic.ContainsKey($k)) { $byPic[$k] = New-Object System.Collections.ArrayList }
         [void]$byPic[$k].Add($c)
     }
     $newLines = New-Object System.Collections.ArrayList
+    $changedLines = 0
     $leftOut = 0
 
     # The report: every checked picture in the library against its record now, and each cut-out's sides.
@@ -1579,12 +1962,19 @@ try {
     $compared = 0
     $sidesRead = 0
     $script:DrawingOk = $null
+    # A short form whose answer couldn't be read: its picture is compared with the answers kept, and the report says so.
+    $unreadShort = @{}
+    foreach ($u in $unread) { if (-not $u.whole) { $unreadShort[$u.pic.key.ToLowerInvariant()] = $u } }
+    $reread = 0
     Write-Host ''
     Write-Host 'Comparing the pictures with their records, and looking at the sides of the cut-outs...'
     foreach ($pic in $pictures) {
-        $row = $db.map[$pic.key.ToLowerInvariant()]
-        if ($row -eq $null -or $row.size -ne $pic.size) { continue }
-        $seen = Seen-From-Row $row
+        $e = $db.map[$pic.key.ToLowerInvariant()]
+        if ($e -eq $null -or $e.size -ne $pic.size) { continue }
+        # The kept answer read again with today's reading; checked.csv is written again when it reads otherwise now.
+        $vals = Seen-Of $e
+        foreach ($fk in $FieldKeys) { if ([string]$vals[$fk] -cne [string]$e.values[$fk]) { $e.values = $vals; $dirty = $true; $reread++; break } }
+        $seen = [pscustomobject]$vals
         $k = $pic.show.ToLowerInvariant()
         if (-not $byPic.ContainsKey($k)) { $byPic[$k] = New-Object System.Collections.ArrayList }
         $mine = $byPic[$k]
@@ -1603,60 +1993,92 @@ try {
         $side = $null
         if ($pic.cut) { $side = Side-Cut-Of (Read-Pixels $pic.path); if ($side -ne $null) { $sidesRead++ } }
         $found = @(Compare-Picture $rec $seen $pic.cut $asked $side)
+        $u = $unreadShort[$pic.key.ToLowerInvariant()]
+        if ($u -ne $null) { $found += [pscustomobject]@{ level = 4; what = ('the model''s answer to {0} could not be read, so the earlier answer was used; it is asked again next time' -f (Lines-Text $u.keys)); fix = 'run this again; if it keeps happening, send check-report.csv to the lead'; field = ''; value = ''; apply = '' } }
         $issues = @(foreach ($lv in 1..4) { $found | Where-Object { $_.level -eq $lv } })
         $kept = New-Object System.Collections.ArrayList
         $notes = New-Object System.Collections.ArrayList
+        $touched = New-Object System.Collections.ArrayList
         foreach ($i in $issues) {
             if ($i.field -eq '') { [void]$kept.Add($i); continue }
-            $same = $null
-            $key = Why-Key $i.what
-            foreach ($c in $mine) { if ($c.field -eq $i.field -and (Why-Key $c.why) -eq $key) { $same = $c; break } }
-            if ($same -ne $null) {
-                if ($same.apply -eq 'no') { continue }
-                [void]$notes.Add((Corr-Text $same '')); [void]$kept.Add($i); continue
+            # Set in the game: that setting stays, and no correction is written against it; the report says what the
+            # model sees.
+            $game = $null
+            foreach ($c in $mine) { if ($c.apply -eq 'yes' -and (Is-Game $c) -and (Same-Target $c $i)) { $game = $c } }
+            if ($game -ne $null) {
+                $set = $game.field; if ($game.value -ne '') { $set += ' ' + $game.value }
+                [void]$kept.Add([pscustomobject]@{ level = 5; what = ('set in the game: {0}; the model sees otherwise ({1})' -f $set, $i.what); fix = 'nothing: the game''s setting is kept'; field = $i.field; value = $i.value; apply = '' })
+                [void]$notes.Add(('set in the game: {0} (kept)' -f $set))
+                continue
             }
-            $other = $null
-            if (@('age', 'sex', 'role', 'headwear', 'out') -contains $i.field) {
-                foreach ($c in $mine) { if ($c.field -eq $i.field -and $c.apply -ne 'no') { $other = $c; break } }
+            # The check's own line for it (any line not set in the game): kept as it is while the model answers the
+            # same (a no stays no); given the new answer, and yes or ask by the rules, when a later scan answers
+            # otherwise.
+            $own = $null
+            foreach ($c in $mine) { if (-not (Is-Game $c) -and (Same-Target $c $i) -and (Why-Key $c.why) -eq (Why-Key $i.what)) { $own = $c; break } }
+            if ($own -eq $null) { foreach ($c in $mine) { if (-not (Is-Game $c) -and (Same-Target $c $i)) { $own = $c; break } } }
+            if ($own -ne $null -and $touched.Contains($own)) { [void]$notes.Add((Corr-Text $own 'already there')); [void]$kept.Add($i); continue }
+            if ($own -ne $null) {
+                if ((Low $own.value) -eq (Low $i.value)) {
+                    if ($own.apply -eq 'no') { continue }
+                    [void]$notes.Add((Corr-Text $own '')); [void]$kept.Add($i); continue
+                }
+                $own.value = $i.value; $own.apply = $i.apply; $own.why = $i.what.Trim()
+                if (-not $own.changed) { $own.changed = $true; $changedLines++ }
+                [void]$touched.Add($own)
+                [void]$notes.Add((Corr-Text $own 'changed')); [void]$kept.Add($i); continue
             }
-            if ($other -ne $null) { [void]$notes.Add((Corr-Text $other 'already there')); [void]$kept.Add($i); continue }
-            $c = [pscustomobject]@{ picture = $pic.show; field = $i.field; value = $i.value; apply = $i.apply; why = $i.what.Trim() }
-            [void]$mine.Add($c); [void]$newLines.Add($c)
+            # One out line for a picture is enough: another reason's, not answered no, is already there.
+            if ($i.field -eq 'out') {
+                $other = $null
+                foreach ($c in $mine) { if ($c.field -eq 'out' -and $c.apply -ne 'no') { $other = $c; break } }
+                if ($other -ne $null) { [void]$notes.Add((Corr-Text $other 'already there')); [void]$kept.Add($i); continue }
+            }
+            $c = [pscustomobject]@{ picture = $pic.show; field = $i.field; value = $i.value; apply = $i.apply; why = $i.what.Trim(); changed = $true; raw = $null }
+            [void]$mine.Add($c); [void]$newLines.Add($c); [void]$touched.Add($c)
             [void]$notes.Add((Corr-Text $c 'new')); [void]$kept.Add($i)
         }
         if ($kept.Count -eq 0) { [void]$fine.Add([pscustomobject]@{ pic = $pic; rec = $rec }); continue }
         $fixes = New-Object System.Collections.ArrayList
         foreach ($i in $kept) { if (-not $fixes.Contains($i.fix)) { [void]$fixes.Add($i.fix) } }
         [void]$out.Add([pscustomobject]@{
-            level = $kept[0].level; count = $kept.Count; picture = $pic.show; row = $pic.row
+            level = [int](@($kept | Measure-Object -Property level -Minimum).Minimum); count = $kept.Count; picture = $pic.show; row = $pic.row
             what = (($kept | ForEach-Object { $_.what }) -join ' | '); seen = (Seen-Says $seen); says = (Row-Says $rec); fix = ($fixes -join ' | '); corr = ($notes -join ' | ')
         })
     }
-    foreach ($u in $unread) {
+    foreach ($u in @($unread | Where-Object { $_.whole })) {
         [void]$out.Add([pscustomobject]@{ level = 4; count = 1; picture = $u.pic.show; row = $u.pic.row; what = 'the model''s answer could not be read; it is asked again next time'; seen = (Short $u.text); says = ''; fix = 'run this again; if it keeps happening, send check-report.csv to the lead'; corr = '' })
     }
 
-    # corrections.csv first (the lines already there as they were, then the new ones), then the report.
-    if ($newLines.Count -gt 0) {
+    # The description database without the older lines of pictures asked again, and with what reads otherwise now.
+    if ($dirty) { Write-Checked $db.map }
+    if ($reread -gt 0) { Write-Host ('{0} read again with today''s reading came out otherwise; checked.csv has them now.' -f (Count-Of $reread 'kept answer' 'kept answers')) }
+
+    # corrections.csv first (the lines already there as they were, the check's own changed where a later scan answers
+    # otherwise, then the new ones), then the report.
+    if ($newLines.Count -gt 0 -or $changedLines -gt 0) {
         $all = @($corrections) + @($newLines)
-        Write-CsvFile $correctionsFile @('picture', 'field', 'value', 'apply', 'why') @($all | ForEach-Object { Csv-Line ([string[]]@($_.picture, $_.field, $_.value, $_.apply, $_.why)) })
+        Write-CsvFile $correctionsFile @('picture', 'field', 'value', 'apply', 'why') @($all | ForEach-Object {
+            if ($_.changed -or $null -eq $_.raw) { Csv-Line ([string[]]@($_.picture, $_.field, $_.value, $_.apply, $_.why)) } else { Csv-Line $_.raw }
+        })
     }
-    $LevelNames = @{ 1 = '1 wrong'; 2 = '2 shows more'; 3 = '3 shows less'; 4 = '4 not compared' }
+    $LevelNames = @{ 1 = '1 wrong'; 2 = '2 shows more'; 3 = '3 shows less'; 4 = '4 not compared'; 5 = '5 set in the game' }
     $sorted = @($out | Sort-Object @{ Expression = { $_.level } }, @{ Expression = { $_.count }; Descending = $true }, @{ Expression = { $_.picture } })
     $lines = @($sorted | ForEach-Object { Csv-Line ([string[]]@($_.picture, $_.row, $LevelNames[$_.level], $_.what, $_.seen, $_.says, $_.fix, $_.corr)) })
     Write-CsvFile $reportFile @('picture', 'row', 'check', 'what is wrong', 'what the model saw', 'its row says', 'suggested fix', 'in corrections.csv') $lines
 
-    $count = @{ 1 = 0; 2 = 0; 3 = 0; 4 = 0 }
+    $count = @{ 1 = 0; 2 = 0; 3 = 0; 4 = 0; 5 = 0 }
     foreach ($o in $out) { $count[$o.level]++ }
     Write-Host ''
     if ($todo.Count -gt 0) {
-        $line = 'The model described {0} of {1}.' -f $described, (Count-Of $todo.Count 'picture' 'pictures')
+        $line = 'The model answered {0} of {1}.' -f $described, (Count-Of $todo.Count 'question' 'questions')
         if ($unread.Count -eq 1) { $line += ' 1 answer could not be read; that picture is asked about again next time.' }
         elseif ($unread.Count -gt 1) { $line += (' {0} answers could not be read; those pictures are asked about again next time.' -f $unread.Count) }
         Write-Host $line
     }
-    else { Write-Host ('No new pictures; compared the {0} with the records again.' -f (Count-Of $compared 'checked picture' 'checked pictures')) }
-    if ($out.Count -eq 0) {
+    else { Write-Host ('Nothing new to ask; compared the {0} with the records again.' -f (Count-Of $compared 'checked picture' 'checked pictures')) }
+    $toLook = $out.Count - $count[5]
+    if ($toLook -eq 0) {
         Write-Host ('All {0} match their records.' -f (Count-Of $compared 'checked picture' 'checked pictures')) -ForegroundColor Green
     }
     else {
@@ -1666,19 +2088,22 @@ try {
         elseif ($count[2] -gt 1) { [void]$parts.Add(('{0} show more than their rows say' -f $count[2])) }
         if ($count[3] -gt 0) { [void]$parts.Add(('{0} less' -f (Count-Of $count[3] 'shows' 'show'))) }
         if ($count[4] -gt 0) { [void]$parts.Add(('{0} not compared' -f $count[4])) }
-        Write-Host ('{0} to look at: {1}.' -f (Count-Of $out.Count 'picture' 'pictures'), ($parts -join ', '))
+        Write-Host ('{0} to look at: {1}.' -f (Count-Of $toLook 'picture' 'pictures'), ($parts -join ', '))
         Write-Host 'The worst first:'
         $colours = @{ 1 = 'Red'; 2 = 'Yellow'; 3 = 'Cyan'; 4 = 'Gray' }
-        foreach ($o in @($sorted | Select-Object -First 15)) {
+        $worst = @($sorted | Where-Object { $_.level -lt 5 })
+        foreach ($o in @($worst | Select-Object -First 15)) {
             Write-Host ('  {0,-14} {1}: {2}' -f $LevelNames[$o.level], $o.picture, $o.what) -ForegroundColor $colours[$o.level]
         }
-        if ($sorted.Count -gt 15) { Write-Host ('  ... and {0} more.' -f ($sorted.Count - 15)) }
+        if ($worst.Count -gt 15) { Write-Host ('  ... and {0} more.' -f ($worst.Count - 15)) }
         Write-Host ''
         Write-Host ('The whole list, with what the model saw and a suggested fix for each: {0}' -f $reportFile)
     }
+    if ($count[5] -gt 0) { Write-Host ('{0} the model sees otherwise than set in the game: the game''s setting is kept (check-report.csv, 5 set in the game).' -f (Count-Of $count[5] 'picture' 'pictures')) }
     $yesNew = @($newLines | Where-Object { $_.apply -eq 'yes' }).Count
     $askAll = @(@($corrections) + @($newLines) | Where-Object { $_.apply -eq 'ask' }).Count
     if ($newLines.Count -gt 0) { Write-Host ('{0} written to {1}: {2} marked yes, {3} marked ask.' -f (Count-Of $newLines.Count 'new correction' 'new corrections'), $correctionsFile, $yesNew, ($newLines.Count - $yesNew)) }
+    if ($changedLines -gt 0) { Write-Host ('{0} of the check''s own changed: the model answers otherwise now (marked "changed" in check-report.csv).' -f (Count-Of $changedLines 'correction' 'corrections')) }
     if ($leftOut -gt 0) { Write-Host ('{0} left out by corrections.csv (out, yes).' -f (Count-Of $leftOut 'picture is' 'pictures are')) }
     if ($askAll -gt 0) { Write-Host ('{0} for you in corrections.csv: open it (in Excel) and change ask to yes or no.' -f (Count-Of $askAll 'correction waits' 'corrections wait')) -ForegroundColor Yellow }
     $cutOuts = @($pictures | Where-Object { $_.cut }).Count
@@ -1697,8 +2122,8 @@ try {
         if ($make -eq 'yes') {
             $answerOf = @{}
             foreach ($pic in $pictures) {
-                $row = $db.map[$pic.key.ToLowerInvariant()]
-                if ($row -ne $null) { $answerOf[$pic.show.ToLowerInvariant()] = Field $row 'answer' }
+                $e = $db.map[$pic.key.ToLowerInvariant()]
+                if ($e -ne $null) { $answerOf[$pic.show.ToLowerInvariant()] = [string]$e.answer }
             }
             foreach ($u in $unread) { $answerOf[$u.pic.show.ToLowerInvariant()] = (((([string]$u.text) -replace "`r", '') -split "`n" | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' }) -join ' / ') }
             try {

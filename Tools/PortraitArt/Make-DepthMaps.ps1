@@ -9,9 +9,12 @@
 # - The workflow: rimfolk-depth-workflow-api.json next to this script, exported from ComfyUI with Workflow, Export (API)
 #   from ComfyUI's own Depth Anything 3 template: a Load Image box, the depth boxes and a Preview Image (or Save Image)
 #   box. See docs/portrait-art/SETUP-ComfyUI.md, step 9.
-# - Each backdrop without a depth map is uploaded to ComfyUI (as input\rimfolk-depth.png, the same name every time), its
-#   depth map made, fetched back, checked to be the backdrop's size, and written next to it. A depth map already there is
-#   never made again (delete it to have it made again).
+# - A proper queue (the player: "it should finish all the analysis first and only then start upcoming jobs so it's a
+#   proper queue"): each backdrop without a depth map is handed to ComfyUI (into input\rimfolk-depth\, one file for
+#   each backdrop, written over on later runs), all the depth maps are queued at once and collected in order: fetched
+#   back, checked to be the backdrop's size, and written next to it. A job queued in ComfyUI after this started waits
+#   until these are done. A depth map already there is never made again (delete it to have it made again). Stopped
+#   early with Ctrl+C or by an error, it takes its jobs still waiting out of ComfyUI's queue.
 # - It never renames, moves or deletes a picture and changes nothing else in the library; at the end it writes the
 #   records again (Update-PortraitLibrary.ps1), which tell the game where each backdrop's depth map is. Then "Reload the
 #   library" in the game.
@@ -43,7 +46,7 @@ function Short([string] $v) {
     return $t
 }
 function Is-Link($v) { return ($v -is [array]) -and ($v.Count -eq 2) -and ($v[0] -is [string]) }
-function Is-Extra([string] $stem) { return $stem -match '_(depth|v-[A-Za-z]+)$' }
+function Is-Extra([string] $stem) { return $stem -match '_(depth|v-[A-Za-z]+(-\d+)?)$' }
 function Count-Of([int] $n, [string] $one, [string] $many) { if ($n -eq 1) { return ('1 ' + $one) } else { return ('{0} {1}' -f $n, $many) } }
 
 function Png-Info([byte[]] $b) {
@@ -134,8 +137,16 @@ function Find-Server {
     }
 }
 
-function Upload-Picture([string] $path, [string] $as) {
-    # The picture goes to ComfyUI's input folder, always under the same name, so the folder doesn't fill up.
+function Upload-Name([string] $key) {
+    # A picture's name in ComfyUI's input folder, from its place in the library: the same on every run, so a later run
+    # writes over it and the folder holds at most one copy of each picture.
+    $sha = [System.Security.Cryptography.SHA1]::Create()
+    try { $h = $sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($key.ToLowerInvariant())) } finally { $sha.Dispose() }
+    return ((@($h | Select-Object -First 8 | ForEach-Object { $_.ToString('x2') }) -join '') + '.png')
+}
+
+function Upload-Picture([string] $path, [string] $as, [string] $subfolder) {
+    # The picture goes to ComfyUI's input folder (input\<subfolder>\<as>), written over if it is there.
     $content = New-Object System.Net.Http.MultipartFormDataContent
     $bytes = [System.IO.File]::ReadAllBytes($path)
     $file = [System.Net.Http.ByteArrayContent]::new($bytes)
@@ -143,6 +154,7 @@ function Upload-Picture([string] $path, [string] $as) {
     $content.Add($file, 'image', $as)
     $content.Add([System.Net.Http.StringContent]::new('input'), 'type')
     $content.Add([System.Net.Http.StringContent]::new('true'), 'overwrite')
+    if ($subfolder -ne '') { $content.Add([System.Net.Http.StringContent]::new($subfolder), 'subfolder') }
     $r = Http-Send $script:Http 'POST' ($script:Url + '/upload/image') $content
     if (-not $r.ok) { throw ('ComfyUI would not take the picture ({0}): {1}' -f $r.status, (Short $r.text)) }
     $j = $r.text | ConvertFrom-Json
@@ -172,13 +184,48 @@ function Error-Of([string] $text) {
     return (Short $text)
 }
 
-function Run-Comfy($wf, [bool] $first) {
-    # Queues the workflow and waits until ComfyUI has run it: its outputs, as ComfyUI's history keeps them.
+function Queue-Ahead {
+    # How many jobs ComfyUI has running or waiting now, or -1 when it doesn't say.
+    try {
+        $r = Http-Send $script:Http 'GET' ($script:Url + '/prompt') $null
+        if ($r.ok) {
+            $j = $r.text | ConvertFrom-Json
+            if ((Has $j 'exec_info') -and (Has $j.exec_info 'queue_remaining')) { return [int]$j.exec_info.queue_remaining }
+        }
+    }
+    catch { }
+    return -1
+}
+
+function Queue-Job($wf) {
+    # Queues the workflow at the end of ComfyUI's queue; its job's id.
     $body = @{ prompt = $wf; client_id = $script:Client } | ConvertTo-Json -Depth 64 -Compress
     $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
     $r = Http-Send $script:Http 'POST' ($script:Url + '/prompt') $json
     if (-not $r.ok) { throw ('ComfyUI refused the workflow (is a model file it names missing from ComfyUI''s models folder?): {0}' -f (Error-Of $r.text)) }
-    $id = [string](($r.text | ConvertFrom-Json).prompt_id)
+    return [string](($r.text | ConvertFrom-Json).prompt_id)
+}
+
+function Leave-Queue($ids, [string] $one, [string] $many) {
+    # Stopped before its jobs are done (Ctrl+C or an error): the ones still waiting are taken out of ComfyUI's queue, so
+    # they don't run for nothing (only these, never another job); the one ComfyUI is working on finishes by itself.
+    $list = @($ids)
+    if ($list.Count -eq 0) { return }
+    $ok = $false
+    try {
+        $body = @{ delete = [string[]]$list } | ConvertTo-Json -Compress
+        $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
+        $r = Http-Send $script:Probe 'POST' ($script:Url + '/queue') $json
+        $ok = $r.ok
+    }
+    catch { }
+    if ($ok) { Write-Host ('Stopped early: took the {0} still waiting out of ComfyUI''s queue.' -f (Count-Of $list.Count $one $many)) -ForegroundColor Yellow }
+    else { Write-Host ('Stopped early: the {0} still waiting may be in ComfyUI''s queue. Remove them there (its Queue list), or Clear queue if nothing else is waiting.' -f (Count-Of $list.Count $one $many)) -ForegroundColor Yellow }
+}
+
+function Wait-Job([string] $id, [bool] $first) {
+    # Waits until ComfyUI has run a queued job: its outputs, as ComfyUI's history keeps them. Waiting behind other jobs
+    # is fine however long; 15 minutes on this one is the limit.
     $lastQueue = [DateTime]::MinValue
     $runningSince = $null
     $gone = 0
@@ -463,33 +510,55 @@ try {
         $script:Said = ''
         $line = 'Making the depth maps of {0}' -f (Count-Of $todo.Count 'backdrop' 'backdrops')
         if ($todo.Count -lt $backs.Count) { $line += (' ({0} in the library, the rest with one already)' -f $backs.Count) }
-        Write-Host ($line + '. The first takes longer while the model loads.')
-        $n = 0
+        Write-Host ($line + '.')
+        # Each backdrop is handed to ComfyUI under a name of its own, then all are queued at once and collected in
+        # order.
+        $queue = New-Object System.Collections.ArrayList
         foreach ($b in $todo) {
-            $n++
-            $started = Get-Date
             $info = Png-Info ([System.IO.File]::ReadAllBytes($b.path))
             if ($info -eq $null) { [void]$problems.Add(('{0}: not a PNG picture, skipped' -f $b.show)); continue }
-            $image = Upload-Picture $b.path 'rimfolk-depth.png'
-            $wf = $wfText | ConvertFrom-Json
-            $prep = Prepare-Workflow $wf $image '' $info.w $info.h ('Rimfolk-extras/depth/' + $b.stem + '_depth')
-            $outputs = Run-Comfy $wf ($n -eq 1)
-            $ref = Pick-Image $wf $outputs '(?i)DA3Render|depth|DA3'
-            if ($ref -eq $null) { throw 'ComfyUI gave no picture back. Check that the depth box is wired into a Preview Image or Save Image box, and export the workflow again (step 9).' }
-            $bytes = Fetch-Image $ref
-            $out = Png-Info $bytes
-            if ($out -eq $null) { throw 'ComfyUI gave back something that is not a PNG picture. Use a Preview Image or Save Image box at the end (step 9).' }
-            if ($out.w -ne $info.w -or $out.h -ne $info.h) {
-                $why = '{0}: the depth map came out {1} x {2}, the backdrop is {3} x {4}' -f $b.show, $out.w, $out.h, $info.w, $info.h
-                if ($made -eq 0) { throw ($why + '. Add an Upscale Image box between the depth box and the Preview Image box (step 9) and export again.') }
-                [void]$problems.Add($why + ', not kept'); continue
-            }
-            $part = $b.depth + '.part'
-            [System.IO.File]::WriteAllBytes($part, $bytes)
-            [System.IO.File]::Move($part, $b.depth)
-            $made++
-            Write-Host ('[{0}/{1}] {2}: made ({3:0} s)' -f $n, $todo.Count, $b.show, ((Get-Date) - $started).TotalSeconds)
+            $image = Upload-Picture $b.path (Upload-Name $b.show) 'rimfolk-depth'
+            [void]$queue.Add([pscustomobject]@{ b = $b; info = $info; image = $image; wf = $null; id = '' })
         }
+        $ahead = Queue-Ahead
+        $waiting = New-Object System.Collections.ArrayList
+        try {
+            foreach ($q in $queue) {
+                $q.wf = $wfText | ConvertFrom-Json
+                [void](Prepare-Workflow $q.wf $q.image '' $q.info.w $q.info.h ('Rimfolk-extras/depth/' + $q.b.stem + '_depth'))
+                $q.id = Queue-Job $q.wf
+                [void]$waiting.Add($q.id)
+            }
+            if ($ahead -eq 1) { Write-Host 'ComfyUI has 1 job ahead of these; they start when that is done.' }
+            elseif ($ahead -gt 1) { Write-Host ('ComfyUI has {0} jobs ahead of these; they start when those are done.' -f $ahead) }
+            Write-Host ('Queued {0} in ComfyUI. The first takes longer while the model loads. To stop, press Ctrl+C (closing the window instead leaves them in ComfyUI''s queue).' -f (Count-Of $queue.Count 'depth map' 'depth maps'))
+            $n = 0
+            $last = Get-Date
+            foreach ($q in $queue) {
+                $n++
+                $b = $q.b; $info = $q.info
+                $outputs = Wait-Job $q.id ($n -eq 1 -and $ahead -le 0)
+                [void]$waiting.Remove($q.id)
+                $ref = Pick-Image $q.wf $outputs '(?i)DA3Render|depth|DA3'
+                if ($ref -eq $null) { throw 'ComfyUI gave no picture back. Check that the depth box is wired into a Preview Image or Save Image box, and export the workflow again (step 9).' }
+                $bytes = Fetch-Image $ref
+                $out = Png-Info $bytes
+                if ($out -eq $null) { throw 'ComfyUI gave back something that is not a PNG picture. Use a Preview Image or Save Image box at the end (step 9).' }
+                $secs = ((Get-Date) - $last).TotalSeconds
+                $last = Get-Date
+                if ($out.w -ne $info.w -or $out.h -ne $info.h) {
+                    $why = '{0}: the depth map came out {1} x {2}, the backdrop is {3} x {4}' -f $b.show, $out.w, $out.h, $info.w, $info.h
+                    if ($made -eq 0) { throw ($why + '. Add an Upscale Image box between the depth box and the Preview Image box (step 9) and export again.') }
+                    [void]$problems.Add($why + ', not kept'); continue
+                }
+                $part = $b.depth + '.part'
+                [System.IO.File]::WriteAllBytes($part, $bytes)
+                [System.IO.File]::Move($part, $b.depth)
+                $made++
+                Write-Host ('[{0}/{1}] {2}: made ({3:0} s)' -f $n, $queue.Count, $b.show, $secs)
+            }
+        }
+        finally { if ($waiting.Count -gt 0) { Leave-Queue $waiting 'depth map' 'depth maps' } }
     }
 
     Write-Host ''

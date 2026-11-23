@@ -161,10 +161,11 @@ function Queue-List([string] $Batch, [string] $Style, [string] $Workflow, [strin
     # Only what the library lacks: rows with no picture of theirs in library\<batch>\ yet (new rows added to a list, or
     # ones whose pictures were all thrown out), so a grown list is never made again from the start.
     # A row's pictures may sit in any library folder (lists are mixed and renumbered now and then), so look in all.
-    # Depth maps (<picture>_depth.png) and expressions (<picture>_v-<word>.png) belong to their picture and don't count.
+    # Depth maps (<picture>_depth.png) and variants (<picture>_v-<word>.png, _v-<word>-2.png) belong to their picture
+    # and don't count.
     $libRoot = Join-Path $Folder 'library'
     $have = @()
-    if (Test-Path -LiteralPath $libRoot) { $have = @(Get-ChildItem -LiteralPath $libRoot -Filter '*.png' -File -Recurse | ForEach-Object { $_.Name } | Where-Object { $_ -notmatch '_(depth|v-[A-Za-z]+)\.png$' }) }
+    if (Test-Path -LiteralPath $libRoot) { $have = @(Get-ChildItem -LiteralPath $libRoot -Filter '*.png' -File -Recurse | ForEach-Object { $_.Name } | Where-Object { $_ -notmatch '_(depth|v-[A-Za-z]+(-\d+)?)\.png$' }) }
     $rowNames = @{}; foreach ($r in $rows) { $rowNames[($r.name -replace '[^A-Za-z0-9_\-]', '_')] = $true }
     $have = @($have | Where-Object { $m = [regex]::Match($_, '^(.+?)_style'); $m.Success -and $rowNames.ContainsKey($m.Groups[1].Value) })
     # A test list (a name ending in -test: the same people in a new style, to compare) always makes every row.

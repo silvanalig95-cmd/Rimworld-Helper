@@ -13,16 +13,22 @@
 # Excel) holds changes for single pictures, one line each: picture (library\<batch>\<name>.png, or the name alone),
 # field, value, apply (yes, ask or no), why. Each picture's record is taken from its row, then its lines marked yes are
 # applied: age (an age word), sex (male or female), looks (add:word or remove:word), role (a role, or clear), marks
-# (add:word or remove:word), headwear (true or false), and out (the picture is left out of the records; the file stays
-# where it is). Lines marked ask wait for you; no lines are not applied. No picture is renamed: its name ties it to its
-# row, and the row's other pictures may be right.
+# (add:word or remove:word), features (add:word or remove:word), headwear (true or false), side (left or right: the side
+# of its mark), and out (the picture is left out of the records; the file stays where it is). Lines marked ask wait for
+# you; no lines are not applied. No picture is renamed: its name ties it to its row, and the row's other pictures may be
+# right.
+# The corrections made in the game ("About this picture" writes them with the why "set in the game") always win (the
+# player: "the corrections i make through the game client are always prioritized"): for the same picture and field
+# (for looks, marks and features the same word) any other line is left out, whatever the order in the file.
 #
-# Depth maps and expressions belong to their picture and are not pictures of their own: a backdrop's depth map
+# Depth maps and variants belong to their picture and are not pictures of their own: a backdrop's depth map
 # (<picture>_depth.png next to it, made by Make-DepthMaps.ps1) goes into the backdrop's record as its depthPath, and each
-# of a person's expressions (<picture>_v-blink.png, _v-smile, _v-frown, _v-pain next to it, made by Make-Variants.ps1)
+# of a person's variants (<picture>_v-blink.png, _v-smile, _v-frown, _v-pain, _v-lostEyeLeft ... next to it, made by
+# Make-Variants.ps1; <picture>_v-<word>-2.png, -3 ... when one was made again after its first was deleted in the game)
 # gets a record of its own: the picture's record with its corrections, its own defName and texPath, the word as its
-# variant and the picture's defName as its variantOf. An expression or depth map whose picture is missing or left out
-# is left out too.
+# variant (without the -2) and the picture's defName as its variantOf; a mark's variant also has the mark in its marks
+# and its side (lostEyeLeft: lostEye, left). A variant or depth map whose picture is missing or left out is left out
+# too, and so is one deleted for good in the game.
 #
 # Pictures deleted for good in the game (Rimfolk's large portrait, right-click, "Delete this picture for good..."): Rimfolk
 # moves their files to the bin (deleted pictures\ beside the library), takes their records out of records.xml at once and
@@ -120,10 +126,38 @@ function Change-List($list, [string] $v) {
     return $true
 }
 
+$ListFields = @('looks', 'marks', 'features')
+
+function Is-Game($c) { return (Field $c 'why').ToLowerInvariant().StartsWith('set in the game') }
+
+function List-Word([string] $v) {
+    # The word of "add:word" or "remove:word" (small letters), or ''.
+    $m = [regex]::Match([string]$v, '^\s*(add|remove)\s*:\s*(\S+)\s*$', 'IgnoreCase')
+    if ($m.Success) { return $m.Groups[2].Value.ToLowerInvariant() }
+    return ''
+}
+
+function Game-Last($lines) {
+    # A picture's lines in the order they are applied: the ones set in the game last, so they win; any other line for a
+    # field the game set (for looks, marks and features: the same word) is left out.
+    $set = @{}
+    $game = @($lines | Where-Object { Is-Game $_ })
+    foreach ($g in $game) {
+        $f = (Field $g 'field').ToLowerInvariant()
+        if ($ListFields -contains $f) { $w = List-Word (Field $g 'value'); if ($w -ne '') { $set[$f + '|' + $w] = $true } }
+        else { $set[$f] = $true }
+    }
+    $other = @($lines | Where-Object { -not (Is-Game $_) } | Where-Object {
+        $f = (Field $_ 'field').ToLowerInvariant()
+        if ($ListFields -contains $f) { -not $set.ContainsKey($f + '|' + (List-Word (Field $_ 'value'))) } else { -not $set.ContainsKey($f) }
+    })
+    return @($other) + $game
+}
+
 function Apply-Corrections($rec, $lines, $problems, [string] $where) {
-    # A picture's lines marked yes on its record (a hashtable of the row's fields); the number applied.
+    # A picture's lines marked yes on its record (a hashtable of the row's fields), the game's last; the number applied.
     $n = 0
-    foreach ($c in @($lines)) {
+    foreach ($c in @(Game-Last $lines)) {
         $field = (Field $c 'field').ToLowerInvariant()
         $v = Field $c 'value'
         $ok = $true
@@ -137,8 +171,10 @@ function Apply-Corrections($rec, $lines, $problems, [string] $where) {
             }
             'role' { if ($v -match '^(?i)(clear|none|-)$') { $rec.role = '' } elseif ($v -ne '') { $rec.role = $v.ToLowerInvariant() } else { $ok = $false } }
             'headwear' { if ($v -match '^(?i)(true|yes|1)$') { $rec.headwear = 'true' } elseif ($v -match '^(?i)(false|no|0)$') { $rec.headwear = '' } else { $ok = $false } }
+            'side' { if ($v -match '^(?i)(left|right)$') { $rec.side = $v.ToLowerInvariant() } elseif ($v -match '^(?i)(clear|none|-)$') { $rec.side = '' } else { $ok = $false } }
             'looks' { $ok = Change-List $rec.looks $v }
             'marks' { $ok = Change-List $rec.marks $v }
+            'features' { $ok = Change-List $rec.features $v }
             default { $ok = $false }
         }
         if ($ok) { $n++ } else { [void]$problems.Add(('corrections.csv, {0}: "{1} {2}" is not a correction this script knows, left out' -f $where, $field, $v)) }
@@ -151,17 +187,32 @@ function One-Xml([string] $tag, [string] $value) {
     return ('    <{0}>{1}</{0}>' -f $tag, (Esc $value))
 }
 
-# A depth map (<picture>_depth) or an expression (<picture>_v-<word>): the picture's own name and the kind, or $null.
+# The variants' words as the game spells them; a mark's variant is the picture with that mark, on the person's own side
+# where it has one.
+$VariantWords = @('blink', 'smile', 'frown', 'pain', 'lostEyeLeft', 'lostEyeRight', 'eyePatchLeft', 'eyePatchRight', 'bionicEyeLeft', 'bionicEyeRight', 'scar', 'burn', 'missingEarLeft', 'missingEarRight', 'artificialArmLeft', 'artificialArmRight')
+$MarkOf = @{
+    lostEyeLeft = @('lostEye', 'left'); lostEyeRight = @('lostEye', 'right'); eyePatchLeft = @('eyePatch', 'left'); eyePatchRight = @('eyePatch', 'right')
+    bionicEyeLeft = @('bionicEye', 'left'); bionicEyeRight = @('bionicEye', 'right'); scar = @('scar', ''); burn = @('burn', '')
+    missingEarLeft = @('missingEar', 'left'); missingEarRight = @('missingEar', 'right'); artificialArmLeft = @('artificialArm', 'left'); artificialArmRight = @('artificialArm', 'right')
+}
+
+# A depth map (<picture>_depth) or a variant (<picture>_v-<word>, or <picture>_v-<word>-2 made again after the first was
+# deleted in the game): the picture's own name, the kind, the word as the game spells it and the number, or $null.
 function Extra-Of([string] $stem) {
-    $m = [regex]::Match($stem, '^(?<base>.+)_(?:(?<depth>depth)|v-(?<word>[A-Za-z]+))$')
+    $m = [regex]::Match($stem, '^(?<base>.+)_(?:(?<depth>depth)|v-(?<word>[A-Za-z]+)(?:-(?<n>\d+))?)$')
     if (-not $m.Success) { return $null }
-    $word = ''; if ($m.Groups['word'].Success) { $word = $m.Groups['word'].Value.ToLowerInvariant() }
-    return [pscustomobject]@{ base = $m.Groups['base'].Value; depth = $m.Groups['depth'].Success; word = $word; stem = $stem; used = $false }
+    $word = ''
+    if ($m.Groups['word'].Success) {
+        $word = $m.Groups['word'].Value.ToLowerInvariant()
+        foreach ($w in $VariantWords) { if ($w -eq $word) { $word = $w } }
+    }
+    $n = 1; if ($m.Groups['n'].Success) { $n = [int]$m.Groups['n'].Value }
+    return [pscustomobject]@{ base = $m.Groups['base'].Value; depth = $m.Groups['depth'].Success; word = $word; n = $n; stem = $stem; used = $false }
 }
 
 function Person-Xml([string] $defName, [string] $tex, $r, $rec, [string] $character, [string] $variant, [string] $variantOf) {
-    # One PortraitDef: the row's fields with the picture's corrections ($rec); an expression's also says its word and
-    # the defName of the picture it is an expression of.
+    # One PortraitDef: the row's fields with the picture's corrections ($rec); a variant's also says its word and the
+    # defName of the picture it is a variant of.
     $kind = Field $r 'kind'
     $xenos = @(); if ($kind -ne '' -and $kind -ne 'Baseliner') { $xenos = @($kind) }
     $lines = New-Object System.Collections.ArrayList
@@ -176,8 +227,9 @@ function Person-Xml([string] $defName, [string] $tex, $r, $rec, [string] $charac
     [void]$lines.Add((One-Xml 'hair' (Field $r 'hair'))); [void]$lines.Add((One-Xml 'beard' (Field $r 'beard')))
     [void]$lines.Add((One-Xml 'build' (Field $r 'build'))); [void]$lines.Add((One-Xml 'era' (Field $r 'era')))
     [void]$lines.Add((One-Xml 'dress' (Field $r 'dress')))
-    [void]$lines.Add((List-Xml 'features' (Words (Field $r 'features'))))
+    [void]$lines.Add((List-Xml 'features' ([string[]]$rec.features.ToArray())))
     [void]$lines.Add((List-Xml 'marks' ([string[]]$rec.marks.ToArray())))
+    [void]$lines.Add((One-Xml 'side' $rec.side))
     [void]$lines.Add((List-Xml 'looks' ([string[]]$rec.looks.ToArray())))
     [void]$lines.Add((One-Xml 'role' $rec.role))
     [void]$lines.Add((One-Xml 'headwear' $rec.headwear))
@@ -307,11 +359,12 @@ try {
                 if ($corr.yes.ContainsKey($key)) { $fixes += @($corr.yes[$key]) }
             }
             $rec = @{
-                out = $false; sex = (Field $r 'sex'); age = (Field $r 'age'); role = (Field $r 'role'); headwear = ''
-                looks = (New-Object System.Collections.ArrayList); marks = (New-Object System.Collections.ArrayList)
+                out = $false; sex = (Field $r 'sex'); age = (Field $r 'age'); role = (Field $r 'role'); headwear = ''; side = (Field $r 'side')
+                looks = (New-Object System.Collections.ArrayList); marks = (New-Object System.Collections.ArrayList); features = (New-Object System.Collections.ArrayList)
             }
             foreach ($w in (Words (Field $r 'looks'))) { [void]$rec.looks.Add($w) }
             foreach ($w in (Words (Field $r 'marks'))) { [void]$rec.marks.Add($w) }
+            foreach ($w in (Words (Field $r 'features'))) { [void]$rec.features.Add($w) }
             if ($fixes.Count -gt 0) { $applied += Apply-Corrections $rec $fixes $problems ($batch + '\' + $f.Name) }
             if ($rec.out) { $leftOut++; continue }
             $tex = $batch + '/' + $fstem
@@ -339,11 +392,35 @@ try {
             else {
                 $character = (Clean $batch) + '_' + $hit.name
                 [void]$people.Add((Person-Xml $defName $tex $r $rec $character '' ''))
-                # Its expressions, each the same record with its own name, picture, word and the picture's defName.
-                foreach ($x in @($own | Where-Object { -not $_.depth } | Sort-Object word)) {
-                    $vName = Unique-Name ($defName + '_' + $x.word) $names
-                    [void]$people.Add((Person-Xml $vName ($batch + '/' + $x.stem) $r $rec $character $x.word $defName))
-                    $x.used = $true; $variants++
+                # Its variants, each the same record with its own name, picture, word and the defName of what it is a
+                # variant of; a mark's variant with that mark and its side. A mark variant's own expressions
+                # (<picture>_v-lostEyeLeft_v-blink.png) are variants of the mark variant, with its mark. One deleted for
+                # good in the game is left out, with its own variants (its name stays deleted; a -2 made after it is a
+                # new file).
+                $next = New-Object System.Collections.Queue
+                foreach ($x in @($own | Where-Object { -not $_.depth } | Sort-Object word, n)) { $next.Enqueue(@($x, $rec, $defName)) }
+                while ($next.Count -gt 0) {
+                    $item = $next.Dequeue()
+                    $x = $item[0]; $ofRec = $item[1]; $ofName = $item[2]
+                    $x.used = $true
+                    if (Is-Deleted (Join-Path $dir.FullName ($x.stem + '.png')) $deleted) { $deletedExtras++; continue }
+                    $vRec = $ofRec
+                    if ($MarkOf.ContainsKey($x.word)) {
+                        $mark = $MarkOf[$x.word]
+                        $vRec = $ofRec.Clone()
+                        $vRec.marks = New-Object System.Collections.ArrayList
+                        foreach ($w in $ofRec.marks) { [void]$vRec.marks.Add($w) }
+                        if (@($vRec.marks | Where-Object { $_ -eq $mark[0] }).Count -eq 0) { [void]$vRec.marks.Add($mark[0]) }
+                        if ($mark[1] -ne '') { $vRec.side = $mark[1] }
+                    }
+                    $vStem = $ofName + '_' + $x.word; if ($x.n -gt 1) { $vStem += '_' + $x.n }
+                    $vName = Unique-Name $vStem $names
+                    [void]$people.Add((Person-Xml $vName ($batch + '/' + $x.stem) $r $vRec $character $x.word $ofName))
+                    $variants++
+                    $key = $x.stem.ToLowerInvariant()
+                    if ($extras.ContainsKey($key)) {
+                        foreach ($y in @($extras[$key] | Where-Object { -not $_.depth } | Sort-Object word, n)) { $next.Enqueue(@($y, $vRec, $vName)) }
+                    }
                 }
             }
         }
@@ -355,7 +432,8 @@ try {
                 if (Is-Deleted (Join-Path $dir.FullName ($x.base + '.png')) $deleted) { $deletedExtras++; continue }
                 $extrasOut++
                 $base = @($pics | Where-Object { [System.IO.Path]::GetFileNameWithoutExtension($_.Name) -eq $x.base })
-                if ($base.Count -eq 0) { [void]$problems.Add(("library\{0}\{1}.png: its picture {2}.png is not in this folder, left out" -f $batch, $x.stem, $x.base)) }
+                $ofExtra = @($extras.Values | ForEach-Object { $_ } | Where-Object { $_.stem -eq $x.base })
+                if ($base.Count -eq 0 -and $ofExtra.Count -eq 0) { [void]$problems.Add(("library\{0}\{1}.png: its picture {2}.png is not in this folder, left out" -f $batch, $x.stem, $x.base)) }
             }
         }
     }
@@ -365,13 +443,13 @@ try {
 
     Write-Host ''
     $line = 'Wrote {0}: {1} portraits' -f (Join-Path $library 'records.xml'), ($people.Count - $variants)
-    if ($variants -gt 0) { $line += (' (and {0} expressions of them)' -f $variants) }
+    if ($variants -gt 0) { $line += (' (and {0} variants of them: expressions and marks)' -f $variants) }
     $line += (' and {0} backdrops' -f $backs.Count)
     if ($depths -gt 0) { $line += (' ({0} with a depth map)' -f $depths) }
     Write-Host ($line + '.') -ForegroundColor Green
-    if ($extrasOut -gt 0) { Write-Host ('{0} depth maps or expressions left out with their picture (missing, left out, or of the wrong kind).' -f $extrasOut) }
+    if ($extrasOut -gt 0) { Write-Host ('{0} depth maps or variants left out with their picture (missing, left out, or of the wrong kind).' -f $extrasOut) }
     if ($deletedOut -gt 0 -or $deletedExtras -gt 0) {
-        Write-Host ('{0} pictures and {1} depth maps or expressions in the library are deleted for good in the game (deleted.csv), so they have no records. Move them out of the library, or take their lines out of deleted.csv to have them back.' -f $deletedOut, $deletedExtras) -ForegroundColor Yellow
+        Write-Host ('{0} pictures and {1} depth maps or variants in the library are deleted for good in the game (deleted.csv), so they have no records. Move them out of the library, or take their lines out of deleted.csv to have them back.' -f $deletedOut, $deletedExtras) -ForegroundColor Yellow
     }
     if ($applied -gt 0 -or $corr.ask -gt 0) {
         $line = 'Corrections (corrections.csv): {0} applied' -f $applied
