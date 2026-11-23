@@ -97,6 +97,47 @@ COVER_BROAD = 0.7
 COVER_TONES = ('fair', 'medium', 'brown')
 
 
+# The third round (the player, 23 November 2026: "Can you please create me a new set of character descriptions to add?
+# ... I'd rather have just 1 ... I feel like there's not a huge point in adding variety to, for example, to rather
+# specific characters. Rather have overall more variety with different kinds of characters"): more distinct people of
+# every kind, one picture each, in the lists from characters-08 on. Each row goes where its kind's pictures are fewest
+# (by sex and age band against how common the band is, then by skin). Clothes lean to the player's colony's ages (tribal and
+# medieval) without leaving the others out; a share has a role the game's people often have; about half broad.
+# Rows per kind (the player, the same day: "Please also really review my game and also mod list for all the xenotypes
+# that are available, not just from the saves I gave you. I feel like these were really centered around a few specific
+# ones. I want variety from all of them available if I now start a new save."): the same rule for every kind of the
+# player's enabled mods, whatever its count in their world. A kind is topped up to a floor of characters pictures (one
+# for each sex, each grown band from young to old and up to three of its skins; at least 12, at most 20), and gets at
+# least ROUND3_LEAST new ones however many it has. Baseliners as many as all the other kinds together (about half of
+# every list, the player's rule of 22 November).
+ROUND3_FROM = 8
+ROUND3_FLOOR = (12, 20)
+ROUND3_LEAST = 4
+ROUND3_ROLE_SHARE = 0.15
+ROUND3_BROAD = 0.5
+ROUND3_ERA_TILT = {'tribal': 1.6, 'medieval': 1.5, 'industrial': 1.0, 'spacer': 0.55}
+# The phase of the third round's rows: written after the first two rounds' lists, from characters-08 on.
+CHARACTERS3 = 'characters3'
+
+
+def round3_floor(k):
+    """The characters pictures a kind is topped up to: one for each sex, grown band (young, adult, middle, old) and up to
+    three of its skins, within ROUND3_FLOOR."""
+    cells = len(k.sexes) * 4 * min(len(k.skins.entries), 3)
+    return min(max(cells, ROUND3_FLOOR[0]), ROUND3_FLOOR[1])
+
+
+def round3_count(k, before):
+    """A kind's third-round rows (not the baseliners'), from its characters rows in the lists before the third round."""
+    return max(ROUND3_LEAST, round3_floor(k) - before)
+
+
+def round3_list(batch):
+    """Whether a characters list is the third round's (characters-08 and on)."""
+    m = re.match(r'^%s-(\d+)$' % CHARACTERS, batch or '')
+    return bool(m) and int(m.group(1)) >= ROUND3_FROM
+
+
 def cover_target(k, age, skin):
     main = skin == k.skins.entries[0][0] or len(k.skins.entries) <= 3
     if k.kind == 'Baseliner':
@@ -533,6 +574,7 @@ class Ledger:
             if typ == 'c':
                 sk = k.skins.nearest(r.get('skin', ''))
                 self.cells[('chs', k.kind, r.get('sex', ''), W_age(r.get('age', '')), sk[0] if sk else '')] += 1
+            self.cells[('char3' if round3_list(batch) else 'char0', k.kind)] += 1
             self.faces.add(face_key(r.get('subject', '')))
 
     def add_picture(self, rec, listed):
@@ -1238,8 +1280,77 @@ class Planner:
             specs += [(((i + 0.5) / len(mine), ki), x) for i, x in enumerate(mine)]
         for _, (k, sex, age, pair, marks) in sorted(specs, key=lambda x: x[0]):
             self.make_character(k, sex, age, pair, marks=marks, broad=True)
+        self.characters_third(ks)
 
-    def make_character(self, k, sex, age, pair, role='', look=None, marks=(), broad=False):
+    def characters_third(self, ks):
+        """
+        The third round (ROUND3_*): for each kind its rows not yet in a third-round list (round3_count; the baseliners as
+        many as the other kinds together), each a new person in the sex and age band where the kind's pictures are fewest
+        against how common that band is, in the skin with the fewest there (the counts include the rows planned here, so
+        the rows spread), a hair of the cell's own that is not the last one used there, now and then a role the kind's
+        people have; clothes tilted to the colony's ages; about half of them broad.
+        """
+        # The rows of the first two rounds planned in this run count as if listed (a plan from no lists at all comes out
+        # the same as one from the lists of the first two rounds).
+        before, cells = collections.Counter(), collections.Counter()
+        for phase, _, row in self.rows:
+            k = self.ledger.kind_of([row.get('kind', '')], split(row.get('race', '')))
+            if phase != CHARACTERS or k is None:
+                continue
+            before[k.kind] += 1
+            if not row.get('role') and not [lk for lk in split(row.get('looks', '')) if lk not in k.always]:
+                sk = k.skins.nearest(row.get('skin', ''))
+                cells[('chs', k.kind, row.get('sex', ''), W_age(row.get('age', '')), sk[0] if sk else '')] += 1
+        wants = collections.OrderedDict()
+        for k in ks:
+            if k.kind != 'Baseliner':
+                wants[k.kind] = round3_count(k, self.ledger.cells[('char0', k.kind)] + before[k.kind])
+        wants['Baseliner'] = sum(wants.values())
+        specs = []
+        for ki, k in enumerate(ks):
+            want = wants.get(k.kind, 0)
+            have = self.ledger.cells[('char3', k.kind)]
+            if have >= want:
+                continue
+            ages = [(a, s ** 0.6 * (LITTLE_SHARE if a in LITTLE_AGES else 1.0)) for a, s in self.char_ages(k)]
+            skins = [e for e in k.skins.entries]
+            if not ages or not skins:
+                continue
+            # The kind's main skin counts a little more than the others; a kind of human skin, the three tones that
+            # stand for all (the game gives a picture to the same tone and the next).
+            human = all(e[0] in HUMAN_SKIN_SLUGS for e in skins) and len(skins) > 3
+            skin_w = {e[0]: (1.5 if (e[0] in COVER_TONES if human else i == 0) else 1.0) for i, e in enumerate(skins)}
+            planned = collections.Counter()
+            count = lambda c: self.ledger.cells[c] + cells[c] + planned[c]
+            roles = [(ro, math.sqrt(s)) for ro, s in k.roles if s > 0 and ro in self.roles] if k.wave <= 2 else []
+            role_ages = set(self.role_ages(k)) if roles else set()
+            mine = []
+            for j in range(have, want):
+                rng = seeded('characters', 'third', k.kind, str(j))
+                # First the sex and age band with the fewest pictures against how common the band is (the game needs
+                # the band to match), then the skin with the fewest in it.
+                sex, age = min(((sx, a) for sx in k.sexes for a, _ in ages),
+                               key=lambda c: (sum(count(('chs', k.kind, c[0], c[1], e[0])) for e in skins) + 1.0)
+                               / dict(ages)[c[1]] * (1.0 + 0.15 * rng.random()))
+                sk = min(skins, key=lambda e: (count(('chs', k.kind, sex, age, e[0])) + 1.0) / skin_w[e[0]] * (1.0 + 0.15 * rng.random()))
+                planned[('chs', k.kind, sex, age, sk[0])] += 1
+                hairs = k.hair_entries(age) or [('bald', '', '')]
+                cell = ('chs', k.kind, sex, age, sk[0])
+                hair = hairs[(planned[cell] + self.ledger.cells[cell] + cells[cell] + rng.randrange(len(hairs))) % len(hairs)]
+                role = ''
+                if roles and age in role_ages and rng.random() < ROUND3_ROLE_SHARE:
+                    role = weighted(rng, sorted(roles))
+                marks = ()
+                if not role and age in W.GROWN and rng.random() < 0.05:
+                    marks = (weighted(rng, [('scar', 4), ('lostEye', 2), ('eyePatch', 2), ('bionicEye', 1), ('burn', 1), ('missingEar', 1)]),)
+                mine.append((k, sex, age, (sk, hair), role, marks, rng.random() < ROUND3_BROAD))
+            specs += [(((i + 0.5) / len(mine), ki), x) for i, x in enumerate(mine)]
+        for _, (k, sex, age, pair, role, marks, broad) in sorted(specs, key=lambda x: x[0]):
+            self.make_character(k, sex, age, pair, role=role, marks=marks, broad=broad, era_tilt=ROUND3_ERA_TILT,
+                                phase=CHARACTERS3)
+
+    def make_character(self, k, sex, age, pair, role='', look=None, marks=(), broad=False, era_tilt=None,
+                       phase=CHARACTERS):
         """One characters row: its record columns and its prompt, every choice seeded by the row's name."""
         if len(self.rows) >= self.cap:
             raise Full()
@@ -1278,7 +1389,7 @@ class Planner:
             build = weighted(rng, even(k.builds)) or 'average'
             if fit.get('build') in dict(k.builds):
                 build = fit['build']
-        era = weighted(rng, [(e, s ** 0.6) for e, s in even(k.eras)]) or 'industrial'
+        era = weighted(rng, [(e, s ** 0.6 * (era_tilt or {}).get(e, 1.0)) for e, s in even(k.eras)]) or 'industrial'
         wealth = weighted(rng, [('destitute', .07), ('poor', .26), ('common', .37), ('prosperous', .19), ('noble', .11)])
         if role == 'leader':
             wealth = weighted(rng, [('prosperous', .5), ('noble', .5)])
@@ -1522,7 +1633,7 @@ class Planner:
         }
         if not row['hairColour'] and hair_word != 'bald':
             row['hairColour'] = '#3b2a20'
-        self.rows.append((CHARACTERS, k.wave, row))
+        self.rows.append((phase, k.wave, row))
         for c in self.ledger.cells_of(k, sex, age, skin[1], hair[1], role, looks):
             self.ledger.cells[c] += 1
         own = [lk for lk in looks if lk not in k.always]
@@ -1723,21 +1834,25 @@ def mix(rows, kinds, even=False):
 
 def write_lists(folder, rows, per_file, dry, kinds=None):
     """The planned rows into new lists, each mixed (see mix): needs-people-NN for missing.csv's, characters-NN for the
-    characters phase, people-NN for the rest."""
+    characters phase (the third round's after the first two rounds', from characters-08 on: round3_list), people-NN for
+    the rest."""
     files = []
-    groups = collections.OrderedDict()
     needs = [x for x in rows if x[0] == 'needs']
     chars = [x for x in rows if x[0] == CHARACTERS]
-    rest = [x for x in rows if x[0] not in ('needs', CHARACTERS)]
+    chars3 = [x for x in rows if x[0] == CHARACTERS3]
+    rest = [x for x in rows if x[0] not in ('needs', CHARACTERS, CHARACTERS3)]
     if kinds is not None:
-        needs, rest, chars = mix(needs, kinds), mix(rest, kinds), mix(chars, kinds, even=True)
-    for phase, wave, row in needs + rest + chars:
-        prefix = {'needs': 'needs-people', CHARACTERS: CHARACTERS}.get(phase, 'people')
-        groups.setdefault(prefix, []).append(row)
-    for prefix, rs in groups.items():
-        n = next_number(folder, prefix)
-        for i in range(0, len(rs), per_file):
-            chunk = rs[i:i + per_file]
+        needs, rest = mix(needs, kinds), mix(rest, kinds)
+        chars, chars3 = mix(chars, kinds, even=True), mix(chars3, kinds, even=True)
+    numbers = {}
+    for prefix, rs, least in (('needs-people', needs, 1), ('people', rest, 1), (CHARACTERS, chars, 1),
+                              (CHARACTERS, chars3, ROUND3_FROM)):
+        if not rs:
+            continue
+        n = max(numbers.get(prefix) or next_number(folder, prefix), least)
+        size = -(-len(rs) // -(-len(rs) // per_file))     # as many lists as per_file needs, evenly filled
+        for i in range(0, len(rs), size):
+            chunk = [r for _, _, r in rs[i:i + size]]
             path = os.path.join(folder, '%s-%02d.csv' % (prefix, n))
             n += 1
             if not dry:
@@ -1747,6 +1862,7 @@ def write_lists(folder, rows, per_file, dry, kinds=None):
                     for r in chunk:
                         w.writerow(r)
             files.append((path, len(chunk)))
+        numbers[prefix] = n
     return files
 
 
@@ -1817,7 +1933,7 @@ def main(argv=None):
     for b in bad:
         print('Catalogue: ' + b)
     by = collections.Counter(p for p, _, _ in planner.rows)
-    print('Planned %d rows (%s).' % (len(planner.rows), ', '.join('%s %d' % (p, by[p]) for p in ['needs'] + PHASES + [CHARACTERS] if by[p])))
+    print('Planned %d rows (%s).' % (len(planner.rows), ', '.join('%s %d' % (p, by[p]) for p in ['needs'] + PHASES + [CHARACTERS, CHARACTERS3] if by[p])))
     for path, n in files:
         print('  %s %s: %d rows' % ('Would write' if a.dry_run else 'Wrote', os.path.relpath(path, ROOT), n))
     if not a.dry_run:

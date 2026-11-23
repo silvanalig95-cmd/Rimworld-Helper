@@ -1,9 +1,9 @@
 # Rimfolk portraits: the guide
 
-Last changed: 23 November 2026 (Rimfolk 0.301.0). This guide is kept up to date with every change to the portrait kit
-(the player, 23 November 2026: "keeps the whole step-by-step procedure on track and documented with what it does ...
-when it changes, please update it"). It comes with every kit zip. The setup of each ComfyUI workflow, click by click, is
-in `SETUP-ComfyUI.md`; training the style is in `STYLE-RIMWORLD.md`.
+Last changed: 23 November 2026 (Rimfolk 0.301.0; the lists characters-08 to 16). This guide is kept up to date with
+every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step procedure on track and
+documented with what it does ... when it changes, please update it"). It comes with every kit zip. The setup of each
+ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in `STYLE-RIMWORLD.md`.
 
 ## In short
 
@@ -34,7 +34,7 @@ The models, the LoRA files and the exported workflows are yours: the kit never h
 `Rimfolk-portraits\` (the kit folder, kept on Proton Drive so the laptop and the PC share it):
 - the scripts (`.ps1`, each with a `.cmd` to double-click; Run-PortraitBatch is started with right-click, Run with
   PowerShell), this guide, SETUP-ComfyUI.md, STYLE-RIMWORLD.md;
-- `batches\`: the lists (`characters-01.csv` to `07`, `colonists.csv`, `backdrops.csv`, `style-test.csv`) and the styles
+- `batches\`: the lists (`characters-01.csv` to `16`, `colonists.csv`, `backdrops.csv`, `style-test.csv`) and the styles
   (`style-rimworld-people.json`, `style-rimworld-backdrops.json`). Keep every list you have made pictures from: a
   picture finds its description by its row's name, and without its row it is left out of the records;
 - `library\`: one folder per list with the pictures, and the files below;
@@ -94,6 +94,18 @@ In `library\`:
 
 Then play. Now and then send the lead `library\missing.csv` and the check's zip, so the next lists cover what is
 missing.
+
+## The lists
+
+Each row is one person and makes one picture (the style `style-rimworld-people` says one a row). Every list mixes its
+kinds, baseliners about half:
+- `characters-01` to `03`: distinct people of every kind, the common kinds most.
+- `characters-04` to `07`: the common combinations of kind, sex, age and skin, mostly milder faces.
+- `characters-08` to `16`: more people of every kind in your enabled mods (all 78 xenotypes that show and the
+  creepjoiner, conjoined-twin and spirit races), each kind topped up by the same rule whatever your save holds, to the
+  ages and skins it has fewest of. Every kind runs through all nine lists, so painting only some of them still gives
+  each kind its share.
+- `colonists.csv`: your own colonists' faces.
 
 ## What the check checks, and what it can change
 

@@ -114,6 +114,24 @@ expects the horns, tails and wings their kind has. The lists are mixed the same 
 rarer kinds come up early, so the third list is mostly baseliners and dark elves. A row may move to another list when lists are mixed again: the library finds a
 picture's row in any list, so pictures already made keep their records.
 
+`characters-04` to `07` are the second round (the player, 23 November 2026: "there should again be a lot of variety,
+but it should also cover more of the general combinations"): a few pictures for each common kind, sex, age band and
+skin tone, counted with the rows already there, most of them broad (fewer, milder features).
+
+`characters-08` to `16` are the third round (1,632 rows, one picture each; the player, 23 November 2026: "Rather have
+overall more variety with different kinds of characters", and "Please also really review my game and also mod list for
+all the xenotypes that are available, not just from the saves I gave you ... I want variety from all of them available
+if I now start a new save"). Every kind of the player's enabled mods (the 78 xenotypes that show, all but alpha genes'
+random one, and the creepjoiner, conjoined-twin and spirit races; `docs/player-mods`, active rows) is topped up by the
+same rule, whatever its count in the save: to one picture for each sex, grown band from young to old and up to three of
+its skins (at least 12, at most 20, `round3_floor`), and at least 4 new ones however many it has (`ROUND3_*` in
+`plan_batches.py`). Baseliners as many as all the other kinds together, so each list is about half baseliners with 66 to
+76 kinds. Each row goes to the sex and age band where its kind has the fewest pictures against how common the band is,
+then to the skin with the fewest there; clothes lean to tribal and medieval dress without leaving the others out, about
+half are broad, and a few of the common kinds' rows have a role. All nine lists mix every kind evenly, so painting only
+some of them still gives every kind its share. Not in them: the Forgotten Realms and Profaned xenotypes, whose mods are
+subscribed but not enabled.
+
 ## Names
 
 A row's name says what it shows: `p_<kind>_<m or f>_<age>_<role, look, plain or char>_<skin>_<hair>_<number>`, for

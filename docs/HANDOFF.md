@@ -853,6 +853,23 @@ most sense." So, in this order, three builds at a time:
   Sent `Rimfolk-portrait-kit-2026-11-23.zip`: every script, the guides, the lists characters-01 to 07, colonists,
   backdrops, style-test and the two styles, and Copy-ToLibrary in its own folder for ComfyUI's output. The player also
   confirmed the second face in the small portraits is gone (0.299.1).
+- **Done (23 November 2026, the player's own requests): the characters lists' third round, `characters-08` to `16`,
+  every kind of the player's mods alike.** The player: "Can you please create me a new set of character descriptions to
+  add? ... I'd rather have just 1 or 2, similar ones that are still different a bit ... Rather have overall more
+  variety with different kinds of characters", and then "Please also really review my game and also mod list for all
+  the xenotypes that are available, not just from the saves I gave you. I feel like these were really centered around a
+  few specific ones. I want variety from all of them available if I now start a new save." Reviewed: the mod pool
+  (`docs/player-mods`) has 133 xenotypes, 79 in enabled mods, and every one of those is in `kinds.csv` (all but
+  alpha genes' random one planned), with the creepjoiner, conjoined-twin and spirit races; the other 54 are Forgotten
+  Realms (52) and Profaned (2), subscribed but not enabled in the 7 November list or the 23 November save. The lean was
+  in the counts: most rarer kinds had 3 characters rows (6 with the first plan of this round). Built in
+  `plan_batches.py`: `characters_third` with `round3_floor`/`round3_count` (every kind topped up to one picture per sex,
+  grown band and up to three skins, 12 to 20, at least 4 new; baseliners as many as all the others), each row to the
+  sex and age band with the fewest pictures against the band's share and then the skin with the fewest; its rows are
+  their own phase (`characters3`), written after the first two rounds from characters-08 on; lists evenly filled.
+  1,632 rows in nine lists of 176 to 182, about half baseliners each, 66 to 76 kinds each, one picture a row (the
+  style says one). Tests in `test_portrait_catalogue.py` (the floor for every kind, the numbering, a plan from no lists
+  the same). GUIDE.md ("The lists") and the catalogue README.
 - **Done (23 November 2026, the player's own request): keeping many at once on the review page.** The player: "could
   I have the option for mass "keep as the model saw it" and also mass "import" for all with cutoff borders? as most of
   them still look very good and i can still delete them in the game after". Built in `Review-Pictures.ps1`: a bar above

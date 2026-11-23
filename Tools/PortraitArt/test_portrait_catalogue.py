@@ -348,11 +348,16 @@ class Characters(Tmp):
             if not k.plannable:
                 continue
             self.assertIn(k.kind, by, k.kind)
+            # the third round (characters-08 on) tops every kind up to its floor, whatever its wave, with a few at least
+            third = any(P.round3_list(os.path.splitext(os.path.basename(f))[0]) for f in self.lists_seen)
+            if third and k.kind != 'Baseliner':
+                self.assertGreaterEqual(by[k.kind], P.round3_floor(k), k.kind)
+            most = lambda n: max(n + P.ROUND3_LEAST, P.round3_floor(k)) if third else n
             if k.wave == 5:
-                self.assertTrue(2 <= plain[k.kind] <= 4, (k.kind, plain[k.kind]))
+                self.assertTrue(2 <= plain[k.kind] <= most(4), (k.kind, plain[k.kind]))
             if k.wave == 4:     # the second round adds a young and an adult one of each sex (and skin) where missing
                 tones = len(k.skins.entries) if len(k.skins.entries) <= 3 else 1
-                self.assertTrue(2 <= plain[k.kind] <= 4 + 4 * tones, (k.kind, plain[k.kind]))
+                self.assertTrue(2 <= plain[k.kind] <= most(4 + 4 * tones), (k.kind, plain[k.kind]))
             if k.wave == 1:
                 self.assertGreaterEqual(plain[k.kind], 50)
                 self.assertGreater(by[k.kind] - plain[k.kind], 0)      # some with a role or a look
@@ -368,9 +373,29 @@ class Characters(Tmp):
         planner, files, text, bad = self.run_plan(phases=['characters'], max_rows=5000)
         self.assertEqual(bad, [])
         self.assertTrue(files and all(os.path.basename(f).startswith('characters-') and n <= 200 for f, n in files))
-        self.assertTrue(all(p == P.CHARACTERS for p, _, _ in planner.rows))
+        self.assertEqual({p for p, _, _ in planner.rows}, {P.CHARACTERS, P.CHARACTERS3})
         rows = [r for _, r in rows_of(self.batches, 'characters-*.csv')]
-        self.assertTrue(1100 <= len(rows) <= 1450, len(rows))
+        self.lists_seen = [f for f, _ in rows_of(self.batches, 'characters-*.csv')]
+        self.assertTrue(2700 <= len(rows) <= 3100, len(rows))
+        # the first two rounds fit before characters-08; the third round (characters-08 on): more people of every kind
+        # of the player's mods (topped up to the same floor whatever their count in the save), one picture each,
+        # baseliners about half, every list with most of the kinds
+        firsts = {os.path.splitext(f)[0] for f, r in rows_of(self.batches, 'characters-*.csv') if r['name'] in
+                  {x['name'] for p, _, x in planner.rows if p == P.CHARACTERS}}
+        self.assertFalse([f for f in firsts if P.round3_list(f)], firsts)
+        third = [r for f, r in rows_of(self.batches, 'characters-*.csv') if P.round3_list(os.path.splitext(f)[0])]
+        self.assertTrue(1450 <= len(third) <= 1800, len(third))
+        self.assertTrue(0.45 <= sum(1 for r in third if r['kind'] == 'Baseliner') / len(third) <= 0.55)
+        self.assertEqual({r['count'] for r in third}, {''})
+        per_kind = collections.Counter(r['race'] or r['kind'] for r in third)
+        kinds = P.load(P.CATALOGUE)[0]
+        self.assertEqual({k for k, v in kinds.items() if v.plannable} - set(per_kind), set())
+        self.assertGreaterEqual(min(per_kind.values()), P.ROUND3_LEAST)
+        for f in {os.path.splitext(f)[0] for f, _ in rows_of(self.batches, 'characters-*.csv')}:
+            if P.round3_list(f):
+                self.assertGreaterEqual(len({r['race'] or r['kind'] for _, r in rows_of(self.batches, f + '.csv')}), 55, f)
+        eras = collections.Counter(r['era'] for r in third)
+        self.assertGreater(eras['tribal'] + eras['medieval'], eras['spacer'] * 1.5, eras)
         # the second round covers each baseliner sex, grown age band and skin tone with at least nine pictures, and the
         # other common kinds of human skin in three tones (the game gives a picture to the same tone and the next)
         cover = collections.Counter((r['sex'], r['age'], r['skin']) for r in rows if r['kind'] == 'Baseliner'
@@ -416,6 +441,7 @@ class Characters(Tmp):
         # The lists in the repository: the same rules, and no characters name in any other list (the age test and the
         # colonists' redo list reuse their own lists' names on purpose).
         rows = [r for _, r in rows_of(P.BATCHES, 'characters-*.csv')]
+        self.lists_seen = [f for f, _ in rows_of(P.BATCHES, 'characters-*.csv')]
         if not rows:
             self.skipTest('no characters lists yet')
         self.check_spread(rows, self.check_rows(rows))
