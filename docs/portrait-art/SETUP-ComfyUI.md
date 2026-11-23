@@ -189,10 +189,29 @@ so no node pack is needed.
 7. Copy `Check-Pictures.ps1` and `Check-Pictures.cmd` (from Rimfolk's `Tools/PortraitArt`) into the same folder.
 
 **Running it**
-8. Keep ComfyUI open and double-click `Check-Pictures.cmd`. It looks at each picture in the library it hasn't looked at
-   before, a few seconds each (the first takes longer while the model loads), and shows a line of what the model saw
-   for each. It finds ComfyUI by itself; if it can't, it asks for the address (ComfyUI's settings, Server-Config) and
-   remembers it. If ComfyUI is still making portraits, the check waits for it.
+8. Keep ComfyUI open and double-click `Check-Pictures.cmd`. It asks the model only what it hasn't asked before (the
+   player: "it only analyzes things that have not yet been analyzed ... not that I have like a really long analyze job
+   each time I add new images"), and says so at the start, for example "What the model is asked: 12 new pictures (the
+   whole form), 340 to look at again for the arms line only, 0 asked again (the whole form)":
+   - a new picture, or one changed since (another file size), gets the whole form;
+   - each line of the form has a version of its own: when the lead changes a line's wording (a new kit), only that
+     line is asked again, in a short form of just the changed lines, about the pictures asked with the older wording,
+     and the answer goes with the ones kept;
+   - a change to how the answers are read or compared (also with a new kit) needs no model: every run reads the kept
+     answers again and compares all the pictures with their records;
+   - to ask every picture the whole form again (after changing the model), open PowerShell in the folder and type
+     `powershell -ExecutionPolicy Bypass -File .\Check-Pictures.ps1 -Again`.
+   It shows a line of what the model saw for each picture, a few seconds each (the first takes longer while the model
+   loads). It finds ComfyUI by itself; if it can't, it asks for the address (ComfyUI's settings, Server-Config) and
+   remembers it.
+   **A proper queue** (the player: "it should finish all the analysis first and only then start upcoming jobs so it's
+   a proper queue"): it first hands every picture to ask to ComfyUI (into ComfyUI's `input\rimfolk-check` folder, one
+   file for each picture, written over on later runs; you may delete that folder when no check is running), then
+   queues all its questions at once and collects the answers in order. A batch of portraits queued in ComfyUI while
+   the check runs waits until every question is answered. A check started while ComfyUI still has jobs waits behind
+   them and says so ("ComfyUI has 40 jobs ahead of the check; it starts when they are done"). To stop it, press
+   **Ctrl+C**: the questions still waiting are taken out of ComfyUI's queue (an error does the same). Closing the
+   window instead leaves them in ComfyUI's queue, where they run for nothing; remove them there.
 9. At the end it shows the pictures to look at, the worst first, and writes two files into `library`:
    `check-report.csv`, the whole list, and `corrections.csv`, the changes it proposes for single pictures (both open
    in Excel; Notepad works too).
@@ -201,7 +220,8 @@ so no node pack is needed.
    `checked.csv`, a small `examples.csv` (each picture in the zip with its row's name, subject and pose, what the check
    found and what the model answered) and up to 30 pictures, the flagged ones first (the worst first), then up to 8
    that match their records, of different kinds and ages. Send that zip to the lead. `n` makes none.
-   (The question changed on 23 November 2026, version 3: the first run after that asks about every picture again.)
+   (The lines' own versions came on 23 November 2026: a `checked.csv` from before counts every line as asked, so the
+   first run with them asks nothing it has asked already.)
 10. Open `corrections.csv`. Each line is one change for one picture: `picture`, `field`, `value`, `apply`, `why`. Lines
     marked **yes** are changes the check is sure of; lines marked **ask** wait for you: look at the picture, then
     change ask to **yes** (do it) or **no** (keep the picture as it is), and save. You may also change a yes to no, or
@@ -209,10 +229,23 @@ so no node pack is needed.
 11. Run `Update-PortraitLibrary.ps1` (`Copy-ToLibrary.cmd` runs it too). It writes the records again from the batch
     lists and puts the corrections marked yes into them, and says how many it used and how many still wait as ask.
     Then **Reload the library** in the game.
-12. Run the check again whenever pictures have been added. It asks the model only about new pictures (every answer is
-    kept in `library\checked.csv`, a description of every picture in the library), and compares all the pictures with
-    their records again: a picture whose correction was used leaves the list, and an issue you marked no doesn't come
-    back. Lines already in `corrections.csv` are never changed by it; new ones are added at the end.
+12. Run the check again whenever pictures have been added. It asks the model only what it hasn't (every answer is
+    kept in `library\checked.csv`, a description of every picture in the library: each line's answer and the version
+    it was asked with), and compares all the pictures with their records again: a picture whose correction was used
+    leaves the list, and an issue you marked no doesn't come back. New corrections are added at the end of
+    `corrections.csv`. A later scan may update the check's own line: where the model now answers otherwise for a
+    picture and field the check has a line for, that line gets the new value, and yes or ask by the usual rules,
+    instead of a second line (marked "changed" in the report); a line you answered no stays no while the model answers
+    the same, and a new, different answer starts again as the rules say. Every other line stays as it is.
+13. **The corrections made in the game always win** (the player: "the corrections i make through the game client are
+    always prioritized. for example if an image is generating a man, qwen thinks it's a woman and writes that in the
+    corrections file, i edit the file within the game detail screen to be a man, the library import or other scripts
+    should not override that again with the "correction" from gwen of it being a woman"). Rimfolk's **About this
+    picture** window writes its lines with the why `set in the game` (sex, age, features, marks, looks, role,
+    headwear, side). `Update-PortraitLibrary.ps1` applies such a line over any other line for the same picture and
+    field, whatever their order in the file (for looks, marks and features: over another line for the same word). The
+    check never writes a correction against it and never changes it; the report only says so (`5 set in the game`:
+    "set in the game: sex male; the model sees otherwise (drawn as a woman ...)").
 
 **What the corrections change.** Nothing is renamed: a picture's name ties it to its batch row, and the row's other
 pictures may be right, so a correction changes only that picture's record. The fields:
@@ -232,6 +265,8 @@ pictures may be right, so a correction changes only that picture's record. The f
   android, whose arms may look made); `remove:...` (ask).
 - `headwear`: `true`, so a picture with a hat or hood goes only to people wearing something on the head (yes; ask for
   a colonist's own picture).
+- `features` (`add:pointedEars`, `remove:horns` ...) and `side` (`left`, `right`, or `clear` for none: the side of a
+  mark, as seen from the person): written by the game's **About this picture** only.
 - `out`: the picture is left out of the records; the file stays where it is (yes for more than one person in a
   cut-out; ask for a body its kind doesn't have, such as pointed ears on a baseliner or an elf without them, for a
   cut-out cut at the side, and for a person in a backdrop).
@@ -251,6 +286,8 @@ check is one of:
   show it.
 - **4 not compared**: the picture has no record yet (run `Update-PortraitLibrary.ps1`), or the model's answer couldn't
   be read (it is asked again next time).
+- **5 set in the game**: the model sees otherwise than a correction you made in the game; your setting is kept and
+  nothing is written. These are not counted among the pictures to look at.
 What a look or role asks for is taken from the row's own prompt (its subject and pose columns): a row with the
 sniperClass look whose prompt asks for a rifle may show one, and should.
 
@@ -275,8 +312,8 @@ again.
 
 **Sharper answers (optional).** The larger Qwen3.5 model sees more detail and comes in a file of about the same size:
 `qwen3.5_9b_int8_convrot.safetensors` (about 10 GB) from the same page. Put it in `models\text_encoders`, pick it in the
-Load CLIP box, export again over `rimfolk-check-workflow-api.json`, and delete `library\checked.csv` so every picture
-is looked at again.
+Load CLIP box, export again over `rimfolk-check-workflow-api.json`, and run the check once with `-Again` (or delete
+`library\checked.csv`) so every picture is looked at again.
 
 **If there is no Qwen3.5 template** even after an update: install the ComfyUI-QwenVL node pack (from the makers of the
 RMBG pack, https://github.com/1038lab/ComfyUI-QwenVL) through the Manager as in step 6. Add its **QwenVL** box (model
@@ -322,7 +359,9 @@ Its Mono-Large model has the Apache 2.0 licence (free to use, also for a publish
 
 **Running it**
 7. Keep ComfyUI open and double-click `Make-DepthMaps.cmd`. For every backdrop in the library that has no depth map yet,
-   it hands the backdrop to ComfyUI and writes the depth map next to it, a few seconds each, with a line for each.
+   it hands the backdrop to ComfyUI (into its `input\rimfolk-depth` folder), queues them all at once, as the picture
+   check does, and writes each depth map next to its backdrop as it comes, a few seconds each, with a line for each.
+   Ctrl+C stops it and takes the ones still waiting out of ComfyUI's queue.
 8. What comes out: next to `library\backdrops\<name>.png` a `<name>_depth.png`, a grey picture of the same size.
    Nothing else in the library is changed. At the end it writes the records again (as `Update-PortraitLibrary.ps1`
    does), which now tell the game where each backdrop's depth map is. Then **Reload the library** in the game.
@@ -333,11 +372,13 @@ A depth map is never a picture of its own: the library script, the picture check
 all treat it as part of its backdrop. If the workflow ends in a **Save Image** box instead of Preview Image, ComfyUI
 also keeps a copy of each depth map in its `output\Rimfolk-extras` folder; you can delete that folder at any time.
 
-## 10. Expressions: blink, smile, frown, pain (once, about 30 minutes, most of it downloading)
+## 10. Variants: expressions and marks (once, about 30 minutes, most of it downloading)
 
 The large portrait can blink now and then and show the person's mood if each picture also exists with the eyes closed,
-with a small smile, with a frown and with a wince of pain. These are made from the picture itself by an editing model:
-you give it the picture and a plain instruction ("Close the person's eyes ..."), and it changes only that.
+with a small smile, with a frown and with a wince of pain; and it can show a mark the person got in the game (a lost
+eye, an eye patch, a bionic eye, a scar, a burn, a missing ear, an artificial arm) if the picture also exists with that
+mark. These variants are made from the picture itself by an editing model: you give it the picture and a plain
+instruction ("Close the person's eyes ..."), and it changes only that.
 The model is **FLUX.1 Kontext Dev**, the editing model of the FLUX.1 family that painted your pictures, so the
 expressions keep their painting style. Its fp8 file fits your card, and its licence is the same as FLUX.1 Dev's: free
 for your own use.
@@ -353,8 +394,8 @@ so the person stays exactly in place when the game switches between them, and no
    click "choose file to upload" and pick one of your cut-outs from `library\colonists`. In the **Image Edit** box's
    prompt, type `Close the person's eyes. Keep everything else exactly the same.` and press **Run**. After about half a
    minute (the first time longer, while the model loads) the picture with closed eyes appears in **Save Image**.
-3. Delete the text in the Image Edit box's prompt and type exactly `%INSTRUCTION%`. The expressions script puts the
-   instruction for each expression there.
+3. Delete the text in the Image Edit box's prompt and type exactly `%INSTRUCTION%`. The variants script puts the
+   instruction for each variant there.
 4. Add the outline: double-click an empty spot, type `Join Image with Alpha` and add it. Then drag three wires:
    - from the **Image Edit** box's IMAGE output to the Join box's `image` input,
    - from the first **Load Image** box's MASK output to the Join box's `alpha` input,
@@ -367,23 +408,42 @@ so the person stays exactly in place when the game switches between them, and no
 7. Copy `Make-Variants.ps1` and `Make-Variants.cmd` (from Rimfolk's `Tools/PortraitArt`) into the same folder.
 
 **Running it**
-8. Keep ComfyUI open and double-click `Make-Variants.cmd`. It asks which pictures:
+8. Keep ComfyUI open and double-click `Make-Variants.cmd`. It makes **what the game wants** first (the player:
+   "variants are first and foremost relevant for my actual colonists"): Rimfolk writes `library\variants-wanted.csv`
+   when it saves, with each picture someone in the save holds and the variants it lacks: the expressions, and a mark
+   variant when a person holding the picture gets a mark (which eye, which arm, as seen from the person), each with the
+   exact instruction for the edit model. The colony's own people come first (priority 1, then 2), the longest wanted
+   first. It says at the start how many the game wants, how many are there already and how many it makes.
+   Without that list (an older Rimfolk) it asks which pictures, as before, and makes the four expressions:
    - **Enter**: the pictures your game has given someone. First the pictures made for your colonists (a name in their
      row's `pawn` column), then the ones your newest RimWorld save has given people: the colony's own first, then
      notable people, then the rest. It reads the save from RimWorld's Saves folder and changes nothing in it.
    - **a**: every person in the library (this takes long: about two minutes a picture).
-9. For each picture it makes the expressions it doesn't have yet, about half a minute each, with a line for each
-   picture. You can close the window at any time: what is made is kept, and the next run carries on where it stopped.
+9. A variant is made once (the player: "it's also important that a variant is then marked as done once it's created
+   and in the game, not that it will get created over and over. unless I delete the variant through the ingame about
+   screen"): one already in the library is skipped, whatever the list says. A variant deleted in the game's **About
+   this picture** may be wanted again; the new one gets the next free name (`<name>_v-smile-2.png`, `-3` ...), since a
+   deleted name stays deleted.
+   It hands each picture to ComfyUI once (into its `input\rimfolk-variant` folder), queues every variant at once, as
+   the picture check does, and writes each as it comes, about half a minute each, with a line for each. A batch of
+   portraits queued meanwhile waits until they are done. To stop, press **Ctrl+C**: what is made is kept, the ones
+   still waiting are taken out of ComfyUI's queue, and the next run carries on. Closing the window instead leaves
+   them in ComfyUI's queue.
 10. What comes out: next to `library\colonists\<name>.png` the files `<name>_v-blink.png`, `<name>_v-smile.png`,
-    `<name>_v-frown.png` and `<name>_v-pain.png`, each the same size with the same outline. Nothing else in the library
-    is changed. At the end it writes the records again: each expression gets a record of its own, the same as its
-    picture's (with the picture check's corrections) and marked as an expression of that picture. Then **Reload the
-    library** in the game.
+    `<name>_v-frown.png`, `<name>_v-pain.png` and the marks the game wants (`<name>_v-lostEyeLeft.png`,
+    `<name>_v-scar.png` ...), each the same size with the same outline. A mark variant can have expressions of its own
+    (`<name>_v-lostEyeLeft_v-blink.png`). Nothing else in the library is changed. At the end it writes the records
+    again: each variant gets a record of its own, the same as its picture's (with the corrections) and marked as a
+    variant of that picture (an expression of a mark variant: of the mark variant); a mark variant also has its mark
+    and its side. Any person given the picture later, in any save, gets its variants. Then **Reload the library** in
+    the game.
 11. Look through them in the folder. If one is not right (the eyes not quite shut, the smile too wide, the face changed),
-    delete that file and run it again: it is made again with a new seed.
+    delete that file and run it again (or delete it in the game's About this picture): it is made again with a new
+    seed.
 
-What it asks the model for, each time followed by "Keep everything else exactly the same: the same person and face,
-hair, clothes, pose, position, framing, lighting and painting style.":
+What it asks the model for: the game's instruction for each variant, as it is written in the list; for an expression
+the list gives none for (and without the list), each time followed by "Keep everything else exactly the same: the same
+person and face, hair, clothes, pose, position, framing, lighting and painting style.":
 - blink: "Close the person's eyes, as in the middle of a blink, the eyelids fully shut and relaxed."
 - smile: "Give the person a small, warm smile with the mouth closed."
 - frown: "Make the person frown, the brows drawn together and down, the mouth set in a slight scowl."
@@ -392,8 +452,9 @@ hair, clothes, pose, position, framing, lighting and painting style.":
 
 Each expression keeps its picture's size: the script takes the template's own resizing box out of the way by itself.
 If a picture comes back in another size or without its clear background, it stops at the first and says what to
-check in the workflow. Expressions, like depth maps, are never pictures of their own for the other scripts. A
-picture left out by the picture check's corrections (`out`) has its expressions left out too.
+check in the workflow. Variants, like depth maps, are never pictures of their own for the other scripts. A picture
+left out by the picture check's corrections (`out`) has its variants left out too. A mark that changes the outline (a
+missing ear, an arm of another shape) keeps the picture's outline: look at those closely.
 
 **A newer model (optional).** FLUX 3 Image Klein (October 2026; its template is **FLUX 3 Image Klein Distilled: Image
 Edit**) is smaller and faster and is said to edit more exactly; its licence is free for your own use too. It is new, and
@@ -413,6 +474,10 @@ file name; the script works with it the same way.
   uses the graphics card, or use the smaller `qwen3.5_2b_bf16.safetensors` from the same page.
 - "Could not write ... is it open in Excel?": close `check-report.csv` or `corrections.csv` in Excel and run the check
   again.
+- A script stopped by closing its window: its jobs still waiting stay in ComfyUI's queue and run for nothing. Remove
+  them in ComfyUI's queue list (or Clear queue if nothing else waits there). Stop a script with Ctrl+C instead.
+- ComfyUI's `input\rimfolk-check`, `input\rimfolk-variant` and `input\rimfolk-depth` folders hold a copy of each
+  picture handed over (written over on later runs): delete them when no script is running, to free the space.
 - The depth maps or expressions stop with "ComfyUI refused the workflow": the message names the box. Most often a model
   file is missing from ComfyUI's `models` folder (step 9, point 2, or step 10, point 1).
 - The depth maps stop with "the depth map came out ... the backdrop is ...": a box in the workflow changes the size.

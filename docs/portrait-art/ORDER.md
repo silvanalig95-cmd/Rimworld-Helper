@@ -13,7 +13,7 @@ must run all these programs and scripts". The details of each step are in `SETUP
    - `rimfolk-backgrounds-workflow-api.json`: backdrops, without the cut-out;
    - `rimfolk-check-workflow-api.json`: the picture check, Qwen3.5 (step 8);
    - `rimfolk-depth-workflow-api.json`: depth maps, Depth Anything 3 (step 9);
-   - `rimfolk-variant-workflow-api.json`: expressions, FLUX.1 Kontext Dev (step 10).
+   - `rimfolk-variant-workflow-api.json`: variants (expressions and marks), FLUX.1 Kontext Dev (step 10).
 4. In RimWorld, Rimfolk's settings, "Portrait library folder": the path of `Rimfolk-portraits\library`.
 5. The style: `style-rimworld-people` for people and `style-rimworld-backdrops` for backdrops (the player's own
    `rmwstyle` LoRA, trained on the game's art, `STYLE-RIMWORLD.md`, with the SameFace fix for people), one picture per
@@ -45,19 +45,24 @@ must run all these programs and scripts". The details of each step are in `SETUP
 2. `Run-PortraitBatch.ps1` with `backdrops` and `style-rimworld-backdrops`, when you want more backdrops.
 3. In `output\Rimfolk`: delete the pictures you don't want.
 4. `Copy-ToLibrary.cmd` (in `output\Rimfolk`): the new pictures into the library; it writes the records.
-5. `Check-Pictures.cmd`: the model looks at each new picture, and the side check at each cut-out; it writes
-   `library\check-report.csv` and `corrections.csv`. Then it asks to make a zip of examples: Enter makes
-   `library\check-examples-<date>-<time>.zip` (the CSV files and up to 30 pictures) to send to the lead.
+5. `Check-Pictures.cmd`: the model is asked only what it hasn't been asked (new pictures the whole form, a line the
+   lead changed only that line), and the side check looks at each cut-out; it writes `library\check-report.csv` and
+   `corrections.csv` (your corrections made in the game always win). Then it asks to make a zip of examples: Enter
+   makes `library\check-examples-<date>-<time>.zip` (the CSV files and up to 30 pictures) to send to the lead.
 6. `library\corrections.csv` in Excel: change each "ask" to yes or no.
 7. `Update-PortraitLibrary.ps1`: the corrections go into the records.
 8. `Make-DepthMaps.cmd`: depth maps for new backdrops (it writes the records).
-9. `Make-Variants.cmd`, Enter: blink, smile, frown and pain for your colonists' pictures first (it writes the records).
+9. `Make-Variants.cmd`: the variants your game wants (`library\variants-wanted.csv`: blink, smile, frown, pain and the
+   marks your people got), your colonists' first; each is made once (it writes the records).
 10. In the game: Rimfolk settings, "Reload the library".
 11. Play; send the lead a save, `library\missing.csv` and the check's zip; the lead writes the next lists. When a
     picture is just right, right-click the large portrait, **Keep for training**.
 
-The check comes before the depth maps and expressions, so a picture it leaves out gets none. Steps 4 to 9 only ever
+The check comes before the depth maps and variants, so a picture it leaves out gets none. Steps 4 to 9 only ever
 handle what's new and can be run again at any time. Steps 8 and 9 are optional.
+Steps 5, 8 and 9 hand their pictures to ComfyUI and queue all their jobs at once, so a portrait run queued meanwhile
+waits until they are done, and one already queued runs first. Stop them with Ctrl+C (closing the window leaves their
+jobs in ComfyUI's queue).
 
 ## Now and then: training the style again
 

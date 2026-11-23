@@ -1,28 +1,44 @@
 # Make-Variants.ps1, for Rimfolk's portraits.
 #
-# Makes the expressions of people's pictures: the same picture with the eyes closed (blink), a small smile (smile), a
-# frown (frown) and a wince of pain (pain), the same size and framing with the same outline, next to the picture under
-# its name with _v- and the word added (library\colonists\<name>.png gets <name>_v-blink.png, <name>_v-smile.png ...).
-# Rimfolk shows them on the large portrait: a blink now and then, and the face by the person's mood.
-# - Which pictures: by default the ones the game has given someone, your colonists first (pictures made for one
-#   colonist, with a name in their row's pawn column), then the people your newest save has pictures for (the colony's
-#   own first, then the notable, then the rest, the most lately shown first); or every person in the library. It asks
-#   when it starts. The save is only read, never changed.
+# Makes the variants of people's pictures: the same picture with the eyes closed (blink), a small smile (smile), a
+# frown (frown) and a wince of pain (pain), and with a mark the person got in the game (a lost eye, an eye patch, a
+# bionic eye, a scar, a burn, a missing ear, an artificial arm), the same size and framing with the same outline, next
+# to the picture under its name with _v- and the word added (library\colonists\<name>.png gets <name>_v-blink.png,
+# <name>_v-lostEyeLeft.png ...). Rimfolk shows them on the large portrait: a blink now and then, the face by the
+# person's mood, and the mark once the person has it; any person given the picture later, in any save, gets them too.
+# - What to make: first what the game wants, library\variants-wanted.csv, which Rimfolk writes when it saves (the
+#   player: "variants are first and foremost relevant for my actual colonists"): each picture someone in the save holds,
+#   with the variants it lacks, the colony's own people first (priority 1, then 2), the longest wanted first, each with
+#   the exact instruction for the edit model, used as given (an expression without one gets this script's own). A mark
+#   variant gets its expressions the same way: X_v-lostEyeLeft.png gets X_v-lostEyeLeft_v-blink.png.
+# - A variant is made once (the player: "a variant is then marked as done once it's created and in the game, not that
+#   it will get created over and over. unless I delete the variant through the ingame about screen"): one already in the
+#   library is skipped, whatever the list says. One deleted for good in the game (listed in library\deleted.csv) may be
+#   wanted again: the new one is <name>_v-<word>-2.png (-3 ...), since a deleted name stays deleted.
+# - Without that list (an older Rimfolk, or the file taken away), or with -Which: by default the pictures the game has
+#   given someone, your colonists first (pictures made for one colonist, with a name in their row's pawn column), then
+#   the people your newest save has pictures for (the colony's own first, then the notable, then the rest, the most
+#   lately shown first); or every person in the library. It asks when it starts. The save is only read, never changed.
+#   These get the four expressions only.
 # - The workflow: rimfolk-variant-workflow-api.json next to this script, exported from ComfyUI with Workflow, Export
 #   (API) from ComfyUI's own FLUX.1 Kontext Dev template: a Load Image box, the edit box with %INSTRUCTION% in its prompt,
 #   a Join Image with Alpha box that gives the edited picture the outline of the one it was made from, and a Preview
 #   Image (or Save Image) box. See docs/portrait-art/SETUP-ComfyUI.md, step 10.
-# - Each picture is uploaded to ComfyUI (as input\rimfolk-variant.png, the same name every time), and for each missing
-#   expression the edit is run with a plain instruction ("Close the person's eyes ..."), fetched back, checked to be
-#   the picture's size and a cut-out like it, and written next to it. An expression already there is never made again
-#   (delete it to have it made again). The window can be closed at any time: what is made is kept, and the next run
-#   carries on.
+# - A proper queue (the player: "it should finish all the analysis first and only then start upcoming jobs so it's a
+#   proper queue"): each picture is handed to ComfyUI once (into input\rimfolk-variant\, one file for each picture,
+#   written over on later runs), every variant is queued at once, and they are collected in order: fetched back,
+#   checked to be the picture's size and a cut-out like it, and written next to it. A job queued in ComfyUI after this
+#   started waits until these are done. An expression already there is never made again (delete its file to have it
+#   made again). Stop it with Ctrl+C at any time: what is made is kept, the variants still waiting are taken out of
+#   ComfyUI's queue, and the next run carries on (closing the window instead leaves them in ComfyUI's queue).
 # - It never renames, moves or deletes a picture and changes nothing else in the library; at the end it writes the
 #   records again (Update-PortraitLibrary.ps1), which give each expression a record of its own. Then "Reload the
 #   library" in the game.
-# - A picture deleted for good in the game (listed in library\deleted.csv) gets no expressions.
+# - A picture deleted for good in the game (listed in library\deleted.csv) gets no variants.
 #
-# Run it: keep ComfyUI open and double-click Make-Variants.cmd (or right-click this file, "Run with PowerShell").
+# Run it: keep ComfyUI open and double-click Make-Variants.cmd (or right-click this file, "Run with PowerShell"). -Which
+# a (every person) or -Which s (the save's) chooses without asking, as well as the game's list; -Words blink,smile makes
+# only those.
 
 [CmdletBinding()]
 param(
@@ -41,8 +57,8 @@ $library = Join-Path $Folder 'library'
 $settingsFile = Join-Path $Folder 'check-settings.json'
 if ($Workflow -eq '') { $Workflow = Join-Path $Folder 'rimfolk-variant-workflow-api.json' }
 
-# ---------------- The expressions ----------------
-# The instruction for each word, as the edit model reads it: plainly what changes, then what stays.
+# ---------------- The variants ----------------
+# The expressions, with the instruction for each as the edit model reads it: plainly what changes, then what stays.
 
 $Keep = 'Keep everything else exactly the same: the same person and face, hair, clothes, pose, position, framing, lighting and painting style.'
 $Instructions = [ordered]@{
@@ -51,6 +67,9 @@ $Instructions = [ordered]@{
     'frown' = 'Make the person frown, the brows drawn together and down, the mouth set in a slight scowl. ' + $Keep
     'pain'  = 'Make the person wince in pain, the eyes squeezed half shut, the brows drawn up and together, the teeth clenched. ' + $Keep
 }
+# The mark variants the game may want, each with the game's own instruction (variants-wanted.csv), spelled as the game
+# spells them; the side is the person's own.
+$MarkWords = @('lostEyeLeft', 'lostEyeRight', 'eyePatchLeft', 'eyePatchRight', 'bionicEyeLeft', 'bionicEyeRight', 'scar', 'burn', 'missingEarLeft', 'missingEarRight', 'artificialArmLeft', 'artificialArmRight')
 # The boxes that give a picture its cut-out: Join Image with Alpha (the outline of the picture it was made from), or a
 # background remover.
 $CutPattern = '(?i)JoinImageWithAlpha|rmbg|birefnet|remove.?background|rembg|inspyrenet|\bben2?\b'
@@ -65,7 +84,8 @@ function Short([string] $v) {
     return $t
 }
 function Is-Link($v) { return ($v -is [array]) -and ($v.Count -eq 2) -and ($v[0] -is [string]) }
-function Is-Extra([string] $stem) { return $stem -match '_(depth|v-[A-Za-z]+)$' }
+function Is-Extra([string] $stem) { return $stem -match '_(depth|v-[A-Za-z]+(-\d+)?)$' }
+function Field($row, [string] $name) { if (Has $row $name) { return [string]$row.$name } else { return '' } }
 function Count-Of([int] $n, [string] $one, [string] $many) { if ($n -eq 1) { return ('1 ' + $one) } else { return ('{0} {1}' -f $n, $many) } }
 
 function Png-Info([byte[]] $b) {
@@ -156,8 +176,16 @@ function Find-Server {
     }
 }
 
-function Upload-Picture([string] $path, [string] $as) {
-    # The picture goes to ComfyUI's input folder, always under the same name, so the folder doesn't fill up.
+function Upload-Name([string] $key) {
+    # A picture's name in ComfyUI's input folder, from its place in the library: the same on every run, so a later run
+    # writes over it and the folder holds at most one copy of each picture.
+    $sha = [System.Security.Cryptography.SHA1]::Create()
+    try { $h = $sha.ComputeHash([System.Text.Encoding]::UTF8.GetBytes($key.ToLowerInvariant())) } finally { $sha.Dispose() }
+    return ((@($h | Select-Object -First 8 | ForEach-Object { $_.ToString('x2') }) -join '') + '.png')
+}
+
+function Upload-Picture([string] $path, [string] $as, [string] $subfolder) {
+    # The picture goes to ComfyUI's input folder (input\<subfolder>\<as>), written over if it is there.
     $content = New-Object System.Net.Http.MultipartFormDataContent
     $bytes = [System.IO.File]::ReadAllBytes($path)
     $file = [System.Net.Http.ByteArrayContent]::new($bytes)
@@ -165,6 +193,7 @@ function Upload-Picture([string] $path, [string] $as) {
     $content.Add($file, 'image', $as)
     $content.Add([System.Net.Http.StringContent]::new('input'), 'type')
     $content.Add([System.Net.Http.StringContent]::new('true'), 'overwrite')
+    if ($subfolder -ne '') { $content.Add([System.Net.Http.StringContent]::new($subfolder), 'subfolder') }
     $r = Http-Send $script:Http 'POST' ($script:Url + '/upload/image') $content
     if (-not $r.ok) { throw ('ComfyUI would not take the picture ({0}): {1}' -f $r.status, (Short $r.text)) }
     $j = $r.text | ConvertFrom-Json
@@ -194,13 +223,48 @@ function Error-Of([string] $text) {
     return (Short $text)
 }
 
-function Run-Comfy($wf, [bool] $first) {
-    # Queues the workflow and waits until ComfyUI has run it: its outputs, as ComfyUI's history keeps them.
+function Queue-Ahead {
+    # How many jobs ComfyUI has running or waiting now, or -1 when it doesn't say.
+    try {
+        $r = Http-Send $script:Http 'GET' ($script:Url + '/prompt') $null
+        if ($r.ok) {
+            $j = $r.text | ConvertFrom-Json
+            if ((Has $j 'exec_info') -and (Has $j.exec_info 'queue_remaining')) { return [int]$j.exec_info.queue_remaining }
+        }
+    }
+    catch { }
+    return -1
+}
+
+function Queue-Job($wf) {
+    # Queues the workflow at the end of ComfyUI's queue; its job's id.
     $body = @{ prompt = $wf; client_id = $script:Client } | ConvertTo-Json -Depth 64 -Compress
     $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
     $r = Http-Send $script:Http 'POST' ($script:Url + '/prompt') $json
     if (-not $r.ok) { throw ('ComfyUI refused the workflow (is a model file it names missing from ComfyUI''s models folder?): {0}' -f (Error-Of $r.text)) }
-    $id = [string](($r.text | ConvertFrom-Json).prompt_id)
+    return [string](($r.text | ConvertFrom-Json).prompt_id)
+}
+
+function Leave-Queue($ids, [string] $one, [string] $many) {
+    # Stopped before its jobs are done (Ctrl+C or an error): the ones still waiting are taken out of ComfyUI's queue, so
+    # they don't run for nothing (only these, never another job); the one ComfyUI is working on finishes by itself.
+    $list = @($ids)
+    if ($list.Count -eq 0) { return }
+    $ok = $false
+    try {
+        $body = @{ delete = [string[]]$list } | ConvertTo-Json -Compress
+        $json = [System.Net.Http.StringContent]::new($body, [System.Text.Encoding]::UTF8, 'application/json')
+        $r = Http-Send $script:Probe 'POST' ($script:Url + '/queue') $json
+        $ok = $r.ok
+    }
+    catch { }
+    if ($ok) { Write-Host ('Stopped early: took the {0} still waiting out of ComfyUI''s queue.' -f (Count-Of $list.Count $one $many)) -ForegroundColor Yellow }
+    else { Write-Host ('Stopped early: the {0} still waiting may be in ComfyUI''s queue. Remove them there (its Queue list), or Clear queue if nothing else is waiting.' -f (Count-Of $list.Count $one $many)) -ForegroundColor Yellow }
+}
+
+function Wait-Job([string] $id, [bool] $first) {
+    # Waits until ComfyUI has run a queued job: its outputs, as ComfyUI's history keeps them. Waiting behind other jobs
+    # is fine however long; 15 minutes on this one is the limit.
     $lastQueue = [DateTime]::MinValue
     $runningSince = $null
     $gone = 0
@@ -412,8 +476,8 @@ function Is-Deleted([string] $path, $deleted, [bool] $fromOutput = $false) {
 # ---------------- The pictures ----------------
 
 function Read-People {
-    # The people's pictures in library\records.xml (not their expressions), in its order: defName, file, and the
-    # colonist a picture was made for (pawn).
+    # The people's pictures in library\records.xml, in its order: defName, file, the colonist a picture was made for
+    # (pawn), and for a variant its word and the picture it is a variant of.
     $path = Join-Path $library 'records.xml'
     if (-not (Test-Path -LiteralPath $path)) { throw 'The library has no records yet: run Update-PortraitLibrary.ps1 (or Copy-ToLibrary.cmd) first, then this again.' }
     $doc = New-Object System.Xml.XmlDocument
@@ -422,14 +486,14 @@ function Read-People {
     foreach ($n in @($doc.DocumentElement.ChildNodes)) {
         if ($n.NodeType -ne [System.Xml.XmlNodeType]::Element -or $n.Name -notmatch 'PortraitDef') { continue }
         $one = { param($tag) $x = $n.SelectSingleNode($tag); if ($x -eq $null) { '' } else { $x.InnerText.Trim() } }
-        if ((& $one 'variantOf') -ne '') { continue }
         $tex = (& $one 'texPath').Replace('\', '/')
         $parts = $tex -split '/'
         if ($parts.Count -ne 2) { continue }
         $dir = Join-Path $library $parts[0]
         [void]$list.Add([pscustomobject]@{
-            defName = (& $one 'defName'); pawn = (& $one 'pawn'); stem = $parts[1]; dir = $dir
+            defName = (& $one 'defName'); pawn = (& $one 'pawn'); stem = $parts[1]; dir = $dir; tex = $tex.ToLowerInvariant()
             path = (Join-Path $dir ($parts[1] + '.png')); show = ($parts[0] + '\' + $parts[1] + '.png')
+            variant = (& $one 'variant'); variantOf = (& $one 'variantOf')
         })
     }
     return $list
@@ -485,153 +549,346 @@ function Read-Given($file) {
     return $given
 }
 
+# ---------------- What the game wants ----------------
+# library\variants-wanted.csv, written by Rimfolk when it saves: one line for each variant a picture held by someone in
+# the save lacks: picture (its place in the library, colonists/<name>.png), word (blink, smile, frown, pain, or a mark
+# such as lostEyeLeft), instruction (what the edit model is told, used as given), who (whom it is for), priority (1 for
+# the colony's own people, then 2) and first (when it was first wanted). The game lists only what is missing, but the
+# list may be older than the library: what is there already is skipped.
+
+function Read-Csv-Any([string] $path) {
+    # A CSV as written by the game or the scripts, or saved again by Excel (with semicolons in some countries).
+    $first = ''
+    foreach ($l in @(Get-Content -LiteralPath $path -Encoding UTF8 -TotalCount 1)) { $first = [string]$l }
+    $delim = ','
+    if ($first.IndexOf(';') -ge 0 -and $first.IndexOf(',') -lt 0) { $delim = ';' }
+    return @(Import-Csv -LiteralPath $path -Encoding UTF8 -Delimiter $delim)
+}
+
+function First-Key([string] $v) {
+    # A "first" value to sort by: a number (a game tick), else a date, else after the rest.
+    $inv = [Globalization.CultureInfo]::InvariantCulture
+    $t = $v.Trim()
+    $d = 0.0
+    if ([double]::TryParse($t, [Globalization.NumberStyles]::Float, $inv, [ref]$d)) { return $d }
+    $when = [datetime]::MinValue
+    if ([datetime]::TryParse($t, $inv, [Globalization.DateTimeStyles]::None, [ref]$when)) { return [double]$when.Ticks }
+    return [double]::MaxValue
+}
+
+function Read-Wanted([string] $path) {
+    # The game's list in the order to make it: priority 1 (the colony's own) before 2, the longest wanted first, then
+    # as listed; exists is false when there is no such file.
+    $r = @{ exists = $false; list = @() }
+    if (-not (Test-Path -LiteralPath $path)) { return $r }
+    $r.exists = $true
+    try { $rows = @(Read-Csv-Any $path) }
+    catch { throw ('{0} could not be read ({1}): is it open in Excel? Close it and run this again.' -f $path, $_.Exception.Message) }
+    $list = New-Object System.Collections.ArrayList
+    $i = 0
+    foreach ($row in $rows) {
+        $i++
+        $pic = (Field $row 'picture').Trim()
+        if ($pic -eq '') { continue }
+        $prio = 9; $pv = 0
+        if ([int]::TryParse((Field $row 'priority').Trim(), [ref]$pv)) { $prio = $pv }
+        [void]$list.Add([pscustomobject]@{
+            picture = $pic; word = (Field $row 'word').Trim(); instruction = (Field $row 'instruction').Trim(); who = (Field $row 'who').Trim()
+            priority = $prio; first = (First-Key (Field $row 'first')); line = $i
+        })
+    }
+    $r.list = @($list | Sort-Object priority, first, line)
+    return $r
+}
+
+function Tex-Of([string] $picture) {
+    # A wanted picture's place in the library as the records write it, in small letters: "colonists/<name>".
+    $t = $picture.Trim().Replace('\', '/').Trim('/')
+    if ($t.ToLowerInvariant().StartsWith('library/')) { $t = $t.Substring(8) }
+    if ($t.ToLowerInvariant().EndsWith('.png')) { $t = $t.Substring(0, $t.Length - 4) }
+    return $t.ToLowerInvariant()
+}
+
+function Word-Of([string] $w) {
+    # A variant's word as the game and the scripts spell it ("lostEyeLeft", "blink"), or '' for one not known here.
+    $t = $w.Trim()
+    foreach ($k in @(@($Instructions.Keys) + $MarkWords)) { if ($k -eq $t) { return $k } }
+    return ''
+}
+
+# ---------------- The variants a picture has ----------------
+
+function Variants-In([string] $dir) {
+    # The variant files in a library folder by picture and word ("<picture>_v-<word>" in small letters, without the -2,
+    # -3 ... of one made again), each with its files. Read once for each folder.
+    if ($script:VariantDirs.ContainsKey($dir)) { return $script:VariantDirs[$dir] }
+    $idx = @{}
+    foreach ($f in @(Get-ChildItem -LiteralPath $dir -Filter '*.png' -File)) {
+        $m = [regex]::Match([System.IO.Path]::GetFileNameWithoutExtension($f.Name), '^(?<base>.+_v-[A-Za-z]+)(-\d+)?$')
+        if (-not $m.Success) { continue }
+        $k = $m.Groups['base'].Value.ToLowerInvariant()
+        if (-not $idx.ContainsKey($k)) { $idx[$k] = New-Object System.Collections.ArrayList }
+        [void]$idx[$k].Add($f.FullName)
+    }
+    $script:VariantDirs[$dir] = $idx
+    return $idx
+}
+
+function Has-Variant($p, [string] $word) {
+    # Whether the picture has this variant: a file of its name, or of a name made again (-2 ...), not deleted for good
+    # in the game.
+    $idx = Variants-In $p.dir
+    $k = ($p.stem + '_v-' + $word).ToLowerInvariant()
+    if (-not $idx.ContainsKey($k)) { return $false }
+    foreach ($path in $idx[$k]) { if (-not (Is-Deleted $path $script:Deleted)) { return $true } }
+    return $false
+}
+
+function Variant-Path($p, [string] $word) {
+    # Where a new variant goes: <picture>_v-<word>.png, or -2, -3 ... past a name deleted for good in the game (a
+    # deleted name stays deleted) or one taken.
+    $n = 1
+    while ($true) {
+        $name = $p.stem + '_v-' + $word
+        if ($n -gt 1) { $name += '-' + $n }
+        $path = Join-Path $p.dir ($name + '.png')
+        if (-not (Test-Path -LiteralPath $path) -and -not (Is-Deleted $path $script:Deleted)) { return $path }
+        $n++
+    }
+}
+
 try {
     Add-Type -AssemblyName System.Net.Http
     if (-not (Test-Path -LiteralPath $library)) { throw ('There is no library folder next to this script ({0}): see SETUP-ComfyUI.md, step 7.' -f $library) }
-    $wanted = @($Instructions.Keys)
+    $known = @(@($Instructions.Keys) + $MarkWords)
+    $only = $null
     if ($Words -ne '') {
-        $wanted = @(($Words -split '[,; ]+') | ForEach-Object { $_.Trim().ToLowerInvariant() } | Where-Object { $_ -ne '' })
-        foreach ($w in $wanted) { if (-not $Instructions.Contains($w)) { throw ('"{0}" is not an expression this script makes ({1}).' -f $w, (@($Instructions.Keys) -join ', ')) } }
-    }
-    $people = @(Read-People)
-    # Pictures deleted for good in the game (deleted.csv) get no expressions, even where records.xml still names them.
-    $deleted = Read-Deleted $library
-    $before = $people.Count
-    $people = @($people | Where-Object { -not (Is-Deleted $_.path $deleted) })
-    if ($people.Count -lt $before) { Write-Host ('{0} left out: deleted for good in the game (deleted.csv).' -f (Count-Of ($before - $people.Count) 'picture' 'pictures')) }
-    if ($people.Count -eq 0) { throw 'The records have no pictures of people yet (library\records.xml).' }
-    $byDef = @{}
-    foreach ($p in $people) { $byDef[$p.defName] = $p }
-
-    if ($Which -eq '') {
-        Write-Host ''
-        Write-Host 'Expressions for which pictures?'
-        Write-Host '  Enter: the pictures your game has given someone, your colonists first'
-        Write-Host '  a:     every person in the library'
-        $Which = Read-Host 'Your choice'
-    }
-    $all = ($Which -match '^(?i)a')
-
-    # The order: pictures made for one colonist, then the ones the newest save has given the colony's own people, then
-    # someone notable, then the rest of the save's (the most lately shown first); with every person, the rest after.
-    $order = New-Object System.Collections.ArrayList
-    $taken = @{}
-    foreach ($p in $people) { if ($p.pawn -ne '') { [void]$order.Add($p); $taken[$p.defName] = $true } }
-    $pinned = $order.Count
-    $fromSave = 0
-    $saveFile = Newest-Save $Save
-    if ($saveFile -eq $null) {
-        Write-Host ''
-        if ($Save -ne '') { Write-Host ('No RimWorld save at {0}.' -f $Save) -ForegroundColor Yellow }
-        else { Write-Host 'No RimWorld save found in RimWorld''s Saves folder.' -ForegroundColor Yellow }
-        if (-not $all) { Write-Host 'Only the pictures made for your colonists (a name in their row''s pawn column) are given expressions.' }
-    }
-    else {
-        Write-Host ''
-        Write-Host ('Reading your newest save, {0} ({1:yyyy-MM-dd HH:mm}) ...' -f $saveFile.Name, $saveFile.LastWriteTime)
-        $given = Read-Given $saveFile
-        if ($given -eq $null) { Write-Host 'That save has no Rimfolk portraits yet.' -ForegroundColor Yellow }
-        else {
-            $ranked = @($given | Sort-Object @{ Expression = { if ($_.own) { 0 } elseif ($_.notable) { 1 } else { 2 } } }, @{ Expression = { $_.seen }; Descending = $true })
-            foreach ($g in $ranked) {
-                if ($taken.ContainsKey($g.picture) -or -not $byDef.ContainsKey($g.picture)) { continue }
-                [void]$order.Add($byDef[$g.picture]); $taken[$g.picture] = $true; $fromSave++
-            }
-            $inLibrary = @($given | Where-Object { $byDef.ContainsKey($_.picture) })
-            Write-Host ('It has given {0} of the library to people, {1} of them to the colony''s own.' -f (Count-Of $inLibrary.Count 'picture' 'pictures'), @($inLibrary | Where-Object { $_.own }).Count)
+        $only = New-Object System.Collections.ArrayList
+        foreach ($w in @(($Words -split '[,; ]+') | Where-Object { $_.Trim() -ne '' })) {
+            $k = Word-Of $w
+            if ($k -eq '') { throw ('"{0}" is not a variant this script makes ({1}).' -f $w, ($known -join ', ')) }
+            [void]$only.Add($k)
         }
     }
-    if ($all) { foreach ($p in $people) { if (-not $taken.ContainsKey($p.defName)) { [void]$order.Add($p); $taken[$p.defName] = $true } } }
-
-    # What each picture still lacks.
-    $todo = New-Object System.Collections.ArrayList
-    $complete = 0; $missingFile = 0
-    foreach ($p in $order) {
-        if (-not (Test-Path -LiteralPath $p.path)) { $missingFile++; continue }
-        $lack = @($wanted | Where-Object { -not (Test-Path -LiteralPath (Join-Path $p.dir ($p.stem + '_v-' + $_ + '.png'))) })
-        if ($lack.Count -eq 0) { $complete++; continue }
-        [void]$todo.Add([pscustomobject]@{ pic = $p; lack = $lack })
+    $people = @(Read-People)
+    # Pictures deleted for good in the game (deleted.csv) get no variants, even where records.xml still names them.
+    $script:Deleted = Read-Deleted $library
+    $before = $people.Count
+    $people = @($people | Where-Object { -not (Is-Deleted $_.path $script:Deleted) })
+    if ($people.Count -lt $before) { Write-Host ('{0} left out: deleted for good in the game (deleted.csv).' -f (Count-Of ($before - $people.Count) 'picture' 'pictures')) }
+    if ($people.Count -eq 0) { throw 'The records have no pictures of people yet (library\records.xml).' }
+    # The game may want the expressions of a mark variant (its picture X_v-lostEyeLeft.png, the expression
+    # X_v-lostEyeLeft_v-blink.png): a mark variant is a picture of its own for the wanted list; the old way takes the
+    # plain pictures only.
+    $byDef = @{}; $byTex = @{}
+    foreach ($p in $people) {
+        if ($p.variantOf -eq '') { $byDef[$p.defName] = $p; $byTex[$p.tex] = $p }
+        elseif ($MarkWords -contains $p.variant) { $byTex[$p.tex] = $p }
     }
-    $edits = 0; foreach ($t in $todo) { $edits += $t.lack.Count }
-    Write-Host ''
-    Write-Host ('{0} chosen ({1} made for your colonists, {2} from the save{3}); {4} of them have every expression already.' -f (Count-Of $order.Count 'picture' 'pictures'), $pinned, $fromSave, $(if ($all) { ', the rest of the library' } else { '' }), $complete)
-    if ($missingFile -gt 0) { Write-Host ('{0} of them are in the records but not in the library folder: run Update-PortraitLibrary.ps1.' -f $missingFile) -ForegroundColor Yellow }
+    $people = @($people | Where-Object { $_.variantOf -eq '' })
+    $script:VariantDirs = @{}
+    $jobs = New-Object System.Collections.ArrayList
+    $listed = @{}
+    $notes = New-Object System.Collections.ArrayList
+
+    # What the game wants first, in its order.
+    $wantedFile = Join-Path $library 'variants-wanted.csv'
+    $wanted = Read-Wanted $wantedFile
+    if ($wanted.exists) {
+        $count = 0; $there = 0; $cannot = 0
+        foreach ($w in $wanted.list) {
+            $word = Word-Of $w.word
+            if ($word -eq '') { [void]$notes.Add(('variants-wanted.csv, {0}: "{1}" is not a variant this script knows, left out' -f $w.picture, $w.word)); $count++; $cannot++; continue }
+            if ($only -ne $null -and -not $only.Contains($word)) { continue }
+            $p = $byTex[(Tex-Of $w.picture)]
+            $k = (Tex-Of $w.picture) + '|' + $word.ToLowerInvariant()
+            if ($listed.ContainsKey($k)) { continue }
+            $listed[$k] = $true
+            $count++
+            if ($p -eq $null) { [void]$notes.Add(('variants-wanted.csv, {0}: not among the library''s people or their mark variants (left out, deleted, or without a record: run Update-PortraitLibrary.ps1), {1} left out' -f $w.picture, $word)); $cannot++; continue }
+            if (-not (Test-Path -LiteralPath $p.path)) { [void]$notes.Add(('{0}: in the records but not in the library folder (run Update-PortraitLibrary.ps1), {1} left out' -f $p.show, $word)); $cannot++; continue }
+            if (Has-Variant $p $word) { $there++; continue }
+            $instruction = $w.instruction
+            if ($instruction -eq '') {
+                if ($Instructions.Contains($word)) { $instruction = $Instructions[$word] }
+                else { [void]$notes.Add(('variants-wanted.csv, {0}: {1} has no instruction, left out' -f $w.picture, $word)); $cannot++; continue }
+            }
+            [void]$jobs.Add([pscustomobject]@{ pic = $p; word = $word; instruction = $instruction; who = $w.who; colony = ($w.priority -eq 1); target = ''; id = ''; wf = $null })
+        }
+        Write-Host ''
+        if ($count -eq 0) { Write-Host 'The game wants no variants at the moment (library\variants-wanted.csv lists none).' }
+        else {
+            $line = 'The game wants {0} (library\variants-wanted.csv): {1} there already, {2} to make' -f (Count-Of $count 'variant' 'variants'), $there, $jobs.Count
+            $colony = @($jobs | Where-Object { $_.colony }).Count
+            if ($colony -gt 0) { $line += (' ({0} of them for your colonists)' -f $colony) }
+            if ($cannot -gt 0) { $line += (', {0} that can''t be made (see the notes at the end)' -f $cannot) }
+            Write-Host ($line + '.')
+        }
+    }
+
+    # Without the game's list, or with -Which: the pictures chosen as before, given the four expressions.
+    if (-not $wanted.exists -or $Which -ne '') {
+        $expressions = @($Instructions.Keys)
+        if ($only -ne $null) { $expressions = @($expressions | Where-Object { $only.Contains($_) }) }
+        if ($Which -eq '') {
+            Write-Host ''
+            Write-Host 'Expressions for which pictures?'
+            Write-Host '  Enter: the pictures your game has given someone, your colonists first'
+            Write-Host '  a:     every person in the library'
+            $Which = Read-Host 'Your choice'
+        }
+        $all = ($Which -match '^(?i)a')
+
+        # The order: pictures made for one colonist, then the ones the newest save has given the colony's own people,
+        # then someone notable, then the rest of the save's (the most lately shown first); with every person, the rest
+        # after.
+        $order = New-Object System.Collections.ArrayList
+        $taken = @{}
+        foreach ($p in $people) { if ($p.pawn -ne '') { [void]$order.Add($p); $taken[$p.defName] = $true } }
+        $pinned = $order.Count
+        $fromSave = 0
+        $saveFile = Newest-Save $Save
+        if ($saveFile -eq $null) {
+            Write-Host ''
+            if ($Save -ne '') { Write-Host ('No RimWorld save at {0}.' -f $Save) -ForegroundColor Yellow }
+            else { Write-Host 'No RimWorld save found in RimWorld''s Saves folder.' -ForegroundColor Yellow }
+            if (-not $all) { Write-Host 'Only the pictures made for your colonists (a name in their row''s pawn column) are given expressions.' }
+        }
+        else {
+            Write-Host ''
+            Write-Host ('Reading your newest save, {0} ({1:yyyy-MM-dd HH:mm}) ...' -f $saveFile.Name, $saveFile.LastWriteTime)
+            $given = Read-Given $saveFile
+            if ($given -eq $null) { Write-Host 'That save has no Rimfolk portraits yet.' -ForegroundColor Yellow }
+            else {
+                $ranked = @($given | Sort-Object @{ Expression = { if ($_.own) { 0 } elseif ($_.notable) { 1 } else { 2 } } }, @{ Expression = { $_.seen }; Descending = $true })
+                foreach ($g in $ranked) {
+                    if ($taken.ContainsKey($g.picture) -or -not $byDef.ContainsKey($g.picture)) { continue }
+                    [void]$order.Add($byDef[$g.picture]); $taken[$g.picture] = $true; $fromSave++
+                }
+                $inLibrary = @($given | Where-Object { $byDef.ContainsKey($_.picture) })
+                Write-Host ('It has given {0} of the library to people, {1} of them to the colony''s own.' -f (Count-Of $inLibrary.Count 'picture' 'pictures'), @($inLibrary | Where-Object { $_.own }).Count)
+            }
+        }
+        if ($all) { foreach ($p in $people) { if (-not $taken.ContainsKey($p.defName)) { [void]$order.Add($p); $taken[$p.defName] = $true } } }
+
+        # What each picture still lacks.
+        $complete = 0; $missingFile = 0; $lacking = 0
+        foreach ($p in $order) {
+            if (-not (Test-Path -LiteralPath $p.path)) { $missingFile++; continue }
+            $lack = @($expressions | Where-Object { -not $listed.ContainsKey($p.tex + '|' + $_) -and -not (Has-Variant $p $_) })
+            if ($lack.Count -eq 0) { $complete++; continue }
+            $lacking++
+            foreach ($w in $lack) {
+                $listed[$p.tex + '|' + $w] = $true
+                [void]$jobs.Add([pscustomobject]@{ pic = $p; word = $w; instruction = $Instructions[$w]; who = $p.pawn; colony = ($p.pawn -ne ''); target = ''; id = ''; wf = $null })
+            }
+        }
+        Write-Host ''
+        Write-Host ('{0} chosen ({1} made for your colonists, {2} from the save{3}); {4} of them have every expression already.' -f (Count-Of $order.Count 'picture' 'pictures'), $pinned, $fromSave, $(if ($all) { ', the rest of the library' } else { '' }), $complete)
+        if ($missingFile -gt 0) { Write-Host ('{0} of them are in the records but not in the library folder: run Update-PortraitLibrary.ps1.' -f $missingFile) -ForegroundColor Yellow }
+    }
 
     $made = 0
-    $byWord = [ordered]@{}; foreach ($w in $wanted) { $byWord[$w] = 0 }
+    $byWord = [ordered]@{}
     $problems = New-Object System.Collections.ArrayList
-    if ($todo.Count -gt 0) {
+    if ($jobs.Count -gt 0) {
         if (-not (Test-Path -LiteralPath $Workflow)) {
-            throw ('The expressions'' workflow {0} is missing. Make it in ComfyUI and save it with Workflow, Export (API) under that name (SETUP-ComfyUI.md, step 10).' -f $Workflow)
+            throw ('The variants'' workflow {0} is missing. Make it in ComfyUI and save it with Workflow, Export (API) under that name (SETUP-ComfyUI.md, step 10).' -f $Workflow)
         }
         $wfText = Get-Content -LiteralPath $Workflow -Raw -Encoding UTF8
         $probe = $wfText | ConvertFrom-Json
         if ($probe.PSObject.Properties.Name -contains 'nodes') { throw 'This is a saved workflow, not an API export. In ComfyUI use Workflow, Export (API) and save it again under the same name.' }
         $classes = @($probe.PSObject.Properties | ForEach-Object { [string]$_.Value.class_type })
-        if (@($classes | Where-Object { $_ -match '(?i)^load.?image' }).Count -eq 0) { throw 'The expressions'' workflow has no Load Image box. Add one, wire it to the edit box, and export it again (step 10).' }
-        if (-not $wfText.Contains('%INSTRUCTION%')) { throw 'The expressions'' workflow has no %INSTRUCTION% in its prompt box. Type %INSTRUCTION% there and export it again (step 10).' }
-        if (@($classes | Where-Object { $_ -match $CutPattern }).Count -eq 0) { throw 'The expressions'' workflow gives back the edited picture without the person''s outline. Add a Join Image with Alpha box between the edit and the Preview Image box (step 10) and export it again.' }
-        if (@($classes | Where-Object { $_ -match '(?i)save|preview' -and $_ -notmatch '(?i)mask|any|text' }).Count -eq 0) { throw 'The expressions'' workflow has no Preview Image or Save Image box to give the picture back. Add one at the end and export it again (step 10).' }
+        if (@($classes | Where-Object { $_ -match '(?i)^load.?image' }).Count -eq 0) { throw 'The variants'' workflow has no Load Image box. Add one, wire it to the edit box, and export it again (step 10).' }
+        if (-not $wfText.Contains('%INSTRUCTION%')) { throw 'The variants'' workflow has no %INSTRUCTION% in its prompt box. Type %INSTRUCTION% there and export it again (step 10).' }
+        if (@($classes | Where-Object { $_ -match $CutPattern }).Count -eq 0) { throw 'The variants'' workflow gives back the edited picture without the person''s outline. Add a Join Image with Alpha box between the edit and the Preview Image box (step 10) and export it again.' }
+        if (@($classes | Where-Object { $_ -match '(?i)save|preview' -and $_ -notmatch '(?i)mask|any|text' }).Count -eq 0) { throw 'The variants'' workflow has no Preview Image or Save Image box to give the picture back. Add one at the end and export it again (step 10).' }
 
         $script:Probe = New-Http 4
         $script:Http = New-Http 300
         $script:Url = Find-Server
         $script:Client = [guid]::NewGuid().ToString()
         $script:Said = ''
-        Write-Host ('Making {0} ({1}) for {2}. Each takes about half a minute; the first longer while the model loads.' -f (Count-Of $edits 'expression' 'expressions'), ($wanted -join ', '), (Count-Of $todo.Count 'picture' 'pictures'))
-        Write-Host 'You can close this window at any time: what is made is kept, and the next run carries on.'
-        $n = 0; $k = 0
-        foreach ($t in $todo) {
-            $n++
-            $p = $t.pic
-            $info = Png-Info ([System.IO.File]::ReadAllBytes($p.path))
-            if ($info -eq $null) { [void]$problems.Add(('{0}: not a PNG picture, skipped' -f $p.show)); continue }
-            $image = Upload-Picture $p.path 'rimfolk-variant.png'
-            $done = New-Object System.Collections.ArrayList
-            foreach ($w in $t.lack) {
+        # Each picture is handed to ComfyUI once, under a name of its own; then every variant is queued at once and
+        # collected in order, so ComfyUI makes them one after the other before any job queued after them (the player:
+        # "it should finish all the analysis first and only then start upcoming jobs so it's a proper queue").
+        $uploaded = @{}
+        foreach ($j in $jobs) { if (-not $uploaded.ContainsKey($j.pic.path)) { $uploaded[$j.pic.path] = $null } }
+        Write-Host ('Handing {0} to ComfyUI ...' -f (Count-Of $uploaded.Count 'picture' 'pictures'))
+        foreach ($j in $jobs) {
+            if ($uploaded[$j.pic.path] -ne $null) { continue }
+            $info = Png-Info ([System.IO.File]::ReadAllBytes($j.pic.path))
+            if ($info -eq $null) { $uploaded[$j.pic.path] = @{ info = $null }; [void]$problems.Add(('{0}: not a PNG picture, skipped' -f $j.pic.show)); continue }
+            $uploaded[$j.pic.path] = @{ info = $info; image = (Upload-Picture $j.pic.path (Upload-Name $j.pic.show) 'rimfolk-variant') }
+        }
+        $queue = @($jobs | Where-Object { $uploaded[$_.pic.path].info -ne $null })
+        $ahead = Queue-Ahead
+        $waiting = New-Object System.Collections.ArrayList
+        try {
+            foreach ($j in $queue) {
+                $u = $uploaded[$j.pic.path]
+                $j.target = Variant-Path $j.pic $j.word
+                $j.wf = $wfText | ConvertFrom-Json
+                [void](Prepare-Workflow $j.wf $u.image $j.instruction $u.info.w $u.info.h ('Rimfolk-extras/expressions/' + [System.IO.Path]::GetFileNameWithoutExtension($j.target)))
+                $j.id = Queue-Job $j.wf
+                [void]$waiting.Add($j.id)
+            }
+            if ($ahead -eq 1) { Write-Host 'ComfyUI has 1 job ahead of these; they start when that is done.' }
+            elseif ($ahead -gt 1) { Write-Host ('ComfyUI has {0} jobs ahead of these; they start when those are done.' -f $ahead) }
+            Write-Host ('Queued {0} in ComfyUI, about half a minute each; the first takes longer while the model loads.' -f (Count-Of $queue.Count 'variant' 'variants'))
+            Write-Host 'What is made is kept, and the next run carries on. To stop, press Ctrl+C (closing the window instead leaves the variants in ComfyUI''s queue).'
+            $k = 0
+            $last = Get-Date
+            foreach ($j in $queue) {
                 $k++
-                $started = Get-Date
-                $wf = $wfText | ConvertFrom-Json
-                [void](Prepare-Workflow $wf $image $Instructions[$w] $info.w $info.h ('Rimfolk-extras/expressions/' + $p.stem + '_v-' + $w))
-                $outputs = Run-Comfy $wf ($k -eq 1)
-                $ref = Pick-Image $wf $outputs $CutPattern
+                $u = $uploaded[$j.pic.path]
+                $outputs = Wait-Job $j.id ($k -eq 1 -and $ahead -le 0)
+                [void]$waiting.Remove($j.id)
+                $ref = Pick-Image $j.wf $outputs $CutPattern
                 if ($ref -eq $null) { throw 'ComfyUI gave no picture back. Check that the Join Image with Alpha box is wired into a Preview Image or Save Image box, and export the workflow again (step 10).' }
                 $bytes = Fetch-Image $ref
                 $out = Png-Info $bytes
                 $why = ''
                 if ($out -eq $null) { $why = 'ComfyUI gave back something that is not a PNG picture' }
-                elseif ($out.w -ne $info.w -or $out.h -ne $info.h) { $why = 'it came out {0} x {1}, the picture is {2} x {3}' -f $out.w, $out.h, $info.w, $info.h }
-                elseif ($info.alpha -and -not $out.alpha) { $why = 'it came out without a clear background, the picture is a cut-out' }
+                elseif ($out.w -ne $u.info.w -or $out.h -ne $u.info.h) { $why = 'it came out {0} x {1}, the picture is {2} x {3}' -f $out.w, $out.h, $u.info.w, $u.info.h }
+                elseif ($u.info.alpha -and -not $out.alpha) { $why = 'it came out without a clear background, the picture is a cut-out' }
+                $secs = ((Get-Date) - $last).TotalSeconds
+                $last = Get-Date
                 if ($why -ne '') {
-                    if ($made -eq 0) { throw ('{0}, {1}: {2}. Check the workflow against step 10 (no box that changes the size, the Join Image with Alpha box before the Preview Image box) and export it again.' -f $p.show, $w, $why) }
-                    [void]$problems.Add(('{0}, {1}: {2}; not kept, the other expressions of this picture skipped' -f $p.show, $w, $why))
-                    break
+                    if ($made -eq 0) { throw ('{0}, {1}: {2}. Check the workflow against step 10 (no box that changes the size, the Join Image with Alpha box before the Preview Image box) and export it again.' -f $j.pic.show, $j.word, $why) }
+                    [void]$problems.Add(('{0}, {1}: {2}; not kept' -f $j.pic.show, $j.word, $why))
+                    Write-Host ('[{0}/{1}] {2}: {3} not kept ({4})' -f $k, $queue.Count, $j.pic.show, $j.word, $why) -ForegroundColor Yellow
+                    continue
                 }
-                $target = Join-Path $p.dir ($p.stem + '_v-' + $w + '.png')
-                $part = $target + '.part'
+                if (Test-Path -LiteralPath $j.target) { [void]$problems.Add(('{0}: there already, not written over' -f $j.target)); continue }
+                $part = $j.target + '.part'
                 [System.IO.File]::WriteAllBytes($part, $bytes)
-                [System.IO.File]::Move($part, $target)
-                $made++; $byWord[$w]++
-                [void]$done.Add(('{0} ({1:0} s)' -f $w, ((Get-Date) - $started).TotalSeconds))
+                [System.IO.File]::Move($part, $j.target)
+                $made++
+                if ($byWord.Contains($j.word)) { $byWord[$j.word]++ } else { $byWord[$j.word] = 1 }
+                $for = ''; if ($j.who -ne '') { $for = ' for ' + $j.who }
+                Write-Host ('[{0}/{1}] {2}: {3}{4}, {5} ({6:0} s)' -f $k, $queue.Count, $j.pic.show, $j.word, $for, [System.IO.Path]::GetFileName($j.target), $secs)
             }
-            Write-Host ('[{0}/{1}] {2}: {3}' -f $n, $todo.Count, $p.show, $(if ($done.Count -gt 0) { $done -join ', ' } else { 'none made' }))
         }
+        finally { if ($waiting.Count -gt 0) { Leave-Queue $waiting 'variant' 'variants' } }
     }
 
     Write-Host ''
-    if ($todo.Count -eq 0) { Write-Host 'Every chosen picture has its expressions; nothing to make.' -ForegroundColor Green }
+    if ($jobs.Count -eq 0) { Write-Host 'Nothing to make: every variant wanted is there.' -ForegroundColor Green }
     else {
         $parts = @($byWord.Keys | ForEach-Object { '{0} {1}' -f $_, $byWord[$_] })
-        Write-Host ('Made {0} ({1}).' -f (Count-Of $made 'expression' 'expressions'), ($parts -join ', ')) -ForegroundColor Green
+        $line = 'Made {0} of the {1} to make' -f $made, $jobs.Count
+        if ($parts.Count -gt 0) { $line += (' (' + ($parts -join ', ') + ')') }
+        Write-Host ($line + '.') -ForegroundColor Green
     }
-    foreach ($q in $problems) { Write-Host ('  Note: ' + $q) -ForegroundColor Yellow }
+    foreach ($q in @($notes) + @($problems)) { Write-Host ('  Note: ' + $q) -ForegroundColor Yellow }
     if ($made -gt 0) {
         $update = Join-Path $Folder 'Update-PortraitLibrary.ps1'
         if (Test-Path -LiteralPath $update) {
             Write-Host 'Writing the library records again ...'
             & $update -Folder $Folder -NoPause
         }
-        else { Write-Host 'Run Update-PortraitLibrary.ps1 now, so the expressions get their records; then "Reload the library" in the game.' }
+        else { Write-Host 'Run Update-PortraitLibrary.ps1 now, so the variants get their records; then "Reload the library" in the game.' }
     }
 }
 catch {
