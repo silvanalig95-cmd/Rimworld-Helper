@@ -12,8 +12,12 @@
 #   you keep it. Marked ask (cut at the side, no one in it, a body its kind doesn't have): out, the check less sure.
 #   Marked yes (two people in a cut-out): out. Marked no: kept.
 # - library\check-report.csv, where it is there: what the check found, what the model saw and what the row says.
-# Keep marks the picture's out lines no; Leave out marks them yes. Each choice is written to corrections.csv at once
-# (close it in Excel first), every other line as it was. Lines set in the game are never touched.
+# Keep marks the picture's out lines no; Leave out marks them yes. Keep as the model saw it (the player, 23 November
+# 2026: "Keep as the model saw it - please go ahead with this!") is there where an out line is about the body (pointed
+# or long ears, horns, a tail, glowing eyes, scales or fur): it keeps the picture and writes what the model saw into its
+# description instead (features add:pointedEars ...), so it still goes to people of its kind, those who have what it
+# shows first. Each choice is written to corrections.csv at once (close it in Excel first), every other line as it was.
+# Lines set in the game are never touched.
 # When you are done, press Done on the page: the script asks whether to run Update-PortraitLibrary.ps1, which puts the
 # choices into the records; then "Reload the library" in the game.
 
@@ -108,14 +112,48 @@ function Out-Lines($csv) {
         $l = [string]$csv.lines[$n]
         if ($l.Trim() -eq '') { continue }
         $cells = Split-CsvLine $l $csv.delim
-        if ((Low (Cell $cells $csv.cols 'field')) -ne 'out' -or (Is-Game $cells $csv.cols)) { continue }
+        $field = Low (Cell $cells $csv.cols 'field')
+        $why = Cell $cells $csv.cols 'why'
+        $own = $field -eq 'features' -and (Low $why) -eq (Low $SeenWhy)
+        if (($field -ne 'out' -and -not $own) -or (Is-Game $cells $csv.cols)) { continue }
         $pic = Cell $cells $csv.cols 'picture'
         if ($pic -eq '') { continue }
         $key = Picture-Key $pic
-        if (-not $by.Contains($key)) { $by[$key] = @{ picture = $pic; lines = (New-Object System.Collections.ArrayList) } }
-        [void]$by[$key].lines.Add(@{ n = $n; apply = (Low (Cell $cells $csv.cols 'apply')); why = (Cell $cells $csv.cols 'why') })
+        if (-not $by.Contains($key)) { $by[$key] = @{ picture = $pic; lines = (New-Object System.Collections.ArrayList); seen = (New-Object System.Collections.ArrayList) } }
+        $line = @{ n = $n; apply = (Low (Cell $cells $csv.cols 'apply')); why = $why; value = (Cell $cells $csv.cols 'value') }
+        if ($own) { [void]$by[$key].seen.Add($line) } else { [void]$by[$key].lines.Add($line) }
     }
     return $by
+}
+
+# What the model saw, for an out line about the body: the corrections that write it into the picture's description
+# (by the reason Check-Pictures gave), or none.
+$SeenWhy = 'kept as the model saw it (Review-Pictures)'
+$FeatureWords = @{ pointedEars = 'pointed ears'; longEars = 'long ears'; horns = 'horns'; tail = 'a tail'; glowingEyes = 'glowing eyes'; scales = 'scales'; fur = 'fur' }
+
+function Seen-Of([string] $why) {
+    $t = Low $why
+    if ($t -match '^shows (.+?) ears; its row has no pointed or long ears') {
+        if ($Matches[1] -match '\blong\b' -and $Matches[1] -notmatch 'pointed') { return @('add:longEars') }
+        return @('add:pointedEars')
+    }
+    if ($t -match '^its row says pointed or long ears; the model saw normal ones') { return @('remove:pointedEars', 'remove:longEars') }
+    if ($t -match '^shows horns\b') { return @('add:horns') }
+    if ($t -match '^its row says horns; the model saw none') { return @('remove:horns') }
+    if ($t -match '^shows a tail\b') { return @('add:tail') }
+    if ($t -match '^shows glowing eyes\b') { return @('add:glowingEyes') }
+    if ($t -match '^its row says glowing eyes; the model saw ordinary ones') { return @('remove:glowingEyes') }
+    if ($t -match '^shows (scales|fur) on the body') { return @('add:' + $Matches[1]) }
+    if ($t -match '^its row says (scales|fur); the model saw none') { return @('remove:' + $Matches[1]) }
+    return @()
+}
+
+function Seen-Words([string] $value) {
+    # "add:pointedEars" in words: "adds pointed ears".
+    $m = [regex]::Match($value, '^(add|remove):(\w+)$')
+    if (-not $m.Success) { return $value }
+    $w = $m.Groups[2].Value; if ($FeatureWords.ContainsKey($w)) { $w = $FeatureWords[$w] }
+    if ($m.Groups[1].Value -eq 'add') { return 'adds ' + $w } else { return 'takes out ' + $w }
 }
 
 function State-Of($lines) {
@@ -129,6 +167,20 @@ function State-Of($lines) {
 
 function Set-Apply($csv, $numbers, [string] $apply) {
     # The apply cell of these lines set, each line written again in the file's own way; then the file written safely.
+    Change-Apply $csv $numbers $apply
+    Save-Lines $csv
+}
+
+function Add-Line($csv, [string] $picture, [string] $field, [string] $value, [string] $apply, [string] $why) {
+    # A new line at the file's end, its cells in the file's own columns and separator.
+    $cells = New-Object string[] ([Math]::Max(5, ($csv.cols.Values | Measure-Object -Maximum).Maximum + 1))
+    foreach ($kv in @(@('picture', $picture), @('field', $field), @('value', $value), @('apply', $apply), @('why', $why))) {
+        if ($csv.cols.ContainsKey($kv[0])) { $cells[$csv.cols[$kv[0]]] = $kv[1] }
+    }
+    [void]$csv.lines.Add((@($cells | ForEach-Object { Csv-Cell ([string]$_) $csv.delim }) -join [string]$csv.delim))
+}
+
+function Change-Apply($csv, $numbers, [string] $apply) {
     foreach ($n in $numbers) {
         $cells = Split-CsvLine ([string]$csv.lines[$n]) $csv.delim
         $i = $csv.cols['apply']
@@ -136,6 +188,9 @@ function Set-Apply($csv, $numbers, [string] $apply) {
         $cells[$i] = $apply
         $csv.lines[$n] = (@($cells | ForEach-Object { Csv-Cell ([string]$_) $csv.delim }) -join [string]$csv.delim)
     }
+}
+
+function Save-Lines($csv) {
     $text = (($csv.lines -join $csv.nl) + $csv.nl)
     $tmp = $correctionsFile + '.review-tmp'
     [System.IO.File]::WriteAllText($tmp, $text, (New-Object System.Text.UTF8Encoding($true)))
@@ -210,8 +265,12 @@ function Items-Json {
             $e = $by[$key]
             $rep = $null; if ($report.ContainsKey($key)) { $rep = $report[$key] }
             $why = @($e.lines | ForEach-Object { $_.why } | Where-Object { $_ -ne '' } | Select-Object -Unique)
+            $seen = @($e.lines | ForEach-Object { Seen-Of $_.why } | Select-Object -Unique)
+            $asSeen = @($e.seen | Where-Object { $_.apply -eq 'yes' } | ForEach-Object { $_.value } | Select-Object -Unique)
+            $state = 'kept'; if ($e.lines.Count -gt 0) { $state = State-Of $e.lines }
             [void]$list.Add([ordered]@{
-                key = $key; picture = $e.picture; state = (State-Of $e.lines); reasons = $why
+                key = $key; picture = $e.picture; state = $state; reasons = $why
+                fix = @($seen | ForEach-Object { Seen-Words $_ }); asSeen = @($asSeen | ForEach-Object { Seen-Words $_ })
                 what = $(if ($rep -ne $null) { $rep.what } else { '' }); seen = $(if ($rep -ne $null) { $rep.seen } else { '' })
                 says = $(if ($rep -ne $null) { $rep.says } else { '' }); file = ((File-Of $e.picture) -ne $null)
             })
@@ -220,18 +279,35 @@ function Items-Json {
     return (ConvertTo-Json -InputObject @($list) -Depth 5 -Compress)
 }
 
-function Decide([string] $key, [bool] $keep) {
+function Decide([string] $key, [string] $how) {
+    # keep: its out lines no, and what the model saw (an earlier "as the model saw it") no again; seen: its out lines no
+    # and what the model saw written into its description (features lines, yes); out: its out lines yes.
     $csv = Read-Lines
     if ($csv -eq $null) { throw 'corrections.csv is not there.' }
     $by = Out-Lines $csv
-    if (-not $by.Contains($key)) { throw 'this picture has no out line in corrections.csv any more.' }
-    $apply = 'yes'; if ($keep) { $apply = 'no' }
-    $numbers = @($by[$key].lines | Where-Object { $_.apply -ne $apply } | ForEach-Object { $_.n })
-    if ($numbers.Count -gt 0) { Set-Apply $csv $numbers $apply }
-    $state = 'out'; if ($keep) { $state = 'kept' }
+    if (-not $by.Contains($key) -or $by[$key].lines.Count -eq 0) { throw 'this picture has no out line in corrections.csv any more.' }
+    $e = $by[$key]
+    $apply = 'no'; if ($how -eq 'out') { $apply = 'yes' }
+    Change-Apply $csv @($e.lines | Where-Object { $_.apply -ne $apply } | ForEach-Object { $_.n }) $apply
+    $values = @($e.lines | ForEach-Object { Seen-Of $_.why } | Select-Object -Unique)
+    if ($how -eq 'seen') {
+        if ($values.Count -eq 0) { throw 'the model saw nothing about this picture that its description can hold.' }
+        foreach ($v in $values) {
+            $had = @($e.seen | Where-Object { (Low $_.value) -eq (Low $v) })
+            if ($had.Count -gt 0) { Change-Apply $csv @($had | ForEach-Object { $_.n }) 'yes' }
+            else { Add-Line $csv $e.picture 'features' $v 'yes' $SeenWhy }
+        }
+        # What it saw before and no longer: not applied.
+        Change-Apply $csv @($e.seen | Where-Object { $values -notcontains $_.value -and $_.apply -ne 'no' } | ForEach-Object { $_.n }) 'no'
+    }
+    elseif ($how -eq 'keep') { Change-Apply $csv @($e.seen | Where-Object { $_.apply -ne 'no' } | ForEach-Object { $_.n }) 'no' }
+    Save-Lines $csv
+    $state = 'kept'; if ($how -eq 'out') { $state = 'out' }
+    $asSeen = @(); if ($how -eq 'seen') { $asSeen = @($values | ForEach-Object { Seen-Words $_ }) } elseif ($how -eq 'out') { $asSeen = @($e.seen | Where-Object { $_.apply -eq 'yes' } | ForEach-Object { Seen-Words $_.value }) }
     $script:decided++
-    Write-Host ('{0}: {1}' -f $by[$key].picture, $(if ($keep) { 'kept' } else { 'left out' }))
-    return (ConvertTo-Json -InputObject ([ordered]@{ key = $key; state = $state }) -Compress)
+    $said = @{ keep = 'kept'; seen = 'kept as the model saw it'; out = 'left out' }[$how]
+    Write-Host ('{0}: {1}' -f $e.picture, $said)
+    return (ConvertTo-Json -InputObject ([ordered]@{ key = $key; state = $state; asSeen = $asSeen }) -Compress)
 }
 
 $Page = @'
@@ -267,6 +343,9 @@ main { flex: 1; display: flex; min-height: 0; }
 .act { flex: 1; padding: 12px; font-weight: 600; }
 .act.keep { border-color: var(--good); color: var(--good); }
 .act.out { border-color: var(--bad); color: var(--bad); }
+.act.seen { border-color: var(--accent); color: var(--accent); flex-basis: 100%; }
+.btns { flex-wrap: wrap; }
+.seenNote { color: var(--faint); font-size: 13px; }
 .keys { color: var(--faint); font-size: 13px; }
 #status { color: var(--good); font-size: 13px; }
 #status.err { color: var(--bad); }
@@ -325,11 +404,18 @@ function draw() {
   add('What the check found', i.what);
   add('What the model saw', i.seen);
   add('Its row says', i.says);
+  if (i.state === 'kept' && i.asSeen.length) add('Kept as the model saw it', 'Its description ' + i.asSeen.join(', ') + '.');
   const btns = el('div', 'btns');
-  const keep = el('button', 'act keep', 'Keep (K)'); keep.onclick = () => decide(true);
-  const out = el('button', 'act out', 'Leave out (O)'); out.onclick = () => decide(false);
-  btns.appendChild(keep); btns.appendChild(out); info.appendChild(btns);
-  info.appendChild(el('div', 'keys', 'K keeps it, O leaves it out; the arrows go to the one before or after. A picture you decide moves to Kept or Left out, and the next one shows. Click the picture to see it at full size.'));
+  const keep = el('button', 'act keep', 'Keep (K)'); keep.onclick = () => decide('keep');
+  const out = el('button', 'act out', 'Leave out (O)'); out.onclick = () => decide('out');
+  btns.appendChild(keep); btns.appendChild(out);
+  if (i.fix.length) {
+    const seen = el('button', 'act seen', 'Keep as the model saw it (S)'); seen.onclick = () => decide('seen');
+    btns.appendChild(seen);
+  }
+  info.appendChild(btns);
+  if (i.fix.length) info.appendChild(el('div', 'seenNote', 'Keep as the model saw it: ' + i.fix.join(', ') + ' to its description. It still goes to people of its kind, those who have what it shows first.'));
+  info.appendChild(el('div', 'keys', 'K keeps it as its row says, O leaves it out' + (i.fix.length ? ', S keeps it as the model saw it' : '') + '; the arrows go to the one before or after. A picture you decide moves to Kept or Left out, and the next one shows. Click the picture to see it at full size.'));
 }
 async function load() {
   const r = await fetch('/items'); items = await r.json();
@@ -337,21 +423,23 @@ async function load() {
   tab = ['held', 'unsure', 'out', 'kept'].find(s => items.some(i => i.state === s)) || 'held';
   draw();
 }
-async function decide(keep) {
+async function decide(how) {
   const i = shown()[at]; if (!i) return;
+  if (how === 'seen' && !i.fix.length) return;
   try {
-    const r = await fetch('/decide', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: i.key, keep: keep }) });
+    const r = await fetch('/decide', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ key: i.key, how: how }) });
     const j = await r.json();
     if (!r.ok) throw new Error(j.error || r.statusText);
-    i.state = j.state; err = false;
-    msg = (keep ? 'Kept: ' : 'Left out: ') + i.picture + '.';
+    i.state = j.state; i.asSeen = j.asSeen || []; err = false;
+    msg = ({ keep: 'Kept: ', seen: 'Kept as the model saw it: ', out: 'Left out: ' })[how] + i.picture + '.';
   } catch (e) { err = true; msg = String(e.message || e); }
   draw();
 }
 document.addEventListener('keydown', e => {
   const k = e.key.toLowerCase();
-  if (k === 'k') decide(true);
-  else if (k === 'o') decide(false);
+  if (k === 'k') decide('keep');
+  else if (k === 'o') decide('out');
+  else if (k === 's') decide('seen');
   else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { at = Math.min(at + 1, shown().length - 1); msg = ''; draw(); }
   else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { at = Math.max(at - 1, 0); msg = ''; draw(); }
 });
@@ -433,7 +521,9 @@ try {
                 $reader = New-Object System.IO.StreamReader($ctx.Request.InputStream, [System.Text.Encoding]::UTF8)
                 $body = $reader.ReadToEnd() | ConvertFrom-Json
                 $reader.Close()
-                try { Send-Text $ctx 200 'application/json; charset=utf-8' (Decide (Picture-Key ([string]$body.key)) ([bool]$body.keep)) }
+                $how = [string]$body.how
+                if ($how -ne 'keep' -and $how -ne 'seen' -and $how -ne 'out') { throw 'no such choice: ' + $how }
+                try { Send-Text $ctx 200 'application/json; charset=utf-8' (Decide (Picture-Key ([string]$body.key)) $how) }
                 catch { Send-Text $ctx 409 'application/json; charset=utf-8' (Error-Json $_.Exception.Message) }
             }
             elseif ($path -eq '/done' -and $ctx.Request.HttpMethod -eq 'POST') {

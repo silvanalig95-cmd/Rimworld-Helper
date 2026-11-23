@@ -782,8 +782,17 @@ most sense." So, in this order, three builds at a time:
   gear on the "Council at a glance" panel. The picture's details still come from records.xml, so new pictures still
   need Copy-ToLibrary (which runs Update-PortraitLibrary); corrections answered yes in corrections.csv still need
   Update-PortraitLibrary once (or the in-game window, which writes both).
-- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): "keep, but analyse from scratch"
-  on the review page.** The player: "what I would however think is nice is that I could say instead of dropping it
+- **Done in part (23 November 2026): "Keep as the model saw it" on the review page; "keep and check again" set
+  aside.** The player: "Keep as the model saw it - please go ahead with this! "keep and check again" not sure if we
+  still need this or what the use case is?" (advised: not needed now; the readers' fix re-judges every kept answer on
+  each run, and a re-ask only helps with a new question or model). Built in `Review-Pictures.ps1`: for an out line about
+  the body (pointed or long ears, horns, a tail, glowing eyes, scales or fur, by the reason Check-Pictures wrote), a
+  third button, Keep as the model saw it (S): the out lines no, and `features add:...` or `remove:...` lines marked yes
+  with the why "kept as the model saw it (Review-Pictures)" (one per feature, made again yes where there, the others
+  no); a plain Keep afterwards marks them no; Leave out leaves them. A feature is a cost in the matching (1 point), so
+  the picture still goes to its kind, those with the feature first. Tried with the page in a browser and
+  Update-PortraitLibrary on a test library (the picture kept, `pointedEars` in its record). SETUP-ComfyUI.md step 10,
+  ORDER.md step 6. The original entry, for the record: "keep, but analyse from scratch" on the review page. The player: "what I would however think is nice is that I could say instead of dropping it
   forever, it would be like "keep, but analyze from scratch" or something like this. Then the image would be fully
   analyzed during the next qwen scan. things it got incorrect from the prompt might get reevaluated again and perhaps
   it finds a different use later or so." Told: the check asks with sampling off, so the same picture and question give

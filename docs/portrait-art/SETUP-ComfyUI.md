@@ -234,8 +234,12 @@ so no node pack is needed.
     **Review-Pictures**: copy `Review-Pictures.ps1` and `Review-Pictures.cmd` next to the others and double-click the
     `.cmd`. It opens a page in your browser (served by the script on your own computer only, `http://localhost:8765`),
     one picture at a time, large (click it for full size), with why it is out, what the check found, what the model saw
-    and what its row says. **Keep** (K) marks its out lines no; **Leave out** (O) marks them yes; each choice is
-    written to `corrections.csv` at once (close it in Excel first). The tabs: Held back, Left out where the check was
+    and what its row says. **Keep** (K) marks its out lines no, and the picture goes back as its row says; **Leave
+    out** (O) marks them yes. Where it is out for its body (pointed or long ears, horns, a tail, glowing eyes, scales or
+    fur), **Keep as the model saw it** (S) keeps it and writes what the model saw into its description instead
+    (`features add:pointedEars` and the like, why "kept as the model saw it"): it still goes to people of its kind,
+    those who have what it shows first (a feature only makes a picture closer or further, never shuts it away). Each
+    choice is written to `corrections.csv` at once (close it in Excel first). The tabs: Held back, Left out where the check was
     less sure (cut at the side, no one in it, a body its kind lacks), Left out, Kept; a choice can be changed there
     later. Press **Done** on the page when you are finished: the window asks whether to run Update-PortraitLibrary
     now. This is not in the game: a held picture isn't in the records, so the game never sees it.
