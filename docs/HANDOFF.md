@@ -716,6 +716,19 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **Bug (23 November 2026, the player; looking into it): the colonist card's portrait tile shows a second, darker,
+  larger face behind the picture.** The player, with a screenshot: "when I look at the pawn card, you see in the top,
+  the image looks bogged out. This is for all pawns." The large portrait is right. Read so far: the tile
+  (ColonistCardWindow.Header, `FaceEngine.Draw(..., FaceFrame.Figure, ..., moving: true)`) draws only the glow
+  (`DrawGlow`, a white radial texture made once) and the picture once (`DrawPicture`, `DrawTextureWithTexCoords` of the
+  store's texture, mipmapped, trilinear); the large portrait reads the same texture (`PortraitGpu.Read`) and is fine.
+  Asked the player to try with "Blinking and expressions", the depth setting and the moving portraits off, and for
+  Player.log.
+- **To do when the player asks (23 November 2026, the player; noted, a proposal to follow): what the person goes through
+  shown on their portrait.** The player: "the image could have a bunch of also different effects or laid over it or
+  applied to it. For example, if the pawn is bleeding, the image should kind of have a bloody effect. If they're super
+  stressed, it should have like a stressed out effect. If they are sick or infected ... we can, I think, experiment a
+  lot with visuals that are applied to, over, the image that is in the corner. Just add more layers and immersion."
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library sorted by
   kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
   race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks
