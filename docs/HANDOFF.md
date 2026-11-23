@@ -782,6 +782,17 @@ most sense." So, in this order, three builds at a time:
   gear on the "Council at a glance" panel. The picture's details still come from records.xml, so new pictures still
   need Copy-ToLibrary (which runs Update-PortraitLibrary); corrections answered yes in corrections.csv still need
   Update-PortraitLibrary once (or the in-game window, which writes both).
+- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): a picture whose row is missing
+  keeps its record.** The player ran Copy-ToLibrary and got "no row of this name in any batch list, left out" for
+  nearly every picture of characters-01 to 03 ("what does this output mean then after i launch the copy script? can i
+  ignore this?"). Their `batches` lists were older than the ones the pictures were made from (the current lists in the
+  repo have a row for all 624 pictures of their checked.csv; the last change to characters-01 to 04 was 22 November,
+  21:44 UTC, two minutes before their run); sent them the current lists (characters-01 to 07, colonists, backdrops,
+  style-test) to unzip into `Rimfolk-portraits`, then run Update-PortraitLibrary again; told them not to save a game
+  loaded meanwhile (a colonist whose kept picture is missing from the records is picked again, and saving keeps the new
+  pick). The proposal: Update-PortraitLibrary keeps a picture's record from the records.xml it is about to replace when
+  its row can't be found (and says so once, with the count), instead of leaving it out; and it stops before writing
+  when more than a tenth of the pictures lost their rows, with the likely reason (older lists in `batches`).
 - **To do when the player asks (23 November 2026; the player sent checked.csv, the analysis is
   `docs/portrait-art/CHECK-ANSWERS-2026-11-23.md`; proposal sent, waiting for the go): the check's misreadings first,
   then what the game could use.** Found in the 624 answers (4B model, form version 3): the free "unusual" line restates
