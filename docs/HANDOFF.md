@@ -775,8 +775,9 @@ most sense." So, in this order, three builds at a time:
   as wrong) is worked out again from the kept answers without asking the model; only a line whose wording changed (or
   a new line) is asked again, in a short form of just those lines, merged into the kept answers; each line carries its
   own version instead of the whole question's; `-Again` still asks everything.
-- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): "About this picture"
-  on the large portrait's menu, its record shown and corrected in the game.** The player: "one of the right-click
+- **Go given (23 November 2026, the player: "yes, please go ahead with all!"); built, not released: "About this picture"
+  on the large portrait's menu, its record shown and corrected in the game.** The entry "About this picture, and the
+  variants the game wants" above the newest release line says what was built. The player: "one of the right-click
   options could open kind of a menu where I see the image that is currently assigned to the pawn, and where I could see
   ... all the different attributes and characteristics that this image has assigned in the database ... which of the
   characteristics were now relevant for why this image was chosen for this specific colonist, and that I perhaps also
@@ -790,8 +791,11 @@ most sense." So, in this order, three builds at a time:
   headwear) taken at once in the game and written as a "yes" line to `library\corrections.csv` (so
   Update-PortraitLibrary keeps it, as the picture check's), and the person picked again by the usual rules if it no
   longer fits them.
-- **To do when the player asks (23 November 2026, the player; to come back to, waiting for the go): variants wanted,
-  listed by the game.** The player: "variants are first and foremost relevant for my actual colonists ... it should
+- **Go given (23 November 2026, the player: "yes, please go ahead with all! it's also important that a variant is then
+  marked as done once it's created and in the game, not that it will get created over and over"); built, not released
+  (the game's side; Make-Variants and Update-PortraitLibrary are the portrait scripts'): variants wanted, listed by the
+  game.** The entry "About this picture, and the variants the game wants" above the newest release line says what was
+  built. The player: "variants are first and foremost relevant for my actual colonists ... it should
   kind of log who is actually my colonist at the moment, or I guess in this save, and that this is kind of registered
   somewhere, so that these images get prioritized in the variation script, and that maybe the game also kind of logs or
   creates ... a list of potential variants ... kind of the base variants with different moods and what is required for
@@ -1649,6 +1653,87 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **About this picture, and the
+  variants the game wants** (23 November 2026; the player: "one of the right-click options could open kind of a menu
+  where I see the image that is currently assigned to the pawn ... which of the characteristics were now relevant for why
+  this image was chosen for this specific colonist, and that I perhaps also could make corrections in there", "if a pawn
+  loses an eye ... it then creates an entry, create a one-eyed ... variant of this specific image that is currently used
+  for the pawn", and the go: "yes, please go ahead with all! it's also important that a variant is then marked as done
+  once it's created and in the game, not that it will get created over and over. unless I delete the variant through the
+  ingame about screen. the about screen should also clearly mark what is special about a certain variant and when it
+  becomes active"). DESIGN.md "Portraits: about this picture, and the variants the game wants (not released yet)" has
+  every rule; README "Portraits". The scripts' side (Make-Variants taking the list first, Update-PortraitLibrary
+  recording mark variants and applying the game's corrections) is the portrait scripts', built beside this.
+  - **The contract with the scripts**: `library\variants-wanted.csv` (picture, word, instruction, who, priority, first),
+    written on saving as missing.csv is; the words blink, smile, frown, pain and the mark variants lostEyeLeft/Right,
+    eyePatchLeft/Right, bionicEyeLeft/Right, scar, burn, missingEarLeft/Right, artificialArmLeft/Right; a variant's file
+    `<stem>_v-<word>.png` beside its picture, `-2`, `-3` ... where deleted.csv has that name; its record with `variantOf`
+    the picture's record, `variant` the word, its mark in `marks`, and its side in a new field `<side>` (left or right, as
+    seen from the person; the game reads any word's case, and the word's side wins where they disagree).
+  - **Mark variants in the game**: joined to their picture's face; the person keeps the picture, and the version shown
+    is chosen every few seconds from their body now (their marks and sides read only where the picture has variants): a
+    colonist who has lost the left eye is shown the picture's `lostEyeLeft` once it is made, anyone given the picture
+    later too. Its own expressions over it; none: nothing blinks over it, but an artificial arm's variant shows its
+    picture's. A person's marks are read with their side (the body part's label in its def, "left eye", or its wound
+    anchor, "LeftEye", else its parent's) and an eye patch worn (Alpha Memes' Eyepatch: a lost eye under it prefers the
+    patch's variant, and wants it).
+  - **The list**: for the colony's own (colonists, then slaves, then prisoners; priority 1) the expressions the version
+    shown for them lacks and a mark variant for each mark of theirs the picture has no version of, on each side; the
+    notables' pictures' expressions (priority 2); never a version records.xml has (read again just before writing), so a
+    variant made is done, and one deleted for good in the game is wanted again while still needed; `first` kept from the
+    file. The expressions' instructions word for word as Make-Variants.ps1 has them; a mark's says its side as seen from
+    the person and where that is in the picture; an artificial arm of wood and iron for a tribal or medieval picture,
+    bionic otherwise.
+  - **"About this picture..."** on the large portrait's right-click menu: the picture and its record (every field, marks
+    with their side, its batch and file, its face); why it is theirs (how it was kept, each hard rule met or not with
+    their own value, each part of the distance and the sum, which `PortraitLibraryMath.Parts` gives and `Distance` now
+    sums to the last bit); the five next pictures, small, with their distances; its versions, small, each with what it
+    shows and when it is shown, "shown now" on the version and expression showing, and "Delete this variant for
+    good..."; the versions wanted and not made yet with their files; corrections picked from lists (sex, age band,
+    features, marks, side, looks, work, headwear).
+  - **A correction**: taken at once (the picture's record and its versions', a mark variant keeping its own mark and
+    side; whoever it no longer fits picked again by the usual rules; the library read again), then written on a worker
+    as yes lines into `library\corrections.csv` (why "set in the game"; the file's own separator kept) and into
+    records.xml (the fields set in place, the rest as it was), so it stands before and after Update-PortraitLibrary.
+    The lines are the scripts' (sex, age, role or clear, headwear true or false, looks and marks add:/remove:) and two
+    new: `features add:word`/`remove:word` and `side left`/`right`/`clear`, which Update-PortraitLibrary needs to apply
+    too (told to the scripts' side), else a features or side change made in the game holds only until Update writes
+    records.xml again.
+  - **The game's corrections always hold** (the player, the same day: "the corrections i make through the game client
+    are always prioritized. for example if an image is generating a man, qwen thinks it's a woman and writes that in the
+    corrections file, i edit the file within the game detail screen to be a man, the library import or other scripts
+    should not override that again with the "correction" from gwen of it being a woman"): a field corrected in the game
+    again replaces its own earlier "set in the game" line (a list field's by its word, one add:/remove: line a word)
+    instead of adding a second; and when the game reads the library (the start, "Reload the library") every yes line set
+    in the game is applied again on top of records.xml, to the picture and its versions (`ApplyGameLines`), so the
+    player's correction holds in the game even where records.xml was written without it. Update-PortraitLibrary giving
+    these lines the first say, and the check never writing over one, is the scripts' side.
+  - **A variant deleted for good**: from the window, the deletion's own dialog, worker, deleted.csv line and bin, its own
+    expressions with it. The picture's own "Delete this picture for good..." deletes the picture itself even where a
+    variant shows, with all its versions and theirs (the files beside it by name now include `_v-<word>-2` and a
+    variant's own `_v-` expressions).
+  - Decided here: the side as one field per record (a picture with two sided marks on different sides can't say it; none
+    is planned); a sided mark with no side told wanted as the left; a lost eye on both sides wants both; no combined
+    variants (a lost eye and a scar together); the eye patch's variant only for someone who wears one, the plain lost eye
+    otherwise; corrections go to the picture a variant is of; the list is this save's, written whole at each save (not
+    kept in the save); the window's thumbnails through the store's cache, the store pumped by the window itself.
+  - Code: new `UI/Faces/PortraitAboutWindow.cs`, `PortraitCorrect.cs`, `PortraitCorrectMath.cs`, `PortraitVariants.cs`,
+    `PortraitVariantsMath.cs`; changed `PortraitLibraryMath.cs` (`PortraitSide`, `side`, `patch`, `sides`, `eyePatch`,
+    `AddMark`, `MarkVariantWords`, `SplitVariants`, `ShowsMarks`, `DistanceParts`/`Parts`, `HardRules`/`Rules`,
+    `StillFits`, `Version`), `PortraitLibrary.cs` (versions, `KeptFor`, `NextNearest`, `Corrected`), `PortraitReader.cs`
+    (sides, the eye patch, `MarksOf`), `PortraitKeeper.cs` (`LetGo`, the list on saving), `PortraitFolder.cs`
+    (`RecordNamed`, `Deleted`, `NoteDeleted`, `Changed`), `PortraitDelete.cs` and `PortraitDeleteMath.cs` (`ConfirmVersion`,
+    `RecordsOf` through a variant's own, `Written`), `FaceEngineAlive.cs` (`FaceNow`), `PortraitLookMath.cs` (`All`),
+    `PortraitDef.cs` (`side`), `InspectPortrait.cs` (the menu), `FramedWindowsMath.cs` (the key); words in
+    `Languages/English/Keyed/Rimfolk_Portraits.xml`. Tests: `Tools/Tests/PortraitAboutTests.cs` (new; the two new pure
+    files linked in `Tests.csproj`). Nothing new saved.
+  - **Can't be checked without the game**: the window as it looks, its lists and thumbnails; the sides read from real
+    pawns of every mod's body; corrections.csv and records.xml written on the player's Google Drive folder; a variant made
+    by the scripts shown for the colonist who needs it.
+  - **Try in the game** (screenshots please): right-click a colonist's large portrait, "About this picture...": the
+    record, the rules and costs, the next pictures, its expressions; change the age band to another: the message, and the
+    colonist gets another picture where it no longer fits; corrections.csv has the line. Save the game and open
+    `library\variants-wanted.csv`: the colonists' rows first.
 - 0.298.1, **The small portraits' smaller copies
   made by the mod, and the face in the middle** (23 November 2026; the player, with screenshots: the colonist card's tile
   "looks bogged out. This is for all pawns", the same on the event cards, none of the settings changing it; and "since

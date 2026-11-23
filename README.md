@@ -121,9 +121,18 @@ game's own drawing. Looks are what traits, genes, health and body give a face
 role or best passion (a scholar, a soldier, a cook): a picture showing a look or a work goes only to people who have it,
 plain pictures are for anyone. A special look (the conjoined twins of Conjoined Twins, wings) only ever gets a picture
 made with it, else the game's own drawing. A picture showing a mark of the body (a lost eye, a scar, a bionic arm) goes
-only to someone who has it. It is chosen the first time it is needed and kept: injuries, haircuts and
+only to someone who has it, on their side. It is chosen the first time it is needed and kept: injuries, haircuts and
 clothes don't change it, only growing into the next stage of life (a toddler, a child, a teen, a grown-up, old) does;
-a right click on the large portrait chooses another, keeps the picture for training (a copy into the folder `training`
+but where the picture has a variant painted with a mark of theirs (a lost left eye, a scar, an artificial arm), that
+variant is shown for them, chosen anew as the body changes. On saving, Rimfolk writes `variants-wanted.csv` into the
+folder: for each of the colony's own people's pictures (and the notables'), the expressions it lacks and a variant for
+each mark of theirs it has no version of, with the exact instruction for the portrait scripts, never one already made.
+A right click on the large portrait shows **About this picture**: the picture and its record, why it is theirs (each of
+the matcher's rules met or not, what each part of their looks costs, the next pictures), its variants and expressions
+with what each shows and when (a variant can be deleted there for good, and is then wanted again while needed), and
+corrections picked from lists (sex, age band, features, marks and their side, looks, work, headwear), taken at once
+(whoever it no longer fits gets another picture) and written into the folder's `corrections.csv` and `records.xml`.
+The right click also chooses another picture, keeps the picture for training (a copy into the folder `training`
 beside the library folder, listed in its `training.csv`), or deletes the picture or the backdrop it shows for good (its
 files go to the bin `deleted pictures` beside the library folder, or are deleted, as **Deleting a picture** says; its
 record is taken out of the folder's `records.xml` and its name written into `deleted.csv`, which the portrait scripts

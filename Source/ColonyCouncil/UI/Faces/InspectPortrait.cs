@@ -213,7 +213,8 @@ namespace ColonyCouncil
         /// <summary>
         /// The portrait's menu: "Choose another picture" (the next painted picture that may stand for them: their own pinned
         /// pictures, then the nearest faces), kept for them from then on; greyed out with the reason where there is none.
-        /// Then "Keep for training" for the painted picture shown (<see cref="PortraitTraining"/>), and "Delete this picture
+        /// Then "About this picture..." (<see cref="Window_PortraitAbout"/>: its record, why it is theirs, its versions and
+        /// corrections), "Keep for training" for the painted picture shown (<see cref="PortraitTraining"/>), and "Delete this picture
         /// for good..." and "Delete this backdrop for good..." for the painted picture and the backdrop shown, where they come
         /// from the library folder (<see cref="PortraitDelete"/>).
         /// </summary>
@@ -231,6 +232,10 @@ namespace ColonyCouncil
                     string said = lib.ChooseAnother(p);
                     Messages.Message(said, MessageTypeDefOf.SilentInput, false);
                 }));
+            // About the painted picture shown: its record, why it is theirs, its versions, corrections.
+            string about = "CC_PortraitAbout_Menu".Translate().Resolve();
+            if (PortraitSources.For(p)?.file != null && lib.KeptFor(p, out _, out _)) options.Add(new FloatMenuOption(about, () => Window_PortraitAbout.Open(p)));
+            else options.Add(new FloatMenuOption(about + " (" + "CC_Portrait_TrainNoPicture".Translate().Resolve() + ")", null));
             PortraitTraining.AddOption(p, options);
             PortraitDelete.AddOptions(p, options);
             Find.WindowStack.Add(new FloatMenu(options));

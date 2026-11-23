@@ -111,7 +111,7 @@
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>
-  <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture, keep one for training or delete one for good.</CC_Portrait_TipLibrary>
+  <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture, see its record and versions, keep one for training or delete one for good.</CC_Portrait_TipLibrary>
   <CC_Portrait_GripTip>Drag to make the portrait larger or smaller.</CC_Portrait_GripTip>
   <CC_Portrait_ChooseAnother>Choose another picture</CC_Portrait_ChooseAnother>
   <CC_Portrait_ChooseEmpty>the library has no pictures</CC_Portrait_ChooseEmpty>
@@ -175,4 +175,146 @@
   <CC_Portrait_DeletedHolders>Another picture is picked for {NAMES}.</CC_Portrait_DeletedHolders>
   <CC_Portrait_DeletedBackdropAgain>The large portrait chooses its backdrop again.</CC_Portrait_DeletedBackdropAgain>
   <CC_Portrait_DeletedPartly>{COUNT} of its files could not be moved or deleted ({ERROR}): they are still in the library folder, out of the records and listed in deleted.csv, so nothing uses them. Move or delete them by hand.</CC_Portrait_DeletedPartly>
+  <CC_Portrait_DeleteWhatVariants>Its {COUNT} variants with marks go with it.</CC_Portrait_DeleteWhatVariants>
+  <CC_Portrait_DeletedVersions>{COUNT} of its versions (expressions and variants with marks) went with it.</CC_Portrait_DeletedVersions>
+  <CC_Portrait_DeleteVariantTitle>Delete this variant for good</CC_Portrait_DeleteVariantTitle>
+  <CC_Portrait_DeleteVariantWhat>The variant {FILE} of the picture {PICTURE} will be deleted for good. The picture itself stays.</CC_Portrait_DeleteVariantWhat>
+  <CC_Portrait_DeleteVariantShown>Whoever it is shown for sees the picture itself again, or another of its variants that fits them. While it is still needed, the game lists it again in variants-wanted.csv, under a new name, so it can be made anew.</CC_Portrait_DeleteVariantShown>
+  <CC_Portrait_DeletedVariant>Deleted the variant {FILE} for good.</CC_Portrait_DeletedVariant>
+  <CC_PortraitFolder_Marked>Also {COUNT} variants of those portraits with a mark (a lost eye, a scar, an artificial arm).</CC_PortraitFolder_Marked>
+
+  <!-- About this picture (UI/Faces/PortraitAboutWindow.cs), corrections in the game (PortraitCorrect.cs) and the variants wanted (PortraitVariants.cs) -->
+  <CC_PortraitAbout_Menu>About this picture...</CC_PortraitAbout_Menu>
+  <CC_PortraitAbout_Title>About this picture</CC_PortraitAbout_Title>
+  <CC_PortraitAbout_Sub>The painted picture shown for {PAWN_nameDef}, its record, and why it is theirs.</CC_PortraitAbout_Sub>
+  <CC_PortraitAbout_None>{PAWN_nameDef} keeps no painted picture from the library now, so the game's own drawing is shown.</CC_PortraitAbout_None>
+  <CC_PortraitAbout_Loading>loading</CC_PortraitAbout_Loading>
+  <CC_PortraitAbout_NoFile>can't be read</CC_PortraitAbout_NoFile>
+  <CC_PortraitAbout_Record>Its record</CC_PortraitAbout_Record>
+  <CC_PortraitAbout_Kind>Kind</CC_PortraitAbout_Kind>
+  <CC_PortraitAbout_Sex>Sex</CC_PortraitAbout_Sex>
+  <CC_PortraitAbout_Age>Age band</CC_PortraitAbout_Age>
+  <CC_PortraitAbout_Skin>Skin colour</CC_PortraitAbout_Skin>
+  <CC_PortraitAbout_HairColour>Hair colour</CC_PortraitAbout_HairColour>
+  <CC_PortraitAbout_Hair>Hair</CC_PortraitAbout_Hair>
+  <CC_PortraitAbout_Beard>Beard</CC_PortraitAbout_Beard>
+  <CC_PortraitAbout_Build>Build</CC_PortraitAbout_Build>
+  <CC_PortraitAbout_Clothes>Clothes' age and kind</CC_PortraitAbout_Clothes>
+  <CC_PortraitAbout_Features>Features</CC_PortraitAbout_Features>
+  <CC_PortraitAbout_Marks>Marks</CC_PortraitAbout_Marks>
+  <CC_PortraitAbout_Side>Side of its marks</CC_PortraitAbout_Side>
+  <CC_PortraitAbout_Looks>Looks</CC_PortraitAbout_Looks>
+  <CC_PortraitAbout_Role>Work</CC_PortraitAbout_Role>
+  <CC_PortraitAbout_Headwear>Headwear</CC_PortraitAbout_Headwear>
+  <CC_PortraitAbout_Facing>Facing</CC_PortraitAbout_Facing>
+  <CC_PortraitAbout_File>Batch and file</CC_PortraitAbout_File>
+  <CC_PortraitAbout_FileMod>a mod's picture, {NAME}</CC_PortraitAbout_FileMod>
+  <CC_PortraitAbout_Character>Face</CC_PortraitAbout_Character>
+  <CC_PortraitAbout_Pinned>Pinned to</CC_PortraitAbout_Pinned>
+  <CC_PortraitAbout_Version>Version</CC_PortraitAbout_Version>
+  <CC_PortraitAbout_VariantOfValue>{WORD}, a variant of {FILE}</CC_PortraitAbout_VariantOfValue>
+  <CC_PortraitAbout_NoneWord>none</CC_PortraitAbout_NoneWord>
+  <CC_PortraitAbout_Any>any</CC_PortraitAbout_Any>
+  <CC_PortraitAbout_Yes>yes</CC_PortraitAbout_Yes>
+  <CC_PortraitAbout_No>no</CC_PortraitAbout_No>
+  <CC_PortraitAbout_Now>now</CC_PortraitAbout_Now>
+  <CC_PortraitAbout_Tone>{HEX}, {WORD}, tone {TONE} of 8</CC_PortraitAbout_Tone>
+  <CC_PortraitAbout_SideLeft>left</CC_PortraitAbout_SideLeft>
+  <CC_PortraitAbout_SideRight>right</CC_PortraitAbout_SideRight>
+  <CC_PortraitAbout_SideNone>not told (either side)</CC_PortraitAbout_SideNone>
+  <CC_PortraitAbout_RoleNone>none (any work)</CC_PortraitAbout_RoleNone>
+  <CC_PortraitAbout_Why>Why it is theirs</CC_PortraitAbout_Why>
+  <CC_PortraitAbout_KeptPinned>Pinned to {PAWN_nameDef} in its record, so it is theirs ahead of the matcher.</CC_PortraitAbout_KeptPinned>
+  <CC_PortraitAbout_KeptByHand>Chosen by hand with "Choose another picture", and kept for {PAWN_nameDef} since.</CC_PortraitAbout_KeptByHand>
+  <CC_PortraitAbout_KeptPicked>Picked by the matcher the first time {PAWN_nameDef} was shown, and kept for them since. A new pick comes at their next stage of life, or when the picture no longer fits them.</CC_PortraitAbout_KeptPicked>
+  <CC_PortraitAbout_ShownVariant>Shown now: its variant "{WORD}", as it shows a mark of theirs.</CC_PortraitAbout_ShownVariant>
+  <CC_PortraitAbout_Rules>The rules a picture must meet for them</CC_PortraitAbout_Rules>
+  <CC_PortraitAbout_Theirs>theirs: {VALUE}</CC_PortraitAbout_Theirs>
+  <CC_PortraitAbout_Met>met</CC_PortraitAbout_Met>
+  <CC_PortraitAbout_NotMet>not met</CC_PortraitAbout_NotMet>
+  <CC_PortraitAbout_RuleKind>Their own race and xenotype</CC_PortraitAbout_RuleKind>
+  <CC_PortraitAbout_RuleSex>The same sex</CC_PortraitAbout_RuleSex>
+  <CC_PortraitAbout_RuleAge>Their own age band</CC_PortraitAbout_RuleAge>
+  <CC_PortraitAbout_RuleSkin>Their skin tone or the next</CC_PortraitAbout_RuleSkin>
+  <CC_PortraitAbout_RuleMarks>Only marks they have, on their side</CC_PortraitAbout_RuleMarks>
+  <CC_PortraitAbout_RuleLooks>Only looks and work they have</CC_PortraitAbout_RuleLooks>
+  <CC_PortraitAbout_RuleSpecials>The same special looks</CC_PortraitAbout_RuleSpecials>
+  <CC_PortraitAbout_RuleHeadwear>Headwear only if they wear it</CC_PortraitAbout_RuleHeadwear>
+  <CC_PortraitAbout_KeptAnyway>A picture once kept stays through the person's stage of life, so a rule not met now was met when it was picked (they have changed since), or the picture is pinned to them.</CC_PortraitAbout_KeptAnyway>
+  <CC_PortraitAbout_Costs>How far it is from their looks (lower is closer)</CC_PortraitAbout_Costs>
+  <CC_PortraitAbout_CostSkin>Skin colour</CC_PortraitAbout_CostSkin>
+  <CC_PortraitAbout_CostHairColour>Hair colour</CC_PortraitAbout_CostHairColour>
+  <CC_PortraitAbout_CostHair>Hair</CC_PortraitAbout_CostHair>
+  <CC_PortraitAbout_CostBeard>Beard</CC_PortraitAbout_CostBeard>
+  <CC_PortraitAbout_CostBuild>Build</CC_PortraitAbout_CostBuild>
+  <CC_PortraitAbout_CostEra>Clothes' age</CC_PortraitAbout_CostEra>
+  <CC_PortraitAbout_CostDress>Clothes' kind</CC_PortraitAbout_CostDress>
+  <CC_PortraitAbout_CostFeatures>Features</CC_PortraitAbout_CostFeatures>
+  <CC_PortraitAbout_CostMarks>Marks of theirs it doesn't show</CC_PortraitAbout_CostMarks>
+  <CC_PortraitAbout_CostLooks>Looks and work of theirs it doesn't show</CC_PortraitAbout_CostLooks>
+  <CC_PortraitAbout_CostTotal>In all</CC_PortraitAbout_CostTotal>
+  <CC_PortraitAbout_CloseNote>With "Only close ones" in the settings, a picture further than {MOST} is not shown.</CC_PortraitAbout_CloseNote>
+  <CC_PortraitAbout_Next>The next pictures for them</CC_PortraitAbout_Next>
+  <CC_PortraitAbout_NextNone>No other picture may stand for them.</CC_PortraitAbout_NextNone>
+  <CC_PortraitAbout_Versions>Its versions</CC_PortraitAbout_Versions>
+  <CC_PortraitAbout_VersionsNone>It has no expressions or variants yet.</CC_PortraitAbout_VersionsNone>
+  <CC_PortraitAbout_ShownNow>shown now</CC_PortraitAbout_ShownNow>
+  <CC_PortraitAbout_FacesOn>Expressions show only on the large portrait, with "Blinking and expressions" on in the settings.</CC_PortraitAbout_FacesOn>
+  <CC_PortraitAbout_FacesOff>Expressions show only on the large portrait, with "Blinking and expressions" on in the settings, which is off now.</CC_PortraitAbout_FacesOff>
+  <CC_PortraitAbout_OfVariant>of the variant {WORD}</CC_PortraitAbout_OfVariant>
+  <CC_PortraitAbout_Face_blink>Blink</CC_PortraitAbout_Face_blink>
+  <CC_PortraitAbout_Face_smile>Smile</CC_PortraitAbout_Face_smile>
+  <CC_PortraitAbout_Face_frown>Frown</CC_PortraitAbout_Face_frown>
+  <CC_PortraitAbout_Face_pain>Pain</CC_PortraitAbout_Face_pain>
+  <CC_PortraitAbout_FaceWhat_blink>The eyes closed.</CC_PortraitAbout_FaceWhat_blink>
+  <CC_PortraitAbout_FaceWhat_smile>A small smile with the mouth closed.</CC_PortraitAbout_FaceWhat_smile>
+  <CC_PortraitAbout_FaceWhat_frown>The brows drawn together and a slight scowl.</CC_PortraitAbout_FaceWhat_frown>
+  <CC_PortraitAbout_FaceWhat_pain>A wince of pain, the eyes half shut and the teeth clenched.</CC_PortraitAbout_FaceWhat_pain>
+  <CC_PortraitAbout_FaceWhen_blink>A blink every 2.5 to 6.5 seconds, and held while they sleep or are unconscious.</CC_PortraitAbout_FaceWhen_blink>
+  <CC_PortraitAbout_FaceWhen_smile>While their mood is well above the middle between their minor break line and full, and for two hours after good news.</CC_PortraitAbout_FaceWhen_smile>
+  <CC_PortraitAbout_FaceWhen_frown>While their mood is under their minor break line, and for six hours after the news of a death close to them.</CC_PortraitAbout_FaceWhen_frown>
+  <CC_PortraitAbout_FaceWhen_pain>For four hours after a fresh wound, and while they are in medium pain or worse.</CC_PortraitAbout_FaceWhen_pain>
+  <CC_PortraitAbout_Mark_lostEye>Lost eye, {SIDE}</CC_PortraitAbout_Mark_lostEye>
+  <CC_PortraitAbout_Mark_eyePatch>Eye patch, {SIDE}</CC_PortraitAbout_Mark_eyePatch>
+  <CC_PortraitAbout_Mark_bionicEye>Bionic eye, {SIDE}</CC_PortraitAbout_Mark_bionicEye>
+  <CC_PortraitAbout_Mark_scar>Scar</CC_PortraitAbout_Mark_scar>
+  <CC_PortraitAbout_Mark_burn>Burn</CC_PortraitAbout_Mark_burn>
+  <CC_PortraitAbout_Mark_missingEar>Missing ear, {SIDE}</CC_PortraitAbout_Mark_missingEar>
+  <CC_PortraitAbout_Mark_artificialArm>Artificial arm, {SIDE}</CC_PortraitAbout_Mark_artificialArm>
+  <CC_PortraitAbout_MarkWhat_lostEye>The {SIDE} eye lost, the eyelids closed over an old scar.</CC_PortraitAbout_MarkWhat_lostEye>
+  <CC_PortraitAbout_MarkWhat_eyePatch>An eye patch over the lost {SIDE} eye.</CC_PortraitAbout_MarkWhat_eyePatch>
+  <CC_PortraitAbout_MarkWhat_bionicEye>A bionic {SIDE} eye.</CC_PortraitAbout_MarkWhat_bionicEye>
+  <CC_PortraitAbout_MarkWhat_scar>An old scar across the face.</CC_PortraitAbout_MarkWhat_scar>
+  <CC_PortraitAbout_MarkWhat_burn>An old burn scar on the face.</CC_PortraitAbout_MarkWhat_burn>
+  <CC_PortraitAbout_MarkWhat_missingEar>The {SIDE} ear missing.</CC_PortraitAbout_MarkWhat_missingEar>
+  <CC_PortraitAbout_MarkWhat_artificialArm>An artificial {SIDE} arm.</CC_PortraitAbout_MarkWhat_artificialArm>
+  <CC_PortraitAbout_MarkWhen_lostEye>Shown instead of the picture for whoever holds it and has lost their {SIDE} eye.</CC_PortraitAbout_MarkWhen_lostEye>
+  <CC_PortraitAbout_MarkWhen_eyePatch>Shown instead of the picture for whoever holds it and has lost their {SIDE} eye, first for someone who wears an eye patch.</CC_PortraitAbout_MarkWhen_eyePatch>
+  <CC_PortraitAbout_MarkWhen_bionicEye>Shown instead of the picture for whoever holds it and has an artificial {SIDE} eye.</CC_PortraitAbout_MarkWhen_bionicEye>
+  <CC_PortraitAbout_MarkWhen_scar>Shown instead of the picture for whoever holds it and has a lasting scar on the head.</CC_PortraitAbout_MarkWhen_scar>
+  <CC_PortraitAbout_MarkWhen_burn>Shown instead of the picture for whoever holds it and has a lasting burn on the head.</CC_PortraitAbout_MarkWhen_burn>
+  <CC_PortraitAbout_MarkWhen_missingEar>Shown instead of the picture for whoever holds it and has lost their {SIDE} ear.</CC_PortraitAbout_MarkWhen_missingEar>
+  <CC_PortraitAbout_MarkWhen_artificialArm>Shown instead of the picture for whoever holds it and has an artificial {SIDE} arm or hand. The picture's own expressions show over it until it has its own.</CC_PortraitAbout_MarkWhen_artificialArm>
+  <CC_PortraitAbout_DeleteVariant>Delete this variant for good...</CC_PortraitAbout_DeleteVariant>
+  <CC_PortraitAbout_Wanted>Not made yet</CC_PortraitAbout_Wanted>
+  <CC_PortraitAbout_WantedLine>Listed in variants-wanted.csv when the game is saved, to be made as {FILE}.</CC_PortraitAbout_WantedLine>
+  <CC_PortraitAbout_WantedOnly>Only the pictures of the colony's own people, and the expressions of notables' pictures, are listed in variants-wanted.csv.</CC_PortraitAbout_WantedOnly>
+  <CC_PortraitAbout_Correct>Corrections</CC_PortraitAbout_Correct>
+  <CC_PortraitAbout_CorrectNote>A change is taken at once, and whoever it no longer fits gets another picture by the usual rules. It is written to corrections.csv (marked yes) and to records.xml in the library folder, so it stays after Update-PortraitLibrary too.</CC_PortraitAbout_CorrectNote>
+  <CC_PortraitAbout_CorrectRoot>Corrections go to the picture {FILE} and all its versions.</CC_PortraitAbout_CorrectRoot>
+  <CC_PortraitAbout_CorrectNo>Can't be corrected now: {WHY}.</CC_PortraitAbout_CorrectNo>
+  <CC_PortraitAbout_Add>Add {WORD}</CC_PortraitAbout_Add>
+  <CC_PortraitAbout_Remove>Take away {WORD}</CC_PortraitAbout_Remove>
+  <CC_PortraitAbout_TheirLook>a look of {PAWN_nameDef}'s</CC_PortraitAbout_TheirLook>
+  <CC_Portrait_CorrectNot>Could not correct the picture: {WHY}.</CC_Portrait_CorrectNot>
+  <CC_Portrait_CorrectBusy>a correction is still being written</CC_Portrait_CorrectBusy>
+  <CC_Portrait_Corrected>Corrected {FILE}: {WHAT}.</CC_Portrait_Corrected>
+  <CC_Portrait_CorrectedAgain>It no longer fits {NAMES}, who get another picture by the usual rules.</CC_Portrait_CorrectedAgain>
+  <CC_Portrait_CorrectWritten>Written to corrections.csv and records.xml in the library folder.</CC_Portrait_CorrectWritten>
+  <CC_Portrait_CorrectNoRecords>It is in corrections.csv, but records.xml could not be written ({ERROR}), so it holds in the game until the library is read again and for good once Update-PortraitLibrary is run.</CC_Portrait_CorrectNoRecords>
+  <CC_Portrait_CorrectNoList>corrections.csv could not be written ({ERROR}), so the change holds in the game only until the library is read again. A cloud drive or Excel may be holding the file; try again shortly.</CC_Portrait_CorrectNoList>
+  <CC_PortraitWanted_Colonist>colonist</CC_PortraitWanted_Colonist>
+  <CC_PortraitWanted_Slave>slave</CC_PortraitWanted_Slave>
+  <CC_PortraitWanted_Prisoner>prisoner</CC_PortraitWanted_Prisoner>
+  <CC_PortraitWanted_Notable>notable</CC_PortraitWanted_Notable>
 </LanguageData>

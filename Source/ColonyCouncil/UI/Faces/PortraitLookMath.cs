@@ -60,6 +60,9 @@ namespace ColonyCouncil
 
         public int Count => rules.Count;
 
+        /// <summary>Every look, in the order given (for the window "About this picture"'s list of looks to add).</summary>
+        public IReadOnlyList<LookRule> All => rules;
+
         /// <summary>
         /// The book of these looks; what is wrong across them in <paramref name="problems"/>: a word given twice (the
         /// first kept).

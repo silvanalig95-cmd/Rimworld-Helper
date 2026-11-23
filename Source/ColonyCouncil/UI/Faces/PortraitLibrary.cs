@@ -60,8 +60,11 @@ namespace ColonyCouncil
         private readonly List<PortraitRecord> records = new List<PortraitRecord>();
         private readonly List<PortraitPicture> pictures = new List<PortraitPicture>();
         private readonly Dictionary<string, int> byName = new Dictionary<string, int>();
-        /// <summary>Phase 6: each picture's expressions (blink, smile, frown, pain) by its name, for the large portrait only.</summary>
+        /// <summary>Phase 6: each picture's expressions (blink, smile, frown, pain) by its name, for the large portrait only; and their records' names.</summary>
         private readonly Dictionary<string, Dictionary<string, PictureFile>> expressions = new Dictionary<string, Dictionary<string, PictureFile>>(StringComparer.Ordinal);
+        private readonly Dictionary<string, Dictionary<string, string>> expressionNames = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+        /// <summary>Each picture's mark variants (the same picture with a lost eye, a scar ...), by its index, as indices into the records.</summary>
+        private readonly Dictionary<int, List<int>> variantsOf = new Dictionary<int, List<int>>();
         private readonly HashSet<string> characters = new HashSet<string>();
         private readonly Dictionary<int, Looked> looked = new Dictionary<int, Looked>();
         /// <summary>The people already looked at for the missing list since the library was read (once each).</summary>
@@ -128,6 +131,8 @@ namespace ColonyCouncil
                 retryAt.Clear();
                 namesUntil = -1f;
                 expressions.Clear();
+                expressionNames.Clear();
+                variantsOf.Clear();
                 var all = new List<Entry>();
                 var names = new HashSet<string>(StringComparer.Ordinal);
                 void Take(Entry e)
@@ -145,23 +150,36 @@ namespace ColonyCouncil
                 // Phase 6: a picture's expressions (eyes closed, a smile, a frown, pain) belong to it and are never picked on their own.
                 var faces = new Dictionary<string, Dictionary<string, int>>(StringComparer.Ordinal);
                 var faceProblems = new List<string>();
-                foreach (int i in PortraitLibraryMath.SplitExpressions(all.Select(e => e.record).ToList(), faces, faceProblems))
+                var allRecords = all.Select(e => e.record).ToList();
+                // A picture's mark variants (a lost eye, a scar ...) are of its face: picked with it, and shown instead of it for whoever has the mark.
+                var marked = new Dictionary<int, List<int>>();
+                var at = new Dictionary<int, int>();
+                foreach (int i in PortraitLibraryMath.SplitVariants(allRecords, PortraitLibraryMath.SplitExpressions(allRecords, faces, faceProblems), marked, faceProblems))
                 {
                     var e = all[i];
+                    at[i] = records.Count;
                     byName[e.record.name] = records.Count;
                     entries.Add(e);
                     records.Add(e.record);
                     pictures.Add(new PortraitPicture { layout = e.Layout, name = e.record.name, file = e.file, loading = true });
                     characters.Add(e.record.Character);
                 }
-                foreach (var kv in faces) expressions[kv.Key] = kv.Value.ToDictionary(x => x.Key, x => all[x.Value].file, StringComparer.Ordinal);
+                foreach (var kv in marked)
+                    if (at.TryGetValue(kv.Key, out int root))
+                        variantsOf[root] = kv.Value.Where(at.ContainsKey).Select(v => at[v]).ToList();
+                foreach (var kv in faces)
+                {
+                    expressions[kv.Key] = kv.Value.ToDictionary(x => x.Key, x => all[x.Value].file, StringComparer.Ordinal);
+                    expressionNames[kv.Key] = kv.Value.ToDictionary(x => x.Key, x => all[x.Value].record.name, StringComparer.Ordinal);
+                }
                 foreach (var problem in faceProblems) CouncilLog.WarnOnce("Portraits: " + problem);
                 signature = PortraitLibraryMath.LibrarySignature(records.Select(r => r.name));
                 foreach (var problem in PortraitLibraryMath.LibraryProblems(records)) CouncilLog.WarnOnce("Portraits: " + problem);
                 if (records.Count > 0)
-                    Log.Message("[Rimfolk] Portraits: " + records.Count + " painted portraits of " + characters.Count + " faces in the library (" + fromDefs.Count(e => !e.record.IsExpression)
-                                + " from mods, " + PortraitFolder.People.Count(p => !p.record.IsExpression) + " from the library folder), " + records.Count(r => r.Pinned) + " of them pinned to colonists; "
-                                + expressions.Values.Sum(x => x.Count) + " expressions of " + expressions.Count + " of them; " + Backdrops.Count + " backdrops.");
+                    Log.Message("[Rimfolk] Portraits: " + records.Count(r => !r.IsMarkVariant) + " painted portraits of " + characters.Count + " faces in the library (" + fromDefs.Count(e => e.record.variantOf.Length == 0)
+                                + " from mods, " + PortraitFolder.People.Count(p => p.record.variantOf.Length == 0) + " from the library folder), " + records.Count(r => r.Pinned && !r.IsMarkVariant) + " of them pinned to colonists; "
+                                + expressions.Values.Sum(x => x.Count) + " expressions of " + expressions.Count + " of them; " + variantsOf.Values.Sum(x => x.Count) + " mark variants of " + variantsOf.Count + "; "
+                                + Backdrops.Count + " backdrops.");
             }
             catch (Exception e)
             {
@@ -174,8 +192,118 @@ namespace ColonyCouncil
         /// The expressions painted of a picture (phase 6: blink, smile, frown, pain, by their words), or null where it has
         /// none. Only the large portrait shows them; they never count in the matching or the missing list.
         /// </summary>
-        public IReadOnlyDictionary<string, PictureFile> ExpressionsOf(string picture) =>
-            picture != null && Load() && expressions.TryGetValue(picture, out var faces) && faces.Count > 0 ? faces : null;
+        public IReadOnlyDictionary<string, PictureFile> ExpressionsOf(string picture)
+        {
+            if (picture == null || !Load()) return null;
+            if (expressions.TryGetValue(picture, out var faces) && faces.Count > 0) return faces;
+            // A mark variant that leaves the head as it was (an artificial arm) shows its picture's expressions until it has its own.
+            return byName.TryGetValue(picture, out int i) && records[i].IsMarkVariant && PortraitLibraryMath.HeadUnchanged(records[i].variant)
+                                                         && expressions.TryGetValue(records[i].variantOf, out var own) && own.Count > 0
+                ? own
+                : null;
+        }
+
+        /// <summary>A picture's own expressions by their words with their records' names (none: empty), for the window "About this picture".</summary>
+        public IReadOnlyDictionary<string, string> ExpressionNamesOf(string picture) =>
+            picture != null && Load() && expressionNames.TryGetValue(picture, out var names) ? names : new Dictionary<string, string>();
+
+        // ---------------- Versions: a picture and its mark variants ----------------
+
+        /// <summary>The picture a record is a version of (its own index where it is no mark variant), or -1.</summary>
+        public int RootOf(int i)
+        {
+            if (i < 0 || i >= records.Count) return -1;
+            var r = records[i];
+            return r.IsMarkVariant && byName.TryGetValue(r.variantOf, out int root) ? root : i;
+        }
+
+        /// <summary>A picture's mark variants (indices), none: empty.</summary>
+        public IReadOnlyList<int> VariantsOf(int root) => variantsOf.TryGetValue(root, out var list) ? list : (IReadOnlyList<int>)Array.Empty<int>();
+
+        /// <summary>The version of a kept picture to show for a person now (<see cref="PortraitLibraryMath.Version"/>): their marks read only where it has mark variants.</summary>
+        private int VersionFor(Pawn p, int root)
+        {
+            if (root < 0 || !variantsOf.TryGetValue(root, out var list) || list.Count == 0) return root;
+            return PortraitLibraryMath.Version(PortraitReader.MarksOf(p), records, root, list);
+        }
+
+        public PortraitRecord RecordAt(int i) => i >= 0 && i < records.Count ? records[i] : null;
+
+        public PictureFile FileAt(int i) => i >= 0 && i < entries.Count ? entries[i].file : null;
+
+        /// <summary>A picture's index by its record's name, or -1.</summary>
+        public int IndexOf(string name) => name != null && Load() && byName.TryGetValue(name, out int i) ? i : -1;
+
+        /// <summary>
+        /// The picture kept for a person and the version of it shown now (indices; -1 none): what the library gives them as
+        /// the large portrait shows it, whether or not "only close ones" lets it show.
+        /// </summary>
+        public bool KeptFor(Pawn p, out int root, out int shown)
+        {
+            root = shown = -1;
+            if (p == null || !Load()) return false;
+            var k = PortraitKeeper.Instance?.Get(p.thingIDNumber);
+            if (k == null || k.picture.NullOrEmpty() || !byName.TryGetValue(k.picture, out int i)) return false;
+            root = RootOf(i);
+            shown = VersionFor(p, root);
+            return true;
+        }
+
+        /// <summary>
+        /// The pictures nearest a person after the one they keep, by the matcher's distance (each face once, by its nearest
+        /// picture; never their own face or one another keeps as their own), at most <paramref name="most"/>, for the window
+        /// "About this picture".
+        /// </summary>
+        public List<int> NextNearest(Pawn p, PortraitLook look, int keptRoot, int most)
+        {
+            var list = new List<int>();
+            if (p == null || look == null || !Load()) return list;
+            ReadOwners(PortraitKeeper.Instance);
+            var d = PortraitLibraryMath.Distances(look, records);
+            string own = keptRoot >= 0 ? records[keptRoot].Character : null;
+            var best = new Dictionary<string, int>(StringComparer.Ordinal);
+            for (int i = 0; i < d.Length; i++)
+            {
+                if (float.IsInfinity(d[i])) continue;
+                string c = records[i].Character;
+                if (c == own || Taken(c, p.thingIDNumber)) continue;
+                if (!best.TryGetValue(c, out int j) || d[i] < d[j]) best[c] = i;
+            }
+            list.AddRange(best.Values.OrderBy(i => d[i]).ThenBy(i => records[i].name, StringComparer.Ordinal).Take(most));
+            return list;
+        }
+
+        /// <summary>
+        /// After a picture's record was corrected in the game (<see cref="PortraitCorrect"/>): everyone keeping it who it no
+        /// longer fits by the usual rules (<see cref="PortraitLibraryMath.StillFits"/>) is let go and picked again when next
+        /// shown; the library is read again from the records as they are now. Returns the ids let go.
+        /// </summary>
+        public List<int> Corrected(string picture)
+        {
+            var gone = new List<int>();
+            var keeper = PortraitKeeper.Instance;
+            int i = IndexOf(picture);
+            var holders = keeper != null && i >= 0 ? keeper.HoldersOfPicture(picture) : new List<int>();
+            if (holders.Count > 0)
+            {
+                var want = new HashSet<int>(holders);
+                var found = new Dictionary<int, Pawn>();
+                foreach (var q in PawnsFinder.All_AliveOrDead)
+                    if (q != null && want.Contains(q.thingIDNumber))
+                        found[q.thingIDNumber] = q;
+                foreach (int id in holders)
+                {
+                    bool fits = found.TryGetValue(id, out var p) && PortraitReader.LookOf(p, out var look) && PortraitLibraryMath.StillFits(records[i], look)
+                                && (!records[i].Pinned || Theirs(records[i], p));
+                    if (fits) continue;
+                    keeper.LetGo(id);
+                    gone.Add(id);
+                }
+            }
+            foreach (int id in gone) PortraitSources.Forget(id);
+            PortraitFolder.Changed();
+            return gone;
+        }
 
         // ---------------- A person's picture ----------------
 
@@ -189,7 +317,9 @@ namespace ColonyCouncil
                 int i = -1;
                 try
                 {
+                    // The picture they keep, and of it the version for their body now (a mark variant where it has one of their marks).
                     i = Decide(p);
+                    if (i >= 0) i = VersionFor(p, i);
                 }
                 catch (Exception e)
                 {
@@ -387,7 +517,7 @@ namespace ColonyCouncil
             {
                 keeper.Seen(k);
                 NoteOnce(p, null, keptAt, k.distance, k.pinned || k.byHand);
-                return Shown(k) ? keptAt : -1;
+                return Shown(k) ? RootOf(keptAt) : -1;
             }
             if (!PortraitReader.LookOf(p, out var look)) return -1;
             var stage = PortraitLibraryMath.StageOf(look.age);
@@ -417,11 +547,13 @@ namespace ColonyCouncil
                 k.library = signature;
                 keeper.Seen(k);
                 if (colony) keeper.Reserve(k);
-                int at = k.picture.Length > 0 ? byName[k.picture] : -1;
+                int at = k.picture.Length > 0 ? RootOf(byName[k.picture]) : -1;
                 NoteOnce(p, look, at, k.distance, k.pinned || k.byHand);
                 return at >= 0 && Shown(k) ? at : -1;
             }
             var pick = pin.Any ? pin : PortraitLibraryMath.Pick(look, records, id, c => keeper?.UsesOf(c, id) ?? 0, c => Taken(c, id), (c, r) => MayShare(c, r, id, rank, keeper));
+            // A mark variant picked (the version showing their marks) is kept as its picture; its version is chosen anew as the body changes.
+            if (pick.Any) pick.index = RootOf(pick.index);
             NoteOnce(p, look, pick.index, pick.distance, pin.Any);
             if (keeper == null) return pick.Any && PortraitLibraryMath.Shown(Mode, pin.Any, pick.distance) ? pick.index : -1;
             keeper.Set(id, pick.Any ? records[pick.index].name : "", pick.character, look.Kind, words, signature, stage, pin.Any, false, pick.distance);
@@ -486,13 +618,14 @@ namespace ColonyCouncil
         public string ChooseAnother(Pawn p)
         {
             if (!On || !PortraitReader.LookOf(p, out var look)) return "CC_Portrait_ChooseNone".Translate(p.Named("PAWN")).Resolve();
-            var choices = PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode, c => Taken(c, p.thingIDNumber));
+            // Each face by its picture (a mark variant stands for the picture it is a version of).
+            var choices = PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode, c => Taken(c, p.thingIDNumber)).Select(RootOf).Distinct().ToList();
             var keeper = PortraitKeeper.Instance;
             var k = keeper?.Get(p.thingIDNumber);
             int next = PortraitLibraryMath.NextChoice(choices, records, k?.picture ?? "");
             if (next < 0 || keeper == null) return "CC_Portrait_ChooseNone".Translate(p.Named("PAWN")).Resolve();
             var r = records[next];
-            float d = r.Pinned ? PortraitLibraryMath.Distance(look, r) : PortraitLibraryMath.Distances(look, records)[next];
+            float d = PortraitLibraryMath.Distance(look, r);
             keeper.Set(p.thingIDNumber, r.name, r.Character, look.Kind, look.Words, signature, PortraitLibraryMath.StageOf(look.age), r.Pinned, true, d);
             if (ColonyOwn(p)) keeper.Reserve(keeper.Get(p.thingIDNumber));
             Forget(p.thingIDNumber);

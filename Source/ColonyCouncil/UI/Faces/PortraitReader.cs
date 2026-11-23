@@ -384,30 +384,89 @@ namespace ColonyCouncil
         private static void Marks(Pawn p, PortraitLook l)
         {
             var hediffs = p.health?.hediffSet?.hediffs;
-            if (hediffs == null) return;
-            foreach (var h in hediffs)
+            if (hediffs != null)
+                foreach (var h in hediffs)
+                {
+                    var part = h?.Part;
+                    if (part?.def == null) continue;
+                    var tags = part.def.tags;
+                    bool eye = tags != null && tags.Contains(BodyPartTagDefOf.SightSource);
+                    bool ear = tags != null && tags.Contains(BodyPartTagDefOf.HearingSource);
+                    if (h is Hediff_MissingPart)
+                    {
+                        if (eye) l.AddMark("lostEye", SideOf(part));
+                        else if (ear) l.AddMark("missingEar", SideOf(part));
+                    }
+                    else if (h is Hediff_AddedPart || h.def?.addedPartProps != null)
+                    {
+                        // A patch put in an eye's place (a mod's) is a lost eye under an eye patch, not a bionic eye.
+                        if (eye && PatchPart(h.def))
+                        {
+                            l.AddMark("lostEye", SideOf(part));
+                            l.eyePatch = true;
+                        }
+                        else if (eye) l.AddMark("bionicEye", SideOf(part));
+                        else if (ArmPart(part)) l.AddMark("artificialArm", SideOf(part));
+                    }
+                    else if (h is Hediff_Injury && h.IsPermanent() && (eye || ear || part.IsInGroup(BodyPartGroupDefOf.FullHead) || part.IsInGroup(BodyPartGroupDefOf.UpperHead)))
+                    {
+                        bool burn = h.def.defName.IndexOf("burn", StringComparison.OrdinalIgnoreCase) >= 0;
+                        l.AddMark(burn ? "burn" : "scar");
+                    }
+                }
+            // An eye patch worn (an apparel of that name, Alpha Memes' among them): a lost eye under it is shown with the patch.
+            var worn = p.apparel?.WornApparel;
+            if (worn != null)
+                foreach (var a in worn)
+                    if (a?.def != null && PatchPart(a.def))
+                        l.eyePatch = true;
+        }
+
+        private static readonly Dictionary<Def, bool> patches = new Dictionary<Def, bool>();
+
+        /// <summary>A def named for an eye patch (each read once).</summary>
+        private static bool PatchPart(Def d)
+        {
+            if (d == null) return false;
+            if (!patches.TryGetValue(d, out bool patch))
             {
-                var part = h?.Part;
-                if (part?.def == null) continue;
-                var tags = part.def.tags;
-                bool eye = tags != null && tags.Contains(BodyPartTagDefOf.SightSource);
-                bool ear = tags != null && tags.Contains(BodyPartTagDefOf.HearingSource);
-                if (h is Hediff_MissingPart)
-                {
-                    if (eye) l.marks.Add("lostEye");
-                    else if (ear) l.marks.Add("missingEar");
-                }
-                else if (h is Hediff_AddedPart || h.def?.addedPartProps != null)
-                {
-                    if (eye) l.marks.Add("bionicEye");
-                    else if (ArmPart(part)) l.marks.Add("artificialArm");
-                }
-                else if (h is Hediff_Injury && h.IsPermanent() && (eye || ear || part.IsInGroup(BodyPartGroupDefOf.FullHead) || part.IsInGroup(BodyPartGroupDefOf.UpperHead)))
-                {
-                    bool burn = h.def.defName.IndexOf("burn", StringComparison.OrdinalIgnoreCase) >= 0;
-                    l.marks.Add(burn ? "burn" : "scar");
-                }
+                patch = PortraitLibraryMath.EyePatchWords(PortraitLibraryMath.Tokens(d.defName, d.label));
+                patches[d] = patch;
             }
+            return patch;
+        }
+
+        /// <summary>
+        /// The side a body part is on, as seen from the person: by the words of its label as the body def writes it ("left
+        /// eye") and the tag its wounds are drawn at ("LeftEye"), else its parent's (a finger on the left hand).
+        /// </summary>
+        private static PortraitSide SideOf(BodyPartRecord part)
+        {
+            for (var at = part; at != null; at = at.parent)
+            {
+                var side = PortraitLibraryMath.SideFromWords(PortraitLibraryMath.Tokens(at.untranslatedCustomLabel, at.woundAnchorTag));
+                if (side != PortraitSide.None) return side;
+            }
+            return PortraitSide.None;
+        }
+
+        /// <summary>
+        /// The marks of a pawn's body alone (for the version of a kept picture shown, read every few seconds while they are
+        /// shown and only where their picture has mark variants); null for anyone not humanlike.
+        /// </summary>
+        public static PortraitLook MarksOf(Pawn p)
+        {
+            if (p?.RaceProps == null || !p.RaceProps.Humanlike) return null;
+            var l = new PortraitLook();
+            try
+            {
+                Marks(p, l);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("portraits: reading a person's marks", e);
+            }
+            return l;
         }
 
         private static readonly Dictionary<BodyPartDef, bool> armParts = new Dictionary<BodyPartDef, bool>();

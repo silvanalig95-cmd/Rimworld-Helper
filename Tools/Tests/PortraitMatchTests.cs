@@ -282,7 +282,7 @@ public static class PortraitMatchTests
               && !PortraitLibraryMath.ArmPart(T("Torso", "torso"), new[] { "BloodPumpingSource" }) && !PortraitLibraryMath.ArmPart(T("ArmorPlate", "armor plate"), null),
                 "a mod's limb that handles things by its tag; never a leg, a foot, the head, the torso, nor armour by its name");
             string reader = Read("UI/Faces/PortraitReader.cs");
-            C(reader.Contains("h is Hediff_AddedPart || h.def?.addedPartProps != null") && reader.Contains("l.marks.Add(\"artificialArm\")")
+            C(reader.Contains("h is Hediff_AddedPart || h.def?.addedPartProps != null") && reader.Contains("l.AddMark(\"artificialArm\", SideOf(part))")
               && reader.Contains("IsArm(part.def) || part.parent?.def != null && IsArm(part.parent.def)") && reader.Contains("armParts[d] = arm;"),
                 "the game reads it from any added part (a bionic, archotech or prosthetic one, a mod's) on an arm part or one whose parent is, each part's def read once");
             C(Art("test_portrait_catalogue.py").Contains("'missingEar', 'artificialArm'}"), "the catalogue's tests take the mark in a row's marks");

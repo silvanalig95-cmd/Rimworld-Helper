@@ -140,6 +140,8 @@ namespace ColonyCouncil
             new FrameKey("ArrangeBar", 420f, 420f),
             new FrameKey("PanelOptions", 360f, 400f),
             new FrameKey("GuestCheck", 420f, 360f),
+            // About a painted picture (UI/Faces/PortraitAboutWindow.cs): the picture beside its record at the least width; the rest scrolls.
+            new FrameKey("PortraitAbout", 560f, 420f),
             // Choosing other clothes for an ideoligion's role (Faith/RoleClothesWindow.cs): two rows asked for now, a few to pick from; the rest scrolls.
             new FrameKey("RoleClothes", 520f, 480f),
             // Building and the defenses: the plans' small windows beside the map.

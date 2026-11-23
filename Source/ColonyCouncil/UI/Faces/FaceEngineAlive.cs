@@ -145,6 +145,13 @@ namespace ColonyCouncil
         /// <summary>The plain picture, or an expression already made for this picture.</summary>
         private static bool Ready(Staged s, string word) => string.IsNullOrEmpty(word) || s.faces.ContainsKey(word);
 
+        /// <summary>The face the large portrait shows for a person now, between blinks (an expression's word, "" for the plain picture), or null where it hasn't shown them alive.</summary>
+        public static string FaceNow(Pawn p)
+        {
+            if (p == null || !FacesOn || !lives.TryGetValue(p.thingIDNumber, out var life) || !life.state.started) return null;
+            return life.state.shown ?? "";
+        }
+
         /// <summary>
         /// The next expression this picture needs made, one at a time with the pictures: the face shown, the blink, the face
         /// it fades from, the face wanted next; each picture asked of the store (loaded when first asked, kept while shown).
