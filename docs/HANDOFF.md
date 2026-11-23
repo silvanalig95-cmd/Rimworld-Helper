@@ -723,7 +723,12 @@ most sense." So, in this order, three builds at a time:
   (`DrawGlow`, a white radial texture made once) and the picture once (`DrawPicture`, `DrawTextureWithTexCoords` of the
   store's texture, mipmapped, trilinear); the large portrait reads the same texture (`PortraitGpu.Read`) and is fine.
   Asked the player to try with "Blinking and expressions", the depth setting and the moving portraits off, and for
-  Player.log.
+  Player.log. The player: "none of these settings seem to have an impact ... Same display error is shown or issue is shown when I
+  get like an event, for example, and the pawn symbol is shown at the top." So every small showing of a library picture
+  (the card's tile through `DrawPicture`, an event card's round portrait through `DrawPictureRound`), none of the large
+  portrait (read back near full size): suspected the texture's smaller copies (mipmaps, trilinear) or the colours left
+  under the cut-out's clear parts, which an average not weighted by alpha brings into the small copies. Asked the player
+  for one of the library's cut-out PNGs to look at its clear parts and its smaller copies.
 - **To do when the player asks (23 November 2026, the player; noted, a proposal to follow): what the person goes through
   shown on their portrait.** The player: "the image could have a bunch of also different effects or laid over it or
   applied to it. For example, if the pawn is bleeding, the image should kind of have a bloody effect. If they're super
