@@ -716,6 +716,20 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **Done (23 November 2026, the player's own request): the characters lists' second round, `characters-05` to `07`.**
+  The player: "I already want the next set of Pwn descriptions ... there should again be a lot of variety, but it
+  should also cover more of the general combinations. But yeah, again, each Pwn should ultimately look a bit individual
+  in some way, not too basic. Some things about them ... can be just applied to most or a lot of pawns. Maybe some
+  should be more specific ... no pawn just looks fully generic ... build up upon the 3 or 4 characteristic lists that
+  you create just before that". Done in `plan_batches.py`, characters phase: after the first round, a cover round that
+  counts the plain characters rows already listed by kind, sex, age band and skin (`('chs', ...)` in the ledger) and
+  tops each cell up to `cover_target` (baseliners: 9 for young, adult and middle, 6 old, 3 elder, 3 teen, 1 child, in
+  all seven tones; the other wave-1 kinds 3/3/3/2/1/1; wave 2 one for each grown band, elder and teen in the main skin;
+  wave 3 one young, adult and middle, old in the main skin; wave 4 a young and an adult one; wave 5 none), a
+  non-baseliner kind with human skins in three tones only (`COVER_TONES` fair, medium, brown: with the game's next-tone
+  rule they stand for all seven); 70% of these rows broad (`COVER_BROAD`: milder features, at most two), the rest as
+  specific as the first round's; marks on 5%. 474 rows, 47% baseliners, 22 kinds, both sexes evenly, 6 children;
+  every row still has a face of its own. Tests: the cover cells, the wave-4 bounds.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the painted portrait
   on the starting pawns screen.** The player: "when you start a new colony now in game, you select your pawns at first,
   kind of to get prepared. Could we include the image of the pawn already there? That would be lovely. It would provide

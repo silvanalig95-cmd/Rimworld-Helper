@@ -89,6 +89,27 @@ WOMAN_CLOTHES = 'Her clothes practical and closed at the neck.'
 # of a majority, because ultimately in the game, most of them or a lot of them will be baseliners, while still having a
 # total mix overall of all races"). The other wave-1 kinds keep CHAR_PLAIN[1] scaled by their count.
 CHAR_BASELINER = 355
+# The second round's cover: pictures wanted for each kind, sex, age band and skin (counting the characters rows already
+# made), and the share of them that are broad (milder, fewer features) rather than as specific as the first round's.
+COVER_BROAD = 0.7
+# A non-baseliner kind with human skins is covered in these three tones: the game gives a picture to the same tone and
+# the next, so they stand for all seven (veryfair to light, light to tan, tan to dark).
+COVER_TONES = ('fair', 'medium', 'brown')
+
+
+def cover_target(k, age, skin):
+    main = skin == k.skins.entries[0][0] or len(k.skins.entries) <= 3
+    if k.kind == 'Baseliner':
+        return {'young': 9, 'adult': 9, 'middle': 9, 'old': 6, 'elder': 3, 'teen': 3, 'child': 1}.get(age, 0)
+    if k.wave == 1:
+        return {'young': 3, 'adult': 3, 'middle': 3, 'old': 2, 'elder': 1, 'teen': 1}.get(age, 0)
+    if k.wave == 2:
+        return {'young': 1, 'adult': 1, 'middle': 1, 'old': 1, 'elder': 1 if main else 0, 'teen': 1 if main else 0}.get(age, 0)
+    if k.wave == 3:
+        return {'young': 1, 'adult': 1, 'middle': 1, 'old': 1 if main else 0}.get(age, 0)
+    if k.wave == 4:
+        return {'young': 1, 'adult': 1}.get(age, 0) if main else 0
+    return 0
 # A kind whose look is on the brow (a neanderthal's brow ridge, a genie's skull, horns, a third eye): no fringe hides it
 # (the player: the neanderthal women "really look like normal women", their bobs with heavy fringes over the brow).
 OPEN_BROW = re.compile(r'brow ridge|forehead|skull|third eye|ridges|\bhorns\b')
@@ -509,6 +530,9 @@ class Ledger:
             own = [lk for lk in split(r.get('looks', '')) if lk not in k.always]
             typ = 'r' if (r.get('role') or '').strip() else 'l' if own else 'c'
             self.cells[('char', typ, k.kind, r.get('sex', ''), W_age(r.get('age', '')))] += 1
+            if typ == 'c':
+                sk = k.skins.nearest(r.get('skin', ''))
+                self.cells[('chs', k.kind, r.get('sex', ''), W_age(r.get('age', '')), sk[0] if sk else '')] += 1
             self.faces.add(face_key(r.get('subject', '')))
 
     def add_picture(self, rec, listed):
@@ -1186,8 +1210,36 @@ class Planner:
             specs += [(((i + 0.5) / len(mine), ki), s) for i, s in enumerate(mine)]
         for _, (k, sex, age, pair, role, look, marks) in sorted(specs, key=lambda x: x[0]):
             self.make_character(k, sex, age, pair, role=role, look=look, marks=marks)
+        # The second round: every common combination covered (the player, 23 November 2026: "there should again be a
+        # lot of variety, but it should also cover more of the general combinations ... each Pwn should ultimately look
+        # a bit individual in some way, not too basic ... no pawn just looks fully generic"). The game gives a picture
+        # only to a person of its kind, sex, age band and skin tone, so each such cell gets a few, counted with the rows
+        # already in the characters lists; most of them broad (fewer, milder features), some as specific as the first
+        # round's.
+        specs = []
+        for ki, k in enumerate(ks):
+            mine = []
+            for sex in k.sexes:
+                for age, _share in self.char_ages(k):
+                    human = all(e[0] in HUMAN_SKIN_SLUGS for e in k.skins.entries) and len(k.skins.entries) > 3
+                    for sk in k.skins.entries:
+                        if human and k.kind != 'Baseliner' and sk[0] not in COVER_TONES:
+                            continue    # another kind of human skin: three tones, each standing for its neighbours too
+                        want = cover_target(k, age, sk[0])
+                        have = self.ledger.cells[('chs', k.kind, sex, age, sk[0])]
+                        hairs = k.hair_entries(age) or [('bald', '', '')]
+                        for j in range(have, want):
+                            hr = seeded('characters', 'cover', k.kind, sex, age, sk[0], str(j))
+                            hair = hairs[hr.randrange(len(hairs))]
+                            marks = ()
+                            if age in W.GROWN and hr.random() < 0.05:
+                                marks = (weighted(hr, [('scar', 4), ('lostEye', 2), ('eyePatch', 2), ('bionicEye', 1), ('burn', 1), ('missingEar', 1)]),)
+                            mine.append((k, sex, age, (sk, hair), marks))
+            specs += [(((i + 0.5) / len(mine), ki), x) for i, x in enumerate(mine)]
+        for _, (k, sex, age, pair, marks) in sorted(specs, key=lambda x: x[0]):
+            self.make_character(k, sex, age, pair, marks=marks, broad=True)
 
-    def make_character(self, k, sex, age, pair, role='', look=None, marks=()):
+    def make_character(self, k, sex, age, pair, role='', look=None, marks=(), broad=False):
         """One characters row: its record columns and its prompt, every choice seeded by the row's name."""
         if len(self.rows) >= self.cap:
             raise Full()
@@ -1309,6 +1361,9 @@ class Planner:
             parts.append(phrase)
         # the face: its shape and skin and one to three features of its own, never twice the same
         strong = 0.2 if k.kind == 'Baseliner' else 0.35
+        mild = broad and seeded('characters', 'broad', name).random() < COVER_BROAD
+        if mild:
+            strong = 0.08
         faces = []
         for _ in range(2 if twins else 1):
             for _try in range(60):
@@ -1316,6 +1371,8 @@ class Planner:
                                      light=skin[0] in ('veryfair', 'fair', 'light'), build=build, skin_words=skin[2])
                 if k.sign:          # a kind of its own look: one feature of the face (a woman two), so the kind's look leads
                     feats = feats[:2 if sex == 'female' else 1]
+                elif mild:          # a broad picture: one or two features of its own, never none
+                    feats = feats[:2]
                 key = '%s; %s' % (base, '; '.join(sorted(feats)))
                 if key not in self.ledger.faces and key not in [f[2] for f in faces]:
                     break
@@ -1470,6 +1527,8 @@ class Planner:
             self.ledger.cells[c] += 1
         own = [lk for lk in looks if lk not in k.always]
         self.ledger.cells[('char', 'r' if role else 'l' if own else 'c', k.kind, sex, age)] += 1
+        if not role and not own:
+            self.ledger.cells[('chs', k.kind, sex, age, skin[0])] += 1
         self.ledger.faces.add(face_key(subject))
         return row
 

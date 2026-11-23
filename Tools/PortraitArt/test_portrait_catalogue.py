@@ -348,8 +348,11 @@ class Characters(Tmp):
             if not k.plannable:
                 continue
             self.assertIn(k.kind, by, k.kind)
-            if k.wave >= 4:
+            if k.wave == 5:
                 self.assertTrue(2 <= plain[k.kind] <= 4, (k.kind, plain[k.kind]))
+            if k.wave == 4:     # the second round adds a young and an adult one of each sex (and skin) where missing
+                tones = len(k.skins.entries) if len(k.skins.entries) <= 3 else 1
+                self.assertTrue(2 <= plain[k.kind] <= 4 + 4 * tones, (k.kind, plain[k.kind]))
             if k.wave == 1:
                 self.assertGreaterEqual(plain[k.kind], 50)
                 self.assertGreater(by[k.kind] - plain[k.kind], 0)      # some with a role or a look
@@ -367,7 +370,15 @@ class Characters(Tmp):
         self.assertTrue(files and all(os.path.basename(f).startswith('characters-') and n <= 200 for f, n in files))
         self.assertTrue(all(p == P.CHARACTERS for p, _, _ in planner.rows))
         rows = [r for _, r in rows_of(self.batches, 'characters-*.csv')]
-        self.assertTrue(700 <= len(rows) <= 900, len(rows))
+        self.assertTrue(1100 <= len(rows) <= 1450, len(rows))
+        # the second round covers each baseliner sex, grown age band and skin tone with at least nine pictures, and the
+        # other common kinds of human skin in three tones (the game gives a picture to the same tone and the next)
+        cover = collections.Counter((r['sex'], r['age'], r['skin']) for r in rows if r['kind'] == 'Baseliner'
+                                    and not r['role'] and r['looks'] == '')
+        for sex in ('male', 'female'):
+            for age in ('young', 'adult', 'middle'):
+                for slug, _w, hx in W.HUMAN_SKINS:
+                    self.assertGreaterEqual(cover[(sex, age, hx)], 9, (sex, age, slug))
         # baseliners about half, of every list (the player: "our baseline are still kind of a majority ... while still
         # having a total mix overall of all races"), the other kinds through all the lists
         base = sum(1 for r in rows if r['kind'] == 'Baseliner')
@@ -376,7 +387,7 @@ class Characters(Tmp):
             part = [r for _, r in rows_of(self.batches, os.path.basename(f))]
             if len(part) >= 100:
                 self.assertTrue(0.4 <= sum(1 for r in part if r['kind'] == 'Baseliner') / len(part) <= 0.6, f)
-                self.assertGreaterEqual(len({r['kind'] for r in part}), 40, f)
+                self.assertGreaterEqual(len({r['kind'] for r in part}), 15, f)
         self.check_spread(rows, self.check_rows(rows))
         self.assertIn('## Characters', text)
         # running again adds nothing, and the other phases don't start the characters lists by themselves

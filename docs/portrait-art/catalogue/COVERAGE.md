@@ -4,40 +4,40 @@ Written by `Tools/PortraitArt/plan_batches.py` (do not edit by hand). "Pictures"
 records.xml the planner was given; "listed" are rows in the batch lists, made or not; a gap is a cell with
 neither. Cells: every sex and age band a kind comes in (plain pictures), its common roles, and the looks.
 
-Library pictures read: 0. Rows in the batch lists before this run: 742 (with at least one picture: 0). Rows written by this run: 798.
+Library pictures read: 0. Rows in the batch lists before this run: 1540 (with at least one picture: 0). Rows written by this run: 474.
 
 ## By wave
 
 | wave | kinds | plain cells covered (sex and age) | with a picture | plain rows | role rows | look rows |
 |---|---|---|---|---|---|---|
-| 1 | 2 | 36 of 36 | 0 | 579 | 92 | 306 |
-| 2 | 6 | 108 of 108 | 0 | 319 | 12 | 12 |
-| 3 | 6 | 32 of 108 | 0 | 36 | 0 | 0 |
-| 4 | 13 | 49 of 225 | 0 | 52 | 0 | 0 |
+| 1 | 2 | 36 of 36 | 0 | 820 | 92 | 306 |
+| 2 | 6 | 108 of 108 | 0 | 442 | 12 | 12 |
+| 3 | 6 | 53 of 108 | 0 | 112 | 0 | 0 |
+| 4 | 13 | 66 of 225 | 0 | 86 | 0 | 0 |
 | 5 | 54 | 139 of 921 | 0 | 146 | 0 | 0 |
 
 ## Gaps: kinds with ages that have no picture and no row yet
 
 | wave | kind | weight | missing (sex, age) |
 |---|---|---|---|
-| 3 | high elf (DevDesigner_XenotypeHighElves) | 0.47 | 13: m young, m adult, f adult, f teen, m child, f child, f old, m elder, f elder, m toddler ... |
-| 3 | genie (Genie) | 0.46 | 14: f adult, f young, m middle, m old, m teen, f teen, m child, f child, m elder, f elder ... |
-| 3 | starjack (Starjack) | 0.45 | 12: m young, f young, m middle, f old, m elder, f teen, m child, f child, m toddler, f toddler ... |
-| 3 | yttakin (Yttakin) | 0.45 | 13: m young, f young, m adult, m middle, f old, f elder, f teen, m child, f child, m toddler ... |
-| 3 | sanguophage (Sanguophage) | 0.43 | 12: f young, m teen, m adult, f middle, m old, m child, f child, m baby, f baby, m toddler ... |
-| 3 | wood elf (DevDesigner_XenotypeWoodElves) | 0.42 | 12: f adult, m teen, m child, f child, m old, f old, m elder, f elder, m toddler, f toddler ... |
-| 4 | awakened bonobo (Bonobo) | 0.32 | 14: m young, f young, f adult, m middle, m elder, f elder, m teen, f teen, m child, f child ... |
-| 4 | awakened gorilla (Gorilla) | 0.32 | 14: f young, m adult, f adult, f middle, m old, m elder, m teen, f teen, m child, f child ... |
+| 3 | high elf (DevDesigner_XenotypeHighElves) | 0.47 | 9: f teen, m child, f child, m elder, f elder, m toddler, f toddler, m baby, f baby |
+| 3 | genie (Genie) | 0.46 | 11: m old, m teen, f teen, m child, f child, m elder, f elder, m baby, f baby, m toddler ... |
+| 3 | starjack (Starjack) | 0.45 | 8: m elder, f teen, m child, f child, m toddler, f toddler, m baby, f baby |
+| 3 | yttakin (Yttakin) | 0.45 | 9: f old, f elder, f teen, m child, f child, m toddler, f toddler, m baby, f baby |
+| 3 | sanguophage (Sanguophage) | 0.43 | 9: m teen, m old, m child, f child, m baby, f baby, m toddler, f toddler, f elder |
+| 3 | wood elf (DevDesigner_XenotypeWoodElves) | 0.42 | 9: m teen, m child, f child, m elder, f elder, m toddler, f toddler, m baby, f baby |
+| 4 | awakened bonobo (Bonobo) | 0.32 | 11: m middle, m elder, f elder, m teen, f teen, m child, f child, m toddler, f toddler, m baby ... |
+| 4 | awakened gorilla (Gorilla) | 0.32 | 11: f middle, m old, m elder, m teen, f teen, m child, f child, m toddler, f toddler, m baby ... |
 | 4 | stoneborn (Stoneborn) | 0.32 | 15: m young, f young, f adult, m middle, f old, m elder, f elder, m teen, f teen, m child ... |
-| 4 | avaloi (DV_Avaloi) | 0.31 | 15: f young, m adult, f adult, m middle, f old, m elder, f elder, m teen, f teen, m child ... |
+| 4 | avaloi (DV_Avaloi) | 0.31 | 12: m middle, f old, m elder, f elder, m teen, f teen, m child, f child, m toddler, f toddler ... |
 | 4 | lesser fairy (FG_LesserFairy) | 0.30 | 5: f old, f teen, f child, f toddler, f baby |
-| 4 | awakened chimpanzee (Chimp) | 0.27 | 14: f young, m adult, f middle, m old, f old, m elder, m teen, f teen, m child, f child ... |
-| 4 | dirtmole (Dirtmole) | 0.26 | 14: m young, m middle, f middle, m old, f old, f elder, m teen, f teen, m child, f child ... |
-| 4 | drakonori (AG_Drakonori) | 0.25 | 14: f young, m middle, f middle, m old, m elder, f elder, m teen, f teen, m child, f child ... |
+| 4 | awakened chimpanzee (Chimp) | 0.27 | 12: f middle, m old, f old, m elder, m teen, f teen, m child, f child, m toddler, f toddler ... |
+| 4 | dirtmole (Dirtmole) | 0.26 | 13: m middle, f middle, m old, f old, f elder, m teen, f teen, m child, f child, m toddler ... |
+| 4 | drakonori (AG_Drakonori) | 0.25 | 13: m middle, f middle, m old, m elder, f elder, m teen, f teen, m child, f child, m toddler ... |
 | 4 | taukai (AG_Taukai) | 0.25 | 14: m young, f adult, m middle, f old, m elder, f elder, m teen, f teen, m child, f child ... |
-| 4 | boarskin (VRE_Boarskin) | 0.25 | 15: f adult, m old, f old, m young, f young, m elder, f elder, m teen, f teen, m child ... |
+| 4 | boarskin (VRE_Boarskin) | 0.25 | 12: m old, f old, m elder, f elder, m teen, f teen, m child, f child, m toddler, f toddler ... |
 | 4 | coastal merren (Stagz_Merfolk_Coastal) | 0.24 | 14: m adult, m middle, f middle, m old, f old, f elder, m teen, f teen, m child, f child ... |
-| 4 | gauranlenkin (VRE_Gauranlenkin) | 0.23 | 14: f young, m middle, f middle, m old, m elder, f elder, m teen, f teen, m child, f child ... |
+| 4 | gauranlenkin (VRE_Gauranlenkin) | 0.23 | 13: m middle, f middle, m old, m elder, f elder, m teen, f teen, m child, f child, m toddler ... |
 | 4 | creepjoiner (CreepJoiner) | 0.21 | 14: m young, f young, m middle, f old, m elder, f elder, m teen, f teen, m child, f child ... |
 | 5 | animusen (AG_Animusen) | 0.19 | 15: f young, m adult, m middle, f middle, f old, m elder, f elder, m teen, f teen, m child ... |
 | 5 | mind devourer (AG_MindDevourer) | 0.19 | 15: m young, f adult, m middle, f middle, m old, m elder, f elder, m teen, f teen, m child ... |
@@ -98,32 +98,32 @@ Library pictures read: 0. Rows in the batch lists before this run: 742 (with at 
 
 | wave | kind | weight | save | plain cells | plain pictures | plain rows | role cells | role rows | look rows |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 475 | 54 of 54 | 72 | 230 |
-| 1 | dark elf | 0.74 | 48 | 18 of 18 | 0 | 104 | 12 of 12 | 20 | 76 |
-| 2 | hussar | 0.57 | 19 | 18 of 18 | 0 | 67 | 2 of 42 | 2 | 2 |
-| 2 | impid | 0.57 | 12 | 18 of 18 | 0 | 41 | 2 of 42 | 2 | 2 |
-| 2 | neanderthal | 0.57 | 12 | 18 of 18 | 0 | 67 | 2 of 42 | 2 | 2 |
-| 2 | pigskin | 0.52 | 8 | 18 of 18 | 0 | 67 | 2 of 36 | 2 | 2 |
-| 2 | saurid | 0.52 | 8 | 18 of 18 | 0 | 43 | 2 of 36 | 2 | 2 |
-| 2 | waster | 0.52 | 8 | 18 of 18 | 0 | 34 | 2 of 30 | 2 | 2 |
-| 3 | high elf | 0.47 | 5 | 5 of 18 | 0 | 6 | - | 0 | 0 |
-| 3 | genie | 0.46 | 10 | 4 of 18 | 0 | 6 | - | 0 | 0 |
-| 3 | starjack | 0.45 | 7 | 6 of 18 | 0 | 6 | - | 0 | 0 |
-| 3 | yttakin | 0.45 | 4 | 5 of 18 | 0 | 6 | - | 0 | 0 |
-| 3 | sanguophage | 0.43 | 8 | 6 of 18 | 0 | 6 | - | 0 | 0 |
-| 3 | wood elf | 0.42 | 3 | 6 of 18 | 0 | 6 | - | 0 | 0 |
-| 4 | awakened bonobo | 0.32 | 2 | 4 of 18 | 0 | 4 | - | 0 | 0 |
-| 4 | awakened gorilla | 0.32 | 2 | 4 of 18 | 0 | 4 | - | 0 | 0 |
+| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 699 | 54 of 54 | 72 | 230 |
+| 1 | dark elf | 0.74 | 48 | 18 of 18 | 0 | 121 | 12 of 12 | 20 | 76 |
+| 2 | hussar | 0.57 | 19 | 18 of 18 | 0 | 87 | 2 of 42 | 2 | 2 |
+| 2 | impid | 0.57 | 12 | 18 of 18 | 0 | 68 | 2 of 42 | 2 | 2 |
+| 2 | neanderthal | 0.57 | 12 | 18 of 18 | 0 | 88 | 2 of 42 | 2 | 2 |
+| 2 | pigskin | 0.52 | 8 | 18 of 18 | 0 | 90 | 2 of 36 | 2 | 2 |
+| 2 | saurid | 0.52 | 8 | 18 of 18 | 0 | 71 | 2 of 36 | 2 | 2 |
+| 2 | waster | 0.52 | 8 | 18 of 18 | 0 | 38 | 2 of 30 | 2 | 2 |
+| 3 | high elf | 0.47 | 5 | 9 of 18 | 0 | 17 | - | 0 | 0 |
+| 3 | genie | 0.46 | 10 | 7 of 18 | 0 | 22 | - | 0 | 0 |
+| 3 | starjack | 0.45 | 7 | 10 of 18 | 0 | 10 | - | 0 | 0 |
+| 3 | yttakin | 0.45 | 4 | 9 of 18 | 0 | 23 | - | 0 | 0 |
+| 3 | sanguophage | 0.43 | 8 | 9 of 18 | 0 | 23 | - | 0 | 0 |
+| 3 | wood elf | 0.42 | 3 | 9 of 18 | 0 | 17 | - | 0 | 0 |
+| 4 | awakened bonobo | 0.32 | 2 | 7 of 18 | 0 | 7 | - | 0 | 0 |
+| 4 | awakened gorilla | 0.32 | 2 | 7 of 18 | 0 | 7 | - | 0 | 0 |
 | 4 | stoneborn | 0.32 | 2 | 3 of 18 | 0 | 4 | - | 0 | 0 |
-| 4 | avaloi | 0.31 | 4 | 3 of 18 | 0 | 4 | - | 0 | 0 |
+| 4 | avaloi | 0.31 | 4 | 6 of 18 | 0 | 8 | - | 0 | 0 |
 | 4 | lesser fairy | 0.30 | 4 | 4 of 9 | 0 | 4 | - | 0 | 0 |
-| 4 | awakened chimpanzee | 0.27 | 1 | 4 of 18 | 0 | 4 | - | 0 | 0 |
-| 4 | dirtmole | 0.26 | 2 | 4 of 18 | 0 | 4 | - | 0 | 0 |
-| 4 | drakonori | 0.25 | 2 | 4 of 18 | 0 | 4 | - | 0 | 0 |
+| 4 | awakened chimpanzee | 0.27 | 1 | 6 of 18 | 0 | 6 | - | 0 | 0 |
+| 4 | dirtmole | 0.26 | 2 | 5 of 18 | 0 | 5 | - | 0 | 0 |
+| 4 | drakonori | 0.25 | 2 | 5 of 18 | 0 | 9 | - | 0 | 0 |
 | 4 | taukai | 0.25 | 2 | 4 of 18 | 0 | 4 | - | 0 | 0 |
-| 4 | boarskin | 0.25 | 2 | 3 of 18 | 0 | 4 | - | 0 | 0 |
+| 4 | boarskin | 0.25 | 2 | 6 of 18 | 0 | 15 | - | 0 | 0 |
 | 4 | coastal merren | 0.24 | 1 | 4 of 18 | 0 | 4 | - | 0 | 0 |
-| 4 | gauranlenkin | 0.23 | 2 | 4 of 18 | 0 | 4 | - | 0 | 0 |
+| 4 | gauranlenkin | 0.23 | 2 | 5 of 18 | 0 | 9 | - | 0 | 0 |
 | 4 | creepjoiner | 0.21 | 1 | 4 of 18 | 0 | 4 | - | 0 | 0 |
 | 5 | animusen | 0.19 | 1 | 3 of 18 | 0 | 3 | - | 0 | 0 |
 | 5 | mind devourer | 0.19 | 1 | 3 of 18 | 0 | 3 | - | 0 | 0 |
@@ -188,10 +188,10 @@ The characters lists (`characters-NN`, `plan_batches.py --phases characters`): d
 
 | wave | kinds | with characters | plain rows | role rows | look rows |
 |---|---|---|---|---|---|
-| 1 | 2 | 2 | 428 | 26 | 26 |
-| 2 | 6 | 6 | 60 | 12 | 12 |
-| 3 | 6 | 6 | 36 | 0 | 0 |
-| 4 | 13 | 13 | 52 | 0 | 0 |
+| 1 | 2 | 2 | 669 | 26 | 26 |
+| 2 | 6 | 6 | 183 | 12 | 12 |
+| 3 | 6 | 6 | 112 | 0 | 0 |
+| 4 | 13 | 13 | 86 | 0 | 0 |
 | 5 | 54 | 54 | 146 | 0 | 0 |
 
 ## Looks
@@ -205,6 +205,10 @@ No row yet (rarer, or waiting for a kind that has them): antennae, barkSkin, bat
 | list | rows | with a picture |
 |---|---|---|
 | age-test | 18 | 0 |
+| characters-01 | 200 | 0 |
+| characters-02 | 200 | 0 |
+| characters-03 | 200 | 0 |
+| characters-04 | 198 | 0 |
 | colonists | 11 | 0 |
 | colonists-redo | 1 | 0 |
 | people-01 | 200 | 0 |
@@ -212,7 +216,6 @@ No row yet (rarer, or waiting for a kind that has them): antennae, barkSkin, bat
 | people-03 | 200 | 0 |
 | people-04 | 128 | 0 |
 | style-test | 10 | 0 |
-| characters-01 (new) | 200 | 0 |
-| characters-02 (new) | 200 | 0 |
-| characters-03 (new) | 200 | 0 |
-| characters-04 (new) | 198 | 0 |
+| characters-05 (new) | 200 | 0 |
+| characters-06 (new) | 200 | 0 |
+| characters-07 (new) | 74 | 0 |
