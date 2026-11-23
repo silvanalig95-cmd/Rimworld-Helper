@@ -58,6 +58,14 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   takes that style, still true to what happens on the map. The plain rule holds for the rest: event cards, messages and
   the interface, advice, encounters, missions, decrees and seats, the gods' cards and messages, the Almanac, What's new.
 
+## The portrait kit's guide
+- `docs/portrait-art/GUIDE.md` is the player's step-by-step guide to the portrait kit (the player, 23 November 2026:
+  "keeps the whole step-by-step procedure on track and documented with what it does ... when it changes, please update
+  it"): every change to the kit's scripts, lists, files or steps updates it in the same commit (and its "Last changed"
+  line), and every kit zip sent to the player includes it.
+- `docs/portrait-art/STUDIO-HANDOVER.md` describes every file format and step of the kit for the player's planned
+  separate program, Rimfolk Portrait Studio: a change to a format, a file or a step updates it too.
+
 ## Releases
 - `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` drives `CHANGELOG.md` (`python3 Tools/changelog.py`, then `--check`).
   Each round has 2–8 points, no em dashes or exclamation marks. `About/About.xml` modVersion equals the newest round.

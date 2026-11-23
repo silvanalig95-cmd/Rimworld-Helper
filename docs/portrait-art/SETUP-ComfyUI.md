@@ -247,7 +247,8 @@ so no node pack is needed.
     less sure (cut at the side, no one in it, a body its kind lacks), Left out, Kept; a choice can be changed there
     later. Press **Done** on the page when you are finished: the window asks whether to run Update-PortraitLibrary
     now. This is not in the game: a held picture isn't in the records, so the game never sees it.
-11. Run `Update-PortraitLibrary.ps1` (`Copy-ToLibrary.cmd` runs it too). It writes the records again from the batch
+11. Run `Update-PortraitLibrary.ps1`: the check offers it at its end (Enter), and `Copy-ToLibrary.cmd` and the review
+    page's Done run it too. It writes the records again from the batch
     lists and puts the corrections marked yes, ask and hold into them, and says how many it used and how many
     pictures are held back.
     Then **Reload the library** in the game.

@@ -2167,7 +2167,7 @@ try {
     if ($holdAll -gt 0) { Write-Host ('{0} held back (limbs that don''t make sense): out of the game until you keep it. Review-Pictures.cmd shows each with what is wrong, and Keep or Leave out.' -f (Count-Of $holdAll 'picture is' 'pictures are')) -ForegroundColor Yellow }
     $cutOuts = @($pictures | Where-Object { $_.cut }).Count
     if ($sidesRead -eq 0 -and $compared -gt 0 -and $cutOuts -gt 0) { Write-Host 'The side check could not read the pictures here (it needs Windows), so only the model''s check was made.' -ForegroundColor Yellow }
-    Write-Host 'Run Update-PortraitLibrary.ps1 (Copy-ToLibrary.cmd runs it too) to put the corrections (yes and ask) into the records,'
+    Write-Host 'Update-PortraitLibrary.ps1 puts the corrections (yes, ask and hold) into the records: this window offers it at the end,'
     Write-Host 'then "Reload the library" in the game. No picture was deleted, moved or renamed, and no batch list was changed.'
 
     # A zip of examples to send to the lead.
@@ -2191,6 +2191,19 @@ try {
                 Write-Host ('Made {0} ({1}): the three CSV files, examples.csv and {2} ({3} flagged, {4} that match). Send it to the lead.' -f $z.path, $size, (Count-Of $z.pictures 'picture' 'pictures'), $z.flagged, $z.fine) -ForegroundColor Green
             }
             catch { Write-Host ('The zip could not be made: ' + $_.Exception.Message) -ForegroundColor Red }
+        }
+    }
+
+    # The corrections into the records at once (the player, 23 November 2026: "I guess could check picture step also
+    # just run the update library script in the end, no?"): asked, Enter runs Update-PortraitLibrary.ps1 next to this
+    # script. Pictures held back stay out until they are kept on the review page, whose Done runs it again.
+    $update = Join-Path $Folder 'Update-PortraitLibrary.ps1'
+    if (-not $NoPause -and (Test-Path -LiteralPath $update)) {
+        Write-Host ''
+        $a = Read-Host 'Put the corrections into the records now (Update-PortraitLibrary)? (Enter for yes, n for no)'
+        if ((Low $a) -notmatch '^n') {
+            Write-Host ''
+            & $update -Folder $Folder -NoPause
         }
     }
 }

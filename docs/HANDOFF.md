@@ -831,6 +831,28 @@ most sense." So, in this order, three builds at a time:
   pictures of her kind. Proposed: (1) "Pick again" on the large portrait's menu: the kept picture let go, so the closest
   by the usual rules is chosen ("Choose another picture" steps along the list from the one kept); (2) once, in
   Rimfolk's settings at the portraits: "Pick again for every colonist" (pictures chosen by hand and pins kept).
+- **To do in a new project (23 November 2026, the player; the handover and the prompt written): Rimfolk Portrait
+  Studio, one program for the whole portrait workflow.** The player: "I would really love to have like one UI for the
+  whole software ... a separate GitHub ... one unified UI with like especially visual buttons and representations of
+  kind of what we're doing, all the steps required ... table views or something similar for all the files and whether
+  they're in sync or not and whether what attributes they have, like a database ... If it's best to start with a new
+  chat, I would first like you to really save and document everything, and then provide me with like an exact prompt
+  that I can put into a new project", "And you can immediately go ahead with this", and "I can say where all my folders
+  are. It scans for folders all the time. It allows me to sync between the different locations, give tasks, monitor the
+  progress of tasks, perhaps clean up, see my storage, all these things." Done here: `docs/portrait-art/STUDIO-HANDOVER.md`
+  (the wishes, the set-up, every step, file format and ComfyUI call, the reusable pure C#, a suggested start, the
+  prompt for the new project; CLAUDE.md keeps it in step with the kit). The new project is to be a separate repository
+  the player makes; this repository stays the source of the formats.
+- **Done (23 November 2026, the player's own requests): the kit's guide, the check writing the records, the full kit.**
+  The player: "Could you please compile this into a guide that I find, you know, attached, always and up to date ...
+  when it changes, please update it", "I guess could check picture step also just run the update reported library
+  script in the end, no?", and "a full download again from all the latest files". Done: `docs/portrait-art/GUIDE.md`
+  (what is set up once, the folders and files, each step and what it does, what the check checks and can change (it
+  never changes a picture's kind: a hussar stays a hussar), how the game picks, training, updating the kit; CLAUDE.md
+  keeps it up to date); ORDER.md now points to it. Check-Pictures offers Update-PortraitLibrary at its end (Enter).
+  Sent `Rimfolk-portrait-kit-2026-11-23.zip`: every script, the guides, the lists characters-01 to 07, colonists,
+  backdrops, style-test and the two styles, and Copy-ToLibrary in its own folder for ComfyUI's output. The player also
+  confirmed the second face in the small portraits is gone (0.299.1).
 - **Done (23 November 2026, the player's own request): keeping many at once on the review page.** The player: "could
   I have the option for mass "keep as the model saw it" and also mass "import" for all with cutoff borders? as most of
   them still look very good and i can still delete them in the game after". Built in `Review-Pictures.ps1`: a bar above
