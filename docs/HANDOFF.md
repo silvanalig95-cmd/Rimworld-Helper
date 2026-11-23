@@ -782,6 +782,14 @@ most sense." So, in this order, three builds at a time:
   gear on the "Council at a glance" panel. The picture's details still come from records.xml, so new pictures still
   need Copy-ToLibrary (which runs Update-PortraitLibrary); corrections answered yes in corrections.csv still need
   Update-PortraitLibrary once (or the in-game window, which writes both).
+- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): pictures cut at the side kept
+  unless the player leaves them out, and the review page sorted by reason.** The player, with a screenshot of the review
+  page on its empty "Held back" tab while "Left out" held 211: "why can't i review none of the withhelf images? the
+  cutoff on the side is not necessarily a dealbreaker and some still look giid". Fixed at once: the page opens on the
+  first tab with pictures (all 211 of the player's out lines are marked yes, none ask, so they are under "Left out").
+  Proposed: (1) a picture cut at the side stays in the game and is listed on the page to look at (Leave out takes it
+  out), instead of out until kept; (2) on the page, a choice of reason (cut at the side, pointed ears, horns, two
+  people ...) with its count, and "Keep all of these" for a reason, so 211 need not be gone through one by one.
 - **To do when the player asks (23 November 2026; proposal sent, waiting for the go): a picture whose row is missing
   keeps its record.** The player ran Copy-ToLibrary and got "no row of this name in any batch list, left out" for
   nearly every picture of characters-01 to 03 ("what does this output mean then after i launch the copy script? can i
