@@ -782,6 +782,19 @@ most sense." So, in this order, three builds at a time:
   gear on the "Council at a glance" panel. The picture's details still come from records.xml, so new pictures still
   need Copy-ToLibrary (which runs Update-PortraitLibrary); corrections answered yes in corrections.csv still need
   Update-PortraitLibrary once (or the in-game window, which writes both).
+- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): "keep, but analyse from scratch"
+  on the review page.** The player: "what I would however think is nice is that I could say instead of dropping it
+  forever, it would be like "keep, but analyze from scratch" or something like this. Then the image would be fully
+  analyzed during the next qwen scan. things it got incorrect from the prompt might get reevaluated again and perhaps
+  it finds a different use later or so." Told: the check asks with sampling off, so the same picture and question give
+  the same answer; a fresh look helps where the reading (fixed readers re-judge every kept answer each run, no model),
+  the question, or the model changed. Proposed: (1) a third button, "Keep and check again" (R): the picture back in the
+  game at once as its row says, the check's own lines for it withdrawn (marked no), and it marked to be asked the whole
+  form again on the next Check-Pictures run (its entry taken out of checked.csv, or a mark there), the new answers
+  replacing the old and writing fresh lines; (2) the readers' fix (the entry "the check's misreadings first"), which
+  makes every re-check meaningful; (3) optionally, for pictures checked again, a question that gives the model the
+  row's own description: "the picture is meant to show: ... Does it? Name anything that clearly differs" (the player,
+  earlier: the check "should really rely first on the data that is already provided kind of by the CSV files").
 - **To do when the player asks (23 November 2026; proposal sent, waiting for the go): pictures cut at the side kept
   unless the player leaves them out, and the review page sorted by reason.** The player, with a screenshot of the review
   page on its empty "Held back" tab while "Left out" held 211: "why can't i review none of the withhelf images? the
