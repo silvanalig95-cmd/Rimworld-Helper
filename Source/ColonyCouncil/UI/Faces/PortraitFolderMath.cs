@@ -45,8 +45,9 @@ namespace ColonyCouncil
     /// stay in one folder kept in step between their computers, read by Rimfolk directly), without game types (Tools/Tests
     /// try it):
     /// <list type="bullet">
-    /// <item>its <c>records.xml</c> read as the defs are (<see cref="Parse"/>): <c>ColonyCouncil.PortraitDef</c> and
-    /// <c>ColonyCouncil.BackdropDef</c> elements under <c>Defs</c>, their <c>texPath</c> from the folder;</item>
+    /// <item>its <c>records.xml</c> read as the defs are (<see cref="Parse"/>): <c>ColonyCouncil.PortraitDef</c>,
+    /// <c>ColonyCouncil.BackdropDef</c> and <c>ColonyCouncil.CreaturePortraitDef</c> (an animal or creature) elements under
+    /// <c>Defs</c>, their <c>texPath</c> from the folder;</item>
     /// <item>what the game needed and the library didn't have, kept in its <c>missing.csv</c> for the next batches
     /// (<see cref="Merge"/>, <see cref="Csv"/>): people with no picture of their kind or none close, looks no picture of
     /// their kind shows, rooms with no backdrop of their kind or their age, land with no backdrop of its own; one line per
@@ -62,7 +63,7 @@ namespace ColonyCouncil
         /// The records in a records.xml's text, read with the same words as the defs; what is wrong with each (an unknown
         /// word, a missing texPath) in <paramref name="problems"/> with its name. Throws only where the text is no XML at all.
         /// </summary>
-        public static void Parse(string xml, List<FolderPortrait> people, List<FolderBackdrop> backdrops, List<string> problems)
+        public static void Parse(string xml, List<FolderPortrait> people, List<FolderBackdrop> backdrops, List<string> problems, List<FolderCreature> creatures = null)
         {
             var doc = XDocument.Parse(xml);
             var root = doc.Root;
@@ -73,14 +74,14 @@ namespace ColonyCouncil
             {
                 n++;
                 string kind = e.Name.LocalName;
-                bool person = kind == "ColonyCouncil.PortraitDef", backdrop = kind == "ColonyCouncil.BackdropDef";
-                if (!person && !backdrop)
+                bool person = kind == "ColonyCouncil.PortraitDef", backdrop = kind == "ColonyCouncil.BackdropDef", creature = kind == CreaturePortraitMath.Element;
+                if (!person && !backdrop && !creature)
                 {
-                    problems?.Add("element " + n + ": '" + kind + "' is not ColonyCouncil.PortraitDef or ColonyCouncil.BackdropDef");
+                    problems?.Add("element " + n + ": '" + kind + "' is not ColonyCouncil.PortraitDef, ColonyCouncil.BackdropDef or " + CreaturePortraitMath.Element);
                     continue;
                 }
                 string name = e.Element("defName")?.Value?.Trim() ?? "";
-                if (name.Length == 0) name = (person ? "Portrait_" : "Backdrop_") + n;
+                if (name.Length == 0) name = (person ? "Portrait_" : creature ? "Creature_" : "Backdrop_") + n;
                 if (!names.Add(name))
                 {
                     problems?.Add(name + ": a second record of the same name, left out");
@@ -90,7 +91,13 @@ namespace ColonyCouncil
                 IList<string> L(string f) => e.Element(f)?.Elements("li").Select(x => x.Value).ToList();
                 var own = new List<string>();
                 string tex = (F("texPath") ?? "").Trim().Replace('\\', '/').TrimStart('/');
-                if (person)
+                if (creature)
+                {
+                    // An animal or creature (UI/Faces/CreaturePortraitMath.cs): its own list, never a person's picture.
+                    var c = creatures != null ? CreaturePortraitMath.Record(name, F, own) : null;
+                    if (c != null) creatures.Add(new FolderCreature { record = c, texPath = tex });
+                }
+                else if (person)
                 {
                     var p = new FolderPortrait { record = PortraitLibraryMath.Record(name, F, L, own), texPath = tex };
                     p.headX = Number(F("headX"));
@@ -178,7 +185,7 @@ namespace ColonyCouncil
         public static readonly string[] Header =
         {
             "# What Rimfolk needed and the portrait library did not have, for the next batches. One line per need; the counts add up and the newest date is kept each time it is written.",
-            "# what: person, look, room or outdoors. kind: a person's race/xenotype, a room's kind, or the land's biome. look: the look no picture of their kind shows (a look line). role: a person's work. how many: people, rooms or maps seen with that need, each once a session."
+            "# what: person, look, creature, room or outdoors. kind: a person's race/xenotype, a creature's race, a room's kind, or the land's biome. look: the look no picture of their kind shows (a look line). role: a person's work. how many: people, rooms or maps seen with that need, each once a session."
         };
 
         private static string Quote(string v)
@@ -303,10 +310,10 @@ namespace ColonyCouncil
             return Order(list);
         }
 
-        /// <summary>The list's order: people, then looks, then rooms, then the land; the commonest first.</summary>
+        /// <summary>The list's order: people, then looks, animals and creatures, rooms, then the land; the commonest first.</summary>
         public static List<PortraitNeed> Order(IEnumerable<PortraitNeed> needs)
         {
-            int Rank(string what) => what == "person" ? 0 : what == "look" ? 1 : what == "room" ? 2 : 3;
+            int Rank(string what) => what == "person" ? 0 : what == "look" ? 1 : what == "creature" ? 2 : what == "room" ? 3 : 4;
             return needs.OrderBy(n => Rank(n.what)).ThenByDescending(n => n.count).ThenBy(n => n.kind, StringComparer.Ordinal).ThenBy(n => n.Key, StringComparer.Ordinal).ToList();
         }
 

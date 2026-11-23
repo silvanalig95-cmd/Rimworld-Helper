@@ -56,6 +56,10 @@ See `GUIDE.md`, "Each round, step by step". In one line each:
 | Variants | `Make-Variants.ps1` | `variants-wanted.csv`, `rimfolk-variant-workflow-api.json` | `<picture>_v-<word>.png`; runs Update |
 | Training set | `Make-TrainingSet.ps1` | `training\`, `logs\` | `training\set\` |
 
+Animals and creatures (the lists `creatures-NN`, since 23 November 2026) go the same way: painted in
+`style-rimworld-creatures` (picked by itself for such a list), copied in as cut-outs, recorded as
+`ColonyCouncil.CreaturePortraitDef`; the check and the variants leave them out.
+
 Each `.ps1` has a `.cmd` to double-click (Run-PortraitBatch is run with right-click, Run with PowerShell). They are
 Windows PowerShell 5.1 scripts; they also run under PowerShell 7 (tested here on Linux, except what needs Windows: the
 side check's pixel reading).
@@ -72,12 +76,17 @@ none; race = race def names, empty for human; sex `male`/`female`; age `baby tod
 elder`; skin and hairColour `#rrggbb`; hair `bald short medium long braids bun tied`; beard `none stubble short full
 moustache`; build `average slim heavy broad`; era `tribal medieval industrial spacer`; dress `rags work fine robes
 armour`; features, marks and looks `;`-separated words; role one word; pawn = a colonist's name for a picture made for
-them). Backdrops: `name,subject,count,seed,place,rooms,outdoors,era,contents`. Written by the lead from
-`docs/portrait-art/catalogue/` and `Tools/PortraitArt/plan_batches.py`; a list must be kept as long as pictures made from
-it exist.
+them). Backdrops: `name,subject,count,seed,place,rooms,outdoors,era,contents`. Animals and creatures (`creatures-NN`):
+`name,subject,pose,count,seed,creature,sex,age,mod` (creature = the race's def name; sex `male`/`female`/`any`; age
+`baby`/`adult`, a juvenile taking an adult's picture; the row's name `c_<creature>_<age>_<m, f or a>_<NN>`). Written by
+the lead from `docs/portrait-art/catalogue/` and `Tools/PortraitArt/plan_batches.py` (people), `plan_creatures.py`
+(creatures, from `catalogue/creatures.csv`, kept by `creature_census.py`); a list must be kept as long as pictures made
+from it exist.
 
 **Styles** `batches\style-*.json`: `label, style, frame, style_end, negative, width, height, count, guidance, steps,
-sampler_name, scheduler, loras[{name, strength}]`, optional `cut` (false for backdrops). The prompt is style + subject +
+sampler_name, scheduler, loras[{name, strength}]`, optional `cut` (false for backdrops) and `for` (`creatures` for the
+creatures' style; Run-PortraitBatch swaps a people's style for `style-rimworld-creatures` on a list with a `creature`
+column). The prompt is style + subject +
 pose + frame + style_end; the LoRA boxes of the workflow are filled in their node-id order, spare boxes get strength 0.
 
 **Picture files**: `<row name>_<style name>_<yyMMdd-HHmmss>_<NN>[_cut]_<counter>_.png` (ComfyUI's naming:
@@ -91,8 +100,11 @@ mark variant's expressions (`X_v-lostEyeLeft_v-blink.png`); depth maps `<backdro
 `<ColonyCouncil.PortraitDef>` with `defName` (`Portrait_<list>_<row>_<run digits>_<NN>`), `texPath` (`<list>/<stem>`),
 `variant`, `variantOf`, `pawn`, `xenotypes`, `races`, `sex`, `age`, `skinColor`, `hairColor`, `hair`, `beard`, `build`,
 `era`, `dress`, `features`, `marks`, `side`, `looks`, `role`, `headwear`, `facing`, `character`, and
-`<ColonyCouncil.BackdropDef>` with `defName`, `texPath`, `depthPath`, `place`, `rooms`, `outdoors`, `era`, `contents`. The
-game's parser: `PortraitFolderMath.Parse`, `PortraitLibraryMath.Record`.
+`<ColonyCouncil.BackdropDef>` with `defName`, `texPath`, `depthPath`, `place`, `rooms`, `outdoors`, `era`, `contents`, and
+`<ColonyCouncil.CreaturePortraitDef>` (an animal or creature) with `defName` (`Creature_<list>_<row>_<run digits>_<NN>`),
+`texPath`, `race`, `sex` (`male`/`female`/`any`), `age` (`baby`/`juvenile`/`adult`), `character`. The game's parser:
+`PortraitFolderMath.Parse`, `PortraitLibraryMath.Record`, `CreaturePortraitMath.Record`. The picture check leaves
+creatures out (its form is about a person).
 
 **corrections.csv**: `picture,field,value,apply,why`. `picture` = `<list>\<file>.png` (or the file alone). Fields: `out`
 (the picture left out), `race`, `xenotype` (alias `kind`), `sex`, `age`, `skin`, `hairColour`, `hair`, `beard`, `build`,
@@ -113,10 +125,12 @@ ears horns tail wings eyes body eyemarks arms limbs hands weapons armour magic h
 
 **Written by the game** (Rimfolk, into `library\`): `deleted.csv` `file,batch,row,record,date,how,sha256` (deleted for
 good: never copied or recorded again); `variants-wanted.csv` `picture,word,instruction,who,priority,first` (on save);
-`missing.csv` `what,kind,look,role,mod,sex,age,skin,hair,era,why,used instead,how many,last seen` (on save); corrections
+`missing.csv` `what,kind,look,role,mod,sex,age,skin,hair,era,why,used instead,how many,last seen` (on save; `what` is
+`person`, `look`, `creature` (kind = its race), `room` or `outdoors`); corrections
 lines `set in the game` and records.xml fields (the About window); the kept-for-training copies in `training\` with
 `training.csv` `file,batch,record,date`. The game's picks per pawn live in the save (`ColonyCouncil.PortraitKeeper`:
-`id, picture, character, kind, words, stage, pinned, byHand, reserved, since, distance, library, seen`).
+`id, picture, character, kind, words, stage, pinned, byHand, reserved, since, distance, library, seen`; for animals and
+creatures only the pictures chosen by hand, `creaturePicks` id to picture: the others get theirs by their id each time).
 
 **Settings** next to the scripts: `check-settings.json` `{ "server": "<ComfyUI url>" }`; `copy-settings.json` (the kit
 folder). Workflows exported in ComfyUI's API format: `rimfolk-workflow-api.json` (prompt box `%PROMPT%`, negative

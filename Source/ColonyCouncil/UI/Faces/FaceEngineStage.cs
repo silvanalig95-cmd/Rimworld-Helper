@@ -142,7 +142,7 @@ namespace ColonyCouncil
             if (p == null) return 1f;
             try
             {
-                var pic = PortraitSources.For(p);
+                var pic = PortraitSources.ForStage(p);
                 if (pic?.file == null) return 1f;
                 return PortraitPictureMath.TallFor(pic.texture != null ? pic.layout.Shape : PortraitPictureMath.LibraryShape);
             }
@@ -167,7 +167,7 @@ namespace ColonyCouncil
         {
             if (p == null || Event.current.type != EventType.Repaint) return false;
             Tick();
-            var pic = PortraitSources.For(p);
+            var pic = PortraitSources.ForStage(p);
             if (pic?.file == null) return false;
             var l = LookOf(p);
             var pose = PoseOf(p, FaceTurn.Front, true);
@@ -221,7 +221,7 @@ namespace ColonyCouncil
             var mode = BackdropMode;
             if (!BehindGame || mode == PortraitBackdropMode.Plain || Backdrops.Count == 0) return false;
             Tick();
-            if (PortraitSources.For(p) != null) return false;
+            if (PortraitSources.ForStage(p) != null) return false;
             var pose = PoseOf(p, FaceTurn.Front, true);
             if (pose.bearing == FaceBearing.Dead) return false;
             var look = StageLookOf(p);
@@ -262,7 +262,7 @@ namespace ColonyCouncil
         public static string BackdropShown(Pawn p)
         {
             if (p == null || !stageLooks.TryGetValue(p.thingIDNumber, out var look) || look.backdrop == null || look.backRecord == null) return null;
-            var d = PortraitComposeMath.WhatToDraw(PortraitSources.For(p)?.file != null, true, BackdropMode, BehindGame);
+            var d = PortraitComposeMath.WhatToDraw(PortraitSources.ForStage(p)?.file != null, true, BackdropMode, BehindGame);
             return d == PortraitStageDraw.PaintedOnBackdrop || d == PortraitStageDraw.GameOnBackdrop ? look.backRecord.name : null;
         }
 

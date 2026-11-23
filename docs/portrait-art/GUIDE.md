@@ -1,9 +1,10 @@
 # Rimfolk portraits: the guide
 
-Last changed: 23 November 2026 (Rimfolk 0.301.0; the lists characters-08 to 16). This guide is kept up to date with
-every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step procedure on track and
-documented with what it does ... when it changes, please update it"). It comes with every kit zip. The setup of each
-ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in `STYLE-RIMWORLD.md`.
+Last changed: 23 November 2026 (Rimfolk 0.302.0: animals and creatures, the lists creatures-01 to 04). This guide is
+kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
+procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
+zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
+`STYLE-RIMWORLD.md`.
 
 ## In short
 
@@ -34,8 +35,9 @@ The models, the LoRA files and the exported workflows are yours: the kit never h
 `Rimfolk-portraits\` (the kit folder, kept on Proton Drive so the laptop and the PC share it):
 - the scripts (`.ps1`, each with a `.cmd` to double-click; Run-PortraitBatch is started with right-click, Run with
   PowerShell), this guide, SETUP-ComfyUI.md, STYLE-RIMWORLD.md;
-- `batches\`: the lists (`characters-01.csv` to `16`, `colonists.csv`, `backdrops.csv`, `style-test.csv`) and the styles
-  (`style-rimworld-people.json`, `style-rimworld-backdrops.json`). Keep every list you have made pictures from: a
+- `batches\`: the lists (`characters-01.csv` to `16`, `creatures-01.csv` to `04`, `colonists.csv`, `backdrops.csv`,
+  `style-test.csv`) and the styles (`style-rimworld-people.json`, `style-rimworld-creatures.json`,
+  `style-rimworld-backdrops.json`). Keep every list you have made pictures from: a
   picture finds its description by its row's name, and without its row it is left out of the records;
 - `library\`: one folder per list with the pictures, and the files below;
 - `logs\` (every prompt and seed), `training\` (pictures kept for training).
@@ -46,7 +48,7 @@ In `library\`:
 |---|---|---|
 | `<list>\<row name>_<style>_<date-time>_01_cut_00001_.png` | Copy-ToLibrary | a picture; the name ties it to its row |
 | `<picture>_v-blink.png`, `_v-lostEyeLeft.png` ... | Make-Variants | its variants (expressions and marks) |
-| `records.xml` | Update-PortraitLibrary (and the game's corrections) | what the game reads: one description per picture |
+| `records.xml` | Update-PortraitLibrary (and the game's corrections) | what the game reads: one description per picture (people, animals and creatures, backdrops) |
 | `corrections.csv` | Check-Pictures, Review-Pictures, the game | changes to single pictures' descriptions |
 | `checked.csv`, `check-report.csv` | Check-Pictures | the model's answers; what it found, worst first |
 | `deleted.csv` | the game | pictures deleted for good: never copied or recorded again |
@@ -55,14 +57,16 @@ In `library\`:
 ## Each round, step by step
 
 1. **Paint: Run-PortraitBatch.ps1** (right-click, Run with PowerShell; ComfyUI open). Pick lists (`1,2,3` for several)
-   and a style (`style-rimworld-people` for people, `style-rimworld-backdrops` for backdrops). It hands every row to
+   and a style (`style-rimworld-people` for people, `style-rimworld-backdrops` for backdrops; a `creatures` list is
+   painted in `style-rimworld-creatures` by itself, whichever you pick). It hands every row to
    ComfyUI and offers to paint only the rows that have no picture yet, so a list half done is finished without doubles.
    Pictures land in ComfyUI's `output\Rimfolk\<list>\`, the people as cut-outs.
 2. **Sort:** in `output\Rimfolk`, delete the pictures you don't want.
 3. **Copy in: Copy-ToLibrary.cmd** (in `output\Rimfolk`). Copies the new cut-outs (and every backdrop) into
    `library\<list>\`, skipping what is there already and what you deleted for good in the game, then runs step 5 by
    itself.
-4. **Check: Check-Pictures.cmd** (ComfyUI open, Qwen workflow exported). Asks the model a fixed form about each new
+4. **Check: Check-Pictures.cmd** (ComfyUI open, Qwen workflow exported). Animals and creatures are left out (the
+   form is about a person): look through those yourself in step 2. Asks the model a fixed form about each new
    picture (and only a new or changed question about older ones), and looks at each cut-out for a figure cut off at the
    side. Compares the answers with each picture's row and writes `corrections.csv` and `check-report.csv` (what it
    checks and what it can change: below). Offers a zip of examples for the lead, then offers to run step 5. All its
@@ -106,6 +110,11 @@ kinds, baseliners about half:
   ages and skins it has fewest of. Every kind runs through all nine lists, so painting only some of them still gives
   each kind its share.
 - `colonists.csv`: your own colonists' faces.
+- `creatures-01` to `04`: animals, insects, mechanoids, Anomaly's entities, dryads and drones, 624 rows for 218 kinds:
+  first every creature your save holds (three adults each), then the base game's and the DLCs' and the insects of
+  Vanilla Factions Expanded - Insectoids 2 (two each); a male and a female where they look different (deer, elk,
+  moose, peafowl, chickens), and a baby for each animal. The whole creature, square, cut out. The other kinds of your
+  mods (about 1,500, most of them PokeWorld's) wait for their looks to be written (`catalogue/creatures.csv`).
 
 ## What the check checks, and what it can change
 
@@ -142,6 +151,14 @@ For each pawn the game reads their race, xenotype, sex, age, skin, hair, traits,
 - **The closest of the rest:** the hair colour first, then hairstyle, beard, build, the clothes' age and kind, features.
 - The pick is kept for that pawn (saved with the game); your colonists' faces are kept for them alone.
 - No picture passes the rules: the game's own drawing, and a line in `missing.csv`.
+
+**Animals and creatures** (with the setting "Painted pictures of animals and creatures" on): select one and the large
+portrait at the inspect pane shows its painted picture in front of the backdrop of where it is, if the library has
+one of its kind. It must match the kind and the age (a baby a baby's; a juvenile its own, else an adult's) and the sex
+where the picture shows one; the same picture each time for the same animal, the pictures of a kind shared evenly.
+Click it for the game's information on the animal; right-click: **Choose another picture** (kept for it) or **Delete
+this picture for good**. A creature with no picture of its kind shows no portrait and is a "creature" line in
+`missing.csv`.
 
 In the game: right-click the large portrait for **Choose another picture**, **About this picture** (its description,
 why it was chosen, its variants, corrections: race, xenotype, sex, age, skin, hair, beard, build, clothes, features,

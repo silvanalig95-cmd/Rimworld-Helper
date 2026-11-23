@@ -34,6 +34,8 @@ namespace ColonyCouncil
 
         public static readonly List<FolderPortrait> People = new List<FolderPortrait>();
         public static readonly List<FolderBackdrop> Backdrops = new List<FolderBackdrop>();
+        /// <summary>The pictures of animals and creatures (UI/Faces/CreatureLibrary.cs), never among the people's.</summary>
+        public static readonly List<FolderCreature> Creatures = new List<FolderCreature>();
         private static readonly Dictionary<string, PictureFile> files = new Dictionary<string, PictureFile>(StringComparer.OrdinalIgnoreCase);
 
         /// <summary>What the last reading found, for the settings' tooltip and the log.</summary>
@@ -99,6 +101,9 @@ namespace ColonyCouncil
         /// <summary>A backdrop read from the folder by its record's name, or null.</summary>
         public static FolderBackdrop BackdropNamed(string name) => name.NullOrEmpty() ? null : Backdrops.Find(b => b.record.name == name);
 
+        /// <summary>A picture of an animal or creature from the folder by its record's name, or null.</summary>
+        public static FolderCreature CreatureNamed(string name) => name.NullOrEmpty() ? null : Creatures.Find(c => c.record.name == name);
+
         /// <summary>
         /// Pictures deleted for good in the game (UI/Faces/PortraitDelete.cs): their records taken out of what was read,
         /// and their files let go (the textures, and their entries here, so a new file at the same place is read anew); the
@@ -120,6 +125,12 @@ namespace ColonyCouncil
                 LetGoFile(b.texPath);
                 if (!b.depthPath.NullOrEmpty()) LetGoFile(b.depthPath);
                 Backdrops.Remove(b);
+                n++;
+            }
+            foreach (var c in Creatures.Where(x => names.Contains(x.record.name)).ToList())
+            {
+                LetGoFile(c.texPath);
+                Creatures.Remove(c);
                 n++;
             }
             if (n > 0) Version++;
@@ -147,10 +158,11 @@ namespace ColonyCouncil
             }
             if (folder.Length == 0)
             {
-                if (Folder.Length > 0 || People.Count > 0 || Backdrops.Count > 0)
+                if (Folder.Length > 0 || People.Count > 0 || Backdrops.Count > 0 || Creatures.Count > 0)
                 {
                     People.Clear();
                     Backdrops.Clear();
+                    Creatures.Clear();
                     Version++;
                 }
                 Folder = "";
@@ -199,6 +211,7 @@ namespace ColonyCouncil
         {
             public List<FolderPortrait> people = new List<FolderPortrait>();
             public List<FolderBackdrop> backdrops = new List<FolderBackdrop>();
+            public List<FolderCreature> creatures = new List<FolderCreature>();
             public HashSet<string> pictures = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             public HashSet<string> deleted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
             /// <summary>How many records the corrections made in the game changed on top of records.xml.</summary>
@@ -222,7 +235,7 @@ namespace ColonyCouncil
                 got.error = "CC_PortraitFolder_NoRecords";
                 return got;
             }
-            PortraitFolderMath.Parse(File.ReadAllText(records), got.people, got.backdrops, got.problems);
+            PortraitFolderMath.Parse(File.ReadAllText(records), got.people, got.backdrops, got.problems, got.creatures);
             foreach (var f in Directory.GetFiles(folder, "*.png", SearchOption.AllDirectories))
                 got.pictures.Add(f.Substring(folder.Length).TrimStart('\\', '/').Replace('\\', '/'));
             try
@@ -258,10 +271,11 @@ namespace ColonyCouncil
             {
                 string why = got?.error != null ? got.error.Translate().Resolve() : ex?.Message ?? "?";
                 Status = "CC_PortraitFolder_Failed".Translate(folder.Named("FOLDER"), why.Named("WHY")).Resolve();
-                if (Folder.Length > 0 || People.Count > 0 || Backdrops.Count > 0)
+                if (Folder.Length > 0 || People.Count > 0 || Backdrops.Count > 0 || Creatures.Count > 0)
                 {
                     People.Clear();
                     Backdrops.Clear();
+                    Creatures.Clear();
                     Version++;
                 }
                 Folder = "";
@@ -280,6 +294,7 @@ namespace ColonyCouncil
             Folder = folder;
             People.Clear();
             Backdrops.Clear();
+            Creatures.Clear();
             Deleted = got.deleted;
             int missing = 0, expressions = 0, faces = 0, depths = 0, marked = 0;
             foreach (var p in got.people)
@@ -302,10 +317,14 @@ namespace ColonyCouncil
                     Backdrops.Add(b);
                 }
                 else missing++;
+            foreach (var c in got.creatures)
+                if (got.pictures.Contains(PortraitFolderMath.FileKey(c.texPath))) Creatures.Add(c);
+                else missing++;
             Version++;
             Status = "CC_PortraitFolder_Read".Translate((People.Count - expressions - marked).Named("PEOPLE"), Backdrops.Count.Named("BACKDROPS"), folder.Named("FOLDER")).Resolve()
                      + (faces + depths > 0 ? " " + "CC_PortraitFolder_Alive".Translate(faces.Named("FACES"), depths.Named("DEPTHS")).Resolve() : "")
                      + (marked > 0 ? " " + "CC_PortraitFolder_Marked".Translate(marked.Named("COUNT")).Resolve() : "")
+                     + (Creatures.Count > 0 ? " " + "CC_PortraitFolder_Creatures".Translate(Creatures.Count.Named("COUNT")).Resolve() : "")
                      + (missing > 0 ? " " + "CC_PortraitFolder_Missing".Translate(missing.Named("COUNT")).Resolve() : "");
             Log.Message("[Rimfolk] Portraits: " + Status
                         + (got.corrected > 0 ? " Corrections made in the game (corrections.csv) taken again on top of records.xml for " + got.corrected + " records." : ""));

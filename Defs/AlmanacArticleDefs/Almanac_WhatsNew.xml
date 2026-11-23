@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.302.0</version>
+        <date>23 November 2026</date>
+        <title>Animals and creatures in the portrait library</title>
+        <points>
+          <li>Select an animal, an insect, a mechanoid or another creature and the large portrait at the inspect pane shows its painted picture from your library folder, in front of the backdrop of where it is.</li>
+          <li>A creature gets a picture of its own kind and age, and of its sex where the picture shows one. It keeps the same picture, and the pictures of a kind are shared evenly.</li>
+          <li>Right-click the portrait to choose another picture of its kind or delete this one for good. A click opens the game's information on it.</li>
+          <li>Creatures without a picture of their kind show no portrait and are noted in missing.csv. The setting "Painted pictures of animals and creatures" turns them off.</li>
+          <li>The portrait kit has new lists, creatures-01 to 04: every creature in your save, the base game's and the DLCs', and the insects of Vanilla Factions Expanded - Insectoids 2. Run-PortraitBatch paints them in their own style.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.301.0</version>
         <date>23 November 2026</date>
         <title>Your people from the first page</title>

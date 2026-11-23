@@ -86,12 +86,18 @@
   <CC_PortraitNeed_NoRoom>no backdrop of this kind of room</CC_PortraitNeed_NoRoom>
   <CC_PortraitNeed_NoAge>none of the colony's age</CC_PortraitNeed_NoAge>
   <CC_PortraitNeed_NoLand>no backdrop for {GROUP}</CC_PortraitNeed_NoLand>
+  <CC_PortraitNeed_NoCreature>no picture of its kind</CC_PortraitNeed_NoCreature>
+  <CC_PortraitNeed_NoCreatureStage>none of its age and sex</CC_PortraitNeed_NoCreatureStage>
+  <CC_PortraitNeed_NoPortrait>no portrait</CC_PortraitNeed_NoPortrait>
   <CC_PortraitNeed_NoFree>no free picture: those that fit are other people's</CC_PortraitNeed_NoFree>
   <CC_PortraitNeed_NoLook>no picture of their kind shows this look</CC_PortraitNeed_NoLook>
   <CC_PortraitNeed_NoSpecialLook>a special look no picture of their kind shows, so the game's own drawing</CC_PortraitNeed_NoSpecialLook>
   <CC_Settings_PortraitBackdropGame>Backdrop behind the game's own drawing too</CC_Settings_PortraitBackdropGame>
   <CC_Settings_PortraitBackdropGame_Tip>When the library has no painted picture for someone and the large portrait shows the game's own drawing of them, the backdrop of where they are stands behind it too, softened and darkened at night as the setting "Backdrop" says, with a soft shadow behind them. Off: the game's drawing stays on the portrait's own colour, and painted pictures keep their backdrop.</CC_Settings_PortraitBackdropGame_Tip>
   <CC_SetNote_PortraitBackdropGame>The backdrop stands behind the game's own drawing as well as behind painted pictures.</CC_SetNote_PortraitBackdropGame>
+  <CC_Settings_PortraitCreatures>Painted pictures of animals and creatures</CC_Settings_PortraitCreatures>
+  <CC_Settings_PortraitCreatures_Tip>With one animal, insect, mechanoid or other creature selected, the large portrait at the inspect pane shows its painted picture from the library folder (the lists creatures-NN), in front of the backdrop of where it is. A creature gets a picture of its own kind and age, and of its sex where the picture shows one; the same one each time, unless you choose another with a right click. Creatures without a picture of their kind show no portrait and are noted in missing.csv. Off: no portrait for animals and creatures.</CC_Settings_PortraitCreatures_Tip>
+  <CC_SetNote_PortraitCreatures>Animals and creatures with a painted picture show it at the inspect pane.</CC_SetNote_PortraitCreatures>
   <CC_Settings_PortraitLightTint>Tint the person to the room's light</CC_Settings_PortraitLightTint>
   <CC_Settings_PortraitLightTint_Tip>The person in the large portrait's painted picture takes on a little of the backdrop's colour (about a fifth), so a warm firelit room makes them warmer and a cold night cooler.</CC_Settings_PortraitLightTint_Tip>
   <CC_SetNote_PortraitLightTint>The person takes on a little of the backdrop's light.</CC_SetNote_PortraitLightTint>
@@ -128,6 +134,10 @@
   <CC_Portrait_ChooseOff>painted portraits are off in the settings</CC_Portrait_ChooseOff>
   <CC_Portrait_ChooseNoneShort>no picture fits them</CC_Portrait_ChooseNoneShort>
   <CC_Portrait_ChooseNone>No other painted picture fits {PAWN_nameDef}.</CC_Portrait_ChooseNone>
+  <CC_Portrait_CreatureTip>{NAME}: click for the game's information on it, right-click to choose another painted picture of its kind or delete this one for good.</CC_Portrait_CreatureTip>
+  <CC_Portrait_CreatureOnlyOne>the only picture of its kind and age</CC_Portrait_CreatureOnlyOne>
+  <CC_Portrait_CreatureChooseNone>No other painted picture fits {NAME}.</CC_Portrait_CreatureChooseNone>
+  <CC_Portrait_CreatureChooseDone>{NAME} now shows another painted picture ({AT} of {OF}), kept from now on.</CC_Portrait_CreatureChooseDone>
   <CC_Portrait_ChooseDone>{PAWN_nameDef} now has another painted picture ({AT} of {OF}), kept from now on.</CC_Portrait_ChooseDone>
   <CC_Portrait_ChooseTrial>{PAWN_nameDef} now has another painted picture ({AT} of {OF}), theirs if you start with them.</CC_Portrait_ChooseTrial>
   <CC_StartingPortrait_Tip>{PAWN_nameDef}'s painted picture from your portrait library, as the game will show it. If you start with {PAWN_objective}, it stays {PAWN_possessive}.\n\nRight-click: choose another picture.</CC_StartingPortrait_Tip>
@@ -163,6 +173,7 @@
   <CC_Portrait_DeleteWhatDepth>Its depth map goes with it.</CC_Portrait_DeleteWhatDepth>
   <CC_Portrait_DeleteHeld>It is held now by {NAMES}. Whoever holds it gets another picture by the usual rules: a picture made for them first, then the closest one nobody holds, else the game's own drawing.</CC_Portrait_DeleteHeld>
   <CC_Portrait_DeleteHeldNone>Nobody holds it now.</CC_Portrait_DeleteHeldNone>
+  <CC_Portrait_DeleteCreatureHeld>Animals and creatures that show it get another picture of their kind, or none.</CC_Portrait_DeleteCreatureHeld>
   <CC_Portrait_DeleteBackdropShown>It is shown now behind {PAWN_nameDef}. The large portrait then chooses another backdrop for where they are, else a plain one.</CC_Portrait_DeleteBackdropShown>
   <CC_Portrait_DeleteToBin>Its files are moved into the bin, the folder {BIN} beside the library folder, which you empty yourself.</CC_Portrait_DeleteToBin>
   <CC_Portrait_DeleteFiles>Its files are deleted.</CC_Portrait_DeleteFiles>
@@ -186,6 +197,7 @@
   <CC_Portrait_DeletedFiles>The files are deleted.</CC_Portrait_DeletedFiles>
   <CC_Portrait_DeletedHolders>Another picture is picked for {NAMES}.</CC_Portrait_DeletedHolders>
   <CC_Portrait_DeletedBackdropAgain>The large portrait chooses its backdrop again.</CC_Portrait_DeletedBackdropAgain>
+  <CC_Portrait_DeletedCreatureAgain>Animals and creatures that showed it get another picture of their kind, or none.</CC_Portrait_DeletedCreatureAgain>
   <CC_Portrait_DeletedPartly>{COUNT} of its files could not be moved or deleted ({ERROR}): they are still in the library folder, out of the records and listed in deleted.csv, so nothing uses them. Move or delete them by hand.</CC_Portrait_DeletedPartly>
   <CC_Portrait_DeleteWhatVariants>Its {COUNT} variants with marks go with it.</CC_Portrait_DeleteWhatVariants>
   <CC_Portrait_DeletedVersions>{COUNT} of its versions (expressions and variants with marks) went with it.</CC_Portrait_DeletedVersions>
@@ -193,6 +205,7 @@
   <CC_Portrait_DeleteVariantWhat>The variant {FILE} of the picture {PICTURE} will be deleted for good. The picture itself stays.</CC_Portrait_DeleteVariantWhat>
   <CC_Portrait_DeleteVariantShown>Whoever it is shown for sees the picture itself again, or another of its variants that fits them. While it is still needed, the game lists it again in variants-wanted.csv, under a new name, so it can be made anew.</CC_Portrait_DeleteVariantShown>
   <CC_Portrait_DeletedVariant>Deleted the variant {FILE} for good.</CC_Portrait_DeletedVariant>
+  <CC_PortraitFolder_Creatures>Also {COUNT} pictures of animals and creatures.</CC_PortraitFolder_Creatures>
   <CC_PortraitFolder_Marked>Also {COUNT} variants of those portraits with a mark (a lost eye, a scar, an artificial arm).</CC_PortraitFolder_Marked>
 
   <!-- About this picture (UI/Faces/PortraitAboutWindow.cs), corrections in the game (PortraitCorrect.cs) and the variants wanted (PortraitVariants.cs) -->

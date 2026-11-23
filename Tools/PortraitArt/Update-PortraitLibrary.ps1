@@ -5,7 +5,8 @@
 # ComfyUI gave them. This script writes library\records.xml: one record per picture, saying what it shows, taken from
 # the picture's row in batches\<batch>.csv (tied by the start of its name; the row's record columns: for people kind,
 # race, sex, age, skin, hairColour, hair, beard, build, era, dress, features, marks, looks, role, facing, pawn; for backdrops place,
-# rooms, outdoors, era, contents). Rimfolk reads records.xml and the pictures straight from this folder (its setting
+# rooms, outdoors, era, contents; for animals and creatures, the lists creatures-NN, creature (the creature's def name),
+# sex (male, female or any) and age (baby, juvenile or adult)). Rimfolk reads records.xml and the pictures straight from this folder (its setting
 # "Portrait library folder"), so there is no second mod to install, and keeping this whole folder in a synced folder
 # (Google Drive) keeps both computers the same.
 #
@@ -346,6 +347,7 @@ try {
     }
     $people = New-Object System.Collections.ArrayList
     $backs = New-Object System.Collections.ArrayList
+    $creatures = New-Object System.Collections.ArrayList
     $problems = New-Object System.Collections.ArrayList
     $names = @{}
     $corr = Read-Corrections (Join-Path $library 'corrections.csv')
@@ -405,6 +407,23 @@ try {
             foreach ($w in (Words (Field $r 'features'))) { [void]$rec.features.Add($w) }
             if ($fixes.Count -gt 0) { $applied += Apply-Corrections $rec $fixes $problems ($batch + '\' + $f.Name) }
             if ($rec.out) { $leftOut++; continue }
+            $creature = Field $r 'creature'
+            if ($creature -ne '') {
+                # An animal or creature (a creatures-NN list): a record of its own kind, never a person's; it has no
+                # variants or depth map (any beside it are passed over).
+                $defName = Unique-Name ('Creature_' + (Clean $batch) + '_' + $hit.name + '_' + $hit.n) $names
+                $sex = $rec.sex; if ($sex -eq '') { $sex = 'any' }
+                $age = $rec.age; if ($age -eq '') { $age = 'adult' }
+                $lines = New-Object System.Collections.ArrayList
+                [void]$lines.Add('  <ColonyCouncil.CreaturePortraitDef>')
+                [void]$lines.Add((One-Xml 'defName' $defName)); [void]$lines.Add((One-Xml 'texPath' ($batch + '/' + $fstem)))
+                [void]$lines.Add((One-Xml 'race' $creature)); [void]$lines.Add((One-Xml 'sex' $sex)); [void]$lines.Add((One-Xml 'age' $age))
+                [void]$lines.Add((One-Xml 'character' ((Clean $batch) + '_' + $hit.name)))
+                [void]$lines.Add('  </ColonyCouncil.CreaturePortraitDef>')
+                [void]$creatures.Add((($lines | Where-Object { $_ -ne '' }) -join "`r`n"))
+                foreach ($x in $own) { $x.used = $true }
+                continue
+            }
             $tex = $batch + '/' + $fstem
             $isBack = (Field $r 'place') -ne ''
             $stem = $(if ($isBack) { 'Backdrop_' } else { 'Portrait_' }) + (Clean $batch) + '_' + $hit.name + '_' + $hit.n
@@ -475,13 +494,14 @@ try {
             }
         }
     }
-    $all = @($people) + @($backs)
+    $all = @($people) + @($creatures) + @($backs)
     $xml = '<?xml version="1.0" encoding="utf-8"?>' + "`r`n" + '<!-- Rimfolk portrait library, written by Update-PortraitLibrary.ps1: one record per picture in this folder. -->' + "`r`n" + '<Defs>' + "`r`n" + ($all -join "`r`n") + "`r`n" + '</Defs>' + "`r`n"
     [System.IO.File]::WriteAllText((Join-Path $library 'records.xml'), $xml, (New-Object System.Text.UTF8Encoding($false)))
 
     Write-Host ''
     $line = 'Wrote {0}: {1} portraits' -f (Join-Path $library 'records.xml'), ($people.Count - $variants)
     if ($variants -gt 0) { $line += (' (and {0} variants of them: expressions and marks)' -f $variants) }
+    if ($creatures.Count -gt 0) { $line += (', {0} pictures of animals and creatures' -f $creatures.Count) }
     $line += (' and {0} backdrops' -f $backs.Count)
     if ($depths -gt 0) { $line += (' ({0} with a depth map)' -f $depths) }
     Write-Host ($line + '.') -ForegroundColor Green

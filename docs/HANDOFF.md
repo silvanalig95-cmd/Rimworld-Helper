@@ -853,6 +853,28 @@ most sense." So, in this order, three builds at a time:
   Sent `Rimfolk-portrait-kit-2026-11-23.zip`: every script, the guides, the lists characters-01 to 07, colonists,
   backdrops, style-test and the two styles, and Copy-ToLibrary in its own folder for ComfyUI's output. The player also
   confirmed the second face in the small portraits is gone (0.299.1).
+- **Done (23 November 2026, the player's own requests; released 0.302.0): animals and creatures in the portrait
+  library.** The player: "also please create lists for animals and creatures and implement image display for them too",
+  and "also include insects of course". Built: in the game, `CreatureLibrary` (records.xml's
+  `ColonyCouncil.CreaturePortraitDef`; race, age by life stage, sex where named; the same picture per creature by its
+  id, a kind's pictures shared evenly; chosen by hand kept in the save, at most 300), shown only on the large portrait at
+  the inspect pane (in front of the backdrop, for a creature with a picture of its kind), its own menu (choose another,
+  delete for good), a click for the game's information card, a "creature" line in missing.csv, the setting "Painted
+  pictures of animals and creatures"; DESIGN.md, "Portraits: animals and creatures". In the kit: `creature_census.py`
+  and `catalogue/creatures.csv` (all 1,736 creatures of the player's enabled mods, by group and wave), the looks of
+  waves 1 and 2 (the save's 62, the base game's and the DLCs' 156 with the insects of Vanilla Factions Expanded -
+  Insectoids 2), `plan_creatures.py` and `creatures-01` to `04` (624 rows), `style-rimworld-creatures` (square, whole,
+  cut out; Run-PortraitBatch takes it by itself for a creatures list), Update-PortraitLibrary writes creature records,
+  Check-Pictures leaves creatures out. Tests: CreaturePortraitTests (Tools/Tests), test_creatures.py. Not tried in the
+  game: an animal's portrait at the inspect pane, its menu and the delete; the style on the player's ComfyUI (the
+  rmwstyle LoRA was trained on people: a few pictures first). No mod would add anything here: the pictures come from the
+  player's own ComfyUI.
+- **To do when the player asks (23 November 2026, from the creatures lists): looks for the other creatures.** Waves 3
+  to 5 of `catalogue/creatures.csv` have no look yet, so no rows: the other animal and creature mods (360; their own
+  descriptions can be read from their sources on GitHub, as for Alpha Animals, Vanilla Animals Expanded and the
+  insectoids), genetic hybrids, magic summons and other mods' mechanoids and drones (270), and PokeWorld's Pokemon (888,
+  only the 10 in the save have looks). A creature the game shows without a picture lands in missing.csv as "creature",
+  which says which to do first.
 - **Done (23 November 2026, the player's own requests): the characters lists' third round, `characters-08` to `16`,
   every kind of the player's mods alike.** The player: "Can you please create me a new set of character descriptions to
   add? ... I'd rather have just 1 or 2, similar ones that are still different a bit ... Rather have overall more

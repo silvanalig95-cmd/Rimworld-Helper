@@ -132,6 +132,28 @@ half are broad, and a few of the common kinds' rows have a role. All nine lists 
 some of them still gives every kind its share. Not in them: the Forgotten Realms and Profaned xenotypes, whose mods are
 subscribed but not enabled.
 
+## The creature catalogue and lists
+
+`creatures.csv` (the player, 23 November 2026: "also please create lists for animals and creatures and implement image
+display for them too", and "also include insects of course"): every animal, insect, mechanoid, entity, dryad, drone,
+hybrid and Pokemon the player's enabled mods add (`docs/player-mods/races.tsv`, the active rows that aren't humanlike,
+1,736), one row each: `creature` (the race's def name), `label`, `mod`, `group`, `size`, `saveCount` (how many the save
+holds), `wave`, and by hand `stages` (`baby;adult`, or `adult` for those never seen young), `sexes` (`any`, or
+`male;female` with `maleLook` and `femaleLook` where the sexes look different), `look` (what the picture shows, the
+prompt's words) and `notes`. `creature_census.py [--save <save.rws>]` keeps it: new creatures added, gone ones left
+out, the counts and waves written again, the hand columns kept.
+
+Waves: 1 the creatures in the save (62), 2 the base game's and the DLCs' and the insects of Vanilla Factions Expanded -
+Insectoids 2 (156), 3 the other animal and creature mods (360), 4 genetic hybrids, magic summons and other mods'
+mechanoids and drones (270), 5 PokeWorld's Pokemon (888). Waves 1 and 2 have their looks (218 creatures); a creature
+without a look is not planned.
+
+`plan_creatures.py` writes `creatures-NN` (one picture a row, the whole creature, square, cut out; painted in
+`style-rimworld-creatures`): three adults of each creature of wave 1, two of wave 2, one later; that many of each sex
+where they look different; a baby for each animal and hybrid of waves 1 and 2; each a little different (its condition
+and stance, by its name). Rows already listed are counted, so running again adds only what is missing; the save's
+creatures come first, and every list holds many kinds. `creatures-01` to `04`: 624 rows for 218 kinds.
+
 ## Names
 
 A row's name says what it shows: `p_<kind>_<m or f>_<age>_<role, look, plain or char>_<skin>_<hair>_<number>`, for
@@ -154,6 +176,7 @@ All in `Tools/PortraitArt`, Python 3, nothing to install:
 - `looks_to_defs.py`: writes `Defs/PortraitLookDefs/PortraitLooks.xml` from `looks.csv` (one look def per row).
 - `catalogue_check.py`: every name in the catalogue against the active rows of `docs/player-mods` ("OK").
 - `test_portrait_catalogue.py`: the tools' tests ("OK").
+- `creature_census.py`, `plan_creatures.py`: the creature catalogue and lists (above); `test_creatures.py` their tests.
 
 ## Adding a new mod's kinds
 

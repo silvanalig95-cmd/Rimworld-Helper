@@ -711,6 +711,8 @@ namespace ColonyCouncil
                 new[] { "AsPainted", "LightlySoftened", "Softened", "Plain" }, "inspectPortrait,portraitLibrary");
             // Portraits, phase 5 (the player, 22 November 2026): the backdrop behind the game's own drawing too.
             Toggle("portraitBackdropGame", "CC_Settings_PortraitBackdropGame", "CC_SetNote_PortraitBackdropGame", "inspectPortrait,portraitLibrary");
+            // Animals and creatures (UI/Faces/CreatureLibrary.cs; the player, 23 November 2026).
+            Toggle("portraitCreatures", "CC_Settings_PortraitCreatures", "CC_SetNote_PortraitCreatures", "inspectPortrait,portraitLibrary");
             Choice("portraitOutline", "CC_SetLabel_PortraitOutline", "CC_SetTip_PortraitOutline", "CC_PortraitOutline_", "CC_SetNote_PortraitOutline_",
                 new[] { "Off", "Subtle", "Stronger" }, "inspectPortrait,portraitLibrary");
             Toggle("portraitLightTint", "CC_Settings_PortraitLightTint", "CC_SetNote_PortraitLightTint", "inspectPortrait,portraitLibrary");

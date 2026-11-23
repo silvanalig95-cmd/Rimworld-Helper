@@ -158,6 +158,8 @@ function Set-Inputs($wf, [string] $prompt, [string] $negative, [long] $seed, [in
 function Queue-List([string] $Batch, [string] $Style, [string] $Workflow, [string] $OnlyMissing) {
     # Queues one list's rows in one style (the whole of what this script did before it could queue several).
     $rows = @(Import-Csv -LiteralPath (Join-Path $batches ($Batch + '.csv')) -Encoding UTF8)
+    # A list of animals and creatures (creatures-NN: its rows name a creature).
+    $isCreatures = $rows.Count -gt 0 -and ($rows[0].PSObject.Properties.Name -contains 'creature')
     # Only what the library lacks: rows with no picture of theirs in library\<batch>\ yet (new rows added to a list, or
     # ones whose pictures were all thrown out), so a grown list is never made again from the start.
     # A row's pictures may sit in any library folder (lists are mixed and renumbered now and then), so look in all.
@@ -182,6 +184,18 @@ function Queue-List([string] $Batch, [string] $Style, [string] $Workflow, [strin
         }
     }
     $st = Get-Content -LiteralPath (Join-Path $batches ($Style + '.json')) -Raw -Encoding UTF8 | ConvertFrom-Json
+    # Animals and creatures are painted in a style for them ("for": "creatures": the whole creature, square, no face fix):
+    # a people's style chosen for a creatures list is swapped for style-rimworld-creatures, and a creatures style for a
+    # list of people is told.
+    $forCreatures = (Has $st 'for') -and ([string]$st.for -eq 'creatures')
+    if ($isCreatures -and -not $forCreatures -and (Test-Path -LiteralPath (Join-Path $batches 'style-rimworld-creatures.json'))) {
+        Write-Host ("'{0}' is a list of animals and creatures: painted in the style style-rimworld-creatures instead of {1}." -f $Batch, $Style) -ForegroundColor Yellow
+        $Style = 'style-rimworld-creatures'
+        $st = Get-Content -LiteralPath (Join-Path $batches ($Style + '.json')) -Raw -Encoding UTF8 | ConvertFrom-Json
+    }
+    elseif (-not $isCreatures -and $forCreatures) {
+        Write-Host ("Note: the style {0} is for animals and creatures, and '{1}' is a list of people." -f $Style, $Batch) -ForegroundColor Yellow
+    }
     $wantCut = -not ((Has $st 'cut') -and -not $st.cut)
 
     if ($Workflow -eq '') {

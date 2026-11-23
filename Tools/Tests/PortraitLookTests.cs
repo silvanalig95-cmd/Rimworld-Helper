@@ -398,7 +398,7 @@ public static class PortraitLookTests
         C(needs.Contains("PortraitNeedsKept.MostLines") && Regex.IsMatch(File.ReadAllText(Path.Combine(root, "Tools", "save_estimate.py")), "PortraitNeeds.cs:lines"),
             "the saved list has a model in the save estimate");
         C(stage.Contains("public static bool DrawGameStaged(") && stage.Contains("PortraitComposeMath.WhatToDraw(false, look.backdrop != null, mode, true)")
-          && stage.Contains("if (PortraitSources.For(p) != null) return false;") && stage.Contains("DrawShadow(new Rect(r.x + sx, r.y, r.width, r.height), cam, shadow);"),
+          && stage.Contains("if (PortraitSources.ForStage(p) != null) return false;") && stage.Contains("DrawShadow(new Rect(r.x + sx, r.y, r.width, r.height), cam, shadow);"),
             "the game's drawing on a backdrop only where the library has no picture for them, with its shadow");
         string keeperSrc = Read("UI/Faces/PortraitKeeper.cs");
         C(lib2.Contains("|| p.IsPrisonerOfColony") && lib2.Contains("p.Faction.leader == p || PortraitReader.Titled(p)") && lib2.Contains("notableIds.Add(n.pawn.thingIDNumber)")

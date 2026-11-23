@@ -40,6 +40,8 @@ namespace ColonyCouncil
         /// <summary>The picture's path from the folder, without .png.</summary>
         public string texPath = "";
         public bool backdrop;
+        /// <summary>A picture of an animal or creature (UI/Faces/CreatureLibrary.cs).</summary>
+        public bool creature;
         /// <summary>A version of a picture (an expression or a mark variant), deleted on its own; the picture stays.</summary>
         public bool variant;
         /// <summary>Mark variants go with it (its other versions are told as versions, not only expressions).</summary>
@@ -125,11 +127,11 @@ namespace ColonyCouncil
             {
                 n++;
                 string kind = e.Name.LocalName;
-                bool person = kind == "ColonyCouncil.PortraitDef", backdrop = kind == "ColonyCouncil.BackdropDef";
-                if (!person && !backdrop) continue;
+                bool person = kind == "ColonyCouncil.PortraitDef", backdrop = kind == "ColonyCouncil.BackdropDef", creature = kind == CreaturePortraitMath.Element;
+                if (!person && !backdrop && !creature) continue;
                 // The same name the game reads (PortraitFolderMath.Parse).
                 string name = e.Element("defName")?.Value?.Trim() ?? "";
-                if (name.Length == 0) name = (person ? "Portrait_" : "Backdrop_") + n;
+                if (name.Length == 0) name = (person ? "Portrait_" : creature ? "Creature_" : "Backdrop_") + n;
                 if (!names.Contains(name)) continue;
                 gone.Add(e);
                 removed?.Add(name);

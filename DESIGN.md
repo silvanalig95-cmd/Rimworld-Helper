@@ -17425,6 +17425,33 @@ distance in its parts, the hard rules one by one, mark variants and their side, 
   patch worn; corrections.csv and records.xml written on the player's Google Drive folder and read by
   Update-PortraitLibrary; a mark variant made by Make-Variants shown for the colonist who needs it.
 
+### Portraits: animals and creatures (the player's request, 23 November 2026; released 0.302.0)
+
+The player: "also please create lists for animals and creatures and implement image display for them too", and "also
+include insects of course".
+
+- **What shows.** With one animal, insect, mechanoid, entity, dryad or drone selected (anything that isn't humanlike),
+  the large portrait at the inspect pane shows its painted picture in front of the backdrop of where it is, the same
+  stage as a person's (`UI/Faces/CreatureLibrary.cs`; `PortraitSources.ForStage`). Only a creature with a picture of its
+  kind shows: the pane stays as the game has it for the others. The small portraits keep the game's own drawing, since
+  they frame a person's head. No people's mark; a click opens the game's information card; a right click chooses
+  another picture of its kind (kept in the save, `PortraitKeeper.creaturePicks`, at most 300) or deletes this one for
+  good (the same dialog, deleted.csv line and bin as a person's). The setting "Painted pictures of animals and
+  creatures" (on).
+- **Which picture** (`CreaturePortraitMath`): its race, its age (the game's first life stage of several a baby, the last
+  an adult, between a juvenile; a baby only a baby's picture, a juvenile its own or else an adult's), its sex where the
+  picture names one (any otherwise). Among those the one its id ranks first (rendezvous hashing): the same creature
+  always the same picture, a kind's pictures shared evenly, and a picture added later takes over only the creatures it
+  ranks first for. None: a "creature" line in missing.csv (its race, mod, age and sex), once a session for each.
+- **The records.** `ColonyCouncil.CreaturePortraitDef` in records.xml (`race`, `sex`, `age`, `character`), its own list
+  in the folder reading, never among the people's pictures (`PortraitLibrary.PictureFor` gives a creature nothing).
+- **The kit.** `catalogue/creatures.csv` (`creature_census.py`: every creature of the player's enabled mods, 1,736, by
+  group and wave, with how often the save holds each; the looks written by hand) and `plan_creatures.py` (the lists
+  `creatures-NN`: three adults of each creature in the save, two of the base game's, the DLCs' and the insects of
+  Vanilla Factions Expanded - Insectoids 2, one later; each sex where they look different; a baby for each animal of
+  those). The style `style-rimworld-creatures` (square, the whole creature, cut out, no face fix), taken by itself for
+  a creatures list; Update-PortraitLibrary writes the creature records; the picture check leaves them out.
+
 ### On-screen panels and the hover card
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of

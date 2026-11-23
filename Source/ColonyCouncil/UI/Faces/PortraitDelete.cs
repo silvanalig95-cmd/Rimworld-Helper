@@ -50,8 +50,16 @@ namespace ColonyCouncil
             if (p == null || options == null) return;
             try
             {
-                var pic = PortraitSources.For(p);
-                if (pic?.file != null && !pic.name.NullOrEmpty())
+                var pic = PortraitSources.ForStage(p);
+                if (pic?.file != null && !pic.name.NullOrEmpty() && CreatureLibrary.IsCreature(p))
+                {
+                    // An animal's or creature's picture: always the library folder's.
+                    string label = "CC_Portrait_Delete".Translate().Resolve();
+                    string why = WhyNot(PortraitFolder.CreatureNamed(pic.name) != null, "CC_Portrait_DeleteFromMod");
+                    string name = pic.name;
+                    options.Add(why == null ? new FloatMenuOption(label, () => ConfirmCreature(name)) : new FloatMenuOption(label + " (" + why + ")", null));
+                }
+                else if (pic?.file != null && !pic.name.NullOrEmpty())
                 {
                     string label = "CC_Portrait_Delete".Translate().Resolve();
                     // The picture itself where one of its mark variants shows (a variant alone is deleted from "About this picture").
@@ -139,6 +147,22 @@ namespace ColonyCouncil
             Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(text.ToString(), () => StartPicture(name), true, "CC_Portrait_DeleteVariantTitle".Translate().Resolve()));
         }
 
+        /// <summary>"Delete this picture for good..." for an animal's or creature's picture: the same dialog, worker, deleted.csv line and bin.</summary>
+        private static void ConfirmCreature(string name)
+        {
+            var fc = PortraitFolder.CreatureNamed(name);
+            if (fc == null)
+            {
+                Gone(name);
+                return;
+            }
+            var text = new StringBuilder();
+            text.Append("CC_Portrait_DeleteWhat".Translate(FileShown(fc.texPath).Named("FILE")).Resolve());
+            text.Append("\n\n").Append("CC_Portrait_DeleteCreatureHeld".Translate().Resolve());
+            Ending(text, fc.texPath);
+            Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(text.ToString(), () => StartCreature(name), true, "CC_Portrait_DeleteTitle".Translate().Resolve()));
+        }
+
         private static void ConfirmBackdrop(Pawn shown, string name)
         {
             var fb = PortraitFolder.BackdropNamed(name);
@@ -185,6 +209,23 @@ namespace ColonyCouncil
             job.records = PortraitDeleteMath.RecordsOf(name, PortraitFolder.People.Select(x => new KeyValuePair<string, string>(x.record.name, x.record.variantOf)));
             job.named.AddRange(PortraitFolder.People.Where(x => x.record.name != name && job.records.Contains(x.record.name)).Select(x => x.texPath));
             job.marked = PortraitFolder.People.Any(x => x.record.name != name && job.records.Contains(x.record.name) && x.record.IsMarkVariant);
+            job.line.record = name;
+            Keep(job);
+            Start(job);
+        }
+
+        private static void StartCreature(string name)
+        {
+            var fc = PortraitFolder.CreatureNamed(name);
+            if (fc == null || Running || PortraitFolder.Reading || PortraitCorrect.Running)
+            {
+                Gone(name);
+                return;
+            }
+            var job = NewJob(fc.texPath, false);
+            if (job == null) return;
+            job.creature = true;
+            job.records.Add(name);
             job.line.record = name;
             Keep(job);
             Start(job);
@@ -247,6 +288,9 @@ namespace ColonyCouncil
                 job.keep.Add(b.texPath);
                 if (!b.depthPath.NullOrEmpty()) job.keep.Add(b.depthPath);
             }
+            foreach (var c in PortraitFolder.Creatures)
+                if (!mine.Contains(c.record.name))
+                    job.keep.Add(c.texPath);
         }
 
         private static void Start(DeleteJob job)
@@ -282,7 +326,10 @@ namespace ColonyCouncil
             try
             {
                 var keeper = PortraitKeeper.Instance;
-                if (!job.backdrop && keeper != null)
+                if (job.creature && keeper != null)
+                    foreach (var n in job.records)
+                        keeper.LetGoCreaturePicture(n);
+                else if (!job.backdrop && keeper != null)
                     foreach (var n in job.records)
                         ids.AddRange(keeper.LetGoPicture(n));
                 PortraitFolder.Forget(job.records);
@@ -303,6 +350,7 @@ namespace ColonyCouncil
             if (r.files.Count > 0)
                 text.Append(' ').Append(job.bin != null ? "CC_Portrait_DeletedToBin".Translate(BinShown(job.texPath).Named("BIN")).Resolve() : "CC_Portrait_DeletedFiles".Translate().Resolve());
             if (job.backdrop) text.Append(' ').Append("CC_Portrait_DeletedBackdropAgain".Translate().Resolve());
+            else if (job.creature) text.Append(' ').Append("CC_Portrait_DeletedCreatureAgain".Translate().Resolve());
             else if (ids.Count > 0) text.Append(' ').Append("CC_Portrait_DeletedHolders".Translate(Listed(NamesOf(ids, null)).Named("NAMES")).Resolve());
             if (r.failed.Count > 0)
                 text.Append(' ').Append("CC_Portrait_DeletedPartly".Translate(r.failed.Count.Named("COUNT"), r.failedError.Named("ERROR")).Resolve());

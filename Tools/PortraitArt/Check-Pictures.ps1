@@ -696,7 +696,7 @@ function Read-Records([string] $path) {
         $tex = & $one 'texPath'
         if ($tex -eq '') { continue }
         $r = [pscustomobject]@{
-            kind      = $(if ($n.Name -match 'Backdrop') { 'backdrop' } else { 'person' })
+            kind      = $(if ($n.Name -match 'Backdrop') { 'backdrop' } elseif ($n.Name -match 'Creature') { 'creature' } else { 'person' })
             defName   = & $one 'defName'
             pawn      = & $one 'pawn'
             sex       = Low (& $one 'sex')
@@ -1814,6 +1814,7 @@ try {
     Test-Form
     $pictures = New-Object System.Collections.ArrayList
     $skippedBackdrops = 0
+    $skippedCreatures = 0
     # Pictures deleted for good in the game (deleted.csv) are not looked at, even where their file is still here.
     $deleted = Read-Deleted $library
     $skippedDeleted = 0
@@ -1826,6 +1827,8 @@ try {
             # are about a person, and on an empty scene the model made one up. Only people's pictures are checked.
             $rec = $records[($dir.Name + '/' + $stem).ToLowerInvariant()]
             if ($rec -ne $null -and $rec.kind -eq 'backdrop') { $skippedBackdrops++; continue }
+            # Animals and creatures (the lists creatures-NN) are not looked at either: the form asks about a person.
+            if (($rec -ne $null -and $rec.kind -eq 'creature') -or $dir.Name -match '^creatures-') { $skippedCreatures++; continue }
             $row = ''
             $m = [regex]::Match($stem, '^(?<name>.+?)_(?<style>style[^_]*)_')
             if ($m.Success) { $row = $m.Groups['name'].Value }
@@ -1836,6 +1839,7 @@ try {
         }
     }
     if ($skippedBackdrops -gt 0) { Write-Host ('{0} backdrops left out: only people are checked.' -f $skippedBackdrops) }
+    if ($skippedCreatures -gt 0) { Write-Host ('{0} pictures of animals and creatures left out: only people are checked (look through those yourself when you sort them).' -f $skippedCreatures) }
     if ($skippedDeleted -gt 0) { Write-Host ('{0} pictures left out: deleted for good in the game (deleted.csv).' -f $skippedDeleted) }
     if ($pictures.Count -eq 0) { throw ('No pictures of people in the library ({0}) yet.' -f $library) }
 

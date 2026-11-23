@@ -33,6 +33,10 @@ namespace ColonyCouncil
     /// <item>A window of its own the size of the portrait (the game's way for the inspect tabs), so it takes clicks only
     /// on itself: a click opens their card.</item>
     /// </list>
+    /// An animal, an insect, a mechanoid or another creature shows here too where the library folder has a painted picture
+    /// of its kind (<see cref="CreatureLibrary"/>; the player, 23 November 2026: "also please create lists for animals and
+    /// creatures and implement image display for them too"), the same way in front of the backdrop of where it is; a
+    /// click opens the game's information on it, a right click chooses another picture or deletes this one for good.
     /// A deeper game hook (a postfix on the inspect pane's drawing, every frame it is open); the setting "A large portrait
     /// at the inspect pane" switches it off.
     /// </summary>
@@ -89,13 +93,14 @@ namespace ColonyCouncil
             Find.WindowStack.ImmediateWindow(WindowId, rect, WindowLayer.GameUI, DrawAction, false, false, 0f);
         }
 
-        /// <summary>The one humanlike person selected on the map, or null.</summary>
+        /// <summary>The one humanlike person selected on the map, or the one animal or creature with a painted picture; else null.</summary>
         private static Pawn Subject()
         {
             var sel = Find.Selector;
             if (sel == null || sel.NumSelected != 1) return null;
-            if (!(sel.SingleSelectedThing is Pawn p) || p.Destroyed || !p.Spawned) return null;
-            return p.RaceProps != null && p.RaceProps.Humanlike ? p : null;
+            if (!(sel.SingleSelectedThing is Pawn p) || p.Destroyed || !p.Spawned || p.RaceProps == null) return null;
+            if (p.RaceProps.Humanlike) return p;
+            return PortraitSources.ForStage(p) != null ? p : null;
         }
 
         /// <summary>The inspect pane, its tab buttons, whether a tab is open, and the gizmos, as they are on the screen now.</summary>
@@ -186,27 +191,32 @@ namespace ColonyCouncil
                 if (r.width >= FaceMath.NamedFrom) NameBand(inner);
                 if (dragging || Mouse.IsOver(r)) Grip(grip);
             }
+            bool creature = CreatureLibrary.IsCreature(p);
             float ms = Mathf.Clamp(Mathf.Round(r.width * 0.14f), 18f, 32f);
             var mark = new Rect(inner.x + 4f, inner.y + 4f, ms, ms);
-            FaceEngine.DrawMark(mark, p);
+            // The mark of their people: a person's only.
+            if (!creature) FaceEngine.DrawMark(mark, p);
             // A right click: its menu (another painted picture for them, keeping the picture for training, or deleting the picture or backdrop shown for good).
             if (!dragging && ev.type == EventType.MouseDown && ev.button == 1 && Mouse.IsOver(r))
             {
-                Menu(p);
+                if (creature) CreatureMenu(p);
+                else Menu(p);
                 ev.Use();
             }
             if (!dragging)
             {
                 // One tooltip at a time: the mark's people, the corner's sizing, else the portrait's own.
-                var people = FaceEngine.PeopleOf(p);
-                if (Mouse.IsOver(mark) && FaceEngine.MarkOf(people) != null && !people.Name.NullOrEmpty()) TooltipHandler.TipRegion(mark, people.Name);
+                var people = creature ? null : FaceEngine.PeopleOf(p);
+                if (people != null && Mouse.IsOver(mark) && FaceEngine.MarkOf(people) != null && !people.Name.NullOrEmpty()) TooltipHandler.TipRegion(mark, people.Name);
                 else if (Mouse.IsOver(grip)) TooltipHandler.TipRegion(grip, gripTip);
                 else TooltipHandler.TipRegion(r, tip);
                 // A left click opens their card; any other click on it is taken here, so it never reaches the map below.
                 if (Widgets.ButtonInvisible(r, false) && ev.button == 0)
                 {
                     SoundDefOf.Click.PlayOneShotOnCamera();
-                    Cards.Open(p);
+                    // An animal's or creature's: the game's own information on it.
+                    if (creature) Find.WindowStack.Add(new Dialog_InfoCard(p));
+                    else Cards.Open(p);
                 }
             }
             if ((ev.type == EventType.MouseDown || ev.type == EventType.MouseUp) && Mouse.IsOver(r)) ev.Use();
@@ -244,6 +254,27 @@ namespace ColonyCouncil
             Find.WindowStack.Add(new FloatMenu(options));
         }
 
+        /// <summary>
+        /// An animal's or creature's picture's menu: "Choose another picture" (the next of its kind, age and sex, kept for it
+        /// from then on), "Delete this picture for good..." and the backdrop's, and Rimfolk's settings.
+        /// </summary>
+        private static void CreatureMenu(Pawn p)
+        {
+            var options = new System.Collections.Generic.List<FloatMenuOption>();
+            var lib = CreatureLibrary.Source;
+            string label = "CC_Portrait_ChooseAnother".Translate().Resolve();
+            if (!lib.CanChoose(p)) options.Add(new FloatMenuOption(label + " (" + "CC_Portrait_CreatureOnlyOne".Translate().Resolve() + ")", null));
+            else
+                options.Add(new FloatMenuOption(label, () =>
+                {
+                    string said = lib.ChooseAnother(p);
+                    Messages.Message(said, MessageTypeDefOf.SilentInput, false);
+                }));
+            PortraitDelete.AddOptions(p, options);
+            options.Add(new FloatMenuOption("CC_Portrait_RimfolkSettings".Translate().Resolve(), () => SettingsWindow.Open("CC_SetSec_Portraits")));
+            Find.WindowStack.Add(new FloatMenu(options));
+        }
+
         /// <summary>Their name and the name the colony knows them by, on a dark band at the foot of the picture.</summary>
         private static void NameBand(Rect inner)
         {
@@ -276,6 +307,12 @@ namespace ColonyCouncil
             namedUntil = now + 2f;
             name = p.LabelShortCap;
             known = null;
+            if (CreatureLibrary.IsCreature(p))
+            {
+                tip = "CC_Portrait_CreatureTip".Translate(name.Named("NAME")).Resolve();
+                gripTip ??= "CC_Portrait_GripTip".Translate().Resolve();
+                return;
+            }
             try
             {
                 string k = KnownAs.Short(p);

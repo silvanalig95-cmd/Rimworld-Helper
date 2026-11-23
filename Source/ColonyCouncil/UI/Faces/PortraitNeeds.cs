@@ -19,6 +19,7 @@ namespace ColonyCouncil
     /// <item>People: no picture of their kind, none of their sex and stage, or none close to their looks (their kind, sex,
     /// age, work, skin, hair, the age of their clothes).</item>
     /// <item>Looks (phase 5): a look of theirs no picture of their kind, sex and age shows, special or ordinary.</item>
+    /// <item>Animals and creatures (selected at the inspect pane): no picture of their kind, or none of their age and sex.</item>
     /// <item>Rooms: no backdrop of their kind, or none of the colony's age; the land outdoors: no backdrop of its own group;
     /// from where the person at the inspect pane is, and once a day from every room with a kind on the colony's maps and
     /// their land.</item>
@@ -113,6 +114,20 @@ namespace ColonyCouncil
                 what = "look", kind = kind, look = word, mod = PortraitLooks.ModOf(p, word), sex = PortraitLibraryMath.Word(look.sex), age = PortraitLibraryMath.Word(look.age),
                 why = (special ? "CC_PortraitNeed_NoSpecialLook" : "CC_PortraitNeed_NoLook").Translate().Resolve(),
                 instead = instead.NullOrEmpty() ? "CC_PortraitNeed_GameFace".Translate().Resolve() : instead, lastSeen = Today
+            }, p.thingIDNumber);
+        }
+
+        /// <summary>
+        /// An animal or creature shown at the inspect pane with no painted picture of its kind (or none of its age and sex):
+        /// its race, the mod it comes from, its sex where it has one and its age (baby, juvenile, adult), for the creature lists.
+        /// </summary>
+        public static void NoteCreature(Pawn p, string age, string sex, string why)
+        {
+            if (!On || p?.def == null) return;
+            Note(new PortraitNeed
+            {
+                what = "creature", kind = p.def.defName, mod = p.def.modContentPack?.PackageIdPlayerFacing ?? "", sex = sex ?? "", age = age ?? "",
+                why = why.Translate().Resolve(), instead = "CC_PortraitNeed_NoPortrait".Translate().Resolve(), lastSeen = Today
             }, p.thingIDNumber);
         }
 

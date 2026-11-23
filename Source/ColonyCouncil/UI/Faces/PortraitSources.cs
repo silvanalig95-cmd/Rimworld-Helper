@@ -68,14 +68,38 @@ namespace ColonyCouncil
             return null;
         }
 
+        /// <summary>
+        /// The large portrait's picture: a person's as <see cref="For"/> gives it, an animal's or creature's from the creature
+        /// pictures (<see cref="CreatureLibrary"/>), which only the large portrait shows; null for the game's own drawing.
+        /// </summary>
+        public static PortraitPicture ForStage(Pawn p)
+        {
+            if (p == null) return null;
+            if (!CreatureLibrary.IsCreature(p)) return For(p);
+            var s = CreatureLibrary.Source;
+            try
+            {
+                if (!s.On) return null;
+                var pic = s.PictureFor(p);
+                return pic != null && (pic.texture != null || pic.loading) ? pic : null;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("portraits: a picture from " + s.Name, e);
+                return null;
+            }
+        }
+
         public static void Forget(int pawnId)
         {
             foreach (var s in Sources) s.Forget(pawnId);
+            CreatureLibrary.Source.Forget(pawnId);
         }
 
         public static void NewGame()
         {
             foreach (var s in Sources) s.NewGame();
+            CreatureLibrary.Source.NewGame();
         }
     }
 }

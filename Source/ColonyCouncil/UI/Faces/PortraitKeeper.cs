@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using Verse;
 
@@ -70,6 +71,17 @@ namespace ColonyCouncil
 
         public List<KeptPortrait> kept = new List<KeptPortrait>();
 
+        /// <summary>The most animals and creatures whose picture was chosen by hand that are kept (the earliest let go first).</summary>
+        public const int MaxCreaturePicks = 300;
+
+        /// <summary>
+        /// The pictures chosen by hand for animals and creatures (UI/Faces/CreatureLibrary.cs), by the creature's id; every
+        /// other creature gets its picture by its id each time, so nothing else of theirs is kept.
+        /// </summary>
+        private Dictionary<int, string> creaturePicks = new Dictionary<int, string>();
+        private List<int> creatureIds;
+        private List<string> creaturePictures;
+
         [Unsaved] private readonly Dictionary<int, KeptPortrait> byId = new Dictionary<int, KeptPortrait>();
         [Unsaved] private readonly Dictionary<string, int> uses = new Dictionary<string, int>();
 
@@ -136,9 +148,11 @@ namespace ColonyCouncil
                 PortraitVariants.Write();
             }
             Scribe_Collections.Look(ref kept, "kept", LookMode.Deep);
+            Scribe_Collections.Look(ref creaturePicks, "creaturePicks", LookMode.Value, LookMode.Value, ref creatureIds, ref creaturePictures);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 kept ??= new List<KeptPortrait>();
+                creaturePicks ??= new Dictionary<int, string>();
                 int now = Find.TickManager?.TicksGame ?? 0;
                 // A colonist's face is kept while they are remembered, alive or dead, and a notable's while they matter: never
                 // let go for not being pictured.
@@ -281,6 +295,26 @@ namespace ColonyCouncil
             k.byHand = false;
             // Not the library now: picked again when next shown (PortraitLibraryMath.PickAgain).
             k.library = 0;
+        }
+
+        /// <summary>The picture chosen by hand for an animal or creature, or null.</summary>
+        public string CreaturePick(int id) => creaturePicks.TryGetValue(id, out var pic) ? pic : null;
+
+        /// <summary>A picture chosen by hand for an animal or creature, kept for it; at most <see cref="MaxCreaturePicks"/>, the earliest let go.</summary>
+        public void SetCreaturePick(int id, string picture)
+        {
+            creaturePicks.Remove(id);
+            if (picture.NullOrEmpty()) return;
+            creaturePicks[id] = picture;
+            while (creaturePicks.Count > MaxCreaturePicks) creaturePicks.Remove(creaturePicks.Keys.First());
+        }
+
+        /// <summary>A creature picture deleted for good: whoever had it chosen by hand gets theirs by their id again. Returns how many.</summary>
+        public int LetGoCreaturePicture(string picture)
+        {
+            var ids = creaturePicks.Where(kv => kv.Value == picture).Select(kv => kv.Key).ToList();
+            foreach (int id in ids) creaturePicks.Remove(id);
+            return ids.Count;
         }
 
         /// <summary>Everyone's faces let go (the dev action to pick everyone's again).</summary>

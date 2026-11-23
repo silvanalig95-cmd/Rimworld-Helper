@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Animals and creatures in the portrait library
+
+*23 November 2026, version 0.302.0*
+
+- Select an animal, an insect, a mechanoid or another creature and the large portrait at the inspect pane shows its painted picture from your library folder, in front of the backdrop of where it is.
+- A creature gets a picture of its own kind and age, and of its sex where the picture shows one. It keeps the same picture, and the pictures of a kind are shared evenly.
+- Right-click the portrait to choose another picture of its kind or delete this one for good. A click opens the game's information on it.
+- Creatures without a picture of their kind show no portrait and are noted in missing.csv. The setting "Painted pictures of animals and creatures" turns them off.
+- The portrait kit has new lists, creatures-01 to 04: every creature in your save, the base game's and the DLCs', and the insects of Vanilla Factions Expanded - Insectoids 2. Run-PortraitBatch paints them in their own style.
+
 ## Your people from the first page
 
 *23 November 2026, version 0.301.0*

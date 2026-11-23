@@ -309,7 +309,8 @@ namespace ColonyCouncil
 
         public PortraitPicture PictureFor(Pawn p)
         {
-            if (p == null || records.Count == 0) return null;
+            // People only: an animal's or creature's picture is the creature pictures' (UI/Faces/CreatureLibrary.cs).
+            if (p == null || records.Count == 0 || CreatureLibrary.IsCreature(p)) return null;
             int id = p.thingIDNumber;
             float now = Time.realtimeSinceStartup;
             if (!looked.TryGetValue(id, out var l) || now >= l.until)
