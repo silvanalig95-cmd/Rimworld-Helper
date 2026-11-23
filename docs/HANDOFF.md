@@ -741,6 +741,18 @@ most sense." So, in this order, three builds at a time:
   effects all look good, but unconscious eyes closed. How exactly is it supposed to see which eyes are closed?" Answered:
   closed eyes (and blinks and expressions) need the picture's painted expressions (Make-Variants); without them the
   unconscious are dimmed only. Asked whether to start building.
+- **To do when the player sends it (23 November 2026, the player): the check's free answers read for what the game
+  could use.** The player: "there is one check called "unusual", under which I guess a variety of things can be
+  mentioned ... how does the game correctly intepret these keywords and descriptions? ... I guess "worst case" I can
+  provide you the "checked" csv after the first large scan and you analyse it for things that the AI picks up to be
+  implemented for the pawn recognition". Answered: the game never reads the model's words; the check turns a few known
+  words into corrections (a crown in "unusual" or the headwear line gives the crown look; an artificial arm there, when
+  the arms line says none, the mark), and shows the rest in the report only. When the player sends checked.csv (or the
+  check's example zip, which has it): group the free answers ("unusual", "hands", "tools", "magic", "eyemarks", "body"
+  ...) by what recurs, and for each thing seen often decide: a look, mark or feature that exists already (a word to
+  add to the check's tables), a new one the game can read on a pawn (Ideology face and body tattoos, a gene, a
+  hediff, an apparel tag), or a note only (what the game can't know about a pawn, such as a cigarette in hand);
+  propose the list before building.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the picture check
   asks only what it hasn't.** The player: "we said that the image gets reanalyzed once something about the script
   changes. I wonder that we ... can save resources as much as possible, and that it only analyzes things that have not
