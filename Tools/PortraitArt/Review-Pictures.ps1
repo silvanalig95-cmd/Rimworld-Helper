@@ -333,7 +333,8 @@ function draw() {
 }
 async function load() {
   const r = await fetch('/items'); items = await r.json();
-  if (!items.some(i => i.state === 'held')) tab = items.some(i => i.state === 'unsure') ? 'unsure' : 'held';
+  // The first tab with pictures in it: held back, then less sure, then left out, then kept.
+  tab = ['held', 'unsure', 'out', 'kept'].find(s => items.some(i => i.state === s)) || 'held';
   draw();
 }
 async function decide(keep) {
