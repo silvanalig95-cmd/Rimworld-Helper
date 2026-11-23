@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.299.0</version>
+        <date>23 November 2026</date>
+        <title>About this picture, and the variants the game wants</title>
+        <points>
+          <li>A right click on the large portrait shows About this picture: the picture's record, the rules it meets for the person, what each part of their looks counts, and the next pictures</li>
+          <li>The record can be corrected there from lists, such as sex, age band, marks and their side; the change is taken at once and kept in the library folder</li>
+          <li>Corrections made in the game always hold over the picture check's</li>
+          <li>A picture's variant with a mark, such as a lost left eye or a scar, is shown for whoever holds the picture and has that mark, on the right side</li>
+          <li>On saving, the game lists the expressions and mark variants its own people's pictures still lack, for the portrait scripts to make</li>
+          <li>Each variant in the window says what it shows and when, and can be deleted there for good</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.298.1</version>
         <date>23 November 2026</date>
         <title>The small portraits fixed</title>

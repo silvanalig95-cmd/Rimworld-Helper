@@ -1713,7 +1713,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **About this picture, and the
+- 0.299.0, **About this picture, and the
   variants the game wants** (23 November 2026; the player: "one of the right-click options could open kind of a menu
   where I see the image that is currently assigned to the pawn ... which of the characteristics were now relevant for why
   this image was chosen for this specific colonist, and that I perhaps also could make corrections in there", "if a pawn

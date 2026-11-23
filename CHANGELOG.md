@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## About this picture, and the variants the game wants
+
+*23 November 2026, version 0.299.0*
+
+- A right click on the large portrait shows About this picture: the picture's record, the rules it meets for the person, what each part of their looks counts, and the next pictures
+- The record can be corrected there from lists, such as sex, age band, marks and their side; the change is taken at once and kept in the library folder
+- Corrections made in the game always hold over the picture check's
+- A picture's variant with a mark, such as a lost left eye or a scar, is shown for whoever holds the picture and has that mark, on the right side
+- On saving, the game lists the expressions and mark variants its own people's pictures still lack, for the portrait scripts to make
+- Each variant in the window says what it shows and when, and can be deleted there for good
+
 ## The small portraits fixed
 
 *23 November 2026, version 0.298.1*

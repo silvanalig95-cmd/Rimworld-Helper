@@ -17218,7 +17218,7 @@ The code: `UI/Faces/PortraitLibraryMath.cs` (the rules), `PortraitReader.cs` (a 
   against their pictures' painted colours, where a skin the tone or hue rule leaves out shows in missing.csv; the
   Biotech skins' colours are those the tests have used since phase 3.
 
-### Portraits: about this picture, and the variants the game wants (not released yet)
+### Portraits: about this picture, and the variants the game wants (released 0.299.0)
 
 The player's words (23 November 2026): "one of the right-click options could open kind of a menu where I see the image
 that is currently assigned to the pawn, and where I could see ... all the different attributes and characteristics that
