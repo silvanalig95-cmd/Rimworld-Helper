@@ -716,6 +716,16 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **Done (23 November 2026, the player's own request): more of the upper body in the people pictures.** The player: "quite
+  a few are still more or less just a headshot ... I would try to lean the AI to kind of include just the upper body
+  more of it and not just the head. If we can do that with prompts or with training um, later." Done in
+  `style-rimworld-people.json`: the framing said first too (the style now opens "a full-colour half-length character
+  portrait ... showing the upper body from the head down to the waist"; FLUX weighs the start of a prompt most and the
+  frame came last), the head "about a fifth of the picture's height" (was a quarter, before that a third), both arms
+  and the hands in the picture, and "the whole upper body in view" at the end. For the next training (to do with the
+  player's kept pictures): leave out the training set's close crops (the storytellers' face close-ups and the
+  head-and-shoulders crops, about half of the 47), keep the whole portraits, add the player's own upper-body pictures,
+  and caption them "seen from the waist up".
 - **Done (23 November 2026, the player's own request): the characters lists' second round, `characters-05` to `07`.**
   The player: "I already want the next set of Pwn descriptions ... there should again be a lot of variety, but it
   should also cover more of the general combinations. But yeah, again, each Pwn should ultimately look a bit individual
