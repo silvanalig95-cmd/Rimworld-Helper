@@ -19,7 +19,9 @@
 # and out (the picture is left out of the records; the file stays where it is). Lines marked ask are
 # applied too (the player, 23 November 2026: "the corrections awaiting approval should just be applied without approval
 # ... I'd rather just later correct the image ingame once it actually appears, so on demand"); only lines marked no are
-# not. No picture is renamed: its name ties it to its row, and the row's other pictures may be
+# not. Lines marked hold (the check's "out" for limbs that don't make sense) leave the picture out until the player keeps
+# it in Review-Pictures.ps1, which marks them no (kept) or yes (left out for good) (the player, 23 November 2026: "things
+# like extra limbs should be blocked by default"). No picture is renamed: its name ties it to its row, and the row's other pictures may be
 # right.
 # The corrections made in the game ("About this picture" writes them with the why "set in the game") always win (the
 # player: "the corrections i make through the game client are always prioritized"): for the same picture and field
@@ -102,9 +104,10 @@ function Read-Csv-Any([string] $path) {
 }
 
 function Read-Corrections([string] $path) {
-    # library\corrections.csv: the lines to apply (marked yes, and those marked ask, applied without waiting) by picture
-    # (library\<batch>\<name>.png or the name alone, small letters), and how many of them were marked ask.
-    $r = @{ yes = @{}; ask = 0 }
+    # library\corrections.csv: the lines to apply (marked yes, those marked ask, applied without waiting, and the pictures
+    # held back, out until the player keeps them in Review-Pictures) by picture (library\<batch>\<name>.png or the name
+    # alone, small letters), how many of them were marked ask, and the pictures held back.
+    $r = @{ yes = @{}; ask = 0; hold = @{} }
     if (-not (Test-Path -LiteralPath $path)) { return $r }
     foreach ($c in (Read-Csv-Any $path)) {
         $pic = (Field $c 'picture').Replace('/', '\').ToLowerInvariant()
@@ -112,7 +115,8 @@ function Read-Corrections([string] $path) {
         $apply = (Field $c 'apply').ToLowerInvariant()
         if ($pic -eq '') { continue }
         if ($apply -eq 'ask') { $r.ask++ }
-        if ($apply -ne 'yes' -and $apply -ne 'ask') { continue }
+        if ($apply -eq 'hold') { $r.hold[$pic] = $true }
+        if ($apply -ne 'yes' -and $apply -ne 'ask' -and $apply -ne 'hold') { continue }
         if (-not $r.yes.ContainsKey($pic)) { $r.yes[$pic] = New-Object System.Collections.ArrayList }
         [void]$r.yes[$pic].Add($c)
     }
@@ -490,6 +494,9 @@ try {
         if ($leftOut -gt 0) { $line += (', {0} of them leaving a picture out' -f $leftOut) }
         if ($corr.ask -gt 0) { $line += ('; {0} of them were marked ask and are applied too (correct a picture in the game, "About this picture", when you see it, or mark a line no).' -f $corr.ask) }
         Write-Host $line
+    }
+    if ($corr.hold.Count -gt 0) {
+        Write-Host ('{0} held back by the check (limbs that don''t make sense): out of the game until you keep them. Review-Pictures.cmd shows each, with Keep and Leave out.' -f $corr.hold.Count) -ForegroundColor Yellow
     }
     foreach ($p in $problems) { Write-Host ('  Note: ' + $p) -ForegroundColor Yellow }
     Write-Host ("In Rimfolk's settings, ""Portrait library folder"" is: {0}" -f $library)

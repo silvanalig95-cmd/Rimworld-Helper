@@ -748,12 +748,23 @@ most sense." So, in this order, three builds at a time:
   yes and ask (only no is not applied; "set in the game" still wins); the check still writes ask where it is less sure
   (so the player can see which), and its messages, SETUP-ComfyUI.md (steps 10 and 11) and ORDER.md say there is nothing
   to answer. An "out" marked ask (two people, cut at the side, a body its kind lacks) now leaves the picture out too.
-- **Being built (23 November 2026, the player's own request): pictures with extra or misplaced limbs held back until the
+- **Done (23 November 2026, the player's own request): pictures with limbs that don't make sense held back until the
   player keeps them, and a review tool.** The player: "the image tester should also check if there's extra limbs/hands
   that don't make sense, so these images can be filtered out as well", then "these should be flagged for checking!
   ideally i'd have some toolkit that provides me the preview of the image, what is wrong and whether I want to keep it.
   while i approved that most corrections can be applied right away, things like extra limbs should be blocked by
-  default".
+  default", and "ah, this would be in the game client?" (answered: no, a page in the browser beside the scripts; a
+  held picture isn't in the records, so the game never sees it). Done: Check-Pictures' form has a `limbs` line
+  (version 1, asked once of every picture already checked, in the short form); `Limbs-Of` reads an extra or doubled
+  arm, hand or finger, two left or right hands, six or more fingers, three or more arms, a floating limb or one
+  belonging to no one, one growing from the wrong place, a fused or malformed hand (not four fingers, hidden hands or
+  "no extra ..."); such a picture gets `out` marked **hold**, always a line of its own, never for a kind with more arms
+  or a prompt asking for them. Update-PortraitLibrary applies hold as out and says how many are held. The new
+  `Review-Pictures.ps1` / `.cmd` serves a page on localhost: one picture at a time, large, with why it is out, what the
+  check found, what the model saw and what its row says; Keep marks its out lines no, Leave out yes, written at once,
+  every other line of corrections.csv as it was; tabs for held, less sure, left out, kept; Done asks to run the update.
+  Also fixed in the answer reader: a numbered line naming another item is never taken by its number for a short form.
+  Tried here with a stand-in model end to end and the page in a browser; still to see on the player's PC.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library read again
   by itself, and a quick way to Rimfolk's settings.** The player: "could the libary import also be done regularly, like
   on startup of the game and/or when loading a save? so I don't do it manually. Also it would be lovely to have a

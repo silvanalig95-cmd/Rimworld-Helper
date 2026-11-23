@@ -227,8 +227,21 @@ so no node pack is needed.
     November 2026: "the corrections awaiting approval should just be applied without approval ... I'd rather just later
     correct the image ingame once it actually appears, so on demand"). Correct a picture in the game with "About this
     picture" when you see it (that always wins); or, if you like, change a line to **no** and it is never applied.
+    One kind of line waits for you: **hold**, an `out` for limbs that don't make sense (an extra arm, hand or finger,
+    a hand that belongs to no one, a limb growing from the wrong place; the form's `limbs` line). Such a picture stays
+    out of the game until you keep it (the player, 23 November 2026: "things like extra limbs should be blocked by
+    default"). The check says how many are held back.
+    **Review-Pictures**: copy `Review-Pictures.ps1` and `Review-Pictures.cmd` next to the others and double-click the
+    `.cmd`. It opens a page in your browser (served by the script on your own computer only, `http://localhost:8765`),
+    one picture at a time, large (click it for full size), with why it is out, what the check found, what the model saw
+    and what its row says. **Keep** (K) marks its out lines no; **Leave out** (O) marks them yes; each choice is
+    written to `corrections.csv` at once (close it in Excel first). The tabs: Held back, Left out where the check was
+    less sure (cut at the side, no one in it, a body its kind lacks), Left out, Kept; a choice can be changed there
+    later. Press **Done** on the page when you are finished: the window asks whether to run Update-PortraitLibrary
+    now. This is not in the game: a held picture isn't in the records, so the game never sees it.
 11. Run `Update-PortraitLibrary.ps1` (`Copy-ToLibrary.cmd` runs it too). It writes the records again from the batch
-    lists and puts the corrections marked yes and ask into them, and says how many it used.
+    lists and puts the corrections marked yes, ask and hold into them, and says how many it used and how many
+    pictures are held back.
     Then **Reload the library** in the game.
 12. Run the check again whenever pictures have been added. It asks the model only what it hasn't (every answer is
     kept in `library\checked.csv`, a description of every picture in the library: each line's answer and the version
@@ -276,7 +289,9 @@ pictures may be right, so a correction changes only that picture's record. The f
   `dress` (rags, work, fine, robes, armour, or `any`).
 - `out`: the picture is left out of the records; the file stays where it is (yes for more than one person in a
   cut-out; ask for a body its kind doesn't have, such as pointed ears on a baseliner or an elf without them, for a
-  cut-out cut at the side, and for a person in a backdrop).
+  cut-out cut at the side, and for a person in a backdrop; hold for limbs that don't make sense, until you keep it in
+  Review-Pictures). A kind whose people have more than two arms of their own, or a row whose prompt asks for more
+  arms, is never held for its arms.
 Adding a look or a role only narrows who gets a picture, which is why those can be yes; anything that would give it to
 more people is ask.
 

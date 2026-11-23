@@ -49,8 +49,11 @@ must run all these programs and scripts". The details of each step are in `SETUP
    lead changed only that line), and the side check looks at each cut-out; it writes `library\check-report.csv` and
    `corrections.csv` (your corrections made in the game always win). Then it asks to make a zip of examples: Enter
    makes `library\check-examples-<date>-<time>.zip` (the CSV files and up to 30 pictures) to send to the lead.
-6. Nothing to answer: the corrections marked ask are applied too (the player: "I'd rather just later correct the image
-   ingame once it actually appears"). Correct a picture in the game with "About this picture" when you see it.
+6. Nearly nothing to answer: the corrections marked ask are applied too (the player: "I'd rather just later correct
+   the image ingame once it actually appears"); correct a picture in the game with "About this picture" when you see
+   it. Only pictures with limbs that don't make sense are held back (the player: "things like extra limbs should be
+   blocked by default"): `Review-Pictures.cmd` opens them in your browser, one at a time with what is wrong, to Keep
+   or Leave out. Until you keep one it stays out of the game.
 7. `Update-PortraitLibrary.ps1`: the corrections go into the records.
 8. `Make-DepthMaps.cmd`: depth maps for new backdrops (it writes the records).
 9. `Make-Variants.cmd`: the variants your game wants (`library\variants-wanted.csv`: blink, smile, frown, pain and the
@@ -75,6 +78,8 @@ jobs in ComfyUI's queue).
 
 ## What the batches folder needs
 
+- Scripts next to `batches` and `library`: `Run-PortraitBatch.ps1`, `Update-PortraitLibrary.ps1`, `Check-Pictures`,
+  `Review-Pictures`, `Make-DepthMaps`, `Make-Variants`, `Make-TrainingSet` (each `.ps1` with its `.cmd`).
 - Lists: `characters-01`, `02`, `03` (the varied people), `colonists` (your own people, with their pins),
   `backdrops`, and `style-test` (ten people with fixed seeds, to try a style change on before a big run).
 - Styles: `style-rimworld-people` and `style-rimworld-backdrops`.

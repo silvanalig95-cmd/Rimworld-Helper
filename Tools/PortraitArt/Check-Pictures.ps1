@@ -36,7 +36,11 @@
 #   body its kind doesn't have, a cut-out cut at the side). Update-PortraitLibrary.ps1 puts the lines marked yes and
 #   those marked ask into the records (the player, 23 November 2026: "the corrections awaiting approval should just be
 #   applied without approval ... I'd rather just later correct the image ingame once it actually appears"); ask only
-#   says the check was less sure, and a line you mark no is never applied. The yes lines count as done when comparing, and an issue marked no stays
+#   says the check was less sure, and a line you mark no is never applied. One "out" is marked hold: limbs that don't
+#   make sense (an extra arm, hand or finger, a hand belonging to no one, a limb growing from the wrong place; the
+#   player: "things like extra limbs should be blocked by default"); such a picture stays out of the game until you
+#   keep it in Review-Pictures.ps1, which shows each with what is wrong and marks its line no (kept) or yes (left out).
+#   The yes lines count as done when comparing, and an issue marked no stays
 #   out of the report. A later scan may change the check's own line for a picture and field when the model answers
 #   otherwise now (its value, and yes or ask by the rules; a no stays no for the same value). The corrections made in
 #   the game (the why "set in the game") are never changed and always win: no correction is written against them, and
@@ -100,6 +104,7 @@ eyes: normal, or glowing (and the colour)
 body: does the skin itself have scales or fur (not the clothes): none, scales or fur
 eye marks: none, or an eye patch, a missing eye or an artificial eye
 arms: normal, or an artificial arm: bionic, mechanical or prosthetic
+limbs: count the person's arms, hands and fingers. Write normal when nothing is wrong; otherwise say what is wrong: an extra arm or hand, a hand with six or more fingers, an arm or hand that belongs to no one, or a limb growing from the wrong place
 hands: what they hold in their hands, or nothing
 weapons: any weapon in the picture (sword, axe, spear, bow, gun, knife), or none
 armour: any armour they wear, or none
@@ -114,10 +119,13 @@ unusual: anything else unusual about the person, or none
 $LineVersions = [ordered]@{
     people = 3; sex = 3; age = 3; skin = 3; hair = 3; beard = 3; ears = 3; horns = 3; tail = 3; wings = 3; eyes = 3
     body = 3; eyemarks = 3; arms = 3; hands = 3; weapons = 3; armour = 3; magic = 3; headwear = 3; tools = 3; unusual = 3
+    # Added 23 November 2026 (the player: "the image tester should also check if there's extra limbs/hands that don't
+    # make sense"): asked once of every picture already checked, in the short form.
+    limbs = 1
 }
 
 # The answer's items, in the question's order (also checked.csv's columns), and the names a model may give them.
-$FieldKeys = @('people', 'sex', 'age', 'skin', 'hair', 'beard', 'ears', 'horns', 'tail', 'wings', 'eyes', 'body', 'eyemarks', 'arms', 'hands', 'weapons', 'armour', 'magic', 'headwear', 'tools', 'unusual')
+$FieldKeys = @('people', 'sex', 'age', 'skin', 'hair', 'beard', 'ears', 'horns', 'tail', 'wings', 'eyes', 'body', 'eyemarks', 'arms', 'limbs', 'hands', 'weapons', 'armour', 'magic', 'headwear', 'tools', 'unusual')
 $FieldNames = @{
     'people' = 'people'; 'persons' = 'people'; 'number of people' = 'people'; 'how many people' = 'people'; 'people count' = 'people'; 'figures' = 'people'
     'sex' = 'sex'; 'gender' = 'sex'
@@ -132,7 +140,8 @@ $FieldNames = @{
     'eyes' = 'eyes'; 'eye' = 'eyes'; 'glowing eyes' = 'eyes'; 'eye colour' = 'eyes'; 'eye color' = 'eyes'
     'body' = 'body'; 'scales or fur' = 'body'; 'scales' = 'body'; 'fur' = 'body'; 'fur or scales' = 'body'; 'skin covering' = 'body'
     'eye marks' = 'eyemarks'; 'eye mark' = 'eyemarks'; 'eyemarks' = 'eyemarks'; 'eye patch' = 'eyemarks'; 'marks' = 'eyemarks'
-    'arms' = 'arms'; 'arm' = 'arms'; 'artificial arms' = 'arms'; 'artificial limbs' = 'arms'; 'limbs' = 'arms'; 'prosthetics' = 'arms'
+    'arms' = 'arms'; 'arm' = 'arms'; 'artificial arms' = 'arms'; 'artificial limbs' = 'arms'; 'prosthetics' = 'arms'
+    'limbs' = 'limbs'; 'limb' = 'limbs'; 'extra limbs' = 'limbs'; 'arms hands and fingers' = 'limbs'; 'arms and hands' = 'limbs'; 'fingers' = 'limbs'; 'anatomy' = 'limbs'
     'hands' = 'hands'; 'hand' = 'hands'; 'in hands' = 'hands'; 'in their hands' = 'hands'; 'holding' = 'hands'; 'holds' = 'hands'; 'held' = 'hands'
     'weapons' = 'weapons'; 'weapon' = 'weapons'
     'armour' = 'armour'; 'armor' = 'armour'
@@ -330,7 +339,12 @@ function Read-Answer([string] $text, $keys = $null, [bool] $byNumber = $true) {
         if ($numbered.Count -ge $most) {
             for ($n = 1; $n -le $keys.Count; $n++) {
                 $key = $keys[$n - 1]
-                if (-not $found.ContainsKey($key) -and $numbered.ContainsKey($n)) { $found[$key] = ([string]$numbered[$n]).Trim().Trim([char[]]' ,;|/.-*') }
+                if ($found.ContainsKey($key) -or -not $numbered.ContainsKey($n)) { continue }
+                # A numbered line naming another item ("1. People: 1" in a whole form sent back to a short one) is not this one's.
+                $named = $null
+                if (([string]$numbered[$n]) -match '^\s*([^:]{1,40}):') { $named = Key-Of $Matches[1] }
+                if ($named -ne $null -and $named -ne $key) { continue }
+                $found[$key] = ([string]$numbered[$n]).Trim().Trim([char[]]' ,;|/.-*')
             }
         }
     }
@@ -550,6 +564,37 @@ function Arms-Of([string] $v, [string] $unusual) {
     return $r
 }
 
+# Kinds whose people have more than two arms of their own (none in the player's mods today; by their words).
+$ManyArmKinds = '(?i)four.?arm|six.?arm|multi.?arm'
+
+function Limbs-Of([string] $v) {
+    # Limbs that don't make sense, from the answer to "limbs" (the player, 23 November 2026: "the image tester should also
+    # check if there's extra limbs/hands that don't make sense, so these images can be filtered out as well"): an extra
+    # or doubled arm, hand or finger, two left or right hands, six or more fingers, three or more arms or hands, a limb
+    # floating or belonging to no one, one growing from the wrong place, a fused, mangled or malformed hand. Not: normal,
+    # none, the question's own choices repeated, "no extra ...", hands hidden or out of the picture, four fingers (a
+    # comic's hand may have four).
+    $r = @{ wrong = $false }
+    $t = Low $v
+    if ($t -eq '') { return $r }
+    $t = [regex]::Replace($t, 'an extra arm or hand, a hand with six or more fingers, an arm or hand that belongs to no one,? or a limb growing from the wrong place', ' ')
+    $t = [regex]::Replace($t, '\b(no|not|without|none of|neither|nor|nothing)\b\s+(an?\s+|any\s+|visible\s+|obvious\s+|apparent\s+)*(extra|additional|third|doubled?|duplicated?|floating|detached|malformed|deformed|fused|mangled|missing|wrong|odd|abnormal)[^,;.]*', ' ')
+    $limb = '(arms?|hands?|fingers?|limbs?|thumbs?|legs?|feet|foot)'
+    $bad = @(
+        ('\b(extra|additional|third|fourth|spare|duplicated?|doubled|too many|surplus|superfluous)\b[^.,;]{0,25}\b' + $limb + '\b'),
+        '\b(three|four|five|six|3|4|5|6)\s+(arms|hands)\b',
+        '\b(six|seven|eight|nine|ten|6|7|8|9|10)\s+fingers\b',
+        '\btwo (left|right) (hands|arms)\b',
+        ('\b(floating|detached|disembodied|stray|unattached|orphaned|unconnected)\b[^.,;]{0,20}\b' + $limb + '\b'),
+        '\b(belongs?|belonging|attached|connected) to (no one|nobody|no body|nothing|no person)\b',
+        '\bwrong place\b|\bgrow(s|ing)? (out )?(of|from) (the|his|her|their|its) (shoulder|chest|back|neck|head|side|hip|waist|stomach|belly)\b',
+        ('\b(fused|mangled|malformed|deformed|twisted|mutated|melted|merged|tangled|warped)\b[^.,;]{0,20}\b' + $limb + '\b'),
+        ('\b' + $limb + '\b[^.,;]{0,20}\b(fused|mangled|malformed|deformed|merged|melted)\b')
+    )
+    foreach ($b in $bad) { if ($t -match $b) { $r.wrong = $true; break } }
+    return $r
+}
+
 function Wing-Word([string] $v, $kinds) {
     # The wings look (Rimfolk's PortraitLookDefs, from docs/portrait-art/catalogue/looks.csv) for the wings the model saw,
     # and whether its words make it plain (bat, feathered, dragon, a single malformed wing, glider membranes) or not
@@ -708,6 +753,7 @@ function Seen-Says($seen) {
         }
     }
     if ((Arms-Of $seen.arms '').artificial) { [void]$parts.Add('arms: ' + (Short $seen.arms)) }
+    if ((Limbs-Of $seen.limbs).wrong) { [void]$parts.Add('limbs: ' + (Short $seen.limbs)) }
     $e = Ears-Of $seen.ears
     if ($e.pointed -or $e.long) { [void]$parts.Add('ears: ' + (Short $seen.ears)) }
     if ((Glow-Of $seen.eyes) -eq 'yes') { [void]$parts.Add('eyes: ' + (Short $seen.eyes)) }
@@ -765,6 +811,13 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked, $side = $nul
         $fix = 'left out of the records'
         if ($cut) { $fix = 'left out of the records (the cut-out holds all of them)' }
         Add-Issue $issues 1 ('{0} people in the picture' -f $people) $fix 'out' '' 'yes'
+    }
+    # Limbs that don't make sense: held back, out of the game until the player keeps it (the player, 23 November 2026:
+    # "these should be flagged for checking! ... while i approved that most corrections can be applied right away,
+    # things like extra limbs should be blocked by default"). Review-Pictures shows it with Keep and Leave out.
+    $manyArms = @($rec.kinds | Where-Object { [string]$_ -match $ManyArmKinds }).Count -gt 0 -or (Low $asked) -match '\b(four|six|extra|multiple|many) arms\b'
+    if ((Limbs-Of $seen.limbs).wrong -and -not $manyArms) {
+        Add-Issue $issues 1 ('limbs that don''t make sense: {0}' -f (Short $seen.limbs)) 'held back: it stays out of the game until you keep it; Review-Pictures shows it, with Keep and Leave out' 'out' '' 'hold'
     }
     $sex = Sex-Of $seen.sex
     # A baby's or toddler's sex can't be told from a painting (the model called a baby girl a man): not compared.
@@ -2030,8 +2083,9 @@ try {
                 [void]$touched.Add($own)
                 [void]$notes.Add((Corr-Text $own 'changed')); [void]$kept.Add($i); continue
             }
-            # One out line for a picture is enough: another reason's, not answered no, is already there.
-            if ($i.field -eq 'out') {
+            # One out line for a picture is enough: another reason's, not answered no, is already there. A hold (limbs that
+            # don't make sense) always gets its own, so keeping the picture for another reason still leaves it held.
+            if ($i.field -eq 'out' -and $i.apply -ne 'hold') {
                 $other = $null
                 foreach ($c in $mine) { if ($c.field -eq 'out' -and $c.apply -ne 'no') { $other = $c; break } }
                 if ($other -ne $null) { [void]$notes.Add((Corr-Text $other 'already there')); [void]$kept.Add($i); continue }
@@ -2103,11 +2157,14 @@ try {
     }
     if ($count[5] -gt 0) { Write-Host ('{0} the model sees otherwise than set in the game: the game''s setting is kept (check-report.csv, 5 set in the game).' -f (Count-Of $count[5] 'picture' 'pictures')) }
     $yesNew = @($newLines | Where-Object { $_.apply -eq 'yes' }).Count
+    $holdNew = @($newLines | Where-Object { $_.apply -eq 'hold' }).Count
     $askAll = @(@($corrections) + @($newLines) | Where-Object { $_.apply -eq 'ask' }).Count
-    if ($newLines.Count -gt 0) { Write-Host ('{0} written to {1}: {2} marked yes, {3} marked ask.' -f (Count-Of $newLines.Count 'new correction' 'new corrections'), $correctionsFile, $yesNew, ($newLines.Count - $yesNew)) }
+    $holdAll = @(@(@($corrections) + @($newLines) | Where-Object { $_.apply -eq 'hold' }) | ForEach-Object { (Low $_.picture) } | Select-Object -Unique).Count
+    if ($newLines.Count -gt 0) { Write-Host ('{0} written to {1}: {2} marked yes, {3} marked ask, {4} marked hold.' -f (Count-Of $newLines.Count 'new correction' 'new corrections'), $correctionsFile, $yesNew, ($newLines.Count - $yesNew - $holdNew), $holdNew) }
     if ($changedLines -gt 0) { Write-Host ('{0} of the check''s own changed: the model answers otherwise now (marked "changed" in check-report.csv).' -f (Count-Of $changedLines 'correction' 'corrections')) }
     if ($leftOut -gt 0) { Write-Host ('{0} left out by corrections.csv (out, yes).' -f (Count-Of $leftOut 'picture is' 'pictures are')) }
     if ($askAll -gt 0) { Write-Host ('{0} marked ask (the check was less sure): applied all the same; correct a picture in the game ("About this picture") when you see it, or mark a line no.' -f (Count-Of $askAll 'correction is' 'corrections are')) }
+    if ($holdAll -gt 0) { Write-Host ('{0} held back (limbs that don''t make sense): out of the game until you keep it. Review-Pictures.cmd shows each with what is wrong, and Keep or Leave out.' -f (Count-Of $holdAll 'picture is' 'pictures are')) -ForegroundColor Yellow }
     $cutOuts = @($pictures | Where-Object { $_.cut }).Count
     if ($sidesRead -eq 0 -and $compared -gt 0 -and $cutOuts -gt 0) { Write-Host 'The side check could not read the pictures here (it needs Windows), so only the model''s check was made.' -ForegroundColor Yellow }
     Write-Host 'Run Update-PortraitLibrary.ps1 (Copy-ToLibrary.cmd runs it too) to put the corrections (yes and ask) into the records,'
