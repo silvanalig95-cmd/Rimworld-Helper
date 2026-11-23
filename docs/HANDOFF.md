@@ -781,6 +781,13 @@ most sense." So, in this order, three builds at a time:
   pictures before anyone's), makes and records them as variants of that file (`variantOf`), so any person given the
   picture later, in any save, a visitor too, gets the variant that fits them; a variant wanted but not yet made shows
   the plain picture as now.
+  Go given (23 November 2026, the player: "yes, please go ahead with all! it's also important that a variant is then
+  marked as done once it's created and in the game, not that it will get created over and over. unless I delete the
+  variant through the ingame about screen. the about screen should also clearly mark what is special about a certain
+  variant and when it becomes active"); with "About this picture" and the check asking only what it hasn't, given to two
+  helpers (the game, the scripts) with one contract: variants-wanted.csv's columns and words, the variant files'
+  names (`_v-<word>`, `-2` past a deleted name), the records (`variant`, `variantOf`, the mark and a new `side`), done
+  = in the library.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library sorted by
   kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
   race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks
