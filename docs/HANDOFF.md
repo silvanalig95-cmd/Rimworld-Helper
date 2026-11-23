@@ -729,6 +729,13 @@ most sense." So, in this order, three builds at a time:
   applied to it. For example, if the pawn is bleeding, the image should kind of have a bloody effect. If they're super
   stressed, it should have like a stressed out effect. If they are sick or infected ... we can, I think, experiment a
   lot with visuals that are applied to, over, the image that is in the corner. Just add more layers and immersion."
+  The list sent: bleeding (red at the edges, pulsing, by blood loss), pain or badly hurt (colour drained, a red rim),
+  stress near a break (a dark edge closing in, a slight tremble; a harsher tint during a break), sick or infected (a
+  sickly tint, a sweaty sheen), cold (frost from the corners), heatstroke (a warm haze), exhausted (heavier shadows,
+  slower), drunk or high (a wobble, drifting colours), starving (washed out), unconscious (dimmed). The player: "So the
+  effects all look good, but unconscious eyes closed. How exactly is it supposed to see which eyes are closed?" Answered:
+  closed eyes (and blinks and expressions) need the picture's painted expressions (Make-Variants); without them the
+  unconscious are dimmed only. Asked whether to start building.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library sorted by
   kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
   race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks

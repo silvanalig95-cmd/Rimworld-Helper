@@ -16656,8 +16656,14 @@ backdrop's softening, the line round the person, the tint), `BackdropMath.cs` (t
     Vanilla Quests Expanded's), an unknown biome by its warmth, rain, plants and whether it is extreme, in vacuum or
     underground; under a natural rock roof a cave; a group with no backdrop its near groups'. No map (a caravan, the
     world), or nothing fits: a plain painted ground; with none, the portrait's own.
+  - *When it is chosen* (the player, 23 November 2026: "It should just, when I click the pawn, it should look in which room
+    it is, take that background, and only refresh the background once I kind of click away and click back to the same
+    pawn. It doesn't have to be a real time update."): where they are and the light are read when the large portrait
+    starts showing the person, and kept while it goes on showing them (a room changed at speed changes nothing); read
+    again the next time it shows them after someone else or nothing (`PortraitLifeMath.NewShowing`). The weather and a
+    fire's light for the backdrop alive go on for the place the backdrop shows. (Not released yet.)
   - *Day and night*: the light where they stand (the game's ground glow) in four steps (daylight, dusk, dim, dark), each
-    darker and a little cooler; a step changes only once the light is clearly past its edge.
+    darker and a little cooler; read with the backdrop, when the person is first shown.
   - *Looked at again* only when the person's room, map or the light's step changes, at most every two seconds; what is in
     a room read when the room changes and every half minute.
   - *The drawing*, as the settings say, made once per person, picture, backdrop, size, settings and step of light: the

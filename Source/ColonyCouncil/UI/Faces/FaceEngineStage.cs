@@ -18,8 +18,8 @@ namespace ColonyCouncil
     /// it, while "Backdrop behind the game's own drawing too" is on (<see cref="DrawGameStaged"/>); the portrait stays
     /// square.</item>
     /// <item>The backdrop by the room's kind, the colony's age and what is in the room, or the land outdoors
-    /// (<see cref="Backdrops"/>); looked at again only when the person's room, map or the light's step changes, at most
-    /// every two seconds.</item>
+    /// (<see cref="Backdrops"/>); chosen when the portrait starts showing the person and kept while it goes on showing them
+    /// (a room changed at speed doesn't change it), chosen again the next time they are shown.</item>
     /// <item>Made once per person, picture, backdrop, size, settings and step of light, on a worker thread from the small
     /// pictures already loaded (<see cref="PortraitComposeMath"/>), and kept as textures (the backdrop, and the person
     /// with the line round them), so each frame only draws them; the person breathes and sways in front of a backdrop that
@@ -88,6 +88,10 @@ namespace ColonyCouncil
             public PortraitWeather weather;
             public bool hearth;
             public int seed;
+            /// <summary>The frame the large portrait last showed this person, so a new showing can be told from one going on.</summary>
+            public int shownFrame = -10;
+            /// <summary>Where they were when the backdrop was chosen, for the backdrop alive while it is kept.</summary>
+            public BackdropWhere where;
         }
 
         private sealed class StageParts
@@ -272,8 +276,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// Where the person is and the light, looked at again at most every two seconds; the backdrop chosen again only when
-        /// where they are changes; the weather and a fire's light for the backdrop alive read with them.
+        /// Where the person is and the light, read when the large portrait starts showing them, and the backdrop chosen then;
+        /// both kept while it goes on showing them, read again only the next time it shows them after showing someone else
+        /// or nothing (the player, 23 November 2026: "It should just, when I click the pawn, it should look in which room it
+        /// is, take that background, and only refresh the background once I kind of click away and click back to the same
+        /// pawn. It doesn't have to be a real time update."). The weather and a fire's light for the backdrop alive go on
+        /// being read, at most every two seconds, for the place the backdrop shows.
         /// </summary>
         private static StageLook StageLookOf(Pawn p)
         {
@@ -284,23 +292,30 @@ namespace ColonyCouncil
                 look = new StageLook();
                 stageLooks[p.thingIDNumber] = look;
             }
-            if (now < look.until) return look;
+            int frame = Time.frameCount;
+            bool fresh = PortraitLifeMath.NewShowing(look.shownFrame, frame) || look.where == null;
+            look.shownFrame = frame;
+            if (!fresh && now < look.until) return look;
             look.until = now + StageLookEvery;
             try
             {
-                var where = Backdrops.WhereOf(p, out float glow);
-                look.step = PortraitPictureMath.LightStep(glow, look.step);
-                string wk = where.Key;
-                if (wk != look.whereKey)
+                if (fresh)
                 {
-                    look.whereKey = wk;
-                    look.backdrop = Backdrops.For(where, out var choice);
-                    look.backRecord = Backdrops.RecordAt(choice);
-                    look.depth = look.backdrop != null ? Backdrops.DepthAt(choice) : null;
-                    look.seed = where.seed;
-                    Backdrops.Note(where, where.seed);
+                    var where = Backdrops.WhereOf(p, out float glow);
+                    look.step = PortraitPictureMath.LightStep(glow, -1);
+                    look.where = where;
+                    string wk = where.Key;
+                    if (wk != look.whereKey)
+                    {
+                        look.whereKey = wk;
+                        look.backdrop = Backdrops.For(where, out var choice);
+                        look.backRecord = Backdrops.RecordAt(choice);
+                        look.depth = look.backdrop != null ? Backdrops.DepthAt(choice) : null;
+                        look.seed = where.seed;
+                        Backdrops.Note(where, where.seed);
+                    }
                 }
-                LookAlive(p, where, look);
+                LookAlive(p, look.where, look);
             }
             catch (Exception e)
             {

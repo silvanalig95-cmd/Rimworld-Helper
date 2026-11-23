@@ -36,6 +36,16 @@ public static class PortraitLifeTests
         string src = Path.Combine(root, "Source", "ColonyCouncil");
         string Read(string rel) => File.Exists(Path.Combine(src, rel)) ? File.ReadAllText(Path.Combine(src, rel)) : "";
 
+        // ---------------- The backdrop kept while a person is shown ----------------
+        // (the player: "only refresh the background once I kind of click away and click back to the same pawn")
+        C(PortraitLifeMath.NewShowing(-10, 100) && PortraitLifeMath.NewShowing(50, 100) && !PortraitLifeMath.NewShowing(99, 100)
+            && !PortraitLifeMath.NewShowing(98, 100) && PortraitLifeMath.NewShowing(97, 100) && PortraitLifeMath.NewShowing(500, 100),
+            "a person shown frame after frame is the same showing; after a gap of a few frames, a new one");
+        string stageKept = Read(Path.Combine("UI", "Faces", "FaceEngineStage.cs"));
+        C(stageKept.Contains("PortraitLifeMath.NewShowing(look.shownFrame, frame)") && stageKept.Contains("if (fresh)")
+            && stageKept.Contains("LookAlive(p, look.where, look)"),
+            "the large portrait reads where they are and chooses the backdrop only when it starts showing them");
+
         // ---------------- Depth that follows the mouse ----------------
         C(PortraitLifeMath.StrengthOf(PortraitDepthMode.Off) == 0f && PortraitLifeMath.StrengthOf(PortraitDepthMode.Subtle) > 0f
           && PortraitLifeMath.StrengthOf(PortraitDepthMode.Stronger) > PortraitLifeMath.StrengthOf(PortraitDepthMode.Subtle), "off moves nothing, stronger more than subtle");

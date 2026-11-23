@@ -580,9 +580,9 @@ public static class PortraitStageTests
         C(stage.Contains("PortraitGpu.Read(pic.texture, w, h, Vector2.one, Vector2.zero)") && !stage.Contains("CropFor") && stage.Contains("new Rect(-side / local.width, -below / ph, 1f + 2f * side / local.width, 1f + below / ph)")
           && store.Contains("PortraitPictureMath.SolidFoot(small, nw, nh);"),
             "the whole picture, nothing cropped; its foot row carried on below the portrait's edge, and the body made solid at the picture's foot when it loads");
-        C(stage.Contains("StageLookEvery = 2f") && stage.Contains("Backdrops.WhereOf(p, out float glow)") && stage.Contains("PortraitPictureMath.LightStep(glow, look.step)")
+        C(stage.Contains("StageLookEvery = 2f") && stage.Contains("Backdrops.WhereOf(p, out float glow)") && stage.Contains("PortraitPictureMath.LightStep(glow, -1)")
           && stage.Contains("PortraitStore.Run(") && stage.Contains("staged.Find(s => s.key == key)") && stage.Contains("StagedMost = 4"),
-            "the backdrop looked at again at most every two seconds; the picture made once on a worker and kept by its key; each frame only drawn");
+            "the backdrop and the light read when a person is first shown and kept while they are; the picture made once on a worker and kept by its key; each frame only drawn");
         C(backdrops.Contains("map.glowGrid.GroundGlowAt(pos)") && backdrops.Contains("room.PsychologicallyOutdoors") && backdrops.Contains("roof.isNatural") && backdrops.Contains("Avail.EffectiveTech")
           && backdrops.Contains("Peoples.TechOf(owner)") && backdrops.Contains("RoomFor = 30f"), "where a person is: the room, its role and things, the colony's age (or the map's people's), the land, the rock roof, the light");
         string settings = Read("CouncilSettings.cs");

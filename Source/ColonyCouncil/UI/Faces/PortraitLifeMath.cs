@@ -346,6 +346,12 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// Whether the large portrait is showing a person anew (not shown the frame before or the one before that): its
+        /// backdrop and light are read then, and kept while it goes on showing them.
+        /// </summary>
+        public static bool NewShowing(int lastShownFrame, int frame) => frame - lastShownFrame > 2 || frame < lastShownFrame;
+
+        /// <summary>
         /// How strongly each expression is laid over the picture while one fades into another: the one before whole (or, fading
         /// back to the plain picture, going), the one now as far as it has come.
         /// </summary>
