@@ -716,6 +716,15 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the painted portrait
+  on the starting pawns screen.** The player: "when you start a new colony now in game, you select your pawns at first,
+  kind of to get prepared. Could we include the image of the pawn already there? That would be lovely. It would provide
+  another level of immersion right from the beginning." The proposal: on the game's "Create characters" page
+  (Page_ConfigureStartingPawns), the selected pawn's painted portrait beside the game's own drawing (the same picture
+  the large portrait shows, with its backdrop if room allows); a pick made there is a trial: it is held only while that
+  pawn is on the page, let go when the pawn is randomized again or removed, and kept for good (the colony's own) when
+  the game starts; "Choose another picture" on a right-click there too; no picture where the library has none for that
+  pawn (the usual rules); a setting is not needed (the portraits setting covers it).
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): matching, the check,
   training flags, cut-off sides.** The player: "I always want to make sure if anything is cut off, it's just from the
   bottom ... not from the side"; the picture check "really sensitized for this new art style ... especially in regard to
