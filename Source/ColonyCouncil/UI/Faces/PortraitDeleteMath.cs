@@ -278,7 +278,8 @@ namespace ColonyCouncil
 
         // ---------------- deleted.csv ----------------
 
-        private static string Quote(string v, char delim)
+        /// <summary>A CSV cell: in quotes (its own doubled) where it holds the separator, a quote or a line break.</summary>
+        public static string Quote(string v, char delim)
         {
             v ??= "";
             return v.IndexOfAny(new[] { delim, '"', '\n', '\r' }) >= 0 ? "\"" + v.Replace("\"", "\"\"") + "\"" : v;

@@ -61,7 +61,7 @@ key-art look, described in words (no picture of the game's is copied or fed in):
 | hair | bald, buzzed, short, medium, long, braids, tied, bun, topknot, mohawk, curly, dreadlocks |
 | face hair | none, stubble, short beard, full beard, moustache, goatee |
 | features | from the kind: pointed ears, long ears, fins, frills, horns, tusks, snout, fur, scales, gills, glowing eyes, markings, extra eyes ... |
-| marks | lost eye, eye patch, bionic eye, scar, burn, missing ear (the game reads these from the body; a missing arm and a face tattoo are proposed: `catalogue/marks.csv`) |
+| marks | lost eye, eye patch, bionic eye, scar, burn, missing ear, bionic arm (any artificial arm or hand: bionic, archotech, prosthetic, a power claw, a mod's) (the game reads these from the body; a missing arm and a face tattoo are proposed: `catalogue/marks.csv`) |
 | looks | the catalogue's look words (`catalogue/looks.csv`): faces and bearing from traits, A RimWorld of Magic's classes, psycasters, implants, genes that show, and the special looks (conjoined, wings, extra limbs, ghouls, the undead) |
 | role | scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer (the game reads it from the adult backstory, else the best skill with a passion; none for children; `catalogue/roles.csv` has what shows each in the four ages of dress) |
 | expression | calm, warm, stern, weary, wary, proud, cheerful, grim |
@@ -80,6 +80,16 @@ also allow some variety ... give character ... more fitting to the pawn and the 
 from the person: their traits, work and bearing (a guarded scout with arms crossed and a sidelong look, a calm surgeon
 with hands clasped, a warrior with a sword on the shoulder); it goes in the batch list's `pose` column. Hands show now
 and FLUX gets some wrong: those pictures are thrown out.
+
+What the game holds a picture to (Rimfolk's matcher; DESIGN.md, "Portraits: the same age and skin, the hair's colour
+first, a bionic arm, and keeping a picture for training"; the player, 23 November 2026: "the race, xenotype, the gender,
+also I would say the skin color and age ... always have to match the pawn for sure. And if there's no image with this
+combination available for the pawn, then it should just take no image"): the kind (race and xenotype), the sex, the age
+band (the person's own, of the nine) and the skin (the same tone of eight by lightness, or the next; a skin no human
+grows only one of a near colour), else no picture; marks, looks and roles only for those who have them. Of the
+pictures left, the hair's colour counts most (the player, the same day: "it should prioritize the same hair color"),
+never a hard rule. So every kind needs pictures in every age band and skin tone it shows in the game, each in the
+common hair colours.
 
 ## Pillar 3: the kinds (any race or xenotype, including ones not met yet)
 
@@ -117,7 +127,7 @@ they look like ... science ... a scientist ... soldiers being soldiers".
   would need) before any showy one, varied in face, expression, hair, build and bearing.
 - **A look or a role only for those who have it**: the game gives a picture with a look (a pyromaniac's lit match, a fire
   mage's flame, a brawler's taped knuckles) or a role (a soldier's rifle, a scholar's book) only to people who have that
-  trait, class, condition, gene or role; plain pictures go to anyone of their kind, sex and age.
+  trait, class, condition, gene or role; plain pictures go to anyone of their kind, sex, age band and skin tone.
 - **Special looks both ways**: conjoined twins, wings, extra limbs and the like only get pictures made for them, and
   those pictures go to no one else.
 - **Range**: within a row's real characteristics the subject can be eccentric, funny, intense, shy, proud, weathered or

@@ -25,13 +25,13 @@
   <CC_Settings_PortraitsMove_Tip>The large portrait at the inspect pane and the one on the colonist card breathe and sway a little, always facing the front. They hold still while the game is paused. The small portraits in lists never move.</CC_Settings_PortraitsMove_Tip>
   <CC_SetNote_PortraitsMove>The large portraits breathe and sway a little; still while paused.</CC_SetNote_PortraitsMove>
   <CC_Settings_PortraitLibrary>Painted portraits from the library</CC_Settings_PortraitLibrary>
-  <CC_Settings_PortraitLibrary_Tip>Portraits show a painted picture from the library where one may stand for the person: a picture made for that colonist (pinned to them by name), else the one closest to how they look (their kind, sex, age, skin, hair colour and length, beard, build and the age of their clothes). The picture is chosen the first time it is needed and kept for good: injuries, a new haircut or new clothes don't change it. A child gets a new one when they grow into the next stage (a baby, a toddler, a child, a grown-up). Right-click the large portrait to choose another picture. A race or xenotype with no pictures of its own keeps the game's own face, never another kind's picture, so you can see which kinds still need pictures (they are listed in missing.csv in your library folder). A colonist's picture is never given to anyone else. The pictures come from the player's own pack of painted portraits; the library is empty until it is added. Off, every portrait is the game's own face.</CC_Settings_PortraitLibrary_Tip>
+  <CC_Settings_PortraitLibrary_Tip>Portraits show a painted picture from the library where one may stand for the person: a picture made for that colonist (pinned to them by name), else the one closest to how they look (skin, hair colour and length, beard, build and the age of their clothes). A picture is always of their own kind, sex and age band, with a skin of the same or the next tone (an unusual skin, such as green or blue, only one of a near colour); where the library has none, they keep the game's own face. The picture is chosen the first time it is needed and kept for good: injuries, a new haircut or new clothes don't change it. A child gets a new one when they grow into the next stage (a baby, a toddler, a child, a grown-up). Right-click the large portrait to choose another picture. A race or xenotype with no pictures of its own keeps the game's own face, never another kind's picture, so you can see which kinds still need pictures (they are listed in missing.csv in your library folder). A colonist's picture is never given to anyone else. The pictures come from the player's own pack of painted portraits; the library is empty until it is added. Off, every portrait is the game's own face.</CC_Settings_PortraitLibrary_Tip>
   <CC_SetNote_PortraitLibrary>Portraits show a painted picture for each person, chosen once and kept.</CC_SetNote_PortraitLibrary>
   <CC_SetLabel_PortraitPick>Portraits from the library</CC_SetLabel_PortraitPick>
-  <CC_SetTip_PortraitPick>Which people get a painted picture. "The closest": everyone the library has a picture for that may stand for them (their own kind, the same sex, a near age), even if it doesn't look much like them. "Only close ones": only where a picture looks close to them; the rest keep the game's own face. Pictures pinned to a colonist and pictures chosen by hand show either way.</CC_SetTip_PortraitPick>
+  <CC_SetTip_PortraitPick>Which people get a painted picture. "The closest": everyone the library has a picture for that may stand for them (their own kind, sex, age band and skin tone), even if it doesn't look much like them. "Only close ones": only where a picture looks close to them; the rest keep the game's own face. Pictures pinned to a colonist and pictures chosen by hand show either way.</CC_SetTip_PortraitPick>
   <CC_PortraitPick_Closest>The closest</CC_PortraitPick_Closest>
   <CC_PortraitPick_OnlyClose>Only close ones</CC_PortraitPick_OnlyClose>
-  <CC_SetNote_PortraitPick_Closest>Everyone gets the picture closest to their looks, of their own kind and sex and a near age.</CC_SetNote_PortraitPick_Closest>
+  <CC_SetNote_PortraitPick_Closest>Everyone gets the picture closest to their looks, of their own kind, sex, age band and skin tone.</CC_SetNote_PortraitPick_Closest>
   <CC_SetNote_PortraitPick_OnlyClose>Only pictures that look close to the person are shown; the others keep the game's own face.</CC_SetNote_PortraitPick_OnlyClose>
   <CC_SetLabel_PortraitShare>Strangers may share a picture</CC_SetLabel_PortraitShare>
   <CC_SetTip_PortraitShare>A painted picture of one of your people (colonists, slaves, prisoners) is theirs alone, and a faction leader's, a titled noble's or one of the colony's named contacts' is theirs alone while they live. Everyone else (raiders, traders, visitors, guests) gets a picture nobody holds where there is one. This says whether they may get one another stranger already holds when none is free. "Never": no, they keep the game's own drawing. "When not seen together": only while the stranger holding it is on no map, and if two with the same picture meet on the maps, the one who got it later gets another or the game's drawing. "Always": yes, for a small library. Pictures of a special look (conjoined twins, wings) may always be shared among strangers.</CC_SetTip_PortraitShare>
@@ -79,7 +79,7 @@
   <CC_PortraitFolder_Missing>{COUNT} pictures named in records.xml are not in the folder and are left out.</CC_PortraitFolder_Missing>
   <CC_PortraitFolder_Alive>Also {FACES} expressions of those portraits (eyes closed, a smile, a frown, pain) and {DEPTHS} depth maps of the backdrops, for the large portrait.</CC_PortraitFolder_Alive>
   <CC_PortraitNeed_NoKind>no pictures of their kind</CC_PortraitNeed_NoKind>
-  <CC_PortraitNeed_NoStage>none of their sex and age</CC_PortraitNeed_NoStage>
+  <CC_PortraitNeed_NoStage>none of their sex, age and skin tone</CC_PortraitNeed_NoStage>
   <CC_PortraitNeed_NoneClose>none close to their looks</CC_PortraitNeed_NoneClose>
   <CC_PortraitNeed_GameFace>the game's own drawing</CC_PortraitNeed_GameFace>
   <CC_PortraitNeed_NoRoom>no backdrop of this kind of room</CC_PortraitNeed_NoRoom>
@@ -111,7 +111,7 @@
 
   <!-- The large portrait at the inspect pane -->
   <CC_Portrait_Tip>{PAWN_nameDef}: click for their card.</CC_Portrait_Tip>
-  <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture or delete one for good.</CC_Portrait_TipLibrary>
+  <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture, keep one for training or delete one for good.</CC_Portrait_TipLibrary>
   <CC_Portrait_GripTip>Drag to make the portrait larger or smaller.</CC_Portrait_GripTip>
   <CC_Portrait_ChooseAnother>Choose another picture</CC_Portrait_ChooseAnother>
   <CC_Portrait_ChooseEmpty>the library has no pictures</CC_Portrait_ChooseEmpty>
@@ -119,6 +119,20 @@
   <CC_Portrait_ChooseNoneShort>no picture fits them</CC_Portrait_ChooseNoneShort>
   <CC_Portrait_ChooseNone>No other painted picture fits {PAWN_nameDef}.</CC_Portrait_ChooseNone>
   <CC_Portrait_ChooseDone>{PAWN_nameDef} now has another painted picture ({AT} of {OF}), kept from now on.</CC_Portrait_ChooseDone>
+
+  <!-- Keeping a picture for training (UI/Faces/PortraitTraining.cs) -->
+  <CC_Portrait_Train>Keep for training</CC_Portrait_Train>
+  <CC_Portrait_TrainNoPicture>only a painted picture of a person, not the game's drawing or a backdrop</CC_Portrait_TrainNoPicture>
+  <CC_Portrait_TrainNoFolder>the library folder has no folder above it for the training folder</CC_Portrait_TrainNoFolder>
+  <CC_Portrait_TrainBusy>the last one is still being copied</CC_Portrait_TrainBusy>
+  <CC_Portrait_TrainKept>already kept for training</CC_Portrait_TrainKept>
+  <CC_Portrait_TrainGone>{NAME} is no longer in the library, so nothing was kept.</CC_Portrait_TrainGone>
+  <CC_Portrait_Trained>Kept {FILE} for training: copied into {WHERE} beside the library folder and listed in training.csv there. The picture stays in the library.</CC_Portrait_Trained>
+  <CC_Portrait_TrainedAlready>{FILE} is already listed in training.csv, so nothing was copied.</CC_Portrait_TrainedAlready>
+  <CC_Portrait_TrainFailed>Could not keep {FILE} for training: {WHY}. Nothing was changed. A cloud drive may be holding the file for a moment; try again shortly.</CC_Portrait_TrainFailed>
+  <CC_Portrait_TrainWhyNoFile>the picture is no longer in the library folder</CC_Portrait_TrainWhyNoFile>
+  <CC_Portrait_TrainWhyCopy>it could not be copied ({ERROR})</CC_Portrait_TrainWhyCopy>
+  <CC_Portrait_TrainWhyList>training.csv could not be read or written ({ERROR})</CC_Portrait_TrainWhyList>
 
   <!-- Deleting a picture for good (UI/Faces/PortraitDelete.cs) -->
   <CC_Portrait_Delete>Delete this picture for good...</CC_Portrait_Delete>

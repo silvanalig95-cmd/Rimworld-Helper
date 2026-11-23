@@ -154,7 +154,9 @@ namespace ColonyCouncil
         private static string HueWord(PortraitColour c)
         {
             PortraitLibraryMath.Hsv(c, out float h, out float s, out float v);
-            if (s < 0.12f) return v < 0.15f ? "black" : v > 0.85f ? "white" : "grey";
+            // Nearly black is black whatever its tint (the game's ink black skin has a little blue in it).
+            if (v < 0.15f) return "black";
+            if (s < 0.12f) return v > 0.85f ? "white" : "grey";
             if (h < 20f || h >= 340f) return "red";
             if (h < 45f) return "orange";
             if (h < 70f) return "yellow";

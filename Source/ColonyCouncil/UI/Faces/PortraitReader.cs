@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using RimWorld;
 using UnityEngine;
 using Verse;
@@ -22,7 +23,7 @@ namespace ColonyCouncil
     /// kind (rags, armour, robes, fine, work), and headgear where the setting shows it;</item>
     /// <item>features from their active genes' words (ears, horns, tusks, fur, scales, gills, glowing eyes, markings, a
     /// tail, a snout), each gene read once;</item>
-    /// <item>marks from their health: a lost eye or ear, a bionic eye, a scar or a burn on the head;</item>
+    /// <item>marks from their health: a lost eye or ear, a bionic eye, a scar or a burn on the head, an artificial arm or hand;</item>
     /// <item>their looks (phase 5: <see cref="PortraitLooks"/>, from their traits, genes, hediffs and body) and their work
     /// (<see cref="RoleOf"/>: their grown-up backstory where it names one, else the colony's leader or a titled noble, a
     /// moral guide, else their best skill with a passion; none for a child).</item>
@@ -375,7 +376,11 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>The marks their body carries on the head: a lost eye or ear, a bionic eye, a scar or a burn.</summary>
+        /// <summary>
+        /// The marks their body carries: on the head a lost eye or ear, a bionic eye, a scar or a burn; an artificial arm or
+        /// hand (bionicArm: an added part, a bionic, archotech or prosthetic one or a mod's, on an arm, a shoulder or a hand
+        /// or a part of one, <see cref="ArmPart"/>).
+        /// </summary>
         private static void Marks(Pawn p, PortraitLook l)
         {
             var hediffs = p.health?.hediffSet?.hediffs;
@@ -392,9 +397,10 @@ namespace ColonyCouncil
                     if (eye) l.marks.Add("lostEye");
                     else if (ear) l.marks.Add("missingEar");
                 }
-                else if (h is Hediff_AddedPart)
+                else if (h is Hediff_AddedPart || h.def?.addedPartProps != null)
                 {
                     if (eye) l.marks.Add("bionicEye");
+                    else if (ArmPart(part)) l.marks.Add("bionicArm");
                 }
                 else if (h is Hediff_Injury && h.IsPermanent() && (eye || ear || part.IsInGroup(BodyPartGroupDefOf.FullHead) || part.IsInGroup(BodyPartGroupDefOf.UpperHead)))
                 {
@@ -402,6 +408,25 @@ namespace ColonyCouncil
                     l.marks.Add(burn ? "burn" : "scar");
                 }
             }
+        }
+
+        private static readonly Dictionary<BodyPartDef, bool> armParts = new Dictionary<BodyPartDef, bool>();
+
+        /// <summary>
+        /// A body part that is an arm, a shoulder or a hand, or whose parent is one (a finger on a hand): by its def's name,
+        /// label or the game's tags for the limbs that handle things (<see cref="PortraitLibraryMath.ArmPart"/>), so a mod's
+        /// body counts as well; each part's def read once.
+        /// </summary>
+        private static bool ArmPart(BodyPartRecord part) => IsArm(part.def) || part.parent?.def != null && IsArm(part.parent.def);
+
+        private static bool IsArm(BodyPartDef d)
+        {
+            if (!armParts.TryGetValue(d, out bool arm))
+            {
+                arm = PortraitLibraryMath.ArmPart(PortraitLibraryMath.Tokens(d.defName, d.label), d.tags?.Select(t => t?.defName));
+                armParts[d] = arm;
+            }
+            return arm;
         }
     }
 }

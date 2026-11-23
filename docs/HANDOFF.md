@@ -780,8 +780,11 @@ most sense." So, in this order, three builds at a time:
   pawn is on the page, let go when the pawn is randomized again or removed, and kept for good (the colony's own) when
   the game starts; "Choose another picture" on a right-click there too; no picture where the library has none for that
   pawn (the usual rules); a setting is not needed (the portraits setting covers it).
-- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): matching, the check,
-  training flags, cut-off sides.** The player: "I always want to make sure if anything is cut off, it's just from the
+- **Go given (23 November 2026, the player: "your proposal ... could please go ahead"); points 1, 2, 3 and 5 built, not
+  released (point 4, the check and the cut-off sides, and the training script are the portrait scripts'): matching, the
+  check, training flags, cut-off sides.** The entry "The same age and skin, the hair's colour first, a bionic arm,
+  keeping a picture for training" above the newest release line says what was built (with the hair's colour first,
+  asked the same day). The player: "I always want to make sure if anything is cut off, it's just from the
   bottom ... not from the side"; the picture check "really sensitized for this new art style ... especially in regard to
   age and race. And it should really rely first on the data that is already provided kind of by the CSV files ... I'm
   afraid that Gwen just considers most people to be like human ... and that it overrides the races ... certain aspects
@@ -1539,6 +1542,75 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The same age and skin, the hair's
+  colour first, a bionic arm, keeping a picture for training** (23 November 2026; the player: "the race, xenotype, the
+  gender, also I would say the skin color and age ... always have to match the pawn for sure. And if there's no image
+  with this combination available for the pawn, then it should just take no image"; special things in a picture (a
+  bionic arm, magic) only for pawns who have them; "maybe I can right click and then already flag for training ... or
+  it's get copied to a special location from which I can take the image to further train the model later"; the go:
+  "your proposal ... could please go ahead"; and the same day, go given: "the image selection should also lean more
+  heavily towards the right hair color. If a pawn ... has blonde hair, it should, of course, prioritize blonde hair first
+  over other hair colors, assuming sex and race and age are also appropriate ... It shouldn't be a deal breaker, if
+  there's no matching hair color, but everything else fits. It should still take it, but it should prioritize the same
+  hair color"). DESIGN.md "Portraits: the same age and skin, the hair's colour first, a bionic arm, and keeping a picture
+  for training (not released yet)" has every rule; README "Portraits"; the Almanac's guide, its portrait sentence;
+  `docs/portrait-art/FRAMEWORK.md` (pillar 2's marks, what the game holds a picture to). The picture check's part (point
+  4 of the proposal: sex changes asked, the comic style, the cut-off sides, `add:bionicArm`) and the training script
+  are the portrait scripts', built beside this.
+  - **Their own age band**: a new pick and "Choose another picture" only of the person's own band of the nine, never the
+    next at a cost; none of their band: the game's own drawing, and missing.csv says "none of their sex, age and skin
+    tone". A picture kept stays through its stage as before (young, adult and middle-aged one stage, old and elder one);
+    at the next stage picked again of the new band; kept with no picture, looked at again in a new band. Pins still fit
+    by stage.
+  - **Skin within a tone**: eight tones by lightness (L* from 85, 75, 65, 55, 45, 33, 22, and below: very fair to very
+    dark; the missing list's seven words with the darkest split), the person's tone or the next. Each of the game's nine
+    melanin skins lands in the same tone as the palette colour the planner paints for its word (Melanin9 next to it),
+    also with the painter's slack of 6; the tests read the palette from `catalogue_words.py` and `plan_batches.py`. A
+    skin no human grows by its colour too: greys with greys (chroma under 12), coloured ones within 20 degrees of hue,
+    anything else (a human and an unusual skin, a grey and a colour) only within 10 (near-whites on the line). Each of
+    Biotech's skins agrees only with the planner's colour for its own word; green never pink, a human skin never an
+    unusual one. Still counted in the distance.
+  - **The hair's colour first**: past the slack of 8, its difference in tens squared times 2.5, at most 12 (was 0.6 a
+    ten, at most 3): a neighbouring shade little (dark brown and black 0.85), a clearly different one (about 30 apart:
+    blond and brown) 12, more than hair, beard, build and clothes together can cost (11.25). Never a hard rule: with
+    only another colour fitting, it is still given. A face nobody else keeps still first. With "Only close ones" a
+    clearly different hair colour is not close (the game's drawing, noted in missing.csv).
+  - **A bionic arm**: the mark `bionicArm` (any artificial arm or hand), read from any added part (`Hediff_AddedPart` or
+    a def with added-part properties) on a part whose def or parent is an arm, a shoulder or a hand, by name, label or
+    the game's manipulation-limb tags; only for those who have one, preferred by them (a plain picture 0.5), a plain one
+    still stands. The looks `bionicArm`, `prostheticArm`, `powerClaw` ... stay as they were.
+  - **Keep for training** on the large portrait's menu (before the deletes): the picture shown, of the library folder,
+    copied as it is into `<the library folder's parent>\training\<batch>\` and listed in `training\training.csv`
+    (file, batch, record, date), on a worker, tried again, nothing changed on an error; greyed with the reason for a mod's
+    picture, no painted picture shown (the game's drawing, a backdrop), one already kept, a copy or a deletion still
+    being written, no folder above the library. A picture deleted for good later stays in training (meant).
+  - Also fixed: the missing list called the game's ink black skin "blue" (its slight tint), so a batch would have painted
+    a blue person; near-black is black now, in `PortraitFolderMath` and the planner's `hue_word` alike.
+  - Decided here: the tone boundaries (the skin words' own, the darkest split at 22); unusual skins by hue and chroma
+    rather than one colour distance (a single distance let a light grey take a pink and a blue a purple); the line's 10
+    for near-whites (the game's sheer white against a painted white, 7); a record without a skin colour not held to it;
+    pins by stage; the hair's cost squared so neighbouring shades stay close; training matched by record, else by batch
+    and file; a different file of the same name in training kept, the copy " (2)".
+  - Code: `UI/Faces/PortraitLibraryMath.cs` (`AgeMayStand`, `SkinTone`, `SkinAgrees`, `SkinFits`, `Lch`, `AngleApart`,
+    `HairColourCost`, `Marks`, `ArmPart`), `PortraitReader.cs` (the arm), `PortraitFolderMath.cs` (`HueWord`),
+    `PortraitDeleteMath.cs` (`Quote` public), `InspectPortrait.cs` (the menu), new `PortraitTraining.cs` and
+    `PortraitTrainingMath.cs`; words in `Languages/English/Keyed/Rimfolk_Portraits.xml` (the menu's entry and messages,
+    the settings' and missing list's words for the rule); `Tools/PortraitArt/catalogue_words.py` (`hue_word`),
+    `test_portrait_catalogue.py` (the mark). Tests: `Tools/Tests/PortraitMatchTests.cs` (new; linked
+    `PortraitTrainingMath.cs`), `PortraitLibraryTests.cs` and `PortraitStageTests.cs` changed (no band stands in, the far
+    picture's skin, a baby's picture); `docs/portrait-previews/matcher.md` written again. Nothing new saved.
+  - **Can't be checked without the game**: the arm read from real pawns (a bionic arm, a power claw, an android's arm, a
+    mod's body); the menu and messages as they look; the copy on the player's Google Drive folder; the mods' kinds' game
+    skin colours against their painted ones (a race with skins from a range, the Venators' dusty skins): what the rule
+    leaves out shows in missing.csv.
+  - **Try in the game** (screenshots please): "Portraits: pick everyone's painted portrait again" (dev mode) and look at a
+    few people: each picture of their kind, sex, age band, skin tone, and their hair colour where the library has it;
+    someone with none of their band keeps the game's drawing. Give a colonist a bionic arm (dev mode or surgery), then
+    "pick the selected people's painted portraits again": a picture marked with a bionic arm where there is one, else a
+    plain one; others never get it. Right-click the large portrait, "Keep for training": a message, the file in
+    `Rimfolk-portraits\training\colonists`, its line in `training\training.csv`; the entry greyed "already kept for
+    training" the next time.
+  - Mods that would help: none needed (the pictures are the player's own; the files are handled by .NET itself).
 - 0.297.0, **Delete a picture for good from
   the game** (22 November 2026; the player: "what i would like in the game is a feature that when i really don't like an
   image, that i can say it's fully deleted on the record and it actually deletes the image and any reference to it? this

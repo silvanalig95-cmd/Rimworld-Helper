@@ -293,7 +293,7 @@ public static class PortraitLibraryTests
         C(!Pick(child, samples, 3).Any, "a child never gets a grown man's picture, even with the closest");
         var young = Look(PortraitSex.Male, PortraitAge.Young, "#e0b898", "#4a3020", PortraitHairStyle.Short, PortraitBeard.Full, PortraitBuild.Broad, PortraitEra.Medieval, PortraitDress.Work);
         var py = Pick(young, samples, 3);
-        C(py.Any && py.character == "sample_aldo" && Near(py.distance, PortraitLibraryMath.NearAgeCost), "no young man's picture: a grown one stands in, further");
+        C(!py.Any, "no young man's picture: no picture (a grown man's never stands in, the player's rule of 23 November 2026)");
         var headwearPic = new PortraitRecord
         {
             name = "helmed", sex = PortraitSex.Male, age = PortraitAge.Adult, headwear = true, skin = Hex("#e0b898"), skinSet = true, hairColour = Hex("#4a3020"), hairColourSet = true, beard = PortraitBeard.Full,
@@ -306,8 +306,9 @@ public static class PortraitLibraryTests
         PortraitRecord Rec(string skin = "#e0b898", string hair = "#4a3020", PortraitHairStyle style = PortraitHairStyle.Short, PortraitEra era = PortraitEra.Medieval) =>
             new PortraitRecord { name = "r", sex = PortraitSex.Male, skin = Hex(skin), skinSet = true, hairColour = Hex(hair), hairColourSet = true, hair = style, beard = PortraitBeard.Full, build = PortraitBuild.Broad, era = era, dress = PortraitDress.Work };
         C(D(man, Rec(skin: "#e6c0a2")) == 0f, "a skin a few points apart (a painter's tone): no cost");
-        C(D(man, Rec(skin: "#c4956c")) > D(man, Rec(hair: "#8a6440")) && D(man, Rec(era: PortraitEra.Industrial)) > D(man, Rec(style: PortraitHairStyle.Medium)),
-            "a skin band apart costs more than a shade of hair; an age of clothes more than a hair's length");
+        C(D(man, Rec(hair: "#8a6440")) > D(man, Rec(skin: "#c4956c")) && D(man, Rec(hair: "#8a6440")) > D(man, Rec(era: PortraitEra.Industrial))
+          && D(man, Rec(era: PortraitEra.Industrial)) > D(man, Rec(style: PortraitHairStyle.Medium)),
+            "a clearly different hair colour costs more than a skin a little apart or an age of clothes; an age of clothes more than a hair's length");
         C(D(man, Rec(skin: "#5a3a28")) > PortraitLibraryMath.CloseEnough, "a fair man and a dark brown picture: too far");
         C(D(man, Rec(hair: "#e6e6e2")) <= PortraitLibraryMath.HairColourMost, "the hair's colour costs at most its most");
         // Two alike people get different faces where the library has them; the same person always the same.
@@ -529,7 +530,7 @@ public static class PortraitLibraryTests
             string Cell(List<PortraitRecord> lib, bool count)
             {
                 var pick = PortraitLibraryMath.Pick(look, lib, seed, c => count && used.TryGetValue(c, out int u) ? u : 0);
-                if (!pick.Any) return "the game's own face (none of their kind, sex and stage)";
+                if (!pick.Any) return "the game's own face (none of their kind, sex, age band and skin tone)";
                 if (count)
                 {
                     used[pick.character] = used.TryGetValue(pick.character, out int u2) ? u2 + 1 : 1;
@@ -554,9 +555,11 @@ public static class PortraitLibraryTests
         else
             sb.AppendLine("one by their own id.");
         sb.AppendLine("A kind with no pictures of its own keeps the game's own face, however human it looks (the hussar, the impid, the dark");
-        sb.AppendLine("elf), and is written in the library folder's missing list; once a kind's pictures are in, its people get only theirs. A baby or a toddler only ever gets a baby's or a toddler's picture, a child a child's (the first wave has");
-        sb.AppendLine("none, so the girl of two keeps the game's own face). A person keeps the picture first chosen for good, whatever happens");
-        sb.AppendLine("to their body or clothes; a child gets a new one when they grow into the next stage.");
+        sb.AppendLine("elf), and is written in the library folder's missing list; once a kind's pictures are in, its people get only theirs. A person only");
+        sb.AppendLine("ever gets a picture of their own age band, with a skin of the same or the next tone, else none (the first wave has no");
+        sb.AppendLine("toddlers, so the girl of two keeps the game's own face); of those, the hair's colour counts most. A person keeps the");
+        sb.AppendLine("picture first chosen for good, whatever happens to their body or clothes; a child gets a new one when they grow into the");
+        sb.AppendLine("next stage.");
         string dir = Path.Combine(root, "docs", "portrait-previews");
         Directory.CreateDirectory(dir);
         string path = Path.Combine(dir, "matcher.md");
