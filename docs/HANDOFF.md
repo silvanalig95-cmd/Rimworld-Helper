@@ -741,6 +741,20 @@ most sense." So, in this order, three builds at a time:
   effects all look good, but unconscious eyes closed. How exactly is it supposed to see which eyes are closed?" Answered:
   closed eyes (and blinks and expressions) need the picture's painted expressions (Make-Variants); without them the
   unconscious are dimmed only. Asked whether to start building.
+- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library read again
+  by itself, and a quick way to Rimfolk's settings.** The player: "could the libary import also be done regularly, like
+  on startup of the game and/or when loading a save? so I don't do it manually. Also it would be lovely to have a
+  shortcut to the rimfolk settings somewhere, so I don't have to always search it up via the game settings and then mod
+  settings." As it is: the folder is read once when the game starts (`PortraitFolder`'s static start) and by "Reload the
+  library". The proposal: (1) read again quietly, on a worker, when a save is loaded or a new game starts, and while
+  playing whenever records.xml or corrections.csv has changed (their times looked at every two minutes and when the
+  game window comes back into focus; a cloud folder's files are only looked at, not downloaded); pictures already shown
+  stay until their new record is in; a short message only when the count changed ("The portrait library: 812 pictures,
+  40 new"). (2) "Rimfolk settings..." on the large portrait's right-click menu, opening the settings at the portraits'
+  part; a key in the game's keyboard settings ("Open Rimfolk settings", unbound until the player picks one); a small
+  gear on the "Council at a glance" panel. The picture's details still come from records.xml, so new pictures still
+  need Copy-ToLibrary (which runs Update-PortraitLibrary); corrections answered yes in corrections.csv still need
+  Update-PortraitLibrary once (or the in-game window, which writes both).
 - **To do when the player sends it (23 November 2026, the player): the check's free answers read for what the game
   could use.** The player: "there is one check called "unusual", under which I guess a variety of things can be
   mentioned ... how does the game correctly intepret these keywords and descriptions? ... I guess "worst case" I can
