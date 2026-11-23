@@ -277,10 +277,11 @@ namespace ColonyCouncil
     /// <item>A picture's record from its def's words, and what is wrong with one (for the game's def errors).</item>
     /// <item>A pawn's looks from the game's words: the age band, hair and beard from their defs' words or the hair
     /// texture's shape, build from the body type, the clothes' age and kind, features from the genes.</item>
-    /// <item>The matcher: the kind first (a pawn of a kind with pictures gets only that kind's; a kind with none, the
-    /// baseliners' where it looks near human, else the game's own face); then sex and age; then the distance on skin and
-    /// hair colour (by colour), hair, beard, build, clothes and features; marks follow the body (a picture never shows a
-    /// mark the person hasn't, and one that shows theirs is preferred).</item>
+    /// <item>The matcher: the kind first (only a picture of their own race and xenotype, else the game's own face); then
+    /// sex, their own age band and their skin (the same tone or the next; a skin no human grows a near colour), all
+    /// exactly, else no picture; then the distance: the hair's colour most, then the skin's colour, hair, beard, build,
+    /// clothes and features; marks follow the body (a picture never shows a mark the person hasn't, and one that shows
+    /// theirs is preferred).</item>
     /// <item>Characters: the nearest few characters, the one fewest others keep, then one by the pawn's own id; kept for
     /// good, its variant chosen anew as the body changes (a lost eye, a scar, a burn, a bionic eye, growing old).</item>
     /// </list>
@@ -296,8 +297,28 @@ namespace ColonyCouncil
         /// <summary>The features a picture or a pawn may have, as the defs write them.</summary>
         public static readonly string[] Features = { "pointedEars", "longEars", "horns", "tusks", "fur", "scales", "gills", "glowingEyes", "markings", "tail", "snout" };
 
-        /// <summary>The marks of the body a picture or a pawn may have.</summary>
-        public static readonly string[] Marks = { "lostEye", "eyePatch", "scar", "burn", "bionicEye", "missingEar" };
+        /// <summary>
+        /// The marks of the body a picture or a pawn may have; bionicArm is any artificial arm or hand (bionic, archotech,
+        /// prosthetic, a mod's added part) on an arm, a shoulder or a hand.
+        /// </summary>
+        public static readonly string[] Marks = { "lostEye", "eyePatch", "scar", "burn", "bionicEye", "missingEar", "bionicArm" };
+
+        /// <summary>The game's tags for the limbs that handle things (a shoulder, an arm, a hand, the fingers), a mod's arms and hands among them.</summary>
+        public static readonly string[] ArmTags = { "ManipulationLimbCore", "ManipulationLimbSegment", "ManipulationLimbDigit" };
+
+        /// <summary>
+        /// Whether a body part is an arm, a shoulder or a hand, by its def's words (name and label: "arm", "forearm",
+        /// "shoulder", "hand") or by one of the game's tags for the limbs that handle things (<see cref="ArmTags"/>), so a
+        /// mod's body with arms of its own names counts too. A leg, a foot, the head or the torso never.
+        /// </summary>
+        public static bool ArmPart(List<string> words, IEnumerable<string> tags)
+        {
+            if (tags != null)
+                foreach (var t in tags)
+                    if (t != null && Array.IndexOf(ArmTags, t) >= 0)
+                        return true;
+            return words != null && Is(words, "arm", "arms", "forearm", "forearms", "shoulder", "shoulders", "hand", "hands");
+        }
 
         private static string Known(string[] words, string w)
         {
@@ -658,7 +679,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// A skin no human grows (a xenotype's green, blue, purple, deep red, orange or yellow, a waster's grey, ink black, a
-        /// cold white): with no pictures of their kind, the game's own face rather than a baseliner's.
+        /// cold white): it matches only another such skin of a near colour (<see cref="SkinAgrees"/>).
         /// </summary>
         public static bool UnusualSkin(PortraitColour c)
         {
@@ -892,8 +913,24 @@ namespace ColonyCouncil
 
         // ---------------- The matcher ----------------
 
-        /// <summary>The weights: the skin's colour most (for every ten points of difference past the slack), the clothes' age, the hair's colour, then the hair, beard, build, clothes' kind, features.</summary>
-        public const float SkinWeight = 3f, EraWeight = 2f, HairColourWeight = 0.6f, HairColourMost = 3f, HairWeight = 1f, BeardWeight = 1f, BuildWeight = 1f, DressWeight = 1f;
+        /// <summary>
+        /// The weights: the hair's colour most (<see cref="HairColourCost"/>), then the skin's colour (for every ten points of
+        /// difference past the slack) and the clothes' age, then the hair, beard, build, clothes' kind, features.
+        /// </summary>
+        public const float SkinWeight = 3f, EraWeight = 2f, HairWeight = 1f, BeardWeight = 1f, BuildWeight = 1f, DressWeight = 1f;
+
+        /// <summary>
+        /// The hair's colour, a strong preference but never a hard rule (the player, 23 November 2026: "the image selection
+        /// should also lean more heavily towards the right hair color. If a pawn ... has blonde hair, it should, of course,
+        /// prioritize blonde hair first over other hair colors ... It shouldn't be a deal breaker, if there's no matching hair
+        /// color, but everything else fits. It should still take it, but it should prioritize the same hair color"): its
+        /// difference past the slack, in tens of points, squared, times 2.5, at most 12. So a neighbouring shade costs little
+        /// (dark brown and black, 14 apart: 0.85, less than short against long hair), a clearly different colour (30 apart
+        /// or more: blond and brown, black and red, brown and grey) the most, which is more than a picture can cost on its
+        /// hair, beard, build and clothes together (at most 11.25), so a picture of their hair colour ranks before it
+        /// whatever those show.
+        /// </summary>
+        public const float HairColourWeight = 2.5f, HairColourMost = 12f;
 
         /// <summary>
         /// Colour differences up to these cost nothing: a painted skin's mid-tone and the game's own skin colour (which its
@@ -913,10 +950,31 @@ namespace ColonyCouncil
         public const float LookMissingCost = 0.75f, RoleMissingCost = 0.75f;
 
         /// <summary>
-        /// An age band apart: the next band 2.5, each band past it 4 more (two bands 6.5, three 10.5), never across the
-        /// little ones, children and grown-ups; a baseliner's picture for a kind with none, near a human, 1.
+        /// The human skin tones by lightness (CIE L*), lightest first: very fair from 85, fair from 75, light from 65,
+        /// medium from 55, tan from 45, brown from 33, dark from 22, very dark below (eight tones; the first seven are the
+        /// missing list's skin words, <c>PortraitFolderMath.SkinWord</c>, with the darkest split in two, as the game's two
+        /// darkest melanin skins lie 13 apart). A skin and a picture's agree within the same tone or the next
+        /// (<see cref="SkinAgrees"/>): the game's own skin and the painter's colour of the same skin (which never quite agree,
+        /// <see cref="SkinSlack"/>) always land in the same tone or next to each other.
         /// </summary>
-        public const float NearAgeCost = 2.5f, FarAgeCost = 4f;
+        public static readonly float[] SkinToneFrom = { 85f, 75f, 65f, 55f, 45f, 33f, 22f };
+
+        /// <summary>
+        /// Skins no human grows, beside the lightness: a grey (its colour weaker than this, CIE chroma: the game's slate grey
+        /// 5, light grey 0, sheer white 7, ink black 1) agrees with another grey; a coloured one with another whose hue is at
+        /// most <see cref="HueMost"/> degrees apart. The game's own colour and the painter's of the same skin are at most 13
+        /// degrees apart (the game's blue and the missing list's blue); a red and an orange 21 or more, a blue and a purple
+        /// 35, a green and a pink far more (the game's deep and pale yellow are 10 apart, so they agree).
+        /// </summary>
+        public const float GreyChroma = 12f, HueMost = 20f;
+
+        /// <summary>
+        /// Any other two skins (a human skin and one no human grows, a grey and a coloured one) agree only up to this far
+        /// apart (CIE76): nearly the same colour, as a near-white on either side of the line (the game's sheer white and a
+        /// painted white are 7 apart). So a human skin never gets a green, blue, red, orange, yellow, purple, grey or ink
+        /// black one, nor those a human one, and a grey never a pink.
+        /// </summary>
+        public const float SkinLineMost = 10f;
 
         /// <summary>"Only close ones": the furthest a picture may be and still be shown; beyond it, the game's own face.</summary>
         public const float CloseEnough = 6f;
@@ -993,29 +1051,60 @@ namespace ColonyCouncil
 
         public static bool SexAgrees(PortraitSex person, PortraitSex picture) => person == PortraitSex.Any || picture == PortraitSex.Any || person == picture;
 
-        /// <summary>Whether a picture of one band may stand for a person of another: the little ones (a baby, a toddler) only for each other; a child never a grown-up's (young and older), nor a grown-up a child's.</summary>
-        public static bool AgeMayStand(PortraitAge person, PortraitAge picture)
+        /// <summary>
+        /// Whether a picture of one age band may stand for a person of another: only their own band (the player, 23
+        /// November 2026: "the race, xenotype, the gender, also I would say the skin color and age ... always have to match
+        /// the pawn for sure. And if there's no image with this combination available for the pawn, then it should just
+        /// take no image"). A new pick and the choices of "Choose another picture" only; a picture already kept stays
+        /// through its stage (<see cref="PickAgain"/>), and a picture pinned to a colonist fits by stage (<see cref="PinFit"/>).
+        /// </summary>
+        public static bool AgeMayStand(PortraitAge person, PortraitAge picture) => person == picture;
+
+        /// <summary>What a picture of age band <paramref name="picture"/> costs for a person of band <paramref name="person"/>: nothing for their own, infinity for any other (<see cref="AgeMayStand"/>).</summary>
+        public static float AgeCost(PortraitAge person, PortraitAge picture) => AgeMayStand(person, picture) ? 0f : float.PositiveInfinity;
+
+        /// <summary>A skin's tone (<see cref="SkinToneFrom"/>) by its lightness (CIE L*): 0 very fair to 7 very dark.</summary>
+        public static int SkinToneOf(double lightness)
         {
-            bool littlePerson = person <= PortraitAge.Toddler, littlePicture = picture <= PortraitAge.Toddler;
-            if (littlePerson != littlePicture) return false;
-            if (person == PortraitAge.Child && picture >= PortraitAge.Young) return false;
-            return !(picture == PortraitAge.Child && person >= PortraitAge.Young);
+            int t = 0;
+            foreach (var from in SkinToneFrom)
+                if (lightness < from)
+                    t++;
+            return t;
+        }
+
+        /// <summary>A skin's tone by its colour: 0 very fair to 7 very dark.</summary>
+        public static int SkinTone(PortraitColour c)
+        {
+            Lab(c, out double l, out _, out _);
+            return SkinToneOf(l);
         }
 
         /// <summary>
-        /// What a picture of age band <paramref name="picture"/> costs for a person of band <paramref name="person"/>:
-        /// nothing for their own, the next band 2.5, two bands 6.5, each further band 4 more; infinity where it may not
-        /// stand for them (<see cref="AgeMayStand"/>: a baby or a toddler only ever gets a baby's or a toddler's picture, a
-        /// child a child's or a teen's, a teen a child's, a teen's or a grown-up's).
+        /// Whether a picture's skin may stand for a person's (the player, 23 November 2026, above): the same tone of
+        /// lightness or the next (<see cref="SkinToneFrom"/>), for every skin; two human skins need nothing else. Two skins
+        /// no human grows (<see cref="UnusualSkin"/>) also by their colour: two greys agree, two coloured ones of a near hue
+        /// (<see cref="HueMost"/>). Any other two (a human skin and an unusual one, a grey and a coloured one) only where
+        /// they are nearly the same colour (<see cref="SkinLineMost"/>): a green-skinned person never gets a pink picture, a
+        /// person of a human skin never a green one.
         /// </summary>
-        public static float AgeCost(PortraitAge person, PortraitAge picture)
+        public static bool SkinAgrees(PortraitColour person, PortraitColour picture)
         {
-            if (!AgeMayStand(person, picture)) return float.PositiveInfinity;
-            int n = Math.Abs((int)person - (int)picture);
-            return n == 0 ? 0f : NearAgeCost + FarAgeCost * (n - 1);
+            if (Math.Abs(SkinTone(person) - SkinTone(picture)) > 1) return false;
+            bool odd = UnusualSkin(person), oddPicture = UnusualSkin(picture);
+            if (!odd && !oddPicture) return true;
+            if (odd && oddPicture)
+            {
+                Lch(person, out _, out double c1, out double h1);
+                Lch(picture, out _, out double c2, out double h2);
+                bool grey = c1 < GreyChroma, greyPicture = c2 < GreyChroma;
+                if (grey && greyPicture) return true;
+                if (!grey && !greyPicture && AngleApart(h1, h2) <= HueMost) return true;
+            }
+            return ColourApart(person, picture) <= SkinLineMost;
         }
 
-        /// <summary>A picture may stand for the person's body: it shows no mark they haven't got, and headwear only where they wear it and the setting shows it.</summary>
+        /// <summary>A picture may stand for the person's body: it shows no mark they haven't got (no eye patch on someone with both eyes, no bionic arm on someone with their own arms), and headwear only where they wear it and the setting shows it.</summary>
         public static bool Shows(PortraitRecord r, PortraitLook l)
         {
             foreach (var m in r.marks)
@@ -1025,8 +1114,9 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// How far a picture is from a person on their looks (the matcher's kind, sex and age rules aside): the skin's and
-        /// hair's colours by their difference as the eye sees it (CIE76, for every ten points past the slack), the hair, beard, build and
+        /// How far a picture is from a person on their looks (the matcher's kind, sex, age and skin tone rules aside): the hair's
+        /// colour most (<see cref="HairColourCost"/>), the skin's colour by its difference as the eye sees it (for every ten
+        /// points past the slack), the hair, beard, build and
         /// clothes by their tables, the clothes' ages apart, each feature one has and the other hasn't, and each mark of the
         /// person's the picture doesn't show.
         /// </summary>
@@ -1036,7 +1126,7 @@ namespace ColonyCouncil
             if (r.skinSet) d += SkinWeight * Math.Max(0f, SkinApart(l.skin, r.skin) - SkinSlack) / 10f;
             if (r.hairColourSet)
             {
-                float hc = Math.Min(HairColourMost, HairColourWeight * Math.Max(0f, ColourApart(l.hairColour, r.hairColour) - HairSlack) / 10f);
+                float hc = HairColourCost(l.hairColour, r.hairColour);
                 // Bald on both: the colour hardly shows (a beard's, the brows').
                 d += l.hair == PortraitHairStyle.Bald && r.hair == PortraitHairStyle.Bald ? hc * 0.5f : hc;
             }
@@ -1056,6 +1146,13 @@ namespace ColonyCouncil
                     d += MarkCost;
             d += LookCost(l, r);
             return d;
+        }
+
+        /// <summary>What a picture's hair colour costs for a person's (<see cref="HairColourWeight"/>): nothing within the slack, a little for a neighbouring shade, at most <see cref="HairColourMost"/>.</summary>
+        public static float HairColourCost(PortraitColour person, PortraitColour picture)
+        {
+            float past = Math.Max(0f, ColourApart(person, picture) - HairSlack) / 10f;
+            return Math.Min(HairColourMost, HairColourWeight * past * past);
         }
 
         /// <summary>
@@ -1117,8 +1214,8 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The person's looks no picture shows that may stand for them by kind, sex and age (one of their own kind, its sex
-        /// agreeing, its age band one that may stand for theirs; a pinned picture only where it is theirs,
+        /// The person's looks no picture shows that may stand for them by kind, sex, age and skin (one of their own kind, its
+        /// sex agreeing, of their age band, its skin agreeing with theirs; a pinned picture only where it is theirs,
         /// <paramref name="theirs"/>), for the missing list: special and ordinary looks alike.
         /// </summary>
         public static List<string> LooksLacking(PortraitLook l, IList<PortraitRecord> records, Func<PortraitRecord, bool> theirs = null)
@@ -1132,7 +1229,7 @@ namespace ColonyCouncil
                     foreach (var r in records)
                     {
                         if (r.Pinned && (theirs == null || !theirs(r))) continue;
-                        if (!r.looks.Contains(w) || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !AgeMayStand(l.age, r.age)) continue;
+                        if (!r.looks.Contains(w) || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !AgeMayStand(l.age, r.age) || !SkinFits(r, l)) continue;
                         shown = true;
                         break;
                     }
@@ -1146,10 +1243,11 @@ namespace ColonyCouncil
         /// picture pinned to a colonist (that is theirs alone); the kind first, exactly (the player, 22 November 2026: "if
         /// there is a xenotype appearing in game and there is no image for it ... it should just show no image ... not take
         /// another xenotype's image": a picture of their own race and xenotype, a baseliner's only for a baseliner, else
-        /// none), then sex, then the age band (their own, or another of their group at a growing cost: a baby or a toddler
-        /// only a baby's or a toddler's, a child only a child's), then the body (<see cref="Shows"/>), then its looks and work
-        /// (<see cref="LooksAgree"/>: only looks and work of theirs, and every special look of theirs). No cut-off by distance
-        /// here: "only close ones" is applied to what is shown (<see cref="Shown"/>).
+        /// none), then sex, then their own age band (<see cref="AgeMayStand"/>), then the skin (<see cref="SkinAgrees"/>:
+        /// the same tone or the next; a skin no human grows only one of a near colour), then the body (<see cref="Shows"/>),
+        /// then its looks and work (<see cref="LooksAgree"/>: only looks and work of theirs, and every special look of
+        /// theirs). Where none is left, no picture (the game's own drawing). No cut-off by distance here: "only close ones"
+        /// is applied to what is shown (<see cref="Shown"/>).
         /// </summary>
         public static float[] Distances(PortraitLook l, IList<PortraitRecord> records)
         {
@@ -1160,13 +1258,14 @@ namespace ColonyCouncil
             for (int i = 0; i < n; i++)
             {
                 var r = records[i];
-                if (r.Pinned || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !Shows(r, l) || !LooksAgree(r, l)) continue;
-                float age = AgeCost(l.age, r.age);
-                if (float.IsInfinity(age)) continue;
-                d[i] = Distance(l, r) + age;
+                if (r.Pinned || !OwnKind(r, l) || !SexAgrees(l.sex, r.sex) || !AgeMayStand(l.age, r.age) || !SkinFits(r, l) || !Shows(r, l) || !LooksAgree(r, l)) continue;
+                d[i] = Distance(l, r);
             }
             return d;
         }
+
+        /// <summary>A picture's skin may stand for the person's (<see cref="SkinAgrees"/>); a picture whose record has no skin colour (a def error at start-up) isn't held to it.</summary>
+        public static bool SkinFits(PortraitRecord r, PortraitLook l) => !r.skinSet || SkinAgrees(l.skin, r.skin);
 
         /// <summary>Whether the library has any picture of the person's own kind (not counting pictures pinned to colonists), for the missing list.</summary>
         public static bool HasOwnKind(PortraitLook l, IList<PortraitRecord> records)
@@ -1506,6 +1605,22 @@ namespace ColonyCouncil
             Lab(x, out double l1, out double a1, out double b1);
             Lab(y, out double l2, out double a2, out double b2);
             return (float)Math.Sqrt((l1 - l2) * (l1 - l2) + 0.25 * ((a1 - a2) * (a1 - a2) + (b1 - b2) * (b1 - b2)));
+        }
+
+        /// <summary>A colour's lightness, chroma (how strong its colour is: 0 a grey) and hue in degrees (0 to 360), CIE LCh.</summary>
+        public static void Lch(PortraitColour c, out double l, out double chroma, out double hue)
+        {
+            Lab(c, out l, out double a, out double b);
+            chroma = Math.Sqrt(a * a + b * b);
+            hue = Math.Atan2(b, a) * 180.0 / Math.PI;
+            if (hue < 0) hue += 360.0;
+        }
+
+        /// <summary>How far apart two hues are, in degrees (0 to 180), the short way round.</summary>
+        public static double AngleApart(double a, double b)
+        {
+            double d = Math.Abs(a - b) % 360.0;
+            return d > 180.0 ? 360.0 - d : d;
         }
 
         /// <summary>How far apart two colours look (CIE76: 0 the same, about 2 just noticeable, 100 black and white).</summary>

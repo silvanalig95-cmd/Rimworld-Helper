@@ -277,8 +277,10 @@ public static class PortraitStageTests
             C(po.Any && withOld[po.index] == avilaOld && PortraitLibraryMath.PinFor(oldAvila, lib, AvilaOwns).index == 0,
                 "grown old: their old pin where there is one, else their younger one stands in");
             var lookAlike = Look(PortraitSex.Male, PortraitAge.Young, "#c9a27e", "#1a1a1a");
-            var other = PortraitLibraryMath.Pick(lookAlike, lib, 5, _ => 0);
-            C(other.Any && lib[other.index] == stranger && float.IsInfinity(PortraitLibraryMath.Distances(lookAlike, lib)[0]),
+            var youngStranger = Rec("Portrait_m_0002", PortraitSex.Male, PortraitAge.Young, "#c9a27e", "#1a1a1a");
+            var alikeLib = new List<PortraitRecord> { avila, youngStranger };
+            var other = PortraitLibraryMath.Pick(lookAlike, alikeLib, 5, _ => 0);
+            C(other.Any && alikeLib[other.index] == youngStranger && float.IsInfinity(PortraitLibraryMath.Distances(lookAlike, alikeLib)[0]),
                 "a pinned picture is never given to anyone else, however alike: the matcher never sees it");
             C(PortraitLibraryMath.PinFor(lookAlike, lib, NoneOwn).index < 0, "someone the pins don't name: no pin");
             var lunaNow = Look(PortraitSex.Female, PortraitAge.Toddler, "#e8c8a8", "#3a2a1a");
@@ -315,7 +317,8 @@ public static class PortraitStageTests
 
         // ---------------- The matcher: the closest, and the little ones ----------------
         {
-            var far = Rec("far", PortraitSex.Male, PortraitAge.Adult, "#5a3a28", "#e6e6e2");
+            // Far on its hair's colour, its skin in the same tone or the next (a darker skin would not stand for them at all).
+            var far = Rec("far", PortraitSex.Male, PortraitAge.Adult, "#e4c699", "#e6e6e2");
             var fair = Look(PortraitSex.Male, PortraitAge.Adult, "#f2ede0", "#594030");
             var p = PortraitLibraryMath.Pick(fair, new List<PortraitRecord> { far }, 1, _ => 0);
             C(p.Any && p.distance > PortraitLibraryMath.CloseEnough, $"the closest: a picture far from their looks still theirs ({p.distance:0.0})");
@@ -323,23 +326,19 @@ public static class PortraitStageTests
               && PortraitLibraryMath.Shown(PortraitPickMode.OnlyClose, true, p.distance), "only close ones: a far one not shown, unless pinned or chosen by hand");
             var woman = Rec("woman", PortraitSex.Female, PortraitAge.Adult);
             C(!PortraitLibraryMath.Pick(fair, new List<PortraitRecord> { woman }, 1, _ => 0).Any, "the closest: the sex must agree");
-            C(PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Adult) == PortraitLibraryMath.NearAgeCost && PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Middle) == 6.5f
-              && PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Old) == 10.5f && PortraitLibraryMath.AgeCost(PortraitAge.Baby, PortraitAge.Toddler) == PortraitLibraryMath.NearAgeCost,
-                "the own band first, the next at a cost (2.5), two bands at a larger one (6.5), further more again");
-            C(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Teen) == PortraitLibraryMath.NearAgeCost && PortraitLibraryMath.AgeCost(PortraitAge.Teen, PortraitAge.Child) == PortraitLibraryMath.NearAgeCost
-              && PortraitLibraryMath.AgeCost(PortraitAge.Teen, PortraitAge.Young) == PortraitLibraryMath.NearAgeCost && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Young))
-              && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Adult, PortraitAge.Child)) && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Toddler, PortraitAge.Child))
-              && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Toddler)),
-                "a child may take a teen's picture and a teen a child's or a young one's, at a cost; never a child a grown-up's, nor the little ones anything but theirs");
+            C(PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Young) == 0f && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Young, PortraitAge.Adult))
+              && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Baby, PortraitAge.Toddler)) && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Child, PortraitAge.Teen))
+              && float.IsInfinity(PortraitLibraryMath.AgeCost(PortraitAge.Old, PortraitAge.Elder)),
+                "the own band only (the player, 23 November 2026): never the next, not even within a stage");
             var old = Rec("old", PortraitSex.Male, PortraitAge.Old);
             var young = Look(PortraitSex.Male, PortraitAge.Young);
-            var py = PortraitLibraryMath.Pick(young, new List<PortraitRecord> { old }, 1, _ => 0);
-            C(py.Any && Near(py.distance, 10.5f, 0.01f), "the closest: a young man gets an old man's picture where there is no other, three bands further");
+            C(!PortraitLibraryMath.Pick(young, new List<PortraitRecord> { old }, 1, _ => 0).Any, "the closest: a young man never gets an old man's picture, even where there is no other");
             var baby = Look(PortraitSex.Female, PortraitAge.Baby);
             var babies = new List<PortraitRecord> { Rec("girl", PortraitSex.Female, PortraitAge.Child), Rec("woman", PortraitSex.Female, PortraitAge.Young), Rec("toddler", PortraitSex.Female, PortraitAge.Toddler) };
+            C(!PortraitLibraryMath.Pick(baby, babies, 1, _ => 0).Any, "a baby never gets a toddler's picture: with no baby's picture, the game's own face");
+            babies.Add(Rec("baby", PortraitSex.Female, PortraitAge.Baby));
             var pb = PortraitLibraryMath.Pick(baby, babies, 1, _ => 0);
-            C(pb.Any && babies[pb.index].name == "toddler", "a baby only ever gets a baby's or a toddler's picture");
-            C(!PortraitLibraryMath.Pick(baby, babies.Take(2).ToList(), 1, _ => 0).Any, "a baby with no little one's picture: the game's own face");
+            C(pb.Any && babies[pb.index].name == "baby", "a baby gets a baby's picture");
             var saurid = Look(PortraitSex.Female, PortraitAge.Adult, "#9aa0a0", "#40a0a0", "vresaurids_saurid", new[] { "scales" });
             C(!PortraitLibraryMath.Pick(saurid, new List<PortraitRecord> { woman }, 1, _ => 0).Any, "a saurid with no saurid pictures is never shown as a human");
             var sauridPic = Rec("soot", PortraitSex.Female, PortraitAge.Adult, "#9aa0a0", "#40a0a0", xenotypes: new[] { "vresaurids_saurid" });

@@ -74,8 +74,10 @@ def unusual_skin(c):
 
 def hue_word(c):
     h, s, v = hsv(c)
+    if v < 0.15:
+        return 'black'
     if s < 0.12:
-        return 'black' if v < 0.15 else 'white' if v > 0.85 else 'grey'
+        return 'white' if v > 0.85 else 'grey'
     if h < 20 or h >= 340:
         return 'red'
     if h < 45:
