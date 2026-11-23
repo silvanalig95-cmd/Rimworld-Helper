@@ -428,7 +428,7 @@ public static class PortraitLibraryTests
           && reader.Contains("BodyPartTagDefOf.SightSource") && reader.Contains("g.def.renderNodeProperties"), "a pawn's looks read from the game's own data, for any mod's race, xenotype, hair, beard and clothes");
         C(reader.Contains("ContentFinder<Texture2D>.Get(def.texPath + \"_south\", false)") && reader.Contains("PortraitLibraryMath.HairFromShape(rows, S)") && reader.Contains("hairs[def] = h;"),
             "a hair its words don't tell: its front texture measured once");
-        C(pics.Contains("PortraitViewMath.View(pic.layout, frame,") && !pics.Contains("Mirror") && !pics.Contains("TextSide") && pics.Contains("GreyPicture(pic.texture)"),
+        C(pics.Contains("PortraitViewMath.View(pic.layout, frame,") && !pics.Contains("Mirror") && !pics.Contains("TextSide") && pics.Contains("GreyPicture(sized)"),
             "a picture framed by its layout for each place, always as painted (never mirrored, the player: \"always look the same direction\"), grey for the dead");
         C(pics.Contains("new Rect(r.x, r.yMax - ph, r.width, ph + below)") && pics.Contains("v - h * below / ph"),
             "a picture in a tile carried on below the tile's foot, so the sway never shows a gap under the body");

@@ -200,6 +200,12 @@
   <CC_PortraitAbout_Beard>Beard</CC_PortraitAbout_Beard>
   <CC_PortraitAbout_Build>Build</CC_PortraitAbout_Build>
   <CC_PortraitAbout_Clothes>Clothes' age and kind</CC_PortraitAbout_Clothes>
+  <CC_PortraitAbout_Race>Race</CC_PortraitAbout_Race>
+  <CC_PortraitAbout_Xenotype>Xenotype</CC_PortraitAbout_Xenotype>
+  <CC_PortraitAbout_Era>Clothes' age</CC_PortraitAbout_Era>
+  <CC_PortraitAbout_Dress>Clothes' kind</CC_PortraitAbout_Dress>
+  <CC_PortraitAbout_AsTheirs>as {PAWN_nameDef}</CC_PortraitAbout_AsTheirs>
+  <CC_PortraitAbout_NoHairColour>no hair colour</CC_PortraitAbout_NoHairColour>
   <CC_PortraitAbout_Features>Features</CC_PortraitAbout_Features>
   <CC_PortraitAbout_Marks>Marks</CC_PortraitAbout_Marks>
   <CC_PortraitAbout_Side>Side of its marks</CC_PortraitAbout_Side>

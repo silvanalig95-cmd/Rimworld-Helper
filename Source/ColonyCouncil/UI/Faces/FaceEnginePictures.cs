@@ -35,8 +35,9 @@ namespace ColonyCouncil
         /// </summary>
         private static void DrawPicture(Rect r, PortraitPicture pic, PictureView view, FaceFrame frame, FacePose pose, float turn, float alpha, float breath, float sway)
         {
-            Texture tex = pose.bearing == FaceBearing.Dead ? GreyPicture(pic.texture) ?? pic.texture : pic.texture;
             PortraitViewMath.TexCoords(view, out float u, out float v, out float w, out float h);
+            var sized = PortraitStore.Sized(pic.texture, w > 0f ? r.width / w : r.width);
+            Texture tex = pose.bearing == FaceBearing.Dead ? GreyPicture(sized) ?? sized : sized;
             var saved = GUI.matrix;
             try
             {
@@ -63,8 +64,9 @@ namespace ColonyCouncil
             var view = ViewOf(pic, FaceFrame.Face, inner.size, pose.bearing, p.thingIDNumber, out _);
             bool dead = pose.bearing == FaceBearing.Dead;
             if (!dead && inner.width >= 30f) DrawGlow(inner, CameraOf(view), GlowColour(p), alpha);
-            Texture tex = dead ? GreyPicture(pic.texture) ?? pic.texture : pic.texture;
             PortraitViewMath.TexCoords(view, out float u, out float v, out float w, out float h);
+            var sized = PortraitStore.Sized(pic.texture, w > 0f ? inner.width / w : inner.width);
+            Texture tex = dead ? GreyPicture(sized) ?? sized : sized;
             GUI.color = UiKit.WithAlpha(UiKit.Plain, alpha);
             UiKit.DrawInCircle(inner, tex, new Rect(u, v, w, h));
             GUI.color = Color.white;
@@ -81,8 +83,8 @@ namespace ColonyCouncil
         private static readonly Dictionary<Texture2D, GreyPic> greyPics = new Dictionary<Texture2D, GreyPic>();
         private static readonly List<Texture2D> dropGreyPics = new List<Texture2D>();
 
-        /// <summary>The grey copies are made at most this large (the pictures may be larger).</summary>
-        private const int GreyMost = 256;
+        /// <summary>The grey copies are made at most this large (drawn from the copy of the picture that fits, rarely larger).</summary>
+        private const int GreyMost = 1024;
 
         /// <summary>
         /// A grey copy of a picture (by brightness as the eye sees it, a little dimmed, as the game's face is greyed): made
@@ -105,7 +107,7 @@ namespace ColonyCouncil
                 rt = RenderTexture.GetTemporary(w, h, 0, RenderTextureFormat.ARGB32);
                 Graphics.Blit(from, rt);
                 RenderTexture.active = rt;
-                var tex = new Texture2D(w, h, TextureFormat.RGBA32, true) { filterMode = FilterMode.Trilinear, wrapMode = TextureWrapMode.Clamp, name = "RimfolkPictureGrey" };
+                var tex = new Texture2D(w, h, TextureFormat.RGBA32, false) { filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, name = "RimfolkPictureGrey" };
                 tex.ReadPixels(new Rect(0f, 0f, w, h), 0, 0, false);
                 var px = tex.GetPixels32();
                 for (int i = 0; i < px.Length; i++)
@@ -115,7 +117,7 @@ namespace ColonyCouncil
                     px[i] = new Color32(l, l, l, c.a);
                 }
                 tex.SetPixels32(px);
-                tex.Apply(true, true);
+                tex.Apply(false, true);
                 greyPics[from] = new GreyPic { tex = tex, lastUsed = now };
                 return tex;
             }

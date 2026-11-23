@@ -432,14 +432,29 @@ namespace ColonyCouncil
                 y += UiKit.Paragraph(0f, y, w, "CC_PortraitAbout_CorrectRoot".Translate(FileName(m.rootFolder?.texPath ?? m.rootRec.name).Named("FILE")).Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
             if (m.whyNot != null) y += UiKit.Paragraph(0f, y, w, "CC_PortraitAbout_CorrectNo".Translate(m.whyNot.Named("WHY")).Resolve(), UiKit.Bad, GameFont.Tiny) + 4f;
             var r = m.rootRec;
+            var l = m.look;
             string name = r.name;
             bool on = m.whyNot == null;
             var buttons = new List<(string label, Action open)>
             {
+                (Label("Race", r.races.Count > 0 ? string.Join(", ", r.races) : "human"), () => Kinds(name, r, l, true)),
+                (Label("Xenotype", r.xenotypes.Count > 0 ? string.Join(", ", r.xenotypes) : "baseliner"), () => Kinds(name, r, l, false)),
                 (Label("Sex", PortraitLibraryMath.Word(r.sex)), () => Pick(name, new[] { PortraitSex.Male, PortraitSex.Female, PortraitSex.Any }.Select(s =>
-                    (PortraitLibraryMath.Word(s), r.sex == s, (Action<PortraitRecord>)(x => x.sex = s))))),
+                    (Mine(PortraitLibraryMath.Word(s), l != null && l.sex == s), r.sex == s, (Action<PortraitRecord>)(x => x.sex = s))))),
                 (Label("Age", PortraitLibraryMath.Word(r.age)), () => Pick(name, ((PortraitAge[])Enum.GetValues(typeof(PortraitAge))).Select(a =>
-                    (PortraitLibraryMath.Word(a), r.age == a, (Action<PortraitRecord>)(x => x.age = a))))),
+                    (Mine(PortraitLibraryMath.Word(a), l != null && l.age == a), r.age == a, (Action<PortraitRecord>)(x => x.age = a))))),
+                (Label("Skin", r.skinSet ? Colour(r.skin, true) : None()), () => Colours(name, r, l, true)),
+                (Label("HairColour", r.hairColourSet ? Colour(r.hairColour, false) : None()), () => Colours(name, r, l, false)),
+                (Label("Hair", Low(r.hair)), () => Pick(name, Values<PortraitHairStyle>().Select(v =>
+                    (Mine(Low(v), l != null && l.hair == v), r.hair == v, (Action<PortraitRecord>)(x => x.hair = v))))),
+                (Label("Beard", Low(r.beard)), () => Pick(name, Values<PortraitBeard>().Select(v =>
+                    (Mine(Low(v), l != null && l.beard == v), r.beard == v, (Action<PortraitRecord>)(x => x.beard = v))))),
+                (Label("Build", Low(r.build)), () => Pick(name, Values<PortraitBuild>().Select(v =>
+                    (Mine(Low(v), l != null && l.build == v), r.build == v, (Action<PortraitRecord>)(x => x.build = v))))),
+                (Label("Era", r.era == PortraitEra.Unknown ? Any() : Low(r.era)), () => Pick(name, Values<PortraitEra>().Select(v =>
+                    (Mine(v == PortraitEra.Unknown ? Any() : Low(v), l != null && l.era == v && v != PortraitEra.Unknown), r.era == v, (Action<PortraitRecord>)(x => x.era = v))))),
+                (Label("Dress", r.dress == PortraitDress.Unknown ? Any() : Low(r.dress)), () => Pick(name, Values<PortraitDress>().Select(v =>
+                    (Mine(v == PortraitDress.Unknown ? Any() : Low(v), l != null && l.dress == v && v != PortraitDress.Unknown), r.dress == v, (Action<PortraitRecord>)(x => x.dress = v))))),
                 (Label("Features", Words(PortraitLibraryMath.Features.Where(r.features.Contains))), () => Toggle(name, PortraitLibraryMath.Features, f => r.features.Contains(f),
                     (x, f, add) =>
                     {
@@ -475,6 +490,93 @@ namespace ColonyCouncil
                 var set = it.set;
                 options.Add(new FloatMenuOption(it.label + (it.now ? " (" + "CC_PortraitAbout_Now".Translate().Resolve() + ")" : ""), it.now ? (Action)null : () => Take(picture, set)));
             }
+            Find.WindowStack.Add(new FloatMenu(options));
+        }
+
+        private static T[] Values<T>() => (T[])Enum.GetValues(typeof(T));
+
+        /// <summary>A choice's label, marked where it is the person's own.</summary>
+        private string Mine(string label, bool theirs) => theirs ? label + " (" + "CC_PortraitAbout_AsTheirs".Translate(pawn.Named("PAWN")).Resolve() + ")" : label;
+
+        /// <summary>
+        /// The races (every humanlike race of the game and its mods) or the xenotypes (every xenotype, and the person's own
+        /// of their making), by their def names as the records write them: the person's own first, then none (human,
+        /// baseliner), then the rest by their names.
+        /// </summary>
+        private void Kinds(string picture, PortraitRecord r, PortraitLook l, bool race)
+        {
+            string none = race ? "human" : "baseliner";
+            var now = race ? r.races : r.xenotypes;
+            var all = new List<(string name, string label)>();
+            if (race)
+            {
+                foreach (var d in DefDatabase<ThingDef>.AllDefsListForReading)
+                    if (d.race != null && d.race.Humanlike)
+                        all.Add((d.defName.ToLowerInvariant(), KindLabel(d.LabelCap.ToString(), d.defName)));
+            }
+            else
+            {
+                foreach (var d in DefDatabase<XenotypeDef>.AllDefsListForReading)
+                    all.Add((d.defName.ToLowerInvariant(), KindLabel(d.LabelCap.ToString(), d.defName)));
+            }
+            string theirs = l == null ? null : race ? l.race : l.baseliner ? none : l.xenotype;
+            if (!string.IsNullOrEmpty(theirs) && all.All(k => k.name != theirs)) all.Add((theirs, theirs));
+            if (all.All(k => k.name != none)) all.Add((none, none));
+            var items = new List<(string label, bool now, Action<PortraitRecord> set)>();
+            foreach (var k in all.OrderBy(k => k.name == theirs ? 0 : k.name == none ? 1 : 2).ThenBy(k => k.label, StringComparer.OrdinalIgnoreCase))
+            {
+                var kinds = k.name == none ? new List<string>() : new List<string> { k.name };
+                bool isNow = new HashSet<string>(now, StringComparer.OrdinalIgnoreCase).SetEquals(kinds);
+                if (race) items.Add((Mine(k.label, k.name == theirs), isNow, x => x.races = new List<string>(kinds)));
+                else items.Add((Mine(k.label, k.name == theirs), isNow, x => x.xenotypes = new List<string>(kinds)));
+            }
+            Pick(picture, items);
+        }
+
+        /// <summary>A race's or xenotype's name in a list: its label, and its def name where that reads otherwise.</summary>
+        private static string KindLabel(string label, string defName) =>
+            string.IsNullOrEmpty(label) || string.Equals(label.Replace(" ", ""), defName, StringComparison.OrdinalIgnoreCase) ? defName : label + " (" + defName + ")";
+
+        /// <summary>
+        /// The skins (the person's own, a sample of each of the eight tones, the unusual ones) or the hair colours (the
+        /// person's own, the natural ones, dyed ones, none), each with its swatch.
+        /// </summary>
+        private void Colours(string picture, PortraitRecord r, PortraitLook l, bool skin)
+        {
+            bool set = skin ? r.skinSet : r.hairColourSet;
+            string nowHex = set ? PortraitLibraryMath.Hex(skin ? r.skin : r.hairColour) : null;
+            var options = new List<FloatMenuOption>();
+            void Add(string label, PortraitColour c)
+            {
+                string hex = PortraitLibraryMath.Hex(c);
+                bool now = hex == nowHex;
+                // The colour itself, as the record's swatch shows it (its data, not one of the look's).
+                var shown = Color.white;
+                shown.r = c.r;
+                shown.g = c.g;
+                shown.b = c.b;
+                options.Add(new FloatMenuOption(label + (now ? " (" + "CC_PortraitAbout_Now".Translate().Resolve() + ")" : ""), now ? (Action)null : () => Take(picture, x =>
+                {
+                    if (skin)
+                    {
+                        x.skin = c;
+                        x.skinSet = true;
+                    }
+                    else
+                    {
+                        x.hairColour = c;
+                        x.hairColourSet = true;
+                    }
+                }), BaseContent.WhiteTex, shown));
+            }
+            if (l != null) Add(Mine(Colour(skin ? l.skin : l.hairColour, skin), true), skin ? l.skin : l.hairColour);
+            foreach (var (word, hex) in skin ? PortraitCorrectMath.SkinChoices : PortraitCorrectMath.HairChoices)
+                if (PortraitLibraryMath.TryColour(hex, out var c))
+                    Add(skin ? word + ": " + Colour(c, true) : word + " (#" + hex + ")", c);
+            // No hair colour only for a bald picture (any hair needs its colour in the records).
+            if (!skin && r.hair == PortraitHairStyle.Bald)
+                options.Add(new FloatMenuOption("CC_PortraitAbout_NoHairColour".Translate().Resolve() + (!set ? " (" + "CC_PortraitAbout_Now".Translate().Resolve() + ")" : ""),
+                    !set ? (Action)null : () => Take(picture, x => x.hairColourSet = false)));
             Find.WindowStack.Add(new FloatMenu(options));
         }
 
@@ -524,7 +626,12 @@ namespace ColonyCouncil
         {
             Widgets.DrawBoxSolid(r, UiKit.PortraitBack);
             var tex = f != null ? PortraitStore.Get(f) : null;
-            if (tex != null) GUI.DrawTexture(r.ContractedBy(2f), tex, ScaleMode.ScaleToFit, true);
+            if (tex != null)
+            {
+                var box = r.ContractedBy(2f);
+                float shown = Mathf.Min(box.width, box.height * tex.width / Mathf.Max(1f, tex.height));
+                GUI.DrawTexture(box, PortraitStore.Sized(tex, shown), ScaleMode.ScaleToFit, true);
+            }
             else UiKit.LabelFit(r, (f == null || PortraitStore.Failed(f) ? "CC_PortraitAbout_NoFile" : "CC_PortraitAbout_Loading").Translate().Resolve(), UiKit.Faint, GameFont.Tiny, TextAnchor.MiddleCenter);
         }
 

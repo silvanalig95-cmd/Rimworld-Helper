@@ -151,6 +151,14 @@ public static class PortraitStageTests
             PortraitPictureMath.FitSize(1024, 1280, 450, out int fw, out int fh);
             PortraitPictureMath.FitSize(300, 200, 450, out int sw, out int sh);
             C(fw == 360 && fh == 450 && sw == 300 && sh == 200, $"a 1024 x 1280 picture kept at {fw} x {fh}; a small one never made larger");
+            var sizes = PortraitPictureMath.CopySizes(653, 900);
+            C(sizes.Count == 5 && sizes[0] == (326, 450) && sizes[1] == (163, 225) && sizes[4] == (20, 28) && PortraitPictureMath.CopySizes(40, 40).Count == 0,
+                "a 653 x 900 picture's copies: " + string.Join(", ", sizes.Select(z => z.w + " x " + z.h)) + "; each half the one before, the smallest still 24 long");
+            var widths = sizes.Select(z => z.w).ToList();
+            C(PortraitPictureMath.CopyFor(widths, 700f) == -1 && PortraitPictureMath.CopyFor(widths, 400f) == -1 && PortraitPictureMath.CopyFor(widths, 326f) == 0
+              && PortraitPictureMath.CopyFor(widths, 200f) == 0 && PortraitPictureMath.CopyFor(widths, 100f) == 1 && PortraitPictureMath.CopyFor(widths, 81f) == 2 && PortraitPictureMath.CopyFor(widths, 5f) == 4
+              && PortraitPictureMath.CopyFor(null, 50f) == -1 && PortraitPictureMath.CopyFor(widths, float.NaN) == -1,
+                "drawn from the smallest copy at least as wide as it shows on the screen, the picture itself where it shows larger than every copy");
             // Half a picture clear (its colour black), half red: scaled down, the red stays red to its edge.
             var half = Rgba(8, 8, (x, y) => x < 4 ? ((byte)0, (byte)0, (byte)0, (byte)0) : ((byte)200, (byte)30, (byte)20, (byte)255));
             var small = PortraitPictureMath.Downscale(half, 8, 8, 3, 3);
@@ -567,9 +575,15 @@ public static class PortraitStageTests
         C(store.Contains("File.ReadAllBytes(path)") && store.Contains("ImageConversion.LoadImage(tex, bytes, false)") && store.Contains("ThreadPool.QueueUserWorkItem")
           && store.Contains("heavyDone.TryDequeue(out var heavy)") && store.Contains("PortraitPictureMath.MeasureHead(") && store.Contains("PortraitPictureMath.Downscale(")
           && store.Contains("PortraitPictureMath.LongSideFor(Prefs.UIScale)"), "loaded on demand: read on a worker, decoded by the game at most one a frame, measured and scaled on a worker");
-        C(store.Contains("cur = PortraitPictureMath.Downscale(cur, lw, lh, mw, mh);") && store.Contains("p.mips.Count == tex.mipmapCount - 1 ? AllLevels(p.px, p.mips) : null")
-          && store.Contains("tex.LoadRawTextureData(all);") && store.Contains("tex.Apply(false, true);"),
-            "every smaller copy of a picture made in the mod, each pixel the average of all it covers, and given to the graphics card as it is");
+        C(store.Contains("cur = PortraitPictureMath.Downscale(cur, lw, lh, mw, mh);") && store.Contains("f.smaller[i] = Flat(p.copies[i], cw, ch,")
+          && store.Contains("new Texture2D(w, h, TextureFormat.RGBA32, false) { name = name, filterMode = FilterMode.Bilinear") && !store.Contains("TextureFormat.RGBA32, true")
+          && !store.Contains("Trilinear") && store.Contains("PortraitPictureMath.CopyFor(f.smallerWidths, guiWidth * Prefs.UIScale)")
+          && store.Contains("pixels -= f.keptPixels;") && store.Contains("if (c != null) UnityEngine.Object.Destroy(c);"),
+            "a picture's smaller copies made in the mod, each its own texture without smaller levels (1.7 draws those shifted), the copy that fits drawn, all let go together");
+        string picsSeam = Read("UI/Faces/FaceEnginePictures.cs"), about = Read("UI/Faces/PortraitAboutWindow.cs");
+        C(picsSeam.Contains("PortraitStore.Sized(pic.texture, w > 0f ? r.width / w : r.width)") && picsSeam.Contains("PortraitStore.Sized(pic.texture, w > 0f ? inner.width / w : inner.width)")
+          && !picsSeam.Contains("TextureFormat.RGBA32, true") && about.Contains("PortraitStore.Sized(tex, shown)"),
+            "the tiles, the round portraits, the grey of the dead and the About window's pictures each drawn from the copy that fits");
         C(store.Contains("public const int MostPictures = 48;") && store.Contains("UnityEngine.Object.Destroy(f.texture)") && store.Contains("Time.frameCount - f.lastUsed > 1"),
             "a small cache, the least lately shown let go and its texture destroyed, never one shown now");
         C(store.Contains("CouncilLog.WarnOnce(\"Portraits: the picture \" + f.key + \" could not be read") && lib3.Contains("PortraitStore.Failed(pic.file)) return null;"),

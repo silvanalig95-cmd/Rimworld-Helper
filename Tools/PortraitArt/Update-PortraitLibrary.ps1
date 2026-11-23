@@ -14,7 +14,9 @@
 # field, value, apply (yes, ask or no), why. Each picture's record is taken from its row, then its lines marked yes are
 # applied: age (an age word), sex (male or female), looks (add:word or remove:word), role (a role, or clear), marks
 # (add:word or remove:word), features (add:word or remove:word), headwear (true or false), side (left or right: the side
-# of its mark), and out (the picture is left out of the records; the file stays where it is). Lines marked ask are
+# of its mark), race (def names; human for none), xenotype (def names; baseliner for none), skin and hairColour
+# (#rrggbb; none for no hair colour), hair, beard, build, era and dress (their words; any for an era or dress not told),
+# and out (the picture is left out of the records; the file stays where it is). Lines marked ask are
 # applied too (the player, 23 November 2026: "the corrections awaiting approval should just be applied without approval
 # ... I'd rather just later correct the image ingame once it actually appears, so on demand"); only lines marked no are
 # not. No picture is renamed: its name ties it to its row, and the row's other pictures may be
@@ -145,12 +147,12 @@ function Game-Last($lines) {
     $set = @{}
     $game = @($lines | Where-Object { Is-Game $_ })
     foreach ($g in $game) {
-        $f = (Field $g 'field').ToLowerInvariant()
+        $f = Field-Key (Field $g 'field')
         if ($ListFields -contains $f) { $w = List-Word (Field $g 'value'); if ($w -ne '') { $set[$f + '|' + $w] = $true } }
         else { $set[$f] = $true }
     }
     $other = @($lines | Where-Object { -not (Is-Game $_) } | Where-Object {
-        $f = (Field $_ 'field').ToLowerInvariant()
+        $f = Field-Key (Field $_ 'field')
         if ($ListFields -contains $f) { -not $set.ContainsKey($f + '|' + (List-Word (Field $_ 'value'))) } else { -not $set.ContainsKey($f) }
     })
     return @($other) + $game
@@ -160,11 +162,20 @@ function Apply-Corrections($rec, $lines, $problems, [string] $where) {
     # A picture's lines marked yes on its record (a hashtable of the row's fields), the game's last; the number applied.
     $n = 0
     foreach ($c in @(Game-Last $lines)) {
-        $field = (Field $c 'field').ToLowerInvariant()
+        $field = Field-Key (Field $c 'field')
         $v = Field $c 'value'
         $ok = $true
         switch ($field) {
             'out' { $rec.out = $true }
+            'race' { if ($v -ne '') { $rec.race = ((Words $v) -join ';') } else { $ok = $false } }
+            'xenotype' { if ($v -ne '') { $rec.kind = ((Words $v) -join ';') } else { $ok = $false } }
+            'skin' { if (Is-Colour $v) { $rec.skin = $v } else { $ok = $false } }
+            'haircolour' { if ($v -match '^(?i)(none|clear|-)$') { $rec.hairColour = '' } elseif (Is-Colour $v) { $rec.hairColour = $v } else { $ok = $false } }
+            'hair' { if ($v -match '^[A-Za-z -]+$') { $rec.hair = $v.ToLowerInvariant() } else { $ok = $false } }
+            'beard' { if ($v -match '^[A-Za-z -]+$') { $rec.beard = $v.ToLowerInvariant() } else { $ok = $false } }
+            'build' { if ($v -match '^[A-Za-z -]+$') { $rec.build = $v.ToLowerInvariant() } else { $ok = $false } }
+            'era' { if ($v -match '^(?i)(any|unknown|clear|-)$') { $rec.era = '' } elseif ($v -match '^[A-Za-z]+$') { $rec.era = $v.ToLowerInvariant() } else { $ok = $false } }
+            'dress' { if ($v -match '^(?i)(any|unknown|clear|-)$') { $rec.dress = '' } elseif ($v -match '^[A-Za-z]+$') { $rec.dress = $v.ToLowerInvariant() } else { $ok = $false } }
             'age' { if ($v -ne '') { $rec.age = $v.ToLowerInvariant() } else { $ok = $false } }
             'sex' {
                 if ($v -match '^(?i)(f|female|woman)$') { $rec.sex = 'female' }
@@ -182,6 +193,26 @@ function Apply-Corrections($rec, $lines, $problems, [string] $where) {
         if ($ok) { $n++ } else { [void]$problems.Add(('corrections.csv, {0}: "{1} {2}" is not a correction this script knows, left out' -f $where, $field, $v)) }
     }
     return $n
+}
+
+function Field-Key([string] $f) {
+    # A line's field as this script knows it: small letters, spaces and underscores taken out (hair colour and haircolor
+    # are haircolour, skin colour is skin, kind is xenotype), as the game reads it.
+    $t = ($f.Trim().ToLowerInvariant() -replace '[ _]', '')
+    switch ($t) {
+        'haircolor' { return 'haircolour' }
+        'skincolor' { return 'skin' }
+        'skincolour' { return 'skin' }
+        'kind' { return 'xenotype' }
+        'xenotypes' { return 'xenotype' }
+        'races' { return 'race' }
+    }
+    return $t
+}
+
+function Is-Colour([string] $v) {
+    # A colour as the records write it: #rrggbb, rrggbb, or (r, g, b).
+    return ($v -match '^\s*#?[0-9A-Fa-f]{6}\s*$') -or ($v -match '^\s*\(?\s*[0-9.]+\s*,\s*[0-9.]+\s*,\s*[0-9.]+\s*(,\s*[0-9.]+\s*)?\)?\s*$')
 }
 
 function One-Xml([string] $tag, [string] $value) {
@@ -215,20 +246,19 @@ function Extra-Of([string] $stem) {
 function Person-Xml([string] $defName, [string] $tex, $r, $rec, [string] $character, [string] $variant, [string] $variantOf) {
     # One PortraitDef: the row's fields with the picture's corrections ($rec); a variant's also says its word and the
     # defName of the picture it is a variant of.
-    $kind = Field $r 'kind'
-    $xenos = @(); if ($kind -ne '' -and $kind -ne 'Baseliner') { $xenos = @($kind) }
+    $xenos = @(Words $rec.kind | Where-Object { $_ -ne 'Baseliner' })
     $lines = New-Object System.Collections.ArrayList
     [void]$lines.Add('  <ColonyCouncil.PortraitDef>')
     [void]$lines.Add((One-Xml 'defName' $defName)); [void]$lines.Add((One-Xml 'texPath' $tex))
     [void]$lines.Add((One-Xml 'variant' $variant)); [void]$lines.Add((One-Xml 'variantOf' $variantOf))
     [void]$lines.Add((One-Xml 'pawn' (Field $r 'pawn')))
     [void]$lines.Add((List-Xml 'xenotypes' $xenos))
-    [void]$lines.Add((List-Xml 'races' (Words (Field $r 'race'))))
+    [void]$lines.Add((List-Xml 'races' (Words $rec.race)))
     [void]$lines.Add((One-Xml 'sex' $rec.sex)); [void]$lines.Add((One-Xml 'age' $rec.age))
-    [void]$lines.Add((One-Xml 'skinColor' (Field $r 'skin'))); [void]$lines.Add((One-Xml 'hairColor' (Field $r 'hairColour')))
-    [void]$lines.Add((One-Xml 'hair' (Field $r 'hair'))); [void]$lines.Add((One-Xml 'beard' (Field $r 'beard')))
-    [void]$lines.Add((One-Xml 'build' (Field $r 'build'))); [void]$lines.Add((One-Xml 'era' (Field $r 'era')))
-    [void]$lines.Add((One-Xml 'dress' (Field $r 'dress')))
+    [void]$lines.Add((One-Xml 'skinColor' $rec.skin)); [void]$lines.Add((One-Xml 'hairColor' $rec.hairColour))
+    [void]$lines.Add((One-Xml 'hair' $rec.hair)); [void]$lines.Add((One-Xml 'beard' $rec.beard))
+    [void]$lines.Add((One-Xml 'build' $rec.build)); [void]$lines.Add((One-Xml 'era' $rec.era))
+    [void]$lines.Add((One-Xml 'dress' $rec.dress))
     [void]$lines.Add((List-Xml 'features' ([string[]]$rec.features.ToArray())))
     [void]$lines.Add((List-Xml 'marks' ([string[]]$rec.marks.ToArray())))
     [void]$lines.Add((One-Xml 'side' $rec.side))
@@ -362,6 +392,8 @@ try {
             }
             $rec = @{
                 out = $false; sex = (Field $r 'sex'); age = (Field $r 'age'); role = (Field $r 'role'); headwear = ''; side = (Field $r 'side')
+                kind = (Field $r 'kind'); race = (Field $r 'race'); skin = (Field $r 'skin'); hairColour = (Field $r 'hairColour')
+                hair = (Field $r 'hair'); beard = (Field $r 'beard'); build = (Field $r 'build'); era = (Field $r 'era'); dress = (Field $r 'dress')
                 looks = (New-Object System.Collections.ArrayList); marks = (New-Object System.Collections.ArrayList); features = (New-Object System.Collections.ArrayList)
             }
             foreach ($w in (Words (Field $r 'looks'))) { [void]$rec.looks.Add($w) }

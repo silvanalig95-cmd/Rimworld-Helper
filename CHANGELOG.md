@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## No second face, and more to correct
+
+*23 November 2026, version 0.299.1*
+
+- The small portraits no longer show a second, shifted face behind the picture. RimWorld 1.7's new graphics engine drew the smaller sizes of the library's pictures shifted, so Rimfolk now makes each smaller copy itself and draws the one that fits.
+- About this picture can now correct a picture's race, xenotype, skin colour, hair colour, hairstyle, beard, build and the age and kind of its clothes. In each list the colonist's own value is marked, and the colours show a swatch.
+- These corrections are written to corrections.csv and records.xml like the others, and Update-PortraitLibrary keeps them.
+
 ## About this picture, and the variants the game wants
 
 *23 November 2026, version 0.299.0*

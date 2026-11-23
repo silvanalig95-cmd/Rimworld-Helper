@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace ColonyCouncil
 {
@@ -257,6 +258,44 @@ namespace ColonyCouncil
             double k = (double)longSide / l;
             nw = Math.Max(1, (int)Math.Round(w * k));
             nh = Math.Max(1, (int)Math.Round(h * k));
+        }
+
+        /// <summary>The smallest copy of a picture kept, on its long side.</summary>
+        public const int SmallestCopy = 24;
+
+        /// <summary>
+        /// The sizes of a picture's smaller copies, largest first: each half the one before (rounded down), while its long
+        /// side stays at least <see cref="SmallestCopy"/>. Each is its own texture without smaller levels (the player, 23
+        /// November 2026: the small portraits still showed a second face behind the picture; 1.7's graphics engine draws the
+        /// smaller levels of a texture this size shifted, so they are never used).
+        /// </summary>
+        public static List<(int w, int h)> CopySizes(int w, int h)
+        {
+            var sizes = new List<(int w, int h)>();
+            while (Math.Max(w, h) / 2 >= SmallestCopy)
+            {
+                w = Math.Max(1, w / 2);
+                h = Math.Max(1, h / 2);
+                sizes.Add((w, h));
+            }
+            return sizes;
+        }
+
+        /// <summary>
+        /// Which copy of a picture to draw where its whole width shows <paramref name="drawn"/> pixels wide on the screen:
+        /// the smallest at least that wide, as an index into <paramref name="widths"/> (largest first), or -1 for the picture
+        /// itself. Drawn from a copy at most twice its size on the screen, the picture stays sharp and never grainy.
+        /// </summary>
+        public static int CopyFor(IList<int> widths, float drawn)
+        {
+            if (widths == null || float.IsNaN(drawn) || float.IsInfinity(drawn)) return -1;
+            int best = -1;
+            for (int i = 0; i < widths.Count; i++)
+            {
+                if (widths[i] < drawn) break;
+                best = i;
+            }
+            return best;
         }
 
         /// <summary>

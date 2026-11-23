@@ -473,7 +473,7 @@ namespace ColonyCouncil
         /// <summary>Whether a worn thing's or an added part's words name an eye patch ("Eyepatch", "eye patch").</summary>
         public static bool EyePatchWords(List<string> tokens) => tokens != null && (Starts(tokens, "eyepatch") || Is(tokens, "eye") && Starts(tokens, "patch"));
 
-        private static bool TryEnum<T>(string text, out T value) where T : struct
+        public static bool TryEnum<T>(string text, out T value) where T : struct
         {
             value = default;
             if (string.IsNullOrWhiteSpace(text)) return false;

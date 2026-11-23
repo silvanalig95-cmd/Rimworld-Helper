@@ -242,8 +242,8 @@ so no node pack is needed.
     always prioritized. for example if an image is generating a man, qwen thinks it's a woman and writes that in the
     corrections file, i edit the file within the game detail screen to be a man, the library import or other scripts
     should not override that again with the "correction" from gwen of it being a woman"). Rimfolk's **About this
-    picture** window writes its lines with the why `set in the game` (sex, age, features, marks, looks, role,
-    headwear, side). `Update-PortraitLibrary.ps1` applies such a line over any other line for the same picture and
+    picture** window writes its lines with the why `set in the game` (race, xenotype, sex, age, skin, hair colour,
+    hair, beard, build, the clothes' age and kind, features, marks, looks, role, headwear, side). `Update-PortraitLibrary.ps1` applies such a line over any other line for the same picture and
     field, whatever their order in the file (for looks, marks and features: over another line for the same word). The
     check never writes a correction against it and never changes it; the report only says so (`5 set in the game`:
     "set in the game: sex male; the model sees otherwise (drawn as a woman ...)").
@@ -268,6 +268,12 @@ pictures may be right, so a correction changes only that picture's record. The f
   a colonist's own picture).
 - `features` (`add:pointedEars`, `remove:horns` ...) and `side` (`left`, `right`, or `clear` for none: the side of a
   mark, as seen from the person): written by the game's **About this picture** only.
+- Also written by **About this picture** only (the player, 23 November 2026: "i should be able to correct things like
+  races, haircolor, skin color etc."): `race` (the race's def name, such as `Human` or a mod's race; `human` for none),
+  `xenotype` (the xenotype's def name, such as `Yttakin`; `baseliner` for none), `skin` and `hairColour` (`#rrggbb`;
+  `none` for no hair colour), `hair` (bald, short, medium, long, braids, bun, tied), `beard` (none, stubble, short,
+  full, moustache), `build` (average, slim, heavy, broad), `era` (tribal, medieval, industrial, spacer, or `any`) and
+  `dress` (rags, work, fine, robes, armour, or `any`).
 - `out`: the picture is left out of the records; the file stays where it is (yes for more than one person in a
   cut-out; ask for a body its kind doesn't have, such as pointed ears on a baseliner or an elf without them, for a
   cut-out cut at the side, and for a person in a backdrop).

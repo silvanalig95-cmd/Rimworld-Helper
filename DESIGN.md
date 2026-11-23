@@ -16667,6 +16667,15 @@ backdrop's softening, the line round the person, the tint), `BackdropMath.cs` (t
     card making them. The round portraits (the Face frame) frame the head at 0.6 of their height with 0.18 above it, so
     the face sits in the middle, and a cut-out's view may reach past the picture's top and sides to keep it there
     (`PortraitViewMath.View(..., open)`); the other frames keep inside the picture. (Released 0.298.1.)
+  - *No smaller levels at all* (the player, 23 November 2026, with a screenshot of About this picture: every small
+    picture still showed a second face, shifted to the side and darker): the player's log shows 1.7 drawing through its
+    own Vulkan engine, and both ways of giving a texture its smaller levels (made by the card, or made by the mod and
+    loaded) came out shifted for the library's pictures, whose sizes are no powers of two, while the mod's own round
+    masks (64 pixels square) drew right. So no picture has smaller levels: the store makes its smaller copies on its
+    worker, each half the one before down to 24 pixels on the long side (`PortraitPictureMath.CopySizes`), each a texture
+    of its own, and the small portraits, the About window's pictures and the grey of the dead draw the smallest copy at
+    least as wide as the picture shows on the screen (`PortraitStore.Sized`, `PortraitPictureMath.CopyFor`). (Released
+    0.299.1.)
   - *Sharp at every size* (the player, 23 November 2026: "there seems to be some threshold below which it kind of makes the
     image a bit more blurry. And once I enlarge it a little bit, it's more sharp. It should ideally be sharp at all
     stages ... we can just load it at high resolution throughout"): a picture is kept at twice what the largest portrait
@@ -17318,6 +17327,16 @@ distance in its parts, the hard rules one by one, mark variants and their side, 
     person's own, then every other). Greyed with the reason for a mod's picture, while the folder is read or a deletion
     or another correction written. Corrections go to the picture itself (where a variant shows, to the picture it is a
     version of) and its versions with it (a mark variant keeps its own mark and side).
+  - *The kind, the colours, the hair and the clothes too* (the player, 23 November 2026: "i should be able to correct
+    things like races, haircolor, skin color etc."): the race (every humanlike race of the game and its mods) and the
+    xenotype (every xenotype, and the person's own of their making), each by its def name, none written human and
+    baseliner; the skin (the person's own, a sample in the middle of each of the eight tones, six unusual skins) and the
+    hair colour (the person's own, eleven natural colours, four dyed ones, and none for a bald picture), each with its
+    swatch; the hair, beard, build and the clothes' age and kind. In each list the person's own value is marked "as
+    <name>" and comes first where it is a list of names. corrections.csv's lines: `race`, `xenotype`, `skin` and
+    `hairColour` (`#rrggbb`), `hair`, `beard`, `build`, `era` and `dress` (`any` for not told), which
+    Update-PortraitLibrary applies the same way; records.xml gets those fields only where they changed. (Released
+    0.299.1.)
 - **A correction taken** (`PortraitCorrect`): the record in the game changed at once, its versions' too; everyone keeping
   the picture who it no longer fits (`PortraitLibraryMath.StillFits`: every hard rule of a new pick, a picture pinned to
   them by its stage and special looks) is let go and picked again by the usual rules when next shown; the library read

@@ -33,6 +33,11 @@ namespace ColonyCouncil
 
         public State state;
         public Texture2D texture;
+        /// <summary>The picture's smaller copies, largest first (<see cref="PortraitPictureMath.CopySizes"/>), and their widths.</summary>
+        public Texture2D[] smaller;
+        public int[] smallerWidths;
+        /// <summary>The pixels of the picture and all its copies, as the cache counts them.</summary>
+        public long keptPixels;
         /// <summary>The picture as kept (scaled down), and the head as measured from its alpha (not found for a backdrop or an old picture painted to its edges).</summary>
         public int width, height;
         public HeadMeasure head;
@@ -53,7 +58,8 @@ namespace ColonyCouncil
     /// <item>Its file is read on a worker thread; the game decodes it (<c>ImageConversion.LoadImage</c>), at most one a
     /// frame; the worker measures the head from its alpha, scales it down to twice what the largest portrait needs
     /// (<see cref="PortraitPictureMath.LongSideFor"/>: 900 pixels long at the interface's own scale, at most 1280) and gives
-    /// its clear edge the person's colour; the game makes the texture (with mipmaps, for the small round portraits), at
+    /// its clear edge the person's colour, and makes its smaller copies (each half the one before, for the small portraits);
+    /// the game makes the textures (none with smaller levels of its own, which 1.7 draws shifted), at
     /// most one a frame.</item>
     /// <item>Kept in a small cache: at most <see cref="MostPictures"/> pictures and <see cref="MostPixels"/> pixels, the
     /// least lately shown let go (its texture destroyed) when more are needed.</item>
@@ -70,6 +76,8 @@ namespace ColonyCouncil
 
         private static readonly Queue<PictureFile> queued = new Queue<PictureFile>();
         private static readonly List<PictureFile> ready = new List<PictureFile>();
+        /// <summary>The ready pictures by their full-size texture, for <see cref="Sized"/>.</summary>
+        private static readonly Dictionary<Texture2D, PictureFile> byTexture = new Dictionary<Texture2D, PictureFile>();
         private static long pixels;
         private static int pumped = -1;
         private static int loading;
@@ -248,22 +256,22 @@ namespace ColonyCouncil
                     PortraitPictureMath.SolidFoot(small, nw, nh);
                     PortraitPictureMath.Bleed(small, nw, nh, BleedDepth);
                 }
-                // Every smaller copy made here, each pixel the average of all it covers, weighted by how solid they are,
-                // and given to the graphics card as it is (the player, 23 November 2026: the small portraits showed a second
-                // face behind the picture on every card while the large portrait, which never uses the smaller copies, was
-                // right; the card's own copies are no longer relied on).
-                var levels = new List<Color32[]>();
+                // The smaller copies made here, each half the one before, each pixel the average of all it covers, weighted by
+                // how solid they are; each its own texture, and the small portraits drawn from the copy that fits (the player,
+                // 23 November 2026: the small portraits showed a second face behind the picture on every card while the large
+                // portrait was right; 1.7's engine draws a texture's smaller levels shifted at these sizes, so none are made).
+                var copies = new List<Color32[]>();
+                var sizes = PortraitPictureMath.CopySizes(nw, nh);
                 int lw = nw, lh = nh;
                 var cur = small;
-                while (lw > 1 || lh > 1)
+                foreach (var (mw, mh) in sizes)
                 {
-                    int mw = Math.Max(1, lw / 2), mh = Math.Max(1, lh / 2);
                     cur = PortraitPictureMath.Downscale(cur, lw, lh, mw, mh);
-                    levels.Add(ToColours(PortraitPictureMath.FlipRows(cur, mw, mh)));
+                    copies.Add(ToColours(PortraitPictureMath.FlipRows(cur, mw, mh)));
                     lw = mw;
                     lh = mh;
                 }
-                return new Processed { px = ToColours(PortraitPictureMath.FlipRows(small, nw, nh)), w = nw, h = nh, head = head, mips = levels };
+                return new Processed { px = ToColours(PortraitPictureMath.FlipRows(small, nw, nh)), w = nw, h = nh, head = head, copies = copies, sizes = sizes };
             }, (done, ex) => Upload(f, done, ex), false);
         }
 
@@ -272,8 +280,9 @@ namespace ColonyCouncil
             public Color32[] px;
             public int w, h;
             public HeadMeasure head;
-            /// <summary>The smaller copies, half the size each time down to one pixel (rows from the foot).</summary>
-            public List<Color32[]> mips;
+            /// <summary>The smaller copies, half the size each time (rows from the foot), and their sizes.</summary>
+            public List<Color32[]> copies;
+            public List<(int w, int h)> sizes;
         }
 
         private static void Upload(PictureFile f, Processed p, Exception ex)
@@ -289,54 +298,51 @@ namespace ColonyCouncil
                 return;
             }
             loading = Math.Max(0, loading - 1);
-            var tex = new Texture2D(p.w, p.h, TextureFormat.RGBA32, true)
+            // The picture and each of its copies a texture of its own, without smaller levels (see Process).
+            var tex = Flat(p.px, p.w, p.h, "RimfolkPortrait_" + f.key);
+            long kept = (long)p.w * p.h;
+            int n = p.copies?.Count ?? 0;
+            f.smaller = new Texture2D[n];
+            f.smallerWidths = new int[n];
+            for (int i = 0; i < n; i++)
             {
-                name = "RimfolkPortrait_" + f.key, filterMode = FilterMode.Trilinear, wrapMode = TextureWrapMode.Clamp, anisoLevel = 0
-            };
-            // The picture and all its smaller copies as made above, loaded at once (the raw data of every level in turn, the
-            // way 1.6's and 1.7's Unity both take it); the graphics card's own copies only where the count doesn't fit.
-            var all = p.mips != null && p.mips.Count == tex.mipmapCount - 1 ? AllLevels(p.px, p.mips) : null;
-            if (all != null)
-            {
-                tex.LoadRawTextureData(all);
-                tex.Apply(false, true);
-            }
-            else
-            {
-                tex.SetPixels32(p.px);
-                tex.Apply(true, true);
+                var (cw, ch) = p.sizes[i];
+                f.smaller[i] = Flat(p.copies[i], cw, ch, "RimfolkPortrait_" + f.key + "_" + cw);
+                f.smallerWidths[i] = cw;
+                kept += (long)cw * ch;
             }
             f.texture = tex;
             f.width = p.w;
             f.height = p.h;
             f.head = p.head;
+            f.keptPixels = kept;
             f.state = PictureFile.State.Ready;
             ready.Add(f);
-            pixels += (long)p.w * p.h;
+            byTexture[tex] = f;
+            pixels += kept;
             Loaded++;
             Trim();
         }
 
-        /// <summary>A picture's raw RGBA bytes and then each of its smaller copies', as a mipmapped texture takes them.</summary>
-        private static byte[] AllLevels(Color32[] first, List<Color32[]> rest)
+        /// <summary>A texture of these pixels with no smaller levels, smoothed between pixels, no longer readable once made.</summary>
+        private static Texture2D Flat(Color32[] px, int w, int h, string name)
         {
-            long n = first.Length;
-            foreach (var l in rest) n += l.Length;
-            var bytes = new byte[n * 4];
-            int o = 0;
-            void Put(Color32[] px)
-            {
-                for (int i = 0; i < px.Length; i++)
-                {
-                    bytes[o++] = px[i].r;
-                    bytes[o++] = px[i].g;
-                    bytes[o++] = px[i].b;
-                    bytes[o++] = px[i].a;
-                }
-            }
-            Put(first);
-            foreach (var l in rest) Put(l);
-            return bytes;
+            var tex = new Texture2D(w, h, TextureFormat.RGBA32, false) { name = name, filterMode = FilterMode.Bilinear, wrapMode = TextureWrapMode.Clamp, anisoLevel = 0 };
+            tex.SetPixels32(px);
+            tex.Apply(false, true);
+            return tex;
+        }
+
+        /// <summary>
+        /// The texture to draw for a picture whose whole width shows <paramref name="guiWidth"/> wide in the interface: the
+        /// smallest of its copies at least that many pixels wide on the screen, else the picture itself; any other texture
+        /// as it is.
+        /// </summary>
+        public static Texture2D Sized(Texture2D tex, float guiWidth)
+        {
+            if (tex == null || !byTexture.TryGetValue(tex, out var f) || f.texture != tex || f.smaller == null) return tex;
+            int i = PortraitPictureMath.CopyFor(f.smallerWidths, guiWidth * Prefs.UIScale);
+            return i >= 0 && f.smaller[i] != null ? f.smaller[i] : tex;
         }
 
         /// <summary>The least lately shown pictures let go (their textures destroyed) while the cache is over its count or pixels; never one shown this frame or the last.</summary>
@@ -355,9 +361,19 @@ namespace ColonyCouncil
 
         private static void Drop(PictureFile f)
         {
-            if (ready.Remove(f)) pixels -= (long)f.width * f.height;
-            if (f.texture != null) UnityEngine.Object.Destroy(f.texture);
+            if (ready.Remove(f)) pixels -= f.keptPixels;
+            if (f.texture != null)
+            {
+                byTexture.Remove(f.texture);
+                UnityEngine.Object.Destroy(f.texture);
+            }
+            if (f.smaller != null)
+                foreach (var c in f.smaller)
+                    if (c != null) UnityEngine.Object.Destroy(c);
             f.texture = null;
+            f.smaller = null;
+            f.smallerWidths = null;
+            f.keptPixels = 0;
             f.state = PictureFile.State.None;
         }
 

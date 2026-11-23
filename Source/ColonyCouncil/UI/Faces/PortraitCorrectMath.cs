@@ -72,7 +72,27 @@ namespace ColonyCouncil
         public static readonly string[] Columns = { "picture", "field", "value", "apply", "why" };
 
         /// <summary>The fields a correction in the game may change, in the window's order.</summary>
-        public static readonly string[] Fields = { "sex", "age", "features", "marks", "side", "looks", "role", "headwear" };
+        public static readonly string[] Fields =
+            { "race", "xenotype", "sex", "age", "skin", "hairColour", "hair", "beard", "build", "era", "dress", "features", "marks", "side", "looks", "role", "headwear" };
+
+        /// <summary>
+        /// The skins the window offers besides the person's own: a sample of each of the eight tones the matcher tells apart
+        /// (<see cref="PortraitLibraryMath.SkinToneFrom"/>, very fair to very dark, each in the middle of its tone), then the
+        /// unusual skins some kinds have.
+        /// </summary>
+        public static readonly (string word, string hex)[] SkinChoices =
+        {
+            ("very fair", "f9dec8"), ("fair", "e5bfa5"), ("light", "d0a284"), ("medium", "b88665"), ("tan", "9c6c4b"), ("brown", "7c5339"), ("dark", "583a29"),
+            ("very dark", "36241a"), ("green", "6f9a5a"), ("blue", "5a7fb0"), ("grey", "9a9a9a"), ("red", "b03a3a"), ("purple", "7a5aa0"), ("ink black", "1e1e26")
+        };
+
+        /// <summary>The hair colours the window offers besides the person's own: the natural ones, dark to light, then dyed ones.</summary>
+        public static readonly (string word, string hex)[] HairChoices =
+        {
+            ("black", "1a1716"), ("dark brown", "3a2619"), ("brown", "5c3b24"), ("light brown", "8b6a47"), ("auburn", "7b3a22"), ("red", "b0441c"),
+            ("strawberry blond", "c88a55"), ("blond", "d9b871"), ("platinum", "e6dbbf"), ("grey", "8f8d8a"), ("white", "e9e7e3"), ("blue", "3f5fbf"),
+            ("green", "3f9a55"), ("pink", "d06aa0"), ("purple", "7a4fb0")
+        };
 
         /// <summary>A picture as corrections.csv names it: its batch's folder and file, Windows' way (<c>colonists\X.png</c>).</summary>
         public static string PictureCell(string texPath) => PortraitFolderMath.FileKey(texPath).Replace('/', '\\');
@@ -109,16 +129,29 @@ namespace ColonyCouncil
         }
 
         /// <summary>
-        /// The lines that turn <paramref name="before"/> into <paramref name="after"/>: one for the sex, the age band, the work
-        /// (clear for none), headwear (true or false) and the side (clear for none) where each changed; add: and remove: lines
-        /// for each feature, mark and look added or taken away. In the window's order.
+        /// The lines that turn <paramref name="before"/> into <paramref name="after"/>: one for the race (human for none) and
+        /// the xenotype (baseliner for none), the sex, the age band, the skin's and the hair's colour (#rrggbb; none for no
+        /// hair colour), the hair, beard, build, the clothes' age and kind (any for not told), the work (clear for none),
+        /// headwear (true or false) and the side (clear for none) where each changed; add: and remove: lines for each feature,
+        /// mark and look added or taken away. In the window's order.
         /// </summary>
         public static List<PortraitFix> Fixes(PortraitRecord before, PortraitRecord after)
         {
             var list = new List<PortraitFix>();
             if (before == null || after == null) return list;
+            if (!SameKinds(before.races, after.races)) list.Add(new PortraitFix("race", KindsValue(after.races, "human")));
+            if (!SameKinds(before.xenotypes, after.xenotypes)) list.Add(new PortraitFix("xenotype", KindsValue(after.xenotypes, "baseliner")));
             if (before.sex != after.sex) list.Add(new PortraitFix("sex", PortraitLibraryMath.Word(after.sex)));
             if (before.age != after.age) list.Add(new PortraitFix("age", PortraitLibraryMath.Word(after.age)));
+            if (after.skinSet && (!before.skinSet || PortraitLibraryMath.Hex(before.skin) != PortraitLibraryMath.Hex(after.skin)))
+                list.Add(new PortraitFix("skin", "#" + PortraitLibraryMath.Hex(after.skin)));
+            if (before.hairColourSet != after.hairColourSet || after.hairColourSet && PortraitLibraryMath.Hex(before.hairColour) != PortraitLibraryMath.Hex(after.hairColour))
+                list.Add(new PortraitFix("hairColour", after.hairColourSet ? "#" + PortraitLibraryMath.Hex(after.hairColour) : "none"));
+            if (before.hair != after.hair) list.Add(new PortraitFix("hair", EnumWord(after.hair)));
+            if (before.beard != after.beard) list.Add(new PortraitFix("beard", EnumWord(after.beard)));
+            if (before.build != after.build) list.Add(new PortraitFix("build", EnumWord(after.build)));
+            if (before.era != after.era) list.Add(new PortraitFix("era", after.era == PortraitEra.Unknown ? "any" : EnumWord(after.era)));
+            if (before.dress != after.dress) list.Add(new PortraitFix("dress", after.dress == PortraitDress.Unknown ? "any" : EnumWord(after.dress)));
             Changes(list, "features", before.features, after.features, StringComparer.Ordinal);
             Changes(list, "marks", MarkWords(before), MarkWords(after), StringComparer.Ordinal);
             if (before.side != after.side) list.Add(new PortraitFix("side", after.side == PortraitSide.None ? "clear" : PortraitLibraryMath.SideWord(after.side)));
@@ -126,6 +159,36 @@ namespace ColonyCouncil
             if (!string.Equals(before.role ?? "", after.role ?? "", StringComparison.Ordinal)) list.Add(new PortraitFix("role", string.IsNullOrEmpty(after.role) ? "clear" : after.role));
             if (before.headwear != after.headwear) list.Add(new PortraitFix("headwear", after.headwear ? "true" : "false"));
             return list;
+        }
+
+        /// <summary>A word of the records' own (short, medium, broad ...): the value's name in small letters.</summary>
+        public static string EnumWord<T>(T v) where T : struct => v.ToString().ToLowerInvariant();
+
+        private static bool SameKinds(List<string> a, List<string> b) =>
+            new HashSet<string>(a ?? new List<string>(), StringComparer.OrdinalIgnoreCase).SetEquals(b ?? new List<string>());
+
+        /// <summary>A race's or xenotype's line value: its def names joined by ";", or the word for none (human, baseliner).</summary>
+        private static string KindsValue(List<string> kinds, string none) => kinds == null || kinds.Count == 0 ? none : string.Join(";", kinds);
+
+        /// <summary>The def names of a race's or xenotype's line ("Yttakin", "Highmate;Hussar"), small letters, without the word for none.</summary>
+        private static List<string> KindsOf(string v, string none)
+        {
+            var list = new List<string>();
+            foreach (var part in (v ?? "").Split(';', ',', '|'))
+            {
+                string w = part.Trim().ToLowerInvariant();
+                if (w.Length == 0 || w.Contains(" ") || list.Contains(w)) continue;
+                list.Add(w);
+            }
+            list.Remove(none);
+            return list;
+        }
+
+        private static bool SetWord<T>(string field, string v, ref T into) where T : struct
+        {
+            if (!PortraitLibraryMath.TryEnum(PortraitLibraryMath.Synonym(field, v), out T w)) return false;
+            into = w;
+            return true;
         }
 
         private static void Changes(List<PortraitFix> list, string field, IEnumerable<string> before, IEnumerable<string> after, StringComparer cmp)
@@ -145,8 +208,60 @@ namespace ColonyCouncil
         {
             if (r == null || f == null) return false;
             string v = (f.value ?? "").Trim();
-            switch ((f.field ?? "").Trim().ToLowerInvariant())
+            switch (FieldKey(f.field))
             {
+                case "race":
+                {
+                    if (v.Length == 0) return false;
+                    r.races = KindsOf(v, "human");
+                    return true;
+                }
+                case "xenotype":
+                {
+                    if (v.Length == 0) return false;
+                    r.xenotypes = KindsOf(v, "baseliner");
+                    return true;
+                }
+                case "skin":
+                {
+                    if (!PortraitLibraryMath.TryColour(v, out var c)) return false;
+                    r.skin = c;
+                    r.skinSet = true;
+                    return true;
+                }
+                case "haircolour":
+                {
+                    string t = v.ToLowerInvariant();
+                    if (t == "none" || t == "clear" || t == "-")
+                    {
+                        r.hairColourSet = false;
+                        return true;
+                    }
+                    if (!PortraitLibraryMath.TryColour(v, out var c)) return false;
+                    r.hairColour = c;
+                    r.hairColourSet = true;
+                    return true;
+                }
+                case "hair":
+                    return SetWord("hair", v, ref r.hair);
+                case "beard":
+                    return SetWord("beard", v, ref r.beard);
+                case "build":
+                    return SetWord("build", v, ref r.build);
+                case "era":
+                    if (Any(v))
+                    {
+                        r.era = PortraitEra.Unknown;
+                        return true;
+                    }
+                    return SetWord("era", v, ref r.era);
+                case "dress":
+                    if (Any(v))
+                    {
+                        r.dress = PortraitDress.Unknown;
+                        return true;
+                    }
+                    return SetWord("dress", v, ref r.dress);
                 case "sex":
                 {
                     string t = v.ToLowerInvariant();
@@ -215,6 +330,23 @@ namespace ColonyCouncil
                 }
             }
             return false;
+        }
+
+        /// <summary>A line's field as <see cref="Apply"/> knows it: small letters, spaces and underscores taken out (hair colour and haircolor are haircolour; kind is xenotype).</summary>
+        public static string FieldKey(string field)
+        {
+            string t = (field ?? "").Trim().ToLowerInvariant().Replace(" ", "").Replace("_", "");
+            if (t == "haircolor") return "haircolour";
+            if (t == "skincolor" || t == "skincolour") return "skin";
+            if (t == "kind" || t == "xenotypes") return "xenotype";
+            if (t == "races") return "race";
+            return t;
+        }
+
+        private static bool Any(string v)
+        {
+            string t = (v ?? "").Trim().ToLowerInvariant();
+            return t == "any" || t == "unknown" || t == "clear" || t == "-";
         }
 
         /// <summary>"add:word" or "remove:word" (spaces round the colon allowed), as the scripts read it.</summary>
@@ -446,8 +578,17 @@ namespace ColonyCouncil
                 string name = e.Element("defName")?.Value?.Trim() ?? "";
                 if (name.Length == 0) name = "Portrait_" + n;
                 if (!records.TryGetValue(name, out var r) || r == null) continue;
+                SetKinds(e, "races", r.races, "human");
+                SetKinds(e, "xenotypes", r.xenotypes, "baseliner");
                 SetOne(e, "sex", PortraitLibraryMath.Word(r.sex));
                 SetOne(e, "age", PortraitLibraryMath.Word(r.age));
+                SetColour(e, "skinColor", r.skinSet, r.skin);
+                SetColour(e, "hairColor", r.hairColourSet, r.hairColour);
+                SetWord(e, "hair", r.hair, PortraitHairStyle.Short, true);
+                SetWord(e, "beard", r.beard, PortraitBeard.None, true);
+                SetWord(e, "build", r.build, PortraitBuild.Average, true);
+                SetWord(e, "era", r.era, PortraitEra.Unknown, false);
+                SetWord(e, "dress", r.dress, PortraitDress.Unknown, false);
                 SetList(e, "features", PortraitLibraryMath.Features.Where(r.features.Contains));
                 SetList(e, "marks", MarkWords(r));
                 SetOne(e, "side", PortraitLibraryMath.SideWord(r.side));
@@ -511,6 +652,35 @@ namespace ColonyCouncil
                 return;
             }
             Add(e, new XElement(tag, value));
+        }
+
+        /// <summary>
+        /// A record's races or xenotypes, written only where they differ from what the record's text says (the case and the
+        /// word for none aside), so a picture whose kind was not corrected keeps its lines as the scripts wrote them.
+        /// </summary>
+        private static void SetKinds(XElement e, string tag, List<string> kinds, string none)
+        {
+            var had = new HashSet<string>(e.Element(tag)?.Elements("li").Select(li => li.Value.Trim().ToLowerInvariant()).Where(w => w.Length > 0) ?? Enumerable.Empty<string>());
+            had.Remove(none);
+            if (had.SetEquals(kinds ?? new List<string>())) return;
+            SetList(e, tag, kinds);
+        }
+
+        /// <summary>A colour, written (#rrggbb) only where it differs from the one the record's text gives; taken out where unset.</summary>
+        private static void SetColour(XElement e, string tag, bool set, PortraitColour c)
+        {
+            bool had = PortraitLibraryMath.TryColour(e.Element(tag)?.Value, out var was);
+            if (had == set && (!set || PortraitLibraryMath.Hex(was) == PortraitLibraryMath.Hex(c))) return;
+            SetOne(e, tag, set ? "#" + PortraitLibraryMath.Hex(c) : "");
+        }
+
+        /// <summary>A word field (hair, beard, build, era, dress), written only where it differs from the one the record's text gives (unset: <paramref name="unset"/>); the value for not told taken out where <paramref name="write"/> is false.</summary>
+        private static void SetWord<T>(XElement e, string tag, T value, T unset, bool write) where T : struct
+        {
+            string text = e.Element(tag)?.Value;
+            T was = string.IsNullOrWhiteSpace(text) || !PortraitLibraryMath.TryEnum(PortraitLibraryMath.Synonym(tag, text), out T w) ? unset : w;
+            if (EqualityComparer<T>.Default.Equals(was, value)) return;
+            SetOne(e, tag, !write && EqualityComparer<T>.Default.Equals(value, unset) ? "" : EnumWord(value));
         }
 
         /// <summary>A list field as the scripts write it, on one line (<c>&lt;marks&gt;&lt;li&gt;scar&lt;/li&gt;&lt;/marks&gt;</c>); taken out where empty.</summary>

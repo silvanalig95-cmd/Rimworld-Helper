@@ -274,6 +274,45 @@ public static class PortraitAboutTests
             var undo = PortraitCorrectMath.Fixes(after, before);
             C(undo.Any(f => f.ToString() == "side clear") && undo.Any(f => f.ToString() == "role clear") && undo.Any(f => f.ToString() == "headwear false"),
                 "taking a side, a work or headwear away: clear, clear, false");
+            // The person's kind, colours, hair, beard, build and clothes (the player, 23 November 2026: "i should be able to
+            // correct things like races, haircolor, skin color etc.").
+            var kb = Rec("P_K");
+            var ka = PortraitCorrectMath.Copy(kb);
+            ka.races = new List<string> { "kiiro_race" };
+            ka.xenotypes = new List<string> { "yttakin" };
+            ka.skin = Hex("#583a29");
+            ka.hairColourSet = false;
+            ka.hair = PortraitHairStyle.Long;
+            ka.beard = PortraitBeard.Full;
+            ka.build = PortraitBuild.Broad;
+            ka.era = PortraitEra.Tribal;
+            ka.dress = PortraitDress.Rags;
+            var kf = PortraitCorrectMath.Fixes(kb, ka);
+            C(string.Join("; ", kf) == "race kiiro_race; xenotype yttakin; skin #583a29; hairColour none; hair long; beard full; build broad; era tribal; dress rags",
+                $"the kind, colours, hair, beard, build and clothes as lines ({string.Join("; ", kf)})");
+            var kApplied = PortraitCorrectMath.Copy(kb);
+            C(kf.All(f => PortraitCorrectMath.Apply(kApplied, f)) && PortraitCorrectMath.Fixes(kApplied, ka).Count == 0, "those lines applied give the change back");
+            var kBack = PortraitCorrectMath.Fixes(ka, kb);
+            C(string.Join("; ", kBack) == "race human; xenotype baseliner; skin #e0b898; hairColour #4a3020; hair short; beard none; build average; era any; dress any",
+                $"and back: none written as human, baseliner and any ({string.Join("; ", kBack)})");
+            var kw = Rec("P_W");
+            C(PortraitCorrectMath.Apply(kw, new PortraitFix("kind", "Hussar")) && kw.xenotypes.SequenceEqual(new[] { "hussar" })
+              && PortraitCorrectMath.Apply(kw, new PortraitFix("race", "Human")) && kw.races.Count == 0
+              && PortraitCorrectMath.Apply(kw, new PortraitFix("Hair colour", "(255, 255, 255)")) && PortraitLibraryMath.Hex(kw.hairColour) == "ffffff"
+              && PortraitCorrectMath.Apply(kw, new PortraitFix("hair", "dreadlocks")) && kw.hair == PortraitHairStyle.Long
+              && !PortraitCorrectMath.Apply(kw, new PortraitFix("era", "modern")) && !PortraitCorrectMath.Apply(kw, new PortraitFix("skin", "tanned")) && !PortraitCorrectMath.Apply(kw, new PortraitFix("race", "")),
+                "the scripts' other words read the same (kind for the xenotype, hair colour with a space, the records' synonyms); an unknown one changes nothing");
+            C(PortraitCorrectMath.Fields.SequenceEqual(new[] { "race", "xenotype", "sex", "age", "skin", "hairColour", "hair", "beard", "build", "era", "dress", "features", "marks", "side", "looks", "role", "headwear" }),
+                "every field of the record the matcher reads may be corrected in the game");
+            bool tones = true, odd = true;
+            for (int i = 0; i < PortraitCorrectMath.SkinChoices.Length; i++)
+            {
+                if (!PortraitLibraryMath.TryColour(PortraitCorrectMath.SkinChoices[i].hex, out var sc)) tones = false;
+                else if (i < 8) tones &= PortraitLibraryMath.SkinTone(sc) == i && !PortraitLibraryMath.UnusualSkin(sc);
+                else odd &= PortraitLibraryMath.UnusualSkin(sc);
+            }
+            C(tones && odd && PortraitCorrectMath.SkinChoices.Length == 14 && PortraitCorrectMath.HairChoices.All(h => PortraitLibraryMath.TryColour(h.hex, out _)),
+                "the skins offered: one in each of the eight tones the matcher tells apart, then six unusual ones; every hair colour readable");
             var r = Rec("R");
             C(!PortraitCorrectMath.Apply(r, new PortraitFix("age", "ancient")) && !PortraitCorrectMath.Apply(r, new PortraitFix("marks", "add:wings")) && !PortraitCorrectMath.Apply(r, new PortraitFix("colour", "red"))
               && PortraitCorrectMath.Apply(r, new PortraitFix("age", "middle-aged")) && r.age == PortraitAge.Middle, "an unknown word changes nothing; the records' other words read as theirs");
@@ -355,6 +394,26 @@ public static class PortraitAboutTests
                                                      && !xml.Substring(0, a).Contains("<marks>"),
                 "a field set in place, new ones at the record's end as the scripts write them, an emptied list taken out");
             C(ReferenceEquals(PortraitCorrectMath.WithRecords(Records, new Dictionary<string, PortraitRecord> { ["P_Gone"] = x }, null), Records), "a record records.xml doesn't have: the text unchanged");
+            var k = PortraitCorrectMath.Copy(people[0].record);
+            k.races = new List<string> { "kiiro_race" };
+            k.xenotypes = new List<string> { "yttakin" };
+            k.skin = Hex("#583a29");
+            k.hairColourSet = false;
+            k.hair = PortraitHairStyle.Bald;
+            k.beard = PortraitBeard.Full;
+            k.era = PortraitEra.Unknown;
+            string kxml = PortraitCorrectMath.WithRecords(Records, new Dictionary<string, PortraitRecord> { ["P_X"] = k }, null);
+            var kAgain = new List<FolderPortrait>();
+            var kProbs = new List<string>();
+            PortraitFolderMath.Parse(kxml, kAgain, null, kProbs);
+            var k2 = kAgain[0].record;
+            int ka0 = kxml.IndexOf("<defName>P_X_blink", StringComparison.Ordinal);
+            C(kProbs.Count == 0 && k2.races.SequenceEqual(new[] { "kiiro_race" }) && k2.xenotypes.SequenceEqual(new[] { "yttakin" }) && PortraitLibraryMath.Hex(k2.skin) == "583a29"
+              && !k2.hairColourSet && k2.beard == PortraitBeard.Full && k2.era == PortraitEra.Unknown && k2.hair == PortraitHairStyle.Bald
+              && kxml.Contains("    <skinColor>#583a29</skinColor>\r\n") && !kxml.Substring(0, ka0).Contains("<hairColor>") && !kxml.Substring(0, ka0).Contains("<era>")
+              && kxml.Contains("<races><li>kiiro_race</li></races>") && kxml.Contains("<xenotypes><li>yttakin</li></xenotypes>") && kxml.Contains("    <hair>bald</hair>\r\n") && kxml.Contains("    <beard>full</beard>")
+              && kxml.Substring(kxml.IndexOf("  <ColonyCouncil.PortraitDef>\r\n    <defName>P_X_blink", StringComparison.Ordinal)) == Records.Substring(a),
+                $"the kind, colours, hair, beard and clothes written where corrected (a bald picture's hair colour taken out, any taken out), every other record as it was ({string.Join("; ", kProbs)})");
 
             // The whole writing, on a library of its own.
             string dir = Path.Combine(Path.GetTempPath(), "rimfolk-correct-test-" + Guid.NewGuid().ToString("N"));
@@ -413,8 +472,12 @@ public static class PortraitAboutTests
         // Keys made of a stem and a word: each word's.
         foreach (var f in PortraitLifeMath.Faces) used.AddRange(new[] { "CC_PortraitAbout_Face_" + f, "CC_PortraitAbout_FaceWhat_" + f, "CC_PortraitAbout_FaceWhen_" + f });
         foreach (var mk in PortraitLibraryMath.Marks.Distinct()) used.AddRange(new[] { "CC_PortraitAbout_Mark_" + mk, "CC_PortraitAbout_MarkWhat_" + mk, "CC_PortraitAbout_MarkWhen_" + mk });
-        foreach (var k in new[] { "Kind", "Sex", "Age", "Skin", "HairColour", "Hair", "Beard", "Build", "Clothes", "Features", "Marks", "Looks", "Role", "Headwear", "Facing", "File", "Character", "Pinned", "Version", "Side" })
+        foreach (var k in new[] { "Kind", "Sex", "Age", "Skin", "HairColour", "Hair", "Beard", "Build", "Clothes", "Features", "Marks", "Looks", "Role", "Headwear", "Facing", "File", "Character", "Pinned", "Version", "Side", "Race", "Xenotype", "Era", "Dress" })
             used.Add("CC_PortraitAbout_" + k);
+        C(window.Contains("() => Kinds(name, r, l, true)") && window.Contains("() => Kinds(name, r, l, false)") && window.Contains("() => Colours(name, r, l, true)")
+          && window.Contains("() => Colours(name, r, l, false)") && window.Contains("DefDatabase<XenotypeDef>.AllDefsListForReading") && window.Contains("d.race != null && d.race.Humanlike")
+          && window.Contains("BaseContent.WhiteTex, shown") && window.Contains("if (!skin && r.hair == PortraitHairStyle.Bald)") && window.Contains("Values<PortraitHairStyle>()") && window.Contains("Values<PortraitDress>()"),
+            "the race (every humanlike race), the xenotype, the skin and hair colours (each with its swatch), the hair, beard, build and clothes corrected in the window, the person's own first");
         // The stems the window joins a word to are no keys of their own.
         used = used.Where(k => !k.EndsWith("_")).Distinct().ToList();
         var missing = used.Where(k => !keyed.Contains("<" + k + ">")).ToList();

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.299.1</version>
+        <date>23 November 2026</date>
+        <title>No second face, and more to correct</title>
+        <points>
+          <li>The small portraits no longer show a second, shifted face behind the picture. RimWorld 1.7's new graphics engine drew the smaller sizes of the library's pictures shifted, so Rimfolk now makes each smaller copy itself and draws the one that fits.</li>
+          <li>About this picture can now correct a picture's race, xenotype, skin colour, hair colour, hairstyle, beard, build and the age and kind of its clothes. In each list the colonist's own value is marked, and the colours show a swatch.</li>
+          <li>These corrections are written to corrections.csv and records.xml like the others, and Update-PortraitLibrary keeps them.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.299.0</version>
         <date>23 November 2026</date>
         <title>About this picture, and the variants the game wants</title>

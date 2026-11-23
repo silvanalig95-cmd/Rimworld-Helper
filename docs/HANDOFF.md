@@ -748,6 +748,12 @@ most sense." So, in this order, three builds at a time:
   yes and ask (only no is not applied; "set in the game" still wins); the check still writes ask where it is less sure
   (so the player can see which), and its messages, SETUP-ComfyUI.md (steps 10 and 11) and ORDER.md say there is nothing
   to answer. An "out" marked ask (two people, cut at the side, a body its kind lacks) now leaves the picture out too.
+- **Being built (23 November 2026, the player's own request): pictures with extra or misplaced limbs held back until the
+  player keeps them, and a review tool.** The player: "the image tester should also check if there's extra limbs/hands
+  that don't make sense, so these images can be filtered out as well", then "these should be flagged for checking!
+  ideally i'd have some toolkit that provides me the preview of the image, what is wrong and whether I want to keep it.
+  while i approved that most corrections can be applied right away, things like extra limbs should be blocked by
+  default".
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library read again
   by itself, and a quick way to Rimfolk's settings.** The player: "could the libary import also be done regularly, like
   on startup of the game and/or when loading a save? so I don't do it manually. Also it would be lovely to have a
@@ -1720,6 +1726,18 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.299.1, **No second face in the small
+  portraits, and more to correct** (23 November 2026; the player, with a screenshot of About this picture and their
+  log: "unfortunately, the images are still duplicated. also i should be able to correct things like races, haircolor,
+  skin color etc."). DESIGN.md, "No smaller levels at all" and "The kind, the colours, the hair and the clothes too".
+  - **The second face**: the About window's own small pictures (a plain draw of the texture) showed it, so it was in
+    the texture's smaller levels. The log shows 1.7 on its own Vulkan engine; the library's pictures (no power-of-two
+    sizes) came out shifted at their smaller levels whether the card or the mod made them, while the mod's 64-pixel
+    masks were right. No picture has smaller levels now: the store makes halved copies, each its own texture, and the
+    small views draw the one that fits (`PortraitStore.Sized`). Still to confirm in the player's game.
+  - **More to correct**: race, xenotype, skin, hair colour, hair, beard, build, the clothes' age and kind, in the window
+    and in corrections.csv, applied by Update-PortraitLibrary too (it now writes them from the record after its
+    corrections).
 - 0.299.0, **About this picture, and the
   variants the game wants** (23 November 2026; the player: "one of the right-click options could open kind of a menu
   where I see the image that is currently assigned to the pawn ... which of the characteristics were now relevant for why
