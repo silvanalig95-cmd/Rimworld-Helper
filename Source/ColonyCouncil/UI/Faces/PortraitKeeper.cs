@@ -112,6 +112,20 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>A new game started: each colonist keeps the picture the starting pawns' page showed them (UI/Faces/StartingPortraits.cs).</summary>
+        public override void StartedNewGame()
+        {
+            base.StartedNewGame();
+            StartingPortraits.KeepAll();
+        }
+
+        /// <summary>A game loaded: the trial pictures of a starting pawns' page left unstarted let go.</summary>
+        public override void LoadedGame()
+        {
+            base.LoadedGame();
+            StartingPortraits.Clear();
+        }
+
         public override void ExposeData()
         {
             base.ExposeData();

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Your people from the first page
+
+*23 November 2026, version 0.301.0*
+
+- The starting pawns' page now shows each pawn's painted portrait from your library, with its backdrop, in a panel beside the page. Right-click it to choose another picture.
+- A picture shown there is only held while you choose your pawns. The pawns you start with keep theirs, and a randomized pawn gets a new one.
+
 ## What they go through, on their portraits
 
 *23 November 2026, version 0.300.0*

@@ -17042,6 +17042,21 @@ Tested in `Tools/Tests/PortraitLifeTests.cs`.
   cost of the extra read-backs.
 
 
+#### The starting pawns' page (the player's go, 23 November 2026; released 0.301.0)
+
+The player: "when you start a new colony now in game, you select your pawns at first, kind of to get prepared. Could we
+include the image of the pawn already there? That would be lovely. It would provide another level of immersion right
+from the beginning"; the go: "please make it so that images are shown on the new game start screen".
+`UI/Faces/StartingPortraits.cs`.
+- **Where**: a panel beside the page, in the free space to its right, else its left (at most 320 wide, none under 150),
+  covering nothing of the page; the large portrait as the game shows it in play (the painted picture on a plain ground,
+  no map yet), the name in a band at its foot; a tooltip says it stays theirs if the game starts with them.
+- **A trial**: a pick there is held only while that pawn is on the page: never kept or reserved, never a face another
+  pawn on the page holds; a randomized pawn (a new pawn) or one removed lets theirs go. A right click: "Choose another
+  picture", the next that may stand for them, held as chosen by hand.
+- **When the game starts**: each colonist keeps the picture the page showed, as if picked (or chosen by hand) in the
+  game; a loaded game lets every trial go. With painted portraits off, nothing shows.
+
 #### What they go through, on their portraits (the player's go, 23 November 2026; released 0.300.0)
 
 The player: "the image could have a bunch of also different effects or laid over it or applied to it. For example, if

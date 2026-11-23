@@ -162,6 +162,30 @@ public static class PortraitEffectsTests
           && inspect.Contains("SettingsWindow.Open(\"CC_SetSec_Portraits\")") && keys.Contains("DefDatabase<KeyBindingDef>.GetNamedSilentFail(\"Council_Key_Settings\")")
           && keyDefs.Contains("<defName>Council_Key_Settings</defName>"),
             "the shortcuts: every panel's menu, the Council panel's bar, the large portrait's menu (at the portraits), a key of the player's choosing (none at first)");
+
+        // ---------------- The starting pawns' page (the player: "please make it so that images are shown on the new game start screen") ----------------
+        string start = Read("UI/Faces/StartingPortraits.cs"), lib = Read("UI/Faces/PortraitLibrary.cs");
+        C(start.Contains("[HarmonyPatch(typeof(StartingPawnUtility), \"DrawPortraitArea\")]") && start.Contains("__args[1] is int index") && start.Contains("StartingPortraits.Seen(index);")
+          && start.Contains("[HarmonyPatch(typeof(WindowStack), nameof(WindowStack.WindowStackOnGUI))]") && start.Contains("public static void Prefix() => StartingPortraits.BeforeWindows();")
+          && start.Contains("public static void Postfix() => StartingPortraits.AfterWindows();"),
+            "the pawn the page shows read from the game's own drawing of its portrait area; the panel drawn after the windows, its right click read before them");
+        C(start.Contains("float right = UI.screenWidth - pr.xMax, left = pr.x;") && start.Contains("if (w < LeastWide) return;")
+          && start.Contains("right >= left ? pr.xMax + Gap : pr.x - Gap - w") && start.Contains("Current.ProgramState != ProgramState.Entry"),
+            "beside the page in the free space (right, else left), none where the screen has no room, only before the game starts");
+        C(start.Contains("FaceEngine.DrawStaged(inner, p, inner.size, true)") && start.Contains("FaceEngine.DrawGameStaged(inner, p, inner.size, true)")
+          && start.Contains("(ColonyCouncilMod.Settings?.portraitLibrary ?? true)") && start.Contains("failed = true;"),
+            "the large portrait as the game shows it, with its backdrop; nothing with painted portraits off; an error stops it quietly with one line in the log");
+        int trialAt = lib.IndexOf("private int DecideTrial(Pawn p)", StringComparison.Ordinal);
+        string trial = trialAt >= 0 ? lib.Substring(trialAt, lib.IndexOf("public void KeepFromStart", trialAt, StringComparison.Ordinal) - trialAt) : "";
+        C(lib.Contains("if (Current.ProgramState != ProgramState.Playing) return DecideTrial(p);") && trial.Contains("StartingPortraits.TakenByOther(c, id)")
+          && trial.Contains("StartingPortraits.Note(id, r0.name, r0.Character, false, pick.distance, pin.Any);") && !trial.Contains("keeper.Set(") && !trial.Contains("keeper.Reserve(")
+          && lib.Contains("if (Current.ProgramState != ProgramState.Playing) return ChooseTrial(p, look);"),
+            "on the page a trial pick: never kept or reserved, never a face another pawn on the page holds; \"Choose another picture\" there held as chosen by hand");
+        C(keeper.Contains("public override void StartedNewGame()") && keeper.Contains("StartingPortraits.KeepAll();") && keeper.Contains("public override void LoadedGame()")
+          && keeper.Contains("StartingPortraits.Clear();") && start.Contains("foreach (var p in PawnsFinder.AllMaps_FreeColonists)") && start.Contains("lib.KeepFromStart(p, t.picture, t.byHand, t.distance, t.pinned);")
+          && start.Contains("private static void Prune()"),
+            "when the game starts each colonist keeps the picture the page showed; a randomized or removed pawn's trial let go; a loaded game lets every trial go");
+        C(keyed.Contains("<CC_Portrait_ChooseTrial>") && keyed.Contains("<CC_StartingPortrait_Tip>"), "its words in the language file");
         return n;
     }
 }

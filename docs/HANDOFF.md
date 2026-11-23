@@ -1030,8 +1030,9 @@ most sense." So, in this order, three builds at a time:
   rule they stand for all seven); 70% of these rows broad (`COVER_BROAD`: milder features, at most two), the rest as
   specific as the first round's; marks on 5%. 474 rows, 47% baseliners, 22 kinds, both sexes evenly, 6 children;
   every row still has a face of its own. Tests: the cover cells, the wave-4 bounds.
-- **To do when the player asks (23 November 2026, the player; proposal sent; the player, the same day: "to ahead with 2.
-  on to do list, not now", read as: on the to-do list, not now): the painted portrait on the starting pawns screen.** The player: "when you start a new colony now in game, you select your pawns at first,
+- **Go given (23 November 2026, the player: "If not already done please make it so that images are shown on the new game
+  start screen"); built, not released: the painted portrait on the starting pawns screen.** The entry above the newest
+  release line says what was built. Earlier the same day: "to ahead with 2. on to do list, not now". The player: "when you start a new colony now in game, you select your pawns at first,
   kind of to get prepared. Could we include the image of the pawn already there? That would be lovely. It would provide
   another level of immersion right from the beginning." The proposal: on the game's "Create characters" page
   (Page_ConfigureStartingPawns), the selected pawn's painted portrait beside the game's own drawing (the same picture
@@ -1830,6 +1831,20 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.301.0, **The painted portrait on the
+  starting pawns' page** (23 November 2026; the player: "when you start a new colony now in game, you select your pawns
+  at first ... Could we include the image of the pawn already there?", the go: "If not already done please make it so
+  that images are shown on the new game start screen"). DESIGN.md, "The starting pawns' page".
+  - `UI/Faces/StartingPortraits.cs`: a postfix on `StartingPawnUtility.DrawPortraitArea` (1.6 and 1.7; the arguments
+    read by position) tells which pawn the page shows; a prefix and postfix on `WindowStack.WindowStackOnGUI` read the
+    panel's right click before the windows (the page takes every click around it) and draw it after them: the large
+    portrait (`FaceEngine.DrawStaged`, else the game's drawing on its backdrop, else the game's drawing) in the free space
+    right of the page, else left, at most 320 wide, none under 150; the name in a band at its foot.
+  - A trial pick (`PortraitLibrary.DecideTrial` while the game is not playing): a pick chosen by hand on the page or held
+    before while it still fits, else a pin or the nearest face, never one another pawn on the page holds; nothing kept or
+    reserved. "Choose another picture" on a right click (`ChooseTrial`). `PortraitKeeper.StartedNewGame` keeps each
+    colonist's (`KeepFromStart`); `LoadedGame` lets the trials go; a randomized or removed pawn's trial let go.
+  - Not seen in the game here: the page's layout is the game's own; an error stops the panel with one line in the log.
 - 0.300.0, **What they go through, on their
   portraits; the library read when a game starts; shortcuts to the settings** (23 November 2026; the player: "the image
   could have a bunch of also different effects or laid over it or applied to it ... if the pawn is bleeding, the image

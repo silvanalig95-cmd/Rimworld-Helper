@@ -499,6 +499,8 @@ namespace ColonyCouncil
         /// </summary>
         private int Decide(Pawn p)
         {
+            // Before the game starts (the starting pawns' page): a trial pick, kept for them when the game starts with them.
+            if (Current.ProgramState != ProgramState.Playing) return DecideTrial(p);
             int id = p.thingIDNumber;
             var keeper = PortraitKeeper.Instance;
             var k = keeper?.Get(id);
@@ -606,6 +608,59 @@ namespace ColonyCouncil
             namesUntil = -1f;
         }
 
+        // ---------------- The starting pawns' page ----------------
+
+        /// <summary>
+        /// A picture for a person on the starting pawns' page (the player, 23 November 2026: "please make it so that images are
+        /// shown on the new game start screen"): one chosen by hand there or picked before while it still stands for them,
+        /// else their pin or the nearest face by the usual rules, never one another person on the page holds; noted as a trial
+        /// (<see cref="StartingPortraits"/>), nothing kept or reserved until the game starts with them.
+        /// </summary>
+        private int DecideTrial(Pawn p)
+        {
+            if (!PortraitReader.LookOf(p, out var look)) return -1;
+            int id = p.thingIDNumber;
+            if (StartingPortraits.Trial(id, out string had) && byName.TryGetValue(had, out int hadAt) && PortraitLibraryMath.StillFits(records[hadAt], look)) return RootOf(hadAt);
+            var pin = PortraitLibraryMath.PinFor(look, records, r => Theirs(r, p));
+            var pick = pin.Any ? pin : PortraitLibraryMath.Pick(look, records, id, c => 0, c => Taken(c, id) || StartingPortraits.TakenByOther(c, id), (c, r) => true);
+            if (!pick.Any)
+            {
+                StartingPortraits.Forget(id);
+                return -1;
+            }
+            pick.index = RootOf(pick.index);
+            var r0 = records[pick.index];
+            StartingPortraits.Note(id, r0.name, r0.Character, false, pick.distance, pin.Any);
+            return PortraitLibraryMath.Shown(Mode, pin.Any, pick.distance) ? pick.index : -1;
+        }
+
+        /// <summary>"Choose another picture" on the starting pawns' page: the next of the pictures that may stand for them, held as their trial pick, chosen by hand.</summary>
+        private string ChooseTrial(Pawn p, PortraitLook look)
+        {
+            int id = p.thingIDNumber;
+            var choices = PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode, c => Taken(c, id) || StartingPortraits.TakenByOther(c, id)).Select(RootOf).Distinct().ToList();
+            StartingPortraits.Trial(id, out string had);
+            int next = PortraitLibraryMath.NextChoice(choices, records, had ?? "");
+            if (next < 0) return "CC_Portrait_ChooseNone".Translate(p.Named("PAWN")).Resolve();
+            var r = records[next];
+            StartingPortraits.Note(id, r.name, r.Character, true, PortraitLibraryMath.Distance(look, r), r.Pinned);
+            Forget(id);
+            PortraitSources.Forget(id);
+            return "CC_Portrait_ChooseTrial".Translate(p.Named("PAWN"), (choices.IndexOf(next) + 1).Named("AT"), choices.Count.Named("OF")).Resolve();
+        }
+
+        /// <summary>When the game starts: the picture a colonist had on the starting pawns' page kept for them, as if picked or chosen in the game.</summary>
+        public void KeepFromStart(Pawn p, string picture, bool byHand, float distance, bool pinned)
+        {
+            var keeper = PortraitKeeper.Instance;
+            if (keeper == null || p == null || picture.NullOrEmpty() || !Load() || !byName.TryGetValue(picture, out int at) || !PortraitReader.LookOf(p, out var look)) return;
+            var r = records[at];
+            keeper.Set(p.thingIDNumber, r.name, r.Character, look.Kind, look.Words, signature, PortraitLibraryMath.StageOf(look.age), pinned, byHand, distance);
+            if (ColonyOwn(p)) keeper.Reserve(keeper.Get(p.thingIDNumber));
+            Forget(p.thingIDNumber);
+            PortraitSources.Forget(p.thingIDNumber);
+        }
+
         // ---------------- Choose another picture ----------------
 
         /// <summary>Whether "Choose another picture" has anything to offer this person (the library is on and has a picture that may stand for them).</summary>
@@ -618,6 +673,7 @@ namespace ColonyCouncil
         public string ChooseAnother(Pawn p)
         {
             if (!On || !PortraitReader.LookOf(p, out var look)) return "CC_Portrait_ChooseNone".Translate(p.Named("PAWN")).Resolve();
+            if (Current.ProgramState != ProgramState.Playing) return ChooseTrial(p, look);
             // Each face by its picture (a mark variant stands for the picture it is a version of).
             var choices = PortraitLibraryMath.Choices(look, records, r => Theirs(r, p), Mode, c => Taken(c, p.thingIDNumber)).Select(RootOf).Distinct().ToList();
             var keeper = PortraitKeeper.Instance;

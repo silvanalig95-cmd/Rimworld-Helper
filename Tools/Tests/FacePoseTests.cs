@@ -171,12 +171,12 @@ public static class FacePoseTests
         C(engine.Contains("UI.RotateAroundPivot(lean, new Vector2(r.center.x, r.yMax))") && engine.Contains("FacePoseMath.Breath(clock, seed)") && engine.Contains("FacePoseMath.Sway(clock, seed)"),
             "the lean and sway about the feet, the breath: transforms of the pictures already made");
         C(engine.Contains("pose.turn = FaceTurn.Front;") && !engine.Contains("Turned("), "the large portraits always front-on: no turn in the movement, no shy half-turn (the player, 21 November 2026)");
-        // Only the large portrait at the inspect pane and the colonist card move.
+        // Only the large portraits move: at the inspect pane, the colonist card's, and the starting pawns' page.
         var moving = new List<string>();
         foreach (var f in Directory.GetFiles(src, "*.cs", SearchOption.AllDirectories))
             if (Regex.IsMatch(File.ReadAllText(f), @"FaceEngine\.Draw\([^;]*,\s*true\)"))
                 moving.Add(Path.GetRelativePath(src, f).Replace('\\', '/'));
-        C(moving.OrderBy(x => x).SequenceEqual(new[] { "UI/ColonistCard/ColonistCardWindow.cs", "UI/Faces/InspectPortrait.cs" }), $"only the large portraits move ({string.Join(", ", moving)})");
+        C(moving.OrderBy(x => x).SequenceEqual(new[] { "UI/ColonistCard/ColonistCardWindow.cs", "UI/Faces/InspectPortrait.cs", "UI/Faces/StartingPortraits.cs" }), $"only the large portraits move ({string.Join(", ", moving)})");
         C(!Regex.IsMatch(kit, @"Clock|Breath|Sway") && kit.Contains("FaceEngine.PoseOf(p, turn, r.width >= FacePoseMath.PoseFrom)"), "the round portraits never move; a pose from 64 across");
         C(Read("UI/EventCards/EventCardWindow.cs").Contains("FacePoseMath.PairTurn(i, m.pictured.Count)"), "a letter's or a card's two people face each other");
         C(Read("UI/SocialPanel.cs").Contains("t.a, color, 1f, FaceTurn.Right") && Read("UI/SocialPanel.cs").Contains("t.b, color, 1f, FaceTurn.Left"), "a tie's two people face each other");
