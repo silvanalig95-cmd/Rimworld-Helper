@@ -328,7 +328,7 @@ namespace ColonyCouncil
         private static byte[] ReadBackdrop(Texture2D backTex, int w, int h)
         {
             PortraitPictureMath.BackdropPart(backTex.width, backTex.height, (float)w / h, out float sx, out float sy, out float ox, out float oy);
-            return PortraitGpu.Read(backTex, w, h, new Vector2(sx, sy), new Vector2(ox, oy));
+            return PortraitGpu.ReadSharp(backTex, w, h, new Vector2(sx, sy), new Vector2(ox, oy));
         }
 
         /// <summary>
@@ -380,7 +380,7 @@ namespace ColonyCouncil
             {
                 var lay = pic.layout;
                 // The whole picture at the portrait's size (its shape is the picture's own): nothing cropped.
-                var personPx = PortraitGpu.Read(pic.texture, w, h, Vector2.one, Vector2.zero);
+                var personPx = PortraitGpu.ReadSharp(pic.texture, w, h, Vector2.one, Vector2.zero);
                 if (personPx == null)
                 {
                     stageFailed.Add(key);

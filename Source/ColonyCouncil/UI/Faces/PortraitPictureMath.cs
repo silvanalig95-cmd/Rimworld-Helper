@@ -224,13 +224,25 @@ namespace ColonyCouncil
 
         // ---------------- Scaling and the clear edge ----------------
 
-        /// <summary>The longest side a picture is kept at, for the largest portrait (360 at the interface's scale): 1.25 times its width, at least 320 and at most 720 pixels.</summary>
+        /// <summary>
+        /// The longest side a picture is kept at: twice what the largest portrait (360 at the interface's scale, 5:4) shows,
+        /// at least 640 and at most 1280 pixels, so every size of the portrait is made by shrinking it, sharp (the player,
+        /// 23 November 2026: "there seems to be some threshold below which it kind of makes the image a bit more blurry ...
+        /// It should ideally be sharp at all stages ... we can just load it at high resolution throughout").
+        /// </summary>
         public static int LongSideFor(float uiScale)
         {
             if (float.IsNaN(uiScale) || uiScale <= 0f) uiScale = 1f;
-            int side = (int)Math.Ceiling(LargePanel * uiScale * 1.25f);
-            return side < 320 ? 320 : side > 720 ? 720 : side;
+            int side = (int)Math.Ceiling(LargePanel * uiScale * 2.5f);
+            return side < 640 ? 640 : side > 1280 ? 1280 : side;
         }
+
+        /// <summary>
+        /// Whether a part of a picture <paramref name="sw"/> by <paramref name="sh"/> pixels, made <paramref name="w"/> by
+        /// <paramref name="h"/>, is shrunk enough that the graphics card's own shrinking would soften it: then it is read at
+        /// its own size and shrunk by <see cref="Downscale"/>, each pixel the average of all it covers.
+        /// </summary>
+        public static bool ShrinkSharp(int sw, int sh, int w, int h) => w > 0 && h > 0 && (sw > w * 1.05f || sh > h * 1.05f);
 
         /// <summary>The size a <paramref name="w"/> by <paramref name="h"/> picture is kept at: its long side at most <paramref name="longSide"/>, never larger than it is.</summary>
         public static void FitSize(int w, int h, int longSide, out int nw, out int nh)

@@ -298,10 +298,10 @@ namespace ColonyCouncil
         public static readonly string[] Features = { "pointedEars", "longEars", "horns", "tusks", "fur", "scales", "gills", "glowingEyes", "markings", "tail", "snout" };
 
         /// <summary>
-        /// The marks of the body a picture or a pawn may have; bionicArm is any artificial arm or hand (bionic, archotech,
+        /// The marks of the body a picture or a pawn may have; artificialArm is any artificial arm or hand (bionic, archotech,
         /// prosthetic, a mod's added part) on an arm, a shoulder or a hand.
         /// </summary>
-        public static readonly string[] Marks = { "lostEye", "eyePatch", "scar", "burn", "bionicEye", "missingEar", "bionicArm" };
+        public static readonly string[] Marks = { "lostEye", "eyePatch", "scar", "burn", "bionicEye", "missingEar", "artificialArm" };
 
         /// <summary>The game's tags for the limbs that handle things (a shoulder, an arm, a hand, the fingers), a mod's arms and hands among them.</summary>
         public static readonly string[] ArmTags = { "ManipulationLimbCore", "ManipulationLimbSegment", "ManipulationLimbDigit" };

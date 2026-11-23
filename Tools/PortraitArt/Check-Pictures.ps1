@@ -426,7 +426,7 @@ $ArmPartWords = '\b(arms?|forearms?|hands?|limbs?)\b'
 # Kinds whose own arms may look made (Vanilla Races Expanded's androids): an artificial arm on them is not a mark.
 $MadeKinds = '(?i)android|robot|synth|mechanoid'
 # The record mark for an artificial arm (Rimfolk's matcher: any added part on an arm or hand), as the check writes it.
-$ArmMark = 'bionicArm'
+$ArmMark = 'artificialArm'
 # The looks that are an artificial arm (Rimfolk's PortraitLookDefs: bionicArm, prostheticArm, archotechArm), by their words.
 $ArmLooks = '\b(bionic|prosthetic|archotech|mechanical|artificial|cybernetic) arms?\b'
 
@@ -755,7 +755,7 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked, $side = $nul
         Add-Issue $issues 3 'its row says a lost eye; the model saw both eyes' ('look at it: taking {0} out of its record gives it to people with both eyes' -f $word) 'marks' ('remove:' + $word) 'ask'
     }
     if ($marks.none -and $rowBionic) { Add-Issue $issues 3 'its row says a bionic eye; the model saw none' 'look at it: taking bionicEye out of its record gives it to people without one' 'marks' 'remove:bionicEye' 'ask' }
-    # An artificial arm (bionic, mechanical or prosthetic): the mark bionicArm, as the bionic eye. A row with one of the
+    # An artificial arm (bionic, mechanical or prosthetic): the mark artificialArm, as the bionic eye. A row with one of the
     # arm looks (bionicArm, prostheticArm, archotechArm) has it already, and an android's own arms may look made, so its
     # kind is left alone.
     $arms = Arms-Of $seen.arms $seen.unusual

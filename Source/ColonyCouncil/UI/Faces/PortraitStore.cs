@@ -51,8 +51,8 @@ namespace ColonyCouncil
     /// <item>Nothing is read at start-up beyond the defs. A picture is asked for when a portrait first shows it; until it is
     /// ready the portrait shows its ground only (a fraction of a second).</item>
     /// <item>Its file is read on a worker thread; the game decodes it (<c>ImageConversion.LoadImage</c>), at most one a
-    /// frame; the worker measures the head from its alpha, scales it down to what the largest portrait needs
-    /// (<see cref="PortraitPictureMath.LongSideFor"/>: 450 pixels long at the interface's own scale, at most 720) and gives
+    /// frame; the worker measures the head from its alpha, scales it down to twice what the largest portrait needs
+    /// (<see cref="PortraitPictureMath.LongSideFor"/>: 900 pixels long at the interface's own scale, at most 1280) and gives
     /// its clear edge the person's colour; the game makes the texture (with mipmaps, for the small round portraits), at
     /// most one a frame.</item>
     /// <item>Kept in a small cache: at most <see cref="MostPictures"/> pictures and <see cref="MostPixels"/> pixels, the
@@ -63,7 +63,7 @@ namespace ColonyCouncil
     public static class PortraitStore
     {
         public const int MostPictures = 48;
-        public const long MostPixels = 12_000_000;
+        public const long MostPixels = 40_000_000;
 
         /// <summary>How many pixels deep the clear edge round a person is given their colour.</summary>
         private const int BleedDepth = 4;
@@ -376,6 +376,20 @@ namespace ColonyCouncil
         /// The texture (its part from <paramref name="offset"/>, <paramref name="scale"/> of it, as the graphics card counts
         /// from the foot) drawn at <paramref name="w"/> by <paramref name="h"/> and read back as RGBA bytes, rows from the foot; null where it fails.
         /// </summary>
+        /// <summary>
+        /// As <see cref="Read"/>, sharp at any size: a part shrunk by more than a twentieth is read at its own size and shrunk
+        /// on the processor, each pixel the average of all it covers (the graphics card's own shrinking softens it; the
+        /// player: "It should ideally be sharp at all stages").
+        /// </summary>
+        public static byte[] ReadSharp(Texture src, int w, int h, Vector2 scale, Vector2 offset)
+        {
+            if (src == null || w <= 0 || h <= 0) return null;
+            int sw = Mathf.Max(1, Mathf.RoundToInt(src.width * scale.x)), sh = Mathf.Max(1, Mathf.RoundToInt(src.height * scale.y));
+            if (!PortraitPictureMath.ShrinkSharp(sw, sh, w, h)) return Read(src, w, h, scale, offset);
+            var full = Read(src, sw, sh, scale, offset);
+            return full == null ? null : PortraitPictureMath.Downscale(full, sw, sh, w, h);
+        }
+
         public static byte[] Read(Texture src, int w, int h, Vector2 scale, Vector2 offset)
         {
             if (src == null || w <= 0 || h <= 0) return null;

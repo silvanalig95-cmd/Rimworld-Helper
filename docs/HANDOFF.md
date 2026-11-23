@@ -813,16 +813,16 @@ most sense." So, in this order, three builds at a time:
   **Point 4: go given (23 November 2026), built** (tools and docs only; `SETUP-ComfyUI.md` step 8): `Check-Pictures.ps1`
   asks question version 3, which says the picture is a comic-style drawn portrait for a game and has a line for arms
   ("normal, or an artificial arm: bionic, mechanical or prosthetic"). An artificial arm its row lacks gives the
-  correction marks add:bionicArm, yes (not for a row with an arm look, bionicArm, prostheticArm or archotechArm, nor
-  for an android, whose arms may look made); a row with the mark whose picture shows none gives remove:bionicArm, ask,
+  correction marks add:artificialArm, yes (not for a row with an arm look, bionicArm, prostheticArm or archotechArm, nor
+  for an android, whose arms may look made); a row with the mark whose picture shows none gives remove:artificialArm, ask,
   as the bionic eye does. Sex corrections are always ask. The side check needs no model: in the top 85% of a cut-out,
   the rows whose outermost columns (4 at 1,024 pixels wide) hold the figure's own pixels (alpha over 128); more than a
   tenth of the height on one side is "cut at the side", out, ask (a cut shoulder runs along 30% to 45%, a hand
   reaching the edge 2% to 8%). It reads the pictures with System.Drawing, so only on Windows; a picture it can't read
   is skipped. Tested with PowerShell 7 against the stand-in ComfyUI, and the side rule on made-up pixels; reading real
-  pictures is untested until the player's run. `catalogue/marks.csv` has no bionicArm row: `bionicArm` is already a
-  look word (looks.csv and PortraitLookDefs, with prostheticArm and archotechArm), and the catalogue check refuses a
-  word that is both a look and a mark.
+  pictures is untested until the player's run. The two helpers both named the arm mark `bionicArm`, already a look word
+  (looks.csv and PortraitLookDefs, with prostheticArm and archotechArm; the catalogue check refuses a word that is both),
+  so at the merge the mark became `artificialArm` (the matcher, the reader, the check's `$ArmMark`, the tests, the docs).
 - **Done (23 November 2026, the player's own request, and point 5 of the entry above): a zip of examples from the
   picture check, and the training set.** The player: "Could the check picture CMD perhaps also offer me the option to
   directly create a zip file with examples and the CSV files ... that it asks me after doing the check to create these
@@ -1571,7 +1571,7 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
-- Not released: no version, no What's new round, About.xml and CHANGELOG untouched. **The same age and skin, the hair's
+- 0.298.0, **The same age and skin, the hair's
   colour first, a bionic arm, keeping a picture for training** (23 November 2026; the player: "the race, xenotype, the
   gender, also I would say the skin color and age ... always have to match the pawn for sure. And if there's no image
   with this combination available for the pawn, then it should just take no image"; special things in a picture (a
@@ -1604,7 +1604,7 @@ repo.
     blond and brown) 12, more than hair, beard, build and clothes together can cost (11.25). Never a hard rule: with
     only another colour fitting, it is still given. A face nobody else keeps still first. With "Only close ones" a
     clearly different hair colour is not close (the game's drawing, noted in missing.csv).
-  - **A bionic arm**: the mark `bionicArm` (any artificial arm or hand), read from any added part (`Hediff_AddedPart` or
+  - **A bionic arm**: the mark `artificialArm` (any artificial arm or hand), read from any added part (`Hediff_AddedPart` or
     a def with added-part properties) on a part whose def or parent is an arm, a shoulder or a hand, by name, label or
     the game's manipulation-limb tags; only for those who have one, preferred by them (a plain picture 0.5), a plain one
     still stands. The looks `bionicArm`, `prostheticArm`, `powerClaw` ... stay as they were.
@@ -1615,6 +1615,16 @@ repo.
     being written, no folder above the library. A picture deleted for good later stays in training (meant).
   - Also fixed: the missing list called the game's ink black skin "blue" (its slight tint), so a batch would have painted
     a blue person; near-black is black now, in `PortraitFolderMath` and the planner's `hue_word` alike.
+  - **The backdrop kept while a person is shown** (the player: "It should just, when I click the pawn, it should look in
+    which room it is, take that background, and only refresh the background once I kind of click away and click back to
+    the same pawn"): where they are and the light read when the large portrait starts showing them
+    (`PortraitLifeMath.NewShowing`), kept while it goes on; the weather and a fire's light for the place it shows.
+  - **Sharp at every size** (the player: "there seems to be some threshold below which it kind of makes the image a bit
+    more blurry ... It should ideally be sharp at all stages"): pictures kept at twice the largest portrait (`LongSideFor`
+    900 at the interface's scale, 640 to 1280; the cache 40 million pixels), the person and the backdrop shrunk on the
+    processor, each pixel the average of all it covers (`PortraitGpu.ReadSharp`), not by the graphics card.
+  - **The arm mark's name**: `artificialArm`, since `bionicArm` was already a look (the two helpers both chose it); the
+    picture check writes it, and `catalogue/marks.csv` has its row.
   - Decided here: the tone boundaries (the skin words' own, the darkest split at 22); unusual skins by hue and chroma
     rather than one colour distance (a single distance let a light grey take a pink and a blue a purple); the line's 10
     for near-whites (the game's sheer white against a painted white, 7); a record without a skin colour not held to it;

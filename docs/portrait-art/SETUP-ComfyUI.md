@@ -227,7 +227,7 @@ pictures may be right, so a correction changes only that picture's record. The f
   warrior, a crown leader, a book scholar), or `clear` (ask).
 - `looks`: `add:word` or `remove:word` (adding wings' look, such as `batWings`, is yes; fire or magic is ask, because
   which look it is can't be told; taking a look away is ask, because the picture would then go to anyone).
-- `marks`: `add:eyePatch`, `add:bionicEye` and the like (yes), and `add:bionicArm` for an artificial arm (bionic,
+- `marks`: `add:eyePatch`, `add:bionicEye` and the like (yes), and `add:artificialArm` for an artificial arm (bionic,
   mechanical or prosthetic) its row lacks (yes; not for a row with an arm look, such as `prostheticArm`, nor for an
   android, whose arms may look made); `remove:...` (ask).
 - `headwear`: `true`, so a picture with a hat or hood goes only to people wearing something on the head (yes; ask for

@@ -11,7 +11,7 @@
 #   training\set\:
 #   - the picture on a plain dark grey ground (red 58, green 60, blue 68), saved without transparency (an RGB PNG): the
 #     cut-out's empty background would train badly, and the first training set's pictures are on plain grey too;
-#   - a caption of the same name (.txt): "rmwstyle, " and the row's subject and pose, the words of what it shows (the
+#   - a caption of the same name (.txt): "rmwstyle, ", the row's subject and pose and "A plain dark grey background.", the words of what it shows (the
 #     style's and the frame's words are not in the row, so the caption describes the content only, as the first set's).
 # - Pictures already in the set are left as they are. It never changes or moves a kept picture, the library or a list.
 # - The pictures are made with Windows' own System.Drawing.
@@ -77,7 +77,9 @@ function Caption-Of($row) {
     $c = ((Field $row 'subject') + ' ' + (Field $row 'pose')) -replace '\s+', ' '
     $c = $c.Trim()
     if ($c -cmatch '^(A|An|The)\b') { $c = $c.Substring(0, 1).ToLowerInvariant() + $c.Substring(1) }
-    return ($Trigger + ', ' + $c)
+    # The plain grey it is put on, said as the first set's captions say it, so the LoRA ties the grey to these words
+    # and not to the trigger word.
+    return ($Trigger + ', ' + $c + ' A plain dark grey background.')
 }
 
 # ---------------- The picture on grey ----------------

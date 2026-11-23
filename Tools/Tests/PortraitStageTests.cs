@@ -145,8 +145,9 @@ public static class PortraitStageTests
 
         // ---------------- Scaling and the clear edge ----------------
         {
-            C(PortraitPictureMath.LongSideFor(1f) == 450 && PortraitPictureMath.LongSideFor(1.6f) == 720 && PortraitPictureMath.LongSideFor(2.5f) == 720 && PortraitPictureMath.LongSideFor(0.5f) == 320,
-                "kept at what the largest portrait needs: 450 pixels long at the interface's own scale, at least 320, at most 720");
+            C(PortraitPictureMath.LongSideFor(1f) == 900 && PortraitPictureMath.LongSideFor(1.4f) == 1260 && PortraitPictureMath.LongSideFor(2.5f) == 1280 && PortraitPictureMath.LongSideFor(0.5f) == 640
+              && PortraitPictureMath.ShrinkSharp(900, 1125, 300, 375) && !PortraitPictureMath.ShrinkSharp(360, 450, 352, 440) && !PortraitPictureMath.ShrinkSharp(300, 375, 400, 500),
+                "kept at twice what the largest portrait needs: 900 pixels long at the interface's own scale, at least 640, at most 1280; a part shrunk by more than a twentieth shrunk on the processor, sharp");
             PortraitPictureMath.FitSize(1024, 1280, 450, out int fw, out int fh);
             PortraitPictureMath.FitSize(300, 200, 450, out int sw, out int sh);
             C(fw == 360 && fh == 450 && sw == 300 && sh == 200, $"a 1024 x 1280 picture kept at {fw} x {fh}; a small one never made larger");
@@ -576,7 +577,7 @@ public static class PortraitStageTests
         C(inspect.Contains("FaceEngine.DrawStaged(inner, p, made, true) && !FaceEngine.DrawGameStaged(inner, p, made, true)") && inspect.Contains("var made = new Vector2(rs, rs * tall);")
           && inspect.Contains("FaceMath.Place(Scene(pane), asked, out var fr, tall)") && inspect.Contains("ev.button == 1") && inspect.Contains("CC_Portrait_ChooseAnother"),
             "the large portrait draws the painted picture whole at its shape in front of its backdrop, else the game's drawing in front of one; a right click offers another picture");
-        C(stage.Contains("PortraitGpu.Read(pic.texture, w, h, Vector2.one, Vector2.zero)") && !stage.Contains("CropFor") && stage.Contains("new Rect(-side / local.width, -below / ph, 1f + 2f * side / local.width, 1f + below / ph)")
+        C(stage.Contains("PortraitGpu.ReadSharp(pic.texture, w, h, Vector2.one, Vector2.zero)") && !stage.Contains("CropFor") && stage.Contains("new Rect(-side / local.width, -below / ph, 1f + 2f * side / local.width, 1f + below / ph)")
           && store.Contains("PortraitPictureMath.SolidFoot(small, nw, nh);"),
             "the whole picture, nothing cropped; its foot row carried on below the portrait's edge, and the body made solid at the picture's foot when it loads");
         C(stage.Contains("StageLookEvery = 2f") && stage.Contains("Backdrops.WhereOf(p, out float glow)") && stage.Contains("PortraitPictureMath.LightStep(glow, -1)")

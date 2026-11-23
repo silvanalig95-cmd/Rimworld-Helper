@@ -16656,12 +16656,19 @@ backdrop's softening, the line round the person, the tint), `BackdropMath.cs` (t
     Vanilla Quests Expanded's), an unknown biome by its warmth, rain, plants and whether it is extreme, in vacuum or
     underground; under a natural rock roof a cave; a group with no backdrop its near groups'. No map (a caravan, the
     world), or nothing fits: a plain painted ground; with none, the portrait's own.
+  - *Sharp at every size* (the player, 23 November 2026: "there seems to be some threshold below which it kind of makes the
+    image a bit more blurry. And once I enlarge it a little bit, it's more sharp. It should ideally be sharp at all
+    stages ... we can just load it at high resolution throughout"): a picture is kept at twice what the largest portrait
+    shows (`LongSideFor`: 900 pixels long at the interface's scale, 640 to 1280; the cache up to 40 million pixels), and
+    the person and the backdrop are shrunk to the portrait's size on the processor, each pixel the average of all it
+    covers (`PortraitGpu.ReadSharp`), instead of by the graphics card, which softened a picture shrunk a little.
+    (Released 0.298.0.)
   - *When it is chosen* (the player, 23 November 2026: "It should just, when I click the pawn, it should look in which room
     it is, take that background, and only refresh the background once I kind of click away and click back to the same
     pawn. It doesn't have to be a real time update."): where they are and the light are read when the large portrait
     starts showing the person, and kept while it goes on showing them (a room changed at speed changes nothing); read
     again the next time it shows them after someone else or nothing (`PortraitLifeMath.NewShowing`). The weather and a
-    fire's light for the backdrop alive go on for the place the backdrop shows. (Not released yet.)
+    fire's light for the backdrop alive go on for the place the backdrop shows. (Released 0.298.0.)
   - *Day and night*: the light where they stand (the game's ground glow) in four steps (daylight, dusk, dim, dark), each
     darker and a little cooler; read with the backdrop, when the person is first shown.
   - *Looked at again* only when the person's room, map or the light's step changes, at most every two seconds; what is in
@@ -17100,7 +17107,7 @@ library folder of its own made in a temporary folder). The scripts of `Tools/Por
   recorded, checked, given expressions and depth maps, a list saved by Excel, a line typed by hand, a " (2)" copy with the
   same and with another content, an unreadable list).
 
-### Portraits: the same age and skin, the hair's colour first, a bionic arm, and keeping a picture for training (not released yet)
+### Portraits: the same age and skin, the hair's colour first, a bionic arm, and keeping a picture for training (released 0.298.0)
 
 The player's words (23 November 2026): "the race, xenotype, the gender, also I would say the skin color and age ...
 always have to match the pawn for sure. And if there's no image with this combination available for the pawn, then it
@@ -17162,8 +17169,8 @@ The code: `UI/Faces/PortraitLibraryMath.cs` (the rules), `PortraitReader.cs` (a 
   faces within that). With "Only close ones" a picture of a clearly different hair colour (about 24 apart or more) is not
   close, so that person keeps the game's own drawing, and the missing list says "none close to their looks"; with "The
   closest" (the default) they get it.
-- **A bionic arm** (the mark `bionicArm`): any artificial arm or hand. In a record's `marks` (the picture check writes
-  "add:bionicArm"; an unknown mark is still a def error, which now names it), and read in the game from any added part
+- **A bionic arm** (the mark `artificialArm`): any artificial arm or hand. In a record's `marks` (the picture check writes
+  "add:artificialArm"; an unknown mark is still a def error, which now names it), and read in the game from any added part
   (a `Hediff_AddedPart`, or any hediff whose def has added-part properties) on a body part whose def or parent is an
   arm, a shoulder or a hand, by its name or label ("arm", "forearm", "shoulder", "hand") or the game's tags for the limbs
   that handle things (`ManipulationLimbCore`, `ManipulationLimbSegment`, `ManipulationLimbDigit`), each part's def read

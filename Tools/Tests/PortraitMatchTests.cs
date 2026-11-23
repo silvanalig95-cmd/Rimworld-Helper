@@ -9,7 +9,7 @@ using ColonyCouncil;
 /// only for pawns who have them; "maybe I can right click and then already flag for training ... or it's get copied to a
 /// special location from which I can take the image to further train the model later"). The pure parts: their own age
 /// band only for a new pick, a kept picture through its stage; the skin's eight tones, the game's nine melanin skins
-/// against the painter's palette (read from the portrait scripts), a skin no human grows by its colour; the mark bionicArm
+/// against the painter's palette (read from the portrait scripts), a skin no human grows by its colour; the mark artificialArm
 /// and the arm parts it is read from; training.csv written and read and the whole copy on a library of its own; the words
 /// and the seams.
 /// </summary>
@@ -252,18 +252,18 @@ public static class PortraitMatchTests
 
         // ---------------- A bionic arm ----------------
         {
-            C(PortraitLibraryMath.Marks.Contains("bionicArm"), "bionicArm is a mark");
+            C(PortraitLibraryMath.Marks.Contains("artificialArm"), "artificialArm is a mark");
             var problems = new List<string>();
             var fields = new Dictionary<string, string> { ["texPath"] = "x", ["skinColor"] = "#c9a27e", ["hairColor"] = "#2a2a2a" };
-            var r = PortraitLibraryMath.Record("Arm", k => fields.TryGetValue(k, out var v) ? v : null, k => k == "marks" ? new[] { "bionicArm" } : null, problems);
-            C(problems.Count == 0 && r.marks.SetEquals(new[] { "bionicArm" }), "a record's mark bionicArm read without a problem");
+            var r = PortraitLibraryMath.Record("Arm", k => fields.TryGetValue(k, out var v) ? v : null, k => k == "marks" ? new[] { "artificialArm" } : null, problems);
+            C(problems.Count == 0 && r.marks.SetEquals(new[] { "artificialArm" }), "a record's mark artificialArm read without a problem");
             var problems2 = new List<string>();
             PortraitLibraryMath.Record("Lost", k => fields.TryGetValue(k, out var v) ? v : null, k => k == "marks" ? new[] { "missingArm" } : null, problems2);
-            C(problems2.Count == 1 && problems2[0].Contains("bionicArm"), "an unknown mark still a def error, naming bionicArm among the marks");
-            var armPic = Rec("armPic", PortraitAge.Adult, marks: new[] { "bionicArm" });
+            C(problems2.Count == 1 && problems2[0].Contains("artificialArm"), "an unknown mark still a def error, naming artificialArm among the marks");
+            var armPic = Rec("armPic", PortraitAge.Adult, marks: new[] { "artificialArm" });
             var plain = Rec("plain", PortraitAge.Adult);
             var twoArms = Look(PortraitAge.Adult);
-            var withArm = Look(PortraitAge.Adult, marks: new[] { "bionicArm" });
+            var withArm = Look(PortraitAge.Adult, marks: new[] { "artificialArm" });
             C(!PortraitLibraryMath.Shows(armPic, twoArms) && PortraitLibraryMath.Shows(armPic, withArm) && PortraitLibraryMath.Shows(plain, withArm),
                 "a picture with a bionic arm only for someone with one; someone with one may take a plain picture");
             C(Math.Abs(PortraitLibraryMath.Distance(withArm, plain) - PortraitLibraryMath.Distance(withArm, armPic) - PortraitLibraryMath.MarkCost) < 1e-4,
@@ -282,10 +282,10 @@ public static class PortraitMatchTests
               && !PortraitLibraryMath.ArmPart(T("Torso", "torso"), new[] { "BloodPumpingSource" }) && !PortraitLibraryMath.ArmPart(T("ArmorPlate", "armor plate"), null),
                 "a mod's limb that handles things by its tag; never a leg, a foot, the head, the torso, nor armour by its name");
             string reader = Read("UI/Faces/PortraitReader.cs");
-            C(reader.Contains("h is Hediff_AddedPart || h.def?.addedPartProps != null") && reader.Contains("l.marks.Add(\"bionicArm\")")
+            C(reader.Contains("h is Hediff_AddedPart || h.def?.addedPartProps != null") && reader.Contains("l.marks.Add(\"artificialArm\")")
               && reader.Contains("IsArm(part.def) || part.parent?.def != null && IsArm(part.parent.def)") && reader.Contains("armParts[d] = arm;"),
                 "the game reads it from any added part (a bionic, archotech or prosthetic one, a mod's) on an arm part or one whose parent is, each part's def read once");
-            C(Art("test_portrait_catalogue.py").Contains("'missingEar', 'bionicArm'}"), "the catalogue's tests take the mark in a row's marks");
+            C(Art("test_portrait_catalogue.py").Contains("'missingEar', 'artificialArm'}"), "the catalogue's tests take the mark in a row's marks");
         }
 
         // ---------------- training.csv ----------------

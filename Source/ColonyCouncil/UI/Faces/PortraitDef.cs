@@ -61,7 +61,7 @@ namespace ColonyCouncil
         public string headwear;
         /// <summary>pointedEars, longEars, horns, tusks, fur, scales, gills, glowingEyes, markings, tail, snout.</summary>
         public List<string> features = new List<string>();
-        /// <summary>lostEye, eyePatch, scar, burn, bionicEye, missingEar, bionicArm (an artificial arm or hand); a picture with a mark stands only for those who have it.</summary>
+        /// <summary>lostEye, eyePatch, scar, burn, bionicEye, missingEar, artificialArm (an artificial arm or hand); a picture with a mark stands only for those who have it.</summary>
         public List<string> marks = new List<string>();
         /// <summary>The looks it shows, by their words (<see cref="PortraitLookDef.word"/>: drinker, pyromaniac, conjoinedTwins...); a special look's picture stands only for those who have it.</summary>
         public List<string> looks = new List<string>();

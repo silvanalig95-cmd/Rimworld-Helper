@@ -33,7 +33,7 @@ RECORD_WORDS = {
     'sex': {'male', 'female'},
 }
 FEATURES = {'pointedEars', 'longEars', 'horns', 'tusks', 'fur', 'scales', 'gills', 'glowingEyes', 'markings', 'tail', 'snout'}
-MARKS = {'lostEye', 'eyePatch', 'scar', 'burn', 'bionicEye', 'missingEar', 'bionicArm'}
+MARKS = {'lostEye', 'eyePatch', 'scar', 'burn', 'bionicEye', 'missingEar', 'artificialArm'}
 
 
 def read(path):

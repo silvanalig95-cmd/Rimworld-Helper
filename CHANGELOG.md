@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Matching by age and skin, kept for training
+
+*23 November 2026, version 0.298.0*
+
+- A painted portrait now matches the person's age band and skin tone as well as their kind and sex; where none does, they keep the game's own drawing
+- Pictures with the person's own hair colour come first; another colour is still used when nothing else fits
+- An artificial arm or hand is now a mark: a picture showing one goes only to someone who has one
+- Keep for training on the large portrait's right-click menu copies the picture into a training folder beside the library
+- The large portrait's backdrop is chosen when you select someone and stays while you watch them
+- Painted portraits stay sharp at every size of the large portrait
+
 ## Deleting a picture for good
 
 *22 November 2026, version 0.297.0*

@@ -378,7 +378,7 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The marks their body carries: on the head a lost eye or ear, a bionic eye, a scar or a burn; an artificial arm or
-        /// hand (bionicArm: an added part, a bionic, archotech or prosthetic one or a mod's, on an arm, a shoulder or a hand
+        /// hand (artificialArm: an added part, a bionic, archotech or prosthetic one or a mod's, on an arm, a shoulder or a hand
         /// or a part of one, <see cref="ArmPart"/>).
         /// </summary>
         private static void Marks(Pawn p, PortraitLook l)
@@ -400,7 +400,7 @@ namespace ColonyCouncil
                 else if (h is Hediff_AddedPart || h.def?.addedPartProps != null)
                 {
                     if (eye) l.marks.Add("bionicEye");
-                    else if (ArmPart(part)) l.marks.Add("bionicArm");
+                    else if (ArmPart(part)) l.marks.Add("artificialArm");
                 }
                 else if (h is Hediff_Injury && h.IsPermanent() && (eye || ear || part.IsInGroup(BodyPartGroupDefOf.FullHead) || part.IsInGroup(BodyPartGroupDefOf.UpperHead)))
                 {
