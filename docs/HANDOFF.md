@@ -716,6 +716,17 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library sorted by
+  kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
+  race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks
+  only new or changed pictures, and every picture once again when its question changes, keeping the answers given in
+  corrections.csv.) The proposal: `library\<kind>\<sex>\` (baseliner\female, darkelf\male, ...; children with their
+  kind and sex; backdrops stay in `library\backdrops`) instead of one folder per batch list. The game reads the picture
+  paths from records.xml, so it needs no change. Copy-ToLibrary copies into the sorted folders. A one-time
+  Sort-Library.ps1 moves what is there. Update-PortraitLibrary finds each picture's row by name, whatever its folder.
+  The check, deleted.csv, the depth maps, the expressions, the batch tool's "only rows that have none yet" and the
+  game's delete and training copy all follow the new folders. The check's answers are carried over by file name, so
+  nothing is asked again.
 - **Done (23 November 2026, the player's own request): more of the upper body in the people pictures.** The player: "quite
   a few are still more or less just a headshot ... I would try to lean the AI to kind of include just the upper body
   more of it and not just the head. If we can do that with prompts or with training um, later." Done in
