@@ -741,6 +741,46 @@ most sense." So, in this order, three builds at a time:
   effects all look good, but unconscious eyes closed. How exactly is it supposed to see which eyes are closed?" Answered:
   closed eyes (and blinks and expressions) need the picture's painted expressions (Make-Variants); without them the
   unconscious are dimmed only. Asked whether to start building.
+- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the picture check
+  asks only what it hasn't.** The player: "we said that the image gets reanalyzed once something about the script
+  changes. I wonder that we ... can save resources as much as possible, and that it only analyzes things that have not
+  yet been analyzed ... not that I have like a really long analyze job each time I add new images". The proposal:
+  `checked.csv` keeps the model's answer to each form line; a change to the rules (how answers are read, what counts
+  as wrong) is worked out again from the kept answers without asking the model; only a line whose wording changed (or
+  a new line) is asked again, in a short form of just those lines, merged into the kept answers; each line carries its
+  own version instead of the whole question's; `-Again` still asks everything.
+- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): "About this picture"
+  on the large portrait's menu, its record shown and corrected in the game.** The player: "one of the right-click
+  options could open kind of a menu where I see the image that is currently assigned to the pawn, and where I could see
+  ... all the different attributes and characteristics that this image has assigned in the database ... which of the
+  characteristics were now relevant for why this image was chosen for this specific colonist, and that I perhaps also
+  could make corrections in there ... if I see, for example, the sex is incorrect or the age is actually kind of a
+  different age group, that I could immediately change and update this through the game ... And maybe that it also
+  shows the different variants also of this image." The proposal: a window with the picture and its record (kind, sex,
+  age band, skin and hair colour, hair, beard, build, clothes' age and kind, features, marks, looks, role, headwear,
+  its batch row and file); beside each, how it stands against this person (a hard rule met, or what it cost: skin tone,
+  hair colour, hair, beard, build, clothes, features, marks), and the pictures that came next; the picture's
+  expressions and depth map shown; a correction picked from a list (sex, age band, features, marks, looks, role,
+  headwear) taken at once in the game and written as a "yes" line to `library\corrections.csv` (so
+  Update-PortraitLibrary keeps it, as the picture check's), and the person picked again by the usual rules if it no
+  longer fits them.
+- **To do when the player asks (23 November 2026, the player; to come back to, waiting for the go): variants wanted,
+  listed by the game.** The player: "variants are first and foremost relevant for my actual colonists ... it should
+  kind of log who is actually my colonist at the moment, or I guess in this save, and that this is kind of registered
+  somewhere, so that these images get prioritized in the variation script, and that maybe the game also kind of logs or
+  creates ... a list of potential variants ... kind of the base variants with different moods and what is required for
+  blinking ... But also, for example, if a pawn loses an eye ... it then creates an entry, create a one-eyed, you know,
+  with detailed instructions, variant of this specific image that is currently used for the pawn ... the variants are
+  then always assigned to this specific image file. So whenever I ... start a new run, and ... this image is reused
+  somewhere else, even if it's just a random visitor ... it can draw on this library of variants" ("on variants, I want
+  to kind of elaborate a bit later, not now"). The proposal: the game writes `library\variants-wanted.csv` (as
+  missing.csv, on saving): each picture its colonists hold, with the expressions it lacks (blink, smile, frown, pain)
+  first, and a mark variant when a colonist holding it gets a mark (a lost eye and which side, an eye patch, a scar, a
+  burn, a bionic eye, a missing ear, an artificial arm), each with the exact instruction for FLUX Kontext ("the left
+  eye lost, the eyelids closed over an old scar, nothing else changed"); Make-Variants takes that list first (colonists'
+  pictures before anyone's), makes and records them as variants of that file (`variantOf`), so any person given the
+  picture later, in any save, a visitor too, gets the variant that fits them; a variant wanted but not yet made shows
+  the plain picture as now.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library sorted by
   kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
   race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks
