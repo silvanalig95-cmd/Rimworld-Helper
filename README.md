@@ -109,8 +109,10 @@ from the body and set on it. Two people side by side in a letter or a tie face e
 colonist card's breathe and sway a little, still while the game is paused. **Painted portraits**: Rimfolk's portrait
 library holds painted pictures from the player's own folder (set in the settings; `docs/portrait-art/`) or from a mod's
 `Portraits` folder, each described by a record. A picture made for a colonist (pinned to them by name) is theirs;
-everyone else gets the one closest to how they look (their kind, sex, how old they look by their kind's life span and
-their genes, skin and hair colour, hair, beard, build and clothes, their looks and their work). Within a game, a
+everyone else gets the one closest to how they look among the pictures of their own kind, sex and age band (how old they
+look by their kind's life span and their genes) with a skin of the same or the next tone (an unusual skin, such as green
+or blue, only one of a near colour), else the game's own drawing; of those, the hair's colour counts most, then the skin,
+hair, beard, build and clothes, their looks and their work. Within a game, a
 picture of one of the colony's own (colonists, slaves, prisoners) is never anyone else's, nor is a faction leader's, a
 titled noble's or one of the colony's named contacts' while they live; raiders, traders and guests get a picture nobody
 holds, and share one only as **Strangers may share a picture** allows (never, when not seen together, always), else the
@@ -118,9 +120,11 @@ game's own drawing. Looks are what traits, genes, health and body give a face
 (a drinker, a pyromaniac, beauty or ugliness, a fire mage), and a work is read from a person's backstory, title, faith
 role or best passion (a scholar, a soldier, a cook): a picture showing a look or a work goes only to people who have it,
 plain pictures are for anyone. A special look (the conjoined twins of Conjoined Twins, wings) only ever gets a picture
-made with it, else the game's own drawing. It is chosen the first time it is needed and kept: injuries, haircuts and
+made with it, else the game's own drawing. A picture showing a mark of the body (a lost eye, a scar, a bionic arm) goes
+only to someone who has it. It is chosen the first time it is needed and kept: injuries, haircuts and
 clothes don't change it, only growing into the next stage of life (a toddler, a child, a teen, a grown-up, old) does;
-a right click on the large portrait chooses another, or deletes the picture or the backdrop it shows for good (its
+a right click on the large portrait chooses another, keeps the picture for training (a copy into the folder `training`
+beside the library folder, listed in its `training.csv`), or deletes the picture or the backdrop it shows for good (its
 files go to the bin `deleted pictures` beside the library folder, or are deleted, as **Deleting a picture** says; its
 record is taken out of the folder's `records.xml` and its name written into `deleted.csv`, which the portrait scripts
 honour, so it never comes back; whoever held it gets another). Pictures are read only when shown and kept in a small cache, and

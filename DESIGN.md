@@ -17094,6 +17094,106 @@ library folder of its own made in a temporary folder). The scripts of `Tools/Por
   recorded, checked, given expressions and depth maps, a list saved by Excel, a line typed by hand, a " (2)" copy with the
   same and with another content, an unreadable list).
 
+### Portraits: the same age and skin, the hair's colour first, a bionic arm, and keeping a picture for training (not released yet)
+
+The player's words (23 November 2026): "the race, xenotype, the gender, also I would say the skin color and age ...
+always have to match the pawn for sure. And if there's no image with this combination available for the pawn, then it
+should just take no image"; special things in a picture (a bionic arm, magic) only for pawns who have them, while a pawn
+who has them may take a plain picture; "maybe I can right click and then already flag for training ... or it's get
+copied to a special location from which I can take the image to further train the model later"; the go the same day:
+"your proposal ... could please go ahead"; and then: "the image selection should also lean more heavily towards the
+right hair color. If a pawn ... has blonde hair, it should, of course, prioritize blonde hair first over other hair
+colors, assuming sex and race and age are also appropriate ... It shouldn't be a deal breaker, if there's no matching
+hair color, but everything else fits. It should still take it, but it should prioritize the same hair color." Built on
+phases 3 to 6 and the deletion, whose rules stay but for what follows. The picture check's part of the same proposal (a
+sex change asked rather than made, the comic style, the cut-off sides) is the portrait scripts' (`Tools/PortraitArt/`).
+
+The code: `UI/Faces/PortraitLibraryMath.cs` (the rules), `PortraitReader.cs` (a pawn's artificial arm),
+`PortraitFolderMath.cs` (the word for a near-black skin), `InspectPortrait.cs` (the menu), and new
+`UI/Faces/PortraitTraining.cs` (the menu's entry, the copy started on a worker, the message) with the pure
+`PortraitTrainingMath.cs` (the training folder, training.csv, the whole copy). Tested in `Tools/Tests/PortraitMatchTests.cs`
+(new; the palette read from the portrait scripts, the copy on a library folder of its own made in a temporary folder);
+`PortraitLibraryTests.cs` and `PortraitStageTests.cs` changed where the new rules change what they expected.
+
+- **Their own age band** (`AgeMayStand`): a new pick, and the faces "Choose another picture" offers, are only of the
+  person's own band of the nine (baby, toddler, child, teen, young, adult, middle-aged, old, elder; how old they look,
+  as before). The next band no longer stands in at a cost: where the library has no picture of their band, their kind,
+  sex and skin, they keep the game's own drawing, and the missing list says "none of their sex, age and skin tone". A
+  picture kept stays as before through its stage (young, adult and middle-aged are one stage, old and elder one): a
+  colonist pictured at 29 keeps the picture at 30; at the next stage (a teen grown up, a grown-up grown old) they are
+  picked again, of their new band. Someone kept with no picture is looked at again when their band changes. A picture
+  pinned to a colonist still fits them by stage (`PinFit`, the player's own choice). A look shown only on another band's
+  picture counts as missing for them.
+- **Skin within a tone** (`SkinAgrees`, `SkinTone`): eight tones by lightness (CIE L*): very fair from 85, fair from 75,
+  light from 65, medium from 55, tan from 45, brown from 33, dark from 22, very dark below (the missing list's seven
+  skin words with the darkest split in two, as the game's two darkest skins are 13 apart). A picture's skin must be in
+  the person's tone or the next. Calibrated against the game's own skins and the painter's palette
+  (`Tools/PortraitArt/catalogue_words.py`, the planner's colour for each of the missing list's words): the game's
+  Skin_Melanin1 to 3 (L* 94 to 95) are very fair like the palette's very fair (92), Melanin4 (81) fair like its fair
+  (83), Melanin5 (71) light like its light (73), Melanin6 (58) medium like its medium (62), Melanin7 (42) brown like its
+  brown (39), Melanin8 (32) dark like its dark (24), Melanin9 (19) very dark, next to the palette's dark; a painted
+  colour 6 lighter or darker than the palette's (the slack) still lands in the same tone or the next. The tests read the
+  palette from the scripts, so a change there is checked. A skin no human grows (`UnusualSkin`) also by its colour: two
+  greys (chroma under 12: the game's slate grey, light grey, sheer white, ink black) agree, two coloured ones within 20
+  degrees of hue (the game's colour and the painter's of the same skin are at most 13 apart; a red and an orange 21 or
+  more, a blue and a purple 35); any other two (a human skin and an unusual one, a grey and a coloured one) only where
+  they are nearly the same colour (10 apart, CIE76: a near-white on either side of the line). So each of the game's own
+  unusual skins agrees with the planner's colour for its own word only (the deep and the pale yellow with each other), a
+  green-skinned person never gets a pink picture, and a person of a human skin never a green, blue, red, grey or ink
+  black one. The skin still counts in the distance as before. A record with no skin colour (a def error at start-up) is
+  not held to it.
+- **The word for a near-black skin**: the missing list calls any colour this dark black whatever its tint
+  (`PortraitFolderMath`, and the planner's `hue_word` the same); the game's ink black was "blue", so the next batch
+  would have painted a blue person who could never stand for them.
+- **The hair's colour first** (`HairColourCost`), a strong preference, never a hard rule: past a slack of 8 (CIE76), its
+  difference in tens of points squared, times 2.5, at most 12 (it was 0.6 for every ten points, at most 3). A
+  neighbouring shade costs little (dark brown and black, 14 apart, 0.85, less than short against long hair; the game's
+  blond and the palette's 0.2); a clearly different colour (about 30 apart or more: blond and brown, black and red,
+  brown and grey) costs 12, more than a picture can cost on its hair, beard, build and clothes together (at most 11.25).
+  So among the pictures that may stand for someone, one of their hair colour ranks before one of a clearly different
+  colour whatever else those show; where only another colour fits, they still get it. An old person's grey hair is
+  their colour, as before; bald on both, half. A face nobody else keeps still comes first (the hair's colour orders the
+  faces within that). With "Only close ones" a picture of a clearly different hair colour (about 24 apart or more) is not
+  close, so that person keeps the game's own drawing, and the missing list says "none close to their looks"; with "The
+  closest" (the default) they get it.
+- **A bionic arm** (the mark `bionicArm`): any artificial arm or hand. In a record's `marks` (the picture check writes
+  "add:bionicArm"; an unknown mark is still a def error, which now names it), and read in the game from any added part
+  (a `Hediff_AddedPart`, or any hediff whose def has added-part properties) on a body part whose def or parent is an
+  arm, a shoulder or a hand, by its name or label ("arm", "forearm", "shoulder", "hand") or the game's tags for the limbs
+  that handle things (`ManipulationLimbCore`, `ManipulationLimbSegment`, `ManipulationLimbDigit`), each part's def read
+  once: a bionic, archotech or prosthetic arm, a power claw, a drill arm, a field hand, an android's arm or hand, a mod's
+  on a body of its own. As the other marks: a picture with it only for someone who has one, and someone with one prefers
+  a picture that shows it (a plain one costs 0.5) but may take a plain one. The looks of the same names
+  (`prostheticArm`, `bionicArm`, `archotechArm`, `powerClaw` ... in `Defs/PortraitLookDefs/`) stay as they were: a look is
+  the particular part, the mark any artificial arm. The catalogue's tests (`test_portrait_catalogue.py`) take it in a
+  row's marks.
+- **Keep for training**, on the large portrait's right-click menu, after "Choose another picture" and before the entries
+  to delete: for the painted picture it shows, from the library folder. Greyed out with the reason for a mod's picture,
+  where it shows no painted picture (the game's own drawing, a backdrop: only pictures of people are kept), for a picture
+  already kept, while the last one is still being copied or a deletion written, and where the library folder has no
+  folder above it. Chosen, on a worker thread (`PortraitTrainingMath.Run`): training.csv read (a picture it already lists
+  by its record, or by its batch and file for a line typed by hand, is left as it is: "already listed"); the picture
+  copied as it is (the cut-out) into `<the library folder's parent>\training\<batch>\` through a temporary file (made
+  where needed; the same file there already used as it is, a different one of the same name kept and the copy named
+  " (2)"); then its line added to `training\training.csv` (`file`, `batch`, `record`, `date`; a new list gets its columns
+  first, a list Excel saved with semicolons keeps them; marked as UTF-8 for Excel), written safely. Each step tried again
+  up to five times as the deletion's; where the list can't be written, the copy made is taken away again, so nothing has
+  changed. A message: "Kept colonists\Avila_..._.png for training: copied into training\colonists beside the library
+  folder and listed in training.csv there. The picture stays in the library." Which pictures are kept is read from the
+  list once a session on a worker, for the menu. Nothing in the game changes. A picture deleted for good later stays in
+  the training folder and its list (the deletion never looks there); that is meant: it was kept to train on. The
+  training script of the portrait kit reads the folder and the list.
+- **Settings**: none new. "Painted portraits from the library" and "Portraits from the library" say the rule (their own
+  kind, sex, age band and skin tone).
+- **Saved**: nothing new; training.csv is beside the library folder.
+- Every game member used (a hediff's def and its added-part properties, a body part's def, label, tags and parent, the
+  float menu, the messages) is the same in 1.6 and 1.7 (ApiDiff). No new hook.
+- **Not checked without the game**: the arm read from real pawns (a bionic arm on the shoulder, a power claw on the hand,
+  an android's arm, a mod's body); the menu and the messages as they look; the copy on the player's Google Drive folder;
+  the game's skin colours of the mods' kinds (a race whose skins are drawn from a range, the Venators' dusty skins)
+  against their pictures' painted colours, where a skin the tone or hue rule leaves out shows in missing.csv; the
+  Biotech skins' colours are those the tests have used since phase 3.
+
 ### On-screen panels and the hover card
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of
