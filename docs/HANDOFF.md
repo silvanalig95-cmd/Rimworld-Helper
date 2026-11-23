@@ -810,6 +810,35 @@ most sense." So, in this order, three builds at a time:
   clears the record, its expressions and depth map, every pawn holding it (in every save, on load), the list
   `deleted.csv` the scripts honour; left: the bin folder (the setting deletes at once instead), ComfyUI's own output
   copy (never copied again), and the row in its list (a new picture is made for it when missing rows are asked for).
+  **Point 4: go given (23 November 2026), built** (tools and docs only; `SETUP-ComfyUI.md` step 8): `Check-Pictures.ps1`
+  asks question version 3, which says the picture is a comic-style drawn portrait for a game and has a line for arms
+  ("normal, or an artificial arm: bionic, mechanical or prosthetic"). An artificial arm its row lacks gives the
+  correction marks add:bionicArm, yes (not for a row with an arm look, bionicArm, prostheticArm or archotechArm, nor
+  for an android, whose arms may look made); a row with the mark whose picture shows none gives remove:bionicArm, ask,
+  as the bionic eye does. Sex corrections are always ask. The side check needs no model: in the top 85% of a cut-out,
+  the rows whose outermost columns (4 at 1,024 pixels wide) hold the figure's own pixels (alpha over 128); more than a
+  tenth of the height on one side is "cut at the side", out, ask (a cut shoulder runs along 30% to 45%, a hand
+  reaching the edge 2% to 8%). It reads the pictures with System.Drawing, so only on Windows; a picture it can't read
+  is skipped. Tested with PowerShell 7 against the stand-in ComfyUI, and the side rule on made-up pixels; reading real
+  pictures is untested until the player's run. `catalogue/marks.csv` has no bionicArm row: `bionicArm` is already a
+  look word (looks.csv and PortraitLookDefs, with prostheticArm and archotechArm), and the catalogue check refuses a
+  word that is both a look and a mark.
+- **Done (23 November 2026, the player's own request, and point 5 of the entry above): a zip of examples from the
+  picture check, and the training set.** The player: "Could the check picture CMD perhaps also offer me the option to
+  directly create a zip file with examples and the CSV files ... that it asks me after doing the check to create these
+  files, that I can immediately send them to you?" Built (tools and docs only): after the check, `Check-Pictures.ps1`
+  asks "Make a zip of examples to send? (Enter for yes, n for no)"; Enter writes
+  `library\check-examples-<yyyyMMdd-HHmm>.zip` with check-report.csv, corrections.csv, checked.csv, examples.csv
+  (picture, row, subject, pose, what the check found, the model's answer) and up to 30 pictures: the flagged ones
+  first, the worst first, then up to 8 that match their records (one of each kind first, then one of each age).
+  And for "Keep for training" (the player: "maybe I can right click and then already flag for training ... or it's get
+  copied to a special location from which I can take the image to further train the model later"; the game's side is
+  the other build's): `Tools/PortraitArt/Make-TrainingSet.ps1` with `Make-TrainingSet.cmd` reads
+  `training\training.csv` and the pictures in `training\<batch>\`, finds each one's row in the batch lists and writes
+  `training\set\`: the picture on dark grey (58, 60, 68) as an RGB PNG, and a caption of the same name, "rmwstyle, "
+  and the row's subject and pose. `STYLE-RIMWORLD.md`, "Training again": the set with the first set's 47 in FluxGym,
+  repeats 3 and epochs 10 for about 77 pictures, the LoRA named rmwstyle2 and copied into ComfyUI as rmwstyle. Tested
+  with a stand-in for the drawing; the drawing itself runs only on Windows.
 - **Done (22 November 2026, the player's own request): women of every look, and baseliners about half.** The player:
   "I don't want them all to look exactly the same ... I just don't want every woman to be attractive. There should be
   some attractive ones and there should be not attractive ones", and "our baseline are still kind of a majority,

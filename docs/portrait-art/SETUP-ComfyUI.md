@@ -138,6 +138,13 @@ and the expressions leave it out. To have one back: take its line out of `delete
 running a script), put its file back into its library folder and run `Update-PortraitLibrary.ps1`. A row whose pictures
 are all deleted counts as having none, so `Run-PortraitBatch.ps1` makes it again when you ask for the missing rows.
 
+**Keeping a picture for training**: right-click the large portrait, **Keep for training**. Rimfolk copies the picture
+to `training\<batch>\` next to `library\` in your `Rimfolk-portraits` folder and adds a line to `training\training.csv`
+(file, batch, record, date); the picture stays in the library. When you have kept 20 to 40, double-click
+`Make-TrainingSet.cmd` (copy it and `Make-TrainingSet.ps1` from Rimfolk's `Tools/PortraitArt` into the same folder):
+it writes `training\set\`, each picture on a plain dark grey ground with a caption of the same name taken from its row,
+ready for FluxGym (`STYLE-RIMWORLD.md`, "Training again").
+
 **Growing it**: Rimfolk writes `library\missing.csv` with what it needed and had no picture for (a xenotype, a room kind,
 a biome, an age). `Update-PortraitLibrary.ps1` shows its first lines; send it to the lead, who adds new rows to the batch
 lists. When the library already holds pictures of a batch, `Run-PortraitBatch.ps1` offers to make only the rows that
@@ -148,10 +155,14 @@ have none yet, so a grown list is never made again from the start.
 A picture can show more or less than its batch row asked for: a sword or a flame nobody asked for, a woman drawn as a
 man. The game gives a picture with a look or a role only to people who have it, so a record has to match its picture.
 The check has a describing model on your computer look at each picture in the library, answer a fixed list of
-questions about it (how many people, man or woman, how old they look, ears, horns, wings, eyes, what they hold,
-weapons, armour, fire or magic, headwear, a book or tools, anything unusual), and compares the answers with the
-picture's record. You then look through a short list instead of every picture. It uses ComfyUI's own boxes and
-Qwen3.5, a free model (Apache 2.0 licence) that fits your card well, so no node pack is needed.
+questions about it (how many people, man or woman, how old they look, ears, horns, wings, eyes, eye marks, an
+artificial arm, what they hold, weapons, armour, fire or magic, headwear, a book or tools, anything unusual), and
+compares the answers with the picture's record. The question tells the model the picture is a comic-style drawn
+portrait for a game. The record, taken from the picture's row in the batch list, is the starting point: the model is
+not told the row, and a correction is written only where what it saw differs. A second check needs no model: a
+cut-out whose figure runs along the left or right edge is cut at the side. You then look through a short list instead
+of every picture. It uses ComfyUI's own boxes and Qwen3.5, a free model (Apache 2.0 licence) that fits your card well,
+so no node pack is needed.
 
 **The model**
 1. Keep ComfyUI up to date: ComfyUI Desktop offers its updates when it starts; take them.
@@ -185,6 +196,12 @@ Qwen3.5, a free model (Apache 2.0 licence) that fits your card well, so no node 
 9. At the end it shows the pictures to look at, the worst first, and writes two files into `library`:
    `check-report.csv`, the whole list, and `corrections.csv`, the changes it proposes for single pictures (both open
    in Excel; Notepad works too).
+   Then it asks **Make a zip of examples to send? (Enter for yes, n for no)**. Enter makes
+   `library\check-examples-<date>-<time>.zip` and says where it is and how big: `check-report.csv`, `corrections.csv`,
+   `checked.csv`, a small `examples.csv` (each picture in the zip with its row's name, subject and pose, what the check
+   found and what the model answered) and up to 30 pictures, the flagged ones first (the worst first), then up to 8
+   that match their records, of different kinds and ages. Send that zip to the lead. `n` makes none.
+   (The question changed on 23 November 2026, version 3: the first run after that asks about every picture again.)
 10. Open `corrections.csv`. Each line is one change for one picture: `picture`, `field`, `value`, `apply`, `why`. Lines
     marked **yes** are changes the check is sure of; lines marked **ask** wait for you: look at the picture, then
     change ask to **yes** (do it) or **no** (keep the picture as it is), and save. You may also change a yes to no, or
@@ -203,18 +220,21 @@ pictures may be right, so a correction changes only that picture's record. The f
   to judge it by (grey hair, wrinkles, sagging skin; a child's head and face). Three bands or more from its row (a child
   drawn for an adult or the other way round) is yes; two bands is ask, since a drawing's lines can read older or
   younger than they are meant; one band apart stays as it is.
-- `sex`: `male` or `female` (yes when the model said it plainly; for a picture made for one colonist it is never
-  changed: that picture gets `out`, ask).
+- `sex`: `male` or `female`, always ask: the row says the sex, and the model's look at a drawing counts for less (the
+  player: the check "should really rely first on the data that is already provided kind of by the CSV files"). A
+  picture made for one colonist is never changed: it gets `out`, ask.
 - `role`: the work it shows (yes when the row has no role: a weapon gives soldier, warrior or hunter, armour soldier or
   warrior, a crown leader, a book scholar), or `clear` (ask).
 - `looks`: `add:word` or `remove:word` (adding wings' look, such as `batWings`, is yes; fire or magic is ask, because
   which look it is can't be told; taking a look away is ask, because the picture would then go to anyone).
-- `marks`: `add:eyePatch` and the like (yes), `remove:...` (ask).
+- `marks`: `add:eyePatch`, `add:bionicEye` and the like (yes), and `add:bionicArm` for an artificial arm (bionic,
+  mechanical or prosthetic) its row lacks (yes; not for a row with an arm look, such as `prostheticArm`, nor for an
+  android, whose arms may look made); `remove:...` (ask).
 - `headwear`: `true`, so a picture with a hat or hood goes only to people wearing something on the head (yes; ask for
   a colonist's own picture).
 - `out`: the picture is left out of the records; the file stays where it is (yes for more than one person in a
-  cut-out; ask for a body its kind doesn't have, such as pointed ears on a baseliner or an elf without them, and for
-  a person in a backdrop).
+  cut-out; ask for a body its kind doesn't have, such as pointed ears on a baseliner or an elf without them, for a
+  cut-out cut at the side, and for a person in a backdrop).
 Adding a look or a role only narrows who gets a picture, which is why those can be yes; anything that would give it to
 more people is ask.
 
@@ -222,9 +242,10 @@ more people is ask.
 wrong`, `what the model saw`, what `its row says`, a `suggested fix`, and what is `in corrections.csv` for it. The
 check is one of:
 - **1 wrong**: the other sex than its row, an age two bands or more from its row's (three or more marked yes), more than one person in a
-  cut-out, no one at all, or a person in a backdrop.
+  cut-out, no one at all, a cut-out cut at the side, or a person in a backdrop.
 - **2 shows more**: something its row doesn't have: a weapon, armour, fire or magic, wings, a crown, a book or tools,
-  a hat, hood or helmet, horns, pointed ears, a tail, glowing eyes, scales or fur, an eye patch.
+  a hat, hood or helmet, horns, pointed ears, a tail, glowing eyes, scales or fur, an eye patch, a bionic eye, an
+  artificial arm.
 - **3 shows less**: its row says something the model didn't see (a fire mage with no fire, a soldier with no weapon or
   armour, a saurid without scales). Look at the picture: the model can miss things, and the clothes or the face may
   show it.
@@ -234,7 +255,18 @@ What a look or role asks for is taken from the row's own prompt (its subject and
 sniperClass look whose prompt asks for a rifle may show one, and should.
 
 Pictures made for one colonist (a name in their row's `pawn` column) go to that colonist only, so for them only the
-sex, the age, the number of people, headwear and the body (ears, horns, scales, eyes) are checked.
+sex, the age, the number of people, headwear, the body (ears, horns, scales, eyes), the eye and arm marks and the
+sides are checked.
+
+**The side check.** A portrait is only ever cut at the bottom (the player: "if anything is cut off, it's just from the
+bottom ... not from the side"). For each cut-out the check reads the picture's transparency itself, with no model:
+in the top 85% of the picture (below that the body is cut at the bottom and the elbows may reach the sides), it counts
+the rows where the figure's own pixels (more than half opaque) lie in the outermost columns (4 at 1,024 pixels wide).
+When those rows add up to more than a tenth of the picture's height on one side, the picture is cut at that side: a
+shoulder or upper arm cut by the edge runs along about a third of the height, while a hand or fingertips reaching the
+edge cover a few percent and a strand of hair less. It is asked (`out`, ask), since a raised weapon or a hand may run
+along the edge on purpose. It reads the pictures with Windows' own System.Drawing; a picture it can't read is left to
+the model's check.
 
 The model can be wrong: the list and the ask lines say what to look at. The check never deletes, moves or renames a
 picture and never changes a batch list or the records. You can still throw a picture out by deleting it from

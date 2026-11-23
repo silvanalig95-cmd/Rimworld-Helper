@@ -15,12 +15,21 @@
 #   before (or changed since).
 # - Every run compares all the checked pictures with their records again and writes library\check-report.csv: what is
 #   wrong, what the model saw, what the row says, and a suggested fix, the worst first.
+# - The record (from the row) is the baseline: the model is not told the row, and only where what it saw differs is a
+#   correction written. The sex is never changed without asking (the player: the check "should really rely first on the
+#   data that is already provided kind of by the CSV files").
 # - And library\corrections.csv: one line per change to one picture's record (age, sex, looks add:/remove:, role or
 #   clear, marks add:/remove:, headwear, out), marked yes where it is safe or plainly right (an age three bands or more
-#   off, a role for the weapon it holds, the wings look for its wings, out for two people in a cut-out) and ask where
-#   you decide (fire or magic, anything taken away, a body its kind doesn't have). Update-PortraitLibrary.ps1 puts the
-#   lines marked yes into the records; you change ask to yes or no. Lines already there are never changed here, the
-#   yes lines count as done when comparing, and an issue marked no stays out of the report.
+#   off, a role for the weapon it holds, the wings look for its wings, a lost eye, a bionic eye or an artificial arm
+#   shown, out for two people in a cut-out) and ask where you decide (the sex, fire or magic, anything taken away, a body
+#   its kind doesn't have, a cut-out cut at the side). Update-PortraitLibrary.ps1 puts the lines marked yes into the
+#   records; you change ask to yes or no. Lines already there are never changed here, the yes lines count as done when
+#   comparing, and an issue marked no stays out of the report.
+# - The side check needs no model: a cut-out whose figure runs along the left or right edge is cut at the side (the
+#   player: "if anything is cut off, it's just from the bottom ... not from the side"). It reads the picture's
+#   transparency with Windows' own System.Drawing; a picture it can't read is left to the model's check alone.
+# - At the end it offers a zip of examples to send to the lead (library\check-examples-<date>-<time>.zip): the three
+#   CSV files, examples.csv, and up to 30 pictures, the flagged ones first.
 # - It never deletes, moves or renames a picture and never changes a batch list or the records: the name ties a
 #   picture to its row, and the row's other pictures may be right.
 # - A picture deleted for good in the game (listed in library\deleted.csv) is never looked at.
@@ -28,6 +37,7 @@
 # Run it: keep ComfyUI open and double-click Check-Pictures.cmd (or right-click this file, "Run with PowerShell"). Then
 # look at corrections.csv's ask lines, run Update-PortraitLibrary.ps1 and "Reload the library" in the game.
 # To ask about every picture again (after changing the model), delete library\checked.csv first.
+# -Examples yes or no answers the zip's question without asking.
 
 [CmdletBinding()]
 param(
@@ -35,6 +45,7 @@ param(
     [string] $Workflow = '',
     [string] $Server = '',
     [switch] $Again,
+    [ValidateSet('ask', 'yes', 'no')] [string] $Examples = 'ask',
     [switch] $NoPause
 )
 
@@ -50,9 +61,9 @@ if ($Workflow -eq '') { $Workflow = Join-Path $Folder 'rimfolk-check-workflow-ap
 # ---------------- The question ----------------
 
 # Raise the number when the question changes: pictures asked with an older one are asked again.
-$QuestionVersion = '2'
+$QuestionVersion = '3'
 $Question = @'
-This is a painted portrait made for a game. Look at the picture closely and fill in the form below about the person in it. Write each line's name, a colon, and a short answer of a few words. Answer every line, in this order, and write nothing else. Write none when the thing is not in the picture.
+This is a comic-style drawn portrait of a person, made for a game. Look at the picture closely and fill in the form below about the person in it. Write each line's name, a colon, and a short answer of a few words. Answer every line, in this order, and write nothing else. Write none when the thing is not in the picture.
 
 people: how many people are in the picture (a number)
 sex: man or woman
@@ -67,6 +78,7 @@ wings: none, or the wings they have
 eyes: normal, or glowing (and the colour)
 body: does the skin itself have scales or fur (not the clothes): none, scales or fur
 eye marks: none, or an eye patch, a missing eye or an artificial eye
+arms: normal, or an artificial arm: bionic, mechanical or prosthetic
 hands: what they hold in their hands, or nothing
 weapons: any weapon in the picture (sword, axe, spear, bow, gun, knife), or none
 armour: any armour they wear, or none
@@ -77,7 +89,7 @@ unusual: anything else unusual about the person, or none
 '@
 
 # The answer's items, in the question's order (also checked.csv's columns), and the names a model may give them.
-$FieldKeys = @('people', 'sex', 'age', 'skin', 'hair', 'beard', 'ears', 'horns', 'tail', 'wings', 'eyes', 'body', 'eyemarks', 'hands', 'weapons', 'armour', 'magic', 'headwear', 'tools', 'unusual')
+$FieldKeys = @('people', 'sex', 'age', 'skin', 'hair', 'beard', 'ears', 'horns', 'tail', 'wings', 'eyes', 'body', 'eyemarks', 'arms', 'hands', 'weapons', 'armour', 'magic', 'headwear', 'tools', 'unusual')
 $FieldNames = @{
     'people' = 'people'; 'persons' = 'people'; 'number of people' = 'people'; 'how many people' = 'people'; 'people count' = 'people'; 'figures' = 'people'
     'sex' = 'sex'; 'gender' = 'sex'
@@ -92,6 +104,7 @@ $FieldNames = @{
     'eyes' = 'eyes'; 'eye' = 'eyes'; 'glowing eyes' = 'eyes'; 'eye colour' = 'eyes'; 'eye color' = 'eyes'
     'body' = 'body'; 'scales or fur' = 'body'; 'scales' = 'body'; 'fur' = 'body'; 'fur or scales' = 'body'; 'skin covering' = 'body'
     'eye marks' = 'eyemarks'; 'eye mark' = 'eyemarks'; 'eyemarks' = 'eyemarks'; 'eye patch' = 'eyemarks'; 'marks' = 'eyemarks'
+    'arms' = 'arms'; 'arm' = 'arms'; 'artificial arms' = 'arms'; 'artificial limbs' = 'arms'; 'limbs' = 'arms'; 'prosthetics' = 'arms'
     'hands' = 'hands'; 'hand' = 'hands'; 'in hands' = 'hands'; 'in their hands' = 'hands'; 'holding' = 'hands'; 'holds' = 'hands'; 'held' = 'hands'
     'weapons' = 'weapons'; 'weapon' = 'weapons'
     'armour' = 'armour'; 'armor' = 'armour'
@@ -203,6 +216,8 @@ function Read-Answer([string] $text) {
         $offset = $c - $before.Length
         foreach ($w in [regex]::Matches($before, '[A-Za-z]\S*')) {
             $key = Key-Of ($before.Substring($w.Index))
+            # An item's name right after the same item's is part of its answer ("arms: an artificial arm: bionic").
+            if ($key -and $starts.Count -gt 0 -and $starts[$starts.Count - 1].key -eq $key) { break }
             if ($key) { [void]$starts.Add([pscustomobject]@{ key = $key; at = $offset + $w.Index; value = $c + 1 }); break }
         }
     }
@@ -405,6 +420,40 @@ function Eyemarks-Of([string] $v) {
     return $r
 }
 
+# An artificial arm in the answer to "arms": the word for it, or a made arm or hand ("a steel forearm").
+$ArtificialArmWords = '\b(artificial|bionics?|mechanical|mechani[sz]ed|cybernetic|cyborg|prosthetics?|prosthesis|robotic|android)\b|\b(metal|steel|iron|chrome|wooden)\s+((left|right)\s+)?(arms?|forearms?|hands?|limbs?)\b|\bpower claws?\b|\bhook (hand|for a hand)\b'
+$ArmPartWords = '\b(arms?|forearms?|hands?|limbs?)\b'
+# Kinds whose own arms may look made (Vanilla Races Expanded's androids): an artificial arm on them is not a mark.
+$MadeKinds = '(?i)android|robot|synth|mechanoid'
+# The record mark for an artificial arm (Rimfolk's matcher: any added part on an arm or hand), as the check writes it.
+$ArmMark = 'bionicArm'
+# The looks that are an artificial arm (Rimfolk's PortraitLookDefs: bionicArm, prostheticArm, archotechArm), by their words.
+$ArmLooks = '\b(bionic|prosthetic|archotech|mechanical|artificial|cybernetic) arms?\b'
+
+function Arms-Of([string] $v, [string] $unusual) {
+    # An artificial arm the model saw (artificial), or plainly none (none): from its answer to "arms" ("a bionic left
+    # arm", "mechanical", "normal", "normal, no prosthetics"), else from "unusual" naming one ("his left arm is
+    # mechanical"). An answer repeating the question's choices ("normal, or an artificial arm: bionic, mechanical or
+    # prosthetic") says nothing, and "no ..." is taken out first, so "normal, no bionics" is none.
+    $r = @{ artificial = $false; none = $false }
+    $neg = '\b(no|not|without|neither|nor|none)\b\s+(an?\s+|any\s+|visible\s+|obvious\s+)*'
+    $t = Low $v
+    if ($t -match 'bionic, mechanical,? or prosthetic|normal,? or an? artificial') { $t = '' }
+    if ($t -ne '' -and $t -notmatch '\b(hidden|covered|not visible|not shown|out of (the )?(picture|frame)|unclear|unknown|cannot|can''t)\b') {
+        $u = [regex]::Replace($t, $neg + '(' + $ArtificialArmWords + ')[^,;.]*', ' ')
+        if ($u -match $ArtificialArmWords) { $r.artificial = $true }
+        else { $r.none = ((Says $t) -eq 'no') -or ($t -match '^(both\s+)?(arms?\s+)?(are\s+)?(normal|natural|human|flesh|ordinary|regular)\b') }
+    }
+    if (-not $r.artificial) {
+        $x = [regex]::Replace((Low $unusual), $neg + '(' + $ArtificialArmWords + ')[^,;.]*', ' ')
+        $made = '\b(artificial|bionic|mechanical|mechani[sz]ed|cybernetic|prosthetic|robotic)\b'
+        if ($x -match ($made + '[^.,;]{0,20}' + $ArmPartWords) -or $x -match ($ArmPartWords + '[^.,;]{0,20}' + $made) -or $x -match '\bprosthesis\b|\b(metal|steel|iron|chrome|wooden)\s+((left|right)\s+)?(arms?|forearms?|hands?|limbs?)\b|\bpower claws?\b|\bhook (hand|for a hand)\b') {
+            $r.artificial = $true; $r.none = $false
+        }
+    }
+    return $r
+}
+
 function Wing-Word([string] $v, $kinds) {
     # The wings look (Rimfolk's PortraitLookDefs, from docs/portrait-art/catalogue/looks.csv) for the wings the model saw,
     # and whether its words make it plain (bat, feathered, dragon, a single malformed wing, glider membranes) or not
@@ -437,7 +486,7 @@ function Strip-Glow([string] $t) {
 function Asks-Of([string] $asked) {
     # What a row's prompt asks the picture to show.
     $t = Low $asked
-    $r = @{ weapon = $false; armour = $false; magic = $false; tools = $false; wings = $false; horns = $false; tail = $false; crown = $false; glowEyes = $false; bionicEye = $false }
+    $r = @{ weapon = $false; armour = $false; magic = $false; tools = $false; wings = $false; horns = $false; tail = $false; crown = $false; glowEyes = $false; bionicEye = $false; bionicArm = $false }
     if ($t -eq '') { return $r }
     $r.weapon = $t -match $WeaponWords
     $r.armour = $t -match $ArmourWords
@@ -449,6 +498,8 @@ function Asks-Of([string] $asked) {
     $r.crown = $t -match $CrownWords
     $r.glowEyes = $t -match 'glow\w*[^.,;]{0,30}\beyes?\b|\beyes?\b[^.,;]{0,30}\bglow'
     $r.bionicEye = $t -match '\b(bionic|archotech|artificial|mechanical)\b[^.,;]{0,20}\beye'
+    $made = '\b(bionic|archotech|artificial|mechanical|prosthetic|cybernetic|robotic)\b'
+    $r.bionicArm = $t -match ($made + '[^.,;]{0,20}' + $ArmPartWords) -or $t -match ($ArmPartWords + '[^.,;]{0,30}' + $made) -or $t -match '\bpower claws?\b'
     return $r
 }
 
@@ -560,6 +611,7 @@ function Seen-Says($seen) {
             [void]$parts.Add($label + ': ' + (Short $seen.$k))
         }
     }
+    if ((Arms-Of $seen.arms '').artificial) { [void]$parts.Add('arms: ' + (Short $seen.arms)) }
     $e = Ears-Of $seen.ears
     if ($e.pointed -or $e.long) { [void]$parts.Add('ears: ' + (Short $seen.ears)) }
     if ((Glow-Of $seen.eyes) -eq 'yes') { [void]$parts.Add('eyes: ' + (Short $seen.eyes)) }
@@ -576,25 +628,33 @@ function Add-Issue($list, [int] $level, [string] $what, [string] $fix, [string] 
     [void]$list.Add([pscustomobject]@{ level = $level; what = $what; fix = $fix; field = $field; value = $value; apply = $apply })
 }
 
-function Sure-Sex([string] $v) {
-    # The model said the sex plainly ("woman", "a man"), with no doubt in it.
-    return (Low $v) -match '^(a |an )?(man|woman|male|female)[.]?$'
-}
-
-function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
+function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked, $side = $null) {
     # What doesn't fit between a picture's record and what the model saw, each with a level: 1 wrong (throw it out), 2
     # shows more than its row says (add a look or role to the row, or throw it out), 3 shows less (look at it).
     # $asked is the row's own prompt (its subject and pose; '' when the batch list isn't there): a thing the prompt asked
     # for belongs to the row's look or role ("a long rifle resting on one shoulder" of sniperClass, "small dark horns" of
     # succubus), so a row with a look or role may show it, and should.
-    # Corrections marked yes only narrow who gets the picture or set plainly what it shows (an age band two or more
+    # $side is the side check's finding for a cut-out (Side-Cut-Of), or $null where it couldn't be read.
+    # Corrections marked yes only narrow who gets the picture or set plainly what it shows (an age band three or more
     # away, a role for the weapon it holds, the wings look for its wings, out for two people in a cut-out); anything that
-    # would give it to more people, or can't be told from the answer, is marked ask.
+    # would give it to more people, or can't be told from the answer, is marked ask. So is the sex: the row says it, and
+    # the model's look at a drawing is the weaker word.
     $issues = New-Object System.Collections.ArrayList
     $people = People-Of $seen.people
     if ($rec.kind -eq 'backdrop') {
         if ($people -ge 1) { Add-Issue $issues 1 'a person in the backdrop' 'throw it out (a backdrop shows no people)' 'out' '' 'ask' }
         return $issues
+    }
+
+    # Cut at the side: the figure's own pixels run along the left or right edge (a portrait is only ever cut at the
+    # bottom). Found from the picture itself, not the model; asked, since a hand or a weapon may reach the edge.
+    if ($side -ne $null -and $side.side -ne '') {
+        $where = 'the {0} edge' -f $side.side
+        if ($side.side -eq 'both') { $where = 'the left and right edges' }
+        $share = @()
+        if ($side.left -gt $SideCutShare) { $share += ('the left edge along {0:0}%' -f (100 * $side.left)) }
+        if ($side.right -gt $SideCutShare) { $share += ('the right edge along {0:0}%' -f (100 * $side.right)) }
+        Add-Issue $issues 1 ('cut at the side: the figure runs along {0}' -f $where) ('look at it (the figure touches {0} of the picture''s height): if it is cut off, mark out yes in corrections.csv (or throw it out)' -f ($share -join ' and ')) 'out' '' 'ask'
     }
     $looks = $rec.looks
     $role = $rec.role
@@ -617,11 +677,8 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
         $drawn = 'man'; if ($sex -eq 'female') { $drawn = 'woman' }
         $want = 'man'; if ($rec.sex -eq 'female') { $want = 'woman' }
         $what = 'drawn as a {0}; its row says {1}' -f $drawn, $want
-        if ($pinned) { Add-Issue $issues 1 $what 'its colonist is a {0}: look at it, and mark out yes in corrections.csv if it is wrong' 'out' '' 'ask' }
-        else {
-            $apply = 'ask'; if (Sure-Sex $seen.sex) { $apply = 'yes' }
-            Add-Issue $issues 1 $what ('its record gets the sex {0}; or throw it out' -f $sex) 'sex' $sex $apply
-        }
+        if ($pinned) { Add-Issue $issues 1 $what ('its colonist is a {0}: look at it, and mark out yes in corrections.csv if it is wrong' -f $want) 'out' '' 'ask' }
+        else { Add-Issue $issues 1 $what ('look at it: yes gives its record the sex {0}, no keeps {1}; or throw it out' -f $sex, $rec.sex) 'sex' $sex 'ask' }
     }
     # The age: two bands from the row's is asked (a drawing's lines can read older or younger than they are meant),
     # three or more is plainly another age and changed without asking.
@@ -698,6 +755,18 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
         Add-Issue $issues 3 'its row says a lost eye; the model saw both eyes' ('look at it: taking {0} out of its record gives it to people with both eyes' -f $word) 'marks' ('remove:' + $word) 'ask'
     }
     if ($marks.none -and $rowBionic) { Add-Issue $issues 3 'its row says a bionic eye; the model saw none' 'look at it: taking bionicEye out of its record gives it to people without one' 'marks' 'remove:bionicEye' 'ask' }
+    # An artificial arm (bionic, mechanical or prosthetic): the mark bionicArm, as the bionic eye. A row with one of the
+    # arm looks (bionicArm, prostheticArm, archotechArm) has it already, and an android's own arms may look made, so its
+    # kind is left alone.
+    $arms = Arms-Of $seen.arms $seen.unusual
+    $rowArm = $rec.marks -contains $ArmMark.ToLowerInvariant()
+    $armLook = Any-Look $looks $ArmLooks
+    $madeKind = @($rec.kinds | Where-Object { [string]$_ -match $MadeKinds }).Count -gt 0
+    if ($arms.artificial -and -not $rowArm -and -not $armLook -and -not $madeKind -and -not ($ask.bionicArm -and $tie)) {
+        $armText = $seen.arms; if (-not (Arms-Of $seen.arms '').artificial) { $armText = $seen.unusual }
+        Add-Issue $issues 2 ('shows an artificial arm ({0}); its row has none' -f (Short $armText)) ('its record gets the mark {0}, so it goes only to people with one' -f $ArmMark) 'marks' ('add:' + $ArmMark) 'yes'
+    }
+    if ($arms.none -and $rowArm) { Add-Issue $issues 3 'its row says an artificial arm; the model saw none' ('look at it: taking {0} out of its record gives it to people without one' -f $ArmMark) 'marks' ('remove:' + $ArmMark) 'ask' }
 
     # A picture made for one colonist goes to them only: its looks and role need no checking.
     if ($pinned) { return $issues }
@@ -781,6 +850,7 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
         if ($ask.magic -and $magicText -eq '' -and (Says $seen.magic) -eq 'no' -and $glow -ne 'yes') { [void]$missing.Add('fire or magic') }
         if ($ask.tools -and $toolText -eq '' -and $hands -eq '' -and (Says $seen.hands) -ne '') { [void]$missing.Add('a book or tools in the hands') }
         if ($ask.crown -and -not $crown -and (Says $seen.headwear) -eq 'no') { [void]$missing.Add('a crown') }
+        if ($ask.bionicArm -and $arms.none) { [void]$missing.Add('an artificial arm') }
         if ($missing.Count -gt 0) {
             $for = (@($rec.lookWords) + @(@($role) | Where-Object { $_ -ne '' })) -join ', '
             $what = 'its prompt asks for {0} (for {1}); the model saw none' -f ($missing -join ', '), $for
@@ -804,6 +874,76 @@ function Compare-Picture($rec, $seen, [bool] $cut, [string] $asked) {
         }
     }
     return $issues
+}
+
+# ---------------- The side check (no model) ----------------
+# A person's picture is cut at the bottom only (the frame: "cut off by the bottom edge of the picture at the belt"). A
+# cut-out whose figure runs along the left or right edge was cut at the side. The numbers, for a 1,024 by 1,280 picture:
+# - only the top 85% of the height is looked at: below that the body is cut at the bottom and the elbows and the belt
+#   may run out to the sides;
+# - the outermost columns: 4 at 1,024 pixels wide (a 256th of the width, at least 2), so a soft or uneven edge left by
+#   the cut-out still counts and one stray pixel row doesn't decide;
+# - opaque: alpha over 128 (half), so the cut-out's faint fringe and soft hair ends don't count;
+# - a side is cut when its opaque rows add up to more than a tenth of the height (128 rows). A shoulder or upper arm cut
+#   by the edge runs from about 40% of the height down past the 85% line (30% to 45% of the height); fingertips or a
+#   hand reaching the edge cover 2% to 8%, a strand of hair less.
+# A picture whose two top corners are both opaque has no cut-out background, and is not judged.
+
+$SideCutTop = 0.85
+$SideCutShare = 0.10
+
+function Side-Cut-Of($src) {
+    # The side check's finding for one picture: @{ side = 'left', 'right', 'both' or ''; left; right (the share of the
+    # height touching each edge) }, or $null when it isn't judged. $src is a pixel source: width, height, stride and its
+    # bytes, 4 to a pixel with the alpha fourth (System.Drawing's 32-bit ARGB, B G R A in memory), as Read-Pixels gives.
+    if ($null -eq $src) { return $null }
+    $w = [int]$src.width; $h = [int]$src.height; $stride = [int]$src.stride; $d = $src.data
+    if ($w -lt 8 -or $h -lt 8 -or $null -eq $d -or $d.Length -lt $stride * $h) { return $null }
+    if ($d[3] -gt 128 -and $d[($w - 1) * 4 + 3] -gt 128) { return $null }
+    $band = [Math]::Max(2, [int][Math]::Round($w / 256.0))
+    $rows = [int][Math]::Floor($h * $SideCutTop)
+    $left = 0; $right = 0
+    # Each row's alpha bytes in the band: from 3 to $leftEnd on the left, from $rightAt to $rightEnd on the right.
+    $leftEnd = ($band - 1) * 4 + 3
+    $rightAt = ($w - $band) * 4 + 3
+    $rightEnd = ($w - 1) * 4 + 3
+    for ($at = 0; $at -lt $rows * $stride; $at += $stride) {
+        for ($i = $at + 3; $i -le $at + $leftEnd; $i += 4) { if ($d[$i] -gt 128) { $left++; break } }
+        for ($i = $at + $rightAt; $i -le $at + $rightEnd; $i += 4) { if ($d[$i] -gt 128) { $right++; break } }
+    }
+    $r = @{ side = ''; left = ($left / [double]$h); right = ($right / [double]$h) }
+    $l = $r.left -gt $SideCutShare; $rt = $r.right -gt $SideCutShare
+    if ($l -and $rt) { $r.side = 'both' } elseif ($l) { $r.side = 'left' } elseif ($rt) { $r.side = 'right' }
+    return $r
+}
+
+function Read-Pixels([string] $path) {
+    # A picture's pixels for Side-Cut-Of, read with System.Drawing (Windows' own; it doesn't run elsewhere), or $null
+    # when it can't be read: the side check then leaves that picture alone. Its types are named in strings, so the
+    # function itself loads where System.Drawing doesn't.
+    if ($script:DrawingOk -eq $false) { return $null }
+    try {
+        if ($script:DrawingOk -ne $true) { Add-Type -AssemblyName System.Drawing; $script:DrawingOk = $true }
+        $bmp = New-Object System.Drawing.Bitmap($path)
+    }
+    catch {
+        # No System.Drawing here at all (not Windows): no picture is tried again. One picture that can't be read: only it.
+        if ($script:DrawingOk -ne $true -or $_.Exception.ToString() -match 'PlatformNotSupported|TypeInitialization') { $script:DrawingOk = $false }
+        return $null
+    }
+    try {
+        $rect = New-Object System.Drawing.Rectangle(0, 0, $bmp.Width, $bmp.Height)
+        $data = $bmp.LockBits($rect, 'ReadOnly', 'Format32bppArgb')
+        try {
+            if ($data.Stride -le 0) { return $null }
+            $bytes = New-Object byte[] ($data.Stride * $bmp.Height)
+            [System.Runtime.InteropServices.Marshal]::Copy($data.Scan0, $bytes, 0, $bytes.Length)
+            return @{ width = $bmp.Width; height = $bmp.Height; stride = $data.Stride; data = $bytes }
+        }
+        finally { $bmp.UnlockBits($data) }
+    }
+    catch { return $null }
+    finally { $bmp.Dispose() }
 }
 
 # ---------------- Talking to ComfyUI ----------------
@@ -1183,6 +1323,111 @@ function Is-Deleted([string] $path, $deleted, [bool] $fromOutput = $false) {
     return ($hashes -contains (Get-FileHash -LiteralPath $path -Algorithm SHA256).Hash)
 }
 
+# ---------------- A zip of examples for the lead ----------------
+# The player: "Could the check picture CMD perhaps also offer me the option to directly create a zip file with examples
+# and the CSV files ... that it asks me after doing the check to create these files, that I can immediately send them to
+# you?" After the check it asks; the zip goes into the library: check-report.csv, corrections.csv, checked.csv,
+# examples.csv (each picture in the zip with its row's name, subject and pose and the model's answer), and up to 30
+# pictures: the flagged ones first, the worst first, then up to 8 that match their records, of different kinds and ages.
+
+$ExampleMost = 30
+$ExampleFine = 8
+
+function Kind-Of($rec) {
+    if ($rec -eq $null -or @($rec.kinds).Count -eq 0) { return 'baseliner' }
+    return ([string]@($rec.kinds)[0]).ToLowerInvariant()
+}
+
+function Pick-Fine($fine, [int] $most) {
+    # Pictures that match their records: one of each kind first, then one of each age within a kind, then any.
+    $picked = New-Object System.Collections.ArrayList
+    $kinds = @{}; $pairs = @{}
+    foreach ($pass in 1..3) {
+        foreach ($f in $fine) {
+            if ($picked.Count -ge $most) { break }
+            if ($picked.Contains($f)) { continue }
+            $k = Kind-Of $f.rec
+            $pair = $k + '|' + $f.rec.age
+            if ($pass -eq 1 -and $kinds.ContainsKey($k)) { continue }
+            if ($pass -eq 2 -and $pairs.ContainsKey($pair)) { continue }
+            [void]$picked.Add($f); $kinds[$k] = $true; $pairs[$pair] = $true
+        }
+    }
+    return @($picked)
+}
+
+function Zip-File($zip, [string] $path, [string] $name) {
+    # One file into the zip; read even while Excel has it open.
+    $to = $zip.CreateEntry($name, [System.IO.Compression.CompressionLevel]::Optimal).Open()
+    try {
+        $from = New-Object System.IO.FileStream($path, [System.IO.FileMode]::Open, [System.IO.FileAccess]::Read, [System.IO.FileShare]::ReadWrite)
+        try { $from.CopyTo($to) } finally { $from.Dispose() }
+    }
+    finally { $to.Dispose() }
+}
+
+function Zip-Text($zip, [string] $name, [string] $text) {
+    # A text written into the zip as a file (UTF-8 with its mark, so Excel reads the letters right).
+    $enc = New-Object System.Text.UTF8Encoding($true)
+    $bytes = [byte[]]($enc.GetPreamble() + $enc.GetBytes($text))
+    $to = $zip.CreateEntry($name, [System.IO.Compression.CompressionLevel]::Optimal).Open()
+    try { $to.Write($bytes, 0, $bytes.Length) } finally { $to.Dispose() }
+}
+
+function Make-Examples($sorted, $fine, $answerOf, $rowOf, $levelNames) {
+    # Writes library\check-examples-<yyyyMMdd-HHmm>.zip and returns its path and how many pictures it holds.
+    $fineSet = @(Pick-Fine $fine $ExampleFine)
+    $room = $ExampleMost - $fineSet.Count
+    $chosen = New-Object System.Collections.ArrayList
+    foreach ($o in $sorted) {
+        if ($chosen.Count -ge $room) { break }
+        $path = Join-Path $library $o.picture
+        if (-not (Test-Path -LiteralPath $path -PathType Leaf)) { continue }
+        $batch = @($o.picture -split '\\')[0]
+        [void]$chosen.Add([pscustomobject]@{ show = $o.picture; path = $path; row = $o.row; batch = $batch; check = ($levelNames[$o.level] + ': ' + $o.what) })
+    }
+    foreach ($f in $fineSet) {
+        [void]$chosen.Add([pscustomobject]@{ show = $f.pic.show; path = $f.pic.path; row = $f.pic.row; batch = $f.pic.batch; check = 'matches its record' })
+    }
+    $lines = New-Object System.Collections.ArrayList
+    [void]$lines.Add((Csv-Line @('picture', 'row', 'subject', 'pose', 'check', 'what the model answered')))
+    foreach ($c in $chosen) {
+        $row = $rowOf[$c.batch + '|' + $c.row]
+        $subject = ''; $pose = ''
+        if ($row -ne $null) { $subject = $row.subject; $pose = $row.pose }
+        $answer = ''
+        if ($answerOf.ContainsKey($c.show.ToLowerInvariant())) { $answer = $answerOf[$c.show.ToLowerInvariant()] }
+        [void]$lines.Add((Csv-Line ([string[]]@($c.show, $c.row, $subject, $pose, $c.check, $answer))))
+    }
+    $zipPath = Join-Path $library ('check-examples-' + (Get-Date -Format 'yyyyMMdd-HHmm') + '.zip')
+    Add-Type -AssemblyName System.IO.Compression
+    if (Test-Path -LiteralPath $zipPath) { Remove-Item -LiteralPath $zipPath -Force }
+    $stream = New-Object System.IO.FileStream($zipPath, [System.IO.FileMode]::CreateNew)
+    try {
+        $zip = New-Object System.IO.Compression.ZipArchive -ArgumentList $stream, ([System.IO.Compression.ZipArchiveMode]::Create)
+        try {
+            foreach ($f in @($reportFile, $correctionsFile, $checkedFile)) {
+                if (Test-Path -LiteralPath $f) { Zip-File $zip $f ([System.IO.Path]::GetFileName($f)) }
+            }
+            Zip-Text $zip 'examples.csv' (($lines -join "`r`n") + "`r`n")
+            foreach ($c in $chosen) { Zip-File $zip $c.path ('pictures/' + $c.batch + '/' + [System.IO.Path]::GetFileName($c.path)) }
+        }
+        finally { $zip.Dispose() }
+    }
+    catch {
+        $stream.Dispose()
+        Remove-Item -LiteralPath $zipPath -Force -ErrorAction SilentlyContinue
+        throw
+    }
+    finally { $stream.Dispose() }
+    return @{ path = $zipPath; pictures = $chosen.Count; flagged = $chosen.Count - $fineSet.Count; fine = $fineSet.Count }
+}
+
+function Size-Text([long] $bytes) {
+    if ($bytes -ge 1048576) { return ('{0:0.0} MB' -f ($bytes / 1048576.0)) }
+    return ('{0:0} KB' -f [Math]::Ceiling($bytes / 1024.0))
+}
+
 # ---------------- The run ----------------
 
 try {
@@ -1222,6 +1467,16 @@ try {
     if ($pictures.Count -eq 0) { throw ('No pictures of people in the library ({0}) yet.' -f $library) }
 
     $db = Read-Checked
+    # A checked.csv from an older question has other columns (version 3 added arms): it is written again with today's
+    # columns first, its answers kept by their names, so the answers added at its end line up with its header.
+    if (Test-Path -LiteralPath $checkedFile) {
+        $head = ''
+        foreach ($l in @(Get-Content -LiteralPath $checkedFile -Encoding UTF8 -TotalCount 1)) { $head = ([string]$l).TrimStart([char]0xFEFF) }
+        if ($head -ne (Csv-Line $CheckedColumns)) {
+            $keep = @($db.map.Keys | Sort-Object | ForEach-Object { $r = $db.map[$_]; Csv-Line ([string[]]@($CheckedColumns | ForEach-Object { Field $r $_ })) })
+            Write-CsvFile $checkedFile $CheckedColumns $keep
+        }
+    }
     $todo = @($pictures | Where-Object {
         $old = $db.map[$_.key.ToLowerInvariant()]
         $Again -or $old -eq $null -or $old.size -ne $_.size -or $old.question -ne $QuestionVersion
@@ -1292,12 +1547,15 @@ try {
 
     # The rows' own prompts (subject and pose, from batches\<batch>.csv), which say what a look or role asked to show.
     $askedOf = @{}
+    $rowOf = @{}
     foreach ($b in @($pictures | ForEach-Object { $_.batch } | Select-Object -Unique)) {
         $csv = Join-Path (Join-Path $Folder 'batches') ($b + '.csv')
         if (-not (Test-Path -LiteralPath $csv)) { continue }
         foreach ($r in @(Import-Csv -LiteralPath $csv -Encoding UTF8)) {
             if ([string]::IsNullOrWhiteSpace($r.name)) { continue }
-            $askedOf[$b + '|' + ($r.name -replace '[^A-Za-z0-9_\-]', '_')] = ((Field $r 'subject') + ' ' + (Field $r 'pose')).Trim()
+            $rk = $b + '|' + ($r.name -replace '[^A-Za-z0-9_\-]', '_')
+            $askedOf[$rk] = ((Field $r 'subject') + ' ' + (Field $r 'pose')).Trim()
+            $rowOf[$rk] = @{ subject = (Field $r 'subject'); pose = (Field $r 'pose') }
         }
     }
 
@@ -1315,9 +1573,14 @@ try {
     $newLines = New-Object System.Collections.ArrayList
     $leftOut = 0
 
-    # The report: every checked picture in the library against its record now.
+    # The report: every checked picture in the library against its record now, and each cut-out's sides.
     $out = New-Object System.Collections.ArrayList
+    $fine = New-Object System.Collections.ArrayList
     $compared = 0
+    $sidesRead = 0
+    $script:DrawingOk = $null
+    Write-Host ''
+    Write-Host 'Comparing the pictures with their records, and looking at the sides of the cut-outs...'
     foreach ($pic in $pictures) {
         $row = $db.map[$pic.key.ToLowerInvariant()]
         if ($row -eq $null -or $row.size -ne $pic.size) { continue }
@@ -1337,7 +1600,9 @@ try {
         $rec = Apply-Yes $rec $mine
         $asked = ''
         if ($askedOf.ContainsKey($pic.batch + '|' + $pic.row)) { $asked = $askedOf[$pic.batch + '|' + $pic.row] }
-        $found = @(Compare-Picture $rec $seen $pic.cut $asked)
+        $side = $null
+        if ($pic.cut) { $side = Side-Cut-Of (Read-Pixels $pic.path); if ($side -ne $null) { $sidesRead++ } }
+        $found = @(Compare-Picture $rec $seen $pic.cut $asked $side)
         $issues = @(foreach ($lv in 1..4) { $found | Where-Object { $_.level -eq $lv } })
         $kept = New-Object System.Collections.ArrayList
         $notes = New-Object System.Collections.ArrayList
@@ -1359,7 +1624,7 @@ try {
             [void]$mine.Add($c); [void]$newLines.Add($c)
             [void]$notes.Add((Corr-Text $c 'new')); [void]$kept.Add($i)
         }
-        if ($kept.Count -eq 0) { continue }
+        if ($kept.Count -eq 0) { [void]$fine.Add([pscustomobject]@{ pic = $pic; rec = $rec }); continue }
         $fixes = New-Object System.Collections.ArrayList
         foreach ($i in $kept) { if (-not $fixes.Contains($i.fix)) { [void]$fixes.Add($i.fix) } }
         [void]$out.Add([pscustomobject]@{
@@ -1416,8 +1681,34 @@ try {
     if ($newLines.Count -gt 0) { Write-Host ('{0} written to {1}: {2} marked yes, {3} marked ask.' -f (Count-Of $newLines.Count 'new correction' 'new corrections'), $correctionsFile, $yesNew, ($newLines.Count - $yesNew)) }
     if ($leftOut -gt 0) { Write-Host ('{0} left out by corrections.csv (out, yes).' -f (Count-Of $leftOut 'picture is' 'pictures are')) }
     if ($askAll -gt 0) { Write-Host ('{0} for you in corrections.csv: open it (in Excel) and change ask to yes or no.' -f (Count-Of $askAll 'correction waits' 'corrections wait')) -ForegroundColor Yellow }
+    $cutOuts = @($pictures | Where-Object { $_.cut }).Count
+    if ($sidesRead -eq 0 -and $compared -gt 0 -and $cutOuts -gt 0) { Write-Host 'The side check could not read the pictures here (it needs Windows), so only the model''s check was made.' -ForegroundColor Yellow }
     Write-Host 'Run Update-PortraitLibrary.ps1 (Copy-ToLibrary.cmd runs it too) to put the corrections marked yes into the records,'
     Write-Host 'then "Reload the library" in the game. No picture was deleted, moved or renamed, and no batch list was changed.'
+
+    # A zip of examples to send to the lead.
+    if ($compared -gt 0 -or $out.Count -gt 0) {
+        $make = $Examples
+        if ($make -eq 'ask') {
+            Write-Host ''
+            $a = Read-Host 'Make a zip of examples to send? (Enter for yes, n for no)'
+            $make = 'yes'; if ((Low $a) -match '^n') { $make = 'no' }
+        }
+        if ($make -eq 'yes') {
+            $answerOf = @{}
+            foreach ($pic in $pictures) {
+                $row = $db.map[$pic.key.ToLowerInvariant()]
+                if ($row -ne $null) { $answerOf[$pic.show.ToLowerInvariant()] = Field $row 'answer' }
+            }
+            foreach ($u in $unread) { $answerOf[$u.pic.show.ToLowerInvariant()] = (((([string]$u.text) -replace "`r", '') -split "`n" | ForEach-Object { $_.Trim() } | Where-Object { $_ -ne '' }) -join ' / ') }
+            try {
+                $z = Make-Examples $sorted $fine $answerOf $rowOf $LevelNames
+                $size = Size-Text (Get-Item -LiteralPath $z.path).Length
+                Write-Host ('Made {0} ({1}): the three CSV files, examples.csv and {2} ({3} flagged, {4} that match). Send it to the lead.' -f $z.path, $size, (Count-Of $z.pictures 'picture' 'pictures'), $z.flagged, $z.fine) -ForegroundColor Green
+            }
+            catch { Write-Host ('The zip could not be made: ' + $_.Exception.Message) -ForegroundColor Red }
+        }
+    }
 }
 catch {
     Write-Host ''
