@@ -45,16 +45,27 @@ must run all these programs and scripts". The details of each step are in `SETUP
 2. `Run-PortraitBatch.ps1` with `backdrops` and `style-rimworld-backdrops`, when you want more backdrops.
 3. In `output\Rimfolk`: delete the pictures you don't want.
 4. `Copy-ToLibrary.cmd` (in `output\Rimfolk`): the new pictures into the library; it writes the records.
-5. `Check-Pictures.cmd`: the model looks at each new picture; it writes `library\check-report.csv` and `corrections.csv`.
+5. `Check-Pictures.cmd`: the model looks at each new picture, and the side check at each cut-out; it writes
+   `library\check-report.csv` and `corrections.csv`. Then it asks to make a zip of examples: Enter makes
+   `library\check-examples-<date>-<time>.zip` (the CSV files and up to 30 pictures) to send to the lead.
 6. `library\corrections.csv` in Excel: change each "ask" to yes or no.
 7. `Update-PortraitLibrary.ps1`: the corrections go into the records.
 8. `Make-DepthMaps.cmd`: depth maps for new backdrops (it writes the records).
 9. `Make-Variants.cmd`, Enter: blink, smile, frown and pain for your colonists' pictures first (it writes the records).
 10. In the game: Rimfolk settings, "Reload the library".
-11. Play; send the lead a save and `library\missing.csv`; the lead writes the next lists.
+11. Play; send the lead a save, `library\missing.csv` and the check's zip; the lead writes the next lists. When a
+    picture is just right, right-click the large portrait, **Keep for training**.
 
 The check comes before the depth maps and expressions, so a picture it leaves out gets none. Steps 4 to 9 only ever
 handle what's new and can be run again at any time. Steps 8 and 9 are optional.
+
+## Now and then: training the style again
+
+1. In the game, **Keep for training** on the pictures that are just right (20 to 40, varied: kinds, ages, men and
+   women); they go to `training\` beside the library.
+2. `Make-TrainingSet.cmd` (in `Rimfolk-portraits`): writes `training\set\`, each picture on dark grey with its caption.
+3. FluxGym: that set together with the first training set's 47 pictures (`STYLE-RIMWORLD.md`, "Training again").
+4. The new `rmwstyle.safetensors` into ComfyUI's `models\loras`, then `style-test` before a big run.
 
 ## What the batches folder needs
 

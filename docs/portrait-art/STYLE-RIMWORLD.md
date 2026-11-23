@@ -98,4 +98,32 @@ Windows' virtual memory to 32 to 64 GB and restarting.
    images generated are a bit cut off on the side").
 4. If a light edge still shows: train again with the DLC pictures' captions naming their blue rim light ("a cool blue
    light along his edges"), so the LoRA ties it to those words and not to `rmwstyle`.
-5. Later: train again with 20 to 40 of our own best pictures in this style added, so the LoRA leans less on the eighteen.
+5. Later: train again with 20 to 40 of our own best pictures in this style added, so the LoRA leans less on the eighteen
+   (below, "Training again").
+
+## Training again
+
+The player, 23 November 2026: "maybe I can right click and then already flag for training ... or it's get copied to a
+special location from which I can take the image to further train the model later". The pictures kept in the game go
+into the next training with the first set, so the LoRA learns from the pictures the batches make as well as from the
+eighteen characters.
+1. In the game, right-click the large portrait, **Keep for training**, on 20 to 40 pictures that are just right: the
+   drawing as wanted (full colour, cel shading, the black line, no light outline), an ordinary face, nothing cut at the
+   side, and varied (kinds, ages, men and women, eras). Rimfolk copies each to `training\<batch>\` beside the library and
+   lists it in `training\training.csv`.
+2. Double-click `Make-TrainingSet.cmd` in `Rimfolk-portraits`. It writes `training\set\`: each picture on a plain dark
+   grey ground (red 58, green 60, blue 68), without transparency, and a caption of the same name, `rmwstyle, ` and its
+   row's subject and pose (what the person looks like, wears and does; the row holds no style or frame words, so the
+   caption describes the content only, like the first set's). Run it again after keeping more: it adds only the new ones.
+3. FluxGym, as in "Training it with FluxGym" above, with these changes:
+   - **The name of your LoRA**: `rmwstyle2`, so the first file stays as it is; **Trigger word/sentence**: `rmwstyle` as
+     before.
+   - **Upload** the first set's 47 pictures and 47 `.txt` files together with all the pictures and `.txt` files of
+     `training\set\`, all at once. Check that every caption starts with `rmwstyle`.
+   - The steps are pictures times repeats times epochs. With 30 new pictures (77 in all) set **Repeat trains per image**
+     `3` and **Max train epochs** `10`: about 2,300 steps, close to the first training's 2,256 (at 4 and 12 it would be
+     about 3,700, some 3 hours). With more pictures, lower the epochs so **Expected training steps** stays near 2,500.
+   - The rest as before: `512`, Learning Rate `4e-4`, LoRA Rank `16`, Save every N epochs `4`, the same sample prompts.
+4. When it ends: rename the old `rmwstyle.safetensors` in ComfyUI's `models\loras` to `rmwstyle-1.safetensors` (to keep
+   it), copy the new `rmwstyle2.safetensors` there as `rmwstyle.safetensors` (the name the style files ask for), and
+   press R in ComfyUI. Run `style-test` before a big run; if the old one was better, swap the names back.
