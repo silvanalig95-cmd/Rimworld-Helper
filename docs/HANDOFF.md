@@ -716,6 +716,33 @@ most sense." So, in this order, three builds at a time:
   "a bald head" after "completely hairless". `characters-01` to `03` planned again (599 rows). The style files: count
   1, no SameFace, "full-colour ... rich colours and cel shading" and "In full colour." (the word "ink" made black and
   white pictures). Told the player: in the game a sanguophage looks human apart from its fangs and ageless face.
+- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): matching, the check,
+  training flags, cut-off sides.** The player: "I always want to make sure if anything is cut off, it's just from the
+  bottom ... not from the side"; the picture check "really sensitized for this new art style ... especially in regard to
+  age and race. And it should really rely first on the data that is already provided kind of by the CSV files ... I'm
+  afraid that Gwen just considers most people to be like human ... and that it overrides the races ... certain aspects
+  that it really takes over from the base file ... and then that it just enhances on it or changes things that are
+  clearly not like they're supposed to be"; in the game "the race, xenotype, the gender, also I would say the skin color
+  and age ... always have to match the pawn for sure. And if there's no image with this combination available for the
+  pawn, then it should just take no image"; special things in a picture (a bionic arm, magic) only for pawns who have
+  them, while a pawn who has them may take a plain picture; "maybe I can right click and then already flag for
+  training ... or it's get copied to a special location from which I can take the image to further train the model
+  later"; and on deleting: "it really deletes the images from all the potential, like, I don't know, assignments,
+  references, that not an image file is deleted, but it's still being referred to". As it is now (told the player):
+  kind (race and xenotype) and sex are hard rules, looks and roles gate the picture only (a mage's picture only for a
+  mage, a mage may take a plain one), special looks both ways, marks (lost eye, eye patch, scar, burn, bionic eye,
+  missing ear) only for those who have them; age allows the next bands at a cost (little ones, children and grown-ups
+  never mix); skin colour only counts in the distance. The check never changes a kind; sex is changed (yes) when the
+  model says it plainly. The proposal: (1) age a hard rule, the person's own band only; (2) skin a hard rule within a
+  tone (the same or the next of about eight tones, by lightness; an unusual skin by its colour); (3) a bionic or
+  prosthetic arm as a mark (the check asks for it, the game reads the pawn's added arm parts); (4) the check: sex
+  changes ask instead of yes, the question says the picture is a comic-style drawing, and a side check with no model
+  (the cut-out's own pixels touching the left or right edge: "cut at the side", throw it out, ask); (5) "Keep for
+  training" on the large portrait's menu: the picture copied to `training\` beside the library, and a script that
+  writes each one's caption from the batch logs' prompt (trigger first), ready for FluxGym; (6) the delete already
+  clears the record, its expressions and depth map, every pawn holding it (in every save, on load), the list
+  `deleted.csv` the scripts honour; left: the bin folder (the setting deletes at once instead), ComfyUI's own output
+  copy (never copied again), and the row in its list (a new picture is made for it when missing rows are asked for).
 - **Done (22 November 2026, the player's own request): women of every look, and baseliners about half.** The player:
   "I don't want them all to look exactly the same ... I just don't want every woman to be attractive. There should be
   some attractive ones and there should be not attractive ones", and "our baseline are still kind of a majority,
