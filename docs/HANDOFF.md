@@ -804,6 +804,33 @@ most sense." So, in this order, three builds at a time:
   makes every re-check meaningful; (3) optionally, for pictures checked again, a question that gives the model the
   row's own description: "the picture is meant to show: ... Does it? Name anything that clearly differs" (the player,
   earlier: the check "should really rely first on the data that is already provided kind of by the CSV files").
+- **To do when the player asks (23 November 2026, the player): when the library is ever cleaned up, the pictures kept
+  as the model saw them go first.** The player: "for the "keep as the model saw" images it's mostly fringe cases, like
+  humans with pointy hears or so, so it's possible that these are never used ingame. generally i want to build up a huge
+  library but if we ever start cleaning up items it should delete those first." No cleanup tool exists; such pictures
+  are known by their corrections.csv lines with the why "kept as the model saw it (Review-Pictures)".
+- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): a whole version of a picture cut
+  at the side.** The player: "the ones with cut off sides could be flagged for the variation script, so that a new
+  variation will be created with the full image, does that make sense and is possible?" Proposed: Make-Variants makes
+  a "full" version of each picture whose check line says "cut at the side" (kept or not): the picture's canvas widened
+  on the cut side or sides, FLUX.1 Kontext Dev (already in the player's setup; FLUX.1 Fill Dev better at it, a new
+  model) asked to paint the rest of the person and the ground there in the same style, the result cut out again and
+  saved as `<picture>_v-full.png`; Update-PortraitLibrary uses it in the picture's place (same record and corrections),
+  and its "cut at the side" line counts as done; it shows on the review page to keep or throw out.
+- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): picking again after the broken
+  library reading.** The player sent their save ("i loaded my save and all pawns had new images from yesterday, i assume
+  because we changed the requirements. most of the elves and the fish lady has no image at all, is that because there
+  is no match with the hard requirements?"). Found: every colonist's kept picture is from characters-05 (made that
+  morning), with distances of 6.5 to 22 (close enough is 6): the save was loaded while records.xml lacked characters-01
+  to 03 (the older batch lists), so each kept picture was missing and picked again from what was left, and saving kept
+  those picks. The three dark elves (young, very fair), the coastal merfolk priestess and the saurid doctor had none:
+  nearly all their kind's pictures were in characters-01 to 03; the two adult saurid women's were also out for ear fins
+  read as pointed ears (kept since with "Keep all as the model saw it"). The skin rule is not the cause (the elves'
+  ffe6dd and fadcc1 and the pictures' e6d8d0 and efe9e6 are all tone 0 and human). With the library whole again, those
+  with none look again every half minute and when the library is read. The toddler of a custom xenotype has no
+  pictures of her kind. Proposed: (1) "Pick again" on the large portrait's menu: the kept picture let go, so the closest
+  by the usual rules is chosen ("Choose another picture" steps along the list from the one kept); (2) once, in
+  Rimfolk's settings at the portraits: "Pick again for every colonist" (pictures chosen by hand and pins kept).
 - **Done (23 November 2026, the player's own request): keeping many at once on the review page.** The player: "could
   I have the option for mass "keep as the model saw it" and also mass "import" for all with cutoff borders? as most of
   them still look very good and i can still delete them in the game after". Built in `Review-Pictures.ps1`: a bar above
