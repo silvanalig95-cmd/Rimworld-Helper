@@ -33,8 +33,10 @@
 #   clear, marks add:/remove:, headwear, out), marked yes where it is safe or plainly right (an age three bands or more
 #   off, a role for the weapon it holds, the wings look for its wings, a lost eye, a bionic eye or an artificial arm
 #   shown, out for two people in a cut-out) and ask where you decide (the sex, fire or magic, anything taken away, a
-#   body its kind doesn't have, a cut-out cut at the side). Update-PortraitLibrary.ps1 puts the lines marked yes into
-#   the records; you change ask to yes or no. The yes lines count as done when comparing, and an issue marked no stays
+#   body its kind doesn't have, a cut-out cut at the side). Update-PortraitLibrary.ps1 puts the lines marked yes and
+#   those marked ask into the records (the player, 23 November 2026: "the corrections awaiting approval should just be
+#   applied without approval ... I'd rather just later correct the image ingame once it actually appears"); ask only
+#   says the check was less sure, and a line you mark no is never applied. The yes lines count as done when comparing, and an issue marked no stays
 #   out of the report. A later scan may change the check's own line for a picture and field when the model answers
 #   otherwise now (its value, and yes or ask by the rules; a no stays no for the same value). The corrections made in
 #   the game (the why "set in the game") are never changed and always win: no correction is written against them, and
@@ -2105,10 +2107,10 @@ try {
     if ($newLines.Count -gt 0) { Write-Host ('{0} written to {1}: {2} marked yes, {3} marked ask.' -f (Count-Of $newLines.Count 'new correction' 'new corrections'), $correctionsFile, $yesNew, ($newLines.Count - $yesNew)) }
     if ($changedLines -gt 0) { Write-Host ('{0} of the check''s own changed: the model answers otherwise now (marked "changed" in check-report.csv).' -f (Count-Of $changedLines 'correction' 'corrections')) }
     if ($leftOut -gt 0) { Write-Host ('{0} left out by corrections.csv (out, yes).' -f (Count-Of $leftOut 'picture is' 'pictures are')) }
-    if ($askAll -gt 0) { Write-Host ('{0} for you in corrections.csv: open it (in Excel) and change ask to yes or no.' -f (Count-Of $askAll 'correction waits' 'corrections wait')) -ForegroundColor Yellow }
+    if ($askAll -gt 0) { Write-Host ('{0} marked ask (the check was less sure): applied all the same; correct a picture in the game ("About this picture") when you see it, or mark a line no.' -f (Count-Of $askAll 'correction is' 'corrections are')) }
     $cutOuts = @($pictures | Where-Object { $_.cut }).Count
     if ($sidesRead -eq 0 -and $compared -gt 0 -and $cutOuts -gt 0) { Write-Host 'The side check could not read the pictures here (it needs Windows), so only the model''s check was made.' -ForegroundColor Yellow }
-    Write-Host 'Run Update-PortraitLibrary.ps1 (Copy-ToLibrary.cmd runs it too) to put the corrections marked yes into the records,'
+    Write-Host 'Run Update-PortraitLibrary.ps1 (Copy-ToLibrary.cmd runs it too) to put the corrections (yes and ask) into the records,'
     Write-Host 'then "Reload the library" in the game. No picture was deleted, moved or renamed, and no batch list was changed.'
 
     # A zip of examples to send to the lead.

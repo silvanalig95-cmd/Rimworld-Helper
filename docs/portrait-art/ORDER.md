@@ -49,7 +49,8 @@ must run all these programs and scripts". The details of each step are in `SETUP
    lead changed only that line), and the side check looks at each cut-out; it writes `library\check-report.csv` and
    `corrections.csv` (your corrections made in the game always win). Then it asks to make a zip of examples: Enter
    makes `library\check-examples-<date>-<time>.zip` (the CSV files and up to 30 pictures) to send to the lead.
-6. `library\corrections.csv` in Excel: change each "ask" to yes or no.
+6. Nothing to answer: the corrections marked ask are applied too (the player: "I'd rather just later correct the image
+   ingame once it actually appears"). Correct a picture in the game with "About this picture" when you see it.
 7. `Update-PortraitLibrary.ps1`: the corrections go into the records.
 8. `Make-DepthMaps.cmd`: depth maps for new backdrops (it writes the records).
 9. `Make-Variants.cmd`: the variants your game wants (`library\variants-wanted.csv`: blink, smile, frown, pain and the

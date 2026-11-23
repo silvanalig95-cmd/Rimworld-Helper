@@ -741,6 +741,13 @@ most sense." So, in this order, three builds at a time:
   effects all look good, but unconscious eyes closed. How exactly is it supposed to see which eyes are closed?" Answered:
   closed eyes (and blinks and expressions) need the picture's painted expressions (Make-Variants); without them the
   unconscious are dimmed only. Asked whether to start building.
+- **Done (23 November 2026, the player's own request): the corrections marked ask applied without waiting.** The
+  player: "the corrections awaiting approval should just be applied without approval. i can never go through hundreds of
+  images to check whether the correction is right, i'd say most of the time it's correct. I'd rather just later correct
+  the image ingame once it actually appears, so on demand." Done: `Update-PortraitLibrary.ps1` applies the lines marked
+  yes and ask (only no is not applied; "set in the game" still wins); the check still writes ask where it is less sure
+  (so the player can see which), and its messages, SETUP-ComfyUI.md (steps 10 and 11) and ORDER.md say there is nothing
+  to answer. An "out" marked ask (two people, cut at the side, a body its kind lacks) now leaves the picture out too.
 - **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library read again
   by itself, and a quick way to Rimfolk's settings.** The player: "could the libary import also be done regularly, like
   on startup of the game and/or when loading a save? so I don't do it manually. Also it would be lovely to have a

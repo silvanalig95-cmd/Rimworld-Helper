@@ -14,8 +14,10 @@
 # field, value, apply (yes, ask or no), why. Each picture's record is taken from its row, then its lines marked yes are
 # applied: age (an age word), sex (male or female), looks (add:word or remove:word), role (a role, or clear), marks
 # (add:word or remove:word), features (add:word or remove:word), headwear (true or false), side (left or right: the side
-# of its mark), and out (the picture is left out of the records; the file stays where it is). Lines marked ask wait for
-# you; no lines are not applied. No picture is renamed: its name ties it to its row, and the row's other pictures may be
+# of its mark), and out (the picture is left out of the records; the file stays where it is). Lines marked ask are
+# applied too (the player, 23 November 2026: "the corrections awaiting approval should just be applied without approval
+# ... I'd rather just later correct the image ingame once it actually appears, so on demand"); only lines marked no are
+# not. No picture is renamed: its name ties it to its row, and the row's other pictures may be
 # right.
 # The corrections made in the game ("About this picture" writes them with the why "set in the game") always win (the
 # player: "the corrections i make through the game client are always prioritized"): for the same picture and field
@@ -98,8 +100,8 @@ function Read-Csv-Any([string] $path) {
 }
 
 function Read-Corrections([string] $path) {
-    # library\corrections.csv: the lines marked yes by picture (library\<batch>\<name>.png or the name alone, small
-    # letters), and how many are marked ask.
+    # library\corrections.csv: the lines to apply (marked yes, and those marked ask, applied without waiting) by picture
+    # (library\<batch>\<name>.png or the name alone, small letters), and how many of them were marked ask.
     $r = @{ yes = @{}; ask = 0 }
     if (-not (Test-Path -LiteralPath $path)) { return $r }
     foreach ($c in (Read-Csv-Any $path)) {
@@ -108,7 +110,7 @@ function Read-Corrections([string] $path) {
         $apply = (Field $c 'apply').ToLowerInvariant()
         if ($pic -eq '') { continue }
         if ($apply -eq 'ask') { $r.ask++ }
-        if ($apply -ne 'yes') { continue }
+        if ($apply -ne 'yes' -and $apply -ne 'ask') { continue }
         if (-not $r.yes.ContainsKey($pic)) { $r.yes[$pic] = New-Object System.Collections.ArrayList }
         [void]$r.yes[$pic].Add($c)
     }
@@ -454,7 +456,7 @@ try {
     if ($applied -gt 0 -or $corr.ask -gt 0) {
         $line = 'Corrections (corrections.csv): {0} applied' -f $applied
         if ($leftOut -gt 0) { $line += (', {0} of them leaving a picture out' -f $leftOut) }
-        $line += ('; {0} marked ask wait for you (open it and change ask to yes or no).' -f $corr.ask)
+        if ($corr.ask -gt 0) { $line += ('; {0} of them were marked ask and are applied too (correct a picture in the game, "About this picture", when you see it, or mark a line no).' -f $corr.ask) }
         Write-Host $line
     }
     foreach ($p in $problems) { Write-Host ('  Note: ' + $p) -ForegroundColor Yellow }

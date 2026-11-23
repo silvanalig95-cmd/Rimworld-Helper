@@ -222,12 +222,13 @@ so no node pack is needed.
    that match their records, of different kinds and ages. Send that zip to the lead. `n` makes none.
    (The lines' own versions came on 23 November 2026: a `checked.csv` from before counts every line as asked, so the
    first run with them asks nothing it has asked already.)
-10. Open `corrections.csv`. Each line is one change for one picture: `picture`, `field`, `value`, `apply`, `why`. Lines
-    marked **yes** are changes the check is sure of; lines marked **ask** wait for you: look at the picture, then
-    change ask to **yes** (do it) or **no** (keep the picture as it is), and save. You may also change a yes to no, or
-    fill in a value (for example the look's word after `add:`).
+10. Nothing to answer. `corrections.csv` has one line per change for one picture (`picture`, `field`, `value`,
+    `apply`, `why`): **yes** where the check is sure, **ask** where it is less sure. Both are applied (the player, 23
+    November 2026: "the corrections awaiting approval should just be applied without approval ... I'd rather just later
+    correct the image ingame once it actually appears, so on demand"). Correct a picture in the game with "About this
+    picture" when you see it (that always wins); or, if you like, change a line to **no** and it is never applied.
 11. Run `Update-PortraitLibrary.ps1` (`Copy-ToLibrary.cmd` runs it too). It writes the records again from the batch
-    lists and puts the corrections marked yes into them, and says how many it used and how many still wait as ask.
+    lists and puts the corrections marked yes and ask into them, and says how many it used.
     Then **Reload the library** in the game.
 12. Run the check again whenever pictures have been added. It asks the model only what it hasn't (every answer is
     kept in `library\checked.csv`, a description of every picture in the library: each line's answer and the version
