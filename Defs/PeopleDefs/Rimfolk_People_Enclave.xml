@@ -30,6 +30,10 @@
     <leaderTitle>chair of the exchange</leaderTitle>
     <techLevel>Spacer</techLevel>
     <basicMemberKind>Rimfolk_Enclave_Hand</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Enclave_Chair</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Enclave</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_EnclaveTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Enclave</factionIconPath>

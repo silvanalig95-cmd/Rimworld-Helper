@@ -20,7 +20,8 @@ namespace ColonyCouncil
     {
         public static void Postfix(Pawn pawn, ref bool __result)
         {
-            if (!BedRest.On) return;
+            // Only in play: the world being made generates people (their health asked) before there is a colony.
+            if (!BedRest.On || Current.ProgramState != ProgramState.Playing) return;
             try
             {
                 __result = BedRest.Verdict(pawn, __result);

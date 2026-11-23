@@ -29,6 +29,10 @@
     <leaderTitle>node</leaderTitle>
     <techLevel>Spacer</techLevel>
     <basicMemberKind>Rimfolk_Lattice_Linkhand</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Lattice_Node</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Lattice</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_LatticeTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Lattice</factionIconPath>

@@ -56,6 +56,33 @@ namespace ColonyCouncil
         public static bool AnyAtPeace(string calling) =>
             !calling.NullOrEmpty() && Find.FactionManager != null && Find.FactionManager.AllFactionsListForReading.Any(f => CallingOf(f) == calling && Arrivals.Usable(f));
 
+        /// <summary>
+        /// Rimfolk's peoples standing without a leader get one (the player's log, 23 November 2026: "Faction leader for The
+        /// Quiet Lattice is null", one for each of them): their leader's kind was in none of their pawn groups, so the game
+        /// found nobody to make leader when it made the world; each people's def now names it in fixedLeaderKinds, and a
+        /// world made before that is mended when it loads. A people made by Arising waits for its leader while it is made
+        /// (Arising.Making), and a defeated one needs none. Returns how many got a leader.
+        /// </summary>
+        public static int GiveLeaders()
+        {
+            if (Find.FactionManager == null || Arising.Making) return 0;
+            int n = 0;
+            foreach (var f in Find.FactionManager.AllFactionsListForReading.ToList())
+            {
+                if (f == null || f.defeated || f.leader != null || !IsOurs(f) || f.def.fixedLeaderKinds.NullOrEmpty()) continue;
+                try
+                {
+                    if (f.TryGenerateNewLeader() && f.leader != null) n++;
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("peoples: a leader for " + f.Name, e);
+                }
+            }
+            if (n > 0) Log.Message("[Rimfolk] " + n + " of Rimfolk's peoples had no leader (their leader's kind was missing from their groups) and now have one.");
+            return n;
+        }
+
         /// <summary>Any of Rimfolk's peoples in this world.</summary>
         public static bool AnyInWorld => Find.FactionManager != null && Find.FactionManager.AllFactionsListForReading.Any(f => f != null && !f.defeated && IsOurs(f));
 

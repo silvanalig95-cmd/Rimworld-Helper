@@ -248,7 +248,7 @@ namespace ColonyCouncil
                 sickBayLooked = true;
                 sickBay = DefDatabase<DecreeDef>.GetNamedSilentFail("Council_Decree_SickBay");
             }
-            return sickBay != null && p.RaceProps.Humanlike && p.Faction == Faction.OfPlayer && DecreeTracker.InForceFor(p, sickBay);
+            return sickBay != null && p.RaceProps.Humanlike && p.Faction != null && p.Faction.IsPlayer && DecreeTracker.InForceFor(p, sickBay);
         }
 
         /// <summary>The conditions that send them to bed, looked at again each second or when one comes or goes.</summary>

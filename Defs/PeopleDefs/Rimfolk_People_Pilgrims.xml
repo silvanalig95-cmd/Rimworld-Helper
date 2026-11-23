@@ -30,6 +30,10 @@
     <leaderTitle>keeper of the shrines</leaderTitle>
     <techLevel>Medieval</techLevel>
     <basicMemberKind>Rimfolk_Pilgrims_Pilgrim</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Pilgrims_Keeper</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Pilgrims</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_PilgrimsTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Pilgrims</factionIconPath>

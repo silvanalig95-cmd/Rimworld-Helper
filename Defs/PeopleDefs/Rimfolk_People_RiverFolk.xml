@@ -32,6 +32,10 @@
     <leaderTitle>river master</leaderTitle>
     <techLevel>Medieval</techLevel>
     <basicMemberKind>Rimfolk_RiverFolk_Fisher</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_RiverFolk_Master</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_RiverFolk</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_RiverFolkTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/RiverFolk</factionIconPath>

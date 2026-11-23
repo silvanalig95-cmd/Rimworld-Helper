@@ -29,6 +29,10 @@
     <leaderTitle>provost</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_Scholars_Fellow</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Scholars_Provost</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Scholars</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_ScholarsTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Scholars</factionIconPath>

@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Leaders for the peoples, and a quieter log
+
+*23 November 2026, version 0.302.1*
+
+- Rimfolk's peoples now have leaders. The game looks for a people's leader only among its fighters, where none of Rimfolk's peoples had theirs, so every one of them stood without a leader. Each now names its leader, and a save gives them theirs when it loads.
+- Making a new world no longer fills the log with hundreds of "Could not find player faction" errors from the rest when ill rule.
+- The heart's tooltip no longer fails on the world map before a game starts, and no deeds are recorded while the starting pawns are being made.
+
 ## Animals and creatures in the portrait library
 
 *23 November 2026, version 0.302.0*

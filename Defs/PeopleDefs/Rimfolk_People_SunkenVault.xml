@@ -31,6 +31,10 @@
     <leaderTitle>overseer</leaderTitle>
     <techLevel>Spacer</techLevel>
     <basicMemberKind>Rimfolk_SunkenVault_Dweller</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_SunkenVault_Overseer</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_SunkenVault</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_SunkenVaultTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/SunkenVault</factionIconPath>

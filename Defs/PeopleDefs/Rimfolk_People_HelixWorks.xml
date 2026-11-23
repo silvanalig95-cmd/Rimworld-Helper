@@ -31,6 +31,10 @@
     <leaderTitle>chief editor</leaderTitle>
     <techLevel>Spacer</techLevel>
     <basicMemberKind>Rimfolk_HelixWorks_LabHand</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_HelixWorks_ChiefEditor</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_HelixWorks</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_HelixWorksTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/HelixWorks</factionIconPath>

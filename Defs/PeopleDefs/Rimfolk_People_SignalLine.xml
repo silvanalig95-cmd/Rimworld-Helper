@@ -32,6 +32,10 @@
     <leaderTitle>chief lineman</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_SignalLine_Lineman</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_SignalLine_Chief</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_SignalLine</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_SignalLineTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/SignalLine</factionIconPath>

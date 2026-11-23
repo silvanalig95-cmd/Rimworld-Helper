@@ -33,6 +33,10 @@
     <leaderTitle>captain</leaderTitle>
     <techLevel>Spacer</techLevel>
     <basicMemberKind>Rimfolk_HollowFleet_Deckhand</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_HollowFleet_Captain</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_HollowFleet</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_HollowFleetTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/HollowFleet</factionIconPath>

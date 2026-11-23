@@ -853,6 +853,32 @@ most sense." So, in this order, three builds at a time:
   Sent `Rimfolk-portrait-kit-2026-11-23.zip`: every script, the guides, the lists characters-01 to 07, colonists,
   backdrops, style-test and the two styles, and Copy-ToLibrary in its own folder for ComfyUI's output. The player also
   confirmed the second face in the small portraits is gone (0.299.1).
+- **Looked into (23 November 2026, the player, with a save and Player.log; released 0.302.1 for what was Rimfolk's):
+  a pawn who can't be drafted, a map of one tree, and the log's errors.** The player: "for some reason i cannot draft
+  the male pawn in this save? either if i click the draft symbol or r, nothing happens with him. it works fine on the
+  female pawn. i've already reloaded the save and another map. also is it normal that this map biome only has this one
+  single tree? it's a bit confusing since the map is almost full of it and each item lying on the floor on the map is
+  behind the tree and hardly visible". Found:
+  - **The draft: not Rimfolk.** The male (Myst) has A RimWorld of Magic's might class (TM_TheShadow); with him selected,
+    the magic mod's gizmo drawing throws `TypeLoadException: Could not load type 'AbilityUser.StringsToTranslate' from
+    assembly 'AbilityUser'` (TorannMagic.TM_Action.DrawAutoCastForGizmo, in GizmoGridDrawer.DrawGizmoGrid), so the grid
+    never reaches the end where the game handles a click or a hotkey on any of his buttons: the draft button and R do
+    nothing. The AbilityUser.dll loaded (JecsLite - A RimWorld of Magic, or an older copy another mod brings) doesn't
+    match A RimWorld of Magic. Told the player: update both (unsubscribe and subscribe again), keep JecsLite above the
+    magic mod, look for another mod bringing its own AbilityUser.dll; until then, removing his class trait in dev mode
+    lets him be drafted. Nothing in his save state holds him (no lord, no mental state, no Rimfolk hold).
+  - **The map: the game's own.** The tile is a tropical rainforest with Odyssey's map feature "Plant grove" (with a
+    stockpile, an ancient warehouse and a river): the grove's plant is the cecropia tree, 35,266 of them on a 275 x 275
+    map. Told the player: the feature shows on the world tile before landing; Better Trees (Workshop 3539609975) has a
+    transparency toggle for what is under trees.
+  - **Rimfolk's, fixed (0.302.1):** every one of Rimfolk's 23 peoples had no leader in both of the player's saves (the
+    game looks for a leader kind only in a people's fight group, and ours were in none: "Faction leader for The Quiet
+    Lattice is null" once each); each people def now names its leader in `fixedLeaderKinds`, and `Peoples.GiveLeaders`
+    (from ArisingBook.FinalizeInit) gives a loaded world's peoples theirs. `BedRest.Decree` asked for `Faction.OfPlayer`
+    while the world was made (VFE Empire's title holders): 583 errors; now only in play. The heart's inspect tooltip read
+    the map's selector on the world map before a game (InvalidCastException); now only in play. A deed was dated with
+    `TicksAbs` while the starting pawns were rerolled; deeds wait for play and the date uses `GenTicks.TicksAbs`.
+    LogFixTests. Not tried in the game: a loaded world's peoples getting their leaders (the leader's letter, if any).
 - **Done (23 November 2026, the player's own requests; released 0.302.0): animals and creatures in the portrait
   library.** The player: "also please create lists for animals and creatures and implement image display for them too",
   and "also include insects of course". Built: in the game, `CreatureLibrary` (records.xml's

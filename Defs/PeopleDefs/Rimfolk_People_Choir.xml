@@ -28,6 +28,10 @@
     <leaderTitle>first voice</leaderTitle>
     <techLevel>Spacer</techLevel>
     <basicMemberKind>Rimfolk_Choir_Listener</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Choir_FirstVoice</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Choir</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_ChoirTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Choir</factionIconPath>

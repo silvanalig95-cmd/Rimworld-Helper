@@ -363,7 +363,8 @@ namespace ColonyCouncil
         /// <summary>A memory given to <paramref name="holder"/> about <paramref name="other"/> (rescued me, harmed me, cheated on me): the other did it.</summary>
         public static void Notify_Memory(Pawn holder, ThoughtDef def, Pawn other)
         {
-            if (!On || def == null || other == null || holder == null || holder == other) return;
+            // In play only: people made before the game starts (the starting pawns' page) gain memories while they are made.
+            if (!On || def == null || other == null || holder == null || holder == other || Current.ProgramState != ProgramState.Playing) return;
             Look();
             if (!byMemory.TryGetValue(def, out var list) || !Reputations.Public(other)) return;
             foreach (var d in list)

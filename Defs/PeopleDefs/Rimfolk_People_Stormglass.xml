@@ -29,6 +29,10 @@
     <leaderTitle>first reader</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_Stormglass_Reader</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Stormglass_FirstReader</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Stormglass</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_StormglassTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Stormglass</factionIconPath>

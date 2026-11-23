@@ -32,7 +32,9 @@ namespace ColonyCouncil
 
         public static void Postfix(string str, Rect rect)
         {
-            if (!RimfolkPatches.On || str.NullOrEmpty() || Event.current == null) return;
+            // In play only: the world's inspect pane before a game (choosing where to land) draws its text the same way,
+            // and the map's selector isn't there yet.
+            if (!RimfolkPatches.On || str.NullOrEmpty() || Event.current == null || Current.ProgramState != ProgramState.Playing) return;
             var s = ColonyCouncilMod.Settings;
             if (s == null || !s.heart || !s.heartInspector) return;
             try

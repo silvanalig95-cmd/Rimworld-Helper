@@ -34,7 +34,8 @@ namespace ColonyCouncil
         {
             m ??= Find.AnyPlayerHomeMap;
             float longitude = m != null ? Find.WorldGrid.LongLatOf(m.Tile).x : 0f;
-            return GenDate.QuadrumDateStringAt(Find.TickManager.TicksAbs, longitude);
+            // The game's own count, which also holds before the game's start is set.
+            return GenDate.QuadrumDateStringAt(GenTicks.TicksAbs, longitude);
         }
 
         /// <summary>

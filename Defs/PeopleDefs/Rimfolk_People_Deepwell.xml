@@ -31,6 +31,10 @@
     <leaderTitle>union boss</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_Deepwell_Miner</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Deepwell_Boss</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Deepwell</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_DeepwellTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Deepwell</factionIconPath>

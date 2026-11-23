@@ -81,6 +81,15 @@ namespace ColonyCouncil
             base.FinalizeInit();
             cached = this;
             cachedGame = Current.Game;
+            // A world made before the peoples' defs named their leaders: each people of Rimfolk's gets theirs (Peoples.GiveLeaders).
+            try
+            {
+                Peoples.GiveLeaders();
+            }
+            catch (System.Exception e)
+            {
+                CouncilLog.ErrorOnce("peoples: their leaders", e);
+            }
         }
 
         /// <summary>A new world: the river folk's towns the game put where no river runs move to one in reach (Peoples/PeopleTowns.cs).</summary>

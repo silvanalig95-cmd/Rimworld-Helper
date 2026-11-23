@@ -27,6 +27,10 @@
     <leaderTitle>lantern-master</leaderTitle>
     <techLevel>Medieval</techLevel>
     <basicMemberKind>Rimfolk_Wardens_Warden</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Wardens_Master</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Wardens</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_WardensTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Wardens</factionIconPath>

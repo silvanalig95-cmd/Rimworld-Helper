@@ -33,6 +33,10 @@
     <leaderTitle>president</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_Republic_Citizen</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Republic_President</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Republic</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_RepublicTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Republic</factionIconPath>

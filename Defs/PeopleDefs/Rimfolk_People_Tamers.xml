@@ -30,6 +30,10 @@
     <leaderTitle>circuit-holder</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_Tamers_Tamer</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Tamers_Holder</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Tamers</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_TamersTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Tamers</factionIconPath>

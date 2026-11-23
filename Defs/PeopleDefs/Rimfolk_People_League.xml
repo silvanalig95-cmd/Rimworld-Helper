@@ -27,6 +27,10 @@
     <leaderTitle>warden of the roads</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_League_Wayfarer</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_League_Master</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_League</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_LeagueTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/League</factionIconPath>

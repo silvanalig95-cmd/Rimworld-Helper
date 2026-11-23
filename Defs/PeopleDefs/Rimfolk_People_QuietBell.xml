@@ -28,6 +28,10 @@
     <leaderTitle>first bell</leaderTitle>
     <techLevel>Medieval</techLevel>
     <basicMemberKind>Rimfolk_QuietBell_Keeper</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_QuietBell_FirstBell</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_QuietBell</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_QuietBellTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/QuietBell</factionIconPath>

@@ -29,6 +29,10 @@
     <leaderTitle>eldest root</leaderTitle>
     <techLevel>Neolithic</techLevel>
     <basicMemberKind>Rimfolk_Mossborn_Tender</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Mossborn_EldestRoot</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Mossborn</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_MossbornTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Mossborn</factionIconPath>

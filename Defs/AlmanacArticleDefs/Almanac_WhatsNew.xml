@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.302.1</version>
+        <date>23 November 2026</date>
+        <title>Leaders for the peoples, and a quieter log</title>
+        <points>
+          <li>Rimfolk's peoples now have leaders. The game looks for a people's leader only among its fighters, where none of Rimfolk's peoples had theirs, so every one of them stood without a leader. Each now names its leader, and a save gives them theirs when it loads.</li>
+          <li>Making a new world no longer fills the log with hundreds of "Could not find player faction" errors from the rest when ill rule.</li>
+          <li>The heart's tooltip no longer fails on the world map before a game starts, and no deeds are recorded while the starting pawns are being made.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.302.0</version>
         <date>23 November 2026</date>
         <title>Animals and creatures in the portrait library</title>

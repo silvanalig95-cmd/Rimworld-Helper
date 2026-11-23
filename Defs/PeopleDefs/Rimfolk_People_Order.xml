@@ -30,6 +30,10 @@
     <leaderTitleFemale>prioress</leaderTitleFemale>
     <techLevel>Medieval</techLevel>
     <basicMemberKind>Rimfolk_Order_Lay</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Order_Prior</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Order</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_OrderTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Order</factionIconPath>

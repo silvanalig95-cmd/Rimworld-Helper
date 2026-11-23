@@ -31,6 +31,10 @@
     <leaderTitle>wheelwright</leaderTitle>
     <techLevel>Industrial</techLevel>
     <basicMemberKind>Rimfolk_Wheel_Hand</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_Wheel_Wheelwright</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_Wheel</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_WheelTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/Wheel</factionIconPath>

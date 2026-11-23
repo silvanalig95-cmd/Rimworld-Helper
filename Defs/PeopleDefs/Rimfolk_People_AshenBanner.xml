@@ -31,6 +31,10 @@
     <leaderTitle>captain of the Banner</leaderTitle>
     <techLevel>Medieval</techLevel>
     <basicMemberKind>Rimfolk_AshenBanner_Soldier</basicMemberKind>
+    <!-- The leader the game makes for this people (the game looks for one only in the fight group). -->
+    <fixedLeaderKinds>
+      <li>Rimfolk_AshenBanner_Captain</li>
+    </fixedLeaderKinds>
     <factionNameMaker>Rimfolk_Namer_AshenBanner</factionNameMaker>
     <settlementNameMaker>Rimfolk_Namer_AshenBannerTown</settlementNameMaker>
     <factionIconPath>ColonyCouncil/Peoples/AshenBanner</factionIconPath>
