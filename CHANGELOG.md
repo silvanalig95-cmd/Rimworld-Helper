@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## What they go through, on their portraits
+
+*23 November 2026, version 0.300.0*
+
+- The portraits now show what a person goes through: red at the edges while they bleed, the colours drained when badly hurt, a dark edge and a tremble near a mental break, a sickly tint when ill, frost when freezing, a warm haze in heatstroke, heavy shadows when exhausted, drifting colours when drunk or high, washed out when starving, and dimmed when unconscious.
+- Each effect comes and goes softly and is read from the game at most twice a second. The setting "What they go through, on their portraits" turns them off or keeps them to the large portraits.
+- The portrait library is read again when a new game starts or a save is loaded. Nothing is checked while you play, and "Reload the library" works as before.
+- Rimfolk's settings can now be opened from every panel's right-click menu, the Settings button on the Council at a glance panel, the large portrait's menu and a key you can set under Options, Keyboard.
+
 ## No second face, and more to correct
 
 *23 November 2026, version 0.299.1*

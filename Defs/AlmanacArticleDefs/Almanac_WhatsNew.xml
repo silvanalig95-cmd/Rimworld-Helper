@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.300.0</version>
+        <date>23 November 2026</date>
+        <title>What they go through, on their portraits</title>
+        <points>
+          <li>The portraits now show what a person goes through: red at the edges while they bleed, the colours drained when badly hurt, a dark edge and a tremble near a mental break, a sickly tint when ill, frost when freezing, a warm haze in heatstroke, heavy shadows when exhausted, drifting colours when drunk or high, washed out when starving, and dimmed when unconscious.</li>
+          <li>Each effect comes and goes softly and is read from the game at most twice a second. The setting "What they go through, on their portraits" turns them off or keeps them to the large portraits.</li>
+          <li>The portrait library is read again when a new game starts or a save is loaded. Nothing is checked while you play, and "Reload the library" works as before.</li>
+          <li>Rimfolk's settings can now be opened from every panel's right-click menu, the Settings button on the Council at a glance panel, the large portrait's menu and a key you can set under Options, Keyboard.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.299.1</version>
         <date>23 November 2026</date>
         <title>No second face, and more to correct</title>

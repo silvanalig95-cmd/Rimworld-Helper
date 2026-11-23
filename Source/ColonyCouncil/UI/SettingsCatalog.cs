@@ -718,6 +718,9 @@ namespace ColonyCouncil
             Choice("portraitDepth", "CC_SetLabel_PortraitDepth", "CC_SetTip_PortraitDepth", "CC_PortraitDepth_", "CC_SetNote_PortraitDepth_", new[] { "Off", "Subtle", "Stronger" },
                 "inspectPortrait,portraitLibrary");
             Toggle("portraitFaces", "CC_Settings_PortraitFaces", "CC_SetNote_PortraitFaces", "inspectPortrait,portraitLibrary");
+            // What a person goes through, laid over their portraits (UI/Faces/PortraitEffects.cs; the player, 23 November 2026).
+            Choice("portraitEffects", "CC_SetLabel_PortraitEffects", "CC_SetTip_PortraitEffects", "CC_PortraitEffects_", "CC_SetNote_PortraitEffects_",
+                new[] { "Off", "Large", "Everywhere" });
             Toggle("portraitBackdropAlive", "CC_Settings_PortraitBackdropAlive", "CC_SetNote_PortraitBackdropAlive", "inspectPortrait,portraitLibrary");
             Toggle("portraitHeadgear", "CC_Settings_PortraitHeadgear", "CC_SetNote_PortraitHeadgear");
             Toggle("portraitClothes", "CC_Settings_PortraitClothes", "CC_SetNote_PortraitClothes");

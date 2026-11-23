@@ -248,5 +248,18 @@ namespace ColonyCouncil
         {
             options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_OpenWeek"), () => MainTabWindow_Council.OpenTab("Week")));
         }
+
+        /// <summary>Rimfolk's settings from the Council panel's bar (the panel's own options are its gear).</summary>
+        protected override float HeaderButtons(Rect bar, float right)
+        {
+            string label = HudKit.T("CC_Pnl_SettingsShort"), tip = HudKit.T("CC_Pnl_SettingsShortTip");
+            if (Refined)
+            {
+                float at = BarTextLook(bar, right, label, tip, out bool clicked);
+                if (clicked) SettingsWindow.Open();
+                return at;
+            }
+            return BarText(bar, right, label, tip, () => SettingsWindow.Open());
+        }
     }
 }

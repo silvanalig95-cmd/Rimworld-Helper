@@ -204,6 +204,12 @@ namespace ColonyCouncil
             {
                 var local = new Rect(0f, 0f, r.width, r.height);
                 float breath = animate ? FacePoseMath.Breath(clock, seed) : 1f, sway = animate ? FacePoseMath.Sway(clock, seed) : 0f;
+                // What they go through moves them a little (PortraitEffects): the tremble near a break, the drunk's wobble.
+                if (animate)
+                {
+                    PortraitEffects.Shake(p, out float shakeLean, out _);
+                    sway += shakeLean;
+                }
                 if (pic != null) DrawPicture(local, pic, view, frame, pose, turn, alpha, breath, sway);
                 else DrawLayer(local, p, frame, size, pose, alpha, breath, sway);
             }

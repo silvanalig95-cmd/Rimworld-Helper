@@ -709,6 +709,7 @@ namespace ColonyCouncil
                     HudLayout.Save();
                 }));
                 options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_Options"), () => Dialog_HudPanel.Open(id)));
+                options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_RimfolkSettings"), () => SettingsWindow.Open()));
                 options.Add(new FloatMenuOption(HudKit.T("CC_Pnl_EditLayout"), () => HudManager.editing = true));
                 options.Add(new FloatMenuOption(HudKit.T(S.hudLock ? "CC_Pnl_Unlock" : "CC_Pnl_Lock"), () =>
                 {

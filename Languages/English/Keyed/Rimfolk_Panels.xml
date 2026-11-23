@@ -22,6 +22,9 @@
   <CC_Pnl_Compact>Compact</CC_Pnl_Compact>
   <CC_Pnl_Full>Full</CC_Pnl_Full>
   <CC_Pnl_Options>Options...</CC_Pnl_Options>
+  <CC_Pnl_RimfolkSettings>Rimfolk settings...</CC_Pnl_RimfolkSettings>
+  <CC_Pnl_SettingsShort>Settings</CC_Pnl_SettingsShort>
+  <CC_Pnl_SettingsShortTip>Opens Rimfolk's settings. The gear beside it is this panel's own options.</CC_Pnl_SettingsShortTip>
   <CC_Pnl_EditLayout>Arrange the panels</CC_Pnl_EditLayout>
   <CC_Pnl_Lock>Lock the panels in place</CC_Pnl_Lock>
   <CC_Pnl_Unlock>Unlock the panels</CC_Pnl_Unlock>

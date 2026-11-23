@@ -49,6 +49,36 @@ namespace ColonyCouncil
         private static string textsLanguage;
         private static readonly Dictionary<(string, int), float> noteHeights = new Dictionary<(string, int), float>();
 
+        /// <summary>
+        /// Rimfolk's settings opened from the game, at a section's page and place where given (the player, 23 November 2026:
+        /// "it would be lovely to have a shortcut to the rimfolk settings somewhere, so I don't have to always search it up
+        /// via the game settings and then mod settings"): from the panels' menus and the Council panel's bar, the large
+        /// portrait's menu (at the portraits) and a key of the player's choosing.
+        /// </summary>
+        public static void Open(string section = null)
+        {
+            try
+            {
+                var mod = LoadedModManager.GetMod<ColonyCouncilMod>();
+                if (mod == null || Find.WindowStack == null) return;
+                var at = section == null ? null : SettingsCatalog.All.FirstOrDefault(e => e.section == section);
+                if (at != null)
+                {
+                    page = at.page;
+                    jumpTo = at;
+                    search?.Reset();
+                    matchedFor = null;
+                }
+                var open = Find.WindowStack.WindowOfType<Dialog_ModSettings>();
+                if (open != null) open.Close(false);
+                Find.WindowStack.Add(new Dialog_ModSettings(mod));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("opening Rimfolk's settings", e);
+            }
+        }
+
         public static void Draw(CouncilSettings s, Rect inRect)
         {
             SettingsAccess.Verify();

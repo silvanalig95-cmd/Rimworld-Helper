@@ -40,8 +40,11 @@ namespace ColonyCouncil
         public static string Status = "";
 
         private static bool reading, told, waitedByHand;
-        private static float retryAt = -1f;
+        private static float retryAt = -1f, readAt = -1000f;
         private static int tries;
+
+        /// <summary>A reading this recent (seconds) is not repeated when a game starts.</summary>
+        public const float FreshFor = 60f;
 
         /// <summary>The folder is being read on a worker now (a picture isn't deleted meanwhile).</summary>
         public static bool Reading => reading;
@@ -170,6 +173,18 @@ namespace ColonyCouncil
             PortraitStore.Run(() => Read(folder), (got, ex) => Done(folder, got, ex, byHand), false);
         }
 
+        /// <summary>
+        /// A game started, a new colony or a save loaded (PortraitKeeper.FinalizeInit): the folder read again on a worker,
+        /// unless it is being read or was read in the last minute (the game's own start-up reading). Nothing is looked at
+        /// while playing (the player, 23 November 2026: "the reread on startup and new game, or manual reload is enough, i'm
+        /// a bit concerned about lags and performance if it automatically rereads").
+        /// </summary>
+        public static void GameStarted()
+        {
+            if (reading || Time.realtimeSinceStartup - readAt < FreshFor) return;
+            Start(false);
+        }
+
         /// <summary>Once a frame from the store's pump: a failed reading tried again a minute later, a few times.</summary>
         public static void Pump()
         {
@@ -260,6 +275,8 @@ namespace ColonyCouncil
                 return;
             }
             tries = 0;
+            readAt = Time.realtimeSinceStartup;
+            int before = Folder == folder ? People.Count(x => !x.record.IsExpression && !x.record.IsMarkVariant) : -1;
             Folder = folder;
             People.Clear();
             Backdrops.Clear();
@@ -296,6 +313,14 @@ namespace ColonyCouncil
                 CouncilLog.WarnOnce("Portraits: records.xml in " + folder + ": " + got.problems.Count + " words it doesn't know, each left out (the rest of the record kept): "
                                     + string.Join("; ", got.problems.Take(12)) + (got.problems.Count > 12 ? "; ..." : ""));
             if (byHand && Current.ProgramState == ProgramState.Playing) Messages.Message(Status, MessageTypeDefOf.SilentInput, false);
+            else if (before >= 0 && Current.ProgramState == ProgramState.Playing)
+            {
+                // Read again when a game started: a short word only where the library changed since its last reading.
+                int now = People.Count - expressions - marked;
+                if (now != before)
+                    Messages.Message("CC_PortraitFolder_ReadAgain".Translate(now.Named("COUNT"), (now - before).ToStringWithSign().Named("CHANGE")).Resolve(),
+                        MessageTypeDefOf.SilentInput, false);
+            }
         }
     }
 }

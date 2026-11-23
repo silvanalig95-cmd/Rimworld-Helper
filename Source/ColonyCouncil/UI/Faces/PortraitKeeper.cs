@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using RimWorld;
 using Verse;
@@ -100,6 +101,15 @@ namespace ColonyCouncil
             cached = this;
             cachedGame = Current.Game;
             Index();
+            // The library folder read again for the game that starts (UI/Faces/PortraitFolder.cs), on a worker.
+            try
+            {
+                PortraitFolder.GameStarted();
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("portraits: reading the library folder when a game starts", e);
+            }
         }
 
         public override void ExposeData()

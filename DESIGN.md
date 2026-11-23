@@ -17041,6 +17041,38 @@ Tested in `Tools/Tests/PortraitLifeTests.cs`.
   deaths and news, and the holding; the weather tiles and the fire's light against real backdrops at day and night; the
   cost of the extra read-backs.
 
+
+#### What they go through, on their portraits (the player's go, 23 November 2026; released 0.300.0)
+
+The player: "the image could have a bunch of also different effects or laid over it or applied to it. For example, if
+the pawn is bleeding, the image should kind of have a bloody effect. If they're super stressed, it should have like a
+stressed out effect. If they are sick or infected ... Just add more layers and immersion"; the go: "effects sound great,
+go ahead now! should be toggleable in case of performance issues". `UI/Faces/PortraitEffectsMath.cs` (pure, tested) and
+`PortraitEffects.cs`.
+- **What shows**: bleeding, red at the edges, pulsing a little under a beat a second and faster as it bleeds more, by the
+  game's bleed rate (a trickle 0.05 a day a little, 1.2 and more fully) and the blood already lost; badly hurt (pain past
+  0.15, or health under 80%), the colours drained a little and a red rim; near a break, a dark edge closing in from a
+  little above the minor threshold to the extreme one, and a tremble from halfway; in a break, all of it and a dark red
+  edge; sick or infected (any illness the game counts as sickness, and wound infection, by its share of the way to
+  death), a yellow-green tint; hypothermia and heatstroke from their first stage to their extreme one, frost from the
+  corners and a warm haze that shimmers; exhausted (from the game's "tired" down, never asleep), shadow bands at the top
+  and foot; drunk (by alcohol's severity) or another drug's high (half), drifting colours and a slow wobble; starving
+  (malnutrition), washed out; unconscious, dimmed (closed eyes come from the picture's painted expressions, as asleep).
+  The dead show none (their picture is grey).
+- **Light on the game**: read from the game at most twice a second for each person shown (hediffs once through), faded
+  toward at 1.5 a second; someone at ease draws nothing more; each effect one small texture painted once with its colour
+  in its pixels (the picture's paint, not the interface's tokens), drawn over the portrait at its strength; a round
+  portrait under 28 pixels shows none. The tremble and the wobble move the person in a moving portrait (with "Portraits
+  move a little").
+- **Where**: the large portrait at the inspect pane, the colonist card's, and the round portraits on cards and lists.
+  Setting "What they go through, on their portraits": off, large portraits only, or every portrait (the default).
+- **The library read when a game starts** (the player: "the reread on startup and new game, or manual reload is enough,
+  i'm a bit concerned about lags and performance it if automatically rereads"): read again on a worker when a game
+  starts, new or loaded, unless read within the last minute; a short message only where the count changed. Nothing is
+  looked at while playing.
+- **Shortcuts to the settings** (the player: "it would be lovely to have a shortcut to the rimfolk settings somewhere"):
+  every panel's right-click menu, the Council at a glance panel's bar ("Settings", beside its own gear), the large
+  portrait's menu (at the portraits' section), and a key of the player's choosing (Options, Keyboard, Rimfolk).
 ### Portraits: deleting a picture for good (released 0.297.0)
 
 The player's words (22 November 2026): "what i would like in the game is a feature that when i really don't like an

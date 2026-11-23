@@ -896,6 +896,7 @@ namespace ColonyCouncil
             float inset = Mathf.Max(1f, Mathf.Round(r.width * 0.07f));
             var inner = r.ContractedBy(inset);
             FaceEngine.DrawRound(inner, p, FaceEngine.PoseOf(p, turn, r.width >= FacePoseMath.PoseFrom), alpha);
+            PortraitEffects.Draw(inner, p, false, true, alpha);
             GUI.color = WithAlpha(ring, ring.a * alpha);
             if (Ring != null) GUI.DrawTexture(r, Ring);
             else Widgets.DrawBox(r, 2);

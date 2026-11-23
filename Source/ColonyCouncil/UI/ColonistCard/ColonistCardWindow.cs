@@ -236,6 +236,7 @@ namespace ColonyCouncil
                 // Their whole figure from the face engine: framed by their head, the steady face, on their own colour, in their
                 // pose and moving a little.
                 FaceEngine.Draw(tile.ContractedBy(3f), pawn, FaceFrame.Figure, null, 1f, true);
+                PortraitEffects.Draw(tile.ContractedBy(3f), pawn, true, false);
             }
             // The heart's line under the portrait, as the colonist bar draws it under theirs.
             if (m.heartOn)

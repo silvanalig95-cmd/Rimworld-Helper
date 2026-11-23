@@ -874,6 +874,8 @@ namespace ColonyCouncil
         public bool portraitLightTint = false;
         /// <summary>Phase 6: the large portrait's layers shift with the mouse over it, for a little depth: off, subtle or stronger (UI/Faces/FaceEngineStage.cs).</summary>
         public PortraitDepthMode portraitDepth = PortraitDepthMode.Subtle;
+        /// <summary>What a person goes through (bleeding, near a break, sick, cold ...) laid over their portraits: off, the large ones, or every portrait (UI/Faces/PortraitEffects.cs).</summary>
+        public PortraitEffectsMode portraitEffects = PortraitEffectsMode.Everywhere;
         /// <summary>Phase 6: the large portrait's painted picture blinks and shows the person's mood and what happens to them, where those expressions are painted.</summary>
         public bool portraitFaces = true;
         /// <summary>Phase 6: the backdrop behind the large portrait alive: the weather outdoors, a fire's flicker indoors.</summary>
@@ -1378,6 +1380,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref portraitOutline, "portraitOutline", PortraitOutlineMode.Off);
             Scribe_Values.Look(ref portraitLightTint, "portraitLightTint", false);
             Scribe_Values.Look(ref portraitDepth, "portraitDepth", PortraitDepthMode.Subtle);
+            Scribe_Values.Look(ref portraitEffects, "portraitEffects", PortraitEffectsMode.Everywhere);
             Scribe_Values.Look(ref portraitFaces, "portraitFaces", true);
             Scribe_Values.Look(ref portraitBackdropAlive, "portraitBackdropAlive", true);
             Scribe_Values.Look(ref portraitFolder, "portraitFolder", "");

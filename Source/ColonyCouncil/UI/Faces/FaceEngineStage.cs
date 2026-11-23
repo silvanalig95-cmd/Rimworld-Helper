@@ -623,14 +623,22 @@ namespace ColonyCouncil
             {
                 var local = new Rect(0f, 0f, r.width, r.height);
                 DrawBackLayers(local, s, look, depth);
-                float lean = turn + sway;
+                float lean = turn + sway, shakeX = 0f;
+                // What they go through moves them a little: the tremble near a break, the wobble of the drunk (PortraitEffects).
+                if (animate)
+                {
+                    PortraitEffects.Shake(p, out float shakeLean, out float shakeDx);
+                    lean += shakeLean;
+                    shakeX = shakeDx * local.width;
+                }
                 if (lean != 0f) UI.RotateAroundPivot(lean, new Vector2(local.center.x, local.yMax));
                 float up = Mathf.Max(0f, lift * s.headShare * local.height), down = Mathf.Max(0f, -lift * s.headShare * local.height);
                 float ph = Mathf.Max(1f, local.height * breath);
                 float below = up + FootBelow * local.width;
                 // Moved with the mouse, its sides carried on past its own as its foot is below, so no strip opens at an edge.
                 PortraitLifeMath.Shift(1f, depthX, depthY, depth, local.width, out float dx, out float dy);
-                float side = PortraitLifeMath.PersonSide(depth) * local.width;
+                dx += shakeX;
+                float side = PortraitLifeMath.PersonSide(depth) * local.width + Mathf.Abs(shakeX);
                 var at = new Rect(local.x + dx - side, local.yMax - ph - up + down + dy, local.width + 2f * side, ph + below);
                 // Lifted by the pose, the picture rises and its foot row is carried on under it; lowered, it sinks past the edge.
                 var uv = new Rect(-side / local.width, -below / ph, 1f + 2f * side / local.width, 1f + below / ph);

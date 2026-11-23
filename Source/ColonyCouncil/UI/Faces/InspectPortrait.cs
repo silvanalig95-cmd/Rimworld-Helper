@@ -181,6 +181,8 @@ namespace ColonyCouncil
                 // A painted picture from the library, whole, in front of the backdrop of where they are; else the game's
                 // drawing in front of it (phase 5), or on the portrait's own colour as before.
                 if (!FaceEngine.DrawStaged(inner, p, made, true) && !FaceEngine.DrawGameStaged(inner, p, made, true)) FaceEngine.Draw(inner, p, FaceFrame.Bust, made, 1f, true);
+                // What they go through, laid over the picture (UI/Faces/PortraitEffects.cs).
+                PortraitEffects.Draw(inner, p, true, false);
                 if (r.width >= FaceMath.NamedFrom) NameBand(inner);
                 if (dragging || Mouse.IsOver(r)) Grip(grip);
             }
@@ -238,6 +240,7 @@ namespace ColonyCouncil
             else options.Add(new FloatMenuOption(about + " (" + "CC_Portrait_TrainNoPicture".Translate().Resolve() + ")", null));
             PortraitTraining.AddOption(p, options);
             PortraitDelete.AddOptions(p, options);
+            options.Add(new FloatMenuOption("CC_Portrait_RimfolkSettings".Translate().Resolve(), () => SettingsWindow.Open("CC_SetSec_Portraits")));
             Find.WindowStack.Add(new FloatMenu(options));
         }
 

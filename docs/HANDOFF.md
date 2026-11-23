@@ -729,8 +729,9 @@ most sense." So, in this order, three builds at a time:
   portrait (read back near full size): suspected the texture's smaller copies (mipmaps, trilinear) or the colours left
   under the cut-out's clear parts, which an average not weighted by alpha brings into the small copies. Asked the player
   for one of the library's cut-out PNGs to look at its clear parts and its smaller copies.
-- **To do when the player asks (23 November 2026, the player; noted, a proposal to follow): what the person goes through
-  shown on their portrait.** The player: "the image could have a bunch of also different effects or laid over it or
+- **Go given (23 November 2026, the player: "effects sound great, go ahead now! should be toggleable in case of
+  performance issues"); built, not released: what the person goes through shown on their portrait.** The entry "What
+  they go through, on their portraits" above the newest release line says what was built. The player: "the image could have a bunch of also different effects or laid over it or
   applied to it. For example, if the pawn is bleeding, the image should kind of have a bloody effect. If they're super
   stressed, it should have like a stressed out effect. If they are sick or infected ... we can, I think, experiment a
   lot with visuals that are applied to, over, the image that is in the corner. Just add more layers and immersion."
@@ -765,8 +766,10 @@ most sense." So, in this order, three builds at a time:
   every other line of corrections.csv as it was; tabs for held, less sure, left out, kept; Done asks to run the update.
   Also fixed in the answer reader: a numbered line naming another item is never taken by its number for a short form.
   Tried here with a stand-in model end to end and the page in a browser; still to see on the player's PC.
-- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library read again
-  by itself, and a quick way to Rimfolk's settings.** The player: "could the libary import also be done regularly, like
+- **Go given in part (23 November 2026, the player: "ok, so the reread on startup and new game, or manual reload is
+  enough, i'm a bit concerned about lags and performance it if automatically rereads"); built, not released: the library
+  read again when a game starts, and the shortcuts to Rimfolk's settings.** Dropped: looking at the files while playing.
+  The entry above the newest release line says what was built. The player: "could the libary import also be done regularly, like
   on startup of the game and/or when loading a save? so I don't do it manually. Also it would be lovely to have a
   shortcut to the rimfolk settings somewhere, so I don't have to always search it up via the game settings and then mod
   settings." As it is: the folder is read once when the game starts (`PortraitFolder`'s static start) and by "Reload the
@@ -779,8 +782,20 @@ most sense." So, in this order, three builds at a time:
   gear on the "Council at a glance" panel. The picture's details still come from records.xml, so new pictures still
   need Copy-ToLibrary (which runs Update-PortraitLibrary); corrections answered yes in corrections.csv still need
   Update-PortraitLibrary once (or the in-game window, which writes both).
-- **To do when the player sends it (23 November 2026, the player): the check's free answers read for what the game
-  could use.** The player: "there is one check called "unusual", under which I guess a variety of things can be
+- **To do when the player asks (23 November 2026; the player sent checked.csv, the analysis is
+  `docs/portrait-art/CHECK-ANSWERS-2026-11-23.md`; proposal sent, waiting for the go): the check's misreadings first,
+  then what the game could use.** Found in the 624 answers (4B model, form version 3): the free "unusual" line restates
+  the kind's own body (about 60) and names almost nothing else (no defects, scars, earrings); with ask lines applied
+  since 0.299.0's kit, the check's own misreadings change or drop about a sixth of the library. Proposed, in order: (1)
+  the feature misreadings (ear fins, frills and big ears read as pointed ears; antennae, tusks, fins and crests as horns;
+  a named eye colour or a bionic lens as glowing; about 60 pictures, 32 more once kinds.csv says which kinds have pointed
+  ears); (2) lost and bionic eyes the model can't see kept (no remove from a plain none; odd eyes count as the lost one);
+  (3) sex and age lines held back where the model is weak (old and elder women called men 21, teen boys 5, animal faces
+  8; white or grey hair asked below middle age; 34 of 50 sex lines, all 9 age lines); (4) the twins' "two heads"; (5)
+  work tools are not weapons, work clothes not armour (11 false fighter roles); (6) a face-marks line (scar, burn, tattoo,
+  missing ear) and then a tattoo mark from Ideology's tattoos (13% of the save's pawns have a face tattoo); (7) held-thing
+  words for roles and looks, gestures as empty hands. The original entry, for the record: the check's free answers read
+  for what the game could use. The player: "there is one check called "unusual", under which I guess a variety of things can be
   mentioned ... how does the game correctly intepret these keywords and descriptions? ... I guess "worst case" I can
   provide you the "checked" csv after the first large scan and you analyse it for things that the AI picks up to be
   implemented for the pawn recognition". Answered: the game never reads the model's words; the check turns a few known
@@ -902,8 +917,9 @@ most sense." So, in this order, three builds at a time:
   what exists, -2 past a deleted name, instructions as sent, the records, the two-level names, the old way, the queue).
   Not solved: a mark that changes the outline (a missing ear, an arm of another shape) keeps the picture's outline
   through Join Image with Alpha; said in the guide.
-- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the library sorted by
-  kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
+- **To do when the player asks (23 November 2026, the player; proposal sent; the player, the same day: "the library sort
+  is only making me a bit concerned since scripts and csv files etc refer to the file path, so leave that for now"):
+  the library sorted by kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
   race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks
   only new or changed pictures, and every picture once again when its question changes, keeping the answers given in
   corrections.csv.) The proposal: `library\<kind>\<sex>\` (baseliner\female, darkelf\male, ...; children with their
@@ -937,8 +953,8 @@ most sense." So, in this order, three builds at a time:
   rule they stand for all seven); 70% of these rows broad (`COVER_BROAD`: milder features, at most two), the rest as
   specific as the first round's; marks on 5%. 474 rows, 47% baseliners, 22 kinds, both sexes evenly, 6 children;
   every row still has a face of its own. Tests: the cover cells, the wave-4 bounds.
-- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): the painted portrait
-  on the starting pawns screen.** The player: "when you start a new colony now in game, you select your pawns at first,
+- **To do when the player asks (23 November 2026, the player; proposal sent; the player, the same day: "to ahead with 2.
+  on to do list, not now", read as: on the to-do list, not now): the painted portrait on the starting pawns screen.** The player: "when you start a new colony now in game, you select your pawns at first,
   kind of to get prepared. Could we include the image of the pawn already there? That would be lovely. It would provide
   another level of immersion right from the beginning." The proposal: on the game's "Create characters" page
   (Page_ConfigureStartingPawns), the selected pawn's painted portrait beside the game's own drawing (the same picture
@@ -1737,6 +1753,27 @@ repo.
   Open Cup.** The to-do with the player's words is now one entry above the newest release line ("Revel, the Open Cup").
 - **Dropped (14 November 2026): sending visitors away.** The player: "so asking visitors to leave is not necessary, as i
   found the already imlpemented function".
+- 0.300.0, **What they go through, on their
+  portraits; the library read when a game starts; shortcuts to the settings** (23 November 2026; the player: "the image
+  could have a bunch of also different effects or laid over it or applied to it ... if the pawn is bleeding, the image
+  should kind of have a bloody effect. If they're super stressed, it should have like a stressed out effect. If they
+  are sick or infected ...", the go: "effects sound great, go ahead now! should be toggleable in case of performance
+  issues"; "ok, so the reread on startup and new game, or manual reload is enough, i'm a bit concerned about lags and
+  performance it if automatically rereads"; earlier: "it would be lovely to have a shortcut to the rimfolk settings
+  somewhere"). DESIGN.md, "What they go through, on their portraits".
+  - **Effects** (`PortraitEffectsMath`, pure; `PortraitEffects`, the game's side): bleeding (red edge, pulsing), badly
+    hurt (drained, red rim), near a break (dark edge, tremble from halfway; a break adds a dark red edge), sick or
+    infected (yellow-green tint), cold (frost from the corners), heatstroke (warm shimmering haze), exhausted (shadow bands
+    at the top and foot), drunk or high (drifting colours, wobble), starving (washed out), unconscious (dimmed). Read at
+    most twice a second for each person shown, faded in and out, each one texture painted once; nothing for the dead or
+    someone at ease. On the large portrait, the colonist card's and the round portraits (28 pixels and up). Setting
+    "What they go through, on their portraits": off, large portraits, every portrait (the default).
+  - **The library read again** on a worker when a game starts, new or loaded (`PortraitFolder.GameStarted` from
+    `PortraitKeeper.FinalizeInit`), not again within a minute of the start-up reading; a short message only when the
+    count changed. Nothing looked at while playing; "Reload the library" as before.
+  - **Shortcuts**: "Rimfolk settings..." on every panel's right-click menu, a "Settings" button on the Council at a
+    glance panel's bar, "Rimfolk settings (portraits)..." on the large portrait's menu (opening at the portraits), and a
+    key of the player's choosing ("Rimfolk's settings: open", none at first).
 - 0.299.1, **No second face in the small
   portraits, and more to correct** (23 November 2026; the player, with a screenshot of About this picture and their
   log: "unfortunately, the images are still duplicated. also i should be able to correct things like races, haircolor,

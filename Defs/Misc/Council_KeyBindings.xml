@@ -72,6 +72,12 @@
     <label>region: the map (open or close)</label>
   </KeyBindingDef>
 
+  <!-- Rimfolk's settings (Source/ColonyCouncil/UI/SettingsWindow.cs, Open), opened from the game. -->
+  <KeyBindingDef ParentName="Council_KeyBase">
+    <defName>Council_Key_Settings</defName>
+    <label>Rimfolk's settings: open</label>
+  </KeyBindingDef>
+
   <KeyBindingDef ParentName="Council_KeyBase">
     <defName>Council_Key_NextPage</defName>
     <label>next page</label>

@@ -19,7 +19,7 @@ namespace ColonyCouncil
         public static readonly string[] Pages = { "Week", "Everyone", "Wishes", "Moods", "World", "Defenses", "Calendar", "Dilemmas", "Almanac" };
 
         private static KeyBindingDef[] keys;
-        private static KeyBindingDef next, previous, regionMap;
+        private static KeyBindingDef next, previous, regionMap, settings;
 
         private static void Look()
         {
@@ -29,6 +29,7 @@ namespace ColonyCouncil
             next = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_NextPage");
             previous = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_PreviousPage");
             regionMap = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_RegionMap");
+            settings = DefDatabase<KeyBindingDef>.GetNamedSilentFail("Council_Key_Settings");
         }
 
         /// <summary>The key bound to the region map ("F9"), or null when none is.</summary>
@@ -68,6 +69,13 @@ namespace ColonyCouncil
             if (regionMap != null && regionMap.KeyDownEvent)
             {
                 MainTabWindow_Council.OpenOrClose("Map");
+                Event.current.Use();
+                return;
+            }
+            // Rimfolk's settings (UI/SettingsWindow.cs).
+            if (settings != null && settings.KeyDownEvent)
+            {
+                SettingsWindow.Open();
                 Event.current.Use();
             }
         }

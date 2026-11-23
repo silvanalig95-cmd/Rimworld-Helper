@@ -76,6 +76,7 @@
   <CC_PortraitFolder_NoRecords>it has no records.xml</CC_PortraitFolder_NoRecords>
   <CC_PortraitFolder_Failed>Portraits: the library folder {FOLDER} could not be read ({WHY}), so its pictures are not used for now. Rimfolk tries again in a minute.</CC_PortraitFolder_Failed>
   <CC_PortraitFolder_Read>Read {PEOPLE} portraits and {BACKDROPS} backdrops from {FOLDER}.</CC_PortraitFolder_Read>
+  <CC_PortraitFolder_ReadAgain>The portrait library was read again: {COUNT} portraits ({CHANGE}).</CC_PortraitFolder_ReadAgain>
   <CC_PortraitFolder_Missing>{COUNT} pictures named in records.xml are not in the folder and are left out.</CC_PortraitFolder_Missing>
   <CC_PortraitFolder_Alive>Also {FACES} expressions of those portraits (eyes closed, a smile, a frown, pain) and {DEPTHS} depth maps of the backdrops, for the large portrait.</CC_PortraitFolder_Alive>
   <CC_PortraitNeed_NoKind>no pictures of their kind</CC_PortraitNeed_NoKind>
@@ -102,6 +103,14 @@
   <CC_SetNote_PortraitDepth_Off>The large portrait stays still under the mouse.</CC_SetNote_PortraitDepth_Off>
   <CC_SetNote_PortraitDepth_Subtle>The backdrop and the person shift a little apart as the mouse moves over the large portrait.</CC_SetNote_PortraitDepth_Subtle>
   <CC_SetNote_PortraitDepth_Stronger>The backdrop and the person shift clearly apart as the mouse moves over the large portrait.</CC_SetNote_PortraitDepth_Stronger>
+  <CC_SetLabel_PortraitEffects>What they go through, on their portraits</CC_SetLabel_PortraitEffects>
+  <CC_SetTip_PortraitEffects>Effects laid over a person's portrait while it lasts: red at the edges while they bleed, the colours drained and a red rim when they are badly hurt, a dark edge closing in near a mental break (and a slight tremble), a sickly tint when they are ill or infected, frost when they are freezing, a warm haze in heatstroke, heavy shadows at the top and the foot when they are exhausted, drifting colours and a wobble when drunk or high, washed out when starving, and dimmed when unconscious. Each comes and goes softly. Switch it off, or keep it to the large portraits, if the game runs slowly.</CC_SetTip_PortraitEffects>
+  <CC_PortraitEffects_Off>Off</CC_PortraitEffects_Off>
+  <CC_PortraitEffects_Large>Large portraits</CC_PortraitEffects_Large>
+  <CC_PortraitEffects_Everywhere>Every portrait</CC_PortraitEffects_Everywhere>
+  <CC_SetNote_PortraitEffects_Off>The portraits show the person as painted, whatever they go through.</CC_SetNote_PortraitEffects_Off>
+  <CC_SetNote_PortraitEffects_Large>Only the large portrait and the colonist card's show what the person goes through.</CC_SetNote_PortraitEffects_Large>
+  <CC_SetNote_PortraitEffects_Everywhere>Every portrait shows what the person goes through, the round ones on cards and lists too.</CC_SetNote_PortraitEffects_Everywhere>
   <CC_Settings_PortraitFaces>Blinking and expressions</CC_Settings_PortraitFaces>
   <CC_Settings_PortraitFaces_Tip>Where a painted picture has its expressions painted too (eyes closed, a smile, a frown, pain), the large portrait uses them: the person blinks every few seconds, keeps their eyes closed while asleep or unconscious, smiles while their mood is high and frowns while it is well under their minor break line, and for a while shows pain after being hurt or while in pain, a frown after the death of someone close, and a smile after good news. A change of mood holds for at least a minute, and one face fades into the next. A picture without these expressions stays as it is. Still while the game is paused.</CC_Settings_PortraitFaces_Tip>
   <CC_SetNote_PortraitFaces>The large portrait blinks and shows mood, pain and news where those expressions are painted.</CC_SetNote_PortraitFaces>
@@ -114,6 +123,7 @@
   <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture, see its record and versions, keep one for training or delete one for good.</CC_Portrait_TipLibrary>
   <CC_Portrait_GripTip>Drag to make the portrait larger or smaller.</CC_Portrait_GripTip>
   <CC_Portrait_ChooseAnother>Choose another picture</CC_Portrait_ChooseAnother>
+  <CC_Portrait_RimfolkSettings>Rimfolk settings (portraits)...</CC_Portrait_RimfolkSettings>
   <CC_Portrait_ChooseEmpty>the library has no pictures</CC_Portrait_ChooseEmpty>
   <CC_Portrait_ChooseOff>painted portraits are off in the settings</CC_Portrait_ChooseOff>
   <CC_Portrait_ChooseNoneShort>no picture fits them</CC_Portrait_ChooseNoneShort>
