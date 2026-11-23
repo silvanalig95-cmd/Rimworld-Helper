@@ -40,6 +40,10 @@ namespace ColonyCouncil
         /// <summary>The picture's path from the folder, without .png.</summary>
         public string texPath = "";
         public bool backdrop;
+        /// <summary>A version of a picture (an expression or a mark variant), deleted on its own; the picture stays.</summary>
+        public bool variant;
+        /// <summary>Mark variants go with it (its other versions are told as versions, not only expressions).</summary>
+        public bool marked;
         /// <summary>Other files its records name (its expressions' pictures, a backdrop's depth map), paths from the folder without .png.</summary>
         public List<string> named = new List<string>();
         /// <summary>The files every other record uses (paths from the folder without .png): never touched.</summary>
@@ -136,6 +140,15 @@ namespace ColonyCouncil
                 if (e.PreviousNode is XText t && string.IsNullOrWhiteSpace(t.Value)) t.Remove();
                 e.Remove();
             }
+            return Written(doc, xml);
+        }
+
+        /// <summary>
+        /// A records.xml read with its whitespace kept and changed, as text again the way it was written: the declaration,
+        /// the comment and the records each on their line, the file's own line endings (<paramref name="xml"/>: its text before).
+        /// </summary>
+        public static string Written(XDocument doc, string xml)
+        {
             var sb = new StringBuilder();
             if (doc.Declaration != null) sb.Append(doc.Declaration);
             foreach (var node in doc.Nodes())
@@ -149,16 +162,21 @@ namespace ColonyCouncil
             return xml.Contains("\r\n") ? text.Replace("\r\n", "\n").Replace("\n", "\r\n") : text;
         }
 
-        /// <summary>The records of a picture: its own, and its expressions' (the records whose <c>variantOf</c> names it).</summary>
+        /// <summary>
+        /// The records of a picture: its own, and its versions' (the records whose <c>variantOf</c> names it: its expressions
+        /// and mark variants), and theirs in turn (a mark variant's own expressions).
+        /// </summary>
         public static List<string> RecordsOf(string picture, IEnumerable<KeyValuePair<string, string>> nameAndVariantOf)
         {
             var list = new List<string>();
             if (string.IsNullOrEmpty(picture)) return list;
             list.Add(picture);
             if (nameAndVariantOf == null) return list;
-            foreach (var kv in nameAndVariantOf)
-                if (kv.Value == picture && !string.IsNullOrEmpty(kv.Key) && !list.Contains(kv.Key))
-                    list.Add(kv.Key);
+            var pairs = nameAndVariantOf.ToList();
+            for (int at = 0; at < list.Count; at++)
+                foreach (var kv in pairs)
+                    if (kv.Value == list[at] && !string.IsNullOrEmpty(kv.Key) && !list.Contains(kv.Key))
+                        list.Add(kv.Key);
             return list;
         }
 
@@ -197,7 +215,8 @@ namespace ColonyCouncil
         /// The files of a picture in the library folder (paths from the folder with forward slashes, spelled as
         /// <paramref name="listing"/> has them; only those there): its own; the files its other records name
         /// (<paramref name="named"/>: its expressions', a backdrop's depth map); and beside it by name, for a person its
-        /// expressions (<c>&lt;stem&gt;_v-&lt;word&gt;.png</c>), for a backdrop its depth map (<c>&lt;stem&gt;_depth.png</c>).
+        /// expressions and mark variants (<c>&lt;stem&gt;_v-&lt;word&gt;.png</c>, <c>-2</c> and so on, and a variant's own
+        /// <c>_v-</c> expressions), for a backdrop its depth map (<c>&lt;stem&gt;_depth.png</c>).
         /// A file any other record uses (<paramref name="keep"/>) is never one of them. The picture's own first. Letters'
         /// case aside, as on Windows.
         /// </summary>
@@ -221,7 +240,8 @@ namespace ColonyCouncil
                     Add(PortraitFolderMath.FileKey(t));
             string dir = BatchOf(texPath), stem = StemOf(texPath);
             if (stem.Length == 0) return list;
-            var beside = new Regex("^" + Regex.Escape(stem) + (backdrop ? "_depth" : "_v-[A-Za-z]+") + @"\.png$", RegexOptions.IgnoreCase);
+            // A person's versions: its expressions and mark variants (a variant made again after one was deleted, "-2"), and a mark variant's own expressions.
+            var beside = new Regex("^" + Regex.Escape(stem) + (backdrop ? "_depth" : "_v-[A-Za-z]+(?:-[0-9]+)?(?:_v-[A-Za-z]+(?:-[0-9]+)?)?") + @"\.png$", RegexOptions.IgnoreCase);
             foreach (var k in have.Values.OrderBy(x => x, StringComparer.OrdinalIgnoreCase))
                 if (string.Equals(BatchOf(k), dir, StringComparison.OrdinalIgnoreCase) && beside.IsMatch(StemOf(k)))
                     Add(k);

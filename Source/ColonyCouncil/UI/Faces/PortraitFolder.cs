@@ -81,6 +81,18 @@ namespace ColonyCouncil
         /// <summary>A person's picture read from the folder (not an expression) by its record's name, or null.</summary>
         public static FolderPortrait PersonNamed(string name) => name.NullOrEmpty() ? null : People.Find(p => p.record.name == name && !p.record.IsExpression);
 
+        /// <summary>Any record of a person's picture read from the folder by its name (an expression too), or null.</summary>
+        public static FolderPortrait RecordNamed(string name) => name.NullOrEmpty() ? null : People.Find(p => p.record.name == name);
+
+        /// <summary>The names deleted.csv lists (without .png, in small letters), as read with the records: a variant's file made again after one was deleted takes the next free name.</summary>
+        public static HashSet<string> Deleted { get; private set; } = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+        /// <summary>A picture deleted for good in the game: its name taken, as deleted.csv now lists it.</summary>
+        public static void NoteDeleted(string texPath) => Deleted.Add(PortraitDeleteMath.StemOf(texPath));
+
+        /// <summary>Records changed in the game (corrected): the library and the backdrops read again from them, without reading the folder.</summary>
+        public static void Changed() => Version++;
+
         /// <summary>A backdrop read from the folder by its record's name, or null.</summary>
         public static FolderBackdrop BackdropNamed(string name) => name.NullOrEmpty() ? null : Backdrops.Find(b => b.record.name == name);
 
@@ -144,8 +156,8 @@ namespace ColonyCouncil
                 return;
             }
             if (reading) return;
-            // A picture being deleted for good: read once it is written, so the reading never brings back what it takes out.
-            if (PortraitDelete.Running)
+            // A picture being deleted for good or corrected: read once it is written, so the reading never brings back what it changes.
+            if (PortraitDelete.Running || PortraitCorrect.Running)
             {
                 waitedByHand |= byHand;
                 retryAt = Time.realtimeSinceStartup + 1f;
@@ -173,6 +185,9 @@ namespace ColonyCouncil
             public List<FolderPortrait> people = new List<FolderPortrait>();
             public List<FolderBackdrop> backdrops = new List<FolderBackdrop>();
             public HashSet<string> pictures = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            public HashSet<string> deleted = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+            /// <summary>How many records the corrections made in the game changed on top of records.xml.</summary>
+            public int corrected;
             public List<string> problems = new List<string>();
             public string error;
         }
@@ -195,6 +210,28 @@ namespace ColonyCouncil
             PortraitFolderMath.Parse(File.ReadAllText(records), got.people, got.backdrops, got.problems);
             foreach (var f in Directory.GetFiles(folder, "*.png", SearchOption.AllDirectories))
                 got.pictures.Add(f.Substring(folder.Length).TrimStart('\\', '/').Replace('\\', '/'));
+            try
+            {
+                string list = Path.Combine(folder, PortraitDeleteMath.ListFile);
+                if (File.Exists(list))
+                    foreach (var d in PortraitDeleteMath.Read(PortraitDeleteMath.TextOf(File.ReadAllBytes(list))))
+                        got.deleted.Add(PortraitDeleteMath.StemOf(d.file.EndsWith(".png", StringComparison.OrdinalIgnoreCase) ? d.file.Substring(0, d.file.Length - 4) : d.file));
+            }
+            catch (Exception)
+            {
+                // deleted.csv held open (Excel): read again with the folder; only the names of variants made again depend on it.
+            }
+            // The corrections made in the game always hold (the player, 23 November 2026: "the corrections i make through the
+            // game client are always prioritized"): taken again on top of records.xml, in case it was written without them.
+            try
+            {
+                string corrections = Path.Combine(folder, PortraitCorrectMath.ListFile);
+                if (File.Exists(corrections)) got.corrected = PortraitCorrectMath.ApplyGameLines(got.people, PortraitDeleteMath.TextOf(File.ReadAllBytes(corrections)));
+            }
+            catch (Exception e)
+            {
+                got.problems.Add("corrections.csv could not be read (" + e.Message + "), so the corrections made in the game were not taken again");
+            }
             return got;
         }
 
@@ -226,11 +263,13 @@ namespace ColonyCouncil
             Folder = folder;
             People.Clear();
             Backdrops.Clear();
-            int missing = 0, expressions = 0, faces = 0, depths = 0;
+            Deleted = got.deleted;
+            int missing = 0, expressions = 0, faces = 0, depths = 0, marked = 0;
             foreach (var p in got.people)
                 if (got.pictures.Contains(PortraitFolderMath.FileKey(p.texPath)))
                 {
                     People.Add(p);
+                    if (p.record.IsMarkVariant) marked++;
                     if (!p.record.IsExpression) continue;
                     expressions++;
                     // Phase 6: told only for the expressions Rimfolk shows (a later word is kept quietly).
@@ -247,10 +286,12 @@ namespace ColonyCouncil
                 }
                 else missing++;
             Version++;
-            Status = "CC_PortraitFolder_Read".Translate((People.Count - expressions).Named("PEOPLE"), Backdrops.Count.Named("BACKDROPS"), folder.Named("FOLDER")).Resolve()
+            Status = "CC_PortraitFolder_Read".Translate((People.Count - expressions - marked).Named("PEOPLE"), Backdrops.Count.Named("BACKDROPS"), folder.Named("FOLDER")).Resolve()
                      + (faces + depths > 0 ? " " + "CC_PortraitFolder_Alive".Translate(faces.Named("FACES"), depths.Named("DEPTHS")).Resolve() : "")
+                     + (marked > 0 ? " " + "CC_PortraitFolder_Marked".Translate(marked.Named("COUNT")).Resolve() : "")
                      + (missing > 0 ? " " + "CC_PortraitFolder_Missing".Translate(missing.Named("COUNT")).Resolve() : "");
-            Log.Message("[Rimfolk] Portraits: " + Status);
+            Log.Message("[Rimfolk] Portraits: " + Status
+                        + (got.corrected > 0 ? " Corrections made in the game (corrections.csv) taken again on top of records.xml for " + got.corrected + " records." : ""));
             if (got.problems.Count > 0)
                 CouncilLog.WarnOnce("Portraits: records.xml in " + folder + ": " + got.problems.Count + " words it doesn't know, each left out (the rest of the record kept): "
                                     + string.Join("; ", got.problems.Take(12)) + (got.problems.Count > 12 ? "; ..." : ""));

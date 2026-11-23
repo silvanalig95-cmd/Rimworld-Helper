@@ -17218,6 +17218,147 @@ The code: `UI/Faces/PortraitLibraryMath.cs` (the rules), `PortraitReader.cs` (a 
   against their pictures' painted colours, where a skin the tone or hue rule leaves out shows in missing.csv; the
   Biotech skins' colours are those the tests have used since phase 3.
 
+### Portraits: about this picture, and the variants the game wants (not released yet)
+
+The player's words (23 November 2026): "one of the right-click options could open kind of a menu where I see the image
+that is currently assigned to the pawn, and where I could see ... all the different attributes and characteristics that
+this image has assigned in the database ... which of the characteristics were now relevant for why this image was chosen
+for this specific colonist, and that I perhaps also could make corrections in there ... if I see, for example, the sex is
+incorrect or the age is actually kind of a different age group, that I could immediately change and update this through
+the game ... And maybe that it also shows the different variants also of this image"; and of variants: "variants are
+first and foremost relevant for my actual colonists ... it should kind of log who is actually my colonist at the moment
+... so that these images get prioritized in the variation script ... if a pawn loses an eye ... it then creates an entry,
+create a one-eyed, you know, with detailed instructions, variant of this specific image that is currently used for the
+pawn ... the variants are then always assigned to this specific image file ... even if it's just a random visitor ... it
+can draw on this library of variants". The go, the same day: "yes, please go ahead with all! it's also important that a
+variant is then marked as done once it's created and in the game, not that it will get created over and over. unless I
+delete the variant through the ingame about screen. the about screen should also clearly mark what is special about a
+certain variant and when it becomes active". Built on the portrait sections above, whose rules stay but for what
+follows. The portrait scripts' side (Make-Variants taking the list first, Update-PortraitLibrary recording the variants
+and applying the game's corrections, the picture check) is the scripts' own, built beside this to the same contract.
+
+The code: `UI/Faces/PortraitAboutWindow.cs` (the window), `PortraitCorrect.cs` and the pure `PortraitCorrectMath.cs`
+(corrections), `PortraitVariants.cs` and the pure `PortraitVariantsMath.cs` (the list), `PortraitLibraryMath.cs` (the
+distance in its parts, the hard rules one by one, mark variants and their side, the version shown), `PortraitLibrary.cs`
+(a picture's versions), `PortraitReader.cs` (a mark's side, an eye patch worn), `PortraitDelete.cs` and
+`PortraitDeleteMath.cs` (a variant deleted on its own), `PortraitFolder.cs` (deleted.csv's names read with the records),
+`InspectPortrait.cs` (the menu), `PortraitDef.cs` (`side`). Tested in `Tools/Tests/PortraitAboutTests.cs`.
+
+- **Mark variants**: the same picture painted again with one mark it lacks, a version of that picture as an expression
+  is. Its record is the picture's copied with `<variantOf>` the picture's record and `<variant>` one of `lostEyeLeft`,
+  `lostEyeRight`, `eyePatchLeft`, `eyePatchRight`, `bionicEyeLeft`, `bionicEyeRight`, `scar`, `burn`, `missingEarLeft`,
+  `missingEarRight`, `artificialArmLeft`, `artificialArmRight` (read whatever its case), its mark among its `marks` and
+  its side in a new field `<side>` (left or right, as seen from the person; the variant's word decides it where the two
+  disagree, told in the log). Any record may carry `side`; it applies to its sided marks (a lost or bionic eye, an eye
+  patch, a missing ear, an artificial arm), and a record without one stands for either side. Its file is beside the
+  picture, `<stem>_v-<word>.png`, or `-2`, `-3` ... where deleted.csv already has that name.
+  - *One of its picture's face*: in the library it is a picture of its own joined to its picture's face (its character
+    set to the picture's), so a new pick of someone with the mark takes it as the nearest of that face; the person keeps
+    the picture itself (`PortraitKeeper` never keeps a variant's name), and the version shown is chosen every few seconds
+    while they are shown, from their body now (`PortraitLibraryMath.Version`): of the picture and its mark variants,
+    those showing only marks they have on their side, the one showing most of their marks, of equals the eye patch for
+    someone wearing one and the plain lost eye for someone who doesn't, then the picture itself. So a colonist who loses
+    their left eye keeps their face, and once its `lostEyeLeft` variant is made it is shown for them, and for anyone
+    given the picture later, in any save; one who later gets a bionic eye shows the bionic eye's variant, or the picture
+    itself. Their marks are read only where the picture has variants.
+  - *Its expressions*: a mark variant may have its own (`variantOf` the variant's record), shown over it. Where it has
+    none, nothing blinks over it (the picture's own would bring the eye back), but for an artificial arm, whose head is
+    the picture's: its picture's expressions show over it until it has its own.
+  - *A person's marks with their side* (`PortraitReader`): a lost eye or ear, a bionic eye and an artificial arm by the
+    side the game's body def names for the part, its label as written in the def ("left eye") or the tag its wounds are
+    drawn at ("LeftEye"), else its parent's (a finger on the left hand); a mod's body with neither is read as no side
+    told. An eye patch worn: any apparel named so (Alpha Memes' Eyepatch among the player's mods), or a part in an eye's
+    place named so (read as a lost eye under a patch, not a bionic eye).
+- **The variants wanted** (`library\variants-wanted.csv`, written on saving the game as missing.csv is, on a worker,
+  safely, tried again a few times; left as it is where nothing changed): columns `picture` (its path from the library
+  folder with forward slashes and .png), `word`, `instruction`, `who`, `priority`, `first`.
+  - *Whose*: each of the colony's own people keeping a painted picture of the library folder, colonists, then slaves,
+    then prisoners (priority 1): the expressions the version shown for them lacks (blink, smile, frown, pain; an
+    artificial arm's variant, its picture's), and a mark variant of their picture for each mark of theirs it has no
+    version of, on each side it is on (the left where the side isn't told; a lost eye under an eye patch they wear as
+    the eye patch's). Each notable keeping a picture: its expressions (priority 2). Nothing for strangers.
+  - *Done*: a row only while the library has no version of that picture with that word; records.xml is read again just
+    before writing, so one made meanwhile is left out. A variant deleted for good in the game is gone, so it is wanted
+    again while someone still needs it. A row for the same picture and word from several people is one, their names
+    joined; `first` is the date it was first wanted, kept from the file as it was. Rows: priority, then the colony's own
+    before others, then who, the picture and the word.
+  - *The instructions* (`PortraitVariantsMath.Instruction`), for FLUX Kontext: the expressions word for word as
+    Make-Variants.ps1 has them; a mark plainly with its side as seen from the person and where that is in the picture
+    ("The person has lost their left eye (the eye on the right of the picture): the eyelids closed and a little sunken
+    over the empty socket, with an old, healed scar across them. Keep everything else exactly the same: the same person,
+    the rest of the face, hair, clothes, pose, position, framing, lighting and painting style."); an artificial arm by the
+    picture's clothes: wood and iron for a tribal or medieval picture, bionic otherwise.
+  - Dev mode: "Portraits: the variants the game wants (log)".
+- **"About this picture..."** on the large portrait's right-click menu, after "Choose another picture" (greyed where no
+  painted picture of the library shows): a window in Rimfolk's frame (key `PortraitAbout`), read again every two seconds
+  and after a change:
+  - *The picture and its record*: kind (races and xenotypes), sex, age band, skin colour (its hex, word and tone of the
+    eight), hair colour, hair, beard, build, clothes' age and kind, features, marks with their side, looks, work,
+    headwear, facing, its batch and file, its face, the colonist it is pinned to, and for a variant shown, which picture
+    it is a variant of. The records' own words, as records.xml and corrections.csv write them.
+  - *Why it is theirs*: how it was kept (pinned, chosen by hand, or picked by the matcher the first time they were shown),
+    the variant shown and why; each of the matcher's hard rules met or not for them with their own value (their race and
+    xenotype, the same sex, their own age band, their skin tone or the next, only their marks on their side, only their
+    looks and work, the same special looks, headwear only if they wear it; `PortraitLibraryMath.Rules`), with a line that
+    a kept picture stays through a stage of life where one isn't met now; each part of its distance from their looks
+    (skin colour, hair colour, hair, beard, build, the clothes' age and kind, features, marks, looks and work:
+    `PortraitLibraryMath.Parts`, whose sum is `Distance` to the last bit) and the sum, with "Only close ones"' limit.
+  - *The next pictures*: the five nearest faces after theirs that may stand for them (never another's own), small, with
+    their files and distances.
+  - *Its versions*: each expression and mark variant (a mark variant's own expressions under it), small, with what it
+    shows and when it is shown (a blink every 2.5 to 6.5 seconds and while asleep; a smile while the mood is well above
+    the middle between the minor break line and full and after good news; a frown under the minor break line and after a
+    death close to them; pain after a fresh wound or in medium pain; all with "Blinking and expressions" on, said where
+    it is off; a mark variant "Shown instead of the picture for whoever holds it and has lost their left eye" and so on),
+    "shown now" on the version shown and on the expression the large portrait shows, and "Delete this variant for
+    good..." on each of the library folder's. Then the versions wanted for them and not made yet, with the file each will
+    be made as.
+  - *Corrections*: sex, age band, features, marks, the side of its marks, looks, work and headwear, each a button opening
+    a list (never free text): a value to pick, or a word to add or take away (the looks: those it shows, then the
+    person's own, then every other). Greyed with the reason for a mod's picture, while the folder is read or a deletion
+    or another correction written. Corrections go to the picture itself (where a variant shows, to the picture it is a
+    version of) and its versions with it (a mark variant keeps its own mark and side).
+- **A correction taken** (`PortraitCorrect`): the record in the game changed at once, its versions' too; everyone keeping
+  the picture who it no longer fits (`PortraitLibraryMath.StillFits`: every hard rule of a new pick, a picture pinned to
+  them by its stage and special looks) is let go and picked again by the usual rules when next shown; the library read
+  again from the records as they are now, the large portrait made again. Then, on a worker: its lines added to
+  `library\corrections.csv` in the scripts' columns (`picture` as `<batch>\<file>.png`, `field`, `value`, `apply` yes,
+  `why` "set in the game"; sex, age, role or clear, headwear true or false, looks, marks and features as add: or remove:,
+  side left, right or clear; the file's own separator and line endings kept, a new file marked as UTF-8 for Excel), then
+  the records (the picture's and its versions') written into records.xml as they are now, the fields set in place and
+  new ones at the record's end as the scripts write them, everything else as it was; each written safely and tried
+  again. So the change stands when the game reads the folder again, and after Update-PortraitLibrary, which applies the
+  yes lines again. A message says what was corrected, who gets another picture, and what was written; where
+  corrections.csv can't be written the change holds until the library is read again. One writing at a time; a change
+  made meanwhile is written after it, and the folder is read only after.
+- **The game's corrections always hold** (the player, 23 November 2026: "the corrections i make through the game client
+  are always prioritized. for example if an image is generating a man, qwen thinks it's a woman and writes that in the
+  corrections file, i edit the file within the game detail screen to be a man, the library import or other scripts should
+  not override that again with the "correction" from gwen of it being a woman"):
+  - *One line a field*: a field corrected in the game again takes the place of its own earlier "set in the game" line for
+    that picture and field (the picture however the file spells it: either slash, "library\" before it, the case aside),
+    a list field's (marks, looks, features) by its word, one add: or remove: line a word; the picture check's lines and
+    the player's own stay as they are. Update-PortraitLibrary (the scripts' side) gives a "set in the game" line the
+    first say over any other line for the same picture and field, and the check never writes over one.
+  - *Taken again when the library is read* (at the start and with "Reload the library", on the folder's worker, after
+    records.xml: `PortraitCorrectMath.ApplyGameLines`): every yes line set in the game, in the file's order, applied to
+    its picture (by its batch's folder and file, or the file alone) and its versions (a mark variant keeping its own mark
+    and side), so a records.xml written without one (an Update run that missed it) still shows the player's correction in
+    the game. The log says how many records it changed. The check's lines and a line marked no are left to Update.
+- **A variant deleted for good** ("Delete this variant for good..." in the window): the deletion's own dialog ("The
+  variant ... of the picture ... will be deleted for good. The picture itself stays."), worker, deleted.csv line and bin;
+  its own expressions go with it. Whoever it showed for sees the picture again or another variant that fits. The
+  picture's "Delete this picture for good..." on the large portrait's menu deletes the picture itself even where one of
+  its variants shows, with all its versions (and their expressions); the dialog counts its variants with marks.
+- **Settings**: none new. The large portrait's tooltip names the record and versions.
+- **Saved**: nothing new; the list, the corrections and the records are in the library folder.
+- Every game member used (a body part's custom label, untranslated label and wound anchor tag, worn apparel, the float
+  menu, the window stack) is the same in 1.6 and 1.7 (ApiDiff). No new hook.
+- **Not checked without the game**: the window as it looks at every size, its lists and thumbnails; a side read from
+  real pawns of every mod's body (the game's Human body names its eyes, ears and shoulders left and right); an eye
+  patch worn; corrections.csv and records.xml written on the player's Google Drive folder and read by
+  Update-PortraitLibrary; a mark variant made by Make-Variants shown for the colonist who needs it.
+
 ### On-screen panels and the hover card
 
 The player asked for "more things visible directly on the screen without always having to go to a menu", the mood of

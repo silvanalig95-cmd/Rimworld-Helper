@@ -146,6 +146,18 @@ namespace ColonyCouncil
         ThreeQuarterRight
     }
 
+    /// <summary>
+    /// The side of the body a mark is on, as seen from the person (their own left eye is on the picture's right as they
+    /// face it): not told, left, right; a person's lost eyes may be on both.
+    /// </summary>
+    [Flags]
+    public enum PortraitSide : byte
+    {
+        None = 0,
+        Left = 1,
+        Right = 2
+    }
+
     /// <summary>A colour, 0 to 1 a channel.</summary>
     public struct PortraitColour
     {
@@ -182,6 +194,13 @@ namespace ColonyCouncil
         public PortraitDress dress;
         public bool headwear;
         public HashSet<string> features = new HashSet<string>(), marks = new HashSet<string>();
+        /// <summary>
+        /// The side its sided marks are on (a lost or bionic eye, an eye patch, a missing ear, an artificial arm; the record's
+        /// <c>side</c>, left or right as seen from the person), or none told: it then stands for the mark on either side.
+        /// </summary>
+        public PortraitSide side;
+        /// <summary>Its lost eye is covered by an eye patch (its marks named eyePatch, which the matcher counts as a lost eye).</summary>
+        public bool patch;
         /// <summary>The looks it shows (the looks' words, <see cref="PortraitLookMath"/>), and those of them that are special.</summary>
         public HashSet<string> looks = new HashSet<string>(StringComparer.OrdinalIgnoreCase), specials = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         /// <summary>The work it shows (one of <see cref="PortraitLookMath.Roles"/>), or "" for any.</summary>
@@ -193,10 +212,12 @@ namespace ColonyCouncil
         /// </summary>
         public string character = "", variant = "base";
         /// <summary>
-        /// Phase 6: the picture this one is an expression of (its def's name), or "": the same picture painted again with the
-        /// eyes closed, a smile, a frown or in pain (<see cref="PortraitLifeMath.Faces"/>, the word in <see cref="variant"/>).
-        /// Such a picture is never picked on its own and never counts in the matching or the missing list; it belongs to its
-        /// base picture and only the large portrait shows it.
+        /// The picture this one is a version of (its def's name), or "". Phase 6: an expression, the same picture painted
+        /// again with the eyes closed, a smile, a frown or in pain (<see cref="PortraitLifeMath.Faces"/>, the word in
+        /// <see cref="variant"/>): never picked on its own and never counted in the matching or the missing list; it belongs
+        /// to its picture and only the large portrait shows it. A mark variant (<see cref="PortraitLibraryMath.MarkVariantWords"/>
+        /// in <see cref="variant"/>: the same picture with a lost eye, a scar ...): one of its picture's face, shown instead of
+        /// it for whoever holds the picture and has the mark (<see cref="PortraitLibraryMath.Version"/>).
         /// </summary>
         public string variantOf = "";
         /// <summary>The colonist it is pinned to (their nickname, first, last, shown or full name), or "": used for them only, never for anyone else.</summary>
@@ -204,8 +225,11 @@ namespace ColonyCouncil
 
         public bool Pinned => pawn.Length > 0;
 
-        /// <summary>An expression of another picture (phase 6), not a picture of its own.</summary>
-        public bool IsExpression => variantOf.Length > 0;
+        /// <summary>A mark variant of another picture: the same picture with a mark it lacks, a version of it, not a face of its own.</summary>
+        public bool IsMarkVariant => variantOf.Length > 0 && PortraitLibraryMath.MarkVariantWord(variant) != null;
+
+        /// <summary>An expression of another picture (phase 6), not a picture of its own (a version with a word Rimfolk doesn't know yet too).</summary>
+        public bool IsExpression => variantOf.Length > 0 && !IsMarkVariant;
 
         /// <summary>The character it belongs to: its own name where it is no variant of another.</summary>
         public string Character => string.IsNullOrEmpty(character) ? name : character;
@@ -230,6 +254,10 @@ namespace ColonyCouncil
         /// <summary>Wearing headgear, and the setting shows it.</summary>
         public bool headwear;
         public HashSet<string> features = new HashSet<string>(), marks = new HashSet<string>();
+        /// <summary>The sides their sided marks are on (by the mark as the matcher counts it, <see cref="PortraitLibraryMath.MarkKey"/>); a mark not here, or with none, on a side not told.</summary>
+        public Dictionary<string, PortraitSide> sides = new Dictionary<string, PortraitSide>();
+        /// <summary>They wear an eye patch (an apparel or a part of that name).</summary>
+        public bool eyePatch;
         /// <summary>Their looks (from their traits, genes, hediffs and body, <see cref="LookBook.Of"/>), and those of them that are special.</summary>
         public HashSet<string> looks = new HashSet<string>(StringComparer.OrdinalIgnoreCase), specials = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         /// <summary>Their work (one of <see cref="PortraitLookMath.Roles"/>), or "" (a child, or nothing tells).</summary>
@@ -242,6 +270,20 @@ namespace ColonyCouncil
             looks.Add(word);
             if (special) specials.Add(word);
         }
+
+        /// <summary>A mark of their body (as the matcher counts it), on a side where it has one and it is told.</summary>
+        public void AddMark(string mark, PortraitSide side = PortraitSide.None)
+        {
+            if (string.IsNullOrEmpty(mark)) return;
+            string k = PortraitLibraryMath.MarkKey(mark);
+            marks.Add(k);
+            if (side == PortraitSide.None || !PortraitLibraryMath.Sided(k)) return;
+            sides.TryGetValue(k, out var had);
+            sides[k] = had | side;
+        }
+
+        /// <summary>The sides a mark of theirs is on (none where it isn't told).</summary>
+        public PortraitSide SidesOf(string mark) => sides.TryGetValue(PortraitLibraryMath.MarkKey(mark), out var s) ? s : PortraitSide.None;
 
         /// <summary>Their kind, sex and age in words: kept with a pick, so a person who becomes another kind is matched again.</summary>
         public string Kind => (baseliner && race == "human" ? "baseliner" : race + "/" + xenotype) + "_" + PortraitLibraryMath.Word(sex);
@@ -331,6 +373,105 @@ namespace ColonyCouncil
 
         /// <summary>A mark as the matcher counts it: an eye patch is a lost eye.</summary>
         public static string MarkKey(string mark) => mark == "eyePatch" ? "lostEye" : mark;
+
+        /// <summary>The marks that are on one side of the body (an eye patch counts as the lost eye under it): a lost or bionic eye, a missing ear, an artificial arm.</summary>
+        public static bool Sided(string mark)
+        {
+            switch (MarkKey(mark))
+            {
+                case "lostEye":
+                case "bionicEye":
+                case "missingEar":
+                case "artificialArm":
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        // ---------------- Mark variants ----------------
+
+        /// <summary>
+        /// The mark variants a picture may have beside it (the player, 23 November 2026: "if a pawn loses an eye ... create a
+        /// one-eyed ... variant of this specific image ... the variants are then always assigned to this specific image file"):
+        /// the same picture with one mark it lacks, the side as seen from the person, by their words in records.xml
+        /// (<c>&lt;variant&gt;</c> of a picture with <c>&lt;variantOf&gt;</c>) and in variants-wanted.csv.
+        /// </summary>
+        public static readonly string[] MarkVariantWords =
+        {
+            "lostEyeLeft", "lostEyeRight", "eyePatchLeft", "eyePatchRight", "bionicEyeLeft", "bionicEyeRight", "scar", "burn", "missingEarLeft", "missingEarRight",
+            "artificialArmLeft", "artificialArmRight"
+        };
+
+        /// <summary>A mark variant's word as Rimfolk writes it (the case aside: the scripts may write it in small letters), or null for none of them.</summary>
+        public static string MarkVariantWord(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return null;
+            string t = text.Trim();
+            foreach (var w in MarkVariantWords)
+                if (string.Equals(w, t, StringComparison.OrdinalIgnoreCase))
+                    return w;
+            return null;
+        }
+
+        /// <summary>The mark a mark variant's word shows (lostEye, eyePatch, bionicEye, scar, burn, missingEar, artificialArm) and its side; null for no such word.</summary>
+        public static string MarkOfVariant(string word, out PortraitSide side)
+        {
+            side = PortraitSide.None;
+            string w = MarkVariantWord(word);
+            if (w == null) return null;
+            if (w.EndsWith("Left", StringComparison.Ordinal))
+            {
+                side = PortraitSide.Left;
+                return w.Substring(0, w.Length - 4);
+            }
+            if (w.EndsWith("Right", StringComparison.Ordinal))
+            {
+                side = PortraitSide.Right;
+                return w.Substring(0, w.Length - 5);
+            }
+            return w;
+        }
+
+        /// <summary>The mark variant's word for a mark on a side (a sided mark on no side told: the left), or null for a mark with no variant.</summary>
+        public static string VariantWordFor(string mark, PortraitSide side)
+        {
+            if (string.IsNullOrEmpty(mark) || Array.IndexOf(Marks, mark) < 0) return null;
+            if (!Sided(mark)) return mark;
+            return mark + ((side & PortraitSide.Right) != 0 && (side & PortraitSide.Left) == 0 ? "Right" : "Left");
+        }
+
+        /// <summary>A mark variant that leaves the head as it was (an artificial arm): its picture's own expressions may be shown over it.</summary>
+        public static bool HeadUnchanged(string word)
+        {
+            string m = MarkOfVariant(word, out _);
+            return m == "artificialArm";
+        }
+
+        /// <summary>A side as a record writes it: left, right, or "" for none told.</summary>
+        public static string SideWord(PortraitSide side) => side == PortraitSide.Left ? "left" : side == PortraitSide.Right ? "right" : "";
+
+        /// <summary>A record's side from its text: left or right (the case aside, l and r too); none for nothing; null for anything else.</summary>
+        public static PortraitSide? SideOf(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return PortraitSide.None;
+            string t = text.Trim().ToLowerInvariant();
+            if (t == "left" || t == "l") return PortraitSide.Left;
+            if (t == "right" || t == "r") return PortraitSide.Right;
+            if (t == "none" || t == "-" || t == "both") return PortraitSide.None;
+            return null;
+        }
+
+        /// <summary>The side a body part's words name (its label as the game's body def writes it, "left eye", "RightShoulder"), or none.</summary>
+        public static PortraitSide SideFromWords(List<string> tokens)
+        {
+            if (tokens == null) return PortraitSide.None;
+            bool left = Is(tokens, "left", "l"), right = Is(tokens, "right", "r");
+            return left && !right ? PortraitSide.Left : right && !left ? PortraitSide.Right : PortraitSide.None;
+        }
+
+        /// <summary>Whether a worn thing's or an added part's words name an eye patch ("Eyepatch", "eye patch").</summary>
+        public static bool EyePatchWords(List<string> tokens) => tokens != null && (Starts(tokens, "eyepatch") || Is(tokens, "eye") && Starts(tokens, "patch"));
 
         private static bool TryEnum<T>(string text, out T value) where T : struct
         {
@@ -471,9 +612,17 @@ namespace ColonyCouncil
             foreach (var m in list("marks") ?? new string[0])
             {
                 var k = Known(Marks, m);
-                if (k != null) r.marks.Add(MarkKey(k));
+                if (k != null)
+                {
+                    r.marks.Add(MarkKey(k));
+                    if (k == "eyePatch") r.patch = true;
+                }
                 else if (!string.IsNullOrWhiteSpace(m)) Bad("marks: '" + m + "' is not one of " + string.Join(", ", Marks));
             }
+            string sideText = field("side");
+            var side = SideOf(sideText);
+            if (side == null) Bad("side: '" + sideText.Trim() + "' is not left or right");
+            else r.side = side.Value;
             foreach (var w in list("looks") ?? new string[0])
             {
                 if (string.IsNullOrWhiteSpace(w)) continue;
@@ -502,11 +651,59 @@ namespace ColonyCouncil
             if (r.variantOf.Length > 0)
             {
                 // Its word, the case aside; a word Rimfolk doesn't know yet (the tools may paint more later) is kept and simply not shown.
-                r.variant = PortraitLifeMath.FaceWord(variant) ?? (variant ?? "").Trim().ToLowerInvariant();
+                r.variant = PortraitLifeMath.FaceWord(variant) ?? MarkVariantWord(variant) ?? (variant ?? "").Trim().ToLowerInvariant();
                 if (string.IsNullOrWhiteSpace(variant)) Bad("variant: an expression (a picture with variantOf) names its expression: " + string.Join(", ", PortraitLifeMath.Faces));
                 if (r.variantOf == name) Bad("variantOf: a picture can't be an expression of itself");
+                // A mark variant shows its mark on its side, whatever its marks and side say.
+                string mark = MarkOfVariant(r.variant, out var markSide);
+                if (mark != null)
+                {
+                    r.marks.Add(MarkKey(mark));
+                    if (mark == "eyePatch") r.patch = true;
+                    if (markSide != PortraitSide.None)
+                    {
+                        if (r.side != PortraitSide.None && r.side != markSide) Bad("side: '" + SideWord(r.side) + "' against its variant " + r.variant + "; the variant's side is kept");
+                        r.side = markSide;
+                    }
+                }
             }
             return r;
+        }
+
+        /// <summary>
+        /// The mark variants split off (after <see cref="SplitExpressions"/>, whose pictures of their own they are among): of
+        /// <paramref name="own"/>, those that stand on their own (in order), and each picture's mark variants by its index
+        /// (<paramref name="variants"/>), each joined to its picture's face (its character set to the picture's), so it is one
+        /// of that face for the matcher and whoever holds the face. A mark variant of a picture not in the library, or of
+        /// another variant, is left out and told; a second of the same word kept (the first in order is used).
+        /// </summary>
+        public static List<int> SplitVariants(IList<PortraitRecord> records, IList<int> own, Dictionary<int, List<int>> variants, List<string> problems)
+        {
+            var kept = new List<int>();
+            if (records == null || own == null) return kept;
+            var byName = new Dictionary<string, int>(StringComparer.Ordinal);
+            foreach (int i in own)
+                if (!records[i].IsMarkVariant && !byName.ContainsKey(records[i].name))
+                    byName[records[i].name] = i;
+            foreach (int i in own)
+            {
+                var r = records[i];
+                if (!r.IsMarkVariant)
+                {
+                    kept.Add(i);
+                    continue;
+                }
+                if (!byName.TryGetValue(r.variantOf, out int root))
+                {
+                    problems?.Add(r.name + ": a mark variant of " + r.variantOf + ", which isn't a picture of the library, so it is left out");
+                    continue;
+                }
+                r.character = records[root].Character;
+                if (!variants.TryGetValue(root, out var list)) variants[root] = list = new List<int>();
+                list.Add(i);
+                kept.Add(i);
+            }
+            return kept;
         }
 
         /// <summary>
@@ -545,12 +742,12 @@ namespace ColonyCouncil
 
         /// <summary>
         /// What is wrong across the library: a character with no base variant, two variants of one character of different sex
-        /// or kind. Expressions of another picture (phase 6) are not variants of a character and are left out.
+        /// or kind. Expressions and mark variants of another picture (versions of that picture) are left out.
         /// </summary>
         public static List<string> LibraryProblems(IList<PortraitRecord> records)
         {
             var problems = new List<string>();
-            foreach (var g in records.Where(r => !string.IsNullOrEmpty(r.character) && !r.IsExpression).GroupBy(r => r.character))
+            foreach (var g in records.Where(r => !string.IsNullOrEmpty(r.character) && r.variantOf.Length == 0).GroupBy(r => r.character))
             {
                 var list = g.ToList();
                 if (list.Count > 1 && !list.Any(r => r.variant == "base" && r.marks.Count == 0))
@@ -1105,47 +1302,163 @@ namespace ColonyCouncil
         }
 
         /// <summary>A picture may stand for the person's body: it shows no mark they haven't got (no eye patch on someone with both eyes, no bionic arm on someone with their own arms), and headwear only where they wear it and the setting shows it.</summary>
-        public static bool Shows(PortraitRecord r, PortraitLook l)
+        public static bool Shows(PortraitRecord r, PortraitLook l) => ShowsMarks(r, l) && (!r.headwear || l.headwear);
+
+        /// <summary>
+        /// Every mark a picture shows is the person's, and a sided one on their side: a picture of a lost left eye stands for
+        /// someone who has lost their left eye (or whose side isn't told), never for someone who has lost only the right.
+        /// </summary>
+        public static bool ShowsMarks(PortraitRecord r, PortraitLook l)
         {
             foreach (var m in r.marks)
-                if (!l.marks.Contains(m))
-                    return false;
-            return !r.headwear || l.headwear;
+            {
+                if (!l.marks.Contains(m)) return false;
+                if (r.side == PortraitSide.None || !Sided(m)) continue;
+                var theirs = l.SidesOf(m);
+                if (theirs != PortraitSide.None && (theirs & r.side) == 0) return false;
+            }
+            return true;
+        }
+
+        /// <summary>
+        /// A picture's distance from a person in its parts, as the matcher counts them (<see cref="Distance"/> is their sum,
+        /// <see cref="Total"/>): the skin's colour, the hair's colour, the hair, the beard, the build, the clothes' age and kind,
+        /// the features, the marks, and the looks and work.
+        /// </summary>
+        public struct DistanceParts
+        {
+            public float skin, hairColour, hair, beard, build, era, dress, features, marks, looks;
+
+            /// <summary>The sum, in the matcher's order: what <see cref="Distance"/> gives, to the last bit.</summary>
+            public float Total
+            {
+                get
+                {
+                    float d = 0f;
+                    d += skin;
+                    d += hairColour;
+                    d += hair;
+                    d += beard;
+                    d += build;
+                    d += era;
+                    d += dress;
+                    d += features;
+                    d += marks;
+                    d += looks;
+                    return d;
+                }
+            }
         }
 
         /// <summary>
         /// How far a picture is from a person on their looks (the matcher's kind, sex, age and skin tone rules aside): the hair's
         /// colour most (<see cref="HairColourCost"/>), the skin's colour by its difference as the eye sees it (for every ten
-        /// points past the slack), the hair, beard, build and
-        /// clothes by their tables, the clothes' ages apart, each feature one has and the other hasn't, and each mark of the
-        /// person's the picture doesn't show.
+        /// points past the slack), the hair, beard, build and clothes by their tables, the clothes' ages apart, each feature
+        /// one has and the other hasn't, each mark of the person's the picture doesn't show, and their looks and work it
+        /// doesn't show (<see cref="LookCost"/>). The sum of <see cref="Parts"/>.
         /// </summary>
-        public static float Distance(PortraitLook l, PortraitRecord r)
+        public static float Distance(PortraitLook l, PortraitRecord r) => Parts(l, r).Total;
+
+        /// <summary>Each part of a picture's distance from a person (<see cref="Distance"/>), for the log and the window "About this picture".</summary>
+        public static DistanceParts Parts(PortraitLook l, PortraitRecord r)
         {
-            float d = 0f;
-            if (r.skinSet) d += SkinWeight * Math.Max(0f, SkinApart(l.skin, r.skin) - SkinSlack) / 10f;
+            var p = new DistanceParts();
+            if (r.skinSet) p.skin = SkinWeight * Math.Max(0f, SkinApart(l.skin, r.skin) - SkinSlack) / 10f;
             if (r.hairColourSet)
             {
                 float hc = HairColourCost(l.hairColour, r.hairColour);
                 // Bald on both: the colour hardly shows (a beard's, the brows').
-                d += l.hair == PortraitHairStyle.Bald && r.hair == PortraitHairStyle.Bald ? hc * 0.5f : hc;
+                p.hairColour = l.hair == PortraitHairStyle.Bald && r.hair == PortraitHairStyle.Bald ? hc * 0.5f : hc;
             }
-            d += HairWeight * HairApart[(int)l.hair, (int)r.hair];
-            d += BeardWeight * BeardApart[(int)l.beard, (int)r.beard];
-            d += BuildWeight * BuildApart[(int)l.build, (int)r.build];
-            if (l.era != PortraitEra.Unknown && r.era != PortraitEra.Unknown) d += EraWeight * Math.Abs((int)l.era - (int)r.era);
-            d += DressWeight * DressApartOf(l.dress, r.dress);
+            p.hair = HairWeight * HairApart[(int)l.hair, (int)r.hair];
+            p.beard = BeardWeight * BeardApart[(int)l.beard, (int)r.beard];
+            p.build = BuildWeight * BuildApart[(int)l.build, (int)r.build];
+            if (l.era != PortraitEra.Unknown && r.era != PortraitEra.Unknown) p.era = EraWeight * Math.Abs((int)l.era - (int)r.era);
+            p.dress = DressWeight * DressApartOf(l.dress, r.dress);
             foreach (var f in l.features)
                 if (!r.features.Contains(f))
-                    d += FeatureCost;
+                    p.features += FeatureCost;
             foreach (var f in r.features)
                 if (!l.features.Contains(f))
-                    d += FeatureCost;
+                    p.features += FeatureCost;
             foreach (var m in l.marks)
                 if (!r.marks.Contains(m))
-                    d += MarkCost;
-            d += LookCost(l, r);
-            return d;
+                    p.marks += MarkCost;
+            p.looks = LookCost(l, r);
+            return p;
+        }
+
+        /// <summary>
+        /// The matcher's hard rules for one picture and one person, each met or not (for the window "About this picture"):
+        /// their own kind, the sex, their own age band, the skin's tone, the marks (with their side), its looks and work theirs,
+        /// the same special looks, headwear only where they wear it.
+        /// </summary>
+        public struct HardRules
+        {
+            public bool kind, sex, age, skin, marks, looks, specials, headwear;
+
+            /// <summary>Every rule met: the picture may stand for them as a new pick.</summary>
+            public bool All => kind && sex && age && skin && marks && looks && specials && headwear;
+        }
+
+        public static HardRules Rules(PortraitRecord r, PortraitLook l)
+        {
+            var h = new HardRules();
+            if (r == null || l == null) return h;
+            h.kind = OwnKind(r, l);
+            h.sex = SexAgrees(l.sex, r.sex);
+            h.age = AgeMayStand(l.age, r.age);
+            h.skin = SkinFits(r, l);
+            h.marks = ShowsMarks(r, l);
+            h.specials = SpecialsAgree(r, l);
+            bool looks = r.role.Length == 0 || r.role == l.role;
+            foreach (var w in r.looks)
+                if (!l.looks.Contains(w))
+                    looks = false;
+            h.looks = looks;
+            h.headwear = !r.headwear || l.headwear;
+            return h;
+        }
+
+        /// <summary>
+        /// Whether a picture someone keeps still may stand for them after its record was corrected in the game: a picture pinned
+        /// to them by its stage and special looks (<see cref="PinFits"/>, <see cref="SpecialsAgree"/>), any other by every hard
+        /// rule of a new pick (<see cref="Rules"/>). Where it no longer does, they are picked again by the usual rules.
+        /// </summary>
+        public static bool StillFits(PortraitRecord r, PortraitLook l) => r != null && l != null && (r.Pinned ? PinFits(r, l) && SpecialsAgree(r, l) : Rules(r, l).All);
+
+        /// <summary>
+        /// The version of a picture to show for a person now (the player, 23 November 2026: "if a pawn loses an eye ... a
+        /// one-eyed ... variant of this specific image"): of the picture (<paramref name="picture"/>) and its mark variants
+        /// (<paramref name="variants"/>), those that show only marks of theirs on their side (<see cref="ShowsMarks"/>); the one
+        /// showing the most of their marks; of equals, one with an eye patch for someone wearing one and without for anyone
+        /// else; then the picture itself; then by name. The picture itself where none fits, or nothing is known of them.
+        /// </summary>
+        public static int Version(PortraitLook l, IList<PortraitRecord> records, int picture, IList<int> variants)
+        {
+            if (l == null || records == null || picture < 0 || variants == null || variants.Count == 0) return picture;
+            int best = picture, bestShown = -1;
+            bool bestPatch = false;
+            void Try(int i)
+            {
+                var r = records[i];
+                if (i != picture && !ShowsMarks(r, l)) return;
+                int shown = 0;
+                foreach (var m in r.marks)
+                    if (l.marks.Contains(m))
+                        shown++;
+                bool patch = r.patch == l.eyePatch;
+                bool better = shown > bestShown || shown == bestShown && (patch && !bestPatch || patch == bestPatch && best != picture && (i == picture || string.CompareOrdinal(r.name, records[best].name) < 0));
+                if (!better) return;
+                best = i;
+                bestShown = shown;
+                bestPatch = patch;
+            }
+            Try(picture);
+            foreach (int i in variants)
+                if (i >= 0 && i < records.Count && i != picture)
+                    Try(i);
+            return best;
         }
 
         /// <summary>What a picture's hair colour costs for a person's (<see cref="HairColourWeight"/>): nothing within the slack, a little for a neighbouring shade, at most <see cref="HairColourMost"/>.</summary>

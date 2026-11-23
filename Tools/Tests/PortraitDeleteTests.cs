@@ -354,7 +354,7 @@ public static class PortraitDeleteTests
         C(del2.Contains("keeper.LetGoPicture(n)") && del2.Contains("PortraitSources.Forget(id)") && del2.Contains("FaceEngine.ClearStaged()"),
             "in the game: its holders picked again, their pictures and the large portrait made again");
         C(folder.Contains("public static int Forget(ICollection<string> names)") && folder.Contains("PortraitStore.LetGo(f);") && folder.Contains("if (n > 0) Version++;")
-          && folder.Contains("if (PortraitDelete.Running)"),
+          && folder.Contains("if (PortraitDelete.Running || PortraitCorrect.Running)"),
             "the folder's records dropped without reading it again, their textures let go; never read while a deletion is written");
         C(store.Contains("public static void LetGo(PictureFile f)") && store.Contains("if (f == null || f.gone) return null;") && Regex.Matches(store, @"if \(f\.gone\)").Count >= 3,
             "a deleted picture's texture let go, and one still being read let go when it comes");

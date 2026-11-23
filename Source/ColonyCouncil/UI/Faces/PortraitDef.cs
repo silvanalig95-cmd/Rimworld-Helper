@@ -63,6 +63,8 @@ namespace ColonyCouncil
         public List<string> features = new List<string>();
         /// <summary>lostEye, eyePatch, scar, burn, bionicEye, missingEar, artificialArm (an artificial arm or hand); a picture with a mark stands only for those who have it.</summary>
         public List<string> marks = new List<string>();
+        /// <summary>left or right, as seen from the person: the side its lost or bionic eye, eye patch, missing ear or artificial arm is on; empty for either.</summary>
+        public string side;
         /// <summary>The looks it shows, by their words (<see cref="PortraitLookDef.word"/>: drinker, pyromaniac, conjoinedTwins...); a special look's picture stands only for those who have it.</summary>
         public List<string> looks = new List<string>();
         /// <summary>The work it shows (scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer); empty for any.</summary>
@@ -71,9 +73,9 @@ namespace ColonyCouncil
         public string facing;
         /// <summary>The face this picture is a variant of (the same word on each variant); none: a face of its own.</summary>
         public string character;
-        /// <summary>base, or the variant's own word (lostEye, scarred, burned, older...); for an expression (<see cref="variantOf"/>) blink, smile, frown or pain.</summary>
+        /// <summary>base, or the variant's own word (lostEye, scarred, burned, older...); for a version of a picture (<see cref="variantOf"/>) an expression (blink, smile, frown, pain) or a mark variant (lostEyeLeft, scar, artificialArmRight ...).</summary>
         public string variant;
-        /// <summary>The picture (its def's name) this one is an expression of: the same picture with the eyes closed, a smile, a frown or in pain, shown only on the large portrait (phase 6).</summary>
+        /// <summary>The picture (its def's name) this one is a version of: an expression (the same picture with the eyes closed, a smile, a frown or in pain, shown only on the large portrait), or a mark variant (the same picture with a mark, shown instead of it for whoever holds it and has the mark).</summary>
         public string variantOf;
         /// <summary>Where the head is (its middle across and down, its height with the hair, as shares of the picture), where it isn't measured from the cut-out's shape as it should be.</summary>
         public float headX = float.NaN, headY = float.NaN, headSize = float.NaN;
@@ -142,6 +144,7 @@ namespace ColonyCouncil
                 case "variant": return variant;
                 case "variantOf": return variantOf;
                 case "role": return role;
+                case "side": return side;
                 default: return null;
             }
         }

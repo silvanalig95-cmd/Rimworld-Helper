@@ -105,8 +105,12 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             base.ExposeData();
-            // Saving the game writes the library folder's missing list too (on a worker thread).
-            if (Scribe.mode == LoadSaveMode.Saving) PortraitNeeds.Write();
+            // Saving the game writes the library folder's missing list and the variants it wants too (on a worker thread).
+            if (Scribe.mode == LoadSaveMode.Saving)
+            {
+                PortraitNeeds.Write();
+                PortraitVariants.Write();
+            }
             Scribe_Collections.Look(ref kept, "kept", LookMode.Deep);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
@@ -224,17 +228,35 @@ namespace ColonyCouncil
             foreach (var k in kept)
             {
                 if (k.picture != picture) continue;
-                Use(k.character, -1);
-                k.picture = "";
-                k.character = "";
-                k.pinned = false;
-                k.byHand = false;
-                // Not the library now: picked again when next shown (PortraitLibraryMath.PickAgain).
-                k.library = 0;
+                Free(k);
                 ids.Add(k.id);
             }
             if (ids.Count > 0) Version++;
             return ids;
+        }
+
+        /// <summary>
+        /// One person's picture let go (its record was corrected in the game and no longer fits them): they keep no picture and
+        /// no face now and get a new pick by the usual rules the next time they are shown; whether they are one of the
+        /// colony's own stays.
+        /// </summary>
+        public void LetGo(int id)
+        {
+            var k = Get(id);
+            if (k == null || k.picture.NullOrEmpty()) return;
+            Free(k);
+            Version++;
+        }
+
+        private void Free(KeptPortrait k)
+        {
+            Use(k.character, -1);
+            k.picture = "";
+            k.character = "";
+            k.pinned = false;
+            k.byHand = false;
+            // Not the library now: picked again when next shown (PortraitLibraryMath.PickAgain).
+            k.library = 0;
         }
 
         /// <summary>Everyone's faces let go (the dev action to pick everyone's again).</summary>

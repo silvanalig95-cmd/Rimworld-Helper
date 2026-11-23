@@ -54,7 +54,8 @@ namespace ColonyCouncil
                 if (pic?.file != null && !pic.name.NullOrEmpty())
                 {
                     string label = "CC_Portrait_Delete".Translate().Resolve();
-                    string name = pic.name;
+                    // The picture itself where one of its mark variants shows (a variant alone is deleted from "About this picture").
+                    string name = PortraitCorrect.RootOf(pic.name)?.record.name ?? pic.name;
                     string why = WhyNot(PortraitFolder.PersonNamed(name) != null, "CC_Portrait_DeleteFromMod");
                     options.Add(why == null ? new FloatMenuOption(label, () => ConfirmPicture(p, name)) : new FloatMenuOption(label + " (" + why + ")", null));
                 }
@@ -77,6 +78,7 @@ namespace ColonyCouncil
         {
             string key = !fromFolder ? modKey
                 : Running ? "CC_Portrait_DeleteBusy"
+                : PortraitCorrect.Running ? "CC_Portrait_CorrectBusy"
                 : PortraitFolder.Reading ? "CC_Portrait_DeleteReading"
                 : Mode == PortraitDeleteMode.Bin && PortraitDeleteMath.BinRoot(PortraitFolder.Folder) == null ? "CC_Portrait_DeleteNoBin"
                 : null;
@@ -93,17 +95,48 @@ namespace ColonyCouncil
                 Gone(name);
                 return;
             }
-            int expressions = PortraitFolder.People.Count(x => x.record.variantOf == name);
+            int expressions = PortraitFolder.People.Count(x => x.record.variantOf == name && x.record.IsExpression);
+            int marked = PortraitFolder.People.Count(x => x.record.variantOf == name && x.record.IsMarkVariant);
             var holders = NamesOf(PortraitKeeper.Instance?.HoldersOfPicture(name) ?? new List<int>(), shown);
             var text = new StringBuilder();
             text.Append("CC_Portrait_DeleteWhat".Translate(FileShown(fp.texPath).Named("FILE")).Resolve());
             if (expressions == 1) text.Append(' ').Append("CC_Portrait_DeleteWhatExpression".Translate().Resolve());
             else if (expressions > 1) text.Append(' ').Append("CC_Portrait_DeleteWhatExpressions".Translate(expressions.Named("COUNT")).Resolve());
+            if (marked > 0) text.Append(' ').Append("CC_Portrait_DeleteWhatVariants".Translate(marked.Named("COUNT")).Resolve());
             text.Append("\n\n").Append(holders.Count > 0
                 ? "CC_Portrait_DeleteHeld".Translate(Listed(holders).Named("NAMES")).Resolve()
                 : "CC_Portrait_DeleteHeldNone".Translate().Resolve());
             Ending(text, fp.texPath);
             Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(text.ToString(), () => StartPicture(name), true, "CC_Portrait_DeleteTitle".Translate().Resolve()));
+        }
+
+        /// <summary>
+        /// "Delete this variant for good..." from the window "About this picture": a version of a picture (an expression or a
+        /// mark variant, with its own expressions), the picture itself kept; the same dialog, worker, deleted.csv line and bin.
+        /// </summary>
+        public static void ConfirmVersion(string name)
+        {
+            var fp = PortraitFolder.RecordNamed(name);
+            if (fp == null || fp.record.variantOf.Length == 0)
+            {
+                Gone(name);
+                return;
+            }
+            string why = WhyNot(true, "CC_Portrait_DeleteFromMod");
+            if (why != null)
+            {
+                Messages.Message(why.CapitalizeFirst(), MessageTypeDefOf.RejectInput, false);
+                return;
+            }
+            var of = PortraitFolder.RecordNamed(fp.record.variantOf);
+            int own = PortraitFolder.People.Count(x => x.record.variantOf == name);
+            var text = new StringBuilder();
+            text.Append("CC_Portrait_DeleteVariantWhat".Translate(FileShown(fp.texPath).Named("FILE"), FileShown(of?.texPath ?? fp.record.variantOf).Named("PICTURE")).Resolve());
+            if (own == 1) text.Append(' ').Append("CC_Portrait_DeleteWhatExpression".Translate().Resolve());
+            else if (own > 1) text.Append(' ').Append("CC_Portrait_DeleteWhatExpressions".Translate(own.Named("COUNT")).Resolve());
+            text.Append("\n\n").Append("CC_Portrait_DeleteVariantShown".Translate().Resolve());
+            Ending(text, fp.texPath);
+            Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation(text.ToString(), () => StartPicture(name), true, "CC_Portrait_DeleteVariantTitle".Translate().Resolve()));
         }
 
         private static void ConfirmBackdrop(Pawn shown, string name)
@@ -139,16 +172,19 @@ namespace ColonyCouncil
 
         private static void StartPicture(string name)
         {
-            var fp = PortraitFolder.PersonNamed(name);
-            if (fp == null || Running || PortraitFolder.Reading)
+            var fp = PortraitFolder.RecordNamed(name);
+            if (fp == null || Running || PortraitFolder.Reading || PortraitCorrect.Running)
             {
                 Gone(name);
                 return;
             }
             var job = NewJob(fp.texPath, false);
             if (job == null) return;
+            job.variant = fp.record.variantOf.Length > 0;
+            // Its versions go with it: its expressions and mark variants, and a variant's own expressions.
             job.records = PortraitDeleteMath.RecordsOf(name, PortraitFolder.People.Select(x => new KeyValuePair<string, string>(x.record.name, x.record.variantOf)));
-            job.named.AddRange(PortraitFolder.People.Where(x => x.record.variantOf == name).Select(x => x.texPath));
+            job.named.AddRange(PortraitFolder.People.Where(x => x.record.name != name && job.records.Contains(x.record.name)).Select(x => x.texPath));
+            job.marked = PortraitFolder.People.Any(x => x.record.name != name && job.records.Contains(x.record.name) && x.record.IsMarkVariant);
             job.line.record = name;
             Keep(job);
             Start(job);
@@ -250,6 +286,7 @@ namespace ColonyCouncil
                     foreach (var n in job.records)
                         ids.AddRange(keeper.LetGoPicture(n));
                 PortraitFolder.Forget(job.records);
+                PortraitFolder.NoteDeleted(job.texPath);
                 foreach (int id in ids) PortraitSources.Forget(id);
                 FaceEngine.ClearStaged();
             }
@@ -258,10 +295,10 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("portraits: a picture deleted for good, in the game", e);
             }
             var text = new StringBuilder();
-            text.Append((job.backdrop ? "CC_Portrait_DeletedBackdrop" : "CC_Portrait_Deleted").Translate(file.Named("FILE")).Resolve());
+            text.Append((job.backdrop ? "CC_Portrait_DeletedBackdrop" : job.variant ? "CC_Portrait_DeletedVariant" : "CC_Portrait_Deleted").Translate(file.Named("FILE")).Resolve());
             int extras = r.files.Count(f => !string.Equals(f, PortraitFolderMath.FileKey(job.texPath), StringComparison.OrdinalIgnoreCase));
             if (extras > 0)
-                text.Append(' ').Append((job.backdrop ? "CC_Portrait_DeletedDepth" : extras == 1 ? "CC_Portrait_DeletedExpression" : "CC_Portrait_DeletedExpressions")
+                text.Append(' ').Append((job.backdrop ? "CC_Portrait_DeletedDepth" : job.marked ? "CC_Portrait_DeletedVersions" : extras == 1 ? "CC_Portrait_DeletedExpression" : "CC_Portrait_DeletedExpressions")
                     .Translate(extras.Named("COUNT")).Resolve());
             if (r.files.Count > 0)
                 text.Append(' ').Append(job.bin != null ? "CC_Portrait_DeletedToBin".Translate(BinShown(job.texPath).Named("BIN")).Resolve() : "CC_Portrait_DeletedFiles".Translate().Resolve());
