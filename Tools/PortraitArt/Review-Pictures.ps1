@@ -17,7 +17,12 @@
 # or long ears, horns, a tail, glowing eyes, scales or fur): it keeps the picture and writes what the model saw into its
 # description instead (features add:pointedEars ...), so it still goes to people of its kind, those who have what it
 # shows first. Each choice is written to corrections.csv at once (close it in Excel first), every other line as it was.
-# Lines set in the game are never touched.
+# Lines set in the game are never touched. Two buttons above the pictures do it for many at once (the player, 23
+# November 2026: "could I have the option for mass "keep as the model saw it" and also mass "import" for all with
+# cutoff borders? as most of them still look very good and i can still delete them in the game after"): Keep all cut at
+# the side (every "cut at the side" reason marked no) and Keep all as the model saw it (every reason about the body
+# marked no, what the model saw written into the description). Each clears only its own kind of reason, so a picture also
+# out for something else (two people, limbs that don't make sense, no one in it) stays out for that.
 # When you are done, press Done on the page: the script asks whether to run Update-PortraitLibrary.ps1, which puts the
 # choices into the records; then "Reload the library" in the game.
 
@@ -148,6 +153,8 @@ function Seen-Of([string] $why) {
     return @()
 }
 
+function Is-SideCut([string] $why) { return (Low $why).StartsWith('cut at the side') }
+
 function Seen-Words([string] $value) {
     # "add:pointedEars" in words: "adds pointed ears".
     $m = [regex]::Match($value, '^(add|remove):(\w+)$')
@@ -271,6 +278,8 @@ function Items-Json {
             [void]$list.Add([ordered]@{
                 key = $key; picture = $e.picture; state = $state; reasons = $why
                 fix = @($seen | ForEach-Object { Seen-Words $_ }); asSeen = @($asSeen | ForEach-Object { Seen-Words $_ })
+                sideOpen = (@($e.lines | Where-Object { $_.apply -ne 'no' -and (Is-SideCut $_.why) }).Count -gt 0)
+                bodyOpen = (@($e.lines | Where-Object { $_.apply -ne 'no' -and (Seen-Of $_.why).Count -gt 0 }).Count -gt 0)
                 what = $(if ($rep -ne $null) { $rep.what } else { '' }); seen = $(if ($rep -ne $null) { $rep.seen } else { '' })
                 says = $(if ($rep -ne $null) { $rep.says } else { '' }); file = ((File-Of $e.picture) -ne $null)
             })
@@ -310,6 +319,39 @@ function Decide([string] $key, [string] $how) {
     return (ConvertTo-Json -InputObject ([ordered]@{ key = $key; state = $state; asSeen = $asSeen }) -Compress)
 }
 
+function Mass([string] $what) {
+    # Every picture's out lines of one kind marked no at once: "side", the pictures cut at the side; "seen", the reasons
+    # about the body, with what the model saw written into the description. Returns how many pictures it changed, how
+    # many of them are kept now, and how many are still out for another reason.
+    $csv = Read-Lines
+    if ($csv -eq $null) { throw 'corrections.csv is not there.' }
+    $by = Out-Lines $csv
+    $pics = 0; $kept = 0; $still = 0
+    foreach ($key in @($by.Keys)) {
+        $e = $by[$key]
+        if ($what -eq 'side') { $hit = @($e.lines | Where-Object { $_.apply -ne 'no' -and (Is-SideCut $_.why) }) }
+        else { $hit = @($e.lines | Where-Object { $_.apply -ne 'no' -and (Seen-Of $_.why).Count -gt 0 }) }
+        if ($hit.Count -eq 0) { continue }
+        $pics++
+        $numbers = @($hit | ForEach-Object { $_.n })
+        Change-Apply $csv $numbers 'no'
+        if ($what -eq 'seen') {
+            foreach ($v in @($hit | ForEach-Object { Seen-Of $_.why } | Select-Object -Unique)) {
+                $had = @($e.seen | Where-Object { (Low $_.value) -eq (Low $v) })
+                if ($had.Count -gt 0) { Change-Apply $csv @($had | ForEach-Object { $_.n }) 'yes' }
+                else { Add-Line $csv $e.picture 'features' $v 'yes' $SeenWhy }
+            }
+        }
+        $rest = @($e.lines | Where-Object { $_.apply -ne 'no' -and $numbers -notcontains $_.n })
+        if ($rest.Count -eq 0) { $kept++ } else { $still++ }
+    }
+    if ($pics -gt 0) { Save-Lines $csv }
+    $script:decided += $pics
+    $said = @{ side = 'kept (cut at the side)'; seen = 'kept as the model saw it' }[$what]
+    Write-Host ('{0} {1}; {2} of them still left out for another reason.' -f $(if ($pics -eq 1) { '1 picture' } else { "$pics pictures" }), $said, $still)
+    return (ConvertTo-Json -InputObject ([ordered]@{ pictures = $pics; kept = $kept; still = $still }) -Compress)
+}
+
 $Page = @'
 <!doctype html>
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -323,6 +365,11 @@ header h1 { font-size: 17px; margin: 0 12px 0 0; font-weight: 600; }
 .tabs button, .act, .done { background: var(--panel); color: var(--ink); border: 1px solid var(--edge); border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
 .tabs button.on { border-color: var(--accent); color: var(--accent); }
 .done { margin-left: auto; }
+#bulk { display: flex; gap: 8px; align-items: center; padding: 8px 16px; border-bottom: 1px solid var(--edge); flex-wrap: wrap; }
+#bulk .label { margin: 0 4px 0 0; }
+#bulk button { background: var(--panel); color: var(--good); border: 1px solid var(--good); border-radius: 6px; padding: 6px 12px; font: inherit; cursor: pointer; }
+#bulk button.seen { color: var(--accent); border-color: var(--accent); }
+#bulk button:disabled { color: var(--faint); border-color: var(--edge); cursor: default; }
 main { flex: 1; display: flex; min-height: 0; }
 #list { width: 240px; overflow-y: auto; border-right: 1px solid var(--edge); padding: 8px; display: grid; grid-template-columns: 1fr 1fr; gap: 6px; align-content: start; }
 #list .t { position: relative; aspect-ratio: 3 / 4; background: var(--panel); border: 2px solid transparent; border-radius: 6px; overflow: hidden; cursor: pointer; }
@@ -354,6 +401,7 @@ main { flex: 1; display: flex; min-height: 0; }
 </style></head>
 <body>
 <header><h1>Review pictures</h1><div class="tabs" id="tabs"></div><span id="status"></span><button class="done" id="done">Done</button></header>
+<div id="bulk"><span class="label">For many at once:</span><button id="massSide"></button><button id="massSeen" class="seen"></button></div>
 <main><div id="list"></div><div id="view"><div id="big"></div><div id="info"></div></div></main>
 <script>
 const NAMES = { held: 'Held back', unsure: 'Left out, less sure', out: 'Left out', kept: 'Kept' };
@@ -377,6 +425,11 @@ function draw() {
     b.onclick = () => { tab = s; at = 0; msg = ''; draw(); };
     tabs.appendChild(b);
   }
+  const nSide = items.filter(i => i.sideOpen).length, nSeen = items.filter(i => i.bodyOpen).length;
+  $('massSide').textContent = 'Keep all cut at the side (' + nSide + ')';
+  $('massSide').disabled = nSide === 0;
+  $('massSeen').textContent = 'Keep all as the model saw it (' + nSeen + ')';
+  $('massSeen').disabled = nSeen === 0;
   const list = $('list'); list.innerHTML = '';
   const xs = shown();
   if (at >= xs.length) at = Math.max(0, xs.length - 1);
@@ -443,6 +496,27 @@ document.addEventListener('keydown', e => {
   else if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { at = Math.min(at + 1, shown().length - 1); msg = ''; draw(); }
   else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { at = Math.max(at - 1, 0); msg = ''; draw(); }
 });
+async function mass(what) {
+  const n = items.filter(i => what === 'side' ? i.sideOpen : i.bodyOpen).length;
+  if (!n) return;
+  const ask = what === 'side'
+    ? 'Keep all ' + n + ' pictures that are out for being cut at the side?'
+    : 'Keep all ' + n + ' pictures that are out for their body (ears, horns, a tail, glowing eyes, scales or fur), each with what the model saw added to its description?';
+  if (!confirm(ask + '\n\nA picture also out for something else (two people, limbs that don\'t make sense) stays out for that. You can still change any one of them here, or delete it in the game.')) return;
+  try {
+    const r = await fetch('/mass', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ what: what }) });
+    const j = await r.json();
+    if (!r.ok) throw new Error(j.error || r.statusText);
+    items = await (await fetch('/items')).json();
+    at = 0; err = false;
+    const pics = n => n + (n === 1 ? ' picture' : ' pictures');
+    msg = 'Kept ' + pics(j.kept) + (what === 'side' ? ' cut at the side' : ' as the model saw ' + (j.kept === 1 ? 'it' : 'them'))
+      + (j.still ? '; ' + pics(j.still) + ' still left out for another reason.' : '.');
+  } catch (e) { err = true; msg = String(e.message || e); }
+  draw();
+}
+$('massSide').onclick = () => mass('side');
+$('massSeen').onclick = () => mass('seen');
 $('done').onclick = async () => {
   try { await fetch('/done', { method: 'POST' }); } catch (e) {}
   document.body.innerHTML = '<div class="empty">Done. Your choices are in corrections.csv; the window where Review-Pictures runs asks whether to put them into the records now. You can close this page.</div>';
@@ -524,6 +598,15 @@ try {
                 $how = [string]$body.how
                 if ($how -ne 'keep' -and $how -ne 'seen' -and $how -ne 'out') { throw 'no such choice: ' + $how }
                 try { Send-Text $ctx 200 'application/json; charset=utf-8' (Decide (Picture-Key ([string]$body.key)) $how) }
+                catch { Send-Text $ctx 409 'application/json; charset=utf-8' (Error-Json $_.Exception.Message) }
+            }
+            elseif ($path -eq '/mass' -and $ctx.Request.HttpMethod -eq 'POST') {
+                $reader = New-Object System.IO.StreamReader($ctx.Request.InputStream, [System.Text.Encoding]::UTF8)
+                $body = $reader.ReadToEnd() | ConvertFrom-Json
+                $reader.Close()
+                $what = [string]$body.what
+                if ($what -ne 'side' -and $what -ne 'seen') { throw 'no such choice: ' + $what }
+                try { Send-Text $ctx 200 'application/json; charset=utf-8' (Mass $what) }
                 catch { Send-Text $ctx 409 'application/json; charset=utf-8' (Error-Json $_.Exception.Message) }
             }
             elseif ($path -eq '/done' -and $ctx.Request.HttpMethod -eq 'POST') {

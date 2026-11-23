@@ -804,6 +804,15 @@ most sense." So, in this order, three builds at a time:
   makes every re-check meaningful; (3) optionally, for pictures checked again, a question that gives the model the
   row's own description: "the picture is meant to show: ... Does it? Name anything that clearly differs" (the player,
   earlier: the check "should really rely first on the data that is already provided kind of by the CSV files").
+- **Done (23 November 2026, the player's own request): keeping many at once on the review page.** The player: "could
+  I have the option for mass "keep as the model saw it" and also mass "import" for all with cutoff borders? as most of
+  them still look very good and i can still delete them in the game after". Built in `Review-Pictures.ps1`: a bar above
+  the pictures with Keep all cut at the side and Keep all as the model saw it, each with its count and a question
+  first (`/mass`, `Mass`): every "cut at the side" out line marked no; every out line about the body marked no with its
+  `features` line (why "kept as the model saw it (Review-Pictures)") yes. Each clears only its own kind of line, so a
+  picture also out for another reason stays out for that; the order doesn't matter. Tried in a browser on a mixed test
+  file. SETUP-ComfyUI.md step 10. This covers point (2) of the entry below in the player's way; point (1), side cuts
+  kept by default, still waits.
 - **To do when the player asks (23 November 2026; proposal sent, waiting for the go): pictures cut at the side kept
   unless the player leaves them out, and the review page sorted by reason.** The player, with a screenshot of the review
   page on its empty "Held back" tab while "Left out" held 211: "why can't i review none of the withhelf images? the

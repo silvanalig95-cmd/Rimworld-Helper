@@ -239,7 +239,11 @@ so no node pack is needed.
     fur), **Keep as the model saw it** (S) keeps it and writes what the model saw into its description instead
     (`features add:pointedEars` and the like, why "kept as the model saw it"): it still goes to people of its kind,
     those who have what it shows first (a feature only makes a picture closer or further, never shuts it away). Each
-    choice is written to `corrections.csv` at once (close it in Excel first). The tabs: Held back, Left out where the check was
+    choice is written to `corrections.csv` at once (close it in Excel first). **For many at once**, the bar above the
+    pictures (the player: "could I have the option for mass "keep as the model saw it" and also mass "import" for all
+    with cutoff borders?"): **Keep all cut at the side** and **Keep all as the model saw it**, each with its count and a
+    question first. Each clears only its own kind of reason, so a picture also out for something else (two people,
+    limbs that don't make sense) stays out for that; the order doesn't matter. The tabs: Held back, Left out where the check was
     less sure (cut at the side, no one in it, a body its kind lacks), Left out, Kept; a choice can be changed there
     later. Press **Done** on the page when you are finished: the window asks whether to run Update-PortraitLibrary
     now. This is not in the game: a held picture isn't in the records, so the game never sees it.
