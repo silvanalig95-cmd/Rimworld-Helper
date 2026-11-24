@@ -39,6 +39,9 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **The characters' fourth round (24 November 2026):** new lists `characters-17` to `20` (800 rows, the people columns
+  as before) from `plan_batches.py --phases characters4` (`round4_list`, `round4_wants`, `ROUND4_*`; `round3_list` now
+  ends at `characters-16`). The likeliest colonists, mostly broad. Nothing to change in the Studio.
 - **The creatures' variety round (24 November 2026):** new lists `creatures-05` to `08` (542 rows, the same columns and
   style as `creatures-01` to `04`): more pictures of the same 208 creatures in new poses. `plan_creatures.py --variety N`
   makes such a round. Nothing to change in the Studio: the lists are like the others.

@@ -132,6 +132,19 @@ half are broad, and a few of the common kinds' rows have a role. All nine lists 
 some of them still gives every kind its share. Not in them: the Forgotten Realms and Profaned xenotypes, whose mods are
 subscribed but not enabled.
 
+`characters-17` to `20` are the fourth round (800 rows, one picture each; `--phases characters4`; the player, 24 November
+2026: "another batch of colonists ... covering all the likeliest scenarios, you know, baseliners mostly, and just images
+that are not super specific ... in the sense that they limit to how many pawns can use them ... while still having some
+special cases ... But they should still have some characteristic and things that make them individual"). The likeliest
+colonists: 60% baseliners, the rest the 23 kinds a colony is likeliest to have (weight 0.25 or more), by their weight
+squared (`round4_wants`). Each row goes to the sex and age band where its kind has the fewest pictures against how common
+the band truly is (so nearly all young, adult and middle-aged), then to the skin with the fewest there. About 86% are
+broad in the game's sense: no role, look or mark, so anyone of the kind, sex, age and skin can get them, and each face
+still has one to three details of its own (a crooked nose, freckles, jug ears, a heavy brow) written in the row, which
+the game never holds a person to; most of them the milder kind. The rest are special cases: a role (7%), one of the
+commonest ordinary looks (3%) or a mark such as a scar or a lost eye (4%), recorded so the game gives them only to
+people who have them. Clothes lean to tribal and medieval dress (`ROUND4_*` in `plan_batches.py`).
+
 ## The creature catalogue and lists
 
 `creatures.csv` (the player, 23 November 2026: "also please create lists for animals and creatures and implement image

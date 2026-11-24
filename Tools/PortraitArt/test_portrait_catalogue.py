@@ -352,7 +352,10 @@ class Characters(Tmp):
             third = any(P.round3_list(os.path.splitext(os.path.basename(f))[0]) for f in self.lists_seen)
             if third and k.kind != 'Baseliner':
                 self.assertGreaterEqual(by[k.kind], P.round3_floor(k), k.kind)
-            most = lambda n: max(n + P.ROUND3_LEAST, P.round3_floor(k)) if third else n
+            # the fourth round (characters-17 on) adds the likeliest kinds' people on top (round4_wants)
+            fourth = P.round4_wants(list(kinds.values())).get(k.kind, 0) if any(
+                P.round4_list(os.path.splitext(os.path.basename(f))[0]) for f in self.lists_seen) else 0
+            most = lambda n: (max(n + P.ROUND3_LEAST, P.round3_floor(k)) if third else n) + fourth
             if k.wave == 5:
                 self.assertTrue(2 <= plain[k.kind] <= most(4), (k.kind, plain[k.kind]))
             if k.wave == 4:     # the second round adds a young and an adult one of each sex (and skin) where missing
@@ -368,6 +371,45 @@ class Characters(Tmp):
         self.assertGreaterEqual(len({r['age'] for r in first}), 4)
         self.assertEqual({r['sex'] for r in first}, {'male', 'female'})
         self.assertEqual({kinds[r['race'] or r['kind']].wave for r in rows[:100]}, {1, 2, 3, 4, 5})
+
+    def test_characters_fourth_round(self):
+        # The fourth round (the player, 24 November 2026: "another batch of colonists ... the likeliest scenarios ...
+        # baseliners mostly ... not super specific ... most of them should be kind of broad ... while still having some
+        # special cases ... But they should still have some characteristic"): planned from the first three rounds' lists,
+        # it comes out as the committed characters-17 on, and again adds nothing.
+        # every list as it was before the round (a row's number counts every list's names)
+        for p in glob.glob(os.path.join(P.BATCHES, '*.csv')):
+            if not P.round4_list(os.path.splitext(os.path.basename(p))[0]):
+                shutil.copy(p, self.batches)
+        planner, files, text, bad = self.run_plan(phases=['characters4'], max_rows=5000)
+        self.assertEqual(bad, [])
+        self.assertEqual({p for p, _, _ in planner.rows}, {P.CHARACTERS4})
+        names = [os.path.basename(f) for f, _ in files]
+        self.assertTrue(names and all(P.round4_list(os.path.splitext(n)[0]) for n in names), names)
+        rows = [r for _, _, r in planner.rows]
+        self.assertEqual(len(rows), P.ROUND4_TOTAL)
+        committed = [r['name'] for f, r in rows_of(P.BATCHES, 'characters-*.csv') if P.round4_list(os.path.splitext(f)[0])]
+        self.assertEqual(sorted(committed), sorted(r['name'] for r in rows))
+        kinds = P.load(P.CATALOGUE)[0]
+        by = collections.Counter(r['race'] or r['kind'] for r in rows)
+        self.assertTrue(0.55 <= by['Baseliner'] / len(rows) <= 0.65, by['Baseliner'])
+        # only the kinds a colony is likeliest to have
+        self.assertTrue(all(kinds[k].weight >= P.ROUND4_LEAST_WEIGHT for k in by if k != 'Baseliner'), by)
+        # grown-ups of the likely ages most
+        ages = collections.Counter(r['age'] for r in rows)
+        self.assertGreater(ages['young'] + ages['adult'] + ages['middle'], 0.9 * len(rows), ages)
+        # every face with one to three details of its own; most of the people broad: no role, look or mark of their own
+        for r in rows:
+            faces = P.faces_of(r['subject'])
+            self.assertTrue(faces and 1 <= len(faces[0][1]) <= 3, r['name'])
+        k_of = lambda r: kinds[r['race'] or r['kind']]
+        special = [r for r in rows if r['role'] or r['marks'] or [lk for lk in P.split(r['looks']) if lk not in k_of(r).always]]
+        self.assertTrue(0.08 * len(rows) <= len(special) <= 0.2 * len(rows), len(special))
+        self.assertEqual(len({r['name'] for r in rows}), len(rows))
+        # the third round's lists stay the third round's
+        self.assertTrue(P.round3_list('characters-16') and not P.round3_list('characters-17') and P.round4_list('characters-17'))
+        planner, files, _, _ = self.run_plan(phases=['characters4'], max_rows=5000)
+        self.assertEqual((planner.rows, files), ([], []))
 
     def test_characters_phase(self):
         planner, files, text, bad = self.run_plan(phases=['characters'], max_rows=5000)

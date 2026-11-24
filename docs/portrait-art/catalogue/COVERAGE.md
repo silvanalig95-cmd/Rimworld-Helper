@@ -4,16 +4,16 @@ Written by `Tools/PortraitArt/plan_batches.py` (do not edit by hand). "Pictures"
 records.xml the planner was given; "listed" are rows in the batch lists, made or not; a gap is a cell with
 neither. Cells: every sex and age band a kind comes in (plain pictures), its common roles, and the looks.
 
-Library pictures read: 0. Rows in the batch lists before this run: 2014 (with at least one picture: 0). Rows written by this run: 1632.
+Library pictures read: 0. Rows in the batch lists before this run: 4938 (with at least one picture: 0). Rows written by this run: 800.
 
 ## By wave
 
 | wave | kinds | plain cells covered (sex and age) | with a picture | plain rows | role rows | look rows |
 |---|---|---|---|---|---|---|
-| 1 | 2 | 36 of 36 | 0 | 1566 | 166 | 306 |
-| 2 | 6 | 108 of 108 | 0 | 463 | 15 | 12 |
-| 3 | 6 | 59 of 108 | 0 | 136 | 0 | 0 |
-| 4 | 13 | 107 of 225 | 0 | 212 | 0 | 0 |
+| 1 | 2 | 36 of 36 | 0 | 2023 | 226 | 321 |
+| 2 | 6 | 108 of 108 | 0 | 573 | 78 | 19 |
+| 3 | 6 | 59 of 108 | 0 | 225 | 0 | 0 |
+| 4 | 13 | 107 of 225 | 0 | 275 | 0 | 0 |
 | 5 | 54 | 416 of 921 | 0 | 784 | 0 | 0 |
 
 ## Gaps: kinds with ages that have no picture and no row yet
@@ -96,30 +96,30 @@ Library pictures read: 0. Rows in the batch lists before this run: 2014 (with at
 
 | wave | kind | weight | save | plain cells | plain pictures | plain rows | role cells | role rows | look rows |
 |---|---|---|---|---|---|---|---|---|---|
-| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 1441 | 54 of 54 | 146 | 230 |
-| 1 | dark elf | 0.74 | 48 | 18 of 18 | 0 | 125 | 12 of 12 | 20 | 76 |
-| 2 | hussar | 0.57 | 19 | 18 of 18 | 0 | 90 | 2 of 42 | 3 | 2 |
-| 2 | impid | 0.57 | 12 | 18 of 18 | 0 | 72 | 2 of 42 | 2 | 2 |
-| 2 | neanderthal | 0.57 | 12 | 18 of 18 | 0 | 90 | 4 of 42 | 4 | 2 |
-| 2 | pigskin | 0.52 | 8 | 18 of 18 | 0 | 94 | 2 of 36 | 2 | 2 |
-| 2 | saurid | 0.52 | 8 | 18 of 18 | 0 | 75 | 2 of 36 | 2 | 2 |
-| 2 | waster | 0.52 | 8 | 18 of 18 | 0 | 42 | 2 of 30 | 2 | 2 |
-| 3 | high elf | 0.47 | 5 | 9 of 18 | 0 | 21 | - | 0 | 0 |
-| 3 | genie | 0.46 | 10 | 8 of 18 | 0 | 26 | - | 0 | 0 |
-| 3 | starjack | 0.45 | 7 | 10 of 18 | 0 | 14 | - | 0 | 0 |
-| 3 | yttakin | 0.45 | 4 | 12 of 18 | 0 | 27 | - | 0 | 0 |
-| 3 | sanguophage | 0.43 | 8 | 11 of 18 | 0 | 27 | - | 0 | 0 |
-| 3 | wood elf | 0.42 | 3 | 9 of 18 | 0 | 21 | - | 0 | 0 |
-| 4 | awakened bonobo | 0.32 | 2 | 8 of 18 | 0 | 12 | - | 0 | 0 |
-| 4 | awakened gorilla | 0.32 | 2 | 9 of 18 | 0 | 12 | - | 0 | 0 |
-| 4 | stoneborn | 0.32 | 2 | 8 of 18 | 0 | 20 | - | 0 | 0 |
-| 4 | avaloi | 0.31 | 4 | 8 of 18 | 0 | 20 | - | 0 | 0 |
-| 4 | lesser fairy | 0.30 | 4 | 5 of 9 | 0 | 12 | - | 0 | 0 |
-| 4 | awakened chimpanzee | 0.27 | 1 | 9 of 18 | 0 | 12 | - | 0 | 0 |
-| 4 | dirtmole | 0.26 | 2 | 9 of 18 | 0 | 12 | - | 0 | 0 |
-| 4 | drakonori | 0.25 | 2 | 8 of 18 | 0 | 16 | - | 0 | 0 |
-| 4 | taukai | 0.25 | 2 | 8 of 18 | 0 | 20 | - | 0 | 0 |
-| 4 | boarskin | 0.25 | 2 | 10 of 18 | 0 | 20 | - | 0 | 0 |
+| 1 | baseliner | 1.00 | 221 | 18 of 18 | 0 | 1863 | 54 of 54 | 193 | 245 |
+| 1 | dark elf | 0.74 | 48 | 18 of 18 | 0 | 160 | 12 of 12 | 33 | 76 |
+| 2 | hussar | 0.57 | 19 | 18 of 18 | 0 | 111 | 5 of 42 | 14 | 2 |
+| 2 | impid | 0.57 | 12 | 18 of 18 | 0 | 95 | 9 of 42 | 11 | 2 |
+| 2 | neanderthal | 0.57 | 12 | 18 of 18 | 0 | 110 | 6 of 42 | 14 | 4 |
+| 2 | pigskin | 0.52 | 8 | 18 of 18 | 0 | 112 | 4 of 36 | 12 | 2 |
+| 2 | saurid | 0.52 | 8 | 18 of 18 | 0 | 89 | 6 of 36 | 14 | 4 |
+| 2 | waster | 0.52 | 8 | 18 of 18 | 0 | 56 | 5 of 30 | 13 | 5 |
+| 3 | high elf | 0.47 | 5 | 9 of 18 | 0 | 37 | - | 0 | 0 |
+| 3 | genie | 0.46 | 10 | 8 of 18 | 0 | 42 | - | 0 | 0 |
+| 3 | starjack | 0.45 | 7 | 10 of 18 | 0 | 29 | - | 0 | 0 |
+| 3 | yttakin | 0.45 | 4 | 12 of 18 | 0 | 42 | - | 0 | 0 |
+| 3 | sanguophage | 0.43 | 8 | 11 of 18 | 0 | 41 | - | 0 | 0 |
+| 3 | wood elf | 0.42 | 3 | 9 of 18 | 0 | 34 | - | 0 | 0 |
+| 4 | awakened bonobo | 0.32 | 2 | 8 of 18 | 0 | 20 | - | 0 | 0 |
+| 4 | awakened gorilla | 0.32 | 2 | 9 of 18 | 0 | 20 | - | 0 | 0 |
+| 4 | stoneborn | 0.32 | 2 | 8 of 18 | 0 | 28 | - | 0 | 0 |
+| 4 | avaloi | 0.31 | 4 | 8 of 18 | 0 | 27 | - | 0 | 0 |
+| 4 | lesser fairy | 0.30 | 4 | 5 of 9 | 0 | 19 | - | 0 | 0 |
+| 4 | awakened chimpanzee | 0.27 | 1 | 9 of 18 | 0 | 17 | - | 0 | 0 |
+| 4 | dirtmole | 0.26 | 2 | 9 of 18 | 0 | 17 | - | 0 | 0 |
+| 4 | drakonori | 0.25 | 2 | 8 of 18 | 0 | 21 | - | 0 | 0 |
+| 4 | taukai | 0.25 | 2 | 8 of 18 | 0 | 25 | - | 0 | 0 |
+| 4 | boarskin | 0.25 | 2 | 10 of 18 | 0 | 25 | - | 0 | 0 |
 | 4 | coastal merren | 0.24 | 1 | 9 of 18 | 0 | 20 | - | 0 | 0 |
 | 4 | gauranlenkin | 0.23 | 2 | 8 of 18 | 0 | 16 | - | 0 | 0 |
 | 4 | creepjoiner | 0.21 | 1 | 8 of 18 | 0 | 20 | - | 0 | 0 |
@@ -186,15 +186,15 @@ The characters lists (`characters-NN`, `plan_batches.py --phases characters`): d
 
 | wave | kinds | with characters | plain rows | role rows | look rows |
 |---|---|---|---|---|---|
-| 1 | 2 | 2 | 1415 | 100 | 26 |
-| 2 | 6 | 6 | 204 | 15 | 12 |
-| 3 | 6 | 6 | 136 | 0 | 0 |
-| 4 | 13 | 13 | 212 | 0 | 0 |
+| 1 | 2 | 2 | 1872 | 144 | 41 |
+| 2 | 6 | 6 | 314 | 30 | 19 |
+| 3 | 6 | 6 | 225 | 0 | 0 |
+| 4 | 13 | 13 | 275 | 0 | 0 |
 | 5 | 54 | 54 | 784 | 0 | 0 |
 
 ## Looks
 
-Rows listed per look (all kinds): gloomy 8, drinker 6, kind 6, psycaster 6, wimp 6, blind 5, cheerful 5, gourmand 5, idle 5, ironWilled 5, runner 5, sharp 5, stooped 5, tough 5, ugly 5, abrasive 4, ascetic 4, awokenCorpse 4, beautiful 4, bigBoned 4, brawler 4, ghoul 4, greedy 4, lich 4, neat 4, nervous 4, nudist 4, pallid 4, psychopath 4, shambler 4, sleepless 4, tentacleArm 4, toiler 4, undead 4, warcasket 4, addict 3, apothecary 3, bloodMage 3, bloodlust 3, chronomancer 3, hideous 3, rebel 3, shadow 3, slob 3, succubus 3, superSoldier 3, technomancer 3, tortured 3, vengeful 3, arcanist 2, archotechArm 2, archotechEye 2, armBlade 2, artificialNose 2, bardMage 2, bionicArm 2, bionicEar 2, bionicJaw 2, bladedancer 2, blindfold 2, brightmage 2, cannibal 2, cataract 2, chaosMage 2, commander 2, creepy 2, deathKnight 2, drillArm 2, druid 2, eccentric 2, empath 2, enchanter 2, faceless 2, fieldHand 2, fireMage 2, fleshArm 2, fleshFace 2, geomancer 2, gladiator 2, golemancer 2, haughty 2, hearingImplant 2, iceMage 2, inhumanized 2, lightPriest 2, monk 2, necromancer 2, nimble 2, paladin 2, powerClaw 2, pretty 2, prostheticArm 2, psionic 2, pyromaniac 2, rangerClass 2, ritualScars 2, shamanMage 2, sickly 2, sniperClass 2, stoner 2, stormMage 2, summoner 2, voidTouched 2, warlock 2, wayfarer 2, woodenHand 2.
+Rows listed per look (all kinds): psycaster 12, gourmand 9, gloomy 8, pallid 8, toiler 7, drinker 6, kind 6, sharp 6, wimp 6, abrasive 5, blind 5, cheerful 5, greedy 5, idle 5, ironWilled 5, nervous 5, psychopath 5, runner 5, stooped 5, tough 5, ugly 5, ascetic 4, awokenCorpse 4, beautiful 4, bigBoned 4, brawler 4, ghoul 4, lich 4, neat 4, nudist 4, shambler 4, sleepless 4, tentacleArm 4, undead 4, warcasket 4, addict 3, apothecary 3, bloodMage 3, bloodlust 3, chronomancer 3, hideous 3, rebel 3, shadow 3, slob 3, succubus 3, superSoldier 3, technomancer 3, tortured 3, vengeful 3, arcanist 2, archotechArm 2, archotechEye 2, armBlade 2, artificialNose 2, bardMage 2, bionicArm 2, bionicEar 2, bionicJaw 2, bladedancer 2, blindfold 2, brightmage 2, cannibal 2, cataract 2, chaosMage 2, commander 2, creepy 2, deathKnight 2, drillArm 2, druid 2, eccentric 2, empath 2, enchanter 2, faceless 2, fieldHand 2, fireMage 2, fleshArm 2, fleshFace 2, geomancer 2, gladiator 2, golemancer 2, haughty 2, hearingImplant 2, iceMage 2, inhumanized 2, lightPriest 2, monk 2, necromancer 2, nimble 2, paladin 2, powerClaw 2, pretty 2, prostheticArm 2, psionic 2, pyromaniac 2, rangerClass 2, ritualScars 2, shamanMage 2, sickly 2, sniperClass 2, stoner 2, stormMage 2, summoner 2, voidTouched 2, warlock 2, wayfarer 2, woodenHand 2.
 
 No row yet (rarer, or waiting for a kind that has them): antennae, barkSkin, batWings, bodyTentacles, chainsawHands, claws, conjoined, crabClaw, drakonoriWings, earWings, eyeStalks, faceTentacles, facialRidges, fairyWings, fangs, featheredWings, foliageHair, fungalGrowth, gasBags, gaunt, glidewings, greyEyes, heavilyScarred, heavyBrow, insectWings, insectoidArms, longHead, malformedWing, mandibles, metalSkin, proboscis, redEyes, rockySkin, scytherBlades, slimeBody, slugBody, starjackSheen, terrorMask, thirdEye, transcendent, womanBeard.
 
@@ -210,19 +210,33 @@ No row yet (rarer, or waiting for a kind that has them): antennae, barkSkin, bat
 | characters-05 | 200 | 0 |
 | characters-06 | 200 | 0 |
 | characters-07 | 74 | 0 |
+| characters-08 | 182 | 0 |
+| characters-09 | 182 | 0 |
+| characters-10 | 182 | 0 |
+| characters-11 | 182 | 0 |
+| characters-12 | 182 | 0 |
+| characters-13 | 182 | 0 |
+| characters-14 | 182 | 0 |
+| characters-15 | 182 | 0 |
+| characters-16 | 176 | 0 |
 | colonists | 11 | 0 |
 | colonists-redo | 1 | 0 |
+| creatures-01 | 132 | 0 |
+| creatures-02 | 150 | 0 |
+| creatures-03 | 156 | 0 |
+| creatures-04 | 156 | 0 |
+| creatures-05 | 136 | 0 |
+| creatures-06 | 136 | 0 |
+| creatures-07 | 136 | 0 |
+| creatures-08 | 134 | 0 |
+| gods-01 | 92 | 0 |
 | people-01 | 200 | 0 |
 | people-02 | 200 | 0 |
 | people-03 | 200 | 0 |
 | people-04 | 128 | 0 |
+| priests-01 | 64 | 0 |
 | style-test | 10 | 0 |
-| characters-08 (new) | 182 | 0 |
-| characters-09 (new) | 182 | 0 |
-| characters-10 (new) | 182 | 0 |
-| characters-11 (new) | 182 | 0 |
-| characters-12 (new) | 182 | 0 |
-| characters-13 (new) | 182 | 0 |
-| characters-14 (new) | 182 | 0 |
-| characters-15 (new) | 182 | 0 |
-| characters-16 (new) | 176 | 0 |
+| characters-17 (new) | 200 | 0 |
+| characters-18 (new) | 200 | 0 |
+| characters-19 (new) | 200 | 0 |
+| characters-20 (new) | 200 | 0 |

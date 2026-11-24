@@ -889,6 +889,14 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done (24 November 2026, kit only): the characters' fourth round, the likeliest colonists.** The player: "another
+  batch of colonists ... covering all the likeliest scenarios, you know, baseliners mostly, and just images that are
+  not super specific ... most of them should be kind of broad ... while still having some special cases ... But they
+  should still have some characteristic and things that make them individual". `plan_batches.py --phases characters4`
+  (new): 800 rows in `characters-17` to `20`, 60% baseliners, the rest the kinds of weight 0.25 or more by weight
+  squared; fewest-covered sex, age band (true shares) and skin first; about 86% broad (no role, look or mark) with one to
+  three face details each, the rest roles 7%, looks 3%, marks 4%. The test plans it again from the earlier lists and
+  gets the committed rows. Sent the player a zip.
 - **Done (24 November 2026, kit only): more variety for the creatures.** The player: "create a new batch with just
   adding more variety to all the animals ... without Pokemon ... different poses ... consistent in style of the first
   batches". `plan_creatures.py --variety N` (new): N more adults of each creature (half each sex where they look

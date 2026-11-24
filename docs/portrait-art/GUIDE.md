@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 24 November 2026 (the creature lists' variety round, creatures-05 to 08; before it pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 24 November 2026 (the characters' fourth round, characters-17 to 20, and the creatures' variety round, creatures-05 to 08; before them pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -109,6 +109,11 @@ kinds, baseliners about half:
   creepjoiner, conjoined-twin and spirit races), each kind topped up by the same rule whatever your save holds, to the
   ages and skins it has fewest of. Every kind runs through all nine lists, so painting only some of them still gives
   each kind its share.
+- `characters-17` to `20`: the likeliest colonists, 800 people: 60% baseliners, the rest the commonest kinds, nearly
+  all young, adult or middle-aged. Most are broad (no role, look or mark, so any pawn of their kind, sex, age and skin
+  can have them) but every face has one to three details of its own written in its row (a crooked nose, freckles, jug
+  ears), which the game never holds a pawn to; about one in seven is a special case (a role, a look or a scar) that
+  goes only to pawns who have it. Made with `python3 Tools/PortraitArt/plan_batches.py --phases characters4`.
 - `colonists.csv`: your own colonists' faces.
 - `creatures-01` to `04`: animals, insects, mechanoids, Anomaly's entities, dryads and drones, 594 rows for 208 kinds:
   first every creature your save holds (three adults each), then the base game's and the DLCs' and the insects of

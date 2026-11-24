@@ -28,6 +28,7 @@ Run:
     python3 Tools/PortraitArt/plan_batches.py [--waves 1,2] [--phases defaults,roles,looks,variety] [--max-rows 600]
         [--records library/records.xml] [--missing library/missing.csv] [--dry-run]
     python3 Tools/PortraitArt/plan_batches.py --phases characters      (the characters lists, all five waves)
+    python3 Tools/PortraitArt/plan_batches.py --phases characters4     (the fourth round: the likeliest colonists)
 """
 import argparse
 import collections
@@ -119,6 +120,26 @@ ROUND3_ERA_TILT = {'tribal': 1.6, 'medieval': 1.5, 'industrial': 1.0, 'spacer': 
 # The phase of the third round's rows: written after the first two rounds' lists, from characters-08 on.
 CHARACTERS3 = 'characters3'
 
+# The fourth round (--phases characters4; the player, 24 November 2026: "another batch of colonists ... covering all the
+# likeliest scenarios, you know, baseliners mostly, and just images that are not super specific ... in the sense that they
+# limit to how many pawns can use them ... most of them should be kind of broad ... while still having some special
+# cases ... But they should still have some characteristic and things that make them individual"): ROUND4_TOTAL people,
+# ROUND4_BASELINER of them baseliners, the rest of the kinds a colony is likeliest to have (weight at least
+# ROUND4_LEAST_WEIGHT) by their weight squared; each in the sex, age band and skin where its kind's pictures are fewest
+# against how common the band really is (the true shares, so mostly young, adult and middle-aged grown-ups); most broad (a
+# face with one or two details of its own, nothing the game holds them to), the rest with a stronger face, and a few
+# special cases (a role, an ordinary look, a mark) the game gives only to those who have them. In the lists from
+# characters-17 on.
+ROUND4_FROM = 17
+ROUND4_TOTAL = 800
+ROUND4_BASELINER = 0.6
+ROUND4_LEAST_WEIGHT = 0.25
+ROUND4_BROAD = 0.85
+ROUND4_ROLE_SHARE = 0.1
+ROUND4_LOOK_SHARE = 0.05
+ROUND4_MARK_SHARE = 0.03
+CHARACTERS4 = 'characters4'
+
 
 def round3_floor(k):
     """The characters pictures a kind is topped up to: one for each sex, grown band (young, adult, middle, old) and up to
@@ -133,9 +154,26 @@ def round3_count(k, before):
 
 
 def round3_list(batch):
-    """Whether a characters list is the third round's (characters-08 and on)."""
+    """Whether a characters list is the third round's (characters-08 to 16)."""
     m = re.match(r'^%s-(\d+)$' % CHARACTERS, batch or '')
-    return bool(m) and int(m.group(1)) >= ROUND3_FROM
+    return bool(m) and ROUND3_FROM <= int(m.group(1)) < ROUND4_FROM
+
+
+def round4_list(batch):
+    """Whether a characters list is the fourth round's (characters-17 and on)."""
+    m = re.match(r'^%s-(\d+)$' % CHARACTERS, batch or '')
+    return bool(m) and int(m.group(1)) >= ROUND4_FROM
+
+
+def round4_wants(kinds):
+    """The fourth round's people per kind: ROUND4_BASELINER of ROUND4_TOTAL baseliners, the rest shared by the likely
+    kinds (weight ROUND4_LEAST_WEIGHT or more) by their weight squared, two at least each."""
+    likely = [k for k in kinds if k.plannable and k.kind != 'Baseliner' and k.weight >= ROUND4_LEAST_WEIGHT]
+    rest = ROUND4_TOTAL - int(round(ROUND4_TOTAL * ROUND4_BASELINER))
+    total = sum(k.weight ** 2 for k in likely) or 1.0
+    wants = collections.OrderedDict((k.kind, max(2, int(round(rest * k.weight ** 2 / total)))) for k in likely)
+    wants['Baseliner'] = ROUND4_TOTAL - sum(wants.values())
+    return wants
 
 
 def cover_target(k, age, skin):
@@ -574,7 +612,7 @@ class Ledger:
             if typ == 'c':
                 sk = k.skins.nearest(r.get('skin', ''))
                 self.cells[('chs', k.kind, r.get('sex', ''), W_age(r.get('age', '')), sk[0] if sk else '')] += 1
-            self.cells[('char3' if round3_list(batch) else 'char0', k.kind)] += 1
+            self.cells[('char4' if round4_list(batch) else 'char3' if round3_list(batch) else 'char0', k.kind)] += 1
             self.faces.add(face_key(r.get('subject', '')))
 
     def add_picture(self, rec, listed):
@@ -1349,6 +1387,66 @@ class Planner:
             self.make_character(k, sex, age, pair, role=role, marks=marks, broad=broad, era_tilt=ROUND3_ERA_TILT,
                                 phase=CHARACTERS3)
 
+    def characters_fourth(self, ks):
+        """
+        The fourth round (ROUND4_*): the likeliest colonists, baseliners most (round4_wants), each a new person in the
+        sex and age band where the kind's pictures are fewest against how common the band is (its true share), in the
+        skin with the fewest there, a hair of the cell's own; most broad, a few special cases (a role, an ordinary look of
+        the commonest, a mark); clothes tilted to the colony's ages. Rows already in its lists count, so running again
+        adds nothing.
+        """
+        wants = round4_wants(ks)
+        specs = []
+        for ki, k in enumerate(ks):
+            want = wants.get(k.kind, 0)
+            have = self.ledger.cells[('char4', k.kind)]
+            if have >= want:
+                continue
+            ages = [(a, s * (LITTLE_SHARE if a in LITTLE_AGES else 1.0)) for a, s in self.char_ages(k)]
+            skins = list(k.skins.entries)
+            if not ages or not skins:
+                continue
+            human = all(e[0] in HUMAN_SKIN_SLUGS for e in skins) and len(skins) > 3
+            skin_w = {e[0]: (1.5 if (e[0] in COVER_TONES if human else i == 0) else 1.0) for i, e in enumerate(skins)}
+            planned = collections.Counter()
+            count = lambda c: self.ledger.cells[c] + planned[c]
+            roles = [(ro, math.sqrt(s)) for ro, s in k.roles if s > 0 and ro in self.roles] if k.wave <= 2 else []
+            role_ages = set(self.role_ages(k)) if roles else set()
+            looks = [(lk.word, math.sqrt(lk.count)) for lk in self.looks_for(k)
+                     if lk.count and not lk.special and lk.word not in CHAR_NO_LOOKS and not C.BANNED.search(C.plain_words(lk.prompt))
+                     and not re.search(C.LOOK_CONFLICTS.get(lk.word, '^$'), k.row.get('look') or '')] if k.wave <= 2 else []
+            looks = sorted(looks, key=lambda x: -x[1])[:8]
+            mine = []
+            for j in range(have, want):
+                rng = seeded('characters', 'fourth', k.kind, str(j))
+                sex, age = min(((sx, a) for sx in k.sexes for a, _ in ages),
+                               key=lambda c: (sum(count(('chs', k.kind, c[0], c[1], e[0])) for e in skins) + 1.0)
+                               / dict(ages)[c[1]] * (1.0 + 0.15 * rng.random()))
+                sk = min(skins, key=lambda e: (count(('chs', k.kind, sex, age, e[0])) + 1.0) / skin_w[e[0]] * (1.0 + 0.15 * rng.random()))
+                cell = ('chs', k.kind, sex, age, sk[0])
+                planned[cell] += 1
+                hairs = k.hair_entries(age) or [('bald', '', '')]
+                hair = hairs[(count(cell) + rng.randrange(len(hairs))) % len(hairs)]
+                role, look, marks = '', None, ()
+                x = rng.random()
+                grown = age in W.GROWN
+                # Each special case in its own slice of the roll, so a kind without roles or looks gets no more marks.
+                if x < ROUND4_ROLE_SHARE:
+                    if roles and age in role_ages:
+                        role = weighted(rng, sorted(roles))
+                elif x < ROUND4_ROLE_SHARE + ROUND4_LOOK_SHARE:
+                    if looks and grown:
+                        look = self.looks[weighted(rng, sorted(looks))]
+                elif x < ROUND4_ROLE_SHARE + ROUND4_LOOK_SHARE + ROUND4_MARK_SHARE:
+                    if grown:
+                        marks = (weighted(rng, [('scar', 4), ('lostEye', 2), ('eyePatch', 2), ('bionicEye', 1), ('burn', 1), ('missingEar', 1)]),)
+                broad = not role and look is None and not marks and rng.random() < ROUND4_BROAD
+                mine.append((k, sex, age, (sk, hair), role, look, marks, broad))
+            specs += [(((i + 0.5) / len(mine), ki), x) for i, x in enumerate(mine)]
+        for _, (k, sex, age, pair, role, look, marks, broad) in sorted(specs, key=lambda x: x[0]):
+            self.make_character(k, sex, age, pair, role=role, look=look, marks=marks, broad=broad, era_tilt=ROUND3_ERA_TILT,
+                                phase=CHARACTERS4)
+
     def make_character(self, k, sex, age, pair, role='', look=None, marks=(), broad=False, era_tilt=None,
                        phase=CHARACTERS):
         """One characters row: its record columns and its prompt, every choice seeded by the row's name."""
@@ -1840,13 +1938,14 @@ def write_lists(folder, rows, per_file, dry, kinds=None):
     needs = [x for x in rows if x[0] == 'needs']
     chars = [x for x in rows if x[0] == CHARACTERS]
     chars3 = [x for x in rows if x[0] == CHARACTERS3]
-    rest = [x for x in rows if x[0] not in ('needs', CHARACTERS, CHARACTERS3)]
+    chars4 = [x for x in rows if x[0] == CHARACTERS4]
+    rest = [x for x in rows if x[0] not in ('needs', CHARACTERS, CHARACTERS3, CHARACTERS4)]
     if kinds is not None:
         needs, rest = mix(needs, kinds), mix(rest, kinds)
-        chars, chars3 = mix(chars, kinds, even=True), mix(chars3, kinds, even=True)
+        chars, chars3, chars4 = mix(chars, kinds, even=True), mix(chars3, kinds, even=True), mix(chars4, kinds, even=True)
     numbers = {}
     for prefix, rs, least in (('needs-people', needs, 1), ('people', rest, 1), (CHARACTERS, chars, 1),
-                              (CHARACTERS, chars3, ROUND3_FROM)):
+                              (CHARACTERS, chars3, ROUND3_FROM), (CHARACTERS, chars4, ROUND4_FROM)):
         if not rs:
             continue
         n = max(numbers.get(prefix) or next_number(folder, prefix), least)
@@ -1901,6 +2000,8 @@ def plan(catalogue=CATALOGUE, batches=BATCHES, records=None, missing=None, waves
             planner.variety([k for w in waves for k in order(w)], max_rows - len(planner.rows))
         if CHARACTERS in phases:
             planner.characters([k for w in char_waves for k in order(w)])
+        if CHARACTERS4 in phases:
+            planner.characters_fourth([k for w in char_waves for k in order(w)])
     except Full:
         pass
     files = write_lists(batches, [r for r in planner.rows], per_file, dry, kinds)
@@ -1920,7 +2021,7 @@ def main(argv=None):
     ap.add_argument('--waves', help='the waves to plan, e.g. 1,2 (default: the first with a gap and the next; '
                                     'for the characters phase all five)')
     ap.add_argument('--phases', help='which of defaults,roles,looks,variety (default: these four), or characters '
-                                     '(the characters lists, only when asked)')
+                                     '(the characters lists, only when asked), or characters4 (the fourth round)')
     ap.add_argument('--max-rows', type=int, default=600)
     ap.add_argument('--per-file', type=int, default=200)
     ap.add_argument('--report', default=os.path.join(CATALOGUE, 'COVERAGE.md'))
@@ -1933,7 +2034,7 @@ def main(argv=None):
     for b in bad:
         print('Catalogue: ' + b)
     by = collections.Counter(p for p, _, _ in planner.rows)
-    print('Planned %d rows (%s).' % (len(planner.rows), ', '.join('%s %d' % (p, by[p]) for p in ['needs'] + PHASES + [CHARACTERS, CHARACTERS3] if by[p])))
+    print('Planned %d rows (%s).' % (len(planner.rows), ', '.join('%s %d' % (p, by[p]) for p in ['needs'] + PHASES + [CHARACTERS, CHARACTERS3, CHARACTERS4] if by[p])))
     for path, n in files:
         print('  %s %s: %d rows' % ('Would write' if a.dry_run else 'Wrote', os.path.relpath(path, ROOT), n))
     if not a.dry_run:
