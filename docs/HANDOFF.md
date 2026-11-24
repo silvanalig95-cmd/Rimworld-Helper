@@ -889,6 +889,16 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **To do when the player asks (24 November 2026; proposal written, waiting for the go): altars that mean something,
+  more ways for the gods, and pictures of them.** The player: "the altars ... I think I could build 10 graves and assign
+  each grave to a god like that at the same time ... maybe you should have some conditions fulfilled, for example, god
+  actually known, believed in, or that someone wants to believe in a god ... Not that I ... can just again have an altar
+  for each god at the same time for free within a minute", "other ideas that you have in regards to further integrate
+  them", and "later I want to create some images as well with the scripts". The proposal: `docs/gods-altars-proposals.md`
+  (A1 to A8 the altars, B1 to B7 more ways, C1 to C4 pictures). Also from the same day, the player: "whenever I post
+  something here or ask you for something that should actually be posted in the chat with the studio, you should always
+  recognize that and then instead give me a prompt to provide the studio chat, and also the other way around": written
+  into CLAUDE.md and STUDIO-HANDOVER.md section 0 ("Where a request belongs"), and a prompt given for the Studio's chat.
 - **Answered (24 November 2026, the player, with a screenshot): pawns and items hidden under the trees.** The player:
   "I also installed the Better Trees mod, which overall looks nice, but again, the map is still fully just covered in
   trees ... I don't see items behind it or like I guess also animals and also my pawns. But I mean, primarily my pawns

@@ -68,7 +68,11 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   step updates it too, adds a line to its "Changes since the handover" list, and the reply to the player ends with the
   steps and a ready prompt to paste into the Studio's chat (section 0, "Keeping the two in step"; the player, 24
   November 2026: "whenever there is an update here where we also need to update the program, please always include
-  these steps and provide me a prompt or post in there").
+  these steps and provide me a prompt or post in there"). A request that belongs in the Studio's chat (its program, the
+  painting, copying, checking, reviewing and sorting of pictures; section 0, "Where a request belongs") is not built
+  here: say so and give the player a ready prompt for that chat (the player, 24 November 2026: "whenever I post
+  something here or ask you for something that should actually be posted in the chat with the studio, you should always
+  recognize that and then instead give me a prompt to provide the studio chat").
 
 ## Releases
 - `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` drives `CHANGELOG.md` (`python3 Tools/changelog.py`, then `--check`).

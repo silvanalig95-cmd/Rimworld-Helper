@@ -23,6 +23,19 @@ doesn't work anymore". The two projects and who owns what:
   synced commit (`src/Mod/MOD-SOURCE.json`), and adapts. A change the Studio needs from here goes the other way: its chat
   writes the wish, the player pastes it here, it goes on the to-do list in `docs/HANDOFF.md`.
 - Nothing here depends on the Studio: the scripts keep working on their own, so a change here never waits for it.
+- **Where a request belongs** (the player, 24 November 2026: "whenever I post something here or ask you for something
+  that should actually be posted in the chat with the studio, you should always recognize that and then instead give
+  me a prompt to provide the studio chat, and also the other way around"). Each chat builds only its own part; for the
+  other part it tells the player so and gives a ready prompt to paste into the other chat:
+
+  | Belongs in the Rimfolk chat (this repository) | Belongs in the Studio chat |
+  |---|---|
+  | the game: which picture a pawn, creature or place gets, how pictures are shown, corrections and deletions in the game, what the game writes (missing.csv, variants-wanted.csv, deleted.csv) | the program: its pages, tasks, scans, sync, storage, clean-up |
+  | the file formats (section 4), and a new kind of picture or record field | painting, copying, checking, reviewing, sorting and organising pictures |
+  | what to paint: the catalogues (kinds, creatures, looks), the planners and the batch lists, the styles' wording | ComfyUI and its workflows as the program runs them |
+  | the content the pictures are for (gods, peoples, events) | the kit's scripts (developed in the Studio from 24 November 2026, once it has taken them over) |
+
+  A request with parts on both sides: each chat does its own part and hands the rest over as a prompt.
 
 ### Changes since the handover (newest first)
 
