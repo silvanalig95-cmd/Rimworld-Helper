@@ -132,7 +132,11 @@ namespace ColonyCouncil
                 var meal = view.plan?.Row(AheadMath.Meal);
                 var raw = view.plan?.Row(AheadMath.Raw);
                 string numbers = meal != null && raw != null && view.needs != null ? " " + Ahead.RowReason(meal, view.needs) + " " + Ahead.RowReason(raw, view.needs) : "";
-                var s = Signal(0.95f - days * 0.1f, "CC_Adv_FoodLow_Title".Translate(days.ToString("0.#")), "CC_Adv_FoodLow_Detail".Translate() + numbers, 1f);
+                // Under a day the count would read "about 0 days": said in words instead (the player's screenshot, 24 November 2026).
+                string title = days < 0.05f ? "CC_Adv_FoodLow_TitleNone".Translate().Resolve()
+                    : days < 1f ? "CC_Adv_FoodLow_TitleToday".Translate().Resolve()
+                    : "CC_Adv_FoodLow_Title".Translate(days.ToString("0.#")).Resolve();
+                var s = Signal(0.95f - days * 0.1f, title, "CC_Adv_FoodLow_Detail".Translate() + numbers, 1f);
                 s.key = "low";
                 yield return s;
                 yield break;
@@ -146,9 +150,13 @@ namespace ColonyCouncil
                     float gap = (needed - days) / needed;
                     float urgency = inWinter ? 1f : UnityEngine.Mathf.Clamp01(1f - until / 30f);
                     string extra = hydro != null ? "CC_Adv_Winter_Hydro".Translate(hydro.label) : "CC_Adv_Winter_NoHydro".Translate();
-                    string title = inWinter ? "CC_Adv_WinterNow_Title".Translate(length.ToString("0")) : "CC_Adv_Winter_Title".Translate(until.ToString("0"));
-                    var s = Signal(0.35f + 0.6f * gap, title,
-                        "CC_Adv_Winter_Detail".Translate(days.ToString("0"), needed.ToString("0"), length.ToString("0")) + " " + extra, urgency);
+                    // Under a day each count would read "about 0 days": said in words instead.
+                    string title = inWinter
+                        ? (length < 1f ? "CC_Adv_WinterNow_TitleSoon".Translate().Resolve() : "CC_Adv_WinterNow_Title".Translate(length.ToString("0")).Resolve())
+                        : (until < 1f ? "CC_Adv_Winter_TitleToday".Translate().Resolve() : "CC_Adv_Winter_Title".Translate(until.ToString("0")).Resolve());
+                    string detail = days < 1f ? "CC_Adv_Winter_DetailLittle".Translate(needed.ToString("0"), length.ToString("0")).Resolve()
+                        : "CC_Adv_Winter_Detail".Translate(days.ToString("0"), needed.ToString("0"), length.ToString("0")).Resolve();
+                    var s = Signal(0.35f + 0.6f * gap, title, detail + " " + extra, urgency);
                     s.key = "winter";
                     s.template = hydro != null ? DefDatabase<RoomTemplateDef>.GetNamedSilentFail("Council_Greenhouse") : null;
                     yield return s;

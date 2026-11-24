@@ -54,6 +54,14 @@ public static class LogFixTests
         C(Read("Social/Gossip/Deeds.cs").Contains("holder == other || Current.ProgramState != ProgramState.Playing) return;")
           && Read("Social/FightNames.cs").Contains("GenDate.QuadrumDateStringAt(GenTicks.TicksAbs, longitude)"),
             "deeds: none recorded while the starting pawns are made, and the date read the game's safe way");
+        // The player's screenshot of 24 November 2026: "Council: Food runs out in about 0 days". Under a day, words.
+        string adv = Read("Advisor/AdvisorSignals.cs");
+        string keys = File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "ColonyCouncil.xml"));
+        C(adv.Contains("days < 0.05f ? \"CC_Adv_FoodLow_TitleNone\"") && adv.Contains("days < 1f ? \"CC_Adv_FoodLow_TitleToday\"")
+          && adv.Contains("length < 1f ? \"CC_Adv_WinterNow_TitleSoon\"") && adv.Contains("until < 1f ? \"CC_Adv_Winter_TitleToday\"")
+          && adv.Contains("days < 1f ? \"CC_Adv_Winter_DetailLittle\"")
+          && keys.Contains("<CC_Adv_FoodLow_TitleNone>No food left</CC_Adv_FoodLow_TitleNone>") && keys.Contains("<CC_Adv_FoodLow_TitleToday>Food runs out today</CC_Adv_FoodLow_TitleToday>"),
+            "the food and growing-season alerts say less than a day in words, never \"about 0 days\"");
         return n;
     }
 }

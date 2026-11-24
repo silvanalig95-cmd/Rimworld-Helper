@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.302.2</version>
+        <date>24 November 2026</date>
+        <title>Less than a day, in words</title>
+        <points>
+          <li>The council's food alert no longer says "Food runs out in about 0 days". With less than a day left it says "Food runs out today", and "No food left" when nothing is left.</li>
+          <li>The growing season alerts do the same: "The growing season ends today", "Lean season: crops grow again within a day", and "less than a day of food" in their detail.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.302.1</version>
         <date>23 November 2026</date>
         <title>Leaders for the peoples, and a quieter log</title>

@@ -71,10 +71,15 @@
 
   <!-- Advisor: food -->
   <CC_Adv_FoodLow_Title>Food runs out in about {0} days</CC_Adv_FoodLow_Title>
+  <CC_Adv_FoodLow_TitleToday>Food runs out today</CC_Adv_FoodLow_TitleToday>
+  <CC_Adv_FoodLow_TitleNone>No food left</CC_Adv_FoodLow_TitleNone>
   <CC_Adv_FoodLow_Detail>Hunt, forage, harvest anything ripe, or buy food from traders. Cooked meals make raw food go further.</CC_Adv_FoodLow_Detail>
   <CC_Adv_Winter_Title>The growing season ends in about {0} days</CC_Adv_Winter_Title>
   <CC_Adv_WinterNow_Title>Lean season: about {0} days until crops grow again</CC_Adv_WinterNow_Title>
   <CC_Adv_Winter_Detail>You have about {0} days of food. To get through the {2}-day cold spell you'll want around {1}.</CC_Adv_Winter_Detail>
+  <CC_Adv_Winter_TitleToday>The growing season ends today</CC_Adv_Winter_TitleToday>
+  <CC_Adv_WinterNow_TitleSoon>Lean season: crops grow again within a day</CC_Adv_WinterNow_TitleSoon>
+  <CC_Adv_Winter_DetailLittle>You have less than a day of food. To get through the {1}-day cold spell you'll want around {0}.</CC_Adv_Winter_DetailLittle>
   <CC_Adv_Winter_Hydro>A greenhouse with {0} would let you grow food all year.</CC_Adv_Winter_Hydro>
   <CC_Adv_Winter_NoHydro>Plant more now, hunt before the animals migrate, and trade for food.</CC_Adv_Winter_NoHydro>
   <CC_Adv_Freezer_Title>Food is spoiling without a freezer</CC_Adv_Freezer_Title>

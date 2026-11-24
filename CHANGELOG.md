@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Less than a day, in words
+
+*24 November 2026, version 0.302.2*
+
+- The council's food alert no longer says "Food runs out in about 0 days". With less than a day left it says "Food runs out today", and "No food left" when nothing is left.
+- The growing season alerts do the same: "The growing season ends today", "Lean season: crops grow again within a day", and "less than a day of food" in their detail.
+
 ## Leaders for the peoples, and a quieter log
 
 *23 November 2026, version 0.302.1*

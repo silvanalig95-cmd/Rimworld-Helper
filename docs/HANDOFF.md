@@ -889,6 +889,21 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Answered (24 November 2026, the player, with a screenshot): pawns and items hidden under the trees.** The player:
+  "I also installed the Better Trees mod, which overall looks nice, but again, the map is still fully just covered in
+  trees ... I don't see items behind it or like I guess also animals and also my pawns. But I mean, primarily my pawns
+  and items ... How can we improve this?". Better Trees' update of 22 November 2026 (1.6 and 1.7) does it: its tree
+  button cycles between off, "entity passthrough" (pawns and items show through trees) and tree ghosting (trees fade
+  around the cursor; right-click the button for radius, opacity and "Ghost Entire Map"; the key is = by default). Its
+  settings can also draw trees behind pawns, and its default size template makes trees larger than the game's. No
+  Rimfolk change for now; if the passthrough falls short, the player says so and the to-do list gets it. The player,
+  with a screenshot of Better Trees' settings: "i don't see such an option in the settings, render trees over colonists
+  doesn't appear to do anything". The screenshot shows the cause: its scale template draws most trees 3 to 4 times
+  their size (cecropia 1.58 to 3.87), with "Render trees over colonists" off. Told the player: bring the sizes down (a
+  smaller scale template, the global multiplier near 0.3x, or each tree's range near 1), and the passthrough button is
+  in the game, not in the settings (the mod hides it while trees aren't drawn over colonists). Seen in the same
+  screenshot and fixed (0.302.2): the council's alert said "Food runs out in about 0 days"; under a day the food and
+  growing-season alerts now say it in words (LogFixTests).
 - **To do when the player asks (24 November 2026; recommendation sent, waiting for the go): the portrait workflow's
   scripts developed in Rimfolk Studio from now on.** The player: "the scripts and everything, it does just make sense
   if we continue also developing these in Rimfolk Studio rather than here. I don't know, or should this continue to be
