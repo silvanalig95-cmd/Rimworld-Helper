@@ -149,7 +149,13 @@ namespace ColonyCouncil
             var b = Worship.Book;
             var shrine = Shrines.Of(map, g).Select(s => s.thing).OrderByDescending(Shrines.IsTemple).FirstOrDefault();
             // Kept with less, as the council answered on its eve (Gods/Worship/WorshipCouncilMore.cs): no offering and no guests.
+            // Or kept quietly for a rival's this season, as the council said (Gods/Worship/GodPlacesCouncil.cs): its believers put out.
             bool lean = WorshipCouncilMore.EveAnswer(g, map) == "lean";
+            if (GodPlacesCouncil.KeptQuietly(g, map))
+            {
+                lean = true;
+                GodPlacesCouncil.KeptQuietlyDone(g, map);
+            }
             if (shrine != null && b != null)
             {
                 // The rite at its place, and an offering carried there.
@@ -225,12 +231,14 @@ namespace ColonyCouncil
             var g = Shrines.GodAt(shrine);
             if (g == null) return;
             var map = shrine.Map;
-            float more = 2f * (Worship.IsPriest(p) ? WorshipMath.PriestRiteFactor : 1f) * (Worship.MagicPriest(p) ? 1.25f : 1f);
             string text = "CC_Wsh_RiteDone".Translate(p.LabelShort.Named("PAWN"), Worship.ShrineOf(g).Named("SHRINE"), Worship.Called(g).Named("GOD"), Dishes(g).Named("DISHES")).Resolve();
-            Worship.Favour(g, map, more, text, FavourSource.Rite);
-            Tell.Minor(NewsKind.Colony, Importance.Flavor, map, text, shrine);
+            // A mage-priest's rite counts for a little more with the god.
+            if (Worship.MagicPriest(p)) Worship.Favour(g, map, 0.5f, text, FavourSource.Rite);
             if (Worship.IsPriest(p)) CouncilRecords.Add(p, "Council_RitualsLed");
-            PawnGods.RiteLed(p, g);
+            // How it went, and what it brings those who came (Worship/GodRites.cs): a mood, belief, a blessing of the god's kind, now and then its answer.
+            GodRites.Held(RiteKind.Festival, g, shrine, p, text);
+            // The one who led it holds the god the more for it, whether or not they held it before (Gods/Belief/PawnGods.cs).
+            if (!GodPlaces.HoldsFor(p, g)) PawnGods.RiteLed(p, g);
             FaithHeart.Witnessed(map, g, shrine.Position);
             // A tale of the game's, for the colony's art (Things/ArtTales.cs): the festival kept.
             ArtTales.Record(ArtTales.Festival, p, null, Festivals.Name(g), null);

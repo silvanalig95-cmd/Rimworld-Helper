@@ -24,6 +24,8 @@ namespace ColonyCouncil
         /// <summary>Its age; unknown for any.</summary>
         public PortraitEra era;
         public HashSet<string> contents = new HashSet<string>();
+        /// <summary>A god's place: the domain of the god it is for (<see cref="BackdropMath.GodDomains"/>); "" for an ordinary backdrop.</summary>
+        public string god = "";
 
         public override string ToString() => name;
     }
@@ -42,9 +44,11 @@ namespace ColonyCouncil
         public int seed;
         /// <summary>Phase 6, for the backdrop alive (not part of what chooses it): a fire burns in the room; outdoors with no roof over them.</summary>
         public bool fireLit, open;
+        /// <summary>At a god's place (praying there, or in its temple): the god's domain (<see cref="BackdropMath.GodDomains"/>); "" elsewhere.</summary>
+        public string god = "";
 
         /// <summary>What decides the backdrop, in words: when this changes the backdrop is chosen again.</summary>
-        public string Key => place + "|" + role + "|" + group + "|" + era + "|" + seed + "|" + string.Join("+", contents.OrderBy(c => c, StringComparer.Ordinal));
+        public string Key => place + "|" + role + "|" + group + "|" + era + "|" + seed + "|" + god + "|" + string.Join("+", contents.OrderBy(c => c, StringComparer.Ordinal));
 
         public override string ToString() =>
             place == BackdropPlace.Room ? "a room (" + (role.Length > 0 ? role : "of no particular kind") + ", " + era.ToString().ToLowerInvariant() + (contents.Count > 0 ? ", with " + string.Join(", ", contents.OrderBy(c => c, StringComparer.Ordinal)) : "") + ")"
@@ -88,6 +92,12 @@ namespace ColonyCouncil
         {
             "temperateForest", "borealForest", "tundra", "ice", "grassland", "shrubland", "desert", "jungle", "swamp", "coast", "wasteland", "volcanic", "glowforest",
             "cave", "space", "mountain"
+        };
+
+        /// <summary>The gods' domains a backdrop of a god's place names (GodDomain's names in small letters, but none).</summary>
+        public static readonly string[] GodDomains =
+        {
+            "harvest", "storm", "hunt", "healing", "war", "craft", "way", "dead", "night", "hearth", "wild", "waters", "machine", "void"
         };
 
         /// <summary>The words for what is in a room.</summary>
@@ -145,6 +155,13 @@ namespace ColonyCouncil
                 var k = Known(Contents, c);
                 if (k != null) r.contents.Add(k);
                 else if (!string.IsNullOrWhiteSpace(c)) Bad("contents: '" + c + "' is not one of " + string.Join(", ", Contents));
+            }
+            string god = field("god");
+            if (!string.IsNullOrWhiteSpace(god))
+            {
+                var d = Known(GodDomains, god);
+                if (d != null) r.god = d;
+                else Bad("god: '" + god + "' is not one of " + string.Join(", ", GodDomains));
             }
             return r;
         }
@@ -237,7 +254,20 @@ namespace ColonyCouncil
             var none = new BackdropChoice { index = -1, why = "no backdrop in the library", used = "nothing" };
             if (w == null) return none;
             if (records == null || records.Count == 0) return w.place == BackdropPlace.Plain ? new BackdropChoice { index = -1, why = none.why, used = "nothing", ownKind = true, ownEra = true } : none;
-            var all = Enumerable.Range(0, records.Count).ToList();
+            // At a god's place: a backdrop of a god's place of that domain first, by the age (a god's place backdrop is never used anywhere else).
+            if (!string.IsNullOrEmpty(w.god))
+            {
+                var fit = Enumerable.Range(0, records.Count).Where(i => string.Equals(records[i].god, w.god, StringComparison.OrdinalIgnoreCase)).ToList();
+                if (fit.Count > 0)
+                {
+                    int pick = Best(records, fit, i => EraApart(w.era, records[i].era), w.seed);
+                    return new BackdropChoice
+                    {
+                        index = pick, why = "a god's place, " + w.god, used = "a god's place (" + w.god + ")", ownKind = true, ownEra = fit.Any(i => EraApart(w.era, records[i].era) < 1f)
+                    };
+                }
+            }
+            var all = Enumerable.Range(0, records.Count).Where(i => string.IsNullOrEmpty(records[i].god)).ToList();
             if (w.place == BackdropPlace.Room)
             {
                 var roles = new List<string>();

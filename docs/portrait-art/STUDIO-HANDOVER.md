@@ -39,6 +39,23 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Rimfolk 0.303.0 (24 November 2026): the gods' pictures.**
+  - records.xml: `ColonyCouncil.BackdropDef` has a new, optional field `god`: the domain of the god whose place it shows
+    (`harvest storm hunt healing war craft way dead night hearth wild waters machine void`). The game shows such a
+    backdrop only behind someone praying at a god's place of that domain or standing in its temple, and never elsewhere
+    (`BackdropMath.GodDomains`, `BackdropMath.Choose`; `BackdropRecord.god`, `BackdropWhere.god`). An unknown word is a
+    problem line of the record.
+  - A creature record's `race` may now name a god's own pictures: `god:<Key>:<age>`, `god:<Key>`, `god:<domain>:<age>`,
+    `god:<domain>` (a god walking the map, shown as itself) and `godbeast:<Key>` (the beasts that walk with it); the
+    game tries them in that order (`CreaturePortraitMath.GodKeys`, `BeastKeys`, `FirstCandidates`). Ages are
+    `tribal medieval industrial spacer`. The Studio should not check these against the creature catalogue.
+  - New lists from the new `Tools/PortraitArt/plan_gods.py` (with `test_gods.py`): `backdrops-gods` (56 rows, the
+    backdrop columns plus `god`; paint in `style-rimworld-backdrops`), `gods-01` (92 rows, the creature columns,
+    `creature` holding the keys above; painted in the creatures' style by itself), `priests-01` (64 rows, the people
+    columns, role `priest`, every age's dress; a people's style).
+  - Update-PortraitLibrary writes a backdrop's `god` from its row. Copied files changed: `BackdropMath.cs`,
+    `CreaturePortraitMath.cs`.
+  - The game reads the colony's own priest (the council's seat) as role `priest` for the matcher.
 - **Rimfolk 0.302.1 (23 November 2026):** nothing for the kit or the Studio (the peoples' leaders and log errors).
 - **Rimfolk 0.302.0 (23 November 2026): animals and creatures.**
   - records.xml has a third element, `ColonyCouncil.CreaturePortraitDef` (`defName`, `texPath`, `race`, `sex` any, male
@@ -112,7 +129,9 @@ See `GUIDE.md`, "Each round, step by step". In one line each:
 
 Animals and creatures (the lists `creatures-NN`, since 23 November 2026) go the same way: painted in
 `style-rimworld-creatures` (picked by itself for such a list), copied in as cut-outs, recorded as
-`ColonyCouncil.CreaturePortraitDef`; the check and the variants leave them out.
+`ColonyCouncil.CreaturePortraitDef`; the check and the variants leave them out. The gods' pictures (24 November 2026)
+too: `gods-01` as creatures (the gods walking the map and their beasts), `backdrops-gods` as backdrops (the gods'
+places), `priests-01` as people.
 
 Each `.ps1` has a `.cmd` to double-click (Run-PortraitBatch is run with right-click, Run with PowerShell). They are
 Windows PowerShell 5.1 scripts; they also run under PowerShell 7 (tested here on Linux, except what needs Windows: the
@@ -130,7 +149,9 @@ none; race = race def names, empty for human; sex `male`/`female`; age `baby tod
 elder`; skin and hairColour `#rrggbb`; hair `bald short medium long braids bun tied`; beard `none stubble short full
 moustache`; build `average slim heavy broad`; era `tribal medieval industrial spacer`; dress `rags work fine robes
 armour`; features, marks and looks `;`-separated words; role one word; pawn = a colonist's name for a picture made for
-them). Backdrops: `name,subject,count,seed,place,rooms,outdoors,era,contents`. Animals and creatures (`creatures-NN`):
+them). Backdrops: `name,subject,count,seed,place,rooms,outdoors,era,contents`, and for the gods' places (`backdrops-gods`)
+`god` (the god's domain). Animals and creatures (`creatures-NN`, and the gods' `gods-NN` whose `creature` holds a god's
+key, `god:<Key>:<age>` ... `godbeast:<Key>`):
 `name,subject,pose,count,seed,creature,sex,age,mod` (creature = the race's def name; sex `male`/`female`/`any`; age
 `baby`/`adult`, a juvenile taking an adult's picture; the row's name `c_<creature>_<age>_<m, f or a>_<NN>`). Written by
 the lead from `docs/portrait-art/catalogue/` and `Tools/PortraitArt/plan_batches.py` (people), `plan_creatures.py`
@@ -154,7 +175,8 @@ mark variant's expressions (`X_v-lostEyeLeft_v-blink.png`); depth maps `<backdro
 `<ColonyCouncil.PortraitDef>` with `defName` (`Portrait_<list>_<row>_<run digits>_<NN>`), `texPath` (`<list>/<stem>`),
 `variant`, `variantOf`, `pawn`, `xenotypes`, `races`, `sex`, `age`, `skinColor`, `hairColor`, `hair`, `beard`, `build`,
 `era`, `dress`, `features`, `marks`, `side`, `looks`, `role`, `headwear`, `facing`, `character`, and
-`<ColonyCouncil.BackdropDef>` with `defName`, `texPath`, `depthPath`, `place`, `rooms`, `outdoors`, `era`, `contents`, and
+`<ColonyCouncil.BackdropDef>` with `defName`, `texPath`, `depthPath`, `place`, `rooms`, `outdoors`, `era`, `contents`, `god`
+(a god's place: its domain; optional), and
 `<ColonyCouncil.CreaturePortraitDef>` (an animal or creature) with `defName` (`Creature_<list>_<row>_<run digits>_<NN>`),
 `texPath`, `race`, `sex` (`male`/`female`/`any`), `age` (`baby`/`juvenile`/`adult`), `character`. The game's parser:
 `PortraitFolderMath.Parse`, `PortraitLibraryMath.Record`, `CreaturePortraitMath.Record`. The picture check leaves

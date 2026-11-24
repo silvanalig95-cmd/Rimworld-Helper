@@ -69,6 +69,8 @@ namespace ColonyCouncil
             if (p.Spawned) Worship.Say(p, "Rimfolk_Pool_Worship_Vow", g, null, "vow:" + k.ToString().ToLowerInvariant());
             CouncilGameComponent.Instance?.journals.WriteText(p, text);
             if (k == VowKind.NoMeat) MealsWish(p);
+            // Where the god has a place they can reach, they go and swear it there too, and it weighs more (Worship/GodRites.cs).
+            GodRites.SwearAtPlace(p, g);
             return r;
         }
 
@@ -97,6 +99,8 @@ namespace ColonyCouncil
             Worship.Booked(g, map, p.PositionHeld, text, p);
             CouncilGameComponent.Instance?.journals.WriteText(p, Worship.Line(kept ? "Rimfolk_Pool_Worship_VowKeptJournal" : "Rimfolk_Pool_Worship_VowBrokenJournal", p, g,
                 null, "vow:" + r.kind.ToString().ToLowerInvariant()) ?? text);
+            // Sworn at the god's place: weighs more, kept or broken (Worship/GodRites.cs).
+            GodRites.OathEnded(r, g, kept);
             if (kept && (r.kind == VowKind.Temple || r.kind == VowKind.Pilgrimage))
             {
                 Worship.Favour(g, map, WorshipMath.GreatVowFavour, ("CC_Wsh_Why_GreatVow_" + r.kind).Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Rite);

@@ -262,7 +262,7 @@ public static class WorshipTests
         var oldWord = new Regex(@"\b(thou|thee|thy|thine|ye|hath|doth|dost|shalt|shall|art|ere|naught|whoso|whatsoever|unto|wherefore|\w+est|\w+eth)\b", RegexOptions.IgnoreCase);
         bool Olde(string l) => Regex.IsMatch(l, @"^\[([^\]]*,)?olde(,[^\]]*)?\]");
         var scripture = new[] { "Rimfolk_Pool_Worship_Pray", "Rimfolk_Pool_Worship_Thanks", "Rimfolk_Pool_Worship_Rite", "Rimfolk_Pool_Worship_RiteWords",
-                                "Rimfolk_Pool_Saint_Prayer", "Rimfolk_Pool_Saint_Feast" };
+                                "Rimfolk_Pool_Saint_Prayer", "Rimfolk_Pool_Saint_Feast", "Rimfolk_Pool_Worship_Service" };
         int oldLines = 0;
         foreach (var s in scripture)
         {

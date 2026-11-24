@@ -26,6 +26,13 @@ namespace ColonyCouncil
         public string lastWhat, lastBy, lastWords;
         public int lastAt = -1;
         public OfferingFate lastFate = OfferingFate.Waiting;
+        /// <summary>
+        /// Its upkeep and its rites (Worship/GodPlaces.cs): when someone last prayed or left something here (-1 never: from
+        /// <see cref="since"/>), when its temple last held the week's service, when pilgrims last came; and the one of the
+        /// colony who asked the council for a place for their god (A8), who says the words.
+        /// </summary>
+        public int tended = -1, served = -1, pilgrims = -1;
+        public Pawn askedBy;
 
         public bool Live => thing != null && !thing.Destroyed && thing.Spawned;
 
@@ -44,6 +51,10 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref lastWords, "lastWords");
             Scribe_Values.Look(ref lastAt, "lastAt", -1);
             Scribe_Values.Look(ref lastFate, "lastFate", OfferingFate.Waiting);
+            Scribe_Values.Look(ref tended, "tended", -1);
+            Scribe_Values.Look(ref served, "served", -1);
+            Scribe_Values.Look(ref pilgrims, "pilgrims", -1);
+            Scribe_References.Look(ref askedBy, "askedBy");
         }
     }
 
@@ -167,6 +178,8 @@ namespace ColonyCouncil
         public Thing thing;
         public int count, lastDay = -1;
         public string pending;
+        /// <summary>Sworn at the god's own place (Worship/GodPlaces.cs, B3): weighs more, kept or broken.</summary>
+        public bool atPlace;
 
         public void ExposeData()
         {
@@ -183,6 +196,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref count, "count");
             Scribe_Values.Look(ref lastDay, "lastDay", -1);
             Scribe_Values.Look(ref pending, "pending");
+            Scribe_Values.Look(ref atPlace, "atPlace");
         }
     }
 

@@ -75,7 +75,8 @@ namespace ColonyCouncil
         public static PortraitPicture ForStage(Pawn p)
         {
             if (p == null) return null;
-            if (!CreatureLibrary.IsCreature(p)) return For(p);
+            // A god shown as itself has its own pictures where the library has any (Gods: docs/gods-altars-proposals.md, C2).
+            if (!CreatureLibrary.IsCreature(p) && !CreatureLibrary.GodPictured(p)) return For(p);
             var s = CreatureLibrary.Source;
             try
             {

@@ -672,3 +672,6 @@ Rimfolk_WS_FallingStars [starIron/0] the finder's part: paid at the gate, the st
 Rimfolk_WS_GreatBurying [linen/1] a refusal: the sexton at the gate goes on when the answer comes (Visitors/)
 Rimfolk_WS_GreatBurying [end:quiet] far away, told
 Rimfolk_WS_BridgeDown [end:rebuilt] far away, told
+Rimfolk_Dlm_RivalFeasts [option 0] the feasts play out on their days, one kept in full and one quietly (Festivals.Kept, GodPlacesCouncil.KeptQuietly)
+Rimfolk_Dlm_RivalFeasts [option 1] the feasts play out on their days, one kept in full and one quietly (Festivals.Kept, GodPlacesCouncil.KeptQuietly)
+Rimfolk_Dlm_RivalFeasts [option 2] both feasts play out in full on their days (Festivals.Kept)

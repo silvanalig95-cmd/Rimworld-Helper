@@ -138,6 +138,50 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// The names a god's own pictures go under in the creature records (docs/gods-altars-proposals.md, C2 and C3; the
+        /// record's race field holds them): a god walking the map shown as itself, by its own key and the colony's age, its
+        /// own key, its domain and the age, its domain ("god:Hollin:medieval", "god:Hollin", "god:harvest:medieval",
+        /// "god:harvest"); a god's beast on the land, by its god, then its own kind ("godbeast:Bellwether", "Thrumbo").
+        /// Empty parts are left out.
+        /// </summary>
+        public static List<string> GodKeys(string god, string domain, string era)
+        {
+            var keys = new List<string>();
+            void Add(string k)
+            {
+                if (!keys.Contains(k)) keys.Add(k);
+            }
+            god = (god ?? "").Trim();
+            domain = (domain ?? "").Trim().ToLowerInvariant();
+            era = (era ?? "").Trim().ToLowerInvariant();
+            if (god.Length > 0 && era.Length > 0) Add("god:" + god + ":" + era);
+            if (god.Length > 0) Add("god:" + god);
+            if (domain.Length > 0 && domain != "none" && era.Length > 0) Add("god:" + domain + ":" + era);
+            if (domain.Length > 0 && domain != "none") Add("god:" + domain);
+            return keys;
+        }
+
+        public static List<string> BeastKeys(string god, string race)
+        {
+            var keys = new List<string>();
+            if (!string.IsNullOrWhiteSpace(god)) keys.Add("godbeast:" + god.Trim());
+            if (!string.IsNullOrWhiteSpace(race)) keys.Add(race);
+            return keys;
+        }
+
+        /// <summary>The candidates under the first of <paramref name="keys"/> that has any (<see cref="Candidates"/>).</summary>
+        public static List<int> FirstCandidates(IList<CreatureRecord> records, IList<string> keys, CreatureStage stage, string sex)
+        {
+            if (keys != null)
+                foreach (var k in keys)
+                {
+                    var list = Candidates(records, k, stage, sex);
+                    if (list.Count > 0) return list;
+                }
+            return new List<int>();
+        }
+
+        /// <summary>
         /// The picture a creature gets among <paramref name="names"/> (its candidates): the one ranked first for its id, so
         /// the same creature always gets the same one, the pictures are shared about evenly, and a picture added later takes
         /// over only the creatures it ranks first for. -1 where there is none.

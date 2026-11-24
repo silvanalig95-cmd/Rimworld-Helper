@@ -1,0 +1,570 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The gods' places and the rites held at them (Source/ColonyCouncil/Gods/Worship/GodPlaces.cs, GodRites.cs,
+    GodPlacesCouncil.cs; docs/gods-altars-proposals.md). Every rite at a god's place brings something, by how it went: a
+    mood for those who came, belief, and a short blessing of the god's own kind for those who hold it (the god's own
+    stats from its touch blessing, at half, three quarters or the full strength). Spoken lines are one sentence each, plain
+    speech, the [olde] lines in the faith's old voice.
+  -->
+
+  <!-- ===================== Jobs ===================== -->
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Service</defName>
+    <driverClass>ColonyCouncil.JobDriver_WorshipAt</driverClass>
+    <reportString>holding a service.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <casualInterruptible>false</casualInterruptible>
+    <modExtensions><li Class="ColonyCouncil.WorshipJobExtension"><act>Service</act></li></modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Swear</defName>
+    <driverClass>ColonyCouncil.JobDriver_WorshipAt</driverClass>
+    <reportString>swearing a vow.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions><li Class="ColonyCouncil.WorshipJobExtension"><act>Swear</act></li></modExtensions>
+  </JobDef>
+
+  <JobDef>
+    <defName>Rimfolk_Worship_Visit</defName>
+    <driverClass>ColonyCouncil.JobDriver_WorshipAt</driverClass>
+    <reportString>praying.</reportString>
+    <checkOverrideOnDamage>Always</checkOverrideOnDamage>
+    <casualInterruptible>true</casualInterruptible>
+    <modExtensions><li Class="ColonyCouncil.WorshipJobExtension"><act>Visit</act></li></modExtensions>
+  </JobDef>
+
+  <!-- ===================== Moods ===================== -->
+
+  <!-- A rite at a god's place, by how it went (GodPlacesMath.MoodStage): poor, plain, good, fine. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Rite_Kept</defName>
+    <durationDays>2</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages>
+      <li>
+        <label>a poor rite</label>
+        <description>We gathered at the god's place, and it went badly. People shuffled, the words came out wrong, and we went home uneasy.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+      <li>
+        <label>kept a rite</label>
+        <description>We gathered at the god's place and kept the rite together. It was good to stand there with the others.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+      <li>
+        <label>a good rite</label>
+        <description>The rite at the god's place went well. Everyone knew their part, and it felt like it meant something.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+      <li>
+        <label>a fine rite</label>
+        <description>The rite at the god's place was one to remember. Everyone was there, and nobody wanted to leave when it was over.</description>
+        <baseMoodEffect>8</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_PrayedAtFinePlace</defName>
+    <durationDays>0.5</durationDays>
+    <stages>
+      <li>
+        <label>prayed at a fine place</label>
+        <description>I prayed at my god's place, and it is a fine place to pray: well kept, quiet and good to look at.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_OathKept</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>kept an oath sworn at the altar</label>
+        <description>I swore it at my god's own place, and I kept it. I can go back there and look at it without shame.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_OathBroken</defName>
+    <durationDays>8</durationDays>
+    <stages>
+      <li>
+        <label>broke an oath sworn at the altar</label>
+        <description>I swore it at my god's own place, in front of everyone, and I broke it. I can't walk past that place now.</description>
+        <baseMoodEffect>-5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- Those who hold the god think less of one who broke an oath sworn at its place. -->
+  <ThoughtDef>
+    <defName>Rimfolk_Worship_OathBrokenSeen</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>2</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages>
+      <li>
+        <label>broke an oath before our god</label>
+        <description>They swore at our god's place, where we all heard it, and then they broke their word.</description>
+        <baseMoodEffect>0</baseMoodEffect>
+        <baseOpinionOffset>-12</baseOpinionOffset>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_PlaceGiven</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>my god has a place here</label>
+        <description>I asked the council for a place for my god, and now it has one, and I said the words there myself.</description>
+        <baseMoodEffect>5</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_PlaceRefused</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>no place for my god</label>
+        <description>I asked for a place for my god here, and it didn't happen. I pray where I stand, as before.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Worship_FeastQuiet</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>our feast kept quietly</label>
+        <description>Our god's feast was kept quietly this season, so the other god's could be kept in full. We kept it anyway, but it wasn't the same.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- A god's place left untended for a season (GodPlaces.NeglectedFor). -->
+  <ThoughtDef>
+    <defName>Rimfolk_Worship_PlaceNeglected</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_GodPlaceNeglected</workerClass>
+    <stages><li><label>our god's place neglected</label><description>Nobody has prayed or left anything at our god's place for a season. It looks forgotten.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- A god's place in the same room as a rival god's place (GodPlaces.RivalSideFor). -->
+  <ThoughtDef>
+    <defName>Rimfolk_Worship_RivalPlaces</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_GodPlaceRivals</workerClass>
+    <stages><li><label>rival gods side by side</label><description>Our god's place stands in the same room as the place of a god it is at odds with. It doesn't sit right with me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== The rite's blessing ===================== -->
+
+  <!-- Severity 1, 2 or 3 by how the rite went (GodPlacesMath.BlessLevel): slight, plain, strong. About a day. -->
+  <HediffDef Name="Rimfolk_RiteBlessBase" Abstract="True">
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.85, 0.8, 0.55)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <scenarioCanAdd>false</scenarioCanAdd>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>3</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>50000~70000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+  </HediffDef>
+
+  <!-- For a god without its own. -->
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless</defName>
+    <label>heartened by the rite</label>
+    <description>Since the rite at the god's place, they feel steady and work with a will.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statFactors><WorkSpeedGlobal>1.03</WorkSpeedGlobal></statFactors><statOffsets><MentalBreakThreshold>-0.01</MentalBreakThreshold></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statFactors><WorkSpeedGlobal>1.05</WorkSpeedGlobal></statFactors><statOffsets><MentalBreakThreshold>-0.02</MentalBreakThreshold></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statFactors><WorkSpeedGlobal>1.07</WorkSpeedGlobal></statFactors><statOffsets><MentalBreakThreshold>-0.03</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Hollin</defName>
+    <label>a good day for growing</label>
+    <description>Since the rite at the god's place, work with plants comes easily to them, and the harvest from their hands is a little better.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><PlantWorkSpeed>0.075</PlantWorkSpeed><PlantHarvestYield>0.04</PlantHarvestYield></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><PlantWorkSpeed>0.112</PlantWorkSpeed><PlantHarvestYield>0.06</PlantHarvestYield></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><PlantWorkSpeed>0.15</PlantWorkSpeed><PlantHarvestYield>0.08</PlantHarvestYield></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Smoulder</defName>
+    <label>warm hands</label>
+    <description>Since the rite at the god's place, their hands feel warm and sure. Work at the bench and in the rock goes faster.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><GeneralLaborSpeed>0.06</GeneralLaborSpeed><MiningSpeed>0.06</MiningSpeed></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><GeneralLaborSpeed>0.09</GeneralLaborSpeed><MiningSpeed>0.09</MiningSpeed></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><GeneralLaborSpeed>0.12</GeneralLaborSpeed><MiningSpeed>0.12</MiningSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Bellwether</defName>
+    <label>a steady eye</label>
+    <description>Since the rite at the god's place, they move quietly and the animals settle around them. Hunting and handling animals go better.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><HuntingStealth>0.075</HuntingStealth><TameAnimalChance>0.05</TameAnimalChance><TrainAnimalChance>0.05</TrainAnimalChance></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><HuntingStealth>0.112</HuntingStealth><TameAnimalChance>0.075</TameAnimalChance><TrainAnimalChance>0.075</TrainAnimalChance></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><HuntingStealth>0.15</HuntingStealth><TameAnimalChance>0.1</TameAnimalChance><TrainAnimalChance>0.1</TrainAnimalChance></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Morel</defName>
+    <label>shaking off sickness</label>
+    <description>Since the rite at the god's place, their body fights off sickness better than usual.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statFactors><ImmunityGainSpeed>1.075</ImmunityGainSpeed></statFactors></li>
+      <li><minSeverity>1.5</minSeverity><statFactors><ImmunityGainSpeed>1.112</ImmunityGainSpeed></statFactors></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statFactors><ImmunityGainSpeed>1.15</ImmunityGainSpeed></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Ennu</defName>
+    <label>easy company</label>
+    <description>Since the rite at the god's place, they are easy to talk to, and strangers warm to them quickly.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><SocialImpact>0.05</SocialImpact><NegotiationAbility>0.05</NegotiationAbility></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><SocialImpact>0.075</SocialImpact><NegotiationAbility>0.075</NegotiationAbility></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><SocialImpact>0.1</SocialImpact><NegotiationAbility>0.1</NegotiationAbility></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Pip</defName>
+    <label>a feel for machines</label>
+    <description>Since the rite at the god's place, they seem to know what a machine needs before they look. Research and building go better.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statFactors><ResearchSpeed>1.06</ResearchSpeed></statFactors><statOffsets><ConstructSuccessChance>0.025</ConstructSuccessChance></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statFactors><ResearchSpeed>1.09</ResearchSpeed></statFactors><statOffsets><ConstructSuccessChance>0.038</ConstructSuccessChance></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statFactors><ResearchSpeed>1.12</ResearchSpeed></statFactors><statOffsets><ConstructSuccessChance>0.05</ConstructSuccessChance></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Cirrus</defName>
+    <label>light on their feet</label>
+    <description>Since the rite at the god's place, they feel light and quick, as if the wind were behind them.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><MoveSpeed>0.2</MoveSpeed></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><MoveSpeed>0.3</MoveSpeed></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><MoveSpeed>0.4</MoveSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Hush</defName>
+    <label>at ease in the cold</label>
+    <description>Since the rite at the god's place, the cold doesn't reach them as it did. They can stand a colder day without feeling it.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><ComfyTemperatureMin>-4</ComfyTemperatureMin></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><ComfyTemperatureMin>-6</ComfyTemperatureMin></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><ComfyTemperatureMin>-8</ComfyTemperatureMin></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Undertow</defName>
+    <label>hearing too much</label>
+    <description>Since the rite at the god's place, the world sounds louder and closer, and their mind is more open than it was. It doesn't always feel good.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><PsychicSensitivity>0.1</PsychicSensitivity><GlobalLearningFactor>0.075</GlobalLearningFactor><MentalBreakThreshold>0.01</MentalBreakThreshold></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><PsychicSensitivity>0.15</PsychicSensitivity><GlobalLearningFactor>0.112</GlobalLearningFactor><MentalBreakThreshold>0.015</MentalBreakThreshold></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><PsychicSensitivity>0.2</PsychicSensitivity><GlobalLearningFactor>0.15</GlobalLearningFactor><MentalBreakThreshold>0.02</MentalBreakThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Helios</defName>
+    <label>sun-warmed</label>
+    <description>Since the rite at the god's place, they feel warmed through and full of energy. Every kind of work goes a little faster.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statFactors><WorkSpeedGlobal>1.03</WorkSpeedGlobal></statFactors></li>
+      <li><minSeverity>1.5</minSeverity><statFactors><WorkSpeedGlobal>1.045</WorkSpeedGlobal></statFactors></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statFactors><WorkSpeedGlobal>1.06</WorkSpeedGlobal></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Selene</defName>
+    <label>sleeping deeply</label>
+    <description>Since the rite at the god's place, they sleep deeply and wake rested, and their wounds mend faster.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statFactors><RestRateMultiplier>1.125</RestRateMultiplier><InjuryHealingFactor>1.125</InjuryHealingFactor></statFactors></li>
+      <li><minSeverity>1.5</minSeverity><statFactors><RestRateMultiplier>1.188</RestRateMultiplier><InjuryHealingFactor>1.188</InjuryHealingFactor></statFactors></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statFactors><RestRateMultiplier>1.25</RestRateMultiplier><InjuryHealingFactor>1.25</InjuryHealingFactor></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Mog</defName>
+    <label>calm</label>
+    <description>Since the rite at the god's place, they have been calm and steady. Bad news and pain shake them less.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><MentalBreakThreshold>-0.02</MentalBreakThreshold><PainShockThreshold>0.025</PainShockThreshold></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><MentalBreakThreshold>-0.03</MentalBreakThreshold><PainShockThreshold>0.038</PainShockThreshold></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><MentalBreakThreshold>-0.04</MentalBreakThreshold><PainShockThreshold>0.05</PainShockThreshold></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Murmur</defName>
+    <label>a clean hand in the kitchen</label>
+    <description>Since the rite at the god's place, the water they draw and the food they cook seem cleaner, and cooking goes a little faster.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statFactors><FoodPoisonChance>0.75</FoodPoisonChance><CookSpeed>1.05</CookSpeed></statFactors></li>
+      <li><minSeverity>1.5</minSeverity><statFactors><FoodPoisonChance>0.625</FoodPoisonChance><CookSpeed>1.075</CookSpeed></statFactors></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statFactors><FoodPoisonChance>0.5</FoodPoisonChance><CookSpeed>1.1</CookSpeed></statFactors></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Ducat</defName>
+    <label>a good eye for a bargain</label>
+    <description>Since the rite at the god's place, they notice what things are really worth. Traders find them hard to cheat.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><TradePriceImprovement>0.025</TradePriceImprovement></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><TradePriceImprovement>0.038</TradePriceImprovement></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><TradePriceImprovement>0.05</TradePriceImprovement></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Rimfolk_RiteBlessBase">
+    <defName>Rimfolk_Rite_Bless_Revel</defName>
+    <label>a light heart</label>
+    <description>Since the rite at the god's place, they take more pleasure in everything, and people warm to them easily.</description>
+    <stages>
+      <li><minSeverity>0</minSeverity><label>slight</label><statOffsets><JoyGainFactor>0.1</JoyGainFactor><SocialImpact>0.03</SocialImpact></statOffsets></li>
+      <li><minSeverity>1.5</minSeverity><statOffsets><JoyGainFactor>0.15</JoyGainFactor><SocialImpact>0.045</SocialImpact></statOffsets></li>
+      <li><minSeverity>2.5</minSeverity><label>strong</label><statOffsets><JoyGainFactor>0.2</JoyGainFactor><SocialImpact>0.06</SocialImpact></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <!-- ===================== A keepsake of a god's moment ===================== -->
+
+  <ThingDef>
+    <defName>Rimfolk_GodKeepsake</defName>
+    <label>keepsake</label>
+    <description>A small thing found where something of the gods happened: a smooth stone with a hole worn through it, a feather tied to it with a twist of cord. Worth nothing to a trader. Kept at the god's place, its believers like to see it there.</description>
+    <thingClass>ThingWithComps</thingClass>
+    <category>Item</category>
+    <selectable>true</selectable>
+    <altitudeLayer>Item</altitudeLayer>
+    <drawerType>MapMeshOnly</drawerType>
+    <alwaysHaulable>true</alwaysHaulable>
+    <rotatable>false</rotatable>
+    <pathCost>14</pathCost>
+    <drawGUIOverlay>true</drawGUIOverlay>
+    <healthAffectsPrice>false</healthAffectsPrice>
+    <useHitPoints>true</useHitPoints>
+    <comps>
+      <li Class="CompProperties_Forbiddable" />
+      <li Class="ColonyCouncil.CompProperties_GodKeepsake" />
+    </comps>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/GodKeepsake</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(0.6,0.6)</drawSize>
+    </graphicData>
+    <stackLimit>1</stackLimit>
+    <statBases>
+      <MarketValue>2</MarketValue>
+      <Mass>0.1</Mass>
+      <MaxHitPoints>60</MaxHitPoints>
+      <Flammability>0</Flammability>
+      <DeteriorationRate>0</DeteriorationRate>
+    </statBases>
+    <thingCategories>
+      <li>ItemsMisc</li>
+    </thingCategories>
+    <tradeability>None</tradeability>
+  </ThingDef>
+
+  <!-- ===================== Words ===================== -->
+
+  <!-- The week's service at a temple, by its keeper. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Service</defName>
+    <lines>
+      <plain>
+        <li>Another week, {GOD}, and we're all still here.</li>
+        <li>Sit down, everyone, it's {GOD}'s evening.</li>
+        <li>{GOD}, we came back this week like we said we would.</li>
+        <li>Let's give {GOD} an hour of the week and see how it goes.</li>
+        <li>[about:harvest] {GOD}, the fields had a good week, and we thank you for it.</li>
+        <li>[about:hearth] {GOD}, the fire's lit, and the week's work is done.</li>
+        <li>[about:waters] {GOD}, for the water we drew this week, thank you.</li>
+        <li>[about:healing] {GOD}, look after the ones who were sick this week.</li>
+        <li>[about:war] {GOD}, we stood watch all week, and we'll stand it again.</li>
+        <li>[about:machine] {GOD}, the machines ran all week, keep them running.</li>
+        <li>[about:night] {GOD}, the night's coming, and we're here to meet it.</li>
+        <li>[about:dead] {GOD}, we remember the ones who aren't with us any more.</li>
+        <li>[olde] Gather ye, all, for this is the week's hour of {GOD}.</li>
+        <li>[olde] {GOD}, {GODEPITHET}, another week is past, and we are come again before thee.</li>
+        <li>[olde] Sit ye down, every one, and hear what {GOD} hath given us this week.</li>
+        <li>[olde] Unto {GOD} we give this hour, as we give it every week.</li>
+        <li>[olde,priest] Hear ye the word of {GOD}, as it was spoken unto our fathers.</li>
+        <li>[olde,about:harvest] {GOD}, thou hast kept the field this week, and we give thee thanks.</li>
+        <li>[olde,about:hearth] The fire is lit and the week's work done, {GOD}, so sit thou with us.</li>
+        <li>[olde,about:waters] {GOD}, for the water drawn this week we give thee thanks.</li>
+        <li>[olde,about:healing] {GOD}, look thou upon the sick among us, and raise them up.</li>
+        <li>[olde,about:war] {GOD}, we have kept the watch this week, and we shall keep it still.</li>
+        <li>[olde,about:dead] {GOD}, we remember them that are gone, and thou keepest them.</li>
+        <li>[olde,about:night] The night cometh, {GOD}, and we are here to meet it with thee.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A vow sworn again at the god's place. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Swear</defName>
+    <lines>
+      <plain>
+        <li>{GOD}, I'm saying it again here, where you can hear it best.</li>
+        <li>I swore it already, {GOD}, but I wanted to swear it at your place too.</li>
+        <li>Here, in front of your place, {GOD}: I'll keep my word.</li>
+        <li>{GOD}, hold me to this one.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A pilgrim of another people at the colony's temple. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Pilgrim</defName>
+    <lines>
+      <plain>
+        <li>We heard there was a temple of {GOD} here, and we had to see it.</li>
+        <li>{GOD}, it's a long way from home, but your place is here too.</li>
+        <li>A good temple, this, and {GOD} has a fine place in it.</li>
+        <li>{GOD}, I came a long way to say this here: thank you.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A keepsake carried to the god's place. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_Worship_Keepsake</defName>
+    <lines>
+      <plain>
+        <li>This belongs at {GOD}'s place, not in a box somewhere.</li>
+        <li>I'll put this by {GOD}'s place so everyone can see it.</li>
+        <li>Somebody ought to keep this where {GOD} is.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- ===================== A believer asks for a place (A8) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_PlaceAsked</defName>
+    <label>a place for a god</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_PlaceAsked</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>25</cooldownDays>
+    <minColonists>3</minColonists>
+    <texts>
+      <li>{A_nameDef} has prayed to {GOD} wherever {A_pronoun} happens to stand for long enough, and asks the council for a place of {GOD}'s own at this home: an altar, a statue, a stone, whatever the colony can spare. {A_nameDef} would say the words there.</li>
+      <li>{A_nameDef} came to the council with a quiet request. Every god the colony keeps has a corner, {A_pronoun} says, except {GOD}. Would the council give {GOD} a place?</li>
+      <li>[lowtech] {A_nameDef} has found a stone {A_pronoun} thinks would do, and asks the council whether {GOD} may have it, and the ground it stands on.</li>
+      <li>[priest] {A_nameDef} reminds the council that {GOD} has believers here and no place to be prayed to, and would like that put right.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Give {GOD} a place here</label>
+        <outcome>The council agreed that {GOD} should have a place at this home. {A_nameDef} thanked them, and will say the words at whatever place the colony gives.</outcome>
+        <ways><tradition>1</tradition><openness>1</openness></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_PlaceAgreed" />
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Not now</label>
+        <outcome>The council said not now. {A_nameDef} nodded and said nothing more about it.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Worship_PlaceRefused</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>-1</amount><source>Neglect</source><offence>Neglect</offence><why>the council gave {GOD} no place</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== Whose feast this season (B6) ===================== -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_RivalFeasts</defName>
+    <label>two feasts in one season</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_RivalFeasts</workerClass>
+    <weight>0.9</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>4</minColonists>
+    <roleB />
+    <texts>
+      <li>Two feasts fall this season, {GOD}'s and {GOD2}'s, and the two gods have never been able to stand each other. {A_nameDef} wants {GOD}'s kept in full, {B_nameDef} wants {GOD2}'s, and both say the colony can't afford two feasts and two sets of guests in one season.</li>
+      <li>{A_nameDef} and {B_nameDef} have been arguing about the season's feasts since breakfast. {GOD}'s or {GOD2}'s: one gets the offering and the guests, the other is kept quietly. The council is asked to settle it.</li>
+      <li>[lowtech] There's one season, two feasts, and enough food for one. {A_nameDef} speaks for {GOD}, {B_nameDef} for {GOD2}.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{GOD}'s feast in full; {GOD2}'s kept quietly</label>
+        <outcome>The council gave the season to {GOD}. {B_nameDef} said {GOD2}'s people would keep their feast anyway, just quietly.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FeastFirst"><god>1</god></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>{GOD2}'s feast in full; {GOD}'s kept quietly</label>
+        <outcome>The council gave the season to {GOD2}. {A_nameDef} said {GOD}'s people would keep their feast anyway, just quietly.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FeastFirst"><god>2</god></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Both in full</label>
+        <outcome>The council said both feasts would be kept in full, offerings, guests and all. The stores will feel it, and some say neither god likes sharing a season.</outcome>
+        <ways><generosity>2</generosity><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>1</god><amount>-2</amount><onlyJealous>true</onlyJealous><source>Neglect</source><offence>Rivals</offence><why>a season shared with {GOD2}</why></li>
+          <li Class="ColonyCouncil.DilemmaEffect_GodFavour"><god>2</god><amount>-2</amount><onlyJealous>true</onlyJealous><source>Neglect</source><offence>Rivals</offence><why>a season shared with {GOD}</why></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+</Defs>

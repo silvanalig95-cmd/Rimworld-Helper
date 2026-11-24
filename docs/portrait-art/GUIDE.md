@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 23 November 2026 (Rimfolk 0.302.0: animals and creatures, the lists creatures-01 to 04). This guide is
+Last changed: 24 November 2026 (Rimfolk 0.303.0: the gods' pictures, the lists backdrops-gods, gods-01 and priests-01). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -115,6 +115,17 @@ kinds, baseliners about half:
   Vanilla Factions Expanded - Insectoids 2 (two each); a male and a female where they look different (deer, elk,
   moose, peafowl, chickens), and a baby for each animal. The whole creature, square, cut out. The other kinds of your
   mods (about 1,500, most of them PokeWorld's) wait for their looks to be written (`catalogue/creatures.csv`).
+- `backdrops-gods.csv`: the gods' places, 56 backdrops: one for each kind of god (the harvest, the storm, the hunt,
+  healing, war, the forge, roads, the dead, the night, the hearth, the green, the waters, the machine, the void) in each
+  age (a ring of stones, a chapel, a church, a terminal). Paint it in `style-rimworld-backdrops`, like `backdrops.csv`.
+- `gods-01.csv`: the gods as they are seen when they walk the map, 92 rows: the gods who show a body of their own (the
+  Old Horn, the great cat, the toad, the Long White, the Guest, the horned man with the cup, the Rootmother risen, the
+  dragon) in each age's dress, a figure for every other god by its kind in each age, and the thrumbos and lions that
+  walk with the Old Horn and the great cat. The run paints it in the creatures' style by itself (whole figure, cut out).
+- `priests-01.csv`: 64 priests of the common kinds, a man and a woman of each in every age's dress (painted markings, a
+  plain robe, a cassock, ceremonial robes). Paint it like the people's lists.
+- To add rows to these three after a change to the gods: `python3 Tools/PortraitArt/plan_gods.py` (it adds only what
+  is missing).
 
 ## What the check checks, and what it can change
 
@@ -159,6 +170,14 @@ where the picture shows one; the same picture each time for the same animal, the
 Click it for the game's information on the animal; right-click: **Choose another picture** (kept for it) or **Delete
 this picture for good**. A creature with no picture of its kind shows no portrait and is a "creature" line in
 `missing.csv`.
+
+**The gods** (from `gods-01`): a god walking the map as itself (not in disguise) shows its own picture when selected,
+in the colony's age where there is one; a god without pictures of its own shows the figure of its kind; with none of
+either it keeps the ordinary picture of whatever body it walks in. The beasts that walk with a god show its beasts'
+pictures, else their kind's. **The gods' places** (from `backdrops-gods`): someone praying, keeping a rite or swearing
+at a god's place, or standing in the room of one (its temple), has the backdrop of that kind of god's place behind them,
+the colony's age first; those backdrops are never used anywhere else. **Priests**: a picture with the role priest goes
+to people whose backstory, faith role or the colony's priest seat makes them one.
 
 In the game: right-click the large portrait for **Choose another picture**, **About this picture** (its description,
 why it was chosen, its variants, corrections: race, xenotype, sex, age, skin, hair, beard, build, clothes, features,

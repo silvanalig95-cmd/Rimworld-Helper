@@ -508,6 +508,8 @@ namespace ColonyCouncil
             o.set = true;
             o.placed = Worship.Now;
             lying.SetForbidden(true, false);
+            // Something left there tends the place (GodPlaces: its upkeep).
+            GodPlaces.Tend(shrine);
             var g = Gods.ById(o.god);
             // Why they bring this, in one sentence: every kind of thing has its words, and each god's own for what its people give it.
             string words = Worship.Line("Rimfolk_Pool_Worship_Offer", p, g, null, "offer:" + o.kind.ToString().ToLowerInvariant(), o.demand ? "demand" : null,

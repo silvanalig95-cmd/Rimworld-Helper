@@ -129,6 +129,30 @@ namespace ColonyCouncil
         /// </summary>
         public static BackdropWhere WhereOf(Pawn p, out float glow)
         {
+            var w = WhereOfPlace(p, out glow);
+            // At a god's place (praying there, or in its temple): its domain, for a backdrop of a god's place (C1).
+            if (w.place != BackdropPlace.Plain)
+            {
+                string god = "";
+                try
+                {
+                    god = GodPlaces.DomainAt(p);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("portraits: a god's place behind someone", e);
+                }
+                if (god.Length > 0)
+                {
+                    w.god = god;
+                    if (w.era == PortraitEra.Unknown) w.era = ColonyEra();
+                }
+            }
+            return w;
+        }
+
+        private static BackdropWhere WhereOfPlace(Pawn p, out float glow)
+        {
             glow = 1f;
             var map = p?.MapHeld;
             if (map == null) return new BackdropWhere();

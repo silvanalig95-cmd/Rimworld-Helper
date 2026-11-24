@@ -268,18 +268,23 @@ namespace ColonyCouncil
         private static void Said(WorshipBook b, PrayerRecord r, Pawn p, Thing shrine)
         {
             r.said = true;
-            r.atShrine = shrine != null;
+            // A neglected place (untended a season: GodPlaces) counts for less the first time someone prays there again; that prayer tends it.
+            bool neglected = shrine != null && GodPlaces.Neglected(shrine);
+            r.atShrine = shrine != null && !neglected;
             var map = p.MapHeld;
             var g = Gods.ById(r.god);
+            if (shrine != null) GodPlaces.Tend(shrine);
             if (g == null) return;
             bool devout = Worship.Devout(p);
             Interplay.Ease(p, WorshipMath.Comfort(r.atShrine, devout), StrainRelief.Quiet);
-            // A small mood: more for a prayer said at the god's own place (WorshipMath.PrayedAtShrineMood).
-            CouncilGameComponent.GiveThought(p, r.atShrine ? WorshipDefOf.Rimfolk_Worship_PrayedAtShrine : WorshipDefOf.Rimfolk_Worship_Prayed);
+            // A small mood: more for a prayer said at the god's own place (WorshipMath.PrayedAtShrineMood), more again at a fine one (its room: GodPlaces.RoomFine).
+            bool fine = r.atShrine && GodPlaces.RoomFine(shrine, g) >= GodPlacesMath.FineFrom;
+            CouncilGameComponent.GiveThought(p, fine ? GodRitesDefOf.Rimfolk_Worship_PrayedAtFinePlace : r.atShrine ? WorshipDefOf.Rimfolk_Worship_PrayedAtShrine : WorshipDefOf.Rimfolk_Worship_Prayed);
             Worship.Favour(g, map, WorshipMath.PrayerFavour(r.atShrine) * (Worship.IsPriest(p) ? WorshipMath.PriestRiteFactor : 1f),
                 "CC_Wsh_Why_Prayer".Translate(p.LabelShort.Named("PAWN")).Resolve(), FavourSource.Rite);
-            // Their own belief in the god they prayed to (Gods/Belief/PawnGods.cs).
+            // Their own belief in the god they prayed to (Gods/Belief/PawnGods.cs), a little more at a place its believers say it likes.
             PawnGods.Prayed(p, g, r.atShrine);
+            if (r.atShrine && GodPlaces.Fits(shrine, g) == true) PawnGods.Move(p, g, BeliefEvent.PrayedAtShrine, null, GodPlacesMath.FitFactor(true) - 1f);
             TryAnswer(b, r, p, g, map);
         }
 
@@ -298,6 +303,9 @@ namespace ColonyCouncil
             // The Hunger answers only through its own bargain with the desperate (Gods/World/GodVoid.cs), never a prayer here.
             if (!GodWorshipDef.Moved(g) || g.kind == GodKind.Hunger || g.baseKind == GodKind.Hunger) return;
             float chance = WorshipMath.AnswerChance(GodNear.Of(g, map), g.kind, Gods.Loudness(g), Gods.Favour(g, map), priest, r.atShrine, Worship.IsHonoured(g, map)) * back;
+            // Said at a place its believers say the god likes, a little more often answered; at one that isn't, a little less (GodPlacesMath.FitFactor).
+            var at = r.atShrine ? Shrines.Nearest(p, g) : null;
+            if (at != null && at.Position.InHorDistOf(p.Position, 6f)) chance *= GodPlaces.FitOf(at, g);
             int hour = GenLocalDate.HourOfDay(map);
             if (hour >= 20 || hour < 5) chance = Mathf.Min(0.6f, chance * (GodWorshipDef.For(g)?.nightFactor ?? 1f));
             if (!Rand.Chance(chance)) return;

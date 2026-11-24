@@ -5,8 +5,9 @@
 # ComfyUI gave them. This script writes library\records.xml: one record per picture, saying what it shows, taken from
 # the picture's row in batches\<batch>.csv (tied by the start of its name; the row's record columns: for people kind,
 # race, sex, age, skin, hairColour, hair, beard, build, era, dress, features, marks, looks, role, facing, pawn; for backdrops place,
-# rooms, outdoors, era, contents; for animals and creatures, the lists creatures-NN, creature (the creature's def name),
-# sex (male, female or any) and age (baby, juvenile or adult)). Rimfolk reads records.xml and the pictures straight from this folder (its setting
+# rooms, outdoors, era, contents, and god (the domain of the god whose place it is, for the list backdrops-gods); for animals
+# and creatures, the lists creatures-NN and gods-NN, creature (the creature's def name; for the gods' own pictures
+# god:<Key>:<age>, god:<domain>:<age> or godbeast:<Key>), sex (male, female or any) and age (baby, juvenile or adult)). Rimfolk reads records.xml and the pictures straight from this folder (its setting
 # "Portrait library folder"), so there is no second mod to install, and keeping this whole folder in a synced folder
 # (Google Drive) keeps both computers the same.
 #
@@ -443,6 +444,8 @@ try {
                 [void]$lines.Add((One-Xml 'outdoors' (Field $r 'outdoors')))
                 [void]$lines.Add((One-Xml 'era' (Field $r 'era')))
                 [void]$lines.Add((List-Xml 'contents' (Words (Field $r 'contents'))))
+                # A god's place (backdrops-gods): the domain of the god it is for; the game shows it only at such a place.
+                [void]$lines.Add((One-Xml 'god' (Field $r 'god')))
                 [void]$lines.Add('  </ColonyCouncil.BackdropDef>')
                 [void]$backs.Add((($lines | Where-Object { $_ -ne '' }) -join "`r`n"))
             }

@@ -39,6 +39,7 @@ namespace ColonyCouncil
             {
                 if (map == null || !map.IsPlayerHome) continue;
                 Safe("dedications", () => Shrines.Hourly(b, map, now));
+                Safe("the gods' places", () => GodPlaces.Hourly(b, map, now));
                 Safe("prayers", () => Prayers.Hourly(b, map, now));
                 Safe("offerings", () => Offerings.Hourly(b, map, now));
                 Safe("vows", () => Vows.Hourly(b, map, now));
@@ -61,6 +62,7 @@ namespace ColonyCouncil
                 Safe("the day's offerings", () => Offerings.Daily(b, map, now));
                 Safe("a precious gift asked", () => OfferingGifts.Daily(b, map, now));
                 Safe("the day's vows", () => Vows.Daily(b, map, now));
+                Safe("the gods' places' day", () => GodPlaces.Daily(b, map, now));
             }
             Safe("demands", () => GodDreams.Daily(b, now));
             Safe("the keeper's reading of the gods", () => GodTemper.Daily(now));

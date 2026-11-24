@@ -10,15 +10,18 @@ using Verse.AI;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// Places dedicated to a god (docs/design/gods.md, "Worship": shrines and offerings; brainstorm 11). The game's altars and
-    /// ritual places (Ideology's altars, ideograms, lecterns and slabs, Alpha Memes' and Vanilla Ideology Expanded - Memes
-    /// and Structures' alike: anything with a ritual focus), its art (sculptures, statues), Royalty's nature shrines, and an
-    /// ancient terminal of the archotechs can each be dedicated to a god: a button on the place asks which god, and a
-    /// colonist (the priest first, else one who holds that god, else anyone free) walks over and says the words there. Only
-    /// then is it the god's: its name on the place, a small light (a brighter one when the god is drawn near and shows
-    /// itself), the god pleased. Taken from one
-    /// god for another, the first is displeased. In the colony's age it is a shrine, a chapel, a church or a terminal; one
-    /// standing in a fine room indoors is a temple.
+    /// Places dedicated to a god (docs/design/gods.md, "Worship": shrines and offerings; brainstorm 11; the player's rules of
+    /// 24 November 2026, docs/gods-altars-proposals.md A1 to A5). The game's altars and ritual places (Ideology's altars,
+    /// ideograms, lecterns and slabs, Alpha Memes' and Vanilla Ideology Expanded - Memes and Structures' alike: anything with
+    /// a ritual focus), its art (sculptures of good quality or better), graves and sarcophagi (for a god of the dead),
+    /// Royalty's nature shrines, and an ancient terminal of the archotechs can each be dedicated to a god someone of the
+    /// colony holds, as many as its believers can keep (GodPlaces.WhyNot). A button on the place asks which god; an offering
+    /// the colony believes it likes is carried there; then one who holds the god says the words with its believers gathered,
+    /// about two hours (after dark for a god of the night or the dead). Only then is it the god's: its name on the place, a
+    /// small light (a brighter one when the god is drawn near and shows itself), and the rite's own fruit (GodRites.Held).
+    /// The dedication itself pleases no god; what is done there afterwards does. Taken from one god for another, or torn
+    /// down, the first is displeased, the more the longer it was its own. In the colony's age it is a shrine, a chapel, a
+    /// church or a terminal; one standing in a fine room indoors is a temple.
     /// </summary>
     public static class Shrines
     {
@@ -27,13 +30,16 @@ namespace ColonyCouncil
             "NatureShrine_Small", "NatureShrine_Large", "AncientTerminal_Worshipful", "IncenseShrine", "Reliquary"
         };
 
-        /// <summary>The colony's own building that can be a god's place: a ritual focus, art, a nature shrine, a worshipful terminal, or anything called an altar or a shrine.</summary>
+        /// <summary>
+        /// The colony's own building that can be a god's place: a ritual focus, art, a grave, a nature shrine, a worshipful
+        /// terminal, or anything called an altar or a shrine (never a shield generator of that name).
+        /// </summary>
         public static bool Is(Thing t)
         {
             if (!(t is Building b) || b.def == null || !b.Spawned || b.Faction != Faction.OfPlayer) return false;
             var def = b.def;
-            if (def.IsFrame || def.IsBlueprint) return false;
-            if (def.ritualFocus != null || def.IsArt || Named.Contains(def.defName)) return true;
+            if (def.IsFrame || def.IsBlueprint || GodPlaces.IsShield(b)) return false;
+            if (def.ritualFocus != null || def.IsArt || Named.Contains(def.defName) || GodPlaces.IsGrave(b)) return true;
             string n = def.defName;
             return n.IndexOf("Altar", StringComparison.OrdinalIgnoreCase) >= 0 || n.IndexOf("Shrine", StringComparison.OrdinalIgnoreCase) >= 0;
         }
@@ -102,13 +108,18 @@ namespace ColonyCouncil
 
         // ================= Asking and dedicating =================
 
-        /// <summary>The player asks for a place to be dedicated to a god: someone will walk over and say the words.</summary>
+        /// <summary>
+        /// The player asks for a place to be dedicated to a god (one it may have: GodPlaces.WhyNot): an offering is carried
+        /// there, then one who holds the god says the words with its believers gathered.
+        /// </summary>
         public static void Ask(Thing t, God g)
         {
             var b = Worship.Book;
             if (b == null || t == null || g == null) return;
             var r = b.ShrineOf(t);
             if (r != null && !r.pending && r.god == g.id) return;
+            // The menu offers only the gods a place may be given to now (GodPlaces.WhyNot); anything else is left as it is.
+            if (GodPlaces.WhyNot(t, g) != null) return;
             if (r == null)
             {
                 b.shrines.Add(r = new ShrineRecord { thing = t });
@@ -118,6 +129,8 @@ namespace ColonyCouncil
             r.god = g.id;
             r.pending = true;
             r.asked = Worship.Now;
+            // One who asked the council for a place for this god (A8) says the words.
+            r.askedBy = GodPlacesCouncil.AskedFor(t.Map, g);
             Messages.Message("CC_Wsh_DedicateAsked".Translate(t.LabelShort.Named("PLACE"), Worship.Called(g).Named("GOD")).Resolve(), t, MessageTypeDefOf.SilentInput, false);
         }
 
@@ -128,31 +141,55 @@ namespace ColonyCouncil
             var r = b?.ShrineOf(t);
             if (r == null) return;
             int god = r.pending ? r.before : r.god;
+            float kept = r.since < 0 ? 0f : (Worship.Now - r.since) / (float)GenDate.TicksPerDay;
             b.shrines.Remove(r);
             b.Changed();
             var g = Gods.ById(god);
+            // Felt the more the longer it was the god's own (GodPlacesMath.UndedicateFavour).
             if (g != null)
-                Worship.Favour(g, t.MapHeld, WorshipMath.RededicateFavour, "CC_Wsh_Why_Undedicated".Translate(t.LabelShort.Named("PLACE")).Resolve(), FavourSource.Neglect);
+                Worship.Favour(g, t.MapHeld, GodPlacesMath.UndedicateFavour(kept), "CC_Wsh_Why_Undedicated".Translate(t.LabelShort.Named("PLACE")).Resolve(), FavourSource.Neglect);
         }
 
-        /// <summary>The region's hour: a place waiting to be dedicated gets someone to go and say the words; too long waiting, it is let go.</summary>
+        /// <summary>A god whose rites are held after dark: of the night, the dead or the void.</summary>
+        public static bool NightGod(God g) => g != null && (g.domain == GodDomain.Night || g.domain == GodDomain.Dead || g.domain == GodDomain.Void || g.second == GodDomain.Night);
+
+        /// <summary>
+        /// The region's hour: a place waiting to be dedicated has an offering carried to it first (where the god takes them),
+        /// then, at its hour, one who holds the god goes to say the words and its believers gather round (about two hours);
+        /// too long waiting, it is let go.
+        /// </summary>
         public static void Hourly(WorshipBook b, Map map, int now)
         {
             foreach (var r in b.shrines.Where(s => s != null && s.pending).ToList())
             {
                 if (!r.Live || r.thing.Map != map) continue;
-                if (now - r.asked > WorshipMath.DedicateWaitDays * GenDate.TicksPerDay)
+                if (now - r.asked > GodPlacesMath.DedicateWaitDays * GenDate.TicksPerDay)
                 {
                     LetGo(b, r, map);
                     continue;
                 }
                 var g = Gods.ById(r.god);
                 if (g == null) continue;
-                // Someone already on their way.
+                // Someone already saying the words.
                 if (map.mapPawns.FreeColonistsSpawned.Any(p => p.CurJobDef?.defName == WorshipJobs.DedicateJob && p.CurJob.targetA.Thing == r.thing)) continue;
-                var who = Dedicator(map, g, r.thing);
+                // An offering the colony believes the god likes, carried there first by one who holds it (Offerings).
+                if (GodWorshipDef.TakesOfferings(g))
+                {
+                    // Set down there since it was asked for (whatever became of it since: the god may already have taken it), or on its way.
+                    bool offered = b.offerings.Any(x => x != null && x.shrine == r.thing && x.set && x.placed >= r.asked);
+                    if (!offered)
+                    {
+                        if (b.offerings.Any(x => x != null && x.shrine == r.thing && !x.set && x.fate == OfferingFate.Waiting)) continue;
+                        var carrier = r.askedBy ?? GodPlaces.Holders(map, g).OrderByDescending(p => PawnGods.HoldOf(p, g)).FirstOrDefault();
+                        b.offerings.Add(new OfferingRecord { shrine = r.thing, god = g.id, home = Gods.HomeKey(map), chosen = now, asked = carrier });
+                        continue;
+                    }
+                }
+                if (!GodPlacesMath.RiteHour(NightGod(g), GenLocalDate.HourOfDay(map))) continue;
+                var who = GodPlaces.Dedicator(map, g, r.thing, r.askedBy);
                 if (who == null) continue;
-                WorshipJobs.Start(who, WorshipJobs.At(WorshipJobs.DedicateJob, r.thing, Rand.Range(500, 800)));
+                if (WorshipJobs.Start(who, WorshipJobs.At(WorshipJobs.DedicateJob, r.thing, GodPlacesMath.DedicationTicks)))
+                    OwnFeasts.Gather(who, r.thing, g, GodPlacesMath.DedicationTicks + 600);
             }
         }
 
@@ -172,25 +209,6 @@ namespace ColonyCouncil
             Tell.Minor(NewsKind.Colony, Importance.Flavor, map, "CC_Wsh_DedicateLetGo".Translate(r.thing.LabelShort.Named("PLACE")).Resolve(), r.thing);
         }
 
-        /// <summary>Who goes to dedicate it: the priest, else the free colonist who holds that god most surely, else anyone free (never a scoffer).</summary>
-        private static Pawn Dedicator(Map map, God g, Thing t)
-        {
-            var priest = Worship.Priest(map);
-            if (priest != null && priest.Map == map && WorshipJobs.Free(priest) && priest.CanReach(t, PathEndMode.Touch, Danger.Some)) return priest;
-            Pawn best = null;
-            float bestScore = float.MinValue;
-            foreach (var p in map.mapPawns.FreeColonistsSpawned.ToList())
-            {
-                if (!Worship.Ours(p) || p.DevelopmentalStage.Juvenile() || Worship.Scoffer(p) || !WorshipJobs.Free(p)) continue;
-                if (!p.CanReach(t, PathEndMode.Touch, Danger.Some)) continue;
-                float s = (Worship.GodOf(p) == g ? 10f : 0f) + (Worship.Devout(p) ? 5f : 0f) - p.Position.DistanceTo(t.Position) / 20f;
-                if (s <= bestScore) continue;
-                best = p;
-                bestScore = s;
-            }
-            return best;
-        }
-
         /// <summary>The dedicator has walked over: their words to the god, said there.</summary>
         public static void Arrive(Pawn p, Thing t)
         {
@@ -200,7 +218,10 @@ namespace ColonyCouncil
             Worship.PriestLight(p, t.Position);
         }
 
-        /// <summary>The words are said: the place is the god's, the god pleased (the one it was taken from, not).</summary>
+        /// <summary>
+        /// The words are said: the place is the god's, and the rite's own fruit for those who came (GodRites.Held); the god it
+        /// was taken from is displeased, the more the longer it was its own. The dedication itself pleases no god.
+        /// </summary>
         public static void Dedicated(Pawn p, Thing t)
         {
             var b = Worship.Book;
@@ -209,17 +230,18 @@ namespace ColonyCouncil
             var g = Gods.ById(r.god);
             if (g == null) return;
             var map = t.Map;
+            float keptBefore = r.since < 0 ? 0f : (Worship.Now - r.since) / (float)GenDate.TicksPerDay;
             r.pending = false;
             r.by = p;
             r.byName = p?.LabelShort;
             r.since = Worship.Now;
+            r.tended = Worship.Now;
             var old = r.before >= 0 && r.before != r.god ? Gods.ById(r.before) : null;
             r.before = -1;
             string place = Worship.ShrineOf(g);
             string why = "CC_Wsh_Why_Dedicated".Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"), place.Named("SHRINE")).Resolve();
-            Worship.Favour(g, map, WorshipMath.DedicateFavour, why, FavourSource.Rite);
             if (old != null)
-                Worship.Favour(old, map, WorshipMath.RededicateFavour, "CC_Wsh_Why_TakenFrom".Translate(t.LabelShort.Named("PLACE"), g.name.Named("OTHER")).Resolve(),
+                Worship.Favour(old, map, GodPlacesMath.UndedicateFavour(keptBefore), "CC_Wsh_Why_TakenFrom".Translate(t.LabelShort.Named("PLACE"), g.name.Named("OTHER")).Resolve(),
                     FavourSource.Neglect, GodOffence.Rivals);
             bool plain = GodNear.Plain(g, map);
             Worship.Glow(map, t.Position, g, false, plain);
@@ -232,6 +254,11 @@ namespace ColonyCouncil
             Worship.Witness(g, map, GodActKind.Favour, text, t.Position);
             Worship.Booked(g, map, t.Position, text, p);
             if (p != null) CouncilGameComponent.Instance?.journals.WriteText(p, Worship.Line("Rimfolk_Pool_Worship_DedicateJournal", p, g) ?? why);
+            // The rite's own fruit, by how it went: a mood, belief, a short blessing of the god's kind, now and then its answer.
+            GodRites.Held(RiteKind.Dedication, g, t, p, "CC_Wsh_DedicationDone".Translate((p?.LabelShort ?? "?").Named("PAWN"), t.LabelShort.Named("PLACE"),
+                Worship.Called(g).Named("GOD")).Resolve());
+            // The one who asked the council for it (A8) is glad of it.
+            GodPlacesCouncil.Given(r, g, map);
         }
 
         /// <summary>
@@ -293,7 +320,20 @@ namespace ColonyCouncil
                 var god = g;
                 string label = "CC_Wsh_Menu_God".Translate(Worship.Called(god).Named("GOD"),
                     (mine.Contains(god) ? "CC_Wsh_Menu_Ours" : "CC_Wsh_Menu_Known").Translate().Named("WHOSE")).Resolve();
-                if (r != null && r.god == god.id) label += " " + "CC_Wsh_Menu_Now".Translate();
+                if (r != null && r.god == god.id)
+                {
+                    opts.Add(new FloatMenuOption(label + " " + "CC_Wsh_Menu_Now".Translate(), null));
+                    continue;
+                }
+                // Only a god someone here holds, as many places as its believers keep, at a place that suits it (GodPlaces.WhyNot).
+                string why = GodPlaces.WhyNot(t, god);
+                if (why != null)
+                {
+                    opts.Add(new FloatMenuOption(label + " (" + why + ")", null));
+                    continue;
+                }
+                string fits = GodPlaces.Fits(t, god) == true ? GodPlaces.FitWords(god) : null;
+                if (!fits.NullOrEmpty()) label += " " + "CC_Wsh_Menu_Fits".Translate(fits.Named("WHERE")).Resolve();
                 opts.Add(new FloatMenuOption(label, () => Ask(t, god)));
             }
             if (r != null) opts.Add(new FloatMenuOption("CC_Wsh_Menu_Undedicate".Translate(), () => Undedicate(t)));
@@ -307,7 +347,15 @@ namespace ColonyCouncil
             if (r == null) return null;
             var g = Gods.ById(r.god);
             if (g == null) return null;
-            if (r.pending) return "CC_Wsh_Inspect_Pending".Translate(Worship.Called(g).Named("GOD")).Resolve();
+            if (r.pending)
+            {
+                // What it waits for: an offering carried there, the dark, or one who holds the god free to say the words.
+                string wait = "CC_Wsh_Inspect_Pending".Translate(Worship.Called(g).Named("GOD")).Resolve();
+                bool offered = Worship.Book.offerings.Any(x => x != null && x.shrine == t && x.set && x.placed >= r.asked);
+                if (GodWorshipDef.TakesOfferings(g) && !offered) return wait + "\n" + "CC_Wsh_Inspect_PendingGift".Translate().Resolve();
+                if (NightGod(g) && t.Map != null && !GodPlacesMath.RiteHour(true, GenLocalDate.HourOfDay(t.Map))) return wait + "\n" + "CC_Wsh_Inspect_PendingNight".Translate().Resolve();
+                return wait;
+            }
             string line = (IsTemple(t) ? "CC_Wsh_Inspect_Temple" : "CC_Wsh_Inspect").Translate(Worship.Called(g).Named("GOD"), Worship.ShrineWord.Named("SHRINE"),
                 (r.byName ?? "?").Named("PAWN")).Resolve();
             var waiting = Worship.Book.offerings.FirstOrDefault(o => o != null && o.set && o.fate == OfferingFate.Waiting && o.shrine == t);
@@ -321,6 +369,12 @@ namespace ColonyCouncil
             }
             string held = Belief(g, r);
             if (!held.NullOrEmpty()) line += "\n" + held;
+            // Its upkeep, what its believers say of the spot, and a keepsake kept there.
+            if (GodPlaces.Neglected(r)) line += "\n" + "CC_Wsh_Inspect_Neglected".Translate().Resolve();
+            string fits = GodPlaces.Fits(t, g) == true ? GodPlaces.FitWords(g) : null;
+            if (!fits.NullOrEmpty()) line += "\n" + "CC_Wsh_Inspect_Fits".Translate(fits.Named("WHERE")).Resolve();
+            var keep = GodPlaces.Keepsake(t, g);
+            if (keep != null) line += "\n" + "CC_Wsh_Inspect_Keepsake".Translate(keep.LabelShort.Named("WHAT")).Resolve();
             return line;
         }
 

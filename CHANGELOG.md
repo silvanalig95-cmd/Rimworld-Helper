@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods' places, and rites that matter
+
+*24 November 2026, version 0.303.0*
+
+- A place can be given only to a god someone of the colony holds, or has lately turned toward. A god has one place at a home, a second once three hold it and a third once six do. A sculpture has to be of good quality or better, and a grave or sarcophagus is only for a god of the dead. The menu shows each god and why it can't have this place yet.
+- Dedicating a place is now a rite: an offering is carried there, then one who holds the god says the words with the other believers gathered round for about two hours, after dark for a god of the night or the dead. The dedication itself no longer pleases the god. Taking a place from its god, or tearing it down, is felt more the longer it was kept.
+- Every rite at a god's place now brings something, by how it went: a better mood for those who came (a poor rite a bad one), firmer belief, and for about a day a blessing on the work the god is known for (plants for one, the forge for another, trade for a third). A good rite may also be answered by the god in its own way. How it goes depends on who came, who led it, the place, its room, an offering or keepsake lying there, and the day.
+- A god's temple holds a service each week in the early evening (a fire circle, a mass, a sermon or a broadcast, by the colony's age). Pilgrims of a people who hold the god come now and then to pray there, leave a gift of silver and think better of the colony.
+- A place nobody prays at or leaves anything at for a season is neglected: its believers are unhappy and the first prayer there counts for less. Rival gods' places in one room trouble the believers of both. A place by water for a god of the waters, by the fields for the harvest and so on suits it better.
+- A vow is sworn again at the god's place where there is one, and weighs more, kept or broken. The game's own rites (a wedding, a funeral, a speech) held at a god's place carry the god into them. A god's moment that leaves something sometimes leaves a keepsake, which a believer carries to the god's place.
+- Two new council questions: a believer asks for a place for their god, and, with rival gods' feasts in one season, whose feast is kept in full.
+- Painted pictures for the gods: new lists for the gods' places as backdrops, the gods as they are seen when they walk the map and the beasts that walk with them, and priests in every age's dress. The colony's own priest is painted as a priest.
+
 ## Less than a day, in words
 
 *24 November 2026, version 0.302.2*

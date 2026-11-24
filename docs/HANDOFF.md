@@ -889,7 +889,37 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
-- **To do when the player asks (24 November 2026; proposal written, waiting for the go): altars that mean something,
+- **Done, released 0.303.0 (24 November 2026): the gods' places, every rite with an effect, and the gods' pictures.**
+  The player's go: "These proposals all sound great. You can go ahead. Now, just one thing, I think the different
+  interactions and rituals and prayers and stuff should not just be for flavor only. They should then always have some
+  game impact ... depending on the god and how it turns out, and the pawns". Built, all of `docs/gods-altars-proposals.md`:
+  - A1 to A8 (`Gods/Worship/GodPlaces.cs`, `GodPlacesMath.cs`, `Shrines.cs`, `GodPlacesCouncil.cs`): a place only for a
+    god someone holds or has lately turned toward; one place a god, two at three believers, three at six; no shield
+    generator, a sculpture of good quality or better, a grave only for a god of the dead, and a place its believers say
+    it likes (by its domain) counts a little more (prayers answered more, belief grows faster); the dedication is a rite
+    (an offering carried first, the believers gathered, two hours, after dark for the night's and the dead's gods) and
+    pleases no god by itself; taken from its god or torn down (Building.Destroy, deconstruct) felt the more the longer
+    kept; untended a season it is neglected (a mood, the first prayer there counts less); rival gods' places in a room
+    trouble both; the council question "a place for a god" (Rimfolk_Dlm_PlaceAsked).
+  - Every rite's effect (`GodRites.Held`): the outcome (poor, plain, good, fine) from who came, the leader (priest,
+    social skill), the temple and room, the place's fit, an offering, a keepsake, neglect and the day; it gives a mood
+    for each stage, belief, a day's blessing of the god's own kind (Rimfolk_Rite_Bless_<God>, the god's touch blessing
+    at half, three quarters or full; Rimfolk_Rite_Bless for a god without one), the god's regard, and by chance its own
+    answer through the gods' touch (`GodTouch.Rite`, with that god's waits and effects). Used by the dedication, the
+    festival's rite, the week's service (B1) and the game's own rites at a god's place (B4, LordJob_Ritual.ApplyOutcome).
+  - B2 pilgrims at a temple (a visitor group of a people who hold the god; one prays there, leaves silver, goodwill
+    with the reason SharedGod); B3 vows sworn again at the place (weigh more; the believers' opinion of an oath-breaker);
+    B5 the room in the rite and a better prayer mood at a fine place; B6 the council question "two feasts in one season"
+    (Rimfolk_Dlm_RivalFeasts: one kept quietly); B7 keepsakes (Rimfolk_GodKeepsake, left now and then with a god's find
+    or gift in kind, carried to the god's place).
+  - C1 to C4: backdrops of the gods' places (`BackdropDef.god`, chosen only at a god's place), the gods walking the map
+    and their beasts as creature records (`god:<Key>:<age>` ... `godbeast:<Key>`), the colony's priest painted as a
+    priest; lists `backdrops-gods`, `gods-01`, `priests-01` from `Tools/PortraitArt/plan_gods.py`. A Studio prompt was
+    given (STUDIO-HANDOVER, "Changes since the handover"). Not built: a "devout" look for devout believers (it would
+    need a new kind of look condition, read from belief, in the catalogue and the game; a proposal if the player wants it).
+  - To try in the game: give a place to a god nobody holds (greyed, with why), dedicate one (watch the offering, the
+    gathering and the rite's news), a temple's service on its week, a vow made with a place nearby.
+- **Was: to do when the player asks (24 November 2026; proposal written, waiting for the go): altars that mean something,
   more ways for the gods, and pictures of them.** The player: "the altars ... I think I could build 10 graves and assign
   each grave to a god like that at the same time ... maybe you should have some conditions fulfilled, for example, god
   actually known, believed in, or that someone wants to believe in a god ... Not that I ... can just again have an altar

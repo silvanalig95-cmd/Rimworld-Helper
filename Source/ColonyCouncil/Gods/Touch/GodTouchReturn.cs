@@ -52,6 +52,7 @@ namespace ColonyCouncil
                 var at = Place(p, ours);
                 if (!GenPlace.TryPlaceThing(t, at, p.map, ThingPlaceMode.Near, out var placed) || placed == null) return false;
                 Show(p, ours, gift, placed);
+                GodPlaces.LeaveKeepsake(p.taken ?? p.god, p.map, placed.Position, placed.LabelShort);
                 b.Set("r|" + god + "|" + home, now);
                 b.Set("rc|" + home, now);
                 return true;

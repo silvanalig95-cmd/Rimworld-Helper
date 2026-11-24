@@ -37,6 +37,12 @@ namespace ColonyCouncil
         public string era;
         /// <summary>What is in it: bed, beds, table, chairs, hearth, fire, window, shelves, crates, altar, throne, banners, pillars, workbench, tools, stove, pots, books, medicine, bars, games.</summary>
         public List<string> contents = new List<string>();
+        /// <summary>
+        /// A god's place (docs/gods-altars-proposals.md, C1): the domain of the god it is for (harvest, storm, hunt, healing,
+        /// war, craft, way, dead, night, hearth, wild, waters, machine, void), shown behind someone praying at a god's place of
+        /// that domain or standing in its temple, and never anywhere else; none for an ordinary backdrop.
+        /// </summary>
+        public string god;
 
         [Unsaved] private BackdropRecord record;
         [Unsaved] private List<string> problems;
@@ -96,6 +102,7 @@ namespace ColonyCouncil
                 case "texPath": return texPath;
                 case "place": return place;
                 case "outdoors": return outdoors;
+                case "god": return god;
                 case "era": return era;
                 default: return null;
             }

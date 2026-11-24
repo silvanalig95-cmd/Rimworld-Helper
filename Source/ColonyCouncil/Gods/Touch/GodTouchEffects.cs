@@ -541,6 +541,8 @@ namespace ColonyCouncil
             t.stackCount = Math.Min(what.Value.count, what.Value.def.stackLimit);
             if (!GenPlace.TryPlaceThing(t, c.cell, c.map, ThingPlaceMode.Near, out var placed) || placed == null) return null;
             GodTouchFx.Show(c.god, c.map, placed.Position, c.tier, false);
+            // Now and then a small keepsake lies with it, to be kept at the god's place (Gods/Worship/GodPlaces.cs).
+            if (!c.dark) GodPlaces.LeaveKeepsake(c.taken ?? c.god, c.map, placed.Position, placed.LabelShort);
             return Words(c, K(c.tier == TouchTier.Great ? "Hoard_Text" : "Find"), placed.LabelCap.Named("WHAT"));
         }
 

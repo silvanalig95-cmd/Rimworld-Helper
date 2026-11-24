@@ -106,14 +106,47 @@ namespace ColonyCouncil
         private List<int> CandidatesOf(Pawn p)
         {
             AgeAndSex(p, out var stage, out string sex);
-            return CreaturePortraitMath.Candidates(records, p.def?.defName, stage, sex);
+            var keys = GodKeysOf(p);
+            if (keys == null) return CreaturePortraitMath.Candidates(records, p.def?.defName, stage, sex);
+            // A god shown as itself is painted grown, whatever body it walks in.
+            if (GodAvatar.Shown(p)) stage = CreatureStage.Adult;
+            return CreaturePortraitMath.FirstCandidates(records, keys, stage, sex);
+        }
+
+        /// <summary>
+        /// A god walking the map shown as itself (not in disguise): the names its own pictures go under, by the god the colony
+        /// knows it as and its look's domain, in the colony's age; a god's beast on the land: its god's, then its kind's
+        /// (CreaturePortraitMath.GodKeys, BeastKeys). Null for anyone else.
+        /// </summary>
+        public static List<string> GodKeysOf(Pawn p)
+        {
+            if (p == null || !Gods.On) return null;
+            var c = GodAvatar.Of(p);
+            if (c != null && !c.disguised)
+            {
+                var g = c.godName.NullOrEmpty() ? null : Gods.All.FirstOrDefault(x => x != null && (x.name == c.godName || x.Key == c.godName));
+                string era = PortraitLibraryMath.EraOf((int)Avail.EffectiveTech).ToString();
+                return CreaturePortraitMath.GodKeys(g?.Key, (!(c.look?.Domain).NullOrEmpty() ? c.look.Domain : (g?.domain ?? GodDomain.None).ToString()), era == "Unknown" ? "" : era);
+            }
+            if (IsCreature(p) && (SacredAnimal.Is(p) || SacredAnimal.IsKin(p)))
+                return CreaturePortraitMath.BeastKeys(Gods.ById(GodsOnMapBook.Instance?.beast?.god ?? -1)?.Key, p.def?.defName);
+            return null;
+        }
+
+        /// <summary>A person who is a god shown as itself, with a picture of that god in the library (else they keep a person's picture).</summary>
+        public static bool GodPictured(Pawn p)
+        {
+            if (p == null || IsCreature(p) || !GodAvatar.Any) return false;
+            var keys = GodKeysOf(p);
+            if (keys == null || !Source.On) return false;
+            return CreaturePortraitMath.FirstCandidates(Source.records, keys, CreatureStage.Adult, "").Count > 0;
         }
 
         // ---------------- A creature's picture ----------------
 
         public PortraitPicture PictureFor(Pawn p)
         {
-            if (!IsCreature(p) || records.Count == 0) return null;
+            if (!IsCreature(p) && !GodPictured(p) || records.Count == 0) return null;
             int id = p.thingIDNumber;
             float now = Time.realtimeSinceStartup;
             if (!looked.TryGetValue(id, out var l) || now >= l.until)

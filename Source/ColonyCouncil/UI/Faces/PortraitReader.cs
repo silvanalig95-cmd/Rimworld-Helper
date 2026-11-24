@@ -171,7 +171,7 @@ namespace ColonyCouncil
         /// in how they look like"): none for a child; their grown-up backstory where its title, name or spawn categories
         /// clearly name one (<see cref="PortraitLookMath.RoleFromWords"/>; each backstory read once); else a leader for
         /// their people's leader, a holder of a royal title of knight or higher, or their faith's leader; else a priest for
-        /// their faith's moral guide or a priest's role; else the work of their best skill with a passion
+        /// their faith's moral guide, a priest's role or the colony's own priest; else the work of their best skill with a passion
         /// (<see cref="PortraitLookMath.RoleFromSkills"/>); else none.
         /// </summary>
         public static string RoleOf(Pawn p, PortraitAge age)
@@ -193,7 +193,8 @@ namespace ColonyCouncil
                 var role = ModsConfig.IdeologyActive ? p.Ideo?.GetRole(p) : null;
                 string roleName = role?.def?.defName ?? "";
                 if (p.Faction != null && p.Faction.leader == p || Titled(p) || roleName == "IdeoRole_Leader") return "leader";
-                if (roleName == "IdeoRole_Moralist" || roleName.IndexOf("priest", StringComparison.OrdinalIgnoreCase) >= 0) return "priest";
+                // Their faith's moral guide, a priest's role, or the colony's own priest (the council's seat: Gods/Worship).
+                if (roleName == "IdeoRole_Moralist" || roleName.IndexOf("priest", StringComparison.OrdinalIgnoreCase) >= 0 || Worship.IsPriest(p)) return "priest";
                 var skills = p.skills?.skills;
                 if (skills == null) return "";
                 skillBuf.Clear();

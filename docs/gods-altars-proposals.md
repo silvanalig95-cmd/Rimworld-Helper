@@ -1,4 +1,4 @@
-# Altars that mean something, and more ways for the gods (proposal, 24 November 2026; not built)
+# Altars that mean something, and more ways for the gods (proposal, 24 November 2026; built in 0.303.0)
 
 The player, 24 November 2026: "the altars ... now you basically just activate an item as one ... I think I could build
 10 graves and assign each grave to a god like that at the same time. So I feel like setting something as an altar to a
@@ -8,7 +8,7 @@ gameplay mechanic that makes sense. Not that I, you know, can just again have an
 free within a minute. Because then I feel a bit meaningless in a way", then "other ideas that you have in regards to
 further integrate them. And also later I want to create some images as well with the scripts".
 
-Nothing here is built until the player says so. The unseen rule holds throughout: what decides is what the colony's
+Built in 0.303.0 with the player's go of 24 November 2026, and their rule that every rite and prayer has an effect on the game (docs/HANDOFF.md, the 0.303.0 entry, says what each became). The unseen rule holds throughout: what decides is what the colony's
 people believe (the book, each colonist's belief), never the god's favour, wants or rules, and nothing shows a number.
 
 ## Where it stands

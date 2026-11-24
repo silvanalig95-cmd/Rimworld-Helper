@@ -22,7 +22,7 @@
   <CC_Wsh_Gizmo_Dedicate>Dedicate to a god</CC_Wsh_Gizmo_Dedicate>
   <CC_Wsh_Gizmo_Pending>Being given to {GOD}</CC_Wsh_Gizmo_Pending>
   <CC_Wsh_Gizmo_Dedicated>{GOD}'s place</CC_Wsh_Gizmo_Dedicated>
-  <CC_Wsh_Gizmo_Desc>Give this place to one of the gods the colony knows. Someone of the colony walks over and says the words there, and it becomes that god's {SHRINE}. A god's {SHRINE} is where the colony's people leave their small gifts to it, from what the stores can spare, where they come to pray in hard times, and where they keep its feast day. What the god makes of any of it, nobody can say.</CC_Wsh_Gizmo_Desc>
+  <CC_Wsh_Gizmo_Desc>Give this place to a god someone of the colony holds. An offering its believers think it likes is carried here first, then one of them says the words with the others gathered round, for about two hours (after dark for a god of the night or the dead), and it becomes that god's {SHRINE}. A god can have one place at a home, a second once three hold it and a third once six do. A sculpture has to be of good quality or better, and a grave is only for a god of the dead.\n\nA god's {SHRINE} is where the colony's people leave their small gifts to it, pray in hard times and keep its feast day, and in a fine room it is a temple, with a service each week. Each rite held here brings those who come something: a better mood, a firmer belief, and for a day a blessing on the kind of work the god is known for. A place nobody prays at or leaves anything at for a season is neglected, and its believers are unhappy about it. What the god makes of any of it, nobody can say.</CC_Wsh_Gizmo_Desc>
   <CC_Wsh_Gizmo_Of>Given to {GOD} by {PAWN}.</CC_Wsh_Gizmo_Of>
   <CC_Wsh_Gizmo_NoGods>The colony knows no god yet.</CC_Wsh_Gizmo_NoGods>
   <CC_Wsh_Menu_God>{GOD} ({WHOSE})</CC_Wsh_Menu_God>
@@ -30,8 +30,8 @@
   <CC_Wsh_Menu_Known>heard of</CC_Wsh_Menu_Known>
   <CC_Wsh_Menu_Now>(now)</CC_Wsh_Menu_Now>
   <CC_Wsh_Menu_Undedicate>Dedicate it to no god</CC_Wsh_Menu_Undedicate>
-  <CC_Wsh_DedicateAsked>Someone will walk over and give the {PLACE} to {GOD}.</CC_Wsh_DedicateAsked>
-  <CC_Wsh_DedicateLetGo>Nobody was free to dedicate the {PLACE}, so it was left as it was.</CC_Wsh_DedicateLetGo>
+  <CC_Wsh_DedicateAsked>The {PLACE} will be given to {GOD}: an offering is carried there first, then one who holds {GOD} says the words with the others gathered.</CC_Wsh_DedicateAsked>
+  <CC_Wsh_DedicateLetGo>The {PLACE} waited days for its offering and someone free to say the words, and was left as it was.</CC_Wsh_DedicateLetGo>
   <CC_Wsh_Inspect>A {SHRINE} of {GOD}, given by {PAWN}.</CC_Wsh_Inspect>
   <CC_Wsh_Inspect_Temple>A temple of {GOD}, given by {PAWN}.</CC_Wsh_Inspect_Temple>
   <CC_Wsh_Inspect_Pending>Waiting to be given to {GOD}.</CC_Wsh_Inspect_Pending>
@@ -326,5 +326,69 @@
   <CC_Wsh_Book_Unanswered_Death>nothing came back from {GOD}, not a word.</CC_Wsh_Book_Unanswered_Death>
   <CC_Wsh_Book_Unanswered_Raid>{ABOUT} fell all the same.</CC_Wsh_Book_Unanswered_Raid>
   <CC_Wsh_Book_Unanswered_Drought>no rain came, and the fields stayed dry.</CC_Wsh_Book_Unanswered_Drought>
+
+
+  <!-- ===================== The gods' places (GodPlaces.cs, GodRites.cs, GodPlacesCouncil.cs) ===================== -->
+  <CC_Wsh_Why_NotAPlace>this is not a place of worship</CC_Wsh_Why_NotAPlace>
+  <CC_Wsh_Why_GraveNotDead>only a god of the dead is given a grave</CC_Wsh_Why_GraveNotDead>
+  <CC_Wsh_Why_ArtTooPoor>a sculpture has to be of good quality or better</CC_Wsh_Why_ArtTooPoor>
+  <CC_Wsh_Why_NobodyHolds>nobody here holds {GOD}</CC_Wsh_Why_NobodyHolds>
+  <CC_Wsh_Why_MostPlaces>{GOD} has as many places here as a god can have</CC_Wsh_Why_MostPlaces>
+  <CC_Wsh_Why_MorePlaces>another place for {GOD} needs {COUNT} here who hold it</CC_Wsh_Why_MorePlaces>
+  <CC_Wsh_Menu_Fits>(a good spot: {WHERE}, as its believers like)</CC_Wsh_Menu_Fits>
+  <CC_Wsh_Fit_Harvest>near the fields</CC_Wsh_Fit_Harvest>
+  <CC_Wsh_Fit_Storm>under the open sky</CC_Wsh_Fit_Storm>
+  <CC_Wsh_Fit_Hunt>among trees</CC_Wsh_Fit_Hunt>
+  <CC_Wsh_Fit_Healing>near the sickbeds</CC_Wsh_Fit_Healing>
+  <CC_Wsh_Fit_War>near weapons and defences</CC_Wsh_Fit_War>
+  <CC_Wsh_Fit_Craft>near a workbench</CC_Wsh_Fit_Craft>
+  <CC_Wsh_Fit_Dead>near the graves</CC_Wsh_Fit_Dead>
+  <CC_Wsh_Fit_Night>away from lamps</CC_Wsh_Fit_Night>
+  <CC_Wsh_Fit_Hearth>by a fire</CC_Wsh_Fit_Hearth>
+  <CC_Wsh_Fit_Wild>among trees</CC_Wsh_Fit_Wild>
+  <CC_Wsh_Fit_Waters>by water</CC_Wsh_Fit_Waters>
+  <CC_Wsh_Fit_Machine>near machines</CC_Wsh_Fit_Machine>
+  <CC_Wsh_Fit_Void>away from lamps</CC_Wsh_Fit_Void>
+  <CC_Wsh_Inspect_PendingGift>An offering is to be carried here first.</CC_Wsh_Inspect_PendingGift>
+  <CC_Wsh_Inspect_PendingNight>The words are said after dark.</CC_Wsh_Inspect_PendingNight>
+  <CC_Wsh_Inspect_Neglected>Nobody has prayed or left anything here for a season.</CC_Wsh_Inspect_Neglected>
+  <CC_Wsh_Inspect_Fits>A good spot, its believers say: {WHERE}.</CC_Wsh_Inspect_Fits>
+  <CC_Wsh_Inspect_Keepsake>Kept here: {WHAT}.</CC_Wsh_Inspect_Keepsake>
+  <CC_Wsh_Neglected>Nobody has prayed or left anything at the {PLACE} for a season. Those who hold {GOD} are unhappy about it, and the first prayer said there again counts for less.</CC_Wsh_Neglected>
+  <CC_Wsh_Why_TornDown>the {PLACE} torn down</CC_Wsh_Why_TornDown>
+  <CC_Wsh_DedicationDone>{PAWN} said the words at the {PLACE} for {GOD}.</CC_Wsh_DedicationDone>
+  <CC_Belief_Why_Rite>Since the rite for {GOD}, {DATE}.</CC_Belief_Why_Rite>
+  <CC_Wsh_Rite_Poor>It went badly: {COUNT} came, and they went away uneasy.</CC_Wsh_Rite_Poor>
+  <CC_Wsh_Rite_Plain>{COUNT} came, and those who hold {GOD} came away with a blessing for about a day ({BLESSING}).</CC_Wsh_Rite_Plain>
+  <CC_Wsh_Rite_Good>It went well: {COUNT} came, and those who hold {GOD} came away with a blessing for about a day ({BLESSING}).</CC_Wsh_Rite_Good>
+  <CC_Wsh_Rite_Fine>It went very well: {COUNT} came, and those who hold {GOD} came away with a strong blessing for about a day ({BLESSING}).</CC_Wsh_Rite_Fine>
+  <CC_Wsh_Rite_Plain_None>{COUNT} came, and it went as such rites go.</CC_Wsh_Rite_Plain_None>
+  <CC_Wsh_Rite_Good_None>It went well: {COUNT} came.</CC_Wsh_Rite_Good_None>
+  <CC_Wsh_Rite_Fine_None>It went very well: {COUNT} came.</CC_Wsh_Rite_Fine_None>
+  <CC_Wsh_Service_Shrine>fire circle</CC_Wsh_Service_Shrine>
+  <CC_Wsh_Service_Chapel>mass</CC_Wsh_Service_Chapel>
+  <CC_Wsh_Service_Church>sermon</CC_Wsh_Service_Church>
+  <CC_Wsh_Service_Terminal>broadcast</CC_Wsh_Service_Terminal>
+  <CC_Wsh_ServiceDone>{PAWN} held the week's {SERVICE} for {GOD} at the {PLACE}.</CC_Wsh_ServiceDone>
+  <CC_Wsh_Sworn>{PAWN} went to the {PLACE} and swore the vow again there, before {GOD}. An oath sworn at a god's place weighs more, kept or broken.</CC_Wsh_Sworn>
+  <CC_Wsh_Why_OathKept>{PAWN} kept an oath sworn at its place</CC_Wsh_Why_OathKept>
+  <CC_Wsh_Pilgrims>Pilgrims of {PEOPLE} have come to pray at the {PLACE}, the temple of {GOD}.</CC_Wsh_Pilgrims>
+  <CC_Wsh_PilgrimGift>{PAWN} of {PEOPLE} prayed at the {PLACE} and left {COUNT} silver there as a gift. {PEOPLE} think a little better of the colony for its temple (+{GOODWILL} goodwill).</CC_Wsh_PilgrimGift>
+  <CC_Wsh_GameRite>The {RITE} was held at the {PLACE}, {GOD}'s place.</CC_Wsh_GameRite>
+  <CC_Wsh_Keepsake_Of>Those who found it connect it with {GOD}.</CC_Wsh_Keepsake_Of>
+  <CC_Wsh_Keepsake_What>Found with: {WHAT}.</CC_Wsh_Keepsake_What>
+  <CC_Wsh_Keepsake_When>Found on {DATE}.</CC_Wsh_Keepsake_When>
+  <CC_Wsh_Report_Service>holding the service for {GOD}.</CC_Wsh_Report_Service>
+  <CC_Wsh_Report_Service_NoGod>holding a service.</CC_Wsh_Report_Service_NoGod>
+  <CC_Wsh_Report_Swear>swearing a vow before {GOD}.</CC_Wsh_Report_Swear>
+  <CC_Wsh_Report_Swear_NoGod>swearing a vow.</CC_Wsh_Report_Swear_NoGod>
+  <CC_Wsh_Report_Visit>praying at the temple of {GOD}.</CC_Wsh_Report_Visit>
+  <CC_Wsh_Report_Visit_NoGod>praying.</CC_Wsh_Report_Visit_NoGod>
+  <CC_Wsh_PlaceNotGiven>The council agreed {GOD} would have a place, and none was given. {PAWN} is let down.</CC_Wsh_PlaceNotGiven>
+  <CC_Wsh_Impact_PlaceAgreed>{A_nameDef} will say the words at whatever place you give {GOD} (the place's button). If none is given within {DAYS} days, {A_nameDef} is let down.</CC_Wsh_Impact_PlaceAgreed>
+  <CC_Wsh_Impact_PlaceAgreedBrief>a place to choose</CC_Wsh_Impact_PlaceAgreedBrief>
+  <CC_Wsh_PlaceAgreed_Message>Choose a place for {GOD}: an altar, a good sculpture or another place of worship, with its button "Dedicate to a god". {PAWN} will say the words there. If none is given within {DAYS} days, {PAWN} is let down.</CC_Wsh_PlaceAgreed_Message>
+  <CC_Wsh_Impact_FeastQuiet>{FESTIVAL}, the feast of {GOD}, is kept quietly this season: no offering carried and no guests sent for, and those who hold {GOD} are put out.</CC_Wsh_Impact_FeastQuiet>
+  <CC_Wsh_Impact_FeastQuietBrief>one feast kept quietly</CC_Wsh_Impact_FeastQuietBrief>
 
 </LanguageData>

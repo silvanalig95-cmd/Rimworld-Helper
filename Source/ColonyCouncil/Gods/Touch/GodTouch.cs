@@ -199,6 +199,8 @@ namespace ColonyCouncil
             public int at, due;
             /// <summary>The offering whose taking it is, with what it was worth (null for anything else).</summary>
             public TakenGift gift;
+            /// <summary>How strongly what follows leans without a gift: a rite at the god's place, by how it went (GodTouch.Rite); else 1.</summary>
+            public float lean = 1f;
             /// <summary>What was seen, in the words of the first that told it (the mood's "Why"; null when none were said).</summary>
             public string words;
             /// <summary>What each of its words keys was about, for the occurrence's own effect (<see cref="About"/>).</summary>
@@ -346,8 +348,20 @@ namespace ColonyCouncil
             giftsComing.Add((g, map, now, gift));
         }
 
+        /// <summary>
+        /// A rite at the god's place answered (Gods/Worship/GodRites.cs): a kindness felt by those who came, and what follows
+        /// leans by how the rite went (<paramref name="lean"/>, as an offering's worth does), with the god's own effects and waits.
+        /// </summary>
+        public static void Rite(God g, Map map, IntVec3 cell, IEnumerable<Pawn> came, float lean, string words = null)
+        {
+            if (g == null || map == null || resolving || !Gods.On || !Homes.IsHome(map)) return;
+            var pawns = came?.Where(p => p != null).ToList() ?? new List<Pawn>();
+            if (pawns.Count == 0) return;
+            Add(g, map, cell, TouchTone.Kind, false, false, "rite:" + g.Key, pawns, g, words, lean);
+        }
+
         private static void Add(God g, Map map, IntVec3 cell, TouchTone tone, bool plain, bool coming, string key, List<Pawn> pawns, God taken,
-            string words = null)
+            string words = null, float lean = 1f)
         {
             if (Current.Game != pendingGame)
             {
@@ -364,6 +378,7 @@ namespace ColonyCouncil
                 pending.Add(p);
             }
             if (p.words == null && !words.NullOrEmpty()) p.words = words;
+            if (lean > p.lean) p.lean = lean;
             if (p.gift == null)
                 for (int i = giftsComing.Count - 1; i >= 0; i--)
                     if (giftsComing[i].god == g && giftsComing[i].map == map && now - giftsComing[i].at <= GenDate.TicksPerHour * 2)
@@ -540,7 +555,7 @@ namespace ColonyCouncil
         {
             string god = p.god.Key;
             // A gift leans what follows its taking by what it was worth and how well it suited the god (OfferingGiftMath.Lean).
-            float lean = p.gift != null ? OfferingGiftMath.Lean(p.gift.worth, p.gift.fit, p.gift.precious) : 1f;
+            float lean = p.gift != null ? OfferingGiftMath.Lean(p.gift.worth, p.gift.fit, p.gift.precious) : p.lean;
             bool precious = p.gift?.precious == true;
             var gapKeys = p.keys.Select(k => GodTouchMath.GapKey(k, god)).Where(k => k != null).ToList();
             foreach (var k in gapKeys)
