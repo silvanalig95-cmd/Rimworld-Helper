@@ -889,6 +889,16 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **To do when the player asks (24 November 2026, the player: "sorry, i mean this one", with Workshop 3823345404):
+  Rimfolk recognising "A RimWorld of Magic (Continued)".** HUGINN's continuation (tags 1.6 and 1.7, updated 21
+  November, made with Torann's permission) needs Harmony, JecsLite - A RimWorld of Magic (3312959701), RWoM Core
+  (Ability Framework) (3833946439) and RWoM Integrations (3833946677), and says not to combine JecsLite with JecsTools;
+  an alternative fork closer to the original is 3828893021. Told the player it replaces the original (never both) and
+  should end the auto-cast crash, but untested; the page doesn't say whether an existing save keeps its classes. Its
+  package id isn't on the page: Rimfolk finds the magic mod by `torann.arimworldofmagic` (SettingsCatalog.MagicId,
+  MagicGolems, Workers_Storyteller, Contests, GodGifts, WorshipMore, AnimalVoices, three MayRequire in the defs), so
+  with another id those parts switch off. Once the player switches, read the id from their save or log and accept it
+  as well (code: the id or the TorannMagic types; defs: MayRequireAnyOf).
 - **To do when the player asks (24 November 2026; offered, not built): Rimfolk keeping another mod's broken button
   from blocking a pawn's other buttons.** A finalizer on A RimWorld of Magic's GizmoOnGUI prefix (soft, by name) that
   catches its TypeLoadException and lets the game draw the button its own way, so the draft button and R work with
