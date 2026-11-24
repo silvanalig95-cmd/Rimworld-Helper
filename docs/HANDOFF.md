@@ -889,6 +889,20 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **To do when the player asks (24 November 2026; recommendation sent, waiting for the go): the portrait workflow's
+  scripts developed in Rimfolk Studio from now on.** The player: "the scripts and everything, it does just make sense
+  if we continue also developing these in Rimfolk Studio rather than here. I don't know, or should this continue to be
+  used here?", with the example "regarding the integration of animals and creatures, these will soon be start to
+  generate, and I want to ensure they also work properly. And also then that the program can differentiate between
+  like what's a backdrop, what's an animal, what's a pawn, to also then treat and classify and organize each category".
+  Recommended: here stays the game (picking and showing pictures, corrections in the game, what the game writes), the
+  file formats (STUDIO-HANDOVER section 4) and what to paint (catalogues, planners, lists, styles: they rest on the
+  game's matching, the player's mods and saves); the workflow (painting, copying, checking, reviewing, sorting, the
+  scripts) is developed in the Studio, which already plans to move each step in (its phase 4). On the go: the scripts
+  here frozen (fixes a format change needs only), the Studio taking them over in its own repository and shipping them
+  to the kit folder, Tools/PortraitArt's scripts marked as moved; GUIDE.md and STUDIO-HANDOVER.md say so. The three
+  kinds (person, creature, backdrop) are told apart by records.xml's element (PortraitDef, CreaturePortraitDef,
+  BackdropDef) and a list's columns (`creature`, `place`, else a person): sent to the Studio's chat as a wish.
 - **To do when the player asks (24 November 2026, the player: "sorry, i mean this one", with Workshop 3823345404):
   Rimfolk recognising "A RimWorld of Magic (Continued)".** HUGINN's continuation (tags 1.6 and 1.7, updated 21
   November, made with Torann's permission) needs Harmony, JecsLite - A RimWorld of Magic (3312959701), RWoM Core

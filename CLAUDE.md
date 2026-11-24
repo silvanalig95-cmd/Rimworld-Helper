@@ -65,8 +65,10 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   line), and every kit zip sent to the player includes it.
 - `docs/portrait-art/STUDIO-HANDOVER.md` describes every file format and step of the kit for the player's separate
   program, Rimfolk Studio (repository silvanalig95-cmd/rimfolk-studio, its own chat): a change to a format, a file or a
-  step updates it too, adds a line to its "Changes since the handover" list, and the reply to the player ends with one
-  line to paste into the Studio's chat (section 0, "Keeping the two in step"; the player, 24 November 2026).
+  step updates it too, adds a line to its "Changes since the handover" list, and the reply to the player ends with the
+  steps and a ready prompt to paste into the Studio's chat (section 0, "Keeping the two in step"; the player, 24
+  November 2026: "whenever there is an update here where we also need to update the program, please always include
+  these steps and provide me a prompt or post in there").
 
 ## Releases
 - `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` drives `CHANGELOG.md` (`python3 Tools/changelog.py`, then `--check`).
