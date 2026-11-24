@@ -5,6 +5,47 @@ new session needs to start is here or linked from here. The workflow as it is to
 (same folder); the ComfyUI setup in `SETUP-ComfyUI.md`. When a file format or a step below changes in this repository,
 this document changes with it.
 
+## 0. Keeping the two in step (read this first on every sync)
+
+The player, 24 November 2026: "how do I keep everything synced up and not update one aspect and then the other one
+doesn't work anymore". The two projects and who owns what:
+
+- **This repository** (silvanalig95-cmd/rimworld-helper, default branch `claude/charming-pasteur-9qbjle`) owns the game
+  mod and everything the game reads or writes: the file formats (section 4), the kit's scripts (`Tools/PortraitArt`),
+  the lists and catalogues (`docs/portrait-art`), and the portrait code the Studio copies. A format changes here first.
+- **Rimfolk Studio** (silvanalig95-cmd/rimfolk-studio, private) owns the program. It follows this repository: it copies
+  files with its `tools/sync_mod_code.py`, runs the kit's scripts, and never changes a format or pushes here. It asks
+  for a change here through the player.
+- **The routine.** Every change here that touches the portraits (a format, a script, a list or style, a copied file,
+  `CreaturePortraitMath.cs` and the other `*Math.cs` under `UI/Faces`) adds a line to the list below with the version,
+  and the reply to the player ends with one line for the Studio. The player pastes it into the Studio's chat, which
+  syncs (`python3 tools/sync_mod_code.py --from <checkout of this repository>`), reads the list below from its last
+  synced commit (`src/Mod/MOD-SOURCE.json`), and adapts. A change the Studio needs from here goes the other way: its chat
+  writes the wish, the player pastes it here, it goes on the to-do list in `docs/HANDOFF.md`.
+- Nothing here depends on the Studio: the scripts keep working on their own, so a change here never waits for it.
+
+### Changes since the handover (newest first)
+
+- **Rimfolk 0.302.1 (23 November 2026):** nothing for the kit or the Studio (the peoples' leaders and log errors).
+- **Rimfolk 0.302.0 (23 November 2026): animals and creatures.**
+  - records.xml has a third element, `ColonyCouncil.CreaturePortraitDef` (`defName`, `texPath`, `race`, `sex` any, male
+    or female, `age` baby, juvenile or adult, `character`). `PortraitFolderMath.Parse` takes a fifth, optional list for
+    them; without it they are passed over quietly (no problem line). `PortraitDeleteMath.WithoutRecords` takes them out
+    too. New pure file `Source/ColonyCouncil/UI/Faces/CreaturePortraitMath.cs` (the record, the matching): add it to
+    the Studio's `FILES`.
+  - New lists `creatures-01` to `04` (columns `name,subject,pose,count,seed,creature,sex,age,mod`), from
+    `catalogue/creatures.csv` by `Tools/PortraitArt/plan_creatures.py` (`creature_census.py` keeps the catalogue).
+  - New style `style-rimworld-creatures.json` (1024 x 1024, no face fix) with a new field `"for": "creatures"`.
+    Run-PortraitBatch swaps a people's style for it on a list with a `creature` column, and notes a creatures style
+    chosen for people.
+  - Update-PortraitLibrary writes a creature record for a row with `creature` (`Creature_<list>_<row>_<run>_<NN>`;
+    corrections apply, only `out`, `sex` and `age` mean anything; no variants or depth maps).
+  - Check-Pictures leaves creatures out (a creature record, or a folder `creatures-NN`) and says how many.
+  - missing.csv: `what` can be `creature` (kind = the race's def name, with its age and sex).
+  - The game's save keeps the pictures chosen by hand for creatures (`PortraitKeeper.creaturePicks`).
+- **Characters lists, third round (23 November 2026):** `characters-08` to `16`, 1,632 rows, the same columns as
+  before; one picture a row.
+
 ## 1. What the player asked for
 
 The player, 23 November 2026:
