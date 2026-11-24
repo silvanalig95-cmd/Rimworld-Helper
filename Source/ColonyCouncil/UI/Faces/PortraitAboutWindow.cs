@@ -317,6 +317,7 @@ namespace ColonyCouncil
             y = Rule(w, y, "CC_PortraitAbout_RuleLooks", Words(l.looks.OrderBy(s => s, StringComparer.OrdinalIgnoreCase).Concat(l.role.Length > 0 ? new[] { l.role } : new string[0])), ru.looks);
             y = Rule(w, y, "CC_PortraitAbout_RuleSpecials", Words(l.specials.OrderBy(s => s, StringComparer.OrdinalIgnoreCase)), ru.specials);
             y = Rule(w, y, "CC_PortraitAbout_RuleHeadwear", YesNo(l.headwear), ru.headwear);
+            y = Rule(w, y, "CC_PortraitAbout_RuleEars", (PortraitLibraryMath.HumanLooking(l) ? "CC_PortraitAbout_EarsHuman" : "CC_PortraitAbout_EarsFantasy").Translate().Resolve(), ru.ears);
             if (!ru.All) y += UiKit.Paragraph(0f, y, w, "CC_PortraitAbout_KeptAnyway".Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 2f;
             y += 6f;
             y += UiKit.Paragraph(0f, y, w, "CC_PortraitAbout_Costs".Translate().Resolve(), UiKit.Heading, GameFont.Tiny) + 2f;

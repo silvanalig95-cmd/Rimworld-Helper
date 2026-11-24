@@ -889,6 +889,17 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done, released 0.303.1 (24 November 2026): pointed ears are fine for the fantasy races.** The player: "my model
+  really for a lot of images has them have pointy ears ... Now the studio really kind of flags all of these and
+  recommends to leave them out ... for all like all the fantasy races, it's totally fine. They anyways look unusual ...
+  But for humans, of course, or anything that's really close to humans, they should not have pointy ears ... unless the
+  pawn for some reason has its xenotype on pointy ears." Built: `kinds.csv` column `humanLooking` (16 kinds yes: Baseliner,
+  Dirtmole, Genie, Highmate, Hussar, Neanderthal, Sanguophage, Waster, AG_Helixien, AG_RandomCustom, both VREA
+  androids, VREH_Uhlan, VRE_Bruxa, CreepJoiner, MultiMind_ConjoinedHuman; the lead's call, open to the player's change);
+  the game's `PortraitLibraryMath.HumanLookingKinds` the same (PortraitEarsTests), `EarsAgree` a hard rule (in `Rules`
+  and `Shows`), pointed ears free in `Parts` for a fantasy race; a xenotype of the player's own looks human unless its
+  genes show something. The Studio's check and review are its own: a prompt was given (keep fantasy-race pictures with
+  pointed ears, `features add:pointedEars`, and let the ones already flagged back in).
 - **Done (24 November 2026, kit only): the Pokémon out of the creature lists.** The player: "Please take the Pokémon
   out of the creature lists ... Keep the names of all other rows as they are, so pictures already painted keep their
   rows. The catalogue itself can keep the Pokémon." `creatures-01` lost 24 rows, `creatures-02` 6 (10 kinds of the

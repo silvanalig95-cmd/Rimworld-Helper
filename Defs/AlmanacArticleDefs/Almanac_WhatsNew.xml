@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.303.1</version>
+        <date>24 November 2026</date>
+        <title>Pointed ears for the fantasy races</title>
+        <points>
+          <li>A painted portrait showing pointed ears is now never a reason against it for a fantasy race: impids, elves, fairies, lowmates, the alien races and every other kind that doesn't look like an ordinary human take it like any other picture of their kind.</li>
+          <li>Someone who looks human (a baseliner, a hussar, a waster, an android and the like) never gets a picture with pointed ears, unless their own genes give them pointed ears. "About this picture" shows the rule with the others.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.303.0</version>
         <date>24 November 2026</date>
         <title>The gods' places, and rites that matter</title>

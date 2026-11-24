@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pointed ears for the fantasy races
+
+*24 November 2026, version 0.303.1*
+
+- A painted portrait showing pointed ears is now never a reason against it for a fantasy race: impids, elves, fairies, lowmates, the alien races and every other kind that doesn't look like an ordinary human take it like any other picture of their kind.
+- Someone who looks human (a baseliner, a hussar, a waster, an android and the like) never gets a picture with pointed ears, unless their own genes give them pointed ears. "About this picture" shows the rule with the others.
+
 ## The gods' places, and rites that matter
 
 *24 November 2026, version 0.303.0*

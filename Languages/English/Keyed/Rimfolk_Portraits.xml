@@ -271,6 +271,9 @@
   <CC_PortraitAbout_RuleLooks>Only looks and work they have</CC_PortraitAbout_RuleLooks>
   <CC_PortraitAbout_RuleSpecials>The same special looks</CC_PortraitAbout_RuleSpecials>
   <CC_PortraitAbout_RuleHeadwear>Headwear only if they wear it</CC_PortraitAbout_RuleHeadwear>
+  <CC_PortraitAbout_RuleEars>Pointed ears only if they have them, for someone who looks human</CC_PortraitAbout_RuleEars>
+  <CC_PortraitAbout_EarsHuman>looks human</CC_PortraitAbout_EarsHuman>
+  <CC_PortraitAbout_EarsFantasy>a fantasy race: pointed ears are fine</CC_PortraitAbout_EarsFantasy>
   <CC_PortraitAbout_KeptAnyway>A picture once kept stays through the person's stage of life, so a rule not met now was met when it was picked (they have changed since), or the picture is pinned to them.</CC_PortraitAbout_KeptAnyway>
   <CC_PortraitAbout_Costs>How far it is from their looks (lower is closer)</CC_PortraitAbout_Costs>
   <CC_PortraitAbout_CostSkin>Skin colour</CC_PortraitAbout_CostSkin>

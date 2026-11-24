@@ -39,6 +39,17 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Rimfolk 0.303.1 (24 November 2026): pointed ears are fine for the fantasy races.** The player: "for all the fantasy
+  races, it's totally fine. They anyways look unusual ... But for humans, of course, or anything that's really close to
+  humans, they should not have pointy ears ... unless the pawn for some reason has its xenotype on pointy ears."
+  - `catalogue/kinds.csv` has a new column `humanLooking` (yes or no; after `farFromHuman`): 16 kinds look human, the
+    other 66 are fantasy races.
+  - The game: a picture with the feature `pointedEars` never stands for someone who looks human and hasn't got pointed
+    ears from their genes (a new hard rule, `PortraitLibraryMath.EarsAgree`, also in `Shows`); for a fantasy race it
+    costs nothing (`Parts`). Copied file changed: `PortraitLibraryMath.cs` (`HumanLookingKinds`, `HumanLooking`,
+    `EarsAgree`, `HardRules.ears`, `PortraitLook.ownXenotype`).
+  - For the Studio's check and review: pointed ears on a picture of a fantasy race are no reason to leave it out (keep
+    it, with `features add:pointedEars`); on a human-looking kind they still are, unless the row's kind has pointed ears.
 - **The Pokémon out of the creature lists (24 November 2026):** `creatures-01` lost 24 rows and `creatures-02` 6, all
   of the catalogue's group `pokemon` (PokeWorld); every other row is unchanged, names included. `plan_creatures.py` has
   `--without` (default `pokemon`): those groups get no rows and are taken out of the lists. The catalogue keeps them.

@@ -137,6 +137,7 @@ namespace ColonyCouncil
             {
                 // A xenotype of the player's own making matches pictures listing its name; a hybrid or one with no name, none.
                 l.baseliner = false;
+                l.ownXenotype = true;
                 l.xenotype = genes.hybrid || genes.xenotypeName.NullOrEmpty() ? "" : genes.xenotypeName.Trim().ToLowerInvariant();
             }
             else

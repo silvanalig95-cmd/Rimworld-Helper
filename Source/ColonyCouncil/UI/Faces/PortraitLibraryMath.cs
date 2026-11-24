@@ -243,6 +243,8 @@ namespace ColonyCouncil
         /// <summary>Their xenotype's and race's def names in small letters ("" for a xenotype of the player's own making), and whether they are a baseliner.</summary>
         public string xenotype = "", race = "human";
         public bool baseliner = true;
+        /// <summary>A xenotype of the player's own making (its name in <see cref="xenotype"/>).</summary>
+        public bool ownXenotype;
         public PortraitSex sex;
         public PortraitAge age = PortraitAge.Adult;
         public PortraitColour skin, hairColour;
@@ -1301,8 +1303,12 @@ namespace ColonyCouncil
             return ColourApart(person, picture) <= SkinLineMost;
         }
 
-        /// <summary>A picture may stand for the person's body: it shows no mark they haven't got (no eye patch on someone with both eyes, no bionic arm on someone with their own arms), and headwear only where they wear it and the setting shows it.</summary>
-        public static bool Shows(PortraitRecord r, PortraitLook l) => ShowsMarks(r, l) && (!r.headwear || l.headwear);
+        /// <summary>
+        /// A picture may stand for the person's body: it shows no mark they haven't got (no eye patch on someone with both
+        /// eyes, no bionic arm on someone with their own arms), headwear only where they wear it and the setting shows it,
+        /// and pointed ears on someone who looks human only where they have them (<see cref="EarsAgree"/>).
+        /// </summary>
+        public static bool Shows(PortraitRecord r, PortraitLook l) => ShowsMarks(r, l) && (!r.headwear || l.headwear) && EarsAgree(r, l);
 
         /// <summary>
         /// Every mark a picture shows is the person's, and a sided one on their side: a picture of a lost left eye stands for
@@ -1378,8 +1384,10 @@ namespace ColonyCouncil
             foreach (var f in l.features)
                 if (!r.features.Contains(f))
                     p.features += FeatureCost;
+            // Pointed ears the picture shows and the person hasn't cost nothing for a fantasy race (EarsAgree).
+            bool earsFree = !HumanLooking(l);
             foreach (var f in r.features)
-                if (!l.features.Contains(f))
+                if (!l.features.Contains(f) && !(earsFree && f == "pointedEars"))
                     p.features += FeatureCost;
             foreach (var m in l.marks)
                 if (!r.marks.Contains(m))
@@ -1395,10 +1403,10 @@ namespace ColonyCouncil
         /// </summary>
         public struct HardRules
         {
-            public bool kind, sex, age, skin, marks, looks, specials, headwear;
+            public bool kind, sex, age, skin, marks, looks, specials, headwear, ears;
 
             /// <summary>Every rule met: the picture may stand for them as a new pick.</summary>
-            public bool All => kind && sex && age && skin && marks && looks && specials && headwear;
+            public bool All => kind && sex && age && skin && marks && looks && specials && headwear && ears;
         }
 
         public static HardRules Rules(PortraitRecord r, PortraitLook l)
@@ -1417,8 +1425,45 @@ namespace ColonyCouncil
                     looks = false;
             h.looks = looks;
             h.headwear = !r.headwear || l.headwear;
+            h.ears = EarsAgree(r, l);
             return h;
         }
+
+        // ---------------- Pointed ears ----------------
+
+        /// <summary>
+        /// The kinds of people that look like ordinary humans (docs/portrait-art/catalogue/kinds.csv, the column humanLooking;
+        /// race or xenotype def names, small letters): the player, 24 November 2026, on pictures the image model painted with
+        /// pointed ears: "for all the fantasy races, it's totally fine. They anyways look unusual ... But for humans, of
+        /// course, or anything that's really close to humans, they should not have pointy ears ... unless the pawn for some
+        /// reason has its xenotype on pointy ears". Every other kind counts as a fantasy race.
+        /// </summary>
+        public static readonly HashSet<string> HumanLookingKinds = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "baseliner", "dirtmole", "genie", "highmate", "hussar", "neanderthal", "sanguophage", "waster", "ag_helixien", "ag_randomcustom",
+            "vrea_androidbasic", "vrea_androidawakened", "vreh_uhlan", "vre_bruxa", "creepjoiner", "multimind_conjoinedhuman"
+        };
+
+        /// <summary>
+        /// A person who looks like an ordinary human: a baseliner, a human of a kind in <see cref="HumanLookingKinds"/>, a
+        /// race in it (the creepjoiners, conjoined twins), or a xenotype of the player's own making that gives them nothing
+        /// unusual to see (no features from their genes).
+        /// </summary>
+        public static bool HumanLooking(PortraitLook l)
+        {
+            if (l == null) return true;
+            if (l.race != "human") return HumanLookingKinds.Contains(l.race);
+            if (l.baseliner) return true;
+            if (l.ownXenotype) return l.features.Count == 0;
+            return HumanLookingKinds.Contains(l.xenotype);
+        }
+
+        /// <summary>
+        /// Pointed ears in a picture: never a reason against it for a fantasy race (no cost, any of the kind); for someone who
+        /// looks human, only where they have them themselves (their genes give them pointed ears).
+        /// </summary>
+        public static bool EarsAgree(PortraitRecord r, PortraitLook l) =>
+            r == null || l == null || !r.features.Contains("pointedEars") || l.features.Contains("pointedEars") || !HumanLooking(l);
 
         /// <summary>
         /// Whether a picture someone keeps still may stand for them after its record was corrected in the game: a picture pinned
