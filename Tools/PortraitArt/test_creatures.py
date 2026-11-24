@@ -121,6 +121,36 @@ class Creatures(unittest.TestCase):
         rows, files, _, pruned = PC.plan(batches=self.batches)
         self.assertEqual((rows, files, pruned), ([], [], []))
 
+    def test_variety(self):
+        # A variety round on top of the first (the player, 24 November 2026: "more variety to all the animals ...
+        # different poses ... consistent in style of the first batches"): two more adults each (one of each sex where they
+        # look different), a baby more where there is one, each in a pose and condition new to that creature, named on.
+        first, _, creatures, _ = PC.plan(batches=self.batches)
+        before = {f: open(os.path.join(self.batches, f), encoding='utf-8').read() for f in os.listdir(self.batches)}
+        names, have, used = PC.listed(self.batches)
+        rows, files, _, _ = PC.plan(batches=self.batches, variety=2)
+        for f, text in before.items():
+            self.assertEqual(open(os.path.join(self.batches, f), encoding='utf-8').read(), text, f)
+        self.assertTrue(rows and all(r['name'] not in names for r in rows))
+        self.assertEqual(len({r['name'] for r in rows}), len(rows))
+        by = collections.Counter((r['creature'], r['age']) for r in rows)
+        for c in creatures:
+            self.assertEqual(by[(c['creature'], 'adult')], 2, c['creature'])
+            self.assertEqual(by[(c['creature'], 'baby')], 1 if have[(c['creature'], 'baby', 'any')] else 0, c['creature'])
+        cat = {c['creature']: c for c in creatures}
+        for r in rows:
+            self.assertNotIn(r['pose'], used[r['creature']], r['name'])
+            pool = PC.VARIETY_BABY if r['age'] == 'baby' else PC.VARIETY_STANCE[PC.stance_kind(cat[r['creature']])]
+            self.assertIn(r['pose'], pool)
+        # two pictures of one creature in the round don't share a pose
+        poses = collections.defaultdict(list)
+        for r in rows:
+            poses[r['creature']].append(r['pose'])
+        self.assertTrue(all(len(set(p)) == len(p) for p in poses.values()))
+        # running again adds nothing, and without --variety nothing either
+        self.assertEqual(PC.plan(batches=self.batches, variety=2)[0], [])
+        self.assertEqual(PC.plan(batches=self.batches)[0], [])
+
     def test_without(self):
         # Asked for, every group is planned: the Pokémon with a look come too.
         rows, _, creatures, _ = PC.plan(batches=self.batches, dry=True, without=())

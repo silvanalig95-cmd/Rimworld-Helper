@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 24 November 2026 (Rimfolk 0.303.1: pointed ears are fine for the fantasy races; before it the Pokémon taken out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 24 November 2026 (the creature lists' variety round, creatures-05 to 08; before it pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -118,6 +118,11 @@ kinds, baseliners about half:
   Pokémon: you asked for them to be left out (24 November 2026), so the planner (`plan_creatures.py`) leaves the
   catalogue's group pokemon out by default and takes any of their rows out of the lists, every other row as it was;
   `--without ""` would plan them again. Pictures of Pokémon already painted have no row any more.
+- `creatures-05` to `08`: more variety for the same creatures, 542 rows: two more adults of each of the 208 (one of each
+  sex where they look different) and one more baby for each animal that has one, worded as in the first four lists but
+  each in a pose and a condition that creature's pictures don't have yet (lying at rest, looking back over its shoulder,
+  feeding, curled up, mid-stride, seen from the front; a baby taking wobbly steps). Paint them like the first four.
+  Made with `python3 Tools/PortraitArt/plan_creatures.py --variety 2`; a higher number later adds that many more.
 - `backdrops-gods.csv`: the gods' places, 56 backdrops: one for each kind of god (the harvest, the storm, the hunt,
   healing, war, the forge, roads, the dead, the night, the hearth, the green, the waters, the machine, the void) in each
   age (a ring of stones, a chapel, a church, a terminal). Paint it in `style-rimworld-backdrops`, like `backdrops.csv`.

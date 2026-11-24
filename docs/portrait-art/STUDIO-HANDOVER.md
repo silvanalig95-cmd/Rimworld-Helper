@@ -39,6 +39,9 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **The creatures' variety round (24 November 2026):** new lists `creatures-05` to `08` (542 rows, the same columns and
+  style as `creatures-01` to `04`): more pictures of the same 208 creatures in new poses. `plan_creatures.py --variety N`
+  makes such a round. Nothing to change in the Studio: the lists are like the others.
 - **Rimfolk 0.303.2 (24 November 2026):** `kinds.csv` `humanLooking` now yes for only 6 kinds (Baseliner, Dirtmole,
   Highmate, Hussar, AG_RandomCustom, MultiMind_ConjoinedHuman); the player moved Genie, Neanderthal, Sanguophage,
   Waster, AG_Helixien, both VREA androids, VREH_Uhlan, VRE_Bruxa and CreepJoiner to the fantasy races. The game's list

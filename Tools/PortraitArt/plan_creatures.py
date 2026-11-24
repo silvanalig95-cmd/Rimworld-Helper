@@ -14,6 +14,12 @@ out, in the game's look. For every creature of the waves asked (by default those
 Rows already in a creatures list are counted, so running again adds only what is missing. The rows are mixed so every
 list holds many kinds, wave by wave (the save's creatures first).
 
+A variety round (--variety N; the player, 24 November 2026: "create a new batch with just adding more variety to all
+the animals ... different poses ... consistent in style of the first batches"): N more adults of each creature already
+planned (N between the sexes where they look different, half each, rounded up), and one more baby for those that have
+one, each in a pose and a condition that creature's pictures don't have yet (VARIETY_STANCE and the conditions not
+used), worded as before. They get the next numbers in their names, so earlier rows keep theirs.
+
 Groups left out (--without, by default pokemon: the player, 24 November 2026, "Please take the Pokémon out of the
 creature lists"): no rows are planned for them, and rows of theirs already in a list are taken out of it, every other
 row kept as it is (its name too, so pictures already painted keep their rows). The catalogue keeps them; --without ""
@@ -22,7 +28,7 @@ plans every group.
 Columns: name, subject, pose, count, seed, creature (the race's def name), sex (male, female or any), age (baby or
 adult), mod. Update-PortraitLibrary.ps1 writes each picture's record from creature, sex and age.
 
-    python3 Tools/PortraitArt/plan_creatures.py [--waves 1,2] [--per-file 180] [--without pokemon] [--dry-run]
+    python3 Tools/PortraitArt/plan_creatures.py [--waves 1,2] [--per-file 180] [--without pokemon] [--variety N] [--dry-run]
 """
 import argparse
 import collections
@@ -75,6 +81,25 @@ STANCE = {
     'crawler': ['Crawling forward.', 'Standing still, its mandibles open.', 'Turned three-quarters toward the viewer.'],
     'thing': ['Turned three-quarters toward the viewer.', 'Its whole body in view.'],
 }
+# Poses for the variety round, none of them one of the first lists' (STANCE): what the creature is doing, for more
+# pictures of the same kind that still look like the rest.
+VARIETY_STANCE = {
+    'walker': ['Lying down at rest, its head up and alert.', 'Moving at a quick pace, caught mid-stride.',
+               'Feeding, its head down to the ground.', 'Looking back over its shoulder toward the viewer.',
+               'Turned away a little, looking off to one side.', 'Standing still, seen from the front.',
+               'Resting, curled up, its eyes half open.', 'Stepping forward, one foot raised.'],
+    'swimmer': ['Seen from the side, its whole length in view.', 'Coiled or curled, its head raised.',
+                'Moving forward, seen from slightly above.', 'Resting low, its head turned toward the viewer.'],
+    'machine': ['Walking, caught mid-stride.', 'Seen from the side, its whole frame in view.', 'Crouched low, ready to move.',
+                'Turned toward the viewer, seen from the front.', 'Standing idle, its head turned to one side.'],
+    'crawler': ['Seen from the side, its legs spread.', 'Rearing up on its back legs.', 'Crouched low to the ground.',
+                'Turned toward the viewer, its antennae raised.', 'Scuttling forward.'],
+    'thing': ['Seen from the side.', 'Hunched low, turned toward the viewer.', 'Rising up, its whole body in view.',
+              'Turned away a little.'],
+}
+# A baby's poses in the variety round.
+VARIETY_BABY = ['Lying down, curled up small.', 'Taking a few wobbly steps.', 'Sitting, looking up at the viewer.',
+                'Sniffing at the ground, curious.']
 SWIMMERS = re.compile(r'\b(snake|cobra|fish|eel|snail|turtle|seal|walrus|sea lion|seahorse|kelp|floating|sphere|hovering|flying)\b', re.I)
 
 
@@ -104,19 +129,20 @@ def stance_kind(c):
     return 'swimmer' if SWIMMERS.search(look) else 'walker'
 
 
-def wanted(c):
-    """The rows a creature wants: (age, sex) for each picture."""
+def wanted(c, variety=0):
+    """The rows a creature wants: (age, sex) for each picture; with <variety>, that many more adults (half of each sex,
+    rounded up, where the sexes look different) and one more baby where it has one."""
     wave = int(c['wave'] or 5)
     sexes = [s for s in (c.get('sexes') or 'any').split(';') if s in ('male', 'female')]
     out = []
     if len(sexes) == 2:
-        n = ADULTS_PER_SEX.get(wave, ADULTS_LATER)
+        n = ADULTS_PER_SEX.get(wave, ADULTS_LATER) + -(-variety // 2)
         for s in sexes:
             out += [('adult', s)] * n
     else:
-        out += [('adult', 'any')] * ADULTS.get(wave, ADULTS_LATER)
+        out += [('adult', 'any')] * (ADULTS.get(wave, ADULTS_LATER) + variety)
     if wave in BABY_WAVES and c['group'] in BABY_GROUPS and 'baby' in (c.get('stages') or '').split(';'):
-        out.append(('baby', 'any'))
+        out += [('baby', 'any')] * (1 + (1 if variety > 0 else 0))
     return out
 
 
@@ -125,7 +151,15 @@ def sentence(text):
     return text[0].upper() + text[1:] + ('' if text.endswith('.') else '.')
 
 
-def make_row(c, age, sex, n):
+def fresh(pool, used, rng):
+    """One of <pool> not in <used> (seeded), else any of it."""
+    left = [x for x in pool if x not in used]
+    return (left or pool)[rng.randrange(len(left or pool))]
+
+
+def make_row(c, age, sex, n, used=None):
+    """One picture's row. <used> (the variety round): the poses and condition sentences this creature's pictures have
+    already, so the row takes new ones."""
     name = 'c_%s_%s_%s_%02d' % (slug(c['creature']), age, {'male': 'm', 'female': 'f'}.get(sex, 'a'), n)
     rng = seeded('creature', name)
     look = c['look'].strip()
@@ -143,22 +177,33 @@ def make_row(c, age, sex, n):
         if own:
             parts.append(sentence('This one is ' + own))
         pool = CONDITION.get(c['group'], CONDITION['animal'])
-        parts.append(pool[rng.randrange(len(pool))])
-    stances = STANCE[stance_kind(c)]
+        parts.append(pool[rng.randrange(len(pool))] if used is None else fresh(pool, used, rng))
+    if used is None:
+        stances = STANCE[stance_kind(c)]
+        pose = stances[rng.randrange(len(stances))]
+    else:
+        pose = fresh(VARIETY_BABY if age == 'baby' else VARIETY_STANCE[stance_kind(c)], used, rng)
+        used.update(parts)
+        used.add(pose)
     return {
-        'name': name, 'subject': ' '.join(parts), 'pose': stances[rng.randrange(len(stances))], 'count': '', 'seed': '',
+        'name': name, 'subject': ' '.join(parts), 'pose': pose, 'count': '', 'seed': '',
         'creature': c['creature'], 'sex': sex, 'age': age, 'mod': c['mod'],
     }
 
 
 def listed(folder):
-    """The rows already in creature lists: their names, and how many each (creature, age, sex) has."""
-    names, have = set(), collections.Counter()
+    """The rows already in creature lists: their names, how many each (creature, age, sex) has, and the poses and
+    condition sentences each creature's rows have (for the variety round)."""
+    names, have, used = set(), collections.Counter(), collections.defaultdict(set)
     for path in glob.glob(os.path.join(folder, PREFIX + '-*.csv')):
         for r in read_csv(path):
             names.add(r.get('name', ''))
             have[(r.get('creature', ''), r.get('age', ''), r.get('sex', ''))] += 1
-    return names, have
+            k = r.get('creature', '')
+            used[k].add(r.get('pose', ''))
+            for sentence in re.split(r'(?<=\.)\s+', r.get('subject', '')):
+                used[k].add(sentence.strip())
+    return names, have, used
 
 
 def next_number(folder):
@@ -208,7 +253,7 @@ def prune(batches, left_out, dry=False):
     return out
 
 
-def plan(catalogue=CATALOGUE, batches=BATCHES, waves=None, per_file=180, dry=False, without=WITHOUT):
+def plan(catalogue=CATALOGUE, batches=BATCHES, waves=None, per_file=180, dry=False, without=WITHOUT, variety=0):
     """Returns the rows planned, the lists written, the creatures planned for, and the lists rows were taken out of
     (the groups in <without>)."""
     every = read_csv(catalogue)
@@ -217,16 +262,18 @@ def plan(catalogue=CATALOGUE, batches=BATCHES, waves=None, per_file=180, dry=Fal
     creatures = [c for c in every if (c.get('look') or '').strip() and c['creature'] not in left_out]
     if waves:
         creatures = [c for c in creatures if int(c['wave'] or 5) in waves]
-    names, have = listed(batches)
+    names, have, used = listed(batches)
     rows = []
     for c in creatures:
         seen = collections.Counter()
-        for age, sex in wanted(c):
+        base = collections.Counter(wanted(c))
+        for age, sex in wanted(c, variety):
             seen[(age, sex)] += 1
             n = seen[(age, sex)]
             if n <= have[(c['creature'], age, sex)]:
                 continue
-            row = make_row(c, age, sex, n)
+            # A picture beyond the first round's count is a variety one: a pose and a condition new to this creature.
+            row = make_row(c, age, sex, n, used[c['creature']] if n > base[(age, sex)] else None)
             if row['name'] in names:
                 continue
             rows.append((int(c['wave'] or 5), row))
@@ -258,11 +305,13 @@ def main(argv=None):
     ap.add_argument('--per-file', type=int, default=180)
     ap.add_argument('--without', default=','.join(WITHOUT),
                     help='groups of the catalogue to leave out, comma-separated (default: %(default)s; "" for none)')
+    ap.add_argument('--variety', type=int, default=0,
+                    help='a variety round: this many more adults of each creature (and a baby more), each in a new pose')
     ap.add_argument('--dry-run', action='store_true')
     a = ap.parse_args(argv)
     waves = [int(x) for x in a.waves.split(',')] if a.waves else None
     without = tuple(x.strip() for x in a.without.split(',') if x.strip())
-    rows, files, creatures, pruned = plan(a.catalogue, a.batches, waves, a.per_file, a.dry_run, without)
+    rows, files, creatures, pruned = plan(a.catalogue, a.batches, waves, a.per_file, a.dry_run, without, a.variety)
     for path, n in pruned:
         print('  %s %d rows of %s from %s' % ('Would take out' if a.dry_run else 'Took out', n, ', '.join(without),
                                              os.path.relpath(path, ROOT)))

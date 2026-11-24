@@ -155,6 +155,9 @@ and stance, by its name). Rows already listed are counted, so running again adds
 creatures come first, and every list holds many kinds. Groups left out (`--without`, by default `pokemon`: the player,
 24 November 2026, "Please take the Pokémon out of the creature lists") get no rows, and rows of theirs already listed are
 taken out, every other row kept as it was; the catalogue keeps them. `creatures-01` to `04`: 594 rows for 208 kinds.
+`--variety N` (24 November 2026) adds a variety round: N more adults of each creature planned (half of each sex, rounded
+up, where they look different) and a baby more, each in a pose (`VARIETY_STANCE`, `VARIETY_BABY`) and a condition its
+pictures don't have yet, named on from the last. `creatures-05` to `08`: the round with `--variety 2`, 542 rows.
 
 ## Names
 

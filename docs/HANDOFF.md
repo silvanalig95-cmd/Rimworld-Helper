@@ -889,6 +889,11 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done (24 November 2026, kit only): more variety for the creatures.** The player: "create a new batch with just
+  adding more variety to all the animals ... without Pokemon ... different poses ... consistent in style of the first
+  batches". `plan_creatures.py --variety N` (new): N more adults of each creature (half each sex where they look
+  different) and a baby more, each in a pose and condition new to that creature (`VARIETY_STANCE`, `VARIETY_BABY`),
+  named on. Run with 2: `creatures-05` to `08`, 542 rows; the first four lists untouched. Sent the player a zip.
 - **Done, released 0.303.1 (24 November 2026): pointed ears are fine for the fantasy races.** The player: "my model
   really for a lot of images has them have pointy ears ... Now the studio really kind of flags all of these and
   recommends to leave them out ... for all like all the fantasy races, it's totally fine. They anyways look unusual ...
