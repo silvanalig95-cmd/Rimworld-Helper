@@ -879,6 +879,20 @@ most sense." So, in this order, three builds at a time:
     the map's selector on the world map before a game (InvalidCastException); now only in play. A deed was dated with
     `TicksAbs` while the starting pawns were rerolled; deeds wait for play and the date uses `GenTicks.TicksAbs`.
     LogFixTests. Not tried in the game: a loaded world's peoples getting their leaders (the leader's letter, if any).
+  - **Followed up (24 November 2026).** The player, with a Workshop link (the same one twice, 3524247750): "both magic
+    and jecstools are not actually updated for 1.7 or even 1.6, do you think it works if i use these instead?". The
+    link is "JecsTools Unofficial 1.6" (ano0bis; up to 1.6, no 1.7; the page showed it removed and "incompatible with
+    RimWorld"). Told the player no: A RimWorld of Magic 2.6.4.4 (its own files list 1.0 to 1.6, not 1.7) needs JecsLite
+    - A RimWorld of Magic for 1.6 (its About's modDependencies), which the player has (its files list 1.4 to 1.7);
+    JecsTools brings its own AbilityUser.dll, so a second copy would make the clash worse. The crash comes from the magic
+    mod's auto-cast drawing (its GizmoOnGUI prefix calls TM_Action.DrawAutoCastForGizmo only while "Enable auto-cast" is
+    on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
+    settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
+    type).
+- **To do when the player asks (24 November 2026; offered, not built): Rimfolk keeping another mod's broken button
+  from blocking a pawn's other buttons.** A finalizer on A RimWorld of Magic's GizmoOnGUI prefix (soft, by name) that
+  catches its TypeLoadException and lets the game draw the button its own way, so the draft button and R work with
+  auto-cast on. Fragile (another mod's internals); only if the player wants auto-cast kept.
 - **Done (23 November 2026, the player's own requests; released 0.302.0): animals and creatures in the portrait
   library.** The player: "also please create lists for animals and creatures and implement image display for them too",
   and "also include insects of course". Built: in the game, `CreatureLibrary` (records.xml's
