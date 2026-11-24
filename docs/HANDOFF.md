@@ -889,6 +889,21 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **To do when the player asks (24 November 2026): the gods as sprites on the map.** The player, after 0.303.0: "the
+  images we've been creating so far are more, you know, for flavor rather than actually them, you know, moving around on
+  the map ... It's something we can definitely work on. It's nice if we can get to that point, but ... we're not there
+  yet. And I saw like a few images you already created, right? ... It's more like shadows, but these already look quite
+  nice. But yeah, of course, it would be lovely to work on actually generating sprites and stuff at some point." Where it
+  stands: the pictures of `gods-01` are for the large portrait only (shown when a god walking the map is selected), never
+  drawn on the map. On the map a god walks in an ordinary body (a person in recoloured robes and a crown, the thrumbo,
+  Alpha Animals' lions) with Rimfolk's drawn light under and behind it (`Textures/ColonyCouncil/Gods/Aura`, from
+  `Tools/make_god_auras.py`) and, for Smoulder and Cirrus, the soft shadows crossing the land (`Gods/Sky`, Wings and
+  Vast, from `Tools/make_god_sky.py`): those are the "shadows" the player saw, drawn by script, not painted. A sprite of
+  its own for a god would be a top-down picture in the game's flat style, seen from the north, south and east (the game
+  mirrors west), cut out, about 256 to 512 pixels, for each god and age: the painting belongs to the Studio's chat
+  (STUDIO-HANDOVER section 0), the game's side here (a graphic for the god's body in place of its recoloured one, sized
+  by its look). Nothing is built until the player says so; when they do, propose it as a list first and give the Studio
+  a prompt for its part.
 - **Done, released 0.303.0 (24 November 2026): the gods' places, every rite with an effect, and the gods' pictures.**
   The player's go: "These proposals all sound great. You can go ahead. Now, just one thing, I think the different
   interactions and rituals and prayers and stuff should not just be for flavor only. They should then always have some
