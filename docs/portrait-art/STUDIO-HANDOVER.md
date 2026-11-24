@@ -39,6 +39,10 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Rimfolk 0.303.2 (24 November 2026):** `kinds.csv` `humanLooking` now yes for only 6 kinds (Baseliner, Dirtmole,
+  Highmate, Hussar, AG_RandomCustom, MultiMind_ConjoinedHuman); the player moved Genie, Neanderthal, Sanguophage,
+  Waster, AG_Helixien, both VREA androids, VREH_Uhlan, VRE_Bruxa and CreepJoiner to the fantasy races. The game's list
+  is the same (`PortraitLibraryMath.HumanLookingKinds`, a copied file).
 - **Rimfolk 0.303.1 (24 November 2026): pointed ears are fine for the fantasy races.** The player: "for all the fantasy
   races, it's totally fine. They anyways look unusual ... But for humans, of course, or anything that's really close to
   humans, they should not have pointy ears ... unless the pawn for some reason has its xenotype on pointy ears."

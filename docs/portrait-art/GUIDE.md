@@ -162,9 +162,10 @@ For each pawn the game reads their race, xenotype, sex, age, skin, hair, traits,
 - **Must match:** the kind (race and xenotype), the sex, the age band, the skin tone (the same or the next of eight; an
   unusual skin by its colour). A picture with a look, a role or a mark goes only to pawns who have it; a pawn with one
   may still take a plain picture.
-- **Pointed ears** (the image model often paints them): for a fantasy race (every kind but the 16 the catalogue calls
-  human-looking, `kinds.csv` column `humanLooking`) they never count against a picture, so keep such pictures. For
-  someone who looks human, a picture with pointed ears goes only to a person whose genes give them pointed ears.
+- **Pointed ears** (the image model often paints them): for a fantasy race (every kind but the 6 the catalogue calls
+  human-looking, `kinds.csv` column `humanLooking`: baseliners, dirtmoles, highmates, hussars, random custom xenotypes
+  and the conjoined pair) they never count against a picture, so keep such pictures. For someone who looks human, a
+  picture with pointed ears goes only to a person whose genes give them pointed ears.
 - **The closest of the rest:** the hair colour first, then hairstyle, beard, build, the clothes' age and kind, features.
 - The pick is kept for that pawn (saved with the game); your colonists' faces are kept for them alone.
 - No picture passes the rules: the game's own drawing, and a line in `missing.csv`.

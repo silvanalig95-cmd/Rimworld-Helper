@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.303.2</version>
+        <date>24 November 2026</date>
+        <title>More kinds free to have pointed ears</title>
+        <points>
+          <li>Genies, neanderthals, sanguophages, wasters, helixans, androids, uhlans, bruxas and creepjoiners now count as fantasy races for the painted portraits: a picture of them showing pointed ears is never a reason against it.</li>
+          <li>Pointed ears stay off only baseliners, dirtmoles, highmates, hussars, custom xenotypes that look human and the conjoined pair, unless their own genes give them pointed ears.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.303.1</version>
         <date>24 November 2026</date>
         <title>Pointed ears for the fantasy races</title>

@@ -893,9 +893,10 @@ most sense." So, in this order, three builds at a time:
   really for a lot of images has them have pointy ears ... Now the studio really kind of flags all of these and
   recommends to leave them out ... for all like all the fantasy races, it's totally fine. They anyways look unusual ...
   But for humans, of course, or anything that's really close to humans, they should not have pointy ears ... unless the
-  pawn for some reason has its xenotype on pointy ears." Built: `kinds.csv` column `humanLooking` (16 kinds yes: Baseliner,
-  Dirtmole, Genie, Highmate, Hussar, Neanderthal, Sanguophage, Waster, AG_Helixien, AG_RandomCustom, both VREA
-  androids, VREH_Uhlan, VRE_Bruxa, CreepJoiner, MultiMind_ConjoinedHuman; the lead's call, open to the player's change);
+  pawn for some reason has its xenotype on pointy ears." Built: `kinds.csv` column `humanLooking` (first 16 kinds yes;
+  in 0.303.2 the player moved Genie, Neanderthal, Sanguophage, Waster, AG_Helixien, both VREA androids, VREH_Uhlan,
+  VRE_Bruxa and CreepJoiner to the fantasy races: "they still have usually look very distinct, and I'm more flexible
+  there", leaving 6: Baseliner, Dirtmole, Highmate, Hussar, AG_RandomCustom, MultiMind_ConjoinedHuman);
   the game's `PortraitLibraryMath.HumanLookingKinds` the same (PortraitEarsTests), `EarsAgree` a hard rule (in `Rules`
   and `Shows`), pointed ears free in `Parts` for a fantasy race; a xenotype of the player's own looks human unless its
   genes show something. The Studio's check and review are its own: a prompt was given (keep fantasy-race pictures with

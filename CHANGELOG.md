@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## More kinds free to have pointed ears
+
+*24 November 2026, version 0.303.2*
+
+- Genies, neanderthals, sanguophages, wasters, helixans, androids, uhlans, bruxas and creepjoiners now count as fantasy races for the painted portraits: a picture of them showing pointed ears is never a reason against it.
+- Pointed ears stay off only baseliners, dirtmoles, highmates, hussars, custom xenotypes that look human and the conjoined pair, unless their own genes give them pointed ears.
+
 ## Pointed ears for the fantasy races
 
 *24 November 2026, version 0.303.1*

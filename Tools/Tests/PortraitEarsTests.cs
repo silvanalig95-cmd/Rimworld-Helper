@@ -65,9 +65,13 @@ public static class PortraitEarsTests
         var hussar = Person("human", "hussar", false);
         C(PortraitLibraryMath.HumanLooking(human) && PortraitLibraryMath.HumanLooking(hussar) && !PortraitLibraryMath.HumanLooking(impid),
             "a baseliner and a hussar look human, an impid doesn't");
+        C(new[] { "genie", "neanderthal", "sanguophage", "waster", "ag_helixien", "vrea_androidbasic", "vrea_androidawakened", "vreh_uhlan", "vre_bruxa" }
+                .All(x => !PortraitLibraryMath.HumanLooking(Person("human", x, false))),
+            "the genies, neanderthals, sanguophages, wasters, helixans, androids, uhlans and bruxas count as fantasy races (the player's word)");
         C(PortraitLibraryMath.HumanLooking(custom) && !PortraitLibraryMath.HumanLooking(customHorned), "a xenotype of the player's own: human-looking unless its genes show something");
-        C(PortraitLibraryMath.HumanLooking(Person("creepjoiner", "baseliner", true)) && !PortraitLibraryMath.HumanLooking(Person("dv_bogleg", "baseliner", true)),
-            "a race: the creepjoiners look human, other races are fantasy races");
+        C(PortraitLibraryMath.HumanLooking(Person("multimind_conjoinedhuman", "baseliner", true)) && !PortraitLibraryMath.HumanLooking(Person("creepjoiner", "baseliner", true))
+          && !PortraitLibraryMath.HumanLooking(Person("dv_bogleg", "baseliner", true)),
+            "a race: the conjoined pair look human; the creepjoiners and the other races are fantasy races");
 
         var pointyHuman = Picture("", "pointedEars");
         var plainHuman = Picture("");

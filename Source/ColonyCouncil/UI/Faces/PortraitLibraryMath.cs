@@ -1436,12 +1436,13 @@ namespace ColonyCouncil
         /// race or xenotype def names, small letters): the player, 24 November 2026, on pictures the image model painted with
         /// pointed ears: "for all the fantasy races, it's totally fine. They anyways look unusual ... But for humans, of
         /// course, or anything that's really close to humans, they should not have pointy ears ... unless the pawn for some
-        /// reason has its xenotype on pointy ears". Every other kind counts as a fantasy race.
+        /// reason has its xenotype on pointy ears". Every other kind counts as a fantasy race, among them, by the player's word
+        /// the same day, the genies, neanderthals, sanguophages, wasters, helixans, androids, uhlans, bruxas and creepjoiners
+        /// ("they still have usually look very distinct, and I'm more flexible there").
         /// </summary>
         public static readonly HashSet<string> HumanLookingKinds = new HashSet<string>(StringComparer.OrdinalIgnoreCase)
         {
-            "baseliner", "dirtmole", "genie", "highmate", "hussar", "neanderthal", "sanguophage", "waster", "ag_helixien", "ag_randomcustom",
-            "vrea_androidbasic", "vrea_androidawakened", "vreh_uhlan", "vre_bruxa", "creepjoiner", "multimind_conjoinedhuman"
+            "baseliner", "dirtmole", "highmate", "hussar", "ag_randomcustom", "multimind_conjoinedhuman"
         };
 
         /// <summary>
