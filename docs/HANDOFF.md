@@ -889,6 +889,15 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done (24 November 2026, kit only): the Pokémon out of the creature lists.** The player: "Please take the Pokémon
+  out of the creature lists ... Keep the names of all other rows as they are, so pictures already painted keep their
+  rows. The catalogue itself can keep the Pokémon." `creatures-01` lost 24 rows, `creatures-02` 6 (10 kinds of the
+  catalogue's group `pokemon`); every other row is byte for byte as it was. `plan_creatures.py --without` (default
+  `pokemon`) plans no rows for those groups and takes theirs out of the lists; `test_creatures.py` checks it. The
+  lists: 594 rows for 208 kinds. **Open, the player's to decide with the lead:** whether the game should stop writing a
+  "creature" line in missing.csv for a Pokémon with no picture (one line per kind, age and sex seen). The lead's
+  suggestion: stop it for PokeWorld's creatures (by their mod, `themoonitself.pokeworld`), so missing.csv lists only
+  what the lists mean to paint; nothing is built until the player answers.
 - **To do when the player asks (24 November 2026): the gods as sprites on the map.** The player, after 0.303.0: "the
   images we've been creating so far are more, you know, for flavor rather than actually them, you know, moving around on
   the map ... It's something we can definitely work on. It's nice if we can get to that point, but ... we're not there

@@ -14,10 +14,15 @@ out, in the game's look. For every creature of the waves asked (by default those
 Rows already in a creatures list are counted, so running again adds only what is missing. The rows are mixed so every
 list holds many kinds, wave by wave (the save's creatures first).
 
+Groups left out (--without, by default pokemon: the player, 24 November 2026, "Please take the Pokémon out of the
+creature lists"): no rows are planned for them, and rows of theirs already in a list are taken out of it, every other
+row kept as it is (its name too, so pictures already painted keep their rows). The catalogue keeps them; --without ""
+plans every group.
+
 Columns: name, subject, pose, count, seed, creature (the race's def name), sex (male, female or any), age (baby or
 adult), mod. Update-PortraitLibrary.ps1 writes each picture's record from creature, sex and age.
 
-    python3 Tools/PortraitArt/plan_creatures.py [--waves 1,2] [--per-file 180] [--dry-run]
+    python3 Tools/PortraitArt/plan_creatures.py [--waves 1,2] [--per-file 180] [--without pokemon] [--dry-run]
 """
 import argparse
 import collections
@@ -35,6 +40,8 @@ CATALOGUE = os.path.join(ROOT, 'docs', 'portrait-art', 'catalogue', 'creatures.c
 BATCHES = os.path.join(ROOT, 'docs', 'portrait-art', 'batches')
 PREFIX = 'creatures'
 COLUMNS = ['name', 'subject', 'pose', 'count', 'seed', 'creature', 'sex', 'age', 'mod']
+# The catalogue's groups left out of the lists unless asked for (--without).
+WITHOUT = ('pokemon',)
 
 # Adults per creature by wave (per sex where the sexes look different), and the waves whose animals get a baby.
 ADULTS = {1: 3, 2: 2}
@@ -179,8 +186,35 @@ def mix(rows):
     return out
 
 
-def plan(catalogue=CATALOGUE, batches=BATCHES, waves=None, per_file=180, dry=False):
-    creatures = [c for c in read_csv(catalogue) if (c.get('look') or '').strip()]
+def prune(batches, left_out, dry=False):
+    """Rows of the creatures left out taken out of the creature lists, every other row kept as it was, in its order.
+    Returns (path, rows taken out) for each list changed."""
+    out = []
+    for path in sorted(glob.glob(os.path.join(batches, PREFIX + '-*.csv'))):
+        with open(path, encoding='utf-8', newline='') as f:
+            reader = csv.DictReader(f)
+            columns = reader.fieldnames
+            rows = list(reader)
+        keep = [r for r in rows if r.get('creature', '') not in left_out]
+        if len(keep) == len(rows):
+            continue
+        if not dry:
+            with open(path, 'w', encoding='utf-8', newline='') as f:
+                w = csv.DictWriter(f, fieldnames=columns, lineterminator='\n')
+                w.writeheader()
+                for r in keep:
+                    w.writerow(r)
+        out.append((path, len(rows) - len(keep)))
+    return out
+
+
+def plan(catalogue=CATALOGUE, batches=BATCHES, waves=None, per_file=180, dry=False, without=WITHOUT):
+    """Returns the rows planned, the lists written, the creatures planned for, and the lists rows were taken out of
+    (the groups in <without>)."""
+    every = read_csv(catalogue)
+    left_out = {c['creature'] for c in every if c.get('group') in (without or ())}
+    pruned = prune(batches, left_out, dry)
+    creatures = [c for c in every if (c.get('look') or '').strip() and c['creature'] not in left_out]
     if waves:
         creatures = [c for c in creatures if int(c['wave'] or 5) in waves]
     names, have = listed(batches)
@@ -213,7 +247,7 @@ def plan(catalogue=CATALOGUE, batches=BATCHES, waves=None, per_file=180, dry=Fal
                     for r in chunk:
                         w.writerow(r)
             files.append((path, len(chunk)))
-    return rows, files, creatures
+    return rows, files, creatures, pruned
 
 
 def main(argv=None):
@@ -222,10 +256,16 @@ def main(argv=None):
     ap.add_argument('--batches', default=BATCHES)
     ap.add_argument('--waves', help='the waves to plan, e.g. 1,2 (default: every creature with a look)')
     ap.add_argument('--per-file', type=int, default=180)
+    ap.add_argument('--without', default=','.join(WITHOUT),
+                    help='groups of the catalogue to leave out, comma-separated (default: %(default)s; "" for none)')
     ap.add_argument('--dry-run', action='store_true')
     a = ap.parse_args(argv)
     waves = [int(x) for x in a.waves.split(',')] if a.waves else None
-    rows, files, creatures = plan(a.catalogue, a.batches, waves, a.per_file, a.dry_run)
+    without = tuple(x.strip() for x in a.without.split(',') if x.strip())
+    rows, files, creatures, pruned = plan(a.catalogue, a.batches, waves, a.per_file, a.dry_run, without)
+    for path, n in pruned:
+        print('  %s %d rows of %s from %s' % ('Would take out' if a.dry_run else 'Took out', n, ', '.join(without),
+                                             os.path.relpath(path, ROOT)))
     groups = collections.Counter(c['group'] for c in creatures)
     print('Planned %d rows for %d creatures (%s).' % (len(rows), len({r['creature'] for r in rows}),
                                                      ', '.join('%s %d' % (g, groups[g]) for g in sorted(groups))))

@@ -152,7 +152,9 @@ without a look is not planned.
 `style-rimworld-creatures`): three adults of each creature of wave 1, two of wave 2, one later; that many of each sex
 where they look different; a baby for each animal and hybrid of waves 1 and 2; each a little different (its condition
 and stance, by its name). Rows already listed are counted, so running again adds only what is missing; the save's
-creatures come first, and every list holds many kinds. `creatures-01` to `04`: 624 rows for 218 kinds.
+creatures come first, and every list holds many kinds. Groups left out (`--without`, by default `pokemon`: the player,
+24 November 2026, "Please take the Pokémon out of the creature lists") get no rows, and rows of theirs already listed are
+taken out, every other row kept as it was; the catalogue keeps them. `creatures-01` to `04`: 594 rows for 208 kinds.
 
 ## Names
 

@@ -39,6 +39,10 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **The Pokémon out of the creature lists (24 November 2026):** `creatures-01` lost 24 rows and `creatures-02` 6, all
+  of the catalogue's group `pokemon` (PokeWorld); every other row is unchanged, names included. `plan_creatures.py` has
+  `--without` (default `pokemon`): those groups get no rows and are taken out of the lists. The catalogue keeps them.
+  Nothing for the Studio to change (the player): it reads the lists as they are.
 - **Rimfolk 0.303.0 (24 November 2026): the gods' pictures.**
   - records.xml: `ColonyCouncil.BackdropDef` has a new, optional field `god`: the domain of the god whose place it shows
     (`harvest storm hunt healing war craft way dead night hearth wild waters machine void`). The game shows such a

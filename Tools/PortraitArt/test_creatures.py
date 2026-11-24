@@ -81,7 +81,8 @@ class Creatures(unittest.TestCase):
         self.assertEqual(CC.save_counts(save, races), collections.Counter({'Muffalo': 2, 'Megascarab': 1}))
 
     def test_plan(self):
-        rows, files, creatures = PC.plan(batches=self.batches)
+        rows, files, creatures, pruned = PC.plan(batches=self.batches)
+        self.assertEqual(pruned, [])
         self.assertTrue(files and all(n <= 180 for _, n in files))
         written = [r for f in sorted(os.listdir(self.batches)) for r in read(os.path.join(self.batches, f))]
         self.assertEqual(len(written), len(rows))
@@ -113,9 +114,36 @@ class Creatures(unittest.TestCase):
         for f in os.listdir(self.batches):
             part = read(os.path.join(self.batches, f))
             self.assertGreaterEqual(len({r['creature'] for r in part}), 40, f)
+        # the Pokémon left out by default (the player, 24 November 2026: "Please take the Pokémon out of the creature lists")
+        self.assertFalse(any(c['group'] in PC.WITHOUT for c in creatures))
+        self.assertFalse(any(cat[r['creature']]['group'] == 'pokemon' for r in written))
         # running again adds nothing
-        rows, files, _ = PC.plan(batches=self.batches)
+        rows, files, _, pruned = PC.plan(batches=self.batches)
+        self.assertEqual((rows, files, pruned), ([], [], []))
+
+    def test_without(self):
+        # Asked for, every group is planned: the Pokémon with a look come too.
+        rows, _, creatures, _ = PC.plan(batches=self.batches, dry=True, without=())
+        groups = {c['creature']: c['group'] for c in read(CC.CATALOGUE)}
+        self.assertTrue(any(groups[r['creature']] == 'pokemon' for r in rows))
+        self.assertTrue(any(c['group'] == 'pokemon' for c in creatures))
+
+    def test_prune_keeps_the_rest(self):
+        # A list holding a Pokémon's row loses that row and nothing else: the other rows keep their names and words.
+        for f in os.listdir(PC.BATCHES):
+            if f.startswith('creatures-'):
+                shutil.copy(os.path.join(PC.BATCHES, f), self.batches)
+        path = os.path.join(self.batches, 'creatures-01.csv')
+        with open(path, encoding='utf-8', newline='') as f:
+            before = f.read()
+        poke = 'c_pwoddish_adult_a_09,"A small blue bulb of a creature.",Standing still.,,,PW_Oddish,any,adult,themoonitself.pokeworld\n'
+        with open(path, 'a', encoding='utf-8', newline='') as f:
+            f.write(poke)
+        rows, files, _, pruned = PC.plan(batches=self.batches)
         self.assertEqual((rows, files), ([], []))
+        self.assertEqual(pruned, [(path, 1)])
+        with open(path, encoding='utf-8', newline='') as f:
+            self.assertEqual(f.read(), before)
 
     def test_committed_lists(self):
         cat = {c['creature']: c for c in read(PC.CATALOGUE)}
@@ -132,6 +160,9 @@ class Creatures(unittest.TestCase):
                 names.add(r['name'])
         if not found:
             self.skipTest('no creature lists yet')
+        # none of a group left out by default (the Pokémon)
+        listed = {r['creature'] for f in os.listdir(PC.BATCHES) if f.startswith('creatures-') for r in read(os.path.join(PC.BATCHES, f))}
+        self.assertFalse({k for k in listed if cat[k]['group'] in PC.WITHOUT})
         # no creature row's name in any other list
         for f in os.listdir(PC.BATCHES):
             if f.endswith('.csv') and not f.startswith('creatures-'):

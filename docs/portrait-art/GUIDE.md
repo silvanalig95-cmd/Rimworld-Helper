@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 24 November 2026 (Rimfolk 0.303.0: the gods' pictures, the lists backdrops-gods, gods-01 and priests-01). This guide is
+Last changed: 24 November 2026 (the Pokémon taken out of the creature lists; before it Rimfolk 0.303.0: the gods' pictures, the lists backdrops-gods, gods-01 and priests-01). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -110,11 +110,14 @@ kinds, baseliners about half:
   ages and skins it has fewest of. Every kind runs through all nine lists, so painting only some of them still gives
   each kind its share.
 - `colonists.csv`: your own colonists' faces.
-- `creatures-01` to `04`: animals, insects, mechanoids, Anomaly's entities, dryads and drones, 624 rows for 218 kinds:
+- `creatures-01` to `04`: animals, insects, mechanoids, Anomaly's entities, dryads and drones, 594 rows for 208 kinds:
   first every creature your save holds (three adults each), then the base game's and the DLCs' and the insects of
   Vanilla Factions Expanded - Insectoids 2 (two each); a male and a female where they look different (deer, elk,
   moose, peafowl, chickens), and a baby for each animal. The whole creature, square, cut out. The other kinds of your
-  mods (about 1,500, most of them PokeWorld's) wait for their looks to be written (`catalogue/creatures.csv`).
+  mods (about 1,500, most of them PokeWorld's) wait for their looks to be written (`catalogue/creatures.csv`). No
+  Pokémon: you asked for them to be left out (24 November 2026), so the planner (`plan_creatures.py`) leaves the
+  catalogue's group pokemon out by default and takes any of their rows out of the lists, every other row as it was;
+  `--without ""` would plan them again. Pictures of Pokémon already painted have no row any more.
 - `backdrops-gods.csv`: the gods' places, 56 backdrops: one for each kind of god (the harvest, the storm, the hunt,
   healing, war, the forge, roads, the dead, the night, the hearth, the green, the waters, the machine, the void) in each
   age (a ring of stones, a chapel, a church, a terminal). Paint it in `style-rimworld-backdrops`, like `backdrops.csv`.
