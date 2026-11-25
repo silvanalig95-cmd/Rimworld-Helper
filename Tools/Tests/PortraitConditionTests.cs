@@ -198,6 +198,31 @@ public static class PortraitConditionTests
         C(handover.Contains(PortraitPeopleMath.ListFile) && PortraitPeopleMath.Columns.All(c => handover.Contains("`" + c + "`")), "people.csv and each of its columns are told in the handover");
         C(conds.All(c => handover.Contains(c)), "the condition words are told in the handover");
         C(Code("UI/Faces/PortraitKeeper.cs").Contains("PortraitPeople.Write();"), "written at every save");
+
+        // ---------------- A variant dismissed in the game ----------------
+        string delete = Code("UI/Faces/PortraitDelete.cs");
+        C(delete.Contains("public static List<(string title, string name)> VariantsShown(Pawn p, PortraitPicture pic)") && delete.Contains("() => ConfirmVersion(record)")
+          && delete.Contains("PortraitEffects.PaintedNow(p)") && delete.Contains("FaceEngine.FaceNow(p)") && delete.Contains("if (rec.IsMarkVariant) list.Add("),
+            "the large portrait's menu dismisses the variant shown now (a condition, the expression held, a mark variant) the way a deleted variant goes");
+        C(keys.Contains("<CC_Portrait_Dismiss>") && keys.Contains("lists it again in variants-wanted.csv"), "its entry, and the dialog saying it is asked for anew");
+        C(PortraitVariantsMath.VariantFile("people/p01.png", "asleep", new HashSet<string> { "p01_v-asleep" }).EndsWith("_v-asleep-2.png"),
+            "made anew past the dismissed one's name: _v-asleep-2");
+
+        // ---------------- A picture made for a name, in other saves ----------------
+        var mine = Picture("P_Myst");
+        mine.pawn = "Myst";
+        var plain = Picture("P_Other");
+        C(mine.Pinned && mine.MadeFor && !plain.MadeFor, "a picture made for a name is pinned until the names are read");
+        C(PortraitLibraryMath.FreePins(new[] { mine, plain }, _ => -1) && !mine.Pinned && mine.MadeFor && mine.pinFree && !plain.pinFree,
+            "no one of that name in this save: an ordinary picture, still made for them");
+        var stranger = new PortraitLook { sex = PortraitSex.Male, age = PortraitAge.Adult, skin = mine.skin, hairColour = mine.hairColour, xenotype = "baseliner", race = "human" };
+        C(PortraitLibraryMath.Pick(stranger, new List<PortraitRecord> { mine }, 9, _ => 0, _ => false, (_, _) => true).Any, "free for whoever fits it best");
+        C(PortraitLibraryMath.FreePins(new[] { mine }, _ => 4) && mine.Pinned && !PortraitLibraryMath.Pick(stranger, new List<PortraitRecord> { mine }, 9, _ => 0, _ => false, (_, _) => true).Any,
+            "someone of that name in the colony: theirs alone again");
+        C(!PortraitLibraryMath.FreePins(new[] { mine }, _ => 4), "nothing changed: told so");
+        string library = Code("UI/Faces/PortraitLibrary.cs");
+        C(library.Contains("PortraitLibraryMath.FreePins(records,") && library.Contains("var pinned = records.Where(r => r.Pinned)") && library.Contains("NamesAgainFor(p);"),
+            "the names read for each save, a free picture's face not held for anyone, a newcomer of that name gets it at once");
         return n;
     }
 }

@@ -201,6 +201,7 @@
   <CC_Portrait_DeletedPartly>{COUNT} of its files could not be moved or deleted ({ERROR}): they are still in the library folder, out of the records and listed in deleted.csv, so nothing uses them. Move or delete them by hand.</CC_Portrait_DeletedPartly>
   <CC_Portrait_DeleteWhatVariants>Its {COUNT} variants with marks go with it.</CC_Portrait_DeleteWhatVariants>
   <CC_Portrait_DeletedVersions>{COUNT} of its versions (expressions and variants with marks) went with it.</CC_Portrait_DeletedVersions>
+  <CC_Portrait_Dismiss>Dismiss this variant: {WHAT}...</CC_Portrait_Dismiss>
   <CC_Portrait_DeleteVariantTitle>Delete this variant for good</CC_Portrait_DeleteVariantTitle>
   <CC_Portrait_DeleteVariantWhat>The variant {FILE} of the picture {PICTURE} will be deleted for good. The picture itself stays.</CC_Portrait_DeleteVariantWhat>
   <CC_Portrait_DeleteVariantShown>Whoever it is shown for sees the picture itself again, or another of its variants that fits them. While it is still needed, the game lists it again in variants-wanted.csv, under a new name, so it can be made anew.</CC_Portrait_DeleteVariantShown>
@@ -242,6 +243,7 @@
   <CC_PortraitAbout_FileMod>a mod's picture, {NAME}</CC_PortraitAbout_FileMod>
   <CC_PortraitAbout_Character>Face</CC_PortraitAbout_Character>
   <CC_PortraitAbout_Pinned>Pinned to</CC_PortraitAbout_Pinned>
+  <CC_PortraitAbout_PinFree>{NAME}, but no one of the colony has that name in this game, so it is free for whoever it fits best</CC_PortraitAbout_PinFree>
   <CC_PortraitAbout_Version>Version</CC_PortraitAbout_Version>
   <CC_PortraitAbout_VariantOfValue>{WORD}, a variant of {FILE}</CC_PortraitAbout_VariantOfValue>
   <CC_PortraitAbout_NoneWord>none</CC_PortraitAbout_NoneWord>

@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.305.0</version>
+        <date>25 November 2026</date>
+        <title>Dismiss a variant, and pictures made for a name in other games</title>
+        <points>
+          <li>Right-click the large portrait while a variant of the picture shows (a condition such as asleep, an expression such as a smile, or a mark variant such as a lost eye): "Dismiss this variant" deletes it for good, the way "Delete this variant for good" in "About this picture" does. The picture and its other variants stay.</li>
+          <li>A dismissed variant still needed is listed again in variants-wanted.csv at the next save, under a new name, so Rimfolk Studio makes a new one.</li>
+          <li>A picture made for one of your people by name is theirs alone only in a game where someone of the colony has that name. In a game where no one does, it is an ordinary picture of the library, free for whoever fits it best, and "About this picture" says so.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.304.0</version>
         <date>25 November 2026</date>
         <title>Painted pictures of what people go through</title>

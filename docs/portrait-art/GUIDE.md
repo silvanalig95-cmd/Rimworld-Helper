@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 25 November 2026 (0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 25 November 2026 (0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -214,7 +214,12 @@ to people whose backstory, faith role or the colony's priest seat makes them one
 
 In the game: right-click the large portrait for **Choose another picture**, **About this picture** (its description,
 why it was chosen, its variants, corrections: race, xenotype, sex, age, skin, hair, beard, build, clothes, features,
-marks, looks, work, headwear), **Keep for training**, and **Delete for good**. On the starting pawns' page each pawn's
+marks, looks, work, headwear), **Keep for training**, **Delete for good**, and **Dismiss this variant** for the
+variant shown now (a condition, the expression on the face, a mark variant): it is deleted the way a picture is, the
+picture and its other variants stay, and the next save asks for it again in `variants-wanted.csv`, so the Studio makes a
+new one. A picture made for one of your people (their name in the `pawn` column) is theirs alone in a game where someone
+of that name is in your colony; in another game, where no one has that name, it is an ordinary picture for whoever fits
+it best. On the starting pawns' page each pawn's
 painted portrait shows beside the page (right-click: choose another); the pawns you start with keep theirs.
 
 ## Training the style again

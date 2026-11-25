@@ -220,10 +220,25 @@ namespace ColonyCouncil
         /// it for whoever holds the picture and has the mark (<see cref="PortraitLibraryMath.Version"/>).
         /// </summary>
         public string variantOf = "";
-        /// <summary>The colonist it is pinned to (their nickname, first, last, shown or full name), or "": used for them only, never for anyone else.</summary>
+        /// <summary>
+        /// The colonist it was made for (their nickname, first, last, shown or full name), or "": theirs alone in a save where
+        /// one of the colony's people has that name (<see cref="Pinned"/>), never anyone else's there.
+        /// </summary>
         public string pawn = "";
+        /// <summary>
+        /// Not read from records.xml: no one of the colony's people in this save has the name in <see cref="pawn"/>, so it is
+        /// an ordinary picture of the library here, free for whoever fits best, its face too (the player, 25 November 2026:
+        /// "maybe in a new save, these two generations ... can be used by different pawns, depending on what's fitting
+        /// better, but that they are not like always connected forever in a new save"). Set as the colony's names are read
+        /// (<see cref="PortraitLibraryMath.FreePins"/>).
+        /// </summary>
+        public bool pinFree;
 
-        public bool Pinned => pawn.Length > 0;
+        /// <summary>Pinned to someone of this save: made for a name (<see cref="MadeFor"/>) one of the colony's people has.</summary>
+        public bool Pinned => pawn.Length > 0 && !pinFree;
+
+        /// <summary>Made for someone by name, whether or not anyone of that name is in this save.</summary>
+        public bool MadeFor => pawn.Length > 0;
 
         /// <summary>A mark variant of another picture: the same picture with a mark it lacks, a version of it, not a face of its own.</summary>
         public bool IsMarkVariant => variantOf.Length > 0 && PortraitLibraryMath.MarkVariantWord(variant) != null;
@@ -1695,6 +1710,25 @@ namespace ColonyCouncil
 
         // ---------------- Pinned pictures ----------------
 
+        /// <summary>
+        /// Each picture made for a name, free in this save or not (<see cref="PortraitRecord.pinFree"/>): free where
+        /// <paramref name="owner"/> finds no one of the colony's people of that name (-1). True where any changed.
+        /// </summary>
+        public static bool FreePins(IEnumerable<PortraitRecord> records, Func<string, int> owner)
+        {
+            bool changed = false;
+            if (records == null || owner == null) return false;
+            foreach (var r in records)
+            {
+                if (r == null) continue;
+                bool free = r.pawn.Length > 0 && owner(r.pawn) < 0;
+                if (free == r.pinFree) continue;
+                r.pinFree = free;
+                changed = true;
+            }
+            return changed;
+        }
+
         /// <summary>A colonist's names a pin is read against: the nickname, the name on the colonist bar, the first, the last and the full name.</summary>
         public struct PinNames
         {
@@ -1730,7 +1764,8 @@ namespace ColonyCouncil
 
         /// <summary>
         /// Whose a pin is among the colony's own people (by id and names): the one it names most tellingly, and of two
-        /// named alike the one with the lower id (the longer in the game); -1 for no one, so the picture stays unused.
+        /// named alike the one with the lower id (the longer in the game); -1 for no one, so the picture is free in this save
+        /// (<see cref="FreePins"/>).
         /// </summary>
         public static int PinOwner(string pin, IList<KeyValuePair<int, PinNames>> colonists)
         {

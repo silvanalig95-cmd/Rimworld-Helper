@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Dismiss a variant, and pictures made for a name in other games
+
+*25 November 2026, version 0.305.0*
+
+- Right-click the large portrait while a variant of the picture shows (a condition such as asleep, an expression such as a smile, or a mark variant such as a lost eye): "Dismiss this variant" deletes it for good, the way "Delete this variant for good" in "About this picture" does. The picture and its other variants stay.
+- A dismissed variant still needed is listed again in variants-wanted.csv at the next save, under a new name, so Rimfolk Studio makes a new one.
+- A picture made for one of your people by name is theirs alone only in a game where someone of the colony has that name. In a game where no one does, it is an ordinary picture of the library, free for whoever fits it best, and "About this picture" says so.
+
 ## Painted pictures of what people go through
 
 *25 November 2026, version 0.304.0*

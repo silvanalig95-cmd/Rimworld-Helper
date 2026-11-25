@@ -66,6 +66,14 @@ namespace ColonyCouncil
                     string name = PortraitCorrect.RootOf(pic.name)?.record.name ?? pic.name;
                     string why = WhyNot(PortraitFolder.PersonNamed(name) != null, "CC_Portrait_DeleteFromMod");
                     options.Add(why == null ? new FloatMenuOption(label, () => ConfirmPicture(p, name)) : new FloatMenuOption(label + " (" + why + ")", null));
+                    // The variant shown now (a condition, an expression, a mark variant): dismissed for good, asked for anew.
+                    foreach (var v in VariantsShown(p, pic))
+                    {
+                        string dismiss = "CC_Portrait_Dismiss".Translate(v.title.Named("WHAT")).Resolve();
+                        string whyNot = WhyNot(PortraitFolder.RecordNamed(v.name) != null, "CC_Portrait_DeleteFromMod");
+                        string record = v.name;
+                        options.Add(whyNot == null ? new FloatMenuOption(dismiss, () => ConfirmVersion(record)) : new FloatMenuOption(dismiss + " (" + whyNot + ")", null));
+                    }
                 }
                 string back = FaceEngine.BackdropShown(p);
                 if (back != null)
@@ -79,6 +87,39 @@ namespace ColonyCouncil
             {
                 CouncilLog.ErrorOnce("portraits: the large portrait's entries to delete a picture", e);
             }
+        }
+
+        /// <summary>
+        /// The variants of their picture shown on the large portrait now, each with its name in words and its record (the
+        /// player, 25 November 2026: "when a variant is loaded, I should also be able through the game to right click this
+        /// variant and dismiss this variant forever. So it's essentially deleted and requested anew later"): the painted
+        /// condition shown in place of the picture; else the expression held on its face (a blink only while it is held, in
+        /// sleep); and the mark variant shown for them.
+        /// </summary>
+        public static List<(string title, string name)> VariantsShown(Pawn p, PortraitPicture pic)
+        {
+            var list = new List<(string title, string name)>();
+            var lib = PortraitLibrary.Source;
+            if (p == null || pic == null || string.IsNullOrEmpty(pic.name)) return list;
+            int at = lib.IndexOf(pic.name);
+            var rec = lib.RecordAt(at);
+            if (rec == null) return list;
+            string painted = PortraitEffects.PaintedNow(p);
+            if (painted.Length > 0 && lib.ConditionNamesOf(pic.name).TryGetValue(painted, out string held))
+                list.Add((Window_PortraitAbout.ConditionTitle(painted), held));
+            else
+            {
+                string face = FaceEngine.FaceNow(p);
+                if (!string.IsNullOrEmpty(face))
+                {
+                    // An artificial arm's variant shows its picture's expressions until it has its own.
+                    var names = lib.ExpressionNamesOf(pic.name);
+                    if (!names.ContainsKey(face) && rec.IsMarkVariant && PortraitLibraryMath.HeadUnchanged(rec.variant)) names = lib.ExpressionNamesOf(rec.variantOf);
+                    if (names.TryGetValue(face, out string expression)) list.Add((Window_PortraitAbout.FaceTitle(face), expression));
+                }
+            }
+            if (rec.IsMarkVariant) list.Add((Window_PortraitAbout.VariantTitle(rec.variant), rec.name));
+            return list;
         }
 
         /// <summary>Why an entry is greyed out (a mod's picture, a deletion still being written, the folder being read, no place for the bin), or null.</summary>

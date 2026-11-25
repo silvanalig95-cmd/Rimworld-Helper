@@ -15,7 +15,9 @@ namespace ColonyCouncil
     /// picture read only when it is shown (<see cref="PortraitStore"/>).
     /// <list type="bullet">
     /// <item>A picture pinned to a colonist (its def's <c>pawn</c>: their nickname, the name on the colonist bar, first, last
-    /// or full name) is theirs while its stage fits them, ahead of the matcher, and never anyone else's.</item>
+    /// or full name) is theirs while its stage fits them, ahead of the matcher, and never anyone else's. In a save where no
+    /// one of the colony's people has that name it is an ordinary picture, free for whoever fits best (the player, 25
+    /// November 2026).</item>
     /// <item>Everyone else (colonists, visitors, raiders, anyone a portrait is drawn for) is matched by their looks
     /// (<see cref="PortraitReader"/>, <see cref="PortraitLibraryMath.Pick"/>): their kind first, then sex and age, then
     /// skin and hair colour, hair, beard, build, clothes, features and marks. "Portraits from the library" shows the
@@ -96,6 +98,8 @@ namespace ColonyCouncil
         /// <summary>How often someone kept with no picture is looked at again for a free one, how often who is on a map is read, and the notables looked at, in real seconds.</summary>
         private const float RetryEvery = 30f, OnMapsEvery = 3f, SweepEvery = 60f;
         private readonly Dictionary<string, int> pinOwners = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+        /// <summary>The names pictures were made for that no one of the colony's people has in this save.</summary>
+        private readonly HashSet<string> freePins = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
         private float namesUntil = -1f;
         /// <summary>Whose each face is (a colonist's own, a pinned one's): read again when the keeper or the pins change.</summary>
         private Dictionary<string, int> owners = new Dictionary<string, int>(StringComparer.Ordinal);
@@ -420,18 +424,49 @@ namespace ColonyCouncil
             if (now < namesUntil) return;
             namesUntil = now + NamesEvery;
             pinOwners.Clear();
-            var pins = records.Where(r => r.Pinned).Select(r => r.pawn).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+            freePins.Clear();
+            var pins = records.Where(r => r.MadeFor).Select(r => r.pawn).Distinct(StringComparer.OrdinalIgnoreCase).ToList();
             if (pins.Count == 0) return;
             var colonists = new List<KeyValuePair<int, PortraitLibraryMath.PinNames>>();
             foreach (var c in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction)
             {
                 if (c?.Name == null || c.RaceProps == null || !c.RaceProps.Humanlike) continue;
-                var n = c.Name;
-                var t = n as NameTriple;
-                colonists.Add(new KeyValuePair<int, PortraitLibraryMath.PinNames>(c.thingIDNumber,
-                    new PortraitLibraryMath.PinNames(t?.Nick, n.ToStringShort, t?.First, t?.Last, n.ToStringFull)));
+                colonists.Add(new KeyValuePair<int, PortraitLibraryMath.PinNames>(c.thingIDNumber, NamesOf(c)));
             }
-            foreach (var pin in pins) pinOwners[pin] = PortraitLibraryMath.PinOwner(pin, colonists);
+            foreach (var pin in pins)
+            {
+                int owner = PortraitLibraryMath.PinOwner(pin, colonists);
+                pinOwners[pin] = owner;
+                if (owner < 0) freePins.Add(pin);
+            }
+            // A picture made for a name no one of this save has: an ordinary picture here, its face free; the faces' owners
+            // read again, and everyone shown looked at again, where that changed.
+            if (PortraitLibraryMath.FreePins(records, pin => pinOwners.TryGetValue(pin, out int o) ? o : -1))
+            {
+                ownersVersion = int.MinValue;
+                looked.Clear();
+            }
+        }
+
+        private static PortraitLibraryMath.PinNames NamesOf(Pawn c)
+        {
+            var n = c.Name;
+            var t = n as NameTriple;
+            return new PortraitLibraryMath.PinNames(t?.Nick, n.ToStringShort, t?.First, t?.Last, n.ToStringFull);
+        }
+
+        /// <summary>
+        /// One of the player's people named by a picture made for a name that was free (they joined, or the starting pawns'
+        /// page made them since the names were read): the names read again now, so it is theirs at once.
+        /// </summary>
+        private void NamesAgainFor(Pawn p)
+        {
+            ReadNames();
+            if (freePins.Count == 0 || p?.Name == null || p.Faction == null || p.Faction != Faction.OfPlayerSilentFail) return;
+            var me = new List<KeyValuePair<int, PortraitLibraryMath.PinNames>> { new KeyValuePair<int, PortraitLibraryMath.PinNames>(p.thingIDNumber, NamesOf(p)) };
+            if (!freePins.Any(pin => PortraitLibraryMath.PinOwner(pin, me) >= 0)) return;
+            namesUntil = -1f;
+            ReadNames();
         }
 
         /// <summary>
@@ -560,6 +595,8 @@ namespace ColonyCouncil
         /// </summary>
         private int Decide(Pawn p)
         {
+            // A picture made for their name is theirs at once, though the names were read before they came.
+            NamesAgainFor(p);
             // Before the game starts (the starting pawns' page): a trial pick, kept for them when the game starts with them.
             if (Current.ProgramState != ProgramState.Playing) return DecideTrial(p);
             int id = p.thingIDNumber;

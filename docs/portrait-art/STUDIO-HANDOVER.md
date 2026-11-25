@@ -55,6 +55,21 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Rimfolk 0.305.0 (25 November 2026): a variant dismissed in the game, and pictures made for a name free in other
+  saves.**
+  - The large portrait's right-click menu has "Dismiss this variant: <name>..." for each variant shown now: the
+    painted condition shown in place of the picture, else the expression held on the face (a blink only while held in
+    sleep), and the mark variant shown. It goes the way "Delete this variant for good" in "About this picture" goes: a
+    line in deleted.csv with its file and record, its record out of records.xml, its file (and a mark variant's own
+    expressions and conditions) to the bin or deleted as the setting says; the picture and its other variants stay.
+    While someone still needs it, variants-wanted.csv lists it again at the next save under the next free name
+    (`<name>_v-<word>-2.png`). Nothing changes in the formats.
+  - A picture with a name in `pawn` is pinned only in a save where one of the colony's people has that name (as the
+    pins always matched: nickname, the name on the colonist bar, first, last or full name). In a save where no one has
+    it, it is an ordinary picture of the library: free for whoever fits it best, its face (`character`) free too, counted
+    in the missing list like any other. A newcomer with that name gets it as theirs. Made with `PortraitRecord.pinFree`
+    (not in records.xml) and `PortraitLibraryMath.FreePins`, both in the copied `PortraitLibraryMath.cs`.
+
 - **Rimfolk 0.304.0 (25 November 2026): painted conditions and the people list.**
   - The game knows Rimfolk Studio 0.13.0's eleven condition words, a list of their own after the expressions and the
     marks in `PortraitVariantsMath.Words` (`PortraitLifeMath.Conditions`): `asleep tired hurt wounded ill freezing`, then
@@ -210,7 +225,9 @@ none; race = race def names, empty for human; sex `male`/`female`; age `baby tod
 elder`; skin and hairColour `#rrggbb`; hair `bald short medium long braids bun tied`; beard `none stubble short full
 moustache`; build `average slim heavy broad`; era `tribal medieval industrial spacer`; dress `rags work fine robes
 armour`; features, marks and looks `;`-separated words; role one word; pawn = a colonist's name for a picture made for
-them). Backdrops: `name,subject,count,seed,place,rooms,outdoors,era,contents`, and for the gods' places (`backdrops-gods`)
+them: theirs alone in a save where one of the colony's people has that name, and in a save where no one has it an
+ordinary picture, free for whoever fits it best, its face too (since 0.305.0; before, it was kept for that name in
+every save and given to no one else)). Backdrops: `name,subject,count,seed,place,rooms,outdoors,era,contents`, and for the gods' places (`backdrops-gods`)
 `god` (the god's domain). Animals and creatures (`creatures-NN`, and the gods' `gods-NN` whose `creature` holds a god's
 key, `god:<Key>:<age>` ... `godbeast:<Key>`):
 `name,subject,pose,count,seed,creature,sex,age,mod` (creature = the race's def name; sex `male`/`female`/`any`; age

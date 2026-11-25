@@ -198,7 +198,13 @@ namespace ColonyCouncil
         private static string SideWord(PortraitSide side) => (side == PortraitSide.Right ? "CC_PortraitAbout_SideRight" : "CC_PortraitAbout_SideLeft").Translate().Resolve();
 
         /// <summary>A mark variant's name in plain words ("Lost eye, left").</summary>
-        private static string VariantTitle(string word) => VariantText("Mark", word);
+        public static string VariantTitle(string word) => VariantText("Mark", word);
+
+        /// <summary>An expression's name in plain words ("Smile").</summary>
+        public static string FaceTitle(string word) => ("CC_PortraitAbout_Face_" + word).Translate().Resolve();
+
+        /// <summary>A painted condition's name in plain words ("Asleep").</summary>
+        public static string ConditionTitle(string word) => ("CC_PortraitAbout_Cond_" + word).Translate().Resolve();
 
         private static string VariantText(string what, string word)
         {
@@ -285,7 +291,7 @@ namespace ColonyCouncil
             ly = Line(x, ly, lw, "Facing", Low(r.facing));
             ly = Line(x, ly, lw, "File", m.folder != null ? m.folder.texPath.Replace('/', '\\') + ".png" : "CC_PortraitAbout_FileMod".Translate(r.name.Named("NAME")).Resolve());
             ly = Line(x, ly, lw, "Character", r.Character);
-            if (r.Pinned) ly = Line(x, ly, lw, "Pinned", r.pawn);
+            if (r.MadeFor) ly = Line(x, ly, lw, "Pinned", r.Pinned ? r.pawn : "CC_PortraitAbout_PinFree".Translate(r.pawn.Named("NAME")).Resolve());
             if (m.shown != m.root)
                 ly = Line(x, ly, lw, "Version", "CC_PortraitAbout_VariantOfValue".Translate(FileName(m.rootFolder?.texPath ?? m.rootRec.name).Named("FILE"), VariantTitle(r.variant).Named("WORD")).Resolve());
             return Mathf.Max(y + ph, ly);

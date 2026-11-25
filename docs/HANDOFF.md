@@ -889,6 +889,17 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done (25 November 2026, 0.305.0): a variant dismissed in the game; a picture made for a name free in other saves.**
+  The player: "in the game, on the image, when a variant is loaded, I should also be able through the game to right
+  click this variant and dismiss this variant forever. So it's essentially deleted and requested anew later", and of
+  pictures made for one person: "maybe in a new save, these two generations ... can be used by different pawns,
+  depending on what's fitting better, but that they are not like always connected forever in a new save". Built:
+  `PortraitDelete.VariantsShown` (the condition shown, else the expression held, and the mark variant) gives the large
+  portrait's menu "Dismiss this variant: <name>...", which goes through `ConfirmVersion` (deleted.csv, records.xml, the
+  bin; variants-wanted.csv asks again under `-2`). `PortraitRecord.pinFree` and `MadeFor`, `PortraitLibraryMath.FreePins`:
+  `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
+  ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
+  says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
 - **To do when the player asks (25 November 2026, the player, with the save New_Arrivals54 of 07:03 and a screenshot of
   Aravae Enmyar, Trader of Argwylon, her pack full: gin, an elven bow, a quiver and stacks of goods): what the camps
   keep in their packs and what in their store.** The player: "So the camps now, I guess, probably set up storage, and I
