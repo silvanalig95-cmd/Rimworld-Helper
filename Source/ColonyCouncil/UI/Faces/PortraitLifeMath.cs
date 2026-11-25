@@ -287,6 +287,126 @@ namespace ColonyCouncil
         /// <summary>The expressions a picture may have beside it, by their words in records.xml (<c>&lt;variant&gt;</c> of a picture with <c>&lt;variantOf&gt;</c>).</summary>
         public static readonly string[] Faces = { "blink", "smile", "frown", "pain" };
 
+        // ---------------- Conditions: painted pictures of what they go through ----------------
+
+        /// <summary>
+        /// The conditions a picture may have painted beside it (the player, 25 November 2026: "lightly wounded, heavily wounded,
+        /// ill, freezing, sleeping etc. are much more likely and also generically applicable"), exactly as Rimfolk Studio 0.13.0
+        /// names its files and records (<c>&lt;picture&gt;_v-&lt;word&gt;.png</c>; a new word, or another name, is agreed with the
+        /// Studio first: pictures made under these names would have to be renamed), in the order they are wanted painted, the
+        /// first six first: asleep, tired, hurt (lightly wounded), wounded (badly wounded), ill, freezing; then overheated,
+        /// starving, drunk (drunk or high), breaking (near or in a mental break), unconscious. Each is the whole picture again as
+        /// the person is then, cut out again (a head sunk in sleep, frost in the hair, bandages), shown in place of the picture
+        /// (<see cref="ConditionWanted"/>).
+        /// </summary>
+        public static readonly string[] Conditions =
+        {
+            "asleep", "tired", "hurt", "wounded", "ill", "freezing", "overheated", "starving", "drunk", "breaking", "unconscious"
+        };
+
+        /// <summary>
+        /// Which condition's picture shows when several hold (the player, 25 November 2026, "the most serious"): unconscious,
+        /// breaking, wounded, ill, freezing, overheated, starving, asleep, hurt, drunk, tired. So a wounded colonist asleep in a
+        /// hospital bed shows wounded, a well one asleep shows asleep.
+        /// </summary>
+        public static readonly string[] ConditionOrder =
+        {
+            "unconscious", "breaking", "wounded", "ill", "freezing", "overheated", "starving", "asleep", "hurt", "drunk", "tired"
+        };
+
+        /// <summary>A condition's word as Rimfolk knows it (the case aside), or null.</summary>
+        public static string ConditionWord(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text)) return null;
+            string t = text.Trim();
+            foreach (var c in Conditions)
+                if (string.Equals(c, t, StringComparison.OrdinalIgnoreCase))
+                    return c;
+            return null;
+        }
+
+        /// <summary>
+        /// When each condition holds (the game's own readings, <see cref="PortraitCondition"/>): unconscious: downed or unable to
+        /// wake; breaking: in a mental break, or near one (their mood under <see cref="NearBreak"/>); wounded: much blood lost
+        /// (<see cref="WoundedBloodLoss"/>), bleeding hard, in great pain or their health low; ill: an illness a third of the
+        /// way to death or more; freezing and overheated: hypothermia or heatstroke past their first stage; starving:
+        /// malnourished; asleep (the blink held for sleep where no such picture is painted); hurt: bleeding a little, some pain
+        /// or a little hurt; drunk: drunk or high on a drug; tired: their rest nearly gone and awake.
+        /// </summary>
+        public static bool ConditionHolds(string word, PortraitCondition c)
+        {
+            if (c.dead) return false;
+            bool down = c.unconscious || c.downed;
+            switch (word)
+            {
+                case "unconscious": return down;
+                case "breaking": return !down && (c.breaking || c.minor > c.extreme && c.mood < NearBreak(c));
+                case "wounded": return c.bloodLoss >= WoundedBloodLoss || c.bleed >= WoundedBleed || c.pain >= WoundedPain || c.health <= WoundedHealth;
+                case "ill": return c.sick >= IllFrom;
+                case "freezing": return c.cold >= FreezingFrom;
+                case "overheated": return c.heat >= OverheatedFrom;
+                case "starving": return c.hunger >= StarvingFrom;
+                case "asleep": return c.asleep && !down;
+                case "hurt": return c.bleed > HurtBleed || c.pain >= HurtPain || c.health <= HurtHealth;
+                case "drunk": return c.drunk >= DrunkFrom || c.high;
+                case "tired": return !c.asleep && !down && c.rest <= TiredBelow;
+            }
+            return false;
+        }
+
+        /// <summary>Near a mental break: their mood under the middle between their minor and extreme break lines (about where a major break comes).</summary>
+        public static float NearBreak(PortraitCondition c) => c.extreme + (c.minor - c.extreme) * 0.5f;
+
+        public const float WoundedBloodLoss = 0.2f, WoundedBleed = 0.3f, WoundedPain = 0.45f, WoundedHealth = 0.6f;
+        public const float HurtBleed = 0.02f, HurtPain = 0.12f, HurtHealth = 0.9f;
+        public const float IllFrom = 0.3f, FreezingFrom = 0.2f, OverheatedFrom = 0.2f, StarvingFrom = 0.2f, DrunkFrom = 0.4f, TiredBelow = 0.14f;
+
+        /// <summary>The conditions that hold now, in <see cref="ConditionOrder"/>.</summary>
+        public static List<string> ConditionsNow(PortraitCondition c)
+        {
+            var list = new List<string>();
+            foreach (var w in ConditionOrder)
+                if (ConditionHolds(w, c))
+                    list.Add(w);
+            return list;
+        }
+
+        /// <summary>
+        /// The condition whose picture shows now: the most serious that holds and is painted (<paramref name="has"/>), or ""
+        /// for the picture itself. While one shows, the person neither blinks nor changes expression (the player: the blink
+        /// and the expressions are painted from the plain picture and would wipe the condition's face).
+        /// </summary>
+        public static string ConditionWanted(PortraitCondition c, Func<string, bool> has)
+        {
+            foreach (var w in ConditionOrder)
+                if (ConditionHolds(w, c) && has != null && has(w))
+                    return w;
+            return "";
+        }
+
+        /// <summary>A condition shown stays at least this long (seconds), unless a more serious one comes: no flicker at an edge.</summary>
+        public const float ConditionHold = 3f;
+
+        /// <summary>How serious a condition is: its place in <see cref="ConditionOrder"/> (none: after all of them).</summary>
+        public static int Serious(string word)
+        {
+            int i = string.IsNullOrEmpty(word) ? -1 : Array.IndexOf(ConditionOrder, word);
+            return i >= 0 ? i : ConditionOrder.Length;
+        }
+
+        /// <summary>
+        /// The condition shown next (<paramref name="shown"/> since <paramref name="since"/>, <paramref name="want"/> now): a
+        /// more serious one at once; a lighter one, or none, once the one shown has stayed <see cref="ConditionHold"/> seconds.
+        /// </summary>
+        public static string ConditionStep(string shown, string want, float since, float now)
+        {
+            shown = shown ?? "";
+            want = want ?? "";
+            if (want == shown) return shown;
+            if (shown.Length == 0 || Serious(want) < Serious(shown) || now - since >= ConditionHold) return want;
+            return shown;
+        }
+
         /// <summary>An expression's word as Rimfolk knows it (the case aside), or null for none of them.</summary>
         public static string FaceWord(string text)
         {

@@ -189,8 +189,9 @@ namespace ColonyCouncil
             bool dead = pose.bearing == FaceBearing.Dead;
             Widgets.DrawBoxSolid(r, UiKit.WithAlpha(dead ? UiKit.PortraitBack : l.back, alpha));
             int seed = p.thingIDNumber;
-            // A source's picture (the library's painted portrait) where one has them, else the game's own drawing.
-            var pic = PortraitSources.For(p);
+            // A source's picture (the library's painted portrait) where one has them, else the game's own drawing; a painted
+            // condition (asleep, wounded ...) in its place while one holds, on the moving ones (the colonist card) as on the large.
+            var pic = PortraitSources.Shown(p, PortraitSources.For(p), moving);
             // A painted picture still loading: the ground only, for the moment it takes.
             if (pic != null && pic.texture == null) return;
             float turn = 0f;
@@ -315,7 +316,7 @@ namespace ColonyCouncil
         {
             if (p == null || Event.current.type != EventType.Repaint) return;
             Tick();
-            var pic = PortraitSources.For(p);
+            var pic = PortraitSources.Shown(p, PortraitSources.For(p), false);
             if (pic != null)
             {
                 // Still loading: the disc's ground only, for the moment it takes.

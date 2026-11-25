@@ -15,7 +15,10 @@ doesn't work anymore". The two projects and who owns what:
   the catalogue of everything a picture can show (`docs/portrait-art/catalogue`: `kinds.csv`, `looks.csv`, `marks.csv`,
   `roles.csv`, `creatures.csv`, its `README.md`), with its tools (`Tools/PortraitArt/catalogue_check.py`,
   `catalogue_words.py`, `creature_census.py`, `save_census.py`, `looks_to_defs.py`, their tests) and `docs/player-mods`.
-  A format or a catalogue column changes here first.
+  A format or a catalogue column changes here first. `catalogue_words.py` (the catalogue's words for the pictures, which
+  the kept tools here and the Studio's planners both read) stays here, and the Studio keeps a copy (the player, 25
+  November 2026: "keep it here and with a copy in the studio ... as long as all data that's required by both is always
+  synced"): every change to it, or to the data it reads, gets a line in the list below and one for the Studio's chat.
 - **Rimfolk Studio** (silvanalig95-cmd/rimfolk-studio, private) owns the program and, since 24 November 2026 (taken over
   at this repository's commit e10103f), the kit's scripts (`*.ps1` and `.cmd`, its folder `kit`), the batch lists and
   the styles (`*.csv`, `style-*.json`, its folder `lists`; its Lists page puts them into the kit's `batches\`), and the
@@ -42,7 +45,7 @@ doesn't work anymore". The two projects and who owns what:
 
   | Belongs in the Rimfolk chat (this repository) | Belongs in the Studio chat |
   |---|---|
-  | the game: which picture a pawn, creature or place gets, how pictures are shown, corrections and deletions in the game, what the game writes (missing.csv, variants-wanted.csv, deleted.csv) | the program: its pages, tasks, scans, sync, storage, clean-up |
+  | the game: which picture a pawn, creature or place gets, how pictures are shown, corrections and deletions in the game, what the game writes (missing.csv, variants-wanted.csv, people.csv, deleted.csv) | the program: its pages, tasks, scans, sync, storage, clean-up |
   | the file formats (section 4), and a new kind of picture or record field | painting, copying, checking, reviewing, sorting and organising pictures |
   | the catalogue: kinds, creatures, looks, marks, roles, `humanLooking` and the other columns, from the player's mods (`docs/player-mods`) | what to paint: a new list, more rows, a planner's rule, a style's wording (from the catalogue's copy) |
   | the content the pictures are for (gods, peoples, events) | ComfyUI and its workflows as the program runs them |
@@ -52,10 +55,24 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Rimfolk 0.304.0 (25 November 2026): painted conditions and the people list.**
+  - The game knows Rimfolk Studio 0.13.0's eleven condition words, a list of their own after the expressions and the
+    marks in `PortraitVariantsMath.Words` (`PortraitLifeMath.Conditions`): `asleep tired hurt wounded ill freezing`, then
+    `overheated starving drunk breaking unconscious`. `variants-wanted.csv` lists them for the colony's own people
+    (priority 1, after their expressions and marks) with an empty instruction (the Studio's script words them), for the
+    version shown for them (a mark variant's too: `X_v-lostEyeLeft_v-asleep.png`). The game shows one in place of the
+    picture while it holds, the most serious first (unconscious, breaking, wounded, ill, freezing, overheated, starving,
+    asleep, hurt, drunk, tired), on the portraits the setting "What they go through, on their portraits" covers, with no
+    blink or expression over it and the drawn effect for it faint. Its record: `variant` the word, `variantOf` the
+    picture's defName, as the Studio writes it. A new word (such as `talking`) is agreed with the Studio first.
+  - New file written by the game at every save: `library\people.csv` (section 4), one line for each of the colony's
+    people and each notable: what the game sees in them, what their picture does not show, what changed and since when.
+    The rules are in a new copied file, `PortraitPeopleMath.cs`.
+  - `catalogue_words.py` stays here, the Studio keeps a copy (section 0).
 - **The lists, styles, planners and scripts are the Studio's (24 November 2026, taken over at commit e10103f).** Removed
   here with a line in their place (`docs/portrait-art/batches/README.md`, `Tools/PortraitArt/README.md`), and the
-  planners' report `catalogue/COVERAGE.md`. Two changes to them were made here after e10103f and are not in the Studio
-  yet: commit 7c3fd068 (`plan_creatures.py --variety`, the lists `creatures-05` to `08`, 542 rows) and commit 0db5c947
+  planners' report `catalogue/COVERAGE.md`. Two changes to them were made here after e10103f and are in Rimfolk Studio
+  0.13.0 since (its catalogue copy at a79f21d): commit 7c3fd068 (`plan_creatures.py --variety`, the lists `creatures-05` to `08`, 542 rows) and commit 0db5c947
   (`plan_batches.py --phases characters4`, `round4_list`, `round4_wants`, `ROUND4_*`, `round3_list` ending at
   `characters-16`, the lists `characters-17` to `20`, 800 rows, and its test). The catalogue kept here; its tests too.
 - **The characters' fourth round (24 November 2026):** new lists `characters-17` to `20` (800 rows, the people columns
@@ -212,8 +229,11 @@ pose + frame + style_end; the LoRA boxes of the workflow are filled in their nod
 `^(?<name>.+?)_(?<style>style[^_]*)_(?:(?<run>\d{6}-\d{4,6})_)?(?<n>\d+)(?<cut>_cut)?(_\d+_?)?$`). A Windows copy name
 (` (2)`, ` - Copy`) still counts as its picture. Variants: `<picture stem>_v-<word>[-N].png` (words: `blink smile frown
 pain lostEyeLeft lostEyeRight eyePatchLeft eyePatchRight bionicEyeLeft bionicEyeRight scar burn missingEarLeft
-missingEarRight artificialArmLeft artificialArmRight`, `-2`, `-3` for one made again after a deleted one), nested for a
-mark variant's expressions (`X_v-lostEyeLeft_v-blink.png`); depth maps `<backdrop stem>_depth.png`.
+missingEarRight artificialArmLeft artificialArmRight`, the conditions `asleep tired hurt wounded ill freezing overheated
+starving drunk breaking unconscious` (since 0.304.0; made by Rimfolk Studio 0.13.0), `-2`, `-3` for one made again after a deleted one), nested
+for a mark variant's expressions and conditions (`X_v-lostEyeLeft_v-blink.png`, `X_v-lostEyeLeft_v-asleep.png`); depth
+maps `<backdrop stem>_depth.png`. Any word that is neither an expression (`blink smile frown pain`) nor a mark is a
+condition.
 
 **records.xml** (`library\`, written by Update-PortraitLibrary, read by the game): `<Defs>` of
 `<ColonyCouncil.PortraitDef>` with `defName` (`Portrait_<list>_<row>_<run digits>_<NN>`), `texPath` (`<list>/<stem>`),
@@ -244,7 +264,24 @@ ears horns tail wings eyes body eyemarks arms limbs hands weapons armour magic h
 `GUIDE.md`, "What the check checks".
 
 **Written by the game** (Rimfolk, into `library\`): `deleted.csv` `file,batch,row,record,date,how,sha256` (deleted for
-good: never copied or recorded again); `variants-wanted.csv` `picture,word,instruction,who,priority,first` (on save);
+good: never copied or recorded again); `variants-wanted.csv` `picture,word,instruction,who,priority,first` (on save; the
+words: the expressions, the marks and, for the colony's own people, the conditions, whose instruction is empty);
+`people.csv` (on save, since 0.304.0; `PortraitPeopleMath`), one line for each of the colony's people (colonists,
+slaves, prisoners) and each notable, in that order, then by name, with the columns
+`id,name,fullName,standing,picture,record,shown,distance,words,lacks,changed,age,looks,marks,role,title,first`:
+`id` the pawn's number (as the save's `PortraitKeeper` keeps it, `id`); `name` their short name (as a picture's `pawn`
+column names them) and `fullName`; `standing` `colonist`, `slave`, `prisoner` or `notable`; `picture` the picture they
+hold, its file from `library\` with forward slashes (empty for a mod's picture or none), `record` its record's name,
+`shown` the version shown now where another (a mark variant's file); `distance` how far the picture is from them (the
+matcher's distance, two decimals; empty without a picture); `words` the game's words for them (`PortraitLook.Words`,
+as kept in the save); `lacks` what the picture does not show of them, `; `-separated: `age:<band>` (another age band),
+`look:<word>` (a look of theirs it hasn't, the special ones first), `role:<work>`, `mark:<mark>` (with its side where it
+has one: `mark:lostEye-left`); everything where they have no picture; `changed` what changed since a save before,
+`; `-separated `<kind>:<value>@<yyyy-MM-dd>` (kinds `age`, `look`, `mark`, `role`, `title`; the date first seen), kept
+while it still holds and the picture does not show it (a title while it is held), empty the first time someone is
+listed; `age`, `looks`, `marks`, `role`, `title` what the next save compares against (their age band; their looks,
+marks and titles `; `-separated; a title is the Empire's in its own words or the council office they hold, in small
+letters); `first` the date they were first listed;
 `missing.csv` `what,kind,look,role,mod,sex,age,skin,hair,era,why,used instead,how many,last seen` (on save; `what` is
 `person`, `look`, `creature` (kind = its race), `room` or `outdoors`); corrections
 lines `set in the game` and records.xml fields (the About window); the kept-for-training copies in `training\` with
@@ -295,7 +332,7 @@ over ComfyUI's websocket (`/ws?clientId=`).
 
 - **The game's own rules, in C#, without the game:** `Source/ColonyCouncil/UI/Faces/` `PortraitLibraryMath.cs` (records,
   the matcher, hard rules, distances), `PortraitFolderMath.cs` (records.xml, missing.csv, file keys), `PortraitCorrectMath.cs`
-  (corrections), `PortraitDeleteMath.cs` (deleted.csv, names), `PortraitVariantsMath.cs` (variants-wanted.csv),
+  (corrections), `PortraitDeleteMath.cs` (deleted.csv, names), `PortraitVariantsMath.cs` (variants-wanted.csv), `PortraitPeopleMath.cs` (people.csv),
   `PortraitTrainingMath.cs`, `PortraitPictureMath.cs` (scaling, the head measured), `PortraitLookMath.cs` (looks and roles),
   `PortraitLifeMath.cs`, `PortraitViewMath.cs`, `PortraitComposeMath.cs`, `BackdropMath.cs`, `FaceMath.cs`, `FacePoseMath.cs`,
   `PortraitEffectsMath.cs`. They build without RimWorld (see how `Tools/Tests/Tests.csproj` links them); `Tools/Tests`

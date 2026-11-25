@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Painted pictures of what people go through
+
+*25 November 2026, version 0.304.0*
+
+- A painted portrait can now have versions for what the person goes through: asleep, tired, hurt, wounded, ill, freezing, overheated, starving, drunk or high, breaking and unconscious, as Rimfolk Studio makes them. While one holds, it shows in place of the picture on the portraits the setting "What they go through, on their portraits" covers.
+- When several hold, the most serious shows, from unconscious and breaking down to drunk and tired. A version stays at least three seconds, the person doesn't blink or change expression meanwhile, and the drawn effect for the same thing stays faint over it.
+- variants-wanted.csv now asks for these versions of the pictures your own people hold, for Rimfolk Studio to paint, and "About this picture" lists the ones made with when each shows.
+- Saving the game now also writes people.csv into the library folder: each of your people and each notable, the picture they hold and how close it is, what it doesn't show of them, and what changed since an earlier save with the date first seen, for Rimfolk Studio.
+
 ## More kinds free to have pointed ears
 
 *24 November 2026, version 0.303.2*

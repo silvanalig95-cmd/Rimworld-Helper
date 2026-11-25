@@ -91,6 +91,36 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// The picture to draw for a person now (<paramref name="pic"/>: theirs from <see cref="For"/> or
+        /// <see cref="ForStage"/>): while something they go through has a painted picture of theirs (asleep, wounded, ill ...;
+        /// the most serious that has one), that picture in its place, where the setting "What they go through, on their
+        /// portraits" shows on this kind of portrait (<paramref name="large"/>: the large portrait, the colonist card). The
+        /// picture itself while the condition's loads. Only for drawing: deleting, training and the window about a picture
+        /// take the picture itself.
+        /// </summary>
+        public static PortraitPicture Shown(Pawn p, PortraitPicture pic, bool large)
+        {
+            if (p == null || pic?.texture == null || string.IsNullOrEmpty(pic.name) || !PortraitEffects.On(large)) return pic;
+            try
+            {
+                var lib = PortraitLibrary.Source;
+                var has = lib.ConditionsOf(pic.name);
+                if (has == null) return pic;
+                string word = PortraitEffects.PaintedFor(p, w => has.TryGetValue(w, out var f) && !PortraitStore.Failed(f));
+                if (word.Length == 0) return pic;
+                var held = lib.ConditionPicture(pic.name, word);
+                if (held == null) return pic;
+                PortraitEffects.PaintedShown(p);
+                return held;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("portraits: the painted picture of what a person goes through", e);
+                return pic;
+            }
+        }
+
         public static void Forget(int pawnId)
         {
             foreach (var s in Sources) s.Forget(pawnId);

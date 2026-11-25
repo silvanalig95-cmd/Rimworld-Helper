@@ -63,6 +63,17 @@ namespace ColonyCouncil
         /// <summary>Phase 6: each picture's expressions (blink, smile, frown, pain) by its name, for the large portrait only; and their records' names.</summary>
         private readonly Dictionary<string, Dictionary<string, PictureFile>> expressions = new Dictionary<string, Dictionary<string, PictureFile>>(StringComparer.Ordinal);
         private readonly Dictionary<string, Dictionary<string, string>> expressionNames = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+        /// <summary>Each picture's painted conditions (asleep, wounded, ill ...) by its name, shown instead of it while they hold; and their records' names.</summary>
+        private readonly Dictionary<string, Dictionary<string, PictureFile>> conditions = new Dictionary<string, Dictionary<string, PictureFile>>(StringComparer.Ordinal);
+        private readonly Dictionary<string, Dictionary<string, string>> conditionNames = new Dictionary<string, Dictionary<string, string>>(StringComparer.Ordinal);
+        private readonly Dictionary<string, Dictionary<string, Held>> conditionPictures = new Dictionary<string, Dictionary<string, Held>>(StringComparer.Ordinal);
+
+        /// <summary>A painted condition's picture, drawn like any other by its own layout (it is cut out again, so its shape may differ).</summary>
+        private sealed class Held
+        {
+            public Entry entry;
+            public PortraitPicture picture;
+        }
         /// <summary>Each picture's mark variants (the same picture with a lost eye, a scar ...), by its index, as indices into the records.</summary>
         private readonly Dictionary<int, List<int>> variantsOf = new Dictionary<int, List<int>>();
         private readonly HashSet<string> characters = new HashSet<string>();
@@ -132,6 +143,9 @@ namespace ColonyCouncil
                 namesUntil = -1f;
                 expressions.Clear();
                 expressionNames.Clear();
+                conditions.Clear();
+                conditionNames.Clear();
+                conditionPictures.Clear();
                 variantsOf.Clear();
                 var all = new List<Entry>();
                 var names = new HashSet<string>(StringComparer.Ordinal);
@@ -169,8 +183,24 @@ namespace ColonyCouncil
                         variantsOf[root] = kv.Value.Where(at.ContainsKey).Select(v => at[v]).ToList();
                 foreach (var kv in faces)
                 {
-                    expressions[kv.Key] = kv.Value.ToDictionary(x => x.Key, x => all[x.Value].file, StringComparer.Ordinal);
-                    expressionNames[kv.Key] = kv.Value.ToDictionary(x => x.Key, x => all[x.Value].record.name, StringComparer.Ordinal);
+                    // The expressions laid over the face, and the conditions shown instead of the picture, each kept apart.
+                    var own = kv.Value.Where(x => PortraitLifeMath.ConditionWord(x.Key) == null).ToList();
+                    var held = kv.Value.Where(x => PortraitLifeMath.ConditionWord(x.Key) != null).ToList();
+                    if (own.Count > 0)
+                    {
+                        expressions[kv.Key] = own.ToDictionary(x => x.Key, x => all[x.Value].file, StringComparer.Ordinal);
+                        expressionNames[kv.Key] = own.ToDictionary(x => x.Key, x => all[x.Value].record.name, StringComparer.Ordinal);
+                    }
+                    if (held.Count > 0)
+                    {
+                        conditions[kv.Key] = held.ToDictionary(x => x.Key, x => all[x.Value].file, StringComparer.Ordinal);
+                        conditionNames[kv.Key] = held.ToDictionary(x => x.Key, x => all[x.Value].record.name, StringComparer.Ordinal);
+                        conditionPictures[kv.Key] = held.ToDictionary(x => x.Key, x => new Held
+                        {
+                            entry = all[x.Value],
+                            picture = new PortraitPicture { layout = all[x.Value].Layout, name = all[x.Value].record.name, file = all[x.Value].file, loading = true }
+                        }, StringComparer.Ordinal);
+                    }
                 }
                 foreach (var problem in faceProblems) CouncilLog.WarnOnce("Portraits: " + problem);
                 signature = PortraitLibraryMath.LibrarySignature(records.Select(r => r.name));
@@ -178,7 +208,7 @@ namespace ColonyCouncil
                 if (records.Count > 0)
                     Log.Message("[Rimfolk] Portraits: " + records.Count(r => !r.IsMarkVariant) + " painted portraits of " + characters.Count + " faces in the library (" + fromDefs.Count(e => e.record.variantOf.Length == 0)
                                 + " from mods, " + PortraitFolder.People.Count(p => p.record.variantOf.Length == 0) + " from the library folder), " + records.Count(r => r.Pinned && !r.IsMarkVariant) + " of them pinned to colonists; "
-                                + expressions.Values.Sum(x => x.Count) + " expressions of " + expressions.Count + " of them; " + variantsOf.Values.Sum(x => x.Count) + " mark variants of " + variantsOf.Count + "; "
+                                + expressions.Values.Sum(x => x.Count) + " expressions of " + expressions.Count + " of them; " + conditions.Values.Sum(x => x.Count) + " conditions of " + conditions.Count + "; " + variantsOf.Values.Sum(x => x.Count) + " mark variants of " + variantsOf.Count + "; "
                                 + Backdrops.Count + " backdrops.");
             }
             catch (Exception e)
@@ -206,6 +236,36 @@ namespace ColonyCouncil
         /// <summary>A picture's own expressions by their words with their records' names (none: empty), for the window "About this picture".</summary>
         public IReadOnlyDictionary<string, string> ExpressionNamesOf(string picture) =>
             picture != null && Load() && expressionNames.TryGetValue(picture, out var names) ? names : new Dictionary<string, string>();
+
+        /// <summary>
+        /// The conditions painted of a picture (asleep, tired, hurt, wounded ...: <see cref="PortraitLifeMath.Conditions"/>), by
+        /// their words, or null where it has none. Each is shown instead of the picture while it holds for the person
+        /// (<see cref="PortraitSources.Shown"/>); never counted in the matching or the missing list.
+        /// </summary>
+        public IReadOnlyDictionary<string, PictureFile> ConditionsOf(string picture) =>
+            picture != null && Load() && conditions.TryGetValue(picture, out var held) && held.Count > 0 ? held : null;
+
+        /// <summary>
+        /// A picture's painted condition with its texture, ready to draw; null where it has none of that word, or while it
+        /// loads (its loading asked for: the picture itself shows meanwhile).
+        /// </summary>
+        public PortraitPicture ConditionPicture(string picture, string word)
+        {
+            if (picture == null || string.IsNullOrEmpty(word) || !Load() || !conditionPictures.TryGetValue(picture, out var byWord) || !byWord.TryGetValue(word, out var h)) return null;
+            var tex = PortraitStore.Get(h.picture.file);
+            if (tex == null) return null;
+            if (h.picture.texture != tex)
+            {
+                h.picture.texture = tex;
+                h.picture.layout = h.entry.Layout;
+            }
+            h.picture.loading = false;
+            return h.picture;
+        }
+
+        /// <summary>A picture's own conditions by their words with their records' names (none: empty), for the window "About this picture" and the list of what is wanted.</summary>
+        public IReadOnlyDictionary<string, string> ConditionNamesOf(string picture) =>
+            picture != null && Load() && conditionNames.TryGetValue(picture, out var names) ? names : new Dictionary<string, string>();
 
         // ---------------- Versions: a picture and its mark variants ----------------
 

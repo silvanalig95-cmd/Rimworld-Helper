@@ -42,7 +42,7 @@ namespace ColonyCouncil
         {
             public string title, what, when, name, of;
             public PictureFile file;
-            public bool shownNow, deletable, face;
+            public bool shownNow, deletable, face, condition;
         }
 
         private sealed class Model
@@ -161,7 +161,25 @@ namespace ColonyCouncil
                     });
                 }
             }
+            void Conditions(PortraitRecord of, string ofWord)
+            {
+                var names = lib.ConditionNamesOf(of.name);
+                var files = lib.ConditionsOf(of.name);
+                foreach (var w in PortraitLifeMath.Conditions)
+                {
+                    if (!names.TryGetValue(w, out string name)) continue;
+                    PictureFile file = null;
+                    files?.TryGetValue(w, out file);
+                    n.rows.Add(new Row
+                    {
+                        title = ("CC_PortraitAbout_Cond_" + w).Translate().Resolve() + (ofWord != null ? " (" + "CC_PortraitAbout_OfVariant".Translate(ofWord.Named("WORD")).Resolve() + ")" : ""),
+                        what = ("CC_PortraitAbout_CondWhat_" + w).Translate().Resolve(), when = ("CC_PortraitAbout_CondWhen_" + w).Translate().Resolve(), name = name, file = file,
+                        shownNow = of == n.rec && PortraitEffects.PaintedNow(pawn) == w, deletable = PortraitFolder.RecordNamed(name) != null, of = of.name, condition = true
+                    });
+                }
+            }
             Faces(n.rootRec, null);
+            Conditions(n.rootRec, null);
             foreach (int v in lib.VariantsOf(n.root))
             {
                 var r = lib.RecordAt(v);
@@ -173,6 +191,7 @@ namespace ColonyCouncil
                     deletable = PortraitFolder.RecordNamed(r.name) != null
                 });
                 Faces(r, title);
+                Conditions(r, title);
             }
         }
 
@@ -390,6 +409,8 @@ namespace ColonyCouncil
             if (m.rows.Count == 0 && m.wanted.Count == 0) y += UiKit.Paragraph(0f, y, w, "CC_PortraitAbout_VersionsNone".Translate().Resolve(), UiKit.Faint) + 4f;
             if (m.rows.Any(r => r.face))
                 y +=UiKit.Paragraph(0f, y, w, (facesOn ? "CC_PortraitAbout_FacesOn" : "CC_PortraitAbout_FacesOff").Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
+            if (m.rows.Any(r => r.condition))
+                y += UiKit.Paragraph(0f, y, w, (PortraitEffects.On(true) ? "CC_PortraitAbout_CondsOn" : "CC_PortraitAbout_CondsOff").Translate().Resolve(), UiKit.Faint, GameFont.Tiny) + 4f;
             float tw = 64f, th = 83f, bw = 210f;
             foreach (var r in m.rows)
             {
@@ -414,7 +435,8 @@ namespace ColonyCouncil
                 y += UiKit.Paragraph(0f, y, w, "CC_PortraitAbout_Wanted".Translate().Resolve(), UiKit.Heading, GameFont.Tiny) + 2f;
                 foreach (var kv in m.wanted)
                 {
-                    string title = PortraitLifeMath.FaceWord(kv.Key) != null ? ("CC_PortraitAbout_Face_" + kv.Key).Translate().Resolve() : VariantTitle(kv.Key);
+                    string title = PortraitLifeMath.FaceWord(kv.Key) != null ? ("CC_PortraitAbout_Face_" + kv.Key).Translate().Resolve()
+                        : PortraitLifeMath.ConditionWord(kv.Key) != null ? ("CC_PortraitAbout_Cond_" + kv.Key).Translate().Resolve() : VariantTitle(kv.Key);
                     UiKit.LabelFit(new Rect(0f, y, LabelW + 40f, 22f), title, UiKit.Ink);
                     y += Mathf.Max(22f, UiKit.Paragraph(LabelW + 44f, y + 2f, w - LabelW - 44f, "CC_PortraitAbout_WantedLine".Translate(kv.Value.Replace('/', '\\').Named("FILE")).Resolve(),
                         UiKit.Faint, GameFont.Tiny) + 4f);

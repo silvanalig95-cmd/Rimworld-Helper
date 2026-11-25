@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 25 November 2026 (the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 25 November 2026 (0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -49,12 +49,13 @@ In `library\`:
 | File | Written by | What it holds |
 |---|---|---|
 | `<list>\<row name>_<style>_<date-time>_01_cut_00001_.png` | Copy-ToLibrary | a picture; the name ties it to its row |
-| `<picture>_v-blink.png`, `_v-lostEyeLeft.png` ... | Make-Variants | its variants (expressions and marks) |
+| `<picture>_v-blink.png`, `_v-lostEyeLeft.png`, `_v-asleep.png` ... | Make-Variants | its variants (expressions, marks and conditions) |
 | `records.xml` | Update-PortraitLibrary (and the game's corrections) | what the game reads: one description per picture (people, animals and creatures, backdrops) |
 | `corrections.csv` | Check-Pictures, Review-Pictures, the game | changes to single pictures' descriptions |
 | `checked.csv`, `check-report.csv` | Check-Pictures | the model's answers; what it found, worst first |
 | `deleted.csv` | the game | pictures deleted for good: never copied or recorded again |
 | `variants-wanted.csv`, `missing.csv` | the game, when you save | the variants it wants; what it needed and the library lacks |
+| `people.csv` | the game, when you save | each of your people and each notable: the picture they hold, the game's words for them, what the picture doesn't show, what changed and since when (Rimfolk Studio reads it) |
 
 ## Each round, step by step
 
@@ -92,8 +93,10 @@ In `library\`:
    moves a little with the mouse. Writes the records.
 8. **Variants (optional): Make-Variants.cmd.** Once set up (SETUP 10: FLUX.1 Kontext Dev and its exported workflow), it
    runs by itself: it reads `variants-wanted.csv` (the game writes it when you save: the expressions blink, smile,
-   frown and pain for the pictures your people hold, and a mark variant when someone gets a mark, such as a lost left
-   eye), your colonists first, makes each variant once into the library and writes the records. A variant is never
+   frown and pain for the pictures your people hold, a mark variant when someone gets a mark, such as a lost left eye,
+   and for your own people the conditions: asleep, tired, hurt, wounded, ill, freezing, then overheated, starving,
+   drunk, breaking and unconscious), your colonists first, makes each variant once into the library and writes
+   the records. A variant is never
    made twice unless you delete it in the game.
 9. **In the game:** Rimfolk's settings, **Reload the library**. The game also reads it at start-up and whenever a game
    starts or a save loads; nothing is looked at while you play.
@@ -183,6 +186,15 @@ For each pawn the game reads their race, xenotype, sex, age, skin, hair, traits,
 - **The closest of the rest:** the hair colour first, then hairstyle, beard, build, the clothes' age and kind, features.
 - The pick is kept for that pawn (saved with the game); your colonists' faces are kept for them alone.
 - No picture passes the rules: the game's own drawing, and a line in `missing.csv`.
+- **What they go through:** where their picture has a painted condition (asleep, tired, hurt, wounded, ill, freezing,
+  overheated, starving, drunk, breaking, unconscious), it shows in place of the picture while that holds, on the
+  portraits the setting "What they go through, on their portraits" covers: asleep while they sleep (instead of the eyes
+  held shut), tired when their rest is nearly gone, hurt and wounded by their wounds, bleeding and pain, ill by a
+  sickness or an infection, freezing and overheated by hypothermia and heatstroke, starving by malnutrition, drunk by
+  alcohol or a drug's high, breaking near or in a mental break, unconscious when downed. When several hold, the most
+  serious: unconscious, breaking, wounded, ill, freezing, overheated, starving, asleep, hurt, drunk, tired. Meanwhile they
+  don't blink or change expression, and the drawn effect for it stays faint. A condition stays at least three seconds,
+  unless a more serious one comes.
 
 **Animals and creatures** (with the setting "Painted pictures of animals and creatures" on): select one and the large
 portrait at the inspect pane shows its painted picture in front of the backdrop of where it is, if the library has

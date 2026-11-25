@@ -50,8 +50,12 @@ namespace ColonyCouncil
         /// <summary>variants-wanted.csv's columns, in the order written.</summary>
         public static readonly string[] Columns = { "picture", "word", "instruction", "who", "priority", "first" };
 
-        /// <summary>Every word, in the list's order: the expressions, then the mark variants.</summary>
-        public static readonly string[] Words = PortraitLifeMath.Faces.Concat(PortraitLibraryMath.MarkVariantWords).ToArray();
+        /// <summary>
+        /// Every word, in the list's order: the expressions, then the mark variants, then the conditions
+        /// (<see cref="PortraitLifeMath.Conditions"/>, a list of their own: Rimfolk Studio treats every word that is neither an
+        /// expression nor a mark as a condition).
+        /// </summary>
+        public static readonly string[] Words = PortraitLifeMath.Faces.Concat(PortraitLibraryMath.MarkVariantWords).Concat(PortraitLifeMath.Conditions).ToArray();
 
         /// <summary>A word's place in the list's order (an unknown word last).</summary>
         public static int Order(string word)
@@ -72,7 +76,9 @@ namespace ColonyCouncil
         /// The instruction for the edit model (FLUX Kontext) for a word: the expressions word for word as Make-Variants.ps1
         /// has them; a mark variant plainly what changes and on which side (the person's own left is on the picture's right as
         /// they face it), then what stays. An artificial arm by the clothes' age: a simple one of wood and iron for a tribal or
-        /// medieval picture, a bionic one otherwise. Null for a word it doesn't know.
+        /// medieval picture, a bionic one otherwise. Null for a word it doesn't know, and for the conditions
+        /// (<see cref="PortraitLifeMath.Conditions"/>): Rimfolk Studio words those itself (the player, 25 November 2026: "the
+        /// instruction can stay empty for these words, the Studio's script uses its own wording").
         /// </summary>
         public static string Instruction(string word, PortraitEra era = PortraitEra.Unknown)
         {
@@ -108,6 +114,19 @@ namespace ColonyCouncil
         }
 
         // ---------------- What is wanted ----------------
+
+        /// <summary>
+        /// The conditions a picture lacks (<paramref name="had"/>: the words it has), in the list's order (the first six first:
+        /// asleep, tired, hurt, wounded, ill, freezing), for the colony's own people as their expressions are.
+        /// </summary>
+        public static List<string> ConditionsWanted(ICollection<string> had)
+        {
+            var list = new List<string>();
+            foreach (var c in PortraitLifeMath.Conditions)
+                if (had == null || !had.Contains(c))
+                    list.Add(c);
+            return list;
+        }
 
         /// <summary>The expressions a picture lacks (<paramref name="had"/>: the words it has), in the list's order: blink, smile, frown, pain.</summary>
         public static List<string> ExpressionsWanted(ICollection<string> had)

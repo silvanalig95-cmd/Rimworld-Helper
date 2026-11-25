@@ -21,7 +21,11 @@ namespace ColonyCouncil
     /// <item>For each of the colony's own people keeping a painted picture of the library folder (colonists, then slaves,
     /// then prisoners; priority 1): the expressions the version shown for them lacks (blink, smile, frown, pain), and a mark
     /// variant of their picture for each mark of theirs it has no version of (a lost or bionic eye and its side, an eye
-    /// patch, a scar, a burn, a missing ear, an artificial arm). For each notable's picture: its expressions (priority 2).</item>
+    /// patch, a scar, a burn, a missing ear, an artificial arm), and the conditions the version shown for them lacks (asleep,
+    /// tired, hurt, wounded, ill, freezing, then overheated, starving, drunk, breaking, unconscious; no instruction, Rimfolk
+    /// Studio words them itself; the player, 25
+    /// November 2026: "lightly wounded, heavily wounded, ill, freezing, sleeping etc. are much more likely and also
+    /// generically applicable"). For each notable's picture: its expressions (priority 2).</item>
     /// <item>Written to the library folder's <c>variants-wanted.csv</c> on saving the game (as missing.csv is), on a worker
     /// thread: the list as it is now, never a version the library has (records.xml read again just before, so one made in
     /// the meantime is done), the date each was first wanted kept from the file; written safely and tried again a few times
@@ -52,7 +56,8 @@ namespace ColonyCouncil
         /// <summary>
         /// What one person wants of the picture they keep (none where it isn't one of the library folder's): the expressions
         /// of the version shown for them (an artificial arm's variant takes its picture's), and for the colony's own the mark
-        /// variants of their picture they need; each with its instruction, their name and rank, and its priority.
+        /// variants of their picture they need and the conditions of the version shown for them (each the whole picture again,
+        /// shown in its place while it holds); each with its instruction, their name and rank, and its priority.
         /// </summary>
         public static List<VariantWanted> WantedFor(Pawn p, int rank)
         {
@@ -76,6 +81,11 @@ namespace ColonyCouncil
             var variants = lib.VariantsOf(root).Select(lib.RecordAt).Where(r => r != null).ToList();
             foreach (var w in PortraitVariantsMath.MarksWanted(marks, rootRec, variants))
                 list.Add(Row(rootFile, w, who, priority, rank));
+            // The conditions of the version shown for them: the whole picture as they are then, a lost eye or an arm with it.
+            var shownFile = PortraitFolder.RecordNamed(shownRec.name);
+            if (shownFile != null)
+                foreach (var w in PortraitVariantsMath.ConditionsWanted(lib.ConditionNamesOf(shownRec.name).Keys.ToList()))
+                    list.Add(Row(shownFile, w, who, priority, rank));
             return list;
         }
 

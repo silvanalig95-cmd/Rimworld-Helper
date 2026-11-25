@@ -27,6 +27,8 @@ namespace ColonyCouncil
         /// <summary>The rest need's level (1 rested).</summary>
         public float rest;
         public bool asleep, unconscious, dead;
+        /// <summary>Downed (lying, unable to stand), awake or not.</summary>
+        public bool downed;
         /// <summary>Alcohol's severity (0 to 1), and another drug's high.</summary>
         public float drunk;
         public bool high;
@@ -73,6 +75,39 @@ namespace ColonyCouncil
         public static float Clamp01(float v) => v < 0f ? 0f : v > 1f ? 1f : float.IsNaN(v) ? 0f : v;
 
         /// <summary>Each effect's strength for what the person goes through now.</summary>
+        /// <summary>
+        /// The effects with a painted condition showing (<see cref="PortraitLifeMath.ConditionWanted"/>): the one that draws the
+        /// same thing is turned down to <see cref="PaintedShare"/> so it isn't shown twice (frost over painted frost), the
+        /// others as they are.
+        /// </summary>
+        public static PortraitEffectLevels Damp(PortraitEffectLevels e, string painted)
+        {
+            switch (painted)
+            {
+                case "wounded":
+                    e.bleed *= PaintedShare;
+                    e.hurt *= PaintedShare;
+                    break;
+                case "hurt": e.hurt *= PaintedShare; break;
+                case "ill": e.sick *= PaintedShare; break;
+                case "freezing": e.cold *= PaintedShare; break;
+                case "overheated": e.heat *= PaintedShare; break;
+                case "starving": e.hunger *= PaintedShare; break;
+                case "drunk": e.high *= PaintedShare; break;
+                case "tired":
+                case "asleep":
+                    e.tired *= PaintedShare;
+                    break;
+                case "breaking":
+                    e.stress *= PaintedShare;
+                    e.breaking *= PaintedShare;
+                    break;
+            }
+            return e;
+        }
+
+        public const float PaintedShare = 0.35f;
+
         public static PortraitEffectLevels Levels(PortraitCondition c)
         {
             var e = new PortraitEffectLevels();

@@ -72,6 +72,9 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   `looks_to_defs.py`, their tests, and `docs/player-mods`. The Studio plans from a copy of the catalogue: a new column is
   fine, a renamed or removed one needs a line to the Studio first; every catalogue change (a new mod's kinds or
   creatures, a look, `humanLooking`) ends the reply with a line for the Studio's chat naming the commit and what changed.
+  `catalogue_words.py` stays here and the Studio keeps a copy (the player, 25 November 2026: "keep it here and with a copy
+  in the studio ... as long as all data that's required by both is always synced"): a change to it, or to the data it
+  reads, also gets a line in `STUDIO-HANDOVER.md`'s changes list and one for the Studio's chat.
 - `docs/portrait-art/GUIDE.md` is the player's step-by-step guide to the portrait kit (the player, 23 November 2026:
   "keeps the whole step-by-step procedure on track and documented with what it does ... when it changes, please update
   it"): a change here to what the guide describes (the game's side, the catalogue) updates it in the same commit (and its

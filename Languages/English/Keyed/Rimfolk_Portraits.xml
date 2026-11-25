@@ -110,7 +110,7 @@
   <CC_SetNote_PortraitDepth_Subtle>The backdrop and the person shift a little apart as the mouse moves over the large portrait.</CC_SetNote_PortraitDepth_Subtle>
   <CC_SetNote_PortraitDepth_Stronger>The backdrop and the person shift clearly apart as the mouse moves over the large portrait.</CC_SetNote_PortraitDepth_Stronger>
   <CC_SetLabel_PortraitEffects>What they go through, on their portraits</CC_SetLabel_PortraitEffects>
-  <CC_SetTip_PortraitEffects>Effects laid over a person's portrait while it lasts: red at the edges while they bleed, the colours drained and a red rim when they are badly hurt, a dark edge closing in near a mental break (and a slight tremble), a sickly tint when they are ill or infected, frost when they are freezing, a warm haze in heatstroke, heavy shadows at the top and the foot when they are exhausted, drifting colours and a wobble when drunk or high, washed out when starving, and dimmed when unconscious. Each comes and goes softly. Switch it off, or keep it to the large portraits, if the game runs slowly.</CC_SetTip_PortraitEffects>
+  <CC_SetTip_PortraitEffects>Effects laid over a person's portrait while it lasts: red at the edges while they bleed, the colours drained and a red rim when they are badly hurt, a dark edge closing in near a mental break (and a slight tremble), a sickly tint when they are ill or infected, frost when they are freezing, a warm haze in heatstroke, heavy shadows at the top and the foot when they are exhausted, drifting colours and a wobble when drunk or high, washed out when starving, and dimmed when unconscious. Each comes and goes softly. Where the person's picture has a painted version of what they go through (asleep, tired, hurt, wounded, ill, freezing and more), that picture shows in its place, the most serious first, and the drawn effect for it stays faint; they don't blink or change expression meanwhile. Switch it off, or keep it to the large portraits, if the game runs slowly.</CC_SetTip_PortraitEffects>
   <CC_PortraitEffects_Off>Off</CC_PortraitEffects_Off>
   <CC_PortraitEffects_Large>Large portraits</CC_PortraitEffects_Large>
   <CC_PortraitEffects_Everywhere>Every portrait</CC_PortraitEffects_Everywhere>
@@ -329,10 +329,45 @@
   <CC_PortraitAbout_MarkWhen_burn>Shown instead of the picture for whoever holds it and has a lasting burn on the head.</CC_PortraitAbout_MarkWhen_burn>
   <CC_PortraitAbout_MarkWhen_missingEar>Shown instead of the picture for whoever holds it and has lost their {SIDE} ear.</CC_PortraitAbout_MarkWhen_missingEar>
   <CC_PortraitAbout_MarkWhen_artificialArm>Shown instead of the picture for whoever holds it and has an artificial {SIDE} arm or hand. The picture's own expressions show over it until it has its own.</CC_PortraitAbout_MarkWhen_artificialArm>
+  <CC_PortraitAbout_CondsOn>A painted condition shows instead of the picture while it holds, on the portraits that show what they go through (the setting "What they go through, on their portraits"); when several hold, the most serious: unconscious, breaking, wounded, ill, freezing, overheated, starving, asleep, hurt, drunk, tired. Meanwhile the person doesn't blink or change expression, and the drawn effect for the same thing stays faint.</CC_PortraitAbout_CondsOn>
+  <CC_PortraitAbout_CondsOff>A painted condition shows instead of the picture while it holds, on the portraits that show what they go through; the setting "What they go through, on their portraits" is off now.</CC_PortraitAbout_CondsOff>
+  <CC_PortraitAbout_Cond_asleep>Asleep</CC_PortraitAbout_Cond_asleep>
+  <CC_PortraitAbout_Cond_tired>Tired</CC_PortraitAbout_Cond_tired>
+  <CC_PortraitAbout_Cond_hurt>Hurt</CC_PortraitAbout_Cond_hurt>
+  <CC_PortraitAbout_Cond_wounded>Wounded</CC_PortraitAbout_Cond_wounded>
+  <CC_PortraitAbout_Cond_ill>Ill</CC_PortraitAbout_Cond_ill>
+  <CC_PortraitAbout_Cond_freezing>Freezing</CC_PortraitAbout_Cond_freezing>
+  <CC_PortraitAbout_Cond_overheated>Overheated</CC_PortraitAbout_Cond_overheated>
+  <CC_PortraitAbout_Cond_starving>Starving</CC_PortraitAbout_Cond_starving>
+  <CC_PortraitAbout_Cond_drunk>Drunk</CC_PortraitAbout_Cond_drunk>
+  <CC_PortraitAbout_Cond_breaking>Breaking</CC_PortraitAbout_Cond_breaking>
+  <CC_PortraitAbout_Cond_unconscious>Unconscious</CC_PortraitAbout_Cond_unconscious>
+  <CC_PortraitAbout_CondWhat_asleep>Asleep, the eyes closed, the face slack and the head sunk a little.</CC_PortraitAbout_CondWhat_asleep>
+  <CC_PortraitAbout_CondWhat_tired>Exhausted, with heavy eyelids, dark rings under the eyes and slumped shoulders.</CC_PortraitAbout_CondWhat_tired>
+  <CC_PortraitAbout_CondWhat_hurt>A few small cuts and bruises and a small dressing.</CC_PortraitAbout_CondWhat_hurt>
+  <CC_PortraitAbout_CondWhat_wounded>Badly wounded: fresh blood, bandages, pale and in pain.</CC_PortraitAbout_CondWhat_wounded>
+  <CC_PortraitAbout_CondWhat_ill>Ill with a fever: pale, sweating, with glassy eyes.</CC_PortraitAbout_CondWhat_ill>
+  <CC_PortraitAbout_CondWhat_freezing>Freezing: blue lips, a red nose, frost in the hair and the brows.</CC_PortraitAbout_CondWhat_freezing>
+  <CC_PortraitAbout_CondWhat_overheated>Overheated: flushed red and sweating, breathing hard.</CC_PortraitAbout_CondWhat_overheated>
+  <CC_PortraitAbout_CondWhat_starving>Starving: gaunt, with hollow cheeks and sunken eyes.</CC_PortraitAbout_CondWhat_starving>
+  <CC_PortraitAbout_CondWhat_drunk>Drunk or high: flushed, with glassy eyes and a loose grin.</CC_PortraitAbout_CondWhat_drunk>
+  <CC_PortraitAbout_CondWhat_breaking>At breaking point: wide, wild eyes and a clenched jaw.</CC_PortraitAbout_CondWhat_breaking>
+  <CC_PortraitAbout_CondWhat_unconscious>Unconscious: the eyes closed and the head fallen to one side.</CC_PortraitAbout_CondWhat_unconscious>
+  <CC_PortraitAbout_CondWhen_asleep>While they sleep, in place of the blink held for sleep.</CC_PortraitAbout_CondWhen_asleep>
+  <CC_PortraitAbout_CondWhen_tired>While they are awake and very tired (their rest under 14%).</CC_PortraitAbout_CondWhen_tired>
+  <CC_PortraitAbout_CondWhen_hurt>While they bleed a little, are in some pain (12% or more) or their health is under 90%.</CC_PortraitAbout_CondWhen_hurt>
+  <CC_PortraitAbout_CondWhen_wounded>While they have lost a fair amount of blood (20% or more), bleed fast, are in strong pain (45% or more) or their health is under 60%.</CC_PortraitAbout_CondWhen_wounded>
+  <CC_PortraitAbout_CondWhen_ill>While an illness or an infected wound is at least 30% of the way to its worst.</CC_PortraitAbout_CondWhen_ill>
+  <CC_PortraitAbout_CondWhen_freezing>While they have hypothermia at 20% or more.</CC_PortraitAbout_CondWhen_freezing>
+  <CC_PortraitAbout_CondWhen_overheated>While they have heatstroke at 20% or more.</CC_PortraitAbout_CondWhen_overheated>
+  <CC_PortraitAbout_CondWhen_starving>While they are malnourished at 20% or more.</CC_PortraitAbout_CondWhen_starving>
+  <CC_PortraitAbout_CondWhen_drunk>While they are drunk at 40% or more, or high on a drug.</CC_PortraitAbout_CondWhen_drunk>
+  <CC_PortraitAbout_CondWhen_breaking>While they are in a mental break, or near one: their mood under the middle between their minor and extreme break lines.</CC_PortraitAbout_CondWhen_breaking>
+  <CC_PortraitAbout_CondWhen_unconscious>While they are downed or can't wake.</CC_PortraitAbout_CondWhen_unconscious>
   <CC_PortraitAbout_DeleteVariant>Delete this variant for good...</CC_PortraitAbout_DeleteVariant>
   <CC_PortraitAbout_Wanted>Not made yet</CC_PortraitAbout_Wanted>
   <CC_PortraitAbout_WantedLine>Listed in variants-wanted.csv when the game is saved, to be made as {FILE}.</CC_PortraitAbout_WantedLine>
-  <CC_PortraitAbout_WantedOnly>Only the pictures of the colony's own people, and the expressions of notables' pictures, are listed in variants-wanted.csv.</CC_PortraitAbout_WantedOnly>
+  <CC_PortraitAbout_WantedOnly>Only the pictures of the colony's own people (their expressions, marks and conditions), and the expressions of notables' pictures, are listed in variants-wanted.csv.</CC_PortraitAbout_WantedOnly>
   <CC_PortraitAbout_Correct>Corrections</CC_PortraitAbout_Correct>
   <CC_PortraitAbout_CorrectNote>A change is taken at once, and whoever it no longer fits gets another picture by the usual rules. It is written to corrections.csv (marked yes) and to records.xml in the library folder, so it stays after Update-PortraitLibrary too.</CC_PortraitAbout_CorrectNote>
   <CC_PortraitAbout_CorrectRoot>Corrections go to the picture {FILE} and all its versions.</CC_PortraitAbout_CorrectRoot>

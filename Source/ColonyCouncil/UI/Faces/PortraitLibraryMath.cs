@@ -653,7 +653,7 @@ namespace ColonyCouncil
             if (r.variantOf.Length > 0)
             {
                 // Its word, the case aside; a word Rimfolk doesn't know yet (the tools may paint more later) is kept and simply not shown.
-                r.variant = PortraitLifeMath.FaceWord(variant) ?? MarkVariantWord(variant) ?? (variant ?? "").Trim().ToLowerInvariant();
+                r.variant = PortraitLifeMath.FaceWord(variant) ?? MarkVariantWord(variant) ?? PortraitLifeMath.ConditionWord(variant) ?? (variant ?? "").Trim().ToLowerInvariant();
                 if (string.IsNullOrWhiteSpace(variant)) Bad("variant: an expression (a picture with variantOf) names its expression: " + string.Join(", ", PortraitLifeMath.Faces));
                 if (r.variantOf == name) Bad("variantOf: a picture can't be an expression of itself");
                 // A mark variant shows its mark on its side, whatever its marks and side say.
@@ -729,7 +729,7 @@ namespace ColonyCouncil
                     own.Add(i);
                     continue;
                 }
-                if (PortraitLifeMath.FaceWord(r.variant) == null) continue;
+                if (PortraitLifeMath.FaceWord(r.variant) == null && PortraitLifeMath.ConditionWord(r.variant) == null) continue;
                 if (!bases.Contains(r.variantOf))
                 {
                     problems?.Add(r.name + ": an expression of " + r.variantOf + ", which isn't a picture of the library, so it is left out");

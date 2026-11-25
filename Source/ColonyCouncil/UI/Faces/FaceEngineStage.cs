@@ -142,7 +142,7 @@ namespace ColonyCouncil
             if (p == null) return 1f;
             try
             {
-                var pic = PortraitSources.ForStage(p);
+                var pic = PortraitSources.Shown(p, PortraitSources.ForStage(p), true);
                 if (pic?.file == null) return 1f;
                 return PortraitPictureMath.TallFor(pic.texture != null ? pic.layout.Shape : PortraitPictureMath.LibraryShape);
             }
@@ -167,7 +167,9 @@ namespace ColonyCouncil
         {
             if (p == null || Event.current.type != EventType.Repaint) return false;
             Tick();
-            var pic = PortraitSources.ForStage(p);
+            var own = PortraitSources.ForStage(p);
+            // A painted condition (asleep, wounded ...) in its place while one holds.
+            var pic = PortraitSources.Shown(p, own, true);
             if (pic?.file == null) return false;
             var l = LookOf(p);
             var pose = PoseOf(p, FaceTurn.Front, true);
@@ -195,8 +197,8 @@ namespace ColonyCouncil
             if (stageFailed.Contains(key)) return false;
             var now = staged.Find(s => s.key == key);
             if (now == null && !waiting && staging == null) StartStage(key, p, pic, backTex, depthTex, w, h, look.step, mode, depth);
-            // While it is made: the one before for the same person and picture, else the ground.
-            var show = now ?? Latest(p.thingIDNumber, pic.name);
+            // While it is made: the one before for the same person and picture (or the picture itself, for a condition's), else the ground.
+            var show = now ?? Latest(p.thingIDNumber, pic.name) ?? (own != null && own != pic ? Latest(p.thingIDNumber, own.name) : null);
             if (show == null) return true;
             show.lastUsed = Time.realtimeSinceStartup;
             LetFacesGo(show);

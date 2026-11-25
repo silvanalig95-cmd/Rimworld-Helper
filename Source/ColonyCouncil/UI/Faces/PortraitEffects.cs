@@ -17,6 +17,10 @@ namespace ColonyCouncil
     /// in its pixels: the picture's paint, not the interface's), drawn over the portrait at its strength.</item>
     /// <item>An effect comes and goes softly over a second or so; the bleeding pulses and the heat shimmers; the tremble
     /// and the wobble move the person in a moving portrait (with the setting "Portraits move a little").</item>
+    /// <item>Where their picture has a painted version of what they go through (asleep, wounded, ill ...:
+    /// <see cref="PortraitLifeMath.Conditions"/>), that picture shows in its place (<see cref="PortraitSources.Shown"/>),
+    /// the most serious first, and the drawn effect for the same thing is toned down over it
+    /// (<see cref="PortraitEffectsMath.Damp"/>).</item>
     /// </list>
     /// </summary>
     public static class PortraitEffects
@@ -25,6 +29,11 @@ namespace ColonyCouncil
         {
             public float readAt = -100f, shownAt, usedAt;
             public PortraitEffectLevels want, shown;
+            /// <summary>What they go through, as last read.</summary>
+            public PortraitCondition condition = PortraitCondition.Calm;
+            /// <summary>The painted condition shown in place of their picture ("" none), since when, and when it was last drawn.</summary>
+            public string painted = "";
+            public float paintedSince, paintedDrawnAt = -100f;
         }
 
         private static readonly Dictionary<int, Entry> entries = new Dictionary<int, Entry>();
@@ -82,6 +91,7 @@ namespace ColonyCouncil
             {
                 c.health = health.summaryHealth?.SummaryHealthPercent ?? 1f;
                 c.unconscious = health.capacities != null && !health.capacities.CanBeAwake;
+                c.downed = health.Downed;
             }
             c.asleep = !c.unconscious && !p.Awake();
             c.breaking = p.InMentalState;
@@ -97,14 +107,14 @@ namespace ColonyCouncil
             return c;
         }
 
-        /// <summary>The effects' strengths shown now for the person: read again twice a second, faded toward softly, kept for the next frame.</summary>
-        private static PortraitEffectLevels LevelsOf(Pawn p)
+        /// <summary>The person's entry, what they go through read again twice a second.</summary>
+        private static Entry EntryOf(Pawn p, float now)
         {
-            float now = Time.realtimeSinceStartup;
             int id = p.thingIDNumber;
             if (!entries.TryGetValue(id, out var e))
             {
-                e = new Entry { want = PortraitEffectsMath.Levels(ConditionOf(p)), readAt = now, shownAt = now };
+                var c = ConditionOf(p);
+                e = new Entry { condition = c, want = PortraitEffectsMath.Levels(c), readAt = now, shownAt = now };
                 e.shown = e.want;
                 entries[id] = e;
             }
@@ -113,20 +123,63 @@ namespace ColonyCouncil
                 e.readAt = now;
                 try
                 {
-                    e.want = PortraitEffectsMath.Levels(ConditionOf(p));
+                    e.condition = ConditionOf(p);
+                    e.want = PortraitEffectsMath.Levels(e.condition);
                 }
                 catch (Exception ex)
                 {
+                    e.condition = PortraitCondition.Calm;
                     e.want = default;
                     CouncilLog.ErrorOnce("portraits: what a person goes through, for their portrait's effects", ex);
                 }
             }
-            e.shown = PortraitEffectsMath.Toward(e.shown, e.want, Mathf.Max(0f, now - e.shownAt) * PortraitEffectsMath.FadePerSecond);
-            e.shownAt = now;
             e.usedAt = now;
             Prune(now);
+            return e;
+        }
+
+        /// <summary>The effects' strengths shown now for the person: read again twice a second, faded toward softly, kept for the next frame.</summary>
+        private static PortraitEffectLevels LevelsOf(Pawn p)
+        {
+            float now = Time.realtimeSinceStartup;
+            var e = EntryOf(p, now);
+            e.shown = PortraitEffectsMath.Toward(e.shown, e.want, Mathf.Max(0f, now - e.shownAt) * PortraitEffectsMath.FadePerSecond);
+            e.shownAt = now;
             return e.shown;
         }
+
+        // ---------------- The painted conditions ----------------
+
+        /// <summary>
+        /// The condition whose painted picture shows for the person now (<paramref name="has"/>: their picture has it, made),
+        /// or "": the most serious that holds (<see cref="PortraitLifeMath.ConditionWanted"/>), kept a few seconds before a
+        /// lighter one or none takes its place (<see cref="PortraitLifeMath.ConditionStep"/>).
+        /// </summary>
+        public static string PaintedFor(Pawn p, Func<string, bool> has)
+        {
+            if (p == null) return "";
+            float now = Time.realtimeSinceStartup;
+            var e = EntryOf(p, now);
+            string want = PortraitLifeMath.ConditionWanted(e.condition, has);
+            string next = PortraitLifeMath.ConditionStep(e.painted, want, e.paintedSince, now);
+            if (next != e.painted)
+            {
+                e.painted = next;
+                e.paintedSince = now;
+            }
+            return e.painted;
+        }
+
+        /// <summary>The painted condition shown for the person now ("" none), for the window about a picture.</summary>
+        public static string PaintedNow(Pawn p) =>
+            p != null && entries.TryGetValue(p.thingIDNumber, out var e) && Time.realtimeSinceStartup - e.paintedDrawnAt < 1f ? e.painted : "";
+
+        /// <summary>The painted condition was drawn for the person this frame: its drawn effect is toned down over it.</summary>
+        public static void PaintedShown(Pawn p)
+        {
+            if (p != null && entries.TryGetValue(p.thingIDNumber, out var e)) e.paintedDrawnAt = Time.realtimeSinceStartup;
+        }
+
 
         /// <summary>Every few hundred frames, the people not shown for a minute let go.</summary>
         private static void Prune(float now)
@@ -151,6 +204,9 @@ namespace ColonyCouncil
             if (p == null || Event.current.type != EventType.Repaint || !On(large)) return;
             if (round && r.width < PortraitEffectsMath.RoundFrom) return;
             var e = LevelsOf(p);
+            // Over a painted condition, its own drawn effect only a little (the picture already shows it).
+            if (entries.TryGetValue(p.thingIDNumber, out var held) && held.painted.Length > 0 && Time.realtimeSinceStartup - held.paintedDrawnAt < 0.5f)
+                e = PortraitEffectsMath.Damp(e, held.painted);
             if (!e.Any) return;
             float clock = Time.realtimeSinceStartup;
             try

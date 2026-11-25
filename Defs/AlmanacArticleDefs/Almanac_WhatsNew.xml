@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.304.0</version>
+        <date>25 November 2026</date>
+        <title>Painted pictures of what people go through</title>
+        <points>
+          <li>A painted portrait can now have versions for what the person goes through: asleep, tired, hurt, wounded, ill, freezing, overheated, starving, drunk or high, breaking and unconscious, as Rimfolk Studio makes them. While one holds, it shows in place of the picture on the portraits the setting "What they go through, on their portraits" covers.</li>
+          <li>When several hold, the most serious shows, from unconscious and breaking down to drunk and tired. A version stays at least three seconds, the person doesn't blink or change expression meanwhile, and the drawn effect for the same thing stays faint over it.</li>
+          <li>variants-wanted.csv now asks for these versions of the pictures your own people hold, for Rimfolk Studio to paint, and "About this picture" lists the ones made with when each shows.</li>
+          <li>Saving the game now also writes people.csv into the library folder: each of your people and each notable, the picture they hold and how close it is, what it doesn't show of them, and what changed since an earlier save with the date first seen, for Rimfolk Studio.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.303.2</version>
         <date>24 November 2026</date>
         <title>More kinds free to have pointed ears</title>

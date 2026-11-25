@@ -141,11 +141,12 @@ namespace ColonyCouncil
         public override void ExposeData()
         {
             base.ExposeData();
-            // Saving the game writes the library folder's missing list and the variants it wants too (on a worker thread).
+            // Saving the game writes the library folder's missing list, the variants it wants and the people list too (on a worker thread).
             if (Scribe.mode == LoadSaveMode.Saving)
             {
                 PortraitNeeds.Write();
                 PortraitVariants.Write();
+                PortraitPeople.Write();
             }
             Scribe_Collections.Look(ref kept, "kept", LookMode.Deep);
             Scribe_Collections.Look(ref creaturePicks, "creaturePicks", LookMode.Value, LookMode.Value, ref creatureIds, ref creaturePictures);

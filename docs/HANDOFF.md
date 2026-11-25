@@ -889,6 +889,43 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **To do when the player asks (25 November 2026, the player, with the save New_Arrivals54 of 07:03 and a screenshot of
+  Aravae Enmyar, Trader of Argwylon, her pack full: gin, an elven bow, a quiver and stacks of goods): what the camps
+  keep in their packs and what in their store.** The player: "So the camps now, I guess, probably set up storage, and I
+  assume with priority take stuff into their own inventory first. This overall makes sense, but I think they should
+  keep to their personal inventory, you know, what will be only relevant for this pawn individually, and things that
+  could be shared or used or gathered from different visitors should be put into the general storage. And they should
+  take out and with them when they leave whatever they still need, you know, or maybe leave back what they don't need or
+  a gift, but not, you know, unpack all their stuff and when they leave everything behind by default." What the code
+  does today: loose goods at the camp go onto their own shelf or into their store tent (`Camps/CampStore.cs`,
+  `CampDayMath.Stows`); stacks they brought to build with go back into a pack once the camp stands
+  (`CampDayMath.Repacks`); their trader's pack is their stock for trading and is never stored; on an orderly leave
+  everything of theirs still at the camp goes into their packs (`CampLife.Leave`), and only the stay's leftovers are
+  left (a woodpile, hides, a cairn, a gift, refuse: `CampPackMath.Leaves`); on a hurried leave (fleeing, unpaid, a
+  fight) everything is left (`AbandonGoods`). Not done: a split between a person's own things (their food for the road,
+  medicine, their tools, drugs they use) and the camp's shared goods (gathered, hunted, made, bought) in the store; each
+  taking back their own and what the group still needs when they go, the rest left as a gift or for whoever wants it.
+  First look at the save for what the player saw (whether goods are really left behind, or the pack is the trader's
+  stock); then a proposal. Nothing built until the player says so. No mod would help here (no graphics or sound).
+- **Done (25 November 2026, 0.304.0): painted conditions and the people list.** The player: "Painted variants for the
+  conditions a colonist goes through ... something like lightly wounded, heavily wounded, ill, freezing, sleeping etc.
+  are much more likely and also generically applicable", and "the game should provide details of which variants it
+  needs ... whenever the pawn develops or changes somehow in the game"; decided with the player: the condition's picture
+  replaces the picture, the most serious wins, no blink while it shows. The player's second message the same day: Rimfolk
+  Studio 0.13.0 already makes eleven of them under these names (no `talking`; "If you want other words, say so before
+  changing them"), the instruction left empty (the Studio's own wording). Built: `PortraitLifeMath.Conditions` (asleep,
+  tired, hurt, wounded, ill, freezing, overheated, starving, drunk, breaking, unconscious), `ConditionOrder`,
+  `ConditionHolds` and its thresholds (unconscious also when downed, breaking also near a break, drunk also high),
+  `ConditionWanted`, `ConditionStep` (held 3 s); `PortraitVariantsMath.Words` with the conditions as a list of their
+  own (no instruction), `ConditionsWanted`;
+  `PortraitVariants` lists them for the colony's own (the version shown for them); `PortraitLibrary` keeps them apart
+  from the expressions (`ConditionsOf`, `ConditionPicture`); `PortraitSources.Shown` draws one in place of the picture
+  (the large portrait, the colonist card, the round portraits, per the setting "What they go through"); its drawn effect
+  faint (`PortraitEffectsMath.Damp`, `PaintedShare`); "About this picture" lists them. Offered, not built: a
+  `talking` picture while someone speaks (a word to agree with the Studio first). And `people.csv` at every save (`PortraitPeopleMath`,
+  `PortraitPeople`): each of the colony's people and each notable, the picture held and its distance, the game's words,
+  what the picture does not show, what changed and since when (STUDIO-HANDOVER section 4). `catalogue_words.py` stays
+  here, the Studio keeps a copy (CLAUDE.md, STUDIO-HANDOVER section 0). Tests: PortraitConditionTests.
 - **Done (25 November 2026): the lists, styles, planners and kit scripts are Rimfolk Studio's.** The player: "From 24
   November 2026 the batch lists, the styles and the list planners are kept in Rimfolk Studio, like the kit's scripts ...
   Taken over at your commit e10103f". Removed here (a line in their place: `docs/portrait-art/batches/README.md`,
@@ -899,8 +936,9 @@ most sense." So, in this order, three builds at a time:
   catalogue, `catalogue_check.py`, `catalogue_words.py` (both tools kept here read it: asked the player which side keeps
   it), `creature_census.py`, `save_census.py`, `looks_to_defs.py`, their tests, `docs/player-mods`; `make_prompts.py` and
   `docs/portrait-art/prompts.csv` (the first wave, the matcher tests' data). The rules are in CLAUDE.md ("The portrait
-  kit, the catalogue and Rimfolk Studio") and STUDIO-HANDOVER section 0. Not in the Studio yet: commits 7c3fd068 (the
-  creatures' variety round) and 0db5c947 (the characters' fourth round), made here after e10103f; a prompt was given.
+  kit, the catalogue and Rimfolk Studio") and STUDIO-HANDOVER section 0. Commits 7c3fd068 (the creatures' variety
+  round) and 0db5c947 (the characters' fourth round), made here after e10103f, are in Rimfolk Studio 0.13.0 (the player,
+  25 November 2026: "every row and name unchanged, and its catalogue copy is at a79f21d").
 - **Done (24 November 2026, kit only): the characters' fourth round, the likeliest colonists.** The player: "another
   batch of colonists ... covering all the likeliest scenarios, you know, baseliners mostly, and just images that are
   not super specific ... most of them should be kind of broad ... while still having some special cases ... But they
