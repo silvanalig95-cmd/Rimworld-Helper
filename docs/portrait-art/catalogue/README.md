@@ -10,6 +10,13 @@ is built from your own mod list (`docs/player-mods`, the mods you have enabled) 
 405 people: 346 alive, 59 dead). A script reads it and writes the next batch lists for ComfyUI, so you never write a
 prompt by hand and no two pictures ever get the same name.
 
+**Since 24 November 2026 the lists, the styles and the planners are kept in Rimfolk Studio** (taken over at commit
+e10103f; `docs/portrait-art/STUDIO-HANDOVER.md`, section 0). This folder, the catalogue, stays here with its tools
+(`Tools/PortraitArt/catalogue_check.py`, `catalogue_words.py`, `save_census.py`, `creature_census.py`,
+`looks_to_defs.py`); the Studio plans from a copy of it. A new column is fine; a renamed or removed one needs a line to
+the Studio first, and every change to the catalogue gives the player a line for the Studio's chat naming the commit and
+what changed. What the sections below say about the lists and the planners is how they were made here until then.
+
 ## What is in it
 
 | File | What it holds |
@@ -18,7 +25,7 @@ prompt by hand and no two pictures ever get the same name.
 | `looks.csv` | Everything else a waist-up picture can show, 146 looks: faces and bearing from traits (a drinker, a pyromaniac, a psychopath, a beauty, a brawler ...), A RimWorld of Magic's classes (a fire mage with a flame in hand, an ice mage, a necromancer ...), psycasters, implants and conditions (a bionic arm, a clouded eye, a blindfold ...), genes that show (antennae, a third eye, mandibles ...), and 23 special looks that only their own pictures fit (conjoined twins, wings, extra limbs, ghouls, the undead, warcaskets). Each says what the game finds it by (traits, genes, conditions or a body) and how common it is in your save. |
 | `marks.csv` | The marks of the body the game reads by itself: a lost eye, an eye patch, a bionic eye, a missing ear, a scar or a burn on the head. Two more are proposed (a missing arm, a face tattoo) and wait for the game to read them. |
 | `roles.csv` | The 18 roles a person can have (scholar, doctor, soldier, warrior, hunter, scout, builder, miner, crafter, smith, farmer, herder, cook, artist, trader, leader, priest, labourer), how common each is in your save, and what shows it in each of the four ages of dress (a medieval scholar's book, an industrial one's lab coat, a spacer one's data slate). The game reads a person's role from their adult backstory, else their best skill with a passion; children have none. |
-| `COVERAGE.md` | Written by the planner: what the library and the lists hold against the catalogue, by wave and kind, the gaps first, and the characters lists by wave. |
+| `COVERAGE.md` | No longer here: the planner's report of what the library and the lists hold against the catalogue is written in Rimfolk Studio. |
 
 ## How a picture finds its person
 
@@ -50,8 +57,8 @@ game should check is written into the row's `looks` or `role`.
    "Reload the library" in Rimfolk's settings.
 4. **Play.** Rimfolk writes `library\missing.csv` with what it needed and had no picture for.
 5. **Send** your save, `library\missing.csv` and `library\records.xml` when you send a save anyway.
-6. **The lead plans the next lists**: the census reads the save into the catalogue, the planner writes the next lists
-   (what `missing.csv` asked for first), and `COVERAGE.md` shows what is still missing.
+6. **The next lists**: the census here reads the save into the catalogue; Rimfolk Studio plans the next lists from its
+   copy (what `missing.csv` asked for first) and shows what is still missing.
 
 To try again for a row whose pictures you all threw out, run the same list again and answer yes to "make only the rows
 that have none yet". Lists are never rewritten: new rows always go into new lists, so the pictures already in
@@ -182,7 +189,9 @@ picture's own file name adds the style and the run's date and time.
 
 ## For the lead: the tools
 
-All in `Tools/PortraitArt`, Python 3, nothing to install:
+All in `Tools/PortraitArt`, Python 3, nothing to install (the planners, `plan_batches.py`, `plan_creatures.py`,
+`plan_gods.py` and `character_words.py`, are in Rimfolk Studio since 24 November 2026; their options are described here
+as they were):
 - `save_census.py <save.rws> --update` (run with `python3 -I`; a save is someone else's data): counts the save's people
   in the catalogue's words and writes the counts into the tables (save count, weight, wave, ages, roles and dress ages
   for kinds seen 8 times or more, how common each look, mark and role is), and lists the kinds the save holds that
@@ -193,8 +202,8 @@ All in `Tools/PortraitArt`, Python 3, nothing to install:
   words (faces, hair, beards, builds, clothes, moods, poses) are in `character_words.py`.
 - `looks_to_defs.py`: writes `Defs/PortraitLookDefs/PortraitLooks.xml` from `looks.csv` (one look def per row).
 - `catalogue_check.py`: every name in the catalogue against the active rows of `docs/player-mods` ("OK").
-- `test_portrait_catalogue.py`: the tools' tests ("OK").
-- `creature_census.py`, `plan_creatures.py`: the creature catalogue and lists (above); `test_creatures.py` their tests.
+- `test_portrait_catalogue.py`: the catalogue's and the look defs' tests ("OK").
+- `creature_census.py`: the creature catalogue (above); `test_creatures.py` its tests.
 
 ## Adding a new mod's kinds
 
@@ -204,4 +213,5 @@ All in `Tools/PortraitArt`, Python 3, nothing to install:
    plain words starting with the kind ("a lapis: rocky ridges along the brow ..."), the skins and hair colours (a
    human skin word, or `slug=#colour=words`), how it ages, its features, and `guessed` yes until its genes are seen in
    a save. New looks the mod brings go into `looks.csv` the same way (a new word, never a changed one).
-4. `catalogue_check.py` must say "OK"; run the census again to fill the counts, then the planner.
+4. `catalogue_check.py` must say "OK"; run the census again to fill the counts. Then give the player a line for the
+   Studio's chat naming the commit and the new kinds, so its planner plans their pictures.

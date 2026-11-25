@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 24 November 2026 (the characters' fourth round, characters-17 to 20, and the creatures' variety round, creatures-05 to 08; before them pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 25 November 2026 (the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -34,10 +34,12 @@ The models, the LoRA files and the exported workflows are yours: the kit never h
 
 `Rimfolk-portraits\` (the kit folder, kept on Proton Drive so the laptop and the PC share it):
 - the scripts (`.ps1`, each with a `.cmd` to double-click; Run-PortraitBatch is started with right-click, Run with
-  PowerShell), this guide, SETUP-ComfyUI.md, STYLE-RIMWORLD.md;
-- `batches\`: the lists (`characters-01.csv` to `16`, `creatures-01.csv` to `04`, `colonists.csv`, `backdrops.csv`,
-  `style-test.csv`) and the styles (`style-rimworld-people.json`, `style-rimworld-creatures.json`,
-  `style-rimworld-backdrops.json`). Keep every list you have made pictures from: a
+  PowerShell), this guide, SETUP-ComfyUI.md, STYLE-RIMWORLD.md. Since 24 November 2026 the scripts come with Rimfolk
+  Studio (its folder `kit`);
+- `batches\`: the lists (`characters-01.csv` to `20`, `creatures-01.csv` to `08`, `gods-01.csv`, `backdrops-gods.csv`,
+  `priests-01.csv`, `colonists.csv`, `backdrops.csv`, `style-test.csv`) and the styles (`style-rimworld-people.json`,
+  `style-rimworld-creatures.json`, `style-rimworld-backdrops.json`). They come with Rimfolk Studio (0.8.0 on): its Lists
+  page puts them here, and new lists and more rows are planned there. Keep every list you have made pictures from: a
   picture finds its description by its row's name, and without its row it is left out of the records;
 - `library\`: one folder per list with the pictures, and the files below;
 - `logs\` (every prompt and seed), `training\` (pictures kept for training).
@@ -101,6 +103,9 @@ missing.
 
 ## The lists
 
+The lists come with Rimfolk Studio (0.8.0 on): its Lists page puts them into `batches\`, and a new list, more rows or a
+change to a planner's rule is asked of the Studio. What each list holds:
+
 Each row is one person and makes one picture (the style `style-rimworld-people` says one a row). Every list mixes its
 kinds, baseliners about half:
 - `characters-01` to `03`: distinct people of every kind, the common kinds most.
@@ -113,21 +118,21 @@ kinds, baseliners about half:
   all young, adult or middle-aged. Most are broad (no role, look or mark, so any pawn of their kind, sex, age and skin
   can have them) but every face has one to three details of its own written in its row (a crooked nose, freckles, jug
   ears), which the game never holds a pawn to; about one in seven is a special case (a role, a look or a scar) that
-  goes only to pawns who have it. Made with `python3 Tools/PortraitArt/plan_batches.py --phases characters4`.
+  goes only to pawns who have it.
 - `colonists.csv`: your own colonists' faces.
 - `creatures-01` to `04`: animals, insects, mechanoids, Anomaly's entities, dryads and drones, 594 rows for 208 kinds:
   first every creature your save holds (three adults each), then the base game's and the DLCs' and the insects of
   Vanilla Factions Expanded - Insectoids 2 (two each); a male and a female where they look different (deer, elk,
   moose, peafowl, chickens), and a baby for each animal. The whole creature, square, cut out. The other kinds of your
   mods (about 1,500, most of them PokeWorld's) wait for their looks to be written (`catalogue/creatures.csv`). No
-  Pokémon: you asked for them to be left out (24 November 2026), so the planner (`plan_creatures.py`) leaves the
+  Pokémon: you asked for them to be left out (24 November 2026), so the planner leaves the
   catalogue's group pokemon out by default and takes any of their rows out of the lists, every other row as it was;
-  `--without ""` would plan them again. Pictures of Pokémon already painted have no row any more.
+  the Studio's planner can plan them again. Pictures of Pokémon already painted have no row any more.
 - `creatures-05` to `08`: more variety for the same creatures, 542 rows: two more adults of each of the 208 (one of each
   sex where they look different) and one more baby for each animal that has one, worded as in the first four lists but
   each in a pose and a condition that creature's pictures don't have yet (lying at rest, looking back over its shoulder,
   feeding, curled up, mid-stride, seen from the front; a baby taking wobbly steps). Paint them like the first four.
-  Made with `python3 Tools/PortraitArt/plan_creatures.py --variety 2`; a higher number later adds that many more.
+  Another such round is asked of the Studio.
 - `backdrops-gods.csv`: the gods' places, 56 backdrops: one for each kind of god (the harvest, the storm, the hunt,
   healing, war, the forge, roads, the dead, the night, the hearth, the green, the waters, the machine, the void) in each
   age (a ring of stones, a chapel, a church, a terminal). Paint it in `style-rimworld-backdrops`, like `backdrops.csv`.
@@ -137,8 +142,7 @@ kinds, baseliners about half:
   walk with the Old Horn and the great cat. The run paints it in the creatures' style by itself (whole figure, cut out).
 - `priests-01.csv`: 64 priests of the common kinds, a man and a woman of each in every age's dress (painted markings, a
   plain robe, a cassock, ceremonial robes). Paint it like the people's lists.
-- To add rows to these three after a change to the gods: `python3 Tools/PortraitArt/plan_gods.py` (it adds only what
-  is missing).
+- Rows for these three after a change to the gods are asked of the Studio.
 
 ## What the check checks, and what it can change
 
@@ -209,8 +213,9 @@ again".
 
 ## Updating the kit
 
-Unzip the newest kit over your `Rimfolk-portraits` folder and put its `Copy-ToLibrary` files into ComfyUI's
-`output\Rimfolk`. It replaces the scripts, the guides and the lists it has; it never touches your library (pictures,
+The scripts and the lists come with Rimfolk Studio (since 24 November 2026); a kit zip, where one is still made, takes
+its scripts from the Studio. Unzip the newest kit over your `Rimfolk-portraits` folder and put its `Copy-ToLibrary`
+files into ComfyUI's `output\Rimfolk`. It replaces the scripts, the guides and the lists it has; it never touches your library (pictures,
 records, corrections, checked answers), your exported workflows, your settings files (`check-settings.json`,
 `copy-settings.json`) or anything in ComfyUI. Keep the lists you have made pictures from even if a kit no longer has
 them.

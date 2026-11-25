@@ -58,29 +58,42 @@ Work in progress and the next steps are in `docs/HANDOFF.md`: read it first.
   takes that style, still true to what happens on the map. The plain rule holds for the rest: event cards, messages and
   the interface, advice, encounters, missions, decrees and seats, the gods' cards and messages, the Almanac, What's new.
 
-## The portrait kit's guide
+## The portrait kit, the catalogue and Rimfolk Studio
+- Since 24 November 2026 (taken over at commit e10103f) Rimfolk Studio (repository silvanalig95-cmd/rimfolk-studio, its
+  own chat) keeps the kit's scripts (`*.ps1`, `.cmd`), the batch lists and styles (`*.csv`, `style-*.json`) and the list
+  planners (`plan_batches.py`, `plan_creatures.py`, `plan_gods.py`, `character_words.py`, with their tests). Never
+  change, add or plan them here: their old places hold one line saying where they are (`docs/portrait-art/batches/README.md`,
+  `Tools/PortraitArt/README.md`). A kit zip takes its scripts from the Studio. When the player asks for a list (a new
+  list, more rows, a planner's rule, a style's wording), do not build it: give a ready text for the Studio's chat with
+  what is known (which kinds or creatures, from which mod, how many pictures, what for).
+- This repository keeps the game, the file formats (`STUDIO-HANDOVER.md` section 4) and the catalogue
+  (`docs/portrait-art/catalogue`: `kinds.csv`, `looks.csv`, `marks.csv`, `roles.csv`, `creatures.csv`, `README.md`) with
+  `Tools/PortraitArt/catalogue_check.py`, `catalogue_words.py`, `creature_census.py`, `save_census.py`,
+  `looks_to_defs.py`, their tests, and `docs/player-mods`. The Studio plans from a copy of the catalogue: a new column is
+  fine, a renamed or removed one needs a line to the Studio first; every catalogue change (a new mod's kinds or
+  creatures, a look, `humanLooking`) ends the reply with a line for the Studio's chat naming the commit and what changed.
 - `docs/portrait-art/GUIDE.md` is the player's step-by-step guide to the portrait kit (the player, 23 November 2026:
   "keeps the whole step-by-step procedure on track and documented with what it does ... when it changes, please update
-  it"): every change to the kit's scripts, lists, files or steps updates it in the same commit (and its "Last changed"
-  line), and every kit zip sent to the player includes it.
-- `docs/portrait-art/STUDIO-HANDOVER.md` describes every file format and step of the kit for the player's separate
-  program, Rimfolk Studio (repository silvanalig95-cmd/rimfolk-studio, its own chat): a change to a format, a file or a
-  step updates it too, adds a line to its "Changes since the handover" list, and the reply to the player ends with the
-  steps and a ready prompt to paste into the Studio's chat (section 0, "Keeping the two in step"; the player, 24
-  November 2026: "whenever there is an update here where we also need to update the program, please always include
-  these steps and provide me a prompt or post in there"). A request that belongs in the Studio's chat (its program, the
-  painting, copying, checking, reviewing and sorting of pictures; section 0, "Where a request belongs") is not built
-  here: say so and give the player a ready prompt for that chat (the player, 24 November 2026: "whenever I post
-  something here or ask you for something that should actually be posted in the chat with the studio, you should always
-  recognize that and then instead give me a prompt to provide the studio chat").
+  it"): a change here to what the guide describes (the game's side, the catalogue) updates it in the same commit (and its
+  "Last changed" line), and every kit zip sent to the player includes it.
+- `docs/portrait-art/STUDIO-HANDOVER.md` describes every file format and who keeps what (section 0): a change to a format
+  or a copied file updates it too, adds a line to its "Changes since the handover" list, and the reply to the player ends
+  with the steps and a ready prompt to paste into the Studio's chat (the player, 24 November 2026: "whenever there is an
+  update here where we also need to update the program, please always include these steps and provide me a prompt or
+  post in there"). A request that belongs in the Studio's chat (its program, the painting, copying, checking, reviewing
+  and sorting of pictures, the kit's scripts, the lists; section 0, "Where a request belongs") is not built here: say so
+  and give the player a ready prompt for that chat (the player, 24 November 2026: "whenever I post something here or ask
+  you for something that should actually be posted in the chat with the studio, you should always recognize that and
+  then instead give me a prompt to provide the studio chat").
 
 ## Releases
 - `Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml` drives `CHANGELOG.md` (`python3 Tools/changelog.py`, then `--check`).
   Each round has 2–8 points, no em dashes or exclamation marks. `About/About.xml` modVersion equals the newest round.
 
 ## Checks (run all before pushing)
-- The one exception (the player, 22 November 2026): a commit that only touches the portrait kit (`docs/portrait-art`,
-  `Tools/PortraitArt`) or the notes (`docs/*.md` other than what the checks write) is pushed without them; anything that
+- The one exception (the player, 22 November 2026): a commit that only touches the portrait catalogue and its notes
+  (`docs/portrait-art`, `Tools/PortraitArt`; run `python3 Tools/PortraitArt/test_portrait_catalogue.py` and
+  `test_creatures.py` there) or the notes (`docs/*.md` other than what the checks write) is pushed without them; anything that
   touches the mod itself (code, defs, textures, `About`, language files, the DLL) runs them all.
 - Build: `cd Source/ColonyCouncil && dotnet build -c Release` (only the CS0108 warning in Decrees.cs is expected; the build rewrites the tracked `1.6/Assemblies/ColonyCouncil.dll`).
 - Defs: `dotnet Tools/DefValidator/bin/Release/net8.0/DefValidator.dll . ~/.nuget/packages/krafs.rimworld.ref/1.6.4871/ref/net472 1.6/Assemblies/ColonyCouncil.dll` (0 errors; rebuild it with `cd Tools/DefValidator && dotnet build -c Release` if its source changed).

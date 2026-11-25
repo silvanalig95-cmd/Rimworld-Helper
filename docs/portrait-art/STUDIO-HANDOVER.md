@@ -11,18 +11,30 @@ The player, 24 November 2026: "how do I keep everything synced up and not update
 doesn't work anymore". The two projects and who owns what:
 
 - **This repository** (silvanalig95-cmd/rimworld-helper, default branch `claude/charming-pasteur-9qbjle`) owns the game
-  mod and everything the game reads or writes: the file formats (section 4), the kit's scripts (`Tools/PortraitArt`),
-  the lists and catalogues (`docs/portrait-art`), and the portrait code the Studio copies. A format changes here first.
-- **Rimfolk Studio** (silvanalig95-cmd/rimfolk-studio, private) owns the program. It follows this repository: it copies
-  files with its `tools/sync_mod_code.py`, runs the kit's scripts, and never changes a format or pushes here. It asks
-  for a change here through the player.
-- **The routine.** Every change here that touches the portraits (a format, a script, a list or style, a copied file,
-  `CreaturePortraitMath.cs` and the other `*Math.cs` under `UI/Faces`) adds a line to the list below with the version,
+  mod and everything the game reads or writes: the file formats (section 4) and the portrait code the Studio copies; and
+  the catalogue of everything a picture can show (`docs/portrait-art/catalogue`: `kinds.csv`, `looks.csv`, `marks.csv`,
+  `roles.csv`, `creatures.csv`, its `README.md`), with its tools (`Tools/PortraitArt/catalogue_check.py`,
+  `catalogue_words.py`, `creature_census.py`, `save_census.py`, `looks_to_defs.py`, their tests) and `docs/player-mods`.
+  A format or a catalogue column changes here first.
+- **Rimfolk Studio** (silvanalig95-cmd/rimfolk-studio, private) owns the program and, since 24 November 2026 (taken over
+  at this repository's commit e10103f), the kit's scripts (`*.ps1` and `.cmd`, its folder `kit`), the batch lists and
+  the styles (`*.csv`, `style-*.json`, its folder `lists`; its Lists page puts them into the kit's `batches\`), and the
+  list planners (`plan_batches.py`, `plan_creatures.py`, `plan_gods.py`, `character_words.py`, with their tests, its
+  folder `planning`), which plan from its copy of the catalogue. Those files are no longer kept here (a line in their
+  place says where they are): nothing here plans a list or changes a script. A kit zip takes the scripts from the
+  Studio.
+- **The routine.** Every change here that touches the portraits (a format, a copied file, `CreaturePortraitMath.cs` and
+  the other `*Math.cs` under `UI/Faces`, the catalogue) adds a line to the list below with the version or the commit,
   and the reply to the player ends with one line for the Studio. The player pastes it into the Studio's chat, which
   syncs (`python3 tools/sync_mod_code.py --from <checkout of this repository>`), reads the list below from its last
   synced commit (`src/Mod/MOD-SOURCE.json`), and adapts. A change the Studio needs from here goes the other way: its chat
   writes the wish, the player pastes it here, it goes on the to-do list in `docs/HANDOFF.md`.
-- Nothing here depends on the Studio: the scripts keep working on their own, so a change here never waits for it.
+- **The catalogue's contract.** The Studio plans from its copy of the catalogue: a new column is fine; renaming or
+  removing a column needs a line to the Studio first. When the catalogue changes (a new mod's kinds or creatures, a
+  look, `humanLooking`), the reply to the player gives a line for the Studio's chat naming the commit and what changed.
+- **A list asked for here is not built here** (the player, 24 November 2026): the reply gives a ready text for the
+  Studio's chat with what is known (which kinds or creatures, from which mod, how many pictures, what for).
+- Nothing here depends on the Studio for the game: the mod reads the library as before.
 - **Where a request belongs** (the player, 24 November 2026: "whenever I post something here or ask you for something
   that should actually be posted in the chat with the studio, you should always recognize that and then instead give
   me a prompt to provide the studio chat, and also the other way around"). Each chat builds only its own part; for the
@@ -32,13 +44,20 @@ doesn't work anymore". The two projects and who owns what:
   |---|---|
   | the game: which picture a pawn, creature or place gets, how pictures are shown, corrections and deletions in the game, what the game writes (missing.csv, variants-wanted.csv, deleted.csv) | the program: its pages, tasks, scans, sync, storage, clean-up |
   | the file formats (section 4), and a new kind of picture or record field | painting, copying, checking, reviewing, sorting and organising pictures |
-  | what to paint: the catalogues (kinds, creatures, looks), the planners and the batch lists, the styles' wording | ComfyUI and its workflows as the program runs them |
-  | the content the pictures are for (gods, peoples, events) | the kit's scripts (developed in the Studio from 24 November 2026, once it has taken them over) |
+  | the catalogue: kinds, creatures, looks, marks, roles, `humanLooking` and the other columns, from the player's mods (`docs/player-mods`) | what to paint: a new list, more rows, a planner's rule, a style's wording (from the catalogue's copy) |
+  | the content the pictures are for (gods, peoples, events) | ComfyUI and its workflows as the program runs them |
+  | | the kit's scripts (`*.ps1`, `.cmd`) |
 
   A request with parts on both sides: each chat does its own part and hands the rest over as a prompt.
 
 ### Changes since the handover (newest first)
 
+- **The lists, styles, planners and scripts are the Studio's (24 November 2026, taken over at commit e10103f).** Removed
+  here with a line in their place (`docs/portrait-art/batches/README.md`, `Tools/PortraitArt/README.md`), and the
+  planners' report `catalogue/COVERAGE.md`. Two changes to them were made here after e10103f and are not in the Studio
+  yet: commit 7c3fd068 (`plan_creatures.py --variety`, the lists `creatures-05` to `08`, 542 rows) and commit 0db5c947
+  (`plan_batches.py --phases characters4`, `round4_list`, `round4_wants`, `ROUND4_*`, `round3_list` ending at
+  `characters-16`, the lists `characters-17` to `20`, 800 rows, and its test). The catalogue kept here; its tests too.
 - **The characters' fourth round (24 November 2026):** new lists `characters-17` to `20` (800 rows, the people columns
   as before) from `plan_batches.py --phases characters4` (`round4_list`, `round4_wants`, `ROUND4_*`; `round3_list` now
   ends at `characters-16`). The likeliest colonists, mostly broad. Nothing to change in the Studio.
@@ -141,7 +160,7 @@ The player, 23 November 2026:
 
 See `GUIDE.md`, "Each round, step by step". In one line each:
 
-| Step | Script (in `Tools/PortraitArt` here) | Reads | Writes |
+| Step | Script (in the Studio's folder `kit` since 24 November 2026; first written in `Tools/PortraitArt` here) | Reads | Writes |
 |---|---|---|---|
 | Paint | `Run-PortraitBatch.ps1` | `batches\<list>.csv`, `batches\style-*.json`, `rimfolk-workflow-api.json` | ComfyUI queue; `output\Rimfolk\<list>\*.png`; `logs\` |
 | Copy in | `Copy-ToLibrary.ps1` (in ComfyUI's `output\Rimfolk`) | the output folder, `library\deleted.csv` | `library\<list>\*.png`; runs Update |
@@ -178,10 +197,10 @@ them). Backdrops: `name,subject,count,seed,place,rooms,outdoors,era,contents`, a
 `god` (the god's domain). Animals and creatures (`creatures-NN`, and the gods' `gods-NN` whose `creature` holds a god's
 key, `god:<Key>:<age>` ... `godbeast:<Key>`):
 `name,subject,pose,count,seed,creature,sex,age,mod` (creature = the race's def name; sex `male`/`female`/`any`; age
-`baby`/`adult`, a juvenile taking an adult's picture; the row's name `c_<creature>_<age>_<m, f or a>_<NN>`). Written by
-the lead from `docs/portrait-art/catalogue/` and `Tools/PortraitArt/plan_batches.py` (people), `plan_creatures.py`
-(creatures, from `catalogue/creatures.csv`, kept by `creature_census.py`); a list must be kept as long as pictures made
-from it exist.
+`baby`/`adult`, a juvenile taking an adult's picture; the row's name `c_<creature>_<age>_<m, f or a>_<NN>`). Planned in
+Rimfolk Studio since 24 November 2026 (its `plan_batches.py` for people, `plan_creatures.py` for creatures,
+`plan_gods.py` for the gods), from its copy of `docs/portrait-art/catalogue/` (`creatures.csv` kept here by
+`creature_census.py`); a list must be kept as long as pictures made from it exist.
 
 **Styles** `batches\style-*.json`: `label, style, frame, style_end, negative, width, height, count, guidance, steps,
 sampler_name, scheduler, loras[{name, strength}]`, optional `cut` (false for backdrops) and `for` (`creatures` for the
@@ -285,7 +304,7 @@ over ComfyUI's websocket (`/ws?clientId=`).
   model's answers live in Check-Pictures.ps1 ("The comparison" and the readers above it); its tests in this session's
   harnesses were stand-in ComfyUI servers (a small Python HTTP server returning canned answers).
 - **The catalogue** `docs/portrait-art/catalogue/` (kinds, looks, marks, roles of the player's mods) and the planner
-  `Tools/PortraitArt/plan_batches.py`.
+  `Tools/PortraitArt/plan_batches.py` (taken over by the Studio on 24 November 2026; the catalogue stays here).
 - **The analysis of the player's check answers**: `docs/portrait-art/CHECK-ANSWERS-2026-11-23.md` (the check's known
   misreadings, waiting for the player's go to fix in the kit).
 
@@ -321,7 +340,7 @@ Please add the repository silvanalig95-cmd/rimworld-helper to this session (read
 docs/portrait-art/STUDIO-HANDOVER.md first: it describes what I want in my own words, my set-up (two Windows computers,
 the kit folder synced by Proton Drive, ComfyUI on the PC), every step and script, every file format, ComfyUI's API as
 the scripts use it, and the C# code from the mod that can be reused so the program judges pictures exactly as the game
-does. docs/portrait-art/GUIDE.md is the workflow step by step as it is today; the scripts are in Tools/PortraitArt.
+does. docs/portrait-art/GUIDE.md is the workflow step by step as it is today; the scripts were in Tools/PortraitArt (in the Studio since 24 November 2026).
 
 What I want, in short: I name my folders once and the program scans them all the time; a visual overview of all the
 steps with buttons; table views like a database of every file (lists and rows, pictures, records, corrections, checked

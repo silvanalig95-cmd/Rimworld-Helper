@@ -1,6 +1,8 @@
 # Rimfolk's portrait library: how to make the pictures
 
-Since 22 November 2026 the pictures are made on your own computer with ComfyUI from batch lists the lead writes: the
+Since 24 November 2026 the batch lists, the styles and the kit's scripts come with Rimfolk Studio (its Lists page puts
+the lists into the kit's `batches\`); this repository keeps the game, the file formats and the catalogue
+(`STUDIO-HANDOVER.md`, section 0). Since 22 November 2026 the pictures are made on your own computer with ComfyUI from batch lists the lead writes: the
 framework is `FRAMEWORK.md`, the setup `SETUP-ComfyUI.md`, and which lists to make next, with everything a person in your
 game can look like, `catalogue/README.md`. The rest of this page is the earlier way (prompts typed into an image AI).
 

@@ -1,4 +1,4 @@
-"""The portrait catalogue's shared words, for save_census.py and plan_batches.py.
+"""The portrait catalogue's shared words, for save_census.py and catalogue_check.py (Rimfolk Studio's planners keep a copy).
 
 The words are the framework's (docs/portrait-art/FRAMEWORK.md, pillar 2) and Rimfolk's record words
 (Source/ColonyCouncil/UI/Faces/PortraitLibraryMath.cs: the age bands, hair, beard, build, era, dress, facing, features,

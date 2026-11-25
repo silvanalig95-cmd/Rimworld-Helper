@@ -100,9 +100,15 @@ public static class PortraitMatchTests
         string Py(string pattern, string text) => Regex.Match(text, pattern, RegexOptions.Singleline).Groups[1].Value;
         var palette = Regex.Matches(Py(@"HUMAN_SKINS = \[(.*?)\]", Art("catalogue_words.py")), @"\('(\w+)', '([^']+)', '(#[0-9a-fA-F]{6})'\)")
             .Select(m => (slug: m.Groups[1].Value, word: m.Groups[2].Value, hex: m.Groups[3].Value)).ToList();
-        var wordHex = Regex.Matches(Py(@"SKIN_WORD_HEX = \{(.*?)\}", Art("plan_batches.py")), @"'([a-z ]+)': '(#[0-9a-fA-F]{6})'")
-            .ToDictionary(m => m.Groups[1].Value, m => m.Groups[2].Value);
-        C(palette.Count == 7 && wordHex.Count >= 18, $"the painter's palette read from the portrait scripts: seven human skins ({palette.Count}), a colour for each of the missing list's skin words ({wordHex.Count})");
+        // The colour painted for each of the missing list's skin words: the planner's table (SKIN_WORD_HEX) as it was when
+        // Rimfolk Studio took the planners over (24 November 2026); the Studio keeps the table itself.
+        var wordHex = new Dictionary<string, string>
+        {
+            ["very fair"] = "#f6e4d6", ["fair"] = "#ecc9ae", ["light"] = "#d9aa86", ["medium"] = "#c08c66", ["tan"] = "#a2704c", ["brown"] = "#7d5236",
+            ["dark"] = "#4e3322", ["red"] = "#a3302a", ["orange"] = "#d9732a", ["yellow"] = "#e8da86", ["green"] = "#6f9a5b", ["teal"] = "#4fa39a",
+            ["blue"] = "#5d7fa8", ["purple"] = "#7a5a9a", ["pink"] = "#e0a0b8", ["grey"] = "#8a8d90", ["black"] = "#1c1c20", ["white"] = "#efefef"
+        };
+        C(palette.Count == 7, $"the catalogue's palette: seven human skins ({palette.Count})");
         C(PortraitLibraryMath.SkinToneFrom.Length + 1 == 8 && PortraitLibraryMath.SkinToneFrom.Zip(PortraitLibraryMath.SkinToneFrom.Skip(1), (a, b) => a > b).All(x => x),
             "eight tones by lightness, lightest first");
         for (int i = 0; i < palette.Count; i++)
@@ -285,7 +291,6 @@ public static class PortraitMatchTests
             C(reader.Contains("h is Hediff_AddedPart || h.def?.addedPartProps != null") && reader.Contains("l.AddMark(\"artificialArm\", SideOf(part))")
               && reader.Contains("IsArm(part.def) || part.parent?.def != null && IsArm(part.parent.def)") && reader.Contains("armParts[d] = arm;"),
                 "the game reads it from any added part (a bionic, archotech or prosthetic one, a mod's) on an arm part or one whose parent is, each part's def read once");
-            C(Art("test_portrait_catalogue.py").Contains("'missingEar', 'artificialArm'}"), "the catalogue's tests take the mark in a row's marks");
         }
 
         // ---------------- training.csv ----------------

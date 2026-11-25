@@ -169,8 +169,6 @@ public static class GodPlacesTests
         C(reader.Contains("Worship.IsPriest(p)) return \"priest\";"), "the colony's own priest is painted as a priest (C4)");
         string backdrops = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "UI", "Faces", "Backdrops.cs"));
         C(backdrops.Contains("GodPlaces.DomainAt(p)"), "the backdrop knows when someone is at a god's place (C1)");
-        string kit = File.ReadAllText(Path.Combine(root, "Tools", "PortraitArt", "Update-PortraitLibrary.ps1"));
-        C(kit.Contains("One-Xml 'god' (Field $r 'god')"), "the kit writes a backdrop's god into its record");
         return n;
     }
 }

@@ -61,7 +61,6 @@ public static class PortraitAboutTests
         }
         string src = Path.Combine(root, "Source", "ColonyCouncil");
         string Read(string rel) => File.Exists(Path.Combine(src, rel)) ? File.ReadAllText(Path.Combine(src, rel)) : "";
-        string art = Path.Combine(root, "Tools", "PortraitArt");
 
         // ---------------- The distance in its parts ----------------
         {
@@ -193,16 +192,7 @@ public static class PortraitAboutTests
                 "a picture with an eye patch: enough for someone wearing one, the plain lost eye still wanted for someone who doesn't");
             C(PortraitVariantsMath.MarksWanted(Person(), pic, null).Count == 0 && PortraitVariantsMath.MarksWanted(null, pic, null).Count == 0, "no marks: nothing wanted");
 
-            // The instructions.
-            string make = File.Exists(Path.Combine(art, "Make-Variants.ps1")) ? File.ReadAllText(Path.Combine(art, "Make-Variants.ps1")) : "";
-            var keep = Regex.Match(make, @"\$Keep = '([^']*)'");
-            bool sameWords = keep.Success && keep.Groups[1].Value == PortraitVariantsMath.KeepFace;
-            foreach (var f in PortraitLifeMath.Faces)
-            {
-                var m = Regex.Match(make, "'" + f + @"'\s*=\s*'((?:[^']|'')*)'\s*\+\s*\$Keep");
-                sameWords &= m.Success && m.Groups[1].Value.Replace("''", "'") + PortraitVariantsMath.KeepFace == PortraitVariantsMath.Instruction(f);
-            }
-            C(sameWords, "the expressions' instructions word for word as Make-Variants.ps1 has them");
+            // The instructions (Make-Variants.ps1 keeps the same words; it is kept and tested in Rimfolk Studio since 24 November 2026).
             string lostL = PortraitVariantsMath.Instruction("lostEyeLeft") ?? "", lostR = PortraitVariantsMath.Instruction("lostEyeRight") ?? "";
             C(lostL.Contains("lost their left eye (the eye on the right of the picture)") && lostR.Contains("right eye (the eye on the left of the picture)") && lostL.EndsWith(PortraitVariantsMath.KeepMark),
                 "a mark's side as seen from the person, and where that is in the picture; then what stays");

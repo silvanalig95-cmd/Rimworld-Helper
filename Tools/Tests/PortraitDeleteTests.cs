@@ -361,13 +361,7 @@ public static class PortraitDeleteTests
         C(keeper.Contains("public List<int> LetGoPicture(string picture)") && keeper.Contains("k.library = 0;"), "whoever kept it keeps nothing now and is picked again when shown");
         C(stage.Contains("public static string BackdropShown(Pawn p)"), "the backdrop the large portrait shows, for its menu");
 
-        // The portrait scripts honour deleted.csv.
-        string art = Path.Combine(root, "Tools", "PortraitArt");
-        foreach (var s in new[] { "Copy-ToLibrary.ps1", "Update-PortraitLibrary.ps1", "Check-Pictures.ps1", "Make-Variants.ps1", "Make-DepthMaps.ps1" })
-        {
-            string text = File.Exists(Path.Combine(art, s)) ? File.ReadAllText(Path.Combine(art, s)) : "";
-            C(text.Contains("deleted.csv") && text.Contains("function Read-Deleted") && text.Contains("function Is-Deleted"), $"{s} reads deleted.csv and holds its pictures back");
-        }
+        // The portrait scripts' side (they honour deleted.csv) is kept and tested in Rimfolk Studio since 24 November 2026.
         return n;
     }
 }

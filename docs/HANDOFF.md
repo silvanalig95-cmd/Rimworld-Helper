@@ -889,6 +889,18 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done (25 November 2026): the lists, styles, planners and kit scripts are Rimfolk Studio's.** The player: "From 24
+  November 2026 the batch lists, the styles and the list planners are kept in Rimfolk Studio, like the kit's scripts ...
+  Taken over at your commit e10103f". Removed here (a line in their place: `docs/portrait-art/batches/README.md`,
+  `Tools/PortraitArt/README.md`), with `catalogue/COVERAGE.md`; the tests that read them moved with them (the kit's
+  `test_gods.py` and the planners' tests in `test_portrait_catalogue.py` and `test_creatures.py`; in Tools/Tests the
+  checks of the scripts' words: PortraitDeleteTests' deleted.csv, PortraitAboutTests' Make-Variants instructions,
+  GodPlacesTests' god field, PortraitMatchTests now uses a snapshot of the planner's skin colours). Kept here: the
+  catalogue, `catalogue_check.py`, `catalogue_words.py` (both tools kept here read it: asked the player which side keeps
+  it), `creature_census.py`, `save_census.py`, `looks_to_defs.py`, their tests, `docs/player-mods`; `make_prompts.py` and
+  `docs/portrait-art/prompts.csv` (the first wave, the matcher tests' data). The rules are in CLAUDE.md ("The portrait
+  kit, the catalogue and Rimfolk Studio") and STUDIO-HANDOVER section 0. Not in the Studio yet: commits 7c3fd068 (the
+  creatures' variety round) and 0db5c947 (the characters' fourth round), made here after e10103f; a prompt was given.
 - **Done (24 November 2026, kit only): the characters' fourth round, the likeliest colonists.** The player: "another
   batch of colonists ... covering all the likeliest scenarios, you know, baseliners mostly, and just images that are
   not super specific ... most of them should be kind of broad ... while still having some special cases ... But they

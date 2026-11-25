@@ -3,7 +3,7 @@
 Every xenotype, race, gene, trait, condition (hediff) and body the catalogue names must be in an active row of
 docs/player-mods (the mods the player has enabled), every word must be unique, and every kind must say how it looks.
 Run: python3 Tools/PortraitArt/catalogue_check.py   (prints "OK", or the problems and exits with 1)
-plan_batches.py runs the same check before it plans.
+Rimfolk Studio's planner runs the same check on its copy of the catalogue before it plans.
 """
 import csv
 import gzip
