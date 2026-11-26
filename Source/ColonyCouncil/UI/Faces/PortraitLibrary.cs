@@ -642,6 +642,27 @@ namespace ColonyCouncil
                     again = at0 > 0f;
                 }
             }
+            // The library changed since they last looked: a picture that fits one of the colony's own nearly exactly, and
+            // clearly better than the one the matcher gave them, becomes theirs (never one chosen by hand or pinned, never
+            // a face someone else keeps).
+            if (!again && colony && there && k.library != signature && !k.byHand && !k.pinned && keeper != null)
+            {
+                var better = PortraitLibraryMath.Better(look, records, PortraitLibraryMath.Distance(look, records[byName[k.picture]]), k.character,
+                    c => !Taken(c, id) && keeper.UsesOf(c, id) == 0);
+                if (better.Any)
+                {
+                    better.index = RootOf(better.index);
+                    var was = k.picture;
+                    keeper.Set(id, records[better.index].name, better.character, look.Kind, words, signature, stage, false, false, better.distance);
+                    k = keeper.Get(id);
+                    keeper.Reserve(k);
+                    NoteOnce(p, look, better.index, better.distance, false);
+                    if (Current.ProgramState == ProgramState.Playing && p.Spawned)
+                        Messages.Message("CC_Portrait_Better".Translate(p.Named("PAWN")).Resolve(), new LookTargets(p), MessageTypeDefOf.SilentInput, false);
+                    Log.Message("[Rimfolk] Portraits: " + p.LabelShort + " takes " + records[better.index].name + " (" + better.distance.ToString("0.00") + "), which fits them more closely than " + was + ".");
+                    return Shown(k) ? better.index : -1;
+                }
+            }
             if (!again)
             {
                 k.library = signature;

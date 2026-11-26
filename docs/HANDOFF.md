@@ -889,6 +889,15 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done (26 November 2026, 0.306.0): a picture reaches its person by itself.** The player: "i think it's important that
+  even if an image was generated for a specific pawn, it should not be reserved for that pawn exclusively and instead
+  treated the same way as any other image, just available to use for whoever needs it most, even if i make several base
+  variations of a character", and after Rimfolk Studio 0.20.0 stopped writing names into `pawn` for its pictures of one
+  person: "I would like the picture to reach its person by itself, without reserving anything", with two ways offered;
+  the lead chose the first (no name). Built: `PortraitLibraryMath.Better` (`NearlyExact` 1, `ClearlyBetter` 1.5), used
+  in `PortraitLibrary.Decide` once per library change for each of the colony's own keeping a matcher's pick (never one
+  chosen by hand or pinned, never a face anyone else keeps); a message `CC_Portrait_Better` and a log line. Tests:
+  PortraitConditionTests.
 - **Done (25 November 2026, 0.305.0): a variant dismissed in the game; a picture made for a name free in other saves.**
   The player: "in the game, on the image, when a variant is loaded, I should also be able through the game to right
   click this variant and dismiss this variant forever. So it's essentially deleted and requested anew later", and of

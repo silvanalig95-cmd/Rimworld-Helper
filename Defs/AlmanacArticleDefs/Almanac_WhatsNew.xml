@@ -31,6 +31,17 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.306.0</version>
+        <date>26 November 2026</date>
+        <title>A new picture reaches its person</title>
+        <points>
+          <li>When the portrait library has changed and a new painted picture fits one of your people nearly exactly, and clearly better than the one they have, it becomes theirs by itself, and a message says so. A picture made from their own description in Rimfolk Studio is such a picture.</li>
+          <li>It never replaces a picture you chose by hand, and never takes a picture someone else keeps. To change it back, right-click their portrait and choose another picture.</li>
+          <li>Pictures made for one person are otherwise ordinary pictures of the library: two made for the same person can go to two different people.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.305.0</version>
         <date>25 November 2026</date>
         <title>Dismiss a variant, and pictures made for a name in other games</title>

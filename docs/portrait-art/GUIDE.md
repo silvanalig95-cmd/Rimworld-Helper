@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 25 November 2026 (0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 26 November 2026 (0.306.0: a new picture that fits one of your people nearly exactly becomes theirs by itself; 0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -185,6 +185,10 @@ For each pawn the game reads their race, xenotype, sex, age, skin, hair, traits,
   picture with pointed ears goes only to a person whose genes give them pointed ears.
 - **The closest of the rest:** the hair colour first, then hairstyle, beard, build, the clothes' age and kind, features.
 - The pick is kept for that pawn (saved with the game); your colonists' faces are kept for them alone.
+- **A new picture made for one of your people** (for example "a picture of this person as they are" in Rimfolk Studio)
+  reaches them by itself: when the library has changed and a picture no one else keeps fits them nearly exactly, and
+  clearly better than the one they have, it becomes theirs and a message says so. Not if you chose their picture by
+  hand. Such a picture is otherwise like any other: in another game it goes to whoever fits it best.
 - No picture passes the rules: the game's own drawing, and a line in `missing.csv`.
 - **What they go through:** where their picture has a painted condition (asleep, tired, hurt, wounded, ill, freezing,
   overheated, starving, drunk, breaking, unconscious), it shows in place of the picture while that holds, on the

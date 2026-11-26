@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A new picture reaches its person
+
+*26 November 2026, version 0.306.0*
+
+- When the portrait library has changed and a new painted picture fits one of your people nearly exactly, and clearly better than the one they have, it becomes theirs by itself, and a message says so. A picture made from their own description in Rimfolk Studio is such a picture.
+- It never replaces a picture you chose by hand, and never takes a picture someone else keeps. To change it back, right-click their portrait and choose another picture.
+- Pictures made for one person are otherwise ordinary pictures of the library: two made for the same person can go to two different people.
+
 ## Dismiss a variant, and pictures made for a name in other games
 
 *25 November 2026, version 0.305.0*

@@ -223,6 +223,33 @@ public static class PortraitConditionTests
         string library = Code("UI/Faces/PortraitLibrary.cs");
         C(library.Contains("PortraitLibraryMath.FreePins(records,") && library.Contains("var pinned = records.Where(r => r.Pinned)") && library.Contains("NamesAgainFor(p);"),
             "the names read for each save, a free picture's face not held for anyone, a newcomer of that name gets it at once");
+
+        // ---------------- A picture reaching its person by itself ----------------
+        var held2 = Picture("P_Held");
+        held2.character = "Held";
+        held2.hair = PortraitHairStyle.Bald;
+        held2.beard = PortraitBeard.Full;
+        held2.build = PortraitBuild.Slim;
+        var exact = Picture("P_Exact");
+        exact.character = "Exact";
+        var near = Picture("P_Near");
+        near.character = "Near";
+        near.beard = PortraitBeard.Full;
+        near.build = PortraitBuild.Slim;
+        var person = new PortraitLook { sex = PortraitSex.Male, age = PortraitAge.Adult, skin = exact.skin, hairColour = exact.hairColour, xenotype = "baseliner", race = "human" };
+        float keptD = PortraitLibraryMath.Distance(person, held2), exactD = PortraitLibraryMath.Distance(person, exact), nearD = PortraitLibraryMath.Distance(person, near);
+        C(exactD <= PortraitLibraryMath.NearlyExact && keptD - exactD >= PortraitLibraryMath.ClearlyBetter && nearD > PortraitLibraryMath.NearlyExact,
+            $"the test's pictures: one kept ({keptD:0.00}), one described from their words ({exactD:0.00}), one only nearer ({nearD:0.00})");
+        var lib3 = new List<PortraitRecord> { held2, exact, near };
+        var better = PortraitLibraryMath.Better(person, lib3, keptD, "Held", _ => true);
+        C(better.Any && lib3[better.index] == exact, "a new picture that fits them nearly exactly and clearly better than theirs becomes theirs");
+        C(!PortraitLibraryMath.Better(person, lib3, keptD, "Held", c => c != "Exact").Any, "never a face someone else keeps or owns");
+        C(!PortraitLibraryMath.Better(person, new List<PortraitRecord> { held2, near }, keptD, "Held", _ => true).Any, "only nearer, not nearly exact: they keep theirs");
+        C(!PortraitLibraryMath.Better(person, lib3, exactD + 0.5f, "Held", _ => true).Any, "theirs already close: they keep it");
+        C(!PortraitLibraryMath.Better(person, lib3, keptD, "Exact", _ => true).Any, "never the face they already keep");
+        string lib4 = Code("UI/Faces/PortraitLibrary.cs");
+        C(lib4.Contains("if (!again && colony && there && k.library != signature && !k.byHand && !k.pinned && keeper != null)") && lib4.Contains("keeper.UsesOf(c, id) == 0")
+          && keys.Contains("<CC_Portrait_Better>"), "only the colony's own, when the library changed, never one chosen by hand or pinned; told with a message");
         return n;
     }
 }

@@ -1851,7 +1851,8 @@ namespace ColonyCouncil
         /// <see cref="LacksSpecial"/>): picked again, the game's own drawing until a picture with it comes (even one chosen
         /// by hand); one who has lost a special look keeps theirs.</item>
         /// </list>
-        /// Nothing else changes it: no injury, scar or lost eye, no new hair, beard or clothes, no new work, no grown library.
+        /// Nothing else changes it: no injury, scar or lost eye, no new hair, beard or clothes, no new work. A grown library
+        /// changes it only for one of the colony's own, with a new picture that fits them nearly exactly (<see cref="Better"/>).
         /// </summary>
         public static bool PickAgain(bool kept, PortraitStage keptStage, PortraitStage stageNow, string keptPicture, bool keptPictureThere, int keptPinFit,
             bool keptByHand, int keptLibrary, int library, string keptWords, string words, int pinFitNow, bool takenByAnother = false, bool lacksSpecial = false)
@@ -1861,6 +1862,38 @@ namespace ColonyCouncil
             if (string.IsNullOrEmpty(keptPicture)) return keptLibrary != library || keptWords != words;
             if (!keptPictureThere || takenByAnother || lacksSpecial) return true;
             return pinFitNow > keptPinFit && !keptByHand;
+        }
+
+        /// <summary>A picture that fits someone this nearly (the matcher's distance) fits them nearly exactly: one described from their own words.</summary>
+        public const float NearlyExact = 1f;
+
+        /// <summary>It fits them clearly better than the one they keep when it is nearer by at least this much.</summary>
+        public const float ClearlyBetter = 1.5f;
+
+        /// <summary>
+        /// A picture of the library that reaches one of the colony's own people by itself (the player, 26 November 2026: "even
+        /// if an image was generated for a specific pawn, it should not be reserved for that pawn exclusively and instead
+        /// treated the same way as any other image", and "I would like the picture to reach its person by itself, without
+        /// reserving anything"): looked for when the library has changed since they last looked, for someone keeping a picture
+        /// the matcher gave them (never one chosen by hand or pinned). The nearest picture that may stand for them by the hard
+        /// rules (<see cref="Distances"/>), whose face is free (<paramref name="free"/>: no one else keeps it, nor is it another's
+        /// own) and isn't the one they keep, taken where it fits them nearly exactly (<see cref="NearlyExact"/>) and clearly
+        /// better than theirs (<paramref name="kept"/>, its distance now, by <see cref="ClearlyBetter"/>). None otherwise.
+        /// </summary>
+        public static PortraitPick Better(PortraitLook l, IList<PortraitRecord> records, float kept, string keptCharacter, Func<string, bool> free)
+        {
+            var none = PortraitPick.None;
+            if (l == null || records == null) return none;
+            var d = Distances(l, records);
+            int best = -1;
+            for (int i = 0; i < d.Length; i++)
+            {
+                if (float.IsInfinity(d[i]) || d[i] > NearlyExact || d[i] > kept - ClearlyBetter) continue;
+                string c = records[i].Character;
+                if (c == keptCharacter || free != null && !free(c)) continue;
+                if (best < 0 || d[i] < d[best] || d[i] == d[best] && string.CompareOrdinal(records[i].name, records[best].name) < 0) best = i;
+            }
+            return best < 0 ? none : new PortraitPick { index = best, character = records[best].Character, distance = d[best] };
         }
 
         /// <summary>Whose each reserved face is, all of the player's own: <see cref="Owners(IEnumerable{ValueTuple{int, string, int, PortraitRank}}, IEnumerable{KeyValuePair{string, int}})"/>.</summary>

@@ -55,6 +55,15 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Rimfolk 0.306.0 (26 November 2026): a picture reaches its person by itself.** With no name in `pawn` (Rimfolk Studio
+  0.20.0 writes none for "a picture of this person as they are"), a picture made for someone is an ordinary picture in
+  every save. When the library has changed since one of the colony's own people was last looked at, and a picture whose
+  face no one else keeps fits them nearly exactly (the matcher's distance 1 or less: one described from their own words)
+  and clearly better than the one the matcher gave them (nearer by 1.5 or more), it becomes theirs, with a message. Never
+  one they chose by hand or one pinned to them, never a face someone else keeps. Two pictures made for one person are two
+  faces and may go to two people. In the copied `PortraitLibraryMath.cs`: `Better`, `NearlyExact`, `ClearlyBetter`.
+  Nothing changes in the formats.
+
 - **Rimfolk 0.305.0 (25 November 2026): a variant dismissed in the game, and pictures made for a name free in other
   saves.**
   - The large portrait's right-click menu has "Dismiss this variant: <name>..." for each variant shown now: the
