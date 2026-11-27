@@ -115,7 +115,9 @@ namespace ColonyCouncil
             "them:camp:Diggers", "them:camp:HerdApart", "them:camp:StoneRaisers", "them:camp:Smugglers", "them:camp:Novices", "them:camp:LordsHunt",
             "them:camp:PutAwayPriest",
             // The content round's third part (Rimfolk_CampKinds_Round3.xml).
-            "them:camp:RainCallers", "them:camp:Dyers", "them:camp:WitchFinders", "them:camp:RagPickers", "them:camp:Gamblers", "them:camp:Kennel"
+            "them:camp:RainCallers", "them:camp:Dyers", "them:camp:WitchFinders", "them:camp:RagPickers", "them:camp:Gamblers", "them:camp:Kennel",
+            // The content round's fourth part (Rimfolk_CampKinds_Round4.xml).
+            "them:camp:Woodcarvers", "them:camp:FireWatchers", "them:camp:Wildfowlers", "them:camp:SnowCarvers", "them:camp:Cheesemakers", "them:camp:InstrumentMakers"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>

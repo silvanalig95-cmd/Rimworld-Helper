@@ -1,0 +1,898 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content round's fourth part, its camps (docs/content-round-4-camps-events.md, R4-C1 to R4-C6): woodcarvers,
+    fire-watchers, wildfowlers, snow-carvers, cheesemakers and instrument-makers. Their ways in
+    Source/ColonyCouncil/Camps/CampRound4.cs. Each in its people's age's form ([their:tribal]...). Camps' letters in their
+    flavour style; bubbles are speech, one sentence each. Beasts, goods and instruments from the player's mods first
+    (MayRequire or by name in code), the game's own after.
+  -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R4K_CampCarveWood</defName>
+    <reportString>carving wood.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks><effecter>ConstructWood</effecter><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R4K_CampLookout</defName>
+    <reportString>watching the land for smoke.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2400</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R4K_CampDecoys</defName>
+    <reportString>setting out decoys.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1500</ticks><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R4K_CampSnowWork</defName>
+    <reportString>shaping a snow figure.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2200</ticks><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R4K_CampCurd</defName>
+    <reportString>stirring the curd.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1800</ticks><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R4K_CampTune</defName>
+    <reportString>fitting and tuning an instrument.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1800</ticks><effecter>ConstructWood</effecter><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- One of the instrument-makers playing their own instrument in the evening (CampRound4.cs, JobDriver_R4KPlay). -->
+  <JobDef>
+    <defName>Rimfolk_R4K_CampPlay</defName>
+    <driverClass>ColonyCouncil.JobDriver_R4KPlay</driverClass>
+    <reportString>playing TargetA.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <!-- What the colony's people feel about the round's camps. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4K_SatForCarving</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>sat for a carving</label>
+        <description>I sat an hour at the woodcarvers' fire while one of them carved my likeness. It came out better than I expected.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4K_SnowFigure</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>made a snow figure</label>
+        <description>I spent an hour with the snow-carvers shaping a figure out of the snow, and it is standing by their camp now.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4-C1. Woodcarvers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Woodcarvers</defName>
+    <label>woodcarvers</label>
+    <workerClass>ColonyCouncil.CampWorker_R4KWoodcarvers</workerClass>
+    <arrives>8~15</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.3</weight>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+    </seasons>
+    <family>true</family>
+    <people>2~4</people>
+    <days>3~6</days>
+    <ages>14~65</ages>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Textiles</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>WoodLog</li></defs><count>20~35</count><at>stash</at></li>
+    </campGoods>
+    <titles>
+      <li>Woodcarvers</li>
+      <li>[their:tribal] Carvers of wood and bone</li>
+      <li>[their:medieval] A woodcarver's family</li>
+      <li>[their:industrial] Whittlers with a cart</li>
+      <li>[their:spacer] Carvers who work by hand</li>
+    </titles>
+    <texts>
+      <li>A family of woodcarvers from {FACTION} has come to the colony's land with a pack beast and a sack of shavings that smells of resin. {X_nameDef} showed {A_nameDef} a little carved bird, light enough to sit on a finger, and asked whether they might camp {PLACE} among the trees for a few days and work.</li>
+      <li>[their:tribal] Carvers of {FACTION} have come with knives of flint and bone and a bundle of half-carved figures of the land's animals. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, where the wood is good, and carve for a few days.</li>
+      <li>[their:medieval] A woodcarver of {FACTION} and family have come up the road with chisels rolled in leather and a box of saints, toys and bowls. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} a few days and take orders.</li>
+      <li>[their:industrial] A family of whittlers from {FACTION} has arrived with a cart full of carved figures and toys for the town markets. {X_nameDef} told {A_nameDef} they carve to order, and asked to camp {PLACE} near the trees.</li>
+      <li>[their:spacer] A pair of carvers from {FACTION} have set down with hand tools in a velvet roll. {X_nameDef} told {A_nameDef} that among their people a thing carved by hand from real wood is rare and much prized, and asked to camp {PLACE} and work.</li>
+      <li>[forest] Woodcarvers of {FACTION} have followed the woods to the colony. {X_nameDef} told {A_nameDef} the trees here have a fine grain, and asked to camp {PLACE} for a few days.</li>
+    </texts>
+    <settled>
+      <li>The woodcarvers' camp is up {PLACE}, with a block of wood by the fire and shavings already scattered round it.</li>
+      <li>The woodcarvers of {FACTION} have made camp {PLACE}, and the sound of a knife on wood carries to the colony's edge.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the woodcarvers camped {PLACE} says {X_pronoun} would like to stop walking and carve in one place for a while, and asks whether the colony would have {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>[carved] The woodcarvers packed their tools and went on. The likeness they carved is still at the colony, and people keep stopping to look at it.</li>
+      <li>[sold] The woodcarvers went on, a little lighter for the carving they left with the colony.</li>
+      <li>The woodcarvers of {FACTION} rolled up their chisels and went on, leaving a ring of shavings where their fire was.</li>
+      <li>The woodcarvers' camp {PLACE} is empty, and the shavings round the fire are the only sign of them.</li>
+    </farewell>
+    <lines>
+      <li>Follow the grain and it does half the work.</li>
+      <li>Keep that knife sharp or it'll slip.</li>
+      <li>This one wants to be a fox, I can see it already.</li>
+      <li>Don't sweep up the shavings, they light the fire.</li>
+      <li>Green wood splits, so we let it dry first.</li>
+      <li>[morning] Let's see what yesterday's block turned into.</li>
+      <li>[their:tribal] Bone for the eyes, wood for the rest.</li>
+      <li>[their:industrial] Market's in four days, we need more toys.</li>
+    </lines>
+    <momentLines>
+      <li>[carve] Slowly now, this is the hard part.</li>
+      <li>[carve] Hold the block still for me.</li>
+      <li>[sit] Sit just like that, and don't move your chin.</li>
+      <li>[sit] Look at the fire and think of something pleasant.</li>
+      <li>[carved] There, that's you, near enough.</li>
+      <li>[sold] Take good care of it, it's a good piece.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat by the woodcarvers' fire {PLACE} and heard which woods carve well and which crack in the winter.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>sit</key>
+        <label>Have {A_nameDef} sit for a carving ({COUNT} silver)</label>
+        <tip>{A_nameDef} walks over to their fire and sits an hour while one of them carves. The finished carving, with {A_possessive} name on it, is set out at the edge of their camp for the colony to fetch.</tip>
+        <silver>50</silver>
+        <once>false</once>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} is walking over to the woodcarvers' camp with the silver, and {X_nameDef} has already picked out a block of wood.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Camp</to><label>sitting for a carving</label><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_R4KSit" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn carving from them</label>
+        <tip>{A_nameDef} spends a few hours at their fire with a knife and a block, learning to follow the grain. Practice in art.</tip>
+        <skill>Artistic</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has handed {A_nameDef} a knife and a block of soft wood and shown {A_objective} how to make the first cut.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Artistic</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>buy</key>
+        <label>Buy one of their carvings ({COUNT} silver)</label>
+        <tip>Their best carver finishes a small carving, and it is set out at the edge of their camp for the colony to fetch.</tip>
+        <silver>90</silver>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} took the silver and went to fetch the best of the finished carvings.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4KBuyCarving" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R4-C2. Fire-watchers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_FireWatchers</defName>
+    <label>fire-watchers</label>
+    <workerClass>ColonyCouncil.CampWorker_R4KFireWatchers</workerClass>
+    <arrives>9~16</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.25</weight>
+    <seasons>
+      <li>Summer</li>
+      <li>PermanentSummer</li>
+    </seasons>
+    <situationKinds>
+      <li>drought</li>
+    </situationKinds>
+    <situationWeight>4</situationWeight>
+    <people>3~4</people>
+    <days>3~6</days>
+    <ages>18~60</ages>
+    <hireChance>0.15</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>they leave nothing behind that could catch</leavesWhy>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Fire-watchers</li>
+      <li>[their:tribal] Fire-watchers with a horn</li>
+      <li>[their:medieval] A town's beacon watch</li>
+      <li>[their:industrial] Fire lookouts</li>
+      <li>[their:spacer] A fire crew</li>
+    </titles>
+    <texts>
+      <li>A few of {FACTION} have come to the colony's land with beaters and buckets tied to their packs. {X_nameDef} told {A_nameDef} they watch the dry country for fires in the hot months, and asked to camp {PLACE} a few days, where they can see a long way.</li>
+      <li>[ws:drought] With {SITUATION} on the region, fire-watchers of {FACTION} are out on the dry land. {X_nameDef} told {A_nameDef} one spark could set the whole valley alight this year, and asked to camp {PLACE} and keep watch.</li>
+      <li>[their:tribal] Fire-watchers of {FACTION} have come with bundles of green branches for beating out flames and a horn to call each other. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and watch the land.</li>
+      <li>[their:medieval] Men and women of {FACTION}'s beacon watch have come down from the town with wet sacks, buckets and a bell. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} while the dry weather lasts.</li>
+      <li>[their:industrial] Fire lookouts of {FACTION} have arrived with a spyglass, shovels and a hand pump on a cart. {X_nameDef} told {A_nameDef} they keep the dry country from burning, and asked to camp {PLACE}.</li>
+      <li>[their:spacer] A fire crew of {FACTION} has set down with a watch drone and packs of foam. {X_nameDef} told {A_nameDef} they can be at any fire on this land before it spreads, and asked to camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The fire-watchers' camp is up {PLACE}, small and tidy, with their fire kept low and a bucket of water beside it.</li>
+      <li>The fire-watchers of {FACTION} have made camp {PLACE}, and one of them is already standing at its edge looking out over the land.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the fire-watchers camped {PLACE} says {X_pronoun} has watched other people's land long enough, and asks whether the colony could use {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>[beaten] The fire-watchers went on, with the colony's thanks for the fire they put out.</li>
+      <li>[break] The fire-watchers went on, leaving a strip of bare ground round the colony's field that no fire will cross easily.</li>
+      <li>The fire-watchers of {FACTION} packed up and went on to watch the next valley.</li>
+      <li>The fire-watchers' camp {PLACE} is empty, their fire drowned and the ground raked over.</li>
+    </farewell>
+    <lines>
+      <li>Dry as tinder out there.</li>
+      <li>Keep your eyes on the horizon, not on me.</li>
+      <li>Smoke goes up straight on a still day, so watch for it.</li>
+      <li>Never turn your back on a fire.</li>
+      <li>A wind like this can carry a spark half a mile.</li>
+      <li>[evening] Bank the fire low tonight.</li>
+      <li>[their:tribal] Cut fresh branches, these are drying out.</li>
+      <li>[their:spacer] The drone sees nothing yet.</li>
+    </lines>
+    <momentLines>
+      <li>[lookout] Nothing yet, but I'm watching.</li>
+      <li>[lookout] All clear as far as I can see.</li>
+      <li>[fire] Smoke, over there, come on!</li>
+      <li>[fire] Grab the beaters, it's spreading.</li>
+      <li>[out] That's out, keep an eye on the embers.</li>
+      <li>[break] Cut it right down to the dirt.</li>
+      <li>[break] A fire won't jump this once we're done.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat with the fire-watchers {PLACE} and heard about the summer the whole valley burned, and how they stopped it at the river.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>firebreak</key>
+        <label>Have them cut a firebreak round the {FIELD} ({COUNT} silver)</label>
+        <tip>Two of them cut the dry grass and bushes in a strip just outside the {FIELD} over their working hours, so a fire coming across the land stops there. They never cut a tree or a crop.</tip>
+        <silver>40</silver>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <deed>favorDone</deed>
+        <outcomes>
+          <li>{X_nameDef} took the silver and looked over the {FIELD}, and two of them are getting their blades out.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4KFirebreak" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn from them</label>
+        <tip>{A_nameDef} spends a few hours with them, learning which ground burns and how a break is cut. Practice in growing.</tip>
+        <skill>Plants</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has taken {A_nameDef} out to the edge of the dry grass to show {A_objective} how a fire runs.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Plants</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R4-C3. Wildfowlers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Wildfowlers</defName>
+    <label>wildfowlers</label>
+    <workerClass>ColonyCouncil.CampWorker_R4KWildfowlers</workerClass>
+    <arrives>6~12</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.25</weight>
+    <seasons>
+      <li>Fall</li>
+      <li>Winter</li>
+    </seasons>
+    <people>2~4</people>
+    <days>3~5</days>
+    <ages>16~60</ages>
+    <huntsPerDay>0.3</huntsPerDay>
+    <armedHunters>true</armedHunters>
+    <hireChance>0.15</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.12</helpChance>
+    <help>
+      <li>meat</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>0.8</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>butcher</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><kinds><li>LabradorRetriever</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Beagle</li><li>Husky</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Wildfowlers</li>
+      <li>[their:tribal] Fowlers with nets</li>
+      <li>[their:medieval] Fowlers with decoys</li>
+      <li>[their:industrial] A shooting party</li>
+      <li>[their:spacer] A shooting party with drones</li>
+    </titles>
+    <texts>
+      <li>A few fowlers of {FACTION} have come down to the colony's water, following a flock of birds on their way south. {X_nameDef} told {A_nameDef} they take a few birds each morning and no more, and asked to camp {PLACE} by the water for a few days.</li>
+      <li>[their:tribal] Fowlers of {FACTION} have come with nets rolled on their backs and slings at their belts, a flock of birds settling on the water ahead of them. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}.</li>
+      <li>[their:medieval] Fowlers of {FACTION} have come with nets, bows and a sack of wooden decoys painted to look like ducks. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} by the water while the birds are here.</li>
+      <li>[their:industrial] A shooting party of {FACTION} has arrived with shotguns, a dog and a crate of painted decoys. {X_nameDef} told {A_nameDef} the birds come down on this water every autumn, and asked to camp {PLACE}.</li>
+      <li>[their:spacer] A shooting party of {FACTION} has set down with decoy drones that float on the water. {X_nameDef} told {A_nameDef} they hunt the old way otherwise, one bird a morning, and asked to camp {PLACE}.</li>
+      <li>[winter] Fowlers of {FACTION} have come through the cold after a late flock. {X_nameDef} asked {A_nameDef} to let them camp {PLACE} by the water until the birds move on.</li>
+    </texts>
+    <settled>
+      <li>The fowlers' camp is up {PLACE} by the water, with their decoys bobbing near the edge and their dog lying by the fire.</li>
+      <li>The wildfowlers of {FACTION} have made camp {PLACE}, and the flock is out on the water, not far from them.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the fowlers camped {PLACE} says {X_pronoun} is tired of cold mornings by strange water, and asks whether the colony would take {X_objective} in.</li>
+    </joinTexts>
+    <farewell>
+      <li>[shot] The fowlers went on with a string of birds over each shoulder, the rest of the flock lifting off the water ahead of them.</li>
+      <li>The wildfowlers of {FACTION} gathered their decoys out of the water and went on after the flock.</li>
+      <li>The fowlers' camp {PLACE} is empty, and the water is quiet again.</li>
+    </farewell>
+    <lines>
+      <li>Keep low, they see more than you'd think.</li>
+      <li>Wind's from the north, they'll come in over the trees.</li>
+      <li>One a morning, that's the rule.</li>
+      <li>The dog knows his job better than you do.</li>
+      <li>Fog on the water means good shooting.</li>
+      <li>[morning] Up, up, it's nearly light.</li>
+      <li>[their:tribal] Check the nets for holes before dawn.</li>
+      <li>[their:industrial] Keep the powder dry, it's a wet morning.</li>
+    </lines>
+    <momentLines>
+      <li>[decoy] Set them out in a line, heads into the wind.</li>
+      <li>[decoy] A few more out there, and they'll think it's safe.</li>
+      <li>[dawn] Quiet now, there's one coming in.</li>
+      <li>[dawn] That's the one, the big one at the edge.</li>
+      <li>[kill] Got it, send the dog.</li>
+      <li>[butcher] Plucking's the worst part of this.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[meat] The fowlers camped {PLACE} left {COUNT} {THING} from their morning's birds at the edge of their camp for the colony.</li>
+      <li>[tales] {A_nameDef} sat with the fowlers {PLACE} and heard where the flocks go in winter and how they know the way.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>birds</key>
+        <label>Buy a brace of their birds ({COUNT} silver)</label>
+        <tip>A share of their birds' meat is set out at the edge of their camp for the colony to fetch.</tip>
+        <silver>30</silver>
+        <needs>theirMeat</needs>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} took the silver and went to set out a share of the morning's birds at the edge of the camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampGives"><what>meat</what><count>20</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn to call the birds</label>
+        <tip>{A_nameDef} spends a few hours with them by the water, learning their calls and how they set their decoys. Practice with animals.</tip>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has given {A_nameDef} a reed whistle and taken {A_objective} down to the water.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R4-C4. Snow-carvers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_SnowCarvers</defName>
+    <label>snow-carvers</label>
+    <workerClass>ColonyCouncil.CampWorker_R4KSnowCarvers</workerClass>
+    <arrives>9~15</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.25</weight>
+    <seasons>
+      <li>Winter</li>
+      <li>PermanentWinter</li>
+    </seasons>
+    <winter>true</winter>
+    <wearSet>Rimfolk_CampWear_Winter</wearSet>
+    <people>3~5</people>
+    <days>3~5</days>
+    <ages>14~60</ages>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.12</helpChance>
+    <help>
+      <li>show</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+      <li>Clothes</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.4</tensionPerDay>
+    <extendChance>0.35</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Husky</li><li>Muffalo</li><li>Yak</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Snow-carvers</li>
+      <li>[their:tribal] The carvers of a winter gathering</li>
+      <li>[their:medieval] A winter fair's snow-carvers</li>
+      <li>[their:industrial] An ice-sculpture club</li>
+      <li>[their:spacer] Artists with heated cutters</li>
+    </titles>
+    <texts>
+      <li>A group from {FACTION} has come over the snow with shovels, saws and wide wooden paddles. {X_nameDef} told {A_nameDef} they make figures out of snow wherever it lies deep enough, and asked to camp {PLACE} for a few days.</li>
+      <li>[their:tribal] Snow-carvers of {FACTION} have come for their winter gathering, carrying paddles of bone and wood. {X_nameDef} told {A_nameDef} they shape the land's animals out of the snow each winter, and asked to camp {PLACE}.</li>
+      <li>[their:medieval] Snow-carvers of {FACTION}, on their way to a winter fair, have come with ice saws and lanterns. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and practise on the colony's snow.</li>
+      <li>[their:industrial] An ice-sculpture club of {FACTION} has arrived on a winter tour, with saws, chisels and a portable stove. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and work while the snow is this good.</li>
+      <li>[their:spacer] A few artists of {FACTION} have set down with heated cutters and light sticks. {X_nameDef} told {A_nameDef} snow is the only thing they work in that nobody can keep, and asked to camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The snow-carvers' camp is up {PLACE}, the snow round their fire already heaped up for the first figure.</li>
+      <li>The snow-carvers of {FACTION} have made camp {PLACE}, and two of them are already arguing over the shape of a heap of snow.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the snow-carvers camped {PLACE} says {X_pronoun} would like to spend a whole winter in one place for once, and asks whether the colony would have {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>[figures] The snow-carvers went on, and left their snow figures standing by the old camp until the thaw.</li>
+      <li>The snow-carvers of {FACTION} packed their paddles and went on across the snow.</li>
+      <li>The snow-carvers' camp {PLACE} is empty, the snow round it trodden flat.</li>
+    </farewell>
+    <lines>
+      <li>Pack it hard first, then carve.</li>
+      <li>This snow is perfect, not too wet and not too dry.</li>
+      <li>Nobody gets to keep these, that's the point.</li>
+      <li>Watch the ears, they always break off.</li>
+      <li>My fingers can't feel the paddle anymore.</li>
+      <li>[evening] Light the lanterns round the figures.</li>
+      <li>[their:tribal] Make the bear bigger than the last one.</li>
+      <li>[their:spacer] Turn the cutter down, it's melting too much.</li>
+    </lines>
+    <momentLines>
+      <li>[shape] Pack it in there, and smooth it with your mitten.</li>
+      <li>[shape] Higher on that side, it's leaning.</li>
+      <li>[figure] There, that one's done, stand back and look.</li>
+      <li>[figure] It'll stand until the thaw, and that's long enough.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[show] The snow-carvers {PLACE} lit lanterns among their snow figures at dusk and asked the colony over, and those who came walked between the figures and sat by the fire.</li>
+      <li>[tales] {A_nameDef} heard from the snow-carvers {PLACE} about the winter the whole town square was full of snow figures.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>evening</key>
+        <label>An evening among the snow figures</label>
+        <tip>Whoever wants walks over to their camp at dusk and spends a while among the figures with them.</tip>
+        <needs>evening</needs>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} is lighting the lanterns among the figures, and the colony is invited over.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening among the snow figures</label><spots><li>Camp</li></spots><hours>16~21</hours><duration>1~2</duration><guests>camp</guests></li>
+        </effects>
+      </li>
+      <li>
+        <key>make</key>
+        <label>Have {A_nameDef} make a figure with them</label>
+        <tip>{A_nameDef} walks over to their camp and works with them for an hour. The finished figure stands by their camp until the thaw.</tip>
+        <once>false</once>
+        <tension>-2</tension>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is walking over to the snow-carvers' camp, and {X_nameDef} is already heaping up the snow.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Camp</to><label>making a snow figure</label><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_R4KSnowFigure" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn how they shape the snow</label>
+        <tip>{A_nameDef} spends a few hours with them, learning to pack and carve the snow. Practice in art.</tip>
+        <skill>Artistic</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has handed {A_nameDef} a paddle and pointed at a heap of snow.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Artistic</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R4-C5. Cheesemakers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Cheesemakers</defName>
+    <label>cheesemakers</label>
+    <workerClass>ColonyCouncil.CampWorker_R4KCheesemakers</workerClass>
+    <arrives>8~14</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.25</weight>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+    </seasons>
+    <family>true</family>
+    <people>3~5</people>
+    <days>4~7</days>
+    <ages>12~65</ages>
+    <trader>true</trader>
+    <traderGoods>
+      <li><defs><li MayRequire="vanillaexpanded.vcooke">VCE_Cheese</li></defs><count>10~20</count></li>
+      <li><defs><li>Milk</li></defs><count>20~40</count></li>
+    </traderGoods>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.12</helpChance>
+    <help>
+      <li>milk</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Textiles</li>
+      <li>Meal</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.08</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>stall</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Chop</li></works>
+    <animals>
+      <li><kinds><li>Goat</li></kinds><count>3~4</count><at>pasture</at></li>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>Milk</li></defs><count>20~30</count><at>stash</at></li>
+    </campGoods>
+    <titles>
+      <li>Cheesemakers</li>
+      <li>[their:tribal] Herders with their curds</li>
+      <li>[their:medieval] Cheesemakers from the high pastures</li>
+      <li>[their:industrial] A dairy cooperative's cart</li>
+      <li>[their:spacer] A hand dairy</li>
+    </titles>
+    <texts>
+      <li>A family of {FACTION} has come over the hills with a few goats, a big copper pot and a rack of round cheeses wrapped in cloth. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for a few days, where the goats can graze, and make cheese.</li>
+      <li>[their:tribal] Herders of {FACTION} have come up with their goats and skin bags of curds hanging from a pole. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} while the grazing is good.</li>
+      <li>[their:medieval] Cheesemakers of {FACTION} have come down from the high pastures with their goats, a cauldron and a press. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and make cheese a few days before going on to market.</li>
+      <li>[their:industrial] A dairy cooperative's cart from {FACTION} has stopped by the colony with a family, their goats and a small press. {X_nameDef} told {A_nameDef} they sell cheese up and down the hills, and asked to camp {PLACE}.</li>
+      <li>[their:spacer] A family of {FACTION} has come with goats and a hand press. {X_nameDef} told {A_nameDef} their people make everything in vats, and they keep the old dairy going because they like the taste, and asked to camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The cheesemakers' camp is up {PLACE}, the goats grazing beyond it and the pot already warming over the fire.</li>
+      <li>The cheesemakers of {FACTION} have made camp {PLACE}, and the smell of warm milk drifts over to the colony.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the cheesemakers camped {PLACE} says {X_pronoun} would like to keep goats in one place for a change, and asks whether the colony would have {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>[cheese] The cheesemakers loaded their new cheeses and went on over the hills with the goats.</li>
+      <li>The cheesemakers of {FACTION} rounded up the goats and went on to market.</li>
+      <li>The cheesemakers' camp {PLACE} is empty, and the grass where the goats grazed is cropped short.</li>
+    </farewell>
+    <lines>
+      <li>Not too hot, or the curd goes tough.</li>
+      <li>That goat's had her head through the fence again.</li>
+      <li>A cheese like this wants a month in a cool place.</li>
+      <li>Salt it now, before the flies find it.</li>
+      <li>The grass up here makes the best milk.</li>
+      <li>[morning] Milk first, then breakfast.</li>
+      <li>[their:tribal] Hang the bag where the wind can get at it.</li>
+      <li>[their:industrial] Market wants the small rounds this year.</li>
+    </lines>
+    <momentLines>
+      <li>[curd] Keep stirring, it's nearly setting.</li>
+      <li>[curd] Feel that, it's ready for the cloth.</li>
+      <li>[cheese] Another round for the shelf, and a good one.</li>
+      <li>[cheese] Into the press with it, and leave it till morning.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[milk] {X_nameDef} milked one of the goats {PLACE} and left {COUNT} {THING} at the edge of their camp for the colony.</li>
+      <li>[tales] {A_nameDef} sat with the cheesemakers {PLACE} and heard about the summer pastures high in the hills, where the goats go before the snow is gone.</li>
+    </helpTexts>
+    <asks>
+      <!-- The goats' milk (Source/ColonyCouncil/Camps/CampMilk.cs): the camps' own milk sale. -->
+      <li>
+        <key>milk</key>
+        <label>Buy the goats' milk: {THING}</label>
+        <tip>One of them milks every goat with milk to give and carries the milk to the colony's gate. Once it's set down there, the colony pays what it comes to at its worth, and a colonist takes the silver over to their camp.</tip>
+        <once>false</once>
+        <price>milk</price>
+        <needs>herdMilk</needs>
+        <tension>-3</tension>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} has gone out to the goats with a pail, and the milk will be set down by the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampMilkSale" />
+        </effects>
+      </li>
+      <li>
+        <key>cheese</key>
+        <label>Buy a wheel of their cheese ({COUNT} silver)</label>
+        <tip>One of them carries a round of their cheese to the colony's gate.</tip>
+        <silver>45</silver>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} took the silver and lifted a round of cheese off the rack. One of the family is carrying it to the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBringsAny"><things><li>VCE_Cheese</li></things><count>15</count></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn cheesemaking</label>
+        <tip>{A_nameDef} spends a few hours at their pot, learning when the curd is ready and how much salt it takes. Practice in cooking.</tip>
+        <skill>Cooking</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has put the stirring spoon in {A_nameDef}'s hand and told {A_objective} not to stop.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Cooking</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R4-C6. Instrument-makers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_InstrumentMakers</defName>
+    <label>instrument-makers</label>
+    <workerClass>ColonyCouncil.CampWorker_R4KInstruments</workerClass>
+    <arrives>10~17</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.2</weight>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+    </seasons>
+    <people>2~3</people>
+    <days>3~5</days>
+    <ages>18~70</ages>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>song</li>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Chop</li><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Instrument-makers</li>
+      <li>[their:tribal] Drum-makers</li>
+      <li>[their:medieval] Harp-makers</li>
+      <li>[their:industrial] A piano maker's cart</li>
+      <li>[their:spacer] Harpsichord-makers</li>
+    </titles>
+    <texts>
+      <li>Instrument-makers of {FACTION} have come with a cart, its load wrapped in blankets and roped down tight. {X_nameDef} told {A_nameDef} they make instruments and sell them where they can, and asked to camp {PLACE} for a few days.</li>
+      <li>[their:tribal] Drum-makers of {FACTION} have come with skins stretched on frames and a drum on every back. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and work a few days.</li>
+      <li>[their:medieval] A harp-maker of {FACTION} and an apprentice have come up the road with a harp lashed to a mule. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and offered to play in the evenings.</li>
+      <li>[their:industrial] A piano maker of {FACTION} has arrived with a cart, a tuner and a piano under a tarpaulin. {X_nameDef} told {A_nameDef} they tune and sell pianos up and down the road, and asked to camp {PLACE}.</li>
+      <li>[their:spacer] Instrument-makers of {FACTION} have set down with a harpsichord in a padded crate. {X_nameDef} told {A_nameDef} their people value old instruments made by hand, and asked to camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The instrument-makers' camp is up {PLACE}, with their own instrument set out by the fire under an awning.</li>
+      <li>The instrument-makers of {FACTION} have made camp {PLACE}, and the sound of tuning carries over to the colony.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the instrument-makers camped {PLACE} says {X_pronoun} would like a workshop that stays in one place, and asks whether the colony would have {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>[sold] The instrument-makers packed up their cart and went on, glad to know one of their instruments stays at the colony.</li>
+      <li>The instrument-makers of {FACTION} wrapped their instrument in its blankets and went on.</li>
+      <li>The instrument-makers' camp {PLACE} is empty, and the evenings are quiet again.</li>
+    </farewell>
+    <lines>
+      <li>That string's flat again, the damp gets into it.</li>
+      <li>Good wood sings before you've even finished it.</li>
+      <li>Careful with the cart, there's a year's work on it.</li>
+      <li>Play it every day or it forgets how.</li>
+      <li>Listen, can you hear the difference?</li>
+      <li>[evening] Who's playing tonight?</li>
+      <li>[their:tribal] Stretch the skin while it's wet.</li>
+      <li>[their:industrial] The hammers need felting again.</li>
+    </lines>
+    <momentLines>
+      <li>[tune] Once more, a little tighter.</li>
+      <li>[tune] Hand me the small chisel, the fine one.</li>
+      <li>[play] Here's one from our own country.</li>
+      <li>[play] Sit down, this one's slow.</li>
+      <li>[sold] It'll sound better every year you play it.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[song] The instrument-makers {PLACE} played at their fire through the evening, and those of the colony who walked over to listen stayed late.</li>
+      <li>[tales] {A_nameDef} sat with the instrument-makers {PLACE} and heard how they choose the wood for a sounding board.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>buy</key>
+        <label>Buy a {INSTRUMENT} from them ({COUNT} silver)</label>
+        <tip>They finish a new {INSTRUMENT}, pack it, and set it out at the edge of their camp for the colony to fetch and set up.</tip>
+        <silver>280</silver>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} counted the silver twice and went to finish the last of the work on a new {INSTRUMENT}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4KBuyInstrument" />
+        </effects>
+      </li>
+      <li>
+        <key>evening</key>
+        <label>An evening of their music</label>
+        <tip>Whoever wants walks over to their camp in the evening to listen to them play.</tip>
+        <needs>evening</needs>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} is tuning up, and the colony is invited over to listen.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an evening of the instrument-makers' music</label><spots><li>Camp</li></spots><music>true</music><hours>17~21</hours><duration>1.5~2</duration><guests>camp</guests></li>
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn to play</label>
+        <tip>{A_nameDef} spends a few hours with them, learning how to play their instrument. Practice in art.</tip>
+        <skill>Artistic</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has sat {A_nameDef} down at the instrument and placed {A_possessive} hands where they go.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Artistic</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+</Defs>

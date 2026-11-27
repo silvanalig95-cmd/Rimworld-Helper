@@ -164,6 +164,17 @@ PLAY = {
     "DilemmaEffect_R3ColdRoom": "a cold store marked",
     "DilemmaEffect_R3Dinner": "dinner in the field or at the table",
     "DilemmaEffect_R3Clothes": "a tailoring bill or clothes from the stores",
+    # round 4, camps and events (Happenings/Workers_Round4.cs): the crows watched off the field, shot at or let be; the
+    # meltwater mopped, its door kept shut or left; in before dusk or bitten by the midges; what the storm threw up carried
+    # in or left to the sea; ash on the icy paths or left; the old tree felled, a seat under it or left; the field's stones
+    # carried off, cut into blocks at the bench or sown round.
+    "DilemmaEffect_R4ECrows": "watched off, shot at or let be",
+    "DilemmaEffect_R4EMelt": "mopped, shut out or left",
+    "DilemmaEffect_R4EMidges": "in before dusk, or bitten",
+    "DilemmaEffect_R4EShore": "carried in or left to the sea",
+    "DilemmaEffect_R4EIce": "ash on the paths, or left",
+    "DilemmaEffect_R4EOldTree": "felled, a seat under it, or left",
+    "DilemmaEffect_R4EStones": "carried off, a bill for blocks, or left",
     # Its council questions (Dilemmas/DilemmaWorkers_Round2.cs): the dead's room given, cleared or kept, words or an hour
     # there; the dead laid down by the game's own burying or cremating; the ordeal at the hearth; the feast kept later; a
     # gathering at the new age's first building; a camp's dead given a grave or carried away; work handed over for a season.

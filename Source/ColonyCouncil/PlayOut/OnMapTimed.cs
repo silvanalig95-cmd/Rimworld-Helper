@@ -72,7 +72,17 @@ namespace ColonyCouncil
         /// <summary>The third round: seals (or otters) on the shore by the fishing ground, driven off, hunted or let be.</summary>
         R3Seals,
         /// <summary>The third round: dinner carried out to those at work in a far field at midday, eaten there together.</summary>
-        R3Dinner
+        R3Dinner,
+        /// <summary>The content round 4 (Happenings/Workers_Round4.cs): crows on the new field, watched, shot at or let be.</summary>
+        R4ECrows,
+        /// <summary>The fourth round: meltwater running in under the door of a room under the mountain, mopped, shut out or left.</summary>
+        R4EMelt,
+        /// <summary>The fourth round: midges at dusk by the wet ground, smudge fires, in before dusk or put up with.</summary>
+        R4EMidges,
+        /// <summary>The fourth round: what the storm threw up on the shore, gathered in or left to the sea.</summary>
+        R4EShore,
+        /// <summary>The fourth round: ice on the paths outside the doors, gritted or left until it thaws.</summary>
+        R4EIce
     }
 
     /// <summary>One thing an answer keeps on the map for a while, and when it ends.</summary>
@@ -275,6 +285,12 @@ namespace ColonyCouncil
                 case TimedKind.R3Seals:
                 case TimedKind.R3Dinner:
                     return Round3Map.Step(k, now);
+                case TimedKind.R4ECrows:
+                case TimedKind.R4EMelt:
+                case TimedKind.R4EMidges:
+                case TimedKind.R4EShore:
+                case TimedKind.R4EIce:
+                    return R4EMap.Step(k, now);
                 default: return true;
             }
         }
@@ -339,6 +355,13 @@ namespace ColonyCouncil
                 case TimedKind.R3Seals:
                 case TimedKind.R3Dinner:
                     Round3Map.End(k, early);
+                    break;
+                case TimedKind.R4ECrows:
+                case TimedKind.R4EMelt:
+                case TimedKind.R4EMidges:
+                case TimedKind.R4EShore:
+                case TimedKind.R4EIce:
+                    R4EMap.End(k, early);
                     break;
             }
         }

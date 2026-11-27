@@ -11,7 +11,8 @@ the map (an `IncidentDef` with a `HappeningExtension`, its answers through the d
 of `OnMapTimed`'s kinds, as rounds 2 and 3 did). No new system, window, setting or saved collection. The camps fit 0.307.0's
 packs and shared store: what they make, buy, are given or take goes into their store and is shared out among the packs when
 they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); what they sell is carried to the colony's gate by one of
-them (`Camp.BringFound`, `StartBring`), nothing goes any other way.
+them (`Camp.StartBring`) or, a piece of their own making, set out at the edge of their camp nearest the colony for the
+colony's haulers to fetch (`CampRound4.SetOut`, the camp's share spot); nothing goes any other way.
 
 ## The rules on every item
 
@@ -47,9 +48,10 @@ cooking. Two with a risk (ice on the paths, midges at dusk), the rest peaceful.
 - **On the map:** a family of two to four with a pack beast; by day one or two of them sit at a block by their fire and
   carve (the round 2 carving job, chips flying); they fell a tree now and then for their wood (the camps' own felling).
 - **Answers (their page):** have {A} sit for a carving (silver): {A} walks over to their fire, and once {A} has sat with the
-  carver an hour, a small wooden sculpture with {A}'s name in its title is made and one of them carries it to the colony's
-  gate (the game's own small sculpture, minified, the carver's art). If {A} never sits down with them, the silver is brought
-  back. Learn their craft (a lesson, art). Buy one of their carvings (silver; a small wooden sculpture carried to the gate).
+  carver an hour, a small wooden sculpture with {A}'s name in its title is made and set out at the edge of their camp for
+  the colony to fetch (the game's own small sculpture, packed, the carver's art). If {A} never sits down with them, the
+  silver is brought back to the gate. Learn their craft (a lesson, art). Buy one of their carvings (silver; a small wooden
+  sculpture set out the same way).
 - **Every age:** carvers of wood and bone with figures of the land's animals (tribal), a woodcarver's family with saints,
   toys and bowls (medieval), a family of whittlers selling carved figures from a cart (industrial), carvers who work real
   wood by hand, a rarity among their people (spacer).
@@ -64,8 +66,9 @@ cooking. Two with a risk (ice on the paths, midges at dusk), the rest peaceful.
   land. When a fire burns in the open anywhere within reach of their camp (the game's own fire, from lightning, a raid or the
   colony's own doing), two of them run to it and beat it out (the game's own beating of a fire), told once a day.
 - **Answers (their page):** have them cut a firebreak round the colony's biggest field (silver): over the working hours two
-  of them cut the dry wild grass and bushes in a strip just outside the field (the game's own cutting; never a tree, a crop
-  or anything inside the colony's home ground), a few dozen plants at most. Learn from them (a lesson, plants).
+  of them cut the dry wild grass and bushes in a strip just outside the field (the game's own cutting, a few at a time;
+  never a tree, a crop, a plant that gives a harvest or anything in a zone), forty plants at most. Learn from them (a
+  lesson, plants).
 - **Every age:** watchers with green-branch beaters and a horn (tribal), a town's beacon watch with wet sacks and buckets
   (medieval), fire lookouts with a spyglass and shovels (industrial), a fire crew with a drone and foam packs (spacer).
 - **Harm:** none to the colony (a fire's own burns to them are the game's). **Mods:** none needed.
@@ -120,7 +123,8 @@ cooking. Two with a risk (ice on the paths, midges at dusk), the rest peaceful.
 - **On the map:** two or three makers with a cart; their own instrument of their age stands by their fire (theirs, packed
   again when they go); by day one of them works at a new one (fitting and tuning), and in the evening one plays theirs, notes
   over their head.
-- **Answers (their page):** buy an instrument of their age (silver; a new one, packed, carried to the colony's gate); an
+- **Answers (their page):** buy an instrument of their age (silver; a new one, packed and set out at the edge of their camp
+  for the colony to fetch); an
   evening of their music (a gathering at their camp with music, their people as guests); learn to play (a lesson, art).
 - **Every age:** drum-makers (tribal: Ideology's drum), harp-makers (medieval: Royalty's harp), a piano maker's cart
   (industrial: Vanilla Furniture Expanded's upright piano, else Royalty's piano), harpsichord-makers (spacer: Royalty's
@@ -145,8 +149,8 @@ cooking. Two with a risk (ice on the paths, midges at dusk), the rest peaceful.
 - **On the map:** five to eight crows come in from the edge and walk about the field among the seedlings; every couple of
   hours they pull up one or two (the young plant gone, a puff of dust), until the answer.
 - **Answers:**
-  1. *{B} keeps watch in the field:* {B} walks out and goes about the field until evening; the crows near {B} run off to the
-     far side and then off the land; nothing more is pulled up while {B} is there.
+  1. *{B} keeps watch in the field:* {B} walks out and goes about the field until evening; the crows {B} comes near run off
+     the land; nothing more is pulled up while {B} is there.
   2. *Shoot two to scare off the rest:* the two nearest are marked for the hunters (the game's own hunt); once one falls the
      rest leave the land.
   3. *Let them have their share:* they peck about until evening (a few more seedlings lost, ten at most) and then go.
@@ -171,7 +175,7 @@ cooking. Two with a risk (ice on the paths, midges at dusk), the rest peaceful.
   cold room under the rock.
 
 **R4-E3. Midges at dusk** (the marsh, summer; field work by the water)
-- **When:** in a warm summer afternoon, a field of the colony's lies within reach of wet ground (marsh, mud, shallow water).
+- **When:** in a warm summer afternoon, the colony's biggest field lies within reach of wet ground (marsh, mud, shallow water).
 - **On the map:** {A}, working that field, says the midges come up off the wet ground at dusk; for the next two evenings
   those out by the wet ground at dusk slap at them (bubbles).
 - **Answers:**
@@ -210,7 +214,8 @@ cooking. Two with a risk (ice on the paths, midges at dusk), the rest peaceful.
      lasts nobody slips.
   2. *Only by the busiest doors:* {B} does the two doors used most; away from them the risk stays.
   3. *Leave it until it thaws:* until it thaws (or a day and a half), anyone walking out on the colony's ground may slip:
-     a small chance of a sprained ankle (`Council_Ail_SprainedAnkle`, `HarmKinds.Dangers`), named and told.
+     a small chance of a sprained ankle (`Council_Ail_SprainedAnkle`, `HarmKinds.Dangers`; one chance in two hundred an
+     hour for one walking out, before the budget's scale, twice at most in a spell), named and told.
 - **Every age:** ash from the hearth (tribal, medieval), grit and salt (industrial), a spreader (spacer).
 - **Harm:** answers 2 and 3, through the shared budget, named under the answer.
 - Not a duplicate of snow on the roof, the first snow, the night's cold, not in by dark or the thaw.
