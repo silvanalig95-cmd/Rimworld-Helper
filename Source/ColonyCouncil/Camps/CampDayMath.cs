@@ -158,9 +158,23 @@ namespace ColonyCouncil
         /// A stack they brought to build with goes back in a pack (Camps/CampStore.cs): once their camp stands and nothing of
         /// theirs is under way, and no piece of theirs still needs it; never what they put out on purpose, what someone has in
         /// hand, or what the colony took. Until 21 November 2026 it lay where it was set down for the rest of the stay (the
-        /// grove-keepers' leather in the player's save of that day, half gone in the weather).
+        /// grove-keepers' leather in the player's save of that day, half gone in the weather). Since 27 November 2026 only
+        /// where no store of theirs takes it (a camp with no shelf or store tent, or one full): what the group shares goes in
+        /// their store, a pack is for a person's own things (the player: "they should keep to their personal inventory ...
+        /// what will be only relevant for this pawn individually, and things that could be shared or used or gathered from
+        /// different visitors should be put into the general storage"); it is shared out among the packs when they go
+        /// (<see cref="TakeFirst"/>).
         /// </summary>
-        public static bool Repacks(RepackFacts f) => f.brought && f.theirs && f.atCamp && f.settled && !f.underWay && !f.needed && !f.putOut && !f.busy && !f.inColony;
+        public static bool Repacks(RepackFacts f) => f.brought && f.theirs && f.atCamp && f.settled && !f.underWay && !f.needed && !f.putOut && !f.busy && !f.inColony
+                                                    && !f.inStore && !f.storeTakes;
+
+        /// <summary>
+        /// Leaving in their own time, what of the camp's goods they take first, as far as they can carry (the player: "they
+        /// should take out and with them when they leave whatever they still need ... or maybe leave back what they don't
+        /// need"): food and medicine first, then what is worth the most for its weight (silver, fine things), the bulky and
+        /// cheap last (logs, stone), and what doesn't fit is left at their camp for anyone. Higher goes first.
+        /// </summary>
+        public static float TakeFirst(bool food, bool medicine, float valuePerKilo) => (food || medicine ? 1000f : 0f) + Math.Max(0f, Math.Min(valuePerKilo, 999f));
 
         /// <summary>How much of a stack one trip carries into the store: what the cell has room for and the carrier can lift, at least one.</summary>
         public static int StowCount(int stack, int room, int carry) => Math.Max(1, Math.Min(stack, Math.Min(Math.Max(1, room), Math.Max(1, carry))));
@@ -253,6 +267,8 @@ namespace ColonyCouncil
         public bool putOut;
         /// <summary>Someone has it in hand or reserved.</summary>
         public bool busy;
+        /// <summary>In one of their own stores already, or a store of theirs takes it and has room: it stays with the group's goods.</summary>
+        public bool inStore, storeTakes;
         /// <summary>In the colony's storage or its home area: taken, not theirs to fetch.</summary>
         public bool inColony;
     }

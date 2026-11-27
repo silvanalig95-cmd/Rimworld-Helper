@@ -1101,17 +1101,60 @@ namespace ColonyCouncil
                 AbandonGoods();
                 return;
             }
-            // What they can't take is left for the colony (the hermit's woodpile, with the hut); the rest goes with them.
+            // What they can't take is left for the colony (the hermit's woodpile, with the hut); the rest is shared out among
+            // their packs and their pack animals by what each can carry, what they need first; what doesn't fit stays for anyone.
             LeaveGoods();
-            foreach (var t in Goods())
-            {
-                Disown(t);
-                if (carriers.Count == 0) break;
-                if (t.Spawned) t.DeSpawn();
-                if (!carriers.RandomElement().inventory.innerContainer.TryAdd(t) && !t.Destroyed) t.Destroy();
-            }
+            TakeGoods(carriers.Concat(lord.ownedPawns.Where(a => a != null && !a.Dead && a.Spawned && a.Map == map && a.RaceProps.packAnimal && a.inventory != null))
+                .Where(p => !p.Downed).Distinct().ToList());
             // At the end of their stay, what they leave at the camp: a ring of seeds round the old fire, a backdrop on the stage.
             if (ending == "time") LeaveGifts(fire, taskSpot);
+        }
+
+        /// <summary>What they couldn't carry as they went, in words, for the leaving message; not saved, the message goes the same hour.</summary>
+        [Unsaved] private string leftUncarried;
+
+        /// <summary>
+        /// Their goods at the camp into their packs as they go (<see cref="CampDayMath.TakeFirst"/>): each stack, food and
+        /// medicine first and then what is worth most for its weight, to whoever can carry the most of it, split where one
+        /// can carry only part; what nobody can carry stays where it lies, no longer theirs and free to take. A person's own
+        /// things stay in their own pack as they were.
+        /// </summary>
+        private void TakeGoods(List<Pawn> carriers)
+        {
+            leftUncarried = null;
+            var left = new List<string>();
+            float ValuePerKilo(Thing t)
+            {
+                float mass = t.GetStatValue(StatDefOf.Mass);
+                return mass > 0.001f ? t.MarketValue / mass : 999f;
+            }
+            foreach (var t in Goods().OrderByDescending(x => CampDayMath.TakeFirst(x.def.IsNutritionGivingIngestible && !(x is Corpse), x.def.IsMedicine, ValuePerKilo(x))).ToList())
+            {
+                Disown(t);
+                if (t.Destroyed) continue;
+                float each = Mathf.Max(0f, t.GetStatValue(StatDefOf.Mass));
+                while (!t.Destroyed && t.stackCount > 0 && carriers.Count > 0)
+                {
+                    var carrier = carriers.OrderByDescending(MassUtility.FreeSpace).First();
+                    float free = MassUtility.FreeSpace(carrier);
+                    int n = each <= 0.001f ? t.stackCount : Mathf.Min(t.stackCount, Mathf.FloorToInt(free / each));
+                    if (n <= 0) break;
+                    var part = n >= t.stackCount ? t : t.SplitOff(n);
+                    if (part.Spawned) part.DeSpawn();
+                    if (!carrier.inventory.innerContainer.TryAdd(part))
+                    {
+                        // No room after all: put back where it was taken from, for anyone.
+                        if (!part.Destroyed && stash.IsValid) GenPlace.TryPlaceThing(part, stash, map, ThingPlaceMode.Near);
+                        break;
+                    }
+                    if (part == t) break;
+                }
+                if (t.Destroyed || !t.Spawned || t.ParentHolder is Pawn_InventoryTracker) continue;
+                t.SetForbidden(false, false);
+                string label = t.LabelNoCount;
+                if (!left.Contains(label)) left.Add(label);
+            }
+            if (left.Count > 0) leftUncarried = TextUtil.JoinAnd(left.Take(4).ToList());
         }
 
         /// <summary>Half a day after they set off (or broke out of a fight), whoever is still here is stuck: walled in, or lost.</summary>

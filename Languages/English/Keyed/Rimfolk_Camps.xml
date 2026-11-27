@@ -263,6 +263,7 @@
   <CC_CampLeft_What_fence>a pen</CC_CampLeft_What_fence>
   <CC_CampLeft_What_fireseat>seats round the fire</CC_CampLeft_What_fireseat>
   <CC_CampLeft_StandingColony>They left their post standing for the colony that hired them: {THING} are the colony's now.</CC_CampLeft_StandingColony>
+  <CC_CampLeft_Uncarried>They could not carry it all, and left {THING} at their camp for whoever wants it.</CC_CampLeft_Uncarried>
   <CC_CampLeft_Woodpile>They left a woodpile of the logs they cut by their old fire.</CC_CampLeft_Woodpile>
   <CC_CampLeft_Hides>They left hides of their kills at the edge of their camp nearest the colony.</CC_CampLeft_Hides>
   <CC_CampLeft_Cairn>They stacked the stone they cut into a cairn by their old fire.</CC_CampLeft_Cairn>

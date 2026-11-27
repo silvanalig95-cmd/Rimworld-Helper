@@ -141,9 +141,23 @@ public static class CampStoreTests
                      ("while a piece still needs it", x => { x.needed = true; return x; }),
                      ("put out on purpose", x => { x.putOut = true; return x; }),
                      ("in someone's hands", x => { x.busy = true; return x; }),
-                     ("taken by the colony", x => { x.inColony = true; return x; })
+                     ("taken by the colony", x => { x.inColony = true; return x; }),
+                     ("in their store already: the group's goods stay there", x => { x.inStore = true; return x; }),
+                     ("a store of theirs takes it: carried there, not into a pack", x => { x.storeTakes = true; return x; })
                  })
             C(!CampDayMath.Repacks(f(ready)), "not repacked: " + why);
+
+        // ---------------- What they take when they go ----------------
+
+        float food = CampDayMath.TakeFirst(true, false, 2f), medicine = CampDayMath.TakeFirst(false, true, 30f), silver = CampDayMath.TakeFirst(false, false, 100f),
+            logs = CampDayMath.TakeFirst(false, false, 0.2f), stone = CampDayMath.TakeFirst(false, false, 0.05f);
+        C(food > silver && medicine > silver && silver > logs && logs > stone, "food and medicine first, then what is worth most for its weight, the bulky and cheap last");
+        C(CampDayMath.TakeFirst(false, false, 1e9f) < food, "however precious, never before their food");
+        string life = File.ReadAllText(Path.Combine(root, "Source", "ColonyCouncil", "Camps", "CampLife.cs"));
+        C(life.Contains("TakeGoods(carriers.Concat(") && life.Contains("MassUtility.FreeSpace") && life.Contains("t.SetForbidden(false, false);")
+          && !life.Contains("carriers.RandomElement().inventory.innerContainer.TryAdd(t)"),
+            "shared out among the packs and pack animals by what each can carry; what nobody can carry left for anyone");
+        C(File.ReadAllText(Path.Combine(root, "Languages", "English", "Keyed", "Rimfolk_Camps.xml")).Contains("<CC_CampLeft_Uncarried>"), "and the leaving message says what was left");
 
         // ---------------- Taken home ----------------
 

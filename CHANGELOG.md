@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A camp's own packs and its shared store
+
+*27 November 2026, version 0.307.0*
+
+- A camp keeps what the group shares in its store: what they brought to build with and didn't use now goes onto their shelf or into their store tent with what they gathered and made, not back into their packs. A pack holds a person's own things: their food for the road, their drink and their gear.
+- When a camp leaves in its own time, the store's goods are shared out among their packs and pack animals by what each can carry, food and medicine first, then what is worth most for its weight. What none of them can carry, often logs or stone, stays at their camp for whoever wants it, and the leaving message says what.
+
 ## The closest raises an orphan, and no Pokémon in the missing list
 
 *27 November 2026, version 0.306.1*

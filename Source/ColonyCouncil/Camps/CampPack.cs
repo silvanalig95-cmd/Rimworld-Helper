@@ -378,6 +378,7 @@ namespace ColonyCouncil
         {
             var parts = new List<string>();
             if (!standingWords.NullOrEmpty()) parts.Add(Text(standingKey ?? "CC_CampLeft_Standing", null, null, 0, standingWords));
+            if (!leftUncarried.NullOrEmpty()) parts.Add(Text("CC_CampLeft_Uncarried", null, null, 0, leftUncarried));
             foreach (var l in leftNow)
             {
                 string key = "CC_CampLeft_" + CampPackMath.Key(l);

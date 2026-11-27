@@ -254,7 +254,9 @@ namespace ColonyCouncil
             busy = packer != null && t != null && (!packer.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some) || Here.Any(o => o != packer && o.CurJob != null && o.CurJob.targetA.Thing == t)),
             settled = phase == CampPhase.Living && packingFor == null,
             underWay = growing != null || Unfinished().Count > 0,
-            needed = t != null && needed != null && needed.Contains(t.def)
+            needed = t != null && needed != null && needed.Contains(t.def),
+            inStore = t != null && InOwnStore(t),
+            storeTakes = t != null && StoreCellFor(t, packer, Stores()).IsValid
         };
 
         /// <summary>

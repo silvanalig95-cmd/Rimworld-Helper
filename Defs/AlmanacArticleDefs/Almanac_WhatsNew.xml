@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.307.0</version>
+        <date>27 November 2026</date>
+        <title>A camp's own packs and its shared store</title>
+        <points>
+          <li>A camp keeps what the group shares in its store: what they brought to build with and didn't use now goes onto their shelf or into their store tent with what they gathered and made, not back into their packs. A pack holds a person's own things: their food for the road, their drink and their gear.</li>
+          <li>When a camp leaves in its own time, the store's goods are shared out among their packs and pack animals by what each can carry, food and medicine first, then what is worth most for its weight. What none of them can carry, often logs or stone, stays at their camp for whoever wants it, and the leaving message says what.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.306.1</version>
         <date>27 November 2026</date>
         <title>The closest raises an orphan, and no Pokémon in the missing list</title>

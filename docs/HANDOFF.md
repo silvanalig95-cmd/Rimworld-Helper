@@ -931,24 +931,19 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
-- **To do when the player asks (25 November 2026, the player, with the save New_Arrivals54 of 07:03 and a screenshot of
-  Aravae Enmyar, Trader of Argwylon, her pack full: gin, an elven bow, a quiver and stacks of goods): what the camps
-  keep in their packs and what in their store.** The player: "So the camps now, I guess, probably set up storage, and I
-  assume with priority take stuff into their own inventory first. This overall makes sense, but I think they should
-  keep to their personal inventory, you know, what will be only relevant for this pawn individually, and things that
-  could be shared or used or gathered from different visitors should be put into the general storage. And they should
-  take out and with them when they leave whatever they still need, you know, or maybe leave back what they don't need or
-  a gift, but not, you know, unpack all their stuff and when they leave everything behind by default." What the code
-  does today: loose goods at the camp go onto their own shelf or into their store tent (`Camps/CampStore.cs`,
-  `CampDayMath.Stows`); stacks they brought to build with go back into a pack once the camp stands
-  (`CampDayMath.Repacks`); their trader's pack is their stock for trading and is never stored; on an orderly leave
-  everything of theirs still at the camp goes into their packs (`CampLife.Leave`), and only the stay's leftovers are
-  left (a woodpile, hides, a cairn, a gift, refuse: `CampPackMath.Leaves`); on a hurried leave (fleeing, unpaid, a
-  fight) everything is left (`AbandonGoods`). Not done: a split between a person's own things (their food for the road,
-  medicine, their tools, drugs they use) and the camp's shared goods (gathered, hunted, made, bought) in the store; each
-  taking back their own and what the group still needs when they go, the rest left as a gift or for whoever wants it.
-  First look at the save for what the player saw (whether goods are really left behind, or the pack is the trader's
-  stock); then a proposal. Nothing built until the player says so. No mod would help here (no graphics or sound).
+- **Done (27 November 2026, 0.307.0, on the player's go of that day): what the camps keep in their packs and what in
+  their store.** The player, 25 November 2026, with the save New_Arrivals54 and a screenshot of Aravae Enmyar's full pack:
+  "I think they should keep to their personal inventory, you know, what will be only relevant for this pawn
+  individually, and things that could be shared or used or gathered from different visitors should be put into the
+  general storage. And they should take out and with them when they leave whatever they still need, you know, or maybe
+  leave back what they don't need or a gift, but not, you know, unpack all their stuff and when they leave everything
+  behind by default." Found in the save: the camp was a war party of two wood-elf archers; Aravae's gin, magicyte,
+  silver and spare bow were the game's own pawn generation, Rimfolk's part was their road food (pemmican, meals) and the
+  building stock put back in a pack (cloth, logs). Built: `CampDayMath.Repacks` no longer for what is in a store or what a
+  store takes (`RepackFacts.inStore`, `storeTakes`); leaving in their own time, `Camp.TakeGoods` shares the camp's goods
+  among the packs and pack animals by free mass (`MassUtility.FreeSpace`), food and medicine first and then by value
+  per kilo (`CampDayMath.TakeFirst`), what doesn't fit left unforbidden at the camp and named in the leaving message
+  (`CC_CampLeft_Uncarried`). A hurried leave still leaves everything. Tests: CampStoreTests.
 - **Done (25 November 2026, 0.304.0): painted conditions and the people list.** The player: "Painted variants for the
   conditions a colonist goes through ... something like lightly wounded, heavily wounded, ill, freezing, sleeping etc.
   are much more likely and also generically applicable", and "the game should provide details of which variants it
