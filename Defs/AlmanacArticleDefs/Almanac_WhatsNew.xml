@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.313.0</version>
+        <date>27 November 2026</date>
+        <title>Six more camps and six more world events</title>
+        <points>
+          <li>Six new camps: rain-callers, dyers, witch-finders, rag-and-bone men, gamblers and dog-breeders.</li>
+          <li>Rain-callers keep a rite by their fire each evening and ask for a fee only if the rain comes. The rain is the game's own weather, and if it rains on your land after their rite, the promised fee is carried out to them and they go.</li>
+          <li>Send someone to the dyers and their coat or shirt comes back in the camp's colour: woad or madder before the mills, aniline colours after.</li>
+          <li>Witch-finders ask to question someone of the colony at their fire. A good talker is likelier to be cleared, and refusing them makes their camp uneasy.</li>
+          <li>Gamblers play every evening, and someone sent with a stake may come back with twice as much, lose it, or catch their loaded dice. A dog bought from the dog-breeders keeps at your best handler's heels for a day.</li>
+          <li>Six new world events, each in its people's age: a mine falls in, the fouled wells, an expedition, a ransom, the year of the rats and a new way spreads. You can send your best miner to help dig out trapped miners, and in the year of the rats a rat-catcher's dog clears your land.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.312.0</version>
         <date>27 November 2026</date>
         <title>Eight new events on the map and six happenings of the gods on the land</title>

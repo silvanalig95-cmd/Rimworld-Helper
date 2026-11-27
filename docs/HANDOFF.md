@@ -931,6 +931,18 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.313.0, the player's go of that day): six camps and six world events, content round 3,
+  built in a worktree and merged.** The list: `docs/content-round-3-camps-world.md`. Camps in `Camps/CampRound3.cs`
+  (`CampWorker_R3RainCallers`, `_R3Dyers`, `_R3WitchFinders`, `_R3RagPickers`, `_R3Gamblers`, `_R3Kennel`; effects
+  `DilemmaEffect_R3RainFee`, `R3Dye`, `R3Question`, `R3Rags`, `R3CampClothes` (renamed at the merge: the events' round
+  has its own `DilemmaEffect_R3Clothes`), `R3Play`, `R3BuyDog`; helpers `CampRound3.Sit`, `Refund`,
+  `Camp.R3HasBeastToSell`), defs `Rimfolk_CampKinds_Round3.xml`. World events in `World/Variety/WorldRound3.cs`
+  (`SituationWorker_R3MineFall`, `R3Wells`, `R3Expedition`, `R3Ransom`, `R3Rats`, `R3NewWay`, `WorldEffect_R3Drawings`,
+  dev actions `Round3Debug`), defs `Rimfolk_WS_Round3.xml`; rules `World/Variety/Round3WorldMath.cs`; words
+  `Rimfolk_Round3_CampsWorld.xml`; sections on the camps' and world events' Almanac pages. Changed: "the beast of a
+  town" became the mine fall (storyline S4 has the beast), the fouled wells end in water from the hills (S10 has the
+  dry well). No hurt of its own, no saved collection. Tests: Round3CampsWorldTests, CampWordsSaidTests, FarErrandTests.
+  Not seen in the game.
 - **Done (27 November 2026, 0.312.0, the player's go of that day): eight map events and six happenings of the gods on
   the land, content round 3, built in a worktree and merged.** The list: `docs/content-round-3-events-gods.md` (R1 to R8,
   G1 to G6). Events `Defs/IncidentDefs/Rimfolk_Round3_Events.xml`, `Happenings/Workers_Round3.cs` (`HappeningWorker_R3*`,

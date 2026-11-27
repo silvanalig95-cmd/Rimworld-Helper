@@ -787,7 +787,7 @@ namespace ColonyCouncil
     }
 
     /// <summary>A bundle of mended clothes from the rag-and-bone men, of their age, carried to the colony's gate by one of them.</summary>
-    public class DilemmaEffect_R3Clothes : DilemmaEffect_CampBringsAny
+    public class DilemmaEffect_R3CampClothes : DilemmaEffect_CampBringsAny
     {
         /// <summary>
         /// What they mend and sell, by their age, from the player's mods and the game: Vanilla Factions Expanded - Tribals' light

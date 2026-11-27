@@ -616,7 +616,7 @@
           <li>{X_nameDef} took the silver and picked out the best of the mended clothes. One of them is carrying them to the colony's gate.</li>
         </outcomes>
         <effects>
-          <li Class="ColonyCouncil.DilemmaEffect_R3Clothes"><count>3</count></li>
+          <li Class="ColonyCouncil.DilemmaEffect_R3CampClothes"><count>3</count></li>
         </effects>
       </li>
     </asks>
