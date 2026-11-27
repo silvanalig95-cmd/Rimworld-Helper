@@ -440,7 +440,7 @@ namespace ColonyCouncil
                     if (!st.metRolled)
                     {
                         st.metRolled = true;
-                        if (Rand.Chance(Round2Math.FluChanceMet)) Flu(c, st, "CC_R2Herd_FluMet");
+                        if (Harm.On && Harm.SystemOn(HarmKinds.CampFever.system) && Harm.Roll(HarmKinds.CampFever, Round2Math.FluChanceMet)) Flu(c, st, "CC_R2Herd_FluMet");
                     }
                 }
             }
@@ -448,11 +448,11 @@ namespace ColonyCouncil
             if (st.tended && !st.tendRolled && st.tendedTick >= 0 && CampRound2.Now >= st.tendedTick + 3 * GenDate.TicksPerHour)
             {
                 st.tendRolled = true;
-                if (!st.flu && Rand.Chance(Round2Math.FluChanceTended)) Flu(c, st, "CC_R2Herd_FluTended");
+                if (!st.flu && Harm.On && Harm.SystemOn(HarmKinds.CampFever.system) && Harm.Roll(HarmKinds.CampFever, Round2Math.FluChanceTended)) Flu(c, st, "CC_R2Herd_FluTended");
             }
         }
 
-        /// <summary>The game's own animal flu, on the colony's beasts (its own incident and letter), and how it came, told.</summary>
+        /// <summary>The game's own animal flu, on the colony's beasts (its own incident and letter), and how it came, told; only with the hurts of everyday life on, through the shared harm budget (the fever at their fire).</summary>
         private static void Flu(Camp c, HerdApartState st, string how)
         {
             if (st.flu) return;

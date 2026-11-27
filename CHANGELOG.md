@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Six new camps and six new world events
+
+*27 November 2026, version 0.308.0*
+
+- Six new camps: diggers at old ruins, who may ask to dig old graves too and bring the colony a share on their last day; a herd kept apart while a sickness runs in the region's herds; stone-raisers; smugglers who trade only at night while a ban or a shortage runs; novices on the road; and a lord's hunt that names the beast it came for.
+- The stone-raisers raise their god's stone in the form of their age (a totemic slab, a megalith, an obelisk or a futuristic one from your mods) as a real frame where the game lets it be built. Once it stands it is the colony's, and it can be dedicated to a god.
+- Novices on the road trade stories of the gods with whoever you send to their fire, and your book hears their names for the gods. Your children at their fire hear a story too.
+- Six new world events, each in its people's age: a god put away, the dancing sickness, the restless dead, bad coin, a rising in the town and two claims on the valley.
+- A priest of a god put away can be taken in for a season: they camp by the colony, keep the god's rite at your place of it and tell its stories at their fire.
+- In the restless dead the colony decides whether to leave its dead as they lie, burn them at a crematorium or seal the graves. With Anomaly, one left as it lies may not stay down.
+
 ## A camp's own packs and its shared store
 
 *27 November 2026, version 0.307.0*

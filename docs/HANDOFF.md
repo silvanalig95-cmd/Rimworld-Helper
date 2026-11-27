@@ -931,6 +931,20 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.308.0, the player's go of that day): camps and world events of content round 2 (D33 to D44
+  of `docs/content-update-proposals-2.md`), built in a worktree and merged.** Six camp kinds in `Camps/CampRound2.cs`
+  (`CampWorker_Diggers`, `_HerdApart`, `_StoneRaisers`, `_Smugglers`, `_Novices`, `_LordsHunt`; state in each camp's
+  CampWorkState; `Camp.BringFound` carries a thing to the gate); six world events in `World/Variety/WorldRound2.cs`
+  (`SituationWorker_GodPutAway` with `WorldEffect_PriestStays` and `CampWorker_PutAwayPriest`, `_DancingSickness`,
+  `_RestlessDead` with `WorldEffect_BurnDead`, `_BadCoin`, `_Rising`, `_TwoClaims`); pure rules `World/Variety/Round2Math.cs`;
+  defs `Defs/CampDefs/Rimfolk_CampKinds_Round2.xml`, `Defs/WorldSituationDefs/Rimfolk_WS_Round2.xml`,
+  `Rimfolk_Round2_Thoughts.xml`, `Rimfolk_Round2_Hediffs.xml` (the dancing fever), words `Rimfolk_Round2.xml`; dev
+  actions in `World/Variety/Round2Debug.cs` ("Round 2: ..."). The herd's flu on the colony's beasts goes through the
+  harm budget (`HarmKinds.CampFever`; the lead's fix at the merge). Left out: the stone-raisers limited to peoples who
+  hold a god (no faction filter in the camp frame), D6's name-coining for the novices, harm to the lord's hunters and a
+  colonist riding along, D39's people's standing with the god, D42's traders without silver and "trade only goods",
+  D44's fealty. Tests: `Round2CampsWorldTests`, with CampWordsSaidTests, RegionYearsTests, OutsiderTalkTests. Nothing
+  seen in the game yet: the dev actions bring each camp and start each world event.
 - **Done (27 November 2026, 0.307.0, on the player's go of that day): what the camps keep in their packs and what in
   their store.** The player, 25 November 2026, with the save New_Arrivals54 and a screenshot of Aravae Enmyar's full pack:
   "I think they should keep to their personal inventory, you know, what will be only relevant for this pawn
