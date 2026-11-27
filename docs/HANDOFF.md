@@ -931,6 +931,20 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.309.0, the player's go of that day): the gods between the colony's people, content round 2
+  (D1 to D15 of `docs/content-update-proposals-2.md`; D6 not built), built in a worktree and merged.** Fourteen
+  `OwnHappening`s at the end of the enum (90 to 104), in the frame of 0.281.0; twelve of whichever god their people hold
+  (`OwnHappeningsMath.OfAnyGod`, `BetweenKind.AnyGod`), `EnnuBurying` and `PipWake` those gods' own. Code:
+  `Gods/OnMap/Between/BetweenFaith.cs` (`FaithBetween`; FaithDare, FaithCameThrough, FaithSides), `BetweenFaithHome.cs`
+  (FaithLittleShrine, FaithTurned, FaithTakenOffering, FaithGift), `BetweenFaithSigns.cs` (FaithBookRead,
+  FaithWeddingSign, FaithRaiderWord, FaithBargain, FaithLightning), `BetweenRound2Gods.cs` (EnnuBurying, PipWake,
+  `Patch_BetweenMachineLost`, `Patch_BetweenMechLost`), pure rules `Gods/OnMap/OwnBetweenFaithMath.cs`, 14 dev actions
+  ("Gods: the faithful's ..."). Words `Rimfolk_GodBetween_Round2.xml` (keyed and a FlavorExtensionDef), a secret
+  `Rimfolk_Secret_OfferingTaken`; DESIGN.md "More between the colony's people". Skipped: D6 (a new mechanic of the
+  book). Simplified: D2's doctor is the best doctor (no record of who tended whom), D3 without more frequent small rites,
+  D4 at a fresh grave (no eulogy gathering), D8 "the oldest of its kind" (no record of raids), D11 without the bird and
+  the mushroom ring, D14 without luck signs that have no record. Tests: GodsBetweenFaithTests, GodsBetweenTests,
+  OwnHappeningsTests. Not seen in the game: the scenes' timing and walking, the stranger, the strike.
 - **Done (27 November 2026, 0.308.0, the player's go of that day): camps and world events of content round 2 (D33 to D44
   of `docs/content-update-proposals-2.md`), built in a worktree and merged.** Six camp kinds in `Camps/CampRound2.cs`
   (`CampWorker_Diggers`, `_HerdApart`, `_StoneRaisers`, `_Smugglers`, `_Novices`, `_LordsHunt`; state in each camp's

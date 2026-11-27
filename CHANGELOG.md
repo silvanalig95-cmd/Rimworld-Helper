@@ -5,6 +5,19 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fourteen more happenings between your people and their gods
+
+*27 November 2026, version 0.309.0*
+
+- Fourteen new happenings between your colonists and their gods, most of them for whichever god a colonist holds: a scoffer's dare settled in the morning, a walk to the god's place after nearly dying, believers arguing at supper while two gods quarrel, and a gift left at the other's god's place after a quarrel.
+- A stranger may come to a fresh grave, say one true thing about the dead that nobody knew, and leave before dark. By morning something small lies on the grave.
+- Children may build a little place for a god at the edge of the colony; a grown-up helps, the keeper of the book tells them its name, or a scoffer kicks it over.
+- The keeper sometimes reads the newest pages of the colony's book of the gods aloud at the fire, and someone whose words were read may tell it their own way.
+- Someone may take an offering in the night while the colony believes the god took it; the one who saw it tells, or keeps it as a secret between the two.
+- A sign at a wedding is read as a blessing by one guest and a warning by another, a machine that served the colony long gets a wake at dusk, and a believer may say a word over a fallen raider of the same faith.
+- In a thunderstorm, lightning may strike a busy god's place where someone holds its rival, at the game's own rate of harm; its people rebuild it together the next morning.
+- A colonist with a run of luck may be accused to their face of a bargain with the dark, whether it is true or not.
+
 ## Six new camps and six new world events
 
 *27 November 2026, version 0.308.0*
