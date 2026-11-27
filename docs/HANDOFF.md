@@ -931,6 +931,21 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.310.0, the player's go of that day): storyteller events and council questions, content
+  round 2 (D16 to D32 of `docs/content-update-proposals-2.md`), built in a worktree and merged.** Events in
+  `Defs/IncidentDefs/Rimfolk_Round2_Events.xml` and `Happenings/Workers_Round2.cs` (`HappeningWorker_NotInByDark`,
+  `FishRunning`, `BearDen`, `WaterForFields`, `WrongAnimal`, `OneWhoHid`, `StuckInBog`, `BadAir`; what they keep on the map
+  in new `OnMapTimed` kinds stepped in `Round2Map`; the walled den a storyteller memo `beardenwall`). Council questions in
+  `Defs/DilemmaDefs/Rimfolk_Round2_Council.xml` and `Dilemmas/DilemmaWorkers_Round2.cs` (`Round2Context`; EmptyRoom,
+  LayThemDown, Ordeal, PrisonerPray, FeastAfterDeath, PathShrine, GodsWork, CampDead, NewAge; memos `deadroom`,
+  `latefeast`; a line in `Inheritance.Notify_Died`). Pure rules `Happenings/Round2EventsMath.cs` (renamed at the merge
+  from Round2Math, which the camps' round also used). Words `Rimfolk_Round2_Events.xml`. Simplified: D16 without a
+  moonless dark and riders, D21's hider spawned with no faction, D22 without pulling by mounts or vehicles, D23 under
+  `HarmKinds.Dangers`, D24 an ownerless dead's room, D26's trigger, D27 the watch kept in the cell (no escort out), D28
+  the feast held four days later by a memo, D30 one visit to ask pardon, D31 without the camp's visit to the grave, D32
+  a bonfire that evening. `docs/dilemma-balance.md` is stale (not regenerated): it flags PrisonerPray's "No" as dominated
+  among 62 others. Tests: Round2Tests. Not seen in the game: each play-out, the bear's spring walk-out, the arrest of the
+  one who hid.
 - **Done (27 November 2026, 0.309.0, the player's go of that day): the gods between the colony's people, content round 2
   (D1 to D15 of `docs/content-update-proposals-2.md`; D6 not built), built in a worktree and merged.** Fourteen
   `OwnHappening`s at the end of the enum (90 to 104), in the frame of 0.281.0; twelve of whichever god their people hold
@@ -1658,8 +1673,8 @@ most sense." So, in this order, three builds at a time:
      A16, A22 to A26, A28, twelve events, six personal stories; released 0.285.0); text round 2's gods half (C32 to C36;
      released 0.286.0) and its world half (B9, B10, B16, B18, B30; released 0.287.0); the last three items (A9, C25,
      C27; released 0.288.0). The proposal list is all built. Then a fix for the camps' own help and moment lines that no
-     code said (found by the world's text round; released 0.288.1). Next: the second round (`docs/content-update-proposals-2.md`), when
-     the player picks.
+     code said (found by the world's text round; released 0.288.1). The second round (`docs/content-update-proposals-2.md`)
+     was built on the go of 27 November 2026 (0.308.0 to 0.310.0).
 - **Done (20 November 2026, the player's go: "yes, please go ahead Regarding the faction update, in the sense that only
   the ones with radio can answer, and also that foreign peoples change [age] at their pace"; released 0.277.0): the
   comms console and the peoples' ages.** The entry with the player's words is the release line 0.277.0 ("The comms

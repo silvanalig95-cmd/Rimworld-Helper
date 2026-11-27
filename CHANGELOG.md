@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Eight new events and nine new council questions
+
+*27 November 2026, version 0.310.0*
+
+- Eight new events of everyday life: someone not in by dark in the fog or snow, the fish running, a bear asleep in the rock a miner broke into, water carried to the fields in a drought, a wild animal acting wrong at dawn, a raider who hid after the raid, an animal stuck in the bog, and bad air in a deep dig.
+- Each answer plays out on the map: a search with lights or a horn at the edge, a day at the water, a wall across a bear's hollow that comes down in spring, a water chain at dawn, a rope or boards across the mud, a shaft cut to the open sky.
+- What can hurt is named under the answer before you choose: the night's cold, a mad animal, a burn at the ordeal, bad air. It comes at the game's own rate, within the shared harm budget.
+- Nine new council questions: a dead colonist's empty room, how to lay the dead down when their god and their closest's god differ, an ordeal at the hearth, a prisoner who asks to pray, a feast that falls just after a death, a young one who wants to follow the keeper of the colony's book, work a believer's god won't allow, one of a camp who died in the night, and the colony entering a new age.
+- The council's answers use what is already there: the game's own burying and cremating, the festival's rite, a season's work handed to someone else, a named day on the colony's calendar.
+
 ## Fourteen more happenings between your people and their gods
 
 *27 November 2026, version 0.309.0*

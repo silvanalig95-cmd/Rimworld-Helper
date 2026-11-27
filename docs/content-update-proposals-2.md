@@ -7,8 +7,9 @@ storyteller events, dilemmas, etc. Just more of them." And: "So for the content 
 world events, and dilemmas, but first do all the integrations". The integrations of `docs/content-update-proposals.md`
 are built and released (0.278.0 to 0.285.0). This is the second round: more of each kind.
 
-Nothing here is built. Pick by number (or say "all", or strike and change any of it), and the picked ones are built
-together, a round at a time (CLAUDE.md: new features are proposed as a list first).
+**Built on the player's go of 27 November 2026** ("you can go ahead with the content round ... more content to the
+already existing mechanics"), as content inside the existing frames: D33 to D44 in 0.308.0, D1 to D15 in 0.309.0 (D6
+not built: a new mechanic of the book), D16 to D32 in 0.310.0. What each left out is in docs/HANDOFF.md.
 
 ## How many there are now
 
