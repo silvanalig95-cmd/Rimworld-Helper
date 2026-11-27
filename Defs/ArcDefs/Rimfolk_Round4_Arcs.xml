@@ -1,0 +1,1066 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 4, the colonists' own lives: eight personal stories (docs/content-round-4-lives.md, 1 to 8). Workers in
+    Source/ColonyCouncil/Arcs/Round4Lives.cs (R4LArcWorker_*); at the healer's side uses the apprentice's own worker. Their
+    moods are in Defs/ThoughtDefs/Rimfolk_Round4_Lives_Thoughts.xml. Each takes a share of the colony's stories a year
+    (ArcMath.PerYear) like every other: none comes oftener for it. The lines are written to fit every age: they speak of
+    the work, the cold, the fire and the people, not of the tools of one age. {SKILL} is the story's skill as a noun
+    ("cooking", "building"), {NAME} and {FACTION} what the worker names. Nobody is hurt in any of them.
+  -->
+
+  <!-- ===================== The talks they wait on ===================== -->
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_R4L_Talk_Trade</defName>
+    <label>talked about the work</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the work [INITIATOR_nameDef] had been left with, and how to make it go easier.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about a bad day at [INITIATOR_possessive] work, and [RECIPIENT_nameDef] said everyone has those at first.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] about [topic], and wrote the answer down in [INITIATOR_possessive] head.</li>
+        <li>topic->the right way to start a job</li>
+        <li>topic->what to do when it goes wrong halfway</li>
+        <li>topic->how long a job like that should take</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over a job that had gone wrong, and found where it went wrong.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_R4L_Talk_Wager</defName>
+    <label>made a wager</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] bet [RECIPIENT_nameDef] a drink that [INITIATOR_pronoun] could get more work done by the end of the week, and they shook on it.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued about which of them was quicker at the work, and settled it with a bet.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] laughed when [INITIATOR_nameDef] proposed the wager, then said yes.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] agreed the loser would raise the cup to the winner in front of everyone.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_R4L_Talk_Tales</defName>
+    <label>told a tale of the old days</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat together while one of them told the story of [tale].</li>
+        <li>tale->the hardest winter anyone remembered</li>
+        <li>tale->how the first of them came to this land</li>
+        <li>tale->a journey across the hills, long ago</li>
+        <li>tale->an animal that followed someone home</li>
+        <li>tale->a feast that went on for two days</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the old days, and the young one asked questions until the old one laughed.</li>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] a story [INITIATOR_pronoun] had heard as a child, and [RECIPIENT_nameDef] asked for it again.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_R4L_Talk_Winter</defName>
+    <label>talked about the winter</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the winters here: how long they last, and what to do about [topic].</li>
+        <li>topic->the cold in the mornings</li>
+        <li>topic->keeping the food from running out</li>
+        <li>topic->the long dark evenings</li>
+        <li>topic->wet boots</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how bad the last winter had been, and listened to the whole answer.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] sat close to the fire and talked about the cold outside.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_R4L_Talk_WorkFriends</defName>
+    <label>talked about the work they love</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] found they love the same work, and talked about it until supper was cold.</li>
+        <li>r_logentry->[INITIATOR_nameDef] showed [RECIPIENT_nameDef] a trick of the trade, and [RECIPIENT_nameDef] showed [INITIATOR_objective] one back.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] argued happily about [topic].</li>
+        <li>topic->the best way to start the day's work</li>
+        <li>topic->the worst job either of them had ever done</li>
+        <li>topic->which tools are worth keeping</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] how [RECIPIENT_pronoun] had learned [RECIPIENT_possessive] trade, and they talked for an hour.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_R4L_Talk_Promise</defName>
+    <label>told of a promise</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] told [RECIPIENT_nameDef] about the promise [INITIATOR_pronoun] made when [INITIATOR_pronoun] was down and couldn't get up.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked quietly about being close to death, and about keeping your word afterwards.</li>
+        <li>r_logentry->[RECIPIENT_nameDef] listened while [INITIATOR_nameDef] explained what [INITIATOR_pronoun] had promised, and why.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about the fight, and the promise that came out of it.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <InteractionDef ParentName="Council_ArcTalkBase">
+    <defName>Rimfolk_R4L_Talk_Healer</defName>
+    <label>went over a patient</label>
+    <logRulesInitiator>
+      <rulesStrings>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] went over a patient's wounds together, step by step, and what had been done for them.</li>
+        <li>r_logentry->[INITIATOR_nameDef] asked [RECIPIENT_nameDef] what [RECIPIENT_pronoun] would have done differently with the last patient, and listened.</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] talked about [topic].</li>
+        <li>topic->when to stitch a wound and when to leave it</li>
+        <li>topic->keeping a fever down</li>
+        <li>topic->what to say to someone in pain</li>
+        <li>r_logentry->[INITIATOR_nameDef] and [RECIPIENT_nameDef] counted the medicine together and talked about who would need it first.</li>
+      </rulesStrings>
+    </logRulesInitiator>
+  </InteractionDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 1. A trade of their own                                                                               -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_TradeOfTheirOwn</defName>
+    <label>a trade of their own</label>
+    <summary>A kind of work has fallen to someone who never chose it and isn't good at it yet. Days of it, a bad day talked over with someone, two levels gained, and the work is theirs.</summary>
+    <workerClass>ColonyCouncil.R4LArcWorker_Trade</workerClass>
+    <weight>1</weight>
+    <maxDays>60</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>it fell to me</label>
+        <waiting>Next: more days at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>Nobody else here does the {SKILL}, so it's mine now. I never asked for it, and I'm not good at it.</li>
+            <li>A whole day at {SKILL}, and I got half of it wrong. Somebody has to do it, though.</li>
+            <li>I keep thinking someone better will turn up and take the {SKILL} off my hands. Nobody has.</li>
+          </plain>
+          <warm><li>The others need someone to do it, so I'll do it, and I'll try to do it well.</li></warm>
+          <blunt><li>The {SKILL} is mine. Didn't want it. Doing it.</li></blunt>
+          <cheerful><li>I'm the colony's whole {SKILL} department now. It's a small department, and not a very good one yet.</li></cheerful>
+          <gloomy><li>Of all the work there is, this is what I got. I'm slow at it and everyone can see.</li></gloomy>
+          <cold><li>The work needs doing and I am the one doing it. Skill will come with practice.</li></cold>
+        </journal>
+        <chronicle>
+          <li>The {SKILL} has fallen to {PAWN_nameDef}, who never chose it and is still learning it.</li>
+          <li>{PAWN_nameDef} has taken on the colony's {SKILL}, because nobody else would.</li>
+        </chronicle>
+        <gate><kind>Practice</kind><amount>1500</amount><minDays>2</minDays><timeoutDays>25</timeoutDays></gate>
+      </li>
+      <li>
+        <label>a bad day</label>
+        <waiting>Next: {PAWN_nameDef} talks the work over with someone.</waiting>
+        <journal>
+          <plain>
+            <li>Had a bad day at it. Everything that could go wrong did, and I had to start again twice.</li>
+            <li>I'd like to talk to someone about the {SKILL}. I think I'm doing something wrong and I can't see what.</li>
+            <li>[night] Lay awake going over the day's work, and what I should have done instead.</li>
+          </plain>
+          <warm><li>Someone here must know more about it than I do. I'll ask, and not be proud about it.</li></warm>
+          <blunt><li>Bad day. Need advice.</li></blunt>
+          <cheerful><li>Today was a disaster from start to finish, which means tomorrow can only be better.</li></cheerful>
+          <gloomy><li>Some days I think I'll never get the hang of it.</li></gloomy>
+          <cold><li>I made the same mistake three times. I need to find out why.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} had a bad day at the {SKILL}, and wants to talk it over.</li>
+          <li>The {SKILL} is going badly for {PAWN_nameDef} this week.</li>
+        </chronicle>
+        <gate><kind>Talk</kind><talk>Rimfolk_R4L_Talk_Trade</talk><anyone>true</anyone><minDays>0.5</minDays><quietAfterDays>4</quietAfterDays><timeoutDays>10</timeoutDays></gate>
+      </li>
+      <li>
+        <label>getting the hang of it</label>
+        <waiting>Next: {PAWN_nameDef} gets better at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>Talked it over with {OTHER_nameDef}. I was doing it the hard way. It goes quicker now.</li>
+            <li>The work went well today. Not perfectly, but well.</li>
+            <li>I caught a mistake before I made it today. That's new.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} was patient with me. I'm going to pay that back by getting good at this.</li></warm>
+          <blunt><li>Better now. Still learning.</li></blunt>
+          <cheerful><li>I did a whole job without anyone wincing. I'm calling that a success.</li></cheerful>
+          <gloomy><li>It's going better. I'm waiting for it to go wrong again.</li></gloomy>
+          <cold><li>The advice was sound. My work is faster and makes fewer mistakes.</li></cold>
+        </journal>
+        <chronicle>
+          <li>After a word with {OTHER_nameDef}, {PAWN_nameDef} is getting the hang of the {SKILL}.</li>
+          <li>{PAWN_nameDef} is getting better at the {SKILL}, day by day.</li>
+        </chronicle>
+        <gate><kind>Skill</kind><gain>2</gain><minDays>3</minDays><timeoutDays>40</timeoutDays></gate>
+      </li>
+      <li>
+        <label>it's mine now</label>
+        <journal>
+          <plain>
+            <li>Somebody asked me for help with the {SKILL} today, because I'm the one who knows. I never thought I'd be that.</li>
+            <li>I don't mind the {SKILL} now. Some days I even like it.</li>
+          </plain>
+          <warm><li>The work I never wanted is the work I'm proud of. Funny how that goes.</li></warm>
+          <blunt><li>It's my work now. I'm good at it.</li></blunt>
+          <cheerful><li>The colony's whole {SKILL} department is doing very well, thank you.</li></cheerful>
+          <gloomy><li>I'm good at it now. Nobody will ever let me stop, but I'm good at it.</li></gloomy>
+          <cold><li>I have the skill the work needs. It is my trade now.</li></cold>
+        </journal>
+        <chronicle>
+          <li>The {SKILL} is {PAWN_nameDef}'s own trade now, and {PAWN_nameDef} is good at it.</li>
+          <li>{PAWN_nameDef} never chose the {SKILL}, but it has become {PAWN_possessive} trade.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_TradeOwn</thought></li>
+          <li Class="ColonyCouncil.ArcEffect_Passion"><chance>0.25</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] I don't do the {SKILL} much any more. Someone else has it, and I'm not sorry.</li>
+        <li>I never did get good at the {SKILL}. Maybe it was never meant to be mine.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} never quite made the {SKILL} {PAWN_possessive} own.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} took on the work nobody else would, and was just getting good at it.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 2. The wager                                                                                          -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_Wager</defName>
+    <label>the wager</label>
+    <summary>Two who get on and are both good at the same work bet on who can bring in more. A week of work, the count, and the loser raises the cup to the winner.</summary>
+    <workerClass>ColonyCouncil.R4LArcWorker_Wager</workerClass>
+    <weight>1</weight>
+    <maxDays>20</maxDays>
+    <stages>
+      <li>
+        <label>the bet</label>
+        <waiting>Next: {PAWN_nameDef} and {OTHER_nameDef} shake on it.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} thinks {OTHER_pronoun}'s quicker at the {SKILL} than me. I'd like to see {OTHER_objective} prove it.</li>
+            <li>We were arguing about who does more of the {SKILL}. Somebody said we should settle it properly.</li>
+            <li>I'm going to bet {OTHER_nameDef} a drink I can out-work {OTHER_objective}.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is the only one here who's as good at it as I am. A friendly bet would be fun.</li></warm>
+          <blunt><li>I'm quicker than {OTHER_nameDef}. Going to prove it.</li></blunt>
+          <cheerful><li>A wager! I haven't had a proper wager since I got here.</li></cheerful>
+          <gloomy><li>I'll probably lose, but {OTHER_nameDef} won't stop going on about it until we find out.</li></gloomy>
+          <cold><li>A measured contest will settle the question. I expect to win it.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} wants to bet on who does more of the {SKILL}. I think I'll take that bet.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} are arguing over which of them is better at the {SKILL}.</li>
+          <li>{PAWN_nameDef} wants to settle who does more of the {SKILL} with a wager against {OTHER_nameDef}.</li>
+        </chronicle>
+        <gate><kind>Talk</kind><talk>Rimfolk_R4L_Talk_Wager</talk><minOpinion>0</minOpinion><minDays>0.5</minDays><quietAfterDays>3</quietAfterDays><timeoutDays>8</timeoutDays></gate>
+      </li>
+      <li>
+        <label>the race</label>
+        <waiting>Next: the count, when the week they agreed is out.</waiting>
+        <journal>
+          <plain>
+            <li>We shook on it. Now it's just work, as much of it as I can do, as well as I can do it.</li>
+            <li>I saw {OTHER_nameDef} working late and went straight back out to do the same.</li>
+            <li>[night] Did one more job by the last light, just in case {OTHER_nameDef} was ahead.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} waved at me across the work today. We're both enjoying this.</li></warm>
+          <blunt><li>Working. Winning, I think.</li></blunt>
+          <cheerful><li>Every job I finish, I shout the count across to {OTHER_nameDef}. It's driving {OTHER_objective} mad.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} looks very pleased with {OTHER_objective}self. That's not a good sign for me.</li></gloomy>
+          <cold><li>I've planned the week's work to waste nothing. The count will show it.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} and I have a wager on. I've been doing the {SKILL} from dawn to dusk.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} have a wager on, and both are doing the {SKILL} from dawn to dusk.</li>
+          <li>The {SKILL} has never been done so fast: {PAWN_nameDef} and {OTHER_nameDef} have a bet on it.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>6</days><minDays>6</minDays></gate>
+      </li>
+      <li>
+        <label>the count</label>
+        <journal>
+          <plain>
+            <li>[won] We counted it all up, and I did more. {OTHER_nameDef} raised the cup to me in front of everyone, and meant it.</li>
+            <li>[lost] We counted it all up, and {OTHER_nameDef} did more. I raised the cup to {OTHER_objective}, and I'll win the next one.</li>
+            <li>[even] We counted it all up, and there was nothing in it. We raised a cup to each other instead.</li>
+            <li>The wager's over. Whatever the count said, the colony got a lot of work out of the two of us.</li>
+          </plain>
+          <warm><li>Win or lose, it was a good week with {OTHER_nameDef}. I'd do it again.</li></warm>
+          <blunt><li>[won] Won. Told you.</li><li>[lost] Lost. Next time.</li><li>Wager's done. Good work, both of us.</li></blunt>
+          <cheerful><li>[won] I won, and I'm going to be unbearable about it for at least a week.</li><li>[lost] I lost, and I've already started planning the rematch.</li><li>What a week. My arms will never forgive me.</li></cheerful>
+          <gloomy><li>[lost] I lost. Of course I lost.</li><li>The wager's over, and now it's just work again.</li></gloomy>
+          <cold><li>The count settled it. We both worked better for the contest.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain>
+            <li>[won] {OTHER_nameDef} did more than me, and I raised the cup to {OTHER_objective}. Fair is fair.</li>
+            <li>[lost] I beat {OTHER_nameDef}, and {OTHER_pronoun} raised the cup to me with a straight face.</li>
+            <li>The wager with {OTHER_nameDef} is done. It was a good week.</li>
+          </plain>
+        </otherJournal>
+        <chronicle>
+          <li>[won] {PAWN_nameDef} won the wager, and {OTHER_nameDef} raised the cup to {PAWN_objective}.</li>
+          <li>[lost] {OTHER_nameDef} won the wager, and {PAWN_nameDef} raised the cup to {OTHER_objective}.</li>
+          <li>[even] The wager between {PAWN_nameDef} and {OTHER_nameDef} came out even.</li>
+          <li>The wager between {PAWN_nameDef} and {OTHER_nameDef} is over, and the colony got a week's hard work out of it.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>won</ifTag>
+            <a>Other</a>
+            <b>Colonist</b>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>{A_nameDef}'s cup raised to {B_nameDef}</label><target>Colony</target><organizer>A</organizer><hours>18~21</hours></li>
+            </effects>
+          </li>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>lost|even</ifTag>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>{A_nameDef}'s cup raised to {B_nameDef}</label><target>Colony</target><organizer>A</organizer><hours>18~21</hours></li>
+            </effects>
+          </li>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>won</ifTag>
+            <effects><li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_WonWager</thought></li></effects>
+          </li>
+          <li Class="ColonyCouncil.ArcEffect_Cast">
+            <ifTag>lost</ifTag>
+            <a>Other</a>
+            <b>Colonist</b>
+            <effects><li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_WonWager</thought></li></effects>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_FairWager</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_FairWager</thought><target>B</target></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>6</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[fight] The wager ended in a real argument. Neither of us is counting any more.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone, and the wager with {OTHER_objective}.</li>
+        <li>[timeout] We never did shake on it. Maybe next season.</li>
+        <li>The wager came to nothing in the end.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>The wager between {PAWN_nameDef} and {OTHER_nameDef} came to nothing.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} and I had a wager on. I'd give a lot to have lost it to {OTHER_objective}.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 3. The old one's tales                                                                                -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_OldTales</defName>
+    <label>the old one's tales</label>
+    <summary>One of the colony's elders and a child who like each other: a tale of the old days told, hours together and a lot of questions, and then the child asks for the tale to be told to everyone, by the fire.</summary>
+    <workerClass>ColonyCouncil.R4LArcWorker_OldTales</workerClass>
+    <weight>1.2</weight>
+    <maxDays>40</maxDays>
+    <stages>
+      <li>
+        <label>a tale to tell</label>
+        <waiting>Next: {PAWN_nameDef} tells {OTHER_nameDef} one of the old tales.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} asked me what it was like when I was young. Nobody has asked me that in years.</li>
+            <li>The young ones don't know any of the old stories. I know a lot of them.</li>
+            <li>{OTHER_nameDef} sat by me at supper and asked where I came from. I'll tell {OTHER_objective} properly.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} has bright eyes and a lot of questions. I'd like to give {OTHER_objective} some answers.</li></warm>
+          <blunt><li>The child wants stories. I've got stories.</li></blunt>
+          <cheerful><li>I've been saving the good stories for someone who'd sit still long enough. {OTHER_nameDef} might.</li></cheerful>
+          <gloomy><li>When I'm gone, the stories go with me, unless I tell them to someone.</li></gloomy>
+          <cold><li>The children should know where they come from. I am one of the few who can tell them.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} is old and knows things from before. I asked and {OTHER_pronoun} said {OTHER_pronoun} would tell me.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} keeps asking {PAWN_nameDef} about the old days.</li>
+          <li>{PAWN_nameDef} has a tale to tell, and {OTHER_nameDef} wants to hear it.</li>
+        </chronicle>
+        <gate><kind>Talk</kind><talk>Rimfolk_R4L_Talk_Tales</talk><minDays>1</minDays><quietAfterDays>5</quietAfterDays><timeoutDays>15</timeoutDays></gate>
+      </li>
+      <li>
+        <label>a hundred questions</label>
+        <waiting>Next: time together, {PAWN_nameDef} and {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>I told {OTHER_nameDef} one story, and now {OTHER_pronoun} follows me about asking for the next one.</li>
+            <li>{OTHER_nameDef} wanted to know what everyone in the story ate. I had to make some of it up.</li>
+            <li>{OTHER_nameDef} remembered every name in the tale I told yesterday. I'd forgotten two of them.</li>
+          </plain>
+          <warm><li>Having {OTHER_nameDef} at my side makes the days shorter, in a good way.</li></warm>
+          <blunt><li>The child asks a lot of questions. I answer them.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} asked if the dragon in my story was real. I said it depends who's telling it.</li></cheerful>
+          <gloomy><li>Some of the stories are sad ones. I'm not sure I should tell {OTHER_nameDef} those yet.</li></gloomy>
+          <cold><li>{OTHER_nameDef} learns quickly. I am telling the stories in the right order now.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} told me a story about the old days. I want to hear all of them.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} follows {PAWN_nameDef} about, asking for the next tale.</li>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} spend their spare hours together, one telling stories and one asking questions.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Near</hold><hours>8</hours><minDays>2</minDays><timeoutDays>20</timeoutDays></gate>
+      </li>
+      <li>
+        <label>tell it to everyone</label>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} asked me to tell the tale to everyone, so I did, by the fire. {OTHER_nameDef} said the best parts along with me.</li>
+            <li>Everyone came to the fire to hear the old tale tonight, because a child asked them to.</li>
+          </plain>
+          <warm><li>The whole colony by the fire, and {OTHER_nameDef} beside me, mouthing the words. I won't forget it.</li></warm>
+          <blunt><li>Told the tale to everyone. They listened.</li></blunt>
+          <cheerful><li>I told the dragon story to the whole colony, and {OTHER_nameDef} did the roaring.</li></cheerful>
+          <gloomy><li>The stories will outlast me now. That's a comfort, mostly.</li></gloomy>
+          <cold><li>The tale is told and remembered by more than one person now. That was the point.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>I asked {OTHER_nameDef} to tell the tale to everyone, and {OTHER_pronoun} did, by the fire. I knew all the words.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} told the old tale to the whole colony by the fire, because {OTHER_nameDef} asked.</li>
+          <li>{OTHER_nameDef} asked, and everyone gathered at the fire to hear {PAWN_nameDef}'s tale of the old days.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>{A_nameDef}'s tale by the fire</label><target>Colony</target><organizer>A</organizer><spots><li>Fire</li><li>Gather</li><li>Dining</li></spots><hours>18~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_TalesTold</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_HeardTales</thought><target>B</target></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>8</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {OTHER_nameDef} wanted to hear every one of my stories, and now there's nobody to tell them to.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone, and took half my stories along.</li>
+        <li>[timeout] The child found other things to do. That's how children are.</li>
+        <li>I never finished telling the old tales. Maybe someone else will ask.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef}'s tales of the old days were never quite finished.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} told me stories about the old days. I'm going to tell them to the others now, the way {OTHER_pronoun} did.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 4. The first winter                                                                                   -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_FirstWinter</defName>
+    <label>the first winter</label>
+    <summary>Someone who came after the last winter sees the first frosts of autumn. A talk with someone who has wintered here, the deep of the cold, and the thaw.</summary>
+    <workerClass>ColonyCouncil.R4LArcWorker_FirstWinter</workerClass>
+    <weight>1.2</weight>
+    <maxDays>55</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>the first frosts</label>
+        <waiting>Next: winter comes.</waiting>
+        <journal>
+          <plain>
+            <li>There was frost on everything this morning. The others say the real cold hasn't even started.</li>
+            <li>I've never had a winter here. Everyone talks about it like it's a person they don't like.</li>
+            <li>The days are getting short. I keep looking at the woodpile and the stores and doing sums.</li>
+          </plain>
+          <warm><li>The others have been through a winter here. If they did it, I can.</li></warm>
+          <blunt><li>Winter's coming. I've never seen one here.</li></blunt>
+          <cheerful><li>My first winter here! I've been told to dread it, which makes me curious.</li></cheerful>
+          <gloomy><li>The cold is coming, and I don't know what it will be like. The others won't quite say.</li></gloomy>
+          <cold><li>I have not wintered here before. I am asking what to expect.</li></cold>
+        </journal>
+        <chronicle>
+          <li>The first frosts have come, and {PAWN_nameDef} has never seen a winter here.</li>
+          <li>{PAWN_nameDef} is facing {PAWN_possessive} first winter with the colony.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><minDays>1</minDays><timeoutDays>25</timeoutDays></gate>
+      </li>
+      <li>
+        <label>the long cold</label>
+        <waiting>Next: {PAWN_nameDef} talks to someone who has wintered here.</waiting>
+        <journal>
+          <plain>
+            <li>[snow] Snow up to my knees this morning. Nobody else seemed surprised.</li>
+            <li>It's winter now. The cold gets into everything, and the evenings are very long.</li>
+            <li>I want to ask someone how the last winter went. How bad it got, and what they did.</li>
+          </plain>
+          <warm><li>Everyone crowds round the fire in the evenings. I like that part of winter, at least.</li></warm>
+          <blunt><li>Cold. Very cold. Need to know how long it lasts.</li></blunt>
+          <cheerful><li>I can see my breath indoors. That's a new one.</li></cheerful>
+          <gloomy><li>The dark comes so early now. I don't know how the others stand it.</li></gloomy>
+          <cold><li>The stores are holding. I want to compare this winter with the last one.</li></cold>
+        </journal>
+        <chronicle>
+          <li>Winter has come, and {PAWN_nameDef} is finding out what it is like here.</li>
+          <li>{PAWN_nameDef} is in the middle of {PAWN_possessive} first winter here, and wants to hear about the last one.</li>
+        </chronicle>
+        <gate><kind>Talk</kind><talk>Rimfolk_R4L_Talk_Winter</talk><anyone>true</anyone><minDays>1</minDays><quietAfterDays>4</quietAfterDays><timeoutDays>12</timeoutDays></gate>
+      </li>
+      <li>
+        <label>the deep of it</label>
+        <waiting>Next: the rest of the winter.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} told me about the last winter. This one isn't as bad, apparently. I believe {OTHER_objective}, mostly.</li>
+            <li>The middle of winter. Every day the same: cold mornings, short days, long nights by the fire.</li>
+            <li>[night] Woke in the night and listened to the wind. It's only the wind.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} knew exactly what to tell me about the winter. It helped more than {OTHER_pronoun} knows.</li></warm>
+          <blunt><li>Halfway through. Still cold.</li></blunt>
+          <cheerful><li>I've learned three ways to keep my feet warm and one way to get out of the morning chores.</li></cheerful>
+          <gloomy><li>I'd forgotten what warm feels like.</li></gloomy>
+          <cold><li>I have learned how the winter goes here. It is hard, but it can be planned for.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has heard from {OTHER_nameDef} how the last winter went, and is getting through this one.</li>
+          <li>{PAWN_nameDef} is in the deep of {PAWN_possessive} first winter here.</li>
+        </chronicle>
+        <gate><kind>Time</kind><days>6</days><minDays>6</minDays></gate>
+      </li>
+      <li>
+        <label>the thaw</label>
+        <waiting>Next: spring.</waiting>
+        <journal>
+          <plain>
+            <li>The cold is easing. You can feel it in the mornings, a little at a time.</li>
+            <li>Waiting for spring now. Everyone is.</li>
+            <li>The snow is going grey and soft at the edges. Somebody said that means the end is near.</li>
+          </plain>
+          <warm><li>We got through the worst of it together. I'll remember who shared their blanket.</li></warm>
+          <blunt><li>Nearly over. Good.</li></blunt>
+          <cheerful><li>I saw something green today. I may have cheered.</li></cheerful>
+          <gloomy><li>It's nearly over, unless it isn't. I've been told winter has tricks.</li></gloomy>
+          <cold><li>The worst of the cold is past. The stores lasted.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is waiting for the end of {PAWN_possessive} first winter here.</li>
+          <li>The cold is easing, and {PAWN_nameDef} has nearly seen {PAWN_possessive} first winter through.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><minDays>2</minDays><timeoutDays>30</timeoutDays></gate>
+      </li>
+      <li>
+        <label>a winter through</label>
+        <journal>
+          <plain>
+            <li>Spring. My first winter here is over, and I'm still here. I know how it goes now.</li>
+            <li>The winter's done. I walked out across the wet ground just to feel it soft under my feet.</li>
+            <li>Next year I'll be the one telling the newcomers what to expect.</li>
+          </plain>
+          <warm><li>I got through it because the others helped me through it. Next winter I'll help someone else.</li></warm>
+          <blunt><li>Winter's over. I made it.</li></blunt>
+          <cheerful><li>One winter survived, and I only complained about it most of the time.</li></cheerful>
+          <gloomy><li>It's over for this year. There'll be another one.</li></gloomy>
+          <cold><li>I have seen a full winter here. I will know how to prepare for the next.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} has seen {PAWN_possessive} first winter here through.</li>
+          <li>Spring has come, and {PAWN_nameDef} knows what a winter here is like now.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a walk out in the thaw</label><who>A</who><to>Walk</to><hours>8~17</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_WinterThrough</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_ShowedMeWinter</thought><about>B</about></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>5</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[timeout] The winter was strange this year, and I'm still not sure I've seen a real one.</li>
+        <li>I've been through the cold, but I don't feel I know the winters here yet.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef}'s first winter here came and went without quite making sense to {PAWN_objective}.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} never saw the end of {OTHER_possessive} first winter here.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 5. Work friends                                                                                       -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_WorkFriends</defName>
+    <label>work friends</label>
+    <summary>Two who love the same work and hardly know each other find themselves at it side by side: a talk about the work, hours together, and an evening sat at the same table as friends.</summary>
+    <workerClass>ColonyCouncil.R4LArcWorker_WorkFriends</workerClass>
+    <weight>1</weight>
+    <maxDays>40</maxDays>
+    <stages>
+      <li>
+        <label>at the same work</label>
+        <waiting>Next: some days at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} loves the {SKILL} as much as I do. I hadn't noticed until today.</li>
+            <li>Worked near {OTHER_nameDef} all day. We hardly said a word, but we did the same things the same way.</li>
+            <li>I don't really know {OTHER_nameDef}. I know {OTHER_pronoun} cares about doing the {SKILL} properly.</li>
+          </plain>
+          <warm><li>It's nice to see someone else here who enjoys the work. I should say hello properly.</li></warm>
+          <blunt><li>{OTHER_nameDef} does good work. Should talk to {OTHER_objective}.</li></blunt>
+          <cheerful><li>Someone else here gets as excited about {SKILL} as I do. Finally.</li></cheerful>
+          <gloomy><li>{OTHER_nameDef} probably thinks I'm odd for caring so much about the work.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has good habits at the work. I could learn from {OTHER_objective}, or the other way round.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} both love the {SKILL}, and keep ending up at it side by side.</li>
+          <li>{PAWN_nameDef} has noticed that {OTHER_nameDef} loves the {SKILL} as much as {PAWN_pronoun} does.</li>
+        </chronicle>
+        <gate><kind>Practice</kind><amount>800</amount><minDays>1</minDays><timeoutDays>15</timeoutDays></gate>
+      </li>
+      <li>
+        <label>talking about the work</label>
+        <waiting>Next: {PAWN_nameDef} and {OTHER_nameDef} talk about the work.</waiting>
+        <journal>
+          <plain>
+            <li>I want to ask {OTHER_nameDef} how {OTHER_pronoun} does that one thing. I've watched three times and still can't see it.</li>
+            <li>{OTHER_nameDef} caught my eye across the work today and nodded. I think that was a compliment.</li>
+            <li>Next time we're both at the {SKILL}, I'm going to start a conversation.</li>
+          </plain>
+          <warm><li>I'd like to know {OTHER_nameDef} better. The work seems a good place to start.</li></warm>
+          <blunt><li>Going to talk to {OTHER_nameDef} about the work.</li></blunt>
+          <cheerful><li>I have about forty questions for {OTHER_nameDef}, and one opinion {OTHER_pronoun} is going to disagree with.</li></cheerful>
+          <gloomy><li>I never know how to start talking to people. Maybe the work will do it for me.</li></gloomy>
+          <cold><li>{OTHER_nameDef} has a method I don't understand. I will ask.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} wants to talk about the {SKILL} with {OTHER_nameDef}.</li>
+          <li>{PAWN_nameDef} has questions for {OTHER_nameDef} about the {SKILL}.</li>
+        </chronicle>
+        <gate><kind>Talk</kind><talk>Rimfolk_R4L_Talk_WorkFriends</talk><minOpinion>0</minOpinion><minDays>0.5</minDays><quietAfterDays>5</quietAfterDays><timeoutDays>12</timeoutDays></gate>
+      </li>
+      <li>
+        <label>side by side</label>
+        <waiting>Next: time together, {PAWN_nameDef} and {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} and I talked about the work for an hour. We agree on almost everything, and argue about the rest.</li>
+            <li>We work side by side now when we can. The day goes quicker.</li>
+            <li>{OTHER_nameDef} showed me a trick I'd never seen. I showed {OTHER_objective} one back.</li>
+          </plain>
+          <warm><li>I like {OTHER_nameDef}. I didn't expect to find a friend at the work, but here we are.</li></warm>
+          <blunt><li>{OTHER_nameDef} knows the work. Good company.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} laughs at my jokes about the {SKILL}. Nobody else does.</li></cheerful>
+          <gloomy><li>It's good working with {OTHER_nameDef}. I hope it lasts.</li></gloomy>
+          <cold><li>We work well together. Our output has improved.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} and I got talking about the {SKILL}, and {OTHER_pronoun} knows it as well as I do.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} work side by side now, and talk about the {SKILL} while they do.</li>
+          <li>The {SKILL} has made {PAWN_nameDef} and {OTHER_nameDef} into good company.</li>
+        </chronicle>
+        <gate><kind>Hold</kind><hold>Near</hold><hours>6</hours><minDays>2</minDays><timeoutDays>20</timeoutDays></gate>
+      </li>
+      <li>
+        <label>friends</label>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} and I sat together at supper tonight and didn't talk about the work once. We're friends now, I think.</li>
+            <li>It started with the {SKILL}. Now {OTHER_nameDef} is one of my friends.</li>
+          </plain>
+          <warm><li>I came here to work and found a friend in the middle of it.</li></warm>
+          <blunt><li>{OTHER_nameDef}'s a friend now.</li></blunt>
+          <cheerful><li>We spent the evening together and argued about everything. Best evening I've had in ages.</li></cheerful>
+          <gloomy><li>A friend at last. I'll try not to ruin it.</li></gloomy>
+          <cold><li>What began as shared work is a friendship now. It is worth keeping.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} and I spent the whole evening together. We're friends now, and it all started with the work.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} and {OTHER_nameDef} met over the {SKILL}, and are friends now.</li>
+          <li>The work brought {PAWN_nameDef} and {OTHER_nameDef} together, and they are friends.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an evening with {B_nameDef}</label><who>A</who><to>Person</to><whom>B</whom><sit>true</sit><hours>17~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_WorkFriend</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_WorkFriend</thought><target>B</target></li>
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>15</amount></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[fight] {OTHER_nameDef} and I had a real falling out. So much for that.</li>
+        <li>[otherdead] I was just getting to know {OTHER_nameDef}, and now {OTHER_pronoun}'s gone.</li>
+        <li>[otherleft] {OTHER_nameDef} has left, before we were ever really friends.</li>
+        <li>[timeout] We work at the same thing, {OTHER_nameDef} and I, and that's as far as it went.</li>
+        <li>It never quite turned into a friendship.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} and {OTHER_nameDef} never quite became friends.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} and I loved the same work. We were only just becoming friends.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 6. Friends over the hills                                                                             -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_OverTheHills</defName>
+    <label>friends over the hills</label>
+    <summary>Someone got on well with a visitor of another people, and the visitors have gone home. Waiting for that people to come by again, and an hour with them when they do.</summary>
+    <workerClass>ColonyCouncil.R4LArcWorker_OverTheHills</workerClass>
+    <weight>1</weight>
+    <maxDays>55</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>gone home</label>
+        <waiting>Next: {FACTION} come by again.</waiting>
+        <journal>
+          <plain>
+            <li>The visitors from {FACTION} have gone. I got on well with {NAME}, and I hope they come back this way.</li>
+            <li>{NAME} of {FACTION} told me about their home. I'd like to hear the rest of it.</li>
+            <li>I keep looking toward the edge of the land, in case {FACTION} come by again.</li>
+          </plain>
+          <warm><li>I made a friend among the visitors. It's good to know there's someone out there who'd be glad to see us.</li></warm>
+          <blunt><li>Liked {NAME}. Hope {FACTION} come back.</li></blunt>
+          <cheerful><li>{NAME} promised to bring a better story next time. I'm holding {NAME} to it.</li></cheerful>
+          <gloomy><li>People come and go out here. They probably won't come back.</li></gloomy>
+          <cold><li>A friend among {FACTION} is worth having. I will look out for their next visit.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} got on well with {NAME} of {FACTION}, and hopes their people come by again.</li>
+          <li>{PAWN_nameDef} made a friend among the visitors from {FACTION}.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><minDays>3</minDays><timeoutDays>45</timeoutDays></gate>
+      </li>
+      <li>
+        <label>back again</label>
+        <waiting>Next: {PAWN_nameDef} goes to see the visitors from {FACTION}.</waiting>
+        <journal>
+          <plain>
+            <li>People from {FACTION} are here again. I'm going over to see them as soon as I can.</li>
+            <li>{FACTION} are back. I want to ask after {NAME}.</li>
+          </plain>
+          <warm><li>The visitors from {FACTION} are back, and I'm glad. I'll go and say hello.</li></warm>
+          <blunt><li>{FACTION} are here. Going to see them.</li></blunt>
+          <cheerful><li>They came back. I'm going to talk their ears off.</li></cheerful>
+          <gloomy><li>{FACTION} are back. They probably won't remember me.</li></gloomy>
+          <cold><li>{FACTION} have returned. I will speak with them before they leave.</li></cold>
+        </journal>
+        <chronicle>
+          <li>People from {FACTION} are on the colony's land again, and {PAWN_nameDef} wants to see them.</li>
+          <li>{FACTION} have come by again, as {PAWN_nameDef} hoped.</li>
+        </chronicle>
+        <gate><kind>Custom</kind><minDays>0</minDays><timeoutDays>3</timeoutDays></gate>
+      </li>
+      <li>
+        <label>friends over the hills</label>
+        <journal>
+          <plain>
+            <li>[friend] {NAME} came back with them, and remembered me. We talked until they had to go.</li>
+            <li>I spent an hour with the people from {FACTION} and asked after {NAME}. It was good to see them.</li>
+          </plain>
+          <warm><li>[friend] {NAME} remembered my name and asked after everyone here. That meant a lot.</li><li>It's good to have friends somewhere past the hills.</li></warm>
+          <blunt><li>Saw {FACTION} again. Good.</li></blunt>
+          <cheerful><li>[friend] {NAME} brought the better story, as promised.</li><li>We swapped news for an hour. I came away with more than I gave.</li></cheerful>
+          <gloomy><li>They came back. Maybe the world isn't as empty as it seems.</li></gloomy>
+          <cold><li>The friendship with {FACTION} holds. That is worth something to the colony.</li></cold>
+        </journal>
+        <chronicle>
+          <li>[friend] {PAWN_nameDef} saw {NAME} of {FACTION} again when their people came back.</li>
+          <li>{PAWN_nameDef} spent an hour with the people of {FACTION} when they came by again.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_OverTheHills</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[fight] {FACTION} and the colony are enemies now. I'll never see {NAME} again, not as a friend.</li>
+        <li>[gone] There's no word of {FACTION} any more. I don't know what became of {NAME}.</li>
+        <li>[timeout] {FACTION} never came back this way, or they came and went while I wasn't looking.</li>
+        <li>I don't think I'll see {NAME} again.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} never saw {NAME} of {FACTION} again.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} had a friend among {FACTION}, and kept hoping they'd come back.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 7. A promise in the dark                                                                              -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_Promise</defName>
+    <label>a promise in the dark</label>
+    <summary>Someone who holds to a god was down and helpless, and promised something while they lay there. Telling someone of it, keeping it with their own hands, and giving thanks at the shrine, as they believe they should.</summary>
+    <workerClass>ColonyCouncil.R4LArcWorker_Promise</workerClass>
+    <weight>1.2</weight>
+    <maxDays>40</maxDays>
+    <needsOther>false</needsOther>
+    <stages>
+      <li>
+        <label>the promise</label>
+        <waiting>Next: {PAWN_nameDef} tells someone about the promise.</waiting>
+        <journal>
+          <plain>
+            <li>When I was lying there and couldn't get up, I promised {NAME} I'd do something with my hands if I lived. I lived.</li>
+            <li>I made a promise to {NAME} when I was down. I don't know if anyone heard it, but I did.</li>
+            <li>[night] I keep thinking about lying on the ground, and what I promised. I should tell someone.</li>
+          </plain>
+          <warm><li>I promised {NAME} I'd make something good for the shrine if I got up again. I'd like to tell someone what I promised.</li></warm>
+          <blunt><li>Made a promise to {NAME}. Going to keep it.</li></blunt>
+          <cheerful><li>I'm alive, and I owe {NAME} a promise. Fair trade, I'd say.</li></cheerful>
+          <gloomy><li>I nearly died, and I promised {NAME} something. Maybe it was the promise that kept me alive. Maybe not.</li></gloomy>
+          <cold><li>I made a vow to {NAME} while I was down. A vow is a vow, whoever heard it.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} made a promise to {NAME} while {PAWN_pronoun} lay helpless, and means to keep it.</li>
+          <li>{PAWN_nameDef} is up again, and remembers what {PAWN_pronoun} promised {NAME}.</li>
+        </chronicle>
+        <gate><kind>Talk</kind><talk>Rimfolk_R4L_Talk_Promise</talk><anyone>true</anyone><minDays>0.5</minDays><quietAfterDays>4</quietAfterDays><timeoutDays>12</timeoutDays></gate>
+      </li>
+      <li>
+        <label>keeping it</label>
+        <waiting>Next: {PAWN_nameDef} keeps the promise with {PAWN_possessive} hands.</waiting>
+        <journal>
+          <plain>
+            <li>I told {OTHER_nameDef} what I promised. Saying it out loud makes it real.</li>
+            <li>I've started on it, the work I promised. I'm putting everything I have into it.</li>
+            <li>Every spare hour goes into the promise now.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} didn't laugh when I told {OTHER_objective}, just nodded and said I should keep it.</li></warm>
+          <blunt><li>Working on it. Every day.</li></blunt>
+          <cheerful><li>The work is going well. Whoever was listening that day will like it, I think.</li></cheerful>
+          <gloomy><li>I'm doing what I promised. I hope it's enough.</li></gloomy>
+          <cold><li>The work is under way. It will be done properly.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is keeping {PAWN_possessive} promise to {NAME}, with {PAWN_possessive} own hands.</li>
+          <li>Every spare hour, {PAWN_nameDef} works at what {PAWN_pronoun} promised.</li>
+        </chronicle>
+        <gate><kind>Practice</kind><amount>1500</amount><minDays>3</minDays><timeoutDays>25</timeoutDays></gate>
+      </li>
+      <li>
+        <label>a promise kept</label>
+        <journal>
+          <plain>
+            <li>I went to the shrine and gave thanks, as I promised. Whatever happened that day, I've kept my word.</li>
+            <li>The promise is kept. I stood at the shrine a long time, and felt better for it.</li>
+          </plain>
+          <warm><li>I gave thanks at the shrine. I'm still here, and I'm grateful, to {NAME} and to everyone who helped me up.</li></warm>
+          <blunt><li>Promise kept. Done.</li></blunt>
+          <cheerful><li>Promise kept, thanks given, and I'm still alive to tell everyone about it.</li></cheerful>
+          <gloomy><li>I've kept my promise. I don't know if it changed anything, but I've kept it.</li></gloomy>
+          <cold><li>The vow is fulfilled. I gave thanks at the shrine as I said I would.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} kept {PAWN_possessive} promise, and gave thanks at the shrine of {NAME}.</li>
+          <li>{PAWN_nameDef}'s promise to {NAME} is kept.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineThanks"><label>{A_nameDef}'s thanks at the shrine</label><who>A</who><hours>8~20</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_PromiseKept</thought></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[gone] The shrine is gone. I'll have to keep my promise some other way.</li>
+        <li>[timeout] I never kept the promise I made that day. I think about it sometimes.</li>
+        <li>The promise is still waiting to be kept.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef} has not kept the promise {PAWN_pronoun} made when {PAWN_pronoun} was down.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} had made a promise, and was still trying to keep it.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+  <!-- ===================================================================================================== -->
+  <!-- 8. At the healer's side (the apprentice's own worker, ArcWorker_Apprentice)                           -->
+  <!-- ===================================================================================================== -->
+
+  <ColonyCouncil.ArcDef>
+    <defName>Rimfolk_R4L_Arc_HealersSide</defName>
+    <label>at the healer's side</label>
+    <summary>Someone keen on healing learns at the side of the colony's best doctor: lessons until they've come on, patients of their own to tend, a patient gone over together, and the doctor's word that they can be trusted with the sick.</summary>
+    <workerClass>ColonyCouncil.ArcWorker_Apprentice</workerClass>
+    <weight>1</weight>
+    <skills>
+      <li>Medicine</li>
+    </skills>
+    <minLevel>3</minLevel>
+    <maxLevel>10</maxLevel>
+    <masterLevel>10</masterLevel>
+    <maxDays>80</maxDays>
+    <stages>
+      <li>
+        <label>the healer's helper</label>
+        <waiting>Next: {PAWN_nameDef} gets better at {SKILL}.</waiting>
+        <journal>
+          <plain>
+            <li>I've been helping {OTHER_nameDef} with the sick. {OTHER_nameDef} explains everything as {OTHER_pronoun} goes.</li>
+            <li>Held the bandages while {OTHER_nameDef} worked today. I want to be the one doing it.</li>
+            <li>{OTHER_nameDef} let me watch a whole treatment from start to finish. I wrote it all down in my head.</li>
+          </plain>
+          <warm><li>{OTHER_nameDef} is gentle with the patients, and with me. I want to be that kind of healer.</li></warm>
+          <blunt><li>Learning healing from {OTHER_nameDef}. Paying attention.</li></blunt>
+          <cheerful><li>{OTHER_nameDef} said I have steady hands. I've been looking at them all evening.</li></cheerful>
+          <gloomy><li>Someone will die one day because I didn't know enough. I'd better learn fast.</li></gloomy>
+          <cold><li>{OTHER_nameDef} knows things about healing that I need to know. I am learning them in order.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>{OTHER_nameDef} has been helping me with the sick, watching everything and asking good questions.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{PAWN_nameDef} is learning healing at {OTHER_nameDef}'s side.</li>
+          <li>{PAWN_nameDef} helps {OTHER_nameDef} with the sick, and watches every move.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.ArcEffect_Mentorship" />
+        </effects>
+        <gate><kind>Skill</kind><gain>2</gain><minDays>3</minDays><timeoutDays>45</timeoutDays></gate>
+      </li>
+      <li>
+        <label>patients of my own</label>
+        <waiting>Next: {PAWN_nameDef} tends patients on {PAWN_possessive} own.</waiting>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} says I'm ready to tend people myself, as long as I call {OTHER_objective} for anything bad.</li>
+            <li>Tended my first patient alone today. My hands only shook afterwards.</li>
+            <li>I look in on the sick every morning now. Nobody has to tell me to.</li>
+          </plain>
+          <warm><li>The first patient I tended alone thanked me. I didn't know what to say.</li></warm>
+          <blunt><li>Tending patients now. On my own.</li></blunt>
+          <cheerful><li>My first patient made a full recovery. Well, it was a splinter, but still.</li></cheerful>
+          <gloomy><li>Every time I tend someone I'm sure I've done it wrong. So far I haven't.</li></gloomy>
+          <cold><li>I am tending the sick myself now. I check my work twice.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} is tending patients on {PAWN_possessive} own now, with {OTHER_nameDef} close by.</li>
+          <li>{OTHER_nameDef} trusts {PAWN_nameDef} with patients of {PAWN_possessive} own now.</li>
+        </chronicle>
+        <gate><kind>Record</kind><record>TimesTendedOther</record><amount>8</amount><minDays>2</minDays><timeoutDays>40</timeoutDays></gate>
+      </li>
+      <li>
+        <label>going over it together</label>
+        <waiting>Next: {PAWN_nameDef} goes over a patient with {OTHER_nameDef}.</waiting>
+        <journal>
+          <plain>
+            <li>I've tended a few now. I'd like {OTHER_nameDef} to go over one with me and tell me what I missed.</li>
+            <li>There was one patient I wasn't sure about. I want to ask {OTHER_nameDef} if I got it right.</li>
+            <li>Keeping a list of questions for {OTHER_nameDef}. It's getting long.</li>
+          </plain>
+          <warm><li>I'd like to hear what {OTHER_nameDef} thinks of my work. Even if it's not good news.</li></warm>
+          <blunt><li>Need {OTHER_nameDef} to check my work.</li></blunt>
+          <cheerful><li>I have questions, {OTHER_nameDef} has answers. That's how this works.</li></cheerful>
+          <gloomy><li>I'm afraid {OTHER_nameDef} will find a mistake. I'd rather know, though.</li></gloomy>
+          <cold><li>An experienced eye on my work will show what I have not yet learned.</li></cold>
+        </journal>
+        <chronicle>
+          <li>{PAWN_nameDef} wants {OTHER_nameDef} to look over {PAWN_possessive} work with the sick.</li>
+          <li>{PAWN_nameDef} has questions for {OTHER_nameDef} about the patients.</li>
+        </chronicle>
+        <gate><kind>Talk</kind><talk>Rimfolk_R4L_Talk_Healer</talk><minDays>0.5</minDays><quietAfterDays>5</quietAfterDays><timeoutDays>12</timeoutDays></gate>
+      </li>
+      <li>
+        <label>trusted with the sick</label>
+        <journal>
+          <plain>
+            <li>{OTHER_nameDef} went over my patients with me, and said I can look after the sick on my own now. I'll remember that.</li>
+            <li>{OTHER_nameDef} says I'm a healer now. I don't feel like one yet, but {OTHER_pronoun} should know.</li>
+          </plain>
+          <warm><li>Everything I know about healing, {OTHER_nameDef} taught me. I'll pass it on one day.</li></warm>
+          <blunt><li>{OTHER_nameDef} says I'm ready. I'm ready.</li></blunt>
+          <cheerful><li>Officially trusted with the sick. Somebody fetch me a patient.</li></cheerful>
+          <gloomy><li>Now when something goes wrong, it'll be my fault. I'll try to make sure it doesn't.</li></gloomy>
+          <cold><li>I am competent to treat the sick without supervision. {OTHER_nameDef} confirmed it.</li></cold>
+        </journal>
+        <otherJournal>
+          <plain><li>I told {OTHER_nameDef} that {OTHER_pronoun} can look after the sick on {OTHER_possessive} own now, and {OTHER_pronoun} has earned it.</li></plain>
+        </otherJournal>
+        <chronicle>
+          <li>{OTHER_nameDef} has told {PAWN_nameDef} that {PAWN_pronoun} can be trusted with the sick.</li>
+          <li>{PAWN_nameDef} is a healer in {PAWN_possessive} own right now, by {OTHER_nameDef}'s word.</li>
+        </chronicle>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_TrustedWithSick</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_TaughtMe</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_ProudOfStudent</thought><target>B</target></li>
+          <li Class="ColonyCouncil.ArcEffect_Passion"><chance>0.1</chance></li>
+        </effects>
+      </li>
+    </stages>
+    <fizzle>
+      <plain>
+        <li>[otherdead] {OTHER_nameDef} taught me most of what I know about healing, and I couldn't save {OTHER_objective}.</li>
+        <li>[otherleft] {OTHER_nameDef} has gone, and I'll have to learn the rest on my own.</li>
+        <li>[timeout] I never got as far with the healing as I hoped.</li>
+        <li>My lessons with {OTHER_nameDef} came to an end before I was ready.</li>
+      </plain>
+    </fizzle>
+    <fizzleChronicle>
+      <li>{PAWN_nameDef}'s lessons at {OTHER_nameDef}'s side came to an end early.</li>
+    </fizzleChronicle>
+    <eulogy>
+      <plain>
+        <li>{OTHER_nameDef} was learning healing from me, and would have been a good healer.</li>
+      </plain>
+    </eulogy>
+  </ColonyCouncil.ArcDef>
+
+</Defs>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of content round 4, the colonists' own lives (docs/content-round-4-lives.md): the ends of its personal
+    stories (Defs/ArcDefs/Rimfolk_Round4_Arcs.xml) and its wishes granted (Defs/WishDefs/Rimfolk_Round4_Wishes.xml).
+    Modest, as every story's and wish's are; the ones about someone are opinions of them too.
+  -->
+
+  <!-- ===================== Personal stories ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Arc_TradeOwn</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>it's my work now</label><description>I took this work on because nobody else would. I'm good at it now, and I've stopped minding it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_R4L_Arc_FairWager</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>10</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a fair wager</label><description>We had a bet on who'd do the most work. It was a good contest, and the drink afterwards was better.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Arc_WonWager</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>won the wager</label><description>I did more work than they did, and they had to raise the cup to me in front of everyone.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Arc_TalesTold</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>told the old tales</label><description>I told the young one the stories I was told when I was small. Now someone else will remember them.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_R4L_Arc_HeardTales</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>told me the old tales</label><description>They told me stories about the old days, and then told them to everyone because I asked.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Arc_WinterThrough</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>a winter through</label><description>My first winter here is over. It was hard, and I got through it, and I know how it goes now.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_R4L_Arc_ShowedMeWinter</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>told me how winter goes here</label><description>They told me what the winter here would be like before it came, and they were right about most of it.</description><baseMoodEffect>1</baseMoodEffect><baseOpinionOffset>8</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_R4L_Arc_WorkFriend</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>15</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>a friend from the work</label><description>We love the same work, and we got talking about it. Now we're friends.</description><baseMoodEffect>2</baseMoodEffect><baseOpinionOffset>12</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Arc_OverTheHills</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>they came back</label><description>The people I got on with came by again. It's good to know someone out there remembers us.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Arc_PromiseKept</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>kept my promise</label><description>When I was down I made a promise. I've kept it now, and I feel lighter for it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Arc_TrustedWithSick</defName>
+    <durationDays>10</durationDays>
+    <stages><li><label>trusted with the sick</label><description>The doctor says I can look after the sick on my own now. I've worked hard for that.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== Wishes granted ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_NewMake</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>something new made</label><description>We've made something here we never had before. I'd like to make another one, a better one.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_OldFriend</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>an evening with an old friend</label><description>We sat up and talked like we used to. I hadn't realized how much I missed it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_ReadToMe</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>read to</label><description>Someone sat with me in the evening and read aloud, since my eyes can't do it any more.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_FrostHarvest</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>the harvest in before the frost</label><description>The last of the crops came in before the cold could take them. We won't go hungry for want of a few days' work.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_SnowDay</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a snow day</label><description>We went out in the snow and built a snowman, and some of the grown-ups came too.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_GraveWord</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a word at the grave</label><description>I went to the grave and said what I wanted to say. It's a little easier now.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_Visitors</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>talked with the visitors</label><description>I spent an hour with the visitors and heard how things are where they come from.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4L_Granted_ShrineHour</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>an hour at the shrine</label><description>I had an hour to myself at the shrine. Nobody needed anything from me, and I could think.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

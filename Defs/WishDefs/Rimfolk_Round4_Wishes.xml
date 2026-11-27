@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 4, the colonists' own lives: eight wishes (docs/content-round-4-lives.md, 9 to 16). Workers in
+    Source/ColonyCouncil/Arcs/Round4Lives.cs (R4LWishWorker_*); their moods in
+    Defs/ThoughtDefs/Rimfolk_Round4_Lives_Thoughts.xml; the reasons and the promises' messages in
+    Languages/English/Keyed/Rimfolk_Round4_Lives.xml (CC_R4L_*). A promise sets something going that the player sees: a
+    bill at a bench, ripe crops marked for harvest, a visit, a gathering out in the snow with a snowman, a walk to a grave
+    or a shrine. None comes on its own (no triggers): each takes a share of the wish roll. Wishes, so the flavour style.
+  -->
+
+  <!-- ===================== 9. Something new at the bench ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_NewMake</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a chance to make {THING}</label>
+    <description>A crafter or a cook has seen that the colony's benches could make something the colony has never had, and the stores hold what it needs. They'd like to try making one.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_NewMake</workerClass>
+    <category>Work</category>
+    <weight>0.9</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_NewMake</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>The colony has {THING}. Promised, a bill for one is set at the bench, for {FOR_nameDef} if {FOR_pronoun} can make it.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>We've never made {THING} here. We have everything it needs. Could I try?</li>
+        <li>I keep looking at the bench and thinking about {THING}. I'd like to make one.</li>
+        <li>I know how {THING} should go. I'd just like the chance to make it.</li>
+        <li>[tribal] My hands want new work. Let me try {THING}, the way the old makers would.</li>
+        <li>[spacer] The bench can make {THING} and nobody's ever asked it to. I'd like to be the first.</li>
+      </plain>
+      <warm><li>I'd like to make {THING} for the colony. If it comes out well, it's for everyone.</li></warm>
+      <blunt><li>Let me make {THING}. We've got the stuff.</li></blunt>
+      <cheerful><li>Something new at the bench! I've been dying to try {THING}.</li></cheerful>
+      <gloomy><li>It'll probably come out wrong the first time, but I'd like to try making {THING} anyway.</li></gloomy>
+      <cold><li>We have the materials for {THING} and no example of it. Making one would teach us something.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>We have {THING} now. I've been looking at it all afternoon.</li>
+        <li>{THING} is made. Next time I'll make it better.</li>
+      </plain>
+      <warm><li>Thank you for letting me try. It's good to make something new.</li></warm>
+      <blunt><li>Made it. Good.</li></blunt>
+      <cheerful><li>It worked! Well, it mostly worked. It's ours, anyway.</li></cheerful>
+      <cold><li>The colony has {THING} now, and I know how it is made.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Nobody ever let me try {THING}. Maybe another time.</li></plain>
+      <gloomy><li>The bench sits there, and {THING} still isn't made.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== 10. An evening with an old friend ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_OldFriend</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an evening with {OTHER_nameDef}</label>
+    <description>Two old friends have hardly seen each other for days, one busy here and the other there. One of them would like an evening to sit down together.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_OldFriend</workerClass>
+    <category>Social</category>
+    <weight>0.9</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_OldFriend</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.05</objectionChance>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} and {OTHER_nameDef} spend an evening together. Promised, {FOR_nameDef} goes over to {OTHER_nameDef} in the evening and the two sit down for a couple of hours.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I've hardly seen {OTHER_nameDef} all week. I'd like an evening with {OTHER_objective}, just sitting and talking.</li>
+        <li>{OTHER_nameDef} and I used to talk every evening. Lately we just wave at each other across the yard.</li>
+        <li>I miss {OTHER_nameDef}, and we live in the same place. That's silly. Could we have an evening?</li>
+        <li>[tribal] A friend you never sit with stops being a friend. I want to sit with {OTHER_nameDef} by the fire.</li>
+        <li>[spacer] {OTHER_nameDef} and I keep missing each other between shifts. One evening would do.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} is one of my oldest friends here. I'd like to remind {OTHER_objective} of that.</li></warm>
+      <blunt><li>I want an evening with {OTHER_nameDef}. We haven't talked in days.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} owes me at least three stories from this week. I'd like to collect.</li></cheerful>
+      <gloomy><li>I'm worried {OTHER_nameDef} and I are drifting apart. I'd like to stop it before it happens.</li></gloomy>
+      <cold><li>Friendships need time to last. {OTHER_nameDef} and I haven't had any lately.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>We sat up and talked like we used to. I'd forgotten how much I missed it.</li>
+        <li>An evening with {OTHER_nameDef}. We talked about everything and nothing.</li>
+      </plain>
+      <warm><li>Thank you for giving us the evening. {OTHER_nameDef} needed it as much as I did.</li></warm>
+      <blunt><li>Talked to {OTHER_nameDef}. Good evening.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} had four stories, not three. Best evening in weeks.</li></cheerful>
+      <cold><li>We have caught up. The friendship is in good repair.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>{OTHER_nameDef} and I still haven't had our evening. Maybe next week.</li></plain>
+      <gloomy><li>We just keep passing each other. That's how friends lose each other.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== 11. Someone to read to me ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_ReadToMe</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>{OTHER_nameDef} to read to {FOR_objective}</label>
+    <description>One of the old has lost the eyes for reading, and the colony has books. They'd like someone fond of them to sit with them of an evening and read aloud.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_ReadToMe</workerClass>
+    <category>Comfort</category>
+    <weight>1</weight>
+    <expiryDays>8</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_ReadToMe</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.05</objectionChance>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>{OTHER_nameDef} sits with {FOR_nameDef} of an evening and reads aloud. Promised, {OTHER_nameDef} comes over in the evening and sits with {FOR_objective}.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>My eyes won't do the small letters any more. Would {OTHER_nameDef} read to me of an evening?</li>
+        <li>There are books here I've never read and now I can't. If someone read them to me, I'd be glad.</li>
+        <li>I used to read every night. I'd like to hear a book again, even if it's someone else doing the reading.</li>
+        <li>[tribal] My eyes are old, but my ears are good. Let {OTHER_nameDef} tell me what the marks in the book say.</li>
+        <li>[spacer] I can't see the page well enough now. {OTHER_nameDef} reads nicely. Could {OTHER_pronoun} read to me?</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} has a kind voice. I'd like to hear a story in it some evening.</li></warm>
+      <blunt><li>Can't read any more. Want {OTHER_nameDef} to read to me.</li></blunt>
+      <cheerful><li>I've decided my eyes have retired. My ears are still working, and they'd like a story.</li></cheerful>
+      <gloomy><li>The books sit there and I can't read them. It's one more thing gone.</li></gloomy>
+      <cold><li>My sight is failing. Someone reading aloud would let me go on learning.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>{OTHER_nameDef} sat with me and read until I nodded off. I'll ask for the next chapter tomorrow.</li>
+        <li>An evening of being read to. I'd forgotten how good a story sounds out loud.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} read to me like I was the only one listening in the world. Thank you.</li></warm>
+      <blunt><li>Good book. Good reader.</li></blunt>
+      <cheerful><li>{OTHER_nameDef} does all the voices. I didn't know {OTHER_pronoun} could.</li></cheerful>
+      <cold><li>I heard the whole chapter. My mind is still good, even if my eyes are not.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Nobody came to read to me. The book's still there.</li></plain>
+      <gloomy><li>I suppose everyone's busy. They always are, when you're old.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== 12. The harvest in before the frost ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_FrostHarvest</defName>
+    <label>the harvest in before the frost</label>
+    <description>It's autumn, winter is coming, and ripe crops are still standing in the colony's fields. Someone wants them brought in before the cold takes them.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_FrostHarvest</workerClass>
+    <category>Safety</category>
+    <weight>1</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_FrostHarvest</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <objectionChance>0.05</objectionChance>
+    <talkInteraction>Council_Talk_Food</talkInteraction>
+    <fulfilledWhen>Nine in ten of the {TARGET} ripe plants in the fields are brought in. Promised, they're marked for harvest, and the colony's people bring them in.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There's a ripe crop standing in the fields and the frost is coming. Let's get it in while we can.</li>
+        <li>I walked the fields this morning. Half of it is ready, and nobody's picking it.</li>
+        <li>If the cold gets to the fields before we do, we'll be hungry by midwinter.</li>
+        <li>[tribal] The old ones say you bring in the last of the crop before the first hard frost, or the winter takes its share.</li>
+        <li>[spacer] The crop's ripe and the cold front is coming. Every hand we can spare should be in the fields.</li>
+      </plain>
+      <warm><li>I want everyone fed this winter. That starts with getting the harvest in.</li></warm>
+      <blunt><li>Crop's ripe. Frost's coming. Harvest it.</li></blunt>
+      <cheerful><li>A whole field of food just waiting for us. Let's go and get it.</li></cheerful>
+      <gloomy><li>I've seen a crop rot in the field because nobody got to it in time. I don't want to see it again.</li></gloomy>
+      <cold><li>A ripe crop left standing in autumn is food thrown away. We should bring it in now.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>The harvest is in. Whatever the winter does now, we've got the food.</li>
+        <li>We brought in the last of the crop just before the cold. That was close.</li>
+      </plain>
+      <warm><li>Everyone helped bring the harvest in. We'll eat well this winter.</li></warm>
+      <blunt><li>Harvest's in. Good.</li></blunt>
+      <cheerful><li>Full stores, empty fields, sore backs. The best kind of autumn.</li></cheerful>
+      <cold><li>The crop is stored. The winter cannot take it now.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The crop is still out in the fields. I hope the frost holds off.</li></plain>
+      <gloomy><li>We'll miss that food in midwinter. Remember I said so.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== 13. A snow day ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_SnowDay</defName>
+    <label>a snow day</label>
+    <description>There's deep snow on the ground and a child wants a day out in it, with a snowman, and the grown-ups too if they'll come.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_SnowDay</workerClass>
+    <category>Childhood</category>
+    <weight>1.2</weight>
+    <expiryDays>4</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_SnowDay</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Child</talkInteraction>
+    <fulfilledWhen>A day out in the snow: a gathering in the open by day, where {FOR_nameDef} builds a snowman. Promised, it is held the next fine hours of the day; with answers not played out, {FOR_nameDef} goes out and builds one.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>There's so much snow! Can we all go out and build a snowman?</li>
+        <li>The snow's deep enough to build a snowman taller than me. Please can we go out?</li>
+        <li>I want a snow day, where everybody comes outside and nobody does chores.</li>
+        <li>[tribal] Can we go out in the snow and make a snow-person to guard the camp?</li>
+        <li>[spacer] There's real snow outside. Can we go and play in it before it melts?</li>
+      </plain>
+      <warm><li>I want to build a snowman with everybody. It'll be the best one ever.</li></warm>
+      <blunt><li>Snow. Snowman. Now?</li></blunt>
+      <cheerful><li>Snow day! Snow day! Can we have a snow day?</li></cheerful>
+      <gloomy><li>The snow will be gone soon and nobody will have played in it.</li></gloomy>
+      <cold><li>The snow is the right kind for building. We should use it while it lasts.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>We built a snowman! It has a stick nose and it's mine.</li>
+        <li>Everyone came out in the snow, even the grumpy ones.</li>
+      </plain>
+      <warm><li>The grown-ups played too. I want to do it every winter.</li></warm>
+      <blunt><li>Built a snowman. Best day.</li></blunt>
+      <cheerful><li>My snowman is the best snowman in the whole world.</li></cheerful>
+      <cold><li>The snowman is finished and it is standing up properly.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Nobody came out in the snow with me.</li></plain>
+      <gloomy><li>The snow's going grey now. It's too late.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== 14. A word at the grave ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_GraveWord</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a word at {SUBJECT}'s grave</label>
+    <description>Someone of the colony died not long ago and lies in a grave here. A friend would like to go and say a few words over it, the way it ought to be done.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_GraveWord</workerClass>
+    <category>Social</category>
+    <weight>1</weight>
+    <expiryDays>6</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_GraveWord</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.02</objectionChance>
+    <talkInteraction>Council_Talk_Grief</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} goes to {SUBJECT}'s grave and stands there a while. Promised, {FOR_pronoun} walks there in the day and stays an hour or so.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>I never said anything at {SUBJECT}'s grave. I'd like to go and say it now.</li>
+        <li>There are things I didn't get to tell {SUBJECT}. I'd like to stand at the grave and say them.</li>
+        <li>I'd like an hour to go and stand by {SUBJECT}'s grave. That's all.</li>
+        <li>[tribal] The dead hear us best in the first days. I want to speak at {SUBJECT}'s grave while they still can.</li>
+        <li>[spacer] We buried {SUBJECT} and went straight back to work. I'd like to go back and do it properly.</li>
+      </plain>
+      <warm><li>{SUBJECT} was good to me. I want to go and tell the grave so.</li></warm>
+      <blunt><li>Need to go to {SUBJECT}'s grave. Say something.</li></blunt>
+      <cheerful><li>{SUBJECT} would laugh at me for being sad. I'd like to go and laugh at the grave with {SUBJECT}, one more time.</li></cheerful>
+      <gloomy><li>Everyone's moved on already. I haven't. I need to go to the grave.</li></gloomy>
+      <cold><li>Something should be said at {SUBJECT}'s grave. I am the one to say it.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>I went to {SUBJECT}'s grave and said what I had to say. It's a little easier now.</li>
+        <li>An hour at the grave. I told {SUBJECT} everything that's happened since.</li>
+      </plain>
+      <warm><li>Thank you for the time. I think {SUBJECT} would have liked what I said.</li></warm>
+      <blunt><li>Said my piece. Better now.</li></blunt>
+      <cheerful><li>I told {SUBJECT} a joke at the grave. I think it went down well.</li></cheerful>
+      <cold><li>The words have been said. That is done properly now.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I never did get to the grave. The words are still in me.</li></plain>
+      <gloomy><li>There's never time for the dead here. One day there won't be time for me.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== 15. A word with the visitors ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_Visitors</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an hour with the visitors from {SUBJECT}</label>
+    <description>Visitors of another people are on the colony's land, and someone sociable or curious would like to go over and talk with them before they leave.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_Visitors</workerClass>
+    <category>Social</category>
+    <weight>0.9</weight>
+    <expiryDays>2</expiryDays>
+    <cooldownDays>15</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_Visitors</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Neighbours</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} spends an hour with {OTHER_nameDef} of {SUBJECT}, or talks with their people anyway. Promised, {FOR_pronoun} walks over to {OTHER_nameDef} and they talk.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>The visitors from {SUBJECT} won't be here long. I'd like to go and talk to them before they leave.</li>
+        <li>I want to hear how things are where {SUBJECT} come from. Could I go and sit with them a while?</li>
+        <li>We never talk to anyone from outside. The visitors are right there.</li>
+        <li>[tribal] Guests should be sat with and asked for news. Let me go to the people of {SUBJECT}.</li>
+        <li>[spacer] There's news out there we don't get any other way. The visitors from {SUBJECT} will have some.</li>
+      </plain>
+      <warm><li>They've come a long way. Somebody should go and make them feel welcome.</li></warm>
+      <blunt><li>Want to talk to the visitors. Hear the news.</li></blunt>
+      <cheerful><li>New faces! I want to know everything about them.</li></cheerful>
+      <gloomy><li>They'll leave and we'll never know anything about them. Let me at least ask.</li></gloomy>
+      <cold><li>Visitors carry news of the roads and the towns. It would be useful to hear it.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>I sat with {OTHER_nameDef} of {SUBJECT} for an hour and heard all their news.</li>
+        <li>The visitors were glad of someone to talk to. So was I.</li>
+      </plain>
+      <warm><li>{OTHER_nameDef} told me about home, and I told {OTHER_objective} about ours.</li></warm>
+      <blunt><li>Talked to the visitors. Good news, mostly.</li></blunt>
+      <cheerful><li>I learned a song from {SUBJECT}. Everyone's going to hear it whether they like it or not.</li></cheerful>
+      <cold><li>I have heard the news from {SUBJECT}. Some of it will be useful.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>The visitors left before I got to talk to them.</li></plain>
+      <gloomy><li>Gone already. We'll never know what they would have said.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== 16. An hour at the shrine ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_R4L_Wish_ShrineHour</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an hour at the shrine of {SUBJECT}</label>
+    <description>Someone who holds to a god is having a hard time, and there's a shrine of that god at home. They'd like an hour there to themselves, away from the work.</description>
+    <workerClass>ColonyCouncil.R4LWishWorker_ShrineHour</workerClass>
+    <category>Comfort</category>
+    <weight>0.8</weight>
+    <expiryDays>5</expiryDays>
+    <cooldownDays>20</cooldownDays>
+    <grantedThought>Rimfolk_R4L_Granted_ShrineHour</grantedThought>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Comfort</talkInteraction>
+    <fulfilledWhen>{FOR_nameDef} spends an hour at the shrine of {SUBJECT}. Promised, {FOR_pronoun} walks there in the day and stays a while.</fulfilledWhen>
+    <request>
+      <plain>
+        <li>Things have been hard lately. I'd like an hour at the shrine of {SUBJECT}, with nobody needing anything from me.</li>
+        <li>I haven't been to the shrine in days. I think I need to go.</li>
+        <li>Could I have an hour off to go to the shrine? I'll work late to make it up.</li>
+        <li>[tribal] When the heart is heavy, my people go to the sacred place and sit. Let me go and sit.</li>
+        <li>[spacer] I know not everyone here believes. I do, and I need an hour at the shrine.</li>
+      </plain>
+      <warm><li>An hour at the shrine would do me more good than a night's sleep.</li></warm>
+      <blunt><li>Need an hour at the shrine.</li></blunt>
+      <cheerful><li>I'm all right, mostly. An hour at the shrine would make me all right completely.</li></cheerful>
+      <gloomy><li>I've been carrying too much. I want to put some of it down at the shrine of {SUBJECT}.</li></gloomy>
+      <cold><li>I think more clearly at the shrine. I would like an hour there.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>I had my hour at the shrine. I don't know what I expected, but I feel steadier.</li>
+        <li>An hour at the shrine of {SUBJECT}, and nobody came looking for me. Thank you.</li>
+      </plain>
+      <warm><li>I sat at the shrine and thought about everyone here. I came back glad of them.</li></warm>
+      <blunt><li>Went to the shrine. Better.</li></blunt>
+      <cheerful><li>I came back from the shrine feeling lighter than I have in a week.</li></cheerful>
+      <cold><li>The hour at the shrine was well spent. I can work again.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I never got my hour at the shrine. There was always something else.</li></plain>
+      <gloomy><li>Even an hour was too much to ask, it seems.</li></gloomy>
+    </expired>
+  </ColonyCouncil.WishDef>
+
+</Defs>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 4, the colonists' own lives: four life goals (docs/content-round-4-lives.md, 17 to 20), all on workers
+    there are: a child's drawing (the skill worker, Artistic, growing into art worth remembering), and three of the
+    game's and Rimfolk's own counts (the record worker): friendly contests won (Rimfolk's moments between colonists),
+    masterworks made, and people carried out of a fight. Life goals, so the flavour style.
+  -->
+
+  <!-- ===================== 17. Pictures on the floor (a child) ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_R4L_Asp_ChildDrawing</defName>
+    <label>pictures on the floor</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Skill</workerClass>
+    <skill>Artistic</skill>
+    <level>5</level>
+    <gain>2</gain>
+    <weight>0.9</weight>
+    <goal>draw pictures the grown-ups want to keep</goal>
+    <deed>drew pictures the grown-ups wanted to keep</deed>
+    <who><child>true</child></who>
+    <growsInto>Council_Asp2_Artist</growsInto>
+    <chosen>
+      <plain>
+        <li>I drew a horse on the floor with a burnt stick. Everyone said it was a dog. I'm going to get better.</li>
+        <li>I want to draw everyone in the colony, and have them look like themselves.</li>
+        <li>[sparked] I saw a grown-up make something beautiful, and now I want to make pictures too.</li>
+        <li>[tribal] I'm going to draw the animals on the stones, like the old ones did.</li>
+      </plain>
+      <cheerful><li>I'm going to draw a picture so good they put it on the wall!</li></cheerful>
+      <gloomy><li>My pictures come out wrong. I'm going to keep drawing until they don't.</li></gloomy>
+      <blunt><li>Going to learn to draw. Properly.</li></blunt>
+      <warm><li>I want to draw a picture for everyone here, one each.</li></warm>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>I drew a picture of the colony and somebody asked if they could keep it. They kept it.</li>
+        <li>My drawings look like what they're of now. Mostly.</li>
+      </plain>
+      <cheerful><li>Somebody put my picture up! On a wall! Where people can see it!</li></cheerful>
+      <warm><li>I drew everybody, and everybody looked like themselves. They all said thank you.</li></warm>
+      <cold><li>I can draw properly now. I'm going to draw harder things next.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== 18. Five friendly contests won ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_R4L_Asp_Contests</defName>
+    <label>the one to beat</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>Council_ContestsWon</record>
+    <amount>5</amount>
+    <weight>0.7</weight>
+    <goal>win five friendly contests against the others</goal>
+    <deed>won five friendly contests</deed>
+    <sparks><li>thought:Council_Moment_LostContest</li></sparks>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:Council_Moment_LostContest] I lost again today, and everyone saw. I'm going to {GOAL}, starting tomorrow.</li>
+        <li>Arm-wrestling, riddles, stories by the fire: whatever it is, I want to be the one to beat.</li>
+        <li>I'm going to {GOAL}. Fairly, mind. A win's no good otherwise.</li>
+        <li>[lowtech] Where I come from, the one who won the games at the feast sat at the head of the table. I'd like that seat.</li>
+      </plain>
+      <warm><li>I like a good contest. I'd like to win a few, and buy the loser a drink each time.</li></warm>
+      <blunt><li>Five wins. I'll get them.</li></blunt>
+      <cheerful><li>Nobody here can beat me at anything. Well, they can, but they won't for long.</li></cheerful>
+      <gloomy><li>I lose at everything. Just once I'd like to win, and then four more times.</li></gloomy>
+      <cold><li>Contests show who is really good at something. I intend to win enough of them to prove it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>Five wins. People groan when I offer them a contest now, which is how I know.</li>
+        <li>That's the fifth contest I've won. I'm the one to beat here now.</li>
+      </plain>
+      <warm><li>Five wins, and five drinks bought for the losers. Everyone's still talking to me.</li></warm>
+      <blunt><li>Five. I'm the one to beat.</li></blunt>
+      <cheerful><li>Undefeated! Well, mostly defeated, but five wins all the same.</li></cheerful>
+      <cold><li>Five contests won. The question of who is best has been answered for now.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== 19. Two masterworks ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_R4L_Asp_Masterworks</defName>
+    <label>two masterworks</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>Council_Masterworks</record>
+    <amount>2</amount>
+    <weight>0.6</weight>
+    <goal>make two pieces people stop to look at</goal>
+    <deed>made two masterworks</deed>
+    <sparks><li>fulfilled</li></sparks>
+    <who><passion>Crafting</passion></who>
+    <chosen>
+      <plain>
+        <li>Most of what I make is good enough. I want to make something that's more than good enough. Twice, so I know it wasn't luck.</li>
+        <li>[sparked] I've seen what a real masterwork looks like. I'm going to {GOAL}.</li>
+        <li>One masterwork could be luck. Two would be skill. I'm going to {GOAL}.</li>
+        <li>[tribal] The best makers leave things behind that the children's children still use. I'd like to leave two.</li>
+      </plain>
+      <warm><li>I'd like to make something so good that whoever uses it thinks of the colony every time.</li></warm>
+      <blunt><li>Two masterworks. That's the goal.</li></blunt>
+      <cheerful><li>I'm going to make something so good the others fight over it. Then I'll make another.</li></cheerful>
+      <gloomy><li>Everything I make has a flaw I can see. I want to make something without one.</li></gloomy>
+      <cold><li>Excellent work, done twice, is the measure of a real maker. I will meet it.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>The second masterwork is finished. It wasn't luck.</li>
+        <li>Two pieces people stop to look at. I made both of them.</li>
+      </plain>
+      <warm><li>Two of my pieces will be here long after I'm gone. That's a good feeling.</li></warm>
+      <blunt><li>Two masterworks. Done.</li></blunt>
+      <cheerful><li>Two! And the second one's even better than the first.</li></cheerful>
+      <cold><li>Two masterworks made. My skill is proven.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+  <!-- ===================== 20. The one who carries them out ===================== -->
+
+  <ColonyCouncil.AspirationDef>
+    <defName>Rimfolk_R4L_Asp_Rescuer</defName>
+    <label>the one who carries them out</label>
+    <workerClass>ColonyCouncil.AspirationWorker_Record</workerClass>
+    <record>Council_Rescues</record>
+    <amount>3</amount>
+    <weight>0.6</weight>
+    <goal>carry three of our own out of a fight</goal>
+    <deed>carried three of the colony's people out of a fight</deed>
+    <sparks><li>battle</li><li>downed</li><li>thought:RescuedMe</li></sparks>
+    <who><notTrait><li>Psychopath</li></notTrait></who>
+    <chosen>
+      <plain>
+        <li>[spark:downed] I lay there in the middle of the fight and someone came and carried me out. I want to be that someone for the others.</li>
+        <li>[spark:battle] In the last fight I saw one of ours go down and couldn't get to them. Next time I will.</li>
+        <li>[spark:RescuedMe] Someone carried me out when I couldn't walk. I owe that to the others now.</li>
+        <li>Nobody gets left lying in a fight while I'm standing. I'm going to {GOAL}.</li>
+        <li>[lowtech] My people honour the one who drags the fallen back behind the line. I'd like to earn that.</li>
+      </plain>
+      <warm><li>When one of us goes down, I want to be the one who gets to them first.</li></warm>
+      <blunt><li>Someone goes down, I get them out. Three times.</li></blunt>
+      <cheerful><li>I'm not the best shot, but I'm quick on my feet. I'll be the one who fetches people back.</li></cheerful>
+      <gloomy><li>Someone's going to go down in the next fight. I want to make sure they don't stay down out there.</li></gloomy>
+      <cold><li>A colonist left down in a fight is often a colonist lost. I will bring them back.</li></cold>
+    </chosen>
+    <achieved>
+      <plain>
+        <li>That's the third one I've carried out of a fight. They're all still alive.</li>
+        <li>Three of ours carried out of the fighting. I'd do it a hundred more times.</li>
+      </plain>
+      <warm><li>Three people are alive who might not have been. That's worth every risk.</li></warm>
+      <blunt><li>Three carried out. All living.</li></blunt>
+      <cheerful><li>Three rescues! I should start charging for it.</li></cheerful>
+      <cold><li>Three colonists carried out of danger. The habit is worth keeping.</li></cold>
+    </achieved>
+  </ColonyCouncil.AspirationDef>
+
+</Defs>

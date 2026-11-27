@@ -107,7 +107,7 @@ What every piece keeps to:
 
 **7. A promise in the dark** (`Rimfolk_R4L_Arc_Promise`; faith, the gods unseen)
 - **When:** someone who holds to a god (as they believe it), with a shrine of it at home, was down and helpless in the
-  last six days and is up again.
+  last ten days and is up again.
 - **Asks of them:** to tell someone of the promise they made while they lay there, to keep it with their hands (work done
   at what they do best), and to give thanks at the shrine.
 - **On the map:** the talk; the work; at the end they walk to the shrine and stand there a while.
