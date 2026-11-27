@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Twelve new council questions
+
+*27 November 2026, version 0.311.0*
+
+- Twelve new council questions: a light sleeper by the door of a shared room, a grave for a bonded animal, what to do with the insect meat after the insects are killed, the picking day when the wild fruit is ripe, who eats first when the food runs short in winter or spring, a colonist who made a friend among the visitors, a verse of the colony's own in the season of songs, an elder who is forgetting, a baby crying through the night, the mending after a tantrum, the grave of someone who never held a god, and a faith that forbids meat at the colony's table.
+- The picking day is a new custom of the calendar. Kept three summers running, it becomes a tradition.
+- Each answer plays out on the map: two beds traded, an empty grave given to an animal, a bill at the stove for meals or kibble, a work party out picking, a supper for the children, the old and the ill first, meals carried out to those at work, food for a visitor's road, a verse made at the fire, a colonist's work handed to another for a season, an apology at supper, words at a grave.
+- None of them hurts anyone. They ask only about what the colony really has: the game's own moods and memories, its beds, stores, graves and work, and Rimfolk's own record of what people did.
+
 ## Eight new events and nine new council questions
 
 *27 November 2026, version 0.310.0*

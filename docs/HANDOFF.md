@@ -931,6 +931,17 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.311.0, the player's go of that day: "more content to the already existing mechanics"):
+  twelve council questions, content round 3, built in a worktree and merged.** The list: `docs/content-round-3-council.md`.
+  Defs `Defs/DilemmaDefs/Rimfolk_Round3_Council.xml` (`Rimfolk_DlmR3_*`: LightSleeper, AnimalGrave, HiveMeat, PickingDay
+  (a summer custom, `DilemmaWorker_R3PickingDay : DilemmaWorker_Custom`), HungryGap, VisitorFriend (`DilemmaWorker_Stranger`),
+  OurVerse (`DilemmaWorker_WorldSeason`), Forgetting, CryingNight, AfterTantrum, ScofferGrave, NoMeatTable). Code
+  `Dilemmas/DilemmaWorkers_Round3.cs` (`Round3Council`, `DilemmaWorker_R3*`, effects `Round3CouncilSwapBeds`,
+  `PetGrave`, `Bill`, `FeastFirst`, `HandOver`), rules `Dilemmas/Round3CouncilMath.cs`, words `Rimfolk_Round3_Council.xml`
+  (`CC_R3C_*`); the picking day in the Almanac's customs table. No hurt, no saved collection. Dropped as near duplicates:
+  a coat before the snow, the grower's winter, music from the camp, wood low in winter, a vow in the fight. Tests:
+  Round3CouncilTests. Not seen in the game: the bed trade, an animal laid in an assigned grave, the kibble bill's
+  ingredients, the supper for those who need it most.
 - **Done (27 November 2026, 0.310.0, the player's go of that day): storyteller events and council questions, content
   round 2 (D16 to D32 of `docs/content-update-proposals-2.md`), built in a worktree and merged.** Events in
   `Defs/IncidentDefs/Rimfolk_Round2_Events.xml` and `Happenings/Workers_Round2.cs` (`HappeningWorker_NotInByDark`,
