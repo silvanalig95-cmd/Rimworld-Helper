@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Six more camps and eight more events on the map
+
+*27 November 2026, version 0.316.0*
+
+- Six new camps: woodcarvers, fire-watchers, wildfowlers, snow-carvers, cheesemakers and instrument-makers.
+- Send someone to sit with the woodcarvers, and a small wooden carving with their name in its title is set out at the edge of their camp for you to fetch.
+- Fire-watchers run to any fire in the open near their camp and beat it out, and for a fee they cut a firebreak round your biggest field.
+- Wildfowlers bring a flock of wild geese or ducks to your water, snow-carvers leave snow figures that stand until the thaw, cheesemakers sell cheese from their goats, and instrument-makers play their own instrument in the evenings and can sell you one.
+- Eight new events on the map: crows on the new field, meltwater in the deep rooms, midges at dusk, what the storm threw up, ice on the paths, the old tree by the house, stones in the field and washing day.
+- Ice on the paths and midges at dusk can hurt: someone may sprain an ankle on the ice or come down with insect bites, and the answers say so before you choose.
+
 ## Ten more council questions and six more world events
 
 *27 November 2026, version 0.315.0*

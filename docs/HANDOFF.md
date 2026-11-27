@@ -931,6 +931,20 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.316.0, the player's "continue"): six camps and eight map events, content round 4, built in
+  a worktree and merged.** The list: `docs/content-round-4-camps-events.md`. Camps in `Camps/CampRound4.cs`
+  (`CampRound4`; `CampWorker_R4KWoodcarvers`, `R4KFireWatchers`, `R4KWildfowlers`, `R4KSnowCarvers`, `R4KCheesemakers`,
+  `R4KInstruments`; states `R4K*State`; effects `DilemmaEffect_R4KSit`, `R4KBuyCarving`, `R4KFirebreak`, `R4KSnowFigure`,
+  `R4KBuyInstrument`; `JobDriver_R4KPlay`; dev actions `Round4CampsEventsDebug`), defs `Rimfolk_CampKinds_Round4.xml`.
+  Events in `Happenings/Workers_Round4.cs` (`R4EMap`; `HappeningWorker_R4E*`; effects `DilemmaEffect_R4ECrows`, `R4EMelt`,
+  `R4EMidges`, `R4EShore`, `R4EIce`, `R4EOldTree`, `R4EStones`; `OnMapTimed` kinds `R4ECrows`, `R4EMelt`, `R4EMidges`,
+  `R4EShore`, `R4EIce`), defs `Rimfolk_Round4_Events.xml`. Rules `Happenings/Round4CampsEventsMath.cs`; words
+  `Rimfolk_Round4_CampsEvents.xml`; a section on the camps' Almanac page; three placeholders (FIELD, INSTRUMENT, BIRDS)
+  in `Tools/DefValidator/Program.cs`. Changed: carvings and instruments set out at the camp's edge (the delivery message
+  would have named a packed item "minified thing"), the cheese made from milk they bring, the storm's shore needs
+  Vanilla Fishing Expanded or Odyssey, washing day only existing play-outs. Hurt: a sprain on the ice
+  (`HarmKinds.Dangers`), insect bites (`HarmKinds.LandAilments`). Tests: Round4CampsEventsTests, CampWordsSaidTests. Not
+  seen in the game.
 - **Done (27 November 2026, 0.315.0, the player's "continue"): ten council questions and six world events, content round
   4, built in a worktree and merged.** The list: `docs/content-round-4-council-world.md`. Council questions in
   `Defs/DilemmaDefs/Rimfolk_Round4_Council.xml` and `Dilemmas/DilemmaWorkers_Round4.cs` (`R4CContext`, whose one saved

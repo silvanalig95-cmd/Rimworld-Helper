@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.316.0</version>
+        <date>27 November 2026</date>
+        <title>Six more camps and eight more events on the map</title>
+        <points>
+          <li>Six new camps: woodcarvers, fire-watchers, wildfowlers, snow-carvers, cheesemakers and instrument-makers.</li>
+          <li>Send someone to sit with the woodcarvers, and a small wooden carving with their name in its title is set out at the edge of their camp for you to fetch.</li>
+          <li>Fire-watchers run to any fire in the open near their camp and beat it out, and for a fee they cut a firebreak round your biggest field.</li>
+          <li>Wildfowlers bring a flock of wild geese or ducks to your water, snow-carvers leave snow figures that stand until the thaw, cheesemakers sell cheese from their goats, and instrument-makers play their own instrument in the evenings and can sell you one.</li>
+          <li>Eight new events on the map: crows on the new field, meltwater in the deep rooms, midges at dusk, what the storm threw up, ice on the paths, the old tree by the house, stones in the field and washing day.</li>
+          <li>Ice on the paths and midges at dusk can hurt: someone may sprain an ankle on the ice or come down with insect bites, and the answers say so before you choose.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.315.0</version>
         <date>27 November 2026</date>
         <title>Ten more council questions and six more world events</title>
