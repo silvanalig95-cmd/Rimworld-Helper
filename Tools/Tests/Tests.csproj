@@ -86,6 +86,7 @@
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitTrainingMath.cs" Link="PortraitTrainingMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitVariantsMath.cs" Link="PortraitVariantsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitPeopleMath.cs" Link="PortraitPeopleMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Happenings/Round2EventsMath.cs" Link="Round2EventsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitCorrectMath.cs" Link="PortraitCorrectMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="ApparelTagMath.cs" />

@@ -46,6 +46,8 @@ namespace ColonyCouncil
         public static void Notify_Died(Pawn dead, Building_Bed bed)
         {
             // apart: a room passed on after a death; the bed changes hands on the map a day later.
+            // The room left, for the council's question when it stands empty (Dilemmas/DilemmaWorkers_Round2.cs, D24).
+            Round2Council.RoomLeft(dead, bed);
             if (dead == null || bed == null || !ColonyCouncilMod.Settings.heirlooms) return;
             var left = new Left { dead = dead, bed = bed, tick = Find.TickManager.TicksGame };
             var comp = CouncilGameComponent.Instance;

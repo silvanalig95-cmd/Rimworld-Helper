@@ -1,0 +1,611 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The content update's second round, its storyteller events (docs/content-update-proposals-2.md, D16 to D23;
+       Source/ColonyCouncil/Happenings/Workers_Round2.cs): ordinary happenings on the map in every age, each with a choice and
+       its play-out. Someone not in by dark in the fog or the snow, the fish running, a bear asleep in the rock, water for the
+       fields in a drought, a wild animal acting wrong at dawn, a raider who hid after the raid, an animal stuck in the bog,
+       bad air in the deep. Every hurt goes through the shared harm budget and is named under the answer before it's chosen.
+       Event cards, so plain words. The spoken lines are tagged with their moment: lost, call, found, horn, in, dawn (not in
+       by dark); run (the fish); warn (seen); chain (the water); drive, run, thanks (the one who hid); pull, boards (the bog);
+       believer, turn (the bad air). -->
+
+  <!-- ===================== D16. Not in by dark ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_NotInByDark</defName>
+    <label>not in by dark</label>
+    <workerClass>ColonyCouncil.HappeningWorker_NotInByDark</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.08</answerDays>
+        <titles>
+          <li>Not in by dark</li>
+          <li>{A_nameDef} hasn't come in</li>
+        </titles>
+        <texts>
+          <li>It's getting dark, and {A_nameDef} hasn't come in. {A_pronoun} was working out {PLACE}, and in this weather {A_pronoun} has lost the way back and is walking about out there. {B_nameDef} is nearest and could go.</li>
+          <li>[fog] The fog came down at dusk, and {A_nameDef}, who was out {PLACE}, hasn't come back. {A_pronoun} can't see the colony from there and is going round in circles. {B_nameDef} says someone should go out with a light.</li>
+          <li>[snow] It's snowing hard, the light is going, and {A_nameDef} is still out {PLACE}. The snow has covered {A_possessive} tracks, and {A_pronoun} has lost the way. {B_nameDef} could go out and look.</li>
+          <li>[child] {A_nameDef} was playing out {PLACE} and hasn't come in, and it's nearly dark. {A_pronoun} can't find the way back in this weather. {B_nameDef} is ready to go out and look.</li>
+          <li>[lowtech] Dusk, and {A_nameDef} is not back from {PLACE}. In this weather a horn and a fire would carry further than shouting. {B_nameDef} is at hand.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Two or three go out with lights</label>
+            <outcome>A few of the colony go out toward where {A_nameDef} was last seen, calling {A_possessive} name, to find {A_objective} and walk back together.</outcome>
+            <outcomes>
+              <li>[tribal] A few of the colony go out with torches toward where {A_nameDef} was last seen, calling, to bring {A_objective} back.</li>
+              <li>[medieval] A few of the colony go out with lanterns toward where {A_nameDef} was last seen, calling, to bring {A_objective} back.</li>
+              <li>[industrial] A few of the colony go out with flashlights and whistles toward where {A_nameDef} was last seen, to bring {A_objective} back.</li>
+              <li>[spacer] A few of the colony go out with suit lights toward where {A_nameDef} was last seen, to bring {A_objective} back.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_NightOut"><mode>search</mode></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} stands at the edge with a light</label>
+            <outcome>{B_nameDef} goes to the edge of the colony nearest {A_nameDef} and makes a light and a noise there, so {A_nameDef} can walk toward it. {A_pronoun} will come in later, and cold.</outcome>
+            <outcomes>
+              <li>[tribal] {B_nameDef} goes to the edge of the colony nearest {A_nameDef} with a torch and a horn, so {A_nameDef} can walk toward the sound. {A_pronoun} will come in later, and cold.</li>
+              <li>[medieval] {B_nameDef} goes to the edge of the colony nearest {A_nameDef} with a lantern and a bell, so {A_nameDef} can walk toward the sound. {A_pronoun} will come in later, and cold.</li>
+              <li>[industrial] {B_nameDef} goes to the edge of the colony nearest {A_nameDef} with a flare and a whistle, so {A_nameDef} can walk toward it. {A_pronoun} will come in later, and cold.</li>
+              <li>[spacer] {B_nameDef} goes to the edge of the colony nearest {A_nameDef} and sets a beacon going, so {A_nameDef} can walk toward it. {A_pronoun} will come in later, and cold.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_NightOut"><mode>light</mode></li>
+            </effects>
+          </li>
+          <li>
+            <label>{A_nameDef} waits for morning</label>
+            <outcome>Nobody goes out. {A_nameDef} waits out the night where {A_pronoun} is and walks home at first light, cold and tired.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_NightOut"><mode>morning</mode></li>
+            </effects>
+            <ways><toil>1</toil><mercy>-1</mercy></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[lost] I can't see the colony from here, which way is it?</li>
+          <li>[lost] Everything looks the same out here in the dark.</li>
+          <li>[call] Over here, follow my voice!</li>
+          <li>[call] Can you hear me, shout if you can.</li>
+          <li>[call,lowtech] Hold the torch up so they can see it.</li>
+          <li>[found] There you are, come on, we're going home.</li>
+          <li>[found] Found you, stay close to the light now.</li>
+          <li>[horn] Keep walking toward the sound.</li>
+          <li>[horn,lowtech] I'll keep blowing the horn until you're in.</li>
+          <li>[in] I heard you a long way off, and I just kept walking.</li>
+          <li>[dawn] Light at last, now I can see the way back.</li>
+          <li>[dawn] That was the longest night I've had out here.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_R2_CameForMe</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilSocial</thoughtClass>
+    <durationDays>8</durationDays>
+    <stackLimit>3</stackLimit>
+    <stackLimitForSameOtherPawn>1</stackLimitForSameOtherPawn>
+    <stages><li><label>came out for me in the dark</label><description>I was lost out there in the dark, and they came out with lights and found me.</description><baseMoodEffect>3</baseMoodEffect><baseOpinionOffset>10</baseOpinionOffset></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_BroughtHome</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>brought someone home</label><description>One of us was lost out there after dark, and I helped bring them in.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_WalkedToTheLight</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>walked in toward the light</label><description>I was lost after dark, and found my way back by the light at the edge of the colony. I was cold when I got in.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_KeptTheLight</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>kept the light at the edge</label><description>I stood at the edge in the dark and kept the light going until they walked in.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_NightOut</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a night out in the dark</label><description>I was lost and spent the whole night out there on my own, waiting for light.</description><baseMoodEffect>-4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D17. The fish are running ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_FishRunning</defName>
+    <label>the fish are running</label>
+    <workerClass>ColonyCouncil.HappeningWorker_FishRunning</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Fall</li>
+        </seasons>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The fish are running</li>
+          <li>Fish in the water</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} came up from the water {PLACE} to say that it's full of {THING}: the fish are running, and they'll keep running for a few days. Anyone at the water while it lasts will bring in more than usual.</li>
+          <li>[spring] The {THING} are running at the colony's fishing ground {PLACE}, as they do in spring. {A_nameDef} has seen the water splashing with them all morning. It will last a few days.</li>
+          <li>[fall] The {THING} are running at the colony's fishing ground {PLACE} before the cold. {A_nameDef} says it's the best fishing of the year, and it won't last more than a few days.</li>
+          <li>[bear] The {THING} are running at the colony's fishing ground {PLACE}, and {A_nameDef} says a bear has come down to the bank as well. It's busy with the fish and leaves people alone, as long as nobody goes after it. The run will last a few days.</li>
+          <li>[murmur] The {THING} are running at the colony's fishing ground {PLACE}. {A_nameDef} brought the news up from the water, and those of the colony who give the river its share already say the first fish go back.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Everyone who can be spared goes fishing</label>
+            <outcome>Everyone who can be spared goes down to the water to fish while the fish are running.</outcome>
+            <outcomes>
+              <li>[lowtech] Everyone who can be spared goes down to the water with spears, nets and baskets while the fish are running.</li>
+              <li>[industrial|spacer] Everyone who can be spared goes down to the water with rods and nets while the fish are running.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>fishing while the fish run</label><tasks><li>Fish</li></tasks><count>6</count><hours>6~18</hours><duration>3~4</duration></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>A few fish now, the rest put by for winter</label>
+            <outcome>Two of the colony go down to fish, and the catch is to be cooked into food that keeps.</outcome>
+            <outcomes>
+              <li>[pemmican] Two of the colony go down to fish, and a bill for pemmican is set at the stove so the catch keeps through the winter.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>fishing for the stores</label><tasks><li>Fish</li></tasks><count>2</count><hours>6~18</hours><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_PutBy" />
+            </effects>
+            <ways><toil>1</toil><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Let them pass</label>
+            <outcome>The colony goes on with its own work. Whoever fishes in the next few days will still find the water full.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[run] The water's full of them, come and look.</li>
+          <li>[run] I've never seen so many fish in one place.</li>
+          <li>[run,lowtech] The fish are running, get the nets and the baskets.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== D18. A bear asleep in the rock ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BearDen</defName>
+    <label>a bear asleep in the rock</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BearDen</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <seasons>
+          <li>Winter</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>A bear asleep in the rock</li>
+          <li>The hollow behind the {THING}</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} was digging at the {THING} {PLACE} when the rock gave way into a hollow behind it. There is a {X_label} asleep in there for the winter. It hasn't woken. {A_nameDef} backed out quietly, and the digging there has stopped. {B_nameDef}, who is best with animals, says it could be tamed while it sleeps, though a bear woken by the wrong hand is dangerous.</li>
+          <li>[lowtech] {A_nameDef} broke through the {THING} {PLACE} into a hollow, and the torchlight showed a {X_label} curled up asleep inside. The old hunters say a sleeping bear can be walled in until spring, killed where it lies, or tamed by someone with the patience for it. {B_nameDef} would try to tame it.</li>
+          <li>[!lowtech] The digging at the {THING} {PLACE} opened a hollow with a {X_label} asleep in it, sleeping out the winter. {A_nameDef} came out quietly and stopped work there. {B_nameDef} thinks it could be tamed. It could also be walled in again, or hunted where it lies.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Wall it up again</label>
+            <outcome>The bear is left to sleep, and a wall is to be built across the gap. In the first warm days the wall will be taken down so it can walk out and off the colony's land.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WallDen" />
+            </effects>
+            <ways><mercy>1</mercy><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>{B_nameDef} tries to tame it while it sleeps</label>
+            <outcome>The bear is marked for taming. {B_nameDef} and the colony's handlers will try their hand once it stirs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MarkBeast"><tame>true</tame></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Hunt it where it lies</label>
+            <outcome>The bear is marked for the hunters. Its meat and pelt will be the colony's.</outcome>
+            <outcomes>
+              <li>[lowtech] The bear is marked for the hunters, to be killed with spears and arrows where it lies. Its meat and pelt will be the colony's.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MarkBeast" />
+            </effects>
+            <ways><toil>1</toil><mercy>-1</mercy></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Quiet, there's a bear asleep in there.</li>
+          <li>[warn] Back out slowly and don't wake it.</li>
+          <li>[warn,lowtech] Put the torch down, there's a bear in the hollow.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== D19. Water for the fields ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WaterForFields</defName>
+    <label>water for the fields</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WaterForFields</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>Water for the fields</li>
+          <li>The dry fields</li>
+        </titles>
+        <texts>
+          <li>The drought goes on, and the crops in the {TALE} are drying out. {A_nameDef} says that if everyone carried water to them at dawn, the field would get what it needs for a day. Or the {PLACE}, furthest out, could be let go, so the rest get what water there is.</li>
+          <li>[reeve] {A_nameDef}, who sees to the fields, came to the council about the drought. The {TALE} is going brown. {A_pronoun} wants a water chain at dawn, or to give up the {PLACE} so the others can be watered.</li>
+          <li>[lowtech] The rain hasn't come, and the {TALE} is wilting. {A_nameDef} says the old way is to carry water from the river in pails and jars at first light. The other way is to cut the {PLACE} for what it's worth and keep the water for the rest.</li>
+          <li>[!lowtech] The drought has the {TALE} wilting. {A_nameDef} wants everyone free out at dawn with buckets and a hand cart, carrying water to it. The other choice is to cut the {PLACE} now and keep the rest going.</li>
+          <li>[murmur] The drought has the {TALE} wilting. {A_nameDef} says the field could be watered by hand at dawn. Some of the colony say the river will send rain in its own time, and would wait.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A water chain at dawn</label>
+            <outcome>At dawn everyone free will carry water to the {TALE} from the nearest water.</outcome>
+            <outcomes>
+              <li>[lowtech] At dawn everyone free will carry water to the {TALE} in pails and jars.</li>
+              <li>[industrial|spacer] At dawn everyone free will carry water to the {TALE} in buckets and cans.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FieldWater"><mode>chain</mode></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Let the {PLACE} go</label>
+            <outcome>The crop in the {PLACE} is marked to be cut and brought in for what it's worth, and the water there is goes to the other fields.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_FieldWater"><mode>letgo</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Wait it out</label>
+            <outcome>The colony waits for rain. The fields will have to manage on their own.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[chain] Fill up and pass it on, there's a whole field to water.</li>
+          <li>[chain] Mind the pails, don't spill it on the way.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_WaterChain</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>carried water to the field</label><description>We carried water to the crops at dawn, all of us together, and the field drank it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D20. The animal that's wrong ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_WrongAnimal</defName>
+    <label>the animal that's wrong</label>
+    <workerClass>ColonyCouncil.HappeningWorker_WrongAnimal</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <threat>true</threat>
+        <answerDays>0.1</answerDays>
+        <titles>
+          <li>The animal that's wrong</li>
+          <li>Something wrong with the {X_label}</li>
+        </titles>
+        <texts>
+          <li>At first light {A_nameDef} saw a {X_label} {PLACE}, at the edge of the colony, acting wrong: walking in circles, foaming at the mouth and snapping at nothing. Left alone, it will likely go mad later today and attack whoever is nearest. {B_nameDef} could shoot it from a distance.</li>
+          <li>[sanguine] {A_nameDef} saw a deer {PLACE} at dawn, but its eyes are red and it's been snapping and circling at the edge of the colony. Sanguine deer are known to turn on people. Left alone, it will likely go mad later today. {B_nameDef} could shoot it from a distance.</li>
+          <li>[lowtech] A {X_label} {PLACE} has been going round in circles since dawn, foaming and snapping at the air. {A_nameDef} says the old hunters know this sickness: an animal like that goes mad before the day is out. {B_nameDef} could put an arrow in it from a safe distance.</li>
+          <li>[noshot] At first light {A_nameDef} saw a {X_label} {PLACE} walking in circles, foaming and snapping at nothing. Left alone, it will likely go mad later today and come for whoever is nearest.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Shoot it from a distance</label>
+            <outcome>The {X_label} is marked for the hunters, to be shot from a distance before it goes mad.</outcome>
+            <outcomes>
+              <li>[tribal] The {X_label} is marked for the hunters, to be brought down with arrows from a distance before it goes mad.</li>
+              <li>[medieval] The {X_label} is marked for the hunters, to be brought down with a crossbow from a distance before it goes mad.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_MarkBeast" />
+              <li Class="ColonyCouncil.DilemmaEffect_WrongBeast"><mode>hunt</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Bring the animals in and keep the children close</label>
+            <outcome>The colony's animals are brought into the pens, and the children are kept near the middle of the colony until the {X_label} has gone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the herd in</label><tasks><li>Herd</li></tasks><count>2</count><hours>5~20</hours><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WrongBeast"><mode>pen</mode></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Let it be</label>
+            <outcome>Nobody goes near the {X_label}, and it keeps circling at the edge of the colony.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WrongBeast"><mode>let</mode></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Look at that animal, it's walking in circles.</li>
+          <li>[warn] It's foaming at the mouth, stay away from it.</li>
+          <li>[warn,lowtech] That one has the madness in it, keep the children back.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== D21. The one who hid ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_OneWhoHid</defName>
+    <label>the one who hid</label>
+    <workerClass>ColonyCouncil.HappeningWorker_OneWhoHid</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Challenge</group>
+        <minColonists>2</minColonists>
+        <answerDays>0.25</answerDays>
+        <titles>
+          <li>The one who hid</li>
+          <li>Left behind after the raid</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} found one of the raiders of {FACTION} hiding {PLACE}, in cover at the far side of the land. {X_nameDef} stayed behind when the others ran, has no weapon left, and is very hungry. {B_nameDef} could go out with {A_nameDef} to bring {X_objective} in, though {X_pronoun} may fight. Or {X_pronoun} could be given food and let go home, or driven off.</li>
+          <li>[prayed] {A_nameDef} came across one of the raiders of {FACTION} hiding {PLACE}, and heard {X_objective} praying under {X_possessive} breath before {X_pronoun} noticed anyone was there. {X_nameDef} was left behind when the others ran, has no weapon, and hasn't eaten. {B_nameDef} is ready to go out with {A_nameDef}.</li>
+          <li>[lowtech] One of the raiders of {FACTION} never left. {A_nameDef} found {X_nameDef} {PLACE}, hidden in the brush, hungry, without a weapon. The colony could take {X_objective} prisoner, feed {X_objective} and send {X_objective} home, or chase {X_objective} off.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_objective} prisoner</label>
+            <outcome>{A_nameDef} and {B_nameDef} go out to bring {X_nameDef} in as a prisoner.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Hidden"><mode>take</mode></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Give {X_objective} food and let {X_objective} go home</label>
+            <outcome>Food is carried out to {X_nameDef}, and {X_pronoun} is let go home. {FACTION} will hear about it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>2</count><steward>false</steward><to>Stranger</to><label>food for {X_nameDef}</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Hidden"><mode>feed</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>8</amount></li>
+            </effects>
+            <ways><mercy>3</mercy><generosity>2</generosity></ways>
+          </li>
+          <li>
+            <label>Drive {X_objective} off</label>
+            <outcome>{B_nameDef} walks out toward {X_nameDef} with a weapon raised and shouts at {X_objective} to go, and {X_pronoun} runs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Hidden"><mode>drive</mode></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] There's someone hiding out here, one of the raiders.</li>
+          <li>[drive] Go on, get off our land and don't come back.</li>
+          <li>[drive] Run, before I change my mind.</li>
+          <li>[run] Don't shoot, I'm going.</li>
+          <li>[thanks] Thank you, I won't forget this.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== D22. Stuck in the bog ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_StuckInBog</defName>
+    <label>stuck in the bog</label>
+    <workerClass>ColonyCouncil.HappeningWorker_StuckInBog</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <weather>
+          <li>rain:2/4</li>
+        </weather>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>Stuck in the bog</li>
+          <li>The {X_label} in the mud</li>
+        </titles>
+        <texts>
+          <li>After the rain the ground {PLACE} has gone soft at the water's edge, and the {X_label} has sunk into it and can't get out. {A_nameDef} and {B_nameDef} could pull it out with a rope, which will take a while and leave them covered in mud. Boards laid out to it would be quicker and cleaner, but they take wood.</li>
+          <li>[wild] A wild {X_label} has sunk into the mud at the water's edge {PLACE} after the rain and can't get itself out. {A_nameDef} says it could be pulled out with a rope, or boards laid out to reach it. Or it could be left to free itself, if it can.</li>
+          <li>[ours] The colony's {X_label} wandered into the marsh {PLACE} after the rain and is stuck to the belly. {A_nameDef} wants to pull it out with {B_nameDef} and a rope, or lay boards out to it.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Pull it out with a rope</label>
+            <outcome>{A_nameDef} and {B_nameDef} go out with a rope to pull the {X_label} free.</outcome>
+            <outcomes>
+              <li>[industrial|spacer] {A_nameDef} and {B_nameDef} go out with a rope and a winch to pull the {X_label} free.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Bog"><mode>rope</mode></li>
+            </effects>
+            <ways><mercy>1</mercy><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Lay boards out to it</label>
+            <outcome>{A_nameDef} lays boards out across the mud to reach the {X_label} and lead it out.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Bog"><mode>boards</mode></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Leave it</label>
+            <outcome>The {X_label} is left where it is, to free itself if it can.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Bog"><mode>leave</mode></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] It's stuck fast, the mud's got it up to the belly.</li>
+          <li>[pull] Pull on three, and keep your feet out of the deep part.</li>
+          <li>[pull] It's coming, keep pulling.</li>
+          <li>[boards] One more board and I can reach it.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <HediffDef>
+    <defName>Rimfolk_R2_StuckInMud</defName>
+    <label>stuck in the mud</label>
+    <description>Sunk in soft ground at the water's edge and unable to get out alone.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.75, 0.6, 0.4)</defaultLabelColor>
+    <isBad>true</isBad>
+    <stages>
+      <li>
+        <capMods>
+          <li>
+            <capacity>Moving</capacity>
+            <setMax>0.2</setMax>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_PulledOut</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>pulled an animal out of the mud</label><description>We got it out of the bog with a rope. I'm covered in mud up to the knees, but it's out.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D23. Bad air in the deep ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_BadAir</defName>
+    <label>bad air in the deep</label>
+    <workerClass>ColonyCouncil.HappeningWorker_BadAir</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <threat>true</threat>
+        <answerDays>0.2</answerDays>
+        <titles>
+          <li>Bad air in the deep</li>
+          <li>Bad air at the {THING}</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} was digging deep under the mountain {PLACE} when the new face let out a pocket of bad air. {A_pronoun} came out coughing, and the digging there has stopped. A shaft opened to the outside would clear it. The digging could also go on in short turns until it clears, or the way in could be walled off. Anyone who stays in the bad air will be poisoned by it.</li>
+          <li>[lowtech] Deep in the rock {PLACE}, the candle {A_nameDef} was carrying burned down to almost nothing, and {A_pronoun} came out coughing: bad air from the new face. {B_nameDef} says a shaft cut to the open sky would clear it, or the place could be walled off. Whoever stays in it will be poisoned.</li>
+          <li>[industrial] {A_nameDef}'s lamp went dim at the new face {PLACE}, deep under the mountain, and {A_pronoun} came out coughing. There's bad air in there. {B_nameDef} says a shaft to the surface would clear it. Whoever stays in it will be poisoned.</li>
+          <li>[spacer] {A_nameDef}'s suit warned about the air at the new face {PLACE}, deep under the mountain, and {A_pronoun} came out. There's a pocket of bad air in there. {B_nameDef} could cut a shaft to the surface to clear it, or it could be walled off.</li>
+          <li>[smoulder] {A_nameDef} came out of the deep dig {PLACE} coughing: the new face let out a pocket of bad air. Some of the colony say the deep breathed out. {B_nameDef} would cut a shaft to the open sky to clear it, or the place could be walled off. Whoever stays in it will be poisoned.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Open a shaft to the air</label>
+            <outcome>The rock between the face and the open sky is marked for digging, and the face is left until the air clears.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BadAir"><mode>shaft</mode></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Work in short turns until it clears</label>
+            <outcome>The digging at the face is marked again. Nobody stays in the bad air for long before coming out to breathe.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BadAir"><mode>turns</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Wall it off</label>
+            <outcome>A wall is to be built across the way in, and that face is left alone.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_BadAir"><mode>wall</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Get out, the air in there is bad.</li>
+          <li>[warn] I can't breathe in there, it's making me sick.</li>
+          <li>[warn,lowtech] My candle's nearly gone out in there, the air is bad.</li>
+          <li>[warn,industrial] The lamp went dim in there, there's bad air.</li>
+          <li>[warn,spacer] My suit says the air in there isn't safe.</li>
+          <li>[believer] The deep breathed out, that's what it does.</li>
+          <li>[believer] The deep is breathing, leave it be a while.</li>
+          <li>[turn] That's my turn done, I need some air.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
