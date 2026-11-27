@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The content round's third part, its camps and world events (docs/content-round-3-camps-world.md, R3-C1 to R3-W6): their
+    messages, what an answer does (the impact lines), and the few lines said over a head. Source/ColonyCouncil/Camps/
+    CampRound3.cs and World/Variety/WorldRound3.cs. A god is never named here: what people do and say is.
+  -->
+
+  <!-- R3-C1. Rain-callers -->
+  <CC_R3Rain_Rite>The {NAME} are dancing round their fire to call the rain, and will do it every evening until it comes.</CC_R3Rain_Rite>
+  <CC_R3Rain_RiteUp>The {NAME} are working at their gear by the fire to send something up into the clouds, and will do it every evening until the rain comes.</CC_R3Rain_RiteUp>
+  <CC_R3Rain_SkyLine>The sky isn't theirs to call down, whatever they think.</CC_R3Rain_SkyLine>
+  <CC_R3Rain_RainedUnpaid>It is raining on the colony's land, and the {NAME} are out of their tents cheering. They are packing up to go, and say it was their doing.</CC_R3Rain_RainedUnpaid>
+  <CC_R3Rain_RainedPaid>It is raining on the colony's land, and the {NAME} are cheering at their fire. {A_nameDef} is carrying the promised {COUNT} silver out to them, and they are packing up to go.</CC_R3Rain_RainedPaid>
+  <CC_R3Rain_RainedNoFee>It is raining on the colony's land, and the {NAME} came for their {COUNT} silver, but the colony hasn't got it or nobody is free to carry it out. They are packing up, not pleased.</CC_R3Rain_RainedNoFee>
+  <CC_R3Rain_FeeLabel>the rain-callers' fee</CC_R3Rain_FeeLabel>
+  <CC_R3Rain_TooLate>The rain has already come.</CC_R3Rain_TooLate>
+  <CC_R3Rain_FeeImpact>{0} silver carried out to them if it rains after their rite; nothing now</CC_R3Rain_FeeImpact>
+  <CC_R3Rain_FeeImpactBrief>a fee if it rains</CC_R3Rain_FeeImpactBrief>
+
+  <!-- R3-C2. Dyers -->
+  <CC_R3Dye_Colour_woad>woad blue</CC_R3Dye_Colour_woad>
+  <CC_R3Dye_Colour_madder>madder red</CC_R3Dye_Colour_madder>
+  <CC_R3Dye_Colour_weld>weld yellow</CC_R3Dye_Colour_weld>
+  <CC_R3Dye_Colour_ochre>ochre</CC_R3Dye_Colour_ochre>
+  <CC_R3Dye_Colour_aniline>aniline purple</CC_R3Dye_Colour_aniline>
+  <CC_R3Dye_Colour_verdigris>verdigris green</CC_R3Dye_Colour_verdigris>
+  <CC_R3Dye_Colour_cobalt>cobalt blue</CC_R3Dye_Colour_cobalt>
+  <CC_R3Dye_Done>{A_nameDef}'s {THING} has come out of the {NAME}'s vat, and {X_nameDef} has hung it by the fire to dry for a moment before handing it back.</CC_R3Dye_Done>
+  <CC_R3Dye_Refund>{A_nameDef} never came to have {A_possessive} clothes dyed, so the {NAME} are sending the {COUNT} silver back to the gate.</CC_R3Dye_Refund>
+  <CC_R3Dye_Busy>Someone of the colony is already at their vats.</CC_R3Dye_Busy>
+  <CC_R3Dye_Nothing>Nothing they wear would take the dye.</CC_R3Dye_Nothing>
+  <CC_R3Dye_Impact>{0}'s {1} dyed {2} at their camp</CC_R3Dye_Impact>
+  <CC_R3Dye_ImpactBrief>clothes dyed</CC_R3Dye_ImpactBrief>
+
+  <!-- R3-C3. Witch-finders -->
+  <CC_R3Witch_Mark_None>they would not say why</CC_R3Witch_Mark_None>
+  <CC_R3Witch_Mark_Healer>a healer who knows too much about herbs</CC_R3Witch_Mark_Healer>
+  <CC_R3Witch_Mark_Sensitive>one who feels what others don't</CC_R3Witch_Mark_Sensitive>
+  <CC_R3Witch_Mark_Xenotype>one who is not born as other people are</CC_R3Witch_Mark_Xenotype>
+  <CC_R3Witch_Mark_Psylink>one with powers of the mind</CC_R3Witch_Mark_Psylink>
+  <CC_R3Witch_Someone>someone of the colony</CC_R3Witch_Someone>
+  <CC_R3Witch_NoSuspect>There is nobody here they suspect.</CC_R3Witch_NoSuspect>
+  <CC_R3Witch_VisitLabel>questioned at the witch-finders' fire</CC_R3Witch_VisitLabel>
+  <CC_R3Witch_Impact>{0} walks to their fire and is questioned there for an hour; a good talker is likelier to be let go</CC_R3Witch_Impact>
+  <CC_R3Witch_ImpactBrief>questioned at their fire</CC_R3Witch_ImpactBrief>
+  <CC_R3Witch_Cleared>The {NAME} questioned {A_nameDef} at their fire for an hour, and {X_nameDef} has said there is no mark on {A_objective}. They will go in the morning.</CC_R3Witch_Cleared>
+  <CC_R3Witch_Named>The {NAME} questioned {A_nameDef} at their fire for an hour, and {X_nameDef} has called {A_objective} a witch. They are packing up to go and tell it on the road.</CC_R3Witch_Named>
+
+  <!-- R3-C4. Rag-and-bone men -->
+  <CC_R3Rags_Nothing>Nothing in the stores is worn out enough.</CC_R3Rags_Nothing>
+  <CC_R3Rags_Label>the worn-out things for the rag-and-bone men</CC_R3Rags_Label>
+  <CC_R3Rags_Impact>{0} worn-out things (clothes and weapons too far gone, and slag) carried out to their camp</CC_R3Rags_Impact>
+  <CC_R3Rags_ImpactBrief>worn-out things sold</CC_R3Rags_ImpactBrief>
+
+  <!-- R3-C5. Gamblers -->
+  <CC_R3Dice_LedgerLine>Silver that comes from dice goes back to the dice.</CC_R3Dice_LedgerLine>
+  <CC_R3Dice_Refund>{A_nameDef} never sat down at the {NAME}'s fire, so they are sending the {COUNT} silver stake back to the gate.</CC_R3Dice_Refund>
+  <CC_R3Dice_Busy>Someone of the colony is already at their fire.</CC_R3Dice_Busy>
+  <CC_R3Dice_Impact>{0} plays an evening at their fire with the stake: it may come back doubled, or not at all</CC_R3Dice_Impact>
+  <CC_R3Dice_ImpactBrief>an evening at the dice</CC_R3Dice_ImpactBrief>
+  <CC_R3Dice_Won>{A_nameDef} won at the {NAME}'s fire tonight, and {X_nameDef} is bringing {COUNT} silver to the colony's gate with a sour face.</CC_R3Dice_Won>
+  <CC_R3Dice_Lost>{A_nameDef} lost the {COUNT} silver at the {NAME}'s fire tonight, and is walking back with empty pockets.</CC_R3Dice_Lost>
+  <CC_R3Dice_Caught>{A_nameDef} caught the {NAME}'s loaded dice. {X_nameDef} is bringing the stake, {COUNT} silver, back to the gate, and the camp is in a bad mood.</CC_R3Dice_Caught>
+
+  <!-- R3-C6. Dog-breeders -->
+  <CC_R3Dog_NoneLeft>They have no dog left to sell.</CC_R3Dog_NoneLeft>
+  <CC_R3Dog_Impact>The youngest of their dogs is the colony's, and keeps at {PAWN}'s heels for a day</CC_R3Dog_Impact>
+  <CC_R3Dog_ImpactBrief>a dog bought</CC_R3Dog_ImpactBrief>
+
+  <!-- R3-W5. The year of the rats -->
+  <CC_R3Rats_Chasing>The rat-catcher's dog is off across the colony's land after the rats.</CC_R3Rats_Chasing>
+  <CC_R3Rats_Clear>The rat-catcher's dog has cleared the colony's land of rats.</CC_R3Rats_Clear>
+
+  <!-- R3-W6. A new way spreads -->
+  <CC_R3Way_NoDrawings>They have no drawings to sell.</CC_R3Way_NoDrawings>
+</LanguageData>

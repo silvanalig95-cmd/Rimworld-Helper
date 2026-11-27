@@ -113,7 +113,9 @@ namespace ColonyCouncil
             "them:camp:GamesTeam", "them:camp:WalkingHome", "them:camp:StarWatchers",
             // The content round's camps (Rimfolk_CampKinds_Round2.xml), and the priest of a god put away taken in for a season.
             "them:camp:Diggers", "them:camp:HerdApart", "them:camp:StoneRaisers", "them:camp:Smugglers", "them:camp:Novices", "them:camp:LordsHunt",
-            "them:camp:PutAwayPriest"
+            "them:camp:PutAwayPriest",
+            // The content round's third part (Rimfolk_CampKinds_Round3.xml).
+            "them:camp:RainCallers", "them:camp:Dyers", "them:camp:WitchFinders", "them:camp:RagPickers", "them:camp:Gamblers", "them:camp:Kennel"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>

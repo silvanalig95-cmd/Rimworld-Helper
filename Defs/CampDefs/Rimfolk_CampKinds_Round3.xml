@@ -1,0 +1,870 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content round's third part, its camps (docs/content-round-3-camps-world.md, R3-C1 to R3-C6): rain-callers, dyers,
+    witch-finders, rag-and-bone men, gamblers and dog-breeders. Their ways in Source/ColonyCouncil/Camps/CampRound3.cs. Each in
+    its people's age's form ([their:tribal]...). Camps' letters in their flavour style; bubbles are speech, one sentence each.
+    Beasts and goods from the player's mods first (MayRequire or by name in code), the game's own after.
+  -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R3_CampSkyWork</defName>
+    <reportString>working at the rain-making gear.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1500</ticks><effecter>ConstructMetal</effecter><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R3_CampStirVat</defName>
+    <reportString>stirring the dye vat.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1800</ticks><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R3_CampLookOver</defName>
+    <reportString>looking the colony over.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2400</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R3_CampSort</defName>
+    <reportString>sorting rags.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2000</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R3_CampDice</defName>
+    <reportString>gambling at the fire.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1500</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R3_CampTrainDog</defName>
+    <reportString>working a dog.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>900</ticks><holdTarget>true</holdTarget></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- What the colony's people feel about the round's camps. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_Dyed</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>clothes freshly dyed</label>
+        <description>The dyers put my clothes through their vat, and the colour came out well.</description>
+        <baseMoodEffect>2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_Questioned</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>questioned by witch-finders</label>
+        <description>The witch-finders questioned me at their fire for an hour. They let me go, but I didn't like it.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_NamedWitch</defName>
+    <durationDays>6</durationDays>
+    <stages>
+      <li>
+        <label>called a witch</label>
+        <description>The witch-finders questioned me at their fire and then called me a witch, and went off to tell everyone on the road.</description>
+        <baseMoodEffect>-7</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_WonAtDice</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>won at their fire</label>
+        <description>I played an evening at the gamblers' fire and came away with more than I took.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_LostAtDice</defName>
+    <durationDays>2</durationDays>
+    <stages>
+      <li>
+        <label>lost at their fire</label>
+        <description>I played an evening at the gamblers' fire and lost the colony's stake.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- ===================== R3-C1. Rain-callers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_RainCallers</defName>
+    <label>rain-callers</label>
+    <workerClass>ColonyCouncil.CampWorker_R3RainCallers</workerClass>
+    <arrives>14~19</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.2</weight>
+    <situationKinds>
+      <li>drought</li>
+      <li>hunger</li>
+    </situationKinds>
+    <situationWeight>5</situationWeight>
+    <people>3~5</people>
+    <days>3~5</days>
+    <ages>18~65</ages>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>song</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>Drink</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.25</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>they carry their drums and their gear on to the next dry valley</leavesWhy>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li>Dromedary</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Rain-callers</li>
+      <li>[their:tribal] Rain-dancers with drums</li>
+      <li>[their:medieval] A rain-priest's band</li>
+      <li>[their:industrial] Cloud-seeders</li>
+      <li>[their:spacer] A weather crew</li>
+    </titles>
+    <texts>
+      <li>A few of {FACTION} have come to the colony's land with drums and bundles. {X_nameDef} told {A_nameDef} that they call the rain, and that the colony's land is dry enough to need it. They would camp {PLACE} and keep their rite there each evening until the rain comes.</li>
+      <li>[ws:drought] With {SITUATION} on the region, rain-callers of {FACTION} have come to the colony's land. {X_nameDef} told {A_nameDef} they have called rain in worse years than this, and asked to camp {PLACE} and keep their rite each evening.</li>
+      <li>[their:tribal] Rain-dancers of {FACTION} have come with drums on their backs and their faces painted white. {X_nameDef} told {A_nameDef} the sky owes the land rain, and they will dance round their fire {PLACE} every evening until it pays.</li>
+      <li>[their:medieval] A rain-priest of {FACTION} and a few followers have come up the road with bells and a sealed jar of water from their holy spring. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and keep their rite each evening until the rain comes.</li>
+      <li>[their:industrial] A crew of {FACTION} has arrived with a cart of rockets and a crate marked with chemical warnings. {X_nameDef} told {A_nameDef} they seed clouds, and asked to camp {PLACE} and send a rocket up each evening until the rain comes.</li>
+      <li>[their:spacer] A weather crew of {FACTION} has set down with a folding mast and an ionizer. {X_nameDef} told {A_nameDef} they can nudge the weather if the air is anywhere near ready, and asked to camp {PLACE} for a few evenings.</li>
+    </texts>
+    <settled>
+      <li>The rain-callers' camp is up {PLACE}, with a big fire and the ground round it swept for their rite.</li>
+      <li>The rain-callers of {FACTION} have made camp {PLACE}, and {X_nameDef} has been looking at the sky all afternoon.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the rain-callers camped {PLACE} says {X_pronoun} is tired of following the dry years, and asks whether the colony would have {X_objective} for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>[paid] The rain-callers took their fee, packed up in the wet and went on, very pleased with themselves.</li>
+      <li>[rained] The rain-callers packed up in the rain and went on, telling everyone on the road that the rain at the colony was their doing.</li>
+      <li>[dry] The rain-callers packed up under a clear sky and went on. {X_nameDef} said the sky wasn't ready yet, and that it would be soon.</li>
+      <li>The rain-callers' camp {PLACE} is empty, the swept ground round their fire already dusty again.</li>
+    </farewell>
+    <lines>
+      <li>Feel that wind, it's turning.</li>
+      <li>The clouds come when they're called properly.</li>
+      <li>Not yet, but soon.</li>
+      <li>Save your voice for the evening.</li>
+      <li>The ground here is cracked right through.</li>
+      <li>[evening] Gather round, it's time.</li>
+      <li>[rain] Told you it would come.</li>
+      <li>[their:tribal] Paint your face again, it's run.</li>
+      <li>[their:industrial] Keep the rockets dry, at least.</li>
+      <li>[their:spacer] The ionizer needs another hour to charge.</li>
+    </lines>
+    <momentLines>
+      <li>[rite] Come down, rain, come down to us.</li>
+      <li>[rite] Louder, all of you, the sky has to hear it.</li>
+      <li>[rite,their:industrial] Stand back from the launcher.</li>
+      <li>[rite,their:spacer] Mast is up, charging now.</li>
+      <li>[launch] There it goes, right into the cloud.</li>
+      <li>[rain] It's raining, it's really raining!</li>
+      <li>[rain] Out of the tents, all of you, feel it.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[song] The rain-callers camped {PLACE} came to the colony's edge at dusk and sang their rain songs there, for the colony's fields as well as their own.</li>
+    </helpTexts>
+    <asks>
+      <!-- The fee if the rain comes (CampWorker_R3RainCallers): asked on their first morning; nothing is paid unless it rains. -->
+      <li>
+        <key>fee</key>
+        <theyAsk>true</theyAsk>
+        <label>Promise them {SILVER} silver if the rain comes</label>
+        <refuseLabel>Promise them nothing</refuseLabel>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <askTexts>
+          <li>{X_nameDef} of the rain-callers has come to the gate. They ask nothing while they call, {X_pronoun} says, but if the rain comes, they would like {SILVER} silver for it. Will the colony promise?</li>
+          <li>[their:industrial] {X_nameDef} of the cloud-seeders has come to the gate with a contract written out. No rain, no fee, {X_pronoun} says, but if it rains, {SILVER} silver. Will the colony sign?</li>
+        </askTexts>
+        <tip>Nothing is paid now. If it rains on the colony's land after their first rite, someone of the colony carries {SILVER} silver out to their camp, and they go. Promise nothing, and they stay anyway, a little sour about it.</tip>
+        <outcomes>
+          <li>{X_nameDef} shook hands on it and went back to tell the others.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said they would call the rain anyway, and that the colony could thank them afterwards.</li>
+        </refused>
+        <refuseTension>4</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R3RainFee" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R3-C2. Dyers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Dyers</defName>
+    <label>dyers</label>
+    <workerClass>ColonyCouncil.CampWorker_R3Dyers</workerClass>
+    <arrives>8~14</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.3</weight>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+    </seasons>
+    <situationKinds>
+      <li>Rimfolk_WS_ClothScarce</li>
+    </situationKinds>
+    <family>true</family>
+    <people>3~5</people>
+    <days>3~5</days>
+    <ages>14~65</ages>
+    <trader>true</trader>
+    <traderGoods>
+      <li><defs><li>Dye</li></defs><count>10~20</count></li>
+      <li><defs><li>Cloth</li></defs><count>30~60</count></li>
+    </traderGoods>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Textiles</li>
+      <li>Meal</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>stall</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Chop</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>Cloth</li></defs><count>20~40</count><at>stall</at></li>
+      <li><defs><li>Dye</li></defs><count>5~10</count><at>stall</at></li>
+    </campGoods>
+    <titles>
+      <li>Dyers come</li>
+      <li>[their:tribal] Dyers with woad and madder</li>
+      <li>[their:industrial] A dye salesman</li>
+      <li>[their:spacer] A colour crew</li>
+    </titles>
+    <texts>
+      <li>A family of dyers from {FACTION} has come with vats roped to a pack beast and their hands stained to the wrist. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for a few days and set up their vats, and said they would dye anything the colony brought them.</li>
+      <li>[their:tribal] Dyers of {FACTION} have come with baskets of leaves and roots and a pit-vat lined with clay. {X_nameDef} showed {A_nameDef} hands blue to the elbow, and asked to camp {PLACE} and dye for the colony.</li>
+      <li>[their:medieval] A dyer of {FACTION} and family have come up the road with vats on a cart and a bolt of red cloth over the top to show their work. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} a few days and take in the colony's clothes for dyeing.</li>
+      <li>[their:industrial] A dye salesman of {FACTION} has arrived with a wagon of tins and a family to stir the vats. {X_nameDef} told {A_nameDef} the colours are new from the mills and won't wash out, and asked to camp {PLACE} for a few days.</li>
+      <li>[their:spacer] A colour crew of {FACTION} has set down with sprayers and sealed drums of nanodye. {X_nameDef} told {A_nameDef} they can take any cloth to any colour in an hour, and asked to camp {PLACE}.</li>
+      <li>[ws:scarcity] With {SITUATION} on the region, dyers of {FACTION} are buying up what cloth they can find. {X_nameDef} asked {A_nameDef} to let them camp {PLACE} and dye for the colony too.</li>
+    </texts>
+    <settled>
+      <li>The dyers' camp is up {PLACE}, with the vats steaming by the fire and their dyed cloth laid out at their stall.</li>
+      <li>The dyers of {FACTION} have made camp {PLACE}, and the smell of their vats has reached the colony's gate.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the dyers camped {PLACE} says {X_pronoun} has stirred other people's vats long enough, and asks whether the colony could use someone who knows cloth and colours.</li>
+    </joinTexts>
+    <farewell>
+      <li>[dyed] The dyers emptied their vats, loaded their cloth and went on. Some of the colony are still wearing the colour they left behind.</li>
+      <li>The dyers of {FACTION} packed up their vats and went on. The ground where they stood is stained in three colours.</li>
+      <li>The dyers' camp {PLACE} is empty, and the patch of grass where the vats stood will be blue for a season.</li>
+    </farewell>
+    <lines>
+      <li>Stir it slowly or it goes streaky.</li>
+      <li>Another hour and it'll take.</li>
+      <li>Don't touch that, it's still wet.</li>
+      <li>The water has to be soft for this colour.</li>
+      <li>My hands haven't been clean in years.</li>
+      <li>[morning] Light the fire under the vats first.</li>
+      <li>[their:tribal] More roots in the pot, it's going pale.</li>
+      <li>[their:industrial] One tin to a vat, no more.</li>
+      <li>[their:spacer] Check the spray nozzle before you start.</li>
+    </lines>
+    <momentLines>
+      <li>[vat] Keep it moving, it's nearly there.</li>
+      <li>[vat] Hand it over, let's see what it takes.</li>
+      <li>[dyed] There, that's a colour that will last.</li>
+      <li>[dyed] Wear it in the sun and it'll only get better.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} stood by the dyers' vats {PLACE} and heard which towns along the road wear which colours, and why.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>dye</key>
+        <label>Have {A_nameDef}'s clothes dyed ({COUNT} silver)</label>
+        <tip>{A_nameDef} walks over to their camp and sits with the dyers while {A_possessive} outer clothes go through the vat. After an hour they come out {KIND}, and stay that colour.</tip>
+        <silver>25</silver>
+        <once>false</once>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} is walking over to the dyers' camp with the silver, and {X_nameDef} is already stirring the {KIND} vat.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Camp</to><label>clothes in the dyers' vat</label><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_R3Dye" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} learn their craft a while</label>
+        <tip>{A_nameDef} spends a few hours at their vats, learning how they fix a colour so it doesn't wash out. Practice in crafting.</tip>
+        <skill>Crafting</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has put a stirring paddle in {A_nameDef}'s hands and shown {A_objective} the first vat.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Crafting</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+      <li>
+        <key>buydye</key>
+        <label>Buy a bundle of their dye ({COUNT} silver)</label>
+        <tip>One of the dyers carries a bundle of dye to the colony's gate.</tip>
+        <silver>40</silver>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver and wrapped the dye in a cloth. One of the family is carrying it to the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampBringsAny"><things><li>Dye</li></things><count>8</count></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R3-C3. Witch-finders ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_WitchFinders</defName>
+    <label>witch-finders</label>
+    <workerClass>ColonyCouncil.CampWorker_R3WitchFinders</workerClass>
+    <arrives>9~15</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.12</weight>
+    <situationKinds>
+      <li>creed</li>
+      <li>faith</li>
+    </situationKinds>
+    <people>2~3</people>
+    <days>2~4</days>
+    <ages>25~65</ages>
+    <hireChance>0</hireChance>
+    <joinChance>0.01</joinChance>
+    <helpChance>0.03</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+    </buys>
+    <pride>0.7</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>1.5</tensionPerDay>
+    <extendChance>0.05</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>they leave nothing behind that anyone could say was touched</leavesWhy>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Horse</li><li>Donkey</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Witch-finders</li>
+      <li>[their:tribal] Spirit-hunters</li>
+      <li>[their:industrial] Inquirers of a purity league</li>
+      <li>[their:spacer] Agents of a psy-registry</li>
+    </titles>
+    <texts>
+      <li>Two or three of {FACTION} have come to the colony's land in dark clothes, with a book they keep closed. {X_nameDef} told {A_nameDef} they look for witches in every settlement on the road, and asked to camp {PLACE} a few days. Honest people, {X_pronoun} said, have nothing to fear from them.</li>
+      <li>[their:tribal] Spirit-hunters of {FACTION} have come with bone rattles at their belts and their eyes lined with soot. {X_nameDef} told {A_nameDef} they hunt those who carry a bad spirit, and asked to camp {PLACE} while they look at the colony's people.</li>
+      <li>[their:medieval] Witch-finders of {FACTION} have ridden in with a book of marks and a pricking needle. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and said they would know a witch when they saw one.</li>
+      <li>[their:industrial] Inquirers of a purity league of {FACTION} have arrived with pamphlets and a case of instruments. {X_nameDef} told {A_nameDef} the league looks for those with unnatural powers, and asked to camp {PLACE} a few days.</li>
+      <li>[their:spacer] Agents of {FACTION}'s psy-registry have set down at the colony's land with scanners and a list. {X_nameDef} told {A_nameDef} they check every settlement for unregistered psychics, and asked to camp {PLACE}.</li>
+      <li>[ws:creed] With {SITUATION} setting the region's faiths against each other, witch-finders of {FACTION} are on the roads. {X_nameDef} asked {A_nameDef} to let them camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The witch-finders' camp is up {PLACE}, a small fire and two tents, and one of them already standing at the edge of it watching the colony.</li>
+      <li>The witch-finders of {FACTION} have made camp {PLACE}. They keep to themselves and talk quietly with their heads together.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the witch-finders camped {PLACE} says {X_pronoun} has seen enough of other people's fear on the road, and asks whether the colony would let {X_objective} stay and do honest work.</li>
+    </joinTexts>
+    <farewell>
+      <li>[cleared] The witch-finders packed up at first light and went on. They found no witch at the colony, they said, and they meant it as a compliment.</li>
+      <li>[named] The witch-finders left in a hurry, telling everyone they met on the road about the witch at the colony.</li>
+      <li>[nobody] The witch-finders looked the colony over for a day and went on, saying there was no witch here.</li>
+      <li>[refused] The witch-finders went on with their book closed, and their faces said what they thought of a colony that hides its people.</li>
+      <li>The witch-finders' camp {PLACE} is empty, and nobody at the colony is sorry about it.</li>
+    </farewell>
+    <lines>
+      <li>Write down who looks away.</li>
+      <li>The marks are always somewhere they can be hidden.</li>
+      <li>An honest face doesn't prove anything.</li>
+      <li>We've been fooled before, but not often.</li>
+      <li>Keep the book closed until we need it.</li>
+      <li>[evening] Pray before you sleep, and sleep facing the door.</li>
+      <li>[their:tribal] Shake the rattle again, slower.</li>
+      <li>[their:spacer] The scanner says nothing yet, but it's an old scanner.</li>
+    </lines>
+    <momentLines>
+      <li>[look] That one, watch how they move.</li>
+      <li>[look] Count them going in and out.</li>
+      <li>[question] Sit there, and answer plainly.</li>
+      <li>[question] Look at me when you answer.</li>
+      <li>[cleared] No mark on this one, you can go.</li>
+      <li>[named] It's as we thought, and everyone will know.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} heard from the witch-finders camped {PLACE} about the settlements they have been to, and which of them were glad to see them go.</li>
+    </helpTexts>
+    <asks>
+      <!-- The one they suspect, questioned at their fire (CampWorker_R3WitchFinders): asked once they have chosen. -->
+      <li>
+        <key>question</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them question {WHO}</label>
+        <refuseLabel>Nobody of the colony is to be questioned</refuseLabel>
+        <tension>-5</tension>
+        <warm>0</warm>
+        <askTexts>
+          <li>{X_nameDef} of the witch-finders has come to the gate with the book under {X_possessive} arm. They have watched the colony, {X_pronoun} says, and they would like to question {WHO} at their fire for an hour: {WHY}. If {WHO} is honest, there is nothing to fear.</li>
+          <li>[their:spacer] {X_nameDef} of the psy-registry has come to the gate with a scanner reading. {WHO} shows on it, {X_pronoun} says: {WHY}. They would like to question {WHO} at their camp for an hour.</li>
+        </askTexts>
+        <tip>{WHO} walks to their fire and is questioned for an hour. A good talker is likelier to be let go; then they leave the next morning. If they call {WHO} a witch, they leave at once and tell it on the road, and {WHO} takes it hard. Say no, and their camp grows uneasy.</tip>
+        <outcomes>
+          <li>{X_nameDef} nodded and went back to the fire to wait for {WHO}.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said a colony that hides its people usually has a reason, and went back to the others.</li>
+        </refused>
+        <refuseTension>14</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R3Question" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R3-C4. Rag-and-bone men ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_RagPickers</defName>
+    <label>rag-and-bone men</label>
+    <workerClass>ColonyCouncil.CampWorker_R3RagPickers</workerClass>
+    <arrives>8~16</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.3</weight>
+    <situationKinds>
+      <li>war</li>
+      <li>rebuild</li>
+    </situationKinds>
+    <people>2~3</people>
+    <days>2~4</days>
+    <ages>20~65</ages>
+    <hireChance>0.15</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>mend</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>0.7</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Careless</tidy>
+    <works><li>Gather</li><li>Chop</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <campGoods>
+      <li><defs><li>Cloth</li></defs><count>15~30</count><at>stash</at></li>
+    </campGoods>
+    <titles>
+      <li>Rag-and-bone men</li>
+      <li>[their:tribal] Hide-traders</li>
+      <li>[their:industrial] A rag merchant's wagon</li>
+      <li>[their:spacer] A recycler crew</li>
+    </titles>
+    <texts>
+      <li>Two or three of {FACTION} have come with a handcart piled with rags, old boots and broken tools. {X_nameDef} told {A_nameDef} they buy what nobody wants and mend what can be mended, and asked to camp {PLACE} a few days.</li>
+      <li>[their:tribal] Hide-traders of {FACTION} have come with bundles of worn skins on their backs. {X_nameDef} told {A_nameDef} they take old hides and torn furs that nobody wants, and asked to camp {PLACE}.</li>
+      <li>[their:medieval] Rag-and-bone men of {FACTION} have come up the road with a handcart and a bell. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and said they would take any worn-out thing the colony had for a fair price.</li>
+      <li>[their:industrial] A rag merchant's wagon of {FACTION} has stopped at the colony's land, bound for the paper mill with a load of rags. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and buy whatever the colony has worn out.</li>
+      <li>[their:spacer] A recycler crew of {FACTION} has set down with a hover-cart and a shredder. {X_nameDef} told {A_nameDef} they take worn gear and slag by weight, and asked to camp {PLACE} a few days.</li>
+      <li>[ws:war] With {SITUATION} leaving the roads full of torn coats and broken weapons, rag-and-bone men of {FACTION} have come to the colony's land. {X_nameDef} asked {A_nameDef} to let them camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The rag-and-bone men's camp is up {PLACE}: a handcart, a tarp and a heap of rags being sorted by the fire.</li>
+      <li>The rag-and-bone men of {FACTION} have made camp {PLACE}, and are already sorting their load into piles by the fire.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the rag-and-bone men camped {PLACE} says {X_pronoun} has pushed the cart long enough, and asks whether the colony could use someone handy with a needle.</li>
+    </joinTexts>
+    <farewell>
+      <li>[rags] The rag-and-bone men loaded the colony's worn-out things onto their cart with the rest and went on, the bell ringing.</li>
+      <li>The rag-and-bone men of {FACTION} piled up their cart and went on down the road.</li>
+      <li>The rag-and-bone men's camp {PLACE} is empty, with a few scraps of cloth left caught in the grass.</li>
+    </farewell>
+    <lines>
+      <li>One man's rags are another man's coat.</li>
+      <li>That one's got a season left in it.</li>
+      <li>Sort the wool from the cotton.</li>
+      <li>Never throw away a button.</li>
+      <li>The boots go in the other pile.</li>
+      <li>[morning] Load the cart before it gets hot.</li>
+      <li>[their:industrial] The mill pays by the hundredweight, so don't hold back.</li>
+      <li>[their:spacer] Slag in the shredder, cloth in the bin.</li>
+    </lines>
+    <momentLines>
+      <li>[sort] This one's for mending, that one's for the mill.</li>
+      <li>[sort] Hold it up to the light, see the holes.</li>
+      <li>[rags] We'll take the lot, and the price is on its way to your gate.</li>
+      <li>[repair] There, that'll hold another winter.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[mend] One of the rag-and-bone men camped {PLACE} saw {A_nameDef}'s gear was wearing through, and stitched it up at their fire for nothing.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>rags</key>
+        <label>Carry the colony's worn-out things out to them</label>
+        <tip>Someone of the colony carries what is worn out in the stores (clothes and weapons too far gone, and slag, as much as one load holds) out to their camp, and one of them brings {SILVER} silver to the gate.</tip>
+        <once>false</once>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} looked the list over and named a price. Someone of the colony is carrying the worn-out things out to their camp.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R3Rags" />
+        </effects>
+      </li>
+      <li>
+        <key>clothes</key>
+        <label>Buy a bundle of their mended clothes ({COUNT} silver)</label>
+        <tip>One of them carries three pieces of mended clothing, of their own people's kind, to the colony's gate.</tip>
+        <silver>50</silver>
+        <tension>-2</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver and picked out the best of the mended clothes. One of them is carrying them to the colony's gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R3Clothes"><count>3</count></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R3-C5. Gamblers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Gamblers</defName>
+    <label>gamblers</label>
+    <workerClass>ColonyCouncil.CampWorker_R3Gamblers</workerClass>
+    <arrives>16~21</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.2</weight>
+    <situationKinds>
+      <li>fair</li>
+      <li>games</li>
+    </situationKinds>
+    <people>2~4</people>
+    <days>2~4</days>
+    <ages>20~60</ages>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.05</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Drink</li>
+      <li>Meal</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.2</breakTerms>
+    <tensionPerDay>1.2</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <tidy>Careless</tidy>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Horse</li><li>Donkey</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Gamblers</li>
+      <li>[their:tribal] Knucklebone players</li>
+      <li>[their:medieval] Dicers on the road</li>
+      <li>[their:industrial] Card sharps</li>
+      <li>[their:spacer] Holo-dice hustlers</li>
+    </titles>
+    <texts>
+      <li>A few of {FACTION} have come in at dusk with very good boots and very clean hands. {X_nameDef} told {A_nameDef} they play a little dice on the road, and asked to camp {PLACE} a few nights. Anyone from the colony would be welcome at their fire.</li>
+      <li>[their:tribal] Players of {FACTION} have come with a bag of knucklebones and a pouch of shell beads. {X_nameDef} told {A_nameDef} they throw the bones every evening, and asked to camp {PLACE} and let the colony's people try their luck.</li>
+      <li>[their:medieval] Dicers of {FACTION} have come up the road with a leather cup and a purse that clinks. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE}, and said there would be a game every evening for anyone who cared to sit down.</li>
+      <li>[their:industrial] Card sharps of {FACTION} have arrived with a folding table and a deck that has seen a lot of use. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE}, and mentioned a friendly game in the evenings.</li>
+      <li>[their:spacer] Hustlers of {FACTION} have set down with a holo-dice rig and a great deal of charm. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE}, and said the evenings would be livelier for it.</li>
+      <li>[ws:fair] With {SITUATION} drawing people and silver from all over the region, gamblers of {FACTION} have stopped at the colony's land. {X_nameDef} asked {A_nameDef} to let them camp {PLACE}.</li>
+    </texts>
+    <settled>
+      <li>The gamblers' camp is up {PLACE}, with a good fire, a rug spread beside it and somewhere to sit for whoever comes over.</li>
+      <li>The gamblers of {FACTION} have made camp {PLACE}, and the sound of dice has already reached the colony's gate.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the gamblers camped {PLACE} says the luck has run out on the road, and asks whether the colony would take on someone who can count.</li>
+    </joinTexts>
+    <farewell>
+      <li>[caught] The gamblers packed up in a hurry and went on, and nobody at the colony is sorry to see the back of their dice.</li>
+      <li>[won] The gamblers went on a little lighter than they came, and said the colony was the worst luck they'd had all season.</li>
+      <li>[lost] The gamblers went on whistling, with some of the colony's silver in their purse.</li>
+      <li>The gamblers' camp {PLACE} is empty, and somebody has left a single die in the ashes.</li>
+    </farewell>
+    <lines>
+      <li>Luck comes to those who sit down.</li>
+      <li>One more throw and I'll stop.</li>
+      <li>Never bet what you can't lose.</li>
+      <li>That's twice now, the night's turning.</li>
+      <li>Keep your hands on the table, friend.</li>
+      <li>[evening] Who's playing tonight?</li>
+      <li>[their:tribal] Throw the bones high, let them fall where they like.</li>
+      <li>[their:industrial] Cut the deck, and cut it fair.</li>
+    </lines>
+    <momentLines>
+      <li>[dice] Roll them, and let's see what the night brings.</li>
+      <li>[dice] Your throw, and mind the edge of the rug.</li>
+      <li>[won] Well played, I didn't see that coming.</li>
+      <li>[lost] Bad luck, friend, try again tomorrow.</li>
+      <li>[cheat] Those dice weren't for you, I swear it.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat at the gamblers' fire {PLACE} without playing, and heard which towns on the road had the deepest purses.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>play</key>
+        <label>Send {A_nameDef} to play an evening ({COUNT} silver)</label>
+        <tip>{A_nameDef} takes {COUNT} silver over to their fire after supper and plays with them for an hour and a half. It may come back doubled, or not at all. A sharp eye might notice something about their dice.</tip>
+        <silver>40</silver>
+        <once>false</once>
+        <needs>evening</needs>
+        <skill>Social</skill>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} is walking over to the gamblers' fire with the colony's stake, and {X_nameDef} has made room on the rug.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Camp</to><label>an evening at the gamblers' fire</label><hours>16~22</hours><duration>2~2.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_R3Play" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== R3-C6. Dog-breeders ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Kennel</defName>
+    <label>dog-breeders</label>
+    <workerClass>ColonyCouncil.CampWorker_R3Kennel</workerClass>
+    <arrives>8~14</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.25</weight>
+    <seasons>
+      <li>Spring</li>
+      <li>Summer</li>
+      <li>Fall</li>
+    </seasons>
+    <people>2~3</people>
+    <days>3~5</days>
+    <ages>18~65</ages>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>Meal</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Chop</li></works>
+    <!-- Their dogs: the player's mods' breeds first, the game's after; picketed by the tents, one at a breeder's heels. -->
+    <animals>
+      <li><kinds><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Beagle</li><li>Husky</li><li>LabradorRetriever</li></kinds><count>2~2</count><at>picket</at></li>
+      <li><kinds><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Corgi</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_WelshTerrier</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Poodle</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_FrenchBulldog</li><li>YorkshireTerrier</li></kinds><count>1~2</count><at>picket</at></li>
+      <li><kinds><li>Husky</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <!-- After a good stay, a pup of their dogs handed over at the gate as they go. -->
+    <leaveBehind>
+      <li>
+        <key>young</key>
+        <at>gate</at>
+        <young>true</young>
+        <maxTension>40</maxTension>
+        <dayName>the breeders' pup</dayName>
+        <named>the pup</named>
+        <defs><li>Husky</li><li>LabradorRetriever</li></defs>
+      </li>
+    </leaveBehind>
+    <farewellWalk>
+      <to>gate</to>
+      <who>leader</who>
+      <gift>young</gift>
+    </farewellWalk>
+    <titles>
+      <li>Dog-breeders</li>
+      <li>[their:tribal] Sled-dog keepers</li>
+      <li>[their:medieval] A kennel-man and his hounds</li>
+      <li>[their:industrial] Dog breeders with papers</li>
+      <li>[their:spacer] Registry breeders</li>
+    </titles>
+    <texts>
+      <li>Breeders of {FACTION} have come with a string of dogs on leads, all of them barking at once. {X_nameDef} told {A_nameDef} they sell dogs on the road, trained to the herd or the hunt or the house, and asked to camp {PLACE} for a few days.</li>
+      <li>[their:tribal] Dog-keepers of {FACTION} have come with their dogs running loose around them. {X_nameDef} told {A_nameDef} their dogs pull sleds and guard camps and are the best in the region, and asked to camp {PLACE}.</li>
+      <li>[their:medieval] A kennel-man of {FACTION} has come up the road with a pack of hounds and a boy to mind them. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} a few days, and said any of the hounds could be had for a fair price.</li>
+      <li>[their:industrial] Dog breeders of {FACTION} have arrived with a wagon of crates and a folder of papers for every dog. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and show the colony their stock.</li>
+      <li>[their:spacer] Breeders of {FACTION} have set down with their dogs in travelling kennels, each with a registry tag in its ear. {X_nameDef} asked {A_nameDef} if they might camp {PLACE} for a few days.</li>
+    </texts>
+    <settled>
+      <li>The dog-breeders' camp is up {PLACE}, with the dogs picketed in a row by the tents and a breeder already working one of them.</li>
+      <li>The dog-breeders of {FACTION} have made camp {PLACE}, and the colony can hear the dogs from the gate.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the dog-breeders camped {PLACE} says {X_pronoun} would stay with the dogs the colony bought, if the colony would have {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>[left:young] The dog-breeders packed up and went on, and {X_nameDef} stopped at the colony's gate to hand over a pup, in thanks for the stay. It is the colony's now.</li>
+      <li>[sold] The dog-breeders went on with one dog fewer, and {X_nameDef} called back to ask the colony to feed it well.</li>
+      <li>The dog-breeders of {FACTION} packed up and went on, the dogs barking all the way down the road.</li>
+      <li>The dog-breeders' camp {PLACE} is empty, and the colony is quieter for it.</li>
+    </farewell>
+    <lines>
+      <li>Sit, and stay sat.</li>
+      <li>That one will herd anything that moves.</li>
+      <li>Good dog, good dog.</li>
+      <li>Don't feed them from the table, ever.</li>
+      <li>A dog is only as good as the one who trains it.</li>
+      <li>[morning] Water them before you feed yourself.</li>
+      <li>[their:tribal] They pull better when they're a little hungry.</li>
+      <li>[their:industrial] Check the papers against the ear tag.</li>
+    </lines>
+    <momentLines>
+      <li>[train] Down, now up, now come here.</li>
+      <li>[train] Easy, easy, well done.</li>
+      <li>[sold] Feed it twice a day and it will follow you anywhere.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} stood with the dog-breeders {PLACE} and heard which settlements on the road keep the best dogs, and which the worst.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>dog</key>
+        <label>Buy one of their dogs ({COUNT} silver)</label>
+        <tip>The youngest of their dogs is the colony's where it stands, and goes to {A_nameDef}, the colony's best with animals, and keeps at {A_possessive} heels for a day.</tip>
+        <silver>120</silver>
+        <once>false</once>
+        <skill>Animals</skill>
+        <tension>-4</tension>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} took the silver and untied one of the dogs. It has gone straight over to {A_nameDef}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R3BuyDog" />
+        </effects>
+      </li>
+      <li>
+        <key>train</key>
+        <label>Have {A_nameDef} learn how they train a dog</label>
+        <tip>{A_nameDef} spends a few hours with the breeders and their dogs, learning how they train them. Practice with animals.</tip>
+        <skill>Animals</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has handed {A_nameDef} a lead and a pocketful of scraps, and is showing {A_objective} how to start.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Animals</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+</Defs>

@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 836; modelled: 836; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,227 KB** after a year, **4,057 KB** after two, **4,551 KB** after five.
+Rimfolk's part of the save, roughly: **3,228 KB** after a year, **4,058 KB** after two, **4,551 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -97,11 +97,11 @@ Rimfolk's part of the save, roughly: **3,227 KB** after a year, **4,057 KB** aft
 | `UI/EventCards/EventCards.cs:plain` | Rimfolk's plain letters by their ID, so they open as event cards after a load: those still on the stack or in the History tab, the newest 400 (EventCardMath.MaxPlain) | cap | 400 | 400 | 400 | 9.8 |
 | `Colonies/LandingRecord.cs:kit` | the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; only for the first 3 days | while | 60 | 60 | 60 | 9.4 |
 | `World/Notables.cs:warned` | threats each people was warned of (World/Warnings.cs): WarnMath.MaxKept, 30 days or while the threat stands | fixed | 60 | 60 | 60 | 9.4 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 101 | 101 | 101 | 8.9 |
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `World/Notables.cs:letters` | letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days; the bringing flag while the writer carries one to the mailbag, cleared once in; the head a town's matter is passed on to | cap | 15 | 15 | 15 | 8.6 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 97 | 97 | 97 | 8.5 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 95 | 95 | 95 | 8.3 |
 | `Storylines/Storylines.cs:lines` | running storylines (two at most) and those ended in the last StorylineBook.KeepEndedDays | cap | 4 | 6 | 6 | 8.2 |
 | `UI/Faces/PortraitKeeper.cs:creaturePicks` | the pictures chosen by hand for animals and creatures: at most 300, the earliest let go | cap | 18 | 36 | 90 | 7.9 |
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
