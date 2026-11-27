@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Ten more council questions and six more world events
+
+*27 November 2026, version 0.315.0*
+
+- Ten new council questions: the stone by the walls, the night owl, the seat while its holder is away, too hard on one, the visiting master, the cold cell, a rest for a slave, a bed for the animal, the dry grass by the walls, and words before supper.
+- A night owl can keep the night hours for a while, someone can do a seat's work while its holder is away, and someone a hard decree is too much for can get a day off or have their main work handed over while it lasts.
+- A visitor far better at a skill than anyone at home can be asked for an afternoon's lesson. A prisoner shivering in a cold cell can be given a fire, and a worn-out slave the rest of the day.
+- A bonded animal can have a bed set in a corner of its person's room, and in a dry summer the grass by the walls can be cut back as a firebreak.
+- Six new world events, each in its people's age: the warm springs, the gift road, the timber rafts, the beacon fires, the arms sold off and the missing caravan.
+- Someone with aches can be sent to bathe at the warm springs and comes home eased. The beacon fires ask you to keep a fire lit in the open at night while raiders are out. The arms sold off brings weapons of the seller's age from all your mods to the gate at half their worth.
+
 ## New personal stories, wishes, life goals and ambitions
 
 *27 November 2026, version 0.314.0*

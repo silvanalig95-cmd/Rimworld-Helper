@@ -931,6 +931,19 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.315.0, the player's "continue"): ten council questions and six world events, content round
+  4, built in a worktree and merged.** The list: `docs/content-round-4-council-world.md`. Council questions in
+  `Defs/DilemmaDefs/Rimfolk_Round4_Council.xml` and `Dilemmas/DilemmaWorkers_Round4.cs` (`R4CContext`, whose one saved
+  field is the decree's name; `R4CCouncil`; workers `DilemmaWorker_R4C*`; effects `DilemmaEffect_R4CHandOver`,
+  `R4CPetBed`, `R4CFirebreak`, `R4CStay`). World events in `Defs/WorldSituationDefs/Rimfolk_WS_Round4.xml` and
+  `World/Variety/WorldRound4.cs` (`SituationWorker_R4WSprings`, `R4WGiftRoad`, `R4WRafts`, `R4WBeacons`, `R4WArms`,
+  `R4WMissing`, `WorldEffect_R4WDriftLogs`, dev action `R4WDebug`). Rules `World/Variety/Round4CouncilWorldMath.cs`;
+  words `Rimfolk_Round4_CouncilWorld.xml` (`CC_R4C_*`, `CC_R4W_*`); a section on the world events' Almanac page;
+  `playout_audit.py` now counts the existing `DilemmaEffect_Deputy` as a play-out. Dropped: first fruits (the offerings
+  carry what the god likes, so the words couldn't be true), the eclipse, grain hoarders, stolen goods and the craft
+  contest (near duplicates); no answer lifts a decree. No harm of its own (the beacon's bonfire through the shared
+  budget). Tests: Round4CouncilWorldTests, FarErrandTests. Not seen in the game: the animal bed in a room, the
+  firebreak, the weapon pick, the visitor staying on for a lesson, the logs washing ashore.
 - **Done (27 November 2026, 0.314.0, the player's "continue" after round 3): the colonists' own lives, content round 4,
   built in a worktree and merged.** The list: `docs/content-round-4-lives.md`. Defs `Defs/ArcDefs/Rimfolk_Round4_Arcs.xml`
   (eight stories `Rimfolk_R4L_Arc_*`, seven talks `Rimfolk_R4L_Talk_*`), `Defs/WishDefs/Rimfolk_Round4_Wishes.xml`,
