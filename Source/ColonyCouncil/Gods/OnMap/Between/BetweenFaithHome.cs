@@ -464,9 +464,9 @@ namespace ColonyCouncil
             if (s.stage == 1)
             {
                 var o = Record(s);
-                if (o == null)
+                if (o == null || o.thing == null || !o.thing.Spawned || o.thing.Map != map)
                 {
-                    // The god's own way came first, or someone else took it.
+                    // The god's own way came first, or someone else took it (or carried it off).
                     s.stage = -1;
                     return;
                 }

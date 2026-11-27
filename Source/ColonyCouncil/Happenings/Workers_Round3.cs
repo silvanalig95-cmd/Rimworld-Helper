@@ -1833,7 +1833,8 @@ namespace ColonyCouncil
                 .Where(t => t.Spawned && t.IsInAnyStorage() && !t.IsForbidden(Faction.OfPlayer) && !t.WornByCorpse && Round3EventsMath.Spare(t.HitPoints, t.MaxHitPoints)).ToList();
             foreach (var (p, worn) in HappeningWorker_R3WornClothes.Ragged(map))
             {
-                if (p.DevelopmentalStage.Baby() || !p.Spawned) continue;
+                // Only those who can walk to the stores now: not downed, drafted by the player or out of their mind.
+                if (p.DevelopmentalStage.Baby() || !p.Spawned || p.Downed || p.Drafted || p.InMentalState) continue;
                 var best = stored.Where(t => !taken.Contains(t) && !ApparelUtility.CanWearTogether(worn.def, t.def, p.RaceProps.body) && ApparelUtility.HasPartsToWear(p, t.def)
                                              && EquipmentUtility.CanEquip(t, p) && (p.outfits?.CurrentApparelPolicy?.filter?.Allows(t) ?? true)
                                              && p.CanReserveAndReach(t, PathEndMode.ClosestTouch, Danger.Some))

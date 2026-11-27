@@ -474,12 +474,12 @@ namespace ColonyCouncil
         public static bool Step(TimedThing k, int now)
         {
             if (k.pawns.Count < 3 || k.pawns.Take(2).Any(p => p == null || p.Dead)) return true;
-            if (k.count >= 0)
-            {
-                var play = PlayOutTracker.Instance?.plays.FirstOrDefault(p => p.id == k.count);
-                if (play != null && play.state == PlayState.Pending && now <= k.until) return false;
-                if (play != null && play.state == PlayState.Running && !k.pawns.Take(2).All(p => p.Spawned && p.Map == k.map && play.invited.Contains(p))) return now > k.until;
-            }
+            // Only at the gathering before the colony, with both of them at it: no gathering set going (play-outs off, nobody
+            // free), or one over or gone without them, and the ordeal isn't held (no stone carried, nobody burned unseen).
+            var play = k.count >= 0 ? PlayOutTracker.Instance?.plays.FirstOrDefault(p => p.id == k.count) : null;
+            if (play == null || play.state == PlayState.Done) return true;
+            if (play.state == PlayState.Pending) return now > k.until;
+            if (!k.pawns.Take(2).All(p => p.Spawned && p.Map == k.map && !p.Downed && play.invited.Contains(p))) return now > k.until;
             Resolve(k);
             return true;
         }
