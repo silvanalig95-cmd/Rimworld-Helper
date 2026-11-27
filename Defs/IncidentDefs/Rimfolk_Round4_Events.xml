@@ -1,0 +1,594 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The content round 4, its eight events of everyday life on the map (docs/content-round-4-camps-events.md, R4-E1 to R4-E8;
+       Source/ColonyCouncil/Happenings/Workers_Round4.cs): ordinary happenings in every age, each with a choice and its
+       play-out. Crows on the new field, meltwater in the deep rooms, midges at dusk, what the storm threw up, ice on the
+       paths, the old tree by the house, stones in the field, washing day. Every hurt goes through the shared harm budget and
+       is named under the answer before it's chosen. Event cards, so plain words. The spoken lines are tagged with their
+       moment: seen, shoo (the crows); water (the meltwater); midges, in, bite (the midges); found (the shore); slip, ash,
+       fell (the ice); tree (the old tree); stones (the stones); wash (washing day). -->
+
+  <!-- ===================== R4-E1. Crows on the new field ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4ECrows</defName>
+    <label>crows on the new field</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4ECrows</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <seasons>
+          <li>Spring</li>
+        </seasons>
+        <answerDays>0.25</answerDays>
+        <titles>
+          <li>Crows on the new field</li>
+          <li>{BEAST} in the {TALE}</li>
+        </titles>
+        <texts>
+          <li>The {TALE} has just been sown, and a flock of {BEAST} has come down on it. {A_nameDef} watched them walk up and down the rows pulling up the seedlings. {B_nameDef} could go out and keep them off until evening, two could be shot to scare the rest, or they could be left to take what they want.</li>
+          <li>[geese] A small flock of {BEAST} has landed in the {TALE} and is pulling up the young shoots. {A_nameDef} saw them from the edge of the field. {B_nameDef} could chase them off, or they could be shot at or left alone.</li>
+          <li>[lowtech] {A_nameDef} came in to say that {BEAST} are in the newly sown {TALE}, pulling up the seedlings. In the old days a child sat in the field all day with a rattle to keep them off, and {B_nameDef} could do the same.</li>
+          <li>[!lowtech] {A_nameDef} reports a flock of {BEAST} in the {TALE}, which was just sown. They are pulling up seedlings. {B_nameDef} could keep watch in the field until evening, or a few shots would scare them off.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{B_nameDef} keeps watch in the field</label>
+            <outcome>{B_nameDef} goes out and walks about the {TALE} until evening, chasing the {BEAST} off.</outcome>
+            <outcomes>
+              <li>[tribal] {B_nameDef} goes out with a rattle and walks about the {TALE} until evening, chasing the {BEAST} off.</li>
+              <li>[medieval] {B_nameDef} goes out with a wooden clapper and walks about the {TALE} until evening, chasing the {BEAST} off.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4ECrows"><mode>watch</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Shoot two to scare off the rest</label>
+            <outcome>The two nearest of the {BEAST} are marked for the colony's hunters. Once one is down, the rest will leave.</outcome>
+            <outcomes>
+              <li>[tribal] The two nearest of the {BEAST} are marked for the colony's hunters, to be brought down with slings. Once one is down, the rest will leave.</li>
+              <li>[medieval] The two nearest of the {BEAST} are marked for the colony's hunters, to be brought down with bows. Once one is down, the rest will leave.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4ECrows"><mode>shoot</mode></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them have their share</label>
+            <outcome>The {BEAST} are left alone. They pull up a few more seedlings and leave in the evening.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4ECrows"><mode>let</mode></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[seen] They're pulling up the seedlings as fast as we put them in.</li>
+          <li>[seen] There's a whole flock of them in the new field.</li>
+          <li>[seen,lowtech] We used to set a child in the field with a rattle for this.</li>
+          <li>[shoo] Go on, get out of it.</li>
+          <li>[shoo] Off the field, the lot of you.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R4-E2. Meltwater in the deep rooms ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4EMeltwater</defName>
+    <label>meltwater in the deep rooms</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4EMeltwater</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+        </seasons>
+        <minTemp>2</minTemp>
+        <answerDays>0.25</answerDays>
+        <titles>
+          <li>Meltwater in the deep rooms</li>
+          <li>Water under the door</li>
+        </titles>
+        <texts>
+          <li>The snow on the slopes is melting, and the water is running down the mountain and in under the door of the {TALE}. {A_nameDef} found puddles spreading over the floor inside. It will keep coming while the snow melts. {B_nameDef} could see to it.</li>
+          <li>[lowtech] Every spring the meltwater finds its way into rooms cut into the rock, and this year it is coming in under the door of the {TALE}. {A_nameDef} has already stepped in it twice.</li>
+          <li>[!lowtech] {A_nameDef} reports meltwater coming in under the outer door of the {TALE}. There are puddles on the floor, and more will come while the snow on the mountain melts.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Mop it up as it comes</label>
+            <outcome>Two of the colony keep the floor of the {TALE} mopped while the water keeps coming in.</outcome>
+            <outcomes>
+              <li>[tribal|medieval] Two of the colony keep the floor of the {TALE} clear with rags and buckets while the water keeps coming in.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EMelt"><mode>mop</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>mopping up the meltwater</label><tasks><li>Clean</li></tasks><count>2</count><hours>6~21</hours><duration>2~3</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Keep that door shut until it stops</label>
+            <outcome>The outer door of the {TALE} is kept shut until the meltwater stops, and everyone uses the other doors. No more water comes in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EMelt"><mode>shut</mode></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Leave it until it stops</label>
+            <outcome>Nothing is done for now. The water keeps coming in until the melting is over, and the puddles will be cleaned up afterwards.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EMelt"><mode>leave</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[water] There's water coming in under the door, mind your feet.</li>
+          <li>[water] The whole floor by the door is wet again.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R4-E3. Midges at dusk ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4EMidges</defName>
+    <label>midges at dusk</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4EMidges</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>16</minTemp>
+        <answerDays>0.1</answerDays>
+        <titles>
+          <li>Midges at dusk</li>
+          <li>Bitten by the water</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} has been working the {TALE}, near the wet ground, and says the midges come up off it in clouds at dusk. Anyone still out there in the evening will be bitten. Smudge fires along the field would keep them off, or everyone could come in from there before dusk.</li>
+          <li>[lowtech] The midges are out over the wet ground by the {TALE}. {A_nameDef} says the old way is green wood on a fire, so the smoke keeps them away, or simply coming in before dusk.</li>
+          <li>[!lowtech] {A_nameDef} reports midges rising from the wet ground by the {TALE} every evening. Smoking fires along the field would keep them down, or the work there could stop before dusk.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Smudge fires along the field</label>
+            <outcome>Smoking fires are lit along the edge of the {TALE} and kept going, and the midges stay away from the smoke.</outcome>
+            <outcomes>
+              <li>[tribal|medieval] Fires of green wood are lit along the edge of the {TALE} and kept smoking, and the midges stay away from the smoke.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SmudgeFires"><count>4</count><days>2</days></li>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EMidges"><mode>smoke</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>In from the wet fields before dusk</label>
+            <outcome>For the next evenings, those working near the wet ground come in before dusk.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EMidges"><mode>in</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+          <li>
+            <label>Put up with them</label>
+            <outcome>Nothing changes. Those out by the wet ground at dusk will be bitten.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EMidges"><mode>bear</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[midges] The midges come up off the wet ground in clouds at dusk.</li>
+          <li>[midges] Don't stay out by the marsh after sundown, the midges are terrible.</li>
+          <li>[in] Come on, let's get in before the midges are out.</li>
+          <li>[bite] These midges are eating me alive.</li>
+          <li>[bite] They're in my ears and my hair, I can't stand it.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4E_Midges</defName>
+    <durationDays>0.5</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>bitten by midges</label><description>I was out by the wet ground at dusk and the midges bit me all over.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4-E4. What the storm threw up ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4EStormShore</defName>
+    <label>what the storm threw up</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4EStormShore</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Fall</li>
+          <li>Winter</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>What the storm threw up</li>
+          <li>The shore after the storm</li>
+        </titles>
+        <texts>
+          <li>The rough sea has thrown up heaps of {BEAST} along the shore {PLACE}, between the stones. {A_nameDef} found them on a walk along the water. They are good to eat, but if they are left there, the sea will take them back tonight.</li>
+          <li>[weed] After the rough weather the shore {PLACE} is covered in heaps of {BEAST} and seaweed thrown up by the waves. {A_nameDef} says it would all be good food if someone fetched it in before the water comes back up tonight.</li>
+          <li>[lowtech] The storm has left heaps of {BEAST} lying along the shore {PLACE}. {A_nameDef} says the old people always went down with baskets after a storm, because the sea takes it all back by night.</li>
+          <li>[!lowtech] {A_nameDef} reports heaps of {BEAST} washed up on the shore {PLACE} after the bad weather. It will be gone tonight unless someone carries it in.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Everyone down to the shore to gather it</label>
+            <outcome>A work party goes down to the shore and carries everything in to the stores.</outcome>
+            <outcomes>
+              <li>[tribal|medieval] A work party goes down to the shore with baskets and carries everything in to the stores.</li>
+              <li>[industrial] A work party goes down to the shore with buckets and crates and carries everything in to the stores.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EShore"><mode>all</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>gathering what the storm threw up</label><tasks><li>Haul</li></tasks><count>3</count><hours>6~20</hours><duration>1.5~2.5</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Only what lies nearest</label>
+            <outcome>The heaps nearest the colony are carried in. The rest is left for the sea.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EShore"><mode>near</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>fetching the nearest heaps from the shore</label><tasks><li>Haul</li></tasks><count>1</count><hours>6~20</hours><duration>1~2</duration></li>
+            </effects>
+          </li>
+          <li>
+            <label>Leave it to the sea</label>
+            <outcome>Nothing is fetched. The sea will take it back tonight.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EShore"><mode>sea</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[found] The whole shore is covered in it after the storm.</li>
+          <li>[found] There's good food lying all along the water's edge.</li>
+          <li>[found,lowtech] Bring a basket, the sea's been generous.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R4-E5. Ice on the paths ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4EIcyPaths</defName>
+    <label>ice on the paths</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4EIcyPaths</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Winter</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <maxTemp>-2</maxTemp>
+        <answerDays>0.15</answerDays>
+        <titles>
+          <li>Ice on the paths</li>
+          <li>A slip at the door</li>
+        </titles>
+        <texts>
+          <li>The wet ground froze hard overnight, and the paths outside the colony's doors are covered in ice. {A_nameDef} nearly fell outside one of them this morning. {B_nameDef} could scatter ash on the paths so nobody slips.</li>
+          <li>[lowtech] The ground outside every door is glazed with ice. {A_nameDef} went down on one knee outside a door this morning and nearly fell. Ash from the hearth on the paths would give a grip, and {B_nameDef} could put it down.</li>
+          <li>[!lowtech] {A_nameDef} reports ice on the paths outside the doors after the freeze, and nearly fell on it. {B_nameDef} could spread grit outside the doors so nobody slips.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Ash and grit on the paths between the doors</label>
+            <outcome>{B_nameDef} goes from door to door scattering ash on the ice. Nobody should slip there while the ice lasts.</outcome>
+            <outcomes>
+              <li>[tribal|medieval] {B_nameDef} goes from door to door with a bucket of ash from the hearth and scatters it on the ice. Nobody should slip there while the ice lasts.</li>
+              <li>[industrial] {B_nameDef} goes from door to door with a bucket of grit and salt and scatters it on the ice. Nobody should slip there while the ice lasts.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EIce"><mode>paths</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Only by the busiest doors</label>
+            <outcome>{B_nameDef} scatters ash outside the two doors nearest the middle of the colony. Elsewhere, people may still slip.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EIce"><mode>doors</mode></li>
+            </effects>
+          </li>
+          <li>
+            <label>Leave it until it thaws</label>
+            <outcome>Nothing is done. Until the ice thaws, people may slip on it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EIce"><mode>leave</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[slip] Careful outside the door, it's pure ice.</li>
+          <li>[slip] I nearly went flat on my back just now.</li>
+          <li>[ash] A good handful of ash here, and nobody falls.</li>
+          <li>[fell] Ow, my ankle, I went right over on it.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4E_Gritted</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>made the paths safe</label><description>I put ash on the ice outside the doors so nobody would fall.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4-E6. The old tree by the house ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4EOldTree</defName>
+    <label>the old tree by the house</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4EOldTree</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>90</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The old tree by the house</li>
+          <li>The {BEAST} by the buildings</li>
+        </titles>
+        <texts>
+          <li>The colony is short of wood, and {B_nameDef} has pointed out the big old {BEAST} standing close by the colony's buildings: it alone would fill the woodpile. But {A_nameDef} likes to sit under it, and has gone out to stand there now.</li>
+          <li>[lowtech] The woodpile is low, and the nearest big tree is the old {BEAST} by the buildings. {B_nameDef} would have it down by evening. {A_nameDef}, who spends evenings sitting under it, is not happy about the idea.</li>
+          <li>[!lowtech] The wood is running short. {B_nameDef} suggests felling the big {BEAST} next to the colony's buildings, which would give a lot of wood at once. {A_nameDef} would rather keep it, and often sits under it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Place</to><label>under the old tree</label><duration>1~1.5</duration></li>
+        </effects>
+        <options>
+          <li>
+            <label>Fell it for the wood</label>
+            <outcome>The {BEAST} is marked for cutting, and a work party fells it. {A_nameDef} is sorry to see it go.</outcome>
+            <outcomes>
+              <li>[tribal] The {BEAST} is marked for cutting, and a work party brings it down with axes of stone and iron. {A_nameDef} is sorry to see it go.</li>
+              <li>[industrial|spacer] The {BEAST} is marked for cutting, and a work party saws it down. {A_nameDef} is sorry to see it go.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EOldTree"><mode>fell</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>felling the old tree</label><tasks><li>Cut</li></tasks><count>2</count><hours>7~18</hours><duration>1~2</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Keep it, and put a seat under it</label>
+            <outcome>The {BEAST} stays, and a stool is marked beside its trunk for the builders. The wood will be found elsewhere.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EOldTree"><mode>seat</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>a seat under the old tree</label><tasks><li>Build</li></tasks><count>1</count><hours>7~18</hours><duration>1~1.5</duration></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Leave it standing</label>
+            <outcome>The {BEAST} stays as it is. The wood will be found elsewhere.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EOldTree"><mode>leave</mode></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[tree] I like sitting under this tree in the evening, it's the best spot we have.</li>
+          <li>[tree] This tree was here long before any of us.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4E_TreeFelled</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my tree was felled</label><description>They cut down the old tree by the house, the one I liked to sit under. I know we needed the wood.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4E_TreeKept</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a seat under the old tree</label><description>The council kept the old tree by the house and had a seat put under it for me.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R4E_TreeStands</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>the old tree still stands</label><description>The council left the old tree by the house standing.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4-E7. Stones in the field ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4EFieldStones</defName>
+    <label>stones in the field</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4EFieldStones</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+        </seasons>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>Stones in the field</li>
+          <li>The frost's stones</li>
+        </titles>
+        <texts>
+          <li>The winter frost has pushed stones up through the {TALE}: {COUNT} lumps of {THING} now lie in the open ground. {A_nameDef} found them while sowing. They are in the way of the crop.</li>
+          <li>[lowtech] Every spring the frost lifts stones out of the ground, and this year {COUNT} big ones have come up in the {TALE}. {A_nameDef} says they should be carried off before the sowing, as farmers always have.</li>
+          <li>[!lowtech] {A_nameDef} reports {COUNT} large stones in the {TALE}, pushed up by the frost over the winter. They could be carried off, or cut into building blocks.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Carry them off the field</label>
+            <outcome>A work party carries the stones off the {TALE}.</outcome>
+            <outcomes>
+              <li>[tribal] A work party drags the stones off the {TALE} on a sledge.</li>
+              <li>[medieval] A work party hauls the stones off the {TALE} on a stone-boat.</li>
+              <li>[industrial] A work party carts the stones off the {TALE}.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EStones"><mode>carry</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>clearing the stones from the field</label><tasks><li>Stone</li></tasks><count>2</count><hours>7~18</hours><duration>1.5~2.5</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Cut them into blocks</label>
+            <outcome>A bill is set at the colony's stonecutter's table to cut the stones from the {TALE} into blocks.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EStones"><mode>blocks</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Sow round them</label>
+            <outcome>The stones stay where they are, and the growers sow round them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R4EStones"><mode>leave</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[stones] The frost has brought up a whole crop of stones again.</li>
+          <li>[stones] We can't sow round all of these.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R4-E8. Washing day ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R4EWashingDay</defName>
+    <label>washing day</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R4EWashingDay</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>16</minTemp>
+        <answerDays>0.1</answerDays>
+        <titles>
+          <li>Washing day</li>
+          <li>A morning for the washing</li>
+        </titles>
+        <texts>
+          <li>It is a warm, dry morning, and {A_nameDef} says it is a good day to take the washing down to the water {PLACE} and get it dry by evening.</li>
+          <li>[lowtech] {A_nameDef} says the morning is warm enough to take everything down to the water {PLACE}, beat it clean on the stones and spread it in the sun to dry.</li>
+          <li>[industrial] {A_nameDef} wants to take the tubs and washboards down to the water {PLACE} while the weather is fine, and wash everything at once.</li>
+          <li>[spacer] {A_nameDef} suggests doing the washing by hand at the water {PLACE} while the weather is this good, and spreading it out in the sun.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A washing day at the water for everyone</label>
+            <outcome>The colony goes down to the water {PLACE} for a couple of hours to do the washing.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering">
+                <label>washing day at the water</label>
+                <spots><li>Water</li><li>Outdoors</li></spots>
+                <hours>8~13</hours>
+                <duration>2~3</duration>
+                <lines>
+                  <li>Pass me that shirt, it's next.</li>
+                  <li>Spread it on the bushes, it'll dry in no time.</li>
+                  <li>The water's colder than it looks.</li>
+                </lines>
+              </li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} washes the bedding</label>
+            <outcome>{A_nameDef} takes the bedding down to the water {PLACE} and washes it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Water</to><label>washing the bedding at the water</label><duration>1.5~2</duration></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>Nobody goes down to the water. The washing waits for another day.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[wash] It's a perfect morning for the washing.</li>
+          <li>[wash] Everything we own needs a good wash.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

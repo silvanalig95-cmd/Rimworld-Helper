@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The content round's fourth part, its six camps and eight map events (docs/content-round-4-camps-events.md, R4-C1 to
+    R4-E8): their messages and what an answer does (the impact lines). Source/ColonyCouncil/Camps/CampRound4.cs and
+    Happenings/Workers_Round4.cs. Messages and impact lines in plain words. A god is never named here.
+  -->
+
+  <!-- R4-C1. Woodcarvers -->
+  <CC_R4K_Carve_Title>A likeness of {PAWN}</CC_R4K_Carve_Title>
+  <CC_R4K_Carve_Done>{X_nameDef} of the {NAME} has finished the carving of {A_nameDef}, and set it out at the edge of their camp for the colony to fetch.</CC_R4K_Carve_Done>
+  <CC_R4K_Carve_Refund>{A_nameDef} never sat down with the {NAME}, so they are sending the {COUNT} silver back to the gate.</CC_R4K_Carve_Refund>
+  <CC_R4K_Carve_Busy>Someone of the colony is already sitting for a carving.</CC_R4K_Carve_Busy>
+  <CC_R4K_Carve_Impact>{0} walks to their fire and sits an hour while one of them carves; the carving is set out at the edge of their camp</CC_R4K_Carve_Impact>
+  <CC_R4K_Carve_ImpactBrief>a carving made</CC_R4K_Carve_ImpactBrief>
+  <CC_R4K_Carve_Piece>small wooden carving</CC_R4K_Carve_Piece>
+  <CC_R4K_Carve_Sold>{X_nameDef} of the {NAME} has set out one of their carvings at the edge of their camp for the colony to fetch.</CC_R4K_Carve_Sold>
+
+  <!-- R4-C2. Fire-watchers -->
+  <CC_R4K_Fire_Running>A fire is burning {THING}, and two of the {NAME} are running out to beat it out.</CC_R4K_Fire_Running>
+  <CC_R4K_Fire_Out>The {NAME} have beaten out the fire and are walking back to their camp.</CC_R4K_Fire_Out>
+  <CC_R4K_Fire_BreakDone>The {NAME} have finished the firebreak round the {THING}: {COUNT} plants cut down to the ground.</CC_R4K_Fire_BreakDone>
+  <CC_R4K_Fire_TheField>field</CC_R4K_Fire_TheField>
+  <CC_R4K_Fire_Busy>They are already cutting a firebreak.</CC_R4K_Fire_Busy>
+  <CC_R4K_Fire_NoField>There is no field with dry grass round it to cut.</CC_R4K_Fire_NoField>
+  <CC_R4K_Fire_BreakImpact>Two of them cut the dry grass and bushes in a strip outside the {0} over their working hours, up to {1} plants; never a tree or a crop</CC_R4K_Fire_BreakImpact>
+  <CC_R4K_Fire_BreakImpactBrief>a firebreak cut</CC_R4K_Fire_BreakImpactBrief>
+
+  <!-- R4-C3. Wildfowlers -->
+  <CC_R4K_Fowl_Birds>birds</CC_R4K_Fowl_Birds>
+
+  <!-- R4-C4. Snow-carvers -->
+  <CC_R4K_Snow_Together>{A_nameDef} and {X_nameDef} of the {NAME} have finished a snow figure together, and it is standing by their camp.</CC_R4K_Snow_Together>
+  <CC_R4K_Snow_Busy>Someone of the colony is already making a figure with them.</CC_R4K_Snow_Busy>
+  <CC_R4K_Snow_Impact>{0} walks to their camp and works an hour with them; the figure stands by their camp until the thaw</CC_R4K_Snow_Impact>
+  <CC_R4K_Snow_ImpactBrief>a snow figure made</CC_R4K_Snow_ImpactBrief>
+
+  <!-- R4-C6. Instrument-makers -->
+  <CC_R4K_Music_Instrument>instrument</CC_R4K_Music_Instrument>
+  <CC_R4K_Music_Sold>{X_nameDef} of the {NAME} has packed the new {THING} and set it out at the edge of their camp for the colony to fetch and set up.</CC_R4K_Music_Sold>
+
+  <!-- R4-E1. Crows on the new field -->
+  <CC_R4E_Crows_Gone>The {0} have already left the field.</CC_R4E_Crows_Gone>
+  <CC_R4E_Crows_Marked>The {0} nearest of the {1} have been marked for the colony's hunters.</CC_R4E_Crows_Marked>
+  <CC_R4E_Crows_Scared>One of the {0} has been shot, and the rest have flown off the colony's land. They pulled up {1} seedlings in all.</CC_R4E_Crows_Scared>
+  <CC_R4E_Crows_Watched>The {0} have been chased off the field and are leaving the colony's land. They pulled up {1} seedlings in all.</CC_R4E_Crows_Watched>
+  <CC_R4E_Crows_Left>The {0} have had their fill and are leaving the field. They pulled up {1} seedlings in all.</CC_R4E_Crows_Left>
+  <CC_R4E_Impact_CrowsWatch>{0} goes about the {1} until evening and chases the {2} off; nothing more is pulled up while {0} is there</CC_R4E_Impact_CrowsWatch>
+  <CC_R4E_Impact_CrowsWatchBrief>the {0} chased off</CC_R4E_Impact_CrowsWatchBrief>
+  <CC_R4E_Impact_CrowsShoot>The {0} nearest of the {1} marked for the colony's hunters; once one is down, the rest leave</CC_R4E_Impact_CrowsShoot>
+  <CC_R4E_Impact_CrowsShootBrief>the {0} shot at</CC_R4E_Impact_CrowsShootBrief>
+  <CC_R4E_Impact_CrowsLet>The {0} peck about the field until evening and then go; up to {1} seedlings are lost</CC_R4E_Impact_CrowsLet>
+  <CC_R4E_Impact_CrowsLetBrief>the {0} let be</CC_R4E_Impact_CrowsLetBrief>
+
+  <!-- R4-E2. Meltwater in the deep rooms -->
+  <CC_R4E_Melt_DoorGone>The door is gone.</CC_R4E_Melt_DoorGone>
+  <CC_R4E_Melt_OnlyDoor>It is the only way into the room.</CC_R4E_Melt_OnlyDoor>
+  <CC_R4E_Melt_Shut>The {0} is shut until the meltwater stops. The colony uses its other doors.</CC_R4E_Melt_Shut>
+  <CC_R4E_Melt_Stopped>The meltwater has stopped coming into the {ROOM}.</CC_R4E_Melt_Stopped>
+  <CC_R4E_Impact_Melt_mop>The water keeps coming into the {0}, and two of the colony mop it up as it comes</CC_R4E_Impact_Melt_mop>
+  <CC_R4E_Impact_Melt_mopBrief>the water mopped up</CC_R4E_Impact_Melt_mopBrief>
+  <CC_R4E_Impact_Melt_shut>The door is kept shut until the meltwater stops, and no more water comes into the {0}</CC_R4E_Impact_Melt_shut>
+  <CC_R4E_Impact_Melt_shutBrief>the door kept shut</CC_R4E_Impact_Melt_shutBrief>
+  <CC_R4E_Impact_Melt_leave>The water keeps coming into the {0} until it stops, and the puddles stay for the cleaners</CC_R4E_Impact_Melt_leave>
+  <CC_R4E_Impact_Melt_leaveBrief>the water left</CC_R4E_Impact_Melt_leaveBrief>
+
+  <!-- R4-E3. Midges at dusk -->
+  <CC_R4E_Impact_MidgesIn>For {1} evenings, those working by the wet ground near the {0} walk in before dusk</CC_R4E_Impact_MidgesIn>
+  <CC_R4E_Impact_MidgesInBrief>in before dusk</CC_R4E_Impact_MidgesInBrief>
+  <CC_R4E_Impact_MidgesBear>For {1} evenings, those out by the wet ground near the {0} at dusk are bitten and in a bad mood</CC_R4E_Impact_MidgesBear>
+  <CC_R4E_Impact_MidgesBearBrief>bitten at dusk</CC_R4E_Impact_MidgesBearBrief>
+  <CC_R4E_Impact_MidgesRisk>Someone bitten may come down with insect bites</CC_R4E_Impact_MidgesRisk>
+  <CC_R4E_Impact_MidgesRiskBrief>insect bites</CC_R4E_Impact_MidgesRiskBrief>
+  <CC_R4E_Midges_Bitten>{PAWN_nameDef} was bitten all over by the midges at dusk and has {ILLNESS}.</CC_R4E_Midges_Bitten>
+
+  <!-- R4-E4. What the storm threw up -->
+  <CC_R4E_Shore_Gone>Nothing is left lying on the shore.</CC_R4E_Shore_Gone>
+  <CC_R4E_Shore_Taken>The waves have taken back what was left lying on the shore: {0} heaps.</CC_R4E_Shore_Taken>
+  <CC_R4E_Impact_ShoreSea>Everything is left lying on the shore, and the sea takes it back tonight</CC_R4E_Impact_ShoreSea>
+  <CC_R4E_Impact_ShoreSeaBrief>left to the sea</CC_R4E_Impact_ShoreSeaBrief>
+  <CC_R4E_Impact_ShoreNear>Only the {0} heaps nearest the colony of the {1} are carried in; the rest goes back to the sea tonight</CC_R4E_Impact_ShoreNear>
+  <CC_R4E_Impact_ShoreNearBrief>the nearest carried in</CC_R4E_Impact_ShoreNearBrief>
+
+  <!-- R4-E5. Ice on the paths -->
+  <CC_R4E_Impact_IcePaths>{0} walks from door to door scattering ash on the ice outside all {1} of them; nobody slips while the ice lasts</CC_R4E_Impact_IcePaths>
+  <CC_R4E_Impact_IcePathsBrief>ash on the paths</CC_R4E_Impact_IcePathsBrief>
+  <CC_R4E_Impact_IceDoors>{0} scatters ash outside the {1} doors nearest the middle of the colony</CC_R4E_Impact_IceDoors>
+  <CC_R4E_Impact_IceDoorsBrief>ash by the doors</CC_R4E_Impact_IceDoorsBrief>
+  <CC_R4E_Impact_IceRiskSome>Away from those doors, someone walking on the ice may slip and sprain an ankle</CC_R4E_Impact_IceRiskSome>
+  <CC_R4E_Impact_IceRisk>Until it thaws, someone walking out on the colony's ground may slip and sprain an ankle</CC_R4E_Impact_IceRisk>
+  <CC_R4E_Impact_IceRiskBrief>a slip on the ice</CC_R4E_Impact_IceRiskBrief>
+  <CC_R4E_Ice_Gritted>{PAWN_nameDef} has scattered ash on the ice outside all {1} doors. Nobody should slip there now.</CC_R4E_Ice_Gritted>
+  <CC_R4E_Ice_GrittedDoors>{PAWN_nameDef} has scattered ash on the ice outside the {1} doors nearest the middle of the colony.</CC_R4E_Ice_GrittedDoors>
+  <CC_R4E_Ice_Slipped>{PAWN_nameDef} slipped on the ice outside and has {ILLNESS}.</CC_R4E_Ice_Slipped>
+  <CC_R4E_Ice_Thawed>The ice on the colony's paths has gone.</CC_R4E_Ice_Thawed>
+
+  <!-- R4-E6. The old tree by the house -->
+  <CC_R4E_Tree_Gone>The tree is gone.</CC_R4E_Tree_Gone>
+  <CC_R4E_Tree_NoRoom>There is no room for a seat beside the trunk.</CC_R4E_Tree_NoRoom>
+  <CC_R4E_Tree_Marked>The {0} by the colony's buildings has been marked for cutting.</CC_R4E_Tree_Marked>
+  <CC_R4E_Tree_SeatMarked>A {0} has been marked under the {1} for the builders.</CC_R4E_Tree_SeatMarked>
+  <CC_R4E_Impact_TreeFell>The {0} is marked for cutting and a work party fells it</CC_R4E_Impact_TreeFell>
+  <CC_R4E_Impact_TreeFellBrief>the old tree felled</CC_R4E_Impact_TreeFellBrief>
+  <CC_R4E_Impact_TreeSeat>A {1} is marked under the {0} beside its trunk, and the builders make it</CC_R4E_Impact_TreeSeat>
+  <CC_R4E_Impact_TreeSeatBrief>a seat under the tree</CC_R4E_Impact_TreeSeatBrief>
+
+  <!-- R4-E7. Stones in the field -->
+  <CC_R4E_Stones_Gone>The stones are no longer in the field.</CC_R4E_Stones_Gone>
+  <CC_R4E_Stones_NoBench>The colony has no bench that cuts this stone into blocks.</CC_R4E_Stones_NoBench>
+  <CC_R4E_Stones_Bill>A bill has been set at the {2}: {1}, {0} times.</CC_R4E_Stones_Bill>
+  <CC_R4E_Impact_StonesCarry>The {0} stones are carried off the field by a work party</CC_R4E_Impact_StonesCarry>
+  <CC_R4E_Impact_StonesCarryBrief>the stones carried off</CC_R4E_Impact_StonesCarryBrief>
+  <CC_R4E_Impact_StonesBlocks>A bill at the {2} for {1}, {0} times, from the stones in the field</CC_R4E_Impact_StonesBlocks>
+  <CC_R4E_Impact_StonesBlocksBrief>the stones cut into blocks</CC_R4E_Impact_StonesBlocksBrief>
+
+</LanguageData>

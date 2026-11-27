@@ -115,6 +115,13 @@ public static class CampWordsSaidTests
         ["CampWorker_R3RagPickers"] = new[] { "sort", "rags" },
         ["CampWorker_R3Gamblers"] = new[] { "dice", "won", "lost", "cheat" },
         ["CampWorker_R3Kennel"] = new[] { "train", "sold" },
+        // The content round's fourth part (Camps/CampRound4.cs).
+        ["CampWorker_R4KWoodcarvers"] = new[] { "carve", "sit", "carved", "sold" },
+        ["CampWorker_R4KFireWatchers"] = new[] { "lookout", "fire", "out", "break" },
+        ["CampWorker_R4KWildfowlers"] = new[] { "decoy", "dawn" },
+        ["CampWorker_R4KSnowCarvers"] = new[] { "shape", "figure" },
+        ["CampWorker_R4KCheesemakers"] = new[] { "curd", "cheese" },
+        ["CampWorker_R4KInstruments"] = new[] { "tune", "play", "sold" },
     };
 
     /// <summary>A line's tags, each with its | alternatives ("[carry,stone|wood] ..." gives carry and stone|wood).</summary>
