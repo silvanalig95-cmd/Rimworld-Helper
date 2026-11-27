@@ -22,7 +22,8 @@ What every question keeps to:
 - The full mod pool: what is picked is read from the def's own properties at run time (any insect's meat, any recipe
   that makes kibble, any wild food plant, any bonded animal), so the player's active mods count with the game's.
 
-New code, kept small: eleven workers for their triggers (the twelfth uses the world's `DilemmaWorker_WorldSeason`) and
+New code, kept small: ten workers for their triggers (a friend among the visitors uses the strangers' `DilemmaWorker_Stranger`,
+a verse of our own the world's `DilemmaWorker_WorldSeason`) and
 five effects that are each a thin piece over what exists: two colonists trading beds (`Round3CouncilSwapBeds`, the
 game's own bed ownership), an empty grave given to an animal (`Round3CouncilPetGrave`, the game's own burying), a bill at
 a bench (`Round3CouncilBill`, the game's own bills, as `CookIt` is), a supper for those who need it most first
@@ -82,6 +83,7 @@ season (`Round3CouncilHandOver`, `AnswerShifts` as `HandOver` uses it).
 - **Ages:** the old village's day in the older ages; agave in the desert lands (`[land:desert]`).
 - Not a duplicate of the children's gleaning (children in the harvested fields), the foraging days (a decree) or short in
   the stores (an event of a hungry colony).
+- The Almanac's table of customs (`Almanac_Council.xml`, "The customs") has its row.
 
 **5. The hungry gap** (`Rimfolk_DlmR3_HungryGap`)
 - **Asked when:** winter or spring, fewer than four days of food in the stores (the advisor's own count), cooked meals in
@@ -99,7 +101,8 @@ season (`Round3CouncilHandOver`, `AnswerShifts` as `HandOver` uses it).
 **6. A friend among the visitors** (`Rimfolk_DlmR3_VisitorFriend`)
 - **Asked when:** visitors or traders of a people at peace with the colony are on the map, and one of them (X) and one of
   the colony (A) each think well of the other (opinion 15 and more both ways).
-- **A** the friend; **B** another grown-up, the quartermaster if there is one.
+- **A** the friend; **B** another grown-up, who says the stores are not for every friendly visitor. Through the strangers'
+  own `DilemmaWorker_Stranger` (a visitor, each thinking well of the other), so no worker of its own.
 - **Answers:** A takes X food for the road (two meals from the stores carried out and put into X's pack, `CarryOut`; a
   little goodwill); an hour together before the visitors go (`Visit` to X; greyed out once X has gone); visitors come and
   go (moods only).

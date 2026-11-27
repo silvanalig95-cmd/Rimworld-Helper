@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The content round's third set of council questions (docs/content-round-3-council.md; Dilemmas/DilemmaWorkers_Round3.cs):
+       what their few effects say before the answer and in their messages. Plain words: the interface and messages. -->
+
+  <!-- Beds traded (the light sleeper) -->
+  <CC_R3C_Impact_Beds>{0} and {1} trade beds: each sleeps in the other's from tonight</CC_R3C_Impact_Beds>
+  <CC_R3C_Impact_BedsBrief>beds traded</CC_R3C_Impact_BedsBrief>
+  <CC_R3C_Beds_Gone>One of the two no longer sleeps alone in the bed the council was asked about.</CC_R3C_Beds_Gone>
+  <CC_R3C_BedsTraded>{PAWN_nameDef} and {OTHER_nameDef} have traded beds. {PAWN_nameDef} sleeps farther from the door from tonight.</CC_R3C_BedsTraded>
+
+  <!-- A grave for an animal -->
+  <CC_R3C_Impact_Grave>One of the colony's empty graves is given to {0}, and the haulers lay {0} in it</CC_R3C_Impact_Grave>
+  <CC_R3C_Impact_GraveBrief>an empty grave given</CC_R3C_Impact_GraveBrief>
+  <CC_R3C_Grave_None>The colony has no empty grave to give.</CC_R3C_Grave_None>
+  <CC_R3C_Grave_BodyGone>{DEAD}'s body is no longer here.</CC_R3C_Grave_BodyGone>
+  <CC_R3C_GraveGiven>The {PLACE} has been given to {DEAD}.</CC_R3C_GraveGiven>
+
+  <!-- A bill at the bench (what the insects left, the table without meat) -->
+  <CC_R3C_Impact_Bill>A bill at the {0} to make {2} {1} times, first on the list</CC_R3C_Impact_Bill>
+  <CC_R3C_Impact_BillBrief>{0} made at the bench</CC_R3C_Impact_BillBrief>
+  <CC_R3C_Bill_NoBench>No bench of the colony's can make it now.</CC_R3C_Bill_NoBench>
+  <CC_R3C_Bill_NoAnimals>The colony has no animal that eats kibble.</CC_R3C_Bill_NoAnimals>
+  <CC_R3C_Bill_Gone>The {FOOD} is gone from the stores.</CC_R3C_Bill_Gone>
+  <CC_R3C_BillSet>The {BENCH} has a bill to make {WHAT} {N} times, first on the list.</CC_R3C_BillSet>
+
+  <!-- A supper for those who need it most, first (the hungry gap) -->
+  <CC_R3C_Impact_First>{0}, {1}: {2} sit down to eat first, with meals from the stores</CC_R3C_Impact_First>
+
+</LanguageData>

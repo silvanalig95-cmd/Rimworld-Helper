@@ -165,6 +165,14 @@ PLAY = {
     "DilemmaEffect_LateFeast": "feast",
     "DilemmaEffect_CampDead": "a grave, or carried away",
     "DilemmaEffect_Excused": "work handed over",
+    # The content round's third set of council questions (Dilemmas/DilemmaWorkers_Round3.cs): two beds traded, an empty grave
+    # given to a dead animal, a bill at a bench (kibble of the insect meat, meals without meat), a supper for those who need
+    # it most first, a colonist's own work handed over for a season.
+    "Round3CouncilSwapBeds": "beds traded",
+    "Round3CouncilPetGrave": "a grave given",
+    "Round3CouncilBill": "cooking bill",
+    "Round3CouncilFeastFirst": "feast",
+    "Round3CouncilHandOver": "work handed over",
     # The fourth round of the council and the colony's year (Dilemmas/DilemmaWorkers_YearFour.cs): a field given up or
     # set to another crop, the snow-clearing area marked, the plans the stores can't pay for taken off, trees marked for
     # the cutters, wild plants marked for picking, animals marked for slaughter, an animal's training set, a day off for
