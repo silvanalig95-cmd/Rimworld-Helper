@@ -18,13 +18,12 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
   speak (the sky's at the rain-callers' rite, the ledger's at the gamblers' fire), they speak as people, by
   `CampRound2.Believers`, and name no god.
 - **The colony is the family.** Nothing reads kin, houses or lines.
-- **Harm** only where listed, through the shared harm budget at the game's own rate, from something on the map, and shown:
-  the beast of a world event (the game's own manhunting animal, `HarmKinds.StoryFight`, behind world-event battles), and a
-  camp's brawl only by the camps' own rule (`CampBrawls`) when a camp's unease runs high.
+- **Harm:** none of the twelve hurts anyone by itself; a camp's brawl comes only by the camps' own rule (`CampBrawls`, the
+  shared harm budget) when a camp's unease runs high (the witch-finders refused, the gamblers' dice caught).
 - **Answers play out on the map**, with no countdown in the words. Speech through `Speech.Say` and the camps' `SayMoment`;
   bubbles one sentence.
 - **What the words say happens is what the player sees**: the rite at their fire, the dyed coat, the dog at someone's heels,
-  the water-carriers at the colony's water, the rats on the land and the dog after them, the beast at the edge.
+  the water-carriers at the colony's water, the rats on the land and the dog after them, the miner walking off to the dig.
 - **Text:** camps and world events keep the earlier flavour style (CLAUDE.md, 20 November 2026).
 - **Mods:** only `active` rows of `docs/player-mods/`, softly (`MayRequire` or by name in code), the game's own after.
 - **Saved state:** each camp's state is a few values and single references in its `CampWorkState`; each world event's in
@@ -60,7 +59,8 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
   cloth set out; their trader sells dye and cloth and buys the colony's.
 - **Answers (their page):** send someone over to have their clothes dyed ({COUNT} silver): the colonist walks to their camp,
   and once they have sat with the dyers an hour their outer coat or shirt takes the camp's colour (its own `CompColorable`,
-  the same way the mourning colours are put on). Learn their craft (an afternoon's lesson, crafting).
+  the same way the mourning colours are put on). Learn their craft (an afternoon's lesson, crafting). Buy dye, carried to
+  the gate. If the one sent never gets there, the fee comes back to the gate.
 - **Every age:** woad and madder in pits (tribal), a dyer's family with vats on a cart (medieval), an aniline dye salesman
   with bright powders (industrial), a colour crew with nanodye sprayers (spacer). The colour by their age: woad blue, madder
   red, weld yellow, aniline purple or green, a bright spacer colour.
@@ -89,14 +89,17 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
 
 **R3-C4. Rag-and-bone men** (`Rimfolk_Camp_RagPickers`, `CampWorker_R3RagPickers`)
 - **When:** any season; more often after a war or in rebuilding (`war`, `rebuild`).
-- **On the map:** two or three with a handcart and a beast; by day they sort rags and scrap at their fire. Their trader
-  sells mended second-hand clothes of their age; now and then they mend a colonist's worn gear (the camps' own [mend]).
+- **On the map:** two or three with a handcart and a beast; by day they sort rags and scrap at their fire; now and then they
+  mend a colonist's worn gear (the camps' own [mend]).
 - **Answers:** carry out the colony's worn-out things (clothes and weapons in the stores too far gone, and slag: the scrap
   the errands already know): someone of the colony carries them out to the camp, and one of theirs brings the price to the
-  gate. Buy a bundle of mended clothes.
+  gate. Buy a bundle of mended clothes of their age (three pieces, carried to the gate).
 - **Every age:** hide-traders who take worn skins (tribal), rag-and-bone men with a handcart (medieval), a rag merchant's
   wagon for the paper mill (industrial), a recycler crew with a hover-cart (spacer).
-- **Harm:** none. **Mods:** clothes of their age from the game's and the mods' apparel (first that exists).
+- **Harm:** none. **Mods:** clothes of their age from the player's active mods: Vanilla Factions Expanded - Tribals'
+  `VFET_Apparel_TribalLight`, Vanilla Apparel Expanded's `VAE_Apparel_TribalPoncho`, `VAE_Apparel_Tunic`,
+  `VAE_Apparel_FleeceShirt` and `VAE_Apparel_CasualTShirt`, Rimsenal - Feral's `Apparel_PatchedShirt`; the game's tribalwear
+  and T-shirt after.
 - Not a duplicate of the salvagers (ruins and scrap on the land), the Wheel's runners (a people's one-off buy of scrap at
   the gate) or the traders.
 
@@ -107,7 +110,8 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
 - **Answers:** send {A} to play an evening (a stake of {COUNT} silver, carried out): {A} walks over at dusk and sits at
   their fire; after an hour or two of play: won (one of theirs brings twice the stake to the gate), lost (the stake stays
   with them), or {A} catches their loaded dice (by a sharp eye, Intellectual): the stake is handed back and their camp's
-  unease jumps. The colony's believers of the ledger's god may say a word against the dice.
+  unease jumps. If {A} never sits down with them, the stake is sent back to the gate. The colony's believers of the
+  ledger's god may say a word against the dice.
 - **Every age:** knucklebone players (tribal), dicers (medieval), card sharps with a folding table (industrial), holo-dice
   hustlers (spacer).
 - **Harm:** only a brawl by the camps' own rule, when their unease runs high. **Mods:** none needed.
@@ -115,8 +119,8 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
 
 **R3-C6. Dog-breeders** (`Rimfolk_Camp_Kennel`, `CampWorker_R3Kennel`)
 - **When:** any season but the deep cold.
-- **On the map:** two or three breeders with four to six dogs picketed by their tents; each morning they work the dogs out
-  among them (their task among the herd).
+- **On the map:** two or three breeders with four or five dogs, picketed by their tents and one at a breeder's heels; by
+  day they work one dog or another, the dog standing for it.
 - **Answers:** buy one of their dogs ({COUNT} silver): the youngest of theirs becomes the colony's where it stands, and
   goes to the colony's best with animals and keeps at their heels for a day (the play-out that keeps an animal at someone's
   heels). Learn to train dogs (a lesson, animals). After a good stay they may hand a pup over at the gate (the camps' own
@@ -136,22 +140,19 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
 `Defs/WorldSituationDefs/Rimfolk_WS_Round3.xml`, `Source/ColonyCouncil/World/Variety/WorldRound3.cs`, pure rules in
 `World/Variety/Round3WorldMath.cs`.
 
-**R3-W1. The beast of {PLACE}** (`Rimfolk_WS_Beast`, `SituationWorker_R3Beast`; kind `maneater`)
-- **In the region:** a beast takes herds and travellers near a town of a people at peace. Its kind is named, read from the
-  land: the strongest predator that lives wild where the colony is, from every animal mod loaded; for a spacer people a gene
-  lab's escaped hybrid where Vanilla Genetics Expanded is loaded. Their hunters pass the colony on the road; a reeve comes to
-  the gate with the bounty.
-- **Answers:** keep a watch with lanterns by night; go on as before.
-- **On the map:** once, with world-event battles on and through the shared harm budget (`HarmKinds.StoryFight`), the beast
-  comes onto the colony's land from the edge, manhunting, as the game's own animals do; a letter says so and points at it.
-  Killed on the colony's land, the people's courier brings the bounty.
-- **Endings:** killed at the colony (the bounty paid); killed by their hunters; gone back into the hills.
-- **Every age:** the spirit-wolf of the hills (tribal), the beast of the vale (medieval), the man-eater the papers write
-  about (industrial), the thing out of the gene lab (spacer).
-- **Mods:** Alpha Animals, Vanilla Animals Expanded, Vanilla Genetics Expanded (`GR_` hybrids), all active; the game's
-  `Bear_Grizzly`, `Warg`, `Wolf_Timber`, `Cougar` after.
-- Not a duplicate of the old thrumbo (a peaceful old beast hunted for its horn), the lord's hunt (a camp) or the wrong beast
-  (a storyteller event on the colony's land).
+**R3-W1. A mine falls in** (`Rimfolk_WS_MineFall`, `SituationWorker_R3MineFall`; kind `minefall`)
+- **In the region:** the miners of a people at peace are trapped behind a fall at one of their towns.
+- **Answers:** a runner at the gate asks for help: timber for the props (sixty logs carried out to them), medicine for those
+  brought out (carried out), or the colony's best miner for two days of digging (the far errand: a caravan of one there and
+  home, with mining learned and a letter of how it went); or nothing to spare.
+- **On the map:** the runner at the gate, the logs or the medicine carried out, the miner walking off the map and home again.
+- **Endings:** brought out (likelier with the colony's help); brought out by their own diggers; not reached.
+- **Every age:** the flint pits fallen in (tribal), the mine's roof down (medieval), a colliery disaster (industrial), a
+  mining shaft breached (spacer).
+- **Harm:** none. **Mods:** none needed.
+- Not a duplicate of the Deepwell Union's drill (a colonist working beside its crew), a great work or rebuilding.
+- *Changed while building:* the first list had "the beast of a town" here; it was too near the storyline of the beast coming
+  down the valley (S4, `Storylines/StorylineBeast.cs`), so it was replaced.
 
 **R3-W2. The fouled wells** (`Rimfolk_WS_FouledWells`, `SituationWorker_R3Wells`; kind `wells`)
 - **In the region:** a people's wells at a town go bad; some blame a dead beast in the spring, some the tanners upstream.
@@ -160,12 +161,13 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
   them for a fee (their silver handed over); not at the colony's water.
 - **On the map:** let, their water-carriers come with their beasts every few days and stand at the colony's water an hour or
   two before going home.
-- **Endings:** the spring cleaned (the cause found); a new well dug.
+- **Endings:** the spring cleaned (the cause found); water brought down from the hills.
 - **Every age:** the spring gone foul (tribal), the town well fouled (medieval), the waterworks gone bad and a fever with it
   (industrial), the station's water recycler failed (spacer).
 - **Harm:** none. **Mods:** none needed.
-- Not a duplicate of fouled water (the river folk ask the colony to clean what it fouled), a long drought or the herders by
-  the water.
+- Not a duplicate of fouled water (the river folk ask the colony to clean what it fouled), a long drought, the herders by
+  the water, or the town's well ran dry (S10, a storyline: water and meals collected by the town's carts and a builder lent
+  to dig a new well); the endings here are the cause found or water brought down from the hills.
 
 **R3-W3. An expedition** (`Rimfolk_WS_Expedition`, `SituationWorker_R3Expedition`; kind `expedition`)
 - **In the region:** a people sends an expedition from its town into the far country. Whether it comes back is settled at the
@@ -218,5 +220,5 @@ when they leave (`CampDayMath.Repacks`, `TakeFirst`, `Camp.TakeGoods`); nothing 
 ## Mods that would help
 
 From `docs/player-mods/mods.tsv`, subscribed but not enabled (to be read on the Workshop before recommending): see the
-round's final report. Already enabled and used here: Vanilla Animals Expanded (its dogs), Alpha Animals and Vanilla
-Genetics Expanded (the beast's kinds), Royalty and Biotech (what the witch-finders look for).
+round's final report. Already enabled and used here: Vanilla Animals Expanded (its dogs), Royalty and Biotech (what the witch-finders look for),
+Ideology (the dye).

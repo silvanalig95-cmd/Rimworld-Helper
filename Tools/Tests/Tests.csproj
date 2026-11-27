@@ -424,5 +424,6 @@
     <!-- Each storyline's own rules, the whole folder: a new storyline adds a file there and nothing here. -->
     <Compile Include="../../Source/ColonyCouncil/Storylines/Flows/*.cs" LinkBase="StorylineFlows" />
     <Compile Include="../../Source/ColonyCouncil/World/Variety/Round2Math.cs" Link="Round2Math.cs" />
+    <Compile Include="../../Source/ColonyCouncil/World/Variety/Round3WorldMath.cs" Link="Round3WorldMath.cs" />
   </ItemGroup>
 </Project>
