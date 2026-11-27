@@ -50,7 +50,9 @@ public static class RegionYearsTests
             ["Rimfolk_WS_GreatWork"] = RegionGoods.Wood,
             ["Council_WS_Murrain"] = RegionGoods.Textiles, ["Council_WS_Embargo"] = RegionGoods.Textiles,
             // The content update's variety (World/Variety/): the two scarcities and a bridge to build again.
-            ["Rimfolk_WS_ClothScarce"] = RegionGoods.Textiles, ["Rimfolk_WS_TimberScarce"] = RegionGoods.Wood, ["Rimfolk_WS_BridgeDown"] = RegionGoods.Wood
+            ["Rimfolk_WS_ClothScarce"] = RegionGoods.Textiles, ["Rimfolk_WS_TimberScarce"] = RegionGoods.Wood, ["Rimfolk_WS_BridgeDown"] = RegionGoods.Wood,
+            // The content round (World/Variety/WorldRound2.cs): good metal bought dear while the coin is mistrusted.
+            ["Rimfolk_WS_BadCoin"] = RegionGoods.Steel
         };
         foreach (var kv in lacks)
         {

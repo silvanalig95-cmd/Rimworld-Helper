@@ -100,6 +100,14 @@ public static class CampWordsSaidTests
         ["CampWorker_Beekeepers"] = new string[0],
         ["CampWorker_MushroomPickers"] = new string[0],
         ["CampWorker_StarWatchers"] = new string[0],
+        // The content round's camps (Camps/CampRound2.cs) and the priest of a god put away (World/Variety/WorldRound2.cs).
+        ["CampWorker_Diggers"] = new[] { "dig", "caught", "share" },
+        ["CampWorker_HerdApart"] = new string[0],
+        ["CampWorker_StoneRaisers"] = new[] { "rite", "haul", "carve" },
+        ["CampWorker_Smugglers"] = new[] { "lamp" },
+        ["CampWorker_Novices"] = new[] { "tale" },
+        ["CampWorker_LordsHunt"] = new[] { "named" },
+        ["CampWorker_PutAwayPriest"] = new[] { "tale", "rite" },
     };
 
     /// <summary>A line's tags, each with its | alternatives ("[carry,stone|wood] ..." gives carry and stone|wood).</summary>

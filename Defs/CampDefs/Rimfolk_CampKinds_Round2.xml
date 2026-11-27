@@ -1,0 +1,838 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content round's camps (docs/content-update-proposals-2.md, section 4, D33 to D38), and the priest of a god put away
+    (the world event D39's guest for a season). Their ways in Source/ColonyCouncil/Camps/CampRound2.cs (diggers, the herd kept
+    apart, the stone-raisers, smugglers, novices, the lord's hunt) and World/Variety/WorldRound2.cs (the priest). Each in its
+    people's age's form ([their:tribal]...). Camps' letters in their flavour style; bubbles are speech, one sentence each; a
+    rite's words in the old voice. Goods, beasts and stones from the player's mods first (MayRequire or by name in code), the
+    game's own after.
+  -->
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R2_CampDig</defName>
+    <reportString>digging at the old place.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1500</ticks><effecter>ConstructDirt</effecter><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R2_CampDigNight</defName>
+    <reportString>digging at the old graves.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2600</ticks><effecter>ConstructDirt</effecter></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R2_CampSieve</defName>
+    <reportString>sifting the day's earth.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>1800</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R2_CampCarve</defName>
+    <reportString>carving the stone.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2400</ticks><effecter>ConstructMetal</effecter><progress>true</progress></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R2_CampKeepLamp</defName>
+    <reportString>keeping the lamp.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2500</ticks></li>
+    </modExtensions>
+  </JobDef>
+
+  <JobDef ParentName="Council_CampJobBase">
+    <defName>Rimfolk_R2_CampLieLow</defName>
+    <reportString>keeping out of sight.</reportString>
+    <modExtensions>
+      <li Class="ColonyCouncil.CampJobExtension"><ticks>2200</ticks><social>true</social></li>
+    </modExtensions>
+  </JobDef>
+
+  <!-- The colony's best with animals beside the herders' coughing beasts (CampRound2.cs): the beekeepers' helper's driver. -->
+  <JobDef>
+    <defName>Rimfolk_R2_TendTheirHerd</defName>
+    <driverClass>ColonyCouncil.JobDriver_HelpAtHives</driverClass>
+    <reportString>tending the herders' coughing beasts.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <!-- Dancing where they stand (the dancing sickness, World/Variety/WorldRound2.cs). -->
+  <JobDef>
+    <defName>Rimfolk_R2_DanceInYard</defName>
+    <driverClass>ColonyCouncil.JobDriver_R2Dance</driverClass>
+    <reportString>dancing.</reportString>
+    <casualInterruptible>true</casualInterruptible>
+  </JobDef>
+
+  <!-- ===================== D33. Diggers at the old place ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Diggers</defName>
+    <label>diggers</label>
+    <workerClass>ColonyCouncil.CampWorker_Diggers</workerClass>
+    <arrives>7~13</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.35</weight>
+    <needs>ruins</needs>
+    <situationKinds>
+      <li>ruins</li>
+    </situationKinds>
+    <people>3~5</people>
+    <days>4~7</days>
+    <ages>18~60</ages>
+    <task>Rimfolk_R2_CampSieve</task>
+    <hireChance>0.15</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.12</helpChance>
+    <help>
+      <li>wood</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.1</breakTerms>
+    <tensionPerDay>0.9</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li><li>Chop</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li>Muffalo</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Diggers at the old place</li>
+      <li>[their:tribal] Grave robbers with picks</li>
+      <li>[their:medieval] Diggers come for the ruins</li>
+      <li>[their:industrial] An excavation party</li>
+      <li>[their:spacer] Relic hunters with scanners</li>
+    </titles>
+    <texts>
+      <li>A handful of diggers of {FACTION} have come with picks, spades and a sieve on a frame. {X_nameDef} told {A_nameDef} the old ruins on the colony's land have never been dug properly, and asked to camp {PLACE} and dig there for a few days. Whatever comes up, {X_pronoun} said, the colony would have its share.</li>
+      <li>[their:tribal] Diggers of {FACTION} have come with picks of bone and baskets for the earth. {X_nameDef} said the old ones left things in the ground at the ruins, and asked {A_nameDef} whether they might camp {PLACE} and dig, the colony to take its share of what they find.</li>
+      <li>[their:medieval] A band of diggers from {FACTION} has come up the track with spades on their shoulders and a sieve tied to a mule. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and dig at the old walls, and swore the colony a fair share of whatever the ground gives up.</li>
+      <li>[their:industrial] An excavation party of {FACTION} has arrived with a permit stamped by somebody, a sieve table and a great many labelled bags. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and work the ruins for a few days, the colony to receive its share of the finds.</li>
+      <li>[their:spacer] Relic hunters of {FACTION} have come with scanners and shovels and a crate of empty sample cases. {X_nameDef} told {A_nameDef} the ruins {PLACE} light up on every reading they have, and asked to camp there and dig, the colony to get its cut.</li>
+      <li>[ws:ruins] With {SITUATION} the talk of the region, diggers of {FACTION} have come to the colony's own ruins with picks and a sieve. {X_nameDef} asked {A_nameDef} to let them camp {PLACE} and dig, for a share.</li>
+    </texts>
+    <settled>
+      <li>The diggers' camp {PLACE} is up, with the sieve set by the fire and the first trench already cut beside the ruins.</li>
+      <li>The diggers from {FACTION} have made camp {PLACE}. Their spoil heap is growing by the old walls, and their finds lie in a row on a cloth to be looked at after supper.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the diggers camped {PLACE}, says the colony has been fair with them, and asks whether it could use someone who knows how to dig and doesn't mind the work.</li>
+    </joinTexts>
+    <farewell>
+      <li>[shared] The diggers from {FACTION} filled in their trenches, shouldered their spades and went on. The colony's share is at its gate: {GOODS}.</li>
+      <li>[graves] The diggers have gone with their bags full, and the old graves they opened are filled in again, more or less.</li>
+      <li>[caught] The diggers packed up and went without much talk, after the night at the graves.</li>
+      <li>The diggers' camp {PLACE} is empty, the ground round the ruins turned over and the sieve gone with them.</li>
+    </farewell>
+    <lines>
+      <li>Slowly, the good things break.</li>
+      <li>Sieve it twice, then look again.</li>
+      <li>That's a buckle, or it was.</li>
+      <li>Mark where it came up before you lift it.</li>
+      <li>Somebody lived here once, you can tell from the ash.</li>
+      <li>Nothing yet, but the day's young.</li>
+      <li>[evening] Let's see what the sieve kept today.</li>
+      <li>[rain] The trench will be soup by morning.</li>
+      <li>[their:tribal] The old ones buried their best things with them.</li>
+      <li>[their:industrial] Label it before you bag it, every time.</li>
+      <li>[their:spacer] The scanner says there's metal right under you.</li>
+    </lines>
+    <momentLines>
+      <li>[dig] Here, this is where the old floor starts.</li>
+      <li>[dig] Careful, there's something hard down there.</li>
+      <li>[caught] I was only looking, I swear it.</li>
+      <li>[share] This is the colony's share, as we agreed.</li>
+      <li>[carry,wood] For the fire, and some for the sieve frame.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[wood] The diggers camped {PLACE} cut the scrub off the ruins and have stacked {COUNT} logs of it on the colony's side of their trench.</li>
+    </helpTexts>
+    <asks>
+      <!-- The old graves on the land that aren't the colony's (CampWorker_Diggers): asked on their first morning, when there are any. -->
+      <li>
+        <key>graves</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them dig the old graves too</label>
+        <refuseLabel>The ruins only, not the graves</refuseLabel>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <askTexts>
+          <li>{X_nameDef} of the diggers came to the gate with earth to the elbows. There are old graves on the colony's land, {X_pronoun} says, not the colony's own and long forgotten, and the best things of the old place were always buried with the dead. Would the colony let them dig there too?</li>
+          <li>[their:spacer] {X_nameDef} of the relic hunters has come to the gate with a scanner reading. The old graves on the colony's land show metal in every one of them, {X_pronoun} says, and asks whether they may open them too.</li>
+        </askTexts>
+        <tip>They dig the old graves as well as the ruins, and bring the colony two things for its share instead of one. Those of the colony who hold to the keeper of the dead will not like it.</tip>
+        <outcomes>
+          <li>{X_nameDef} thanked the colony and went straight back with a spade to the old graves.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the ruins would do, and went back to the trench.</li>
+          <li>{X_nameDef} shrugged and said they would keep to the walls, then.</li>
+        </refused>
+        <refuseTension>6</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_DiggersGraves" />
+        </effects>
+      </li>
+      <li>
+        <key>learn</key>
+        <label>Have {A_nameDef} dig beside them a while</label>
+        <tip>{A_nameDef} spends a few hours in their trench, learning how they dig an old place without breaking what is in it. Practice in mining.</tip>
+        <skill>Mining</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{X_nameDef} has handed {A_nameDef} a trowel and shown {A_objective} where to start, slowly.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>X</teacher><student>A</student><skill>Mining</skill><duration>2~3</duration></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== D34. A herd kept apart ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_HerdApart</defName>
+    <label>herd kept apart</label>
+    <workerClass>ColonyCouncil.CampWorker_HerdApart</workerClass>
+    <arrives>8~15</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.2</weight>
+    <situationKinds>
+      <li>Council_WS_Murrain</li>
+    </situationKinds>
+    <situationWeight>4</situationWeight>
+    <maxAnimals>12</maxAnimals>
+    <people>2~4</people>
+    <days>4~7</days>
+    <ages>16~65</ages>
+    <task>Council_CampHerd</task>
+    <taskAt>herd</taskAt>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>Feed</li>
+      <li>Medicine</li>
+    </buys>
+    <pride>0.2</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.6</tensionPerDay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><kinds><li>Muffalo</li><li>Goat</li><li>Sheep</li><li>Cow</li><li>Yak</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li><li MayRequire="sarg.alphaanimals">AA_Thunderox</li></kinds><count>5~7</count><at>pasture</at></li>
+      <li><kinds><li>Horse</li><li>Cow</li><li>Goat</li><li>Dromedary</li></kinds><count>2~4</count><at>pasture</at></li>
+      <li><kinds><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~1</count><follow>true</follow><named>true</named></li>
+    </animals>
+    <titles>
+      <li>A herd kept apart</li>
+      <li>[ws:sickness] A coughing herd</li>
+      <li>[their:industrial] A cattle truck's load, unloaded</li>
+    </titles>
+    <texts>
+      <li>Herders of {FACTION} have stopped on the far side of the colony's land with a herd that coughs. {X_nameDef} called to {A_nameDef} from a distance rather than come closer: the beasts caught it on the road, {X_pronoun} said, and they will camp {PLACE}, as far from the colony's own animals as the land allows, until it passes.</li>
+      <li>[ws:sickness] With {SITUATION} going through the herds of the region, herders of {FACTION} have brought their coughing beasts to the farthest corner of the colony's land. {X_nameDef} told {A_nameDef}, keeping well back, that they will stay {PLACE} and keep the herd to themselves.</li>
+      <li>[their:tribal] Herders of {FACTION} have driven their goats and muffalo to the far edge of the colony's land, the beasts coughing as they walk. {X_nameDef} told {A_nameDef} that the sickness came to their herd at the river, and asked to camp {PLACE}, far from the colony's own, until it goes.</li>
+      <li>[their:medieval] A herdsman of {FACTION} and his people have brought their horses and cattle to the far corner of the colony's land and stopped there. {X_nameDef} shouted across to {A_nameDef} that the herd has the cough, and asked leave to camp {PLACE} and keep it penned apart.</li>
+      <li>[their:industrial] A cattle truck of {FACTION} has unloaded its herd at the far edge of the colony's land, the beasts coughing on the ramp. {X_nameDef} told {A_nameDef} the market turned them away, and asked to camp {PLACE} and keep the herd there, away from the colony's stock.</li>
+      <li>[their:spacer] Herders of {FACTION} have walked their colony's herd to the far side of the colony's land, every beast with a tag in its ear and a cough. {X_nameDef} told {A_nameDef} they would keep to {PLACE} until it clears.</li>
+    </texts>
+    <settled>
+      <li>The herders' camp is up {PLACE}, as far from the colony as they could get it, with the herd grazing round the tents and coughing in the cold of the morning.</li>
+      <li>The herders of {FACTION} have made camp {PLACE}. Their dog keeps the herd close, and nobody of theirs comes nearer to the colony than the edge of their camp.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the herders camped {PLACE} says the herd will need fewer hands after this, and asks whether the colony would take on someone who knows beasts.</li>
+    </joinTexts>
+    <farewell>
+      <li>[flu] The herders went on, and the cough stayed behind among the colony's own beasts.</li>
+      <li>[tended] The herders gathered their beasts and went, and {X_nameDef} called back their thanks to whoever had tended the herd.</li>
+      <li>[met] The herders went on, the herd still coughing a little, and {X_nameDef} looked back once at the colony's beasts.</li>
+      <li>The herders' camp {PLACE} is empty, the ground grazed short and the herd gone on with its cough.</li>
+    </farewell>
+    <lines>
+      <li>Keep them this side of the stream.</li>
+      <li>That one's coughing worse today.</li>
+      <li>Don't let the dog near their beasts either.</li>
+      <li>It'll pass, it always does.</li>
+      <li>Warm water for the sick ones, not cold.</li>
+      <li>[morning] Count them, and listen to them breathe.</li>
+      <li>[evening] Pen them close tonight.</li>
+      <li>[their:tribal] Smoke the fold, it drives the sickness out.</li>
+    </lines>
+    <momentLines>
+      <li>[herd] Easy now, easy, you'll be well soon.</li>
+      <li>[herd] Stay together, all of you.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} heard from the herders camped {PLACE}, across their fence, how the cough went through every herd from the river to the hills.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>tend</key>
+        <label>Send {A_nameDef} to tend their beasts</label>
+        <tip>The colony's best with animals spends a couple of hours beside the herders' coughing beasts. Practice in animals and their people's thanks; and a closer brush with the sickness for the colony's own herd when {A_pronoun} comes back.</tip>
+        <skill>Animals</skill>
+        <tension>-6</tension>
+        <warm>2</warm>
+        <deed>campHealed</deed>
+        <outcomes>
+          <li>{A_nameDef} has gone over to the herders' camp {PLACE} to see to the coughing beasts, and {X_nameDef} is showing {A_objective} the worst of them.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TendTheirHerd" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== D35. The stone-raisers ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_StoneRaisers</defName>
+    <label>stone-raisers</label>
+    <workerClass>ColonyCouncil.CampWorker_StoneRaisers</workerClass>
+    <arrives>8~14</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.3</weight>
+    <situationKinds>
+      <li>faith</li>
+    </situationKinds>
+    <people>3~5</people>
+    <days>4~6</days>
+    <ages>18~60</ages>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.1</helpChance>
+    <help>
+      <li>blessing</li>
+    </help>
+    <buys>
+      <li>Meal</li>
+    </buys>
+    <pride>0.4</pride>
+    <breakTerms>0.05</breakTerms>
+    <tensionPerDay>0.5</tensionPerDay>
+    <extendChance>0.4</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>they come to raise one stone and leave only that</leavesWhy>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Muffalo</li><li>Horse</li><li>Donkey</li></kinds><count>1~2</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>The stone-raisers</li>
+      <li>[their:tribal] Stone-raisers with a slab</li>
+      <li>[their:medieval] Masons come to raise a stone</li>
+      <li>[their:industrial] Monument builders</li>
+      <li>[their:spacer] An obelisk crew</li>
+    </titles>
+    <texts>
+      <li>People of {FACTION} have come with stone loaded on their beasts and ropes over their shoulders. {X_nameDef} told {A_nameDef} they raise a stone to their god wherever the land is fitting, and the colony's land is, and asked to camp {PLACE} while they look for the right place.</li>
+      <li>[their:tribal] People of {FACTION} have dragged a slab of stone this far on rollers. {X_nameDef} told {A_nameDef} that their god told them the colony's land was a good place for it, and asked to camp {PLACE} and raise it.</li>
+      <li>[their:medieval] Masons of {FACTION} have come with a cart of cut stone and a priest walking beside it. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} and raise a standing stone to their god somewhere fitting on the colony's land.</li>
+      <li>[their:industrial] A party of {FACTION} has arrived with a crated monument, tackle and a list of instructions. {X_nameDef} told {A_nameDef} their society sets one up in every valley it can, and asked to camp {PLACE} while they put this one up.</li>
+      <li>[their:spacer] An obelisk crew of {FACTION} has set down with a polished pillar and the tools to raise it. {X_nameDef} told {A_nameDef} it marks their faith's places across the region, and asked to camp {PLACE} and raise one on the colony's land.</li>
+      <li>[sameFaith] People of {FACTION}, who hold the colony's own faith, have come with stone and ropes. {X_nameDef} asked {A_nameDef} to let them camp {PLACE} and raise a stone to the god they share.</li>
+    </texts>
+    <settled>
+      <li>The stone-raisers' camp is up {PLACE}, a ring of bedrolls round the fire and their stone laid on its side beside it.</li>
+      <li>The stone-raisers of {FACTION} have made camp {PLACE}, and are already walking the land with a staff, looking for the right place for {ITEM}.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the stone-raisers says {X_pronoun} would gladly stay and keep the stone {X_pronoun} helped raise, if the colony will have {X_objective}.</li>
+    </joinTexts>
+    <farewell>
+      <li>[stood] The stone-raisers kept their rite at {ITEM} and went on, leaving it standing {SITE}, the colony's to keep.</li>
+      <li>[edge] The stone-raisers raised {ITEM} at the edge of the colony's land as they were asked, kept their rite and went.</li>
+      <li>The stone-raisers' camp {PLACE} is empty. They took their ropes and went on to the next valley.</li>
+    </farewell>
+    <lines>
+      <li>Lift together, on my word.</li>
+      <li>It goes where the god would see it.</li>
+      <li>Not there, the ground is soft.</li>
+      <li>The stone remembers who raised it.</li>
+      <li>One more pull and it stands.</li>
+      <li>[evening] We'll set it true tomorrow.</li>
+      <li>[their:tribal] The old ones raised stones like this before there were roads.</li>
+      <li>[their:industrial] Check the level before the mortar goes on.</li>
+    </lines>
+    <momentLines>
+      <li>[rite] Here it standeth, and here let it stand, for {GOD} and for them that dwell by it.</li>
+      <li>[rite] Unto {GOD} we raise it, and unto this land we leave it.</li>
+      <li>[haul] Bring the next block over, mind your feet.</li>
+      <li>[carve] Slowly, the face is nearly done.</li>
+      <li>[blessing] May the stone keep this land, and the land keep the stone.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[blessing] At dusk {X_nameDef} and the stone-raisers came to the edge of the colony and spoke a blessing over it in the old words, and went back to their fire without asking anything for it.</li>
+    </helpTexts>
+    <asks>
+      <!-- Where the stone stands (CampWorker_StoneRaisers): asked on their first morning; no means the edge of the land. -->
+      <li>
+        <key>place</key>
+        <theyAsk>true</theyAsk>
+        <label>Raise it there</label>
+        <refuseLabel>At the edge of the land only</refuseLabel>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <askTexts>
+          <li>{X_nameDef} of the stone-raisers has come to the gate. They have found the place for {ITEM}, {X_pronoun} says: {SITE}. Would the colony let them raise it there?</li>
+          <li>[their:medieval] {X_nameDef} and the priest of the stone-raisers are at the gate. The place is {SITE}, they say, and {GOD} would see it there. May they raise the stone?</li>
+        </askTexts>
+        <tip>They raise {ITEM} where they found the place for it, and leave it to the colony when it stands: a work of art the colony may dedicate to a god if it wishes. Told no, they raise it at the edge of the land instead.</tip>
+        <outcomes>
+          <li>{X_nameDef} bowed and went back to tell the others; they will start laying out the stone today.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the edge of the land would do, and that the god sees as far as that.</li>
+        </refused>
+        <refuseTension>3</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_StonePlace" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== D36. Smugglers by night ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Smugglers</defName>
+    <label>smugglers</label>
+    <workerClass>ColonyCouncil.CampWorker_Smugglers</workerClass>
+    <arrives>19~23</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.15</weight>
+    <situationKinds>
+      <li>law</li>
+      <li>embargo</li>
+      <li>scarcity</li>
+    </situationKinds>
+    <situationWeight>5</situationWeight>
+    <people>2~3</people>
+    <days>2~4</days>
+    <ages>20~55</ages>
+    <trader>true</trader>
+    <hireChance>0.1</hireChance>
+    <joinChance>0.02</joinChance>
+    <helpChance>0.05</helpChance>
+    <buys>
+      <li>Meal</li>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.15</breakTerms>
+    <tensionPerDay>1.5</tensionPerDay>
+    <extendChance>0.1</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>light</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>smugglers leave nothing that says they were there</leavesWhy>
+    <works><li>Gather</li></works>
+    <animals>
+      <li><pack>true</pack><kinds><li>Donkey</li><li>Horse</li><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_Camel</li></kinds><count>1~2</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>Smugglers by night</li>
+      <li>[their:tribal] Night traders</li>
+      <li>[their:industrial] Bootleggers at the edge of the land</li>
+      <li>[their:spacer] Contraband runners</li>
+      <li>[ws:law] Smugglers in the time of {SITUATION}</li>
+    </titles>
+    <texts>
+      <li>Two or three of {FACTION} have come in after dark with loaded beasts and no lamp. {X_nameDef} told {A_nameDef}, quietly, that they have what the region can't get just now, and asked to camp {PLACE}, at the far edge of the land, for a few nights.</li>
+      <li>[ws:law] With {SITUATION} on the region, a small party of {FACTION} has come in under cover of the dark. {X_nameDef} told {A_nameDef} they can always find a bottle for a friend, and asked to camp {PLACE}, out of sight, for a night or two.</li>
+      <li>[ws:scarcity] With {SITUATION}, a small party of {FACTION} has come to the far edge of the colony's land by night with beasts loaded under oilcloth. {X_nameDef} told {A_nameDef} they have some of what nobody else has, and asked to camp {PLACE} while they sell it.</li>
+      <li>[ws:embargo] With {SITUATION}, traders of {FACTION} who don't care much for closed markets have come in by night. {X_nameDef} asked {A_nameDef} to let them camp {PLACE} and sell by lamplight, and to forget they were ever asked.</li>
+      <li>[their:tribal] Night traders of {FACTION} have come to the far edge of the land with bundles on their backs. {X_nameDef} told {A_nameDef} they trade by night when the chiefs forbid it by day, and asked to camp {PLACE}.</li>
+      <li>[their:industrial] A truck with no lights has stopped at the far edge of the colony's land, and {X_nameDef} of {FACTION} walked up to {A_nameDef} with a crate under each arm. They would camp {PLACE} a few nights, {X_pronoun} said, and nobody need know.</li>
+    </texts>
+    <settled>
+      <li>The smugglers' camp {PLACE} is hard to see by day: a cold fire, a tarp and a lamp that only gets lit after dark.</li>
+      <li>The smugglers from {FACTION} have made camp {PLACE}, as far from the colony's road as they could, and sleep through the day.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the smugglers camped {PLACE} says {X_pronoun} is tired of the road and of the night, and asks whether the colony would take someone who can find anything.</li>
+    </joinTexts>
+    <farewell>
+      <li>[told] The smugglers went in the night, the lamp out and their beasts loaded, and they won't be stopping here again.</li>
+      <li>The smugglers' camp {PLACE} is gone. Nobody saw them go; there is only a ring of cold ash.</li>
+      <li>[ws:law] The smugglers loaded their beasts at midnight and went on toward the next town where {SITUATION} has left people thirsty.</li>
+    </farewell>
+    <lines>
+      <li>Keep your voice down.</li>
+      <li>Not by day, come back after dark.</li>
+      <li>We were never here.</li>
+      <li>Cash only, and no questions.</li>
+      <li>[night] Light the lamp, they'll be coming.</li>
+      <li>[night] Quick, before the moon comes up.</li>
+      <li>[their:industrial] The bottles are under the false floor.</li>
+    </lines>
+    <momentLines>
+      <li>[lamp] One lamp, no more, and keep it low.</li>
+      <li>[lamp] Someone's coming up the path.</li>
+      <li>[carry] Careful with that, it clinks.</li>
+    </momentLines>
+    <asks>
+      <li>
+        <key>buy</key>
+        <label>Buy what they have openly ({COUNT} silver)</label>
+        <tip>After dark, one of the colony carries the silver out to their lamp, and one of them brings the goods over to the gate: what the region is short of now.</tip>
+        <silver>90</silver>
+        <once>false</once>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{A_nameDef} has taken the silver out to the smugglers' lamp, and {X_nameDef} counted it twice in the dark. One of them is bringing the goods to the gate.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_SmugglersGoods" />
+        </effects>
+      </li>
+      <li>
+        <key>tellon</key>
+        <label>Tell {OTHERPEOPLE} they are here</label>
+        <tip>{OTHERPEOPLE} think better of the colony for it. The smugglers go when night falls, and won't stop here again.</tip>
+        <tension>0</tension>
+        <warm>0</warm>
+        <outcomes>
+          <li>A runner has gone to {OTHERPEOPLE} with word of the smugglers {PLACE}. {X_nameDef} must have guessed: their beasts are already being loaded.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_TellOnSmugglers" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== D37. Novices on the road ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_Novices</defName>
+    <label>novices on the road</label>
+    <workerClass>ColonyCouncil.CampWorker_Novices</workerClass>
+    <arrives>15~19</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.3</weight>
+    <situationKinds>
+      <li>faith</li>
+    </situationKinds>
+    <drawnBy>
+      <li>Devout</li>
+    </drawnBy>
+    <people>3~4</people>
+    <days>2~2.5</days>
+    <ages>15~22</ages>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.04</joinChance>
+    <helpChance>0.2</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>RoadFood</li>
+    </buys>
+    <pride>0.1</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.3</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.1</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Ring</sleep>
+    <leaves>NoTrace</leaves>
+    <leavesWhy>novices on the road carry only their bedrolls and their books</leavesWhy>
+    <tidy>Orderly</tidy>
+    <works><li>Gather</li></works>
+    <titles>
+      <li>Novices on the road</li>
+      <li>[their:tribal] Seekers with painted faces</li>
+      <li>[their:industrial] Seminarians on a walking tour</li>
+      <li>[their:spacer] Acolytes of a ship's chapel</li>
+    </titles>
+    <texts>
+      <li>Three or four young people of {FACTION}, walking between holy places, have stopped at the colony's land for the night. {X_nameDef}, the eldest of them, told {A_nameDef} they would camp {PLACE} two nights and go on, and that they would gladly hear what the colony believes.</li>
+      <li>[their:tribal] Young seekers of {FACTION} with their faces painted for the journey have stopped at the colony's land. {X_nameDef} told {A_nameDef} they walk from one holy place to the next until their elders say they are ready, and asked to camp {PLACE} two nights.</li>
+      <li>[their:medieval] Novices of {FACTION} in plain grey, with staves and a book between them, have stopped at the colony's land. {X_nameDef} asked {A_nameDef} for leave to camp {PLACE} two nights on their way to the next shrine.</li>
+      <li>[their:industrial] A few seminarians of {FACTION} with satchels and sensible boots have stopped at the colony's land on a walking tour of the region's holy places. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} for two nights.</li>
+      <li>[their:spacer] Young acolytes of {FACTION}'s ship's chapel have set down near the colony on their round of the region's holy places. {X_nameDef} asked {A_nameDef} if they might camp {PLACE} two nights, and hear something of the colony's own faith.</li>
+    </texts>
+    <settled>
+      <li>The novices have made camp {PLACE}: a small fire, four bedrolls, and one of them already reading aloud to the others.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, one of the novices camped {PLACE}, says {X_pronoun} has learned more at the colony's fire than in a year of walking, and asks whether {X_pronoun} might stay.</li>
+    </joinTexts>
+    <farewell>
+      <li>[knelt] The novices knelt once more at the colony's holy place before dawn, and went on down the road.</li>
+      <li>[young] The novices went on at first light, and the colony's children walked them to the edge of the land.</li>
+      <li>The novices have gone on to the next holy place, their fire raked out and nothing left behind.</li>
+    </farewell>
+    <lines>
+      <li>The elders say every road is a lesson.</li>
+      <li>Read it again, slower this time.</li>
+      <li>What do the people here believe, do you think?</li>
+      <li>My feet hurt, but it's a holy hurt.</li>
+      <li>[evening] Tell the one about the river again.</li>
+      <li>[morning] We say the morning words before we eat.</li>
+      <li>[their:spacer] The chapel's archive has three versions of that story.</li>
+    </lines>
+    <momentLines>
+      <li>[tale] That is how it was told to us, and we tell it the same.</li>
+      <li>[tale] Our people call that one by another name, but it is the same story.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat at the novices' fire {PLACE} and heard which holy places of the region they had walked to, and which ones turned them away.</li>
+    </helpTexts>
+    <asks>
+      <li>
+        <key>tale</key>
+        <label>Send {A_nameDef} to tell them a tale of the colony's gods</label>
+        <tip>{A_nameDef} walks over to their fire and tells them a piece of a story of the colony's gods; one of them tells one back, by their own people's names, and the colony's book hears it.</tip>
+        <skill>Social</skill>
+        <warm>2</warm>
+        <outcomes>
+          <li>{A_nameDef} is walking over to the novices' fire {PLACE} with a story to tell, and they have made room for {A_objective}.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Camp</to><label>a tale at the novices' fire</label><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_NovicesTale" />
+        </effects>
+      </li>
+      <li>
+        <key>kneel</key>
+        <label>Show them the colony's holy place</label>
+        <tip>They walk to the colony's god's place and kneel there a while, by their own ways.</tip>
+        <tension>-3</tension>
+        <warm>1</warm>
+        <outcomes>
+          <li>{X_nameDef} and the other novices are walking to the colony's holy place, to kneel there.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_NovicesKneel" />
+        </effects>
+      </li>
+      <li>
+        <key>food</key>
+        <label>Give them food for the road</label>
+        <tip>Someone of the colony carries a few packed meals out to their fire.</tip>
+        <tension>-4</tension>
+        <warm>1</warm>
+        <deed>gift</deed>
+        <outcomes>
+          <li>The novices have food for the road now, carried out to their fire, and {X_nameDef} said the morning words over it twice.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the novices' road</label><what>meals</what><count>4</count><to>Camp</to><steward>false</steward></li>
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== D38. A lord's hunt ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_LordsHunt</defName>
+    <label>lord's hunt</label>
+    <workerClass>ColonyCouncil.CampWorker_LordsHunt</workerClass>
+    <arrives>7~12</arrives>
+    <minTech>Neolithic</minTech>
+    <weight>0.25</weight>
+    <people>3~4</people>
+    <days>3~5</days>
+    <ages>20~60</ages>
+    <huntsPerDay>1</huntsPerDay>
+    <armedHunters>true</armedHunters>
+    <hireChance>0.05</hireChance>
+    <joinChance>0.01</joinChance>
+    <helpChance>0.15</helpChance>
+    <help>
+      <li>meat</li>
+    </help>
+    <buys>
+      <li>Drink</li>
+      <li>Meal</li>
+    </buys>
+    <pride>0.6</pride>
+    <breakTerms>0.15</breakTerms>
+    <tensionPerDay>1.2</tensionPerDay>
+    <extendChance>0.3</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+      <li><role>butcher</role></li>
+    </structures>
+    <sleep>Tents</sleep>
+    <works><li>Hunt</li><li>Chop</li></works>
+    <animals>
+      <li><kinds><li MayRequire="vanillaexpanded.vanillaanimalsexpanded">AEXP_GermanShepherd</li><li>Husky</li><li>LabradorRetriever</li></kinds><count>1~2</count><follow>true</follow><named>true</named></li>
+      <li><pack>true</pack><kinds><li>Horse</li><li>Donkey</li></kinds><count>1~1</count><at>picket</at></li>
+    </animals>
+    <titles>
+      <li>A lord's hunt</li>
+      <li>[their:tribal] A chief's hunt</li>
+      <li>[their:industrial] A trophy party</li>
+      <li>[their:spacer] Offworld trophy hunters</li>
+    </titles>
+    <texts>
+      <li>A noble of {FACTION} has ridden in with two or three hunters and their dogs. {X_nameDef} told {A_nameDef} that the hunting on the colony's land is spoken of, and asked leave to camp {PLACE} and hunt for some days. They roast what they take by night, {X_pronoun} said, and the colony is welcome at the fire.</li>
+      <li>[their:tribal] A chief of {FACTION} has come with hunters and their dogs, spears and bows over their shoulders. {X_nameDef} told {A_nameDef} the chief wants to hunt the colony's land, and asked whether they might camp {PLACE} for some days.</li>
+      <li>[their:medieval] A lord of {FACTION} has come with huntsmen, hounds and a horn. {X_nameDef}, the lord's huntsman, asked {A_nameDef} for leave to camp {PLACE} and hunt the colony's land for a few days, as befits the lord.</li>
+      <li>[their:industrial] A trophy party of {FACTION} has arrived with rifles in cases, a guide and a dog that won't sit still. {X_nameDef} asked {A_nameDef} whether they might camp {PLACE} and hunt for a few days; they pay well, {X_pronoun} said, for the right head.</li>
+      <li>[their:spacer] Offworld trophy hunters of {FACTION} have set down with long rifles and a hound in a harness. {X_nameDef} told {A_nameDef} the colony's land has game they can't find anywhere else, and asked to camp {PLACE} and hunt.</li>
+    </texts>
+    <settled>
+      <li>The hunting camp is up {PLACE}, with a fire for roasting, the dogs tied by the tents and a rack already waiting for the first kill.</li>
+      <li>The hunters of {FACTION} have made camp {PLACE}, and {X_nameDef} has already walked the edge of it with a spyglass looking for {BEAST}.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef} of the hunting party camped {PLACE} says {X_pronoun} has had enough of carrying a lord's guns, and asks whether the colony could use a good shot.</li>
+    </joinTexts>
+    <farewell>
+      <li>[killed] The hunting party rode off with {BEAST} on a litter between two horses and the dogs barking all the way.</li>
+      <li>[spared] The hunting party went on with smaller game on their horses, and {X_nameDef} looked back once toward where {BEAST} grazes.</li>
+      <li>The hunting camp {PLACE} is empty, the roasting fire raked out and the rack taken down.</li>
+    </farewell>
+    <lines>
+      <li>Downwind of it, always downwind.</li>
+      <li>Hold the dogs until I say.</li>
+      <li>That's a clean shot, well done.</li>
+      <li>The lord wants the big one, not this.</li>
+      <li>[evening] Get the spit turning, we're starving.</li>
+      <li>[morning] Tracks by the water, fresh ones.</li>
+      <li>[their:tribal] The spear first, then the bow if it runs.</li>
+      <li>[their:industrial] Mind the barrel, it's loaded.</li>
+    </lines>
+    <momentLines>
+      <li>[named] There it is, that's the one we came for.</li>
+      <li>[named] Steady, steady, it hasn't seen us.</li>
+      <li>[kill] Down, and a clean one.</li>
+      <li>[butcher] Save the hide whole, it's for the hall.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[meat] The hunting party camped {PLACE} had more than they could roast, and have left {COUNT} {THING} on the colony's side of their fire.</li>
+    </helpTexts>
+    <asks>
+      <!-- The beast they name (CampWorker_LordsHunt): asked on their first morning. -->
+      <li>
+        <key>beast</key>
+        <theyAsk>true</theyAsk>
+        <label>Let them hunt {BEAST} too</label>
+        <refuseLabel>Anything but {BEAST}</refuseLabel>
+        <tension>-5</tension>
+        <warm>1</warm>
+        <askTexts>
+          <li>{X_nameDef} of the hunting party is at the gate. They have seen {BEAST} on the colony's land, {X_pronoun} says, and it is the one they came for. Will the colony let them take it? There would be a gift of silver for the leave.</li>
+          <li>[their:medieval] {X_nameDef}, the lord's huntsman, has come to the gate with the lord's compliments. The lord would hunt {BEAST}, and asks the colony's leave, with a purse for it.</li>
+        </askTexts>
+        <tip>They go after {BEAST} with their own hunting, and leave a gift of silver at the gate. Told no, they keep to smaller game, though one of them may not if the camp grows tense.</tip>
+        <outcomes>
+          <li>{X_nameDef} bowed, said the lord would be glad, and sent one of the hunters to the colony's gate with the purse.</li>
+        </outcomes>
+        <refused>
+          <li>{X_nameDef} said the lord would be disappointed, but that they would keep to smaller game.</li>
+        </refused>
+        <refuseTension>8</refuseTension>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LordsHuntLeave" />
+        </effects>
+      </li>
+    </asks>
+  </ColonyCouncil.CampKindDef>
+
+  <!-- ===================== D39. The priest of a god put away (a world event's guest for a season) ===================== -->
+
+  <ColonyCouncil.CampKindDef>
+    <defName>Rimfolk_Camp_PutAwayPriest</defName>
+    <label>priest's camp</label>
+    <workerClass>ColonyCouncil.CampWorker_PutAwayPriest</workerClass>
+    <arrives>8~18</arrives>
+    <weight>0</weight>
+    <people>1~1</people>
+    <days>10~14</days>
+    <ages>35~75</ages>
+    <hireChance>0</hireChance>
+    <joinChance>0.03</joinChance>
+    <helpChance>0.12</helpChance>
+    <help>
+      <li>tales</li>
+    </help>
+    <buys>
+      <li>RawFood</li>
+    </buys>
+    <pride>0.3</pride>
+    <breakTerms>0.02</breakTerms>
+    <tensionPerDay>0.2</tensionPerDay>
+    <canPay>false</canPay>
+    <extendChance>0.2</extendChance>
+    <structures>
+      <li><role>fire</role><defs><li>Campfire</li></defs></li>
+    </structures>
+    <sleep>Hut</sleep>
+    <works><li>Gather</li><li>Chop</li></works>
+    <titles>
+      <li>A priest taken in</li>
+    </titles>
+    <texts>
+      <li>{X_nameDef}, a priest of {FACTION} whose god was put away, is making a camp {PLACE} for the season the colony gave {X_objective}.</li>
+    </texts>
+    <settled>
+      <li>The priest's hut is up {PLACE}, with a fire before its door and a small stone set by it for {GOD}.</li>
+    </settled>
+    <joinTexts>
+      <li>{X_nameDef}, the priest camped {PLACE}, says {X_possessive} people have no place for {X_objective} now, and asks whether the colony would let {X_objective} stay for good.</li>
+    </joinTexts>
+    <farewell>
+      <li>[told] The priest's season at the colony is over. {X_nameDef} told the last of the tales of {GOD} at the fire and walked back toward {FACTION}'s land.</li>
+      <li>The priest's hut {PLACE} is empty. {X_nameDef} has gone back to the road, to see whether {X_possessive} people will have {GOD} again.</li>
+    </farewell>
+    <lines>
+      <li>They put the stones down, but the god is still there.</li>
+      <li>Sit, I'll tell you how it was told to me.</li>
+      <li>A hard year makes people forget who fed them.</li>
+      <li>[morning] The morning words first, then the work.</li>
+      <li>[evening] Come to the fire if you want a story.</li>
+    </lines>
+    <momentLines>
+      <li>[tale] This is how {GOD} was spoken of in my town, before.</li>
+      <li>[rite] Hear us yet, {GOD}, though thy people have forgotten thee.</li>
+    </momentLines>
+    <helpTexts>
+      <li>[tales] {A_nameDef} sat at the priest's fire {PLACE} and heard how {FACTION} lived before the hard year.</li>
+    </helpTexts>
+  </ColonyCouncil.CampKindDef>
+</Defs>
