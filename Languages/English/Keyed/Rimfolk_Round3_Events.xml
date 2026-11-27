@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The content round 3 (docs/content-round-3-events-gods.md, R1 to R8): the eight map events' messages and the lines
+       under their answers (Happenings/Workers_Round3.cs). Plain words. -->
+
+  <!-- ===================== R1 and R6. The boar in the mast year, the seals at the fishing ground ===================== -->
+  <CC_R3_Beasts_Gone>The {0} have gone</CC_R3_Beasts_Gone>
+  <CC_R3_Impact_Hunt>The {0} biggest of the {1} marked for the colony's hunters</CC_R3_Impact_Hunt>
+  <CC_R3_Impact_HuntBrief>{0} hunted</CC_R3_Impact_HuntBrief>
+  <CC_R3_Impact_HuntRisk>A wounded one of the {0} may turn on its hunter, at the game's own chance</CC_R3_Impact_HuntRisk>
+  <CC_R3_Impact_HuntRiskBrief>a hunted animal may turn</CC_R3_Impact_HuntRiskBrief>
+  <CC_R3_Impact_Drive>{0} and {1} walk out at the {2} shouting, and they run off the land</CC_R3_Impact_Drive>
+  <CC_R3_Impact_DriveBrief>the {0} driven off</CC_R3_Impact_DriveBrief>
+  <CC_R3_Impact_Let_boar>The {0} root under the trees a while and then go off the land</CC_R3_Impact_Let_boar>
+  <CC_R3_Impact_Let_seals>The {0} stay by the fishing ground a while and then go</CC_R3_Impact_Let_seals>
+  <CC_R3_Impact_LetBrief>the {0} left alone</CC_R3_Impact_LetBrief>
+  <CC_R3_Beasts_Marked>The {0} biggest of the {1} have been marked for the hunters.</CC_R3_Beasts_Marked>
+  <CC_R3_Boar_Gone>The {0} have finished with the trees and are moving off the colony's land.</CC_R3_Boar_Gone>
+  <CC_R3_Boar_Driven>The {0} have been driven off and are running from the colony's land.</CC_R3_Boar_Driven>
+  <CC_R3_Seals_Gone>The {0} have left the fishing ground and gone back into the water.</CC_R3_Seals_Gone>
+  <CC_R3_Seals_Driven>The {0} have been chased off the fishing ground and are going back into the water.</CC_R3_Seals_Driven>
+
+  <!-- ===================== R2. A snake in the woodpile ===================== -->
+  <CC_R3_Impact_Lift>{0} lifts the {1} out of the woodpile on a long stick and walks it off past the edge of the colony, where it is let go</CC_R3_Impact_Lift>
+  <CC_R3_Impact_LiftBrief>the {0} carried off</CC_R3_Impact_LiftBrief>
+  <CC_R3_Impact_LiftRisk>The {0} may bite {1} on the hand or arm while it is lifted</CC_R3_Impact_LiftRisk>
+  <CC_R3_Impact_LiftRiskBrief>it may bite</CC_R3_Impact_LiftRiskBrief>
+  <CC_R3_Impact_SnakeRisk>A hunted {0} may bite back, at the game's own chance</CC_R3_Impact_SnakeRisk>
+  <CC_R3_Impact_LeaveSnake>The logs round the {0} forbidden until dusk, when it moves off by itself</CC_R3_Impact_LeaveSnake>
+  <CC_R3_Impact_LeaveSnakeBrief>the woodpile left alone until dusk</CC_R3_Impact_LeaveSnakeBrief>
+  <CC_R3_Snake_Dusk>It has cooled off, and the {X} has slid out of the woodpile and off the colony's land. The logs are free to take again.</CC_R3_Snake_Dusk>
+  <CC_R3_Snake_LetGo>{PAWN_nameDef} has carried the {X} out past the edge of the colony and let it go.</CC_R3_Snake_LetGo>
+  <CC_R3_Snake_Bite>The snake twisted on the stick and bit {PAWN_nameDef} on the {PART}.</CC_R3_Snake_Bite>
+  <CC_R3_Snake_Bite_2>{PAWN_nameDef} was lifting the snake out of the woodpile when it struck and bit {PAWN_objective} on the {PART}.</CC_R3_Snake_Bite_2>
+
+  <!-- ===================== R3. Snow on the roof ===================== -->
+  <CC_R3_Roof_Room>room</CC_R3_Roof_Room>
+  <CC_R3_Roof_Gone>The room is gone</CC_R3_Roof_Gone>
+  <CC_R3_Roof_NoProp>There's nowhere free in the room for a column, or nothing to build it of</CC_R3_Roof_NoProp>
+  <CC_R3_Impact_Shovel>{0} and two more work along the outside walls of the {1} for about an hour, throwing the snow off the roof, and the creaking stops</CC_R3_Impact_Shovel>
+  <CC_R3_Impact_ShovelBrief>the snow shovelled off</CC_R3_Impact_ShovelBrief>
+  <CC_R3_Impact_Prop>A column of {0} marked in the middle of the {1} for the builders; the creaking stops once it stands</CC_R3_Impact_Prop>
+  <CC_R3_Impact_PropBrief>the roof propped</CC_R3_Impact_PropBrief>
+  <CC_R3_Impact_RoofLeave>If the snow stays deep, part of the roof of the {0} comes down later today over a few cells where nobody is standing, and leaves a hole to patch</CC_R3_Impact_RoofLeave>
+  <CC_R3_Impact_RoofLeaveBrief>the roof may give way</CC_R3_Impact_RoofLeaveBrief>
+  <CC_R3_Roof_PropMarked>A column of {0} has been marked in the middle of the {1}, to hold the roof up under the snow.</CC_R3_Roof_PropMarked>
+  <CC_R3_Roof_Propped>The column in the {0} is up, and the roof has stopped creaking.</CC_R3_Roof_Propped>
+  <CC_R3_Roof_Shovelled>The snow is off the roof of the {0}, and it has stopped creaking.</CC_R3_Roof_Shovelled>
+  <CC_R3_Roof_Held>The snow on the roof of the {0} has settled, and the roof held.</CC_R3_Roof_Held>
+  <CC_R3_Roof_Fell>Part of the roof of the {0} has come down under the weight of the snow, over {1} cells. Nobody was under it. The hole needs patching.</CC_R3_Roof_Fell>
+
+  <!-- ===================== R4. The way across the marsh ===================== -->
+  <CC_R3_Marsh_Gone>There is no wet ground left to cover on the way</CC_R3_Marsh_Gone>
+  <CC_R3_Impact_Marsh_all>Planks (the game's bridge) marked over {0} wet steps on the way to the {1}, for the builders</CC_R3_Impact_Marsh_all>
+  <CC_R3_Impact_Marsh_allBrief>the whole way planked</CC_R3_Impact_Marsh_allBrief>
+  <CC_R3_Impact_Marsh_worst>Planks (the game's bridge) marked over the {0} wettest steps on the way to the {1}, for the builders</CC_R3_Impact_Marsh_worst>
+  <CC_R3_Impact_Marsh_worstBrief>the worst of it planked</CC_R3_Impact_Marsh_worstBrief>
+  <CC_R3_Marsh_Marked>Planks have been marked over {0} wet steps on the way to the {1}.</CC_R3_Marsh_Marked>
+
+  <!-- ===================== R5. The cold room under the rock ===================== -->
+  <CC_R3_Cold_Gone>The room under the rock has no free floor for a store</CC_R3_Cold_Gone>
+  <CC_R3_Impact_Cold_all>A store for food marked over {0} cells of the room under the rock {1}, ahead of the other stores, and the haulers carry the food down</CC_R3_Impact_Cold_all>
+  <CC_R3_Impact_Cold_allBrief>the food kept cold</CC_R3_Impact_Cold_allBrief>
+  <CC_R3_Impact_Cold_meat>A store for raw meat and fish marked over {0} cells of the room under the rock {1}, ahead of the other stores, and the haulers carry it down</CC_R3_Impact_Cold_meat>
+  <CC_R3_Impact_Cold_meatBrief>the meat kept cold</CC_R3_Impact_Cold_meatBrief>
+  <CC_R3_Cold_Zone>cold store</CC_R3_Cold_Zone>
+  <CC_R3_Cold_Marked_all>A cold store for food has been marked over {0} cells of the room under the rock. The haulers will carry the food down.</CC_R3_Cold_Marked_all>
+  <CC_R3_Cold_Marked_meat>A cold store for meat and fish has been marked over {0} cells of the room under the rock. The haulers will carry it down.</CC_R3_Cold_Marked_meat>
+
+  <!-- ===================== R7. Dinner in the field ===================== -->
+  <CC_R3_Dinner_Gone>Nobody is at work in the field now</CC_R3_Dinner_Gone>
+  <CC_R3_Dinner_NoMeals>There aren't enough meals in the stores for everyone in the field</CC_R3_Dinner_NoMeals>
+  <CC_R3_Impact_Dinner_carry>At midday {0} carries a meal for each of the {1} at work in the {2} out to the edge of the field, and they eat there together</CC_R3_Impact_Dinner_carry>
+  <CC_R3_Impact_Dinner_carryBrief>dinner in the field</CC_R3_Impact_Dinner_carryBrief>
+  <CC_R3_Impact_Dinner_table>At midday the {0} at work in the {1} come in and eat at the table</CC_R3_Impact_Dinner_table>
+  <CC_R3_Impact_Dinner_tableBrief>dinner at the table</CC_R3_Impact_Dinner_tableBrief>
+
+  <!-- ===================== R8. Clothes worn through ===================== -->
+  <CC_R3_Clothes_NoBench>There's no bench that can make the clothes now</CC_R3_Clothes_NoBench>
+  <CC_R3_Clothes_NoSpares>There's nothing better lying unused in the stores for those in worn clothes</CC_R3_Clothes_NoSpares>
+  <CC_R3_Impact_ClothesBill>A bill for {0} {1} at the {2}, one for each in worn clothes</CC_R3_Impact_ClothesBill>
+  <CC_R3_Impact_ClothesBillBrief>new clothes made</CC_R3_Impact_ClothesBillBrief>
+  <CC_R3_Impact_ClothesStores>To the stores to put on something better that lies there unused: {0}</CC_R3_Impact_ClothesStores>
+  <CC_R3_Impact_ClothesStoresBrief>clothes from the stores</CC_R3_Impact_ClothesStoresBrief>
+  <CC_R3_Clothes_Bill>A bill for {0} {1} has been set at the {2}, for those in worn clothes.</CC_R3_Clothes_Bill>
+  <CC_R3_Clothes_Stores>Going to the stores for better clothes: {0}.</CC_R3_Clothes_Stores>
+
+</LanguageData>

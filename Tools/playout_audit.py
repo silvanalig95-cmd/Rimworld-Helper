@@ -153,6 +153,17 @@ PLAY = {
     "DilemmaEffect_Bog": "pulled out of the bog",
     "DilemmaEffect_BadAir": "a shaft, short turns or a wall",
     "DilemmaEffect_PutBy": "cooking bill",
+    # The content round 3, its map events (Happenings/Workers_Round3.cs): the boar or the seals hunted, driven off or let be;
+    # the snake lifted out on a stick, hunted or left till dusk with the logs forbidden; the snow shovelled off the roof, a
+    # column marked or the roof left to give; planks marked across the marsh; a cold store marked under the rock; dinner
+    # carried out to the field or eaten at the table; a bill for clothes or spare clothes put on from the stores.
+    "DilemmaEffect_R3Beasts": "hunted, driven off or let be",
+    "DilemmaEffect_R3Snake": "lifted out, hunted or left till dusk",
+    "DilemmaEffect_R3Roof": "shovelled, propped or left",
+    "DilemmaEffect_R3MarshPath": "planks marked",
+    "DilemmaEffect_R3ColdRoom": "a cold store marked",
+    "DilemmaEffect_R3Dinner": "dinner in the field or at the table",
+    "DilemmaEffect_R3Clothes": "a tailoring bill or clothes from the stores",
     # Its council questions (Dilemmas/DilemmaWorkers_Round2.cs): the dead's room given, cleared or kept, words or an hour
     # there; the dead laid down by the game's own burying or cremating; the ordeal at the hearth; the feast kept later; a
     # gathering at the new age's first building; a camp's dead given a grave or carried away; work handed over for a season.

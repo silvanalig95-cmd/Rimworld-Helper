@@ -84,6 +84,8 @@ namespace ColonyCouncil
                 Safe("Revel's hour", () => OwnRevel.Hourly(b, map, now));
                 // The gods between the colony's people (Gods/OnMap/Between/).
                 Safe("the gods between them", () => OwnBetween.Hourly(b, map, now));
+                // The content round 3's six on the land (Gods/OnMap/OwnRound3.cs).
+                Safe("the land's third round", () => OwnRound3.Hourly(b, map, now));
             }
         }
 
@@ -99,6 +101,7 @@ namespace ColonyCouncil
             Safe("Tamiu's steps", () => OwnTamiu.Step(b, now));
             Safe("Revel's steps", () => OwnRevel.Step(b, now));
             Safe("the gods between them, their steps", () => OwnBetween.Steps(b, now));
+            Safe("the land's third round, its steps", () => OwnRound3.Step(b, now));
         }
 
         /// <summary>A feast kept (the frame's FestivalKept): Helios's first fruit, Murmur's singing at the wells, Ducat's open purse, Revel's long night.</summary>

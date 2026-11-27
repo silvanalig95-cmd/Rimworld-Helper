@@ -230,7 +230,23 @@ namespace ColonyCouncil
         /// <summary>D14: one with a run of luck is told to their face they made a bargain with the dark.</summary>
         FaithBargain,
         /// <summary>D15: in a thunderstorm, lightning strikes a god's busy place or the tree beside it.</summary>
-        FaithLightning
+        FaithLightning,
+
+        // ---- The content round 3, the gods on the land (docs/content-round-3-events-gods.md, G1 to G6; Gods/OnMap/OwnRound3.cs;
+        // the rules in Happenings/Round3EventsMath.cs), added last. Each is its own god's, none between two people. ----
+
+        /// <summary>G1: a newborn of the herd, born out in a frosty night, found warm at dawn in a wide ring of trodden snow.</summary>
+        BellwetherNewborn,
+        /// <summary>G2: at a hot clear summer noon a field nearly ripe is ripe all at once.</summary>
+        HeliosRipen,
+        /// <summary>G3: on a wet night a green light lies over wet or wooded ground, and by morning the soil there is rich.</summary>
+        MorelFoxfire,
+        /// <summary>G4: in the small hours sparks at a bench, and an unfinished piece there is nearly done by morning.</summary>
+        PipFinished,
+        /// <summary>G5: on a full-moon night the sea comes up the shore further than anyone has seen, and goes back at first light.</summary>
+        SeleneTide,
+        /// <summary>G6: on a foggy morning on high ground someone sees their own shadow huge on the mist with a ring of light round it.</summary>
+        CirrusGlory
     }
 
     /// <summary>The one word Hollin's dryads give, each pointing at something real on the land.</summary>
@@ -381,8 +397,8 @@ namespace ColonyCouncil
                 case OwnHappening.RevelLetGo: return (12f, 3f, 10f);
                 case OwnHappening.RevelSatyr: return (30f, 15f, 30f);
                 case OwnHappening.RevelCup: return (12f, 10f, 15f);
-                // Round 6, the gods between the colony's people (OwnBetweenMath.cs).
-                default: return BetweenPaceOf(h);
+                // Round 6, the gods between the colony's people (OwnBetweenMath.cs); the content round 3's on the land (Round3EventsMath.cs).
+                default: return IsLand3(h) ? Land3PaceOf(h) : BetweenPaceOf(h);
             }
         }
 

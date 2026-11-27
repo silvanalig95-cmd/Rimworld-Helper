@@ -106,8 +106,8 @@ namespace ColonyCouncil
         /// <summary>The first of the happenings between the colony's people in the shared list (added last, so a save's list keeps its order).</summary>
         public const OwnHappening FirstBetween = OwnHappening.HollinBound;
 
-        /// <summary>A happening is one of those between the colony's people.</summary>
-        public static bool IsBetween(OwnHappening h) => h >= FirstBetween;
+        /// <summary>A happening is one of those between the colony's people (the content round 3's on the land come after them).</summary>
+        public static bool IsBetween(OwnHappening h) => h >= FirstBetween && !IsLand3(h);
 
         /// <summary>
         /// The chance one that follows something (a fight, a fine piece, a body sealed, a newcomer, a hunt, an insult) comes

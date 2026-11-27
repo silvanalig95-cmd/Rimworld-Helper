@@ -1,0 +1,583 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The content round 3, its eight events of everyday life on the map (docs/content-round-3-events-gods.md, R1 to R8;
+       Source/ColonyCouncil/Happenings/Workers_Round3.cs): ordinary happenings in every age, each with a choice and its
+       play-out. Boar in the trees in a mast year, a snake in the woodpile, snow on the roof, the way across the marsh, the
+       cold room under the rock, seals at the fishing ground, dinner in the field, clothes worn through. Every hurt goes
+       through the shared harm budget and is named under the answer before it's chosen. Event cards, so plain words. The
+       spoken lines are tagged with their moment: seen, shout, drive (the boar, the seals); warn, lift (the snake); creak,
+       shovel (the roof); mud (the marsh); cold (the cold room); carry, eat, table (dinner); worn (the clothes). -->
+
+  <!-- ===================== R1. The mast year ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3MastYear</defName>
+    <label>the mast year</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3MastYear</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <seasons>
+          <li>Fall</li>
+        </seasons>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>The mast year</li>
+          <li>Boar under the trees</li>
+        </titles>
+        <texts>
+          <li>The trees {PLACE} have dropped a heavy crop of nuts this autumn, and {A_nameDef} has seen a group of {BEAST} come in from the edge of the land to root for them under the trees. They are fat and in no hurry to leave. {B_nameDef} could take the two biggest for the stores, or they could be driven off or left to feed.</li>
+          <li>[herd] {A_nameDef} saw a group of {BEAST} come in to the trees {PLACE}, where the nuts lie thick on the ground this year. The colony's animals graze not far from there. {B_nameDef} would take the two biggest; otherwise the herd could be brought in while the {BEAST} feed.</li>
+          <li>[lowtech] It's a mast year: the ground under the trees {PLACE} is covered in fallen nuts, and {BEAST} have come in to eat them. {A_nameDef} counted them from the edge of the trees. The old hunters say boar are at their fattest now, and {B_nameDef} is ready to go after them.</li>
+          <li>[!lowtech] {A_nameDef} reports a group of {BEAST} rooting under the trees {PLACE}, where the nuts have come down heavily this autumn. {B_nameDef} would go out after the two biggest. They could also be driven off, or left until they move on.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take the two fattest for the stores</label>
+            <outcome>The two biggest of the {BEAST} are marked for the hunters.</outcome>
+            <outcomes>
+              <li>[tribal] The two biggest of the {BEAST} are marked for the hunters, to be brought down with spears and arrows.</li>
+              <li>[medieval] The two biggest of the {BEAST} are marked for the hunters, to be brought down with crossbows and boar spears.</li>
+              <li>[industrial|spacer] The two biggest of the {BEAST} are marked for the hunters, to be shot.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Beasts"><mode>hunt</mode><of>boar</of></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Let them feed, and bring the herd in</label>
+            <outcome>The {BEAST} are left to root under the trees until they move on, and the colony's animals are walked home to the pens and barns while they are about.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing the herd in</label><tasks><li>Herd</li></tasks><count>2</count><hours>6~19</hours><duration>1~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Beasts"><mode>let</mode><of>boar</of></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Drive them off</label>
+            <outcome>{B_nameDef} and one more walk out at the {BEAST} shouting, and they run off the colony's land.</outcome>
+            <outcomes>
+              <li>[tribal] {B_nameDef} and one more walk out at the {BEAST} shouting and beating sticks together, and they run off the colony's land.</li>
+              <li>[medieval] {B_nameDef} and one more walk out at the {BEAST} with a horn and staves, and they run off the colony's land.</li>
+              <li>[industrial|spacer] {B_nameDef} and one more walk out at the {BEAST} and fire a few shots into the air, and they run off the colony's land.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Beasts"><mode>drive</mode><of>boar</of></li>
+            </effects>
+            <ways><toil>1</toil><openness>-1</openness></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[seen] The boar are rooting for the nuts under the trees.</li>
+          <li>[seen] There's a whole group of them in the trees, digging up the ground.</li>
+          <li>[seen,lowtech] A mast year brings the boar in, my father always said so.</li>
+          <li>[shout] Go on, get out of here.</li>
+          <li>[shout] Off with you, go on.</li>
+          <li>[drive] That's it, they're running.</li>
+          <li>[drive] There they go, and they won't be back today.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R2. A snake in the woodpile ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3SnakeWoodpile</defName>
+    <label>a snake in the woodpile</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3SnakeWoodpile</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <seasons>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>28</minTemp>
+        <answerDays>0.15</answerDays>
+        <titles>
+          <li>A snake in the woodpile</li>
+          <li>Something in the logs</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} went to take logs from the woodpile and nearly put a hand on a {BEAST} coiled up among them, out of the heat. {A_nameDef} backed away, and the snake hasn't moved. {B_nameDef}, who is best with animals, could lift it out on a long stick and carry it away.</li>
+          <li>[rattle] {A_nameDef} heard a rattle from the woodpile and stepped back just in time: a rattlesnake is coiled among the logs in the shade. {B_nameDef} could lift it out on a long stick and take it away from the colony, or it could be killed, or left alone until dusk.</li>
+          <li>[lowtech] In this heat a {BEAST} has crawled into the woodpile for the shade, and {A_nameDef} found it there when {A_pronoun} went for logs. {B_nameDef} knows how to lift a snake on a forked stick.</li>
+          <li>[!lowtech] {A_nameDef} found a {BEAST} coiled among the logs of the woodpile, out of the sun. {B_nameDef} could move it with a snake hook, or the woodpile could be left alone until it goes at dusk.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{B_nameDef} lifts it away on a long stick</label>
+            <outcome>{B_nameDef} lifts the {BEAST} out of the woodpile on a long stick and walks it off past the edge of the colony, where it is let go.</outcome>
+            <outcomes>
+              <li>[tribal] {B_nameDef} lifts the {BEAST} out of the woodpile on a forked stick and walks it off past the edge of the colony, where it is let go.</li>
+              <li>[medieval] {B_nameDef} lifts the {BEAST} out of the woodpile on a forked staff and walks it off past the edge of the colony, where it is let go.</li>
+              <li>[industrial] {B_nameDef} lifts the {BEAST} out of the woodpile with a snake hook and walks it off past the edge of the colony, where it is let go.</li>
+              <li>[spacer] {B_nameDef} lifts the {BEAST} out of the woodpile with a long grabber and walks it off past the edge of the colony, where it is let go.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Snake"><mode>lift</mode></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>Kill it</label>
+            <outcome>The {BEAST} is marked for the hunters, to be killed where it lies.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Snake"><mode>kill</mode></li>
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Leave the woodpile alone until dusk</label>
+            <outcome>The logs there are left alone until dusk. When it cools off, the {BEAST} will move off by itself.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Snake"><mode>leave</mode></li>
+            </effects>
+          </li>
+        </options>
+        <lines>
+          <li>[warn] Don't touch the woodpile, there's a snake in it.</li>
+          <li>[warn] There's a snake coiled up in the logs, keep back.</li>
+          <li>[warn,lowtech] Snake in the woodpile, nobody put a hand in there.</li>
+          <li>[lift] Steady now, I've got it on the stick.</li>
+          <li>[lift] Easy, out you come, and off you go.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_SnakeLifted</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>moved a snake out of the woodpile</label><description>There was a snake in the woodpile, and I lifted it out on a stick and let it go well away from the colony.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R3. Snow on the roof ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3RoofSnow</defName>
+    <label>snow on the roof</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3RoofSnow</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>30</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Winter</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <weather>
+          <li>snow:3/5</li>
+        </weather>
+        <answerDays>0.3</answerDays>
+        <titles>
+          <li>Snow on the roof</li>
+          <li>The roof of the {TALE}</li>
+        </titles>
+        <texts>
+          <li>The snow lies deep round the {TALE}, and the roof over it has started to creak. {A_nameDef} was inside when dust came down from the roof. {B_nameDef} says the weight of the snow should be taken off it, or the roof propped from inside. Left as it is, part of it may give way.</li>
+          <li>[lowtech] Snow has been falling for days and lies heavy on the roof of the {TALE}. {A_nameDef} heard the roof creak and saw dust come down from it. {B_nameDef} would get out and shovel it off, or put a post under it.</li>
+          <li>[!lowtech] {A_nameDef} heard the roof of the {TALE} creak under the weight of the snow, and dust is falling from it inside. {B_nameDef} suggests clearing the snow off it or propping it with a column.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Shovel the snow off</label>
+            <outcome>{B_nameDef} and two more go out and throw the snow down off the roof of the {TALE} from along its walls.</outcome>
+            <outcomes>
+              <li>[tribal] {B_nameDef} and two more go out with wooden shovels and baskets and throw the snow down off the roof of the {TALE} from along its walls.</li>
+              <li>[medieval|industrial] {B_nameDef} and two more go out with shovels and throw the snow down off the roof of the {TALE} from along its walls.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Roof"><mode>shovel</mode></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Prop it from inside</label>
+            <outcome>A column is marked in the middle of the {TALE} for the builders, to hold the roof up.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Roof"><mode>prop</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>propping the roof</label><tasks><li>Build</li></tasks><count>2</count><hours>6~20</hours><duration>1~2</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave it</label>
+            <outcome>The roof is left as it is. If the snow stays deep, part of it may come down later today.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Roof"><mode>leave</mode></li>
+            </effects>
+            <ways><toil>-1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[creak] Did you hear that, the roof is creaking.</li>
+          <li>[creak] Dust is coming down from the roof, it's the weight of the snow.</li>
+          <li>[shovel] Mind below, more snow coming down.</li>
+          <li>[shovel] Nearly clear on this side.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R4. The way across the marsh ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3MarshPath</defName>
+    <label>the way across the marsh</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3MarshPath</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Spring</li>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The way across the marsh</li>
+          <li>Mud to the knees</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} came back from the {TALE} muddy to the knees again. The way out there crosses {COUNT} steps of marsh and mud, and everyone who goes that way wades through it. {B_nameDef} could lay a way across.</li>
+          <li>[lowtech] The path to the {TALE} goes through {COUNT} steps of marsh and mud, and {A_nameDef} is tired of wading through it. {B_nameDef} says logs laid side by side would make a road across.</li>
+          <li>[!lowtech] {A_nameDef} wants the way to the {TALE} planked over: it crosses {COUNT} steps of wet ground, and everyone comes back from there covered in mud. {B_nameDef} could build a boardwalk across.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Planks the whole way across</label>
+            <outcome>Planks are marked over every wet step on the way to the {TALE}, and the builders lay them.</outcome>
+            <outcomes>
+              <li>[tribal] Logs are marked to be laid side by side over every wet step on the way to the {TALE}, and the builders lay them.</li>
+              <li>[industrial] A boardwalk is marked over every wet step on the way to the {TALE}, and the builders lay it.</li>
+              <li>[spacer] A walkway is marked over every wet step on the way to the {TALE}, and the builders lay it.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3MarshPath"><mode>all</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the way across the marsh</label><tasks><li>Build</li></tasks><count>3</count><hours>7~18</hours><duration>2~3</duration></li>
+            </effects>
+            <ways><toil>2</toil></ways>
+          </li>
+          <li>
+            <label>Only over the worst of it</label>
+            <outcome>Planks are marked over the wettest stretch of the way to the {TALE}, and the builders lay them.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3MarshPath"><mode>worst</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>planks over the worst of the marsh</label><tasks><li>Build</li></tasks><count>2</count><hours>7~18</hours><duration>1~2</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Keep wading</label>
+            <outcome>Nothing is built. The way to the {TALE} stays as it is.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[mud] Every time I go out there I come back in mud to the knees.</li>
+          <li>[mud] That marsh on the way out is getting worse.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R5. The cold room under the rock ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3ColdRoom</defName>
+    <label>the cold room under the rock</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3ColdRoom</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Summer</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <minTemp>22</minTemp>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>The cold room under the rock</li>
+          <li>A cellar for the summer</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} went down into the room dug under the rock {PLACE} and found it cold, colder than anywhere else in the colony, while the food in the stores is spoiling in the heat. The cook would keep the food down there for the summer.</li>
+          <li>[lowtech] The old way is to keep food in the cold of the rock in summer, and {A_nameDef} says the room cut into the mountain {PLACE} is as cold as any cellar. The stores are warm, and the food in them won't keep long.</li>
+          <li>[!lowtech] {A_nameDef} checked the room under the rock {PLACE}: it stays cold all through the heat, and {A_nameDef} wants the food kept down there, where it will last much longer than in the warm stores.</li>
+          <li>[spacer] {A_nameDef} found that the room cut into the rock {PLACE} holds the cold without any power. Keeping the food there would take the load off the coolers and keep it fresh longer.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>All the food down there for the summer</label>
+            <outcome>A store for food is marked over the floor of the room under the rock, ahead of the other stores, and the haulers carry the food down.</outcome>
+            <outcomes>
+              <li>[tribal] The room under the rock is marked as the colony's larder, ahead of the other stores, and the haulers carry the food down.</li>
+              <li>[medieval] The room under the rock is marked as the colony's cellar, ahead of the other stores, and the haulers carry the food down.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3ColdRoom"><mode>all</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>carrying the food down</label><tasks><li>Haul</li></tasks><count>3</count><hours>7~19</hours><duration>1.5~2.5</duration></li>
+            </effects>
+            <ways><toil>1</toil><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Only the meat</label>
+            <outcome>A store for raw meat and fish is marked in the room under the rock, and the haulers carry it down.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3ColdRoom"><mode>meat</mode></li>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>carrying the meat down</label><tasks><li>Haul</li></tasks><count>2</count><hours>7~19</hours><duration>1~2</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Leave things as they are</label>
+            <outcome>The food stays where it is.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[cold] It's as cold as a cellar down here, even now.</li>
+          <li>[cold] Feel how cold this room is, the food would keep down here.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R6. Seals at the fishing ground ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3Seals</defName>
+    <label>seals at the fishing ground</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3Seals</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <leans><li>beasts</li></leans>
+        <seasons>
+          <li>Winter</li>
+          <li>Spring</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <answerDays>0.5</answerDays>
+        <titles>
+          <li>At the fishing ground</li>
+          <li>{BEAST} on the shore</li>
+        </titles>
+        <texts>
+          <li>{A_nameDef} came up from the fishing ground {PLACE} to say that {BEAST} have come up on the shore there. They lie about at the water's edge and go into the water after the fish. {B_nameDef} could go down and drive them off, or the colony could take two for meat and fat.</li>
+          <li>[sea] A few {BEAST} have hauled out on the shore by the colony's fishing ground {PLACE}. {A_nameDef} watched them slide into the water and come out again with fish. They will stay as long as the fishing is good.</li>
+          <li>[fresh] {A_nameDef} has seen {BEAST} at the colony's fishing ground {PLACE}, playing in the water and taking the fish. {B_nameDef} could chase them off, or they could be left to go when they've had their fill.</li>
+          <li>[lowtech] A few {BEAST} have come to the colony's fishing ground {PLACE}. {A_nameDef} says the old fishers would drive them off with stones, or take them for their meat and fat.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Drive them off</label>
+            <outcome>{B_nameDef} and one more walk down to the water shouting, and the {BEAST} go back into the water and away.</outcome>
+            <outcomes>
+              <li>[tribal] {B_nameDef} and one more walk down to the water shouting and throwing stones, and the {BEAST} go back into the water and away.</li>
+              <li>[medieval] {B_nameDef} and one more walk down to the water shouting and waving staves, and the {BEAST} go back into the water and away.</li>
+              <li>[industrial|spacer] {B_nameDef} and one more walk down to the water and fire a shot into the air, and the {BEAST} go back into the water and away.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Beasts"><mode>drive</mode><of>seals</of></li>
+            </effects>
+            <ways><openness>-1</openness></ways>
+          </li>
+          <li>
+            <label>Take two for meat and fat</label>
+            <outcome>The two biggest of the {BEAST} are marked for the hunters.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Beasts"><mode>hunt</mode><of>seals</of></li>
+            </effects>
+            <ways><toil>1</toil><mercy>-1</mercy></ways>
+          </li>
+          <li>
+            <label>Let them be</label>
+            <outcome>The {BEAST} are left alone. They stay by the fishing ground a while and then go.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Beasts"><mode>let</mode><of>seals</of></li>
+            </effects>
+            <ways><mercy>1</mercy></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[seen] They're taking the fish right out from under us.</li>
+          <li>[seen] Come and look, they're lying all along the shore.</li>
+          <li>[shout] Go on, back in the water with you.</li>
+          <li>[shout] Off you go, this is our fishing ground.</li>
+          <li>[drive] There they go, back into the water.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R7. Dinner in the field ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3FieldDinner</defName>
+    <label>dinner in the field</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3FieldDinner</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>20</minRefireDays>
+    <earliestDay>8</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Summer</li>
+          <li>Fall</li>
+          <li>PermanentSummer</li>
+        </seasons>
+        <answerDays>0.1</answerDays>
+        <titles>
+          <li>Dinner in the field</li>
+          <li>A long way from the table</li>
+        </titles>
+        <texts>
+          <li>{B_nameDef} and the others in the {TALE} have been at work since morning, a long way from the table. {A_nameDef}, who cooks, offers to carry their dinner out to them at midday so they can eat at the edge of the field.</li>
+          <li>[lowtech] {COUNT} of the colony are out in the {TALE} for the day. {A_nameDef} would carry their dinner out in a basket at midday, as is done at harvest, so they don't have to walk all the way back.</li>
+          <li>[!lowtech] {COUNT} of the colony are busy in the {TALE}, far from the dining room. {A_nameDef} suggests taking the midday meal out to them, so they can eat together without walking back.</li>
+          <li>[fall] It's harvest time, and {COUNT} of the colony are out in the {TALE} all day. {A_nameDef} offers to bring their dinner out to the field at midday.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} carries dinner out to them</label>
+            <outcome>At midday {A_nameDef} carries a meal for each of them out to the edge of the {TALE}, and they sit down and eat there together.</outcome>
+            <outcomes>
+              <li>[tribal|medieval] At midday {A_nameDef} carries a meal for each of them out to the edge of the {TALE} in a basket, and they sit down and eat there together.</li>
+              <li>[industrial] At midday {A_nameDef} carries a meal for each of them out to the edge of the {TALE} in a pail, and they sit down and eat there together.</li>
+              <li>[spacer] At midday {A_nameDef} carries packed meals out to the edge of the {TALE}, and they sit down and eat there together.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Dinner"><mode>carry</mode></li>
+            </effects>
+            <ways><mercy>1</mercy><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Everyone in to the table at midday</label>
+            <outcome>At midday those in the {TALE} come in and eat at the table, and then go back out.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Dinner"><mode>table</mode></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Leave it as it is</label>
+            <outcome>Nothing changes. The day goes on as usual.</outcome>
+          </li>
+        </options>
+        <lines>
+          <li>[carry] I'm taking dinner out to the field.</li>
+          <li>[carry] Dinner for the field, mind the pot.</li>
+          <li>[eat] That's better, I was starving out there.</li>
+          <li>[eat] Nothing tastes as good as this after a morning in the field.</li>
+          <li>[table] Come on in, dinner's on the table.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_FieldDinner</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>dinner in the field</label><description>We sat down together at the edge of the field in the middle of the day and ate the dinner that was carried out to us.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R3_DinnerAtTable</defName>
+    <durationDays>1</durationDays>
+    <stages><li><label>dinner at the table together</label><description>We all came in from the field at midday and ate at the table together.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R8. Clothes worn through ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R3WornClothes</defName>
+    <label>clothes worn through</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R3WornClothes</workerClass>
+    <baseChance>0.5</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <seasons>
+          <li>Fall</li>
+        </seasons>
+        <answerDays>1</answerDays>
+        <titles>
+          <li>Clothes worn through</li>
+          <li>Before the winter</li>
+        </titles>
+        <texts>
+          <li>Winter is coming, and {COUNT} of the colony are wearing clothes worn through, {B_nameDef} among them. {A_nameDef}, who does the tailoring, could make new clothes at the {TALE}, or those in worn clothes could take what is lying unused in the stores.</li>
+          <li>[cold] It's getting cold, and {B_nameDef}'s clothes are full of holes. {COUNT} of the colony are in the same state. {A_nameDef} could start on new clothes at the {TALE}.</li>
+          <li>[lowtech] {A_nameDef} has looked at what everyone is wearing: {COUNT} of the colony are in clothes worn thin, {B_nameDef} worst of all. Before the snow, new clothes should be sewn at the {TALE}, or something better found in the stores.</li>
+          <li>[!lowtech] {COUNT} of the colony are wearing clothes worn past mending, {B_nameDef} among them. {A_nameDef} could make new ones at the {TALE}, or hand out what is in the stores.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>New clothes from the {TALE}</label>
+            <outcome>A bill is set at the {TALE}: one {THING} for each of those in worn clothes.</outcome>
+            <outcomes>
+              <li>[tribal] A bill is set at the {TALE}: one {THING} of hide or leather for each of those in worn clothes.</li>
+              <li>[medieval] A bill is set at the {TALE}: one {THING} of wool or cloth for each of those in worn clothes.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Clothes"><mode>bill</mode></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Hand out what's in the stores</label>
+            <outcome>Those in worn clothes go to the stores and put on something better that has been lying there unused.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_R3Clothes"><mode>stores</mode></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Wear them through the winter</label>
+            <outcome>Nobody gets anything new. The worn clothes will have to do.</outcome>
+            <ways><toil>1</toil></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[worn] Look at this, there's more hole than shirt.</li>
+          <li>[worn] My clothes won't last the winter like this.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

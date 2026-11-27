@@ -42,7 +42,8 @@ public static class OwnHappeningsSevenTests
         // ================= The happenings and their pace =================
 
         var seven = new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Mog" };
-        var mine = OwnHappeningsMath.All.Where(h => seven.Contains(OwnHappeningsMath.GodOf(h)) && !OwnHappeningsMath.IsBetween(h)).ToList();
+        // The content round 3's on the land (Helios's and Selene's among them) have their own tests (Round3EventsGodsTests).
+        var mine = OwnHappeningsMath.All.Where(h => seven.Contains(OwnHappeningsMath.GodOf(h)) && !OwnHappeningsMath.IsBetween(h) && !OwnHappeningsMath.IsLand3(h)).ToList();
         C(mine.Count == 22 && seven.All(OwnHappeningsMath.Gods.Contains) && mine.Select(OwnHappeningsMath.Name).Distinct().Count() == 22,
             "twenty-two happenings in the shared list (OwnHappening), each its own, of the seven's keys (Tamiu's is Mog)");
         C(seven.Where(g => g != "Mog").All(g => mine.Count(h => OwnHappeningsMath.GodOf(h) == g) >= 3 && mine.Count(h => OwnHappeningsMath.GodOf(h) == g) <= 5) && mine.Count(h => OwnHappeningsMath.GodOf(h) == "Mog") == 2,

@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 835; modelled: 835; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,226 KB** after a year, **4,056 KB** after two, **4,550 KB** after five.
+Saved collections found: 836; modelled: 836; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,227 KB** after a year, **4,057 KB** after two, **4,551 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -191,6 +191,7 @@ Rimfolk's part of the save, roughly: **3,226 KB** after a year, **4,056 KB** aft
 | `Lean/Homes.cs:ties` | one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly | colonists | 20 | 20 | 20 | 2.7 |
 | `Offices/Election.cs:races` | an election's seats, while it lasts | while | 14 | 14 | 14 | 2.7 |
 | `World/Notables.cs:known` | threats heard of in talk with outsiders: WarnMath.MaxKnown, 30 days | fixed | 40 | 40 | 40 | 2.7 |
+| `Gods/OnMap/OwnHappenings.cs:last` | when each god's own happening last came, one a happening (Revel's eight, the forty-five between the colony's people and the content round 3's six on the land among them) | fixed | 110 | 110 | 110 | 2.7 |
 | `Ailments/AilmentTracker.cs:healing` | injuries an ailment may follow; let go when healed, known pawns only | known | 16 | 18 | 22 | 2.6 |
 | `Aspirations/Aspirations.cs:events` | sparks, 30 days | window | 30 | 30 | 30 | 2.6 |
 | `Gods/World/GodWorldBook.cs:lasts` | when each kind of the gods' doings last came, a key a kind and a home | fixed | 30 | 30 | 30 | 2.6 |
@@ -202,7 +203,6 @@ Rimfolk's part of the save, roughly: **3,226 KB** after a year, **4,056 KB** aft
 | `Pressures/Pressures.cs:lastProgress` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Pressures/Pressures.cs:lastWork` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Secrets/Secrets.cs:rolled` | known pawns only | known | 55 | 60 | 75 | 2.6 |
-| `Gods/OnMap/OwnHappenings.cs:last` | when each god's own happening last came, one a happening (Revel's eight and the forty-five between the colony's people among them) | fixed | 104 | 104 | 104 | 2.5 |
 | `Journeys/Journeys.cs:packing` | the packing list: food, medicine, beds, tents, feed, what the player added from the stores and the suggestions they took off | fixed | 20 | 20 | 20 | 2.5 |
 | `Gods/Saints/SaintsBook.cs:saints` | the colony's own saints, by name only (never kin), SaintsMath.MaxSaints | cap | 1 | 2 | 6 | 2.5 |
 | `Building/Automations.cs:log` | the automations' log, AutomationMath.LogLines lines | fixed | 20 | 20 | 20 | 2.3 |
@@ -350,6 +350,7 @@ Rimfolk's part of the save, roughly: **3,226 KB** after a year, **4,056 KB** aft
 | `Gods/OnMap/Between/Between.cs:answered` | the fights and insults already answered, BetweenState.AnsweredKept | cap | 20 | 20 | 20 | 0.8 |
 | `Gods/OnMap/GodStranger.cs:kind` | each colonist's kindness to the stranger, while they stay (a day or two, a few times in a long game) | while | 20 | 20 | 20 | 0.8 |
 | `Gods/OnMap/GodStranger.cs:talkers` | who talked with the stranger, while they stay | while | 20 | 20 | 20 | 0.8 |
+| `Gods/OnMap/OwnRound3.cs:tide` | the shore under the full-moon tide while it is up, OwnHappeningsMath.TideCellsMost at most, let go at first light | while | 40 | 40 | 40 | 0.8 |
 | `Health/HealthTracker.cs:known` | known pawns only | colonists | 20 | 20 | 20 | 0.8 |
 | `Journeys/Journeys.cs:travellers` | the one plan's travellers, until they set off | fixed | 20 | 20 | 20 | 0.8 |
 | `Offices/Election.cs:voted` | who has voted, while it lasts | while | 20 | 20 | 20 | 0.8 |

@@ -285,7 +285,7 @@ public static class OwnHappeningsTests
         C(lists.All(l => save.Contains("\"Gods/OnMap/OwnHappenings.cs:" + l + "\"")), "every saved list is modelled in the save estimate");
         // Batch 1's dev actions are in one file, batch 2's in another (Tamiu's by the name she is said by); what each brings
         // about is named in its own god's file.
-        string dbg = Read("Gods/OwnHappeningsDebug.cs") + Read("Gods/OwnBetweenDebug.cs") + Read("Gods/OwnSevenDebug.cs") + Read("Gods/OwnRevelDebug.cs") + Read("Gods/OnMap/RevelCup.cs") + string.Join("\n", new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Tamiu", "Revel" }
+        string dbg = Read("Gods/OwnHappeningsDebug.cs") + Read("Gods/OwnBetweenDebug.cs") + Read("Gods/OwnSevenDebug.cs") + Read("Gods/OwnRevelDebug.cs") + Read("Gods/OwnRound3Debug.cs") + Read("Gods/OnMap/RevelCup.cs") + string.Join("\n", new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Tamiu", "Revel" }
             .Select(g => Read("Gods/OnMap/Own" + g + ".cs")));
         foreach (var h in all)
             C(Regex.IsMatch(dbg, @"DebugAction\(""Rimfolk"", ""Gods: " + (OwnHappeningsMath.OfAnyGod(h) ? "the faithful" : OwnHappeningsMath.GodOf(h) == "Mog" ? "Tamiu" : OwnHappeningsMath.GodOf(h)) + @"'s [^""]+""")

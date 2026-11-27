@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The content round 3's six happenings of the gods on the land (docs/content-round-3-events-gods.md, G1 to G6;
+       Gods/OnMap/OwnRound3.cs). The gods' cards and messages in plain words: what was seen, never why. A card's title names
+       the god ({GOD}, the colony's name for it) only in its _TitleNamed form, which is used only where the colony knows it
+       was that god (Gods.CardName); the texts never name one. Each card in three wordings (_Text, _Text_2, _Text_3). The
+       CC_GodR3_Saw_ lines are what the colony's book keeps, in its witness's words ({WHO}, else someone at {HOME}). -->
+
+  <!-- ===================== G1. The ring in the snow ===================== -->
+  <CC_GodR3_Newborn_Title>A ring in the snow</CC_GodR3_Newborn_Title>
+  <CC_GodR3_Newborn_TitleNamed>{GOD}'s ring in the snow</CC_GodR3_Newborn_TitleNamed>
+  <CC_GodR3_Newborn_Text>The newborn {KIND} born out in the frost last night is alive and warm this morning. The snow in a wide ring round it and its mother is trodden flat, as if something large had lain round them through the night.</CC_GodR3_Newborn_Text>
+  <CC_GodR3_Newborn_Text_2>The {KIND} born in the snow during the night came through it warm. All round it and its mother the snow is pressed down in a wide ring, as if something big had curled up round them until morning.</CC_GodR3_Newborn_Text_2>
+  <CC_GodR3_Newborn_Text_3>At dawn the newborn {KIND} was found warm beside its mother out in the snow, in the middle of a wide ring where the snow had been trodden flat. Nobody of the colony was out there in the night.</CC_GodR3_Newborn_Text_3>
+  <CC_GodR3_Saw_Newborn>{WHO} found the newborn {BEAST} warm out in the snow at {HOME}, in a wide ring of trodden snow, as if something had lain round it all night.</CC_GodR3_Saw_Newborn>
+
+  <!-- ===================== G2. Ripe at noon ===================== -->
+  <CC_GodR3_Ripen_Title>Ripe at noon</CC_GodR3_Ripen_Title>
+  <CC_GodR3_Ripen_TitleNamed>Ripened in {GOD}'s heat</CC_GodR3_Ripen_TitleNamed>
+  <CC_GodR3_Ripen_Text>In the noon heat the air over the {FIELD} shimmered, and the whole of the {CROP} there is ripe at once, days before it should have been. It is ready to bring in.</CC_GodR3_Ripen_Text>
+  <CC_GodR3_Ripen_Text_2>The {CROP} in the {FIELD} was still a few days from ripe this morning. At noon the heat shimmered over it, and now every plant in the field is ready to harvest.</CC_GodR3_Ripen_Text_2>
+  <CC_GodR3_Ripen_Text_3>The heat at noon lay over the {FIELD} until the air shimmered, and by the time it eased the {CROP} was ripe from one end of the field to the other.</CC_GodR3_Ripen_Text_3>
+  <CC_GodR3_Saw_Ripen>{WHO} saw the {FIELD} at {HOME} ripen all at once in the noon heat, days before its time.</CC_GodR3_Saw_Ripen>
+
+  <!-- ===================== G3. The light on the wet ground ===================== -->
+  <CC_GodR3_FoxfireNight_Text>{PAWN_nameDef} saw a soft green light lying over the ground {PLACE} in the dark, low and still.</CC_GodR3_FoxfireNight_Text>
+  <CC_GodR3_FoxfireNight_Text_2>A pale green light is lying low over the wet ground {PLACE}, and {PAWN_nameDef} has stopped to look at it.</CC_GodR3_FoxfireNight_Text_2>
+  <CC_GodR3_FoxfireNight_Text_3>In the dark {PAWN_nameDef} noticed a green glow on the ground {PLACE}, too faint to be a fire and not moving.</CC_GodR3_FoxfireNight_Text_3>
+  <CC_GodR3_Saw_Foxfire>{WHO} saw a soft green light lying over the ground {PLACE} at {HOME} in the night.</CC_GodR3_Saw_Foxfire>
+  <CC_GodR3_Foxfire_Title>Dark soil by morning</CC_GodR3_Foxfire_Title>
+  <CC_GodR3_Foxfire_TitleNamed>{GOD}'s soil</CC_GodR3_Foxfire_TitleNamed>
+  <CC_GodR3_Foxfire_Text>The green light that lay over the ground {PLACE} in the night is gone with the dawn, and where it was the soil is dark and rich, the kind anything will grow in.</CC_GodR3_Foxfire_Text>
+  <CC_GodR3_Foxfire_Text_2>At first light the glow on the ground {PLACE} faded, and the soil it lay on has turned dark and rich overnight.</CC_GodR3_Foxfire_Text_2>
+  <CC_GodR3_Foxfire_Text_3>The ground where the soft green light lay {PLACE} through the night is dark, loose and rich this morning.</CC_GodR3_Foxfire_Text_3>
+  <CC_GodR3_Saw_RichSoil>{WHO} found the ground {PLACE} at {HOME} dark and rich in the morning, where the green light had lain in the night.</CC_GodR3_Saw_RichSoil>
+
+  <!-- ===================== G4. Done in the night ===================== -->
+  <CC_GodR3_Saw_PipNight>{WHO} saw sparks and a small light at the bench where the {THING} lay at {HOME}, in the small hours with nobody there.</CC_GodR3_Saw_PipNight>
+  <CC_GodR3_Finished_Title>Done in the night</CC_GodR3_Finished_Title>
+  <CC_GodR3_Finished_TitleNamed>{GOD}'s night at the bench</CC_GodR3_Finished_TitleNamed>
+  <CC_GodR3_Finished_Text>The {THING} left half made at the bench last night is nearly finished this morning. Nobody worked on it in the night.</CC_GodR3_Finished_Text>
+  <CC_GodR3_Finished_Text_2>Most of the work left on the {THING} at the bench has been done since last night, though nobody of the colony was at it.</CC_GodR3_Finished_Text_2>
+  <CC_GodR3_Finished_Text_3>Yesterday the {THING} at the bench was far from done. This morning there is only a little work left on it, and nobody says they did it.</CC_GodR3_Finished_Text_3>
+  <CC_GodR3_Saw_Finished>{WHO} found the {THING} at the bench at {HOME} nearly finished in the morning, though nobody had worked on it in the night.</CC_GodR3_Saw_Finished>
+
+  <!-- ===================== G5. The full-moon tide ===================== -->
+  <CC_GodR3_Tide_Title>The full-moon tide</CC_GodR3_Tide_Title>
+  <CC_GodR3_Tide_TitleNamed>{GOD}'s tide</CC_GodR3_Tide_TitleNamed>
+  <CC_GodR3_Tide_Text>Under the full moon the sea has come up the shore {PLACE} further than anyone has seen it, over the empty sand, and {PAWN_nameDef} is watching it.</CC_GodR3_Tide_Text>
+  <CC_GodR3_Tide_Text_2>{PAWN_nameDef} saw the sea come up over the sand {PLACE} tonight, much further than it ever comes, with the full moon bright on the water.</CC_GodR3_Tide_Text_2>
+  <CC_GodR3_Tide_Text_3>The full moon is up, and the sea has crept up the shore {PLACE} well past its usual line. {PAWN_nameDef} noticed the water where there is usually dry sand.</CC_GodR3_Tide_Text_3>
+  <CC_GodR3_TideBack_Text>At first light the sea went back down the shore {PLACE}, and the sand is as it was.</CC_GodR3_TideBack_Text>
+  <CC_GodR3_TideBack_Text_2>The water that came up the shore {PLACE} under the full moon has gone back with the dawn.</CC_GodR3_TideBack_Text_2>
+  <CC_GodR3_TideBack_Text_3>With the dawn the sea drew back off the sand {PLACE} to where it always is.</CC_GodR3_TideBack_Text_3>
+  <CC_GodR3_Saw_Tide>{WHO} saw the sea come up the shore {PLACE} at {HOME} under the full moon, further than it had ever come.</CC_GodR3_Saw_Tide>
+
+  <!-- ===================== G6. The giant in the mist ===================== -->
+  <CC_GodR3_Glory_Title>A giant in the mist</CC_GodR3_Glory_Title>
+  <CC_GodR3_Glory_TitleNamed>{GOD} in the mist</CC_GodR3_Glory_TitleNamed>
+  <CC_GodR3_Glory_Text>Out in the morning fog, {PAWN_nameDef} saw a huge shadow standing on the mist with a ring of colours round its head. It moved when {PAWN_pronoun} moved, and {PAWN_pronoun} has stopped to look at it.</CC_GodR3_Glory_Text>
+  <CC_GodR3_Glory_Text_2>{PAWN_nameDef} has stopped in the morning mist: a giant shadow stands in it, with rings of colour round its head, and it raised its arm when {PAWN_pronoun} raised {PAWN_possessive}.</CC_GodR3_Glory_Text_2>
+  <CC_GodR3_Glory_Text_3>In the fog on the high ground {PAWN_nameDef} saw {PAWN_possessive} own shadow thrown huge onto the mist, a ring of light round its head, and stood still watching it.</CC_GodR3_Glory_Text_3>
+  <CC_GodR3_Saw_Glory>{WHO} saw a giant shadow on the morning mist at {HOME} with a ring of colours round its head, which moved as {WHO} moved.</CC_GodR3_Saw_Glory>
+
+</LanguageData>
