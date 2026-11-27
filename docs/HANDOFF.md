@@ -931,6 +931,17 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.312.0, the player's go of that day): eight map events and six happenings of the gods on
+  the land, content round 3, built in a worktree and merged.** The list: `docs/content-round-3-events-gods.md` (R1 to R8,
+  G1 to G6). Events `Defs/IncidentDefs/Rimfolk_Round3_Events.xml`, `Happenings/Workers_Round3.cs` (`HappeningWorker_R3*`,
+  `DilemmaEffect_R3*`, steps `Round3Map`, `Round3Beasts`, `Round3Snake`, `Round3Roof`, `Round3Dinner`; five `OnMapTimed`
+  kinds `R3Boar`, `R3Snake`, `R3Roof`, `R3Seals`, `R3Dinner`), rules `Happenings/Round3EventsMath.cs`, words
+  `Rimfolk_Round3_Events.xml`. Gods: six `OwnHappening`s after `FaithLightning` (BellwetherNewborn, HeliosRipen,
+  MorelFoxfire, PipFinished, SeleneTide, CirrusGlory) in `Gods/OnMap/OwnRound3.cs` (`Round3LandState` saved as
+  `OwnHappeningsBook.land3`), dev actions `Gods/OwnRound3Debug.cs`, lines `Defs/GodDefs/Rimfolk_Round3_GodsLand.xml`,
+  words `Rimfolk_Round3_GodsLand.xml`; `OwnHappeningsMath.Land3PaceOf`, `IsLand3`, `FirstLand3`. Dropped: noon heat and
+  the autumn fodder count (duplicates), pigs taken to the wood (no rope handling). DESIGN.md does not describe the six
+  yet. Tests: Round3EventsGodsTests. Not seen in the game.
 - **Done (27 November 2026, 0.311.0, the player's go of that day: "more content to the already existing mechanics"):
   twelve council questions, content round 3, built in a worktree and merged.** The list: `docs/content-round-3-council.md`.
   Defs `Defs/DilemmaDefs/Rimfolk_Round3_Council.xml` (`Rimfolk_DlmR3_*`: LightSleeper, AnimalGrave, HiveMeat, PickingDay

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Eight new events on the map and six happenings of the gods on the land
+
+*27 November 2026, version 0.312.0*
+
+- Eight new events of everyday life on the map: wild boar under the trees in a mast year, a snake in the woodpile in the summer heat, snow heavy on a roof in winter, the way across the marsh to the fields, a cold room under the rock for the summer's food, seals at the fishing ground, dinner carried out to a far field, and clothes worn through before winter.
+- Every answer plays out on the map: the boar or the seals hunted, driven off or left, the snake lifted away on a stick or left until dusk, the snow shovelled off or the roof propped with a column, planks laid across the marsh, a cold store marked under the rock, dinner carried out by the cook, new clothes made at the bench or taken from the stores.
+- A snake lifted on a stick can bite, a hunted animal can turn on its hunter, and a roof left under deep snow can come down over empty floor. Each is named under its answer before it is chosen.
+- Six new happenings of the gods on the land: a newborn found warm in a ring of trodden snow, a field ripe all at once in the noon heat, a green light on wet ground at night and rich soil by morning, unfinished work at a bench nearly done by morning, the sea far up the shore under the full moon, and a giant shadow in the morning mist.
+- A god is named on these cards only where the colony knows it was that god, and the colony's book keeps what its people saw.
+
 ## Twelve new council questions
 
 *27 November 2026, version 0.311.0*
