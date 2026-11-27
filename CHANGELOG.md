@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fixes to the new missions
+
+*27 November 2026, version 0.318.1*
+
+- Fixed: a delivery that asks for cloth or leather now counts the leather and wool in the colony's stores, so the drum for a neighbour's watch can be made from hides. Older deliveries that ask for cloth or leather count them too.
+- Fixed: a neighbour's request for an alarm now names the one the colony is asked for, a drum, a bell, a siren or a beacon, in its title, its letter and its ending.
+- Fixed: a request for hands at a neighbour's herds no longer speaks of the autumn round-up in spring or summer.
+- Fixed: an order from a neighbour's merchants never asks for the colony's mortar shells.
+
 ## Six new missions and eight new encounters
 
 *27 November 2026, version 0.318.0*

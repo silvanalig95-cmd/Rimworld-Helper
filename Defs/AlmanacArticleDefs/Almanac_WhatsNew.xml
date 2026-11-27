@@ -31,6 +31,18 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.318.1</version>
+        <date>27 November 2026</date>
+        <title>Fixes to the new missions</title>
+        <points>
+          <li>Fixed: a delivery that asks for cloth or leather now counts the leather and wool in the colony's stores, so the drum for a neighbour's watch can be made from hides. Older deliveries that ask for cloth or leather count them too.</li>
+          <li>Fixed: a neighbour's request for an alarm now names the one the colony is asked for, a drum, a bell, a siren or a beacon, in its title, its letter and its ending.</li>
+          <li>Fixed: a request for hands at a neighbour's herds no longer speaks of the autumn round-up in spring or summer.</li>
+          <li>Fixed: an order from a neighbour's merchants never asks for the colony's mortar shells.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.318.0</version>
         <date>27 November 2026</date>
         <title>Six new missions and eight new encounters</title>

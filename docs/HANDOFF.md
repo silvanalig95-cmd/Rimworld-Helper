@@ -931,6 +931,18 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.318.1): a review of content round 5** (0.317.0, 0.318.0) for what would show in play, in a
+  worktree, merged. Four bugs fixed, listed in `docs/review-round-5.md` and kept by `Tools/Tests/ReviewRound5Tests.cs`:
+  the textiles goal counted no leather or wool (`Missions.Fits` now `IsWithinCategory`, which changes every older
+  "cloth or leather" delivery too), the bell's and the round-up's mission kinds were also their forms' tags (now `alarm`,
+  `herding`), the merchants' order could ask for mortar shells (`R5AOrders.Sellable`). Seven smaller points left with
+  reasons in the same file, among them: R5A-E3 (the wild animal in the weather) is words only, nobody walks closer, as
+  the older too-close encounters; the order can ask a third more than the colony keeps (its design). Still to see in the
+  game: the merchants' order, the bell in each age, the loom scene, E3 in the rain.
+- **Where things stand (27 November 2026, evening):** content rounds 2 to 5 are built and released (0.308.0 to 0.318.1),
+  about 170 items in existing frames, each round reviewed for bugs once. Nothing of them has been seen in the game; the
+  lead suggested the player play before more content. Open on the player's word: more content (festivals and calendar
+  customs, storylines, more of the gods' events), or fixes from their play.
 - **Done (27 November 2026, 0.318.0, the player's "continue"): the colony out in the world, content round 5, built in a
   worktree and merged.** The list: `docs/content-round-5-away.md`. Six missions (`Defs/MissionDefs/Rimfolk_Round5_Missions.xml`:
   hands for the round-up, carvings for their hall, an order from their merchants with the new `HappeningWorker_R5AOrder`
