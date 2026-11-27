@@ -931,6 +931,14 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.316.1): a review of content rounds 2 to 4** (0.308.0 to 0.316.0) for what would show in
+  play, in a worktree, merged. Nine bugs fixed, listed in `docs/review-rounds-2-to-4.md` and kept by
+  `Tools/Tests/ReviewRounds2to4Tests.cs`: the ordeal's burns with no gathering, the "wear" job given to downed or drafted
+  colonists, an offering taken that someone had picked up, the carved stone used up on blocked ground or spawned on a
+  carver, the hidden raider left wandering and the arrest given to an unfit finder, round 4's static caches carried
+  across games (now `R4LGameCache`), the storm's leavings left forbidden, a mad animal not counted in the harm budget.
+  Six smaller points left with reasons in the same file. Still to see in the game: the instrument-makers' music after a
+  load mid-tune.
 - **Done (27 November 2026, 0.316.0, the player's "continue"): six camps and eight map events, content round 4, built in
   a worktree and merged.** The list: `docs/content-round-4-camps-events.md`. Camps in `Camps/CampRound4.cs`
   (`CampRound4`; `CampWorker_R4KWoodcarvers`, `R4KFireWatchers`, `R4KWildfowlers`, `R4KSnowCarvers`, `R4KCheesemakers`,

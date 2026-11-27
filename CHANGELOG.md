@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Fixes to the new content
+
+*27 November 2026, version 0.316.1*
+
+- Fixed: the ordeal at the hearth is held only at its gathering before the colony; when no gathering can be held, or it is over, nobody carries the stone and nobody is burned.
+- Fixed: when the council sends those in worn clothes to the stores, nobody downed, drafted by the player or in a mental break is sent.
+- Fixed: the stone-raisers' carved stone waits for clear ground before their stone is used, and the carvers work beside it, never on the ground it will stand on.
+- Fixed: the raider who hid after a raid no longer stays on the colony's land for good when the arrest is given up or the time runs out, and the arrest is offered only when the one who found them can make it.
+- Fixed: an offering is taken in the night only while it still lies at the god's place, and what the storm threw up on the shore is no longer left forbidden.
+- Fixed: the new stories and wishes no longer read the winter, the snow or a bench from a game loaded before, and an animal driven mad at the colony's edge counts in the shared harm budget.
+
 ## Six more camps and eight more events on the map
 
 *27 November 2026, version 0.316.0*
