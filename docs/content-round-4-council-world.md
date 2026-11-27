@@ -187,8 +187,8 @@ Three peaceful, three troubled, each in its people's age's form (`SituationWorke
 - **On the map:** bathers of that people pass the colony on the road (a few, older ones among them).
 - **Answers (at the gate, their keeper's runner):** send {A} to bathe there for three days (the far errand: a caravan of one
   there and home; A is the one with an aching ailment of Rimfolk's, a strained back, a stiff neck, sore hands,
-  chilblains, a limp or a sprained ankle, else the most worn; home again the ache is eased and the strain with it); a gift
-  of silver for the keepers (carried out to the runner); not now.
+  chilblains, a limp or a sprained ankle, else the most worn, else the eldest from fifty; home again the ache is eased and
+  the strain with it); a gift of silver for the keepers (carried out to the runner); not now.
 - **Endings:** the springs keep flowing and the town grows; the water goes cold again.
 - **Every age:** a hot spring the old ones keep (tribal), the baths at {PLACE} (medieval), a spa with a pump room
   (industrial), a mineral clinic (spacer).
@@ -226,7 +226,7 @@ the colony's map)
 **R4W-4. The beacon fires** (`Rimfolk_WS_Beacons`, `SituationWorker_R4WBeacons`; kind `beacons`; troubled)
 - **In the region:** raiders are out (a people hostile to the colony where there is one), and a friendly people lights a
   chain of beacons on the hills so that the warning runs ahead of them; they ask the colony to keep a fire of its own.
-- **Answers (their rider at the gate):** keep the beacon (each evening for three evenings someone of the colony lays a fire
+- **Answers (their runner at the gate):** keep the beacon (each evening for three evenings someone of the colony lays a fire
   in the open and sits by it into the night, the bonfire that exists; the bonfire's own small risk of a burnt hand or a
   spark in dry grass is named); wood for their beacons (forty logs carried out to the rider); the colony keeps its own
   watch (nothing).
@@ -256,7 +256,7 @@ the colony's map)
 **R4W-6. The missing caravan** (`Rimfolk_WS_MissingCaravan`, `SituationWorker_R4WMissing`; kind `missing`; troubled)
 - **In the region:** a friendly people's caravan bound for {PLACE} never arrived. Whether it is found is settled at the
   start, out of sight, and shown by what follows.
-- **On the map:** their search riders camp a night on the colony's far ground; if it is found, the caravan itself passes
+- **On the map:** a group of theirs camps a night on the colony's far ground; if it is found, the caravan itself passes
   the colony on the road home with its beasts.
 - **Answers (their search leader at the gate):** two of the colony walk the colony's land looking for any sign (a search, the
   play-out that exists); A goes over the hill paths with the leader at the gate; nothing seen here.

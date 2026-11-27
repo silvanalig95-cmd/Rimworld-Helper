@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content round's fourth part, its world events (docs/content-round-4-council-world.md, R4W-1 to R4W-6): the warm
+    springs, the gift road, the timber rafts, the beacon fires, the arms sold off and the missing caravan. Three peaceful and
+    three troubled, each in the form of its people's age ([theirTribal]..., SituationWorker_Variety) and tied to what exists:
+    the visitors at the gate and on the road, the colony's water, the far errand, a search, a bonfire, goods set down, carried
+    out and paid for at the gate. Their ways in Source/ColonyCouncil/World/Variety/WorldRound4.cs. Words in the world events'
+    flavour style.
+  -->
+
+  <!-- ===================== R4W-1. The warm springs ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_WarmSprings</defName>
+    <label>the warm springs</label>
+    <workerClass>ColonyCouncil.SituationWorker_R4WSprings</workerClass>
+    <weight>0.4</weight>
+    <earliestDay>25</earliestDay>
+    <cooldownDays>260</cooldownDays>
+    <durationDays>14~18</durationDays>
+    <kind>springs</kind>
+    <prosperity>4</prosperity>
+    <faction>
+      <friendly>true</friendly>
+      <maxDistance>30</maxDistance>
+    </faction>
+    <names>
+      <li>[theirTribal] the warm pool at {PLACE}</li>
+      <li>[theirMedieval] the baths of {PLACE}</li>
+      <li>[theirIndustrial] the {PLACE} spa</li>
+      <li>[theirSpacer] the {PLACE} mineral clinic</li>
+    </names>
+    <titles>
+      <li>{NAME}</li>
+      <li>Warm water at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] A spring below the camp of {FACTION} at {PLACE}, cold for as long as anyone remembers, has started to run warm. The old ones say it eases stiff joints and bad backs, and people from every camp in the region are going there to sit in it. {FACTION} turn nobody away from {NAME}.</li>
+      <li>[theirMedieval] {FACTION} write that the old well-house below {PLACE} has begun to run warm, and those who bathe there say their aches are eased. The town has built a bath-house over it and opened it to anyone at peace with them. They call it {NAME}.</li>
+      <li>[theirIndustrial] The papers of {FACTION} report that drillers looking for water at {PLACE} struck a hot spring instead, rich in minerals. The town has put up a pump room and a bathing hall, {NAME}, and invalids are arriving from all over the region.</li>
+      <li>[theirSpacer] {FACTION} report that a geothermal vent under {PLACE} has opened into a warm mineral pool. Their medics have fitted it out as {NAME}, and they are offering treatment to anyone in the region who asks.</li>
+    </texts>
+    <summaries>
+      <li>Bathers will pass the colony on the road to {PLACE}. Someone of the colony with aches could be sent there to bathe.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>bathers</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>bathers</what><count>2~4</count><ages>35~75</ages><spot>Road</spot><onward>true</onward><hourFrom>8</hourFrom><hourTo>15</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>1~4</day>
+        <repeatDays>4~6</repeatDays>
+        <maxTimes>2</maxTimes>
+        <message>true</message>
+        <texts>
+          <li>Bathers of {FACTION} are on the road past the colony, on their way to {NAME}.</li>
+          <li>[theirLowtech] Bathers of {FACTION} are on the road past the colony with their bedding rolled on their backs, on their way to {NAME}.</li>
+        </texts>
+      </li>
+      <li>
+        <key>send</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what><ages>16~40</ages><hours>3~5</hours></li>
+        </effects>
+        <day>2~6</day>
+        <count>30~50</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>Room at {NAME}</li>
+        </titles>
+        <texts>
+          <li>[ache] {X_nameDef} of {FACTION} has come to the gate from {PLACE}. There is room at {NAME} for one of the colony, {X_pronoun} says, if anyone has aches the water might ease. {A_nameDef}'s {ITEM} has been bad lately, and everyone has noticed.</li>
+          <li>[worn] {X_nameDef} of {FACTION} has come to the gate from {PLACE}. There is room at {NAME} for one of the colony, {X_pronoun} says, and a few days in the warm water would do anyone good. {A_nameDef} has looked worn out for weeks.</li>
+          <li>[theirLowtech,ache] {X_nameDef} of {FACTION} has walked from {PLACE} to say the warm pool has room for one more. {A_nameDef}, whose {ITEM} has been troubling {A_objective}, could go and sit in it a few days.</li>
+          <li>[theirHightech,worn] {X_nameDef}, an orderly of {FACTION}, has come to the gate with a list of places at {NAME}. One is free, {X_pronoun} says. {A_nameDef} looks as though {A_pronoun} could use it.</li>
+          <li>[old] {X_nameDef} of {FACTION} has come to the gate from {PLACE}. There is room at {NAME} for one of the colony, {X_pronoun} says. {A_nameDef}, who is not as young as {A_pronoun} was, could do with a few days in warm water.</li>
+          <li>{X_nameDef} of {FACTION} has come to the gate from {PLACE}. There is room at {NAME} for one of the colony, {X_pronoun} says, and {A_nameDef} is the one the colony would send.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to bathe at {PLACE}</label>
+            <outcome>{A_nameDef} sets out for {PLACE}, to bathe in the warm water there for a few days.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>3</days>
+                <effects>
+                  <li Class="ColonyCouncil.DilemmaEffect_EaseAilment"><factor>0.3</factor><one>false</one></li>
+                  <li Class="ColonyCouncil.DilemmaEffect_StrainRelief"><amount>20</amount></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {PLACE}. {A_pronoun} sat in the warm water every day and slept soundly every night, and moves more easily than {A_pronoun} has in months.</li>
+                  <li>[theirIndustrial] {A_nameDef} is back from the spa at {PLACE}, smelling faintly of minerals, and says the aches are much better for it.</li>
+                </home>
+              </li>
+            </effects>
+            <flags><li>sent</li></flags>
+            <help>1</help>
+            <deed>sent {A_nameDef} to bathe at {NAME}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>A gift for the keepers of {NAME} ({COUNT} silver)</label>
+            <outcome>The silver is carried out to {X_nameDef} at the gate, for the keepers of {NAME}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a gift for the keepers of {NAME}</label><what>silver</what><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>gift</li></flags>
+            <help>1</help>
+            <deed>sent silver to the keepers of {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not now</label>
+            <outcome>{X_nameDef} says the water will run warm for a while yet, and goes on to the next settlement.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>flowing</key>
+        <chance>0.7</chance>
+        <titles>
+          <li>{NAME} runs warm</li>
+        </titles>
+        <texts>
+          <li>{NAME} still runs warm, and {PLACE} has done well out of it: a new inn, a better road, and more bathers every month.</li>
+          <li>[sent] {NAME} still runs warm. {FACTION} say the colony's bather is welcome back whenever the aches return.</li>
+          <li>[theirIndustrial] The {PLACE} spa has opened a second bathing hall, and the papers call the town the healthiest in the region.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} kept running warm.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>1</amount><requires>gift</requires></li>
+        </effects>
+      </li>
+      <li>
+        <key>cold</key>
+        <titles>
+          <li>{NAME} goes cold</li>
+        </titles>
+        <texts>
+          <li>The water at {PLACE} has gone cold again, as suddenly as it warmed. The bath-house stands empty, and {FACTION} are arguing about what to do with it.</li>
+          <li>[theirTribal] The warm pool at {PLACE} is cold again. The old ones say it will warm again one day, and nobody argues with them.</li>
+        </texts>
+        <chronicle>The water of {NAME} went cold again.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:healers] The healers at {PLACE} have moved their sickhouse down beside the water, and send their patients to soak in it.</li>
+      <li>[their:pilgrims] The pilgrims of {PLACE} say the warm water is a blessing, and have built a little roof over the spring.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:healers] The healers at {PLACE} have written down which aches the water eased and which it didn't.</li>
+      <li>[their:pilgrims] The pilgrims of {PLACE} still go down to the spring at dawn, warm or not.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== R4W-2. The gift road ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_GiftRoad</defName>
+    <label>the gift road</label>
+    <workerClass>ColonyCouncil.SituationWorker_R4WGiftRoad</workerClass>
+    <weight>0.4</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>10~14</durationDays>
+    <kind>giftroad</kind>
+    <prosperity>2</prosperity>
+    <faction>
+      <friendly>true</friendly>
+      <minGoodwill>0</minGoodwill>
+    </faction>
+    <names>
+      <li>[theirTribal] the passing staff</li>
+      <li>[theirMedieval] the gift road</li>
+      <li>[theirIndustrial] the friendship parcels</li>
+      <li>[theirSpacer] the goodwill relay</li>
+    </names>
+    <titles>
+      <li>{NAME}</li>
+      <li>{FACTION} send a gift down the road</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] After the best year anyone at {PLACE} remembers, {FACTION} have sent out {NAME}: a carved staff and a bundle of gifts, passed from camp to camp along the trails. Each camp keeps the bundle it is given and sends one of its own on to the next. It is coming the colony's way.</li>
+      <li>[theirMedieval] {FACTION} have had a good year at {PLACE}, and have revived an old custom of theirs, {NAME}. A gift goes from their town to the next settlement on the road, and that settlement keeps it and sends a gift of its own onward, and so on to the end of the road. The colony is on the road.</li>
+      <li>[theirIndustrial] {FACTION} at {PLACE} have started {NAME}: a parcel of goods sent to the next settlement down the line, which keeps it and sends a parcel of its own on. The papers are printing the route, and the colony is on it.</li>
+      <li>[theirSpacer] {FACTION} have started {NAME} from {PLACE}: a crate of goods passed from settlement to settlement across the region, each keeping what it receives and sending a crate of its own to the next. The colony is next on the list.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION}'s bearer will come to the gate with a gift for the colony, and ask what the colony will send on.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>bearer</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>bearer</what><pack>true</pack><ages>20~50</ages><hours>3~5</hours></li>
+        </effects>
+        <day>2~6</day>
+        <count>40~80</count>
+        <wealthScaled>true</wealthScaled>
+        <titles>
+          <li>{NAME} at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} has come to the gate with {NAME}. {X_pronoun} has a gift for the colony from the settlement before it, and asks, as the custom is, what the colony will send on to the next.</li>
+          <li>[theirLowtech] {X_nameDef} of {FACTION} has walked to the gate with {NAME} on a beast's back. {X_pronoun} has the colony's share of it, and waits to hear what the colony will send on to the next camp.</li>
+          <li>[theirHightech] {X_nameDef}, a courier of {FACTION}, has come to the gate with {NAME} and a list of every settlement that has sent something on. {X_pronoun} asks what the colony's line on the list will say.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send food on to the next settlement</label>
+            <outcome>{X_nameDef} sets the colony's gift down at the gate, and meals from the colony's stores are carried out to {X_objective} to go on to the next settlement.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>100~160</value></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food sent on with {NAME}</label><what>meals</what><count>6</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>food</li></flags>
+            <help>1</help>
+            <deed>sent food on with {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send {COUNT} silver on</label>
+            <outcome>{X_nameDef} sets the colony's gift down at the gate, and the silver is carried out to {X_objective} to go on to the next settlement.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>100~160</value></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>silver sent on with {NAME}</label><what>silver</what><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>silver</li></flags>
+            <help>1</help>
+            <deed>sent silver on with {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep what they brought, and send nothing on</label>
+            <outcome>{X_nameDef} sets down what {X_pronoun} brought at the gate all the same, and goes on with nothing from the colony to pass along.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Loot"><value>100~160</value></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount></li>
+            </effects>
+            <flags><li>kept</li></flags>
+            <ways><generosity>-2</generosity></ways>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>reached</key>
+        <minHelp>1</minHelp>
+        <chance>0.9</chance>
+        <titles>
+          <li>{NAME} reaches the end of the road</li>
+        </titles>
+        <texts>
+          <li>{NAME} has reached the last town on the road, and {FACTION} have written down everything that was sent on along the way.</li>
+          <li>[food] {NAME} has reached the last town on the road. The food the colony sent on is on {FACTION}'s list, near the top.</li>
+          <li>[silver] {NAME} has reached the last town on the road, and the colony's silver is written on {FACTION}'s list with the rest.</li>
+        </texts>
+        <chronicle>{NAME} reached the end of the road, with the colony's part in it.</chronicle>
+        <helped>true</helped>
+      </li>
+      <li>
+        <key>stopped</key>
+        <titles>
+          <li>{NAME} stops short</li>
+        </titles>
+        <texts>
+          <li>{NAME} stopped short of the last town: one settlement kept what it was given and sent nothing on. {FACTION} say it was not the first time, and won't be the last.</li>
+          <li>[kept] {NAME} stopped at the colony, which kept what it was given and sent nothing on. {FACTION} have noted it.</li>
+        </texts>
+        <chronicle>{NAME} stopped short of the end of the road.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:traders] The road league at {PLACE} has lent its carts to {NAME}, and is keeping a careful list of who sends what.</li>
+      <li>[their:artisans] The guild at {PLACE} put its best work into the first bundle, and says so to anyone who asks.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:traders] The road league at {PLACE} has the list of what went along {NAME}, and reads it out on market days.</li>
+      <li>[their:artisans] The guild at {PLACE} says its work was the finest thing on the road.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== R4W-3. The timber rafts ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Rafts</defName>
+    <label>the timber rafts</label>
+    <workerClass>ColonyCouncil.SituationWorker_R4WRafts</workerClass>
+    <weight>0.45</weight>
+    <earliestDay>20</earliestDay>
+    <cooldownDays>220</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <seasons><li>Spring</li><li>Summer</li><li>Fall</li><li>PermanentSummer</li></seasons>
+    <kind>rafts</kind>
+    <prosperity>2</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the log run</li>
+      <li>[theirMedieval] the timber rafts of {PLACE}</li>
+      <li>[theirIndustrial] the {PLACE} log drive</li>
+      <li>[theirSpacer] the timber barges</li>
+    </names>
+    <titles>
+      <li>{NAME}</li>
+      <li>Timber on the river</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] {FACTION} have felled a hillside of trees upriver, lashed the trunks together into rafts and poled them down the water toward {PLACE}. They call it {NAME}, and the river past the colony is how they mean to get there.</li>
+      <li>[theirMedieval] {FACTION} send their timber down the river to {PLACE} every year on great rafts, with a hut on the biggest for the raftsmen to sleep in. This year's rafts are on the water now, and the river past the colony is their road.</li>
+      <li>[theirIndustrial] {NAME} of {FACTION} is under way: thousands of logs floated down the river from the cutting camps upstream, with the river men riding them and breaking the jams. It passes the colony's stretch of water.</li>
+      <li>[theirSpacer] {FACTION} are towing timber barges down the river to {PLACE}, cut from the forests upstream. The crews tie up wherever the river lets them, and the colony's stretch of water is one of those places.</li>
+    </texts>
+    <summaries>
+      <li>The raftsmen of {FACTION} may tie up below the colony and camp a night at its water. Their foreman may offer the colony timber.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>camp</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>raftsmen</what><count>3~5</count><ages>18~50</ages><spot>Water</spot><nights>1</nights><hourFrom>14</hourFrom><hourTo>19</hourTo><delay>0.5~1.5</delay></li>
+        </effects>
+        <day>1~3</day>
+        <message>true</message>
+        <texts>
+          <li>The raftsmen of {FACTION} have tied up their rafts below the colony and come up to camp the night at its water.</li>
+          <li>[theirHightech] The barge crews of {FACTION} have tied up below the colony and come up to camp the night at its water.</li>
+        </texts>
+      </li>
+      <li>
+        <key>sell</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>foreman</what><ages>30~55</ages><hours>3~5</hours></li>
+        </effects>
+        <day>1~4</day>
+        <titles>
+          <li>Timber from the rafts</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, the raftsmen's foreman, has come up from the river to the gate. They have more timber than {PLACE} has paid for, {X_pronoun} says, and the colony can have a hundred logs for {COUNT} silver, set down here at the gate.</li>
+          <li>[theirLowtech] {X_nameDef}, who poles the biggest raft, has come up to the gate with bark still on {X_possessive} hands. A hundred logs for {COUNT} silver, {X_pronoun} says, and the raftsmen will carry them up from the water.</li>
+          <li>[theirHightech] {X_nameDef}, the barge master, has come to the gate with a tally of the load. A hundred logs are spare, {X_pronoun} says, and the colony can have them for {COUNT} silver.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy a hundred logs ({COUNT} silver)</label>
+            <outcome>{X_nameDef} is paid at the gate, and the logs are set down there.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>100</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>1</amount></li>
+            </effects>
+            <flags><li>bought</li></flags>
+            <help>1</help>
+            <deed>bought timber from {NAME}</deed>
+          </li>
+          <li>
+            <label>A hot meal for the raftsmen</label>
+            <outcome>Meals from the colony's stores are carried out to {X_nameDef} at the gate, for the raftsmen's supper at the water.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the raftsmen</label><what>meals</what><count>4</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>fed</li></flags>
+            <help>1</help>
+            <deed>fed the raftsmen of {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} shrugs and goes back down to the river.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>reached</key>
+        <titles>
+          <li>{NAME} reaches {PLACE}</li>
+        </titles>
+        <texts>
+          <li>The rafts of {FACTION} reached {PLACE} whole, and the timber has been sold.</li>
+          <li>[bought] The rafts of {FACTION} reached {PLACE}, lighter by the hundred logs that stayed with the colony.</li>
+          <li>[theirIndustrial] {NAME} has reached the sawmills at {PLACE}, and the river is clear of logs again.</li>
+        </texts>
+        <chronicle>{NAME} reached {PLACE}.</chronicle>
+      </li>
+      <li>
+        <key>broke</key>
+        <requires><li>willBreak</li></requires>
+        <titles>
+          <li>A raft breaks up</li>
+        </titles>
+        <texts>
+          <li>One of the rafts of {FACTION} broke up on the rocks below the colony, and some of its logs have washed up on the colony's own bank. {FACTION} say whatever the river leaves is the finder's.</li>
+          <li>[theirHightech] A barge of {FACTION} broke its tow on the rocks below the colony, and part of its load has washed up on the colony's bank. {FACTION} have written it off.</li>
+        </texts>
+        <chronicle>A raft of {NAME} broke up below the colony.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_R4WDriftLogs" />
+        </effects>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:fishers] The river folk at {PLACE} have pulled their nets in until the rafts are past.</li>
+      <li>[their:traders] The road league has bought the whole load before it reaches {PLACE}, and is waiting at the landing.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:fishers] The river folk at {PLACE} have their nets back in the water.</li>
+      <li>[their:traders] The road league at {PLACE} has sold the timber on at a good price.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== R4W-4. The beacon fires ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Beacons</defName>
+    <label>the beacon fires</label>
+    <workerClass>ColonyCouncil.SituationWorker_R4WBeacons</workerClass>
+    <weight>0.35</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>260</cooldownDays>
+    <durationDays>8~11</durationDays>
+    <kind>beacons</kind>
+    <bad>true</bad>
+    <prosperity>-2</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <hostile>true</hostile>
+      <optional>true</optional>
+    </second>
+    <names>
+      <li>[theirTribal] the hill fires</li>
+      <li>[theirMedieval] the beacon chain</li>
+      <li>[theirIndustrial] the signal line</li>
+      <li>[theirSpacer] the flare relay</li>
+    </names>
+    <titles>
+      <li>{NAME}</li>
+      <li>Beacons on the hills</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] Raiders are out in the hills, and {FACTION} have lit {NAME}: a fire on every hilltop between their camps, smoke by day and flame by night, so that each camp sees trouble coming before it arrives. They have asked their neighbours to keep a fire of their own in the chain.</li>
+      <li>[theirMedieval] {FACTION} have manned their old beacon towers from {PLACE} to the edge of the region, for raiders are on the roads. When one beacon is lit the next is lit, and the warning outruns any horse. They ask every settlement in sight of the hills to keep a fire ready.</li>
+      <li>[theirIndustrial] {FACTION} have set up {NAME} across the region, heliographs by day and signal rockets by night, because raiders are on the move. Their rider says the line has a gap where the colony stands.</li>
+      <li>[theirSpacer] {FACTION} have strung {NAME} across the region: relay flares fired from post to post whenever raiders are sighted. The colony's land sits in a gap in it, and they have asked the colony to fill it.</li>
+      <li>[enemy] {ENEMY} have raiders out on the roads, and {FACTION} have lit {NAME} from {PLACE} across the hills so that the warning runs ahead of them. They ask the colony to keep a fire of its own in the chain.</li>
+    </texts>
+    <summaries>
+      <li>A runner of {FACTION} may come to the gate to ask the colony to keep a fire burning in the open at night, as a link in the chain.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>ask</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>runner</what><ages>18~45</ages><hours>2~4</hours></li>
+        </effects>
+        <day>1~3</day>
+        <titles>
+          <li>A fire for {NAME}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} has come to the gate with dust on {X_possessive} boots. The chain has a gap where the colony stands, {X_pronoun} says, and asks whether the colony will keep a fire in the open at night, where the next hill can see it, until the raiders have gone by.</li>
+          <li>[theirLowtech] {X_nameDef} of {FACTION} has run to the gate from the nearest hill fire. {X_pronoun} asks the colony to keep a fire burning in the open at night, so the warning can pass across the colony's land.</li>
+          <li>[theirHightech] {X_nameDef}, a signaller of {FACTION}, has come to the gate. {X_pronoun} asks whether the colony will keep a fire lit in the open at night as part of the line, since it has no post of its own.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Keep the beacon</label>
+            <outcome>{A_nameDef} will lay a fire in the open this evening and keep it lit into the night, and someone of the colony will do the same for the next few evenings.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the beacon fire</label><target>A</target><organizer>A</organizer><spots><li>Fire</li><li>Outdoors</li></spots><hours>19~21</hours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>beacon</li></flags>
+            <next>fire</next>
+            <nextDays>0.8~1.2</nextDays>
+            <help>2</help>
+            <deed>kept a beacon fire in {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Wood for their beacons (40 logs)</label>
+            <outcome>Forty logs are carried out to {X_nameDef} at the gate, for the beacons on the hills.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>wood for {NAME}</label><what>wood</what><count>40</count><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>wood</li></flags>
+            <help>1</help>
+            <deed>sent wood for {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>The colony keeps its own watch</label>
+            <outcome>{X_nameDef} goes on to the next settlement in the chain.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>fire</key>
+        <called>true</called>
+        <requires><li>beacon</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the beacon fire</label><target>A</target><organizer>A</organizer><spots><li>Fire</li><li>Outdoors</li></spots><hours>19~21</hours><duration>3~4</duration></li>
+        </effects>
+        <repeatDays>1~1.2</repeatDays>
+        <maxTimes>2</maxTimes>
+        <message>true</message>
+        <texts>
+          <li>{A_nameDef} lays the beacon fire again this evening, in sight of the hills.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>warned</key>
+        <minHelp>2</minHelp>
+        <chance>0.85</chance>
+        <titles>
+          <li>{NAME} holds</li>
+        </titles>
+        <texts>
+          <li>The raiders came down on {FACTION}'s side of the hills and found every town ready for them. The warning had run ahead of them along {NAME}, past the colony's fire, and they have gone back the way they came.</li>
+          <li>[enemy] {ENEMY}'s raiders found every town of {FACTION}'s ready for them. The warning ran ahead of them along {NAME}, past the colony's fire, and they turned back.</li>
+        </texts>
+        <chronicle>{NAME} warned the region ahead of the raiders, with the colony's fire in the chain.</chronicle>
+        <helped>true</helped>
+      </li>
+      <li>
+        <key>held</key>
+        <chance>0.6</chance>
+        <titles>
+          <li>{NAME} holds</li>
+        </titles>
+        <texts>
+          <li>{NAME} held, and the raiders turned back before they reached any town of {FACTION}'s.</li>
+          <li>[wood] {NAME} held. {FACTION} say the colony's wood kept two of the hill fires going.</li>
+        </texts>
+        <chronicle>{NAME} held, and the raiders turned back.</chronicle>
+      </li>
+      <li>
+        <key>gap</key>
+        <titles>
+          <li>Raiders slip through {NAME}</li>
+        </titles>
+        <texts>
+          <li>The raiders slipped through a gap in {NAME} and burned an outlying farm of {FACTION}'s before anyone saw the smoke.</li>
+        </texts>
+        <chronicle>Raiders slipped through {NAME}.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:mercenaries] The company at {PLACE} has sent its riders out along the chain, ready to ride to whichever fire is lit.</li>
+      <li>[their:herders] The herding folk have brought their flocks down from the high pastures until the raiders are gone.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:mercenaries] The company's riders are back at {PLACE}, and have put in their bill.</li>
+      <li>[their:herders] The herding folk have taken their flocks back up to the high pastures.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== R4W-5. The arms sold off ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_ArmsSold</defName>
+    <label>the arms sold off</label>
+    <workerClass>ColonyCouncil.SituationWorker_R4WArms</workerClass>
+    <weight>0.35</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>280</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <kind>arms</kind>
+    <bad>true</bad>
+    <prosperity>-4</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the broken spears</li>
+      <li>[theirMedieval] the emptied armoury</li>
+      <li>[theirIndustrial] the {PLACE} disarmament</li>
+      <li>[theirSpacer] the decommissioning</li>
+    </names>
+    <titles>
+      <li>{NAME}</li>
+      <li>{FACTION} sell off their arms</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] {FACTION} have made peace with their old enemies at last, and the price was their spears: every fighting weapon at {PLACE} must be broken or given up. Rather than hand them over, their elders are trading them away to the neighbours while they still can.</li>
+      <li>[theirMedieval] {FACTION} have signed a hard peace, and by its terms the armoury of {PLACE} must be emptied. The town's reeve has decided that what can be sold to friends will not be given to the victors, and the carts are already on the roads.</li>
+      <li>[theirIndustrial] Under the terms of the peace, {FACTION} must give up the arsenal at {PLACE}. The town's council is quietly selling off what it can to the neighbours before the inspectors arrive. The papers call it {NAME}.</li>
+      <li>[theirSpacer] {FACTION} have agreed to decommission their weapons stores at {PLACE} as part of a ceasefire. Their quartermasters are selling surplus arms to any friendly settlement before the inspection teams arrive.</li>
+    </texts>
+    <summaries>
+      <li>A seller of {FACTION} may come to the gate with weapons from {PLACE}, at half their worth.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>seller</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>seller</what><pack>true</pack><ages>25~60</ages><hours>3~5</hours></li>
+        </effects>
+        <day>1~5</day>
+        <titles>
+          <li>Arms at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} of {FACTION} has come to the gate with weapons from {PLACE}, and has set one {THING} out on a sack for the colony to see. The colony can have three of them for {COUNT} silver, {X_pronoun} says, which is half what they are worth.</li>
+          <li>[theirLowtech] {X_nameDef} of {FACTION} has brought the last of {PLACE}'s weapons to the gate on a beast's back, and shows the colony one {THING} of them. {X_pronoun} would rather the colony had three, for {COUNT} silver, than see them in an enemy's hands.</li>
+          <li>[theirHightech] {X_nameDef}, a quartermaster of {FACTION}, has come to the gate with crates from {PLACE}, and opened one: a {THING}, in good order. {X_pronoun} offers three of them for {COUNT} silver, and asks no questions.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Buy three of them ({COUNT} silver)</label>
+            <outcome>{X_nameDef} is paid at the gate, and sets three of the weapons down there.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Pay"><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><count>3</count><by>Outsiders</by></li>
+            </effects>
+            <flags><li>bought</li></flags>
+            <help>1</help>
+            <deed>bought weapons from the armoury of {PLACE}</deed>
+          </li>
+          <li>
+            <label>A meal for the seller's road</label>
+            <outcome>A meal is carried out to {X_nameDef}, who eats it by the wall and goes on with the weapons unsold.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for {X_nameDef}</label><what>meals</what><count>1</count><eat>true</eat><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>1</amount></li>
+            </effects>
+            <flags><li>fed</li></flags>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>{X_nameDef} wraps the weapons up again and goes on to the next settlement.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>quiet</key>
+        <chance>0.6</chance>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>The armoury of {PLACE} stands empty, and the peace is holding. {FACTION} have put their fighters to work on the fields.</li>
+          <li>[bought] The armoury of {PLACE} stands empty and the peace is holding. Some of its weapons are in the colony's stores now.</li>
+        </texts>
+        <chronicle>The armoury of {PLACE} was emptied, and the peace held.</chronicle>
+      </li>
+      <li>
+        <key>road</key>
+        <titles>
+          <li>{PLACE}'s weapons on the roads</li>
+        </titles>
+        <texts>
+          <li>Not all of {PLACE}'s weapons went to friends: some of them have turned up in bandits' hands on the roads, and {FACTION} are blamed for it.</li>
+          <li>[bought] Some of {PLACE}'s weapons have turned up in bandits' hands. The colony knows where three of the others went.</li>
+        </texts>
+        <chronicle>Weapons from {PLACE} turned up in bandits' hands.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:mercenaries] The company at {PLACE} has refused to give up its own arms, peace or no peace.</li>
+      <li>[their:artisans] The smiths of {PLACE} have been told to make ploughshares, and are not pleased about it.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:mercenaries] The company has left {PLACE} with its arms, to find work somewhere they are still wanted.</li>
+      <li>[their:artisans] The smiths of {PLACE} have got used to ploughshares, more or less.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== R4W-6. The missing caravan ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_MissingCaravan</defName>
+    <label>the missing caravan</label>
+    <workerClass>ColonyCouncil.SituationWorker_R4WMissing</workerClass>
+    <weight>0.4</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>13~16</durationDays>
+    <kind>missing</kind>
+    <bad>true</bad>
+    <prosperity>-2</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the lost traders</li>
+      <li>[theirMedieval] the missing wagons</li>
+      <li>[theirIndustrial] the lost convoy</li>
+      <li>[theirSpacer] the missing crawler</li>
+    </names>
+    <titles>
+      <li>{NAME}</li>
+      <li>A caravan of {FACTION} is missing</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] A band of {FACTION}'s traders set out for {PLACE} with dogs and sledges loaded with furs, and never arrived. Their people have sent riders out along every trail, and the colony's land lies on one of them.</li>
+      <li>[theirMedieval] A wagon train of {FACTION}'s, bound for {PLACE} with the season's goods, has not arrived, and nobody on the road has seen it. Riders of {FACTION} are out after it, and the colony's land lies on their road.</li>
+      <li>[theirIndustrial] A convoy of {FACTION}'s lorries and mule carts has gone missing on the way to {PLACE}. The papers have printed descriptions, and parties are out along the route, which passes the colony.</li>
+      <li>[theirSpacer] A cargo crawler of {FACTION}'s stopped answering on the way to {PLACE}. Their teams are sweeping the route, and the colony's land is on it.</li>
+    </texts>
+    <summaries>
+      <li>A group of {FACTION} may camp a night on the colony's land, and ask the colony to look over its own ground for any sign. Whether the caravan is found is another matter.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>riders</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>riders</what><count>2~3</count><ages>20~45</ages><armed>true</armed><pack>true</pack><spot>Far</spot><nights>1</nights><hourFrom>12</hourFrom><hourTo>18</hourTo><delay>0.5~1.5</delay><group>true</group></li>
+        </effects>
+        <day>1~3</day>
+        <message>true</message>
+        <texts>
+          <li>A group of {FACTION} out after {NAME} has come onto the colony's land, and will camp on its far side tonight.</li>
+        </texts>
+      </li>
+      <li>
+        <key>ask</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>leader</what><ages>30~55</ages><hours>3~5</hours></li>
+        </effects>
+        <day>2~4</day>
+        <titles>
+          <li>No sign of {NAME}</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, who leads the search for {NAME}, has come to the gate. The caravan's tracks end somewhere past the colony, {X_pronoun} says, and asks whether the colony will look over its own land for any sign of it, or tell {X_objective} the paths through the hills.</li>
+          <li>[theirLowtech] {X_nameDef} of {FACTION} has come to the gate with mud to the knees. The trail went cold near the colony, {X_pronoun} says. Has anyone seen wheel ruts, or a dropped bundle, or a strayed beast?</li>
+          <li>[theirHightech] {X_nameDef}, coordinating the search for {NAME}, has come to the gate with a map of the route. {X_pronoun} asks the colony to check its own land, or mark the hill paths on the map for {X_objective}.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Two of the colony look over its land</label>
+            <outcome>Two of the colony will go out over the colony's land and look for any sign of {NAME}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Search"><label>the search for {NAME}</label><target>Colony</target><count>2</count><to>Walk</to><hours>8~16</hours><duration>3~4</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>lookedOver</li></flags>
+            <help>1</help>
+            <deed>looked over its land for {NAME}</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} goes over the hill paths with {X_objective}</label>
+            <outcome>{A_nameDef} goes to the gate and goes over the paths through the hills with {X_nameDef}, drawing them in the dirt.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Stranger</to><label>the hill paths</label><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>1</amount></li>
+            </effects>
+            <flags><li>paths</li></flags>
+            <help>1</help>
+            <deed>showed the riders of {FACTION} the hill paths</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Nothing seen here</label>
+            <outcome>{X_nameDef} thanks the colony and goes back to the others.</outcome>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>found</key>
+        <requires><li>willBeFound</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>traders</what><count>3~5</count><ages>20~55</ages><pack>true</pack><spot>Road</spot><onward>true</onward><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~1.5</delay></li>
+        </effects>
+        <day>9~12</day>
+        <message>true</message>
+        <texts>
+          <li>{NAME} has been found, and its people are on the road past the colony, on their way home.</li>
+          <li>[theirLowtech] {NAME} has been found, and its people are on the road past the colony with their beasts, on their way home.</li>
+          <li>[theirIndustrial] {NAME} has been found, and its drivers are on the road past the colony, on their way home.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>foundHelped</key>
+        <requires><li>willBeFound</li></requires>
+        <minHelp>1</minHelp>
+        <titles>
+          <li>{NAME} found</li>
+        </titles>
+        <texts>
+          <li>{NAME} turned up at last: the caravan had lost its way in the hills after a storm and spent days finding the road again. All of them came home, and {FACTION} say the colony's people were out on its land for them.</li>
+          <li>[paths] {NAME} turned up at last, lost in the hills. {FACTION} say the paths the colony drew for them were how they found it.</li>
+        </texts>
+        <chronicle>{NAME} was found, with the colony's help.</chronicle>
+        <helped>true</helped>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>found</key>
+        <requires><li>willBeFound</li></requires>
+        <titles>
+          <li>{NAME} found</li>
+        </titles>
+        <texts>
+          <li>{NAME} turned up at last: the caravan had lost its way in the hills after a storm and spent days finding the road again. All of them came home.</li>
+        </texts>
+        <chronicle>{NAME} was found.</chronicle>
+      </li>
+      <li>
+        <key>lost</key>
+        <titles>
+          <li>{NAME} lost</li>
+        </titles>
+        <texts>
+          <li>{NAME} was never found. {FACTION} have given up on it, and the families at {PLACE} have stopped waiting.</li>
+          <li>[lookedOver] {NAME} was never found. The colony's people found nothing on its land either, and {FACTION} have given up on it.</li>
+        </texts>
+        <chronicle>{NAME} was never found.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:traders] The road league has offered a reward for any word of the caravan, and stopped all its carts on that road.</li>
+      <li>[their:hunters] The hunters of {PLACE} are out reading the trails for it.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:traders] The road league has its carts back on the road, with guards on every one.</li>
+      <li>[their:hunters] The hunters of {PLACE} have gone back to their own hunting.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+</Defs>
