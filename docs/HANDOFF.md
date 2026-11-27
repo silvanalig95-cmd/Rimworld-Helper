@@ -931,6 +931,16 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.317.0, the player's "continue"): the colony's people together, content round 5, built in
+  a worktree and merged.** The list: `docs/content-round-5-together.md`. Eight social events
+  (`Rimfolk_Round5_SocialEvents.xml`, `Rimfolk_R5T_Soc_*`), six shared memories (`Rimfolk_Round5_Memories.xml`, talk
+  lines in `FlavorPoolDefs/Rimfolk_Round5_Talk_Memories.xml`), six quirks (`Rimfolk_Round5_Quirks.xml`, dreams
+  `Rimfolk_Round5_Dreams.xml`, bubbles `Rimfolk_Round5_Bubbles.xml`, knacks `HediffDefs/Rimfolk_Round5_Knacks.xml`), moods
+  `Rimfolk_Round5_Thoughts.xml`. Code `Social/Round5Together.cs` (`Round5Together.Fits`/`Fill` for the scenes `sowing`,
+  `oldhands`, `game`, `childgrief`; `Round5Together.Bubbles`; `R5TMemoryEffect`), rules `Social/Round5TogetherMath.cs`;
+  a new `scene` field on `SocialEventDef` (`Social/SocialEvents.cs`); `{YEAR}` known to the def validator. The quirks
+  have no mood conditions; a memory with a child in it is for the grown child to bring up (children don't talk of
+  memories). Tests: Round5TogetherTests. Not seen in the game.
 - **Done (27 November 2026, 0.316.1): a review of content rounds 2 to 4** (0.308.0 to 0.316.0) for what would show in
   play, in a worktree, merged. Nine bugs fixed, listed in `docs/review-rounds-2-to-4.md` and kept by
   `Tools/Tests/ReviewRounds2to4Tests.cs`: the ordeal's burns with no gathering, the "wear" job given to downed or drafted

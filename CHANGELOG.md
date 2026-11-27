@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New moments, memories and quirks between your people
+
+*27 November 2026, version 0.317.0*
+
+- Eight new moments between the colony's people: the spring sowing, a summer evening outside, two old hands remembering the early days on a winter evening, a newcomer showing the way they did the work back home, a game that got heated, making up over a meal, a child's question about someone who died, and an elder and a child at the same work.
+- Each one comes from what the two are really doing on the map, takes the form of the colony's age, and takes a share of the day's social moments rather than adding more.
+- Six new shared memories from these moments, each saying when it was: the spring sowing, a summer evening, the winter evenings, the game (a joke between the two), working beside an elder as a child, and the questions answered about someone who died. A memory with a child in it is talked over once the child has grown up.
+- Six new quirks picked up from these moments: talks about the early days, looks out for newcomers, plays to win, can't leave a quarrel standing, always has time for the children, and, for children, follows the old ones about.
+- Each new quirk has its own journal lines and dreams, and now and then the colonist says a word when it fits, such as at a game, at the table, or near a newcomer, a child or one of the old.
+
 ## Fixes to the new content
 
 *27 November 2026, version 0.316.1*
