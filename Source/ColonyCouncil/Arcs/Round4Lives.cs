@@ -15,6 +15,30 @@ namespace ColonyCouncil
     // what a story or a wish needs to remember it keeps in the fields they already save (a story's key and tag, a wish's
     // subjectKey, baseline and targetValue). The rules without game types are in Round4LivesMath.cs. Nobody is hurt.
 
+    /// <summary>
+    /// A cache kept for one game only: emptied when another game is begun or loaded, since map and wish ids start again
+    /// there and its benches and maps are not this game's.
+    /// </summary>
+    public sealed class R4LGameCache<TKey, TValue>
+    {
+        private readonly Dictionary<TKey, TValue> map = new Dictionary<TKey, TValue>();
+        private Game game;
+
+        public Dictionary<TKey, TValue> Now
+        {
+            get
+            {
+                var g = Current.Game;
+                if (g != game)
+                {
+                    map.Clear();
+                    game = g;
+                }
+                return map;
+            }
+        }
+    }
+
     /// <summary>Helpers the round's stories and wishes share.</summary>
     public static class Round4Lives
     {
@@ -30,12 +54,13 @@ namespace ColonyCouncil
 
         // ---------------- The seasons ----------------
 
-        private static readonly Dictionary<int, float> coldest = new Dictionary<int, float>();
+        private static readonly R4LGameCache<int, float> coldestOf = new R4LGameCache<int, float>();
 
         /// <summary>The mean of the land's coldest month, from the game's own climate (kept per map).</summary>
         public static float ColdestMonth(Map map)
         {
             if (map == null) return 99f;
+            var coldest = coldestOf.Now;
             if (coldest.TryGetValue(map.uniqueID, out float c)) return c;
             c = 99f;
             for (int i = 0; i < 12; i++) c = Mathf.Min(c, GenTemperature.AverageTemperatureAtTileForTwelfth(map.Tile, (Twelfth)i));
@@ -136,13 +161,14 @@ namespace ColonyCouncil
 
         // ---------------- Snow ----------------
 
-        private static readonly Dictionary<int, (int hour, int cells)> snow = new Dictionary<int, (int, int)>();
+        private static readonly R4LGameCache<int, (int hour, int cells)> snowOf = new R4LGameCache<int, (int hour, int cells)>();
 
         /// <summary>Open ground in the home area under snow deep enough for a snowman (counted once an hour per map).</summary>
         public static int DeepSnow(Map map)
         {
             if (map?.snowGrid == null || !map.IsPlayerHome) return 0;
             int hour = Find.TickManager.TicksGame / GenDate.TicksPerHour;
+            var snow = snowOf.Now;
             if (snow.TryGetValue(map.uniqueID, out var k) && k.hour == hour) return k.cells;
             int n = 0;
             foreach (var c in map.areaManager.Home.ActiveCells)
@@ -435,7 +461,7 @@ namespace ColonyCouncil
     /// </summary>
     public abstract class R4LWishWorker_Visit : WishWorker
     {
-        private static readonly Dictionary<int, int> lastArranged = new Dictionary<int, int>();
+        private static readonly R4LGameCache<int, int> lastArrangedOf = new R4LGameCache<int, int>();
 
         /// <summary>The visit (or gathering), set going now; null when it can't be.</summary>
         protected abstract PlayOut Plan(Wish w);
@@ -456,6 +482,7 @@ namespace ColonyCouncil
         {
             if (w == null || w.baseline >= 1f) return null;
             int now = Find.TickManager.TicksGame;
+            var lastArranged = lastArrangedOf.Now;
             if (!promising && lastArranged.TryGetValue(w.id, out int last) && now - last < GenDate.TicksPerDay / 2) return null;
             lastArranged[w.id] = now;
             if (lastArranged.Count > 100) lastArranged.Clear();
@@ -495,8 +522,8 @@ namespace ColonyCouncil
     /// </summary>
     public class R4LWishWorker_NewMake : WishWorker
     {
-        private static readonly Dictionary<int, (int hour, List<(Building_WorkTable bench, RecipeDef recipe)> list)> known =
-            new Dictionary<int, (int, List<(Building_WorkTable, RecipeDef)>)>();
+        private static readonly R4LGameCache<int, (int hour, List<(Building_WorkTable bench, RecipeDef recipe)> list)> knownOf =
+            new R4LGameCache<int, (int hour, List<(Building_WorkTable bench, RecipeDef recipe)> list)>();
 
         private static bool Kind(ThingDef d) =>
             d != null && !d.IsDrug && !d.IsMedicine && !d.IsStuff && d.category == ThingCategory.Item
@@ -541,6 +568,7 @@ namespace ColonyCouncil
         private static List<(Building_WorkTable bench, RecipeDef recipe)> Options(Map map)
         {
             int hour = Find.TickManager.TicksGame / GenDate.TicksPerHour;
+            var known = knownOf.Now;
             if (known.TryGetValue(map.uniqueID, out var k) && k.hour == hour) return k.list;
             var list = new List<(Building_WorkTable, RecipeDef)>();
             var stock = Making.Stock(map);

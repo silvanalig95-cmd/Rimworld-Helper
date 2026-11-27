@@ -1307,6 +1307,8 @@ namespace ColonyCouncil
             if (Harm.Roll(HarmKinds.TooClose, Round2EventsMath.MadChance)
                 && x.mindState.mentalStateHandler.TryStartMentalState(MentalStateDefOf.Manhunter, null, true, true))
             {
+                // A hurt that comes the game's own way: counted in the shared budget, as a beast that turns on someone is.
+                HarmBook.Instance?.Came(HarmKinds.TooClose, Find.TickManager.TicksGame);
                 Tell.Message(NewsKind.Colony, Importance.Important, map, "CC_R2_Wrong_Mad".Translate(x.LabelShort.Named("X")).Resolve(), new LookTargets(x), MessageTypeDefOf.ThreatSmall);
                 return;
             }
@@ -1438,11 +1440,15 @@ namespace ColonyCouncil
 
         private static bool There(Pawn x, Map map) => x != null && !x.Dead && x.Spawned && x.Map == map && !x.Downed && x.Faction == null && !x.IsPrisoner;
 
+        /// <summary>The one who would make the arrest is here and up to it (not downed, in a break or gone from the map).</summary>
+        private static bool Arrester(Pawn a, Map map) => a != null && !a.Dead && a.Spawned && a.Map == map && !a.Downed && !a.InMentalState;
+
         public override string Unavailable(DilemmaContext ctx)
         {
             var x = ctx?.stranger;
             if (!There(x, ctx?.map)) return "CC_R2_Hid_Gone".Translate().Resolve();
-            if (mode == "take" && (ctx.a == null || RestUtility.FindBedFor(x, ctx.a, false, false, GuestStatus.Prisoner) == null)) return "CC_R2_Hid_NoBed".Translate().Resolve();
+            if (mode == "take" && !Arrester(ctx.a, ctx.map)) return "CC_WeaponPick_Busy".Translate((ctx.a?.LabelShort ?? "").Named("PAWN")).Resolve();
+            if (mode == "take" && RestUtility.FindBedFor(x, ctx.a, false, false, GuestStatus.Prisoner) == null) return "CC_R2_Hid_NoBed".Translate().Resolve();
             return null;
         }
 
@@ -1469,7 +1475,7 @@ namespace ColonyCouncil
             switch (mode)
             {
                 case "take":
-                    var bed = ctx.a == null ? null : RestUtility.FindBedFor(x, ctx.a, false, false, GuestStatus.Prisoner);
+                    var bed = !Arrester(ctx.a, map) ? null : RestUtility.FindBedFor(x, ctx.a, false, false, GuestStatus.Prisoner);
                     if (bed == null) return;
                     k.pawns.Add(ctx.a);
                     if (ctx.b != null && ctx.b != ctx.a) k.pawns.Add(ctx.b);
@@ -1569,8 +1575,16 @@ namespace ColonyCouncil
             }
         }
 
+        /// <summary>
+        /// Over with them still about, nobody's and free (the arrest given up, the time out, the cap): they slip away off the land
+        /// rather than stay on it for good.
+        /// </summary>
         public static void End(TimedThing k)
         {
+            var x = k.pawn;
+            if (x == null || x.Dead || !x.Spawned || x.Map != k.map || x.Downed || x.IsPrisoner || x.InMentalState || x.Faction != null || x.GetLord() != null) return;
+            if (x.CurJob != null && x.CurJob.exitMapOnArrival) return;
+            Round2Map.Leave(x);
         }
     }
 

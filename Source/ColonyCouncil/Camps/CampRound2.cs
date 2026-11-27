@@ -786,12 +786,13 @@ namespace ColonyCouncil
                     // Carved where it stands: set up now, of the stone they brought, the carver's work.
                     var def = st.Def;
                     if (def == null) return;
+                    // The ground clear first (nothing built, nobody standing on it): else it waits, and the stone they brought stays.
+                    if (!GenAdj.OccupiedRect(st.site, Rot4.North, def.size).Cells.All(x => x.InBounds(map) && x.Standable(map) && x.GetEdifice(map) == null && x.GetFirstPawn(map) == null)) return;
                     foreach (var t in GenRadial.RadialDistinctThingsAround(st.site, map, 3f, true).Where(t => t.def == st.Stuff && c.Owns(t)).ToList()) t.Destroy();
                     var thing = ThingMaker.MakeThing(def, def.MadeFromStuff ? st.Stuff ?? GenStuff.DefaultStuffFor(def) : null);
                     thing.TryGetComp<CompQuality>()?.SetQuality(QualityCategory.Good, ArtGenerationContext.Outsider);
                     var art = thing.TryGetComp<CompArt>();
                     if (art != null && maker != null) art.JustCreatedBy(maker);
-                    if (!GenAdj.OccupiedRect(st.site, Rot4.North, def.size).Cells.All(x => x.InBounds(map) && x.Standable(map) && x.GetEdifice(map) == null)) return;
                     built = (Building)GenSpawn.Spawn(thing, st.site, map, Rot4.North);
                 }
                 // Left to the colony: theirs no more, so never packed; the colony's art, to dedicate to a god if it will.
@@ -859,7 +860,8 @@ namespace ColonyCouncil
             int hour = GenLocalDate.HourOfDay(c.map);
             if (hour < 7 || hour > 17 || !Rand.Chance(0.6f)) return null;
             var at = CampRound2.Near(c, p, st.site, 2);
-            if (!at.IsValid) return null;
+            // Beside the stone, never on the ground it will stand on.
+            if (!at.IsValid || st.Def != null && GenAdj.OccupiedRect(st.site, Rot4.North, st.Def.size).Contains(at)) return null;
             if (st.lastDay != GenDate.DaysPassed && hour >= 12)
             {
                 st.lastDay = GenDate.DaysPassed;

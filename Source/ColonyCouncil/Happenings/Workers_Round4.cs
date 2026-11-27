@@ -57,6 +57,12 @@ namespace ColonyCouncil
                 case TimedKind.R4EMelt:
                     R4EMeltMap.End(k);
                     break;
+                case TimedKind.R4EShore:
+                    // Over before the sea took it back (the cap, a lost map): what still lies there is no longer held from the haulers.
+                    if (early)
+                        foreach (var t in k.things.Where(t => t != null && t.Spawned && !t.Destroyed))
+                            t.SetForbidden(false, false);
+                    break;
             }
         }
 
