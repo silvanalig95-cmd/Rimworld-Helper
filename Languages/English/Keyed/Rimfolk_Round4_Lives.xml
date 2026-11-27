@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Content round 4, the colonists' own lives (docs/content-round-4-lives.md; Source/ColonyCouncil/Arcs/Round4Lives.cs):
+    why a wish came up, what a promise sets going, what the plans on the map are called, and the elders' rooms goal. Plain
+    words: they say what happens, and when, by the hours of the day; no countdowns.
+  -->
+
+  <!-- ===================== Why a wish came up ===================== -->
+
+  <CC_R4L_Reason_NewMake>{PAWN_nameDef} has noticed that the colony could make {THING} at the {BENCH}, has everything it needs, and has never made one.</CC_R4L_Reason_NewMake>
+  <CC_R4L_Reason_OldFriend>{PAWN_nameDef} and {OTHER_nameDef} are good friends, and haven't had a proper talk in days.</CC_R4L_Reason_OldFriend>
+  <CC_R4L_Reason_ReadToMe>{PAWN_nameDef}'s eyes are too poor for reading now. {OTHER_nameDef} is fond of {PAWN_objective} and reads well.</CC_R4L_Reason_ReadToMe>
+  <CC_R4L_Reason_FrostHarvest>It is autumn and winter is coming. {PAWN_nameDef} has counted {COUNT} ripe plants still standing in the colony's fields.</CC_R4L_Reason_FrostHarvest>
+  <CC_R4L_Reason_SnowDay>There's deep snow on the ground, and {PAWN_nameDef} wants to go out in it.</CC_R4L_Reason_SnowDay>
+  <CC_R4L_Reason_GraveWord>{DEAD} died not long ago and lies buried here. {PAWN_nameDef} thought well of {DEAD}, and never said a word at the grave.</CC_R4L_Reason_GraveWord>
+  <CC_R4L_Reason_Visitors>Visitors from {FACTION} are on the colony's land, and {PAWN_nameDef} hasn't spoken with them yet.</CC_R4L_Reason_Visitors>
+  <CC_R4L_Reason_ShrineHour>{PAWN_nameDef} is having a hard time, and holds to {GOD}. There is a shrine of {GOD} at home.</CC_R4L_Reason_ShrineHour>
+
+  <!-- ===================== What a promise sets going ===================== -->
+
+  <CC_R4L_Promise_NewMake>A bill for {THING} is set first at the bench, for {FOR_nameDef} if {FOR_pronoun} can make it.</CC_R4L_Promise_NewMake>
+  <CC_R4L_SelfHelp_NewMake>Tired of waiting, {PAWN_nameDef} set a bill for {THING} at the bench. Remove it if you'd rather not.</CC_R4L_SelfHelp_NewMake>
+  <CC_R4L_Promise_OldFriend>{FOR_nameDef} will go over to {OTHER_nameDef} this evening, and the two will sit down together for a couple of hours.</CC_R4L_Promise_OldFriend>
+  <CC_R4L_Promise_OldFriendTogether>{FOR_nameDef} and {OTHER_nameDef} will sit down together the next time they're both free.</CC_R4L_Promise_OldFriendTogether>
+  <CC_R4L_Promise_ReadToMe>{OTHER_nameDef} will come and sit with {FOR_nameDef} this evening and read aloud.</CC_R4L_Promise_ReadToMe>
+  <CC_R4L_Promise_ReadToMeTogether>{OTHER_nameDef} will read to {FOR_nameDef} the next time the two are together.</CC_R4L_Promise_ReadToMeTogether>
+  <CC_R4L_Promise_FrostHarvest>The council marks the {TARGET} ripe plants in the fields for harvest. The colony's people will bring them in.</CC_R4L_Promise_FrostHarvest>
+  <CC_R4L_SelfHelp_FrostHarvest>Tired of waiting, {PAWN_nameDef} marked the ripe plants in the fields for harvest. Cancel the marks if you'd rather leave them.</CC_R4L_SelfHelp_FrostHarvest>
+  <CC_R4L_Promise_SnowDay>A snow day is called: whoever is free goes out in the snow with {FOR_nameDef} in the daytime, and {FOR_nameDef} builds a snowman.</CC_R4L_Promise_SnowDay>
+  <CC_R4L_Promise_SnowDayAlone>{FOR_nameDef} runs out into the snow to build a snowman.</CC_R4L_Promise_SnowDayAlone>
+  <CC_R4L_Promise_GraveWord>{FOR_nameDef} will go to {SUBJECT}'s grave in the daytime and stand there a while.</CC_R4L_Promise_GraveWord>
+  <CC_R4L_Promise_GraveWordWalk>{FOR_nameDef} walks to {SUBJECT}'s grave.</CC_R4L_Promise_GraveWordWalk>
+  <CC_R4L_Promise_Visitors>{FOR_nameDef} will go over to {OTHER_nameDef} of {SUBJECT} and spend an hour with {OTHER_objective}.</CC_R4L_Promise_Visitors>
+  <CC_R4L_Promise_VisitorsWalk>{FOR_nameDef} goes over to where {OTHER_nameDef} of {SUBJECT} is.</CC_R4L_Promise_VisitorsWalk>
+  <CC_R4L_Promise_ShrineHour>{FOR_nameDef} will go to the shrine of {SUBJECT} in the daytime and stay a while.</CC_R4L_Promise_ShrineHour>
+  <CC_R4L_Promise_ShrineHourWalk>{FOR_nameDef} walks to the shrine of {SUBJECT}.</CC_R4L_Promise_ShrineHourWalk>
+
+  <!-- ===================== The plans on the map ===================== -->
+
+  <CC_R4L_Play_OldFriend>an evening with an old friend</CC_R4L_Play_OldFriend>
+  <CC_R4L_Play_ReadToMe>reading to {PAWN_nameDef}</CC_R4L_Play_ReadToMe>
+  <CC_R4L_Play_SnowDay>the snow day</CC_R4L_Play_SnowDay>
+  <CC_R4L_Play_GraveWord>a word at {DEAD}'s grave</CC_R4L_Play_GraveWord>
+  <CC_R4L_Play_Visitors>an hour with the visitors from {FACTION}</CC_R4L_Play_Visitors>
+  <CC_R4L_Play_ShrineHour>{PAWN_nameDef}'s hour at the shrine</CC_R4L_Play_ShrineHour>
+
+  <!-- ===================== Progress ===================== -->
+
+  <CC_R4L_Wish_FrostHarvest_Progress>{0} still standing ripe</CC_R4L_Wish_FrostHarvest_Progress>
+  <CC_R4L_Goal_EldersRooms>Each elder in a bedroom of their own, impressiveness {0} or more ({1} / {2})</CC_R4L_Goal_EldersRooms>
+
+  <!-- ===================== The life goals' sparks, by the frame's own names (Aspirations.cs, CC_Asp_Spark_thought_*) ===================== -->
+
+  <CC_Asp_Spark_thought_Council_Moment_LostContest>after losing a friendly contest</CC_Asp_Spark_thought_Council_Moment_LostContest>
+  <CC_Asp_Spark_thought_RescuedMe>after being carried to safety</CC_Asp_Spark_thought_RescuedMe>
+
+</LanguageData>

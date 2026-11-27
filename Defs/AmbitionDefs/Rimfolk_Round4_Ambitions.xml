@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 4, the colonists' own lives: four ambitions (docs/content-round-4-lives.md, 21 to 24). Two count the
+    game's own records while they run (Goal_Record: plants sown, things made by hand); two have small goals of their own in
+    Source/ColonyCouncil/Arcs/Round4Lives.cs: a good old age (R4LGoal_EldersRooms: each of the colony's elders in a decent
+    bedroom of their own) and the neighbours' call (R4LGoal_NeighbourCall: one call for help answered; pitched only while
+    one runs). Each shows its scene on the map when reached and keeps its day on the calendar. Pitch lines may be tagged;
+    achieved lines can't. Ambitions, so the flavour style.
+  -->
+
+  <!-- ===================== 21. New fields ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_R4L_Amb_NewFields</defName>
+    <label>new fields</label>
+    <description>A hundred and fifty plants sown by the colony's people while the project runs: new fields laid out and planted, old ones sown again. Only for a colony where someone grows.</description>
+    <days>30</days>
+    <weight>0.9</weight>
+    <relevantCategories><li>Food</li></relevantCategories>
+    <proposerSkills><li>Plants</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Record">
+        <record>PlantsSown</record>
+        <count>150</count>
+        <needsWork>Growing</needsWork>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>We grow just enough to get by. I'd like to grow enough that a bad season doesn't scare us.</li>
+        <li>A hundred and fifty plants in the ground, new fields and old. Then we'll see what the land can really do.</li>
+        <li>[spring] The ground is soft and the days are getting long. This is the time to sow.</li>
+        <li>[lowmood] Nothing cheers people up like green rows coming up where there was only dirt.</li>
+        <li>[tribal] My people say the land gives back what you put into it. Let's put a lot into it.</li>
+        <li>[spacer] We have the seed and we have the soil. Let's plant as if we mean to stay.</li>
+      </plain>
+      <warm><li>I want full fields, so nobody here ever has to go hungry.</li></warm>
+      <blunt><li>More fields. More planting. More food.</li></blunt>
+      <cheerful><li>I can already picture it: rows and rows, as far as the fence.</li></cheerful>
+      <gloomy><li>One bad harvest and we're in trouble. More fields would give us room to fail.</li></gloomy>
+      <cold><li>More land under crops means more food per day of work in the long run.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>A hundred and fifty plants in the ground. The fields are bigger than they've ever been.</li></plain>
+      <warm><li>Everyone helped with the sowing. I'm proud of every row.</li></warm>
+      <cheerful><li>New fields everywhere I look. I can't wait for the harvest.</li></cheerful>
+      <gloomy><li>The fields are sown. Now it's up to the weather.</li></gloomy>
+      <cold><li>The sowing is done. The colony's fields are larger now.</li></cold>
+    </achieved>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>the supper after the sowing</label><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
+    <dayLabel>the day the new fields were sown</dayLabel>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== 22. The makers' month ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_R4L_Amb_MakersMonth</defName>
+    <label>the makers' month</label>
+    <description>Forty things made by hand by the colony's people while the project runs: tools, clothes, weapons, whatever the benches can turn out. Only for a colony where someone crafts.</description>
+    <days>30</days>
+    <weight>0.9</weight>
+    <relevantCategories><li>Progress</li></relevantCategories>
+    <proposerSkills><li>Crafting</li></proposerSkills>
+    <goals>
+      <li Class="ColonyCouncil.Goal_Record">
+        <record>ThingsCrafted</record>
+        <count>40</count>
+        <needsWork>Crafting</needsWork>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Half of what we use was taken off raiders or bought from traders. I'd like us to make our own.</li>
+        <li>Forty things made at our own benches in a month. It would change what we think we can do.</li>
+        <li>[lowmood] People feel better when they can point at something and say they made it.</li>
+        <li>[tribal] A people that makes its own tools owes nothing to anyone. Let's be that people.</li>
+        <li>[spacer] The benches can make more than we ask of them. Let's find out how much more.</li>
+      </plain>
+      <warm><li>I'd like every one of us to own something made here, by someone they know.</li></warm>
+      <blunt><li>Forty things. Our benches. One month.</li></blunt>
+      <cheerful><li>A whole month of making things! I've got a list as long as my arm.</li></cheerful>
+      <gloomy><li>If the traders stopped coming, could we look after ourselves? Let's make sure we could.</li></gloomy>
+      <cold><li>Making our own goods costs less than buying them and teaches the makers.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Forty things made at our own benches. Look around: half of what you see, we made.</li></plain>
+      <warm><li>Everyone's wearing or carrying something made here now. I love that.</li></warm>
+      <cheerful><li>Forty! My hands may never forgive me.</li></cheerful>
+      <gloomy><li>We can look after ourselves now, mostly. That's worth something.</li></gloomy>
+      <cold><li>Forty goods made. The colony relies less on traders now.</li></cold>
+    </achieved>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>the makers' evening</label><spots><li>Dining</li><li>Gather</li></spots><hours>17~21</hours><duration>1.5~2</duration></li>
+    </achievedEffects>
+    <dayLabel>the end of the makers' month</dayLabel>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== 23. A good old age ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_R4L_Amb_GoodOldAge</defName>
+    <label>a good old age</label>
+    <description>Every one of the colony's elders sleeping in a bedroom of their own, or shared with their partner, that is at least decent (impressiveness 30). A better bed, a floor, a light, some art and a little more space all help. Proposed while one of the elders goes without.</description>
+    <days>30</days>
+    <weight>0.9</weight>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li><li>Construction</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.R4LGoal_EldersRooms" />
+    </goals>
+    <pitch>
+      <plain>
+        <li>Our old ones built this place, and some of them sleep in the worst rooms in it. That isn't right.</li>
+        <li>I'd like every one of our elders to have a decent room to grow old in. They've earned it.</li>
+        <li>[winter] The cold gets into old bones. Our elders should have proper rooms before it does.</li>
+        <li>[lowmood] When the old are well looked after, everyone sleeps easier. We all get old, if we're lucky.</li>
+        <li>[tribal] My people give the warmest place by the fire to the eldest. Let's give ours a room worth having.</li>
+      </plain>
+      <warm><li>They looked after us. Now we look after them.</li></warm>
+      <blunt><li>The old ones need proper rooms. Build them.</li></blunt>
+      <cheerful><li>Let's make the elders' rooms so nice the rest of us get jealous.</li></cheerful>
+      <gloomy><li>None of us knows how many winters the old ones have left. Let's make them comfortable ones.</li></gloomy>
+      <cold><li>The elders hold what the colony knows. Their comfort is worth the timber.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>Every one of our elders has a decent room now. I walked past each door tonight just to see.</li></plain>
+      <warm><li>Our old ones are comfortable at last. They deserve every bit of it.</li></warm>
+      <cheerful><li>The elders' rooms are the best in the colony. Exactly as it should be.</li></cheerful>
+      <gloomy><li>They have good rooms now. I hope they have them for a long time.</li></gloomy>
+      <cold><li>The elders are well housed. That was owed to them.</li></cold>
+    </achieved>
+    <sceneOffice>Council_Office_Elder</sceneOffice>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Feast"><label>a supper for the old</label><toast>true</toast><hours>17~21</hours><duration>2~2.5</duration></li>
+    </achievedEffects>
+    <dayLabel>the day the elders had good rooms</dayLabel>
+  </ColonyCouncil.AmbitionDef>
+
+  <!-- ===================== 24. The neighbours' call ===================== -->
+
+  <ColonyCouncil.AmbitionDef>
+    <defName>Rimfolk_R4L_Amb_NeighboursCall</defName>
+    <label>the neighbours' call</label>
+    <description>Answer a call for help from the colony's neighbours: one of the colony's people sent when word comes that a people nearby needs it. Proposed only while such a call is running, with world events on.</description>
+    <days>30</days>
+    <weight>1</weight>
+    <relevantCategories><li>Comfort</li></relevantCategories>
+    <proposerSkills><li>Social</li></proposerSkills>
+    <proposerTraits><li>Kind</li></proposerTraits>
+    <goals>
+      <li Class="ColonyCouncil.R4LGoal_NeighbourCall">
+        <record>Council_WorldCallsAnswered</record>
+        <count>1</count>
+      </li>
+    </goals>
+    <pitch>
+      <plain>
+        <li>Our neighbours are asking for help. One day it'll be us asking. Let's answer.</li>
+        <li>Word has come that the people nearby are in trouble. I'd like us to send someone.</li>
+        <li>[lowmood] We spend all our time worrying about ourselves. Helping someone else would do us good.</li>
+        <li>[tribal] My people never turned away a neighbour who came asking. Neither should we.</li>
+        <li>[spacer] Out here, the nearest help is whoever lives over the hill. Right now that's us.</li>
+      </plain>
+      <warm><li>If we were the ones in trouble, I'd want someone to come. Let's be the ones who come.</li></warm>
+      <blunt><li>Neighbours need help. Send someone.</li></blunt>
+      <cheerful><li>A chance to be the good neighbours for once. Let's take it.</li></cheerful>
+      <gloomy><li>If we turn our backs now, nobody will answer when we call.</li></gloomy>
+      <cold><li>Help given now is help we can ask for later. It is a sound use of a few days.</li></cold>
+    </pitch>
+    <achieved>
+      <plain><li>We answered the neighbours' call. They'll remember who came.</li></plain>
+      <warm><li>We helped them when they needed it. That's what neighbours are for.</li></warm>
+      <cheerful><li>We were the good neighbours. I knew we had it in us.</li></cheerful>
+      <gloomy><li>We helped this time. I hope someone helps us when it's our turn.</li></gloomy>
+      <cold><li>The call was answered. The colony's word is worth more for it.</li></cold>
+    </achieved>
+    <achievedEffects>
+      <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a toast to the ones who went</label><organizer>A</organizer><hours>17~21</hours></li>
+    </achievedEffects>
+    <dayLabel>the day the colony answered its neighbours</dayLabel>
+  </ColonyCouncil.AmbitionDef>
+
+</Defs>
