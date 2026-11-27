@@ -437,6 +437,13 @@ PLAY = {
     "DilemmaEffect_SeatSupper": "words at supper",
     # Help sent home (World/KinNews.cs): the food or medicine carried out of the stores to the gate for their courier.
     "DilemmaEffect_KinSendHome": "the help carried to the gate for their courier",
+    # round 4, council and world (Dilemmas/DilemmaWorkers_Round4.cs): work handed over while a decree lasts, an animal's bed
+    # set in a corner of someone's room, dry growth at the colony's edge marked for a firebreak; and the deputy who does a
+    # seat's daily work in its holder's place (CouncilLife/StepDown.cs), which the seat while its holder is away uses too.
+    "DilemmaEffect_R4CHandOver": "work handed over",
+    "DilemmaEffect_R4CPetBed": "a bed set in the room",
+    "DilemmaEffect_R4CFirebreak": "a firebreak marked",
+    "DilemmaEffect_Deputy": "a deputy at the seat's work",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

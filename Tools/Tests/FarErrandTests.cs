@@ -25,7 +25,9 @@ public static class FarErrandTests
         ("Council_WS_Moot", "herald", 1, 4f), ("Council_WS_OldBeast", "watch", 0, 4f), ("Council_WS_RivalColony", "poaching", 1, 0.5f),
         ("Council_WS_RivalColony", "poaching", 2, 0f), ("Rimfolk_WS_FoundingDay", "invite", 2, 2f),
         // The content round's third part (Rimfolk_WS_Round3.xml): the colony's best miner sent to dig out the miners of a fallen mine.
-        ("Rimfolk_WS_MineFall", "help", 1, 2f)
+        ("Rimfolk_WS_MineFall", "help", 1, 2f),
+        // The content round's fourth part (Rimfolk_WS_Round4.xml): one of the colony with an ache sent to bathe at the warm springs.
+        ("Rimfolk_WS_WarmSprings", "send", 0, 3f)
     };
 
     public static int Run(Action<bool, string> check)

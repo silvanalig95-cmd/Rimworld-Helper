@@ -1,0 +1,786 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The content round's fourth set of council questions (docs/content-round-4-council-world.md, R4C-1 to R4C-10; Source/
+       ColonyCouncil/Dilemmas/DilemmaWorkers_Round4.cs): ten, over the colony's work and stores (the stone by the walls, the
+       night owl), the council's own seats and decrees (the seat while its holder is away, too hard on one), guests (the
+       visiting master), prisoners and slaves (the cold cell, a rest for a slave), animals (a bed for the animal), the seasons
+       (the dry grass by the walls) and faith (words before supper). Council questions, so the flavour style; each answer
+       plays out on the map. -->
+
+  <!-- ===================== R4C-1. The stone by the walls ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_Stone</defName>
+    <label>the stone by the walls</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CStone</workerClass>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>Since the digging, stone lies everywhere inside the colony's bounds: heaped by the doors, scattered across the yard, in the way of every barrow. {A_nameDef} wants it brought in, or cut into blocks for the walls. {B_nameDef} says the fields need every hand this week, and the stone isn't going anywhere.</li>
+      <li>{A_nameDef} tripped over the same lump of rock on the way to the council and took it as a sign. The yard is full of stone from the digging, {A_pronoun} says, and every piece of it could be a wall. {B_nameDef} says it could also wait.</li>
+      <li>[lowtech] The stones from the digging lie all about the huts, and the children have built a fort of them by the fire pit. {A_nameDef} wants them brought to the heap and shaped for the walls. {B_nameDef} says the fields come first, as they always have.</li>
+      <li>[!lowtech] Rubble from the digging lies all over the colony's ground, and {A_nameDef} has been saying for days that it is good stone wasted. {B_nameDef} says the crops won't wait while the colony tidies its yard.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Everyone carries the stone in</label>
+        <outcome>A few of the colony are to carry the stone in from the yard and the doorways for a few hours, one load at a time.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the stone carried in</label><target>Colony</target><tasks><li>Stone</li><li>Haul</li></tasks><count>5</count><hours>8~16</hours><duration>3~4</duration>
+            <lines>
+              <li>Mind your back with that one.</li>
+              <li>Two more loads and we stop for water.</li>
+              <li>Who left this one in the doorway?</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_StoneIn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_FieldsWaited</thought><chance>0.5</chance></li>
+        </effects>
+        <ways><toil>2</toil></ways>
+      </li>
+      <li>
+        <label>Cut it into blocks at the stonecutter's</label>
+        <outcome>A bill for blocks is set at the stonecutter's bench, first in line, for the stone that lies about.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.Round3CouncilBill" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_StoneCut</thought></li>
+        </effects>
+        <ways><toil>1</toil></ways>
+      </li>
+      <li>
+        <label>The fields first</label>
+        <outcome>The council said the fields come first. The stone stays where it lies.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_StoneLeft</thought></li>
+        </effects>
+        <ways><tradition>1</tradition></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_StoneIn</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the stone brought in</label><description>The council had the stone brought in from the yard. I can walk to my own door without climbing over rocks.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_FieldsWaited</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>the fields left waiting</label><description>Half the colony is moving stone while the fields go untended. I said it could wait.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_StoneCut</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>good stone put to use</label><description>The stone from the digging is to be cut into blocks. It will be a wall one day instead of something to trip over.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_StoneLeft</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the stone left lying</label><description>The council left the stone where it lies. I'll be stepping round it for weeks.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-2. The night owl ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_NightOwl</defName>
+    <label>the night owl</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CNightOwl</workerClass>
+    <weight>1</weight>
+    <cooldownDays>45</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} has never been any good in the mornings, and it is getting worse. {A_pronoun} works half asleep all day and lies awake all night. {A_pronoun} asks the council to let {A_objective} keep the night hours, when {A_pronoun} is at {A_possessive} best. {B_nameDef} says the colony works by day, all of it, and that's that.</li>
+      <li>[roommate] {A_nameDef} wants to work through the nights and sleep by day. {B_nameDef}, who shares {A_possessive} room, says that means someone coming in at dawn and the curtains drawn at noon, and isn't keen.</li>
+      <li>[lowtech] {A_nameDef} sits up by the fire every night long after the others have gone to sleep, and is no use to anyone in the morning. {A_pronoun} would rather work while the others sleep, and sleep while they work. {B_nameDef} says the day is for work and the night is for sleep.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} keeps the night hours for a while</label>
+        <outcome>{A_nameDef} is to work the nights and sleep through the days for a while, and come back to the colony's hours after.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>A</target><plan>apart</plan><label>{A_nameDef}'s night hours</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_NightHours</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_OddHours</thought><chance>0.5</chance></li>
+        </effects>
+        <ways><openness>1</openness><mercy>1</mercy></ways>
+      </li>
+      <li>
+        <label>One night at the bench, to see how it goes</label>
+        <outcome>{A_nameDef} is to work through tonight and sleep the morning after, to see how it goes.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Hours"><target>A</target><plan>night</plan><label>{A_nameDef}'s night at work</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_NightTried</thought></li>
+        </effects>
+        <ways><openness>1</openness></ways>
+      </li>
+      <li>
+        <label>The colony keeps one day</label>
+        <outcome>The council said the colony keeps one day for all of it. {A_nameDef} will have to get used to the mornings.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_MorningsAgain</thought></li>
+        </effects>
+        <ways><tradition>1</tradition><toil>1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_NightHours</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>my own hours</label><description>The council let me keep the night hours. I work when I'm awake and sleep when I'm tired, and I feel like myself again.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_OddHours</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>someone up all night</label><description>The council let one of us keep the night hours. It's strange having someone up and about while the rest of us sleep.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_NightTried</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a night at the work</label><description>The council let me try a night at the work. It was the best I've worked in weeks.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_MorningsAgain</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>mornings again</label><description>The council said I keep the same hours as everyone else. I'm awake when I should be asleep and asleep when I should be awake.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-3. The seat while its holder is away ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_SeatAway</defName>
+    <label>the seat while its holder is away</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CSeatAway</workerClass>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef}, the {OFFICE}, is away from the colony, and the seat's work has waited for {A_objective} ever since {A_pronoun} left. {B_nameDef} knows enough of it to keep it going, and has offered, if the council agrees.</li>
+      <li>[caravan] {A_nameDef} is out on the road with the caravan, and nobody is doing the {OFFICE}'s work while {A_pronoun} is gone. {B_nameDef} has asked the council whether {B_pronoun} should take it on until {A_nameDef} is home.</li>
+      <li>[far] {A_nameDef}, the {OFFICE}, is far from home, and the things that are the {OFFICE}'s to see to are piling up. {B_nameDef} says someone ought to see to them, and is willing.</li>
+      <li>[lowtech] The {OFFICE} is away, and the matters that are {A_nameDef}'s to settle are piling up by the door of the long hut. {B_nameDef} has offered to settle them until {A_nameDef} is back by the fire.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{B_nameDef} stands in for {A_nameDef} for a while</label>
+        <outcome>{B_nameDef} takes on the {OFFICE}'s work for a while, in {A_nameDef}'s place.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Deputy" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_StoodIn</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+        <ways><openness>1</openness></ways>
+      </li>
+      <li>
+        <label>{B_nameDef} reads out the seat's business at supper</label>
+        <outcome>{B_nameDef} will read out what is waiting for the {OFFICE} at supper, so the colony knows how things stand until {A_nameDef} is home.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>the {OFFICE}'s business</label><organizer>B</organizer><spots><li>Dining</li><li>Gather</li></spots><hours>17~20</hours><duration>0.75~1</duration>
+            <lines>
+              <li>Here is what is waiting for the {OFFICE}, so nobody can say they didn't know.</li>
+              <li>None of this is mine to settle, but all of it should be heard.</li>
+              <li>{A_nameDef} will have plenty to see to when {A_pronoun} gets home.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_SeatRead</thought></li>
+        </effects>
+        <ways><openness>1</openness><tradition>1</tradition></ways>
+      </li>
+      <li>
+        <label>The seat waits for {A_nameDef}</label>
+        <outcome>The council said the seat is {A_nameDef}'s, and its work waits until {A_pronoun} is home.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_SeatKept</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_PassedOver</thought></li>
+        </effects>
+        <ways><tradition>2</tradition></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_StoodIn</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>trusted with a seat's work</label><description>The council asked me to do the work of a seat while its holder is away. They trust me with it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SeatRead</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the seat's business read out</label><description>I read out the seat's business at supper so everyone knows where things stand. It's the least anyone could do.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SeatKept</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my seat kept for me</label><description>I heard the council kept my seat's work for me while I was away. Nobody tried to take it over.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_PassedOver</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>my offer turned down</label><description>I offered to do the seat's work while its holder is away, and the council said it can wait. So it waits.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-4. Too hard on one ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_DecreeToll</defName>
+    <label>too hard on one</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CDecreeToll</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>0.75</answerDays>
+    <texts>
+      <li>{DECREE} has the whole colony working harder, and it is more than {A_nameDef} can manage. {A_pronoun} has asked the council for some ease while it lasts. {B_nameDef} could take on {A_possessive} {WORK}, if the council says so.</li>
+      <li>[elder] {DECREE} is hard on everyone, and harder on {A_nameDef}, who is not as young as the rest of them. {A_pronoun} has asked the council for some ease while it lasts. {B_nameDef} could take on {A_possessive} {WORK} until it is over.</li>
+      <li>[ill] {A_nameDef} is unwell, and {DECREE} gives {A_objective} no room to get better. {A_pronoun} asks the council for ease while it lasts. {B_nameDef} could do {A_possessive} {WORK} in the meantime.</li>
+      <li>[injured] {A_nameDef}'s old injury has been bad since {DECREE} began, and {A_pronoun} came to the council favouring it. {B_nameDef} could take on {A_possessive} {WORK} while the decree lasts.</li>
+      <li>[worn] {A_nameDef} is worn to the bone with {DECREE}, and says so. {B_nameDef} could take on {A_possessive} {WORK} until the decree ends, if the council asks it.</li>
+      <li>[lowtech] Since the council's word went out for {DECREE}, {A_nameDef} has dragged {A_objective}self from the fire to the work and back, and has asked for ease. {B_nameDef} could do {A_possessive} {WORK} for a while.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} has today off</label>
+        <outcome>{A_nameDef} has today off, decree or not.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_HeartDayOff"><target>A</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_DayOffDecree</thought></li>
+        </effects>
+        <ways><mercy>1</mercy><toil>-1</toil></ways>
+      </li>
+      <li>
+        <label>{B_nameDef} takes on {A_nameDef}'s {WORK} while the decree lasts</label>
+        <outcome>{B_nameDef} does {A_nameDef}'s {WORK} until {DECREE} ends, and then it goes back to {A_objective}.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4CHandOver" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_WorkLightened</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_ExtraWork</thought><chance>0.5</chance><exceptTrait><li>Kind</li></exceptTrait></li>
+        </effects>
+        <ways><mercy>1</mercy></ways>
+      </li>
+      <li>
+        <label>The decree is for the whole colony</label>
+        <outcome>The council said the decree is for the whole colony, and that includes {A_nameDef}.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_NoEase</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+        </effects>
+        <ways><toil>2</toil><mercy>-1</mercy></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_DayOffDecree</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a day off from the decree</label><description>The council gave me a day off in the middle of the decree. I needed it more than I let on.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_WorkLightened</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>my work lightened</label><description>Someone else is doing my work while the decree lasts. I can get through it now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_ExtraWork</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>someone else's work too</label><description>I'm doing my own work and someone else's while the decree lasts. Someone has to, I suppose.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_NoEase</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>no ease from the decree</label><description>I asked the council for some ease while the decree lasts, and they said it's for everyone. I know that. It's still too much for me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-5. The visiting master ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_VisitingMaster</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
+    <label>the visiting master</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CVisitingMaster</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>35</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.4</answerDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} is the finest hand at {SKILL} anyone here has seen, and {A_nameDef} has followed {X_objective} about the colony since {X_pronoun} arrived. {A_pronoun} wants the council to ask {X_nameDef} for an afternoon of teaching. {B_nameDef} says the visitors are here to trade, not to be pestered.</li>
+      <li>{A_nameDef} watched {X_nameDef} of {FACTION} for an hour this morning and came to the council bright-eyed. Nobody at the colony is half as good at {SKILL}, {A_pronoun} says, and here {X_pronoun} is. {B_nameDef} thinks a guest should be let alone.</li>
+      <li>[theirLowtech] {X_nameDef}, who came with the {FACTION} visitors, works at {SKILL} in a way {A_nameDef} has never seen, and {A_nameDef} can talk about nothing else. {B_nameDef} thinks a guest should be left in peace by the fire.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, says {X_nameDef} of {FACTION} would likely teach a little {SKILL} if asked. {A_nameDef} is ready to drop everything for it. {B_nameDef} says the colony shouldn't make work for its guests.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>An afternoon at {X_nameDef}'s side</label>
+        <outcome>{X_nameDef} agreed to show {A_nameDef} how {X_pronoun} works, and {A_nameDef} will spend the afternoon at {X_possessive} side.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4CStay" />
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>{A_nameDef} learns from {X_nameDef}</label><teacher>X</teacher><student>A</student><xpPerHour>180</xpPerHour><hours>9~17</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_LearnedFromMaster</thought></li>
+        </effects>
+        <ways><openness>2</openness></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} sits with {X_nameDef} at supper and asks about it</label>
+        <outcome>{A_nameDef} will sit across from {X_nameDef} at supper and ask {X_objective} everything {A_pronoun} can think of.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4CStay" />
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} and {X_nameDef} at supper</label><who>A</who><to>Stranger</to><sit>true</sit><hours>17~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_TalkedCraft</thought></li>
+        </effects>
+        <ways><openness>1</openness></ways>
+      </li>
+      <li>
+        <label>Guests are left to their business</label>
+        <outcome>The council said guests are left to their business. {A_nameDef} looked on from a distance and said nothing.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_MasterMissed</thought></li>
+        </effects>
+        <ways><openness>-1</openness></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_LearnedFromMaster</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>learned from a master</label><description>A visitor who really knows the craft let me work beside them. I learned more in an afternoon than in a season on my own.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_TalkedCraft</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>talked the craft with a master</label><description>I sat with a visitor who knows the craft far better than I do and asked every question I had. They answered all of them.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_MasterMissed</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a chance missed</label><description>The best at my craft I've ever met was right here, and the council wouldn't let me ask them anything.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-6. The cold cell ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_ColdCell</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
+    <label>the cold cell</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CColdCell</workerClass>
+    <weight>1.5</weight>
+    <cooldownDays>25</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.5</answerDays>
+    <timely>true</timely>
+    <texts>
+      <li>{X_nameDef}, in the colony's cell, is shaking with cold, and the cell is hardly warmer than the yard. {A_nameDef}, who keeps the cell, wants something done about it. {B_nameDef} says a prisoner who is cold is a prisoner who thinks twice about raiding again.</li>
+      <li>{A_nameDef} came back from the cell with frost on {A_possessive} sleeves and asked for a fire for {X_nameDef}, who can't stop shivering. {B_nameDef} would rather the wood went to the colony's own rooms.</li>
+      <li>[lowtech] The cold has got into the cell hut, and {X_nameDef} of {FACTION} lies curled up against the wall. {A_nameDef} asks for a fire in there. {B_nameDef} says the colony's fires are for the colony.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, says the cell is too cold for anyone to sleep in. {A_nameDef} wants a fire lit in there for {X_nameDef}; {B_nameDef} doesn't see why.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>A fire in the cell</label>
+        <outcome>A fire is set in a corner of {X_nameDef}'s cell, with wood enough for a few nights.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_KeepFire"><forWhom>X</forWhom><wood>40</wood></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_DlmR4_FireInCell</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_WardenHeard</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_WoodForPrisoner</thought><chance>0.5</chance><exceptTrait><li>Kind</li></exceptTrait></li>
+        </effects>
+        <ways><mercy>2</mercy></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} takes {X_nameDef} a hot meal</label>
+        <outcome>{A_nameDef} takes a hot meal from the stores in to {X_nameDef}, who eats it there in the cell.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot meal for {X_nameDef}</label><what>meals</what><count>1</count><eat>true</eat><who>A</who><to>Stranger</to><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_DlmR4_HotMeal</thought></li>
+        </effects>
+        <ways><mercy>1</mercy></ways>
+      </li>
+      <li>
+        <label>The cell stays as it is</label>
+        <outcome>The council said the cell stays as it is.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_ColdCell</thought><exceptTrait><li>Psychopath</li></exceptTrait></li>
+        </effects>
+        <ways><mercy>-2</mercy></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_FireInCell</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>a fire in my cell</label><description>They lit a fire in my cell. I'm still a prisoner, but at least I can feel my hands.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_WardenHeard</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the council listened about the cell</label><description>I asked for a fire in the cell and the council agreed. Nobody should freeze in our keeping.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_WoodForPrisoner</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>our wood for a prisoner</label><description>Our wood is going to keep a prisoner warm. I can think of better uses for it.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_HotMeal</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a hot meal in the cold</label><description>Someone brought me a hot meal in the cell. It's the first warm thing I've had in days.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_ColdCell</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the cold cell</label><description>I keep the cell, and the council won't let me do anything about the cold in it. I don't like what that says about us.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-7. A rest for a slave ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_SlaveRest</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Warden</seat>
+    <label>a rest for a slave</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CSlaveRest</workerClass>
+    <weight>1</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.5</answerDays>
+    <texts>
+      <li>{X_nameDef} has worked every day since {X_pronoun} was brought here, and it shows: {X_pronoun} moves like someone twice {X_possessive} age and hardly speaks. {A_nameDef} asks the council to give {X_objective} some rest. {B_nameDef} says the slaves are kept to their work, and rest only makes them bold.</li>
+      <li>{A_nameDef} has been watching {X_nameDef} at the work, and doesn't like what {A_pronoun} sees. {A_pronoun} wants {X_nameDef} given the rest of the day. {B_nameDef} says it would only be the first of many.</li>
+      <li>[lowtech] {X_nameDef}, the colony's thrall, fell asleep standing at the work this morning. {A_nameDef} asks that {X_pronoun} be let off for the rest of the day. {B_nameDef} says the work doesn't stop because a thrall is tired.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, has said nothing either way, so {A_nameDef} has brought it to the council: {X_nameDef} is worn out and needs rest. {B_nameDef} says no.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{X_nameDef} rests the rest of today</label>
+        <outcome>{X_nameDef} is let off the work for the rest of today.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Rest"><target>X</target></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Suppression"><amount>-0.05</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_DlmR4_SlaveRested</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_SlaveSoft</thought><chance>0.5</chance></li>
+        </effects>
+        <ways><mercy>2</mercy><toil>-1</toil></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} speaks for {X_nameDef} at supper</label>
+        <outcome>{A_nameDef} will say a few words for {X_nameDef} at supper, so the colony hears how hard {X_pronoun} works.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{A_nameDef} speaks for {X_nameDef}</label><organizer>A</organizer><spots><li>Dining</li><li>Gather</li></spots><hours>17~20</hours><duration>0.75~1</duration>
+            <lines>
+              <li>{X_nameDef} works as hard as any of us, and the colony should know it.</li>
+              <li>Nobody here has carried more than {X_nameDef} this season.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_DlmR4_SpokenFor</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_SpokeFor</thought></li>
+        </effects>
+        <ways><mercy>1</mercy></ways>
+      </li>
+      <li>
+        <label>The work is theirs</label>
+        <outcome>The council said the work is {X_possessive}, rest or no rest.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_DlmR4_NoRest</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_NotHeard</thought></li>
+        </effects>
+        <ways><mercy>-2</mercy><toil>1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SlaveRested</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>an afternoon's rest</label><description>They let me stop working for the rest of the day. I sat down and didn't get up for hours.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SlaveSoft</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>soft on the slaves</label><description>The council gave a slave the afternoon off. Next they'll all be asking.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SpokenFor</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>someone spoke for me</label><description>One of them stood up at supper and said how hard I work. Nobody has ever done that.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SpokeFor</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>spoke up for someone</label><description>I said at supper how hard one of the slaves works. Somebody had to say it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_NoRest</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>no rest</label><description>Someone asked for me to rest, and the council said no. I'm so tired.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_NotHeard</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>not heard</label><description>I asked the council for an afternoon's rest for one of the slaves, and they wouldn't hear of it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-8. A bed for the animal ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_PetBed</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Herdmaster</seat>
+    <label>a bed for the animal</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CPetBed</workerClass>
+    <weight>1</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{PET_nameDef} sleeps out with the other animals, and every morning {PET_pronoun} is waiting at {A_nameDef}'s door. {A_nameDef} wants a {THING} for {PET_objective} in the corner of {A_possessive} room. {B_nameDef}, who sees to the animals, says an animal in a bedroom means hair and mess, and an animal sleeps best with its own kind.</li>
+      <li>{A_nameDef} has been letting {PET_nameDef} in at night anyway, and the council has heard about it. {A_pronoun} asks for a proper {THING} in {A_possessive} room for {PET_objective}. {B_nameDef} says the barn is where animals sleep.</li>
+      <li>[lowtech] {PET_nameDef} curls up against the wall of {A_nameDef}'s hut every night, out in the cold. {A_nameDef} asks for a place for {PET_objective} inside, by {A_possessive} bed. {B_nameDef} says the animals have their own shelter and always have.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, has no objection to {PET_nameDef} sleeping in {A_nameDef}'s room. {B_nameDef} does, and says so.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>A {THING} for {PET_nameDef} in {A_nameDef}'s room</label>
+        <outcome>A {THING} is set in a corner of {A_nameDef}'s room for {PET_nameDef}.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4CPetBed" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_PetBed</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_AnimalIndoors</thought><chance>0.5</chance></li>
+        </effects>
+        <ways><mercy>1</mercy><tradition>-1</tradition></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} sits with {PET_nameDef} of an evening instead</label>
+        <outcome>{A_nameDef} will spend this evening with {PET_nameDef} wherever {PET_pronoun} is, and {PET_nameDef} keeps sleeping where the animals sleep.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} with {PET_nameDef}</label><whom>Pet</whom><hours>18~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_EveningWithPet</thought></li>
+        </effects>
+        <ways><tradition>1</tradition></ways>
+      </li>
+      <li>
+        <label>Animals sleep where animals sleep</label>
+        <outcome>The council said animals sleep where animals sleep.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_NoPetBed</thought></li>
+        </effects>
+        <ways><tradition>1</tradition></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_PetBed</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>my animal by my bed</label><description>My animal has a bed of its own in my room now. I hear it breathing in the dark, and I sleep better for it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_AnimalIndoors</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>animals in the bedrooms</label><description>The council put an animal's bed in someone's room. I'll be sweeping up the hair.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_EveningWithPet</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>an evening with my animal</label><description>I spent the evening with my animal. It isn't the same as having it by my bed, but it helped.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_NoPetBed</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>my animal kept out</label><description>I asked for my animal to sleep in my room, and the council said no. It waits at my door every morning.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-9. The dry grass by the walls ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_DryGrass</defName>
+    <!-- The seat whose work it is speaks in the question (Offices/SeatCalls.cs). -->
+    <seat>Council_Office_Marshal</seat>
+    <label>the dry grass by the walls</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CDryGrass</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>1</answerDays>
+    <seasons><li>Summer</li><li>PermanentSummer</li></seasons>
+    <texts>
+      <li>It has not rained in a long while, and the grass has grown tall and dry right up to the colony's walls. {A_nameDef} pulled a handful and it crumbled in {A_possessive} fingers. One spark, {A_pronoun} says, and the whole edge of the colony would go up. {A_pronoun} wants a strip cut bare all the way round. {B_nameDef} says there is more pressing work than cutting grass.</li>
+      <li>{A_nameDef} has walked the edge of the colony twice today, looking at the dry brush where it meets the walls. {A_pronoun} wants a firebreak cut before the next lightning. {B_nameDef} would rather the hands went to the building.</li>
+      <li>[lowtech] The grass grows right up to the huts, brown and dry as tinder. {A_nameDef} remembers a village that burned in a summer like this one, and wants it cut back. {B_nameDef} says there has always been grass by the huts.</li>
+      <li>[seat] {HOLDER_nameDef}, the {OFFICE}, agrees with {A_nameDef} that the dry grass by the walls is a danger in this heat. {B_nameDef} says the colony has more pressing work.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Cut a firebreak round the walls</label>
+        <outcome>The dry grass and brush at the edge of the colony is marked for cutting, and a few of the colony will cut it back from the walls.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_R4CFirebreak" />
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>the firebreak</label><target>Colony</target><tasks><li>Cut</li><li>Haul</li></tasks><count>4</count><hours>7~17</hours><duration>3~4</duration>
+            <lines>
+              <li>Cut it right down, it's no good half done.</li>
+              <li>Rake it away from the wall, not toward it.</li>
+              <li>My hands smell of hay.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_Firebreak</thought></li>
+        </effects>
+        <ways><toil>1</toil></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} walks the walls at dusk watching for smoke</label>
+        <outcome>{A_nameDef} will walk the colony's edge at dusk, looking out for smoke.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>{A_nameDef}'s watch for smoke</label><target>A</target><to>Gate</to><patrol>true</patrol><hours>19~22</hours><duration>2~3</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_SmokeWatch</thought></li>
+        </effects>
+        <ways><tradition>1</tradition></ways>
+      </li>
+      <li>
+        <label>The grass can stay</label>
+        <outcome>The council said the grass can stay. {A_nameDef} said what {A_pronoun} thought of that, and went back to work.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_GrassStays</thought></li>
+        </effects>
+        <ways><toil>-1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_Firebreak</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>a firebreak cut</label><description>The grass is cut back from the walls. If a fire comes, it has nothing to climb.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SmokeWatch</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>watching for smoke</label><description>I walk the walls at dusk looking for smoke. It's not a firebreak, but I'd see a fire coming.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_GrassStays</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the grass by the walls</label><description>The grass stands dry right up to the walls, and the council won't have it cut. I keep looking at the sky.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== R4C-10. Words before supper ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_DlmR4_Grace</defName>
+    <label>words before supper</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_R4CGrace</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>50</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>0.75</answerDays>
+    <texts>
+      <li>{A_nameDef} holds to {GOD}, and says the colony eats every evening without a word of thanks to anyone. {A_pronoun} would like {GOD}'s words said before supper, at the table, where everyone can hear them. {B_nameDef}, who holds to no god at all, says {B_pronoun} would like to eat {B_possessive} supper while it's hot.</li>
+      <li>[priest] {A_nameDef}, who leads the colony's worship, asks that {GOD}'s words be said before supper. {B_nameDef} says {B_pronoun} will sit through no such thing, and would rather eat outside.</li>
+      <li>[lowtech] Before the pot is passed round, {A_nameDef} wants {GOD} thanked, as {A_possessive} people always did. {B_nameDef} says the food was grown and cooked by the colony's own hands, and it is the hands that should be thanked.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{GOD}'s words before supper tonight</label>
+        <outcome>{A_nameDef} will say {GOD}'s words at the table before supper tonight, and the colony will hear them before it eats.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>words before supper</label><organizer>A</organizer><spots><li>Dining</li></spots><hours>17~19</hours><duration>0.5~0.75</duration>
+            <lines>
+              <li>Be thou thanked, {GOD}, for what is set before us this night.</li>
+              <li>We eat by thy leave, {GOD}, and we forget it not.</li>
+              <li>Bless this bread, {GOD}, and the hands that made it.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_GraceSaid</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmR4_SatThrough</thought></li>
+        </effects>
+        <ways><tradition>2</tradition></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} says the words at {PLACE}, and the table eats as it likes</label>
+        <outcome>{A_nameDef} says {GOD}'s words at {PLACE} before supper, and the table eats as it likes.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><target>A</target><organizer>A</organizer><label>{GOD}'s words at {PLACE}</label><hours>16~19</hours><duration>0.5~0.75</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_WordsAlone</thought></li>
+        </effects>
+        <ways><openness>1</openness></ways>
+      </li>
+      <li>
+        <label>Each keeps their own thanks</label>
+        <outcome>The council said each keeps their own thanks to themselves at the table.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_NoGrace</thought></li>
+        </effects>
+        <ways><openness>1</openness><tradition>-1</tradition></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_GraceSaid</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>thanks said at the table</label><description>I said the words before supper and the whole table heard them. It felt right to give thanks.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_SatThrough</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>sat through the words</label><description>I had to sit and wait while somebody thanked their god for my supper. It went cold.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_WordsAlone</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>the words said at the shrine</label><description>I said the words at the god's place before supper. Not at the table, but they were said.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_DlmR4_NoGrace</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>no thanks at the table</label><description>The council said nobody need give thanks at the table. We eat as though the food just came from nowhere.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

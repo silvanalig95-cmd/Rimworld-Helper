@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The content round's fourth part, its council questions and world events (docs/content-round-4-council-world.md;
+       Dilemmas/DilemmaWorkers_Round4.cs, World/Variety/WorldRound4.cs): what their few effects say before the answer and in
+       their messages. Plain words: the interface and messages. -->
+
+  <!-- Too hard on one: the work handed over while the decree lasts -->
+  <CC_R4C_Decree_Over>{DECREE} is no longer in force.</CC_R4C_Decree_Over>
+
+  <!-- A bed for the animal -->
+  <CC_R4C_PetBed_NoRoom>{PAWN} no longer has a bedroom of their own.</CC_R4C_PetBed_NoRoom>
+  <CC_R4C_PetBed_Has>The room already has a bed for an animal.</CC_R4C_PetBed_Has>
+
+  <!-- The dry grass by the walls: the firebreak -->
+  <CC_R4C_Impact_Firebreak>{0} dry plants at the edge of the colony marked for cutting, for the firebreak</CC_R4C_Impact_Firebreak>
+  <CC_R4C_Impact_FirebreakBrief>a firebreak marked</CC_R4C_Impact_FirebreakBrief>
+  <CC_R4C_FirebreakMarked>{N} dry plants at the edge of the colony have been marked for cutting, for the firebreak.</CC_R4C_FirebreakMarked>
+
+  <!-- The timber rafts: logs washed up -->
+  <CC_R4W_Rafts_LogsAshore>Logs from a broken raft have washed up on the colony's bank.</CC_R4W_Rafts_LogsAshore>
+
+</LanguageData>
