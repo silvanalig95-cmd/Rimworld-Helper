@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Round 7 of the gods between the colony's people (docs/content-update-proposals-2.md, D1 to D15; Source/ColonyCouncil/
+    Gods/OnMap/Between/BetweenFaith*.cs, BetweenRound2Gods.cs): their spoken lines, joined to the first round's pool
+    (Rimfolk_Pool_GodBetween_Say, Rimfolk_GodBetween.xml) at startup. As there: one sentence each, people talking, tagged
+    <happening>_<part>; "named" lines use {GOD}, the colony's name for the god, only where the colony is sure it was that
+    god. The gods' and faiths' own words (the new god's welcome, the Hum's words over a wreck, the book's verses read
+    aloud, the words over a fallen raider) are in the old voice, saying plainly what they mean. The dark of a bargain is
+    never named. {OTHER} is the one spoken to.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_PoolExt_GodBetween_Round2</defName>
+    <pool>Rimfolk_Pool_GodBetween_Say</pool>
+    <lines>
+      <plain>
+        <!-- D1: the dare -->
+        <li>[faithdare_darerain] If your god is real, {OTHER}, let it rain before morning.</li>
+        <li>[faithdare_darerain] It hasn't rained in days, so let your god bring some by morning.</li>
+        <li>[faithdare_darerain] Rain by morning, {OTHER}, or I don't want to hear about your god again.</li>
+        <li>[faithdare_daresick] If your god cares at all, {SICK} will be up by morning.</li>
+        <li>[faithdare_daresick] Let's see your god get {SICK} out of bed by morning, then.</li>
+        <li>[faithdare_darelight] Nobody touches your god's light tonight, and we'll see if it's still burning at dawn.</li>
+        <li>[faithdare_darelight] If that light at your god's place is still going in the morning, I'll believe a little.</li>
+        <li>[faithdare_take] All right, {OTHER}, we'll go and look in the morning.</li>
+        <li>[faithdare_take] Fine, and when it comes you'll eat your words.</li>
+        <li>[faithdare_take] You're on, {OTHER}, but a god isn't a trick you can call up.</li>
+        <li>[faithdare_take,named] {GOD} doesn't need to prove anything to you, {OTHER}, but we'll see.</li>
+        <li>[faithdare_proud] There, {OTHER}, now what do you say?</li>
+        <li>[faithdare_proud] I told you, {OTHER}, and you saw it yourself.</li>
+        <li>[faithdare_proud,named] That was {GOD}, {OTHER}, and you know it.</li>
+        <li>[faithdare_shaken] I don't know what to make of that.</li>
+        <li>[faithdare_shaken] It could be chance, but I really didn't expect it.</li>
+        <li>[faithdare_quiet] It doesn't work like that, {OTHER}, and you know it.</li>
+        <li>[faithdare_quiet] A god doesn't jump when you tell it to.</li>
+        <li>[faithdare_pleased] Nothing, just as I said.</li>
+        <li>[faithdare_pleased] There you are, {OTHER}, nothing at all.</li>
+        <li>[faithdare_argue] You're looking at it the wrong way, {OTHER}.</li>
+        <li>[faithdare_argue] That isn't what it means, and you know it.</li>
+        <li>[faithdare_scoff] It proves nothing either way, {OTHER}.</li>
+        <li>[faithdare_scoff] That's chance, {OTHER}, nothing more.</li>
+
+        <!-- D2: came through -->
+        <li>[faithcamethrough_leave] This {WHAT} is yours now, for bringing me through.</li>
+        <li>[faithcamethrough_leave] I nearly didn't get up again, so I'm leaving this {WHAT} here.</li>
+        <li>[faithcamethrough_thanks] I came through it, and I know who to thank.</li>
+        <li>[faithcamethrough_thanks] I nearly didn't make it, so I wanted to come here first.</li>
+        <li>[faithcamethrough_thanks,named] {GOD} brought me through it, I'm sure of that.</li>
+        <li>[faithcamethrough_stand] I prayed to the same god while I worked on you, {OTHER}.</li>
+        <li>[faithcamethrough_stand] We both had help with that one, {OTHER}.</li>
+        <li>[faithcamethrough_glad] Good to see you up, {OTHER}, but take it easy for a few days.</li>
+        <li>[faithcamethrough_glad] You gave us a scare, {OTHER}, I'm glad you're on your feet.</li>
+        <li>[faithcamethrough_stitches] It was the stitches and the medicine, {OTHER}, but suit yourself.</li>
+        <li>[faithcamethrough_stitches] I did the work on you, {OTHER}, your god just watched.</li>
+        <li>[faithcamethrough_answer] Maybe it was both, {OTHER}.</li>
+        <li>[faithcamethrough_answer] You did your part, {OTHER}, and something else did the rest.</li>
+
+        <!-- D3: the believers take sides -->
+        <li>[faithsides_turn] That was my god's day today, {OTHER}, anyone could see it.</li>
+        <li>[faithsides_turn] You saw what happened today, {OTHER}, that was mine.</li>
+        <li>[faithsides_turn,named] That was {GOD}'s doing today, {OTHER}, and you know it.</li>
+        <li>[faithsides_answer] Your god had today, and you'll see what mine does tomorrow, {OTHER}.</li>
+        <li>[faithsides_answer] Wait a day or two and you'll see whose it really is, {OTHER}.</li>
+        <li>[faithsides_table] Sit down, both of you, and eat together for once.</li>
+        <li>[faithsides_table] Whatever the gods are doing, you two don't have to fight over it.</li>
+        <li>[faithsides_mend] Fine, {OTHER}, let the gods sort it out between themselves.</li>
+        <li>[faithsides_mend] I suppose we can leave the gods to it, {OTHER}.</li>
+        <li>[faithsides_cool] I'll sit, but I'm not changing my mind.</li>
+        <li>[faithsides_cool] I'll eat with you, {OTHER}, and that's all.</li>
+
+        <!-- D4: the guest at the burying (the stranger, and the one who stood with them) -->
+        <li>[ennuburying_true] {DEAD} was {DETAIL} once, long before coming here.</li>
+        <li>[ennuburying_true] Before all this, {DEAD} was {DETAIL}, did you know that?</li>
+        <li>[ennuburying_remember] I knew {DEAD} a little, a long time ago.</li>
+        <li>[ennuburying_remember] {DEAD} would be glad that someone came.</li>
+        <li>[ennuburying_who] How do you know that?</li>
+        <li>[ennuburying_who] Who are you, and where did you know them from?</li>
+        <li>[ennuburying_found] Someone left something on {DEAD}'s grave in the night.</li>
+        <li>[ennuburying_found] That wasn't on {DEAD}'s grave last night.</li>
+
+        <!-- D5: the children's little place -->
+        <li>[faithlittleshrine_build] This is a house for the god, so it has somewhere to stay.</li>
+        <li>[faithlittleshrine_build] The big stone goes in the middle, like a real shrine.</li>
+        <li>[faithlittleshrine_build] Now the god has a place of its own, {OTHER}.</li>
+        <li>[faithlittleshrine_leave] And here's some food in case it gets hungry.</li>
+        <li>[faithlittleshrine_leave] Don't eat it, {OTHER}, it's for the god.</li>
+        <li>[faithlittleshrine_help] Here, a flat stone goes on top, like this.</li>
+        <li>[faithlittleshrine_help] That's a good place you've made, {OTHER}, let me help.</li>
+        <li>[faithlittleshrine_name] The book has pages about this god, and I'll read you some.</li>
+        <li>[faithlittleshrine_name] We have a name for this god in the book, and you've chosen well.</li>
+        <li>[faithlittleshrine_name,named] This is {GOD}'s place you've made, the book says so.</li>
+        <li>[faithlittleshrine_kick] Gods don't live in piles of stones.</li>
+        <li>[faithlittleshrine_kick] Stop wasting food on this, it's nonsense.</li>
+        <li>[faithlittleshrine_cry] You broke it, {OTHER}, we made that.</li>
+        <li>[faithlittleshrine_cry] Why did you do that, {OTHER}?</li>
+        <li>[faithlittleshrine_gone] The food at the children's little place is gone.</li>
+        <li>[faithlittleshrine_gone] Something took the food the children left out.</li>
+
+        <!-- D7: the one who turned -->
+        <li>[faithturned_lay] This is all I kept of the old way, and now it's yours.</li>
+        <li>[faithturned_lay] I'm leaving this here so you know I mean it.</li>
+        <li>[faithturned_kneel] I'm here now, and I'm staying.</li>
+        <li>[faithturned_kneel] I don't know the words yet, but I'm here.</li>
+        <li>[faithturned_words] Who cometh in good faith is received, and the road behind is forgiven.</li>
+        <li>[faithturned_words] Thou art come to us, and that is enough.</li>
+        <li>[faithturned_words,named] {GOD} receiveth thee, and asketh not where thou hast been.</li>
+        <li>[faithturned_understand] I'd have done the same in your place, {OTHER}.</li>
+        <li>[faithturned_understand] I don't blame you, {OTHER}, it was a hard time.</li>
+        <li>[faithturned_betray] After everything, {OTHER}, you just walk away from it.</li>
+        <li>[faithturned_betray] That's a betrayal, {OTHER}, and you know it.</li>
+        <li>[faithturned_again] Think about it again before you go through with it, {OTHER}.</li>
+        <li>[faithturned_again] The old way will take you back, {OTHER}, if you ask.</li>
+
+        <!-- D8: a machine's wake -->
+        <li>[pipwake_keeper] The {WHAT} kept going longer than anyone thought it would.</li>
+        <li>[pipwake_keeper] I fixed that {WHAT} more times than I can count.</li>
+        <li>[pipwake_keeper] We won't find another {WHAT} like that one.</li>
+        <li>[pipwake_hum] It is gone to rest, and its work is not forgotten.</li>
+        <li>[pipwake_hum] Every wheel stoppeth at last, and is honoured for its turning.</li>
+        <li>[pipwake_hum,named] {GOD} keepeth the count of every turning, and this one is counted.</li>
+        <li>[pipwake_laugh] You're all standing round a broken {WHAT}, you know that?</li>
+        <li>[pipwake_laugh] It's scrap now, there's nothing here to mourn.</li>
+        <li>[pipwake_stand] I didn't think much of it, but it did its job.</li>
+        <li>[pipwake_stand] I'll stand here with you, it earned that much.</li>
+
+        <!-- D9: the offering nobody's god took -->
+        <li>[faithtakenoffering_take] Nobody's going to miss it.</li>
+        <li>[faithtakenoffering_take] It's only going to waste here.</li>
+        <li>[faithtakenoffering_take] I'm sorry, but I'm so hungry.</li>
+        <li>[faithtakenoffering_saw] What are they doing at the god's place at this hour?</li>
+        <li>[faithtakenoffering_saw] Is that who I think it is?</li>
+        <li>[faithtakenoffering_tell] It wasn't the god, {OTHER}, {OFFENDER} took it, I saw them.</li>
+        <li>[faithtakenoffering_tell] I saw {OFFENDER} take it in the night, {OTHER}, no god came near it.</li>
+        <li>[faithtakenoffering_angry] {OFFENDER} did what, {OTHER}?</li>
+        <li>[faithtakenoffering_angry] I'll have a word with {OFFENDER} about that.</li>
+        <li>[faithtakenoffering_keep] I saw you at the god's place last night, {OTHER}, but I won't say anything.</li>
+        <li>[faithtakenoffering_keep] I know what you took, {OTHER}, and I'll keep it to myself.</li>
+        <li>[faithtakenoffering_thanks] Thank you, {OTHER}, I won't do it again.</li>
+        <li>[faithtakenoffering_thanks] Please don't tell anyone, {OTHER}.</li>
+        <li>[faithtakenoffering_shame] That was left for the god, {OTHER}, not for you.</li>
+        <li>[faithtakenoffering_shame] You let us all think the god took it, {OTHER}.</li>
+        <li>[faithtakenoffering_sorry] I know, {OTHER}, I'm sorry.</li>
+        <li>[faithtakenoffering_sorry] I wasn't thinking, {OTHER}, I'm sorry.</li>
+
+        <!-- D10: the book read at the fire (the verses in the old voice) -->
+        <li>[faithbookread_read] Hear now the newest of what this house hath seen of the gods.</li>
+        <li>[faithbookread_read] Here is written what was seen, and I read it as it was set down.</li>
+        <li>[faithbookread_read] And it came to pass that a sign was seen, and those that saw it spake of it.</li>
+        <li>[faithbookread_read] So it is written, in the hand of the one who keepeth the book.</li>
+        <li>[faithbookread_read,named] Of {GOD} it is written thus, as it was told unto me.</li>
+        <li>[faithbookread_notso] That isn't how it happened, I was there.</li>
+        <li>[faithbookread_notso] You've written that wrong, {OTHER}, let me tell it.</li>
+        <li>[faithbookread_write] Tell it, and I shall set it down beside what is there.</li>
+        <li>[faithbookread_write] Then both tellings stand in the book, thine and the other.</li>
+        <li>[faithbookread_leave] I've heard enough of this for one night.</li>
+        <li>[faithbookread_leave] Read that to someone who believes it.</li>
+
+        <!-- D11: a sign at the wedding -->
+        <li>[faithweddingsign_blessrain] Rain on a wedding means a full house and a good harvest.</li>
+        <li>[faithweddingsign_blessrain] That rain's a blessing on the two of them, {OTHER}.</li>
+        <li>[faithweddingsign_warnrain] Rain on the vows is a bad sign, whatever you say, {OTHER}.</li>
+        <li>[faithweddingsign_warnrain] I don't like rain at a wedding, it means tears later.</li>
+        <li>[faithweddingsign_blesslight] The old light goes out so a new one can start, that's all it means.</li>
+        <li>[faithweddingsign_blesslight] A light put out for them, {OTHER}, that's a good sign where I come from.</li>
+        <li>[faithweddingsign_warnlight] A light going out at a wedding, I don't like that at all.</li>
+        <li>[faithweddingsign_warnlight] That's a warning, {OTHER}, mark my words.</li>
+        <li>[faithweddingsign_blesssign] Did you see that, the gods are glad for them.</li>
+        <li>[faithweddingsign_blesssign] That was a blessing on them, {OTHER}, plain as day.</li>
+        <li>[faithweddingsign_blesssign,named] {GOD} has blessed this wedding, I'm sure of it.</li>
+        <li>[faithweddingsign_warnsign] Something is watching this wedding, and I don't know if it's pleased.</li>
+        <li>[faithweddingsign_warnsign] I'd be careful, {OTHER}, signs cut both ways.</li>
+
+        <!-- D12: a word over the raider -->
+        <li>[faithraiderword_words] Go thou to thy rest, for thy people and mine pray alike.</li>
+        <li>[faithraiderword_words] Whatever thou didst here, another than us judgeth thee now.</li>
+        <li>[faithraiderword_words,named] {GOD} take thee, for thou wast {GOD}'s as I am.</li>
+        <li>[faithraiderword_bury] Bury this one, don't burn the body or leave it for the animals.</li>
+        <li>[faithraiderword_bury] This one held the same god as me, so we should put them in the ground.</li>
+        <li>[faithraiderword_nod] All right, we'll bury them.</li>
+        <li>[faithraiderword_nod] I don't like it, {OTHER}, but you're right.</li>
+        <li>[faithraiderword_angry] They came here to kill us, {OTHER}, and you want to pray for them?</li>
+        <li>[faithraiderword_angry] Say your words, {OTHER}, but I'm not digging a grave for them.</li>
+
+        <!-- D13: a gift at the other's place -->
+        <li>[faithgift_leave] This is for {FRIEND}'s god, I owe them that much.</li>
+        <li>[faithgift_leave] I was wrong to say what I said to {FRIEND}.</li>
+        <li>[faithgift_stand] I said things to {FRIEND} that I shouldn't have.</li>
+        <li>[faithgift_stand] Whatever I think of this god, {FRIEND} didn't deserve that from me.</li>
+        <li>[faithgift_thanks] You left something at my god's place, {OTHER}, I saw.</li>
+        <li>[faithgift_thanks] That was good of you, {OTHER}.</li>
+        <li>[faithgift_sorry] I'm sorry about the other day, {OTHER}.</li>
+        <li>[faithgift_sorry] Let's not fight about the gods again, {OTHER}.</li>
+        <li>[faithgift_disloyal] Giving gifts to another god now, {OTHER}?</li>
+        <li>[faithgift_disloyal] I didn't think you'd go over to them, {OTHER}.</li>
+
+        <!-- D14: suspected of a bargain (the dark never named, no god named) -->
+        <li>[faithbargain_accuse] Nothing touches you lately, {OTHER}, so what did you promise for that?</li>
+        <li>[faithbargain_accuse] That kind of luck has a price, {OTHER}, and I think you paid it.</li>
+        <li>[faithbargain_accuse] Something out there is looking after you, {OTHER}, and it isn't a god.</li>
+        <li>[faithbargain_own] I was desperate, {OTHER}, and something answered.</li>
+        <li>[faithbargain_own] Yes, I made a bargain, {OTHER}, and I'd do it again.</li>
+        <li>[faithbargain_deny] I made no bargain with anything, {OTHER}.</li>
+        <li>[faithbargain_deny] It's luck, {OTHER}, that's all it is.</li>
+        <li>[faithbargain_defend] Leave them alone, {OTHER}, you've no right to say that.</li>
+        <li>[faithbargain_defend] That's a terrible thing to say to anyone, {OTHER}.</li>
+        <li>[faithbargain_vigil] Come and sit with me tonight at the god's place, {OTHER}.</li>
+        <li>[faithbargain_vigil] You shouldn't be alone with this, {OTHER}, come with me.</li>
+
+        <!-- D15: lightning on the shrine -->
+        <li>[faithlightning_storm] It was the storm, nothing more, lightning has to land somewhere.</li>
+        <li>[faithlightning_storm] Lightning hits whatever stands out in the open, that's all.</li>
+        <li>[faithlightning_test] This is a test, and we'll put it right.</li>
+        <li>[faithlightning_test] Something is testing us, and we'll answer it.</li>
+        <li>[faithlightning_test,named] {GOD} is testing us, and we'll put it right.</li>
+        <li>[faithlightning_rival] That was my god's answer to all your offerings, {OTHER}.</li>
+        <li>[faithlightning_rival] You know whose that was, {OTHER}, and it wasn't the weather's.</li>
+        <li>[faithlightning_rebuild] We'll build it again together, {OTHER}, better than before.</li>
+        <li>[faithlightning_rebuild] Come on, {OTHER}, let's put it right.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

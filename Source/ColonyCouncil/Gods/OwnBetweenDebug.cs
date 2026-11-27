@@ -21,7 +21,8 @@ namespace ColonyCouncil
             if (b == null || map == null) return;
             var k = OwnBetween.KindOf(h);
             var g = k?.God;
-            if (k == null || g == null)
+            // One of whichever god its people hold finds its god itself (round 7's "Faith..." happenings).
+            if (k == null || g == null && !k.AnyGod)
             {
                 Say("that god isn't in this world's pantheon.");
                 return;
@@ -131,6 +132,50 @@ namespace ColonyCouncil
 
         [DebugAction("Rimfolk", "Gods: Revel's wager lost now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
         private static void RevelWager() => Fire(OwnHappening.RevelWager);
+
+        // ---- Round 7 (docs/content-update-proposals-2.md, D1 to D15): of whichever god their people hold, and the Guest's and the Hum's ----
+
+        [DebugAction("Rimfolk", "Gods: the faithful's dare, settled by morning, now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithDare() => Fire(OwnHappening.FaithDare);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's walk to the god's place after a near death now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithCameThrough() => Fire(OwnHappening.FaithCameThrough);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's sides taken in a gods' quarrel now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithSides() => Fire(OwnHappening.FaithSides);
+
+        [DebugAction("Rimfolk", "Gods: Ennu's guest at the burying now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void EnnuBurying() => Fire(OwnHappening.EnnuBurying);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's children's little place now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithLittleShrine() => Fire(OwnHappening.FaithLittleShrine);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's one who turned, at the new god's place, now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithTurned() => Fire(OwnHappening.FaithTurned);
+
+        [DebugAction("Rimfolk", "Gods: Pip's wake for a machine lost now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void PipWake() => Fire(OwnHappening.PipWake);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's offering taken in the night now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithTakenOffering() => Fire(OwnHappening.FaithTakenOffering);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's book read at the fire now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithBookRead() => Fire(OwnHappening.FaithBookRead);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's sign at the wedding now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithWeddingSign() => Fire(OwnHappening.FaithWeddingSign);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's word over a fallen raider now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithRaiderWord() => Fire(OwnHappening.FaithRaiderWord);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's gift at the other's god's place now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithGift() => Fire(OwnHappening.FaithGift);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's talk of a bargain with the dark now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithBargain() => Fire(OwnHappening.FaithBargain);
+
+        [DebugAction("Rimfolk", "Gods: the faithful's place struck by lightning now", allowedGameStates = AllowedGameStates.PlayingOnMap)]
+        private static void FaithLightning() => Fire(OwnHappening.FaithLightning);
 
         // ---- The gods' rarest gifts (Gods/Touch/GodRareGifts.cs) ----
 

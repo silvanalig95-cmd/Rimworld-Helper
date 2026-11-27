@@ -197,7 +197,40 @@ namespace ColonyCouncil
         /// <summary>One cup set between two at odds at the late fire.</summary>
         RevelRivalsCup,
         /// <summary>Two drunk make a wager, and the loser scrubs the winner's floor in the morning.</summary>
-        RevelWager
+        RevelWager,
+
+        // ---- Round 7, more between the colony's people (docs/content-update-proposals-2.md, D1 to D15; Gods/OnMap/Between/BetweenFaith*.cs
+        // and BetweenRound2Gods.cs; the rules in OwnBetweenFaithMath.cs), added last. Those named "Faith..." are of whichever god
+        // their people hold (OwnHappeningsMath.OfAnyGod); the Guest's and the Hum's are their own. ----
+
+        /// <summary>D1: a scoffer dares a believer's god to show itself by morning, and the two walk out together to look.</summary>
+        FaithDare,
+        /// <summary>D2: one who came through a near death leaves something at their god's place; the doctor says what they think.</summary>
+        FaithCameThrough,
+        /// <summary>D3: while two gods' quarrel shows in the weather, two believers of either side argue at supper, and someone sits them down.</summary>
+        FaithSides,
+        /// <summary>D4: a stranger stands at a new grave, says one true thing about the dead, and goes; something is on the grave by morning.</summary>
+        EnnuBurying,
+        /// <summary>D5: two children set up a little place for a god at the edge and leave part of a meal there.</summary>
+        FaithLittleShrine,
+        /// <summary>D7: one who turned to another god carries a thing of their old rite to the new god's place.</summary>
+        FaithTurned,
+        /// <summary>D8: a machine that served the colony long is lost, and its keeper and the Hum's believers stand round the wreck at dusk.</summary>
+        PipWake,
+        /// <summary>D9: someone takes what was left at a god's place in the night, and one who saw it tells or keeps quiet.</summary>
+        FaithTakenOffering,
+        /// <summary>D10: the keeper reads the newest of the colony's book of the gods aloud at the fire.</summary>
+        FaithBookRead,
+        /// <summary>D11: something during a wedding that the guests take for a sign, one a blessing and one a warning.</summary>
+        FaithWeddingSign,
+        /// <summary>D12: one of the colony who holds the god the raiders' people hold says a word over a fallen raider.</summary>
+        FaithRaiderWord,
+        /// <summary>D13: some days after a quarrel over their gods, one leaves something at the other's god's place.</summary>
+        FaithGift,
+        /// <summary>D14: one with a run of luck is told to their face they made a bargain with the dark.</summary>
+        FaithBargain,
+        /// <summary>D15: in a thunderstorm, lightning strikes a god's busy place or the tree beside it.</summary>
+        FaithLightning
     }
 
     /// <summary>The one word Hollin's dryads give, each pointing at something real on the land.</summary>

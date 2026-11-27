@@ -84,6 +84,21 @@ namespace ColonyCouncil
                 case OwnHappening.DucatMiser: return (30f, 12f, 20f);
                 case OwnHappening.RevelRivalsCup: return (15f, 8f, 15f);
                 case OwnHappening.RevelWager: return (15f, 0f, 0f);
+                // Round 7 (OwnBetweenFaithMath.cs).
+                case OwnHappening.FaithDare: return (20f, 10f, 20f);
+                case OwnHappening.FaithCameThrough: return (15f, 0f, 0f);
+                case OwnHappening.FaithSides: return (10f, 0f, 0f);
+                case OwnHappening.EnnuBurying: return (60f, 0f, 0f);
+                case OwnHappening.FaithLittleShrine: return (30f, 12f, 20f);
+                case OwnHappening.FaithTurned: return (8f, 0f, 0f);
+                case OwnHappening.PipWake: return (30f, 0f, 0f);
+                case OwnHappening.FaithTakenOffering: return (25f, 12f, 20f);
+                case OwnHappening.FaithBookRead: return (12f, 4f, 10f);
+                case OwnHappening.FaithWeddingSign: return (10f, 0f, 0f);
+                case OwnHappening.FaithRaiderWord: return (15f, 0f, 0f);
+                case OwnHappening.FaithGift: return (12f, 0f, 0f);
+                case OwnHappening.FaithBargain: return (25f, 12f, 20f);
+                case OwnHappening.FaithLightning: return (60f, 0f, 0f);
                 default: return (30f, 0f, 0f);
             }
         }

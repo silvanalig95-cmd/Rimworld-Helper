@@ -20403,6 +20403,73 @@ carrier gain a field each. Not checked without the game: the happenings' timing 
 and standing, the frog and the cat strays' leaving, the coat put on, the shrine taken up and the frames cancelled, the
 drake's egg hatching as the colony's, Alpha Bees' hives reached.
 
+### More between the colony's people (round 7: D1 to D15 of the second list; the player's go, 27 November 2026)
+
+The player: "just further expanding on the mechanics you already have or adding more, so to say, content to the
+mechanics ... adding more mechanics for the time being doesn't necessarily make it better". Section 1 of
+`docs/content-update-proposals-2.md` built as content in the frame above: fourteen more `OwnHappening`s at the end of the
+list, on the frame's pace (`BetweenPaceOf`), cards in three wordings, the god's look where it acted, the book, and how it
+ends between two (`BetweenOutcome`). Twelve are of whichever god their people hold (named `Faith...`,
+`OwnHappeningsMath.OfAnyGod`; `BetweenKind.AnyGod`: the hour's look comes to them with no god, and each finds its god in the
+people and looks at `OwnHappenings.Acts` for it); the guest at the burying is the Guest's, the wake the Hum's. Code:
+`Gods/OnMap/Between/BetweenFaith.cs` (the shared `FaithBetween`: a god's place for someone is its dedicated place, else where
+its small rite is kept; a thing left at a dedicated place is taken in as its offering, so the god's own way takes it in
+time), `BetweenFaithHome.cs`, `BetweenFaithSigns.cs`, `BetweenRound2Gods.cs`; the pure rules in
+`Gods/OnMap/OwnBetweenFaithMath.cs`; the lines joined to the first round's pool (`Rimfolk_PoolExt_GodBetween_Round2`).
+
+- *The dare* (`FaithDare`, D1): in the evening a scoffer dares a believer's god (likelier just after their small rite) by
+  what the morning settles: rain in a dry spell, the sick one up, the light at the god's place still lit. In the morning
+  the two walk out together to look: the believer proud and the scoffer shaken, the scoffer pleased (a good sport, else
+  it stings), or an argument. A god drawn near may answer the rain in its own way (`GodWeather.Answer`); nothing says so.
+- *Came through* (`FaithCameThrough`, D2): one up again after bleeding near to death or a deadly illness past its worst
+  walks to their god's place with a damaged weapon or armour from the home's ground; the doctor walks over: of the same
+  god closer, a doubter or another's says it was the stitches.
+- *The believers take sides* (`FaithSides`, D3): while two gods' quarrel goes on (`GodDrama`), at supper one of each side
+  argues whose it was; the peacemaker, else the chaplain, else the best talker sits them down: made up, or a coolness.
+  Not built: the believers keeping their small rites more often during it (a change to the rites, not content).
+- *The guest at the burying* (`EnnuBurying`, D4): at a grave of a day or two, the Guest in disguise (`GodStranger.Make`)
+  walks in as a visitor, says one true thing from the dead's own past (their childhood), leaves before dark and is
+  unmade off the land; at dawn dried herbs (an early colony) or a coin lie on the grave. Never with another stranger here.
+- *The children's little place* (`FaithLittleShrine`, D5; children come with Biotech): two children carry a stone (slag
+  later), or sticks, and part of a meal to a corner at the edge; one who holds the god helps, the keeper tells them its
+  name, or a scoffer kicks it over; by morning the food is gone. Real things only, no building of its own.
+- *The one who turned* (`FaithTurned`, D7): a day after `FaithHeart.TurnAway`, they carry a thing of the old rite to the
+  new god's place; the new god's own says its words (old voice), the old god's understands or calls it a betrayal, a
+  priest of the old god asks once.
+- *A machine's wake* (`PipWake`, D8): a mech of a year (Alpha Mechs' as any), the oldest turret, generator or vehicle
+  (Vanilla Vehicles Expanded's, by class name, where it dies as a pawn) of a colony a year old, or (early ages) the oldest
+  bench, destroyed (`Patch_BetweenMachineLost`, `Patch_BetweenMechLost`, off with the deeper hooks; "the oldest" by the
+  game's own order of making, there being no record of a turret's raids); at dusk its keeper and the Hum's believers
+  stand at the wreck, a scoffer laughs or stands too, slag carried to the place.
+- *The offering nobody's god took* (`FaithTakenOffering`, D9): late at night someone hungry, a child or a greedy heart
+  pockets a gift at a god's place whose way leaves no sign; one awake sees it; the believers find it gone and the book has
+  the god taking it (`Offerings.Noticed`); the one who saw it tells (the book disputed, the taker ashamed) or keeps it
+  (a secret, `Rimfolk_Secret_OfferingTaken`, scenario-only).
+- *The book read at the fire* (`FaithBookRead`, D10): with new entries since the last reading, the keeper reads the
+  newest chapter aloud by the fire or a table (a slate for a spacer), verses in the old voice; listeners hold the god a
+  little more, one whose words were read tells it their way (set beside it), a scoffer walks off, the temper in the
+  book's words.
+- *A sign at the wedding* (`FaithWeddingSign`, D11): during the game's own wedding, rain on the couple, a light beside them
+  going out, or the god's small sign; one guest a blessing, one a warning, each held to their god the harder, the couple's
+  journals. Not built: the white bird or thrumbo crossing, the mushroom ring next morning.
+- *A word over the raider* (`FaithRaiderWord`, D12): one who holds a god a fallen raider's people hold kneels and says its
+  words, asking the body be buried; one who lost a friend in the fight, else the marshal, nods or quarrels.
+- *A gift at the other's place* (`FaithGift`, D13): some days after any of the gods' quarrels between two, the kinder one
+  leaves a meal at the other's god's place; the other comes and they make it up; a zealot of the giver's god is wary.
+- *Suspected of a bargain* (`FaithBargain`, D14): one with a run of luck (the Hunger's bargain, the beasts shunning them,
+  the great cat's chosen) is accused to their face; only one who bargained may own it; a friend stands up for them,
+  believers of the gods that turn from such bargains keep away, the chaplain sits a vigil with one who owned it. The dark
+  never named (the card has no god). Not read for luck: rare gifts found, silver, wounds healed fast.
+- *Lightning on the shrine* (`FaithLightning`, D15): in a thunderstorm, at most once a year, a busy dedicated place whose
+  god's rival someone holds is struck (or the tree beside it under a roof): the game's own strike, through
+  `HarmKinds.GodLightning`, never with anyone near; next morning the rival's believer and the place's argue, two of the
+  place's own rebuild it together (its blueprint laid where it burned).
+
+Not built: D6, *a name of the colony's own* (it needs the names coined saved, a chapter of the book under each, and the
+later joining of two names to one: a new mechanic of the book, against the player's go). Tests: `GodsBetweenFaithTests`
+(and the frame's `GodsBetweenTests` over all forty-five). Not checked without the game: the scenes' timing and walking,
+the stranger's walk in and out, the strike's fire, the blueprint, a wedding's sign landing during the vows.
+
 ### Text variety: the gods' thin pools (the player's go, 20 November 2026; released 0.286.0)
 
 The player on the content update: "In general, I just want additional God events, more immersion, more just further also
