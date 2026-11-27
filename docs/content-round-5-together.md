@@ -19,9 +19,9 @@ What every piece keeps to:
   talked over by the talk that exists (open, reply, close, in every voice). A quirk is picked up after a memory, counts
   toward the two a colonist holds at most, fades in its time, and writes its journal lines as every quirk does. No new
   system, window, setting, saved collection or `Sched` offset.
-- **One small hook for three of the events.** Like the council's seasons (`council`, `CouncilSeasons.Fits`/`Fill`), a
-  social event may name a scene of this round (`scene`): `oldhands` (both have lived at the colony a year or more, by the
-  game's own record of time as a colonist), `game` (both are playing at the same board, table, pin or ring: a building of
+- **One small hook for four of the events.** Like the council's seasons (`council`, `CouncilSeasons.Fits`/`Fill`), a
+  social event may name a scene of this round (`scene`): `sowing` (both at the game's own sowing job), `oldhands` (both
+  have lived at the colony a year or more, by the game's own record of time as a colonist), `game` (both are playing at the same board, table, pin or ring: a building of
   the game's or a mod's whose pastime is a game; `{THING}` names it) and `childgrief` (the child lost someone of the colony
   in the last five days, by the game's own memory of the death; `{X_nameDef}` names them). Nothing is kept: the scene is
   read from the map when the event is cast.
@@ -40,13 +40,13 @@ What every piece keeps to:
   colony's own (its fields, its benches, its games), so it takes the form of the age by itself. Quirks have a line of
   their own for a tribe or a spacer colony where the habit looks different there.
 - **The full mod pool:** nothing is picked by a fixed name. A game is any building whose pastime the game calls a game
-  (the chess table, horseshoes, the billiards table, a mod's darts board or wargaming table); the work is whatever the two
+  (the chess table, horseshoes, the billiards table, a mod's darts board or poker table); the work is whatever the two
   are at; the dead are the colony's own.
 - **The gods are unseen:** no god is named and no line says a god did anything. A child's question about the dead is
   answered with what the grown-up believes, as their people tell it, as a belief.
 - **The colony is the family:** nothing reads kin. The old one and the child, the two old hands, the newcomer and the one
   beside them are chosen by age, time at the colony, what they are doing and how they feel about each other, never by
-  blood.
+  blood; a child's loss counts the same whoever the dead were to them.
 - **Harm:** none of the twenty hurts anyone. One event is a friction (a game that got heated); it leaves a point of
   mood and a few of opinion, as the other sore moments do, and a joke between the two.
 
@@ -55,13 +55,13 @@ What every piece keeps to:
 ## Social events
 
 **1. The spring sowing** (`Rimfolk_R5T_Soc_SpringSowing`; the seasons, work)
-- **When:** spring by the map's calendar, two colonists who don't dislike each other (opinion 0 or more both ways) at the
-  field work side by side (both at Growing, near each other).
+- **When:** spring by the map's calendar, two colonists who don't dislike each other (opinion 0 or more both ways) both
+  sowing, near each other (the game's own sowing job: `scene` `sowing`).
 - **On the map:** the two in the field together; the message names what they talked about while they worked.
 - **Effects:** a small good memory each (a few points of opinion, belonging instead of mood); the shared memory of the
   spring sowing (9); friendship a little stronger.
-- **Ages:** a tribe works the ground with sticks and the seed from the gathering baskets; a medieval colony sows by hand
-  along the rows; an industrial or spacer colony talks over what the seed stock will give and where the new rows go.
+- **Ages:** a tribe talks of the seasons the old ones sowed through, a medieval colony sows a row each and counts them,
+  an industrial colony goes over the seed stock, a spacer colony talks over which crops will do best on this world.
 - **Not a duplicate of:** the last of the harvest (autumn, bringing it in), good company at the work (friends at any
   work), a race at the work (rivals), a neighbour's harvest (a camp's field, a memory).
 
@@ -71,9 +71,9 @@ What every piece keeps to:
 - **On the map:** the two outside in their free time as the day ends; the message.
 - **Effects:** a good memory each (opinion, a little recreation instead of mood); the shared memory of the summer
   evening (10); the friendship stronger.
-- **Ages:** the insects and the last light in any age; a tribe stays out late in the warm, a medieval colony sits on the
-  bench by the wall, an industrial colony talks until the lamps come on, a spacer colony counts the lights of the ships
-  crossing the sky.
+- **Ages:** the last light in any age; a tribe listens to the insects in the warm dusk, a medieval colony talks until
+  the first stars come out, an industrial colony is glad of the cooler air after the heat, a spacer colony talks about
+  the other worlds they have seen.
 - **Not a duplicate of:** a long talk (friends, any time or place), the stars named (a stargazer's quirk), a drink in the
   heat (a hot day at work), caught in the rain, stamping in the cold.
 
@@ -84,8 +84,9 @@ What every piece keeps to:
   days.
 - **Effects:** a good memory each (opinion, belonging); the shared memory of the winter evenings (11); friendship a
   little stronger. The memory can give the quirk "talks about the early days" (15).
-- **Ages:** a tribe remembers the first shelters, a medieval colony the hall before it had a roof, an industrial colony
-  the first generator, a spacer colony the drop pods and the first night after the landing.
+- **Ages:** a tribe remembers the first shelters and everyone round one fire, a medieval colony the winter with hardly a
+  roof over anyone's head, an industrial colony the time before most of what stands now was built, a spacer colony the
+  old gear that broke that first winter.
 - **Not a duplicate of:** two old-timers (two people of 55 or more, about aches and the old days before the colony),
   stories of the old days (an elder to a young one), the founding (a memory given when a new colony stands), the year
   read aloud (a gathering).
@@ -98,8 +99,8 @@ What every piece keeps to:
 - **Effects:** the one who has been here longer learns a little of the work's skill; the newcomer feels listened to (a
   good memory: opinion, belonging instead of mood), which can give the quirk "looks out for newcomers" (16); friendship
   a little stronger.
-- **Ages:** the newcomer's way comes from their old band, their home town, the works they came from or the ship they
-  served on.
+- **Ages:** the newcomer's way comes from their old band, the town they came from, their old workplace or wherever
+  they served before.
 - **Not a duplicate of:** shown the ropes (the old hand tells the newcomer how things are here), a lesson and the teacher
   learns (a mentorship), good company at the work (friends).
 
@@ -110,8 +111,8 @@ What every piece keeps to:
   moved, the score).
 - **Effects:** friction: a point of mood and a few of opinion each, a rivalry a little stronger; and a joke between them
   they will bring up later (the shared memory of the game, 12). It can give the quirk "plays to win" (17).
-- **Ages:** the game itself is the colony's own; lines for a tribe (a throw called foul), a medieval colony (a piece
-  said to have moved) and later ages (the score kept on paper and argued over).
+- **Ages:** the game itself is the colony's own; lines for a tribe (a turn that did not count), a medieval colony (a
+  cheat and a poor loser) and later ages (a score nobody agrees on).
 - **Not a duplicate of:** a contest between rivals (a race at the hauling or arm-wrestling, a rivals tie, no game on the
   map), a race at the work, one-upmanship, the games group habit (a group's warm evening at the games).
 
@@ -121,8 +122,8 @@ What every piece keeps to:
 - **On the map:** the two eating near each other; the message tells how it ended before the meal did.
 - **Effects:** a good memory each (opinion, belonging); the existing shared memory of making up ("made up after the
   quarrel"); any rivalry eases. It can give the quirk "can't leave a quarrel standing" (18).
-- **Ages:** a tribe shares the bowl, a medieval colony passes the bread, a spacer colony says sorry over the ration
-  trays.
+- **Ages:** a tribe shares its food the way its people end a quarrel, a medieval colony offers bread, an industrial or
+  spacer colony says the colony is too small for a grudge.
 - **Not a duplicate of:** making it up after the fight (a fight's memory), a peace offering (one brings something to the
   other), a truce (rivals at work), company at a bad meal (one at a meal in a low mood).
 
@@ -133,8 +134,9 @@ What every piece keeps to:
 - **Effects:** the child is comforted (a good memory, belonging instead of mood); the grown-up a small good memory too,
   which can give the quirk "always has time for the children" (19); the shared memory of the questions answered (14);
   friendship stronger.
-- **Ages:** each age's people tell children what they believe of the dead: the ancestors, the churchyard and the stone,
-  a photograph kept, the records of the ship. Said as the grown-up's belief, never as a god's doing, and no god named.
+- **Ages:** each age's people tell children what they believe of the dead: gone to the ancestors and their names kept,
+  remembered in the colony's prayers, not in pain any more, what they did before they came. Said as the grown-up's
+  belief, never as a god's doing, and no god named.
 - **Not a duplicate of:** a quiet word after a loss (to a grown-up), grief carried together (a grown-up's grief), a
   child's questions (a child's curiosity about the sky and the council).
 
@@ -145,8 +147,8 @@ What every piece keeps to:
 - **Effects:** the child learns a little of the work's skill and is glad of the time (a good memory); the elder too,
   which can give the elder the quirk "always has time for the children" (19) and the child the quirk "follows the old
   ones about" (20); the shared memory of working beside them as a child (13).
-- **Ages:** a tribe's elder shows how their own grandmother's people did it, a medieval elder hums an old work song, a
-  spacer elder tells the child how it was done before machines did it.
+- **Ages:** a tribe's elder teaches the child a work song, a medieval elder tells how it was done when they were a
+  child, an industrial or spacer elder how it was done before machines took over the hard part.
 - **Not a duplicate of:** an old hand's correction (an elder and a young adult), an old game (play), story hour (a
   storyteller's quirk), shown the animals (a keeper and a child), a child's questions (curiosity, any grown-up).
 
@@ -183,7 +185,7 @@ confided.
 
 Each is picked up after a memory the moments above leave (or one the older moments leave that fits), at a small chance,
 counts toward the two a colonist holds at most, fades in its time (or takes root when lived), has its journal lines in six
-voices (gained, and faded), a dream or two of its own (`[quirk:...]` lines in `Rimfolk_Round5_Dreams.xml`, three
+voices (gained, and faded), a dream or two of its own (`[quirk:...]` lines in `Rimfolk_Round5_Dreams.xml`, four
 dreams for the six, one of them a bad one), and a word over the head now and then when it fits what they are doing
 (`Immersion/HabitBubbles.cs`, one line hooking the round's list in). Two have a small knack, as many habits do.
 
@@ -220,8 +222,9 @@ dreams for the six, one of them a bad one), and a word over the head now and the
 
 ## New code, kept small
 
-`Round5Together.Fits`/`Fill` for the three scenes, called where a social event is cast (two lines in
+`Round5Together.Fits`/`Fill` for the four scenes, called where a social event is cast (two lines in
 `Social/SocialEvents.cs`, beside the council's seasons), and its name checked with the def (`scene`). One effect,
-`DilemmaEffect_R5TMemory`, gives a shared memory whose label says when it was ({YEAR}, {SEASON}) and what it was about
+`R5TMemoryEffect`, gives a shared memory whose label says when it was ({YEAR}, {SEASON}) and what it was about
 ({THING}, {X_nameDef}), as the plain shared-memory effect gives one with a fixed label. `Round5Together.Bubbles` adds the
-six quirks' words over the head to the habits' list. Nothing ticks, nothing is saved, nobody is hurt.
+six quirks' words over the head to the habits' list. The def checker knows `{YEAR}` (Tools/DefValidator). Nothing
+ticks, nothing is saved, nobody is hurt.

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the fifth round's moments leave between two of the colony's people (docs/content-round-5-together.md), each given
+    by its social event (Defs/SocialEventDefs/Rimfolk_Round5_SocialEvents.xml, R5TMemoryEffect) to the two who were
+    there, and talked over in Defs/FlavorPoolDefs/Rimfolk_Round5_Talk_Memories.xml. {LABEL} says when it was (the season and
+    the year by the map's calendar) and what it was about (the game by its name, the dead by theirs). {A} is the one it was
+    more about where it matters: the elder a child worked beside, the grown-up who answered the child. Children talk only of
+    growing up (Social/Talk/Talk.cs), so the two with a child in them fade slowly: they are talked over once the child is
+    grown.
+  -->
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_R5T_Mem_SpringSowing</defName>
+    <label>the spring sowing</label>
+    <text>did {LABEL} together</text>
+    <weight>0.9</weight>
+    <fadeDays>120</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_R5T_Mem_SummerEvening</defName>
+    <label>a summer evening</label>
+    <text>sat out together on {LABEL}</text>
+    <weight>0.9</weight>
+    <fadeDays>120</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_R5T_Mem_WinterEvenings</defName>
+    <label>the winter evenings</label>
+    <text>talked over the colony's early days in {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>150</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_R5T_Mem_TheGame</defName>
+    <label>the game</label>
+    <text>still argue about {LABEL}</text>
+    <weight>1</weight>
+    <fadeDays>90</fadeDays>
+    <valence>1</valence>
+    <joke>true</joke>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_R5T_Mem_SmallHands</defName>
+    <label>worked beside them as a child</label>
+    <text>{B} worked beside {A} as a child, in {LABEL}</text>
+    <weight>1.3</weight>
+    <fadeDays>600</fadeDays>
+    <valence>1</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+  <ColonyCouncil.SharedMemoryDef>
+    <defName>Rimfolk_R5T_Mem_Answered</defName>
+    <label>a child's questions answered</label>
+    <text>{A} answered {B}'s questions about {LABEL}</text>
+    <weight>1.2</weight>
+    <fadeDays>480</fadeDays>
+    <valence>0</valence>
+  </ColonyCouncil.SharedMemoryDef>
+
+</Defs>

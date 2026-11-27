@@ -84,11 +84,18 @@ namespace ColonyCouncil
         /// promisebadly, rivalbackers, petition or elderword. Its words may say {OFFICE}, {CANDIDATE}, {RIVAL}, {PROMISE}, {WISH}.
         /// </summary>
         public string council;
+        /// <summary>
+        /// A scene of the fifth content round read from the map (Social/Round5Together.cs): sowing (both at the game's sowing
+        /// job), oldhands (both a year or more at the colony), game (both at the same game, {THING}) or childgrief (B, a
+        /// child, lost someone lately, {X_nameDef}).
+        /// </summary>
+        public string scene;
 
         public override IEnumerable<string> ConfigErrors()
         {
             foreach (var e in base.ConfigErrors()) yield return e;
             if (texts.NullOrEmpty()) yield return "social event has no texts";
+            if (!scene.NullOrEmpty() && !Round5TogetherMath.KnownScene(scene)) yield return "unknown scene " + scene;
             if (tone != "neutral" && tone != "warm" && tone != "friction" && tone != "mend") yield return "tone must be warm, friction, mend or neutral";
             if (bMemoryAboutA && bMemories.NullOrEmpty()) yield return "bMemoryAboutA needs bMemories";
             if (sameWork != null)
@@ -233,6 +240,7 @@ namespace ColonyCouncil
             if (def.camp && !LifeConditions.CampOn(a.MapHeld)) return false;
             if (def.situations != null && !LifeConditions.Situation(def.situations)) return false;
             if (!def.council.NullOrEmpty() && !CouncilSeasons.Fits(def.council, a, b)) return false;
+            if (!def.scene.NullOrEmpty() && !Round5Together.Fits(def.scene, a, b)) return false;
             if (def.aMemories != null && LifeConditions.Remembered(a, def.aMemories, def.memoryDays) == null) return false;
             if (def.bMemories != null && LifeConditions.Remembered(b, def.bMemories, def.memoryDays, def.bMemoryAboutA ? a : null) == null) return false;
             if (def.sameWork != null && WorkSideBySide(def, a, b) == null) return false;
@@ -308,6 +316,7 @@ namespace ColonyCouncil
             }
             if (def.bMadeFineDays > 0f) ctx.thing = FineOf(b, def.bMadeFineDays);
             if (!def.council.NullOrEmpty()) CouncilSeasons.Fill(def.council, ctx);
+            if (!def.scene.NullOrEmpty()) Round5Together.Fill(def.scene, ctx);
             string text = ctx.Format(Flavor.PickText(def.texts));
             ctx.cause = text;
             if (def.sharedVendetta) ctx.faction = SharedVendetta(comp, a, b);

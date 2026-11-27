@@ -89,6 +89,7 @@
     <Compile Include="../../Source/ColonyCouncil/Happenings/Round2EventsMath.cs" Link="Round2EventsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/Round3CouncilMath.cs" Link="Round3CouncilMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Arcs/Round4LivesMath.cs" Link="Round4LivesMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Social/Round5TogetherMath.cs" Link="Round5TogetherMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitCorrectMath.cs" Link="PortraitCorrectMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelRateMath.cs" Link="ApparelRateMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Apparel/ApparelTagMath.cs" Link="ApparelTagMath.cs" />

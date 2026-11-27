@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The knacks of two of the fifth round's quirks (Defs/QuirkDefs/Rimfolk_Round5_Quirks.xml), as the habits' knacks are
+    (Council_Hediffs_Quirks.xml): added with the quirk and removed when it fades, kept in step once a day, a little
+    stronger when the habit is deep-rooted.
+  -->
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Rimfolk_R5T_Quirk_Peacemaking</defName>
+    <label>can't leave a quarrel standing (habit)</label>
+    <description>Gets people talking again after a quarrel. People find them a little easier to deal with for it.</description>
+    <stages>
+      <li><statOffsets><SocialImpact>0.03</SocialImpact></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><SocialImpact>0.05</SocialImpact></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef ParentName="Council_QuirkKnackBase">
+    <defName>Rimfolk_R5T_Quirk_EldersPupil</defName>
+    <label>follows the old ones about (habit)</label>
+    <description>Spends every spare moment beside the colony's old ones, watching and asking. Picks things up a little faster for it.</description>
+    <stages>
+      <li><statOffsets><GlobalLearningFactor>0.03</GlobalLearningFactor></statOffsets></li>
+      <li><minSeverity>0.9</minSeverity><label>deep-rooted</label><statOffsets><GlobalLearningFactor>0.05</GlobalLearningFactor></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>
