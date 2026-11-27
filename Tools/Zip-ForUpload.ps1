@@ -3,8 +3,9 @@
 # Packs files and folders into zip files of at most 28 MiB each (just under 30 MB), ready to upload. If everything fits,
 # you get one zip; if not, it is split into several zips, each a whole zip of its own, so they can be uploaded in turns.
 # A single file too big for one zip (a large save, a video) is cut into numbered pieces (name.001, name.002, ...) spread
-# over the zips; they are joined again after the upload. The zips go to a folder "For upload" on your Desktop, which
-# opens when they are ready. Nothing else is changed: your files are only read.
+# over the zips; they are joined again after the upload. The zips go to a folder "For upload" on your Desktop; when they
+# are ready that folder opens itself, with the new zips selected. Nothing else is changed: your files are only read.
+# After a new version of this file: run it once more with "Run with PowerShell", so the shortcuts use the new one.
 #
 # Install it once: right-click this file and choose "Run with PowerShell". That puts "Zip for upload" in the right-click
 # menu's "Send to" list and an icon "Zip for upload" on your Desktop.
@@ -247,6 +248,37 @@ function Invoke-Pack([string[]] $paths) {
     throw 'Could not keep every part under the limit.'
 }
 
+# ---------------------------------------------------------------- showing the zips
+
+# Opens the folder the zips are in (never the Desktop above it) and selects the new zips there. Explorer's own
+# "/select," falls back to the Desktop or Home on some systems, so the folder is opened by its path, and the zips are
+# selected in that window once it is there; if selecting fails, the folder is open all the same.
+function Show-Made([string[]] $made) {
+    $dir = Split-Path -Parent $made[0]
+    Start-Process explorer.exe -ArgumentList ('"' + $dir + '"')
+    try {
+        $shell = New-Object -ComObject Shell.Application
+        $want = (Resolve-Path -LiteralPath $dir).Path.TrimEnd('\')
+        for ($i = 0; $i -lt 40; $i++) {
+            Start-Sleep -Milliseconds 250
+            $win = $null
+            foreach ($w in @($shell.Windows())) {
+                try { if ($w.Document.Folder.Self.Path.TrimEnd('\') -eq $want) { $win = $w } } catch { }
+            }
+            if ($win -eq $null) { continue }
+            $first = $true
+            foreach ($m in $made) {
+                $item = $win.Document.Folder.ParseName((Split-Path -Leaf $m))
+                if ($item -eq $null) { continue }
+                # 1 select, 4 deselect the rest, 8 scroll to it, 16 focus it; the next ones are added to the selection.
+                if ($first) { $win.Document.SelectItem($item, 29); $first = $false } else { $win.Document.SelectItem($item, 1) }
+            }
+            return
+        }
+    }
+    catch { }
+}
+
 # ---------------------------------------------------------------- start
 
 try {
@@ -255,7 +287,7 @@ try {
         return
     }
     $made = Invoke-Pack $Paths
-    if ($OnWindows -and $made.Count -gt 0) { Start-Process explorer.exe -ArgumentList ('/select,"' + $made[0] + '"') }
+    if ($OnWindows -and $made.Count -gt 0) { Show-Made $made }
     Start-Sleep -Seconds 3
 }
 catch {

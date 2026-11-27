@@ -889,6 +889,12 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **Done (27 November 2026): "Zip for upload" opens the folder its zips are in.** The player: "can it please always open
+  the exact location of the zipped files once it's done, not just the desktop base folder?" Explorer's `/select,` fell
+  back to the Desktop on their system; `Tools/Zip-ForUpload.ps1` now opens the "For upload" folder by its path and
+  selects the new zips in that window (Shell.Application), the folder open even if selecting fails. Not tried on Windows
+  here (no PowerShell in the container). The player runs the new file once with "Run with PowerShell" so the shortcuts
+  use it. Their latest save for reference: Eastern Menistan of 27 November 2026, 09:06 (upload `52d001d2-...zip`).
 - **Done (26 November 2026, 0.306.0): a picture reaches its person by itself.** The player: "i think it's important that
   even if an image was generated for a specific pawn, it should not be reserved for that pawn exclusively and instead
   treated the same way as any other image, just available to use for whoever needs it most, even if i make several base
