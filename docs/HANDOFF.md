@@ -931,6 +931,15 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.318.0, the player's "continue"): the colony out in the world, content round 5, built in a
+  worktree and merged.** The list: `docs/content-round-5-away.md`. Six missions (`Defs/MissionDefs/Rimfolk_Round5_Missions.xml`:
+  hands for the round-up, carvings for their hall, an order from their merchants with the new `HappeningWorker_R5AOrder`
+  over `HappeningWorker_MissionDelivery`, a cook for their feast, a captive walked home, a bell for their watch) and
+  eight encounters (`Defs/EncounterDefs/Rimfolk_Round5_Encounters.xml`); moods `Rimfolk_Round5_Away_Thoughts.xml`; words
+  `Rimfolk_Round5_Away.xml`. Code `Missions/Round5Away.cs` (`R5AOrders`, `R5AGood`), rules `Missions/Round5AwayMath.cs`.
+  `NeighboursFourTests` counts the new missions file in its draw weight (6.8 in all: they take a share). The only hurt:
+  E3's wild animal through `DilemmaEffect_TooClose`. Tests: Round5AwayTests. Not seen in the game: the merchants' order,
+  the bell in each age, the loom scene, E3 in the rain.
 - **Done (27 November 2026, 0.317.0, the player's "continue"): the colony's people together, content round 5, built in
   a worktree and merged.** The list: `docs/content-round-5-together.md`. Eight social events
   (`Rimfolk_Round5_SocialEvents.xml`, `Rimfolk_R5T_Soc_*`), six shared memories (`Rimfolk_Round5_Memories.xml`, talk

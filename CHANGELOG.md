@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Six new missions and eight new encounters
+
+*27 November 2026, version 0.318.0*
+
+- Six new missions from your neighbours: hands for the round-up, carvings for their hall, an order from their merchants, a cook for their feast day, a captive walked home, and a bell for their watch.
+- Send two of your best handlers to a neighbour's lambing, shearing or autumn round-up, your best artist to carve their new hall or their house of prayer, or your best cook to their feast. Each goes by caravan and comes home with pay, a gift and what they learned.
+- A neighbour's merchants may order something your colony already keeps plenty of, from meals and cloth to anything made at your benches from any mod, and pay half again its worth when their carts collect it.
+- Someone of theirs who got away from raiders comes to your colony to wait for a caravan home, and a town that wants to call its people in when raiders come asks for a drum, a bell, a siren or a beacon, by your colony's age.
+- Eight new encounters: the trader's scales, a visitor's grace at the table, a wild animal in the weather, a forester's eye, a visitor at your loom, snow glare, sound rock, and where your land ends.
+- A colonist who walks up close to a wild animal standing out in the rain or snow may be kicked or bitten, at the game's own rate.
+
 ## New moments, memories and quirks between your people
 
 *27 November 2026, version 0.317.0*

@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.318.0</version>
+        <date>27 November 2026</date>
+        <title>Six new missions and eight new encounters</title>
+        <points>
+          <li>Six new missions from your neighbours: hands for the round-up, carvings for their hall, an order from their merchants, a cook for their feast day, a captive walked home, and a bell for their watch.</li>
+          <li>Send two of your best handlers to a neighbour's lambing, shearing or autumn round-up, your best artist to carve their new hall or their house of prayer, or your best cook to their feast. Each goes by caravan and comes home with pay, a gift and what they learned.</li>
+          <li>A neighbour's merchants may order something your colony already keeps plenty of, from meals and cloth to anything made at your benches from any mod, and pay half again its worth when their carts collect it.</li>
+          <li>Someone of theirs who got away from raiders comes to your colony to wait for a caravan home, and a town that wants to call its people in when raiders come asks for a drum, a bell, a siren or a beacon, by your colony's age.</li>
+          <li>Eight new encounters: the trader's scales, a visitor's grace at the table, a wild animal in the weather, a forester's eye, a visitor at your loom, snow glare, sound rock, and where your land ends.</li>
+          <li>A colonist who walks up close to a wild animal standing out in the rain or snow may be kicked or bitten, at the game's own rate.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.317.0</version>
         <date>27 November 2026</date>
         <title>New moments, memories and quirks between your people</title>
