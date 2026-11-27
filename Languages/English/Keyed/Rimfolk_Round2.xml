@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The content round's camps and world events (docs/content-update-proposals-2.md, D33 to D44): their messages, what an
+    answer does (the impact lines), and the few lines said over a head. Source/ColonyCouncil/Camps/CampRound2.cs and
+    World/Variety/WorldRound2.cs. A god is never named here: what people do and say is.
+  -->
+
+  <!-- D33. Diggers at the old place -->
+  <CC_R2Dig_CaughtShout>Hey, get away from those graves!</CC_R2Dig_CaughtShout>
+  <CC_R2Dig_Caught>{A_nameDef} caught {X_nameDef} of the {NAME} digging at the old graves in the night, after the colony told them to keep to the ruins. {X_nameDef} went back to their camp, and the camp is sore about being caught.</CC_R2Dig_Caught>
+  <CC_R2Dig_Found>Someone has been digging at the old graves in the night: the earth over one of them is turned. The {NAME} say they know nothing about it.</CC_R2Dig_Found>
+  <CC_R2Dig_ShareTitle>The diggers' share</CC_R2Dig_ShareTitle>
+  <CC_R2Dig_Share>The {NAME} are packing up, and {X_nameDef} is carrying the colony's share of what they found to its gate: {THING}.</CC_R2Dig_Share>
+  <CC_R2Dig_ShareLeft>The {NAME} are packing up. Nobody of theirs was free to carry the colony's share over, so they left it at the edge of their camp: {THING}.</CC_R2Dig_ShareLeft>
+  <CC_R2Dig_NoGraves>There are no old graves on the land to dig.</CC_R2Dig_NoGraves>
+  <CC_R2Dig_GravesImpact>They dig the old graves too, and bring a second thing for the colony's share; those who hold to the keeper of the dead are unhappy for a few days</CC_R2Dig_GravesImpact>
+  <CC_R2Dig_GravesImpactBrief>the old graves dug</CC_R2Dig_GravesImpactBrief>
+
+  <!-- D34. A herd kept apart -->
+  <CC_R2Herd_Met>The {NAME}'s coughing beasts and the colony's {THING} came close to each other.</CC_R2Herd_Met>
+  <CC_R2Herd_FluMet>The cough of the {NAME}'s herd has spread to the colony's own animals: they came too close to each other.</CC_R2Herd_FluMet>
+  <CC_R2Herd_FluTended>The cough of the {NAME}'s herd has come to the colony's own animals, carried back by whoever tended the herders' beasts.</CC_R2Herd_FluTended>
+  <CC_R2Herd_TendImpact>{0} spends a couple of hours beside the herders' coughing beasts (practice in animals); afterwards there is some chance the colony's own animals catch the cough</CC_R2Herd_TendImpact>
+  <CC_R2Herd_TendImpactBrief>their beasts tended</CC_R2Herd_TendImpactBrief>
+
+  <!-- D35. The stone-raisers -->
+  <CC_R2Stone_Place_tree>by the oldest tree on the land</CC_R2Stone_Place_tree>
+  <CC_R2Stone_Place_water>by the water</CC_R2Stone_Place_water>
+  <CC_R2Stone_Place_open>on open ground by their camp</CC_R2Stone_Place_open>
+  <CC_R2Stone_Place_edge>at the edge of the land</CC_R2Stone_Place_edge>
+  <CC_R2Stone_Laid>The {NAME} have laid out the place for their stone {THING}, and are starting to raise it.</CC_R2Stone_Laid>
+  <CC_R2Stone_Told>People of {FACTION} raised a stone to {GOD} on the colony's land, and kept a rite at it when it stood.</CC_R2Stone_Told>
+  <CC_R2Stone_Stands>The {NAME}'s {THING} stands. They are keeping a short rite at it, and are leaving it to the colony.</CC_R2Stone_Stands>
+  <CC_R2Stone_AStone>their stone</CC_R2Stone_AStone>
+  <CC_R2Stone_TheirGod>their god</CC_R2Stone_TheirGod>
+  <CC_R2Stone_PlaceImpact>They raise the stone where they asked and leave it to the colony</CC_R2Stone_PlaceImpact>
+  <CC_R2Stone_PlaceImpactBrief>the stone raised where they asked</CC_R2Stone_PlaceImpactBrief>
+
+  <!-- D36. Smugglers by night -->
+  <CC_R2Smug_WalkLabel>a walk out to the smugglers' lamp</CC_R2Smug_WalkLabel>
+  <CC_R2Smug_WalkOut>{A_nameDef} walked out to the {NAME}'s lamp after dark with {COUNT} silver from the colony's stores, and one of them is bringing back a {THING} to the gate.</CC_R2Smug_WalkOut>
+  <CC_R2Smug_TheLaw>the people whose law it is</CC_R2Smug_TheLaw>
+  <CC_R2Smug_NightOnly>They only deal after dark.</CC_R2Smug_NightOnly>
+  <CC_R2Smug_NoLaw>There is nobody to tell.</CC_R2Smug_NoLaw>
+  <CC_R2Smug_TellImpact>{FACTION} think better of the colony; the smugglers leave when night falls and don't come back</CC_R2Smug_TellImpact>
+  <CC_R2Smug_TellImpactBrief>the smugglers told on</CC_R2Smug_TellImpactBrief>
+
+  <!-- D37. Novices on the road -->
+  <CC_R2Nov_Exchanged>{A_nameDef} and {X_nameDef} of the {NAME} told each other stories of their gods at the novices' fire.</CC_R2Nov_Exchanged>
+  <CC_R2Nov_NoPlace>The colony has no place dedicated to a god.</CC_R2Nov_NoPlace>
+  <CC_R2Nov_TaleImpact>{0} walks over to their fire and tells them a story of the colony's gods; they tell one back, and the colony's book hears it</CC_R2Nov_TaleImpact>
+  <CC_R2Nov_TaleImpactBrief>stories told at their fire</CC_R2Nov_TaleImpactBrief>
+  <CC_R2Nov_KneelImpact>They walk to the colony's holy place and kneel there a while</CC_R2Nov_KneelImpact>
+  <CC_R2Nov_KneelImpactBrief>they kneel at the holy place</CC_R2Nov_KneelImpactBrief>
+
+  <!-- D38. A lord's hunt -->
+  <CC_R2Hunt_Killed>{X_nameDef} and the {NAME} brought down the {THING} they came for.</CC_R2Hunt_Killed>
+  <CC_R2Hunt_KilledAnyway>One of the {NAME} went after the {THING} anyway and killed it, after the colony asked them to leave it alone.</CC_R2Hunt_KilledAnyway>
+  <CC_R2Hunt_TheBeast>the beast</CC_R2Hunt_TheBeast>
+  <CC_R2Hunt_NoBeast>The beast they came for is gone.</CC_R2Hunt_NoBeast>
+
+  <!-- D39. A god put away -->
+  <CC_R2Away_Told>{FACTION} put away {GOD} after a hard year and took down its stones.</CC_R2Away_Told>
+  <CC_R2Away_PriestImpact>The priest camps by the colony for a season, keeps the god's rite and tells its tales</CC_R2Away_PriestImpact>
+  <CC_R2Away_PriestImpactBrief>a priest for a season</CC_R2Away_PriestImpactBrief>
+  <CC_R2Away_NoRoom>There is no room for another camp on the land now.</CC_R2Away_NoRoom>
+
+  <!-- D40. The dancing sickness -->
+  <CC_R2Dance_JoinLine>I can't keep still listening to that!</CC_R2Dance_JoinLine>
+  <CC_R2Dance_QuietLine>Could you please stop that noise for a while?</CC_R2Dance_QuietLine>
+  <CC_R2Dance_Dancing>{COUNT} dancers of {FACTION} are dancing at the colony's gate.</CC_R2Dance_Dancing>
+  <CC_R2Dance_Fever>{PAWN_nameDef} caught the dancing fever from the dancers who slept here: restless for about a day, it goes by itself.</CC_R2Dance_Fever>
+
+  <!-- D41. The restless dead -->
+  <CC_R2Dead_SayWhole>Leave our dead whole, where they were laid.</CC_R2Dead_SayWhole>
+  <CC_R2Dead_SaySoil>They belong in the soil, so leave them there.</CC_R2Dead_SaySoil>
+  <CC_R2Dead_RoseTitle>Something rose from a grave</CC_R2Dead_RoseTitle>
+  <CC_R2Dead_Rose>The earth over the colony's oldest grave ({GRAVE}) broke open in the night, and something that was dead is walking toward the colony.</CC_R2Dead_Rose>
+  <CC_R2Dead_BurnImpact>Up to {0} of the colony's graves are marked to be taken up, and a bill to cremate the dead is set at the crematorium</CC_R2Dead_BurnImpact>
+  <CC_R2Dead_BurnImpactBrief>the dead burned</CC_R2Dead_BurnImpactBrief>
+  <CC_R2Dead_NoCrematorium>The colony has no crematorium.</CC_R2Dead_NoCrematorium>
+
+  <!-- D42. Bad coin -->
+  <CC_R2Coin_LedgerLine>Good coin always finds its way back to honest hands.</CC_R2Coin_LedgerLine>
+</LanguageData>

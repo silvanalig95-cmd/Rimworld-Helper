@@ -988,6 +988,10 @@ MODEL = {
     "Peoples/Events7/PeopleEvents7Book.cs:evenings": ("cap", (4, 1 / 60), 140, "the organizers' evenings and their petitions, four kept"),
     "Peoples/Events7/PeopleEvents7Book.cs:picketRolled": ("cap", (8, 1 / 120), 20, "the strikes a picket was rolled for, a people and a tick, eight kept"),
     "Peoples/Events7/WorkThatStays.cs:cells": ("fixed", 24, 20, "the cells of the guild's work (a bridge's crossing two cells wide), while the camp stands"),
+    # The content round's camps (Camps/CampRound2.cs): the novices' and the priest's state lives while the camp does: their
+    # people's gods (a handful of ids) and the colony's people who heard a tale at their fire (each once, a colony's worth).
+    "Camps/CampRound2.cs:gods": ("fixed", 4, 10, "the novices' or the priest's gods, a few ids, while the camp stands"),
+    "Camps/CampRound2.cs:heard": ("fixed", 12, 40, "the colony's people who heard a tale at the novices' or the priest's fire, while the camp stands"),
     # The peoples' own events, round 8 (Peoples/Events8/PeopleEvents8Book.cs): the elections the Republic was rolled for and the famines
     # its ration post was, six keys each; the deeds rolled for its medal, PeopleEvents8Math.MaxMedalDeeds ids; the Fleet's sleepers left
     # asleep in the colony's caskets, four kept; the Fleets whose order to disembark was given, eight ids. The camps' own states live

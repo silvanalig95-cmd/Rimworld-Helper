@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 833; modelled: 833; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,222 KB** after a year, **4,052 KB** after two, **4,545 KB** after five.
+Saved collections found: 835; modelled: 835; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,223 KB** after a year, **4,053 KB** after two, **4,546 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -100,10 +100,10 @@ Rimfolk's part of the save, roughly: **3,222 KB** after a year, **4,052 KB** aft
 | `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `World/Notables.cs:letters` | letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days; the bringing flag while the writer carries one to the mailbag, cleared once in; the head a town's matter is passed on to | cap | 15 | 15 | 15 | 8.6 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
+| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 95 | 95 | 95 | 8.3 |
 | `Storylines/Storylines.cs:lines` | running storylines (two at most) and those ended in the last StorylineBook.KeepEndedDays | cap | 4 | 6 | 6 | 8.2 |
 | `UI/Faces/PortraitKeeper.cs:creaturePicks` | the pictures chosen by hand for animals and creatures: at most 300, the earliest let go | cap | 18 | 36 | 90 | 7.9 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 90 | 90 | 90 | 7.9 |
-| `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 89 | 89 | 89 | 7.8 |
 | `Quirks/Quirks.cs:quirks` | 2 per colonist, the dead and discarded dropped | colonists | 40 | 40 | 40 | 7.8 |
 | `Secrets/Secrets.cs:secrets` | one per colonist, ended with their death | colonists | 20 | 20 | 20 | 7.8 |
 | `Setbacks/SetbackTracker.cs:sown` | fields sown, until harvested or lost | window | 40 | 40 | 40 | 7.8 |
@@ -434,6 +434,7 @@ Rimfolk's part of the save, roughly: **3,222 KB** after a year, **4,052 KB** aft
 | `Calendar/CalendarLived.cs:captives` | the colony's people carried off, until home or lost to us | colonists | 4 | 4 | 4 | 0.5 |
 | `Camps/Camp.cs:members` | the camp's people (up to twelve), while it stays | while | 12 | 12 | 12 | 0.5 |
 | `Camps/CampRequests.cs:errandLines` | what they say on the errand, while it lasts | while | 4 | 4 | 4 | 0.5 |
+| `Camps/CampRound2.cs:heard` | the colony's people who heard a tale at the novices' or the priest's fire, while the camp stands | fixed | 12 | 12 | 12 | 0.5 |
 | `ColonyLife/LifeBook.cs:built` | ambitions reached since the year was last read aloud, cleared then; LifeBook.MaxBuilt at most (A14, A29) | cap | 6 | 12 | 12 | 0.5 |
 | `CouncilGameComponent.cs:weddingPlans` | weddings the council planned, one per engaged couple, until held or a few days past their time (Social/WeddingPlans.cs) | fixed | 3 | 3 | 3 | 0.5 |
 | `Gods/OnMap/GodsOnMapBook.cs:lately` | the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most | fixed | 12 | 12 | 12 | 0.5 |
@@ -676,6 +677,7 @@ Rimfolk's part of the save, roughly: **3,222 KB** after a year, **4,052 KB** aft
 | `UI/DilemmaLog.cs:started` | per dilemma record | fixed | 2 | 2 | 2 | 0.0 |
 | `UI/WeekMemory.cs:pinnedWishes` | pins of open wishes | fixed | 2 | 2 | 2 | 0.0 |
 | `World/Region/Hamlet.cs:refused` | per home: when its hamlet's asks were refused, the newest HamletMath.MaxRefused, none older than a year | cap | 3 | 4 | 4 | 0.0 |
+| `Camps/CampRound2.cs:gods` | the novices' or the priest's gods, a few ids, while the camp stands | fixed | 4 | 4 | 4 | 0.0 |
 | `PlayOut/OnMapTimed.cs:pawns` | per thing kept: those felling the trees (three at most), fellings only | fixed | 1 | 1 | 1 | 0.0 |
 | `PlayOut/PlayOuts.cs:led` | per play-out: animals led out to be let go (a pet, or a few of the herd), walks and visits only | fixed | 1 | 1 | 1 | 0.0 |
 | `Dilemmas/Answers.cs:started` | per answer watched | fixed | 1 | 1 | 1 | 0.0 |

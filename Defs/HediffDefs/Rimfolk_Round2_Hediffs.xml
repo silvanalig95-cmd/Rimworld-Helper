@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The dancing fever (D40, the dancing sickness: World/Variety/WorldRound2.cs): caught by someone of the colony who danced
+    with the town's dancers, after they slept indoors, through the shared harm and illness budgets. Restless for a day: they
+    tire quickly and their thoughts wander; it goes by itself.
+  -->
+  <HediffDef>
+    <defName>Rimfolk_R2_DancingFever</defName>
+    <label>dancing fever</label>
+    <description>A restless fever caught from the dancers of a town where people could not stop dancing. For about a day the feet want to move, sleep comes badly and the mind wanders. It goes by itself.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.9, 1.0, 0.35)</defaultLabelColor>
+    <isBad>true</isBad>
+    <initialSeverity>1</initialSeverity>
+    <maxSeverity>1</maxSeverity>
+    <comps>
+      <li Class="HediffCompProperties_Disappears">
+        <disappearsAfterTicks>50000~70000</disappearsAfterTicks>
+        <showRemainingTime>true</showRemainingTime>
+      </li>
+    </comps>
+    <stages>
+      <li>
+        <restFallFactor>1.6</restFallFactor>
+        <capMods>
+          <li>
+            <capacity>Consciousness</capacity>
+            <offset>-0.08</offset>
+          </li>
+        </capMods>
+      </li>
+    </stages>
+  </HediffDef>
+</Defs>

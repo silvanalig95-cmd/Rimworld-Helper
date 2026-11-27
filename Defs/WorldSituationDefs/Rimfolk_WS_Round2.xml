@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content round's world events (docs/content-update-proposals-2.md, section 5, D39 to D44): a god put away, the dancing
+    sickness, the restless dead, bad coin, a rising in the town and two claims on the valley. Each in the form of its
+    people's age ([theirTribal]..., SituationWorker_Variety) and tied to what exists: the peoples' gods and the colony's book
+    of them, the priest's camp for a season, the visitors at the gate and their stay, the colony's graves and the game's own
+    jobs, the region's prices, the game's slaves and their suppression, goodwill and the moot. Their ways in
+    Source/ColonyCouncil/World/Variety/WorldRound2.cs. Words in the world events' flavour style; a priest's words in the old
+    voice. A god is named only by the name a people's own letter gives it ({ITEM}), as the colony heard it.
+  -->
+
+  <!-- ===================== D39. A god put away ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_GodPutAway</defName>
+    <label>a god put away</label>
+    <workerClass>ColonyCouncil.SituationWorker_GodPutAway</workerClass>
+    <weight>0.45</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>godaway</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the putting out of the spirit</li>
+      <li>[theirMedieval] the pulling down of the chapel</li>
+      <li>[theirIndustrial] the closing of the church</li>
+      <li>[theirSpacer] the locking of the archive</li>
+    </names>
+    <titles>
+      <li>{FACTION} put away {ITEM}</li>
+      <li>A god put away at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] A letter has come from {FACTION}, carried by a runner with ash on his face. After the hard year, it says, the elders at {PLACE} have put {ITEM} out of the fire circle: its name is not to be said at the fire, and its carved posts have been pulled up and thrown in the river.\n\nSo their letter said, and the runner did not stay to talk about it.</li>
+      <li>[theirMedieval] {FACTION} write that after the hard year their council at {PLACE} has pulled down the chapel of {ITEM}. The bell has been taken out, the stones carted away, and its priests have been told to find another living or another road.\n\nSo their letter said. It was sealed in black.</li>
+      <li>[theirIndustrial] A printed notice has come from {FACTION}: the church of {ITEM} at {PLACE} is closed by order, after the hard year, and its property is to be sold. The notice thanks the faithful for their patience.\n\nSo their letter said. Somebody had written underneath it, by hand, that it would not last.</li>
+      <li>[theirSpacer] {FACTION} have sent word that the archive of {ITEM} at {PLACE} is locked, its records sealed and its keepers stood down, after the hard year. Their broadcast calls it a reorganisation.\n\nSo their letter said.</li>
+      <li>[ourGod] {FACTION} write that after their hard year they have put away {ITEM}, the same god some at the colony hold, and taken down its stones at {PLACE}. So their letter said, and some at the colony read it twice.</li>
+    </texts>
+    <summaries>
+      <li>One of {ITEM}'s priests, turned out of {PLACE}, may come to the gate asking shelter. Those of the colony who hold that god are uneasy about the news.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>priest</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>priest</what><ages>35~70</ages><hours>3~5</hours></li>
+        </effects>
+        <day>2~6</day>
+        <chance>0.85</chance>
+        <titles>
+          <li>A priest of {ITEM} at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a priest of {ITEM} from {PLACE}, has come to the gate with a bundle and a staff. {FACTION} have put {X_possessive} god away, {X_pronoun} says, and there is no place for {X_objective} at home now. {X_pronoun} asks shelter for a season: {X_pronoun} would keep the god's rite where it can be kept and tell its tales to anyone who will listen.\n\n"I ask but a roof and a fire," {X_pronoun} says, "till my people remember whom they have forgotten."</li>
+          <li>[theirLowtech] A priest of {ITEM}, put out of the fire circle at {PLACE}, is at the gate with ash still in {X_possessive} hair. {X_nameDef} asks to stay a season by the colony, and keep {X_possessive} god's rite there.\n\n"Let me bide by thy fire a while," {X_pronoun} says, "and I shall tell thee of the god thy neighbours put away."</li>
+          <li>[theirHightech] {X_nameDef}, until last month a keeper of {ITEM}'s archive at {PLACE}, has come to the gate with a case of records {X_pronoun} was not supposed to take. {X_pronoun} asks shelter for a season, and a place to keep the god's rite.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_nameDef} in for a season</label>
+            <outcome>{X_nameDef} thanks the colony and goes to make a camp by it for the season, to keep {X_possessive} god's rite and tell its tales.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_PriestStays" />
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+            </effects>
+            <flags><li>taken</li></flags>
+            <help>1</help>
+            <deed>gave a season's shelter to a priest of {ITEM}</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>A meal, and send {X_objective} on</label>
+            <outcome>A meal is carried out to {X_nameDef} at the gate. {X_pronoun} eats it slowly, blesses the colony in {X_possessive} god's name and walks on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the priest</label><what>meals</what><count>1</count><eat>true</eat><steward>false</steward></li>
+            </effects>
+            <flags><li>fed</li></flags>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Turn {X_objective} away</label>
+            <outcome>{X_nameDef} bows, as if to someone standing behind the colony's wall, and goes on.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>back</key>
+        <chance>0.45</chance>
+        <titles>
+          <li>{FACTION} take {ITEM} back</li>
+        </titles>
+        <texts>
+          <li>The harvest at {PLACE} came in better than anyone hoped, and {FACTION} have set up {ITEM}'s stones again. So their next letter says, without much explanation.</li>
+          <li>[taken] {FACTION} write that the sickness has passed from {PLACE} and they have taken {ITEM} back. They have heard that a priest of the god found a roof at the colony, and they say so.</li>
+          <li>[theirIndustrial] The church of {ITEM} at {PLACE} has opened again, after the mill reopened and the town's bad year ended. The notice says nothing about why it was closed.</li>
+        </texts>
+        <chronicle>{FACTION} took {ITEM} back after a year without it.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><requires>taken</requires></li>
+        </effects>
+      </li>
+      <li>
+        <key>away</key>
+        <titles>
+          <li>{ITEM} stays put away</li>
+        </titles>
+        <texts>
+          <li>The hard year at {PLACE} did not end with the god's stones, and {FACTION} have not put them back. {ITEM}'s name is not said there now, so their letters say.</li>
+          <li>[theirSpacer] The archive of {ITEM} at {PLACE} stays sealed. {FACTION}'s broadcasts have stopped mentioning it at all.</li>
+          <li>[taken] {FACTION} have not taken {ITEM} back. The priest the colony sheltered says {X_pronoun} will wait, and has gone to wait somewhere else.</li>
+        </texts>
+        <chronicle>{FACTION} kept {ITEM} put away.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:pilgrims] The pilgrims of {PLACE} have stopped walking to {ITEM}'s shrines, and their hostel has taken its sign down.</li>
+      <li>[their:sextons] The Quiet Bell at {PLACE} rings no more for {ITEM}, and the sextons argue about whether that was ever theirs to decide.</li>
+      <li>[their:scholars] The learned society at {PLACE} has been told to take {ITEM} out of its lectures, and has voted to keep the notes.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:pilgrims,end:back] The pilgrims of {PLACE} walk to {ITEM}'s shrines again, and the hostel's sign is back up.</li>
+      <li>[their:sextons,end:back] The Quiet Bell rings for {ITEM} again at {PLACE}.</li>
+      <li>[their:scholars] The learned society's notes on {ITEM} are still in the archive at {PLACE}, whatever the council says.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== D40. The dancing sickness ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_DancingSickness</defName>
+    <label>the dancing sickness</label>
+    <workerClass>ColonyCouncil.SituationWorker_DancingSickness</workerClass>
+    <weight>0.4</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>260</cooldownDays>
+    <durationDays>8~12</durationDays>
+    <kind>dancing</kind>
+    <prosperity>-3</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the dancing sickness</li>
+      <li>[theirMedieval] the dancing plague</li>
+      <li>[theirIndustrial] the mill-town mania</li>
+      <li>[theirSpacer] the dancing echo</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE}</li>
+      <li>People dancing at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] At {PLACE}, {FACTION}'s people are dancing round the fires and cannot stop: they dance until they fall asleep, and wake up dancing. The elders call it {NAME}. Some say it is a curse, some say a god of the cup has got into them, and the women who grind the grain say the bread was bad.</li>
+      <li>[theirMedieval] {NAME} has come to {PLACE}. Men and women of {FACTION} dance in the streets day and night to no music, and the priests have tried prayer and the doctors bleeding, and neither has helped. Some say it is a curse, some blame the drinking god's people, and the bakers say nothing.</li>
+      <li>[theirIndustrial] The papers of {FACTION} call it {NAME}: at {PLACE}, the night shift walked out of the mill dancing and has not stopped since. The doctors say it is nerves, the preachers say it is drink, and the mill says it is bad flour from a rival's mill.</li>
+      <li>[theirSpacer] {FACTION} report {NAME} at {PLACE}: a psychic echo, they think, has set half the station dancing, and the medics have not found what to switch off. Some say it is a god's doing, others a broken beacon.</li>
+    </texts>
+    <summaries>
+      <li>Two or three dancers from {PLACE} may come to the gate, dance a while there, and ask water and a place to rest. Some of the colony may join them.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>dancers</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>dancers</what><count>2~3</count><ages>16~45</ages><hours>3~5</hours></li>
+        </effects>
+        <day>2~6</day>
+        <titles>
+          <li>Dancers at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef} and others from {PLACE} have come to the gate dancing, and are still dancing there, slower now, with their shoes worn through. When they can stop long enough to speak, {X_nameDef} asks for water and somewhere to rest. {X_pronoun} says it is passing.</li>
+          <li>[theirLowtech] Dancers of {FACTION} have come up the road to the gate, stamping and turning in the dust as though there were drums. {X_nameDef} stops long enough to ask for water and a roof for the night.</li>
+          <li>[theirHightech] Two or three of {FACTION}'s people have come to the gate in torn work clothes, dancing. {X_nameDef} manages to say they walked out of {PLACE} to get away from it, and asks for water and a bed.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let them rest indoors</label>
+            <outcome>They are given a corner indoors for the night, and at last they sleep, deeply.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.VisitEffect_Stay"><nights>1</nights><inside>true</inside></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>3</amount></li>
+            </effects>
+            <flags><li>rested</li></flags>
+            <help>1</help>
+            <deed>gave the dancers from {PLACE} a roof for the night</deed>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Feed them at the gate and send them on</label>
+            <outcome>Food and water are carried out to the dancers at the gate. They eat standing, still moving their feet, and go on.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the dancers</label><what>meals</what><count>2</count><eat>true</eat><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>1</amount></li>
+            </effects>
+            <flags><li>fed</li></flags>
+          </li>
+          <li>
+            <label>Send them on</label>
+            <outcome>They go on their way, still unable to keep their feet still.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>fever</key>
+        <requires><li>fever</li></requires>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} has stopped as it came, and the town is asleep. One of the colony had a day of the fever, and that has passed as well.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended; one of the colony caught a day of it.</chronicle>
+      </li>
+      <li>
+        <key>rested</key>
+        <requires><li>rested</li></requires>
+        <helped>true</helped>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} is over. {FACTION} have heard that the colony gave a roof to some of theirs and let them sleep, and they say so.</li>
+          <li>[joined] {NAME} at {PLACE} has ended. {FACTION} have heard the colony took in some of theirs, and that some at the colony joined in with them, which they find very funny.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended; the colony sheltered its dancers.</chronicle>
+        <effects>
+          <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} has stopped. The town slept for two days, and nobody there agrees about what it was.</li>
+          <li>[theirIndustrial] The mill at {PLACE} has its night shift back. The papers have moved on to other things.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== D41. The restless dead ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_RestlessDead</defName>
+    <label>the restless dead</label>
+    <workerClass>ColonyCouncil.SituationWorker_RestlessDead</workerClass>
+    <weight>0.35</weight>
+    <earliestDay>60</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>10~14</durationDays>
+    <kind>dead</kind>
+    <bad>true</bad>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the walking of the dead</li>
+      <li>[theirMedieval] the open graves</li>
+      <li>[theirIndustrial] the cemetery scare</li>
+      <li>[theirSpacer] the grave breaches</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE}</li>
+      <li>Graves found open</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] At {PLACE} the graves of {FACTION} have been found open in the mornings, the earth thrown back from the inside. The people there are burning their dead now, and the elders and the grave-keepers argue at every fire about whether that is right.</li>
+      <li>[theirMedieval] Word has come from {FACTION}: at {PLACE} the graves have been found open, and the sextons and the priests are at each other's throats about it. The town has begun burning its dead in the square, which half of it says is a sin.</li>
+      <li>[theirIndustrial] {FACTION}'s papers report {NAME} at {PLACE}: graves found open at the municipal cemetery, the night watch doubled, and the crematorium working all hours. The churches have complained about the crematorium.</li>
+      <li>[theirSpacer] {FACTION} report {NAME} at {PLACE}: sealed graves found open from the inside, and the station has started cremating its dead. Not everyone there is happy about it.</li>
+    </texts>
+    <summaries>
+      <li>The colony will have to decide what to do with its own dead while the region talks of nothing else.</li>
+      <li>[anomaly] The colony will have to decide what to do with its own dead. At {PLACE}, they say, the dead have walked.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>question</key>
+        <day>1~3</day>
+        <skill>Construction</skill>
+        <titles>
+          <li>The colony's own dead</li>
+        </titles>
+        <texts>
+          <li>The news from {PLACE} has reached every fire at the colony, and people have started looking at the colony's own graves, {COUNT} of them. What should be done with the dead?\n\nThose who hold to the keeper of the dead want them left whole. Those who hold to the soil want them left in it. Others say the safest thing is to burn them, as the towns are doing.</li>
+          <li>[anomaly] At {PLACE}, they say, the dead got up and walked. The colony has {COUNT} graves of its own, and everyone has an opinion about them now.\n\nSome say leave them be, some say burn them, and some say seal them properly with stone and be done with it.</li>
+        </texts>
+        <defaultOption>0</defaultOption>
+        <options>
+          <li>
+            <label>Leave them as they lie</label>
+            <outcome>The colony's dead are left as they lie, and those who hold to the keeper of the dead are glad of it.</outcome>
+            <flags><li>left</li></flags>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Burn them</label>
+            <outcome>The colony's dead are to be taken up and burned at the crematorium.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_BurnDead" />
+            </effects>
+            <flags><li>burned</li></flags>
+            <ways><tradition>-1</tradition></ways>
+          </li>
+          <li>
+            <label>Have {A_nameDef} seal the graves</label>
+            <outcome>{A_nameDef} goes out to the graves with stone and mortar to seal them over properly.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>A</who><to>Grave</to><work>ConstructDirt</work><label>sealing the graves</label><duration>2~3</duration></li>
+            </effects>
+            <flags><li>sealed</li></flags>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>rose</key>
+        <requires><li>rose</li></requires>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} has quieted, and the towns have stopped burning their dead. At the colony, nobody needs to be told it was not only talk.</li>
+        </texts>
+        <chronicle>{NAME}: something rose from one of the colony's graves.</chronicle>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} at {PLACE} has quieted. The sextons and the priests have agreed to disagree, and the towns have been quiet for a week.</li>
+          <li>[burned] {NAME} at {PLACE} is over. The colony burned its dead as the towns did, and some at the colony still do not like it.</li>
+          <li>[sealed] {NAME} at {PLACE} is over. The colony's dead lie sealed in under stone, and people slow down a little when they pass that way.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} ended.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== D42. Bad coin ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_BadCoin</defName>
+    <label>bad coin</label>
+    <workerClass>ColonyCouncil.SituationWorker_BadCoin</workerClass>
+    <weight>0.5</weight>
+    <earliestDay>30</earliestDay>
+    <cooldownDays>240</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>coin</kind>
+    <prosperity>-4</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the bad rings</li>
+      <li>[theirMedieval] the clipped coin</li>
+      <li>[theirIndustrial] the falling scrip</li>
+      <li>[theirSpacer] the credit crash</li>
+    </names>
+    <titles>
+      <li>{NAME} of {FACTION}</li>
+      <li>Bad silver at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] The silver rings {FACTION} trade with have been found to be tin under a silver skin, and nobody at {PLACE} will take one without biting it first. Their traders are carrying goods to trade with now, and they say they will weigh every piece of silver anyone gives them.</li>
+      <li>[theirMedieval] The coin of {FACTION} has been found clipped and mixed with tin, and the money-changers of {PLACE} have scales out on every table. {NAME}, the traders call it, and every coin in the region is being weighed twice.</li>
+      <li>[theirIndustrial] The scrip of {FACTION} is falling, the banks at {PLACE} have closed their doors for the week, and every trader in the region is asking for metal instead of paper. The papers call it {NAME}.</li>
+      <li>[theirSpacer] {FACTION}'s credit has crashed. At {PLACE} nobody will take a chit, and the traders want silver they can weigh in their hands, and good metal above all.</li>
+    </texts>
+    <summaries>
+      <li>{FACTION}'s towns buy good metal dear while it lasts. A money-changer may come to the gate to weigh the colony's silver for a fee.</li>
+    </summaries>
+    <modifiers>
+      <li><incident>TraderCaravanArrival</incident><factor>0.8</factor></li>
+    </modifiers>
+    <beats>
+      <li>
+        <key>changer</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>money-changer</what><ages>30~65</ages><hours>3~5</hours></li>
+        </effects>
+        <day>2~7</day>
+        <chance>0.8</chance>
+        <titles>
+          <li>A money-changer at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a money-changer from {PLACE}, has set up a little pair of scales at the gate. With {NAME} going round the region, {X_pronoun} says, half the silver anyone holds is tin, and {X_pronoun} will weigh the colony's for {COUNT} silver and take away whatever is bad. By {X_possessive} guess about {ITEM} silver of it would be bad.</li>
+          <li>[theirLowtech] A money-changer of {FACTION} is at the gate with scales in a box and a stone to scratch the coins on. For {COUNT} silver, {X_nameDef} will test every coin the colony has, and carry off what is bad: about {ITEM} silver of it, {X_pronoun} thinks.</li>
+          <li>[theirHightech] {X_nameDef} of {FACTION} has come to the gate with an assay scanner and a list of prices. For {COUNT} silver {X_pronoun} will check the colony's silver and take away what is bad; about {ITEM} silver of it, if the colony's is like everyone else's.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Have the silver weighed ({COUNT} silver)</label>
+            <outcome>The colony's silver is carried out to {X_nameDef}'s scales. {X_pronoun} takes the fee, and the bad coin with it: {ITEM} silver of tin under a silver skin, which nobody at the colony had noticed.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the fee and the bad coin</label><what>silver</what><variant>true</variant><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>1</amount></li>
+            </effects>
+            <flags><li>weighed</li></flags>
+            <help>1</help>
+          </li>
+          <li>
+            <label>Send the changer on</label>
+            <outcome>{X_nameDef} packs up the scales and goes on, saying the colony will find out soon enough.</outcome>
+          </li>
+        </options>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>weighed</key>
+        <requires><li>weighed</li></requires>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. {FACTION} have struck new coin at {PLACE}, and the colony's silver, at least, was weighed and found good.</li>
+        </texts>
+        <chronicle>{NAME} of {FACTION} ended; the colony's silver was weighed.</chronicle>
+      </li>
+      <li>
+        <key>over</key>
+        <titles>
+          <li>{NAME} is over</li>
+        </titles>
+        <texts>
+          <li>{NAME} is over. {FACTION} have struck new coin at {PLACE}, and the traders have put their scales away, mostly.</li>
+          <li>[theirIndustrial] The banks at {PLACE} have opened again with new notes, and the old scrip is being burned in a furnace in the square.</li>
+        </texts>
+        <chronicle>{NAME} of {FACTION} ended.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:traders] The road league has stopped taking coin at {PLACE} altogether, and its wagons trade goods for goods until the coin is good again.</li>
+      <li>[their:brokers] The enclave's brokers at {PLACE} are buying the bad coin at a third of its face, and nobody can tell whether they are helping or not.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:traders] The road league takes coin again at {PLACE}, weighed.</li>
+      <li>[their:brokers] The enclave at {PLACE} has sold the bad coin it bought back to the mint at a profit, which surprised nobody.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== D43. A rising in the town ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_Rising</defName>
+    <label>a rising in the town</label>
+    <workerClass>ColonyCouncil.SituationWorker_Rising</workerClass>
+    <weight>0.4</weight>
+    <earliestDay>40</earliestDay>
+    <cooldownDays>280</cooldownDays>
+    <durationDays>12~18</durationDays>
+    <kind>rising</kind>
+    <prosperity>-6</prosperity>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <names>
+      <li>[theirTribal] the captives' rising</li>
+      <li>[theirMedieval] the serfs' rising</li>
+      <li>[theirIndustrial] the strike at the mills</li>
+      <li>[theirSpacer] the crew's rising</li>
+    </names>
+    <titles>
+      <li>{NAME} at {PLACE}</li>
+      <li>The bound rise at {PLACE}</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] The captives {FACTION} took in their raids have risen at {PLACE}: they broke the pens one night, took the spears from the store and walked out into the dark. Some of them are on the roads now, and the camp's warriors are out after them.</li>
+      <li>[theirMedieval] The serfs of {FACTION} have risen at {PLACE}. They burned the steward's tally sticks, opened the lord's granary and drove his men out of the town. {NAME}, the region calls it, and the roads are full of people who no longer belong to anyone.</li>
+      <li>[theirIndustrial] The bonded workers of {FACTION}'s mills at {PLACE} have walked off the floor and barricaded the gates. {NAME} has stopped every machine in the town, and some of the strikers are walking the roads looking for work that pays.</li>
+      <li>[theirSpacer] The indentured crew of {FACTION} at {PLACE} have locked the officers out of the control deck and torn up their contracts. Some of them have already left the station on foot.</li>
+    </texts>
+    <summaries>
+      <li>Freed ones of {PLACE} will be on the roads past the colony, and one may come to the gate.</li>
+      <li>[slaves] Freed ones of {PLACE} will be on the roads past the colony, and the colony's own slaves will hear of it.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>road</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>travelers</what><count>3~5</count><ages>16~45</ages><spot>Road</spot><onward>true</onward><stopHours>1~2</stopHours><hourFrom>7</hourFrom><hourTo>17</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>1~4</day>
+        <message>true</message>
+        <texts>
+          <li>Freed ones from {PLACE} are on the road past the colony, going quickly and looking behind them.</li>
+          <li>[theirIndustrial] Strikers from the mills at {PLACE} are passing the colony with their tools on their backs.</li>
+        </texts>
+      </li>
+      <li>
+        <key>gate</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>freed one</what><ages>16~45</ages><hours>3~5</hours></li>
+        </effects>
+        <day>3~8</day>
+        <titles>
+          <li>A freed one at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, one of the freed of {PLACE}, has come to the gate in borrowed clothes. {X_pronoun} ran when the town rose, {X_pronoun} says, and asks whether the colony will take {X_objective} in, or at least let {X_objective} rest before the road.</li>
+          <li>[theirLowtech] A freed captive of {FACTION} is at the gate with the mark of a rope still on {X_possessive} wrists. {X_nameDef} asks the colony for a place, or a meal and a word about the road.</li>
+          <li>[theirHightech] {X_nameDef}, until last week bound to {FACTION}'s mills at {PLACE}, is at the gate with a torn contract in {X_possessive} pocket. {X_pronoun} asks for work, a bed, or a meal.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take {X_nameDef} in</label>
+            <outcome>{X_nameDef} is let in at the gate, and stands there a moment before believing it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Join"><count>1</count><ages>16~45</ages></li>
+            </effects>
+            <flags><li>taken</li></flags>
+            <deed>took in a freed one of {PLACE}</deed>
+            <ways><mercy>1</mercy></ways>
+          </li>
+          <li>
+            <label>A meal, and send {X_objective} on</label>
+            <outcome>A meal is carried out to {X_nameDef} at the gate. {X_pronoun} eats it fast and goes on down the road, away from {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the freed one</label><what>meals</what><count>1</count><eat>true</eat><steward>false</steward></li>
+            </effects>
+            <flags><li>fed</li></flags>
+          </li>
+          <li>
+            <label>Hand {X_objective} back to {FACTION}</label>
+            <outcome>Word is sent to {FACTION}, and two of their riders come and take {X_nameDef} back toward {PLACE}. {FACTION} are grateful; some at the colony are not.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+            </effects>
+            <flags><li>handedBack</li></flags>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>news</key>
+        <requires><li>slaves</li></requires>
+        <day>2~6</day>
+        <message>true</message>
+        <texts>
+          <li>Travellers on the road have been talking of the rising at {PLACE}, and the colony's slaves have heard every word of it.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>freed</key>
+        <chance>0.5</chance>
+        <titles>
+          <li>{PLACE} is free</li>
+        </titles>
+        <texts>
+          <li>The rising at {PLACE} held. The town has new heads chosen by those who rose, and {FACTION} have had to come to terms with them.</li>
+          <li>[theirIndustrial] The strike at {PLACE} is over: the mills have opened again under new terms, and the old owners have sold out.</li>
+          <li>[handedBack] The rising at {PLACE} held, and the freed ones remember who sent one of theirs back.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE}: the town was freed.</chronicle>
+      </li>
+      <li>
+        <key>putDown</key>
+        <titles>
+          <li>{NAME} put down</li>
+        </titles>
+        <texts>
+          <li>{FACTION} have put down the rising at {PLACE}. Those who were caught are back where they were, and the rest are still on the roads.</li>
+          <li>[taken] {FACTION} have put down the rising at {PLACE}. The one the colony took in is safe at the colony, and {FACTION} have not asked after {X_objective}.</li>
+        </texts>
+        <chronicle>{NAME} at {PLACE} was put down.</chronicle>
+      </li>
+    </endings>
+    <theirs>
+      <li>[their:drillers] The Union at {PLACE} has voted to stand with the strikers, and the shafts are quiet.</li>
+      <li>[their:crew] The Hollow Fleet's log at {PLACE} records a change of watch that nobody ordered.</li>
+    </theirs>
+    <theirEnds>
+      <li>[their:drillers] The Union's book at {PLACE} has new names in it, the strikers' own.</li>
+      <li>[their:crew] The log at {PLACE} records the watch handed back, or not, depending on who is reading it.</li>
+    </theirEnds>
+  </ColonyCouncil.WorldSituationDef>
+
+  <!-- ===================== D44. Two claims on the valley ===================== -->
+
+  <ColonyCouncil.WorldSituationDef>
+    <defName>Rimfolk_WS_TwoClaims</defName>
+    <label>two claims on the valley</label>
+    <workerClass>ColonyCouncil.SituationWorker_TwoClaims</workerClass>
+    <weight>0.35</weight>
+    <earliestDay>45</earliestDay>
+    <cooldownDays>300</cooldownDays>
+    <durationDays>14~20</durationDays>
+    <kind>claims</kind>
+    <faction>
+      <friendly>true</friendly>
+    </faction>
+    <second>
+      <friendly>true</friendly>
+    </second>
+    <names>
+      <li>[theirTribal] the chiefs' word</li>
+      <li>[theirMedieval] the two charters</li>
+      <li>[theirIndustrial] the two deeds</li>
+      <li>[theirSpacer] the registry dispute</li>
+    </names>
+    <titles>
+      <li>Two claims on the valley</li>
+      <li>{FACTION} and {ENEMY} claim the colony's land</li>
+    </titles>
+    <texts>
+      <li>[theirTribal] {FACTION} and {ENEMY} have both sent word that the colony's land is theirs: the chiefs of each say their grandfathers hunted it, and each has a story to prove it. They call it {NAME}, and each would like the colony to say who is right.</li>
+      <li>[theirMedieval] {FACTION} and {ENEMY} each claim the valley the colony stands on, each by an old charter with a seal on it, and each charter names the other a thief. {NAME}, the clerks call it, and both have sent someone to the colony with their copy.</li>
+      <li>[theirIndustrial] {FACTION} and {ENEMY} have both registered a deed to the colony's land at their own offices, and each has written to say the other's deed is a forgery. Both are sending a surveyor.</li>
+      <li>[theirSpacer] {FACTION} and {ENEMY} each have the colony's land in their orbital registry under their own name. Each has sent an officer to settle it, and each officer has orders not to give way.</li>
+    </texts>
+    <summaries>
+      <li>Envoys of {FACTION} and {ENEMY} will come to the gate with their claims. Whatever the colony says, one of them will like it less.</li>
+    </summaries>
+    <beats>
+      <li>
+        <key>claims</key>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>envoy</what><ages>28~60</ages><hours>3~5</hours></li>
+          <li Class="ColonyCouncil.VisitEffect_AtGate"><what>envoy</what><enemy>true</enemy><stranger>false</stranger><ages>28~60</ages><hours>3~5</hours></li>
+        </effects>
+        <day>2~5</day>
+        <titles>
+          <li>Two envoys at the gate</li>
+        </titles>
+        <texts>
+          <li>Envoys of {FACTION} and of {ENEMY} have arrived at the gate within an hour of each other, and are standing as far apart as the gate allows. {X_nameDef} of {FACTION} has a claim to the colony's land, and so does the other.\n\nThe colony may side with one of them, say the land is its own, or pay each a small toll to go away content: {COUNT} silver in all.</li>
+          <li>[theirLowtech] {X_nameDef} of {FACTION} has come with a carved staff that marks their claim, and an envoy of {ENEMY} has come with another. Both are at the gate and neither will speak first.\n\nThe colony may side with one, say the land is its own, or give each a small toll, {COUNT} silver in all.</li>
+          <li>[theirHightech] Surveyors of {FACTION} and of {ENEMY} have arrived with instruments and folders. {X_nameDef} wants the colony to sign that the land is {FACTION}'s; the other wants the same for {ENEMY}.\n\nThe colony may side with one, say it is its own, or pay each a small fee, {COUNT} silver in all.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Side with {FACTION}</label>
+            <outcome>The colony says {FACTION}'s claim is the better one. {X_nameDef} is very pleased, and the other envoy leaves without a word.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount><who>Enemy</who></li>
+            </effects>
+            <flags><li>sideFirst</li></flags>
+            <help>1</help>
+          </li>
+          <li>
+            <label>Side with {ENEMY}</label>
+            <outcome>The colony says {ENEMY}'s claim is the better one. Their envoy bows, and {X_nameDef} of {FACTION} leaves in a hurry.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>8</amount><who>Enemy</who></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-6</amount></li>
+            </effects>
+            <flags><li>sideSecond</li></flags>
+          </li>
+          <li>
+            <label>The land is the colony's own</label>
+            <outcome>The colony tells both envoys that the land is its own. Neither of them likes it, and both go home to say so.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>-3</amount><who>Both</who></li>
+            </effects>
+            <flags><li>own</li></flags>
+          </li>
+          <li>
+            <label>Pay each a small toll ({COUNT} silver)</label>
+            <outcome>The silver is carried out to the gate, half for each envoy. They count it, glare at each other and go home, each sure the land is still theirs.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a toll for each claimant</label><what>silver</what><tens>true</tens><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount><who>Both</who></li>
+            </effects>
+            <flags><li>toll</li></flags>
+          </li>
+        </options>
+      </li>
+      <li>
+        <key>walkFirst</key>
+        <requires><li>own</li><li>strongFirst</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>riders</what><count>3~5</count><ages>20~50</ages><spot>Road</spot><onward>true</onward><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>5~10</day>
+        <message>true</message>
+        <texts>
+          <li>Riders of {FACTION} are going slowly along the edge of the colony's land, as though measuring it. They are not armed for a fight.</li>
+        </texts>
+      </li>
+      <li>
+        <key>walkSecond</key>
+        <requires><li>own</li><li>strongSecond</li></requires>
+        <effects>
+          <li Class="ColonyCouncil.VisitEffect_Come"><what>riders</what><enemy>true</enemy><count>3~5</count><ages>20~50</ages><spot>Road</spot><onward>true</onward><hourFrom>8</hourFrom><hourTo>16</hourTo><delay>0.5~2</delay></li>
+        </effects>
+        <day>5~10</day>
+        <message>true</message>
+        <texts>
+          <li>Riders of {ENEMY} are going slowly along the edge of the colony's land, as though measuring it. They are not armed for a fight.</li>
+        </texts>
+      </li>
+    </beats>
+    <endings>
+      <li>
+        <key>moot</key>
+        <requires><li>moot</li></requires>
+        <titles>
+          <li>{NAME} settled at the moot</li>
+        </titles>
+        <texts>
+          <li>{FACTION} and {ENEMY} took {NAME} to the moot of the peoples, and the moot said the colony's land is the colony's, which pleased nobody but the colony.</li>
+        </texts>
+        <chronicle>{NAME} was settled at the moot.</chronicle>
+      </li>
+      <li>
+        <key>talked</key>
+        <chance>0.35</chance>
+        <titles>
+          <li>{NAME} talked out</li>
+        </titles>
+        <texts>
+          <li>{FACTION} and {ENEMY} met at a crossroads, talked for two days about {NAME}, and went home agreeing only that the colony is a nuisance. Neither will press the claim again this year.</li>
+          <li>[sideFirst] {ENEMY} have let their claim drop after the colony sided with {FACTION}. {FACTION} talk of the colony as a friend.</li>
+          <li>[sideSecond] {FACTION} have let their claim drop after the colony sided with {ENEMY}. {ENEMY} talk of the colony as a friend.</li>
+        </texts>
+        <chronicle>{NAME} was talked out between {FACTION} and {ENEMY}.</chronicle>
+      </li>
+      <li>
+        <key>stronger</key>
+        <titles>
+          <li>{NAME} settled by the stronger</li>
+        </titles>
+        <texts>
+          <li>[strongFirst] {ENEMY} have given up their claim, for now: {FACTION} have more towns and more riders, and said so. The colony's land is still the colony's, as far as anyone can tell.</li>
+          <li>[strongSecond] {FACTION} have given up their claim, for now: {ENEMY} have more towns and more riders, and said so. The colony's land is still the colony's, as far as anyone can tell.</li>
+          <li>{NAME} has gone quiet, as these things do. The colony is still where it was.</li>
+        </texts>
+        <chronicle>{NAME} was settled by the stronger of the two.</chronicle>
+      </li>
+    </endings>
+  </ColonyCouncil.WorldSituationDef>
+</Defs>

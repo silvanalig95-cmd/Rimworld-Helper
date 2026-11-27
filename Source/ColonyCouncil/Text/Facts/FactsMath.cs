@@ -110,7 +110,10 @@ namespace ColonyCouncil
             // The content update's world (Rimfolk_CampKinds_Variety4.xml): the beekeepers, the mushroom pickers, and the
             // camps of the region's world events.
             "them:camp:Beekeepers", "them:camp:MushroomPickers", "them:camp:YoungHands", "them:camp:StrandedCarters", "them:camp:Gleaners",
-            "them:camp:GamesTeam", "them:camp:WalkingHome", "them:camp:StarWatchers"
+            "them:camp:GamesTeam", "them:camp:WalkingHome", "them:camp:StarWatchers",
+            // The content round's camps (Rimfolk_CampKinds_Round2.xml), and the priest of a god put away taken in for a season.
+            "them:camp:Diggers", "them:camp:HerdApart", "them:camp:StoneRaisers", "them:camp:Smugglers", "them:camp:Novices", "them:camp:LordsHunt",
+            "them:camp:PutAwayPriest"
         };
 
         /// <summary>The tag for one of a camp of this kind: them:camp: and the kind's defName without its Council_Camp_ or Rimfolk_Camp_ ("them:camp:SaltCaravan").</summary>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content round's camps and world events (docs/content-update-proposals-2.md, D33 to D44): what the colony's people
+    feel about them. A believer's mood never names the god (the gods are unseen): it says what was done.
+  -->
+
+  <!-- D33: those who hold to the keeper of the dead, while strangers dig the old graves (Camps/CampRound2.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_GravesDug</defName>
+    <durationDays>3</durationDays>
+    <stages>
+      <li>
+        <label>strangers digging old graves</label>
+        <description>The council let the diggers open the old graves on our land. The dead should be left where they were laid.</description>
+        <baseMoodEffect>-3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- D35: the believers of the colony's most held god, when the stone raised on its land is to that god's rival. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_RivalStone</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>a stone to another god</label>
+        <description>Strangers raised a stone on our land to a god that is no friend of mine, and the council let them.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- D39: the colony's believers of the god a people put away (World/Variety/WorldRound2.cs). -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_GodPutAway</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>a god put away</label>
+        <description>A people put away the god I hold after one hard year, and took down its stones. It is not a good sign.</description>
+        <baseMoodEffect>-2</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- D40: those of the colony who joined the dancers at the gate. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_DancedWithThem</defName>
+    <durationDays>1</durationDays>
+    <stages>
+      <li>
+        <label>danced with the strangers</label>
+        <description>Strangers came to the gate dancing and I joined in. I don't know what got into them, but it was good fun.</description>
+        <baseMoodEffect>4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- D43: the colony's own slaves, hearing of the rising from the road. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_RisingHeard</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>heard of a rising</label>
+        <description>Travellers say the bound rose in a town not far from here and walked away free.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <!-- D43: the colony's kind-hearted, when the council hands a freed one back to their masters. -->
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_HandedBack</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>a freed one handed back</label>
+        <description>Someone who had run from their masters came to our gate, and the council sent them back. I think less of the council for it.</description>
+        <baseMoodEffect>-4</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+</Defs>
