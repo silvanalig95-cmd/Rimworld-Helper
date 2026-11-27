@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The closest raises an orphan, and no Pokémon in the missing list
+
+*27 November 2026, version 0.306.1*
+
+- When a child of the colony has no parent left here, the council's question now names the grown-up closest to them, counted as for what the dead leave: how much they think of the child and the child of them, the bonds between them, and being a relative by blood as only one part. Family no longer comes first.
+- A Pokémon with no painted picture is no longer written into missing.csv: Pokémon are not painted.
+
 ## A new picture reaches its person
 
 *26 November 2026, version 0.306.0*

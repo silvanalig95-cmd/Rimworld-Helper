@@ -22,7 +22,9 @@ namespace ColonyCouncil
     /// <item>Shown only on the large portrait at the inspect pane (<see cref="InspectPortrait"/>), in front of the backdrop
     /// of where it is, the way a person's painted picture is; the small portraits keep the game's own drawing, since they
     /// frame a person's head.</item>
-    /// <item>A creature of a kind the library has no picture for is noted in missing.csv ("creature"), once a session.</item>
+    /// <item>A creature of a kind the library has no picture for is noted in missing.csv ("creature"), once a session; never a
+    /// Pokémon (the player, 27 November 2026: "it doesn't really make sense to generate images for Pokemon because it just
+    /// will not look like the actual Pokemon").</item>
     /// </list>
     /// With "Painted portraits" or "Painted pictures of animals and creatures" off, none shows.
     /// </summary>
@@ -204,6 +206,8 @@ namespace ColonyCouncil
         /// <summary>No picture of its kind, age and sex: a line in missing.csv, once a session for each creature.</summary>
         private void Note(Pawn p)
         {
+            // PokéWorld's Pokémon are never painted: none is noted as missing.
+            if (PokeWorldLink.IsPokemon(p)) return;
             AgeAndSex(p, out var stage, out string sex);
             bool kind = records.Any(r => string.Equals(r.race, p.def?.defName, StringComparison.OrdinalIgnoreCase));
             PortraitNeeds.NoteCreature(p, CreaturePortraitMath.Word(stage), sex, kind ? "CC_PortraitNeed_NoCreatureStage" : "CC_PortraitNeed_NoCreature");

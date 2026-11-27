@@ -69,6 +69,14 @@ namespace ColonyCouncil
         /// </summary>
         public static float Closeness(int opinion, float web, bool partner, bool kin) => VendettaMath.Closeness(new VendettaMath.Bond(opinion, web, partner, kin));
 
+        /// <summary>
+        /// Who would raise a child with nobody of their own here (Social/FamilyGuardians.cs): the grown-up closest to them, as
+        /// closeness is counted for what the dead leave (their opinion of the child, the bonds between them, a relative by
+        /// blood as one part among those: CLAUDE.md, "The colony is the family"), and the child's opinion of them at half.
+        /// Until 27 November 2026 family went first and one raising a brother or sister of theirs before that.
+        /// </summary>
+        public static float RaiserCloseness(int opinionOfChild, int childsOpinion, float web, bool kin) => Closeness(opinionOfChild, web, false, kin) + childsOpinion / 2f;
+
         /// <summary>Close enough to keep the dead's keepsake (their weapon or hat): as close as an opinion of 20 alone.</summary>
         public const float KeepsakeAtLeast = 20f;
 

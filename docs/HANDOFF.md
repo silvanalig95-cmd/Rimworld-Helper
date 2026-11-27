@@ -61,10 +61,12 @@ most sense." So, in this order, three builds at a time:
      the name; the faiths' descriptions keep the old voice (CLAUDE.md, "Plain, neutral text"). Built, not released:
      the entry "The peoples' own beginnings, each told its own way" above the newest release line.
 - Pokémon: pairings are changed when the player flags one.
-- **To do when the player asks (found 20 November 2026 with A30, no words of the player's yet): who raises an orphan.**
-  The rule for who raises a colony child whose parents are gone still says "family first", which, like the inheritance
-  A30 changed, ties a mechanic to blood (CLAUDE.md, "The colony is the family"). When asked: the one closest to the child
-  raises them, by the same closeness rule (`VendettaMath.Closeness`, `FamilyLifeMath.Closeness`), kin a part of it.
+- **Done (27 November 2026, 0.306.1, on the player's go of that day): who raises an orphan.** The council's question
+  (`Social/FamilyGuardians.cs`, `Guardians.Best`) named the fondest grown-up "family first, and one already raising a
+  brother or sister before that", which tied a mechanic to blood (CLAUDE.md, "The colony is the family"). Now the
+  closest by `FamilyLifeMath.RaiserCloseness`: the vendetta's closeness (their opinion of the child, the web's warmth, a
+  relative by blood as one part) and the child's opinion of them at half. Same release: no "creature" line in
+  missing.csv for a Pokémon (`CreatureLibrary.Note`). Tests: FamilyLifeTests, CreaturePortraitTests.
 - **Done (20 November 2026, the player; phase 1 released 0.289.0, phase 2 built, not released): faces people can
   recognize, in the direction of Crusader Kings.** The player: "when you write letters to people or there's an event
   and you see the
@@ -889,6 +891,20 @@ most sense." So, in this order, three builds at a time:
     on, and that method reads AbilityUser.StringsToTranslate): turning "Enable auto-cast" off in the magic mod's
     settings should let Myst be drafted (its presets turn it on again; casting Cure Disease or Light Skip reads the same
     type).
+- **The player's go of 27 November 2026, on the lead's list (camps' packs, the orphan, the content round, the small
+  portrait items):** "Okay, that all sounds good. You can go ahead with everything. So regarding Pokemon pictures, no,
+  you don't have to write them. You know, it doesn't really make sense to generate images for Pokemon because it just
+  will not look like the actual Pokemon. Talking picture, no. Honestly, the more I experiment, I think these variations,
+  are unfortunately not really similar enough to the pawns that it makes sense. So you can hold that for the time
+  being. But yeah, you can go ahead with the content round, maybe also other content, camps, dilemmas, world events,
+  just further expanding on the mechanics you already have or adding more, so to say, content to the mechanics, not
+  necessarily interactions between them, but just more content to the already existing mechanics, because I feel like
+  we are already on a very good level, and adding more mechanics for the time being doesn't necessarily make it better
+  since it's already just a lot." So: no "creature" line in missing.csv for a Pokémon, and no Pokémon looks to write;
+  no `talking` condition; the painted variants (expressions, marks, conditions) held, nothing more built for them for
+  now; content goes to the mechanics there are (more events, camps, dilemmas, world events, council questions, the
+  gods' happenings), no new mechanics. The order: the Pokémon line, the orphan, the camps' packs and store, then the
+  content round (`docs/content-update-proposals-2.md`, its items that add content to what exists) and more of the same.
 - **Done (27 November 2026): "Zip for upload" opens the folder its zips are in.** The player: "can it please always open
   the exact location of the zipped files once it's done, not just the desktop base folder?" Explorer's `/select,` fell
   back to the Desktop on their system; `Tools/Zip-ForUpload.ps1` now opens the "For upload" folder by its path and

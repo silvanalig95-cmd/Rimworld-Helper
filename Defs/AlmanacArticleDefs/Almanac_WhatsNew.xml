@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.306.1</version>
+        <date>27 November 2026</date>
+        <title>The closest raises an orphan, and no Pokémon in the missing list</title>
+        <points>
+          <li>When a child of the colony has no parent left here, the council's question now names the grown-up closest to them, counted as for what the dead leave: how much they think of the child and the child of them, the bonds between them, and being a relative by blood as only one part. Family no longer comes first.</li>
+          <li>A Pokémon with no painted picture is no longer written into missing.csv: Pokémon are not painted.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.306.0</version>
         <date>26 November 2026</date>
         <title>A new picture reaches its person</title>

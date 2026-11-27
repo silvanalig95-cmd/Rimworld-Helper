@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 26 November 2026 (0.306.0: a new picture that fits one of your people nearly exactly becomes theirs by itself; 0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 27 November 2026 (0.306.1: no Pokémon in missing.csv; 0.306.0: a new picture that fits one of your people nearly exactly becomes theirs by itself; 0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -206,7 +206,7 @@ one of its kind. It must match the kind and the age (a baby a baby's; a juvenile
 where the picture shows one; the same picture each time for the same animal, the pictures of a kind shared evenly.
 Click it for the game's information on the animal; right-click: **Choose another picture** (kept for it) or **Delete
 this picture for good**. A creature with no picture of its kind shows no portrait and is a "creature" line in
-`missing.csv`.
+`missing.csv`, except a Pokémon: those aren't painted, so they are never listed.
 
 **The gods** (from `gods-01`): a god walking the map as itself (not in disguise) shows its own picture when selected,
 in the colony's age where there is one; a god without pictures of its own shows the figure of its kind; with none of

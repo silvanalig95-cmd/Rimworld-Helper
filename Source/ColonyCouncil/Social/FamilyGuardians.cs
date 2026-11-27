@@ -43,13 +43,18 @@ namespace ColonyCouncil
             && People.HasInnerLife(b) && !b.IsQuestLodger() && ArcUtil.Opinion(b, child) >= 0;
 
         /// <summary>
-        /// The grown-up who would take them in: fondest of the child (and the child of them), family first, and one
-        /// already raising a brother or sister of theirs before that.
+        /// The grown-up who would take them in: the one closest to the child (<see cref="FamilyLifeMath.RaiserCloseness"/>:
+        /// their opinion of the child, the bonds between them, a relative by blood as one part among those, and the child's
+        /// opinion of them), never family first: the colony is the family.
         /// </summary>
-        public static Pawn Best(Pawn child, IEnumerable<Pawn> adults) =>
-            adults.Where(b => CouldRaise(b, child))
-                .OrderByDescending(b => ArcUtil.Opinion(b, child) + ArcUtil.Opinion(child, b) / 2f + (Family.Of(b, child) ? 50f : 0f)
-                                        + (Family.ChildrenOf(b).Any(c => c != child && ArcUtil.Kin(c, child)) ? 60f : 0f)).FirstOrDefault();
+        public static Pawn Best(Pawn child, IEnumerable<Pawn> adults)
+        {
+            var web = CouncilGameComponent.Instance?.social;
+            return adults.Where(b => CouldRaise(b, child))
+                .OrderByDescending(b => FamilyLifeMath.RaiserCloseness(ArcUtil.Opinion(b, child), ArcUtil.Opinion(child, b), web?.Warmth(b, child) ?? 0f,
+                    b.GetRelations(child).Any(r => r.familyByBloodRelation)))
+                .ThenBy(b => b.thingIDNumber).FirstOrDefault();
+        }
 
         /// <summary>The grown-up the child would choose: the one they like best of those who could raise them.</summary>
         public static Pawn Chosen(Pawn child, IEnumerable<Pawn> adults) =>

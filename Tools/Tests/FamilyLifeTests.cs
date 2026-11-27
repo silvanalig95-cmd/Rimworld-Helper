@@ -62,6 +62,12 @@ public static class FamilyLifeTests
             "two as close: the first; none, nobody");
         Check(FamilyLifeMath.RoomAtLeast == VendettaMath.AtLeast && FamilyLifeMath.KeepsakeAtLeast < FamilyLifeMath.RoomAtLeast, "a room asks as much closeness as a vendetta, a keepsake less");
 
+        // ---------- Who raises a child with nobody of their own: the closest, never family first (27 November 2026) ----------
+        Check(FamilyLifeMath.RaiserCloseness(80, 60, 15f, false) > FamilyLifeMath.RaiserCloseness(10, 20, 0f, true),
+            "a grown-up who is close to the child before an aunt who never was");
+        Check(FamilyLifeMath.RaiserCloseness(40, 40, 0f, true) > FamilyLifeMath.RaiserCloseness(40, 40, 0f, false), "as close otherwise: a relative by blood a little ahead");
+        Check(FamilyLifeMath.RaiserCloseness(40, 80, 0f, false) > FamilyLifeMath.RaiserCloseness(40, 0, 0f, false), "the child's own liking counts, at half");
+
         // ---------- Names for a baby ----------
         var fam = new List<NameSource>
         {

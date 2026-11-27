@@ -129,6 +129,10 @@ public static class CreaturePortraitTests
                 "deleting one for good: the same dialog, deleted.csv line and bin, the others' files kept, its hand-picks let go");
             C(needs.Contains("what = \"creature\", kind = p.def.defName") && lib.Contains("PortraitNeeds.NoteCreature(p,"),
                 "a creature without a picture of its kind is noted in missing.csv");
+            C(lib.Contains("if (PokeWorldLink.IsPokemon(p)) return;") && lib.IndexOf("if (PokeWorldLink.IsPokemon(p)) return;") < lib.IndexOf("PortraitNeeds.NoteCreature(p,"),
+                "never a Pokémon: they aren't painted (the player, 27 November 2026)");
+            string guard = Read("Social/FamilyGuardians.cs");
+            C(guard.Contains("FamilyLifeMath.RaiserCloseness(") && !guard.Contains("Family.Of(b, child) ? 50f"), "(the orphan) the council's question names the closest grown-up, never family first");
         }
         return n;
     }

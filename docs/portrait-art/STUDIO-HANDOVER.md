@@ -55,6 +55,12 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Rimfolk 0.306.1 (27 November 2026): no Pokémon in missing.csv.** The player: "it doesn't really make sense to
+  generate images for Pokemon because it just will not look like the actual Pokemon". The game writes no "creature"
+  line for a PokéWorld creature any more; old lines of the file stay until it is written again. The player also holds
+  the painted variants for now ("these variations, are unfortunately not really similar enough to the pawns that it
+  makes sense"): nothing new for them in the game, no `talking`.
+
 - **Rimfolk 0.306.0 (26 November 2026): a picture reaches its person by itself.** With no name in `pawn` (Rimfolk Studio
   0.20.0 writes none for "a picture of this person as they are"), a picture made for someone is an ordinary picture in
   every save. When the library has changed since one of the colony's own people was last looked at, and a picture whose
