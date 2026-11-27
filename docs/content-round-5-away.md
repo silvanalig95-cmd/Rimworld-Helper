@@ -55,7 +55,7 @@ land (the forest, the snowfields, the mountains, the open grass), spring, summer
 
 ## Missions (R5A-M1 to R5A-M6)
 
-**R5A-M1. Hands for the round-up** (`Rimfolk_R5A_Mission_RoundUp`, `MissionHands`, kind `roundup`)
+**R5A-M1. Hands for the round-up** (`Rimfolk_R5A_Mission_RoundUp`, `MissionHands`, kind `herding`)
 - **When:** spring to autumn, a friendly people with a town within three days' caravan, and two of the colony's people
   good with animals (Animals 5 or more, able to handle them) it can spare with others left at home.
 - **Who goes:** two of the colony's handlers, by caravan, about a day and a half at their town.
@@ -140,7 +140,7 @@ land (the forest, the snowfields, the mountains, the open grass), spring, summer
 - **Not a duplicate of:** a pilgrim to escort, a traveller seen home (a trader, a healer, a scholar), the League's factor,
   refugees (a group hosted), a wounded messenger, a hostage returned (the wards).
 
-**R5A-M6. A bell for their watch** (`Rimfolk_R5A_Mission_Bell`, `MissionDelivery`, kind `bell`)
+**R5A-M6. A bell for their watch** (`Rimfolk_R5A_Mission_Bell`, `MissionDelivery`, kind `alarm`)
 - **When:** a friendly neighbour; any season.
 - **What happens:** their town wants a way to call everyone in when raiders or fire come, and asks the colony for what it
   takes, by the colony's own means: a great drum (`drum`, a tribal colony: cloth or hide and wood), a bell (`bell`,

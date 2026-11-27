@@ -58,7 +58,9 @@
         </options>
       </li>
       <li Class="ColonyCouncil.MissionHands">
-        <kind>roundup</kind>
+        <!-- The kind is also one of the lines' tags (Missions.Tags), so it is never one of the forms' tags: "roundup" is the
+             autumn's alone. -->
+        <kind>herding</kind>
         <restDays>60</restDays>
         <rating>2</rating>
         <maxTravelDays>3</maxTravelDays>
@@ -585,7 +587,9 @@
         </options>
       </li>
       <li Class="ColonyCouncil.MissionDelivery">
-        <kind>bell</kind>
+        <!-- The kind is also one of the lines' tags (Missions.Tags), so it is never one of the variants' tags: "bell" is the
+             medieval colony's alone. -->
+        <kind>alarm</kind>
         <restDays>75</restDays>
         <rating>2</rating>
         <days>9~13</days>

@@ -677,7 +677,8 @@ namespace ColonyCouncil
                 case "blocks":
                     return d.thingCategories != null && d.thingCategories.Contains(ThingCategoryDefOf.StoneBlocks);
                 case "textiles":
-                    return d.thingCategories != null && d.thingCategories.Contains(ThingCategoryDefOf.Textiles);
+                    // Cloth or leather, as the goal says: leathers and wools sit in the textiles' own sub-categories.
+                    return d.thingCategories != null && d.IsWithinCategory(ThingCategoryDefOf.Textiles);
             }
             return false;
         }

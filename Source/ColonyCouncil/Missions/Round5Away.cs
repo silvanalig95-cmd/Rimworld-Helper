@@ -54,15 +54,15 @@ namespace ColonyCouncil
 
         /// <summary>
         /// One thing the colony makes that merchants buy by the crate: an item a recipe makes, that stacks and can be sold.
-        /// Never a weapon, clothes, a drug, silver or a raw resource, nor what one of the order's groups already counts
-        /// (meals, cloth and leather, medicine, drink, stone blocks).
+        /// Never a weapon or a mortar shell, clothes, a drug, silver or a raw resource, nor what one of the order's groups
+        /// already counts (meals, cloth and leather, medicine, drink, stone blocks).
         /// </summary>
         public static bool Sellable(ThingDef d)
         {
             if (d == null || d.category != ThingCategory.Item || d.stackLimit <= 1 || d.BaseMarketValue < 0.5f || d == ThingDefOf.Silver) return false;
-            if (d.IsWeapon || d.IsApparel || d.IsDrug || d.IsCorpse || d.IsMedicine || d.destroyOnDrop || !d.PlayerAcquirable || !d.tradeability.PlayerCanSell()) return false;
-            var cats = d.thingCategories;
-            if (cats != null && (cats.Contains(ThingCategoryDefOf.ResourcesRaw) || cats.Contains(ThingCategoryDefOf.Textiles) || cats.Contains(ThingCategoryDefOf.StoneBlocks))) return false;
+            if (d.IsWeapon || d.IsShell || d.IsApparel || d.IsDrug || d.IsCorpse || d.IsMedicine || d.destroyOnDrop || !d.PlayerAcquirable || !d.tradeability.PlayerCanSell()) return false;
+            // By the category or one under it, as the groups count them (leathers and wools are under the textiles).
+            if (d.thingCategories != null && (d.IsWithinCategory(ThingCategoryDefOf.ResourcesRaw) || d.IsWithinCategory(ThingCategoryDefOf.Textiles) || d.IsWithinCategory(ThingCategoryDefOf.StoneBlocks))) return false;
             if (d.ingestible != null && d.IsNutritionGivingIngestible && d.ingestible.preferability >= FoodPreferability.MealSimple) return false;
             if (ThingRoles.Fits(ThingRole.Drink, d) || ThingRoles.Fits(ThingRole.SoftDrink, d)) return false;
             return Made.Contains(d);

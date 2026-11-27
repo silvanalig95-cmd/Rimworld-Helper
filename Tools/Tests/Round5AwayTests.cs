@@ -85,12 +85,12 @@ public static class Round5AwayTests
         C(missions.Count == 6, $"six missions ({missions.Count})");
         var expected = new Dictionary<string, (string worker, string ext, string kind)>
         {
-            ["Rimfolk_R5A_Mission_RoundUp"] = ("HappeningWorker_MissionHands", "MissionHands", "roundup"),
+            ["Rimfolk_R5A_Mission_RoundUp"] = ("HappeningWorker_MissionHands", "MissionHands", "herding"),
             ["Rimfolk_R5A_Mission_Carver"] = ("HappeningWorker_MissionHands", "MissionHands", "carver"),
             ["Rimfolk_R5A_Mission_Order"] = ("HappeningWorker_R5AOrder", "MissionDelivery", "order"),
             ["Rimfolk_R5A_Mission_Cook"] = ("HappeningWorker_MissionHands", "MissionHands", "cook"),
             ["Rimfolk_R5A_Mission_Captive"] = ("HappeningWorker_MissionEscortWho", "MissionEscortWho", "captive"),
-            ["Rimfolk_R5A_Mission_Bell"] = ("HappeningWorker_MissionDelivery", "MissionDelivery", "bell"),
+            ["Rimfolk_R5A_Mission_Bell"] = ("HappeningWorker_MissionDelivery", "MissionDelivery", "alarm"),
         };
         var outcomesOf = new Dictionary<string, string[]>
         {
