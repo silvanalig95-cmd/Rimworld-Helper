@@ -63,7 +63,7 @@ namespace ColonyCouncil
             { Adventurer, "Council_Evt_OldAdventurer" }
         };
 
-        private static readonly HashSet<string> PendingKinds = new HashSet<string> { Venture, Campaign, MonkGift, Mended };
+        private static readonly HashSet<string> PendingKinds = new HashSet<string> { Venture, Campaign, MonkGift, Mended, Round2Map.Den, Round2Map.LateFeast };
 
         /// <summary>On the World page's "what's coming" (a gift that may never come isn't).</summary>
         private static readonly HashSet<string> Shown = new HashSet<string> { Venture, Campaign };
@@ -116,6 +116,9 @@ namespace ColonyCouncil
                         case Campaign: HappeningWorker_OldCommander.Report(m); break;
                         case MonkGift: HappeningWorker_SilentMonk.Gift(m); break;
                         case Mended: HappeningWorker_WoundedStranger.Repaid(m); break;
+                        // The content update's second round: the walled den in spring, the feast kept late after a death.
+                        case Round2Map.Den: HappeningWorker_BearDen.Spring(m); break;
+                        case Round2Map.LateFeast: DilemmaEffect_LateFeast.Held(m); break;
                     }
                 }
                 catch (Exception e)

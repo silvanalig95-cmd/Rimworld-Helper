@@ -44,7 +44,25 @@ namespace ColonyCouncil
         /// <summary>A danger on the map: a mechanoid's remains with charge still in them.</summary>
         Scrap,
         /// <summary>A danger on the map: soft ground by a door that may give underfoot.</summary>
-        SoftGround
+        SoftGround,
+        /// <summary>The content update's second round (Happenings/Workers_Round2.cs): one not in by dark, searched for, called in or out till dawn.</summary>
+        NightOut,
+        /// <summary>The second round: the fish running at the colony's fishing ground for three days, and a bear by the bank.</summary>
+        FishRun,
+        /// <summary>The second round: a bear asleep in a hollow a miner broke into, while the council decides.</summary>
+        BearAsleep,
+        /// <summary>The second round: a water chain from the water to a field in a drought, at dawn for two hours.</summary>
+        WaterChain,
+        /// <summary>The second round: a wild animal acting wrong at the edge of the colony, that may go mad later that day.</summary>
+        WrongBeast,
+        /// <summary>The second round: a raider who hid after the raid, found in cover at the far side of the land.</summary>
+        Hidden,
+        /// <summary>The second round: an animal stuck in the bog, pulled out with a rope or reached with boards.</summary>
+        Bog,
+        /// <summary>The second round: a pocket of bad air in the deep, a shaft opened, short turns or a wall.</summary>
+        BadAir,
+        /// <summary>The second round: the ordeal at the hearth, the burns (or the oath) once the gathering is under way.</summary>
+        Ordeal
     }
 
     /// <summary>One thing an answer keeps on the map for a while, and when it ends.</summary>
@@ -231,6 +249,16 @@ namespace ColonyCouncil
                 case TimedKind.Scrap:
                 case TimedKind.SoftGround:
                     return MapDangers.Step(k, now);
+                case TimedKind.NightOut:
+                case TimedKind.FishRun:
+                case TimedKind.BearAsleep:
+                case TimedKind.WaterChain:
+                case TimedKind.WrongBeast:
+                case TimedKind.Hidden:
+                case TimedKind.Bog:
+                case TimedKind.BadAir:
+                case TimedKind.Ordeal:
+                    return Round2Map.Step(k, now);
                 default: return true;
             }
         }
@@ -277,6 +305,17 @@ namespace ColonyCouncil
                 case TimedKind.Scrap:
                 case TimedKind.SoftGround:
                     MapDangers.End(k, early);
+                    break;
+                case TimedKind.NightOut:
+                case TimedKind.FishRun:
+                case TimedKind.BearAsleep:
+                case TimedKind.WaterChain:
+                case TimedKind.WrongBeast:
+                case TimedKind.Hidden:
+                case TimedKind.Bog:
+                case TimedKind.BadAir:
+                case TimedKind.Ordeal:
+                    Round2Map.End(k, early);
                     break;
             }
         }

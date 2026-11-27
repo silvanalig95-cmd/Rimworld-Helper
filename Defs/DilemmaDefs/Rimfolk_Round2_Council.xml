@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The content update's second round, its council questions (docs/content-update-proposals-2.md, D24 to D32;
+       Source/ColonyCouncil/Dilemmas/DilemmaWorkers_Round2.cs). Five of the gods and the faith (how to lay the dead down, the
+       ordeal at the hearth, a prisoner who asks to pray, the feast after a death, a path with the keeper of the colony's book,
+       the work a believer's god won't have) and four of everyday life (the room nobody sleeps in, one of the camp who died,
+       the new age). Council questions, so the flavour style; each answer plays out on the map. -->
+
+  <!-- ===================== D24. The room nobody will sleep in ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_EmptyRoom</defName>
+    <label>the room nobody will sleep in</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_EmptyRoom</workerClass>
+    <weight>1.2</weight>
+    <cooldownDays>15</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>2</answerDays>
+    <texts>
+      <li>Nobody has slept in {DEAD}'s room since the burying. {THIRD_nameDef} says the door still sticks the way it did when {DEAD} slammed it, and every time it sticks, somebody in the yard looks up. {B_nameDef} has no room of {B_possessive} own and could have it, if anyone could bring {B_objective} to cross the sill.</li>
+      <li>[keeper] {A_nameDef}, who keeps the colony's book, came to the council about {DEAD}'s room. It stands as {DEAD} left it, the blanket still turned back. {A_pronoun} would go in at dusk and say the old words over it, so that {B_nameDef} might sleep there without feeling a guest.</li>
+      <li>{DEAD}'s room has been shut since the death, and the colony walks round it like a sleeping dog. {THIRD_nameDef} would rather it were lived in than left to gather dust; {B_nameDef} says it is not {B_possessive} to take; and nobody has yet said what should become of it.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Words at dusk, and {B_nameDef} moves in</label>
+        <outcome>At dusk {A_nameDef} said a few words in {DEAD}'s room with whoever came, and {B_nameDef} carried {B_possessive} blanket in after. The door still sticks. Nobody minds it now.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_WordsAtPlace"><label>words in {DEAD}'s room</label><hours>17~21</hours><duration>0.5~0.75</duration>
+            <lines>
+              <li>This was {DEAD}'s room, and now it's yours.</li>
+              <li>Sleep well here, as {DEAD} did.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_DeadRoom"><mode>movein</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_R2_RoomSettled</thought></li>
+        </effects>
+        <ways><tradition>2</tradition></ways>
+      </li>
+      <li>
+        <label>Clear the room for the colony</label>
+        <outcome>The bed was taken up and carried to the stores, and the room is the colony's again, for whatever it needs. {THIRD_nameDef} stood in the empty doorway a while afterwards and then went back to work.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_DeadRoom"><mode>clear</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_RoomCleared</thought></li>
+        </effects>
+        <ways><toil>2</toil><tradition>-1</tradition></ways>
+      </li>
+      <li>
+        <label>Leave it as it was for a season</label>
+        <outcome>The room is left as {DEAD} left it, for a season at least. {A_nameDef} sat in it for an hour that afternoon, with the door open, and came out quieter than {A_pronoun} went in.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_VigilAtPlace"><label>an hour in {DEAD}'s room</label><count>2</count><target>Colony</target><organizer>A</organizer></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_RoomKept</thought></li>
+        </effects>
+        <ways><tradition>1</tradition><toil>-1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_RoomSettled</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>a room of my own, blessed</label><description>The words were said over the room before I moved in. It feels like mine now, and like theirs too.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_RoomCleared</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>their room cleared out</label><description>They took the bed out of the room and that was that. It's just a room now.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_RoomKept</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>sat in their room a while</label><description>I sat in their room with the door open. Everything is where they left it.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D25. How to lay them down ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_LayThemDown</defName>
+    <label>how to lay them down</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_LayThemDown</workerClass>
+    <weight>2</weight>
+    <cooldownDays>10</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.75</answerDays>
+    <timely>true</timely>
+    <texts>
+      <li>{DEAD} held to {GOD} all {DEAD}'s life, and {GOD}'s people lay their dead down in their own way. {A_nameDef}, who was closest to {DEAD}, holds to {GOD2}, whose way is another. {A_pronoun} asks the council to say how {DEAD} is to go: as {DEAD} would have had it, as {A_nameDef} asks, or as the colony has always done.</li>
+      <li>[dead:fire] {DEAD} kept the fire all {DEAD}'s days, and the fire's people give their dead back to it. {A_nameDef}, who loved {DEAD} best, cannot bear the thought of the flames, and {GOD2}'s way is not the fire's.</li>
+      <li>[dead:whole] Those who hold to {GOD} keep their dead whole, in stone, and {DEAD} was one of them. {A_nameDef} holds to {GOD2}, and says {DEAD} would have been content with the colony's way, or with {A_possessive} own.</li>
+      <li>[dead:soil] {DEAD} wanted only to be put in the ground by something green, as {GOD}'s people are. {A_nameDef}, who was closest to {DEAD}, holds to {GOD2} and asks that {DEAD} go {GOD2}'s way instead.</li>
+      <li>[asks:fire] {A_nameDef} sat up with {DEAD}'s body all night and came to the council at dawn. {DEAD} held to {GOD}; {A_nameDef} holds to {GOD2}, and would see {DEAD} given to the fire.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>As {DEAD} held</label>
+        <outcome>{DEAD} is to be laid down as {GOD}'s people lay down their own. {A_nameDef} did not argue, and went to help make it ready.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LayDown"><which>held</which></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_LaidAsTheyHeld</thought></li>
+        </effects>
+        <ways><tradition>2</tradition></ways>
+      </li>
+      <li>
+        <label>As {A_nameDef} asks</label>
+        <outcome>{DEAD} is to go {GOD2}'s way, as {A_nameDef} asked. Some of {GOD}'s faithful have said nothing about it, very loudly.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LayDown"><which>closest</which></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_LaidAsIAsked</thought></li>
+        </effects>
+        <ways><mercy>1</mercy><tradition>-1</tradition></ways>
+      </li>
+      <li>
+        <label>As the colony always does</label>
+        <outcome>{DEAD} is to be buried as the colony buries all its own, in the ground by the others. Neither god's way, and both sides grumbled, which the council took for fairness.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LayDown"><which>custom</which></li>
+        </effects>
+        <ways><tradition>1</tradition></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_LaidAsTheyHeld</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>laid down as they held</label><description>They went their own god's way at the end, not mine. It's what they would have wanted.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_LaidAsIAsked</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>laid down as I asked</label><description>The council let me give them to my own god. I hope they would have forgiven me for it.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D26. The ordeal ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_Ordeal</defName>
+    <label>the ordeal</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_Ordeal</workerClass>
+    <weight>0.8</weight>
+    <cooldownDays>40</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} have been at each other for days, each swearing the other lied, and neither will give an inch. {THIRD_nameDef}, who holds to {GOD}, says there is an old way to settle such things: let the hearth decide, before everyone, and see who it spares.</li>
+      <li>[lowtech] "Let them carry the stone," {THIRD_nameDef} told the council. {A_nameDef} says {B_nameDef} lies, and {B_nameDef} says {A_nameDef} does. {THIRD_nameDef} would have each carry a hot stone across the hearth before witnesses, and the one less burned is the one who told the truth.</li>
+      <li>[!lowtech] {THIRD_nameDef} holds to {GOD}, and wants {A_nameDef} and {B_nameDef} to swear before everyone with a hand on the furnace's housing. It will not burn them, {THIRD_pronoun} says. It does not need to.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>Let the hearth decide</label>
+        <outcome>The colony gathers at the hearth at dusk, and {A_nameDef} and {B_nameDef} are to go before it one after the other, with everyone watching.</outcome>
+        <outcomes>
+          <li>[lowtech] The colony gathers at the hearth at dusk, a stone heating in the coals, and {A_nameDef} and {B_nameDef} are each to carry it across before everyone.</li>
+          <li>[!lowtech] The colony gathers at the furnace at dusk, and {A_nameDef} and {B_nameDef} are each to swear with a hand on its housing before everyone.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Ordeal" />
+        </effects>
+        <ways><tradition>3</tradition><mercy>-2</mercy></ways>
+      </li>
+      <li>
+        <label>The council judges by what it knows</label>
+        <outcome>The council heard both of them out, one at a time, and gave its own judgement. Neither liked it. {THIRD_nameDef} liked it least.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_R2_Judged</thought></li>
+        </effects>
+        <ways><tradition>-2</tradition></ways>
+      </li>
+      <li>
+        <label>Let it lie</label>
+        <outcome>The council will not make a show of it. {A_nameDef} and {B_nameDef} are left to their quarrel, and the colony to its own business.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Tie"><kind>Rivals</kind><amount>4</amount><withB>true</withB></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_OrdealCleared</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>the hearth spared me</label><description>I carried the stone and the hearth spared me. Everyone saw it.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_OrdealFailed</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>the hearth went against me</label><description>I carried the stone, and now half the colony thinks I'm a liar because of a burn.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_OathSworn</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>swore before everyone</label><description>I put my hand on the furnace and swore before everyone. I meant every word.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_Watched</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>watched since the oath</label><description>Ever since I swore at the furnace, some of them watch me as if waiting for something bad to happen to me.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_Judged</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>judged by the council</label><description>The council gave its judgement on our quarrel. I don't agree with it.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D27. A prisoner asks to pray ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_PrisonerPray</defName>
+    <label>a prisoner asks to pray</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_PrisonerPray</workerClass>
+    <weight>1</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>1.5</answerDays>
+    <texts>
+      <li>{X_nameDef} of {FACTION} has been in the colony's cell for some days now, and has asked {A_nameDef} for one thing: to pray to the gods of {X_possessive} people, properly, and not alone in the dark. {A_nameDef} brought it to the council, as is right.</li>
+      <li>[believer] {X_nameDef}, the prisoner from {FACTION}, asks leave to pray. {A_nameDef}, who keeps the cell, would allow it with a guard by. {B_nameDef} holds to one of the same gods and has said more than once at supper that a prisoner still has a soul.</li>
+      <li>"I don't ask to go free," {X_nameDef} told {A_nameDef} through the door. "Only to pray." {X_pronoun} is of {FACTION}, and {X_possessive} people keep their gods close. The council must say whether a cell has room for a god.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} and another sit with {X_objective} while {X_pronoun} prays</label>
+        <outcome>{A_nameDef} and one other sat with {X_nameDef} in the cell that evening while {X_pronoun} prayed. {X_pronoun} has been quieter since, and less sure that the colony is all bad.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Vigil"><label>beside {X_nameDef} while {X_pronoun} prays</label><to>Stranger</to><target>Colony</target><organizer>A</organizer><count>2</count><hours>17~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Resistance"><resistance>-2</resistance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_R2_PrayedInCell</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
+        </effects>
+        <ways><mercy>2</mercy><openness>2</openness></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} carves a small figure for the cell</label>
+        <outcome>{A_nameDef} carved a small figure and set it down in the cell, for {X_nameDef} to pray to. It is not much like any god {X_pronoun} knows, {X_pronoun} said, but it will do.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Made"><things>@Carving</things><maker>A</maker><giver>A</giver><forWhom>X</forWhom><makeHours>1</makeHours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_R2_FigureInCell</thought></li>
+        </effects>
+        <ways><mercy>1</mercy></ways>
+      </li>
+      <li>
+        <label>No</label>
+        <outcome>The council said no. {X_nameDef} prays in the cell anyway, alone and under {X_possessive} breath.</outcome>
+        <outcomes>
+          <li>[believer] The council said no. At supper {B_nameDef} said what {B_pronoun} thought of that, loudly, and then said nothing for the rest of the meal.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Rimfolk_R2_PrayerRefused</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Words"><label>{B_nameDef} speaks up for {X_nameDef} at supper</label><target>B</target><organizer>B</organizer><spots><li>Dining</li></spots><hours>17~20</hours><duration>0.3~0.5</duration>
+            <lines>
+              <li>A prisoner still has a right to pray, whatever else they've done.</li>
+              <li>We wouldn't want anyone to stop us praying.</li>
+            </lines>
+          </li>
+        </effects>
+        <ways><mercy>-2</mercy></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_PrayedInCell</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>let me pray</label><description>They let me pray, and sat with me while I did. I didn't expect that from them.</description><baseMoodEffect>6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_FigureInCell</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>something to pray to</label><description>Someone carved me a little figure to pray to in here. It's crude, but it's something.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_PrayerRefused</defName>
+    <durationDays>5</durationDays>
+    <stages><li><label>not allowed to pray</label><description>I only asked to pray, and they said no.</description><baseMoodEffect>-6</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D28. The feast after a death ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_FeastAfterDeath</defName>
+    <label>the feast after a death</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_FeastAfterDeath</workerClass>
+    <weight>1.6</weight>
+    <cooldownDays>20</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>0.9</answerDays>
+    <timely>true</timely>
+    <texts>
+      <li>{GOD}'s festival falls tomorrow, and {DEAD} has been in the ground only a few days. {A_nameDef} asks the council how the day is to be kept: as always, with a place set for {DEAD}; with the rite and no feast; or later, when the mourning days are past.</li>
+      <li>{A_nameDef} says the colony has no heart for dancing with {DEAD} so newly buried, and yet {GOD}'s day comes tomorrow whether anyone is ready for it or not.</li>
+      <li>[lowtech] The festival of {GOD} is at sunrise, and the grave of {DEAD} is still fresh. {A_nameDef} asks whether a cup is to be poured for the dead at the feast, or whether the feast should wait.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Keep it, with a place set for {DEAD}</label>
+        <outcome>The feast goes ahead. On the eve, a place was set at the table for {DEAD}, with {DEAD}'s cup at it, and the colony drank to {DEAD} before anything else.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Toast"><label>a cup for {DEAD}</label><spots><li>Dining</li><li>Gather</li></spots><hours>17~22</hours><duration>0.75~1</duration>
+            <lines>
+              <li>To {DEAD}, who should be sitting here with us.</li>
+              <li>Leave the cup where it is, that's {DEAD}'s place.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Rimfolk_R2_PlaceSet</thought><chance>0.6</chance></li>
+        </effects>
+        <ways><tradition>2</tradition></ways>
+      </li>
+      <li>
+        <label>Keep only the rite</label>
+        <outcome>No feast this year. The faithful gathered at {PLACE} that evening and the rite was said in full, and {DEAD} was named in it.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FestivalEve"><how>rite</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>true</priest><label>{GOD}'s rite, with {DEAD} named</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>17~21</hours><duration>0.75~1.25</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+        </effects>
+        <ways><tradition>1</tradition><toil>1</toil></ways>
+      </li>
+      <li>
+        <label>Keep it later, once the mourning days are past</label>
+        <outcome>The council let tomorrow pass quietly. {GOD}'s feast will be held once the mourning days are over, and {A_nameDef} says the god can wait that long.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_FestivalEve"><how>pass</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_LateFeast" />
+        </effects>
+        <ways><mercy>1</mercy><tradition>-1</tradition></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_PlaceSet</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a place set for the dead</label><description>There was a place set at the table for the one we lost, with their cup. It helped, a little.</description><baseMoodEffect>3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D29. A path: the shrine ===================== -->
+
+  <ColonyCouncil.DilemmaDef ParentName="Council_PathBase">
+    <defName>Rimfolk_Dlm_Path_Shrine</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a path: the shrine</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_PathShrine</workerClass>
+    <texts>
+      <li>{A_nameDef} came of age this week and has asked, in front of everyone, to follow {B_nameDef}, who keeps the colony's book of the gods. {A_pronoun} has followed {B_objective} about since {A_pronoun} was small, asking what each sign meant, and now {A_pronoun} would like to learn to write them down.</li>
+      <li>"Somebody will have to keep the book after me," {B_nameDef} told the council. {A_nameDef}, just come of age, holds to {GOD} as few of the young do, and has asked to walk out with {B_nameDef} when there is something to be seen and written.</li>
+      <li>[lowtech] {A_nameDef} is grown now, and wants to sit at {B_nameDef}'s side at the evening writing and learn the old tales of the gods by heart.</li>
+    </texts>
+    <options>
+      <li>
+        <label>{A_nameDef} follows {B_nameDef} for a season</label>
+        <outcome>{A_nameDef} walked out with {B_nameDef} the next morning to look at a scorched stone nobody else had noticed, and came back with a story about it and a smudge of ink on {A_possessive} nose.</outcome>
+        <outcomes>
+          <li>[tribal] {A_nameDef} is the shaman's helper now, and walked out with {B_nameDef} the next morning to learn what the marks on a stone are said to mean.</li>
+          <li>[medieval] {A_nameDef} is a novice at {B_nameDef}'s side now, and spent the first evening at the writing, learning the tales one piece at a time.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Mentorship"><skill>Social</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><skill>Intellectual</skill></li>
+          <li Class="ColonyCouncil.DilemmaEffect_KeeperTales" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Path_Teacher</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Given</thought><chance>0.4</chance></li>
+        </effects>
+        <ways><tradition>3</tradition></ways>
+      </li>
+      <li>
+        <label>A path of {A_possessive} own choosing</label>
+        <outcome>The council told {A_nameDef} to look about before settling on anything. {B_nameDef} said the book had waited this long and would wait a little longer.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Path_Chosen</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
+        </effects>
+        <ways><openness>2</openness><tradition>-2</tradition></ways>
+      </li>
+      <li>
+        <label>Not yet</label>
+        <outcome>Not yet, the council said. {A_nameDef} still goes to the evening writing, though only to watch, from the doorway.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_NotYet</thought></li>
+        </effects>
+        <ways><toil>1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_NotYet</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>told "not yet"</label><description>I asked to follow the keeper of the book, and they said not yet.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D30. The work my god won't have ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_GodsWork</defName>
+    <label>the work my god won't have</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_GodsWork</workerClass>
+    <weight>1.4</weight>
+    <cooldownDays>30</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>1</answerDays>
+    <texts>
+      <li>{A_nameDef} was set to {WORK}, and has come to the council about it: {GOD} will not have it, {A_pronoun} says, and {A_pronoun} will not go against {GOD}. {B_nameDef} could take it on in {A_possessive} place, or {A_nameDef} could be told to do it like everyone else.</li>
+      <li>[godkey:hollin] {A_nameDef} was sent to fell a grown tree, and came back to the council without having touched it. Those who hold to {GOD} do not cut down a tree that is grown, {A_pronoun} says, and {A_pronoun} has held to {GOD} all {A_possessive} life.</li>
+      <li>[godkey:bellwether] {A_nameDef} went out hunting and came back to the council with an empty bag: {A_pronoun} will not kill the grazing beasts, for {GOD}'s sake, and asks to be let off the hunting.</li>
+      <li>[godkey:mog] {A_nameDef} was at the butcher's table with a cat on it when {A_pronoun} put the knife down and went to find the council. Those who hold to {GOD} do not cut up a cat, {A_pronoun} says, not for any reason.</li>
+      <li>[godkey:morel] {A_nameDef} was set to burn the dead, and will not: {GOD}'s people give their dead to the soil, not the fire. {A_pronoun} asks the council to give the work to someone else.</li>
+    </texts>
+    <defaultOption>2</defaultOption>
+    <options>
+      <li>
+        <label>{A_nameDef} is excused for a season</label>
+        <outcome>The work goes to {B_nameDef} for a season, and {A_nameDef} goes back to it after only if {A_pronoun} wants to. {B_nameDef} said nothing about it, and took it on.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Excused" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_Excused</thought></li>
+        </effects>
+        <ways><mercy>2</mercy><toil>-1</toil></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} asks pardon first</label>
+        <outcome>{A_nameDef} went to {PLACE} to ask {GOD}'s pardon before going back to the work. {A_pronoun} says {A_pronoun} will do it, but that {A_pronoun} will ask each time.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ShrineWords"><god>1</god><priest>false</priest><target>A</target><label>{A_nameDef} asks pardon at {PLACE}</label><spots><li>Gather</li><li>Outdoors</li></spots><hours>6~21</hours><duration>0.25~0.5</duration><pool>Rimfolk_Pool_Worship_RiteWords</pool></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Belief"><how>rite</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_AskedPardon</thought></li>
+        </effects>
+        <ways><tradition>2</tradition></ways>
+      </li>
+      <li>
+        <label>{A_nameDef} does the work as {A_pronoun} was told</label>
+        <outcome>The council told {A_nameDef} the work is the work. {A_pronoun} went back to it with a face like stone and has not spoken of {GOD} since.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Strain"><target>A</target><amount>8</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Belief"><how>shaken</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R2_AgainstMyGod</thought></li>
+        </effects>
+        <ways><toil>2</toil><mercy>-1</mercy></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_Excused</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>excused from the work my god won't have</label><description>The council let me off the work my god won't have. They didn't have to.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_AskedPardon</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>asked my god's pardon</label><description>I asked my god's pardon before I did the work. It still sits badly with me.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_AgainstMyGod</defName>
+    <durationDays>8</durationDays>
+    <stages><li><label>made to go against my god</label><description>They made me do the work my god won't have. I did it. I'm not sure what that makes me.</description><baseMoodEffect>-5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <!-- ===================== D31. One of the camp died in the night ===================== -->
+
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Dlm_CampDead</defName>
+    <label>one of the camp died in the night</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_CampDead</workerClass>
+    <weight>2</weight>
+    <cooldownDays>10</cooldownDays>
+    <minColonists>2</minColonists>
+    <answerDays>0.5</answerDays>
+    <timely>true</timely>
+    <texts>
+      <li>{DEAD} of the camp died in the night, and {X_nameDef} came up from their fire at first light to ask the colony a thing that is hard for a guest to ask: whether {DEAD} might be laid in the colony's ground, or must be carried home over the road.</li>
+      <li>The camp has a death. {X_nameDef}, who speaks for them, stood at the edge of the colony with {X_possessive} hat in {X_possessive} hands and asked whether there is room in the colony's ground for {DEAD}, who will not see the road again.</li>
+      <li>[lowtech] {DEAD} of {FACTION} died at the camp's fire before dawn. {X_nameDef} asks whether the colony will give a grave, or whether {DEAD}'s people must carry {DEAD} home on their shoulders.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>A grave in the colony's ground</label>
+        <outcome>The colony gives {DEAD} a grave among its own. {X_nameDef} thanked the council twice over and went back to the camp to tell them.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampDead"><mode>grave</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>-6</amount><gift>true</gift></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
+        </effects>
+        <ways><mercy>2</mercy><openness>2</openness></ways>
+      </li>
+      <li>
+        <label>They carry {DEAD} home</label>
+        <outcome>The camp packs up early. One of them carries {DEAD} out, and the rest follow, quiet, toward home.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampDead"><mode>home</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
+        </effects>
+        <ways><tradition>1</tradition></ways>
+      </li>
+      <li>
+        <label>The colony's ground is for its own</label>
+        <outcome>The council said the colony's ground is for its own. One of the camp carried {DEAD} away off the land, and the rest of them have been cold to the colony since.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CampDead"><mode>own</mode></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CampTension"><amount>8</amount></li>
+        </effects>
+        <ways><openness>-2</openness><mercy>-1</mercy></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <!-- ===================== D32. The new age ===================== -->
+
+  <ColonyCouncil.DilemmaDef Name="Rimfolk_Dlm_NewAgeBase" Abstract="True">
+    <workerClass>ColonyCouncil.DilemmaWorker_NewAge</workerClass>
+    <weight>3</weight>
+    <cooldownDays>600</cooldownDays>
+    <minColonists>3</minColonists>
+    <answerDays>2</answerDays>
+    <timely>true</timely>
+    <defaultOption>2</defaultOption>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef ParentName="Rimfolk_Dlm_NewAgeBase">
+    <defName>Rimfolk_Dlm_NewAge_Medieval</defName>
+    <label>the new age: iron and stone</label>
+    <texts>
+      <li>The colony has learned to work iron as the old peoples did, and {A_nameDef}, the eldest, says that a thing like that should not just slip by. {A_pronoun} remembers the first fire the colony lit, and asks the council whether this day is to be marked.</li>
+      <li>[built] The {THING} stands finished, the first of its kind the colony has made, and {A_nameDef} says the old ways and the new have met at it. {A_pronoun} would mark the day, and keep the old hearth burning beside the new things, if the council will have it.</li>
+    </texts>
+    <options>
+      <li>
+        <label>A day to mark it</label>
+        <outcome>The colony gathers at dusk to mark the day, and it will be kept each year from now on. {A_nameDef} said a few words about the first fire, and nobody hurried {A_objective}.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GatheringAtPlace"><label>the new age marked</label><hours>17~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_NewAgeDay"><label>the day of the new age</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_AgeMarked</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>3</tradition></ways>
+      </li>
+      <li>
+        <label>The old fire kept burning beside it</label>
+        <outcome>The old fire is to be kept burning beside the new work, and the colony sat round it that evening. The young said it was a waste of wood. The old said nothing and sat closer.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the old fire beside the new</label><hours>17~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_OldFireKept</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>2</tradition><toil>-1</toil></ways>
+      </li>
+      <li>
+        <label>Let it pass quietly</label>
+        <outcome>The council let the day pass. The young did not notice. {A_nameDef} did.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_AgePassed</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>-3</tradition><toil>1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef ParentName="Rimfolk_Dlm_NewAgeBase">
+    <defName>Rimfolk_Dlm_NewAge_Industrial</defName>
+    <label>the new age: engines and wire</label>
+    <texts>
+      <li>The colony has learned the first of the new age's work, engines and wire and things that run without a hand on them, and {A_nameDef}, the eldest, says it ought to be marked. {A_pronoun} remembers when the colony cooked over an open fire.</li>
+      <li>[built] The {THING} is finished and working, the first of its kind the colony has, and {A_nameDef} has been standing in front of it half the morning. {A_pronoun} asks the council whether the day is to be kept, and whether the old fire is to be kept burning beside the new machines.</li>
+    </texts>
+    <options>
+      <li>
+        <label>A day to mark it</label>
+        <outcome>The colony gathers at dusk to mark the day, and it will be kept each year from now on. {A_nameDef} talked about the old fire for longer than anyone expected.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GatheringAtPlace"><label>the new age marked</label><hours>17~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_NewAgeDay"><label>the day of the new age</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_AgeMarked</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>3</tradition></ways>
+      </li>
+      <li>
+        <label>The old fire kept burning beside it</label>
+        <outcome>The old fire is to be kept burning beside the new machines, and the colony sat round it that evening. The young said it was wasted wood. The old said nothing and sat closer.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the old fire beside the new</label><hours>17~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_OldFireKept</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>2</tradition><toil>-1</toil></ways>
+      </li>
+      <li>
+        <label>Let it pass quietly</label>
+        <outcome>The council let the day pass. The young did not notice. {A_nameDef} did.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_AgePassed</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>-3</tradition><toil>1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ColonyCouncil.DilemmaDef ParentName="Rimfolk_Dlm_NewAgeBase">
+    <defName>Rimfolk_Dlm_NewAge_Spacer</defName>
+    <label>the new age: the far work</label>
+    <texts>
+      <li>The colony has begun on the far work, the kind the ships of the old worlds were built with, and {A_nameDef}, the eldest, says a day like this ought to be marked. {A_pronoun} still remembers the first winter, and the fire.</li>
+      <li>[built] The {THING} is finished, the first of its kind the colony has made, and it hums. {A_nameDef} asks the council whether the day is to be kept, and whether the old fire is to be kept burning beside it.</li>
+    </texts>
+    <options>
+      <li>
+        <label>A day to mark it</label>
+        <outcome>The colony gathers at dusk to mark the day, and it will be kept each year from now on. {A_nameDef} said a few words about the first winter.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_GatheringAtPlace"><label>the new age marked</label><hours>17~21</hours><duration>1~1.5</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_NewAgeDay"><label>the day of the new age</label></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_AgeMarked</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>3</tradition></ways>
+      </li>
+      <li>
+        <label>The old fire kept burning beside it</label>
+        <outcome>The old fire is to be kept burning beside the new work, and the colony sat round it that evening. The young said it was wasted wood. The old said nothing and sat closer.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Bonfire"><label>the old fire beside the new</label><hours>17~22</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_OldFireKept</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>2</tradition><toil>-1</toil></ways>
+      </li>
+      <li>
+        <label>Let it pass quietly</label>
+        <outcome>The council let the day pass. The young did not notice. {A_nameDef} did.</outcome>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_ByAge"><thought>Rimfolk_R2_AgePassed</thought><minAge>45</minAge></li>
+        </effects>
+        <ways><tradition>-3</tradition><toil>1</toil></ways>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_AgeMarked</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>the new age marked</label><description>We marked the day the colony came into the new age. I'm glad someone thought to.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_OldFireKept</defName>
+    <durationDays>6</durationDays>
+    <stages><li><label>the old fire still burning</label><description>They're keeping the old fire burning beside the new work. Good.</description><baseMoodEffect>4</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R2_AgePassed</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>the new age passed unmarked</label><description>The colony came into a new age and nobody marked it. Nobody but me seemed to notice.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

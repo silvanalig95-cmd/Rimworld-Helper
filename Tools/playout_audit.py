@@ -141,6 +141,30 @@ PLAY = {
     "DilemmaEffect_OldShell": "old shell",
     "DilemmaEffect_Scrap": "live scrap",
     "DilemmaEffect_SoftGround": "soft ground",
+    # The content update's second round, its storyteller events (Happenings/Workers_Round2.cs): the search with lights, the
+    # light at the edge or the night out; the bear walled in until spring; the water chain at dawn or a field let go and cut;
+    # the herd brought in and the children kept close; the one who hid taken in, fed or driven off; the rope or the boards
+    # in the bog; the shaft, the short turns or the wall in the bad air; a pemmican bill for the catch.
+    "DilemmaEffect_NightOut": "searched for, called in or out till dawn",
+    "DilemmaEffect_WallDen": "walled in until spring",
+    "DilemmaEffect_FieldWater": "a water chain or a field let go",
+    "DilemmaEffect_WrongBeast": "the herd in, or watched",
+    "DilemmaEffect_Hidden": "taken in, fed or driven off",
+    "DilemmaEffect_Bog": "pulled out of the bog",
+    "DilemmaEffect_BadAir": "a shaft, short turns or a wall",
+    "DilemmaEffect_PutBy": "cooking bill",
+    # Its council questions (Dilemmas/DilemmaWorkers_Round2.cs): the dead's room given, cleared or kept, words or an hour
+    # there; the dead laid down by the game's own burying or cremating; the ordeal at the hearth; the feast kept later; a
+    # gathering at the new age's first building; a camp's dead given a grave or carried away; work handed over for a season.
+    "DilemmaEffect_DeadRoom": "a room given, cleared or kept",
+    "DilemmaEffect_WordsAtPlace": "words",
+    "DilemmaEffect_GatheringAtPlace": "gathering",
+    "DilemmaEffect_VigilAtPlace": "vigil",
+    "DilemmaEffect_LayDown": "laid down",
+    "DilemmaEffect_Ordeal": "the ordeal at the hearth",
+    "DilemmaEffect_LateFeast": "feast",
+    "DilemmaEffect_CampDead": "a grave, or carried away",
+    "DilemmaEffect_Excused": "work handed over",
     # The fourth round of the council and the colony's year (Dilemmas/DilemmaWorkers_YearFour.cs): a field given up or
     # set to another crop, the snow-clearing area marked, the plans the stores can't pay for taken off, trees marked for
     # the cutters, wild plants marked for picking, animals marked for slaughter, an animal's training set, a day off for

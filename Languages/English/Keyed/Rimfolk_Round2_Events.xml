@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The content update's second round (docs/content-update-proposals-2.md, D16 to D32): the storyteller events'
+       (Happenings/Workers_Round2.cs) and the council questions' (Dilemmas/DilemmaWorkers_Round2.cs) messages and the lines
+       under their answers. Plain words. -->
+
+  <!-- ===================== D16. Not in by dark ===================== -->
+  <CC_R2_Lost_Cold>{PAWN_nameDef} was out in the cold too long and has {ILLNESS}.</CC_R2_Lost_Cold>
+  <CC_R2_Impact_LostSearch>Two or three of the colony go out with lights toward where {0} was last seen, find them and walk home together</CC_R2_Impact_LostSearch>
+  <CC_R2_Impact_LostSearchBrief>a search with lights</CC_R2_Impact_LostSearchBrief>
+  <CC_R2_Impact_LostLight>{0} stands at the edge of the colony with a light and a horn until {1} walks in toward it</CC_R2_Impact_LostLight>
+  <CC_R2_Impact_LostLightBrief>a light at the edge</CC_R2_Impact_LostLightBrief>
+  <CC_R2_Impact_LostMorning>{0} waits out the night where they are and walks home at first light</CC_R2_Impact_LostMorning>
+  <CC_R2_Impact_LostMorningBrief>a night out</CC_R2_Impact_LostMorningBrief>
+  <CC_R2_Impact_LostCold>Out in the frost, {0} may get frostnip or chilblains</CC_R2_Impact_LostCold>
+  <CC_R2_Impact_LostColdBrief>the cold may get them</CC_R2_Impact_LostColdBrief>
+
+  <!-- ===================== D17. The fish are running ===================== -->
+  <CC_R2_Impact_PutBy>A bill for {0} pemmican at the {1}, so the catch keeps</CC_R2_Impact_PutBy>
+  <CC_R2_Impact_PutByBrief>pemmican for the winter</CC_R2_Impact_PutByBrief>
+  <CC_R2_Fish_PutBy>A bill for {0} pemmican has been set at the {1}, to put the fish by for the winter.</CC_R2_Fish_PutBy>
+
+  <!-- ===================== D18. A bear asleep in the rock ===================== -->
+  <CC_R2_Impact_WallDen>The {0} left to sleep in the hollow, and a wall of {1} marked across the gap; in the first warm days the wall is taken down and the bear walks off the land</CC_R2_Impact_WallDen>
+  <CC_R2_Impact_WallDenBrief>the bear walled in until spring</CC_R2_Impact_WallDenBrief>
+  <CC_R2_Den_TakeDown>It's warm enough now: the wall across the bear's hollow is marked to be taken down, so the {BEAR} can walk out.</CC_R2_Den_TakeDown>
+  <CC_R2_Den_WalksOut>The {BEAR} that slept the winter in the hollow has woken and is walking off the colony's land.</CC_R2_Den_WalksOut>
+
+  <!-- ===================== D19. Water for the fields ===================== -->
+  <CC_R2_Water_OneField>The colony has only one field to give water to</CC_R2_Water_OneField>
+  <CC_R2_Impact_WaterChain>At dawn, everyone free carries water from the nearest water to the field for {0} hours, and the field grows that day as it would have in rain</CC_R2_Impact_WaterChain>
+  <CC_R2_Impact_WaterChainBrief>a water chain at dawn</CC_R2_Impact_WaterChainBrief>
+  <CC_R2_Impact_LetGo>The crop in the {0} marked to be cut and brought in, and the other fields get half a day's growth</CC_R2_Impact_LetGo>
+  <CC_R2_Impact_LetGoBrief>the {0} let go</CC_R2_Impact_LetGoBrief>
+  <CC_R2_Water_LetGo>The {0} is let go: {1} plants are marked to be cut, and its water goes to the other fields.</CC_R2_Water_LetGo>
+  <CC_R2_Water_Done>The water chain is over: {1} loads of water were carried to the {0}, and it has had what it needs today.</CC_R2_Water_Done>
+
+  <!-- ===================== D20. The animal that's wrong ===================== -->
+  <CC_R2_Impact_KeepIn>The colony's animals brought into the pens, and the children kept near the middle of the colony until the {0} has wandered off</CC_R2_Impact_KeepIn>
+  <CC_R2_Impact_KeepInBrief>the herd in and the children kept close</CC_R2_Impact_KeepInBrief>
+  <CC_R2_Impact_Mad_hunt>If the hunters miss it, the {0} may go mad later today and attack whoever is nearest</CC_R2_Impact_Mad_hunt>
+  <CC_R2_Impact_Mad_let>The {0} may go mad later today and attack whoever is nearest</CC_R2_Impact_Mad_let>
+  <CC_R2_Impact_MadBrief>it may go mad</CC_R2_Impact_MadBrief>
+  <CC_R2_Wrong_Mad>The {X} that was acting wrong at the edge of the colony has gone mad and is attacking.</CC_R2_Wrong_Mad>
+  <CC_R2_Wrong_Gone>The {X} that was acting wrong has wandered off the colony's land.</CC_R2_Wrong_Gone>
+
+  <!-- ===================== D21. The one who hid ===================== -->
+  <CC_R2_Hid_Gone>They have gone</CC_R2_Hid_Gone>
+  <CC_R2_Hid_NoBed>There is no free prison bed</CC_R2_Hid_NoBed>
+  <CC_R2_Impact_Hid_take>{1} goes out to arrest {0} and bring them to a prison bed, with {2} beside them</CC_R2_Impact_Hid_take>
+  <CC_R2_Impact_Hid_takeBrief>taken prisoner</CC_R2_Impact_Hid_takeBrief>
+  <CC_R2_Impact_Hid_feed>Once the food has reached {0}, they set off home</CC_R2_Impact_Hid_feed>
+  <CC_R2_Impact_Hid_feedBrief>fed and sent home</CC_R2_Impact_Hid_feedBrief>
+  <CC_R2_Impact_Hid_drive>{2} walks out toward {0} with a weapon raised and shouts, and {0} runs off the land</CC_R2_Impact_Hid_drive>
+  <CC_R2_Impact_Hid_driveBrief>driven off</CC_R2_Impact_Hid_driveBrief>
+  <CC_R2_Impact_HidFight>{0} may fight rather than be taken, as the game has it</CC_R2_Impact_HidFight>
+  <CC_R2_Impact_HidFightBrief>they may fight</CC_R2_Impact_HidFightBrief>
+
+  <!-- ===================== D22. Stuck in the bog ===================== -->
+  <CC_R2_Bog_Ours>The {0} is the colony's own</CC_R2_Bog_Ours>
+  <CC_R2_Impact_Rope>{0} and {1} pull the {2} out with a rope, about an hour's work, and come back muddy</CC_R2_Impact_Rope>
+  <CC_R2_Impact_RopeBrief>pulled out with a rope</CC_R2_Impact_RopeBrief>
+  <CC_R2_Impact_Boards>{0} lays boards out across the mud to the {1} and leads it out</CC_R2_Impact_Boards>
+  <CC_R2_Impact_BoardsBrief>boards laid out to it</CC_R2_Impact_BoardsBrief>
+  <CC_R2_Impact_BogLeave>The {0} left to free itself if it can</CC_R2_Impact_BogLeave>
+  <CC_R2_Impact_BogLeaveBrief>left in the mud</CC_R2_Impact_BogLeaveBrief>
+  <CC_R2_Bog_Self>The {X} has worked itself free of the mud.</CC_R2_Bog_Self>
+  <CC_R2_Bog_Rope>The {X} has been pulled out of the mud.</CC_R2_Bog_Rope>
+  <CC_R2_Bog_Boards>The boards reached the {X}, and it has been led out of the mud.</CC_R2_Bog_Boards>
+
+  <!-- ===================== D23. Bad air in the deep ===================== -->
+  <CC_R2_Air_NoShaft>There's no open sky within {0} cells of rock</CC_R2_Air_NoShaft>
+  <CC_R2_Impact_Air_shaft>The rock between the face and the nearest open sky marked for digging, and the face left until the air clears</CC_R2_Impact_Air_shaft>
+  <CC_R2_Impact_Air_shaftBrief>a shaft to the air</CC_R2_Impact_Air_shaftBrief>
+  <CC_R2_Impact_Air_turns>The digging at the face marked again; anyone in the bad air too long is sent out to breathe</CC_R2_Impact_Air_turns>
+  <CC_R2_Impact_Air_turnsBrief>short turns</CC_R2_Impact_Air_turnsBrief>
+  <CC_R2_Impact_Air_wall>A wall marked across the way in, and that face left</CC_R2_Impact_Air_wall>
+  <CC_R2_Impact_Air_wallBrief>walled off</CC_R2_Impact_Air_wallBrief>
+  <CC_R2_Impact_AirRisk>Whoever works in the bad air breathes some of it: the gas's own poisoning, mild if the turns are short</CC_R2_Impact_AirRisk>
+  <CC_R2_Impact_AirRiskBrief>some bad air breathed</CC_R2_Impact_AirRiskBrief>
+  <CC_R2_Air_Clear>The bad air in the deep dig has cleared.</CC_R2_Air_Clear>
+
+  <!-- ===================== D24. The room nobody will sleep in ===================== -->
+  <CC_R2_Room_Gone>The room's bed is gone</CC_R2_Room_Gone>
+  <CC_R2_Room_Taken>Someone sleeps in the room already</CC_R2_Room_Taken>
+  <CC_R2_Impact_Room_movein>{0} moves into {1}'s room</CC_R2_Impact_Room_movein>
+  <CC_R2_Impact_Room_moveinBrief>a room given</CC_R2_Impact_Room_moveinBrief>
+  <CC_R2_Impact_Room_clear>{1}'s bed taken up and carried to the stores, and the room the colony's to use</CC_R2_Impact_Room_clear>
+  <CC_R2_Impact_Room_clearBrief>the room cleared</CC_R2_Impact_Room_clearBrief>
+  <CC_R2_Impact_Room_keep>{1}'s room left as it is</CC_R2_Impact_Room_keep>
+  <CC_R2_Impact_Room_keepBrief>the room kept</CC_R2_Impact_Room_keepBrief>
+  <CC_R2_Room_MovedIn>{PAWN_nameDef} has moved into {DEAD}'s room.</CC_R2_Room_MovedIn>
+  <CC_R2_Room_Cleared>{DEAD}'s bed is marked to be taken up and carried to the stores.</CC_R2_Room_Cleared>
+
+  <!-- ===================== D25. How to lay them down ===================== -->
+  <CC_R2_Lay_Gone>{0} has been laid down already</CC_R2_Lay_Gone>
+  <CC_R2_Lay_NoPlace>The colony has nowhere to do it that way now</CC_R2_Lay_NoPlace>
+  <CC_R2_Impact_Lay_fire>A bill at the crematorium to cremate {0}</CC_R2_Impact_Lay_fire>
+  <CC_R2_Impact_Lay_fireBrief>given to the fire</CC_R2_Impact_Lay_fireBrief>
+  <CC_R2_Impact_Lay_whole>An empty sarcophagus given to {0}, who is laid in it whole</CC_R2_Impact_Lay_whole>
+  <CC_R2_Impact_Lay_wholeBrief>kept whole in stone</CC_R2_Impact_Lay_wholeBrief>
+  <CC_R2_Impact_Lay_soil>An empty grave given to {0}, in the ground</CC_R2_Impact_Lay_soil>
+  <CC_R2_Impact_Lay_soilBrief>given to the soil</CC_R2_Impact_Lay_soilBrief>
+  <CC_R2_Impact_Lay_custom>{0} buried as the colony buries its own</CC_R2_Impact_Lay_custom>
+  <CC_R2_Impact_Lay_customBrief>the colony's way</CC_R2_Impact_Lay_customBrief>
+  <CC_R2_Lay_Fire>A bill has been set at the {PLACE} to cremate {DEAD}.</CC_R2_Lay_Fire>
+  <CC_R2_Lay_Grave>The {PLACE} has been given to {DEAD}.</CC_R2_Lay_Grave>
+
+  <!-- ===================== D26. The ordeal ===================== -->
+  <CC_R2_OrdealLabel>the ordeal at the hearth</CC_R2_OrdealLabel>
+  <CC_R2_Impact_OrdealStone>At the hearth at dusk, before the colony, {0} and {1} each carry a hot stone across it</CC_R2_Impact_OrdealStone>
+  <CC_R2_Impact_OrdealOath>At the furnace at dusk, before the colony, {0} and {1} each swear with a hand on its housing</CC_R2_Impact_OrdealOath>
+  <CC_R2_Impact_OrdealBrief>the ordeal before the colony</CC_R2_Impact_OrdealBrief>
+  <CC_R2_Impact_OrdealBurn>{0} or {1}, or both, may be burned across the hands</CC_R2_Impact_OrdealBurn>
+  <CC_R2_Impact_OrdealBurnBrief>a burn across the hands</CC_R2_Impact_OrdealBurnBrief>
+  <CC_R2_Ordeal_Burned>{B_nameDef} and {C_nameDef} carried the hot stone across the hearth before the colony. {TRUE_nameDef} came through it less burned, and those who hold to the hearth take {TRUE_objective} for the one who told the truth.</CC_R2_Ordeal_Burned>
+  <CC_R2_Ordeal_Clean>{B_nameDef} and {C_nameDef} carried the hot stone across the hearth before the colony, and neither was burned. Those who hold to the hearth still take {TRUE_nameDef} for the one who told the truth.</CC_R2_Ordeal_Clean>
+  <CC_R2_Ordeal_Oath>{B_nameDef} and {C_nameDef} swore before the colony with a hand on the furnace's housing. Those who hold to the hearth believe {TRUE_nameDef}, and will be watching {OTHER_nameDef}.</CC_R2_Ordeal_Oath>
+  <CC_R2_Ordeal_Burn>{PAWN_nameDef} has a burn across the hands.</CC_R2_Ordeal_Burn>
+  <CC_R2_Ordeal_Belief>The hearth spared {TRUE} and burned {OTHER}, and so {TRUE} told the truth.</CC_R2_Ordeal_Belief>
+  <CC_R2_Ordeal_BeliefOath>{TRUE} swore at the furnace and spoke true; if ill luck comes to {OTHER}, it will be the deep's answer.</CC_R2_Ordeal_BeliefOath>
+
+  <!-- ===================== D28. The feast after a death ===================== -->
+  <CC_R2_Impact_LateFeast>{FESTIVAL} let pass tomorrow, and held at the table once the mourning days are past</CC_R2_Impact_LateFeast>
+  <CC_R2_Impact_LateFeastBrief>the feast kept later</CC_R2_Impact_LateFeastBrief>
+  <CC_R2_LateFeastLabel>{FESTIVAL}, kept late</CC_R2_LateFeastLabel>
+  <CC_R2_LateFeast>The mourning days for {DEAD} are past, and {FESTIVAL} is to be kept at the table this evening.</CC_R2_LateFeast>
+
+  <!-- ===================== D29. A path: the shrine ===================== -->
+  <CC_R2_Impact_Tales>{0} tells {1} one of the tales of the gods as they go</CC_R2_Impact_Tales>
+  <CC_R2_Impact_TalesBrief>a tale of the gods</CC_R2_Impact_TalesBrief>
+
+  <!-- ===================== D30. The work my god won't have ===================== -->
+  <CC_R2_ExcusedLabel>{PAWN} excused for a season</CC_R2_ExcusedLabel>
+  <CC_R2_Why_Pardon>asked pardon before the work the god won't have</CC_R2_Why_Pardon>
+  <CC_R2_Why_Made>made to do the work the god won't have</CC_R2_Why_Made>
+
+  <!-- ===================== D31. One of the camp died in the night ===================== -->
+  <CC_R2_Camp_NoGrave>The colony has no empty grave and no room to dig one</CC_R2_Camp_NoGrave>
+  <CC_R2_Impact_Camp_grave>An empty grave of the colony's given to {0}, or one marked out to be dug</CC_R2_Impact_Camp_grave>
+  <CC_R2_Impact_Camp_graveBrief>a grave in the colony's ground</CC_R2_Impact_Camp_graveBrief>
+  <CC_R2_Impact_Camp_home>One of the camp carries {0} away, and the camp leaves early with them</CC_R2_Impact_Camp_home>
+  <CC_R2_Impact_Camp_homeBrief>carried home</CC_R2_Impact_Camp_homeBrief>
+  <CC_R2_Impact_Camp_own>One of the camp carries {0} off the land</CC_R2_Impact_Camp_own>
+  <CC_R2_Impact_Camp_ownBrief>carried away</CC_R2_Impact_Camp_ownBrief>
+  <CC_R2_Camp_Grave>The {PLACE} has been given to {DEAD} of the camp.</CC_R2_Camp_Grave>
+  <CC_R2_Camp_GraveDug>A grave is marked out for {DEAD} of the camp, near the colony's own.</CC_R2_Camp_GraveDug>
+  <CC_R2_Camp_Carried_home>{PAWN_nameDef} is carrying {DEAD} away, and the camp is packing up to go home.</CC_R2_Camp_Carried_home>
+  <CC_R2_Camp_Carried_own>{PAWN_nameDef} is carrying {DEAD} away off the colony's land.</CC_R2_Camp_Carried_own>
+
+  <!-- ===================== D32. The new age ===================== -->
+  <CC_R2_Impact_AgeDay>"{0}" put on the colony's calendar, kept each year from now on</CC_R2_Impact_AgeDay>
+  <CC_R2_Impact_AgeDayBrief>a day on the calendar</CC_R2_Impact_AgeDayBrief>
+  <CC_R2_Impact_ByAge_old>The colony's elders: {0} ({1} of them)</CC_R2_Impact_ByAge_old>
+  <CC_R2_Impact_ByAge_young>The colony's young: {0} ({1} of them)</CC_R2_Impact_ByAge_young>
+
+</LanguageData>
