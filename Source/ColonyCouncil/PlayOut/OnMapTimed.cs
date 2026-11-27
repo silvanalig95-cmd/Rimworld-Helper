@@ -62,7 +62,17 @@ namespace ColonyCouncil
         /// <summary>The second round: a pocket of bad air in the deep, a shaft opened, short turns or a wall.</summary>
         BadAir,
         /// <summary>The second round: the ordeal at the hearth, the burns (or the oath) once the gathering is under way.</summary>
-        Ordeal
+        Ordeal,
+        /// <summary>The content round 3 (Happenings/Workers_Round3.cs): wild boar rooting under the trees in a mast year, hunted, driven off or let feed.</summary>
+        R3Boar,
+        /// <summary>The third round: a snake coiled in the woodpile, lifted away on a stick or left until dusk.</summary>
+        R3Snake,
+        /// <summary>The third round: a roof creaking under deep snow, shovelled off, propped or left.</summary>
+        R3Roof,
+        /// <summary>The third round: seals (or otters) on the shore by the fishing ground, driven off, hunted or let be.</summary>
+        R3Seals,
+        /// <summary>The third round: dinner carried out to those at work in a far field at midday, eaten there together.</summary>
+        R3Dinner
     }
 
     /// <summary>One thing an answer keeps on the map for a while, and when it ends.</summary>
@@ -259,6 +269,12 @@ namespace ColonyCouncil
                 case TimedKind.BadAir:
                 case TimedKind.Ordeal:
                     return Round2Map.Step(k, now);
+                case TimedKind.R3Boar:
+                case TimedKind.R3Snake:
+                case TimedKind.R3Roof:
+                case TimedKind.R3Seals:
+                case TimedKind.R3Dinner:
+                    return Round3Map.Step(k, now);
                 default: return true;
             }
         }
@@ -316,6 +332,13 @@ namespace ColonyCouncil
                 case TimedKind.BadAir:
                 case TimedKind.Ordeal:
                     Round2Map.End(k, early);
+                    break;
+                case TimedKind.R3Boar:
+                case TimedKind.R3Snake:
+                case TimedKind.R3Roof:
+                case TimedKind.R3Seals:
+                case TimedKind.R3Dinner:
+                    Round3Map.End(k, early);
                     break;
             }
         }

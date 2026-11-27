@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The content round 3's six happenings of the gods on the land (docs/content-round-3-events-gods.md, G1 to G6;
+    Source/ColonyCouncil/Gods/OnMap/OwnRound3.cs): what people say when they see them, joined to the gods' own happenings'
+    pool (Rimfolk_Pool_GodOwnSaid, Rimfolk_GodOwnHappenings.xml) at startup. One sentence each, people talking, tagged by
+    the moment (r3newborn, r3ripen, r3foxfire, r3richsoil, r3pipnight, r3finished, r3tide, r3glory); "doubt" for one who
+    believes little. {WHAT} is what they look at (the newborn's kind, the crop, which way, the piece of work). Never a god's
+    name: what they say is their own guess.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_PoolExt_GodLand_Round3</defName>
+    <pool>Rimfolk_Pool_GodOwnSaid</pool>
+    <lines>
+      <plain>
+        <!-- G1: the ring in the snow -->
+        <li>[r3newborn] The little {WHAT} is warm, and look at the snow round it, trodden flat in a ring.</li>
+        <li>[r3newborn] Something lay round this {WHAT} all night to keep it warm, something big.</li>
+        <li>[r3newborn] It should have frozen out here, and it's as warm as if it slept by the fire.</li>
+        <li>[r3newborn,doubt] The mother must have walked round and round it all night, that's all.</li>
+        <li>[r3newborn,doubt] Lucky little {WHAT}, its mother trod the snow down round it.</li>
+
+        <!-- G2: ripe at noon -->
+        <li>[r3ripen] The {WHAT} is ripe, all of it, and this morning it wasn't.</li>
+        <li>[r3ripen] Look at the field, it ripened in the heat while we stood here.</li>
+        <li>[r3ripen] The sun gave us the whole field at once today.</li>
+        <li>[r3ripen,doubt] It's the heat, it brings a crop on fast when it's this hot.</li>
+        <li>[r3ripen,doubt] It was nearly ripe anyway, the heat just finished it.</li>
+
+        <!-- G3: the light on the wet ground, and the soil by morning -->
+        <li>[r3foxfire] There's a green light on the ground {WHAT}, come and look.</li>
+        <li>[r3foxfire] Something is glowing out there {WHAT}, low down in the wet.</li>
+        <li>[r3foxfire] That light on the ground isn't a fire, it's too green.</li>
+        <li>[r3foxfire,doubt] Rotten wood glows like that sometimes, it's nothing.</li>
+        <li>[r3richsoil] The ground where that light was is black and rich now.</li>
+        <li>[r3richsoil] Feel this soil {WHAT}, it was hard and grey yesterday.</li>
+        <li>[r3richsoil] Whatever was glowing out there last night left good earth behind.</li>
+        <li>[r3richsoil,doubt] The wet has just rotted the leaves down there, that's all.</li>
+
+        <!-- G4: done in the night -->
+        <li>[r3pipnight] There are sparks at the bench and nobody's there.</li>
+        <li>[r3pipnight] Someone's at the bench with the {WHAT}, but I can't see anyone.</li>
+        <li>[r3pipnight,doubt] Must be a spark left in the bench, I'll look in the morning.</li>
+        <li>[r3finished] The {WHAT} is nearly done, and I left it half made.</li>
+        <li>[r3finished] Who worked on the {WHAT} in the night, it was nowhere near this far.</li>
+        <li>[r3finished] Somebody finished most of the {WHAT} while we were asleep.</li>
+        <li>[r3finished,doubt] I must have done more on the {WHAT} yesterday than I thought.</li>
+
+        <!-- G5: the full-moon tide -->
+        <li>[r3tide] The sea has come right up the sand {WHAT}, I've never seen it so far up.</li>
+        <li>[r3tide] Look at the water, it's come up with the moon.</li>
+        <li>[r3tide] The tide is up past the rocks tonight, further than it ever comes.</li>
+        <li>[r3tide,doubt] It's a big tide with the full moon, it happens.</li>
+
+        <!-- G6: the giant in the mist -->
+        <li>[r3glory] There's a giant in the mist, and it moves when I move.</li>
+        <li>[r3glory] Look at that, a great shadow on the fog with a ring of light round its head.</li>
+        <li>[r3glory] Something is standing in the mist and looking back at me.</li>
+        <li>[r3glory,doubt] It's only my own shadow on the fog, but it's a big one.</li>
+        <li>[r3glory,doubt] That's my shadow in the mist, the sun's behind me.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

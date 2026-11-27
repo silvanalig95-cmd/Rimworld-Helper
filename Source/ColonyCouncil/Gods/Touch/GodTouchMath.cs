@@ -332,7 +332,10 @@ namespace ColonyCouncil
             "CC_GodRevel_Saw_Night", "CC_GodRevel_Saw_Vision", "CC_GodRevel_Saw_Craving", "CC_GodRevel_Saw_Stash", "CC_GodRevel_Saw_LetGo", "CC_GodRevel_Saw_Shared",
             // The gods between the colony's people (Gods/OnMap/Between/): each ends in what it does between two people (their
             // memories of each other, a quarrel, a kindness), so nothing of the touch's own comes on top; those who saw it feel it.
-            "CC_GodB_Saw_"
+            "CC_GodB_Saw_",
+            // The content round 3's on the land (Gods/OnMap/OwnRound3.cs): each leaves its own on the map (the trodden ring and
+            // the warm newborn, the ripe field, the rich soil, the work done, the tide), or is a sight seen (the giant in the mist).
+            "CC_GodR3_Saw_"
         };
 
         /// <summary>The Guest's small tests' keys begin so (CC_GodO_Saw_TestStory, _TestCook ...).</summary>

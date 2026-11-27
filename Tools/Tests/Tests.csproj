@@ -414,6 +414,7 @@
     <Compile Include="../../Source/ColonyCouncil/Gods/Worship/OfferingGiftMath.cs" Link="OfferingGiftMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/Worship/GodPlacesMath.cs" Link="GodPlacesMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/OnMap/OwnBetweenFaithMath.cs" Link="OwnBetweenFaithMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Happenings/Round3EventsMath.cs" Link="Round3EventsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Gods/GodTemperMath.cs" Link="GodTemperMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryWaysMath.cs" Link="StoryWaysMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Story/StoryLevers.cs" Link="StoryLevers.cs" />

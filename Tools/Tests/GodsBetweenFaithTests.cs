@@ -53,7 +53,8 @@ public static class GodsBetweenFaithTests
             OwnHappening.PipWake, OwnHappening.FaithTakenOffering, OwnHappening.FaithBookRead, OwnHappening.FaithWeddingSign, OwnHappening.FaithRaiderWord, OwnHappening.FaithGift,
             OwnHappening.FaithBargain, OwnHappening.FaithLightning
         };
-        C(round.All(h => (int)h > (int)OwnHappening.RevelWager) && (int)round.Last() == OwnHappeningsMath.All.Length - 1, "the fourteen at the very end of the list, so a save keeps its order");
+        C(round.All(h => (int)h > (int)OwnHappening.RevelWager) && (int)round.Last() == (int)OwnHappeningsMath.FirstLand3 - 1,
+            "the fourteen at the end of the list before the content round 3's six on the land, so a save keeps its order");
         C(round.All(OwnHappeningsMath.IsBetween), "all between the colony's people (the frame's pace, cards, book and outcomes)");
         C(round.Count(OwnHappeningsMath.OfAnyGod) == 12 && OwnHappeningsMath.GodOf(OwnHappening.EnnuBurying) == "Ennu" && OwnHappeningsMath.GodOf(OwnHappening.PipWake) == "Pip"
           && !OwnHappeningsMath.OfAnyGod(OwnHappening.HollinBound) && !OwnHappeningsMath.OfAnyGod(OwnHappening.SmoulderBargain),

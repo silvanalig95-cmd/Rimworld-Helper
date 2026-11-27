@@ -243,6 +243,7 @@ namespace ColonyCouncil
             Scribe_Collections.Look(ref last, "last", LookMode.Value);
             ExposeSeven();
             ExposeBetween();
+            ExposeRound3();
             Scribe_References.Look(ref lookBy, "lookBy");
             Scribe_Values.Look(ref lookAt, "lookAt", IntVec3.Invalid);
             Scribe_Values.Look(ref lookTag, "lookTag");

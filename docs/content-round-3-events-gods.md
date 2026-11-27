@@ -48,7 +48,7 @@ Defs: `Defs/IncidentDefs/Rimfolk_Round3_Events.xml`; code: `Source/ColonyCouncil
   1. *Take the two fattest for the stores:* the two biggest are marked for the hunters (the game's own hunt).
      **Harm:** a wounded boar may turn on its hunter, at the game's own revenge chance (named under the answer).
   2. *Let them feed, and bring the herd in:* a work party walks the colony's animals home to the pens and barns
-     (the game's roping, `WorkTask.Herd`); the boar root under the trees for a day or two and then leave the land.
+     (the game's roping, `WorkTask.Herd`); the boar root under the trees a while (a day and a half) and then leave the land.
   3. *Drive them off:* the hunter and one more walk out at them shouting, and the boar run off the land.
 - **Every age:** shouting and sticks beaten together (tribal); a horn and staves (medieval); shots fired into the air
   (industrial, spacer); spears or bows, crossbows, rifles for the hunt by the colony's own weapons.
@@ -128,7 +128,7 @@ Defs: `Defs/IncidentDefs/Rimfolk_Round3_Events.xml`; code: `Source/ColonyCouncil
   1. *Drive them off:* two walk down to the water shouting and the seals go back into the water and off the land.
   2. *Take two for meat and fat:* the two biggest marked for the hunters. **Harm:** a sea lion may turn on its hunter,
      at the game's own revenge chance (named where the kind has it).
-  3. *Let them be:* they stay by the fishing ground for a day or two and then go.
+  3. *Let them be:* they stay by the fishing ground a while (a day and a half) and then go.
 - **Every age:** stones and shouting (tribal), staves (medieval), shots into the air (industrial, spacer).
 - **Mods:** Odyssey's `Seal` and `SeaLion` on the coast, `Otter` on fresh water (all active).
 - Not a duplicate of the fish are running (a run of fish), the herd crossing, or the river folk's catch.
@@ -139,9 +139,10 @@ Defs: `Defs/IncidentDefs/Rimfolk_Round3_Events.xml`; code: `Source/ColonyCouncil
 - **On the map:** the card is the cook's offer.
 - **Answers:**
   1. *The cook carries dinner out to them:* at midday the cook takes a meal for each from the stores out to the edge of
-     the field (the game's own carrying), and the field workers come over, eat there together (the game's own eating),
+     the field (the game's own carrying), and the field workers come over and eat there together, a meal each from what was carried,
      and go back to work. A memory of a meal in the field.
-  2. *Everyone in to the table at midday:* a short gathering at the dining table at noon.
+  2. *Everyone in to the table at midday:* at noon they come in and eat at the table (the game's own eating), and
+     remember it.
   3. *Each eats when they're hungry,* as usual.
 - **Every age:** a basket of bread and stew (tribal, medieval), a pail and a pot (industrial), packed meals (spacer).
 - Not a duplicate of hands for the last field (all hands to pick before a frost), the first harvest shared (food sent to
@@ -209,7 +210,7 @@ None of them hurts anyone.
 **G4. PipFinished: done in the night** (the workshop; crafting)
 - **When:** in the small hours, when an unfinished piece of the colony's lies at a bench with nobody at it.
 - **On the map:** small sparks and a light at the bench for an hour, seen by whoever is awake near it; the work left on
-  the piece is cut to a tenth; in the morning its maker (else the nearest) walks over and sees how far it has come.
+  the piece is cut to a tenth; in the morning the first of the colony to see it (the nearest, sent to look) says how far it has come.
 - **What people say:** one who holds the Hum says it worked the night through; a doubter says they did more yesterday than
   they thought.
 - Not a duplicate of the machine mended overnight (a broken machine, its light winking back) or two hands on a broken

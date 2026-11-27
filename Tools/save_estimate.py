@@ -405,9 +405,13 @@ MODEL = {
     "Gods/OnMap/GodsOnMapBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40, "the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most"),
     # Each god's own happenings (Gods/OnMap/OwnHappenings.cs): when each last came (one a happening, 29 in batch 1 and 22 in batch 2), the
     # children who touched the white beast's horn (OwnHappeningsMath.HornKept at most), the sky watched lately (MaxWatches).
-    "Gods/OnMap/OwnHappenings.cs:last": ("fixed", 104, V, "when each god's own happening last came, one a happening (Revel's eight and the forty-five between the colony's people among them)"),
+    "Gods/OnMap/OwnHappenings.cs:last": ("fixed", 110, V, "when each god's own happening last came, one a happening (Revel's eight, the forty-five between the colony's people and the content round 3's six on the land among them)"),
     "Gods/OnMap/OwnHappenings.cs:horned": ("fixed", const("Gods/OnMap/OwnHappeningsMath.cs", "HornKept", 8), 40, "the children who touched the white beast's horn, OwnHappeningsMath.HornKept at most"),
     "Gods/OnMap/OwnHappenings.cs:watches": ("fixed", const("Gods/OnMap/OwnHappenings.cs", "MaxWatches", 8), V, "the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most"),
+    # The content round 3's six on the land (Gods/OnMap/OwnRound3.cs): the shore under the full-moon tide, only while it is up
+    # (one night), OwnHappeningsMath.TideCellsMost cells at most, let go at first light.
+    "Gods/OnMap/OwnRound3.cs:tide": ("while", const("Happenings/Round3EventsMath.cs", "TideCellsMost", 40), 20,
+                                     "the shore under the full-moon tide while it is up, OwnHappeningsMath.TideCellsMost at most, let go at first light"),
     # The second seven (Gods/OnMap/OwnSeven.cs): the rooms of old ruins someone of the colony has stood in, a few kept.
     "Gods/OnMap/OwnSeven.cs:ruins": ("fixed", const("Gods/OnMap/OwnSevenMath.cs", "RuinsHeldAtMost", 30), 35,
                                      "rooms of old ruins someone has stood in ('map|x|z'), OwnHappeningsMath.RuinsHeldAtMost at most, the oldest let go"),
