@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Content round 5, the colony out in the world (docs/content-round-5-away.md; Missions/Round5Away.cs): the order from a
+       neighbour's merchants, where it stands on the World page and under its quest. Plain words: the interface. -->
+
+  <!-- An order from their merchants, before all of it is in the stockpiles -->
+  <CC_R5A_Order_Waiting>{FACTION}'s carts come for the order once all of it is in the stockpiles, or when the time runs out.</CC_R5A_Order_Waiting>
+
+</LanguageData>

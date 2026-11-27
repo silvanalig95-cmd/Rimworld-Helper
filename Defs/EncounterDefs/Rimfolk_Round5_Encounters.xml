@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 5, the colony out in the world (docs/content-round-5-away.md, R5A-E1 to R5A-E8): eight moments between
+    one of the colony's grown people ({A_...}) and someone or something from outside ({X_...}; {FACTION} their people): a
+    trader's scales, a visitor's grace at the table, a wild animal in the weather (the one with a risk: the wild one too
+    close, by the game's own taming-revenge chance, shown), a forester's eye, a visitor at the colony's loom, snow glare, sound
+    rock, and where the colony's land ends. Lines are tagged for a visitor of a low-tech or a high-tech people
+    (theirLowtech, theirHightech), the moment and the land. Plain words; no god named. The moods are in
+    Defs/ThoughtDefs/Rimfolk_Round5_Away_Thoughts.xml.
+  -->
+
+  <!-- ===================== R5A-E1. The trader's scales ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_Scales</defName>
+    <label>the trader's scales</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Trader</kind></stranger>
+    <texts>
+      <li>{X_nameDef} weighed out some of {X_possessive} goods for {A_nameDef}, then showed {A_objective} how to tell an honest scale from a crooked one: check it empty first, then swap the loads from one side to the other.</li>
+      <li>[theirLowtech] {X_nameDef} of {FACTION} let {A_nameDef} hold the beam of {X_possessive} scales, and showed {A_objective} how a dishonest trader files a stone weight light, and how to catch it by weighing one stone against another.</li>
+      <li>[theirHightech] {X_nameDef} showed {A_nameDef} how a spring balance can be set to read heavy, and how to check one against a weight you already know.</li>
+      <li>{A_nameDef} watched {X_nameDef} count out a pile of silver by weight instead of coin by coin. {X_nameDef} explained how it is done, and how to check that it is done honestly.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Social</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_HonestMeasure</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== R5A-E2. A visitor's grace ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_Grace</defName>
+    <label>a visitor's grace</label>
+    <weight>1</weight>
+    <cooldownDays>8</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult><minOpinionOfA>-10</minOpinionOfA></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} sat down at a table with {A_nameDef}, and before anything else said the words {X_possessive} people say over a meal: thanks for the food and for the hands that made it. {A_nameDef} waited until {X_pronoun} had finished.</li>
+      <li>[theirLowtech] {X_nameDef} sat down at a table with {A_nameDef} and first said a few words over it, the way {X_possessive} people always do. When {A_nameDef} asked, {X_pronoun} said they give thanks to the land and to the people who worked it.</li>
+      <li>[theirHightech] {X_nameDef} of {FACTION} sat down at a table with {A_nameDef} and said a short grace, the one {X_possessive} town says at its long tables. {X_pronoun} told {A_nameDef} it is said for the people who are not at the table.</li>
+      <li>[evening] At supper time {X_nameDef} sat down at a table with {A_nameDef} and said {X_possessive} people's words of thanks. {A_nameDef} asked what they meant, and {X_nameDef} explained them one by one.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>an hour at the table with {X_nameDef}</label><to>Stranger</to><sit>true</sit><waitHours>2</waitHours><duration>0.75~1.25</duration></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_TheirGrace</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+    </effects>
+    <ways><openness>1</openness></ways>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== R5A-E3. Shelter from the weather ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_Shelter</defName>
+    <label>a wild animal in the weather</label>
+    <weight>0.8</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger>
+      <kind>Wild</kind>
+      <notPredator>true</notPredator>
+      <minBodySize>0.5</minBodySize>
+      <maxBodySize>2.6</maxBodySize>
+    </stranger>
+    <!-- Nobody nervous or volatile steps closer (the wild one too close leaves the nervous alone: Harm/WildHurts.cs). -->
+    <colonist><tags>!trait:Nervous,!trait:Volatile</tags></colonist>
+    <moment>rain|snow|storm,outside</moment>
+    <texts>
+      <li>[rain] {A_nameDef} came on {X_indefinite} standing still in the rain, and went up closer than was wise to get a good look at {X_objective}.</li>
+      <li>[snow] {A_nameDef} saw {X_indefinite} out in the falling snow and walked closer than was wise to look at {X_objective}.</li>
+      <li>[storm] In the storm, {A_nameDef} found {X_indefinite} standing still, and went up close to see whether {X_pronoun} was hurt.</li>
+      <li>{A_nameDef} went closer than was wise to {X_indefinite} that was waiting out the weather, wanting a better look.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_WildUpClose</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_TooClose" />
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== R5A-E4. A forester's eye ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_Forester</defName>
+    <label>a forester's eye</label>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <lands><li>forest</li><li>boreal</li></lands>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} where the colony cuts its wood, and told {A_objective} how {X_possessive} people choose which trees to fell: thin the young ones, and leave the old trees and the best seed trees standing.</li>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef} that {X_possessive} people never fell the oldest tree in a wood. They cut a mark in its bark so that nobody does it by mistake.</li>
+      <li>[theirHightech] {X_nameDef} told {A_nameDef} how the foresters of {FACTION} number the trees in their woods on a chart and cut only so many each year, so there is always timber.</li>
+      <li>[winter] {X_nameDef} of {FACTION} told {A_nameDef} that winter is the time to fell, when the sap is down and the wood dries straight.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_ForestersWay</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== R5A-E5. At the colony's loom ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_Loom</defName>
+    <label>a visitor at the loom</label>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <scene>building</scene>
+    <!-- The game's tailor benches first, then the active mods' looms and tailoring tables (docs/player-mods/buildings.tsv):
+         Vanilla Furniture Expanded - Production, Vanilla Gravship Expanded, MoreFloors. A name that isn't loaded never fits. -->
+    <colonyHas>
+      <li>HandTailoringBench</li>
+      <li>ElectricTailoringBench</li>
+      <li>VFE_TableTailorLarge</li>
+      <li>VGE_CompactTailor</li>
+      <li>BenchWoolLoom</li>
+    </colonyHas>
+    <texts>
+      <li>{X_nameDef} of {FACTION} went over to the bench where the colony makes its clothes and looked it over, then showed {A_nameDef} a weave {X_possessive} people use that keeps the wind out.</li>
+      <li>{X_nameDef} looked over the colony's tailoring bench and showed {A_nameDef} how {X_possessive} people sew a seam that keeps the rain out.</li>
+      <li>[theirLowtech] {X_nameDef} of {FACTION} went to the colony's bench, ran a hand over the cloth on it, and showed {A_nameDef} the twill {X_possessive} people weave, which wears twice as long.</li>
+      <li>[theirHightech] {X_nameDef} looked over the colony's bench and told {A_nameDef} that most of {X_possessive} people's cloth is made by machine, then showed {A_objective} a hand stitch {X_pronoun} had learned from an old tailor.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_NewWeave</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== R5A-E6. Snow glare ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_SnowGlare</defName>
+    <label>snow glare</label>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <lands><li>tundra</li><li>boreal</li></lands>
+    <dayOnly>true</dayOnly>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} saw {A_nameDef} squinting and showed {A_objective} how {X_possessive} people keep the glare of the snow out of their eyes, with a strip of cloth cut with two narrow slits.</li>
+      <li>[theirLowtech] {X_nameDef} showed {A_nameDef} the goggles {X_possessive} people carve from bone or wood, with a slit to look through, and how to make a pair.</li>
+      <li>[theirLowtech] {X_nameDef} of {FACTION} rubbed a little soot under {A_nameDef}'s eyes against the glare, the way {X_possessive} people do on the snowfields.</li>
+      <li>[theirHightech] {X_nameDef} told {A_nameDef} that on {X_possessive} people's snowfields everyone wears a tinted visor, and showed {A_objective} how to make do with a strip of dark cloth until the colony has some.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Crafting</skill><xp>150</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_SnowGlare</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== R5A-E7. Sound rock ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_SoundRock</defName>
+    <label>sound rock</label>
+    <weight>1</weight>
+    <cooldownDays>10</cooldownDays>
+    <lands><li>mountains</li><li>hills</li><li>caves</li></lands>
+    <stranger><kind>Visitor</kind><adult>true</adult></stranger>
+    <texts>
+      <li>{X_nameDef} of {FACTION} asked {A_nameDef} whether the colony has dug into the rock, and told {A_objective} how {X_possessive} people tell sound rock from rock that will fall: by the cracks, and by the damp coming through.</li>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef} that {X_possessive} people tap the rock with a hammer before they dig into it. Sound rock rings, {X_pronoun} said, and rotten rock thuds.</li>
+      <li>[theirHightech] {X_nameDef} told {A_nameDef} how the miners of {FACTION} read the rock with a meter before they dig, and how to tell the same thing by eye when there is no meter.</li>
+      <li>{X_nameDef}, whose people dig for a living, told {A_nameDef} never to dig under a crack that is wet, and where to put the supports in a long tunnel.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Mining</skill><xp>250</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_SoundRock</thought></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+  <!-- ===================== R5A-E8. Where the land ends ===================== -->
+
+  <ColonyCouncil.EncounterDef>
+    <defName>Rimfolk_R5A_Enc_Boundary</defName>
+    <label>where the land ends</label>
+    <weight>1</weight>
+    <cooldownDays>12</cooldownDays>
+    <lands><li>grassland</li><li>hills</li></lands>
+    <stranger><kind>Visitor</kind><adult>true</adult><minGoodwill>0</minGoodwill></stranger>
+    <texts>
+      <li>With no river or ridge to mark it, {X_nameDef} of {FACTION} asked {A_nameDef} where the colony counts its land as ending. They talked it over and agreed that the old track was a fair line, and that each would tell their own people.</li>
+      <li>{X_nameDef} asked {A_nameDef} where the colony's land ends and {FACTION}'s grazing begins. They settled on a line of stones both of them knew, and shook hands on it.</li>
+      <li>[theirLowtech] {X_nameDef} told {A_nameDef} that among {X_possessive} people the edge of a grazing is marked by a cairn, and asked where the colony's edge was. They agreed on a place, and {X_nameDef} said {X_pronoun} would tell the elders.</li>
+      <li>[theirHightech] {X_nameDef} of {FACTION} asked {A_nameDef} whether the colony had ever marked its boundary. Neither of them had a map, so they agreed on the old track as the line and wrote it down.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5A_Enc_Boundary</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_GoodCompany</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount><chance>0.5</chance></li>
+    </effects>
+  </ColonyCouncil.EncounterDef>
+
+</Defs>

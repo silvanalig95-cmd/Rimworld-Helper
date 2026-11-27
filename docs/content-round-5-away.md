@@ -29,7 +29,7 @@ it keeps in the `Mission` fields there are (its goals, its variant, its pay).
   at the loom is walked on the map.
 - **Every age.** Each mission's opening and its endings come in the asking people's age (`their:tribal`,
   `their:medieval`, `their:industrial`, `their:spacer`), the Empire in its own titles and honour (`their:empire`), and in
-  the name of the town's head when the region knows them (`[host]`). The bell's goods follow the colony's own means (a
+  the name of the town's head when the region knows them (`[host]`; all but the walk home, whose frame names none). The bell's goods follow the colony's own means (a
   drum, a bell, a siren, a beacon). Each encounter has lines for a visitor of a low-tech people and of a high-tech one
   (`theirLowtech`, `theirHightech`) or for the colony's own age. Nothing is switched off for an age.
 - **The gods are unseen.** None of the fourteen names a god or says a god did anything. Two touch faith, both the other
@@ -233,4 +233,8 @@ land (the forest, the snowfields, the mountains, the open grass), spring, summer
 
 ## Mods that would help (from `docs/player-mods`, subscribed and not enabled)
 
-Named in the round's report to the lead, with their Workshop links.
+None of the fourteen needs a mod the player hasn't enabled: they draw on what is active (Vanilla Furniture Expanded -
+Production's large tailoring table, Vanilla Gravship Expanded's compact tailor bench, MoreFloors' wool loom for the loom;
+every active mod's cloth, leather, drink and made goods for the deliveries and the order; every active mod's peoples and
+animals for who comes). Of the subscribed mods that are off, Medieval Overhaul (Workshop 3219596926) would add a spinning
+wheel and more of a medieval colony's own goods to sell, but it is catalogued only up to 1.6, not the 1.7 the player plays.
