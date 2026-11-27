@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The moods of content round 5, the colony out in the world (docs/content-round-5-away.md): what the colony's people
+    feel after the hands missions (Defs/MissionDefs/Rimfolk_Round5_Missions.xml: no mood of their own, a little recreation
+    and feeling instead, as for the fourth round of neighbours' hands), and after the round's encounters
+    (Defs/EncounterDefs/Rimfolk_Round5_Encounters.xml: small, short memories). Plain words.
+  -->
+
+  <!-- ===================== Hands lent ===================== -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_R5A_Mission_HerdedForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>worked their herds</label><description>A day and a half with another people's herds. Their animals didn't know me, but by the end they went where I sent them.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_R5A_Mission_CarvedForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>carved for them</label><description>I did the carving in another people's building. They will walk past my work every day for years.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt></li></modExtensions>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_R5A_Mission_CookedForThem</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>3</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>cooked their feast</label><description>A whole day in someone else's kitchen, cooking for their feast. They ate every bit of it.</description><baseMoodEffect>0</baseMoodEffect></li></stages>
+    <modExtensions><li Class="ColonyCouncil.RewardInstead"><joy>0.08</joy><felt>3</felt><feelings><li>Fellowship</li></feelings></li></modExtensions>
+  </ThoughtDef>
+
+  <!-- ===================== The encounters ===================== -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_HonestMeasure</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>an honest measure</label><description>A trader showed me how to tell an honest scale from a crooked one. Nobody will cheat me on weight again.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_TheirGrace</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a visitor's grace</label><description>I sat at the table with a visitor, and they said their people's words of thanks first. It was a good way to start.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_WildUpClose</defName>
+    <durationDays>2</durationDays>
+    <stages><li><label>a wild one up close</label><description>I went closer to a wild animal than I should have. I'd never seen one that near.</description><baseMoodEffect>1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_ForestersWay</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a forester's advice</label><description>A visitor told me which trees their people leave standing and why. I'll look at the woods differently now.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_NewWeave</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>a new stitch</label><description>A visitor showed me a weave their people use. I want to try it on the next thing I make.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_SnowGlare</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>out of the glare</label><description>A visitor showed me how their people keep the glare of the snow out of their eyes. My eyes don't ache any more.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_SoundRock</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>sound rock</label><description>A visitor told me how their people tell sound rock from rock that will fall. I'll listen to the rock before I dig into it.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_R5A_Enc_Boundary</defName>
+    <durationDays>3</durationDays>
+    <stages><li><label>agreed on the line</label><description>A visitor and I talked over where our land ends and theirs begins. We agreed without any trouble.</description><baseMoodEffect>2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

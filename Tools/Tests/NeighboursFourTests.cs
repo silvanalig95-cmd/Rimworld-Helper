@@ -65,7 +65,9 @@ public static class NeighboursFourTests
         var since = new[] { "Rimfolk_Missions_Peoples.xml", "Rimfolk_Missions_PeoplesC.xml", "Rimfolk_Missions_PeoplesD.xml", "Rimfolk_Missions_PeoplesE.xml", "Rimfolk_Missions_PeoplesF.xml",
             "Rimfolk_Missions_PeoplesG.xml", "Rimfolk_Missions_Home.xml", "Rimfolk_Missions_Home2.xml", "Rimfolk_Missions_Home3.xml",
             // The content update's stud visit (Missions/Workers_MissionStud.cs, B24).
-            "Rimfolk_Missions_Stud.xml" };
+            "Rimfolk_Missions_Stud.xml",
+            // Content round 5, the colony out in the world (Missions/Round5Away.cs, Tools/Tests/Round5AwayTests.cs).
+            "Rimfolk_Round5_Missions.xml" };
         float before = 0f, after = 0f;
         foreach (var f in missionFiles)
             foreach (var d in XDocument.Load(f).Root!.Elements("IncidentDef"))

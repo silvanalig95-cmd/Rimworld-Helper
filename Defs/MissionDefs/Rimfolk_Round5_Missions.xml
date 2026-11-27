@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Content round 5, the colony out in the world (docs/content-round-5-away.md, R5A-M1 to R5A-M6;
+       Source/ColonyCouncil/Missions/Round5Away.cs, the rules in Round5AwayMath.cs). Six neighbours' requests on the frames
+       there are: hands lent to a town (MissionHands: the round-up, the carver, the cook), a captive walked home
+       (MissionEscortWho), a bell for their watch (MissionDelivery) and an order from their merchants (a delivery whose
+       goods are what the colony already keeps: HappeningWorker_R5AOrder). As for the other missions, {A} is who deals with
+       it, {FACTION} and {PLACE} the people and their town, {HOST} the town's head when the region knows them, {COUNT} the
+       pay, {TALE} the road to the town for a journey and the goods for a delivery, {DEAD} the one of theirs named; in terms
+       {ITEM} is the goods, in endings what was paid. No line counts the days down: the Quests tab shows the time. Lines are
+       tagged by the mission's kind, its form, the asking people's age (their:tribal, their:medieval, their:industrial,
+       their:spacer, their:lowtech, their:hightech, their:empire) and, for endings, how it ended. Plain words; no god named. -->
+
+  <!-- ===================== R5A-M1. Hands for the round-up ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_R5A_Mission_RoundUp</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>hands for the round-up</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionHands</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>Hands for the round-up at {PLACE}</li>
+          <li>[lambing] Lambing at {PLACE}</li>
+          <li>[shearing] Shearing at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} writes in {FACTION}'s name to ask the colony for two of its people who are good with animals, for a day and a half with the town's herds. The town will pay.</li>
+          <li>[lambing,their:lowtech] A rider from {PLACE} says the ewes are lambing all at once this spring, and {FACTION} don't have enough hands in the folds to see them all through. They ask the colony for two people who know animals, for a day and a half, and they will pay.</li>
+          <li>[lambing,their:hightech] {FACTION} at {PLACE} have more calves and lambs coming than their stockmen can manage, and two of the stockmen are laid up. They ask the colony for two people who are good with animals, for a day and a half in the barns.</li>
+          <li>[shearing,their:lowtech] {FACTION}'s shearing at {PLACE} has begun, and they have more sheep than shearers. They ask the colony for two people who can catch and hold animals, for a day and a half on the shearing floor.</li>
+          <li>[shearing,their:hightech] The shearing at {PLACE} is behind. {FACTION}'s clippers work, but there aren't enough people to catch and hold the animals, and they ask the colony for two good handlers for a day and a half.</li>
+          <li>[roundup,their:tribal] {FACTION}'s herds are coming down from the summer grass to the winter camp near {PLACE}, and the strays have to be brought in before the snow. They ask the colony for two people who can handle animals, for a day and a half.</li>
+          <li>[roundup,their:medieval] Before winter, {FACTION} bring their herds in from the common at {PLACE} to count them, sort them and take the old ones to market. Their reeve asks the colony for two people who are good with animals, for a day and a half.</li>
+          <li>[roundup,their:industrial] The autumn round-up at {PLACE} starts this week, with the corrals mended and the stock trucks booked. {FACTION} ask the colony for two good handlers to help bring the herd in and sort it, for a day and a half, with pay.</li>
+          <li>[roundup,their:spacer] {FACTION} keep a gene-bred herd at {PLACE}, and before winter it has to be brought in and checked one animal at a time. Their machines can't do the handling, so they ask the colony for two people who can, for a day and a half.</li>
+          <li>[their:empire] The steward of the estate at {PLACE} writes on the knight's behalf. The estate's herds are to be brought in and counted, and the herdsmen are short of hands. Would the colony lend two of its people who are good with animals, for a day and a half? The Empire pays for help.</li>
+          <li>[their:friend] "Send {FRIEND_nameDef} if you can," the rider from {PLACE} says. {FACTION} need two people who are good with animals for a day and a half with their herds.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send handlers to {PLACE}</label>
+            <outcome>The rider went home to say the colony's handlers are coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will manage their herds with the hands they have.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionHands">
+        <kind>roundup</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <maxTravelDays>3</maxTravelDays>
+        <skill>Animals</skill>
+        <minLevel>5</minLevel>
+        <work>Handling</work>
+        <hands>2</hands>
+        <hours>36</hours>
+        <reward>140~240</reward>
+        <gift>100</gift>
+        <xp>1000</xp>
+        <thought>Rimfolk_R5A_Mission_HerdedForThem</thought>
+        <deed>lentHands</deed>
+        <forms>
+          <li>
+            <tag>lambing</tag>
+            <seasons>
+              <li>Spring</li>
+            </seasons>
+          </li>
+          <li>
+            <tag>shearing</tag>
+            <seasons>
+              <li>Summer</li>
+              <li>PermanentSummer</li>
+            </seasons>
+          </li>
+          <li>
+            <tag>roundup</tag>
+            <seasons>
+              <li>Fall</li>
+            </seasons>
+          </li>
+        </forms>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>At least two of the colony's people who are good with animals (Animals 5 or more), at {PLACE} by caravan (about {TALE} away), staying about a day and a half with the herds. The caravan only needs to reach the town and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the town's, and {FACTION} will remember who came. Half the stay earns half the silver.</li>
+        </terms>
+        <accepted>
+          <li>The colony will send handlers to {PLACE}. Form a caravan with at least two people who are good with animals, and send it there.</li>
+        </accepted>
+        <ready>
+          <li>The colony's handlers have reached {PLACE} and gone out to the herds. Keep the caravan there while they work.</li>
+          <li>[lambing] The colony's handlers have reached {PLACE} and gone straight to the lambing folds. Keep the caravan there while they work.</li>
+          <li>[shearing] The colony's handlers have reached {PLACE} and gone to the shearing floor. Keep the caravan there while they work.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s herds at {PLACE} are still waiting for the colony's handlers.</li>
+        </reminder>
+        <doneTitles>
+          <li>[worked] The herds at {PLACE}</li>
+          <li>[partial] Some of the work at {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[worked] The herds at {PLACE} are in and counted, and {FACTION} thanked the colony's handlers at supper. Their pay and a gift of the town's are in the caravan's packs.</li>
+          <li>[worked,lambing] The lambing at {PLACE} is over, and almost every lamb lived. The handlers' pay and a gift of the town's are in the caravan's packs.</li>
+          <li>[worked,shearing] The last of {FACTION}'s sheep are shorn and the wool is baled. The handlers' pay and a gift of the town's are in the caravan's packs.</li>
+          <li>[worked,their:empire] The estate's herds are in, and the steward paid the colony's handlers in person, as the Empire's code of honour asks. Their pay and a gift are in the caravan's packs.</li>
+          <li>[partial] The colony's handlers helped with what they could at {PLACE} before they had to leave. {FACTION} paid them half and thanked them.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nobody came to {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[missed] No handlers came from the colony, and {FACTION} brought their herds in short of hands. They know who said they would come.</li>
+        </fail>
+        <cancelled>
+          <li>The herds at {PLACE} no longer need the colony: the town, or the friendship, is gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R5A-M2. Carvings for their hall ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_R5A_Mission_Carver</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>carvings for their hall</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionHands</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[hall] Carvings for {PLACE}'s hall</li>
+          <li>[holyhouse] Carvings for {PLACE}'s house of prayer</li>
+        </titles>
+        <texts>
+          <li>[host,hall] {HOST} of {PLACE} writes in {FACTION}'s name. Their new hall is built, and nobody in the town can carve well enough to finish it. They ask the colony for its best artist for a day or so, with pay.</li>
+          <li>[host,holyhouse] {HOST} of {PLACE} writes in {FACTION}'s name. Their new house of prayer is built but bare, and they ask the colony for its best artist for a day or so to do the carving, with pay.</li>
+          <li>[hall,their:tribal] {FACTION} have raised a new longhouse at {PLACE}, and they want its posts carved before the elders gather there. Nobody of theirs carves well enough, so they ask the colony for its best artist for a day or so.</li>
+          <li>[hall,their:medieval] The new guildhall at {PLACE} has its roof on, and {FACTION} want the beams and the doorway carved. They ask the colony to lend its best artist for a day or so, and they will pay.</li>
+          <li>[hall,their:industrial] {FACTION} have finished the meeting house at {PLACE}, and its front is plain boards. They ask the colony for someone who can carve the doors and the panels, for a day or so, with pay.</li>
+          <li>[hall,their:spacer] {FACTION} have built a common room at {PLACE} and want something in it made by hand, which is rare among them. They ask the colony to lend its best artist for a day or so to carve the panels.</li>
+          <li>[holyhouse,their:lowtech] {FACTION} have built a house of prayer at {PLACE}, and they want its screen and posts carved before their next holy day. They ask the colony for its best artist, for a day or so.</li>
+          <li>[holyhouse,their:hightech] {FACTION}'s new chapel at {PLACE} is finished but bare. They ask the colony to lend someone who can carve the doors and the rail before the altar, for a day or so, and they will pay.</li>
+          <li>[hall,their:empire] The knight's steward at {PLACE} asks a favour of the colony: its best artist, for a day or so, to carve the beams of the knight's new hall. The Empire pays its craftsmen, the steward writes, and remembers who served it well.</li>
+          <li>[holyhouse,their:empire] The knight at {PLACE} has had a chapel built for the town, and the steward writes on the knight's behalf to ask the colony for its best artist for a day or so, to carve the doors. The Empire pays its craftsmen well.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Lend an artist to {PLACE}</label>
+            <outcome>The rider went home to say the colony's artist is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will leave the wood plain for now.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionHands">
+        <kind>carver</kind>
+        <restDays>60</restDays>
+        <rating>2</rating>
+        <maxTravelDays>3</maxTravelDays>
+        <skill>Artistic</skill>
+        <minLevel>6</minLevel>
+        <work>Art</work>
+        <hands>1</hands>
+        <hours>30</hours>
+        <reward>160~280</reward>
+        <gift>120</gift>
+        <xp>1200</xp>
+        <thought>Rimfolk_R5A_Mission_CarvedForThem</thought>
+        <deed>lentHands</deed>
+        <forms>
+          <li><tag>hall</tag></li>
+          <li><tag>holyhouse</tag><weight>0.8</weight></li>
+        </forms>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>One of the colony's people who can carve (Artistic 6 or more), at {PLACE} by caravan (about {TALE} away), staying a day or so at the work. The caravan only needs to reach the town and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the town's, and {FACTION} will remember who came. Half the stay earns half the silver.</li>
+        </terms>
+        <accepted>
+          <li>The colony will lend its artist to {PLACE}. Form a caravan with someone who can carve, and send it there.</li>
+        </accepted>
+        <ready>
+          <li>[hall] The colony's artist has reached {PLACE} and started on the hall's carving. Keep the caravan there while the work is done.</li>
+          <li>[holyhouse] The colony's artist has reached {PLACE} and started on the carving in their house of prayer. Keep the caravan there while the work is done.</li>
+        </ready>
+        <reminder>
+          <li>The carving at {PLACE} is still waiting for the colony's artist.</li>
+        </reminder>
+        <doneTitles>
+          <li>[worked] Carvings at {PLACE}</li>
+          <li>[partial] Some of the carving at {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[worked,hall] The carving in {PLACE}'s new hall is finished, and {FACTION} held their first gathering under it. The pay and a gift of the town's are in the caravan's packs.</li>
+          <li>[worked,holyhouse] The carving in {FACTION}'s house of prayer is finished, in time for their holy day. The pay and a gift of the town's are in the caravan's packs.</li>
+          <li>[worked,their:empire] The knight came to look at the carving and thanked the colony's artist in person, as the Empire's code of honour asks. The pay and a gift are in the caravan's packs.</li>
+          <li>[partial] The colony's artist finished part of the carving at {PLACE} before they had to leave. {FACTION} paid half and thanked them.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nobody came to {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[missed] No artist came from the colony, and the wood at {PLACE} is still plain. {FACTION} know who said they would send someone.</li>
+        </fail>
+        <cancelled>
+          <li>The carving at {PLACE} no longer needs the colony: the town, or the friendship, is gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R5A-M3. An order from their merchants ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_R5A_Mission_Order</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an order from their merchants</label>
+    <workerClass>ColonyCouncil.HappeningWorker_R5AOrder</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>An order from {PLACE}</li>
+          <li>{PLACE}'s merchants want to buy</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} writes for the town's merchants. They have heard what the colony keeps, and would buy {TALE} at a good price, collected at the gate by their own carts.</li>
+          <li>[food,their:lowtech] {FACTION}'s traders at {PLACE} have heard that the colony keeps more food than it eats. They would buy {TALE} for their own stores at a good price, and send their carts to the gate for it.</li>
+          <li>[food,their:hightech] A shop at {PLACE} wants to sell the colony's cooking. {FACTION} offer to buy {TALE} at a good price, collected by their own carts.</li>
+          <li>[cloth,their:lowtech] {FACTION}'s merchants at {PLACE} want cloth and hides for the winter trade, and they have heard the colony has them. They would buy {TALE} and send their own carts for it.</li>
+          <li>[cloth,their:hightech] {FACTION} run a workshop at {PLACE} that makes clothes, and they are short of cloth. They would buy {TALE} from the colony at a good price.</li>
+          <li>[medicine] The healers of {FACTION} at {PLACE} are short of medicine and have heard the colony keeps some. They would buy {TALE}, and pay more than a trader would.</li>
+          <li>[drink,their:lowtech] The innkeepers of {PLACE} have run their cellars low, and {FACTION}'s merchants have heard the colony brews. They would buy {TALE} at a good price.</li>
+          <li>[drink,their:hightech] A tavern at {PLACE} wants something new to sell, and {FACTION}'s merchants have heard of the colony's drink. They would buy {TALE} at a good price.</li>
+          <li>[stone] {FACTION} are building at {PLACE}, and their own quarry is worked out. Their merchants would buy {TALE} from the colony and cart it away themselves.</li>
+          <li>[goods,their:lowtech] {FACTION}'s merchants at {PLACE} have seen the colony's goods on the road and want more of them to sell. They would buy {TALE} at a good price, and send their carts to the gate for it.</li>
+          <li>[goods,their:hightech] A trading house of {FACTION} at {PLACE} has heard good things about the colony's goods and wants to order {TALE}, at a good price, collected by their own carts.</li>
+          <li>[their:empire] The steward of the knight's household at {PLACE} places an order with the colony in the Empire's name: {TALE}, collected by the household's carts and paid in full. The Empire, the steward writes, pays its suppliers on time.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Take the order</label>
+            <outcome>The merchants' rider went back to {PLACE} with the colony's answer.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION}'s merchants will buy elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>order</kind>
+        <restDays>60</restDays>
+        <rating>1</rating>
+        <days>8~12</days>
+        <goodwill>10</goodwill>
+        <penalty>6</penalty>
+        <!-- The goods are picked from what the colony keeps (Round5Away.cs); the delivery's frame wants one form. -->
+        <variants>
+          <li><tag>order</tag></li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION}'s order: {ITEM}, in the colony's stockpiles when their carts come. Once all of it is there, their carts set out for it; otherwise they come by the day the Quests tab shows.\n\nFor all of it they'll pay {COUNT} silver, half again its worth. With at least half of it ready, they'll take what there is at its plain worth. Less than that, and they'll buy elsewhere and remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony has taken {FACTION}'s order: {ITEM}, in the stockpiles for their carts.</li>
+        </accepted>
+        <ready>
+          <li>All of {FACTION}'s order is in the colony's stockpiles, and their carts are on their way from {PLACE}.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for their order, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered] The order for {PLACE}</li>
+          <li>[partial] Part of the order for {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] Everything {FACTION} ordered is ready, and their carts are coming for it with {ITEM} silver.</li>
+          <li>[delivered,their:empire] The household's carts are coming for the order with {ITEM} silver, paid in full as the steward promised.</li>
+          <li>[partial] Only part of the order is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}'s merchants</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. Their merchants have bought elsewhere, and they remember it.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and their order is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R5A-M4. A cook for their feast day ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_R5A_Mission_Cook</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a cook for their feast day</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionHands</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>60</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>A cook for {PLACE}</li>
+          <li>[harvesthome] The harvest feast at {PLACE}</li>
+          <li>[midwinter] The midwinter feast at {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} writes in {FACTION}'s name. Their feast is coming, and their kitchen needs a good cook for a day. They ask the colony to lend its best one, with pay.</li>
+          <li>[springfeast,their:lowtech] {FACTION} keep a feast at {PLACE} when the first lambs and greens come in, and their old cook can't stand at the fire all day any more. They ask the colony to lend its best cook for a day.</li>
+          <li>[springfeast,their:hightech] {FACTION} hold a spring dinner at {PLACE} for the whole town, and the cook they hired has let them down. They ask the colony for someone who can cook for a crowd, for a day, with pay.</li>
+          <li>[fair,their:lowtech] The summer fair at {PLACE} brings people from all over, and {FACTION} want food at it that people will talk about. They ask the colony to lend its best cook for a day at their stalls.</li>
+          <li>[fair,their:hightech] {FACTION} run the food stalls at the summer fair in {PLACE}, and they are a cook short. They ask the colony to lend someone who can cook well and fast, for a day.</li>
+          <li>[harvesthome,their:tribal] When the harvest is in, {FACTION} feast in the longhouse at {PLACE} for a night and a day. Their cooks are worn out from the harvest, so they ask the colony to lend its best cook for the feast.</li>
+          <li>[harvesthome,their:medieval] The harvest supper at {PLACE} is to be held in the tithe barn, and {FACTION}'s cook has burned both hands. They ask the colony to lend its best cook for the day of the feast.</li>
+          <li>[harvesthome,their:industrial] {FACTION}'s harvest supper is in the grange hall at {PLACE} this week, and half the district is invited. They ask the colony for a good cook for the day, and they will pay.</li>
+          <li>[harvesthome,their:spacer] {FACTION}'s kitchens at {PLACE} print most of their food, and for the harvest dinner they want real cooking for once. They ask the colony to lend its best cook for a day.</li>
+          <li>[midwinter,their:lowtech] {FACTION} keep a feast at {PLACE} on the longest night, and nobody in the town goes without that meal. Their cook is ill, so they ask the colony to lend its best one for the day.</li>
+          <li>[midwinter,their:hightech] {FACTION} hold a midwinter dinner at {PLACE} for everyone who stayed through the dark months. They ask the colony to lend a good cook for the day, with pay.</li>
+          <li>[their:empire] The knight at {PLACE} is giving a feast for the town, as the Empire's custom asks of a lord, and the steward writes that the kitchen needs one more good cook. The Empire pays fairly.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Lend a cook to {PLACE}</label>
+            <outcome>The rider went home to say the colony's cook is coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will make do with their own kitchen.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionHands">
+        <kind>cook</kind>
+        <restDays>60</restDays>
+        <rating>1</rating>
+        <maxTravelDays>3</maxTravelDays>
+        <skill>Cooking</skill>
+        <minLevel>6</minLevel>
+        <work>Cooking</work>
+        <hands>1</hands>
+        <hours>24</hours>
+        <reward>120~220</reward>
+        <gift>100</gift>
+        <xp>1000</xp>
+        <thought>Rimfolk_R5A_Mission_CookedForThem</thought>
+        <deed>lentHands</deed>
+        <forms>
+          <li>
+            <tag>springfeast</tag>
+            <seasons>
+              <li>Spring</li>
+            </seasons>
+          </li>
+          <li>
+            <tag>fair</tag>
+            <seasons>
+              <li>Summer</li>
+              <li>PermanentSummer</li>
+            </seasons>
+          </li>
+          <li>
+            <tag>harvesthome</tag>
+            <seasons>
+              <li>Fall</li>
+            </seasons>
+          </li>
+          <li>
+            <tag>midwinter</tag>
+            <seasons>
+              <li>Winter</li>
+              <li>PermanentWinter</li>
+            </seasons>
+          </li>
+        </forms>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>One of the colony's people who cooks well (Cooking 6 or more), at {PLACE} by caravan (about {TALE} away), staying about a day in their kitchen. The caravan only needs to reach the town and wait there.\n\nThey'll come home with about {COUNT} silver and a gift of the town's, and {FACTION} will remember who came. Half the day earns half the silver.</li>
+        </terms>
+        <accepted>
+          <li>The colony will lend its cook to {PLACE}. Form a caravan with someone who cooks well, and send it there.</li>
+        </accepted>
+        <ready>
+          <li>The colony's cook has reached {PLACE} and gone straight into the kitchen. Keep the caravan there while the feast is cooked.</li>
+          <li>[fair] The colony's cook has reached {PLACE} and taken over a stall at the fair. Keep the caravan there while they cook.</li>
+        </ready>
+        <reminder>
+          <li>The kitchen at {PLACE} is still waiting for the colony's cook.</li>
+        </reminder>
+        <doneTitles>
+          <li>[worked] The feast at {PLACE}</li>
+          <li>[partial] Part of the feast at {PLACE}</li>
+        </doneTitles>
+        <done>
+          <li>[worked] The feast at {PLACE} went well, and more than one of {FACTION} asked who cooked it. The pay and a gift of the town's are in the caravan's packs.</li>
+          <li>[worked,fair] The colony's stall at {PLACE}'s fair sold out before evening. The pay and a gift of the town's are in the caravan's packs.</li>
+          <li>[worked,their:empire] The knight thanked the colony's cook at the table, as the Empire's code of honour asks. The pay and a gift are in the caravan's packs.</li>
+          <li>[partial] The colony's cook had to leave {PLACE} before the feast was over. {FACTION} paid half and thanked them.</li>
+        </done>
+        <failTitles>
+          <li>[missed] No cook came to {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[missed] No cook came from the colony, and the feast at {PLACE} went ahead with what {FACTION}'s own kitchen could manage. They know who said they would send someone.</li>
+        </fail>
+        <cancelled>
+          <li>The feast at {PLACE} no longer needs the colony: the town, or the friendship, is gone.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R5A-M5. A captive walked home ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_R5A_Mission_Captive</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a captive walked home</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionEscortWho</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>25</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>{DEAD} needs to get home</li>
+          <li>[escaped] {DEAD} got away</li>
+        </titles>
+        <texts>
+          <li>[escaped] {FACTION}'s rider says {DEAD}, one of theirs, was taken by raiders on the road last season and got away from their camp a few nights ago. {X_pronoun} is making for the colony, the nearest place {X_pronoun} trusts, and {FACTION} ask whether the colony's caravan could walk {X_objective} the rest of the way home to {PLACE}.</li>
+          <li>[released] {DEAD} of {FACTION} was held by raiders until {X_possessive} people paid for {X_objective}, and was let go on the road with nothing. {X_pronoun} is coming to the colony and doesn't want to walk the rest of the way to {PLACE} alone. {FACTION} ask the colony's caravan to take {X_objective} home.</li>
+          <li>[escaped,their:lowtech] A runner from {PLACE} says {DEAD}, who was taken by raiders in the spring, has got away from them and is on the way to the colony. {FACTION} ask the colony to walk {X_objective} home, so {X_pronoun} doesn't have to cross the open country alone again.</li>
+          <li>[escaped,their:hightech] {FACTION}'s message is short. {DEAD}, missing since a raid on the road, has turned up alive and is walking toward the colony, and they ask the colony's caravan to bring {X_objective} home to {PLACE}.</li>
+          <li>[released,their:lowtech] {FACTION} paid the raiders what they asked, and {DEAD} was let go near the colony's land. {X_pronoun} is frightened of the road, and {FACTION}'s rider asks the colony to walk {X_objective} home to {PLACE}.</li>
+          <li>[their:empire] The steward at {PLACE} writes on the knight's behalf. {DEAD}, a servant of the Empire taken by raiders, has been freed and is coming to the colony, and the Empire asks for an escort to {PLACE}. The steward writes that the Empire will remember the favour.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>See {DEAD} home to {PLACE}</label>
+            <outcome>The rider went to tell {DEAD} the colony will see {X_objective} home.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{DEAD} will have to find other company, or go home alone.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionEscortWho">
+        <kind>captive</kind>
+        <restDays>75</restDays>
+        <ages>18~55</ages>
+        <variants>
+          <li>escaped</li>
+          <li>released</li>
+        </variants>
+        <reward>160~300</reward>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{DEAD} comes to the colony and waits there. Any caravan of the colony's, with one of its own people, that sets out from the colony for {PLACE} (about {TALE} away) takes {X_objective} along; when it gets there, {X_pronoun} is home.\n\n{FACTION} will pay {COUNT} silver at {PLACE}, and remember who walked with {X_objective}.</li>
+        </terms>
+        <accepted>
+          <li>The colony will walk {DEAD} home to {PLACE}. {X_pronoun} is on the way to the colony to wait for the caravan.</li>
+        </accepted>
+        <ready>
+          <li>{DEAD} has reached the colony and is waiting for a caravan to {PLACE}.</li>
+        </ready>
+        <reminder>
+          <li>{DEAD} is still waiting at the colony for a caravan to {PLACE}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[arrived] {DEAD} is home</li>
+        </doneTitles>
+        <done>
+          <li>[arrived] {DEAD} walked into {PLACE} with the colony's caravan, and {FACTION} came out to meet {X_objective}. They paid the caravan {ITEM} silver and thanked it.</li>
+          <li>[arrived,their:empire] {DEAD} is back at {PLACE}, and the steward paid the colony's caravan {ITEM} silver, as the Empire's code of honour asks.</li>
+        </done>
+        <failTitles>
+          <li>[alone] {DEAD} went alone</li>
+          <li>[turned] The caravan turned back</li>
+          <li>[harmed] {DEAD}</li>
+          <li>[late] Too late for {PLACE}</li>
+        </failTitles>
+        <fail>
+          <li>[alone] No caravan went to {PLACE}, and {DEAD} set off alone in the end. {FACTION} remember who said they would walk with {X_objective}.</li>
+          <li>[turned] The colony's caravan turned back, and {DEAD} walked the rest of the way alone. {FACTION} have heard.</li>
+          <li>[harmed] {DEAD} never reached {PLACE}. {FACTION} remember whose care {X_pronoun} was in.</li>
+          <li>[late] The colony's caravan took so long that {FACTION} had given up waiting for {DEAD}. They are glad to have {X_objective} back, but not pleased with the colony.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and {DEAD} has gone another way.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R5A-M6. A bell for their watch ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_R5A_Mission_Bell</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a bell for their watch</label>
+    <workerClass>ColonyCouncil.HappeningWorker_MissionDelivery</workerClass>
+    <baseChance>0.3</baseChance>
+    <minRefireDays>75</minRefireDays>
+    <earliestDay>20</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <answerDays>2</answerDays>
+        <notable>false</notable>
+        <titles>
+          <li>[drum] A drum for {PLACE}</li>
+          <li>[bell] A bell for {PLACE}</li>
+          <li>[siren] A siren for {PLACE}</li>
+          <li>[beacon] A beacon for {PLACE}</li>
+        </titles>
+        <texts>
+          <li>[host] {HOST} of {PLACE} writes in {FACTION}'s name. The town wants a way to call everyone in from the fields when raiders or fire come, and asks the colony for what it takes, by a set day, at a good price: {TALE}.</li>
+          <li>[drum,their:lowtech] {DEAD}, who keeps {FACTION}'s watch at {PLACE}, wants a great drum that can be heard in every field when raiders come. They ask the colony for the hide and wood to make it, by a set day, and will pay well: {TALE}.</li>
+          <li>[drum,their:hightech] {FACTION}'s alarm at {PLACE} needs power, and the power fails when it is needed most. {DEAD}, who keeps their watch, wants a great drum as well, and asks the colony for what it takes: {TALE}.</li>
+          <li>[bell,their:lowtech] {FACTION} mean to hang a watch bell in the tower at {PLACE}, to ring when raiders or fire come. {DEAD}, who keeps their watch, asks the colony for metal for the bell and timber for its frame, by a set day: {TALE}.</li>
+          <li>[bell,their:hightech] {DEAD} of {FACTION} wants a bell at {PLACE} that works without power, to call people in from the fields. They ask the colony for the metal and the timber, by a set day, at a good price: {TALE}.</li>
+          <li>[siren,their:lowtech] {FACTION} at {PLACE} have heard of the sirens the machine towns use to warn of raids, and want one on their tower. {DEAD}, who keeps their watch, asks the colony for the parts: {TALE}.</li>
+          <li>[siren,their:hightech] {FACTION} want a siren on the water tower at {PLACE}, wired to a clock that sounds it at the change of watch. {DEAD}, their watch captain, asks the colony for the steel and parts, by a set day: {TALE}.</li>
+          <li>[beacon] {FACTION} want an alarm beacon over {PLACE} that can be seen and heard from every field around the town. {DEAD}, who keeps their watch, asks the colony for the parts to build it, by a set day: {TALE}.</li>
+          <li>[their:empire] The knight of {PLACE} writes under the Empire's seal. The town needs an alarm against the bandits on the roads, and {DEAD}, the knight's steward, asks the colony for the materials, at a price fitting the Empire's dignity: {TALE}.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Accept the terms</label>
+            <outcome>The rider went home to tell {PLACE} the materials are coming.</outcome>
+          </li>
+          <li>
+            <label>Decline</label>
+            <outcome>{FACTION} will have to find what they need elsewhere.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.MissionDelivery">
+        <kind>bell</kind>
+        <restDays>75</restDays>
+        <rating>2</rating>
+        <days>9~13</days>
+        <rewardFactor>1.5</rewardFactor>
+        <goodwill>12</goodwill>
+        <penalty>6</penalty>
+        <person>30~60</person>
+        <variants>
+          <li>
+            <tag>drum</tag>
+            <era>tribal</era>
+            <goals>
+              <li><what>textiles</what><count>40~70</count></li>
+              <li><what>WoodLog</what><count>60~100</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>bell</tag>
+            <era>medieval</era>
+            <goals>
+              <li><what>Steel</what><count>60~100</count></li>
+              <li><what>WoodLog</what><count>60~100</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>siren</tag>
+            <era>industrial</era>
+            <goals>
+              <li><what>Steel</what><count>50~80</count></li>
+              <li><what>ComponentIndustrial</what><count>3~6</count></li>
+            </goals>
+          </li>
+          <li>
+            <tag>beacon</tag>
+            <era>spacer</era>
+            <goals>
+              <li><what>ComponentIndustrial</what><count>4~7</count></li>
+              <li><what>Plasteel</what><count>20~40</count><instead>Steel</instead><insteadCount>50~80</insteadCount></li>
+            </goals>
+          </li>
+        </variants>
+      </li>
+      <li Class="ColonyCouncil.MissionText">
+        <terms>
+          <li>{FACTION}'s list: {ITEM}, all of it in the colony's stockpiles by the day the Quests tab shows, when their carts come.\n\nFor everything, they'll pay {COUNT} silver, well over its worth. With at least half of each thing ready, they'll take what there is at its plain worth. Less than that, and they'll go elsewhere, and remember it.</li>
+        </terms>
+        <accepted>
+          <li>The colony has promised {PLACE} the materials for its alarm: {ITEM}, in the stockpiles for {FACTION}'s carts.</li>
+        </accepted>
+        <ready>
+          <li>Everything {PLACE} needs for its alarm is stacked and ready, and {FACTION}'s carts are on their way.</li>
+        </ready>
+        <reminder>
+          <li>{FACTION}'s carts come soon for the alarm's materials, and the stockpiles are still short: {ITEM}.</li>
+        </reminder>
+        <doneTitles>
+          <li>[delivered,drum] A drum for {PLACE}</li>
+          <li>[delivered,bell] A bell for {PLACE}</li>
+          <li>[delivered,siren] A siren for {PLACE}</li>
+          <li>[delivered,beacon] A beacon for {PLACE}</li>
+          <li>[partial] Part of {PLACE}'s alarm</li>
+        </doneTitles>
+        <done>
+          <li>[delivered] Everything is ready, and {FACTION}'s carts are coming for it with {ITEM} silver from {DEAD}.</li>
+          <li>[delivered,drum] {FACTION}'s carts are coming for the hide and the wood with {ITEM} silver. {DEAD} sends word that the drum will be heard from every field at {PLACE}.</li>
+          <li>[delivered,bell] {FACTION}'s carts are coming for the metal and the timber with {ITEM} silver. {DEAD} sends word that the bell will hang in the tower at {PLACE} before the season turns.</li>
+          <li>[partial] Only part of the list is ready. {FACTION}'s carts are coming for what there is, with its plain worth, {ITEM} silver, and they'll look elsewhere for the rest.</li>
+        </done>
+        <failTitles>
+          <li>[missed] Nothing for {PLACE}'s alarm</li>
+        </failTitles>
+        <fail>
+          <li>[missed] There was far too little ready for {FACTION}'s carts to make the trip. {PLACE} will go without its alarm a while longer, and {DEAD} has said so to anyone who will listen.</li>
+        </fail>
+        <cancelled>
+          <li>{FACTION} have broken with the colony, and the order for {PLACE}'s alarm is off.</li>
+        </cancelled>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
