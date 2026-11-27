@@ -631,6 +631,9 @@ wishPh.UnionWith(new[] { "GIFT", "CANDIDATE" });
 // The content round 4's camps (Camps/CampRound4.cs, CampWorker.Fill): the field the fire-watchers cut a break round, the
 // instrument the makers sell, the fowlers' birds.
 wishPh.UnionWith(new[] { "FIELD", "INSTRUMENT", "BIRDS" });
+// The content round 5's moments together (Social/Round5Together.cs, R5TMemoryEffect): the year a shared memory's
+// label names ({SEASON} is above).
+wishPh.Add("YEAR");
 var pawnSuffixes = new HashSet<string> { "nameDef", "nameFull", "labelShort", "pronoun", "possessive", "objective", "label", "definite", "indefinite", "gender", "kind" };
 foreach (var (file, doc) in docs)
 {

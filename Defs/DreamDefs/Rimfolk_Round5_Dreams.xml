@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Dreams of the fifth round's quirks (Defs/QuirkDefs/Rimfolk_Round5_Quirks.xml), as Rimfolk_Dreams_Habits.xml gives the
+    older quirks theirs: each asks for its quirks by the dreamer's tags (quirk:Rimfolk_R5T_Quirk_...), with lines for each
+    beside lines that fit them all, in every voice. One of them is a bad one. Fields as in Council_Dreams.xml; like every
+    dream of who someone is, they take a share of the night's dreams and make nobody dream more often.
+  -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R5T_Dream_FirstDays</defName>
+    <label>a dream of the first days</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Rimfolk_R5T_Quirk_EarlyDays|quirk:Rimfolk_R5T_Quirk_NewcomersFriend</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt the colony was new again, just a few of us on bare ground, and everyone I know now arrived one by one.</li>
+        <li>[quirk:Rimfolk_R5T_Quirk_EarlyDays] I dreamt I was showing someone round the colony as it was at the start, and they couldn't believe how little there was.</li>
+        <li>[quirk:Rimfolk_R5T_Quirk_NewcomersFriend] I dreamt it was my first day here again, and this time I already knew everyone's name.</li>
+      </plain>
+      <warm><li>I dreamt everyone who ever came here sat at one long table, the first ones and the newest, and there was room for all of them.</li></warm>
+      <blunt><li>Dreamt about the first days. Cold, hungry, busy. I woke up glad it's not like that now.</li></blunt>
+      <cheerful><li>I dreamt a whole group of newcomers arrived at once, and I got to show every one of them round.</li></cheerful>
+      <gloomy><li>I dreamt I was new here and nobody would tell me where anything was.</li></gloomy>
+      <cold><li>I dreamt about how the colony was laid out at the start. Most of it was in the wrong place.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R5T_Dream_LongGame</defName>
+    <label>a dream of the long game</label>
+    <kind>Strange</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Rimfolk_R5T_Quirk_PlaysToWin|quirk:Rimfolk_R5T_Quirk_Peacemaker</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt the whole colony sat down to one game that went on all night, and nobody could remember the rules.</li>
+        <li>[quirk:Rimfolk_R5T_Quirk_PlaysToWin] I dreamt I finally won the game, and everyone wanted a rematch, and I won that too.</li>
+        <li>[quirk:Rimfolk_R5T_Quirk_Peacemaker] I dreamt two people were arguing at the table and I got them to shake hands, and then two more started.</li>
+      </plain>
+      <warm><li>I dreamt we all played a game where nobody lost, and it was the best game I've ever played.</li></warm>
+      <blunt><li>Game dream. I won. Good.</li></blunt>
+      <cheerful><li>In my dream I beat everyone at every game, even the ones I've never played.</li></cheerful>
+      <gloomy><li>I dreamt everyone was angry with each other at the table and I couldn't get any of them to stop.</li></gloomy>
+      <cold><li>I went over the last game in my sleep and found the move I should have made.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R5T_Dream_Losing</defName>
+    <label>a dream of losing</label>
+    <kind>Nightmare</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Rimfolk_R5T_Quirk_PlaysToWin</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I lost every game I played, one after another, while everyone watched.</li>
+        <li>I dreamt I was winning, and then the score changed, and nobody would tell me how.</li>
+        <li>I dreamt I was playing against someone I couldn't see, and I lost every time.</li>
+      </plain>
+      <warm><li>I dreamt I lost and everyone was kind about it, which was worse.</li></warm>
+      <blunt><li>Lost all night in my dream. Bad night.</li></blunt>
+      <cheerful><li>I dreamt I lost a game to a child and had to pretend I didn't mind.</li></cheerful>
+      <gloomy><li>I dreamt I lost, and then I lost again, and it never stopped.</li></gloomy>
+      <cold><li>I dreamt about losing. It was only a dream, but I'll practise more.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R5T_Dream_Small</defName>
+    <label>a dream of being small</label>
+    <kind>Sweet</kind>
+    <children>true</children>
+    <dreamer><tags>quirk:Rimfolk_R5T_Quirk_TimeForChildren|quirk:Rimfolk_R5T_Quirk_FollowsTheOld</tags></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I was small again and one of the old ones showed me how to do something, slowly, until I got it right.</li>
+        <li>[quirk:Rimfolk_R5T_Quirk_TimeForChildren] I dreamt the colony's children asked me every question they could think of, and I knew every answer.</li>
+        <li>[quirk:Rimfolk_R5T_Quirk_FollowsTheOld] I dreamt I followed one of the old ones all day, and by the evening I knew everything they knew.</li>
+      </plain>
+      <warm><li>I dreamt the old ones and the children were all working in the field together, and it was the best day of the year.</li></warm>
+      <blunt><li>Dreamt I was small. Everyone was tall. That was it.</li></blunt>
+      <cheerful><li>I dreamt I was very old and the children followed me everywhere, asking for stories.</li></cheerful>
+      <gloomy><li>I dreamt the old ones I know were gone, and I couldn't remember what they had told me.</li></gloomy>
+      <cold><li>I dreamt about learning to work as a child. I remembered more of it than I expected.</li></cold>
+    </lines>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

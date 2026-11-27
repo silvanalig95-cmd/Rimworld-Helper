@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The colony's people together (content round 5, docs/content-round-5-together.md): eight more moments between two
+    colonists, from what really happens on the map. Like every social event they come at a waking hour between two who are
+    near each other, as a share of the day's draw (SocialEvents.Daily counts the day's events from the colony's size, never
+    from the defs), so none of them makes the colony's social life busier: they only make it more varied. Their moods are
+    in Rimfolk_Round5_Thoughts.xml, the memories they leave in Defs/SharedMemoryDefs/Rimfolk_Round5_Memories.xml.
+
+    What starts each one is on the map: the season and the hour by the map's calendar and the weather (role tags of the
+    moment, read by PeopleTags.MatchesNow), what the two are doing (at a meal, at their free time, at the same work side by
+    side: sameWork, {WORK} names it and its skill is the one learned), indoors or out, a newcomer's first days by the game's
+    own record, elders and children by age, a friendship, a spat not yet made up (tone mend), and a scene of the round
+    (scene, Social/Round5Together.cs): both sowing (the game's own sowing job), two old hands (a year or more at the colony
+    each), the same game ({THING} names it: a board, table, pin or ring the game counts a game of skill or chance, the
+    game's or a mod's), a child who lost someone lately ({X_nameDef}, the game's own memory of the death).
+
+    Every age: texts tagged [tribal], [medieval], [industrial], [spacer], [lowtech] or [!lowtech] are told in that age only
+    (by the colony's own tech), the untagged ones in any. No god is named and nothing is said of what a god did.
+  -->
+
+  <!-- ===================== The seasons ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_SpringSowing</defName>
+    <label>the spring sowing</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>spring</tags></roleA>
+    <scene>sowing</scene>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} did the spring sowing side by side, and talked about what this year's crop would be.</li>
+      <li>{A_nameDef} and {B_nameDef} argued, in a friendly way, about how far apart the rows should be while they sowed.</li>
+      <li>{A_nameDef} told {B_nameDef} which of last year's crops had done best, and they agreed to sow more of it.</li>
+      <li>{A_nameDef} and {B_nameDef} stopped sowing for a moment to see how much of the field was done, and agreed it was a good start.</li>
+      <li>[tribal] {A_nameDef} and {B_nameDef} sowed side by side, and talked about the seasons the old ones had sown through before them.</li>
+      <li>[medieval] {A_nameDef} and {B_nameDef} sowed the field together, a row each, and {A_nameDef} kept count of the rows.</li>
+      <li>[industrial] {A_nameDef} and {B_nameDef} went over the seed stock while they sowed, and worked out what would last until the harvest.</li>
+      <li>[spacer] {A_nameDef} and {B_nameDef} sowed together and talked about which of the crops would do best on this world.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_R5T_SownTogether</thought></li>
+      <li Class="ColonyCouncil.R5TMemoryEffect"><memory>Rimfolk_R5T_Mem_SpringSowing</memory><label>the spring sowing of {YEAR}</label></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>the spring sowing together</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_SummerEvening</defName>
+    <label>a summer evening</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <tie>Friends</tie>
+    <roleA><tags>summer,evening,outside,relaxing,!rain</tags></roleA>
+    <roleB><tags>outside,relaxing</tags></roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} sat out together on a warm summer evening and talked until it got dark.</li>
+      <li>{A_nameDef} and {B_nameDef} stayed outside after the day's work in the warm air, and neither of them wanted to go in.</li>
+      <li>{A_nameDef} told {B_nameDef} about the best summer {A_pronoun} could remember, and {B_nameDef} said this one was going well too.</li>
+      <li>{A_nameDef} and {B_nameDef} watched the light go out of the sky, talking about nothing much.</li>
+      <li>[tribal] {A_nameDef} and {B_nameDef} sat out in the warm dusk listening to the insects, and talked about the summers of their childhood.</li>
+      <li>[medieval] {A_nameDef} and {B_nameDef} sat out in the long summer evening and talked until the first stars came out.</li>
+      <li>[industrial] {A_nameDef} and {B_nameDef} stayed out in the summer evening, glad of the cooler air after the heat of the day.</li>
+      <li>[spacer] {A_nameDef} and {B_nameDef} sat out in the summer evening and talked about the other worlds they had seen.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_R5T_SummerEvening</thought></li>
+      <li Class="ColonyCouncil.R5TMemoryEffect"><memory>Rimfolk_R5T_Mem_SummerEvening</memory><label>a summer evening in {YEAR}</label></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>a summer evening outside</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_WinterOldHands</defName>
+    <label>two old hands in winter</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>0</minOpinion>
+    <roleA><tags>winter,evening|night,indoors,relaxing</tags></roleA>
+    <roleB><tags>indoors</tags></roleB>
+    <scene>oldhands</scene>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef}, who have both been here a long time, spent a winter evening talking about how the colony looked when they first came.</li>
+      <li>{A_nameDef} reminded {B_nameDef} of the colony's first winter, and they went through who had been here then and who had come since.</li>
+      <li>{A_nameDef} and {B_nameDef} spent a winter evening remembering the colony's early days, and laughed about how little they had known then.</li>
+      <li>{A_nameDef} asked {B_nameDef} if {B_pronoun} remembered the first walls going up, and {B_nameDef} remembered more of it than {A_nameDef} did.</li>
+      <li>[tribal] {A_nameDef} and {B_nameDef} remembered the first shelters, when everyone slept round one fire, and how cold that winter had been.</li>
+      <li>[medieval] {A_nameDef} and {B_nameDef} talked about the colony's first winter, when there was hardly a roof over anyone's head, and how they had managed.</li>
+      <li>[industrial] {A_nameDef} and {B_nameDef} remembered the first winter, before most of what stands here now was built, and how they had kept warm.</li>
+      <li>[spacer] {A_nameDef} and {B_nameDef} talked about how much of their old gear had broken in the first winter, and what they had made do with since.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_R5T_OldHandsWinter</thought></li>
+      <li Class="ColonyCouncil.R5TMemoryEffect"><memory>Rimfolk_R5T_Mem_WinterEvenings</memory><label>the winter of {YEAR}</label></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>remembered the early days</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== Newcomers and old hands ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_NewcomersWay</defName>
+    <label>the newcomer's way</label>
+    <tone>warm</tone>
+    <weight>1.2</weight>
+    <minOpinion>-10</minOpinion>
+    <roleA><tags>!newcomer</tags></roleA>
+    <roleB><tags>newcomer</tags></roleB>
+    <sameWork>
+      <li>Growing</li><li>PlantCutting</li><li>Mining</li><li>Construction</li><li>Cooking</li><li>Crafting</li><li>Smithing</li>
+      <li>Tailoring</li><li>Handling</li>
+    </sameWork>
+    <texts>
+      <li>{B_nameDef} showed {A_nameDef} how {B_pronoun} had learned to do it where {B_pronoun} came from while they were {WORK}, and {A_nameDef} tried it that way.</li>
+      <li>{B_nameDef}, new as {B_pronoun} was, showed {A_nameDef} a quicker way while they were {WORK}, and {A_nameDef} took it up.</li>
+      <li>While they were {WORK}, {A_nameDef} watched {B_nameDef} do it differently and asked where {B_pronoun} had learned that.</li>
+      <li>{A_nameDef} and {B_nameDef} were {WORK} together, and {A_nameDef} found that {B_nameDef} knew a trick or two that nobody here did.</li>
+      <li>[tribal] {B_nameDef} showed {A_nameDef} how it was done in {B_possessive} old band while they were {WORK}, and {A_nameDef} said {A_pronoun} would try it.</li>
+      <li>[medieval] {B_nameDef} showed {A_nameDef} how they did it in the town {B_pronoun} came from while they were {WORK}, and {A_nameDef} admitted it was better.</li>
+      <li>[industrial] While they were {WORK}, {B_nameDef} showed {A_nameDef} a method from {B_possessive} old workplace, and {A_nameDef} said {A_pronoun} would use it.</li>
+      <li>[spacer] While they were {WORK}, {B_nameDef} showed {A_nameDef} how it was done where {B_pronoun} served before, and {A_nameDef} was impressed.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><xp>200</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_R5T_WayTakenUp</thought></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>took up the newcomer's way</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== Rivalry and making up ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_HeatedGame</defName>
+    <label>a game that got heated</label>
+    <tone>friction</tone>
+    <minOpinion>-40</minOpinion>
+    <maxOpinion>30</maxOpinion>
+    <scene>game</scene>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} were playing at the {THING}, and {A_nameDef} said {B_nameDef} had cheated, and {B_nameDef} said {A_nameDef} had.</li>
+      <li>A game at the {THING} between {A_nameDef} and {B_nameDef} ended with both of them claiming they had won.</li>
+      <li>{A_nameDef} lost to {B_nameDef} at the {THING} and said it only happened because {B_nameDef} kept talking.</li>
+      <li>{A_nameDef} and {B_nameDef} argued so long over one turn at the {THING} that they never finished the game.</li>
+      <li>[tribal] {A_nameDef} said {B_nameDef}'s last turn at the {THING} did not count, and they argued about it until both walked off.</li>
+      <li>[medieval] {A_nameDef} swore that {B_nameDef} had cheated at the {THING}, and {B_nameDef} swore that {A_nameDef} was a poor loser.</li>
+      <li>[!lowtech] {A_nameDef} and {B_nameDef} kept score at the {THING} and could not agree on what the score was.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_R5T_SoreGame</thought></li>
+      <li Class="ColonyCouncil.R5TMemoryEffect"><memory>Rimfolk_R5T_Mem_TheGame</memory><label>the game at the {THING}</label></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>2</change>
+    <note>a game that got heated</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_SupperMend</defName>
+    <label>made up over a meal</label>
+    <tone>mend</tone>
+    <weight>1.3</weight>
+    <minOpinion>-60</minOpinion>
+    <roleA><tags>eating</tags></roleA>
+    <roleB><tags>eating</tags></roleB>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} were still annoyed with each other when they sat down to eat, and by the end of the meal they had made up.</li>
+      <li>{A_nameDef} passed {B_nameDef} a dish without being asked, and after that the two of them talked over the meal as if nothing had happened.</li>
+      <li>{A_nameDef} said sorry to {B_nameDef} over the meal, plainly, and {B_nameDef} said sorry too.</li>
+      <li>{A_nameDef} and {B_nameDef} ended up eating near each other, still sore, and talked it through before they had finished.</li>
+      <li>[tribal] {A_nameDef} shared {A_possessive} food with {B_nameDef}, the way {A_possessive} people end a quarrel, and {B_nameDef} took it.</li>
+      <li>[medieval] {A_nameDef} offered {B_nameDef} bread at the meal and said the quarrel was over, and {B_nameDef} agreed it was.</li>
+      <li>[!lowtech] {A_nameDef} sat down across from {B_nameDef} with {A_possessive} meal and said the colony was too small for a grudge, and {B_nameDef} agreed.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Rimfolk_R5T_MadeUpAtTable</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_SharedMemory"><memory>Rimfolk_Mem_Mended</memory><label>the quarrel</label></li>
+    </effects>
+    <changeTie>Rivals</changeTie>
+    <change>-4</change>
+    <note>made up over a meal</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <!-- ===================== Children and elders ===================== -->
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_ChildAsksDead</defName>
+    <label>a child's question about the dead</label>
+    <tone>warm</tone>
+    <weight>1.4</weight>
+    <children>true</children>
+    <roleB><child>true</child><minOpinionOfA>0</minOpinionOfA></roleB>
+    <scene>childgrief</scene>
+    <texts>
+      <li>{B_nameDef} asked {A_nameDef} where {X_nameDef} had gone, and {A_nameDef} told {B_objective} the truth as gently as {A_pronoun} could.</li>
+      <li>{B_nameDef} wanted to know if {X_nameDef} had been afraid, and {A_nameDef} sat down with {B_objective} and answered every question.</li>
+      <li>{A_nameDef} told {B_nameDef} a story about {X_nameDef} that {B_nameDef} had never heard, and {B_nameDef} asked for another one.</li>
+      <li>After {X_nameDef} died, {B_nameDef} asked {A_nameDef} whether everyone dies, and {A_nameDef} said yes, but most people not for a very long time.</li>
+      <li>[tribal] {A_nameDef} told {B_nameDef} that {X_nameDef} had gone to the ancestors, and that {A_possessive} people keep the names of the dead so they are not forgotten.</li>
+      <li>[medieval] {A_nameDef} told {B_nameDef} that {X_nameDef} would be remembered in the colony's prayers, as the dead always were where {A_pronoun} grew up.</li>
+      <li>[industrial] {A_nameDef} told {B_nameDef} that {X_nameDef} was not in pain any more, and promised to tell {B_objective} more about {X_objective} whenever {B_pronoun} asked.</li>
+      <li>[spacer] {A_nameDef} told {B_nameDef} what {X_nameDef} had done before coming here, the parts {B_nameDef} was old enough to hear.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_R5T_ChildAnswered</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5T_ChildAskedMe</thought></li>
+      <li Class="ColonyCouncil.R5TMemoryEffect"><memory>Rimfolk_R5T_Mem_Answered</memory><label>the death of {X_nameDef}</label><weight>1.2</weight></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>3</change>
+    <note>answered a child's questions about the dead</note>
+  </ColonyCouncil.SocialEventDef>
+
+  <ColonyCouncil.SocialEventDef>
+    <defName>Rimfolk_R5T_Soc_OldAndSmallHands</defName>
+    <label>old and small hands</label>
+    <tone>warm</tone>
+    <weight>1.3</weight>
+    <children>true</children>
+    <roleA><minAge>55</minAge></roleA>
+    <roleB><child>true</child><minOpinionOfA>0</minOpinionOfA></roleB>
+    <sameWork><li>Hauling</li><li>Cleaning</li><li>PlantCutting</li><li>Growing</li></sameWork>
+    <texts>
+      <li>{A_nameDef} and {B_nameDef} were {WORK} side by side, {A_nameDef} slow and careful and {B_nameDef} quick, and between them the work got done.</li>
+      <li>{A_nameDef} showed {B_nameDef} how to do it properly while they were {WORK}, and then let {B_objective} do the rest.</li>
+      <li>{B_nameDef} kept asking {A_nameDef} questions while they were {WORK}, and {A_nameDef} answered every one without stopping.</li>
+      <li>{A_nameDef} let {B_nameDef} set the pace while they were {WORK}, and was the first to need a rest.</li>
+      <li>[tribal] {A_nameDef} taught {B_nameDef} a work song {A_possessive} people sing while they were {WORK}, and {B_nameDef} knew the words by the end.</li>
+      <li>[medieval] {A_nameDef} told {B_nameDef} how it was done when {A_pronoun} was a child, while they were {WORK} together.</li>
+      <li>[!lowtech] {A_nameDef} told {B_nameDef} how it was done before machines took over the hard part, while they were {WORK} together.</li>
+    </texts>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><xp>150</xp></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_R5T_WorkedWithElder</thought></li>
+      <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_R5T_SmallHelper</thought></li>
+      <li Class="ColonyCouncil.R5TMemoryEffect"><memory>Rimfolk_R5T_Mem_SmallHands</memory><label>the {SEASON} of {YEAR}</label><weight>1.2</weight></li>
+    </effects>
+    <changeTie>Friends</changeTie>
+    <change>2</change>
+    <note>worked side by side, one old and one small</note>
+  </ColonyCouncil.SocialEventDef>
+
+</Defs>

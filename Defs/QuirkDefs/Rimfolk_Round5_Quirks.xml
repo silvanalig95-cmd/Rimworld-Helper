@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Quirks the colony's people leave each other (content round 5, docs/content-round-5-together.md): each picked up after
+    a memory one of the round's moments leaves (Defs/SocialEventDefs/Rimfolk_Round5_SocialEvents.xml), or an older moment
+    that fits (being shown the ropes, a race at the work, a fight made up, an old game taught), at a small chance; each
+    counts toward the two quirks a colonist holds at most and fades in its time. Each shows on the map now and then as a
+    word over their head when it fits what they are doing (Immersion/HabitBubbles.cs, the list in
+    Social/Round5Together.cs, the pools in Defs/FlavorPoolDefs/Rimfolk_Round5_Bubbles.xml), and has dreams of its own
+    (Defs/DreamDefs/Rimfolk_Round5_Dreams.xml). Two have a small knack (Defs/HediffDefs/Rimfolk_Round5_Knacks.xml).
+  -->
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_R5T_Quirk_EarlyDays</defName>
+    <label>talks about the early days</label>
+    <afterThoughts><li>Rimfolk_R5T_OldHandsWinter</li></afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.08</chance>
+    <days>200</days>
+    <effect>talks at meals about how the colony began</effect>
+    <gained>
+      <plain>
+        <li>I've started telling the newer ones how this place was when I came. Most of them have no idea how bare it was.</li>
+        <li>We talked about the first days the other evening, and now I keep remembering more of it.</li>
+        <li>[tribal] I tell the young ones how the camp was in the first winter, so they know what was done before them.</li>
+        <li>[spacer] I keep telling people how little we had when we first got here.</li>
+      </plain>
+      <warm><li>I like remembering the early days out loud. It reminds me how far we've all come.</li></warm>
+      <blunt><li>I talk about the early days now. People can listen or not.</li></blunt>
+      <cheerful><li>I've got a story about the early days for every meal. Nobody has stopped me yet.</li></cheerful>
+      <gloomy><li>I keep thinking about the ones who were here at the start and aren't any more.</li></gloomy>
+      <cold><li>The newer ones should know how the colony began, so I tell them.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I didn't bring up the early days once this week. I think I've told every story I have.</li></plain>
+      <warm><li>The newer ones know the old stories now. They tell them better than I do.</li></warm>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_R5T_Quirk_NewcomersFriend</defName>
+    <label>looks out for newcomers</label>
+    <children>true</children>
+    <afterThoughts>
+      <li>Rimfolk_SocT_ShownRound</li>
+      <li>Rimfolk_R5T_WayTakenUp</li>
+      <li>Council_Soc_Welcomed</li>
+      <li>Council_DlmSoc_Welcomed</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.04</chance>
+    <days>240</days>
+    <passes>true</passes>
+    <effect>has a word for any newcomer nearby</effect>
+    <gained>
+      <plain>
+        <li>I remember what my first days here were like. Now when someone new comes, I make sure they have someone to ask.</li>
+        <li>Someone showed me how things work here when I was new. I'll do the same for the next one.</li>
+        <li>[child] When I was new, someone was nice to me. Now I'm nice to the new ones.</li>
+        <li>[tribal] When I came to this camp, someone made room for me at the fire. I do that for the new ones now.</li>
+      </plain>
+      <warm><li>Nobody should feel like a stranger here for long. I keep an eye on the new ones.</li></warm>
+      <blunt><li>New people need someone to ask. That's me now.</li></blunt>
+      <cheerful><li>I love it when someone new arrives. I get to show them everything.</li></cheerful>
+      <gloomy><li>I know how lonely the first days are. I don't want anyone else to feel like that.</li></gloomy>
+      <cold><li>Newcomers settle in faster with help. It's worth the time.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>The last newcomer found their own way without me. That's how it should be.</li></plain>
+      <cheerful><li>Everyone here has settled in. There's nobody left for me to show round.</li></cheerful>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_R5T_Quirk_PlaysToWin</defName>
+    <label>plays to win</label>
+    <children>true</children>
+    <afterThoughts>
+      <li>Rimfolk_R5T_SoreGame</li>
+      <li>Rimfolk_SocT_Raced</li>
+      <li>Council_Soc_Outdone</li>
+    </afterThoughts>
+    <withinDays>2</withinDays>
+    <chance>0.05</chance>
+    <days>120</days>
+    <gained>
+      <plain>
+        <li>Ever since that game I play to win, every time. A game isn't worth playing otherwise.</li>
+        <li>I keep the score in my head now, for every game and every race.</li>
+        <li>[child] I'm going to win the next game, I've decided.</li>
+        <li>[tribal] Whoever wins at the games gets talked about at the fire. I want to be the one they talk about.</li>
+      </plain>
+      <warm><li>I play to win, but I shake hands afterwards. Mostly.</li></warm>
+      <blunt><li>I don't like losing. So I don't.</li></blunt>
+      <cheerful><li>I've decided I'm going to win the next game, and the one after that.</li></cheerful>
+      <gloomy><li>I lost that game and I can't stop thinking about it.</li></gloomy>
+      <cold><li>Losing comes from not enough practice, so I practise.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I lost a game yesterday and laughed about it. I must be getting over it.</li></plain>
+      <cheerful><li>I played just for fun today and didn't keep score once.</li></cheerful>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_R5T_Quirk_Peacemaker</defName>
+    <label>can't leave a quarrel standing</label>
+    <afterThoughts>
+      <li>Rimfolk_R5T_MadeUpAtTable</li>
+      <li>Rimfolk_SocT_MadeItUp</li>
+      <li>Council_Soc_PeaceOffering</li>
+      <li>Council_Dlm_MadeUp</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.04</chance>
+    <days>200</days>
+    <passes>true</passes>
+    <hediff>Rimfolk_R5T_Quirk_Peacemaking</hediff>
+    <gained>
+      <plain>
+        <li>After we made up I felt so much better that I can't stand seeing anyone else stay angry. I tell them to sort it out.</li>
+        <li>A quarrel left alone only gets worse. I try to get people talking again.</li>
+        <li>[tribal] My people never let a quarrel go on overnight. I've started saying so to anyone who's sulking.</li>
+      </plain>
+      <warm><li>It upsets me to see two people here not speaking. I do what I can.</li></warm>
+      <blunt><li>If you two have a problem, talk to each other. I say that a lot now.</li></blunt>
+      <cheerful><li>I've become the one who makes everyone shake hands. I'm good at it.</li></cheerful>
+      <gloomy><li>Every quarrel here worries me. There aren't enough of us to fall out.</li></gloomy>
+      <cold><li>Grudges waste time and work, so I try to end them.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>Two people argued at the table and I let them get on with it. I've stopped trying to fix everything.</li></plain>
+      <cold><li>People can settle their own quarrels. I've stopped stepping in.</li></cold>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_R5T_Quirk_TimeForChildren</defName>
+    <label>always has time for the children</label>
+    <afterThoughts>
+      <li>Rimfolk_R5T_ChildAskedMe</li>
+      <li>Rimfolk_R5T_SmallHelper</li>
+      <li>Council_SocLv_OldGame</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.05</chance>
+    <days>300</days>
+    <passes>true</passes>
+    <effect>has a word for any child nearby</effect>
+    <gained>
+      <plain>
+        <li>I've noticed how much the children want someone to talk to. I always stop for them now.</li>
+        <li>A child asked me something I couldn't answer quickly, so I sat down and answered it properly. I do that every time now.</li>
+        <li>[tribal] Children learn from whoever will talk to them. I make sure it's me.</li>
+      </plain>
+      <warm><li>There's always time for the children. The work can wait a minute.</li></warm>
+      <blunt><li>Children ask questions. I answer them.</li></blunt>
+      <cheerful><li>The children have worked out that I'll always stop and talk. I don't mind at all.</li></cheerful>
+      <gloomy><li>They grow up so fast here. I want them to remember that someone had time for them.</li></gloomy>
+      <cold><li>Children who get answers learn faster. It's time well spent.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>The children have stopped following me around with questions. They find their own answers now, mostly.</li></plain>
+      <warm><li>The children don't need me as much these days. I still stop for them when they ask.</li></warm>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+  <ColonyCouncil.QuirkDef>
+    <defName>Rimfolk_R5T_Quirk_FollowsTheOld</defName>
+    <label>follows the old ones about</label>
+    <who><child>true</child></who>
+    <children>true</children>
+    <afterThoughts>
+      <li>Rimfolk_R5T_WorkedWithElder</li>
+      <li>Council_SocLv_OldGame</li>
+    </afterThoughts>
+    <withinDays>3</withinDays>
+    <chance>0.08</chance>
+    <days>120</days>
+    <hediff>Rimfolk_R5T_Quirk_EldersPupil</hediff>
+    <gained>
+      <plain>
+        <li>I like being with the old ones. They know how everything works and they don't mind telling me.</li>
+        <li>I follow the old ones around now. They let me help, and they tell me how things used to be.</li>
+        <li>[tribal] The old ones know all the stories and all the ways of doing things. I go where they go.</li>
+      </plain>
+      <warm><li>The old ones are kind to me. I want to stay near them.</li></warm>
+      <blunt><li>The old ones know things. I'm learning them.</li></blunt>
+      <cheerful><li>I'm the old ones' helper now. They said so.</li></cheerful>
+      <gloomy><li>The old ones won't be here forever, so I want to learn everything from them now.</li></gloomy>
+      <cold><li>The old ones have done everything already. It's quicker to learn from them.</li></cold>
+    </gained>
+    <faded>
+      <plain><li>I don't follow the old ones around as much any more. I've got my own things to do now.</li></plain>
+      <cheerful><li>I know how to do lots of things now, so I don't need to ask the old ones every time.</li></cheerful>
+    </faded>
+  </ColonyCouncil.QuirkDef>
+
+</Defs>

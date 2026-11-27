@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    What the fifth round's quirks sound like over a head (Immersion/HabitBubbles.cs, the list in Social/Round5Together.cs),
+    one sentence each, when the quirk fits what they are doing: the early days at a meal or in their free time with
+    someone by, a word when a newcomer is near, at a game, at a meal with someone, a word when a child is near, and a
+    child's question when one of the old is near. In the colonist's own voice, said to nobody in particular.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_R5T_EarlyDays</defName>
+    <lines>
+      <plain>
+        <li>When I came here, we ate standing up because there was nowhere to sit.</li>
+        <li>There was nothing on this spot when I first came.</li>
+        <li>The first winter here, we had half of what we have now.</li>
+        <li>I remember when there were only a handful of us.</li>
+        <li>[winter] Our first winter was colder than this one, I'm sure of it.</li>
+        <li>[tribal] In the first days we all slept round one fire.</li>
+        <li>[spacer] We had almost none of this gear when we started.</li>
+      </plain>
+      <warm><li>We've come a long way since the first days, all of us.</li></warm>
+      <blunt><li>It was harder at the start, believe me.</li></blunt>
+      <cheerful><li>You should have seen this place when I came, it was a mess.</li></cheerful>
+      <gloomy><li>Not everyone from the early days is still with us.</li></gloomy>
+      <cold><li>We built the stores first, and everything else after.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_R5T_NewFaces</defName>
+    <lines>
+      <plain>
+        <li>Settling in all right, are you?</li>
+        <li>The first days are the hardest, it gets easier.</li>
+        <li>If you can't find something, ask me.</li>
+        <li>Good to have a new face around here.</li>
+        <li>[eating] Sit with us if you like, there's room.</li>
+        <li>[tribal] There's always room at the fire for a new one.</li>
+      </plain>
+      <warm><li>You'll feel at home here soon, I promise.</li></warm>
+      <blunt><li>Ask me anything you need to know about this place.</li></blunt>
+      <cheerful><li>A new face, how nice, welcome.</li></cheerful>
+      <gloomy><li>I remember how lonely my first days here were.</li></gloomy>
+      <cold><li>Learn where the stores are first, the rest comes later.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_R5T_PlaysToWin</defName>
+    <lines>
+      <plain>
+        <li>I'm keeping count, so don't try anything.</li>
+        <li>Best of three, then.</li>
+        <li>That one doesn't count, I wasn't ready.</li>
+        <li>One more game, and this time I win.</li>
+        <li>I'm watching your hands.</li>
+        <li>[evening|night] Last game of the night, and it's mine.</li>
+      </plain>
+      <blunt><li>I'm winning this one.</li></blunt>
+      <cheerful><li>Oh, I've got you now.</li></cheerful>
+      <gloomy><li>Lost again, I don't believe it.</li></gloomy>
+      <cold><li>You make the same mistake every game.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_R5T_Peacemaker</defName>
+    <lines>
+      <plain>
+        <li>No sulking at the table, please.</li>
+        <li>Whatever it is, talk it over after the meal.</li>
+        <li>If you two are still cross, sort it out before the food gets cold.</li>
+        <li>Nobody eats angry at this table.</li>
+        <li>Pass the bread and make up, both of you.</li>
+        <li>[lowtech] Share the bowl and the quarrel's over, that's how it's done.</li>
+      </plain>
+      <warm><li>We're all on the same side here, you know.</li></warm>
+      <blunt><li>Shake hands and eat.</li></blunt>
+      <cheerful><li>Smiles at the table, everyone, come on.</li></cheerful>
+      <cold><li>Arguments spoil the meal, so let's not.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_R5T_Children</defName>
+    <lines>
+      <plain>
+        <li>Come here, I'll show you how.</li>
+        <li>Ask me anything, I've got time.</li>
+        <li>What have you got there?</li>
+        <li>Careful with that, here, hold it like this.</li>
+        <li>Did you learn something new today?</li>
+        <li>[rain] Mind the puddles, little one.</li>
+      </plain>
+      <warm><li>You're doing very well, you know.</li></warm>
+      <blunt><li>Watch closely, I'll do it once more.</li></blunt>
+      <cheerful><li>Who wants to hear a story later?</li></cheerful>
+      <gloomy><li>Stay close where I can see you.</li></gloomy>
+      <cold><li>Good question, and here's the answer.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Pool_R5T_Elders</defName>
+    <lines>
+      <plain>
+        <li>What was it like when you were little?</li>
+        <li>Can I help you with that?</li>
+        <li>Show me how you do it.</li>
+        <li>Tell me again about the old days.</li>
+        <li>Where did you learn that?</li>
+        <li>[evening|night] Will you tell me a story before bed?</li>
+      </plain>
+      <warm><li>I like being with you best.</li></warm>
+      <blunt><li>I want to learn that.</li></blunt>
+      <cheerful><li>I'm your helper today.</li></cheerful>
+      <gloomy><li>Will you always be here?</li></gloomy>
+      <cold><li>Explain it step by step, please.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

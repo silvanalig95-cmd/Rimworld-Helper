@@ -83,6 +83,8 @@ namespace ColonyCouncil
                 Add("Rimfolk_Quirk_LooksBack", "Rimfolk_Pool_BubbleLooksBack", (p, hour) => p.Awake() && (hour >= 21 || hour < 4) && !AtWork(p));
                 Add("Rimfolk_Quirk_RoadSong", "Rimfolk_Pool_BubbleRoadSong", (p, hour) => p.Awake() && p.Spawned && !p.Position.Roofed(p.Map) && AtWork(p));
                 Add("Rimfolk_Quirk_IndoorsByDusk", "Rimfolk_Pool_BubbleDusk", (p, hour) => p.Awake() && p.Spawned && (hour >= 18 || hour < 5) && !p.Position.Roofed(p.Map));
+                // The quirks the colony's people leave each other (content round 5, Social/Round5Together.cs).
+                Round5Together.Bubbles(Add);
                 return bubbles;
             }
         }

@@ -1,0 +1,573 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Talking over what the fifth round's moments leave between two of the colony's people
+    (Defs/SharedMemoryDefs/Rimfolk_Round5_Memories.xml): per memory, the opening, the reply and the close, in every voice.
+    {LABEL} is what it was: "the spring sowing of 5503", "a summer evening in 5503", "the winter of 5504", "the game at
+    the chess table", "the spring of 5503" (the season a child worked beside one of the old), "the death of Ada". [byme]:
+    the speaker is the one it was more about (the elder the child worked beside, the grown-up who answered the child);
+    [byother]: the other is (the child, grown: children talk only of growing up, Talk.Shares, so a memory with a child in
+    it is talked over once they are grown). [first]: the first time it comes up. The game is a joke: [fresh], [told], [worn]. Plain words, one sentence each, said aloud.
+  -->
+
+  <!-- ===================== The spring sowing ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SpringSowing_Open</defName>
+    <memory>Rimfolk_R5T_Mem_SpringSowing</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Do you remember {LABEL}, {OTHER}?</li>
+        <li>I was thinking about {LABEL} the other day.</li>
+        <li>We got a lot done in {LABEL}, you and I.</li>
+        <li>[first] I never said so, but I enjoyed {LABEL} with you.</li>
+        <li>[spring] It's nearly time to sow again, like {LABEL}.</li>
+        <li>[fall] What we sowed in {LABEL} came up well in the end.</li>
+        <li>[winter] I'm looking forward to another sowing like {LABEL}.</li>
+        <li>[lowtech] My back still remembers {LABEL}.</li>
+        <li>[!lowtech] We put in more rows in {LABEL} than anyone expected.</li>
+      </plain>
+      <warm>
+        <li>I liked working beside you in {LABEL}.</li>
+        <li>That was a good start to the year, {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>That was hard work, {LABEL}, and we did it.</li>
+        <li>We sowed well in {LABEL}.</li>
+      </blunt>
+      <cheerful>
+        <li>We should do every sowing together, like {LABEL}.</li>
+        <li>I'm still proud of the rows we put in during {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>I worried all through {LABEL} that nothing would come up.</li>
+        <li>I'm sure half of what we sowed in {LABEL} never came up.</li>
+      </gloomy>
+      <cold>
+        <li>We planted efficiently in {LABEL}.</li>
+        <li>The rows we put in during {LABEL} were straight, at least.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SpringSowing_Reply</defName>
+    <memory>Rimfolk_R5T_Mem_SpringSowing</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I remember, my hands were covered in dirt for days.</li>
+        <li>We talked the whole time, I remember that.</li>
+        <li>It was a good day's work.</li>
+        <li>[first] I enjoyed it too, I just never said.</li>
+        <li>You did more of it than I did.</li>
+        <li>I still think we put the rows too close together.</li>
+      </plain>
+      <warm>
+        <li>It was good to have you beside me.</li>
+        <li>I'd do it again with you any year.</li>
+      </warm>
+      <blunt>
+        <li>It was work, but good work.</li>
+        <li>We did all right.</li>
+      </blunt>
+      <cheerful>
+        <li>And we didn't step on a single seedling.</li>
+        <li>We make a good pair in the field.</li>
+      </cheerful>
+      <gloomy>
+        <li>My back still hasn't forgiven me.</li>
+        <li>I hope this year's goes as well.</li>
+      </gloomy>
+      <cold>
+        <li>We could have been quicker.</li>
+        <li>The soil was good that year.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SpringSowing_Close</defName>
+    <memory>Rimfolk_R5T_Mem_SpringSowing</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Let's do the sowing together again this year.</li>
+        <li>Here's to the next good harvest.</li>
+        <li>Same field, same two of us, next spring.</li>
+        <li>Well, the crops won't plant themselves.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== A summer evening ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SummerEvening_Open</defName>
+    <memory>Rimfolk_R5T_Mem_SummerEvening</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Do you remember sitting out on {LABEL}, {OTHER}?</li>
+        <li>I keep thinking about {LABEL}, it was a good one.</li>
+        <li>[summer] The weather's just like it was on {LABEL}.</li>
+        <li>[winter] On cold nights I think about {LABEL}.</li>
+        <li>[first] I never told you how much I liked {LABEL}.</li>
+        <li>We talked about everything on {LABEL}.</li>
+        <li>[evening] It's an evening like {LABEL}, isn't it.</li>
+        <li>I hadn't laughed that much in a long time before {LABEL}.</li>
+      </plain>
+      <warm>
+        <li>I'm glad we had {LABEL}, you and I.</li>
+        <li>That's still one of my best memories here, {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>I liked {LABEL}, plain and simple.</li>
+        <li>We sat out far too late on {LABEL}.</li>
+      </blunt>
+      <cheerful>
+        <li>We should sit out again soon, like on {LABEL}.</li>
+        <li>I still laugh about what you said on {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>I wonder if we'll ever get another evening like {LABEL}.</li>
+        <li>Summers here are short, so I hold on to {LABEL}.</li>
+      </gloomy>
+      <cold>
+        <li>The weather on {LABEL} was ideal.</li>
+        <li>We lost track of time on {LABEL}.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SummerEvening_Reply</defName>
+    <memory>Rimfolk_R5T_Mem_SummerEvening</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I remember, the air was so warm.</li>
+        <li>We stayed out far too late.</li>
+        <li>[first] I liked it too, very much.</li>
+        <li>I don't remember what we talked about, only that it was good.</li>
+        <li>The insects were terrible, but I didn't mind.</li>
+        <li>It was the best evening of that summer.</li>
+      </plain>
+      <warm>
+        <li>Any evening with you is a good one.</li>
+        <li>I'd sit out with you again any time.</li>
+      </warm>
+      <blunt>
+        <li>It was a good evening.</li>
+        <li>Too many insects, otherwise fine.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's do it again before the summer's out.</li>
+        <li>I think I nearly fell asleep out there at the end.</li>
+      </cheerful>
+      <gloomy>
+        <li>Those evenings never last long enough.</li>
+        <li>I was tired all the next day.</li>
+      </gloomy>
+      <cold>
+        <li>It was pleasant.</li>
+        <li>We should go in earlier next time.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SummerEvening_Close</defName>
+    <memory>Rimfolk_R5T_Mem_SummerEvening</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Next warm evening, we sit out again.</li>
+        <li>Here's to the next summer.</li>
+        <li>I'll keep you a place outside.</li>
+        <li>Let's not wait a whole year to do that again.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The winter evenings ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_WinterEvenings_Open</defName>
+    <memory>Rimfolk_R5T_Mem_WinterEvenings</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Do you remember {LABEL}, when we sat up talking about the early days?</li>
+        <li>I've been thinking about what we said in {LABEL}.</li>
+        <li>[first] I enjoyed those evenings in {LABEL} more than I said.</li>
+        <li>[winter] It's the season for remembering, like {LABEL}.</li>
+        <li>We remembered more of the early days in {LABEL} than I expected.</li>
+        <li>Since {LABEL} I keep remembering more about the first days.</li>
+        <li>[summer] I miss those long evenings in {LABEL}.</li>
+        <li>Not many of us remember the start the way we did in {LABEL}.</li>
+      </plain>
+      <warm>
+        <li>I'm glad there's someone who remembers the early days with me.</li>
+        <li>Those evenings in {LABEL} meant a lot to me.</li>
+      </warm>
+      <blunt>
+        <li>You remembered half of it wrong in {LABEL}, you know.</li>
+        <li>We went over a lot of old news in {LABEL}.</li>
+      </blunt>
+      <cheerful>
+        <li>I laughed so much in {LABEL}, remembering how we started.</li>
+        <li>We should write down everything we remembered in {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>We talked about a lot of people in {LABEL} who are gone now.</li>
+        <li>Remembering the early days in {LABEL} made me feel old.</li>
+      </gloomy>
+      <cold>
+        <li>We got some of the order of things wrong in {LABEL}.</li>
+        <li>It's useful that someone remembers how things started.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_WinterEvenings_Reply</defName>
+    <memory>Rimfolk_R5T_Mem_WinterEvenings</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>I remember, we talked until everyone else had gone to bed.</li>
+        <li>You remembered things I'd forgotten completely.</li>
+        <li>[first] I liked it too, it was good to remember.</li>
+        <li>It's strange how much has changed since then.</li>
+        <li>There aren't many of us left who were here at the start.</li>
+        <li>I still think I had it right about the first walls.</li>
+      </plain>
+      <warm>
+        <li>You're one of the few who was there, and I'm glad of you.</li>
+        <li>Those were good evenings.</li>
+      </warm>
+      <blunt>
+        <li>We were here first, that's all.</li>
+        <li>I remember it better than you do.</li>
+      </blunt>
+      <cheerful>
+        <li>We'll still be telling those stories when we're very old.</li>
+        <li>Let's do it again this winter.</li>
+      </cheerful>
+      <gloomy>
+        <li>Talking about it made me miss the ones who are gone.</li>
+        <li>We were lucky to get through those first days.</li>
+      </gloomy>
+      <cold>
+        <li>It's good that it's remembered accurately.</li>
+        <li>We should tell the newer ones.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_WinterEvenings_Close</defName>
+    <memory>Rimfolk_R5T_Mem_WinterEvenings</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>Let's sit up again this winter.</li>
+        <li>Here's to the early days, and to us.</li>
+        <li>We'll keep remembering it, you and I.</li>
+        <li>Someone has to remember how it started.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The game (a joke) ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_TheGame_Open</defName>
+    <memory>Rimfolk_R5T_Mem_TheGame</memory>
+    <turn>Open</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>I still say I won {LABEL}.</li>
+        <li>[fresh] You cheated at {LABEL}, and you know it.</li>
+        <li>[told] I told everyone how {LABEL} really went.</li>
+        <li>[worn] Yes, I know, {LABEL}, again.</li>
+        <li>Are we ever going to agree about {LABEL}?</li>
+        <li>Do you want a rematch of {LABEL}, {OTHER}?</li>
+        <li>[fresh] I've been thinking about {LABEL}, and I'm still right.</li>
+        <li>[told] Everyone's heard about {LABEL} by now.</li>
+      </plain>
+      <warm>
+        <li>I've decided I don't mind who won {LABEL}.</li>
+        <li>[fresh] I'm sorry I got so cross over {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>I won {LABEL}.</li>
+        <li>[worn] Not a word about {LABEL} today.</li>
+      </blunt>
+      <cheerful>
+        <li>Let's settle {LABEL} once and for all.</li>
+        <li>[fresh] Ready to lose again, like at {LABEL}?</li>
+      </cheerful>
+      <gloomy>
+        <li>I'll never hear the end of {LABEL}, will I.</li>
+        <li>[worn] Not {LABEL} again.</li>
+      </gloomy>
+      <cold>
+        <li>I've worked out where you went wrong at {LABEL}.</li>
+        <li>[fresh] The rules of {LABEL} were clear, and you broke them.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_TheGame_Reply</defName>
+    <memory>Rimfolk_R5T_Mem_TheGame</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>[fresh] I did not cheat.</li>
+        <li>[told] You tell it wrong every time.</li>
+        <li>[worn] We've been over this.</li>
+        <li>I won, and you know I won.</li>
+        <li>[fresh] Rematch, any time you like.</li>
+        <li>[told] Everyone believes my side of it.</li>
+      </plain>
+      <warm>
+        <li>[fresh] I'm sorry too, it was only a game.</li>
+        <li>[told] I like that we still argue about it.</li>
+      </warm>
+      <blunt>
+        <li>[fresh] You lost.</li>
+        <li>[worn] Enough of that.</li>
+      </blunt>
+      <cheerful>
+        <li>[fresh] I'll beat you again, you'll see.</li>
+        <li>[told] I've been practising, so be warned.</li>
+      </cheerful>
+      <gloomy>
+        <li>[fresh] I still can't believe I lost that one.</li>
+        <li>[worn] Can we talk about anything else?</li>
+      </gloomy>
+      <cold>
+        <li>[fresh] The score was clear.</li>
+        <li>[told] I'll show you the moves again if you like.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_TheGame_Close</defName>
+    <memory>Rimfolk_R5T_Mem_TheGame</memory>
+    <turn>Close</turn>
+    <outcomes><li>Joke</li></outcomes>
+    <lines>
+      <plain>
+        <li>Rematch soon, then.</li>
+        <li>We'll never agree, will we.</li>
+        <li>Same time next week, and this time I win.</li>
+        <li>Fine, we'll call it a draw.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== Small hands ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SmallHands_Open</defName>
+    <memory>Rimfolk_R5T_Mem_SmallHands</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] You were a great help to me in {LABEL}, you know.</li>
+        <li>[byme] I still remember you working beside me in {LABEL}.</li>
+        <li>[byother] You let me help in {LABEL}, when I was too small to be much use.</li>
+        <li>[byother] I learned more from you in {LABEL} than I knew at the time.</li>
+        <li>[byother] I was so small in {LABEL} that I could hardly lift anything.</li>
+        <li>[byme,first] I never told you how much I liked having you beside me in {LABEL}.</li>
+        <li>[byother] I still do it the way you showed me in {LABEL}.</li>
+        <li>Do you remember {LABEL}, the two of us at the work?</li>
+      </plain>
+      <warm>
+        <li>[byme] You made the work go quicker in {LABEL}, little as you were.</li>
+        <li>[byother] I loved working with you in {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>[byme] You did your share in {LABEL}.</li>
+        <li>[byother] You taught me properly in {LABEL}.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] You talked the whole time in {LABEL}, I remember that.</li>
+        <li>[byother] I thought I was doing all the work in {LABEL}.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byme] It feels like {LABEL} was only yesterday.</li>
+        <li>[byother] I wish we'd had more days like {LABEL}.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] You were a quick learner in {LABEL}.</li>
+        <li>[byother] Your way was slow in {LABEL}, but it worked.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SmallHands_Reply</defName>
+    <memory>Rimfolk_R5T_Mem_SmallHands</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] You were a good helper.</li>
+        <li>[byother] I'm a lot bigger now than I was then.</li>
+        <li>[byother] I remember it better than you'd think.</li>
+        <li>[byme] You asked so many questions.</li>
+        <li>[byother] You were very patient with me.</li>
+        <li>We made a good pair at the work.</li>
+      </plain>
+      <warm>
+        <li>[byme] I liked every minute of it.</li>
+        <li>[byother] I still think of you when I do that work.</li>
+      </warm>
+      <blunt>
+        <li>[byme] You worked well.</li>
+        <li>[byother] You showed me right.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] You were faster than me by the end.</li>
+        <li>[byother] I was the best helper in the colony.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byme] I'm slower now than I was then.</li>
+        <li>[byother] I miss being that small sometimes.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] You learned quickly.</li>
+        <li>[byother] It was good practice.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_SmallHands_Close</defName>
+    <memory>Rimfolk_R5T_Mem_SmallHands</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>We'll work together again soon.</li>
+        <li>[byme] Keep doing it the way I showed you.</li>
+        <li>[byother] Thank you for having the time for me.</li>
+        <li>Those were good days.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <!-- ===================== The questions answered ===================== -->
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_Answered_Open</defName>
+    <memory>Rimfolk_R5T_Mem_Answered</memory>
+    <turn>Open</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byother] I still think about what you told me after {LABEL}.</li>
+        <li>[byother] You were the one who explained {LABEL} to me, when I was small.</li>
+        <li>[byother] I still have questions about {LABEL} sometimes.</li>
+        <li>[byme] I've wondered if I said the right things to you about {LABEL}.</li>
+        <li>[byme,first] I never asked how you were after {LABEL}.</li>
+        <li>[byme] You asked such good questions about {LABEL}.</li>
+        <li>I think about {LABEL} more often than I say.</li>
+        <li>[first] We've never talked about {LABEL} since, have we.</li>
+      </plain>
+      <warm>
+        <li>[byother] You were so kind to me after {LABEL}.</li>
+        <li>[byme] I'm glad you came to me after {LABEL}.</li>
+      </warm>
+      <blunt>
+        <li>[byme] I told you the truth about {LABEL}, it seemed right.</li>
+        <li>[byother] You didn't lie to me about {LABEL}.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] You've grown so much since {LABEL}.</li>
+        <li>[byother] Your stories after {LABEL} helped a lot.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byother] I've missed them ever since {LABEL}.</li>
+        <li>[byme] That was hard on all of us, {LABEL}.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] I answered you as clearly as I could after {LABEL}.</li>
+        <li>[byother] Your answers about {LABEL} made sense to me.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_Answered_Reply</defName>
+    <memory>Rimfolk_R5T_Mem_Answered</memory>
+    <turn>Reply</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>[byme] You needed someone to talk to, that's all.</li>
+        <li>[byother] You helped me more than you know.</li>
+        <li>[byme] I didn't have all the answers, but I tried.</li>
+        <li>[byother] I still think about them sometimes.</li>
+        <li>[byother] I understand it better now I'm older.</li>
+        <li>It was a hard time for everyone.</li>
+      </plain>
+      <warm>
+        <li>[byme] You can always come to me, you know that.</li>
+        <li>[byother] I'm glad it was you I asked.</li>
+      </warm>
+      <blunt>
+        <li>[byme] You had a right to know.</li>
+        <li>[byother] You told me straight.</li>
+      </blunt>
+      <cheerful>
+        <li>[byme] You were braver about it than most grown-ups.</li>
+        <li>[byother] Your story about them made me laugh, even then.</li>
+      </cheerful>
+      <gloomy>
+        <li>[byme] I still miss them too.</li>
+        <li>[byother] Some days it still hurts.</li>
+      </gloomy>
+      <cold>
+        <li>[byme] Questions deserve answers.</li>
+        <li>[byother] Your answers were sensible.</li>
+      </cold>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+  <ColonyCouncil.TalkLinesDef>
+    <defName>Rimfolk_R5T_TL_Answered_Close</defName>
+    <memory>Rimfolk_R5T_Mem_Answered</memory>
+    <turn>Close</turn>
+    <outcomes><li>Reminisce</li></outcomes>
+    <lines>
+      <plain>
+        <li>We'll remember them, both of us.</li>
+        <li>[byme] Come to me any time you want to talk about it.</li>
+        <li>[byother] Thank you for that day.</li>
+        <li>Some things are easier when someone explains them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.TalkLinesDef>
+
+</Defs>
