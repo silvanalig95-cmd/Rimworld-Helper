@@ -125,7 +125,7 @@ public static class Round4CouncilWorldTests
         C(dlm.Contains("ModsConfig.IdeologyActive") && dlm.Contains("Need_Suppression") && Q("SlaveRest").Descendants("li").Any(e => Cls(e) == "DilemmaEffect_Rest" && e.Element("target")?.Value == "X"),
             "R4C-7: Ideology's slaves; the rest of today for the slave");
         C(dlm.Contains("PawnRelationDefOf.Bond") && dlm.Contains("AnimalPenUtility.NeedsToBeManagedByRope") && dlm.Contains("class DilemmaEffect_R4CPetBed : DilemmaEffect_Made")
-          && dlm.Contains("Avail.CanBuild(d, map)"), "R4C-8: a small bonded animal; the finest bed the colony can build, set in the room");
+          && dlm.Contains("Avail.CanBuild(d, map)") && dlm.Contains("!d.building.bed_humanlike"), "R4C-8: a small bonded animal; the finest animal bed of any mod the colony can build, set in the room");
         C(dlm.Contains("DesignationDefOf.CutPlant") && dlm.Contains("p.def.plant.IsTree") && Q("DryGrass").Descendants("li").Any(e => Cls(e) == "DilemmaEffect_WorkParty" && e.Element("tasks").Elements("li").Any(t => t.Value == "Cut"))
           && Lis(Q("DryGrass"), "seasons").Contains("Summer"), "R4C-9: summer's dry growth marked and cut, never a tree");
         C(dlm.Contains("class DilemmaWorker_R4CGrace : DilemmaWorker_Gods") && dlm.Contains("Worship.Scoffer(p)") && dlm.Contains("Shrines.Of(map, g).Count == 0")

@@ -132,7 +132,8 @@ on the world events' Almanac page. Every new class is prefixed `R4C`, `R4W` or `
   for a bedroom and not a pen animal, and the room has no animal bed or sleeping spot.
 - **A** the one bonded; **B** the colony's best with animals other than A, who says animals sleep with the animals.
 - **Answers:** a bed for the animal set in a corner of A's room (the best the colony can build of an animal bed, a
-  sleeping box or a sleeping spot, from the game's or a mod's own; `DilemmaEffect_Made` set in the room); A sits with the
+  sleeping box or a sleeping spot: any animal bed of a mod's or the game's that the colony can build and that fits its age,
+  the finest first, the game's three by name after; `DilemmaEffect_Made` set in the room); A sits with the
   animal of an evening instead (a visit, A keeping it company where it is); animals sleep where animals sleep (moods).
 - **Ages:** straw in a box or a fine bed, whatever the colony can build; the words name it (`{THING}`).
 - Not a duplicate of a child and an animal, can I keep it, two hands for one animal, an animal in the kitchen or a grave

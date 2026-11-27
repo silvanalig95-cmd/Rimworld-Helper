@@ -159,9 +159,21 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>The finest animal bed the colony can build here, or null.</summary>
-        public static ThingDef BedToBuild(Map map) =>
-            AnimalBeds.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(d => d != null && Avail.CanBuild(d, map));
+        /// <summary>A bed for an animal small enough for a corner of a room: the game's or any mod's (its own property, not a list).</summary>
+        public static bool AnimalBedDef(ThingDef d) =>
+            d != null && d.IsBed && d.building != null && !d.building.bed_humanlike && d.size.x * d.size.z <= 2 && d.category == ThingCategory.Building;
+
+        /// <summary>
+        /// The finest animal bed the colony can build here and that fits its age (as a thing made for an answer must,
+        /// DilemmaEffect_Made.Pick), of every mod's and the game's (by its worth), else the game's own by name; or null.
+        /// </summary>
+        public static ThingDef BedToBuild(Map map)
+        {
+            bool Ok(ThingDef d) => d != null && Avail.CanBuild(d, map) && (d.techLevel == TechLevel.Undefined || d.techLevel <= Avail.EffectiveTech);
+            var any = DefDatabase<ThingDef>.AllDefsListForReading.Where(d => AnimalBedDef(d) && Ok(d))
+                .OrderByDescending(d => d.BaseMarketValue).ThenBy(d => d.defName).FirstOrDefault();
+            return any ?? AnimalBeds.Select(n => DefDatabase<ThingDef>.GetNamedSilentFail(n)).FirstOrDefault(Ok);
+        }
 
         /// <summary>A room with an animal's bed or sleeping spot in it already.</summary>
         public static bool HasAnimalBed(Room room) => room != null && room.ContainedBeds.Any(b => b.def.building != null && !b.def.building.bed_humanlike);
