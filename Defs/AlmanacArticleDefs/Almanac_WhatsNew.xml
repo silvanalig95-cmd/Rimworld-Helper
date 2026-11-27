@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.314.0</version>
+        <date>27 November 2026</date>
+        <title>New personal stories, wishes, life goals and ambitions</title>
+        <points>
+          <li>Eight new personal stories: a trade of their own, the wager, the old one's tales, the first winter, work friends, friends over the hills, a promise in the dark, and at the healer's side.</li>
+          <li>Eight new wishes: something new at the bench, an evening with an old friend, someone to read to an elder, the harvest in before the frost, a snow day, a word at the grave, an hour with the visitors, and an hour at the shrine.</li>
+          <li>A promised wish plays out on the map: a bill at the bench, crops marked for harvest, a visit, or a snow day with a snowman.</li>
+          <li>Four new life goals: a child's drawings, five friendly contests won, two masterworks, and carrying three of the colony's people out of a fight.</li>
+          <li>Four new ambitions: new fields, the makers' month, a good old age for the colony's elders, and answering a neighbour's call for help.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.313.0</version>
         <date>27 November 2026</date>
         <title>Six more camps and six more world events</title>

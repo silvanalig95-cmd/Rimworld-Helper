@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## New personal stories, wishes, life goals and ambitions
+
+*27 November 2026, version 0.314.0*
+
+- Eight new personal stories: a trade of their own, the wager, the old one's tales, the first winter, work friends, friends over the hills, a promise in the dark, and at the healer's side.
+- Eight new wishes: something new at the bench, an evening with an old friend, someone to read to an elder, the harvest in before the frost, a snow day, a word at the grave, an hour with the visitors, and an hour at the shrine.
+- A promised wish plays out on the map: a bill at the bench, crops marked for harvest, a visit, or a snow day with a snowman.
+- Four new life goals: a child's drawings, five friendly contests won, two masterworks, and carrying three of the colony's people out of a fight.
+- Four new ambitions: new fields, the makers' month, a good old age for the colony's elders, and answering a neighbour's call for help.
+
 ## Six more camps and six more world events
 
 *27 November 2026, version 0.313.0*

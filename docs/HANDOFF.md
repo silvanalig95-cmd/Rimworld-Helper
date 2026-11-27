@@ -931,6 +931,18 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (27 November 2026, 0.314.0, the player's "continue" after round 3): the colonists' own lives, content round 4,
+  built in a worktree and merged.** The list: `docs/content-round-4-lives.md`. Defs `Defs/ArcDefs/Rimfolk_Round4_Arcs.xml`
+  (eight stories `Rimfolk_R4L_Arc_*`, seven talks `Rimfolk_R4L_Talk_*`), `Defs/WishDefs/Rimfolk_Round4_Wishes.xml`,
+  `Defs/AspirationDefs/Rimfolk_Round4_Aspirations.xml`, `Defs/AmbitionDefs/Rimfolk_Round4_Ambitions.xml`,
+  `Rimfolk_Round4_Lives_Thoughts.xml`; words `Rimfolk_Round4_Lives.xml` (`CC_R4L_*`, and two spark keys the life-goal
+  frame reads by name: `CC_Asp_Spark_thought_Council_Moment_LostContest`, `CC_Asp_Spark_thought_RescuedMe`). Code
+  `Arcs/Round4Lives.cs` (story workers `R4LArcWorker_*`, wish workers `R4LWishWorker_*` with the shared
+  `R4LWishWorker_Visit`, ambition goals `R4LGoal_EldersRooms`, `R4LGoal_NeighbourCall`), rules `Arcs/Round4LivesMath.cs`.
+  Simplified: the first winter is "came less than 30 days ago, in autumn"; anyone may make the wished thing; with play-outs
+  off three wishes are met at once by the game's own job; the frost harvest lapses at a hard frost. No hurt, no saved
+  collection. Tests: Round4LivesTests. Not seen in the game: the wager's count, the snowman at the gathering, a visit to
+  an outsider from a wish, the bench bill's restriction.
 - **Done (27 November 2026, 0.313.0, the player's go of that day): six camps and six world events, content round 3,
   built in a worktree and merged.** The list: `docs/content-round-3-camps-world.md`. Camps in `Camps/CampRound3.cs`
   (`CampWorker_R3RainCallers`, `_R3Dyers`, `_R3WitchFinders`, `_R3RagPickers`, `_R3Gamblers`, `_R3Kennel`; effects
