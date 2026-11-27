@@ -37,9 +37,9 @@ public static class OwnHappeningsTests
         // ================= Whose, and how many =================
 
         var all = OwnHappeningsMath.All;
-        C(all.All(h => OwnHappeningsMath.GodOf(h) != null) && OwnHappeningsMath.Gods.Length == 15
+        C(all.All(h => OwnHappeningsMath.GodOf(h) != null || OwnHappeningsMath.OfAnyGod(h)) && OwnHappeningsMath.Gods.Length == 15
           && OwnHappeningsMath.Gods.Take(7).SequenceEqual(new[] { "Hollin", "Smoulder", "Bellwether", "Morel", "Ennu", "Pip", "Cirrus" }),
-            "every happening is one of the fifteen gods' (this batch's seven first, then batch 2's: OwnHappeningsSevenTests, then Revel's: RevelTests)");
+            "every happening is one of the fifteen gods' (this batch's seven first, then batch 2's: OwnHappeningsSevenTests, then Revel's: RevelTests), or of whichever god its people hold (round 7's between the colony's people: GodsBetweenFaithTests)");
         // Tamiu (key Mog) has two more beside the stay, riddle, keepers and wrapped dead she already had (MogsWays).
         // Revel, the fifteenth, came whole with eight (his cup and the horned reveller among them).
         C(OwnHappeningsMath.Gods.All(g => OwnHappeningsMath.Of(g).Count(h => !OwnHappeningsMath.IsBetween(h)) >= (g == "Mog" ? 2 : 3) && OwnHappeningsMath.Of(g).Count(h => !OwnHappeningsMath.IsBetween(h)) <= (g == "Revel" ? 8 : 5)),
@@ -288,7 +288,7 @@ public static class OwnHappeningsTests
         string dbg = Read("Gods/OwnHappeningsDebug.cs") + Read("Gods/OwnBetweenDebug.cs") + Read("Gods/OwnSevenDebug.cs") + Read("Gods/OwnRevelDebug.cs") + Read("Gods/OnMap/RevelCup.cs") + string.Join("\n", new[] { "Hush", "Undertow", "Helios", "Selene", "Murmur", "Ducat", "Tamiu", "Revel" }
             .Select(g => Read("Gods/OnMap/Own" + g + ".cs")));
         foreach (var h in all)
-            C(Regex.IsMatch(dbg, @"DebugAction\(""Rimfolk"", ""Gods: " + (OwnHappeningsMath.GodOf(h) == "Mog" ? "Tamiu" : OwnHappeningsMath.GodOf(h)) + @"'s [^""]+""")
+            C(Regex.IsMatch(dbg, @"DebugAction\(""Rimfolk"", ""Gods: " + (OwnHappeningsMath.OfAnyGod(h) ? "the faithful" : OwnHappeningsMath.GodOf(h) == "Mog" ? "Tamiu" : OwnHappeningsMath.GodOf(h)) + @"'s [^""]+""")
               && dbg.Contains("OwnHappening." + h),
                 $"{h}: a dev action brings it now");
         C(Regex.Matches(dbg, @"DebugAction\(").Count >= all.Length, "a dev action for each happening");

@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 835; modelled: 835; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,223 KB** after a year, **4,053 KB** after two, **4,546 KB** after five.
+Rimfolk's part of the save, roughly: **3,223 KB** after a year, **4,053 KB** after two, **4,547 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -202,6 +202,7 @@ Rimfolk's part of the save, roughly: **3,223 KB** after a year, **4,053 KB** aft
 | `Pressures/Pressures.cs:lastWork` | frames while they stand | while | 30 | 30 | 30 | 2.6 |
 | `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 30 | 30 | 30 | 2.6 |
 | `Secrets/Secrets.cs:rolled` | known pawns only | known | 55 | 60 | 75 | 2.6 |
+| `Gods/OnMap/OwnHappenings.cs:last` | when each god's own happening last came, one a happening (Revel's eight and the forty-five between the colony's people among them) | fixed | 104 | 104 | 104 | 2.5 |
 | `Journeys/Journeys.cs:packing` | the packing list: food, medicine, beds, tents, feed, what the player added from the stores and the suggestions they took off | fixed | 20 | 20 | 20 | 2.5 |
 | `Gods/Saints/SaintsBook.cs:saints` | the colony's own saints, by name only (never kin), SaintsMath.MaxSaints | cap | 1 | 2 | 6 | 2.5 |
 | `Building/Automations.cs:log` | the automations' log, AutomationMath.LogLines lines | fixed | 20 | 20 | 20 | 2.3 |
@@ -217,7 +218,6 @@ Rimfolk's part of the save, roughly: **3,223 KB** after a year, **4,053 KB** aft
 | `Persona/Marks.cs:watches` | one per person watched; known pawns only, empty ones dropped | colonists | 20 | 20 | 20 | 2.3 |
 | `Visitors/Callers.cs:tasks` | half a day to a day each, at most Callers.MaxTasks at once | cap | 6 | 8 | 8 | 2.3 |
 | `Diplomacy/DiplomacyBook.cs:homes` | one per colony (one home in the model): their envoy's stay and the colony's envoy away (one each at most), when an envoy was last offered, the feast with guests under way and the last one; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 2.3 |
-| `Gods/OnMap/OwnHappenings.cs:last` | when each god's own happening last came, one a happening (Revel's eight and the thirty-one between the colony's people among them) | fixed | 90 | 90 | 90 | 2.2 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Gods/Among/GodsAmongBook.cs:seasons` | the named seasons taken for a god's doing, GodsAmongMath.MaxSeasons | cap | 2 | 4 | 10 | 2.1 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |

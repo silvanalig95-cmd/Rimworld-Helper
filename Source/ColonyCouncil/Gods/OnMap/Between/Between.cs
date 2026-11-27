@@ -131,6 +131,13 @@ namespace ColonyCouncil
 
         public God God => OwnHappenings.God(Key);
 
+        /// <summary>
+        /// Of whichever god its people hold (round 7's "Faith..." happenings, OwnHappeningsMath.OfAnyGod): it has no god of its
+        /// own by name, so the hour's look comes to it with none, and it finds the god in the people (each its own look at
+        /// OwnHappenings.Acts for the god it found).
+        /// </summary>
+        public bool AnyGod => OwnHappeningsMath.OfAnyGod(H);
+
         /// <summary>The hour's look at a home: what calls it, and its beginning.</summary>
         public abstract void Hourly(OwnHappeningsBook b, God g, Map map, int now);
 
@@ -182,7 +189,11 @@ namespace ColonyCouncil
             new MogGraveCat(), new MogRiddle(),
             new MurmurSplash(), new MurmurFrogIn(),
             new DucatPassed(), new DucatMiser(),
-            new RevelRivalsCup(), new RevelWager()
+            new RevelRivalsCup(), new RevelWager(),
+            // Round 7 (docs/content-update-proposals-2.md, D1 to D15): of whichever god their people hold (BetweenFaith*.cs), and
+            // the Guest's and the Hum's own (BetweenRound2Gods.cs).
+            new FaithDare(), new FaithCameThrough(), new FaithSides(), new EnnuBurying(), new FaithLittleShrine(), new FaithTurned(), new PipWake(),
+            new FaithTakenOffering(), new FaithBookRead(), new FaithWeddingSign(), new FaithRaiderWord(), new FaithGift(), new FaithBargain(), new FaithLightning()
         };
 
         public static BetweenKind KindOf(OwnHappening h) => Kinds.FirstOrDefault(k => k.H == h);
@@ -196,7 +207,8 @@ namespace ColonyCouncil
             foreach (var k in Kinds.InRandomOrder())
             {
                 var g = k.God;
-                if (g == null || !OwnHappenings.Acts(g, map)) continue;
+                // One of whichever god its people hold looks for its god itself (and whether that god acts here).
+                if (!k.AnyGod && (g == null || !OwnHappenings.Acts(g, map))) continue;
                 // One at a time at a home: a scene under way here waits for its end.
                 if (b.between.scenes.Any(s => s.map == map && s.stage >= 0)) return;
                 OwnHappenings.Safe("between: " + k.H, () => k.Hourly(b, g, map, now));

@@ -405,7 +405,7 @@ MODEL = {
     "Gods/OnMap/GodsOnMapBook.cs:lately": ("fixed", const("Gods/GodPaceMath.cs", "Memory", 12), 40, "the gods' short memory of their last happenings ('return|Nightmare|1234'), GodPaceMath.Memory at most"),
     # Each god's own happenings (Gods/OnMap/OwnHappenings.cs): when each last came (one a happening, 29 in batch 1 and 22 in batch 2), the
     # children who touched the white beast's horn (OwnHappeningsMath.HornKept at most), the sky watched lately (MaxWatches).
-    "Gods/OnMap/OwnHappenings.cs:last": ("fixed", 90, V, "when each god's own happening last came, one a happening (Revel's eight and the thirty-one between the colony's people among them)"),
+    "Gods/OnMap/OwnHappenings.cs:last": ("fixed", 104, V, "when each god's own happening last came, one a happening (Revel's eight and the forty-five between the colony's people among them)"),
     "Gods/OnMap/OwnHappenings.cs:horned": ("fixed", const("Gods/OnMap/OwnHappeningsMath.cs", "HornKept", 8), 40, "the children who touched the white beast's horn, OwnHappeningsMath.HornKept at most"),
     "Gods/OnMap/OwnHappenings.cs:watches": ("fixed", const("Gods/OnMap/OwnHappenings.cs", "MaxWatches", 8), V, "the sky watched lately (a telescope, skygazing), OwnHappeningsBook.MaxWatches at most"),
     # The second seven (Gods/OnMap/OwnSeven.cs): the rooms of old ruins someone of the colony has stood in, a few kept.

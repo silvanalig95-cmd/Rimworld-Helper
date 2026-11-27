@@ -35,7 +35,9 @@ public static class GodsBetweenTests
         var keyed = Regex.Matches(keyedAll, @"^\s*<([A-Za-z0-9_]+)>(.*?)</\1>\s*$", RegexOptions.Multiline).Cast<Match>()
             .GroupBy(m => m.Groups[1].Value).ToDictionary(g => g.Key, g => g.First().Groups[2].Value);
         var defs = Directory.GetFiles(Path.Combine(root, "Defs"), "*.xml", SearchOption.AllDirectories).Select(f => XDocument.Load(f).Root!).ToList();
-        var pool = defs.SelectMany(d => d.Elements().Where(e => e.Name.LocalName == "ColonyCouncil.FlavorPoolDef" && e.Element("defName")?.Value == OwnBetweenPool))
+        // The pool's own lines, and those joined to it from other files (round 7's, Rimfolk_GodBetween_Round2.xml).
+        var pool = defs.SelectMany(d => d.Elements().Where(e => e.Name.LocalName == "ColonyCouncil.FlavorPoolDef" && e.Element("defName")?.Value == OwnBetweenPool
+                                                                || e.Name.LocalName == "ColonyCouncil.FlavorExtensionDef" && e.Element("pool")?.Value == OwnBetweenPool))
             .SelectMany(e => e.Descendants("li")).Select(l => l.Value).ToList();
         string Tags(string l) => Regex.Match(l, @"^\[([^\]]*)\]").Groups[1].Value;
         string Body(string l) => Regex.Replace(l, @"^\[[^\]]*\]\s*", "");
@@ -47,11 +49,13 @@ public static class GodsBetweenTests
         // ================= The happenings and their pace =================
 
         var mine = OwnHappeningsMath.All.Where(OwnHappeningsMath.IsBetween).ToList();
-        C(mine.Count == 31 && mine.Min(h => (int)h) > (int)OwnHappening.RevelCup, $"thirty-one, added after every older one so a save's list keeps its order ({mine.Count})");
+        // The first round's thirty-one, then round 7's fourteen (GodsBetweenFaithTests), each added after every older one.
+        C(mine.Count == 45 && mine.Min(h => (int)h) > (int)OwnHappening.RevelCup, $"forty-five, added after every older one so a save's list keeps its order ({mine.Count})");
         foreach (var g in OwnHappeningsMath.Gods)
             C(mine.Count(h => OwnHappeningsMath.GodOf(h) == g) >= 2, g + ": two or more of its own");
         C(mine.Count(h => OwnHappeningsMath.GodOf(h) == "Helios") == 3 && mine.Contains(OwnHappening.HeliosSun), "Helios's three, out into the sun (C9) among them");
-        C(mine.All(h => OwnHappeningsMath.GodOf(h) != null) && mine.Select(OwnHappeningsMath.Name).Distinct().Count() == mine.Count, "each its own, of one god");
+        C(mine.All(h => OwnHappeningsMath.GodOf(h) != null || OwnHappeningsMath.OfAnyGod(h)) && mine.Select(OwnHappeningsMath.Name).Distinct().Count() == mine.Count,
+            "each its own, of one god or of whichever god its people hold");
         foreach (var h in mine)
         {
             var p = OwnHappeningsMath.PaceOf(h);
@@ -117,7 +121,7 @@ public static class GodsBetweenTests
         string pc(OwnHappening h) => h.ToString().ToLowerInvariant();
         foreach (var h in mine)
         {
-            string god = OwnHappeningsMath.GodOf(h) == "Mog" ? "Tamiu" : OwnHappeningsMath.GodOf(h);
+            string god = OwnHappeningsMath.OfAnyGod(h) ? "the faithful" : OwnHappeningsMath.GodOf(h) == "Mog" ? "Tamiu" : OwnHappeningsMath.GodOf(h);
             C(Regex.IsMatch(code, @"public class " + h + @" : BetweenKind") && frame.Contains("new " + h + "()"), h + ": its own kind, in the frame's list");
             C(Regex.IsMatch(debug, @"DebugAction\(""Rimfolk"", ""Gods: " + god + @"'s [^""]+""[^\n]*\n[^\n]*Fire\(OwnHappening\." + h + @"\)"), h + ": a dev action brings it now");
             C(keyed.ContainsKey("CC_GodB_Saw_" + h) && keyed["CC_GodB_Saw_" + h].Contains("{HOME}"), h + ": the colony's book keeps it (CC_GodB_Saw_)");

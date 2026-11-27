@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    Round 7 of the gods between the colony's people (docs/content-update-proposals-2.md, D1 to D15; Source/ColonyCouncil/
+    Gods/OnMap/Between/BetweenFaith*.cs and BetweenRound2Gods.cs). As the first round's (Rimfolk_GodBetween.xml): each card
+    says only what was seen, in three wordings (_Text, _Text_2, _Text_3), never why and never naming a god; a letter's
+    ...TitleNamed names it ({GOD}) only where the colony knows it was that god. _What is the happening in a few words for the
+    news line of how it ended between the two (CC_GodB_Out_*). CC_GodB_Saw_ is what the colony's book keeps, in the
+    witness's words ({WHO}). A god's place is the {PLACE}: its dedicated place, else where its small rite is kept.
+  -->
+
+  <CC_GodB_Faith_RiteSpot>spot where they keep their small rite</CC_GodB_Faith_RiteSpot>
+  <CC_GodB_Faith_SomeWood>some wood</CC_GodB_Faith_SomeWood>
+
+  <!-- ===================== D1: the dare ===================== -->
+
+  <CC_GodB_FaithDare_Rain>it would rain before morning</CC_GodB_FaithDare_Rain>
+  <CC_GodB_FaithDare_Sick>{SICK} would be up and about by morning</CC_GodB_FaithDare_Sick>
+  <CC_GodB_FaithDare_Light>the light at the {PLACE} would still be burning at dawn with nobody seeing to it</CC_GodB_FaithDare_Light>
+  <CC_GodB_FaithDare_Text>Yesterday evening at {HOME}, {B} told {A} that if {A}'s god was real, {WHAT}. This morning the two of them walked out together to look, and it had come true.</CC_GodB_FaithDare_Text>
+  <CC_GodB_FaithDare_Text_2>{B} dared {A} last night at {HOME}: if {A}'s god was real, {WHAT}. First thing this morning the two went out to see, and it was so.</CC_GodB_FaithDare_Text_2>
+  <CC_GodB_FaithDare_Text_3>At {HOME} last night, {B} said to {A} that if {A}'s god was real, {WHAT}. {A} and {B} went to look together this morning, and it had happened.</CC_GodB_FaithDare_Text_3>
+  <CC_GodB_FaithDare_TextNot>Yesterday evening at {HOME}, {B} told {A} that if {A}'s god was real, {WHAT}. This morning the two of them walked out together to look, and it had not come true.</CC_GodB_FaithDare_TextNot>
+  <CC_GodB_FaithDare_TextNot_2>{B} dared {A} last night at {HOME}: if {A}'s god was real, {WHAT}. First thing this morning the two went out to see, and it was not so.</CC_GodB_FaithDare_TextNot_2>
+  <CC_GodB_FaithDare_TextNot_3>At {HOME} last night, {B} said to {A} that if {A}'s god was real, {WHAT}. {A} and {B} went to look together this morning, and it had not happened.</CC_GodB_FaithDare_TextNot_3>
+  <CC_GodB_FaithDare_What>the dare</CC_GodB_FaithDare_What>
+  <CC_GodB_Saw_FaithDare>{OTHER} dared the god {WHO} holds to show itself, and in the morning the two walked out at {HOME} to see whether {WHAT}.</CC_GodB_Saw_FaithDare>
+
+  <!-- ===================== D2: came through ===================== -->
+
+  <CC_GodB_FaithCameThrough_Text>{A} came close to death and is up again at {HOME}. The first thing {A} did was carry the {WHAT} to the {PLACE} and leave it there.</CC_GodB_FaithCameThrough_Text>
+  <CC_GodB_FaithCameThrough_Text_2>Back on their feet at {HOME} after nearly dying, {A} walked to the {PLACE} with the {WHAT} and left it there.</CC_GodB_FaithCameThrough_Text_2>
+  <CC_GodB_FaithCameThrough_Text_3>{A}, who nearly died, is up again at {HOME}, and went straight to the {PLACE} to leave the {WHAT} there.</CC_GodB_FaithCameThrough_Text_3>
+  <CC_GodB_FaithCameThrough_TextNothing>{A} came close to death and is up again at {HOME}. The first thing {A} did was walk to the {PLACE} and stand there a while.</CC_GodB_FaithCameThrough_TextNothing>
+  <CC_GodB_FaithCameThrough_TextNothing_2>Back on their feet at {HOME} after nearly dying, {A} walked to the {PLACE} and stood there a while.</CC_GodB_FaithCameThrough_TextNothing_2>
+  <CC_GodB_FaithCameThrough_TextNothing_3>{A}, who nearly died, is up again at {HOME}, and went straight to the {PLACE} to stand there for a while.</CC_GodB_FaithCameThrough_TextNothing_3>
+  <CC_GodB_FaithCameThrough_What>the visit to the god's place</CC_GodB_FaithCameThrough_What>
+  <CC_GodB_Saw_FaithCameThrough>{WHO} walked to their god's place at {HOME} once they were up again after coming close to death.</CC_GodB_Saw_FaithCameThrough>
+
+  <!-- ===================== D3: the believers take sides ===================== -->
+
+  <CC_GodB_FaithSides_Text>At supper at {HOME}, {A} and {B} argued over the strange turns in the weather and on the land these past days, each saying it was their own god's doing.</CC_GodB_FaithSides_Text>
+  <CC_GodB_FaithSides_Text_2>{A} and {B} fell out at supper at {HOME} over the odd turns in the weather lately. Each holds a different god, and each said it was theirs.</CC_GodB_FaithSides_Text_2>
+  <CC_GodB_FaithSides_Text_3>The weather at {HOME} has been changing back and forth for days, and at supper {A} and {B} argued over whose god was behind it.</CC_GodB_FaithSides_Text_3>
+  <CC_GodB_FaithSides_What>whose god was behind the weather</CC_GodB_FaithSides_What>
+  <CC_GodB_Saw_FaithSides>{WHO} and {OTHER} argued at supper at {HOME} over whose god was behind the weather of the past days.</CC_GodB_Saw_FaithSides>
+
+  <!-- ===================== D4: the guest at the burying ===================== -->
+
+  <CC_GodB_EnnuBurying_Title>A stranger at the grave</CC_GodB_EnnuBurying_Title>
+  <CC_GodB_EnnuBurying_TitleNamed>{GOD} at the grave</CC_GodB_EnnuBurying_TitleNamed>
+  <CC_GodB_EnnuBurying_Text>This afternoon a stranger of {PEOPLE} walked in from the edge of {HOME} and stood at {DEAD}'s grave. {X} said that {DEAD} was {PAST} once, which nobody here knew, and then left the way {X} had come.</CC_GodB_EnnuBurying_Text>
+  <CC_GodB_EnnuBurying_Text_2>A traveller of {PEOPLE}, {X}, came to {DEAD}'s grave at {HOME} this afternoon without stopping at the gate. {X} told those there that {DEAD} was {PAST} once, something nobody at {HOME} had known, and walked off again.</CC_GodB_EnnuBurying_Text_2>
+  <CC_GodB_EnnuBurying_Text_3>At {HOME} this afternoon {X}, a stranger of {PEOPLE}, stood a while at {DEAD}'s grave and said that {DEAD} was {PAST} once. Nobody here knew it. {X} left before dark.</CC_GodB_EnnuBurying_Text_3>
+  <CC_GodB_EnnuBurying_TextPlain>This afternoon a stranger of {PEOPLE} walked in from the edge of {HOME} and stood at {DEAD}'s grave. {X} said a few words about {DEAD} and left the way {X} had come.</CC_GodB_EnnuBurying_TextPlain>
+  <CC_GodB_EnnuBurying_TextPlain_2>A traveller of {PEOPLE}, {X}, came to {DEAD}'s grave at {HOME} this afternoon without stopping at the gate, spoke of {DEAD} for a moment, and walked off again.</CC_GodB_EnnuBurying_TextPlain_2>
+  <CC_GodB_EnnuBurying_TextPlain_3>At {HOME} this afternoon {X}, a stranger of {PEOPLE}, stood a while at {DEAD}'s grave and spoke of {DEAD}. {X} left before dark.</CC_GodB_EnnuBurying_TextPlain_3>
+  <CC_GodB_EnnuBurying_TextFound>This morning someone at {HOME} found {THING} lying on {DEAD}'s grave. It was not there last night.</CC_GodB_EnnuBurying_TextFound>
+  <CC_GodB_EnnuBurying_TextFound_2>There is {THING} on {DEAD}'s grave at {HOME} this morning. Nobody of the colony left it there.</CC_GodB_EnnuBurying_TextFound_2>
+  <CC_GodB_EnnuBurying_TextFound_3>Someone has left {THING} on {DEAD}'s grave at {HOME} in the night.</CC_GodB_EnnuBurying_TextFound_3>
+  <CC_GodB_EnnuBurying_Herbs>a small bunch of dried herbs</CC_GodB_EnnuBurying_Herbs>
+  <CC_GodB_EnnuBurying_Coin>a single coin</CC_GodB_EnnuBurying_Coin>
+  <CC_GodB_EnnuBurying_What>the stranger at {DEAD}'s grave</CC_GodB_EnnuBurying_What>
+  <CC_GodB_Saw_EnnuBurying>{WHO} saw a stranger stand at {OTHER}'s grave at {HOME} and speak of {OTHER}, and leave again without coming to the gate.</CC_GodB_Saw_EnnuBurying>
+
+  <!-- ===================== D5: the children's little place ===================== -->
+
+  <CC_GodB_FaithLittleShrine_Sticks>a few stones and sticks</CC_GodB_FaithLittleShrine_Sticks>
+  <CC_GodB_FaithLittleShrine_Text>{A} and {B} carried {WHAT} and part of a meal out to a corner at the edge of {HOME} and set them up as a little place for a god.</CC_GodB_FaithLittleShrine_Text>
+  <CC_GodB_FaithLittleShrine_Text_2>Out at the edge of {HOME}, {A} and {B} have made a little place for a god from {WHAT}, and left part of a meal there for it.</CC_GodB_FaithLittleShrine_Text_2>
+  <CC_GodB_FaithLittleShrine_Text_3>The children {A} and {B} took {WHAT} and some food to a corner at the edge of {HOME}, and made a little place for a god there.</CC_GodB_FaithLittleShrine_Text_3>
+  <CC_GodB_FaithLittleShrine_TextNoMeal>{A} and {B} carried {WHAT} out to a corner at the edge of {HOME} and set it up as a little place for a god.</CC_GodB_FaithLittleShrine_TextNoMeal>
+  <CC_GodB_FaithLittleShrine_TextNoMeal_2>Out at the edge of {HOME}, {A} and {B} have made a little place for a god from {WHAT}.</CC_GodB_FaithLittleShrine_TextNoMeal_2>
+  <CC_GodB_FaithLittleShrine_TextNoMeal_3>The children {A} and {B} took {WHAT} to a corner at the edge of {HOME} and made a little place for a god there.</CC_GodB_FaithLittleShrine_TextNoMeal_3>
+  <CC_GodB_FaithLittleShrine_TextGone>By morning the food {A} and {B} left at their little place at the edge of {HOME} was gone.</CC_GodB_FaithLittleShrine_TextGone>
+  <CC_GodB_FaithLittleShrine_TextGone_2>The food at the children's little place at {HOME} is gone this morning. {A} and {B} left it there yesterday.</CC_GodB_FaithLittleShrine_TextGone_2>
+  <CC_GodB_FaithLittleShrine_TextGone_3>Something took the food {A} and {B} left at their little place at {HOME} during the night.</CC_GodB_FaithLittleShrine_TextGone_3>
+  <CC_GodB_FaithLittleShrine_What>the children's little place</CC_GodB_FaithLittleShrine_What>
+  <CC_GodB_Saw_FaithLittleShrine>{WHO} saw the little place {OTHER} and another child set up for a god at the edge of {HOME}.</CC_GodB_Saw_FaithLittleShrine>
+
+  <!-- ===================== D7: the one who turned ===================== -->
+
+  <CC_GodB_FaithTurned_Text>{A}, who turned to another god after a hard time, walked to the {PLACE} at {HOME} with {WHAT} from the old rite and set it down there.</CC_GodB_FaithTurned_Text>
+  <CC_GodB_FaithTurned_Text_2>At {HOME}, {A} carried {WHAT} from the old rite to the {PLACE} of the god {A} has turned to, and left it there.</CC_GodB_FaithTurned_Text_2>
+  <CC_GodB_FaithTurned_Text_3>A day after turning from one god to another, {A} took {WHAT} from the old rite to the {PLACE} at {HOME} and set it down.</CC_GodB_FaithTurned_Text_3>
+  <CC_GodB_FaithTurned_TextNothing>{A}, who turned to another god after a hard time, walked to the {PLACE} at {HOME} and knelt there for the first time.</CC_GodB_FaithTurned_TextNothing>
+  <CC_GodB_FaithTurned_TextNothing_2>At {HOME}, {A} went to the {PLACE} of the god {A} has turned to, and knelt there for the first time.</CC_GodB_FaithTurned_TextNothing_2>
+  <CC_GodB_FaithTurned_TextNothing_3>A day after turning from one god to another, {A} walked to the {PLACE} at {HOME} and knelt there.</CC_GodB_FaithTurned_TextNothing_3>
+  <CC_GodB_FaithTurned_What>the turn to another god</CC_GodB_FaithTurned_What>
+  <CC_GodB_Saw_FaithTurned>{WHO} came to the new god's place at {HOME} for the first time since turning from the old one.</CC_GodB_Saw_FaithTurned>
+
+  <!-- ===================== D8: a machine's wake ===================== -->
+
+  <CC_GodB_PipWake_Text>At dusk at {HOME}, {A} and others stood round what was left of the {WHAT}, which had served the colony a long time.</CC_GodB_PipWake_Text>
+  <CC_GodB_PipWake_Text_2>{A} and a few others gathered at the wreck of the {WHAT} at {HOME} as it got dark. It had served the colony for a long time.</CC_GodB_PipWake_Text_2>
+  <CC_GodB_PipWake_Text_3>The {WHAT} that served {HOME} so long is gone, and at dusk {A} and others came to stand by the wreck.</CC_GodB_PipWake_Text_3>
+  <CC_GodB_PipWake_TextAlone>At dusk at {HOME}, {A} stood alone by what was left of the {WHAT}, which had served the colony a long time.</CC_GodB_PipWake_TextAlone>
+  <CC_GodB_PipWake_TextAlone_2>{A} went to the wreck of the {WHAT} at {HOME} as it got dark and stood there a while. It had served the colony for a long time.</CC_GodB_PipWake_TextAlone_2>
+  <CC_GodB_PipWake_TextAlone_3>The {WHAT} that served {HOME} so long is gone, and at dusk {A} came to stand by the wreck.</CC_GodB_PipWake_TextAlone_3>
+  <CC_GodB_PipWake_What>the wake for the {WHAT}</CC_GodB_PipWake_What>
+  <CC_GodB_Saw_PipWake>{WHO} stood at dusk by the wreck of the {WHAT} at {HOME}, which had served the colony a long time.</CC_GodB_Saw_PipWake>
+
+  <!-- ===================== D9: the offering nobody's god took ===================== -->
+
+  <CC_GodB_FaithTakenOffering_Text>Late at night at {HOME}, {B} saw {A} go to the {PLACE} and take what was left there: {WHAT}.</CC_GodB_FaithTakenOffering_Text>
+  <CC_GodB_FaithTakenOffering_Text_2>{B} was still awake at {HOME} and saw {A} walk to the {PLACE} in the dark and take what lay there: {WHAT}.</CC_GodB_FaithTakenOffering_Text_2>
+  <CC_GodB_FaithTakenOffering_Text_3>In the night at {HOME}, {A} took what had been left at the {PLACE} ({WHAT}), and {B} saw it.</CC_GodB_FaithTakenOffering_Text_3>
+  <CC_GodB_FaithTakenOffering_What>what was taken from the god's place</CC_GodB_FaithTakenOffering_What>
+  <CC_GodB_Saw_FaithTakenOffering>{WHO} told how {OTHER} took {WHAT} from the god's place at {HOME} in the night, and said no god had taken it.</CC_GodB_Saw_FaithTakenOffering>
+
+  <!-- ===================== D10: the book read at the fire ===================== -->
+
+  <CC_GodB_FaithBookRead_Fire>fire</CC_GodB_FaithBookRead_Fire>
+  <CC_GodB_FaithBookRead_Text>In the evening at {HOME}, {A} took the colony's book of the gods to the {PLACE} and read the newest pages aloud to those sitting there.</CC_GodB_FaithBookRead_Text>
+  <CC_GodB_FaithBookRead_Text_2>{A} sat down by the {PLACE} at {HOME} this evening with the colony's book of the gods and read out what has been written in it lately.</CC_GodB_FaithBookRead_Text_2>
+  <CC_GodB_FaithBookRead_Text_3>At {HOME} tonight {A} read the latest pages of the colony's book of the gods aloud by the {PLACE}, and a few people stayed to listen.</CC_GodB_FaithBookRead_Text_3>
+  <CC_GodB_FaithBookRead_TextSlate>In the evening at {HOME}, {A} took the slate that holds the colony's book of the gods to the {PLACE} and read the newest pages from it aloud to those sitting there.</CC_GodB_FaithBookRead_TextSlate>
+  <CC_GodB_FaithBookRead_TextSlate_2>{A} sat down by the {PLACE} at {HOME} this evening with the slate that holds the colony's book of the gods and read out what has been written in it lately.</CC_GodB_FaithBookRead_TextSlate_2>
+  <CC_GodB_FaithBookRead_TextSlate_3>At {HOME} tonight {A} read the latest pages of the colony's book of the gods aloud from a slate by the {PLACE}, and a few people stayed to listen.</CC_GodB_FaithBookRead_TextSlate_3>
+  <CC_GodB_FaithBookRead_What>the reading at the fire</CC_GodB_FaithBookRead_What>
+  <CC_GodB_Saw_FaithBookRead>{WHO} read the newest pages of the colony's book of the gods aloud at {HOME} one evening.</CC_GodB_Saw_FaithBookRead>
+
+  <!-- ===================== D11: a sign at the wedding ===================== -->
+
+  <CC_GodB_FaithWeddingSign_Text>During the wedding of {A} and {B} at {HOME}, rain began to fall on the couple.</CC_GodB_FaithWeddingSign_Text>
+  <CC_GodB_FaithWeddingSign_Text_2>At {HOME}, rain started just as {A} and {B} were being married.</CC_GodB_FaithWeddingSign_Text_2>
+  <CC_GodB_FaithWeddingSign_Text_3>It began to rain on {A} and {B} in the middle of their wedding at {HOME}.</CC_GodB_FaithWeddingSign_Text_3>
+  <CC_GodB_FaithWeddingSign_TextLight>During the wedding of {A} and {B} at {HOME}, the {WHAT} beside the couple went out.</CC_GodB_FaithWeddingSign_TextLight>
+  <CC_GodB_FaithWeddingSign_TextLight_2>At {HOME}, the {WHAT} by {A} and {B} went out while they were being married.</CC_GodB_FaithWeddingSign_TextLight_2>
+  <CC_GodB_FaithWeddingSign_TextLight_3>In the middle of the wedding of {A} and {B} at {HOME}, the {WHAT} next to them went dark.</CC_GodB_FaithWeddingSign_TextLight_3>
+  <CC_GodB_FaithWeddingSign_TextSign>During the wedding of {A} and {B} at {HOME}, a soft light showed in the air where the couple stood, and was gone.</CC_GodB_FaithWeddingSign_TextSign>
+  <CC_GodB_FaithWeddingSign_TextSign_2>At {HOME}, a faint light gathered round {A} and {B} while they were being married, and faded again.</CC_GodB_FaithWeddingSign_TextSign_2>
+  <CC_GodB_FaithWeddingSign_TextSign_3>In the middle of the wedding of {A} and {B} at {HOME}, something like a light showed where they stood, and then it was gone.</CC_GodB_FaithWeddingSign_TextSign_3>
+  <CC_GodB_FaithWeddingSign_Journal>At our wedding {BLESS} said what happened was a blessing, and {WARN} said it was a warning. I'm keeping the blessing.</CC_GodB_FaithWeddingSign_Journal>
+  <CC_GodB_FaithWeddingSign_What>the sign at the wedding</CC_GodB_FaithWeddingSign_What>
+  <CC_GodB_Saw_FaithWeddingSign>{WHO} took what happened at the wedding of {OTHER} at {HOME} for a sign.</CC_GodB_Saw_FaithWeddingSign>
+
+  <!-- ===================== D12: a word over the raider ===================== -->
+
+  <CC_GodB_FaithRaiderWord_Text>After the fight at {HOME}, {A} knelt by the body of {DEAD} of {PEOPLE}, said a few words over it and asked that it be buried. The raiders' people hold the same god as {A}.</CC_GodB_FaithRaiderWord_Text>
+  <CC_GodB_FaithRaiderWord_Text_2>{A} went out to the fallen raider {DEAD} of {PEOPLE} at {HOME}, knelt, and said the words of the god {A} and the raiders both hold. {A} asked that {DEAD} be buried.</CC_GodB_FaithRaiderWord_Text_2>
+  <CC_GodB_FaithRaiderWord_Text_3>At {HOME}, {A} said a few words over the body of {DEAD}, a raider of {PEOPLE} who held the same god, and asked the others to bury the body rather than leave it.</CC_GodB_FaithRaiderWord_Text_3>
+  <CC_GodB_FaithRaiderWord_What>the words over {DEAD}</CC_GodB_FaithRaiderWord_What>
+  <CC_GodB_Saw_FaithRaiderWord>{WHO} said the god's words over the fallen raider {OTHER} at {HOME}, and asked that the raider be buried.</CC_GodB_Saw_FaithRaiderWord>
+
+  <!-- ===================== D13: a gift at the other's place ===================== -->
+
+  <CC_GodB_FaithGift_Text>{A} carried {WHAT} to the {PLACE} at {HOME}, the place of {B}'s god, and left it there. The two quarrelled over their gods a few days ago.</CC_GodB_FaithGift_Text>
+  <CC_GodB_FaithGift_Text_2>A few days after their quarrel over the gods, {A} left {WHAT} at the {PLACE} of {B}'s god at {HOME}.</CC_GodB_FaithGift_Text_2>
+  <CC_GodB_FaithGift_Text_3>At {HOME}, {A} took {WHAT} to the {PLACE} where {B} keeps their god, and left it. The two of them fell out over their gods a few days ago.</CC_GodB_FaithGift_Text_3>
+  <CC_GodB_FaithGift_TextNothing>{A} went to the {PLACE} at {HOME}, the place of {B}'s god, and stood there a while. The two quarrelled over their gods a few days ago.</CC_GodB_FaithGift_TextNothing>
+  <CC_GodB_FaithGift_TextNothing_2>A few days after their quarrel over the gods, {A} went and stood a while at the {PLACE} of {B}'s god at {HOME}.</CC_GodB_FaithGift_TextNothing_2>
+  <CC_GodB_FaithGift_TextNothing_3>At {HOME}, {A} walked to the {PLACE} where {B} keeps their god and stood there for a while. The two of them fell out over their gods a few days ago.</CC_GodB_FaithGift_TextNothing_3>
+  <CC_GodB_FaithGift_What>the gift at the god's place</CC_GodB_FaithGift_What>
+  <CC_GodB_Saw_FaithGift>{WHO} found that {OTHER} had been to their god's place at {HOME}, some days after the two of them quarrelled.</CC_GodB_Saw_FaithGift>
+
+  <!-- ===================== D14: suspected of a bargain (the dark never named) ===================== -->
+
+  <CC_GodB_FaithBargain_Text>At {HOME}, {A} told {B} to {B}'s face that {B} had made a bargain with the dark. {B} denied it.</CC_GodB_FaithBargain_Text>
+  <CC_GodB_FaithBargain_Text_2>{A} accused {B} at {HOME} of having made a bargain with the dark, and {B} said it wasn't true.</CC_GodB_FaithBargain_Text_2>
+  <CC_GodB_FaithBargain_Text_3>{B} has had a lot of luck lately, and today at {HOME} {A} said openly that {B} must have made a bargain with the dark. {B} denies it.</CC_GodB_FaithBargain_Text_3>
+  <CC_GodB_FaithBargain_TextOwned>At {HOME}, {A} told {B} to {B}'s face that {B} had made a bargain with the dark, and {B} did not deny it.</CC_GodB_FaithBargain_TextOwned>
+  <CC_GodB_FaithBargain_TextOwned_2>{A} accused {B} at {HOME} of having made a bargain with the dark, and {B} admitted it.</CC_GodB_FaithBargain_TextOwned_2>
+  <CC_GodB_FaithBargain_TextOwned_3>{B} has had a lot of luck lately, and today at {HOME} {A} said openly that {B} must have made a bargain with the dark. {B} owned that it was true.</CC_GodB_FaithBargain_TextOwned_3>
+  <CC_GodB_FaithBargain_What>the talk of a bargain</CC_GodB_FaithBargain_What>
+  <CC_GodB_Saw_FaithBargain>{WHO} said to {OTHER}'s face at {HOME} that {OTHER} had made a bargain with the dark.</CC_GodB_Saw_FaithBargain>
+
+  <!-- ===================== D15: lightning on the shrine ===================== -->
+
+  <CC_GodB_FaithLightning_Title>Lightning at the {PLACE}</CC_GodB_FaithLightning_Title>
+  <CC_GodB_FaithLightning_TitleNamed>Lightning at the {PLACE} of {GOD}</CC_GodB_FaithLightning_TitleNamed>
+  <CC_GodB_FaithLightning_Text>In the storm at {HOME}, lightning struck the {PLACE}.</CC_GodB_FaithLightning_Text>
+  <CC_GodB_FaithLightning_Text_2>A bolt of lightning came down on the {PLACE} at {HOME} during the storm.</CC_GodB_FaithLightning_Text_2>
+  <CC_GodB_FaithLightning_Text_3>The storm over {HOME} sent lightning down onto the {PLACE}.</CC_GodB_FaithLightning_Text_3>
+  <CC_GodB_FaithLightning_TextTree>In the storm at {HOME}, lightning struck the {WHAT} beside the {PLACE}.</CC_GodB_FaithLightning_TextTree>
+  <CC_GodB_FaithLightning_TextTree_2>A bolt of lightning came down on the {WHAT} next to the {PLACE} at {HOME} during the storm.</CC_GodB_FaithLightning_TextTree_2>
+  <CC_GodB_FaithLightning_TextTree_3>The storm over {HOME} sent lightning down onto the {WHAT} by the {PLACE}.</CC_GodB_FaithLightning_TextTree_3>
+  <CC_GodB_FaithLightning_What>the lightning on the {WHAT}</CC_GodB_FaithLightning_What>
+  <CC_GodB_Saw_FaithLightning>{WHO} looked at the {WHAT} the lightning struck at the god's place at {HOME} in the storm.</CC_GodB_Saw_FaithLightning>
+
+</LanguageData>
