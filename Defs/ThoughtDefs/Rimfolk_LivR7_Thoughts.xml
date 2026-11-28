@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The review of the colonists' own lives (docs/review-lives.md): the moods of the three wishes it added
+       (Defs/WishDefs/Rimfolk_LivR7_Wishes.xml), the size of the hat's and the firewood's. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_LivR7_Granted_Boots</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>boots of my own</label>
+        <description>I have boots on my feet now. The stones and the cold don't get at me any more.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_LivR7_Granted_Gloves</defName>
+    <durationDays>4</durationDays>
+    <stages>
+      <li>
+        <label>gloves for the cold</label>
+        <description>I have gloves for the work outside. My hands stay warm enough to use.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_LivR7_Granted_Cloth</defName>
+    <durationDays>5</durationDays>
+    <stages>
+      <li>
+        <label>cloth put by for winter</label>
+        <description>There is enough cloth and hide in the store for the winter's sewing.</description>
+        <baseMoodEffect>3</baseMoodEffect>
+      </li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

@@ -21,7 +21,10 @@ namespace ColonyCouncil
             { "OperationsPerformed", "Medicine" }, { "Council_PatientsPulledThrough", "Medicine" }, { "Council_BirthsAttended", "Medicine" },
             { "AnimalsTamed", "Animals" }, { "PrisonersRecruited", "Social" }, { "CellsMined", "Mining" },
             { "ResearchPointsResearched", "Intellectual" }, { "KillsAnimals", "Shooting" }, { "PlantsHarvested", "Plants" },
-            { "ThingsCrafted", "Crafting" }, { "KillsHumanlikes", Combat }, { "KillsMechanoids", Combat }
+            { "ThingsCrafted", "Crafting" }, { "KillsHumanlikes", Combat }, { "KillsMechanoids", Combat },
+            // The lives review (docs/review-lives.md): things mended are a builder's, deals struck a talker's, masterworks a
+            // maker's, as the goals that count them say.
+            { "ThingsRepaired", "Construction" }, { "Council_TradesMade", "Social" }, { "Council_Masterworks", CraftOrArt }
         };
 
         private static readonly Dictionary<string, string> ByCounter = new Dictionary<string, string>
@@ -37,9 +40,11 @@ namespace ColonyCouncil
 
         /// <summary>
         /// The skill a goal was about, by name (or <see cref="Combat"/>, <see cref="CraftOrArt"/>), or null for a goal of the
-        /// heart (a marriage, friends, years): its own skill first, then its record, counter, office and kind.
+        /// heart (a marriage, friends, years): its own skill first, then its record, counter, office and kind. A seat other
+        /// than the three named here is its own first skill (<paramref name="officeSkill"/>: the reeve's growing, the
+        /// herdmaster's animals).
         /// </summary>
-        public static string SkillFor(string skill, string record, string counter, string office, string worker)
+        public static string SkillFor(string skill, string record, string counter, string office, string worker, string officeSkill = null)
         {
             if (!string.IsNullOrEmpty(skill)) return skill;
             if (record != null && ByRecord.TryGetValue(record, out var r)) return r;
@@ -49,6 +54,7 @@ namespace ColonyCouncil
                 if (office.Contains("Physician")) return "Medicine";
                 if (office.Contains("Marshal")) return Combat;
                 if (office.Contains("Steward")) return "Social";
+                if (!string.IsNullOrEmpty(officeSkill)) return officeSkill;
             }
             if (worker != null && AnimalWorkers.Contains(worker)) return "Animals";
             return null;

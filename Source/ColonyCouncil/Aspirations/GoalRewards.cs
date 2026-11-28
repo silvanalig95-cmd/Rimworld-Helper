@@ -29,7 +29,8 @@ namespace ColonyCouncil
             var d = a?.def;
             var p = a?.pawn;
             if (d == null || p?.skills == null) return null;
-            string name = GoalRewardMath.SkillFor(a.skill?.defName ?? d.skill?.defName, d.record, d.counter, d.office?.defName, d.workerClass?.Name);
+            string name = GoalRewardMath.SkillFor(a.skill?.defName ?? d.skill?.defName, d.record, d.counter, d.office?.defName, d.workerClass?.Name,
+                d.office?.skills?.FirstOrDefault()?.defName);
             if (name == GoalRewardMath.Combat) name = Better(p, SkillDefOf.Shooting, SkillDefOf.Melee);
             else if (name == GoalRewardMath.CraftOrArt) name = Better(p, SkillDefOf.Crafting, SkillDefOf.Artistic);
             var skill = name == null ? null : DefDatabase<SkillDef>.GetNamedSilentFail(name);

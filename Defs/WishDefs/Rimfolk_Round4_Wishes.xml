@@ -26,7 +26,7 @@
     <envy>0</envy>
     <objectionChance>0.1</objectionChance>
     <talkInteraction>Council_Talk_Work</talkInteraction>
-    <fulfilledWhen>The colony has {THING}. Promised, a bill for one is set at the bench, for {FOR_nameDef} if {FOR_pronoun} can make it.</fulfilledWhen>
+    <fulfilledWhen>The colony has {THING}, and {FOR_nameDef} has made something at a bench or in the kitchen since asking. Promised, a bill for one is set at the bench, for {FOR_nameDef} if {FOR_pronoun} can make it.</fulfilledWhen>
     <request>
       <plain>
         <li>We've never made {THING} here. We have everything it needs. Could I try?</li>

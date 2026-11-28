@@ -233,6 +233,8 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Arc_ShowedMeAround</thought></li>
+          <!-- The lives review: the friend the words name, a start in the social web. -->
+          <li Class="ColonyCouncil.ArcEffect_Tie"><kind>Friends</kind><amount>8</amount></li>
         </effects>
         <gate>
           <kind>Hold</kind>

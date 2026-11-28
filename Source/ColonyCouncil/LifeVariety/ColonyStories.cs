@@ -101,7 +101,10 @@ namespace ColonyCouncil
             var office = goal?.def?.office;
             if (office == null || goal.def.workerClass == null || !typeof(AspirationWorker_Office).IsAssignableFrom(goal.def.workerClass)) return null;
             if (!office.Available || OfficeTracker.HeldBy(p) == office) return null;
-            var skill = office.skills?.FirstOrDefault() ?? SkillDefOf.Social;
+            // The seat's first skill they can use (the lives review: one they can't would leave the practice at nothing).
+            var skill = office.skills?.FirstOrDefault(s => ArcUtil.Skill(p, s) is SkillRecord r && !r.TotallyDisabled)
+                        ?? (ArcUtil.Skill(p, SkillDefOf.Social) is SkillRecord social && !social.TotallyDisabled ? SkillDefOf.Social : null);
+            if (skill == null) return null;
             return new ArcCandidate { key = office.defName, name = office.Name, skill = skill, weight = 1.1f };
         }
 
@@ -201,24 +204,32 @@ namespace ColonyCouncil
             var said = comp.life.aims.LastOrDefault(a => a.pawnId == p.ThingID && ColonyStoryMath.AimFresh(a.year, year, GenLocalDate.DayOfYear(map)));
             var goal = comp.aspirations.Active(p);
             if (said == null || goal?.def == null || goal.def.defName != said.def) return null;
-            return new ArcCandidate { key = said.def, goalText = goal.Goal, weight = 1.3f };
+            // The goal, for the last stage's Goal gate (the lives review: without it the story could never end well).
+            return new ArcCandidate { key = said.def, goal = said.def, goalText = goal.Goal, weight = 1.3f };
         }
+
+        private static bool Reached(CouncilGameComponent comp, Arc arc) =>
+            comp?.aspirations.all.Any(x => x.pawn == arc.pawn && x.done && x.def?.defName == arc.key && x.doneTick >= arc.startedTick) ?? false;
 
         public override bool CustomGate(Arc arc, ArcGate gate)
         {
-            var goal = CouncilGameComponent.Instance?.aspirations.Active(arc.pawn);
-            return goal?.def != null && goal.def.defName == arc.key && goal.def.Worker.Progress(goal) >= 0.5f;
+            var comp = CouncilGameComponent.Instance;
+            var goal = comp?.aspirations.Active(arc.pawn);
+            if (goal?.def != null && goal.def.defName == arc.key) return goal.def.Worker.Progress(goal) >= 0.5f;
+            // Reached in one go: halfway is behind them as well.
+            return Reached(comp, arc);
         }
 
         public override string Broken(Arc arc)
         {
             if (arc.stage >= arc.def.LastStage) return null;
+            // A story begun before the goal was kept with it (the key holds the same).
+            if (arc.goal.NullOrEmpty()) arc.goal = arc.key;
             var comp = CouncilGameComponent.Instance;
             var goal = comp?.aspirations.Active(arc.pawn);
             if (goal?.def != null && goal.def.defName == arc.key) return null;
             // Reached: the Goal gate moves it on this hour; anything else is a goal given up or changed.
-            bool reached = comp?.aspirations.all.Any(x => x.pawn == arc.pawn && x.done && x.def?.defName == arc.key) ?? false;
-            return reached ? null : "goalgone";
+            return Reached(comp, arc) ? null : "goalgone";
         }
     }
 }

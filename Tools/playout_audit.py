@@ -455,6 +455,8 @@ PLAY = {
     "DilemmaEffect_R4CPetBed": "a bed set in the room",
     "DilemmaEffect_R4CFirebreak": "a firebreak marked",
     "DilemmaEffect_Deputy": "a deputy at the seat's work",
+    # The lives review (Arcs/LivesReview.cs): friends over the hills, the colonist going over to the people they got on with.
+    "LivesReviewEffect_SeeTheirPeople": "visit",
 }
 
 # Words that say people do something together, or go somewhere on the map. Deliberately wide: the list is read by hand.

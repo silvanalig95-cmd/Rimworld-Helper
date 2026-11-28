@@ -793,6 +793,10 @@
           <li>People from {FACTION} are on the colony's land again, and {PAWN_nameDef} wants to see them.</li>
           <li>{FACTION} have come by again, as {PAWN_nameDef} hoped.</li>
         </chronicle>
+        <effects>
+          <!-- The lives review: they go over to see them, as the words say, and spend an hour with them. -->
+          <li Class="ColonyCouncil.LivesReviewEffect_SeeTheirPeople"><label>an hour with the visitors from {FACTION}</label></li>
+        </effects>
         <gate><kind>Custom</kind><minDays>0</minDays><timeoutDays>3</timeoutDays></gate>
       </li>
       <li>
@@ -814,6 +818,9 @@
         </chronicle>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Rimfolk_R4L_Arc_OverTheHills</thought></li>
+          <!-- The lives review: the hour of talk the words tell of, and the friendship with that people that holds (small). -->
+          <li Class="ColonyCouncil.DilemmaEffect_Joy"><amount>0.15</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
     </stages>
