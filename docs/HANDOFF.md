@@ -948,6 +948,16 @@ most sense." So, in this order, three builds at a time:
   bill, the survivor sent home, two encounters' skills) and two choices added (the young hands' work ask, the strange
   herds' question as a two-day far errand). Tests: ReviewCampsWorldTests, FarErrandTests. For the next review: check a
   camp's or event's own code for an effect already given before adding one (the new head's gift already was).
+- **Under way (28 November 2026; the player's picks, clickable): the next two reviews, visitors and strangers, and the
+  peoples' events**, each in a worktree, in the shape of the three before (`docs/review-visitors.md`,
+  `docs/review-peoples.md`). And the catalogue of the player's mods: they run A RimWorld of Magic (Continued) by HUGINN
+  (with `huginn.rwom.core` and `huginn.rwom.integrations`) while `docs/player-mods` (7 November) lists the original; the
+  player's pick "I'll send a new collection". The collector, never kept in the repository before, was written again as
+  `Tools/Collect-ModDefs.ps1` (the game's and DLCs' Defs, every mod's About.xml, LoadFolders.xml and the Defs of the
+  folders 1.7 loads, mods.txt, ModsConfig.xml; zip to the Desktop, opened with the zip selected; tested with PowerShell 7
+  on a made-up folder and read back by `mod_pool.py`). When the zip comes: `python3 Tools/mod_pool.py <unzipped>
+  docs/player-mods <save.rws>`, then `weapon_extract.py` and `apparel_extract.py` as the README says, poolcheck, and the
+  magic auto-cast's spell names checked against the new rows.
 - **Done (28 November 2026, 0.323.0; the player's go of 27 November, "more content to the already existing
   mechanics"): content round 6**, in a worktree, merged; `docs/content-round-6.md` (with the frames' counts). Four thin
   frames: dreams (281, only 62 doing more than a mood), decrees (38, none added by a content round), callers at the gate

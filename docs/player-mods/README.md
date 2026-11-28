@@ -1,7 +1,8 @@
 # The player's mod pool
 
 What every mod the player has subscribed to adds, read from their own files (7 November 2026: the player ran
-`Collect-ModDefs.ps1` on their computer and uploaded the result; 444 mods subscribed, 297 of them active in their mod
+`Collect-ModDefs.ps1` (kept since 28 November 2026 in `Tools/Collect-ModDefs.ps1`; it writes `RimfolkModDefs.zip` to the
+Desktop) on their computer and uploaded the result; 444 mods subscribed, 297 of them active in their mod
 list, plus the game's own data and all five DLCs). Built by `python3 Tools/mod_pool.py <collected folder>
 docs/player-mods <save.rws>`; run it again when the player sends a new collection.
 
