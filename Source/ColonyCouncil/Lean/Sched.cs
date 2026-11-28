@@ -164,7 +164,14 @@ namespace ColonyCouncil
         /// beast waiting for its rider keeps waiting while the rider is at work out past the base.
         /// </summary>
         public const int RareRideOut = 143;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic, RareRideOut };
+
+        /// <summary>
+        /// The colony's casters casting on their own (Integrations/MagicAutoCast.cs; only with A RimWorld of Magic, the
+        /// setting on and someone switched on): each switched-on colonist in a fight or on a hunt looked at for a spell to
+        /// cast, and the casts asked for followed (a hunt kept going, Shadow Strike's draft let go).
+        /// </summary>
+        public const int RareMagicAutoCast = 103;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic, RareRideOut, RareMagicAutoCast };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

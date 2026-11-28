@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 836; modelled: 836; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,231 KB** after a year, **4,061 KB** after two, **4,554 KB** after five.
+Saved collections found: 837; modelled: 837; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,231 KB** after a year, **4,061 KB** after two, **4,555 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -589,6 +589,7 @@ Rimfolk's part of the save, roughly: **3,231 KB** after a year, **4,061 KB** aft
 | `World/WorldSituation.cs:deeds` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:held` | per situation | fixed | 4 | 4 | 4 | 0.2 |
 | `World/WorldSituation.cs:sufferers` | per situation | fixed | 4 | 4 | 4 | 0.2 |
+| `Integrations/MagicAutoCast.cs:on` | ids of the colonists who cast damage spells on their own, MagicAutoCastMath.MaxOn at most, let go when no longer the colony's | cap | 1 | 2 | 6 | 0.1 |
 | `Peoples/Events10/PeopleEvents10Book.cs:artGiven` | the peoples that handed on their art, once a game each | cap | 1 | 2 | 5 | 0.1 |
 | `Peoples/Events3/FieldSickhouse.cs:fed` | the peoples whose sick the colony fed, by id, while the camp stands | fixed | 6 | 6 | 6 | 0.1 |
 | `Peoples/Events4/PeopleEvents4Book.cs:lanternYears` | the knot nights whose lanterns came, a people and a year, twelve kept | cap | 1 | 2 | 5 | 0.1 |

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- Colonists casting A RimWorld of Magic's damage spells on their own (Integrations/MagicAutoCast.cs): the button on a colonist who knows one. -->
+  <CC_MagicAutoCast_Gizmo>Casts on their own</CC_MagicAutoCast_Gizmo>
+  <CC_MagicAutoCast_GizmoDesc>On: {PAWN_nameDef} casts damage spells without being told. In a fight, drafted or not, the spell goes at the enemy {PAWN_pronoun} is fighting, or at the nearest one attacking the colony that {PAWN_pronoun} can see. A hunt opens with one spell on each animal, and then the hunt goes on. A share of {RESERVE} of {PAWN_possessive} mana and stamina is always kept back, and when drafted {PAWN_pronoun} casts only with fire at will on.\n\nSpells used: {SPELLS}.\n\nNo fire spells on a hunt, and Shadow Strike on a hunt only on an animal that won't turn on {PAWN_objective} and isn't much bigger. Never a spell that hits a whole area, and never with someone in the line or near the target. The magic mod's own auto-cast marks on each spell stay as they are.\n\nOff: {PAWN_nameDef} casts only when told, or by the magic mod's own auto-cast.</CC_MagicAutoCast_GizmoDesc>
+
+  <!-- The setting (Your other mods, A RimWorld of Magic). -->
+  <CC_Settings_MagicAutoCast>Mages may cast damage spells on their own</CC_Settings_MagicAutoCast>
+  <CC_Settings_MagicAutoCast_Tip>With A RimWorld of Magic: a button on each colonist who knows one of the damage spells Rimfolk uses (Casts on their own, off until you turn it on). With it on, they cast those spells by themselves in a fight, drafted or not, and open each hunt with one, always keeping 30% of their mana and stamina. The spells are the plain single-target ones: Arcane Bolt, Firebolt, Icebolt, Lightning Bolt, Frost Ray, Magic Missile, Poison, Headshot, Throwing Knife, Spite and Shadow Strike. No fire on a hunt, Shadow Strike on a hunt only on prey that won't turn on the hunter, and never with someone in the line or near the target. The magic mod's own auto-cast settings are left alone. Off, nobody casts on their own and the button is gone. Needs the deeper game hooks.</CC_Settings_MagicAutoCast_Tip>
+  <CC_SetNote_MagicAutoCast>With A RimWorld of Magic, a colonist you switch on casts damage spells by themselves in fights and to open a hunt.</CC_SetNote_MagicAutoCast>
+
+  <!-- Rimfolk's clock (UI/ClockWindow.cs): the pass every 250 ticks for the colonists who cast on their own. -->
+  <CC_Clock_Pass_RareMagicAutoCast>Casting on their own: fights and hunts</CC_Clock_Pass_RareMagicAutoCast>
+
+</LanguageData>

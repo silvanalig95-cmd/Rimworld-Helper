@@ -44,6 +44,8 @@ namespace ColonyCouncil
         RareCamp,
         RareMissions,
         RareWeather,
+        /// <summary>The colony's casters casting on their own in fights and on hunts (Sched.RareMagicAutoCast).</summary>
+        RareMagicAutoCast,
         RareWelcome,
         RareHealth,
         /// <summary>Riding out with Giddy-Up 2: beasts kept waiting for riders at work out past the base (Sched.RareRideOut).</summary>
@@ -158,6 +160,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.RareCamp, "CC_Clock_Pass_RareCamp", nameof(Sched.RareCamp), R, Sched.RareCamp),
             new PassInfo(Pass.RareMissions, "CC_Clock_Pass_RareMissions", nameof(Sched.RareMissions), R, Sched.RareMissions),
             new PassInfo(Pass.RareWeather, "CC_Clock_Pass_RareWeather", nameof(Sched.RareWeather), R, Sched.RareWeather),
+            new PassInfo(Pass.RareMagicAutoCast, "CC_Clock_Pass_RareMagicAutoCast", nameof(Sched.RareMagicAutoCast), R, Sched.RareMagicAutoCast),
             new PassInfo(Pass.RareWelcome, "CC_Clock_Pass_RareWelcome", nameof(Sched.RareWelcome), R, Sched.RareWelcome),
             new PassInfo(Pass.RareHealth, "CC_Clock_Pass_RareHealth", nameof(Sched.RareHealth), R, Sched.RareHealth),
             new PassInfo(Pass.RareRideOut, "CC_Clock_Pass_RareRideOut", nameof(Sched.RareRideOut), R, Sched.RareRideOut),

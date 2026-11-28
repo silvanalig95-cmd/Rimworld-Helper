@@ -676,6 +676,8 @@ namespace ColonyCouncil
         public bool pokemonShelves = true;
         /// <summary>With A RimWorld of Magic: a mage may bind one of the colony's animals as a familiar (Integrations/MagicFamiliars.cs).</summary>
         public bool familiars = true;
+        /// <summary>With A RimWorld of Magic: a colonist switched on casts damage spells on their own in fights and to open a hunt (Integrations/MagicAutoCast.cs).</summary>
+        public bool magicAutoCast = true;
         /// <summary>An alert while an animal's fresh carcass lies out with nobody seeing to it (Animals/FreshCarcasses.cs).</summary>
         public bool freshCarcassAlert = true;
         /// <summary>An alert while one of the colony's animals is hungry with nothing it may eat in reach and no hunt to go on (Animals/PetHuntsPatches.cs).</summary>
@@ -1261,6 +1263,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref pokemonTypeDouse, "pokemonTypeDouse", true);
             Scribe_Values.Look(ref pokemonShelves, "pokemonShelves", true);
             Scribe_Values.Look(ref familiars, "familiars", true);
+            Scribe_Values.Look(ref magicAutoCast, "magicAutoCast", true);
             Scribe_Values.Look(ref freshCarcassAlert, "freshCarcassAlert", true);
             Scribe_Values.Look(ref noFoodAlert, "noFoodAlert", true);
             Scribe_Values.Look(ref nextSteps, "nextSteps", true);
