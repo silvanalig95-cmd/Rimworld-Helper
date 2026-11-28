@@ -169,6 +169,31 @@ namespace ColonyCouncil
 
         private static int Seed(Map map) => map.Tile.tileId;
 
+        /// <summary>The land as its weather goes, for the land's climate (Weather/LandClimate.cs).</summary>
+        internal static BiomeWeather LandOf(Map map)
+        {
+            var book = WeatherBook.Of(map);
+            return book == null || map?.TileInfo == null ? default : Land(map, book.dyn);
+        }
+
+        /// <summary>Every weather the land's own lists hold: the biome's, and Seasonal Weather's four seasons' where it gives them.</summary>
+        internal static List<WeatherDef> LandWeathers(Map map)
+        {
+            var list = new List<WeatherDef>();
+            var biome = map?.Biome;
+            if (biome == null) return list;
+            if (biome.baseWeatherCommonalities != null)
+                foreach (var r in biome.baseWeatherCommonalities)
+                    if (r?.weather != null && r.commonality > 0f && !list.Contains(r.weather)) list.Add(r.weather);
+            var ext = biome.modExtensions?.FirstOrDefault(e => e != null && e.GetType().FullName == "SeasonalWeather.SeasonalWeatherExtension");
+            if (ext != null)
+                foreach (string f in new[] { "spring", "summer", "fall", "winter" })
+                    if (AccessTools.Field(ext.GetType(), f)?.GetValue(ext) is List<WeatherCommonalityRecord> l)
+                        foreach (var r in l)
+                            if (r?.weather != null && r.commonality > 0f && !list.Contains(r.weather)) list.Add(r.weather);
+            return list;
+        }
+
         // ---------------- The weather as it stands ----------------
 
         private static WeatherNow Now(Map map, WeatherBook book, BiomeWeather b)
@@ -188,6 +213,8 @@ namespace ColonyCouncil
             int now = Find.TickManager.TicksGame;
             foreach (var p in st.pulls)
                 if (Pull(p, out string kind, out float factor, out int until) && until > now) WeatherDynamicsMath.AddPull(ref n, kind, factor);
+            // The season's character, the drift's wetness and once in a lifetime (Weather/LandClimate.cs).
+            LandClimate.WeatherLean(map, book, ref n);
             return n;
         }
 
@@ -300,11 +327,15 @@ namespace ColonyCouncil
 
         // ---------------- The temperature ----------------
 
-        /// <summary>The weather's push on this map's outdoor temperature now (°C).</summary>
+        /// <summary>
+        /// The weather's push on this map's outdoor temperature now (°C), with the land's climate's (the season's character,
+        /// once in a lifetime, the drift: Weather/LandClimate.cs), which eases back to nothing once switched off.
+        /// </summary>
         public static float OffsetOf(Map map)
         {
-            if (!TemperatureOn) return 0f;
-            return WeatherBook.Of(map)?.dyn.offset ?? 0f;
+            var book = WeatherBook.Of(map);
+            if (book == null) return 0f;
+            return (TemperatureOn ? book.dyn.offset : 0f) + book.clim.climate;
         }
 
         /// <summary>
@@ -318,8 +349,11 @@ namespace ColonyCouncil
         {
             int n = raw?.Length ?? 0;
             var push = new float[n];
-            var st = WeatherBook.Of(map)?.dyn;
+            var book = WeatherBook.Of(map);
+            var st = book?.dyn;
             if (st == null || n == 0) return push;
+            // The land's climate holds over the hours ahead (it moves over half a day at the least, at a season's turn).
+            float climate = book.clim.climate;
             float cur = st.offset;
             bool on = TemperatureOn && Applies(map);
             var b = default(BiomeWeather);
@@ -336,13 +370,13 @@ namespace ColonyCouncil
                 year = WeatherDynamicsMath.YearOf(Seed(map), GenLocalDate.Year(map), b).temp;
                 hold = Mathf.Max(0, DurationOf(map.weatherDecider) - wm.curWeatherAge) / GenDate.TicksPerHour;
             }
-            push[0] = cur;
+            push[0] = cur + climate;
             for (int h = 1; h < n; h++)
             {
                 float sun = glow != null && h < glow.Length ? glow[h] : 0.5f;
-                float target = !on ? 0f : h <= hold ? WeatherDynamicsMath.TempTarget(kind, rain, sun < 0.3f, sun, b, snow, raw[h], year) : year;
+                float target = !on ? 0f : h <= hold ? WeatherDynamicsMath.TempTarget(kind, rain, sun < 0.3f, sun, b, snow, raw[h] + climate, year) : year;
                 cur = FieldWeatherMath.EaseHour(cur, target);
-                push[h] = cur;
+                push[h] = cur + climate;
             }
             return push;
         }
@@ -405,6 +439,34 @@ namespace ColonyCouncil
             int left = DurationOf(wd) - wm.curWeatherAge;
             if (left > ForecastFromHours * GenDate.TicksPerHour || left < ForecastToHours * GenDate.TicksPerHour) return;
             st.forecastStart = start;
+            var by = BestReader(map, out float accuracy);
+            if (by == null || ChooseMethod == null) return;
+            // What comes next is rolled now, by the game's own choice, and held to; the forecast is right or not.
+            var next = ChooseMethod.Invoke(wd, null) as WeatherDef;
+            if (next == null || KindOf(next) == WeatherKind.Special) return;
+            var said = next;
+            if (!Rand.Chance(accuracy))
+            {
+                var other = map.Biome.baseWeatherCommonalities?
+                    .Where(r => r?.weather != null && Group(KindOf(r.weather)) != Group(KindOf(next)) && KindOf(r.weather) != WeatherKind.Special && Commonality(wd, r.weather) > 0f)
+                    .ToList();
+                if (!other.NullOrEmpty()) said = other.RandomElementByWeight(r => r.commonality).weather;
+            }
+            st.pin = next.defName;
+            st.said = Group(KindOf(said));
+            st.during = wm.curWeather.defName;
+            st.by = by;
+            WeatherTalk.SayBy(by, PoolFor(st.said));
+        }
+
+        /// <summary>
+        /// The colonist at home who reads the weather best (Plants 6, or 3 for an older hand; anyone with a weather station;
+        /// one the Stormglass Conclave taught first), and how often their forecast comes true; null when nobody reads it.
+        /// The season's forecast asks the same one (Weather/LandClimate.cs).
+        /// </summary>
+        internal static Pawn BestReader(Map map, out float accuracy)
+        {
+            accuracy = 0f;
             bool station = Station(map);
             Pawn by = null;
             int plants = 0;
@@ -426,26 +488,28 @@ namespace ColonyCouncil
                     age = a;
                 }
             }
-            if (by == null || ChooseMethod == null) return;
-            // What comes next is rolled now, by the game's own choice, and held to; the forecast is right or not.
-            var next = ChooseMethod.Invoke(wd, null) as WeatherDef;
-            if (next == null || KindOf(next) == WeatherKind.Special) return;
-            var said = next;
+            if (by == null) return null;
             bool taught = HappeningWorker_GlassLesson.IsTaught(by);
-            float accuracy = WeatherDynamicsMath.ForecastAccuracy(taught && !station ? Mathf.Max(0, plants - 20) : plants, age, station);
+            accuracy = WeatherDynamicsMath.ForecastAccuracy(taught && !station ? Mathf.Max(0, plants - 20) : plants, age, station);
             if (taught && !station) accuracy = PeoplesEMath.Taught(accuracy);
-            if (!Rand.Chance(accuracy))
-            {
-                var other = map.Biome.baseWeatherCommonalities?
-                    .Where(r => r?.weather != null && Group(KindOf(r.weather)) != Group(KindOf(next)) && KindOf(r.weather) != WeatherKind.Special && Commonality(wd, r.weather) > 0f)
-                    .ToList();
-                if (!other.NullOrEmpty()) said = other.RandomElementByWeight(r => r.commonality).weather;
-            }
-            st.pin = next.defName;
-            st.said = Group(KindOf(said));
-            st.during = wm.curWeather.defName;
-            st.by = by;
-            WeatherTalk.SayBy(by, PoolFor(st.said));
+            return by;
+        }
+
+        /// <summary>A forecast made is let go (the land's climate brought a weather of its own): nobody is held to it.</summary>
+        internal static void ForgetForecast(Map map)
+        {
+            var st = WeatherBook.Of(map)?.dyn;
+            if (st == null) return;
+            st.pin = null;
+            st.said = null;
+            st.by = null;
+        }
+
+        /// <summary>How long the weather now lasts from now on (ticks), for a weather brought (Weather/LandClimate.cs).</summary>
+        internal static void SetDuration(Map map, int ticks)
+        {
+            if (map?.weatherDecider == null || map.weatherManager == null) return;
+            DurationOf(map.weatherDecider) = map.weatherManager.curWeatherAge + ticks;
         }
 
         /// <summary>
@@ -684,7 +748,7 @@ namespace ColonyCouncil
         public static void Postfix(GameConditionManager __instance, ref float __result)
         {
             var map = __instance.ownerMap;
-            if (map == null || !WeatherDynamics.TemperatureOn) return;
+            if (map == null || !RimfolkPatches.On) return;
             try
             {
                 __result += WeatherDynamics.OffsetOf(map);

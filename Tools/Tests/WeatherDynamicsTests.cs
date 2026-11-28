@@ -12,7 +12,7 @@ using ColonyCouncil;
 /// </summary>
 public static class WeatherDynamicsTests
 {
-    private struct Land
+    internal struct Land
     {
         public string name;
         public BiomeWeather b;
@@ -315,7 +315,7 @@ public static class WeatherDynamicsTests
     }
 
     /// <summary>Lands like the game's (and Seasonal Weather's and Odyssey's weathers in them), their weights about the game's.</summary>
-    private static List<Land> Lands()
+    internal static List<Land> Lands()
     {
         const float Hot = 999f, Any = -999f;
         var clear = ("Clear", WeatherKind.Clear, 18f, Any, Hot, false);
@@ -343,10 +343,13 @@ public static class WeatherDynamicsTests
         };
     }
 
-    private struct SimResult
+    internal struct SimResult
     {
         public float wetShare, meanWetRun, wetSeasonShare, drySeasonShare;
         public int maxDry, maxWet, special;
+        /// <summary>Each day: rain most of it, snow for a while, and its mean temperature.</summary>
+        public bool[] wetDay, snowDay;
+        public float[] dayMean;
     }
 
     /// <summary>
@@ -354,7 +357,7 @@ public static class WeatherDynamicsTests
     /// same weather twice running, lengths of a quarter of a day to nearly three days, storms shorter), with or
     /// without Rimfolk's factors.
     /// </summary>
-    private static SimResult Simulate(Land land, bool dynamic, int seed, int years = 10)
+    internal static SimResult Simulate(Land land, bool dynamic, int seed, int years = 10, Func<int, int, (float wet, float snow, float temp)> climate = null)
     {
         var r = new System.Random(seed);
         var b = land.b;
@@ -364,6 +367,7 @@ public static class WeatherDynamicsTests
         var dryDays = new List<bool>();
         var snowy = new List<bool>();
         var quads = new List<int>();
+        var means = new List<float>();
         float yesterdayMean = 0f, todayMin = 999f, todayMax = -999f;
         int tropicalSeed = 7;
         var factors = new float[land.weathers.Length];
@@ -373,12 +377,18 @@ public static class WeatherDynamicsTests
             float season = (float)Math.Sin((day % 60) / 60.0 * Math.PI * 2 - Math.PI / 2);
             float mean = (b.coldest + b.warmest) / 2f + season * (b.warmest - b.coldest) / 2f;
             float noise = (float)(r.NextDouble() * 6 - 3);
+            // The land's climate (Weather/LandClimate.cs), when asked for: the season's lean and its push on the temperature.
+            var cl = climate?.Invoke(day / 60, quadrum) ?? (0f, 0f, 0f);
+            mean += cl.temp;
+            float dayMin = 999f, dayMax = -999f;
             todayMin = 999f;
             todayMax = -999f;
             rainHours = snowHours = 0;
             for (int h = 0; h < 24; h++)
             {
                 float temp = mean + noise + (float)Math.Sin((h - 9) / 24.0 * Math.PI * 2) * 5f;
+                dayMin = Math.Min(dayMin, temp);
+                dayMax = Math.Max(dayMax, temp);
                 todayMin = Math.Min(todayMin, temp);
                 todayMax = Math.Max(todayMax, temp);
                 if (left <= 0)
@@ -390,7 +400,8 @@ public static class WeatherDynamicsTests
                         hour = h, quadrum = quadrum, season = 1 + quadrum, temp = temp,
                         tempFall = Math.Max(0f, yesterdayMean - (todayMin + todayMax) / 2f),
                         yearWet = WeatherDynamicsMath.YearOf(3, day / 60, b).wet,
-                        eventRain = 1f, eventClear = 1f, eventStorm = 1f, eventSnow = 1f, eventFog = 1f, seed = tropicalSeed
+                        eventRain = 1f, eventClear = 1f, eventStorm = 1f, eventSnow = 1f, eventFog = 1f, seed = tropicalSeed,
+                        seasonWet = cl.wet, seasonSnow = cl.snow
                     };
                     float total = 0f;
                     var weights = new float[land.weathers.Length];
@@ -435,6 +446,7 @@ public static class WeatherDynamicsTests
             wet.Add(rainHours >= 4);
             dryDays.Add(rainHours == 0 && snowHours == 0);
             snowy.Add(snowHours >= 2);
+            means.Add((dayMin + dayMax) / 2f);
             quads.Add(quadrum);
             yesterdayMean = (todayMin + todayMax) / 2f;
         }
@@ -465,7 +477,10 @@ public static class WeatherDynamicsTests
             maxWet = maxWet,
             special = special,
             wetSeasonShare = wetSeasonDays > 0 ? wetSeasonWet / (float)wetSeasonDays : 0f,
-            drySeasonShare = drySeasonDays > 0 ? drySeasonWet / (float)drySeasonDays : 0f
+            drySeasonShare = drySeasonDays > 0 ? drySeasonWet / (float)drySeasonDays : 0f,
+            wetDay = wet.ToArray(),
+            snowDay = snowy.ToArray(),
+            dayMean = means.ToArray()
         };
     }
 

@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The land's climate (Source/ColonyCouncil/Weather/LandClimate.cs, ClimateMath.cs, ClimateDrift.cs): the settings. -->
+  <CC_Settings_ClimateStrength>The land's climate</CC_Settings_ClimateStrength>
+  <CC_Settings_ClimateStrength_Tip>Each season gets a character when it begins, from the land's climate and the year. Most are ordinary; some are wet, dry, warm or cold, and where snow falls snowy or short of snow; a few are extreme, such as a hard winter 4 to 8 °C colder than usual. A wet season rains about half again as often, and the colonist who reads the weather best says at its start what kind of season it looks like, and may be wrong. Now and then a year has its own extreme: a year without a summer, a dry year or a year of heavy rain. Very rarely a season brings weather from outside the land's own climate for a few days, with the temperature to match: snow where it never snows, a frost on warm land, a great heat on cold land. The weathers that come only by events (fertile rain, fog snow, dust, a petal storm, a double rainbow, red rain) come with the seasons. The annals keep each year's seasons and what the record shows over the years. The rain and snow ride on "Weather that changes like weather". Needs the deeper game hooks.</CC_Settings_ClimateStrength_Tip>
+  <CC_ClimateStrength_Off>Off</CC_ClimateStrength_Off>
+  <CC_ClimateStrength_Off_Tip>Every season ordinary, no extremes and no drift: the weather as before.</CC_ClimateStrength_Off_Tip>
+  <CC_ClimateStrength_Gentle>Gentle</CC_ClimateStrength_Gentle>
+  <CC_ClimateStrength_Gentle_Tip>Close to real weather: seven seasons in ten ordinary, the rest milder; a year's extreme about once in 25 years, once in a lifetime about once in 50; the drift about 1 °C a decade.</CC_ClimateStrength_Gentle_Tip>
+  <CC_ClimateStrength_Usual>As designed</CC_ClimateStrength_Usual>
+  <CC_ClimateStrength_Usual_Tip>About half the seasons ordinary, about one in ten extreme; a year's extreme about once in 12 years, once in a lifetime about once in 20; the drift 1 to 3 °C a decade.</CC_ClimateStrength_Usual_Tip>
+  <CC_ClimateStrength_Dramatic>Dramatic</CC_ClimateStrength_Dramatic>
+  <CC_ClimateStrength_Dramatic_Tip>A third of the seasons ordinary, the rest stronger and more often extreme; a year's extreme about once in 6 years, once in a lifetime about once in 8; the drift 2 to 4 °C a decade.</CC_ClimateStrength_Dramatic_Tip>
+  <CC_SetNote_ClimateStrength_Off>Every season ordinary, as before.</CC_SetNote_ClimateStrength_Off>
+  <CC_SetNote_ClimateStrength_Gentle>Seasons with a character of their own, mostly ordinary and seldom extreme.</CC_SetNote_ClimateStrength_Gentle>
+  <CC_SetNote_ClimateStrength_Usual>Wet summers, hard winters, now and then a year without a summer.</CC_SetNote_ClimateStrength_Usual>
+  <CC_SetNote_ClimateStrength_Dramatic>Stronger seasons, extremes more often.</CC_SetNote_ClimateStrength_Dramatic>
+  <CC_Settings_ClimateDrift>Climate drift</CC_Settings_ClimateDrift>
+  <CC_Settings_ClimateDrift_Tip>Over the years the land's climate drifts slowly, by 1 to 3 °C a decade as designed (less with the gentle setting, more with the dramatic), with growing seasons, snow and rain changing with it. Random picks a way for the world; or choose one. A volcanic winter cools the land for a few years and a comet sets it moving one way or the other, whatever is chosen here, and the colony's own pollution and the trees it loses make its land warmer and drier. The annals and the colony's elders say what has changed since the colony came.</CC_Settings_ClimateDrift_Tip>
+  <CC_SetNote_ClimateDrift>Which way the land's climate drifts over the years.</CC_SetNote_ClimateDrift>
+  <CC_ClimateDrift_Off>Off</CC_ClimateDrift_Off>
+  <CC_ClimateDrift_Off_Tip>The climate stays as the world made it.</CC_ClimateDrift_Off_Tip>
+  <CC_ClimateDrift_Random>Random</CC_ClimateDrift_Random>
+  <CC_ClimateDrift_Random_Tip>Warmer or colder, and drier, wetter or neither, as the world has it.</CC_ClimateDrift_Random_Tip>
+  <CC_ClimateDrift_Warmer>Warmer</CC_ClimateDrift_Warmer>
+  <CC_ClimateDrift_Warmer_Tip>Warmer year by year: longer growing seasons, later snow, less of it.</CC_ClimateDrift_Warmer_Tip>
+  <CC_ClimateDrift_Colder>Colder</CC_ClimateDrift_Colder>
+  <CC_ClimateDrift_Colder_Tip>Colder year by year: shorter growing seasons, earlier snow, more of it.</CC_ClimateDrift_Colder_Tip>
+  <CC_ClimateDrift_Drier>Drier</CC_ClimateDrift_Drier>
+  <CC_ClimateDrift_Drier_Tip>Less rain year by year.</CC_ClimateDrift_Drier_Tip>
+  <CC_ClimateDrift_Wetter>Wetter</CC_ClimateDrift_Wetter>
+  <CC_ClimateDrift_Wetter_Tip>More rain year by year.</CC_ClimateDrift_Wetter_Tip>
+  <CC_SetNote_ClimateDrift_Off>No drift.</CC_SetNote_ClimateDrift_Off>
+  <CC_SetNote_ClimateDrift_Random>The climate drifts a way of its own.</CC_SetNote_ClimateDrift_Random>
+  <CC_SetNote_ClimateDrift_Warmer>The climate grows warmer over the years.</CC_SetNote_ClimateDrift_Warmer>
+  <CC_SetNote_ClimateDrift_Colder>The climate grows colder over the years.</CC_SetNote_ClimateDrift_Colder>
+  <CC_SetNote_ClimateDrift_Drier>The climate grows drier over the years.</CC_SetNote_ClimateDrift_Drier>
+  <CC_SetNote_ClimateDrift_Wetter>The climate grows wetter over the years.</CC_SetNote_ClimateDrift_Wetter>
+
+  <!-- A season by its character; {0} is the season (summer, or Jugust where the season is permanent). -->
+  <CC_Clim_Season_Ordinary>an ordinary {0}</CC_Clim_Season_Ordinary>
+  <CC_Clim_Season_Wet>a wet {0}</CC_Clim_Season_Wet>
+  <CC_Clim_Season_WetX>a very wet {0}</CC_Clim_Season_WetX>
+  <CC_Clim_Season_Dry>a dry {0}</CC_Clim_Season_Dry>
+  <CC_Clim_Season_DryX>a very dry {0}</CC_Clim_Season_DryX>
+  <CC_Clim_Season_Warm>a warm {0}</CC_Clim_Season_Warm>
+  <CC_Clim_Season_WarmX>a hot {0}</CC_Clim_Season_WarmX>
+  <CC_Clim_Season_WarmWinter>a mild {0}</CC_Clim_Season_WarmWinter>
+  <CC_Clim_Season_WarmWinterX>a very mild {0}</CC_Clim_Season_WarmWinterX>
+  <CC_Clim_Season_Cold>a cold {0}</CC_Clim_Season_Cold>
+  <CC_Clim_Season_ColdX>a very cold {0}</CC_Clim_Season_ColdX>
+  <CC_Clim_Season_ColdWinter>a cold {0}</CC_Clim_Season_ColdWinter>
+  <CC_Clim_Season_ColdWinterX>a hard {0}</CC_Clim_Season_ColdWinterX>
+  <CC_Clim_Season_Snowy>a snowy {0}</CC_Clim_Season_Snowy>
+  <CC_Clim_Season_SnowyX>a {0} of deep snow</CC_Clim_Season_SnowyX>
+  <CC_Clim_Season_Snowless>a {0} with little snow</CC_Clim_Season_Snowless>
+  <CC_Clim_Season_SnowlessX>a {0} with almost no snow</CC_Clim_Season_SnowlessX>
+  <!-- How a season was, in the annals ("the summer was wet"). -->
+  <CC_Clim_Was_Ordinary>ordinary</CC_Clim_Was_Ordinary>
+  <CC_Clim_Was_Wet>wet</CC_Clim_Was_Wet>
+  <CC_Clim_Was_WetX>very wet</CC_Clim_Was_WetX>
+  <CC_Clim_Was_Dry>dry</CC_Clim_Was_Dry>
+  <CC_Clim_Was_DryX>very dry</CC_Clim_Was_DryX>
+  <CC_Clim_Was_Warm>warm</CC_Clim_Was_Warm>
+  <CC_Clim_Was_WarmX>hot</CC_Clim_Was_WarmX>
+  <CC_Clim_Was_WarmWinter>mild</CC_Clim_Was_WarmWinter>
+  <CC_Clim_Was_WarmWinterX>very mild</CC_Clim_Was_WarmWinterX>
+  <CC_Clim_Was_Cold>cold</CC_Clim_Was_Cold>
+  <CC_Clim_Was_ColdX>very cold</CC_Clim_Was_ColdX>
+  <CC_Clim_Was_ColdWinter>cold</CC_Clim_Was_ColdWinter>
+  <CC_Clim_Was_ColdWinterX>hard</CC_Clim_Was_ColdWinterX>
+  <CC_Clim_Was_Snowy>snowy</CC_Clim_Was_Snowy>
+  <CC_Clim_Was_SnowyX>deep in snow</CC_Clim_Was_SnowyX>
+  <CC_Clim_Was_Snowless>short of snow</CC_Clim_Was_Snowless>
+  <CC_Clim_Was_SnowlessX>almost without snow</CC_Clim_Was_SnowlessX>
+
+  <!-- The season's forecast: {0} the one who reads the weather best, {1} what kind of season ("a wet summer"). -->
+  <CC_Clim_Expects>{0} expects {1}.</CC_Clim_Expects>
+  <CC_Clim_OverviewSaid>{0} expected {1} when it began.</CC_Clim_OverviewSaid>
+
+  <!-- An extreme told, once the land shows it; {0} the season, {1} days of it so far that were so, {2} its days so far. -->
+  <CC_Clim_Told_WarmX>A hot {0} has set in: it is much warmer than usual here for the time of year.</CC_Clim_Told_WarmX>
+  <CC_Clim_Told_WarmWinterX>A very mild {0} has set in: it is much warmer than winters here usually are.</CC_Clim_Told_WarmWinterX>
+  <CC_Clim_Told_ColdX>A very cold {0} has set in: it is much colder than usual here for the time of year.</CC_Clim_Told_ColdX>
+  <CC_Clim_Told_ColdWinterX>A hard {0} has set in: it is much colder than winters here usually are.</CC_Clim_Told_ColdWinterX>
+  <CC_Clim_Told_WetX>This {0} is very wet: rain has fallen on {1} of its {2} days so far.</CC_Clim_Told_WetX>
+  <CC_Clim_Told_DryX>This {0} is very dry: nothing has fallen on {1} of its {2} days so far.</CC_Clim_Told_DryX>
+  <CC_Clim_Told_SnowyX>This {0} brings deep snow: snow has fallen on {1} of its {2} days so far.</CC_Clim_Told_SnowyX>
+  <CC_Clim_Told_SnowlessX>This {0} has brought no snow so far, though it is the time of year for it.</CC_Clim_Told_SnowlessX>
+  <CC_Clim_Told_NoSummer>This year has no real summer: the {0} is much colder than usual here.</CC_Clim_Told_NoSummer>
+  <CC_Clim_Told_Drought>This is a dry year: nothing has fallen on {1} of the {2} days of this {0} so far.</CC_Clim_Told_Drought>
+  <CC_Clim_Told_Floods>This is a year of heavy rain: rain has fallen on {1} of the {2} days of this {0} so far.</CC_Clim_Told_Floods>
+  <CC_Clim_Chron_Season>{0} set in.</CC_Clim_Chron_Season>
+  <CC_Clim_Chron_NoSummer>A year without a summer: the {0} stayed cold.</CC_Clim_Chron_NoSummer>
+  <CC_Clim_Chron_Drought>A dry year: little rain fell in the {0}.</CC_Clim_Chron_Drought>
+  <CC_Clim_Chron_Floods>A year of heavy rain: it rained on most days of the {0}.</CC_Clim_Chron_Floods>
+  <CC_Clim_YearLabel_NoSummer>a year without a summer</CC_Clim_YearLabel_NoSummer>
+  <CC_Clim_YearLabel_Drought>a dry year</CC_Clim_YearLabel_Drought>
+  <CC_Clim_YearLabel_Floods>a year of heavy rain</CC_Clim_YearLabel_Floods>
+
+  <!-- Once in a lifetime: weather from outside the land's own climate. -->
+  <CC_Clim_RareLabel_Snow>snow where it never falls</CC_Clim_RareLabel_Snow>
+  <CC_Clim_RareLabel_Frost>a frost on warm land</CC_Clim_RareLabel_Frost>
+  <CC_Clim_RareLabel_Heat>a great heat on cold land</CC_Clim_RareLabel_Heat>
+  <CC_Clim_RareLabel_Blizzard>a blizzard where none come</CC_Clim_RareLabel_Blizzard>
+  <CC_Clim_RareLabel_Dust>a dust storm where none blow</CC_Clim_RareLabel_Dust>
+  <CC_Clim_RareLabel_Deluge>heavy rain on dry land</CC_Clim_RareLabel_Deluge>
+  <CC_Clim_RareLabel_GreatStorm>a great storm off the water</CC_Clim_RareLabel_GreatStorm>
+  <CC_Clim_Told_Rare_Snow>Snow is falling, and nobody has known snow on this land before.</CC_Clim_Told_Rare_Snow>
+  <CC_Clim_Told_Rare_Frost>A hard cold has come over this warm land, far colder than it ever is here, with frost at night.</CC_Clim_Told_Rare_Frost>
+  <CC_Clim_Told_Rare_Heat>A great heat has settled over the land, far hotter than it ever is here.</CC_Clim_Told_Rare_Heat>
+  <CC_Clim_Told_Rare_Blizzard>A blizzard has come in, of a kind this land does not see.</CC_Clim_Told_Rare_Blizzard>
+  <CC_Clim_Told_Rare_Dust>A dust storm is blowing across the land, of a kind this land does not see.</CC_Clim_Told_Rare_Dust>
+  <CC_Clim_Told_Rare_Deluge>Heavy rain is pouring down on the dry land, more than it has seen in many years.</CC_Clim_Told_Rare_Deluge>
+  <CC_Clim_Told_Rare_GreatStorm>A great storm has come in off the water, with winds stronger than anyone here has known.</CC_Clim_Told_Rare_GreatStorm>
+  <CC_Clim_Chron_Rare_Snow>Snow fell on the land, which nobody there had known before.</CC_Clim_Chron_Rare_Snow>
+  <CC_Clim_Chron_Rare_Frost>A hard frost came to the warm land, colder than anyone there had known.</CC_Clim_Chron_Rare_Frost>
+  <CC_Clim_Chron_Rare_Heat>A great heat settled over the land, hotter than anyone there had known.</CC_Clim_Chron_Rare_Heat>
+  <CC_Clim_Chron_Rare_Blizzard>A blizzard came in, of a kind the land had not seen.</CC_Clim_Chron_Rare_Blizzard>
+  <CC_Clim_Chron_Rare_Dust>A dust storm blew across the land, of a kind it had not seen.</CC_Clim_Chron_Rare_Dust>
+  <CC_Clim_Chron_Rare_Deluge>Heavy rain poured down on the dry land.</CC_Clim_Chron_Rare_Deluge>
+  <CC_Clim_Chron_Rare_GreatStorm>A great storm came in off the water.</CC_Clim_Chron_Rare_GreatStorm>
+  <CC_Clim_OverviewRare>Out of the ordinary for this land now: {0}.</CC_Clim_OverviewRare>
+
+  <!-- The weathers no biome has, with the seasons. -->
+  <CC_Clim_FertileRain>Fertile rain is falling: the plants grow faster while it lasts.</CC_Clim_FertileRain>
+  <CC_Clim_Sign>Red rain fell on the colony. Some take it as a sign that a hard season is coming.</CC_Clim_Sign>
+
+  <!-- The annals: the year's climate. -->
+  <CC_Clim_Annals_NoSummer>It was a year without a summer.</CC_Clim_Annals_NoSummer>
+  <CC_Clim_Annals_Drought>It was a dry year.</CC_Clim_Annals_Drought>
+  <CC_Clim_Annals_Floods>It was a year of heavy rain.</CC_Clim_Annals_Floods>
+  <CC_Clim_Annals_SeasonWas>the {0} was {1}</CC_Clim_Annals_SeasonWas>
+  <CC_Clim_Annals_Seasons>{0}.</CC_Clim_Annals_Seasons>
+  <CC_Clim_Annals_Rare_Snow>Snow fell in the {0}, which nobody here had known before.</CC_Clim_Annals_Rare_Snow>
+  <CC_Clim_Annals_Rare_Frost>A hard frost came in the {0}, colder than anyone here had known.</CC_Clim_Annals_Rare_Frost>
+  <CC_Clim_Annals_Rare_Heat>A great heat came in the {0}, hotter than anyone here had known.</CC_Clim_Annals_Rare_Heat>
+  <CC_Clim_Annals_Rare_Blizzard>A blizzard came in the {0}, of a kind this land had not seen.</CC_Clim_Annals_Rare_Blizzard>
+  <CC_Clim_Annals_Rare_Dust>A dust storm blew in the {0}, of a kind this land had not seen.</CC_Clim_Annals_Rare_Dust>
+  <CC_Clim_Annals_Rare_Deluge>Heavy rain poured down on the dry land in the {0}.</CC_Clim_Annals_Rare_Deluge>
+  <CC_Clim_Annals_Rare_GreatStorm>A great storm came in off the water in the {0}.</CC_Clim_Annals_Rare_GreatStorm>
+  <!-- What the land's record shows since the colony came; {0} by how much. -->
+  <CC_Clim_Trend_WinterMilder>The winters are milder than when the colony came, by about {0}.</CC_Clim_Trend_WinterMilder>
+  <CC_Clim_Trend_WinterHarsher>The winters are harsher than when the colony came, by about {0}.</CC_Clim_Trend_WinterHarsher>
+  <CC_Clim_Trend_SummerHotter>The summers are hotter than when the colony came, by about {0}.</CC_Clim_Trend_SummerHotter>
+  <CC_Clim_Trend_SummerCooler>The summers are cooler than when the colony came, by about {0}.</CC_Clim_Trend_SummerCooler>
+  <CC_Clim_Trend_Wetter>It rains more often than when the colony came.</CC_Clim_Trend_Wetter>
+  <CC_Clim_Trend_Drier>It rains less often than when the colony came.</CC_Clim_Trend_Drier>
+  <CC_Clim_Trend_GrowLonger>The growing season is about {0} days longer than when the colony came.</CC_Clim_Trend_GrowLonger>
+  <CC_Clim_Trend_GrowShorter>The growing season is about {0} days shorter than when the colony came.</CC_Clim_Trend_GrowShorter>
+  <CC_Clim_Trend_SnowEarlier>The first snow comes about {0} days earlier than when the colony came.</CC_Clim_Trend_SnowEarlier>
+  <CC_Clim_Trend_SnowLater>The first snow comes about {0} days later than when the colony came.</CC_Clim_Trend_SnowLater>
+
+</LanguageData>
