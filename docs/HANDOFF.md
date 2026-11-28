@@ -992,6 +992,13 @@ most sense." So, in this order, three builds at a time:
   item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
   not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
   Integrations and JecsLite, for the review below.
+- **Done (28 November 2026, 0.334.0; the player, with a screenshot of an alpaca: "the animal images are always a bit
+  above the ui"): the large portrait stands on the pane where its tab row is empty.** The game lays the inspect pane's
+  tab buttons from its right edge leftward (72 each); an animal's four leave the row's left empty, and the portrait stood
+  on that empty row, a row's height (30) above the pane. `FaceMath.PaneScene.tabsLeft` (from
+  `InspectPaneUtility.PaneWidthFor` less the visible tabs × `FaceMath.TabW`) lets `FaceMath.Place` stand it on the pane
+  itself where it fits left of the tabs; where it doesn't (a colonist's many tabs, a narrow pane), on the tab row as
+  before. Tests: FaceEngineTests.
 - **Done (28 November 2026, 0.333.0; the player's picks B1, B3, B5 of the living land): the land comes back, sicknesses of
   the wild plants, water that rises and falls**, in a worktree, merged; `docs/design/living-land-land.md`, `Nature/Land*`
   (LandMath, LandBook, LandRegrowth, LandPasture, LandSickness, LandCouncil, LandWater, LandWet, LandPlants, LandGods,

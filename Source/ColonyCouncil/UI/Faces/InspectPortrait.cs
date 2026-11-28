@@ -126,15 +126,28 @@ namespace ColonyCouncil
                 CouncilLog.ErrorOnce("the portrait at the inspect pane: the pane's top and the gizmos", e);
             }
             var type = pane.OpenTabType;
-            bool any = false;
+            int shown = 0;
             foreach (var t in pane.CurTabs ?? Enumerable.Empty<InspectTabBase>())
             {
                 if (t == null || !t.IsVisible || t.Hidden) continue;
-                any = true;
+                shown++;
                 // The tab the pane has open, when it is one it shows for this person: the portrait gives way to it.
                 if (type != null && t.GetType() == type) s.tabOpen = true;
             }
-            s.tabs = any;
+            s.tabs = shown > 0;
+            // The game lays the tab buttons from the pane's right edge leftward, 72 each: left of them the row is empty.
+            if (shown > 0)
+            {
+                try
+                {
+                    s.tabsLeft = Mathf.Max(0f, InspectPaneUtility.PaneWidthFor(pane) - shown * FaceMath.TabW);
+                }
+                catch (Exception e)
+                {
+                    s.tabsLeft = 0f;
+                    CouncilLog.ErrorOnce("the portrait at the inspect pane: where its tab buttons begin", e);
+                }
+            }
             return s;
         }
 

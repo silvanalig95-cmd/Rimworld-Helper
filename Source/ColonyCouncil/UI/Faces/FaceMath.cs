@@ -174,6 +174,9 @@ namespace ColonyCouncil
         /// <summary>The row of the inspect pane's tab buttons above it (the game's InspectPaneUtility.TabHeight).</summary>
         public const float TabRowH = 30f;
 
+        /// <summary>A tab button's width on the inspect pane's row (the game's).</summary>
+        public const float TabW = 72f;
+
         /// <summary>The gap to the gizmos, and the room kept clear at the top of the screen (the colonist bar).</summary>
         public const float Gap = 6f, TopClear = 96f;
 
@@ -216,6 +219,12 @@ namespace ColonyCouncil
             public float paneTop;
             /// <summary>The pane has tab buttons on a row above its top.</summary>
             public bool tabs;
+            /// <summary>
+            /// Where the leftmost tab button begins on the screen (the game lays them from the pane's right edge leftward,
+            /// 72 each), so the row is empty left of it: an animal's four tabs leave room the portrait can stand in. 0 (the
+            /// default, as when it isn't known) reads as the tabs reaching the pane's left edge.
+            /// </summary>
+            public float tabsLeft;
             /// <summary>One of the pane's tabs (Bio, Gear, Health, Log...) is open.</summary>
             public bool tabOpen;
             /// <summary>The top of the gizmos right of the pane (the screen's height when none show).</summary>
@@ -244,12 +253,24 @@ namespace ColonyCouncil
             r = default;
             if (s.tabOpen) return Placed.None;
             if (!Finite(tall) || tall < 1f) tall = 1f;
-            float baseY = Math.Min(s.paneTop, s.pane.y) - (s.tabs ? TabRowH : 0f);
+            float top = Math.Min(s.paneTop, s.pane.y);
             float x = s.pane.x;
-            float foot = baseY;
             // The widest whose height still fits under the room kept clear at the top.
             float WidthFor(float room) => room <= 2f * Border ? 0f : (room - 2f * Border) / tall + 2f * Border;
+            // On the tab buttons' row where they reach under it; on the pane itself where the row is empty at its left (the
+            // player, 28 November 2026: "the animal images are always a bit above the ui", an animal's four tabs leaving
+            // the row's left empty, the picture standing a row's height above the pane).
+            float foot = top - (s.tabs ? TabRowH : 0f);
             float fit = Fit(size, Math.Min(WidthFor(foot - TopClear), s.screenW - x));
+            if (s.tabs && s.tabsLeft > x)
+            {
+                float low = Fit(size, Math.Min(WidthFor(top - TopClear), s.screenW - x));
+                if (low > 0f && x + low <= s.tabsLeft)
+                {
+                    foot = top;
+                    fit = low;
+                }
+            }
             if (fit <= 0f) return Placed.None;
             // Reaching right past the pane, over the gizmos: lift it above them.
             if (x + fit > s.pane.XMax && foot > s.gizmoTop - Gap)

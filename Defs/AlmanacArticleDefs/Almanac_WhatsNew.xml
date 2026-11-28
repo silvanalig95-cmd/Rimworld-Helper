@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.334.0</version>
+        <date>28 November 2026</date>
+        <title>The picture stands on the pane</title>
+        <points>
+          <li>Fixed: an animal's or creature's large picture stood a row's height above the inspect pane, on the empty part of the tab row; it now stands on the pane itself where the tabs leave room.</li>
+          <li>Where the tabs reach under it, as with a colonist's many tabs, it stays on the tab row as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.333.0</version>
         <date>28 November 2026</date>
         <title>The land comes back</title>

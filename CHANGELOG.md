@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The picture stands on the pane
+
+*28 November 2026, version 0.334.0*
+
+- Fixed: an animal's or creature's large picture stood a row's height above the inspect pane, on the empty part of the tab row; it now stands on the pane itself where the tabs leave room.
+- Where the tabs reach under it, as with a colonist's many tabs, it stays on the tab row as before.
+
 ## The land comes back
 
 *28 November 2026, version 0.333.0*

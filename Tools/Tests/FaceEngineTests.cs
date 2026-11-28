@@ -136,6 +136,20 @@ public static class FaceEngineTests
         C(FaceMath.Place(hud, 192f, out r) == FaceMath.Placed.OnPane && r.YMax == 780f - FaceMath.TabRowH, $"a taller pane (RimHUD): on its tab buttons ({r})");
         hud.paneTop = 880f;
         C(FaceMath.Place(hud, 192f, out r) == FaceMath.Placed.OnPane && r.YMax == 750f, "a taller pane whose tabs' top the game wasn't told: still above its window");
+        // An animal's few tab buttons leave the row empty at its left: there the portrait stands on the pane itself (the
+        // player, 28 November 2026: "the animal images are always a bit above the ui"); where they reach under it, on them.
+        var animal = Vanilla(1920f, 1080f);
+        animal.pane = new FrameRect(0f, animal.pane.y, 512f, 165f);
+        animal.tabsLeft = 512f - 4 * FaceMath.TabW;
+        C(FaceMath.Place(animal, 192f, out r) == FaceMath.Placed.OnPane && r.YMax == 880f && r.w == 192f, $"an animal's four tabs on a wide pane: on the pane itself, beside them ({r})");
+        var narrowAnimal = v;
+        narrowAnimal.tabsLeft = 432f - 4 * FaceMath.TabW;
+        C(FaceMath.Place(narrowAnimal, 192f, out r) == FaceMath.Placed.OnPane && r.YMax == 880f - FaceMath.TabRowH, $"too little room beside the tabs: on the tab row as before ({r})");
+        var small144 = narrowAnimal;
+        C(FaceMath.Place(small144, 96f, out r) == FaceMath.Placed.OnPane && r.YMax == 880f && r.w == 96f, $"a small portrait fits beside four tabs on the vanilla pane: on the pane ({r})");
+        var unknown = v;
+        unknown.tabsLeft = 0f;
+        C(FaceMath.Place(unknown, 192f, out r) == FaceMath.Placed.OnPane && r.YMax == 880f - FaceMath.TabRowH, "where the tabs begin isn't known: on the tab row, as before");
         var small = Vanilla(960f, 540f);
         C(FaceMath.Place(small, 360f, out r) == FaceMath.Placed.OnPane && r.y >= FaceMath.TopClear && r.w == 208f, $"interface scale 2 on 1080p: as large as fits below the colonist bar ({r})");
         // On every screen, with every tab and the gizmos as they come: never over the pane, its tab buttons, the open tab
