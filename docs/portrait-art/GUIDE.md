@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 27 November 2026 (0.306.1: no Pokémon in missing.csv; 0.306.0: a new picture that fits one of your people nearly exactly becomes theirs by itself; 0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 28 November 2026 (the catalogue has looks for the other mods' animals and creatures too, waves 3 and 4, so Rimfolk Studio can plan their pictures; 0.306.1: no Pokémon in missing.csv; 0.306.0: a new picture that fits one of your people nearly exactly becomes theirs by itself; 0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -126,8 +126,10 @@ kinds, baseliners about half:
 - `creatures-01` to `04`: animals, insects, mechanoids, Anomaly's entities, dryads and drones, 594 rows for 208 kinds:
   first every creature your save holds (three adults each), then the base game's and the DLCs' and the insects of
   Vanilla Factions Expanded - Insectoids 2 (two each); a male and a female where they look different (deer, elk,
-  moose, peafowl, chickens), and a baby for each animal. The whole creature, square, cut out. The other kinds of your
-  mods (about 1,500, most of them PokeWorld's) wait for their looks to be written (`catalogue/creatures.csv`). No
+  moose, peafowl, chickens), and a baby for each animal. The whole creature, square, cut out. Since 28 November 2026
+  the catalogue (`catalogue/creatures.csv`) also has looks for the other mods' animals and creatures (wave 3, 354 of
+  360) and the hybrids, summons and other mods' mechanoids and drones (wave 4, 263 of 270), so Rimfolk Studio can plan
+  their lists; PokeWorld's have none. No
   Pokémon: you asked for them to be left out (24 November 2026), so the planner leaves the
   catalogue's group pokemon out by default and takes any of their rows out of the lists, every other row as it was;
   the Studio's planner can plan them again. Pictures of Pokémon already painted have no row any more.
