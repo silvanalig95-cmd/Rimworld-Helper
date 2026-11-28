@@ -42,8 +42,8 @@
           <li>At dusk {COUNT} pilgrims of {FACTION} came up the road and stopped at the gate, footsore and grey with dust. {X_nameDef}, the eldest, asks a night's shelter for the band. They are walking to the shrine at {PLACE} and will go on at first light.</li>
           <li>[cold] {COUNT} pilgrims of {FACTION} are standing at the gate in the cold, capes pulled tight, as the light goes. Their eldest, {X_nameDef}, asks whether they might sleep the night somewhere out of the wind before they go on to {PLACE}.</li>
           <li>[rain] {COUNT} pilgrims of {FACTION} came in out of the rain at dusk, wet through. {X_nameDef}, who leads them, asks for a dry corner for the night and nothing more. They will be on the road to {PLACE} at first light.</li>
-          <li>[lowtech] A band of {COUNT} pilgrims of {FACTION} is at the gate with their staffs and shell badges, as the sun goes down. {X_nameDef}, their eldest, asks the colony's leave to sleep the night under its roof, as the fellowship asks at any door on the way to {PLACE}.</li>
-          <li>[!lowtech] {COUNT} pilgrims of {FACTION} walked up to the gate as the lamps came on, carrying everything they own in their packs. {X_nameDef}, their eldest, asks for a night's shelter on the way to the shrine at {PLACE}.</li>
+          <li>[age0|age1] A band of {COUNT} pilgrims of {FACTION} is at the gate with their staffs and shell badges, as the sun goes down. {X_nameDef}, their eldest, asks the colony's leave to sleep the night under its roof, as the fellowship asks at any door on the way to {PLACE}.</li>
+          <li>[age2|age3] {COUNT} pilgrims of {FACTION} walked up to the gate as the lamps came on, carrying everything they own in their packs. {X_nameDef}, their eldest, asks for a night's shelter on the way to the shrine at {PLACE}.</li>
           <li>[their:grateful] {COUNT} pilgrims of {FACTION} came to the gate at dusk on purpose, because the fellowship speaks of the colony as a place that takes travelers in. {X_nameDef}, the eldest, asks for a night's shelter before they go on to {PLACE}.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -120,9 +120,12 @@
           <li>A copy for the archive</li>
         </titles>
         <texts>
-          <li>[tribal] {X_nameDef}, a scholar of {FACTION}, has walked a long way with ink, a reed pen and a roll of blank pages. The society writes down the stories of every people it can find, and asks to sit with the colony today and write down its stories, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
-          <li>[medieval] {X_nameDef}, a copyist of {FACTION}, is at the gate with a writing case and a satchel of blank paper. The society keeps a copy of every town's records in its archive at {PLACE}, and asks leave to copy the colony's today, with {A_nameDef} to explain them.\n\nThe society would leave a {THING} from the archive in return.</li>
-          <li>[industrial|spacer] {X_nameDef}, a fellow of {FACTION}, has come with a case of paper and a camera for documents. The society keeps a copy of the records of every settlement in the region at its archive at {PLACE}, and asks to spend the day copying the colony's chronicle, with {A_nameDef} to go through it.\n\nIn return the society would leave the colony a {THING} from the archive.</li>
+          <li>[tribal] {X_nameDef}, a scholar of {FACTION}, has walked a long way to the colony. The society writes down the stories of every people it can find, and asks to sit with the colony today and write down its stories, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
+          <li>[tribal,age0] {X_nameDef}, a scholar of {FACTION}, has walked a long way with sheets of bark and a pot of soot ink. The society writes down the stories of every people it can find, and asks to sit with the colony today and write down its stories, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
+          <li>[tribal,age1] {X_nameDef}, a scholar of {FACTION}, has walked a long way with ink, a reed pen and a roll of blank pages. The society writes down the stories of every people it can find, and asks to sit with the colony today and write down its stories, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
+          <li>[tribal,age2|age3] {X_nameDef}, a scholar of {FACTION}, has come a long way with a case of notebooks and a sound recorder. The society keeps the stories of every people it can find, and asks to sit with the colony today and take down its stories, with {A_nameDef} to tell them.\n\nA {THING} from the archive at {PLACE} would be left in return.</li>
+          <li>[!tribal,age0|age1] {X_nameDef}, a copyist of {FACTION}, is at the gate with a writing case and a satchel of blank paper. The society keeps a copy of every town's records in its archive at {PLACE}, and asks leave to copy the colony's today, with {A_nameDef} to explain them.\n\nThe society would leave a {THING} from the archive in return.</li>
+          <li>[!tribal,age2|age3] {X_nameDef}, a fellow of {FACTION}, has come with a case of paper and a camera for documents. The society keeps a copy of the records of every settlement in the region at its archive at {PLACE}, and asks to spend the day copying the colony's chronicle, with {A_nameDef} to go through it.\n\nIn return the society would leave the colony a {THING} from the archive.</li>
           <li>[their:grateful] {FACTION} think well of the colony, and {X_nameDef}, one of their copyists, has come to ask a favour of it: to copy the colony's records for the archive at {PLACE}, and leave a {THING} in thanks.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -197,6 +200,8 @@
         <texts>
           <li>{X_nameDef}, a boat-trader of {FACTION}, has come up from the river with a basket of {THING} on {X_possessive} back, caught at dawn below the landing at {PLACE}: {COUNT} of them, still cold from the water. The river folk would take a silver apiece, or food from the colony's stores for them.</li>
           <li>[winter] {X_nameDef} of {FACTION} has walked up from the river with {COUNT} {THING} taken through the ice at {PLACE}, packed in snow in a basket. A silver apiece, {X_nameDef} says, or food from the stores, since the winter is long.</li>
+          <li>[age0] {X_nameDef}, a boat-trader of {FACTION}, has paddled a dugout up to the colony's bank with {COUNT} {THING} strung on a cord, caught at dawn below the landing at {PLACE}. The river folk would take a silver apiece, or food from the colony's stores for them.</li>
+          <li>[age2] {X_nameDef}, a boat-trader of {FACTION}, has come up from the river with {COUNT} {THING} packed in ice in a tin box, caught that morning below the landing at {PLACE}. A silver apiece, {X_nameDef} says, or food from the colony's stores.</li>
           <li>[their:grateful] The river folk of {FACTION} remember the colony kindly, and {X_nameDef} has brought it the first look at the catch: {COUNT} {THING}, fresh from the water at {PLACE}, for a silver apiece or a share of the stores.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -259,6 +264,8 @@
           <li>[industrial] A call came over the radio from a lander of {FACTION}, passing over on its way to the market at {PLACE}. The enclave's factor asks leave to come down by the colony's gate with goods and {COUNT} marshals, and trade there, if the colony has a mind to.</li>
           <li>[spacer] {FACTION}'s factor hailed the colony over the comms: their lander is passing overhead with a hold full of goods for the market at {PLACE}, and could come down by the gate with the factor and {COUNT} marshals to trade there.</li>
           <li>[beacon] The colony's trade beacon has picked up a lander of {FACTION} on its way to {PLACE}. The enclave's factor asks leave to come down beside it with goods and {COUNT} marshals, and trade at the gate.</li>
+          <li>[age2] A call came from a lander of {FACTION}, an old one patched many times since the enclave fell back, passing over on its way to the market at {PLACE}. The enclave's factor asks leave to come down by drop pod by the colony's gate with goods and {COUNT} marshals, and trade there.</li>
+          <li>[age3] A lander of {FACTION} is passing over on its way to the market at {PLACE}, and its factor has called down to ask leave to come down by drop pod by the colony's gate with goods and {COUNT} marshals, and trade there.</li>
           <li>[their:grateful] {FACTION} count the colony among their good customers, and their factor has called down from a lander passing over: there are goods aboard the colony might like, and the factor would come down by the gate with {COUNT} marshals to trade.</li>
         </texts>
         <defaultOption>1</defaultOption>

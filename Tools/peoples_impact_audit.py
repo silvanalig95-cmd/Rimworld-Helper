@@ -22,7 +22,10 @@ It reads:
              that falls, a class of its own) or that it is meant for life (a mark, a token).
   magic      the peoples' casters (Peoples/Magic): the spells they cast for the colony in peace, and those kept out of their hands.
 
-Usage: python3 Tools/peoples_impact_audit.py [--print events|peoples|thin|flavour|promises|words|doors|lookups|hediffs|magic]
+  ages       the events not told in their people's own age: checked and left (LEFT, with the reason), or in the colony's age
+             only (docs/content-round-7-peoples-ages.md).
+
+Usage: python3 Tools/peoples_impact_audit.py [--print events|peoples|thin|flavour|promises|words|doors|lookups|hediffs|magic|ages]
                                                [--write] [--root DIR]
   (no flags: the counts; --write rewrites docs/review-peoples.md's measured part between its markers; --root measures another
   copy, an older commit's Source and Defs, for the counts before)
@@ -89,6 +92,24 @@ HAND = {"Rimfolk_Evt_OrderHealer": ["healers"], "Rimfolk_Evt_LeagueOutrider": ["
         "Rimfolk_Evt_RiverCatch": ["fishers"], "Rimfolk_Evt_Disputation": ["scholars"], "Rimfolk_Evt_LongWalk": ["pilgrims"],
         "Rimfolk_Evt_RiverNets": ["fishers"], "Rimfolk_Evt_ArtHandedOn": ["any"]}
 
+# The older events checked and left in the colony's age, because they read the same in every age of their people
+# (docs/content-round-7-peoples-ages.md, "Checked and left"): nothing in their words or their goods belongs to one age.
+LEFT = {
+    "Rimfolk_Evt_TamerStray": "a ranger leads the colony's lost animal home on a lead",
+    "Rimfolk_Evt_WheelWreck": "runners strip a wrecked machine with what they carry; the [lowtech] text is the colony's own word for it",
+    "Rimfolk_Evt_GuildCollects": "the journeyman comes back for the piece the colony made and pays by its quality",
+    "Rimfolk_Evt_UnionStrike": "a strike at the pits needs food or a fair talker in any age",
+    "Rimfolk_Evt_FleetSleeper": "a sleeper from the Fleet's caskets, which every Fleet keeps from its founding, asks for shelter",
+    "Rimfolk_Evt_HelixBatch": "the Works' own vat-grown, sick with a gene fault, ask for the colony's doctor or medicine",
+    "Rimfolk_Evt_LatticeRepair": "a mech-tender mends the colony's mechs with a roll of tools",
+    "Rimfolk_Evt_LatticeLostMech": "one of the Lattice's mechs, its link lost, wanders onto the land",
+    "Rimfolk_Evt_LatticeParts": "the Lattice buys every subcore and chip in every age, as it keeps minds",
+    "Rimfolk_Evt_ChoirListening": "the listeners sit in the colony and listen",
+    "Rimfolk_Evt_ChoirArt": "the Spire's object for the colony's art: the Spire's, not of the Choir's age",
+    "Rimfolk_Evt_VaultCraft": "a technician asks to learn a craft the vault lost",
+    "Rimfolk_Evt_VaultChild": "a vault-born child sees the sky and asks to stay",
+}
+
 # A placeholder, and the context's field that fills it (HappeningContext.AddArgs, DilemmaContext's args).
 FIELDS = {
     "PLACE": r"placeName", "TALE": r"tale", "BEAST": r"beast", "DEAD": r"dead", "ENEMY": r"enemy", "RELATION": r"relation",
@@ -120,8 +141,11 @@ class Event:
         self.answers = answers
         self.unfilled = unfilled
         self.refs = refs
-        # Told in their people's own age: a text tagged [age0] to [age3] (PeopleEvents.AgeTags), not only the colony's ([lowtech]).
+        # Told in their people's own age: a text tagged [age0] to [age3] (PeopleEvents.AgeTags), not only the colony's ([lowtech]),
+        # or what they bring, ask or pay is of their age by their worker's own code (Peoples/PplAges.cs).
         self.own_age = False
+        # Checked and left in the colony's age: it reads the same in every age of its people (LEFT).
+        self.left = defname in LEFT
 
     @property
     def thin(self):
@@ -250,7 +274,7 @@ def measure_events():
                 drawn = True
             refs = sorted(set(re.findall(r"\{([A-Z]+)", " ".join(words_of_ext(ext)))))
             ev = Event(defname, rel, worker, drawn, callings_of(defname, ext, own, whole), ages_of(ext), answers, unfilled_of(ext, worker, own, whole), refs)
-            ev.own_age = any(re.match(r"^\[[^\]]*\bage[0-3]", li.text or "") for li in ext.findall("texts/li"))
+            ev.own_age = any(re.match(r"^\[[^\]]*\bage[0-3]", li.text or "") for li in ext.findall("texts/li")) or "PplAges" in own
             events.append(ev)
     return events
 
@@ -389,8 +413,8 @@ def counts(events, doors, lookups, hediffs):
     L.append("| Words that promise more than the answer's effects (to read by hand) | %d |" % len(promises))
     L.append("| Events with a placeholder no code of theirs fills | %d |" % sum(1 for e in events if e.unfilled))
     L.append("| Events whose people the code doesn't name | %d |" % sum(1 for e in events if not e.callings))
-    L.append("| Events told in their people's own age ([age0] to [age3]); in the colony's age only | %d; %d |" % (
-        sum(1 for e in events if e.own_age), sum(1 for e in events if not e.own_age)))
+    L.append("| Events told in their people's own age ([age0] to [age3], or their goods by it); checked and left, the same in every age; in the colony's age only | %d; %d; %d |" % (
+        sum(1 for e in events if e.own_age), sum(1 for e in events if not e.own_age and e.left), sum(1 for e in events if not e.own_age and not e.left)))
     L.append("| The doors that send someone to work and may send the colony's own, refusing one held | %d of %d |" % (sum(1 for d in held if d["guard"]), len(held)))
     L.append("| Defs looked up by name without SilentFail | %d |" % len(lookups))
     L.append("| Hediffs of Rimfolk's own the peoples give, nothing ending them | %d of %d |" % (sum(1 for h in hediffs if h[2] == "nothing ends it"), len(hediffs)))
@@ -537,6 +561,10 @@ def main():
             for e in events:
                 if e.unfilled:
                     print(e.defname, e.worker, e.unfilled)
+        elif what == "ages":
+            for e in sorted(events, key=lambda e: (e.path, e.defname)):
+                if not e.own_age:
+                    print("%-34s %-14s %s" % (e.defname, ",".join(e.callings) or "?", ("left: " + LEFT[e.defname]) if e.left else "in the colony's age only"))
         elif what == "doors":
             for d in doors:
                 print("%s %s:%d %s %s %s" % ("guarded  " if d["guard"] else "unguarded", d["file"], d["line"], d["method"], d["who"], ("door, theirs only" if d["theirs"] else "door") if d["door"] else ""))

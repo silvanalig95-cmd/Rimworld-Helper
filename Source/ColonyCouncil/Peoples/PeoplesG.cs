@@ -299,6 +299,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "archite") tags.Add("archite");
         }
 
@@ -424,6 +425,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (PlayCarry.Have(ctx.map, "Genepack", null) > 0) tags.Add("genepack");
         }
 
@@ -473,15 +475,23 @@ namespace ColonyCouncil
     /// <summary>
     /// A vat-keeper of the Helix Works comes with a case of the Works' medicine and drugs (the Works' trade without Biotech
     /// too): medicine, a little glitterworld medicine and penoxycyline ({TALE}) for {COUNT} silver, carried out to them and
-    /// the case set down at the gate. Or the colony's doctor {A} looks through it with them and learns.
+    /// the case set down at the gate. Or the colony's doctor {A} looks through it with them and learns. The case is of the
+    /// Works' age (PplAgesMath.CaseTier): glitterworld medicine only from Works of the spacer age, and from Works fallen back
+    /// to the medieval age herbal medicine of about the same worth, their old knowledge of plants, and no drugs.
     /// </summary>
     public class HappeningWorker_HelixCase : HappeningWorker_Visitors
     {
-        public static List<(ThingDef def, int count)> Case(Map map)
+        public static List<(ThingDef def, int count)> Case(Map map, Faction works = null)
         {
             float wf = LivingEvents.WealthFactor(map);
+            int tier = works == null ? PplAgesMath.Spacer : PplAgesMath.CaseTier(PplAges.Of(works));
+            if (tier <= PplAgesMath.Medieval)
+                return new List<(ThingDef, int)>
+                {
+                    (ThingDefOf.MedicineHerbal, PplAgesMath.HerbalFor(PeoplesGMath.CaseMedicine(wf), ThingDefOf.MedicineIndustrial.BaseMarketValue, ThingDefOf.MedicineHerbal.BaseMarketValue))
+                };
             var list = new List<(ThingDef, int)> { (ThingDefOf.MedicineIndustrial, PeoplesGMath.CaseMedicine(wf)) };
-            var ultra = DefDatabase<ThingDef>.GetNamedSilentFail("MedicineUltratech");
+            var ultra = tier >= PplAgesMath.Spacer ? DefDatabase<ThingDef>.GetNamedSilentFail("MedicineUltratech") : null;
             if (ultra != null) list.Add((ultra, PeoplesGMath.CaseUltratech(wf)));
             var peno = DefDatabase<ThingDef>.GetNamedSilentFail("Penoxycyline");
             if (peno != null) list.Add((peno, PeoplesGMath.CasePenoxycyline(wf)));
@@ -494,7 +504,7 @@ namespace ColonyCouncil
         {
             ctx.faction = PeoplesD.Friendly(PeoplesMath.Editors);
             if (ctx.faction == null) return false;
-            var crate = Case(ctx.map);
+            var crate = Case(ctx.map, ctx.faction);
             ctx.note = HappeningWorker_UnionGoods.Write(crate);
             ctx.count = PeoplesGMath.CasePrice(crate.Sum(c => c.def.BaseMarketValue * c.count));
             ctx.tale = TextUtil.JoinAnd(crate.Select(c => Couriers.Amount(c.count, null, c.def)).ToList());
@@ -511,6 +521,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (!ModsConfig.BiotechActive) tags.Add("nogenes");
         }
 
@@ -590,6 +601,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.group.Count == 1) tags.Add("one");
         }
 
@@ -691,6 +703,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.variant == 1) tags.Add("one");
             if (PlayCarry.Have(ctx.map, "SubcoreBasic", null) > 0) tags.Add("subcore");
         }
@@ -808,6 +821,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             tags.Add(LatticeLost.Keeper(ctx.map, ctx.stranger) != null ? "mechanitor" : "nomechanitor");
         }
 
@@ -921,6 +935,12 @@ namespace ColonyCouncil
             if (!byDefault) PeoplesG.Say(ctx.stranger, Ext, ctx, option <= 1 ? "parts" : "thanks");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
+        }
     }
 
     /// <summary>The subcores and chips carried out to the part-trader (Couriers.TakeFor), the silver paid at the gate (the worker's Resolved).</summary>
@@ -994,14 +1014,18 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_LatticeTurret : HappeningWorker_Visitors
     {
-        protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            PeoplesD.Friendly(PeoplesMath.Mechanitors) != null && (int)Ages.Ours >= 2 && LatticeTurret.Def != null && LatticeTurret.Site(map).IsValid && Colonists(map).Count > 0;
+        // A turret only from a Lattice of the industrial age or later: one fallen back to the medieval age can't make one (PplAgesMath.Turret).
+        protected override bool CanHappen(Map map, HappeningExtension ext)
+        {
+            var f = PeoplesD.Friendly(PeoplesMath.Mechanitors);
+            return f != null && PplAgesMath.Turret(PplAges.Of(f)) && (int)Ages.Ours >= 2 && LatticeTurret.Def != null && LatticeTurret.Site(map).IsValid && Colonists(map).Count > 0;
+        }
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             ctx.faction = PeoplesD.Friendly(PeoplesMath.Mechanitors);
             var def = LatticeTurret.Def;
-            if (ctx.faction == null || def == null) return false;
+            if (ctx.faction == null || def == null || !PplAgesMath.Turret(PplAges.Of(ctx.faction))) return false;
             ctx.spot = LatticeTurret.Site(ctx.map);
             if (!ctx.spot.IsValid) return false;
             ctx.thing = def;
@@ -1018,6 +1042,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (!ModsConfig.BiotechActive) tags.Add("nomechs");
         }
 

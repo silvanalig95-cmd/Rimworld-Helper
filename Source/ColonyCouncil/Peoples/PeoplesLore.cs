@@ -119,6 +119,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.count > 1) tags.Add("many");
             var fever = Fever(ctx.a);
             if (fever?.def != null) tags.Add("fever:" + fever.def.defName);
@@ -164,6 +165,12 @@ namespace ColonyCouncil
             string line = VarietyUtil.Line(Ext?.lines, ctx, new[] { "walk" });
             if (x != null && x.Spawned && !x.Dead && !line.NullOrEmpty()) Speech.Say(x, line);
             return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 
@@ -215,6 +222,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             base.AddTags(ctx, tags);
             if (ctx.thing != null && ctx.thing != ThingDefOf.Cloth) tags.Add("fish");
         }
@@ -271,25 +279,30 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.map != null && ctx.map.listerBuildings.ColonistsHaveBuildingWithPowerOn(ThingDefOf.OrbitalTradeBeacon)) tags.Add("beacon");
             if (ctx.stranger != null) tags.Add("runner");
         }
     }
 
     /// <summary>
-    /// The enclave's salvage comes down by drop pod by the colony's trade drop spot: what the colony's age can use, worth
-    /// two and a half times the price paid ({COUNT}).
+    /// The enclave's salvage comes down by drop pod by the colony's trade drop spot: what the colony's age can use, and never
+    /// past the enclave's own (PplAgesMath.GoodsAge: no spacer components from an enclave fallen to the industrial age),
+    /// worth two and a half times the price paid ({COUNT}).
     /// </summary>
     public class DilemmaEffect_EnclaveSalvage : DilemmaEffect
     {
         public override bool ChanceEach => false;
 
-        /// <summary>The salvage of this price, as things the game has, by the colony's age.</summary>
-        public static List<Thing> Make(int price)
+        /// <summary>The age of the goods: the colony's, within the enclave's own.</summary>
+        private static int GoodsAge(Faction f) => f == null ? (int)Ages.Ours : PplAgesMath.GoodsAge((int)Ages.Ours, PplAges.Of(f));
+
+        /// <summary>The salvage of this price, as things the game has, by the colony's age within the enclave's.</summary>
+        public static List<Thing> Make(int price, Faction enclave = null)
         {
             float worth = price / PeoplesLoreMath.SalvagePriceShare;
             var things = new List<Thing>();
-            foreach (var (name, share) in PeoplesLoreMath.SalvageGoods((int)Ages.Ours))
+            foreach (var (name, share) in PeoplesLoreMath.SalvageGoods(GoodsAge(enclave)))
             {
                 var def = DefDatabase<ThingDef>.GetNamedSilentFail(name);
                 if (def == null || def.MadeFromStuff) continue;
@@ -316,7 +329,7 @@ namespace ColonyCouncil
             if (ctx?.map == null || ctx.count <= 0) return;
             sheet.Play("CC_PeoplesLore_Impact_Salvage".Translate(ctx.faction?.Name ?? "?").Resolve(), "CC_PeoplesLore_Impact_SalvageBrief".Translate().Resolve());
             float worth = ctx.count / PeoplesLoreMath.SalvagePriceShare;
-            foreach (var (name, share) in PeoplesLoreMath.SalvageGoods((int)Ages.Ours))
+            foreach (var (name, share) in PeoplesLoreMath.SalvageGoods(GoodsAge(ctx.faction)))
             {
                 var def = DefDatabase<ThingDef>.GetNamedSilentFail(name);
                 if (def == null || def.MadeFromStuff) continue;
@@ -331,7 +344,7 @@ namespace ColonyCouncil
             if (map == null || ctx.faction == null || ctx.count <= 0) return;
             try
             {
-                var things = Make(ctx.count);
+                var things = Make(ctx.count, ctx.faction);
                 if (things.Count == 0) return;
                 var spot = DropCellFinder.TradeDropSpot(map);
                 DropPodUtility.DropThingsNear(spot, map, things, 110, false, false, false, false);

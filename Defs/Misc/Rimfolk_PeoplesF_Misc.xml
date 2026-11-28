@@ -8,7 +8,7 @@
   <JobDef>
     <defName>Rimfolk_PeoplesF_RaiseMast</defName>
     <driverClass>ColonyCouncil.JobDriver_PeoplesF</driverClass>
-    <reportString>raising the Line's relay mast.</reportString>
+    <reportString>raising the Line's mast.</reportString>
     <casualInterruptible>false</casualInterruptible>
   </JobDef>
 
@@ -85,6 +85,47 @@
       <li Class="CompProperties_Glower">
         <glowRadius>3</glowRadius>
         <glowColor>(217,40,32,0)</glowColor>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- The flag tower a Signal Line of the tribal or medieval age raises instead (Rimfolk_Evt_LineMast; Peoples/PplAges.cs,
+       docs/content-round-7-peoples-ages.md): the round-7 crew's signal tower to look at, and the mast's own working. While it
+       works (above half its hit points, the Line at peace) the colony's letters go down the line by flag and lamp in half the
+       days, and the watchers pass a warning along when armed men are on the road. A storm wears it as it wears a mast. -->
+  <ThingDef ParentName="BuildingBase">
+    <defName>Rimfolk_PplR8_LineTower</defName>
+    <label>flag tower</label>
+    <description>A wooden tower of the Signal Line, with a platform, a lamp for the night and two signal flags on arms. A watcher reads the next tower's flags by day and its lamp by night and passes the colony's letters on the same way, so they reach their readers in half the time, and the watchers down the line pass a warning along when armed men are on the road toward the colony. A thunderstorm's wind and wet wear it; under half its strength it stops working until it is mended.</description>
+    <thingClass>Building</thingClass>
+    <tickerType>Rare</tickerType>
+    <graphicData>
+      <texPath>ColonyCouncil/Things/SignalTower</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <drawSize>(1.6,3.2)</drawSize>
+      <drawOffset>(0,0,1.0)</drawOffset>
+    </graphicData>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>Impassable</passability>
+    <fillPercent>0.2</fillPercent>
+    <rotatable>false</rotatable>
+    <minifiedDef>MinifiedThing</minifiedDef>
+    <thingCategories>
+      <li>BuildingsMisc</li>
+    </thingCategories>
+    <statBases>
+      <MaxHitPoints>220</MaxHitPoints>
+      <Mass>30</Mass>
+      <MarketValue>420</MarketValue>
+      <Flammability>0.5</Flammability>
+      <Beauty>1</Beauty>
+    </statBases>
+    <tradeability>None</tradeability>
+    <comps>
+      <li Class="ColonyCouncil.CompProperties_RelayMast" />
+      <li Class="CompProperties_Glower">
+        <glowRadius>3</glowRadius>
+        <glowColor>(240,190,90,0)</glowColor>
       </li>
     </comps>
   </ThingDef>

@@ -46,8 +46,9 @@
           <li>[nemesis] {X_nameDef} and the Wardens with {X_objective} have come to the gate because {BEAST} is on the colony's land again. {X_nameDef} says the Wardens keep a page in their book for every animal that has hurt someone, and this one has never been killed. They would hunt it now, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
           <li>[legend] Wardens of {FACTION} came to the gate as soon as they heard {BEAST} was on the colony's land. It is famous across the region, and the Wardens have been trying to hunt it for years. {X_nameDef} asks permission to hunt it here, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
           <li>[manhunter] {X_nameDef} and the Wardens with {X_objective} have hurried up the road, because {BEAST} is loose on the colony's land and attacking people. They would go after it at once, alone or with the colony's best shot, and want nothing but its hide.</li>
-          <li>[lowtech] {X_nameDef}, a Warden of {FACTION} with a boar-spear over one shoulder, has come to the gate with the others behind {X_objective}. {X_nameDef} says {BEAST} is on the colony's land, and the Wardens would like to hunt it, with the colony's best hunter if the colony likes, for its hide.</li>
-          <li>[!lowtech] {X_nameDef} of {FACTION} has come to the gate with a crossbow, a book under one arm and the others behind. They track the great beasts of the region from road to road, and {BEAST} is on the colony's land. They would hunt it, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
+          <li>[age0] {X_nameDef}, a Warden of {FACTION} with a boar-spear over one shoulder, has come to the gate with the others behind {X_objective}. {X_nameDef} says {BEAST} is on the colony's land, and the Wardens would like to hunt it, with the colony's best hunter if the colony likes, for its hide.</li>
+          <li>[age1] {X_nameDef} of {FACTION} has come to the gate with a crossbow, a book under one arm and the others behind. They track the great beasts of the region from road to road, and {BEAST} is on the colony's land. They would hunt it, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
+          <li>[age2|age3] {X_nameDef} of {FACTION} has come to the gate with the others behind {X_objective}, their hounds on long leads and their book in an oilcloth case. They track the great beasts of the region from road to road, and {BEAST} is on the colony's land. They would hunt it, with the colony's best shot if the colony likes, for its hide. The meat would be the colony's.</li>
           <li>[their:grateful] The Wardens remember the colony kindly, and {X_nameDef} has come to tell it that {BEAST} is on its land. They would hunt it with the colony's best shot and take only its hide.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -116,8 +117,8 @@
         </titles>
         <texts>
           <li>{X_nameDef}, the pelt-buyer of {FACTION}'s lodge at {PLACE}, has come to the gate with a tracker and an empty pack beast, having heard the colony has hides to sell. The Wardens pay a fixed rate for good pelts, a little over their worth: {COUNT} silver for {TALE}.\n\nIf the colony likes, the tracker with {X_objective} would teach {A_nameDef} to follow a trail while they deal.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has walked in from the lodge at {PLACE} with a tracker to buy pelts. {X_nameDef} offers {COUNT} silver for {TALE}, a little over their worth, and the tracker would show {A_nameDef} how to follow an animal by the signs it leaves.</li>
-          <li>[industrial|spacer] {X_nameDef}, a pelt-buyer of {FACTION}, is at the gate with a tracker and a tally book. The lodge at {PLACE} needs hides, and {X_nameDef} offers {COUNT} silver for the colony's {TALE}, the Wardens' usual rate. The tracker would spend a few hours teaching {A_nameDef} tracking, if the colony likes.</li>
+          <li>[age0|age1] {X_nameDef} of {FACTION} has walked in from the lodge at {PLACE} with a tracker to buy pelts. {X_nameDef} offers {COUNT} silver for {TALE}, a little over their worth, and the tracker would show {A_nameDef} how to follow an animal by the signs it leaves.</li>
+          <li>[age2|age3] {X_nameDef}, a pelt-buyer of {FACTION}, is at the gate with a tracker and a tally book. The lodge at {PLACE} needs hides, and {X_nameDef} offers {COUNT} silver for the colony's {TALE}, the Wardens' usual rate. The tracker would spend a few hours teaching {A_nameDef} tracking, if the colony likes.</li>
           <li>[their:grateful] The Wardens think well of the colony, and their pelt-buyer {X_nameDef} has come straight to its gate. {X_nameDef} offers {COUNT} silver for {TALE}, the Wardens' usual rate, and a tracking lesson for {A_nameDef} as a favour between friends.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -182,7 +183,8 @@
         <texts>
           <li>{X_nameDef}, a Warden of {FACTION}, has come to the gate with a lantern and a red cord. The lodge at {PLACE} heard that {BEAST} killed {DEAD}. When an animal kills someone, the Wardens light a lantern at the nearest crossroads, as the first Warden did for his brother. {X_nameDef} would like to light one at the colony's gate tonight and keep watch beside it through the night, with anyone who wants to join.</li>
           <li>[ended] {X_nameDef}, a Warden of {FACTION}, has come to the gate with a lantern for {DEAD}, who was killed by {BEAST}. {X_nameDef} has heard that the animal is already dead, but the Wardens light a lantern for everyone an animal kills, and write the end of the story in their book. {X_nameDef} would light it at the colony's gate and keep watch beside it the first night.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has walked from the lodge at {PLACE} with a lantern for {DEAD}, who was killed by {BEAST}. {X_nameDef} says the Wardens light such a lantern at a crossroads so that everyone on the road knows someone was killed there.</li>
+          <li>[age0|age1] {X_nameDef} of {FACTION} has walked from the lodge at {PLACE} with a lantern for {DEAD}, who was killed by {BEAST}. {X_nameDef} says the Wardens light such a lantern at a crossroads so that everyone on the road knows someone was killed there.</li>
+          <li>[age2|age3] {X_nameDef}, a Warden of {FACTION}, has come up the road from the lodge at {PLACE} with an oil lantern in a tin case and a red cord. {BEAST} killed {DEAD}, and where an animal kills someone the Wardens light a lantern by the road so that everyone on it knows. {X_nameDef} would light one at the colony's gate tonight and keep watch beside it.</li>
           <li>[their:grateful] The Wardens think well of the colony, and {X_nameDef} has come from {PLACE} with a lantern for {DEAD}, who was killed by {BEAST}, to light at the gate tonight.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -248,7 +250,8 @@
           <li>[!nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate, led by {X_nameDef}, with spades and a pack animal. The raiders' bodies still lie where they fell, and {X_nameDef} says everyone deserves a funeral, even those who attacked the colony. They would bury each one beyond the wall, or carry them back to the grave-garden at {PLACE}, and say their funeral words over every one. They ask nothing for it.</li>
           <li>[nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate with spades, led by {X_nameDef}. The raiders' bodies still lie where they fell, and the bell-keepers would bury each one beyond the wall and say their funeral words over every one, as they do for friend and enemy alike. They ask nothing for it.</li>
           <li>[theirpeople,!nobeast] Bell-keepers of {FACTION} in grey habits have come to the gate with spades and a pack animal, led by {X_nameDef}. They would see to the raiders' bodies: either a grave each beyond the wall, or the walk to the grave-garden at {PLACE}, with their funeral words said over every one. {X_nameDef} says the raiders' own people will hear that someone gave their dead a funeral, and will remember who did.</li>
-          <li>[lowtech] The bell-keepers of {FACTION}, in grey habits and with long spades, go wherever the dead lie unburied, and {X_nameDef} says the bodies near the colony have lain there long enough. They would bury them beyond the wall or carry them to the grave-garden at {PLACE}, and say their funeral words for each either way.</li>
+          <li>[age0|age1] The bell-keepers of {FACTION}, in grey habits and with long spades, go wherever the dead lie unburied, and {X_nameDef} says the bodies near the colony have lain there long enough. They would bury them beyond the wall or carry them to the grave-garden at {PLACE}, and say their funeral words for each either way.</li>
+          <li>[age2|age3] {X_nameDef} and the bell-keepers of {FACTION} have come to the gate in grey coats, with spades and a pack animal. The raiders' bodies have lain where they fell long enough, {X_nameDef} says, and the Bell would bury each one beyond the wall or carry them to the grave-garden at {PLACE}, with the funeral words said for each either way.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -316,8 +319,8 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a bell-keeper of {FACTION} in a grey habit, has come to {DEAD}'s grave with a small bronze bell on a cord. The grave-garden at {PLACE} heard of the death, and {X_nameDef} says the bell-keepers lead the funeral of anyone whose people want it: the colony would gather at the graveside and {X_nameDef} would say the old words. If the colony would rather, {X_nameDef} could instead stand quietly at the grave for a while with one of the colonists.</li>
-          <li>[lowtech] {X_nameDef}, a bell-keeper of {FACTION}, has walked from {PLACE} to stand at {DEAD}'s grave. The bell-keepers believe everyone who dies deserves a funeral, and {X_nameDef} would lead the colony through the funeral words if it likes.</li>
-          <li>[industrial|spacer] {X_nameDef}, a bell-keeper of {FACTION}, is waiting quietly by {DEAD}'s grave. {X_nameDef} says the bell-keepers have led funerals in grave-gardens, on battlefields and in the back rooms of towns, and offers to lead this one, or simply to stand a while at the grave.</li>
+          <li>[age0|age1] {X_nameDef}, a bell-keeper of {FACTION}, has walked from {PLACE} to stand at {DEAD}'s grave. The bell-keepers believe everyone who dies deserves a funeral, and {X_nameDef} would lead the colony through the funeral words if it likes.</li>
+          <li>[age2|age3] {X_nameDef}, a bell-keeper of {FACTION}, is waiting quietly by {DEAD}'s grave. {X_nameDef} says the bell-keepers have led funerals in grave-gardens, on battlefields and in the back rooms of towns, and offers to lead this one, or simply to stand a while at the grave.</li>
           <li>[their:grateful] The Quiet Bell remembers the colony kindly, and {X_nameDef} came to {DEAD}'s grave as soon as the grave-garden at {PLACE} heard of the death, to lead the funeral as if {DEAD} were one of their own.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -384,8 +387,8 @@
         </titles>
         <texts>
           <li>{X_nameDef}, an old bell-keeper of {FACTION}, has come to the gate with a bell wrapped in grey cloth. {X_nameDef} says the bell-keepers can sense what moves under the ground, and something under the colony's land has woken up. It may never come to the surface, but it would be wise to keep lights at the doors and a watch on the walls tonight. {X_nameDef} offers to stand at the gate until morning.</li>
-          <li>[lowtech] {X_nameDef}, a bell-keeper of {FACTION}, has walked from {PLACE} with a muffled bell to warn the colony that the bell-keepers sense something awake under the ground nearby. {X_nameDef} advises a light at every door tonight and a watch on the wall, and offers to stand at the gate.</li>
-          <li>[industrial|spacer] {X_nameDef} of {FACTION} is at the gate with a bell wrapped in grey cloth, and does not want to come in. {X_nameDef} says the bell-keepers at {PLACE} watch for signs under the ground the way others watch the weather, and they have seen signs of something stirring near the colony. A watch on the walls tonight, and lamps at the doors, would be wise.</li>
+          <li>[age0|age1] {X_nameDef}, a bell-keeper of {FACTION}, has walked from {PLACE} with a muffled bell to warn the colony that the bell-keepers sense something awake under the ground nearby. {X_nameDef} advises a light at every door tonight and a watch on the wall, and offers to stand at the gate.</li>
+          <li>[age2|age3] {X_nameDef} of {FACTION} is at the gate with a bell wrapped in grey cloth, and does not want to come in. {X_nameDef} says the bell-keepers at {PLACE} watch for signs under the ground the way others watch the weather, and they have seen signs of something stirring near the colony. A watch on the walls tonight, and lamps at the doors, would be wise.</li>
         </texts>
         <defaultOption>1</defaultOption>
         <options>
@@ -449,7 +452,8 @@
         <texts>
           <li>{X_nameDef}, a travelling tamer of {FACTION}, has come to the gate with {BEAST} and a braided violet sash covered in tokens. {X_nameDef} has heard the colony keeps animals, and challenges {A_nameDef}, its best animal handler, to a friendly bout against {BEAST}. It would be practice blows only, with nobody hurt on purpose, and the winner gets a token for the sash. {X_nameDef} says that being fairly beaten by a stranger is the greatest honour among the Circuit's tamers.</li>
           <li>[pokemon] {X_nameDef}, a travelling tamer of {FACTION}, has come to the gate with {BEAST}, a Fighting type that is eager for a bout. {X_nameDef} challenges {A_nameDef}, the colony's best animal handler, to a fair and friendly bout against it, with a token for the winner.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has walked in with {BEAST} and a sash of knotted tokens, and asks for the colony's best animal handler. {X_nameDef} says the best way to judge someone with animals is a friendly bout, and challenges {A_nameDef} to face {BEAST} with practice blows, a token going to the winner.</li>
+          <li>[age0|age1] {X_nameDef} of {FACTION} has walked in with {BEAST} and a sash of knotted tokens, and asks for the colony's best animal handler. {X_nameDef} says the best way to judge someone with animals is a friendly bout, and challenges {A_nameDef} to face {BEAST} with practice blows, a token going to the winner.</li>
+          <li>[age2|age3] {X_nameDef}, a travelling tamer of {FACTION}, has come up the road with {BEAST} and a violet sash covered in enamel tokens. {X_nameDef} challenges {A_nameDef}, the colony's best animal handler, to a friendly bout against {BEAST}: practice blows only, nobody hurt on purpose, and a token for the winner.</li>
           <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has gone out of {X_possessive} way to challenge {A_nameDef} to a friendly bout against {BEAST}, as old rivals do.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -517,6 +521,8 @@
         <texts>
           <li>{X_nameDef}, an egg-trader of {FACTION}, has come to the gate with a basket kept warm in straw. It holds {TALE} from the Circuit's hatchery at {PLACE}, a kind the colony doesn't keep. {X_nameDef} would swap them for one of the colony's own fertile eggs, or sell them for {COUNT} silver.</li>
           <li>[!ours] {X_nameDef}, an egg-trader of {FACTION}, has come to the gate with {TALE} in a straw-lined basket, from the hatchery at {PLACE}. The colony has no fertile eggs to swap, but {X_nameDef} would sell them for {COUNT} silver.</li>
+          <li>[ours,age2|age3] {X_nameDef}, an egg-trader of {FACTION}, has come to the gate with an insulated crate from the Circuit's hatchery at {PLACE}. It holds {TALE}, a kind the colony doesn't keep, and {X_nameDef} would swap them for one of the colony's own fertile eggs, or sell them for {COUNT} silver.</li>
+          <li>[ours,age0] {X_nameDef}, an egg-trader of {FACTION}, has walked to the gate with a basket of warm ashes wrapped in hide. It holds {TALE} from the Circuit's hatchery at {PLACE}, a kind the colony doesn't keep, and {X_nameDef} would swap them for one of the colony's own fertile eggs, or sell them for {COUNT} silver.</li>
           <li>[pokemon] {X_nameDef}, an egg-trader of {FACTION}, has brought {TALE} from the Circuit's hatchery, kept warm in a padded box that hums faintly. {X_nameDef} would swap them for one of the colony's own fertile eggs or sell them for {COUNT} silver, and whatever hatches will be the colony's to raise.</li>
           <li>[their:grateful] The Circuit thinks well of the colony, and {X_nameDef} has brought {TALE} from the hatchery at {PLACE}. As a friend, {X_nameDef} would swap them for one of the colony's eggs or sell them for {COUNT} silver.</li>
         </texts>
@@ -642,8 +648,9 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a fixer of {FACTION}, has pulled up at the gate on a cart hung with tools, wearing a much-patched coat with a brass cog stitched to the shoulder. For {COUNT} silver, {X_nameDef} offers to mend every worn coat and damaged weapon in the colony by morning, before the Wheel moves on tomorrow.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION} has drawn a cart up to the gate, its sides hung with awls, files and pots of glue, and offers to mend everything the colony wears or fights with for {COUNT} silver before the Wheel moves on.</li>
-          <li>[industrial|spacer] {X_nameDef}, a fixer of {FACTION}, has a portable grinder and a welding mask on the cart, and offers to mend every worn coat and battered weapon in the colony for {COUNT} silver before the Wheel's yard moves on.</li>
+          <li>[age1] {X_nameDef} of {FACTION} has drawn a cart up to the gate, its sides hung with awls, files and pots of glue, and offers to mend everything the colony wears or fights with for {COUNT} silver before the Wheel moves on.</li>
+          <li>[age0] {X_nameDef} of {FACTION} has pulled a handcart up to the gate hung with bone awls, sinew and pots of hide glue, and offers to mend everything the colony wears or fights with for {COUNT} silver before the Wheel moves on.</li>
+          <li>[age2|age3] {X_nameDef}, a fixer of {FACTION}, has a portable grinder and a welding mask on the cart, and offers to mend every worn coat and battered weapon in the colony for {COUNT} silver before the Wheel's yard moves on.</li>
           <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef} offers a friend's price: {COUNT} silver to mend every piece, with a lesson thrown in if anyone wants one.</li>
         </texts>
         <defaultOption>1</defaultOption>
@@ -711,10 +718,12 @@
           <li>Scrap bought at the gate</li>
         </titles>
         <texts>
-          <li>Scrap-runners of {FACTION} have come to the gate with an empty cart, and {X_nameDef} is doing the talking. {X_nameDef} says the Wheel buys what others throw away, and the colony has {TALE} lying about. They would pay {COUNT} silver for all of it, or trade a {THING} that the Wheel has repaired to as good as new.</li>
+          <li>[!nopiece] Scrap-runners of {FACTION} have come to the gate with an empty cart, and {X_nameDef} is doing the talking. {X_nameDef} says the Wheel buys what others throw away, and the colony has {TALE} lying about. They would pay {COUNT} silver for all of it, or trade a {THING} that the Wheel has repaired to as good as new.</li>
           <li>[nopiece] Scrap-runners of {FACTION} have come to the gate with an empty cart, {X_nameDef} doing the talking. The colony has {TALE} lying about, and the Wheel would give {COUNT} silver for the lot.</li>
-          <li>[lowtech] {X_nameDef} and the scrap-runners of {FACTION} have pushed a handcart up to the gate and want to buy {TALE}, since the Wheel melts down, mends and resells everything. They offer {COUNT} silver for the lot, or a {THING} of theirs, repaired to as good as new.</li>
-          <li>[their:grateful] The Wheel thinks well of the colony, and {X_nameDef}'s runners have come straight to it to buy {TALE}. As friends, they offer {COUNT} silver, or a {THING} repaired to as good as new.</li>
+          <li>[!nopiece,age0|age1] {X_nameDef} and the scrap-runners of {FACTION} have pushed a handcart up to the gate and want to buy {TALE}, since the Wheel melts down, mends and resells everything. They offer {COUNT} silver for the lot, or a {THING} of theirs, repaired to as good as new.</li>
+          <li>[!nopiece,age2|age3] Scrap-runners of {FACTION} have left a flatbed truck at the road and come to the gate with sacks, {X_nameDef} doing the talking. The Wheel buys what others throw away, and the colony has {TALE} lying about: {COUNT} silver for all of it, or a {THING} the Wheel has repaired to as good as new.</li>
+          <li>[nopiece,age2|age3] Scrap-runners of {FACTION} have left a flatbed truck at the road and come to the gate with sacks, {X_nameDef} doing the talking. The colony has {TALE} lying about, and the Wheel would give {COUNT} silver for the lot.</li>
+          <li>[their:grateful,!nopiece] The Wheel thinks well of the colony, and {X_nameDef}'s runners have come straight to it to buy {TALE}. As friends, they offer {COUNT} silver, or a {THING} repaired to as good as new.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>

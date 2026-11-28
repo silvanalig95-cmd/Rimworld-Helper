@@ -36,13 +36,17 @@
         <answerDays>0.4</answerDays>
         <titles>
           <li>A lineman with a mast</li>
-          <li>The Signal Line's relay</li>
+          <li>[age2|age3] The Signal Line's relay</li>
+          <li>[age0|age1] The Signal Line's flag tower</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a lineman of {FACTION}, has come to the gate in a bright orange oilskin, leading a mule loaded with a lattice mast in sections and a coil of wire. {X_nameDef} says the Line would put up a relay mast {TALE} for free. After that, the colony's letters would be passed from mast to mast and reach their readers in half the time. And when linemen further along the line hear of armed men on the road toward the colony, they would send a warning up the mast before the raiders arrive.</li>
-          <li>[hill] {X_nameDef}, a lineman of {FACTION}, has come up the road with a mast in sections on the mule behind {X_objective}, looking at the hills around the colony on the way. {X_nameDef} says the ground {TALE} is the highest for miles, and the Line would like to put up a relay mast there. The colony's letters would arrive in half the time, and the Line would send a warning when raiders are on the road.</li>
-          <li>[lowtech] {X_nameDef}, a lineman of {FACTION}, has walked from {PLACE} with a mule and a tall metal frame in pieces. {X_nameDef} says it is a mast that sends messages to the next mast along the line, and the Line would like to put one up {TALE}. The colony's letters would travel in half the time, and the linemen would send a warning along it when armed men are on the road.</li>
-          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has brought a mast from {PLACE} to put up {TALE}. The colony's letters would arrive in half the time, and the Line would warn the colony of raids, as it does for friends.</li>
+          <li>[age2|age3] {X_nameDef}, a lineman of {FACTION}, has come to the gate in a bright orange oilskin, leading a mule loaded with a lattice mast in sections and a coil of wire. {X_nameDef} says the Line would put up a relay mast {TALE} for free. After that, the colony's letters would be passed from mast to mast and reach their readers in half the time. And when linemen further along the line hear of armed men on the road toward the colony, they would send a warning up the mast before the raiders arrive.</li>
+          <li>[hill,age2|age3] {X_nameDef}, a lineman of {FACTION}, has come up the road with a mast in sections on the mule behind {X_objective}, looking at the hills around the colony on the way. {X_nameDef} says the ground {TALE} is the highest for miles, and the Line would like to put up a relay mast there. The colony's letters would arrive in half the time, and the Line would send a warning when raiders are on the road.</li>
+          <li>[lowtech,age2|age3] {X_nameDef}, a lineman of {FACTION}, has walked from {PLACE} with a mule and a tall metal frame in pieces. {X_nameDef} says it is a mast that sends messages to the next mast along the line, and the Line would like to put one up {TALE}. The colony's letters would travel in half the time, and the linemen would send a warning along it when armed men are on the road.</li>
+          <li>[their:grateful,age2|age3] The Signal Line thinks well of the colony, and {X_nameDef} has brought a mast from {PLACE} to put up {TALE}. The colony's letters would arrive in half the time, and the Line would warn the colony of raids, as it does for friends.</li>
+          <li>[age0|age1] {X_nameDef}, a lineman of {FACTION}, has come to the gate leading a mule loaded with timbers, a coil of rope and two signal flags. The Line would put up a flag tower {TALE} for free, {X_pronoun} says. A watcher on the next tower reads its flags by day and its lamp by night, so the colony's letters would pass from tower to tower and reach their readers in half the time, and the watchers would pass a warning along when armed men are on the road toward the colony.</li>
+          <li>[hill,age0|age1] {X_nameDef}, a lineman of {FACTION}, has come up the road with a mule loaded with timbers and flags, looking at the hills around the colony on the way. The ground {TALE} is the highest for miles, {X_pronoun} says, and the Line would put up a flag tower there. The colony's letters would arrive in half the time, and the watchers would pass a warning along when raiders are on the road.</li>
+          <li>[their:grateful,age0|age1] The Signal Line thinks well of the colony, and {X_nameDef} has brought the timbers for a flag tower from {PLACE} to put up {TALE}. The colony's letters would arrive in half the time, and the Line would warn the colony of raids, as it does for friends.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
@@ -57,7 +61,7 @@
           </li>
           <li>
             <label>Raise it, and have {A_nameDef} learn how it is guyed</label>
-            <outcome>{X_nameDef} is raising the mast {TALE}, with {A_nameDef} beside {X_objective} learning how the guy wires are set.</outcome>
+            <outcome>{X_nameDef} is raising the mast {TALE}, with {A_nameDef} beside {X_objective} learning how its guy lines are set.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_LineMast" />
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>the mast raised</label><to>Stranger</to><duration>1~2</duration></li>
@@ -102,27 +106,31 @@
         <answerDays>0.4</answerDays>
         <notable>false</notable>
         <titles>
-          <li>The wire-trader</li>
-          <li>Parts for the line</li>
+          <li>[age2|age3] The wire-trader</li>
+          <li>[age2|age3] Parts for the line</li>
+          <li>[age0|age1] A trader of the line</li>
+          <li>[age0|age1] Cloth for the flags</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a wire-trader of {FACTION}, has come to the gate with a lineman and an empty pack. {X_nameDef} says the masts use up a lot of components, and the Line would pay {COUNT} silver for the {TALE} in the colony's stores. Or, for fifty silver, {X_nameDef} would tell the colony what the Line has heard about a trader caravan on the road nearby, and send word to the caravan about the colony.</li>
-          <li>[lowtech] {X_nameDef}, a wire-trader of {FACTION}, is at the gate, looking at the colony's stores. The Line needs the small machine parts the colony keeps, {TALE}, and would pay {COUNT} silver for them. Or, for fifty silver, {X_nameDef} would tell the colony what the masts have heard about traders on the road, and send them this way.</li>
-          <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} to buy the colony's components, {TALE}, for {COUNT} silver, a good price. Or, for fifty silver, {X_nameDef} would pass on the Line's news of a caravan on the road nearby.</li>
+          <li>[age2|age3] {X_nameDef}, a wire-trader of {FACTION}, has come to the gate with a lineman and an empty pack. {X_nameDef} says the masts use up a lot of components, and the Line would pay {COUNT} silver for the {TALE} in the colony's stores. Or, for fifty silver, {X_nameDef} would tell the colony what the Line has heard about a trader caravan on the road nearby, and send word to the caravan about the colony.</li>
+          <li>[lowtech,age2|age3] {X_nameDef}, a wire-trader of {FACTION}, is at the gate, looking at the colony's stores. The Line needs the small machine parts the colony keeps, {TALE}, and would pay {COUNT} silver for them. Or, for fifty silver, {X_nameDef} would tell the colony what the masts have heard about traders on the road, and send them this way.</li>
+          <li>[their:grateful,age2|age3] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} to buy the colony's components, {TALE}, for {COUNT} silver, a good price. Or, for fifty silver, {X_nameDef} would pass on the Line's news of a caravan on the road nearby.</li>
+          <li>[age0|age1] {X_nameDef}, a trader of {FACTION}'s line, has come to the gate with a lineman and an empty pack. The Line's towers need flags, and flags wear out in the wind, so the Line would pay {COUNT} silver for the colony's cloth, {TALE}. Or, for fifty silver, {X_nameDef} would tell the colony what the towers have seen of a trader caravan on the road nearby, and signal the caravan to turn this way.</li>
+          <li>[their:grateful,age0|age1] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} to buy the colony's cloth for the towers' flags, {TALE}, for {COUNT} silver, a good price. Or, for fifty silver, {X_nameDef} would pass on what the towers have seen of a caravan on the road nearby.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
           <li>
-            <label>Sell them the components ({COUNT} silver)</label>
-            <outcome>The components are being carried out to {X_nameDef} at the gate, and the silver carried in.</outcome>
+            <label>Sell them the {TALE} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} is waiting at the gate for the {TALE}, and the silver is being carried in.</outcome>
             <effects>
-              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the components for {X_nameDef}</label><what>ComponentIndustrial</what><variant>true</variant></li>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the {TALE} for {X_nameDef}</label><variant>true</variant></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
             </effects>
           </li>
           <li>
             <label>Buy the line's news of a caravan (50 silver)</label>
-            <outcome>The silver is going out to {X_nameDef}, who is calling the caravan's position down the line so it turns toward the colony.</outcome>
+            <outcome>The silver is going out to {X_nameDef}, who is passing the caravan's position down the line so it turns toward the colony.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>the news for {X_nameDef}</label><what>silver</what><count>50</count><steward>false</steward></li>
               <li Class="ColonyCouncil.WorldEffect_Incident"><incident>TraderCaravanArrival</incident></li>
@@ -140,6 +148,8 @@
         <lines>
           <li>[wire] Every part of these goes up a mast somewhere.</li>
           <li>[wire] The masts eat parts, and you have fed one.</li>
+          <li>[flags] Every yard of this will fly from a tower somewhere.</li>
+          <li>[flags] The wind eats flags, and you have fed the line.</li>
           <li>[news] Heard it at the ridge mast this morning, and it's true.</li>
           <li>[news] They'll be turning your way before dark.</li>
           <li>[thanks] Keep the parts dry, we'll be back for them.</li>
@@ -171,6 +181,8 @@
         <texts>
           <li>{X_nameDef}, a lineman of {FACTION}, has come up the road through the storm in a dripping oilskin, with a coil of rope over one shoulder. {X_nameDef} says the colony's mast is {TALE}, and the Line keeps every mast working in any weather. {X_nameDef} would like to climb it now and secure it.</li>
           <li>[quiet] {X_nameDef}, a lineman of {FACTION}, came up the road through the storm because the colony's mast stopped sending. {X_nameDef} says it is {TALE}, and would like to climb it now and fix it before the wind brings it down.</li>
+          <li>[tower] {X_nameDef}, a lineman of {FACTION}, has come up the road through the storm with a coil of rope over one shoulder. The colony's flag tower is {TALE}, {X_pronoun} says, and the Line keeps every tower standing in any weather. {X_nameDef} would like to climb it now and make it fast.</li>
+          <li>[age0|age1] {X_nameDef}, a lineman of {FACTION}, has come through the storm in a waxed cloak with a coil of rope and a mallet. {X_nameDef} says the colony's mast is {TALE}, and offers to climb it now and secure it against the wind.</li>
           <li>[lowtech] {X_nameDef}, a lineman of {FACTION}, has walked through the storm to the gate with rope and tools. {X_nameDef} says the tall mast is {TALE}, and offers to climb it now and secure it against the wind.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -229,20 +241,23 @@
         <stayHours>10~14</stayHours>
         <answerDays>0.4</answerDays>
         <titles>
-          <li>The union's drill</li>
-          <li>A drill for a share</li>
+          <li>[age2|age3] The union's drill</li>
+          <li>[age2|age3] A drill for a share</li>
+          <li>[age0|age1] The union's shaft</li>
+          <li>[age0|age1] A shaft for a share</li>
         </titles>
         <texts>
-          <li>A drill crew of {FACTION} has come to the gate with a rig on a cart, led by {X_nameDef}, who wears the union's red armband. {X_nameDef} says there is {THING} deep under the colony's land, and the union would drill for it in exchange for a share. It would take six hours, and of the {COUNT} that comes up, {TALE} would be left at the drill for the colony and the rest would go to the union.</li>
+          <li>[age2|age3] A drill crew of {FACTION} has come to the gate with a rig on a cart, led by {X_nameDef}, who wears the union's red armband. {X_nameDef} says there is {THING} deep under the colony's land, and the union would drill for it in exchange for a share. It would take six hours, and of the {COUNT} that comes up, {TALE} would be left at the drill for the colony and the rest would go to the union.</li>
           <li>[scanned] A drill crew of {FACTION} has come to the gate, and {X_nameDef} is doing the talking. They heard the colony found {THING} deep under its land and has not drilled for it yet. In six hours the union's rig would bring up {COUNT} of it, leaving {TALE} for the colony and the rest for the union.</li>
-          <li>[lowtech] {X_nameDef} and a crew of {FACTION} have dragged a strange iron rig up to the gate. {X_nameDef} says there is {THING} far under the colony's land, deeper than any pick can reach, and the union's rig can bring {COUNT} of it up in an afternoon. The colony would get {TALE}, and the union the rest.</li>
+          <li>[lowtech,age2|age3] {X_nameDef} and a crew of {FACTION} have dragged a strange iron rig up to the gate. {X_nameDef} says there is {THING} far under the colony's land, deeper than any pick can reach, and the union's rig can bring {COUNT} of it up in an afternoon. The colony would get {TALE}, and the union the rest.</li>
+          <li>[age0|age1] A crew of {FACTION} has come to the gate with picks, a wooden windlass and leather buckets, led by {X_nameDef}, who wears the union's red armband. {X_nameDef} says there is {THING} deep under the colony's land, and the union would sink a shaft for it in exchange for a share. It would take six hours, and of the {COUNT} that comes up, {TALE} would be left at the shaft for the colony and the rest would go to the union.</li>
           <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef}'s crew has come from {PLACE} to drill for the {THING} under the colony's land. In six hours they would bring up {COUNT} of it, and leave {TALE} for the colony, a friend's share.</li>
         </texts>
         <defaultOption>0</defaultOption>
         <options>
           <li>
             <label>Let them drill for their share</label>
-            <outcome>The union's crew is setting the rig up over the seam, and {X_nameDef} has started the drill.</outcome>
+            <outcome>The union's crew is setting up over the seam, and {X_nameDef} has started work.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_UnionDrill" />
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
@@ -251,7 +266,7 @@
           </li>
           <li>
             <label>Drill it, with {A_nameDef} on the rig beside them</label>
-            <outcome>{A_nameDef} is working the rig at the seam beside {X_nameDef}, learning the union's way with a drill.</outcome>
+            <outcome>{A_nameDef} is working at the seam beside {X_nameDef}, learning the union's way with a deep seam.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_UnionDrill"><together>true</together></li>
               <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Mining</skill><xp>600</xp></li>
@@ -302,7 +317,8 @@
         <texts>
           <li>{X_nameDef}, an assayer of {FACTION}, has come to the gate with a miner and a cart. The union has a crate to sell from its pits, {TALE}, for {COUNT} silver. Or {X_nameDef} would walk the colony's ground with its best miner and say what lies under it.</li>
           <li>[seam] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a crate on a cart, {TALE}, for {COUNT} silver. {X_nameDef} says {X_pronoun} can tell what lies under the ground, and the colony's land has something in it worth knowing about, if the colony's miner would walk it with {X_objective}.</li>
-          <li>[lowtech] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a cart of metal and strange explosive charges: {TALE}, all of it for {COUNT} silver. Or {X_nameDef} would walk the colony's land and say what is under it.</li>
+          <li>[lowtech,age2|age3] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a cart of metal and strange explosive charges: {TALE}, all of it for {COUNT} silver. Or {X_nameDef} would walk the colony's land and say what is under it.</li>
+          <li>[age0|age1] {X_nameDef}, an assayer of {FACTION}, has come to the gate with a miner and a cart of steel from the union's pits: {TALE}, for {COUNT} silver. Or {X_nameDef} would walk the colony's ground with its best miner and say what lies under it.</li>
           <li>[their:grateful] The Deepwell Union thinks well of the colony, and {X_nameDef} has brought it the best of the pits' goods, {TALE}, for {COUNT} silver, a friend's price.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -334,7 +350,7 @@
           </li>
         </options>
         <lines>
-          <li>[sold] Mind the charges, they don't like being dropped.</li>
+          <li>[sold,machined] Mind the charges, they don't like being dropped.</li>
           <li>[sold] Straight from the pits, weighed twice.</li>
           <li>[ground] There's more under your feet than you think.</li>
           <li>[thanks] One book, one union, and a cart going home full.</li>
@@ -428,7 +444,8 @@
         <texts>
           <li>{X_nameDef}, a census-taker of {FACTION}, has come to the gate with a member of the Civic Guard and a bound roll under one arm. {X_nameDef} says the Republic counts everyone it can, and would like to walk through the colony from bed to bed and write the names of all {COUNT} of its people into the roll, as the Republic's law requires.</li>
           <li>[citizens] {X_nameDef}, a census-taker of {FACTION}, has come to count the colony. As citizens of the Republic, its {COUNT} people are entitled to a place in the roll. {X_nameDef} would walk the colony from bed to bed with the guard and write every one of them down.</li>
-          <li>[lowtech] A clerk of {FACTION} named {X_nameDef} has come to the gate with a guard and a great book. The Republic writes down everyone, {X_nameDef} says, and would walk through the colony, bed by bed, until all {COUNT} of its people are in the book.</li>
+          <li>[age0|age1] A clerk of {FACTION} named {X_nameDef} has come to the gate with a guard and a great book. The Republic writes down everyone, {X_nameDef} says, and would walk through the colony, bed by bed, until all {COUNT} of its people are in the book.</li>
+          <li>[age2|age3] {X_nameDef}, a census-taker of {FACTION}, has come to the gate with a guard in the Civic Guard's navy uniform and a clipboard of printed forms. The Republic counts everyone it can, {X_nameDef} says, and would walk through the colony from bed to bed and write the names of all {COUNT} of its people on the forms, as the Republic's law requires.</li>
           <li>[their:grateful] The Last Republic thinks well of the colony, and {X_nameDef} has come from {PLACE} to count its {COUNT} people into the roll, bed by bed, as a courtesy between friends.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -491,7 +508,8 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a clerk of {FACTION}, has come to the gate with a satchel of stamped papers. {X_nameDef} offers to make the colony citizens of the Republic for a year. Its traders would give the colony citizens' prices, {TALE} better, and in return the colony would owe the Republic service: when the Republic calls for a conscript, the colony must send one.</li>
-          <li>[lowtech] {X_nameDef}, a clerk of {FACTION}, is at the gate with papers sealed in wax. {X_nameDef} offers to make the colony citizens of the Republic for a year. The Republic's traders would give the colony better prices, {TALE} better, and the colony would have to send a fighter when the Republic calls for one.</li>
+          <li>[age0|age1] {X_nameDef}, a clerk of {FACTION}, is at the gate with papers sealed in wax. {X_nameDef} offers to make the colony citizens of the Republic for a year. The Republic's traders would give the colony better prices, {TALE} better, and the colony would have to send a fighter when the Republic calls for one.</li>
+          <li>[age2|age3] {X_nameDef}, a clerk of {FACTION}, has come to the gate with a satchel of printed papers and a rubber stamp. {X_nameDef} offers to make the colony citizens of the Republic for a year. The Republic's traders would give the colony citizens' prices, {TALE} better, and the colony would owe the Republic service: when it calls for a conscript, the colony must send one.</li>
           <li>[their:grateful] The Last Republic thinks well of the colony, and {X_nameDef} has brought citizenship papers from {PLACE}. For a year the Republic's traders would give the colony citizens' prices, {TALE} better, and the colony would owe the Republic a citizen's service.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -554,6 +572,7 @@
           <li>{X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come to the gate in the Guard's navy uniform with a list. The Republic needs one good fighter from the colony to serve for a season at {PLACE}, {TALE} away, and has {A_nameDef} in mind. {A_nameDef} would guard its walls and streets, travel there and back by road, and come home paid and better trained. Or the colony can pay {COUNT} silver to be excused.</li>
           <li>[citizens] {X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come for the service the colony owes as a citizen: one fighter for a season at {PLACE}, {TALE} away, and {A_nameDef} would do. {A_nameDef} would travel there and back by road and come home paid and better trained. The colony can pay {COUNT} silver instead. If it refuses outright, the Republic will cancel its citizenship.</li>
           <li>[lowtech] {X_nameDef}, a soldier of {FACTION}, has come to the gate with a list of names. The Republic wants a fighter from the colony for a season at {PLACE}, {TALE} away on foot, and has {A_nameDef} in mind. {A_nameDef} would walk there and back on the open road and come home paid. Or the colony can pay {COUNT} silver to be excused.</li>
+          <li>[age0|age1] {X_nameDef}, a sergeant of the Civic Guard of {FACTION}, has come to the gate with a list of names and a spear flying the Republic's pennant. The Republic needs one good fighter from the colony to serve for a season at {PLACE}, {TALE} away, and has {A_nameDef} in mind. {A_nameDef} would guard its walls and streets and come home paid and better trained. Or the colony can pay {COUNT} silver to be excused.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -613,6 +632,7 @@
           <li>The colony's radio has picked up a call from {FACTION}. Their quartermaster asks permission to land the ship's shuttle by the gate with goods from the ship to trade. They can also spare a cryptosleep casket from the ship's sleeper hold for {COUNT} silver, which would come down in the shuttle.</li>
           <li>[pods] The colony's radio has picked up a call from {FACTION}. Their quartermaster asks permission to come down by drop pod beside the gate with goods from the ship to trade. They could also bring down a cryptosleep casket the ship can spare, for {COUNT} silver.</li>
           <li>[nocasket] The colony's radio has picked up a call from {FACTION}. Their quartermaster asks permission to land the ship's shuttle by the gate with goods from the ship to trade.</li>
+          <li>[!pods,!nocasket,age2] The colony's radio has picked up a call from {FACTION}. Their quartermaster asks permission to land the ship's last shuttle, an old one patched many times, by the gate with goods to trade, and offers a cryptosleep casket from the sleeper hold for {COUNT} silver, which would come down in the shuttle.</li>
           <li>[their:grateful] {FACTION} thinks well of the colony, and their quartermaster has called on the radio asking permission to land the shuttle by the gate and trade. As a friend, the quartermaster also offers a cryptosleep casket from the ship for {COUNT} silver.</li>
         </texts>
         <defaultOption>0</defaultOption>
@@ -669,7 +689,8 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a quartermaster of {FACTION}, has come to the gate in the ship's grey uniform with two deckhands and a sled. The ship needs what the colony has salvaged, {TALE}, and the Fleet would pay {COUNT} silver for it. The parts would be carried out to them, and the deckhands would cut the large chunks apart where they lie and haul them off on the sled.</li>
-          <li>[chunks] {X_nameDef}, a quartermaster of {FACTION}, has come to the gate with two deckhands and cutting gear. The colony has {TALE} lying on its land, and the ship needs every plate of it. They would pay {COUNT} silver for the lot, and the deckhands would cut the chunks apart where they lie.</li>
+          <li>[chunks,age2|age3] {X_nameDef}, a quartermaster of {FACTION}, has come to the gate with two deckhands and cutting gear. The colony has {TALE} lying on its land, and the ship needs every plate of it. They would pay {COUNT} silver for the lot, and the deckhands would cut the chunks apart where they lie.</li>
+          <li>[chunks,age0|age1] {X_nameDef}, a quartermaster of {FACTION}, has come to the gate with two deckhands, saws and iron wedges. The colony has {TALE} lying on its land, and the ship needs every plate of it. They would pay {COUNT} silver for the lot, and the deckhands would cut the chunks apart where they lie, the slow way.</li>
           <li>[lowtech] {X_nameDef} of {FACTION}, in a grey uniform older than anything in the colony, has come to the gate with two deckhands. They want {TALE}, fallen from the sky or kept in the colony's stores, and would pay {COUNT} silver, cutting up the big pieces where they lie.</li>
           <li>[their:grateful] {FACTION} thinks well of the colony, and {X_nameDef} has come straight to it to buy {TALE} for {COUNT} silver, a fair price.</li>
         </texts>

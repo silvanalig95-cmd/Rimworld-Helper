@@ -57,6 +57,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (Papers.Holds(ctx.faction)) tags.Add("citizens");
         }
 
@@ -253,6 +254,12 @@ namespace ColonyCouncil
             if (!byDefault) PeoplesF.Say(ctx.stranger, Ext, ctx, option <= 1 ? "papers" : "thanks");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
+        }
     }
 
     /// <summary>The papers taken: a year of a citizen's terms, and the duty (Papers.Grant).</summary>
@@ -316,6 +323,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (Papers.Holds(ctx.faction)) tags.Add("citizens");
         }
 
@@ -707,6 +715,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (!ModsConfig.RoyaltyActive) tags.Add("pods");
             if (ctx.thing == null) tags.Add("nocasket");
         }
@@ -874,6 +883,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "chunks") tags.Add("chunks");
             if (ctx.variant > 0) tags.Add("cores");
         }
@@ -997,6 +1007,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.faction != null && ctx.faction.HostileTo(Faction.OfPlayer)) tags.Add("theirfoe");
         }
 

@@ -174,7 +174,7 @@ public static class PeopleEvents2Tests
                     $"{name}: a small, spread chance, not soon again, not the first moment it is free");
             C(ext.Element("group")?.Value == "Visitors", $"{name}: among the visitors");
             var texts = ext.Element("texts")!.Elements("li").Select(l => l.Value).ToList();
-            C(texts.Count >= 5 && (fired.Contains(name) || texts.Any(t => Regex.IsMatch(t, @"^\[[^\]]*(lowtech|tribal|pod|walk|rope|piles|noradio)"))), $"{name}: five or more texts, in the forms of the age");
+            C(texts.Count >= 5 && (fired.Contains(name) || texts.Any(t => Regex.IsMatch(t, @"^\[[^\]]*(lowtech|tribal|age\d|pod|walk|rope|piles|noradio)"))), $"{name}: five or more texts, in the forms of the age");
             var options = ext.Element("options")!.Elements("li").ToList();
             C(options.Count == 3 && ext.Element("defaultOption")?.Value == "2", $"{name}: three answers, no answer the last");
             C(options[2].Descendants("li").Any(li => li.Attribute("Class")?.Value is "ColonyCouncil.DilemmaEffect_SendAway" or "ColonyCouncil.DilemmaEffect_EnclaveDefault"),

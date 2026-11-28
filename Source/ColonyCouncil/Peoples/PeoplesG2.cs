@@ -175,6 +175,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "void") tags.Add("void");
             if (ctx.a != null && ctx.a.HasPsylink) tags.Add("psycaster");
         }
@@ -273,6 +274,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.count == 1) tags.Add("one");
         }
 
@@ -522,6 +524,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             int age = PeopleAgesMath.AgeOfTech((int)Peoples.TechOf(ctx.faction));
             if (age < 3) tags.Add("fallen");
         }
@@ -594,6 +597,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.b == ctx.a) tags.Add("alone");
         }
 
@@ -694,6 +698,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.stranger != null && ctx.stranger.DevelopmentalStage.Juvenile()) tags.Add("child");
             else tags.Add("youth");
             int hour = GenLocalDate.HourOfDay(ctx.map);

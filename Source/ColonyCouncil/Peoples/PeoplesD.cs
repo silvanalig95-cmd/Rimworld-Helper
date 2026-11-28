@@ -226,6 +226,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (!ctx.note.NullOrEmpty()) tags.Add(ctx.note);
             if (ctx.a == null) tags.Add("nohunter");
             if (ctx.pet != null && PackAlphas.IsManhunter(ctx.pet.MentalStateDef)) tags.Add("manhunter");
@@ -441,6 +442,12 @@ namespace ColonyCouncil
             if (!byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, option <= 1 ? "bought" : "refused");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
+        }
     }
 
     // ===================== A lantern at the crossroads =====================
@@ -489,6 +496,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "ended") tags.Add("ended");
         }
 
@@ -528,6 +536,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             base.AddTags(ctx, tags);
             if (DilemmaEffect_BellForTheDead.Peoples(ctx.map).Count > 0) tags.Add("theirpeople");
         }
@@ -621,6 +630,12 @@ namespace ColonyCouncil
             if (option <= 1 && !byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, "ring");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
+        }
     }
 
     // ===================== The Quiet Bell: the void's signs =====================
@@ -672,6 +687,12 @@ namespace ColonyCouncil
         {
             if (!byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, option == 2 ? "thanks" : "ring");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 }
