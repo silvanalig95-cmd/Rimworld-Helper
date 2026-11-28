@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples' events, looked over
+
+*28 November 2026, version 0.324.0*
+
+- Fixed: the peoples' events no longer send a colonist who is drafted, in a mental break or following your own order; the scene waits until they are free.
+- Fixed: the spacer enclave no longer asks for its instalment while it is at war with the colony; the payment waits for peace.
+- Fixed: a Hollow Fleet or Signal Line of an older age no longer lands a shuttle or talks of radio masts; the Line's news comes by signal towers, flags and fire instead.
+- The colonist sent to argue the league's red ink now learns Social from it.
+- A new event for the pilgrims: a footsore palmer asks the colony's doctor to see to blisters or a sprained ankle at the gate.
+
 ## Dreams, decrees, callers and weather
 
 *28 November 2026, version 0.323.0*

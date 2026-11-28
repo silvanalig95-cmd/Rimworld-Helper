@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.324.0</version>
+        <date>28 November 2026</date>
+        <title>The peoples' events, looked over</title>
+        <points>
+          <li>Fixed: the peoples' events no longer send a colonist who is drafted, in a mental break or following your own order; the scene waits until they are free.</li>
+          <li>Fixed: the spacer enclave no longer asks for its instalment while it is at war with the colony; the payment waits for peace.</li>
+          <li>Fixed: a Hollow Fleet or Signal Line of an older age no longer lands a shuttle or talks of radio masts; the Line's news comes by signal towers, flags and fire instead.</li>
+          <li>The colonist sent to argue the league's red ink now learns Social from it.</li>
+          <li>A new event for the pilgrims: a footsore palmer asks the colony's doctor to see to blisters or a sprained ankle at the gate.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.323.0</version>
         <date>28 November 2026</date>
         <title>Dreams, decrees, callers and weather</title>

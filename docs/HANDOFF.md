@@ -948,6 +948,18 @@ most sense." So, in this order, three builds at a time:
   bill, the survivor sent home, two encounters' skills) and two choices added (the young hands' work ask, the strange
   herds' question as a two-day far errand). Tests: ReviewCampsWorldTests, FarErrandTests. For the next review: check a
   camp's or event's own code for an effect already given before adding one (the new head's gift already was).
+- **Done (28 November 2026, 0.324.0; the player's pick): a review of the peoples' events**, in a worktree, merged;
+  `docs/review-peoples.md`, `Tools/peoples_impact_audit.py` (`--root` for an older copy). Events 169 to 170, answers 507
+  to 510 (all but one with a game effect; the empty one a refusal). Four fixes: every door that sends the colony's own
+  people (rounds 4 to 9's `Send`, `PeoplesE.Start`, `PeoplesD2.StartBout`, the broker pod's rescue,
+  `Health/OutsiderTend.Send`) refuses one drafted, in a break, down or on the player's order (`PeoplesReview.Held`; the
+  scene waits; OutsiderTend's callers fall back to tending without the walk, as before); the enclave's instalment waits
+  for peace (`EnclaveTerms.Due`/`Hour`); the Hollow Fleet's shuttle needs an industrial or spacer Fleet; a tribal or
+  medieval Signal Line no longer speaks of masts and headsets (texts tagged by age, three old-age texts for
+  NewsForSale). The red ink's talker learns Social. Added: the footsore palmer for the pilgrims
+  (`Rimfolk_Evt_PplR7_Footsore`, `HappeningWorker_PplR7Footsore`). Left: 96 older events told in the colony's age (a
+  content round could give them the people's forms); `Arrivals.Visit` (`Happenings/HappeningHelpers.cs`) spawns a
+  people's visitors without checking war (the peoples' callers check first). Tests: ReviewPeoplesTests.
 - **Under way (28 November 2026; the player's picks, clickable): the next two reviews, visitors and strangers, and the
   peoples' events**, each in a worktree, in the shape of the three before (`docs/review-visitors.md`,
   `docs/review-peoples.md`). And the catalogue of the player's mods: they run A RimWorld of Magic (Continued) by HUGINN
