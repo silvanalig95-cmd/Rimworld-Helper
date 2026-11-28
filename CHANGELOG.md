@@ -5,6 +5,18 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The events and the council's questions, looked over
+
+*28 November 2026, version 0.320.0*
+
+- Fixed: the Quiet Bell's sextons name the town of their grave-garden again, where the card left a blank.
+- Fixed: freeing a slave sends only a colonist who can walk there and is not drafted or in a break; otherwise the slave is marked to be freed for the wardens, as from the slave's tab.
+- Fixed: "Not for sale" and talking the creditor down now give the good mood their words describe, and the talking is practice at Social.
+- Fifteen council answers that send the colony's best talker, cook, grower, doctor or tracker now train that person's skill.
+- Answers whose words say someone lies awake now leave them short on sleep, and someone who slept like a stone or found a quicker way works a little better for a day or two.
+- Five answers now play out on the map: a meal carried to a friend at the gate or to a guest for the road, the mending done, an elder sitting at the gate, a walk to the old tree after dark.
+- Two new answers: teaching the animal in the kitchen to wait at the door, and the cook showing someone how the good meals are made.
+
 ## The camps and the world, looked over
 
 *28 November 2026, version 0.319.0*

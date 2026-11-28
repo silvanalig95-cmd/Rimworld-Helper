@@ -31,6 +31,21 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.320.0</version>
+        <date>28 November 2026</date>
+        <title>The events and the council's questions, looked over</title>
+        <points>
+          <li>Fixed: the Quiet Bell's sextons name the town of their grave-garden again, where the card left a blank.</li>
+          <li>Fixed: freeing a slave sends only a colonist who can walk there and is not drafted or in a break; otherwise the slave is marked to be freed for the wardens, as from the slave's tab.</li>
+          <li>Fixed: "Not for sale" and talking the creditor down now give the good mood their words describe, and the talking is practice at Social.</li>
+          <li>Fifteen council answers that send the colony's best talker, cook, grower, doctor or tracker now train that person's skill.</li>
+          <li>Answers whose words say someone lies awake now leave them short on sleep, and someone who slept like a stone or found a quicker way works a little better for a day or two.</li>
+          <li>Five answers now play out on the map: a meal carried to a friend at the gate or to a guest for the road, the mending done, an elder sitting at the gate, a walk to the old tree after dark.</li>
+          <li>Two new answers: teaching the animal in the kitchen to wait at the door, and the cook showing someone how the good meals are made.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.319.0</version>
         <date>28 November 2026</date>
         <title>The camps and the world, looked over</title>

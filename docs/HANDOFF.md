@@ -948,6 +948,22 @@ most sense." So, in this order, three builds at a time:
   bill, the survivor sent home, two encounters' skills) and two choices added (the young hands' work ask, the strange
   herds' question as a two-day far errand). Tests: ReviewCampsWorldTests, FarErrandTests. For the next review: check a
   camp's or event's own code for an effect already given before adding one (the new head's gift already was).
+- **Done (28 November 2026, 0.320.0; the player's pick of the review's order: events and the council first): a review of
+  the map events and the council's questions**, in a worktree, merged; `docs/review-events-council.md`. Every event's and
+  question's answers sorted by what they carry (`Tools/impact_audit.py`: `--print flavour|thin|empty|allflavour|allthin|
+  promises|balance|kinds`, `--filter`, `--write` refreshes the review file's measured part). Before and after: events'
+  flavour-only answers 15 to 14 (the rest are "leave it" answers of events that act otherwise), council questions'
+  flavour-only 99 to 92 and thin 191 to 181 (most thin answers are the refusal that is the trade-off, left by design).
+  Four fixes: the Quiet Bell's sextons named no town (`HappeningWorker_BellForTheDead` now takes `LivingEvents.TownOf`),
+  freeing a slave could send someone drafted, in a break or unable to reach (`DilemmaEffect_Emancipate`: only one up to
+  it, else the emancipation stays set for the wardens), "Not for sale" promised a mood it never gave
+  (`Council_Evt_NotForSale`), the creditor talked down left nothing (now the debt-settled memory and Social practice).
+  Fifteen answers that send a helper for their skill now train it; seven answers whose words say someone lies awake give
+  a short sleep, two give a small work boost, one eases an elder's illness a little; five answers play out on the map (a
+  meal carried to the friend at the gate or for the road, the mending, an elder at the gate, the walk to the old tree);
+  two answers added (the animal taught to wait at the kitchen door, the cook's lesson on the good meals). Tests:
+  ReviewEventsCouncilTests. For the next review: changes that made an answer plainly worse by `dilemma_balance.py` were
+  taken back; words with no existing effect to match (a cot in the storeroom, separate shifts) would need new mechanics.
 - **To do when the player asks (28 November 2026, brought over from Rimfolk Studio's chat; proposal first, then the
   player's word): mages casting damage spells by themselves, in fights and while hunting.** The player: "I'm a bit
   overwhelmed with the magic spells, and if you look at the pawn I have in my save that has spells, I like to integrate
@@ -960,8 +976,12 @@ most sense." So, in this order, three builds at a time:
   opening with a damage spell or Shadow Strike; (C) one switch per pawn ("casts damage spells by itself") with mana kept
   in reserve, instead of a mark on every spell; "look at what the magic mod does today, say what Rimfolk would have to
   add, and propose it to me before building". Linked: the earlier entry on A RimWorld of Magic's auto-cast drawing
-  stopping a pawn from being drafted (24 November 2026). Being looked into: the mod's own auto-cast, and the save of 28
-  November (Eastern Menistan).
+  stopping a pawn from being drafted (24 November 2026). Looked into: the mod's own auto-cast runs every ~180 ticks for
+  colonists (undrafted at 70% mana, drafted with fire at will at 20%), picks a random enemy of a hostile faction (no wild
+  animals, no manhunters), has no hunting for magic and no Shadow Strike in might's hunting, and has a mark per spell, no
+  switch per pawn and no reserve. The player's answers (28 November 2026, clickable): "Build it", Shadow Strike on "Safe
+  prey only", "No fire on hunts", "Keep 30%" in reserve. Being built in a worktree (one switch per colonist, fights and
+  hunts, area spells never, the mod's own marks left alone).
 - **Done (28 November 2026, catalogue only; the player's pick "Now, alongside"): looks for creature waves 3 and 4**, in a
   worktree, merged. `docs/portrait-art/catalogue/creatures.csv`: 354 of 360 in wave 3, 263 of 270 in wave 4 (835 with a
   look in all, 218 before), from each mod's own defs and textures where public (GitHub), else its Workshop pages and
