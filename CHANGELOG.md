@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The peoples in their own ages
+
+*28 November 2026, version 0.328.0*
+
+- The older events of the neighbouring peoples are now told in each people's own age: a tribal envoy comes barefoot or in a dugout, a spacer factor with a slate.
+- A Signal Line of the tribal or medieval age raises a wooden flag tower instead of a steel mast, and buys the colony's cloth for its flags.
+- What the peoples bring follows their age: steel from an old union, herbal medicine from Works fallen back, no turret from a Lattice of the medieval age.
+- A guild master reworks only a weapon of the guild's own age, and the Wheel's mended weapon never comes from past its age.
+- Fixed: the Wheel's scrap-runners no longer name a mended piece they do not have.
+
 ## The colonists' own lives, looked over
 
 *28 November 2026, version 0.327.0*

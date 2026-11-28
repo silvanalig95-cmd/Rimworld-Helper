@@ -971,8 +971,16 @@ most sense." So, in this order, three builds at a time:
   goodwill. Three wishes (`Rimfolk_LivR7_Wishes.xml`: boots, gloves for the cold, cloth and hides before winter). Left
   for the player to decide: the family-tied life goals (marry, a child, a grandchild, set things right with family)
   still record the goal-reached deed. Tests: ReviewLivesTests.
-- **Under way (28 November 2026; the player's pick "Yes, alongside"): the peoples' 96 older events in their own people's
-  age and ways**, in a worktree (`docs/content-round-7-peoples-ages.md`).
+- **Done (28 November 2026, 0.328.0; the player's pick "Yes, alongside"): the peoples' older events in their own people's
+  age and ways**, in a worktree, merged; `docs/content-round-7-peoples-ages.md`. Of the 96 told in the colony's age, 83
+  now take their people's forms (texts tagged `[age0]` to `[age3]` through `PeopleEvents.AgeTags`, as rounds 4 to 10;
+  the Lattice's turret gated in code), 13 checked and left (they read the same in every age; reasons in the doc and in
+  `peoples_impact_audit.py --print ages`): 157 in the people's own age, 0 only in the colony's. Callers told from data
+  run on `HappeningWorker_PplAgesSetting`; goods by `PplAgesMath`; a tribal or medieval Signal Line raises
+  `Rimfolk_PplR8_LineTower` (a flag tower) and buys cloth. Fixed on the way: the Wheel's scrap-runners named a mended
+  piece they did not have; the red ink's factor walks in from the road; the tome crate bound with iron straps. Mods
+  that would help: Medieval Total Rim: Pre-Industrial Prosthetics and Animals (subscribed, off); Vehicle Framework and
+  Vanilla Vehicles Expanded catalogued only to 1.6. Tests: PeoplesAgesTests.
 - **Done (28 November 2026; the player's pick "I'll send a new collection"): the catalogue of their mods built again.**
   The player sent `RimfolkModDefs.zip` from `Tools/Collect-ModDefs.ps1` (written again, kept in the repository): 454
   mods subscribed, 298 active; new: A RimWorld of Magic (Continued) with RWoM Core and RWoM Integrations, Better Trees,

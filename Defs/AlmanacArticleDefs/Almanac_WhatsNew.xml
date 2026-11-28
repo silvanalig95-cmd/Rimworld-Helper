@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.328.0</version>
+        <date>28 November 2026</date>
+        <title>The peoples in their own ages</title>
+        <points>
+          <li>The older events of the neighbouring peoples are now told in each people's own age: a tribal envoy comes barefoot or in a dugout, a spacer factor with a slate.</li>
+          <li>A Signal Line of the tribal or medieval age raises a wooden flag tower instead of a steel mast, and buys the colony's cloth for its flags.</li>
+          <li>What the peoples bring follows their age: steel from an old union, herbal medicine from Works fallen back, no turret from a Lattice of the medieval age.</li>
+          <li>A guild master reworks only a weapon of the guild's own age, and the Wheel's mended weapon never comes from past its age.</li>
+          <li>Fixed: the Wheel's scrap-runners no longer name a mended piece they do not have.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.327.0</version>
         <date>28 November 2026</date>
         <title>The colonists' own lives, looked over</title>
