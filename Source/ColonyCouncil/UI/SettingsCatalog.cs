@@ -529,6 +529,13 @@ namespace ColonyCouncil
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");
             Toggle("weatherForecast", "CC_Settings_WeatherForecast", "CC_SetNote_WeatherForecast", "deepHooks");
+            // The land's climate (Weather/LandClimate.cs): one setting for its strength, and the drift's way.
+            Choice("climateStrength", "CC_Settings_ClimateStrength", "CC_Settings_ClimateStrength_Tip", "CC_ClimateStrength_", "CC_SetNote_ClimateStrength_",
+                new[] { "Off", "Gentle", "Usual", "Dramatic" }, "deepHooks");
+            var drift = Dropdown("climateDrift", "CC_Settings_ClimateDrift", "CC_Settings_ClimateDrift_Tip", "CC_SetNote_ClimateDrift", "CC_ClimateDrift_",
+                new[] { "Off", "Random", "Warmer", "Colder", "Drier", "Wetter" });
+            drift.notePrefix = "CC_SetNote_ClimateDrift_";
+            drift.needs = "deepHooks,climateStrength!=Off";
             Toggle("rainWashesMore", "CC_Settings_RainWash", "CC_SetNote_RainWash");
             // Building: personal touches, the build menu, the stores, defense.
             Section("CC_Settings_Touches");

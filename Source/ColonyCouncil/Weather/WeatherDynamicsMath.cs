@@ -68,6 +68,11 @@ namespace ColonyCouncil
         public float eventRain, eventClear, eventStorm, eventSnow, eventFog;
         /// <summary>The tile's own number, for when its wet season falls.</summary>
         public int seed;
+        /// <summary>
+        /// The season's character (Weather/LandClimate.cs): how much wetter (above 0) or drier it leans, with the climate's
+        /// drift, and toward more snow (above 0) or less. 0 for an ordinary season.
+        /// </summary>
+        public float seasonWet, seasonSnow;
 
         public static WeatherNow Calm => new WeatherNow { current = WeatherKind.Clear, hour = 12, season = 2, temp = 15f, eventRain = 1f, eventClear = 1f, eventStorm = 1f, eventSnow = 1f, eventFog = 1f };
     }
@@ -126,7 +131,7 @@ namespace ColonyCouncil
         public static float Factor(WeatherKind c, WeatherNow n, BiomeWeather b)
         {
             if (c == WeatherKind.Special) return 1f;
-            float f = Spell(c, n, b) * FollowOn(c, n, b) * Events(c, n) * Year(c, n, b) * Season(c, n, b);
+            float f = Spell(c, n, b) * FollowOn(c, n, b) * Events(c, n) * Year(c, n, b) * Season(c, n, b) * Character(c, n);
             // A drought means no more rain than the land would have anyway, and a downpour is never made likelier.
             if ((n.drought && Wet(c)) || c == WeatherKind.Downpour) f = Math.Min(f, 1f);
             return Clamp(f, MinFactor, MaxFactor);
@@ -281,6 +286,31 @@ namespace ColonyCouncil
             if (Open(c)) return 1f - n.yearWet * 0.5f;
             if (c == WeatherKind.Snow) return 1f + n.yearWet * 0.5f;
             return 1f;
+        }
+
+        /// <summary>
+        /// The season's character (Weather/LandClimate.cs): a wet season brings rain, storms and fog more often and clear skies
+        /// less (rain half again as often at its usual lean), a dry one the other way with more dust and dry storms; a snowy
+        /// season more snow, one with little snow less. Applies over Seasonal Weather's seasons too: it leans whatever weathers
+        /// the land has, and never brings one it hasn't.
+        /// </summary>
+        public static float Character(WeatherKind c, WeatherNow n)
+        {
+            if (n.seasonWet == 0f && n.seasonSnow == 0f) return 1f;
+            switch (c)
+            {
+                case WeatherKind.Rain:
+                case WeatherKind.Downpour:
+                case WeatherKind.Storm: return Math.Max(0.15f, 1f + n.seasonWet);
+                case WeatherKind.Clear:
+                case WeatherKind.Cloudy:
+                case WeatherKind.Windy: return Clamp(1f - n.seasonWet * 0.35f, 0.5f, 1.5f);
+                case WeatherKind.Snow: return Math.Max(0.1f, 1f + n.seasonSnow + n.seasonWet * 0.3f);
+                case WeatherKind.Fog: return Clamp(1f + n.seasonWet * 0.3f, 0.5f, 1.5f);
+                case WeatherKind.Dust:
+                case WeatherKind.DryStorm: return Clamp(1f - n.seasonWet * 0.5f, 0.3f, 1.6f);
+                default: return 1f;
+            }
         }
 
         /// <summary>

@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The land's climate (Source/ColonyCouncil/Weather/LandClimate.cs): what the colonist who reads the weather best says a
+    season looks like at its start (one pool per kind of season; [extreme] for one far from the usual, [snowseason] and
+    [rainseason] for where snow or rain is what falls), a word on a weather no biome has when it comes, and the elders on
+    what has changed since the colony came ([trend:...]). One sentence each, said over the head; [lowtech] and [!lowtech]
+    keep a line to the ages it fits.
+  -->
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SaySeason_Ordinary</defName>
+    <lines>
+      <plain>
+        <li>This season looks like an ordinary one, nothing out of the way.</li>
+        <li>[summer] A normal summer by the look of it, some rain and plenty of warm days.</li>
+        <li>[winter] An ordinary winter coming, cold but nothing worse than usual.</li>
+        <li>[spring] A normal spring, I'd say, the usual rain and the usual sun.</li>
+        <li>[fall] An ordinary fall by the signs, nothing to worry about.</li>
+        <li>[old] I've seen a lot of seasons, and this one looks like most of them.</li>
+        <li>[lowtech] The birds and the trees are keeping their usual time this year.</li>
+        <li>[!lowtech] The long-range readings look normal for the time of year.</li>
+        <li>[child] It looks like a normal season to me.</li>
+      </plain>
+      <blunt><li>Ordinary season ahead.</li></blunt>
+      <cheerful><li>An ordinary season, and I'm glad of it.</li></cheerful>
+      <gloomy><li>Ordinary enough for now, though that never lasts.</li></gloomy>
+      <warm><li>A quiet season ahead, by the look of it, and we could do with one.</li></warm>
+      <cold><li>Nothing unusual ahead, so the work goes on as usual.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SaySeason_Wet</defName>
+    <lines>
+      <plain>
+        <li>This season looks set to be a wet one.</li>
+        <li>[summer] It'll be a wet summer, the signs all point that way.</li>
+        <li>[spring] A wet spring coming, the ground will be soft for weeks.</li>
+        <li>[fall] A wet fall ahead, so get the harvest in while you can.</li>
+        <li>[winter,rainseason] A wet winter coming, more rain than frost.</li>
+        <li>[old] My joints have ached for days, so expect a wet season.</li>
+        <li>[lowtech] The snails are out and the moss is thick, so it'll be a wet season.</li>
+        <li>[!lowtech] The pressure keeps dropping, so expect a wet season.</li>
+        <li>[work:Growing] The fields will get plenty of rain this season, maybe too much.</li>
+        <li>[extreme] I've never seen signs like these, it'll rain and rain this season.</li>
+      </plain>
+      <blunt><li>Wet season coming, keep the stores dry.</li></blunt>
+      <gloomy><li>It's going to rain all season, I can feel it.</li></gloomy>
+      <cheerful><li>A wet season, the crops will love it.</li></cheerful>
+      <warm><li>Keep your boots by the fire, it'll be a wet season.</li></warm>
+      <cold><li>Wet season ahead, so check the roofs now.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SaySeason_Dry</defName>
+    <lines>
+      <plain>
+        <li>This season looks like a dry one.</li>
+        <li>[summer] A dry summer coming, we should watch the fields.</li>
+        <li>[spring] Not much rain this spring, by the look of the sky.</li>
+        <li>[fall] A dry fall ahead, the leaves will crackle underfoot.</li>
+        <li>[old] The air has that dry feel I remember from bad years.</li>
+        <li>[lowtech] The dew is thin every morning, so it'll be a dry season.</li>
+        <li>[!lowtech] The forecasts show high pressure sitting over us for weeks.</li>
+        <li>[work:Growing] The fields will want water this season, the rain won't come.</li>
+        <li>[extreme] I've never seen it this dry so early, it'll be a hard dry season.</li>
+      </plain>
+      <blunt><li>Dry season ahead, save water.</li></blunt>
+      <gloomy><li>No rain this season, mark my words.</li></gloomy>
+      <cheerful><li>A dry season, good for drying the hay at least.</li></cheerful>
+      <warm><li>Drink plenty, everyone, it'll be a dry season.</li></warm>
+      <cold><li>Dry season ahead, so keep the brush cut back from the walls.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SaySeason_Warm</defName>
+    <lines>
+      <plain>
+        <li>This season looks warmer than usual.</li>
+        <li>[summer] It'll be a hot summer, the heat's already building.</li>
+        <li>[winter] A mild winter by the look of it, not much frost.</li>
+        <li>[spring] Spring's come warm and early this year.</li>
+        <li>[fall] The fall's staying warm, summer isn't letting go.</li>
+        <li>[old] It's warmer than it should be for the time of year.</li>
+        <li>[lowtech] The bees are out early, so it'll be a warm season.</li>
+        <li>[!lowtech] The temperature readings are running high for the time of year.</li>
+        <li>[extreme,summer] It'll be a scorching summer, keep out of the midday sun.</li>
+        <li>[extreme,winter] Hardly a winter at all this year, it's that mild.</li>
+      </plain>
+      <blunt><li>Warm season coming.</li></blunt>
+      <gloomy><li>Too warm for the time of year, it's not right.</li></gloomy>
+      <cheerful><li>A warm season, I won't complain.</li></cheerful>
+      <warm><li>A warm season ahead, easier on the old and the little ones.</li></warm>
+      <cold><li>Warm season ahead, so the food will spoil faster.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SaySeason_Cold</defName>
+    <lines>
+      <plain>
+        <li>This season looks colder than usual.</li>
+        <li>[winter] A cold winter coming, we'll need more firewood.</li>
+        <li>[summer] This summer won't warm up much, by the feel of it.</li>
+        <li>[spring] Spring's slow to warm this year.</li>
+        <li>[fall] The cold's coming early this fall.</li>
+        <li>[old] My bones say it'll be a cold season.</li>
+        <li>[lowtech] The animals have thick coats already, so it'll be a cold season.</li>
+        <li>[!lowtech] The readings are running low for the time of year.</li>
+        <li>[extreme,winter] A hard winter is coming, cut all the wood you can.</li>
+        <li>[extreme] It's going to be bitterly cold, worse than anything we've had.</li>
+      </plain>
+      <blunt><li>Cold season coming, stack the wood.</li></blunt>
+      <gloomy><li>A cold season, and a long one.</li></gloomy>
+      <cheerful><li>A cold season, good for sitting by the fire.</li></cheerful>
+      <warm><li>Wrap the little ones up warm, it'll be a cold season.</li></warm>
+      <cold><li>Cold season ahead, so the heaters and fires come first.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SaySeason_Snowy</defName>
+    <lines>
+      <plain>
+        <li>This season looks set to bring a lot of snow.</li>
+        <li>[winter] A snowy winter coming, we'll be digging paths every morning.</li>
+        <li>[old] I remember skies like this, the snow will be deep this year.</li>
+        <li>[lowtech] The hares turned white early, so expect deep snow.</li>
+        <li>[!lowtech] The forecasts show snow, and plenty of it.</li>
+        <li>[child] Will there be enough snow for a really big snowman?</li>
+        <li>[extreme] I've never seen signs of so much snow, it could bury the fences.</li>
+      </plain>
+      <blunt><li>Lots of snow coming, keep the shovels handy.</li></blunt>
+      <gloomy><li>Snow and more snow, all season.</li></gloomy>
+      <cheerful><li>A snowy season, the children will be pleased.</li></cheerful>
+      <warm><li>Deep snow coming, so check on the old folk often.</li></warm>
+      <cold><li>Heavy snow ahead, so keep the paths to the stores clear.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SaySeason_Snowless</defName>
+    <lines>
+      <plain>
+        <li>This season looks to bring little snow.</li>
+        <li>[winter] A winter without much snow, by the look of it.</li>
+        <li>[old] Hardly any snow this season, I can tell.</li>
+        <li>[lowtech] The sky's clear and dry, there won't be much snow this season.</li>
+        <li>[!lowtech] The forecasts show dry cold, not much snow this season.</li>
+        <li>[child] There won't be any snow for sledding this season, will there?</li>
+        <li>[extreme] No snow at all this season, I'd wager.</li>
+      </plain>
+      <blunt><li>Little snow this season.</li></blunt>
+      <gloomy><li>No snow to speak of, and the cold bites harder without it.</li></gloomy>
+      <cheerful><li>Not much snow this season, so less shovelling.</li></cheerful>
+      <warm><li>Little snow this season, so the paths will stay open.</li></warm>
+      <cold><li>Little snow this season, so the ground will freeze hard.</li></cold>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- A weather no biome has, come with the season, a sign or a world event: a word from someone in view. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SayOddWeather</defName>
+    <lines>
+      <plain>
+        <li>Strange weather today, I've not seen this here before.</li>
+        <li>[weather:AB_PetalStorms] Petals on the wind, where are they all coming from?</li>
+        <li>[weather:AB_PetalStorms] Look at all these petals, the air is full of them.</li>
+        <li>[weather:DoubleRainbow] Look, a double rainbow over the fields.</li>
+        <li>[weather:DoubleRainbow] Two rainbows at once, I've hardly ever seen that.</li>
+        <li>[weather:RG_Drizzle] Just a drizzle, it'll barely wet the ground.</li>
+        <li>[weather:RG_Drizzle] This drizzle gets into everything.</li>
+        <li>[weather:Dust] The wind's picking up dust off the dry ground.</li>
+        <li>[weather:Dust] Cover your mouth, there's dust in the air.</li>
+        <li>[weather:VEE_DustStorm] A dust storm, get inside and close the doors.</li>
+        <li>[weather:DryDuststorm] Dust and lightning, and not a drop of rain with it.</li>
+        <li>[weather:FogSnow] Snow and fog together, you can't see the end of the yard.</li>
+        <li>[weather:VEE_Whiteout] A whiteout, nobody go out alone in this.</li>
+        <li>[weather:VEE_Swelter] The heat is heavy today, it sits on everything.</li>
+        <li>[weather:RG_FogStorm] Fog and wind together, I can hardly see a thing.</li>
+        <li>[weather:AB_ReddishRain] The rain's red, the old people say that's a bad sign.</li>
+        <li>[weather:AB_ReddishRain] Red rain, I don't like the look of it.</li>
+        <li>[weather:AB_VolcanicAsh] There's ash in the air, it's settling on everything.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <!-- The colony's elder at a season's start, on what the land's record shows since the colony came. -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Climate_Pool_SayTrend</defName>
+    <lines>
+      <plain>
+        <li>[trend:WinterMilder] The winters were colder when we first came here.</li>
+        <li>[trend:WinterMilder] We used to have proper winters here, not like now.</li>
+        <li>[trend:WinterHarsher] The winters are harder now than when we came.</li>
+        <li>[trend:WinterHarsher] We didn't need this much firewood in our first winters.</li>
+        <li>[trend:SummerHotter] The summers are hotter now than they used to be.</li>
+        <li>[trend:SummerHotter] Our first summers here were never this hot.</li>
+        <li>[trend:SummerCooler] The summers aren't as warm as they were when we came.</li>
+        <li>[trend:SummerCooler] I remember warmer summers in our first years here.</li>
+        <li>[trend:Wetter] It rains more here than it did in our first years.</li>
+        <li>[trend:Drier] It rained more when we first came here.</li>
+        <li>[trend:GrowLonger] The growing season's longer now than when we started.</li>
+        <li>[trend:GrowShorter] The growing season's shorter now than when we started.</li>
+        <li>[trend:SnowEarlier] The snow comes earlier now than in our first years.</li>
+        <li>[trend:SnowLater] The snow comes later every year, it seems.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

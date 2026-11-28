@@ -393,6 +393,10 @@ namespace ColonyCouncil
         public bool weatherTemperature = true;
         /// <summary>Someone who reads the weather (or a weather station) says what's coming, and is right as often as they're good at it.</summary>
         public bool weatherForecast = true;
+        /// <summary>The land's climate (Weather/LandClimate.cs): seasons with a character of their own, a year's extremes, once in a lifetime, the weathers no biome has; how strongly.</summary>
+        public ClimateStrength climateStrength = ClimateStrength.Usual;
+        /// <summary>Which way the land's climate drifts over the years (Weather/ClimateDrift.cs).</summary>
+        public ClimateDriftMode climateDrift = ClimateDriftMode.Random;
         /// <summary>The harder it rains, the faster blood, dirt and other filth the game lets rain wash comes off the open ground (Weather/RainWash.cs).</summary>
         public bool rainWashesMore = true;
         /// <summary>How hard the fights a Rimfolk scenario promises hit (share of their usual strength).</summary>
@@ -1115,6 +1119,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref dynamicWeather, "dynamicWeather", true);
             Scribe_Values.Look(ref weatherTemperature, "weatherTemperature", true);
             Scribe_Values.Look(ref weatherForecast, "weatherForecast", true);
+            Scribe_Values.Look(ref climateStrength, "climateStrength", ClimateStrength.Usual);
+            Scribe_Values.Look(ref climateDrift, "climateDrift", ClimateDriftMode.Random);
             Scribe_Values.Look(ref rainWashesMore, "rainWashesMore", true);
             Scribe_Values.Look(ref scenarioThreat, "scenarioThreat", 1f);
             Scribe_Values.Look(ref encounterFrequency, "encounterFrequency", 1f);

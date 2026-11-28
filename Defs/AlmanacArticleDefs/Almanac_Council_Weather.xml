@@ -45,6 +45,47 @@
         <after>Only on home maps with weather of their own (not in space or a pocket map). Each part has its own setting, and all need the deeper game hooks. Nothing is added to the map: switching them off, or taking Rimfolk out, leaves the game's own weather.</after>
       </li>
       <li>
+        <heading>Seasons with a character of their own</heading>
+        <text>Each season gets a character when it begins, drawn from the land's climate and the year: the same land and year always give the same seasons. About half the seasons are ordinary. The rest lean one way: wet or dry, warm or cold, and where snow is what falls (a season whose usual mean is 3 °C or less) snowy or short of snow. About one season in ten is extreme. The rain and snow lean the weather the game chooses (with "Weather that changes like weather"), so a season only brings more or less of the weathers the land already has; the temperature moves for the whole season, eased in over about half a day. At the start of each season the colonist who reads the weather best says what kind of season it looks like, over their head if they are in view, and the news has it; they are right a little less often than about tomorrow's weather. An extreme season is told once the land shows it: a warm or cold one a day in, a wet, dry or snowy one from its fifth day if the days so far agree.</text>
+        <table>
+          <li>Season | Rain and snow | Temperature</li>
+          <li>Wet | Rain about half again as often (less where it already rains on most days), clear skies less; a very wet one rains about twice as often | Half a degree cooler in summer</li>
+          <li>Dry | Rain about half as often, more dust and dry storms; a very dry one about a quarter as often | Up to 1 °C warmer in spring and summer, up to 2 °C in a very dry one</li>
+          <li>Warm | As usual | 2 to 3.5 °C warmer; a hot summer or a very mild winter 4 to 6.5 °C</li>
+          <li>Cold | As usual | 2 to 3.5 °C colder; a hard winter or a very cold season 4 to 8 °C</li>
+          <li>Snowy | Snow more often; a winter of deep snow about twice as often | 1 °C colder, 2.5 °C in deep snow</li>
+          <li>Short of snow | Snow less than half as often, almost none in an extreme | 1 °C milder, 2.5 °C in an extreme</li>
+        </table>
+        <after>The setting "The land's climate" (What's on page, under "The weather") makes it gentle (seven seasons in ten ordinary, the rest milder), as designed, or dramatic (a third ordinary, the rest stronger and more often extreme), or switches it off.</after>
+      </li>
+      <li>
+        <heading>A year's extremes, and once in a lifetime</heading>
+        <text>Now and then a year has its own extreme, about one year in twelve as designed: a year without a summer (spring and fall 2.5 to 3.5 °C colder, the summer 4 to 6 °C), a dry year (every season dry, the summer very dry), or a year of heavy rain (spring and fall very wet, the summer wet). The region's world event to match is started where it can be (a year without a summer, the region's drought, its floods, and a hard winter for a hard winter), so the neighbours' news says what the land shows. While those world events run the land feels them too: a year without a summer 3 °C colder, a hard winter 2.5 °C colder, the region's drought a degree warmer in spring and summer. Very rarely, about once in twenty years as designed, a season brings weather from outside the land's own climate for a few days, with the temperature to match, only where the land's own climate never brings it.</text>
+        <table>
+          <li>Once in a lifetime | Where and when | How long</li>
+          <li>Snow | Land where snow never falls (its coldest month 7 °C or more), in its coldest season, taken down to a mean of -6 °C | 2 to 4 days</li>
+          <li>A hard frost | Warm land (its coldest month 12 °C or more), in its coldest season, down to a mean of 2 °C with frost at night | 3 to 5 days</li>
+          <li>A great heat | Cold land (its warmest month 16 °C or less), in its warmest season, up to 18 °C warmer | 3 to 6 days</li>
+          <li>A blizzard | Land with cold winters (its coldest month between -15 and 3 °C) where no blizzard comes (Odyssey's blizzard) | 1.5 to 3 days</li>
+          <li>A dust storm | Land that isn't wet and has no dust weather, in its warm seasons (Odyssey's sandstorm, else Vanilla Landmarks Expanded's or Seasonal Weather's dust) | 1 to 2 days</li>
+          <li>Heavy rain | Dry land with no downpour among its weathers (Odyssey's torrential rain, else a thunderstorm) | 1 to 2 days</li>
+          <li>A great storm | Wet, warm land by open water (Vanilla Psycasts Expanded's hurricane), only within the shared harm budget | About a day</li>
+        </table>
+        <after>It is told when it shows (its weather begun, or the cold or heat most of the way in), the chronicle keeps it, a believer may say whose sign they take it for, and the year's annals remember it. As designed it never takes the temperature more than 22 °C down or 18 °C up (16 and 13 gentle, 26 and 22 dramatic).</after>
+      </li>
+      <li>
+        <heading>Weathers that come by no biome</heading>
+        <text>About 25 of the game's and the mods' weathers come only by an event or a psycast. The seasons give some of them a place, each only with its mod: fertile rain in a wet spring or summer (Vanilla Landmarks Expanded's own condition, so the plants grow faster while it lasts), a drizzle in a wet season (ReGrowth), dust in a dry season (Seasonal Weather, Vanilla Landmarks Expanded), fog snow in a snowy winter (Seasonal Weather), a whiteout in a hard or deep-snow winter and swelter in a hot summer (Vanilla Events Expanded), a petal storm (Alpha Biomes) or a double rainbow (Seasonal Weather) in spring, and a fog storm in a wet or cold fall (ReGrowth). Red rain (Alpha Biomes) now and then falls in the last days of a season before a hard one, and some take it as a sign. The region's drought brings a day of dust, its hard winter a whiteout or fog snow. A volcanic winter brings a few hours of ash in the air (Alpha Biomes) and now and then Alpha Biomes' acid rain with its own letter, within the shared harm budget. Blood rain, the death pall, psychic rain, the long night, the inferno and the psycasts' and space's weathers are never brought: they belong to their own events.</text>
+      </li>
+      <li>
+        <heading>A climate that drifts</heading>
+        <text>Over the years the land's climate drifts slowly, one way for the whole game: by 1 to 3 °C a decade as designed and 4 °C in all (about 1 °C a decade and 2.5 °C in all gentle, 2 to 4 °C a decade and 6 °C in all dramatic), and the rain by up to a third more or less. The setting "Climate drift" picks the way: random by the world, warmer, colder, drier or wetter, or off. Unless it is off, a volcanic winter cools the land by 1.5 °C for a few years, a comet sets the climate moving about a degree one way or the other for a few years, the colony's pollution warms its own land (up to 2 °C), and once more than a sixth of the map's trees are gone since the record began, the land is a little warmer and drier. Growing seasons lengthen or shorten and the snow comes earlier or later with it.</text>
+      </li>
+      <li>
+        <heading>The land's record</heading>
+        <text>Each year's weather goes into the land's record: how far from the usual its winter and its summer ran, its wet days, its growing days and the day of its first snow, forty years at most. The year's annals say the year's own extreme, its seasons that had a character and showed it ("The spring was wet and the winter was hard."), once in a lifetime, and, once the record has four years, what it shows since the colony came: "The winters are milder than when the colony came, by about 2 °C." Early in a season the colony's elder (fifty or older, or three years with the colony) says so when it fits the season. The Overview's Weather card shows the season's forecast, once in a lifetime while it lasts, and what the record shows.</text>
+      </li>
+      <li>
         <heading>After a disaster</heading>
         <text>When a disaster is over and the land is quiet again, the one best at the work and three others set to it together, with the game's own jobs, if there is anything to do. The chronicle writes it down once they've done some of it, and the year's annals count each disaster ("The earth shook twice, and hail fell on the fields once.").</text>
         <table>

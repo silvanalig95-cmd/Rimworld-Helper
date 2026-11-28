@@ -44,6 +44,9 @@ namespace ColonyCouncil
         /// <summary>The weather dynamics' part (Weather/WeatherDynamics.cs): the forecast and the events' pulls are saved with the record.</summary>
         [Unsaved] internal readonly WeatherDynamics.State dyn = new WeatherDynamics.State();
 
+        /// <summary>The land's climate's part (Weather/LandClimate.cs): the season begun, the climate's push, what was told, the land's record.</summary>
+        [Unsaved] internal readonly LandClimate.State clim = new LandClimate.State();
+
         /// <summary>A day without snow for this long, then snow: the first snow of the winter (as WeatherTalk has it).</summary>
         private const int SnowGapDays = 10;
 
@@ -54,7 +57,21 @@ namespace ColonyCouncil
         {
         }
 
-        public static WeatherBook Of(Map map) => map?.GetComponent<WeatherBook>();
+        private static Map lastMap;
+        private static WeatherBook lastBook;
+        private static Game lastGame;
+
+        /// <summary>The map's weather record (the last one asked for is kept at hand: the temperature asks for it often).</summary>
+        public static WeatherBook Of(Map map)
+        {
+            if (map == null) return null;
+            if (ReferenceEquals(map, lastMap) && lastBook != null && ReferenceEquals(lastGame, Verse.Current.Game)) return lastBook;
+            var book = map.GetComponent<WeatherBook>();
+            lastMap = map;
+            lastBook = book;
+            lastGame = Verse.Current.Game;
+            return book;
+        }
 
         /// <summary>The days kept, today last (counted so far).</summary>
         public List<WeatherDay> Days
@@ -95,7 +112,7 @@ namespace ColonyCouncil
         public override void MapComponentTick()
         {
             int tick = Find.TickManager.TicksGame;
-            if (Sched.Every(tick, Sched.RareTicks, Sched.RareWeather) && (dyn.offset != 0f || WeatherDynamics.TemperatureOn))
+            if (Sched.Every(tick, Sched.RareTicks, Sched.RareWeather) && (dyn.offset != 0f || WeatherDynamics.TemperatureOn || clim.climate != 0f || LandClimate.On))
             {
                 using var rare = PassClock.Time(Pass.RareWeather);
                 try
@@ -105,6 +122,14 @@ namespace ColonyCouncil
                 catch (Exception e)
                 {
                     CouncilLog.ErrorOnce("weather temperature", e);
+                }
+                try
+                {
+                    LandClimate.Rare(map, this);
+                }
+                catch (Exception e)
+                {
+                    CouncilLog.ErrorOnce("climate temperature", e);
                 }
             }
             if (!Sched.Hourly(tick, Sched.Weather) || !map.IsPlayerHome || map.weatherManager == null) return;
@@ -124,6 +149,14 @@ namespace ColonyCouncil
             catch (Exception e)
             {
                 CouncilLog.ErrorOnce("weather forecast", e);
+            }
+            try
+            {
+                LandClimate.Hourly(map, this);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the land's climate", e);
             }
             try
             {
@@ -306,6 +339,7 @@ namespace ColonyCouncil
             {
                 quarterList.Add(q);
                 WeatherMath.Trim(quarterList, WeatherMath.MaxQuarters);
+                ClimateYearEnded(q);
                 return;
             }
             q.name = WeatherMath.NameOf(q, map.TileInfo != null && map.TileInfo.rainfall >= WetLand);
@@ -330,6 +364,7 @@ namespace ColonyCouncil
                     CouncilLog.ErrorOnce("weather: a named season and the gods", e);
                 }
             }
+            ClimateYearEnded(q);
             var change = WeatherMath.Compare(q, before, out float by);
             if (change == WeatherChange.Same) return;
             string line = Change(change, season, q, before, by);
@@ -339,6 +374,19 @@ namespace ColonyCouncil
             var writer = ColonyCalendar.AtHome(map).Where(p => !p.DevelopmentalStage.Baby())
                 .OrderByDescending(p => p.records?.GetAsInt(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0).FirstOrDefault();
             if (writer != null) comp?.journals.WriteTagged(writer, "Council_Journal_SeasonCompare", new[] { change.ToString().ToLowerInvariant(), WeatherMath.SeasonWord(q.season) }, null, season.Named("SEASON"));
+        }
+
+        /// <summary>The year's last season ended: the year into the land's record (Weather/LandClimate.cs).</summary>
+        private void ClimateYearEnded(WeatherQuarter q)
+        {
+            try
+            {
+                LandClimate.QuarterEnded(map, this, q, firstSnowYear == q.year ? firstSnowDoy : -1);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the land's record", e);
+            }
         }
 
         private static string SeasonLabel(WeatherQuarter q) => ((Season)q.season).Label();
@@ -393,6 +441,17 @@ namespace ColonyCouncil
             if (wet != null) words.Add(("CC_Annals_Year_" + wet).Translate().Resolve());
             if (temp != null) words.Add(("CC_Annals_Year_" + temp).Translate().Resolve());
             if (words.Count > 0) line = "CC_Annals_WeatherYear".Translate(TextUtil.JoinAnd(words)).Resolve() + " " + line;
+            // The land's climate: the year's own extreme, its seasons' characters, once in a lifetime, and what the record shows.
+            string climate = null;
+            try
+            {
+                climate = LandClimate.AnnalsPart(map, this, year);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the land's climate in the annals", e);
+            }
+            if (climate != null) line += " " + climate;
             return quakes != null ? line + " " + quakes : line;
         }
 
@@ -426,6 +485,14 @@ namespace ColonyCouncil
                 lines.Add("CC_Overview_WeatherRecords".Translate(rec.coldest.ToStringTemperature("F0"), rec.hottest.ToStringTemperature("F0"), rec.longestWet, rec.longestDry).Resolve());
             var last = quarterList.LastOrDefault(q => q.name != null);
             if (last != null) lines.Add("CC_Overview_WeatherNamed".Translate(NameText(last).CapitalizeFirst(), last.year).Resolve());
+            try
+            {
+                lines.AddRange(LandClimate.OverviewLines(map, this));
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("the land's climate on the Overview", e);
+            }
             return lines;
         }
 
@@ -461,6 +528,7 @@ namespace ColonyCouncil
                 Scribe_Values.Look(ref quakeCount, "quakeCount");
             }
             dyn.Expose();
+            clim.Expose();
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
                 dayList = (days ?? new List<string>()).Select(WeatherMath.UnpackDay).Where(d => d != null).ToList();

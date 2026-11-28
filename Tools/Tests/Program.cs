@@ -597,6 +597,7 @@ Console.WriteLine($"Checked {InboxTests.Run(root, Check)} things about one inbox
         Console.WriteLine($"Checked {CoverDragTests.Run(root, Check)} things about taking cover with a drag (cells, order, never off the map).");
         Console.WriteLine($"Checked {WeatherTests.Run(root, Check)} things about the weather record (days, records, seasons and their names, what events ask).");
         Console.WriteLine($"Checked {WeatherDynamicsTests.Run(root, Check)} things about weather that changes like weather (every land and combination, a hundred years on eight lands).");
+        Console.WriteLine($"Checked {LivingClimateTests.Run(root, Check)} things about the land's climate (seasons with a character, a year's extremes, once in a lifetime, the weathers no biome has, the drift, the land's record, simulated years, the seams).");
         Console.WriteLine($"Checked {ColonyTraitTests.Run(root, Check)} things about what a colony grows into and the names of its years.");
         Console.WriteLine($"Checked {WhatsNewTests.Run(root, Check)} things about What's new (the page, CHANGELOG.md and the version).");
         Console.WriteLine($"Checked {LogLinesTests.Run(root, Check, out int logLines)} things about the {logLines} log lines added from separate files.");
