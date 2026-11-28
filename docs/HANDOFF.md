@@ -1081,8 +1081,11 @@ most sense." So, in this order, three builds at a time:
   (`choco.quietwonders`, `patrickschwarzer.rivers`, `patrickschwarzer.waves`, `EvilEyeGuy.WeatherReimagined`,
   `SomethingSomething.PlantsAndStuff` (Wild Crops), `Kopp.BiomeCompatibilityProject`, `Keepercraft.RimKeeperAnimals`,
   `luved.animaltraits`), with their DLLs and patches, read into the session's scratchpad (`naturemods_upload`); its
-  ModsConfig.xml has none of them enabled yet (told the player). Phase 2 builds on them softly; add them to
-  `docs/player-mods` once a save or mod list shows them enabled.
+  ModsConfig.xml has none of them enabled yet (told the player). A second zip the same day, with Atmosphere Overhaul's
+  full files (52 defs and patches, 5 DLLs, 18 source files): Quiet Wonders, Living Waters, Waves, Weather Reimagined,
+  Wild Crops, Biome Compatibility Project and Atmosphere Overhaul enabled (last in the list), RimKeeper and Animal
+  Traits System not. Folded into the collection and `docs/player-mods` built again (462 subscribed, 305 active);
+  Atmosphere Overhaul's oxygen mask added to `Tools/Tests/PeopleGear.txt` (an industrial tag the peoples use).
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
   display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
   used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the

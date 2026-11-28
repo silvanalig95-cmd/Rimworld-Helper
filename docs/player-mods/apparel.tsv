@@ -1,7 +1,7 @@
 defName	mod	active	label	techLevel	tags	layers	bodyPartGroups	stuff	marketValue	tradeTags	commonality
 EEG_Apparel_CoatOfPlates	accurex.medievalempireoverhaul	no	coat of plates	Medieval	EEG_NobleGear,MedievalMilitary,MedievalMilitaryAdvanced	Shell	Neck,Torso,Shoulders,Arms,Legs	Metallic			
 EEG_Headgear_RoyalGreatHelm	accurex.medievalempireoverhaul	no	royal great helm	Medieval	EEG_NobleHelmet,DankPyon_LordHelmet	Overhead	FullHead	Metallic			
-AO_OxygenMask	acutus.atmosphereoverhaul.release	no	oxygen mask	Industrial	IndustrialMilitaryBasic	Overhead	Mouth			Clothing,Clothing	
+AO_OxygenMask	acutus.atmosphereoverhaul.release	yes	oxygen mask	Industrial	IndustrialMilitaryBasic	Overhead	Mouth			Clothing,Clothing	
 TA_Bazubands	al9000.fireandsteel	no	bazubands	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_BootGlove	Hands,Arms	Metallic		Clothing,Armor	
 TA_Bonnet	al9000.fireandsteel	no	bonnet	Medieval	Medieval	Overhead	UpperHead	Fabric		Clothing,Clothing	
 TA_BuffCoat	al9000.fireandsteel	no	buffcoat	Medieval	MedievalMilitary,MedievalArmorBasic	Shell,TA_UnderArmor	Torso,Shoulders,Arms,Legs,Neck	Leathery		Clothing,Clothing,Armor	

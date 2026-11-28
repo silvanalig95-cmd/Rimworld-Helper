@@ -1,7 +1,7 @@
 defName	mod	active	label	techLevel	role	size	stuff	stuffCount	cost	research	researchTech	minifiable	designation	thingClass	power	fuel	glow	heat	holdsRoof	passability	work	workToBuild
-AO_HouseholdFan	acutus.atmosphereoverhaul.release	no	Household Fan		lamp	(1,1)			Steel:35;ComponentIndustrial:1	Electricity	Industrial	yes	AO_Atmosphere	Building	yes					PassThroughOnly		800
-AO_IndustrialBlower	acutus.atmosphereoverhaul.release	no	Industrial Blower		lamp	(2,1)			Steel:80;ComponentIndustrial:3	Machining	Industrial	yes	AO_Atmosphere	Building	yes					PassThroughOnly		800
-AO_WaterFetchSpot	acutus.atmosphereoverhaul.release	no	water fetching spot		workspot	(1,1)					Undefined		AO_Atmosphere	Building_WorkTable						Standable		0
+AO_HouseholdFan	acutus.atmosphereoverhaul.release	yes	Household Fan		lamp	(1,1)			Steel:35;ComponentIndustrial:1	Electricity	Industrial	yes	AO_Atmosphere	Building	yes					PassThroughOnly		800
+AO_IndustrialBlower	acutus.atmosphereoverhaul.release	yes	Industrial Blower		lamp	(2,1)			Steel:80;ComponentIndustrial:3	Machining	Industrial	yes	AO_Atmosphere	Building	yes					PassThroughOnly		800
+AO_WaterFetchSpot	acutus.atmosphereoverhaul.release	yes	water fetching spot		workspot	(1,1)					Undefined		AO_Atmosphere	Building_WorkTable						Standable		0
 GSAnimalBedBig	animal.bedsnew	yes	big animal bed		animalbed	(2,2)	Fabric,Leathery	80			Undefined	yes	Furniture	AnimalBed.Building_BedHediffGiver						PassThroughOnly		500
 GSAnimalBedBigPrestige	animal.bedsnew	yes	prestige animal bed		animalbed	(2,2)	Fabric,Leathery	80	Gold:5		Undefined	yes	Furniture	AnimalBed.Building_BedHediffGiver						PassThroughOnly		750
 Stagz_WaterCandle	arquebus.stagzmerfolk	yes	floating lantern		torch	(1,1)	Woody	10	WoodLog:20		Undefined	yes	Furniture	Building		WoodLog	7	3.5		PassThroughOnly		100

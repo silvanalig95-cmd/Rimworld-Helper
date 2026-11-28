@@ -298,13 +298,20 @@ vanillaexpanded.vmemese	Vanilla Ideology Expanded - Memes and Structures	2636329
 turkler.advanced.armaments	Advanced Armaments	3350091075	yes	301		1.5,1.6	yes
 huginn.rwom.integrations	RWoM Integrations	3833946677	yes	302		1.7	yes
 dubwise.dubsperformanceanalyzer.steam	Dubs Performance Analyzer	2038874626	yes	303		1.2,1.3,1.4,1.5,1.6,1.7	yes
+acutus.atmosphereoverhaul.release	Atmosphere Overhaul	3830470974	yes	304		1.6,1.7	yes
+kopp.biomecompatibilityproject	Biome Compatibility Project	3535674283	yes	305		1.6,1.7	yes
+choco.quietwonders	Quiet Wonders	3822357701	yes	306		1.6,1.7	yes
+patrickschwarzer.waves	RimWorld: Waves	3831078430	yes	307		1.6,1.7	yes
+patrickschwarzer.rivers	RimWorld: Living Waters	3834245888	yes	308		1.6,1.7	yes
+evileyeguy.weatherreimagined	Weather Reimagined	3838111458	yes	309		1.7	yes
+somethingsomething.plantsandstuff	Wild Crops, a fork of Wild Spawn	3776658466	yes	310		1.6,1.7	yes
 electricbraziers.papercrane.rw	[1001] Electric Braziers	2880247055	no			1.4,1.5,1.6,1.7	yes
 mlie.stockpilestacklimit	[Abandoned] Stockpile Stack Limit (Continued)	2274678322	no			1.0,1.1,1.2,1.3,1.4,1.5,1.6	yes
 al9000.medievaleuropeanarmors	[DEPRECATED, GET NEW] Tastier Armory - Medieval European Armors	3029073711	no			1.4,1.5	no (not for 1.6 or 1.7)
 jangodsoul.simplestorage	[JDS] Simple Storage	1961098970	no			1.0,1.1,1.2,1.3,1.4,1.5	no (not for 1.6 or 1.7)
 og.recruit.guest	[Og] Recruit Guest	3719628649	no			1.6,1.7	yes
 sarg.magicalmenagerie	Alpha Mythology	1821617793	no			1.4,1.5	no (not for 1.6 or 1.7)
-acutus.atmosphereoverhaul.release	Atmosphere Overhaul	3830470974	no			1.6,1.7	yes
+luved.animaltraits	Animal Traits System	3652630316	no			1.6,1.7	yes
 mlie.bioreactor	BioReactor (Continued)	3307031939	no			1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
 zal.cocc	Call of Cthulhu - Cults (Continued)	3588548484	no			1.5,1.6,1.7	yes
 brrainz.cameraplus	Camera+	867467808	no			1.0,1.1,1.2,1.3,1.4,1.5,1.6,1.7	yes
@@ -395,6 +402,7 @@ mlie.researchtree	Research Tree (Continued)	3030499331	no			1.0,1.1,1.2,1.3,1.4,
 ogam.rimedieval	Rimedieval	2516523040	no			1.2,1.3,1.4,1.5,1.6	yes
 sierra.rf.housedoyle	RimFantasy - House Doyle	2903293603	no			1.4,1.5,1.6,1.7	yes
 sierra.rf.medievaloverhaul	RimFantasy - Medieval Overhaul Edition	2836791007	no			1.4,1.5,1.6,1.7	yes
+keepercraft.rimkeeperanimals	RimKeeper - Wild Animal Procreation	3259367736	no			1.5,1.6,1.7	yes
 sindre0830.rimnauts2	RimNauts 2	2880599514	no			1.4,1.5	no (not for 1.6 or 1.7)
 rimsenal.plants	Rimsenal - Plants Pack	3842797428	no			1.7	yes
 cj.rimtalk	RimTalk	3551203752	no			1.5,1.6,1.7	yes

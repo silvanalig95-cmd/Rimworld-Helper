@@ -8,7 +8,9 @@ subscribed, 298 active, among them A RimWorld of Magic (Continued) with RWoM Cor
 with it, so `inSave` is blank until the next build with one). Where two subscribed mods share a package id (the
 original A RimWorld of Magic and its continuation), only the copy the game loads is read: the one the save names by
 its Steam id, else the one for the newest game version up to 1.7, else the newest Workshop item (`loaded_copy`); the
-other is listed in `mods.tsv` as not catalogued, with the reason. Built by `python3 Tools/mod_pool.py <collected folder>
+other is listed in `mods.tsv` as not catalogued, with the reason. The same day the player added the nature mods (sent with `Tools/Collect-NatureMods.ps1`, folded into that collection):
+Quiet Wonders, Living Waters, Waves, Weather Reimagined, Wild Crops, Biome Compatibility Project and Atmosphere Overhaul
+enabled, RimKeeper and Animal Traits System subscribed but not enabled: 462 subscribed, 305 active. Built by `python3 Tools/mod_pool.py <collected folder>
 docs/player-mods <save.rws>`; run it again when the player sends a new collection.
 
 **Build from the active rows.** Each table has a column `active`: yes when the mod adding the def is in the player's
