@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 837; modelled: 837; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,232 KB** after a year, **4,062 KB** after two, **4,555 KB** after five.
+Saved collections found: 838; modelled: 838; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,233 KB** after a year, **4,063 KB** after two, **4,556 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -300,6 +300,7 @@ Rimfolk's part of the save, roughly: **3,232 KB** after a year, **4,062 KB** aft
 | `Building/BuildAhead.cs:stuffs` | with the above: their materials | fixed | 30 | 30 | 30 | 1.2 |
 | `Camps/CampTracker.cs:diary` | the camps' diary, one short line a day, thirty at most (CampTracker.DiaryMax), one per colony | fixed | 30 | 30 | 30 | 1.2 |
 | `Gods/OnMap/Between/Between.cs:scenes` | the happenings between the colony's people under way, BetweenState.MaxScenes | cap | 4 | 4 | 4 | 1.2 |
+| `Nature/GroundMap.cs:ash` | GroundMath.MaxCells: per home map, the cells where ash lies thickest until they turn rich (some days after a waking mountain's ash or Odyssey's), empty otherwise | fixed | 40 | 40 | 40 | 1.2 |
 | `Peoples/Events3/PeopleEvents3Book.cs:thefts` | the beasts raiders drove off and the herders' trail, PeopleEvents3Math.MaxThefts kept | cap | 1 | 2 | 4 | 1.2 |
 | `Social/Gossip/ReputationTracker.cs:told` | one packed number per colonist, the gone dropped daily | colonists | 20 | 20 | 20 | 1.2 |
 | `Strangers/Pets.cs:known` | animals known: the dead get their farewell, the discarded are dropped | fixed | 30 | 30 | 30 | 1.2 |

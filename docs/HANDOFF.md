@@ -992,6 +992,21 @@ most sense." So, in this order, three builds at a time:
   item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
   not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
   Integrations and JecsLite, for the review below.
+- **Done (28 November 2026, 0.330.0; the player's picks D1 and D2 of the living land): the ground that stays and the
+  mountain that wakes**, in a worktree, merged; `docs/design/living-land-ground.md`, `Nature/GroundMarks.cs`,
+  `Nature/GroundWaking.cs`, `GroundMath.cs`. Quakes known by name (Seasonal Weather's, `VEE_Earthquake` at its
+  epicentre, Rimefeller's `DrillQuake`, any event named for an earthquake, Rimfolk's rockslide and warm vent) may leave,
+  an hour after, a cave (3 to 7 cells, roofed, chunks, sometimes ore), a spring (shallow or Odyssey's hot spring water),
+  a fissure (rough rock) or scree (gravel and chunks): 30% a quake, none within 60 days of another. Landslides on hilly
+  land after 3 wet days (4% a day, 8% in a storm; 10 to 24 cells), sinkholes after a season of 8 wet days (12%, 24% on
+  limestone or marble; a sag, then 8 to 16 hours later 9 or 13 cells of water and mud). A mountain wakes only on lava or
+  mountain land, about once in 11 or 17 years, never within 5 of the last: tremors 3 to 5 days, steam geysers, 2 to 3
+  days of ash with the game's `VolcanicWinter` and Odyssey's `VolcanicAsh`, then 20 to 40 cells of rich soil
+  (`VEE_VolcanicSoilRich` or `SoilRich`); Smoulder's sleeper turning doubles it. Every mark 40 cells at most, never
+  within 8 cells of the colony's buildings, plans, home area or zones, never on anyone. Harm under `HarmKinds.Ground`.
+  `Sched.RareGround` = 206 (61 collides with the calendar's hourly 1311). Settings "The ground keeps marks" and "A
+  mountain that wakes". Not tried in the game: carving a cave's fog and roof, a fissure's look, the volcanic conditions
+  started by code, the mark at VEE's epicentre. Tests: LivingGroundTests.
 - **To do when the player asks (28 November 2026; the player: "dynamic atmosphere looks super cool though, i try that
   instead"): Dynamic Atmosphere (Workshop 3808191148; 1.6 and 1.7, updated 17 October), in place of Atmosphere
   Overhaul.** By the research, a sky drawn from the game's own weather, with hurricanes that come as game conditions,

@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The ground that stays
+
+*28 November 2026, version 0.330.0*
+
+- Earthquakes, landslides and sinkholes can now leave caves, springs, cracks, loose stone and mud that stay on the map, always away from the colony's buildings and fields.
+- After days of heavy rain a hillside may come down, and after a wet season the ground may sag and then open into a sinkhole.
+- On mountain or lava land a mountain may rarely wake: days of tremors, new steam vents, then ash and a colder, darker sky, and later rich soil where the ash lay.
+- Odyssey's own volcanic ash now leaves rich soil when it settles. Both parts can be turned off in Rimfolk's event settings.
+
 ## A RimWorld of Magic (Continued), looked over
 
 *28 November 2026, version 0.329.0*
