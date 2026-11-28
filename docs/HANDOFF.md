@@ -1031,9 +1031,19 @@ most sense." So, in this order, three builds at a time:
   example. I guess in reality it also sometimes happens that in Saudi Arabia it's snow, right? Every blue moon. But I just
   want you kind of to be aware of all the different technical things that are already in the game and all the mods, the
   biomes, etc., that you can draw on to just implement and use at your own discretion and less so restricted by the
-  different biomes settings, if you know what I mean." Being researched: what
-  Rimfolk, the game, the DLCs and the player's mods already do with nature; Workshop mods for 1.6 and 1.7 in this field
-  and how they sit with the player's list.
+  different biomes settings, if you know what I mean." Researched (28 November 2026): the inventory (Rimfolk's weather,
+  fields, beasts, world events, gods, calendar; the game's and DLCs' conditions; the player's 56 biomes, 69 weathers,
+  131 conditions, 168 wild plants, 323 wild animals; how the game picks each by biome and where it could be let in) and
+  the Workshop (1.6/1.7 mods kept up, conflicts with their list). The proposal is a page to tick,
+  https://claude.ai/artifact/R4LVRoN53wngBmnbYFo1p7 (its database keeps the picks in `picks/player`: `ideas`, `mods`,
+  `note`): A1 to A5 seasons with their own character, rare extremes and once in a lifetime, weathers no biome has given a
+  place, climate drift, weather on wild life; B1 to B5 land that recovers, a tree not of this land, sicknesses of wild
+  plants (no 1.6/1.7 mod has them), newcomers from other lands, water that rises and falls; C1 to C3 animal numbers,
+  migrations, predators and prey; D1 and D2 geology that stays, a mountain that wakes; E1 to E4 the gods in the seasons,
+  council questions, a record of the land, one setting for strength; mods M1 to M10 (Quiet Wonders, Natural Disasters,
+  Thunderstorm with Ambience Core, Living Waters and Waves, Weather Reimagined, Wild Crops with Biome Compatibility
+  Project, RimKeeper with Animal Traits, Dark Ages: Beasts and Monsters, Realistic Planets 2, Winter Taiga and
+  Planetary Cataclysms) and what to keep off or watch. Waiting for the player's picks.
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
   display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
   used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the
