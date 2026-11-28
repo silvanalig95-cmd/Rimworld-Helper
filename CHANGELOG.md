@@ -5,6 +5,15 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A RimWorld of Magic (Continued), looked over
+
+*28 November 2026, version 0.329.0*
+
+- Fixed: colonists of A RimWorld of Magic (Continued)'s class progression now count as the mages and fighters they are, by vocation and discipline, for moments, wishes, life goals, sparring and the gods.
+- Fixed: a visiting priest, paladin, druid or ice mage of the peoples casts a helpful spell for the colony again with the continuation on RimWorld 1.7.
+- Fixed: a god no longer gives a magic class to a colonist who already has one by vocation, and the craft life goals count each spell once.
+- Casting on their own reads spells from the continuation's own records, waits while a psycast or another mod is casting for that colonist, and uses Spite only with the hate it needs.
+
 ## The peoples in their own ages
 
 *28 November 2026, version 0.328.0*

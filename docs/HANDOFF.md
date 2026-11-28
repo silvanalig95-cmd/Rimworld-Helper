@@ -992,9 +992,19 @@ most sense." So, in this order, three builds at a time:
   item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
   not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
   Integrations and JecsLite, for the review below.
-- **Under way (28 November 2026; the player: "great, can you also review all the rimworld of magic integrations, as
+- **Done (28 November 2026, 0.329.0; the player: "great, can you also review all the rimworld of magic integrations, as
   these perhaps never properly worked with the outdated mod files"): a review of every A RimWorld of Magic integration
-  against the Continued version**, in a worktree (`docs/review-magic.md`).
+  against the Continued version**, in a worktree, merged; `docs/review-magic.md` (37 integrations, a table of each). No
+  def name of the 295 Rimfolk uses was renamed or removed; what moved is where a class and a learned spell are kept and
+  how 1.7 lets a cast through. Fixes: the class progression's mages and fighters read by discipline
+  (`Integrations/MagicModel.cs`, `MagicModelMath.cs`: RWoM Core's `PawnDisciplines`, else `ClassIdentity`, 37
+  disciplines) for tags, crafts, the gods, animals; the visitors' peace spells pass the continuation's 1.7 check on
+  automatic casts (`Patch_PeoplesMagicPeaceCast`, only the job Rimfolk asked for); `GodGifts.HasClass` counts vocations;
+  the craft goals count a spell once; `RomSpells.HeldBy`/`Ability` read the knowledge store (Core's
+  `PawnSpellKnowledge`, else `AbilityKnowledgeComp`); casting on their own stands down while `CastOwnership.IsCasting`;
+  Spite waits for its hate; class levels read only for casters. Needs the DLLs to settle (all soft): JecsLite's
+  members, `IsAutomaticCast` in the Workshop build, RWoM Core's build. The original RWoM (1201382956) is still
+  subscribed beside the continuation under one package id: the player may unsubscribe it. Tests: ReviewMagicTests.
 - **To do after the work under way (28 November 2026; the player: "and than later add more content in the categories
   you listed in the last lists, except maybe decrees, since too many makes it confusing"): a content round in the
   categories of the summary given that day** (camps, world events, map events, the gods' happenings, council questions,
