@@ -48,6 +48,7 @@ namespace ColonyCouncil
             cachedGame = Current.Game;
             PeoplesMagicWatch.Reset();
             PeoplesMagic.Reset();
+            MagicModel.Reset();
         }
 
         public override void GameComponentTick()
@@ -132,6 +133,18 @@ namespace ColonyCouncil
 
         /// <summary>A spell asked of this caster is waiting to be cast.</summary>
         public static bool Waiting(Pawn x) => x != null && pending.Any(c => c.caster == x);
+
+        /// <summary>This caster is at the very job Rimfolk asked of them (Patch_PeoplesMagicPeaceCast reads it as asked for).</summary>
+        public static bool Asked(Pawn x)
+        {
+            if (x == null || pending.Count == 0) return false;
+            var job = x.CurJob;
+            if (job == null) return false;
+            for (int i = 0; i < pending.Count; i++)
+                if (pending[i].caster == x && pending[i].job == job)
+                    return true;
+            return false;
+        }
 
         public static void Pass(PeoplesMagicBook book, int now)
         {
@@ -233,7 +246,8 @@ namespace ColonyCouncil
         /// </summary>
         private static bool Peace(PeoplesMagicBook book, Pawn x, string trait, Map map)
         {
-            if (!PeoplesMagicMath.Helps(trait) || Waiting(x) || !RomSpells.Ready || !RomSpells.AiMayCast) return false;
+            // On RimWorld 1.7 the continuation holds back a visitor's cast outside a fight unless Rimfolk's hook reads it as asked for.
+            if (!PeoplesMagicMath.Helps(trait) || Waiting(x) || !RomSpells.Ready || !RomSpells.AiMayCast || !Patch_PeoplesMagicPeaceCast.Open) return false;
             return MayNow(book, x, map, out _) && Rand.Chance(PeoplesMagicMath.PeaceChance(PeoplesMagic.OnMagic(x.Faction)));
         }
 

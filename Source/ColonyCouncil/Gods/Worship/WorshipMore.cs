@@ -61,6 +61,13 @@ namespace ColonyCouncil
                         domain = d;
                         break;
                     }
+                // A RimWorld of Magic (Continued)'s class progression: the class a discipline stands for.
+                if (domain == GodDomain.None)
+                    foreach (string held in MagicModel.DisciplineClasses(p))
+                    {
+                        domain = WorshipMath.ClassDomain(held);
+                        if (domain != GodDomain.None) break;
+                    }
                 var g = Worship.GodOf(p, domain);
                 if (g != null) f = WorshipMath.ManaFactor(Gods.Favour(g, p.MapHeld), GodNear.Of(g, p.MapHeld));
             }

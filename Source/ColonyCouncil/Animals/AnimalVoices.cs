@@ -113,7 +113,10 @@ namespace ColonyCouncil
         private static TraitDef druid, ranger;
         private static bool traitsLooked;
 
-        /// <summary>A druid or a ranger of A RimWorld of Magic (their classes are traits, read by name).</summary>
+        /// <summary>
+        /// A druid or a ranger of A RimWorld of Magic (their classes are traits, read by name; or with A RimWorld of Magic
+        /// (Continued)'s class progression, the druid's or the ranger's discipline: Integrations/MagicModel.cs).
+        /// </summary>
         public static bool Communes(Pawn p)
         {
             if (!traitsLooked)
@@ -123,7 +126,10 @@ namespace ColonyCouncil
                 ranger = DefDatabase<TraitDef>.GetNamedSilentFail("Ranger");
             }
             var traits = p?.story?.traits;
-            return traits != null && (druid != null && traits.HasTrait(druid) || ranger != null && traits.HasTrait(ranger));
+            if (traits == null) return false;
+            if (druid != null && traits.HasTrait(druid) || ranger != null && traits.HasTrait(ranger)) return true;
+            var held = MagicModel.DisciplineClasses(p);
+            return held.Contains("Druid") || held.Contains("Ranger");
         }
 
         private static MemeDef personhood;

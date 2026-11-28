@@ -15,12 +15,15 @@
   -->
 
   <!-- ==================== A RimWorld of Magic (torann.arimworldofmagic): classes are traits ==================== -->
-  <!-- defNames checked against the mod's 1.6 Defs/TraitDefs/Traits.xml. -->
+  <!-- defNames checked against A RimWorld of Magic (Continued)'s 1.7 Defs/TraitDefs (Traits.xml, TM_Vocations.xml) and
+       CustomDefs/TM_WeatherMage.xml. With the continuation's class progression a class is a vocation trait (mage, warrior,
+       warrior-mage) and disciplines; each discipline counts as the class trait of the same art (Integrations/MagicModel.cs),
+       so the lists below hold the classic class traits and the vocations. -->
 
   <ColonyCouncil.TagGroupDef>
     <defName>Council_Tags_Mage</defName>
     <label>mages</label>
-    <description>A RimWorld of Magic's spellcasting classes.</description>
+    <description>A RimWorld of Magic's spellcasting classes, and its mage and warrior-mage vocations.</description>
     <tag>mage</tag>
     <traits>
       <li>InnerFire</li>
@@ -48,13 +51,16 @@
       <li>TM_Golemancer</li>
       <li>TM_Empath</li>
       <li>TM_Wanderer</li>
+      <li>TM_WeatherMage</li>
+      <li>TM_VocationMage</li>
+      <li>TM_VocationWarriorMage</li>
     </traits>
   </ColonyCouncil.TagGroupDef>
 
   <ColonyCouncil.TagGroupDef>
     <defName>Council_Tags_Fighter</defName>
     <label>trained fighters</label>
-    <description>A RimWorld of Magic's combat classes (all its might classes but the apothecary).</description>
+    <description>A RimWorld of Magic's combat classes (all its might classes but the apothecary), and its warrior and warrior-mage vocations.</description>
     <tag>fighter</tag>
     <traits>
       <li>Gladiator</li>
@@ -68,6 +74,8 @@
       <li>TM_Commander</li>
       <li>TM_SuperSoldier</li>
       <li>TM_Wayfarer</li>
+      <li>TM_VocationWarrior</li>
+      <li>TM_VocationWarriorMage</li>
     </traits>
   </ColonyCouncil.TagGroupDef>
 

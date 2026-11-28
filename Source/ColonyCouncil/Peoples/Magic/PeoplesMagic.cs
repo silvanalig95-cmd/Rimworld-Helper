@@ -41,7 +41,10 @@ namespace ColonyCouncil
 
         // ================= Who is a caster, and of what =================
 
-        /// <summary>Their class of A RimWorld of Magic (its trait's defName, one Rimfolk knows), or null.</summary>
+        /// <summary>
+        /// Their class of A RimWorld of Magic (its trait's defName, one Rimfolk knows), or null: the class trait, else the
+        /// class a discipline of the continuation's class progression stands for (Integrations/MagicModel.cs).
+        /// </summary>
         public static string Craft(Pawn p)
         {
             var traits = p?.story?.traits?.allTraits;
@@ -49,6 +52,9 @@ namespace ColonyCouncil
             foreach (var t in traits)
                 if (t?.def != null && PeoplesGearMath.MagicClasses.ContainsKey(t.def.defName))
                     return t.def.defName;
+            foreach (string c in MagicModel.DisciplineClasses(p))
+                if (PeoplesGearMath.MagicClasses.ContainsKey(c))
+                    return c;
             return null;
         }
 
@@ -284,7 +290,8 @@ namespace ColonyCouncil
                 cooldown = AccessTools.Property(abilityType, "CooldownTicksLeft");
                 canCast = AccessTools.Method(abilityType, "CanCastPowerCheck", new[] { contextType, typeof(string).MakeByRefType() });
                 getJob = AccessTools.Method(abilityType, "GetJob", new[] { contextType, typeof(LocalTargetInfo) });
-                aiContext = Enum.ToObject(contextType, 1);
+                // The framework's context for a cast the AI asks for (AbilityContext.AI), by name; its value (1) if the name is gone.
+                aiContext = Enum.IsDefined(contextType, "AI") ? Enum.Parse(contextType, "AI") : Enum.ToObject(contextType, 1);
                 var settings = AccessTools.TypeByName("TorannMagic.ModOptions.Settings");
                 settingsInstance = settings == null ? null : AccessTools.Field(settings, "Instance");
                 aiCastingField = settings == null ? null : AccessTools.Field(settings, "AICasting");
@@ -339,7 +346,10 @@ namespace ColonyCouncil
             return null;
         }
 
-        /// <summary>A caster's ability of this name (any of its levels), as the mod holds it, or null.</summary>
+        /// <summary>
+        /// A caster's ability of this name (any of its levels), as the mod holds it, or null; one the continuation's knowledge
+        /// store marks as not learned is not theirs to cast (<see cref="Learned"/>).
+        /// </summary>
         public static object Ability(Pawn p, string spell)
         {
             if (!Ready || spell == null) return null;
@@ -350,7 +360,7 @@ namespace ColonyCouncil
                 var data = abilityData.GetValue(comp);
                 if (data == null || !(powers.GetValue(data) is IEnumerable list)) return null;
                 foreach (var a in list)
-                    if (a != null && abilityDef.GetValue(a) is Def d && PeoplesMagicMath.BaseSpell(d.defName) == spell)
+                    if (a != null && abilityDef.GetValue(a) is Def d && PeoplesMagicMath.BaseSpell(d.defName) == spell && Learned(p, d))
                         return a;
             }
             catch (Exception e)
@@ -380,6 +390,13 @@ namespace ColonyCouncil
             }
             return names;
         }
+
+        /// <summary>
+        /// An ability the mod holds for them counts as learned: by the continuation's knowledge store when it has an entry for
+        /// it (RWoM Core's PawnSpellKnowledge, else its AbilityKnowledgeComp), as its own casting reads it; else it is theirs,
+        /// as the mod gave it (the original mod, or no entry yet).
+        /// </summary>
+        public static bool Learned(Pawn p, Def def) => MagicModelMath.Learned(MagicModel.Learned(p, def), true);
 
         /// <summary>The mod's own check that the ability can be cast now (mana, cooldown).</summary>
         public static bool CanCast(object ability)
@@ -541,15 +558,18 @@ namespace ColonyCouncil
             public bool might;
         }
 
-        /// <summary>Every ability a caster holds in the mod's magic and might components, the magic ones first; empty without the mod.</summary>
+        /// <summary>
+        /// Every ability a caster holds in the mod's magic and might components and has learned (<see cref="Learned"/>), the
+        /// magic ones first; empty without the mod.
+        /// </summary>
         public static List<Held> HeldBy(Pawn p)
         {
             var list = new List<Held>();
             if (!OwnReady || p == null) return list;
             try
             {
-                Add(list, CompOf(p, magicComp), isMagicUser, abilityData, false);
-                Add(list, CompOf(p, mightComp), isMightUser, mightAbilityData, true);
+                Add(list, p, CompOf(p, magicComp), isMagicUser, abilityData, false);
+                Add(list, p, CompOf(p, mightComp), isMightUser, mightAbilityData, true);
             }
             catch (Exception e)
             {
@@ -558,7 +578,7 @@ namespace ColonyCouncil
             return list;
         }
 
-        private static void Add(List<Held> list, ThingComp comp, PropertyInfo user, PropertyInfo data, bool might)
+        private static void Add(List<Held> list, Pawn p, ThingComp comp, PropertyInfo user, PropertyInfo data, bool might)
         {
             if (comp == null || user == null || data == null || !(user.GetValue(comp) is bool on) || !on) return;
             var d = data.GetValue(comp);
@@ -566,7 +586,7 @@ namespace ColonyCouncil
             var powersOf = powers != null && powers.DeclaringType != null && powers.DeclaringType.IsInstanceOfType(d) ? powers : AccessTools.Property(d.GetType(), "Powers");
             if (!(powersOf?.GetValue(d) is IEnumerable all)) return;
             foreach (var a in all)
-                if (a != null && abilityDef.GetValue(a) is Def def)
+                if (a != null && abilityDef.GetValue(a) is Def def && Learned(p, def))
                     list.Add(new Held { ability = a, def = def, might = might });
         }
 

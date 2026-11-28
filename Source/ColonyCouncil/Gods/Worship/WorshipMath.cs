@@ -631,7 +631,7 @@ namespace ColonyCouncil
             "Ranger" or "TM_Sniper" => GodDomain.Hunt,
             "Geomancer" or "Enchanter" or "Summoner" or "TM_Golemancer" => GodDomain.Craft,
             "Necromancer" or "DeathKnight" or "Lich" => GodDomain.Dead,
-            "StormBorn" or "HeartOfFrost" => GodDomain.Storm,
+            "StormBorn" or "HeartOfFrost" or "TM_WeatherMage" => GodDomain.Storm,
             "Technomancer" or "TM_SuperSoldier" => GodDomain.Machine,
             "TM_Bard" or "Arcanist" or "Chronomancer" or "TM_Psionic" or "Faceless" or "TM_TheShadow" => GodDomain.Night,
             "Gladiator" or "TM_Monk" or "Bladedancer" or "TM_Commander" or "BloodMage" => GodDomain.War,

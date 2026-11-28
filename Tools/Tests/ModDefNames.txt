@@ -358,3 +358,6 @@ TM_Buckshot
 TM_SuppressingFire
 TM_DeathBolt
 TM_ShadowBolt
+# A RimWorld of Magic (Continued) (torann.arimworldofmagic): a death knight's hate, which Spite spends for one of its class
+# progression (Integrations/MagicAutoCastMath.cs, HateHediff; TM_HateHD and its levels), from docs/player-mods (active)
+TM_HateHD

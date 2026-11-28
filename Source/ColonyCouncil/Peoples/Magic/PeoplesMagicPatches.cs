@@ -77,4 +77,51 @@ namespace ColonyCouncil
             return false;
         }
     }
+
+    /// <summary>
+    /// A spell Rimfolk asks of a visitor in peace (Peoples/Magic/PeoplesMagicWatch.cs) is the colony's request, cast by the
+    /// mod's own job for those not of the colony. A RimWorld of Magic (Continued) on RimWorld 1.7 checks such a job as its
+    /// own automatic casting (AbilityCastSafety.IsAutomaticCast, then CanAutocast): someone not of the colony may cast that
+    /// way only in a fight, and only from where they already stand, so every healing, cure and rain asked of a visitor
+    /// ended before it began. For that one cast, while Rimfolk follows it, the check reads it as asked for, as it reads a
+    /// cast the player orders: the visitor walks into range by the mod's own job and pays with their own mana. Off with the
+    /// deeper game hooks, and without that check (the original mod, the continuation on 1.6): there the casts were never
+    /// held back.
+    /// </summary>
+    [HarmonyPatch]
+    public static class Patch_PeoplesMagicPeaceCast
+    {
+        private static bool looked;
+        private static MethodBase target;
+
+        public static bool Prepare() => TargetMethod() != null;
+
+        public static string StandsDownWhy() => "A RimWorld of Magic (Continued)'s check of its own automatic casts isn't there (the original mod, or 1.6)";
+
+        public static MethodBase TargetMethod()
+        {
+            if (looked) return target;
+            looked = true;
+            var t = AccessTools.TypeByName("TorannMagic.Compatibility.AbilityCastSafety");
+            var m = t == null ? null : AccessTools.Method(t, "IsAutomaticCast", new[] { typeof(Verb) });
+            target = m != null && m.ReturnType == typeof(bool) ? m : null;
+            return target;
+        }
+
+        /// <summary>A visitor's spell in peace can be cast: the mod holds no such check, or Rimfolk's hook on it is in place.</summary>
+        public static bool Open => TargetMethod() == null || RimfolkPatches.On && RimfolkPatches.Applied.Contains(nameof(Patch_PeoplesMagicPeaceCast));
+
+        public static void Postfix(Verb __0, ref bool __result)
+        {
+            if (!__result || !RimfolkPatches.On) return;
+            try
+            {
+                if (PeoplesMagicWatch.Asked(__0?.CasterPawn)) __result = false;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("peoples' magic: a spell asked in peace", e);
+            }
+        }
+    }
 }

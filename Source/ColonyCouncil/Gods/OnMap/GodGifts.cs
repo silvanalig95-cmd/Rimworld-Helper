@@ -186,9 +186,14 @@ namespace ColonyCouncil
             return !p.story.AllBackstories.Any(b => b != null && b.DisallowsTrait(def, degree));
         }
 
-        /// <summary>One of A RimWorld of Magic's classes already (a class keeps every other off, as the mod keeps them).</summary>
+        /// <summary>
+        /// One of A RimWorld of Magic's classes already (a class keeps every other off, as the mod keeps them): a class trait,
+        /// or with A RimWorld of Magic (Continued)'s class progression a vocation or a discipline, or a caster's or a
+        /// fighter's level the mod keeps for them (a class trait given on top of a vocation does nothing but confuse it).
+        /// </summary>
         private static bool HasClass(Pawn p) =>
-            p.story.traits.allTraits.Any(t => t?.def != null && (PeoplesGearMath.MagicSetting(t.def.defName) != null || t.def.defName == "Necromancer" || t.def.defName == "DeathKnight"));
+            p.story.traits.allTraits.Any(t => t?.def != null && (PeoplesGearMath.MagicSetting(t.def.defName) != null || t.def.defName == "Necromancer" || t.def.defName == "DeathKnight"))
+            || MagicModel.HasVocation(p) || MagicModel.DisciplineClasses(p).Count > 0 || MagicClasses.Level(p, false) >= 0 || MagicClasses.Level(p, true) >= 0;
 
         private static Type settingsType;
         private static bool settingsLooked;

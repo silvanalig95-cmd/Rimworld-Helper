@@ -220,8 +220,10 @@ public static class PeoplesMagicTests
         C(gifts2.Contains("PeoplesMagic.Dress(p, age)"), "a new pawn of the peoples with a class is dressed as one");
         C(File.ReadAllText(Path.Combine(src, "Letters", "LetterForm.cs")).Contains("PeoplesMagic.LetterTags(f, s.tags, s.values)"), "their letters know the crafts among them");
         string patches = File.ReadAllText(Path.Combine(src, "Peoples", "Magic", "PeoplesMagicPatches.cs"));
-        C(Regex.Matches(patches, @"\[HarmonyPatch\]").Count == 2 && Regex.Matches(patches, @"RimfolkPatches\.On").Count == 2 && patches.Contains("\"HasResourcesForAbility\"")
+        C(Regex.Matches(patches, @"\[HarmonyPatch\]").Count == 3 && Regex.Matches(patches, @"if \(!RimfolkPatches\.On\) return true;").Count == 2 && patches.Contains("\"HasResourcesForAbility\"")
           && patches.Contains("\"CanCastPowerCheck\""), "the guard sits on the mod's own checks before a cast, off with the deeper hooks");
+        C(patches.Contains("if (!__result || !RimfolkPatches.On) return;") && patches.Contains("\"IsAutomaticCast\""),
+            "a visitor's spell in peace let through the continuation's check of its own automatic casts, off with the deeper hooks");
         string watch = File.ReadAllText(Path.Combine(src, "Peoples", "Magic", "PeoplesMagicWatch.cs"));
         C(watch.Contains("Sched.RarePeoplesMagic") && Sched.RareOffsets.Contains(Sched.RarePeoplesMagic)
           && PassTable.All.Any(p => p.pass == Pass.RarePeoplesMagic && p.offset == Sched.RarePeoplesMagic && p.period == Sched.RareTicks), "a 250-tick slot of its own, timed");
