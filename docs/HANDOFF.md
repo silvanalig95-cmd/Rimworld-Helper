@@ -934,6 +934,20 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **To do when the player asks (28 November 2026, brought over from Rimfolk Studio's chat; proposal first, then the
+  player's word): mages casting damage spells by themselves, in fights and while hunting.** The player: "I'm a bit
+  overwhelmed with the magic spells, and if you look at the pawn I have in my save that has spells, I like to integrate
+  some more auto-casting, you know, that the pawn has some intelligence when to cast certain spells ... at least for the
+  base damage spells, where it, for example, shoots something or does damage for, you know, a fair amount of mana that
+  it uses it maybe a bit more autonomously. It already has this feature, I think. But for example, he doesn't use it for
+  hunting. Maybe that would also be good if it uses spells, or at least just at the regular damage spells for hunting
+  as well." And: "for example, shadow strike, this one ability would also be great if you used it for hunting." Asked:
+  (A) plain damage spells cast by themselves when worth the mana, in a fight, drafted or not; (B) the same while hunting,
+  opening with a damage spell or Shadow Strike; (C) one switch per pawn ("casts damage spells by itself") with mana kept
+  in reserve, instead of a mark on every spell; "look at what the magic mod does today, say what Rimfolk would have to
+  add, and propose it to me before building". Linked: the earlier entry on A RimWorld of Magic's auto-cast drawing
+  stopping a pawn from being drafted (24 November 2026). Being looked into: the mod's own auto-cast, and the save of 28
+  November (Eastern Menistan).
 - **Done (28 November 2026, catalogue only; the player's pick "Now, alongside"): looks for creature waves 3 and 4**, in a
   worktree, merged. `docs/portrait-art/catalogue/creatures.csv`: 354 of 360 in wave 3, 263 of 270 in wave 4 (835 with a
   look in all, 218 before), from each mod's own defs and textures where public (GitHub), else its Workshop pages and
