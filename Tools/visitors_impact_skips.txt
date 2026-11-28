@@ -1,0 +1,111 @@
+# Rows of Tools/visitors_impact_audit.py read by hand and left (the review of the visitors and strangers, 28 November 2026).
+# One "Key [list] why" a line; list is flavour (a flavour-only answer, or a nuisance that is a mood only), thin (moods and
+# Rimfolk's numbers only), promise (words that promise more than the effects do), words (a nuisance's line that tells of
+# more than a mood), code (a code hint read). A row that no longer matches is named at the end of the audit, so the list
+# stays true.
+
+# ---- Callers at the gate and guests ----
+Council_Evt_WoundedStranger/3 [flavour] leaving the wounded stranger where they lie: the refusal, meant to cost (their mood) and give nothing
+Council_Evt_Stray/1 [flavour] the stray is the colony's from the moment it follows A home (its worker's Begin); the answer keeps it, the other lets it go
+Council_Evt_After_Reckoning/3 [thin] the colony owes nothing: the refusal of the reckoning's amends
+Council_Evt_PW_ShinyRumour/1 [thin] a rumour kept in mind (PokeWorld): the find comes in the rumour's own frame if it is ever followed
+Council_Evt_OldDebt/3:silver [promise] the words refuse the silver ("won't be paid for it"): no silver is right
+Council_Evt_After_SpringReturn/3:silver [promise] the words refuse the payment: the seed goes back with them
+Rimfolk_Evt_KinForCaptive/2:silver [promise] the words refuse their silver: the captive goes free for nothing
+Rimfolk_Evt_Vet/1:a_lesson [promise] the training is the caller's own work on the map (Callers.Vet: CallerKind.Vet, the game's training), which the measure reads apart
+Rimfolk_Evt_Vet/2:a_lesson [promise] the training is the caller's own work on the map (Callers.Vet: CallerKind.Vet, the game's training), which the measure reads apart
+Council_Evt_HospitalPatient/3:tending [promise] "the medicine stays on the shelf": a word of advice instead, the refusal
+Council_Evt_Camp/1 [empty] the camp frame's own answer: its worker settles the camp (reviewed with the camps)
+Council_Evt_WarCamp/1 [empty] the war camp's own answer: its worker sends them against the enemy (reviewed with the camps)
+Council_Evt_NotableGuest/2 [empty] declined by letter: the guest waits in the world and never comes (released by the worker's Cleanup)
+Council_Evt_OldEnemyPeace/4 [empty] the envoy sent away: waits out their visit, then walks back, as the words say
+Council_Evt_Envoy/3 [empty] the envoy sent away: they wait in the world and never come (released by the worker's Cleanup)
+Council_Evt_Elopers/3 [empty] turned away: they wait in the world and never come (released by the worker's Cleanup)
+Council_Evt_Apprentice/2 [empty] sent home: the would-be apprentice waits in the world and never comes (released by the worker's Cleanup)
+Council_Evt_QuietStranger/2 [empty] not without answers: the stranger waits in the world and never comes (released by the worker's Cleanup)
+Council_Evt_HospitalPatient/3 [empty] a word of advice, nothing more: the refusal
+Council_Evt_TableGame/3 [empty] not today: the refusal; the player stays out their visit with the pieces put away, as the words say
+Rimfolk_Evt_RegularDied/3 [empty] the word received: the one who brought it goes once the letter is answered (VisitorMath.WaitOver)
+
+# ---- Questions about a stranger: refusals and the status quo ----
+Council_DlmS_PrisonerPlea/3 [flavour] the door stays locked: the prisoner's state as it was
+Council_DlmS_PredatorDen/3 [flavour] leaving the den alone: the refusal
+Council_DlmS_Tonic/3 [flavour] keeping the silver: the refusal
+Council_DlmS_BeastReturns/2 [flavour] keeping close to the buildings: a trade of moods by design (the careful glad, the rest short-tempered); the colony has no allowed-area effect, and none is added (no new mechanics)
+Council_DlmS_NemesisInChains/2 [flavour] the nemesis stays in the cell: the status quo
+Council_DlmA_PenStalker/4 [flavour] leaving the stalker be: the refusal
+Rimfolk_DlmE_VisitorSupper/3 [flavour] the visitors stay where they are: the refusal
+Rimfolk_DlmE_TravellersNews/3 [flavour] the news will keep: the refusal
+Council_DlmV_CellLessons/3 [flavour] no contact with the prisoner: the refusal
+Rimfolk_DlmR3_VisitorFriend/3 [flavour] guests come and go: the refusal
+Council_DlmH_GuestWantsToStay/4 [thin] no: the refusal (their people's memory and the guest's mood)
+Council_DlmR_CountingOnMercy/1 [thin] a harder watch on the cell: the moods and trust are the point; the third answer softens the prisoner
+Council_DlmR_StingyMockery/2 [thin] letting the trader laugh: the refusal
+Council_DlmS_RudeGuest/1 [thin] an apology demanded and given: the guest's and A's feelings toward each other (opinions), by design
+Council_DlmS_RudeGuest/2 [thin] letting it go: the refusal
+Council_DlmS_HeirloomOffer/3 [thin] the heirloom stays: the refusal
+Council_DlmS_FallenPlea/3 [thin] leaving the fallen where they lie: the refusal (the game's own bleeding decides the rest)
+Council_DlmS_ChildPet/3 [thin] no to the child's pet: the refusal
+Council_DlmS_OldAcquaintance/2 [thin] letting the stranger talk: the secret comes out (Rimfolk's own secrets), by design
+Council_DlmS_Healer/3 [thin] keeping the silver: the refusal
+Council_DlmS_KinInChains/3 [thin] the prisoner treated like any other: the refusal
+Council_DlmH_GuestWantsToStay/4:a_meal [promise] the guest skipping supper: their mood, not a meal
+Council_DlmR_CountingOnMercy/3:a_meal [promise] fed like any prisoner: the game's own feeding
+Council_DlmS_RudeGuest/2:an_animal [promise] "let it go" is not about an animal: the word list's catch
+Council_DlmS_RudeGuest/2:a_meal [promise] A eating elsewhere: their ordinary meals
+Council_DlmS_PrisonerPlea/3:a_meal [promise] the prisoner's meals as usual: the game's own feeding
+Council_DlmS_PetBit/2:a_meal [promise] an extra helping for the pet: words of A's pride, nothing to give
+Council_DlmS_PredatorDen/1:a_hunt [promise] the beast marked for the hunters: the game's hunting does it (the designation)
+Council_DlmS_Tonic/3:silver [promise] the silver kept: the refusal
+Council_DlmS_BeastReturns/1:a_hunt [promise] the beast marked for the hunters: the game's hunting does it (the designation)
+Council_DlmS_NemesisInChains/2:a_meal [promise] fed and ignored: the game's own feeding
+Council_DlmS_Healer/3:silver [promise] the silver kept: the refusal
+Council_DlmA_CropRaider/2:a_lesson [promise] taking turns at the fields: the watch is played out on the map; nothing is taught
+Council_DlmA_PenStalker/1:a_hunt [promise] the beast marked for the hunters: the game's hunting does it (the designation)
+Council_DlmV_CellLessons/2:a_lesson [promise] lessons once the prisoner is one of the colony: later, in the colony's own life
+
+# ---- Nuisances: a mood only, by design (the mood points at a fault on the map the player can see and fix; the fault itself is the game's) ----
+Council_Nuisance_StuckDoor [flavour] a door worn below its hit points: the door's wear is the game's
+Council_Nuisance_LeakyRoof [flavour] a gap in the roof: the rain coming in is the game's
+Council_Nuisance_SpoilingFood [flavour] food about to rot: the rot is the game's
+Council_Nuisance_Cramped [flavour] a tiny bedroom: the game's own room stats
+Council_Nuisance_SmokyRoom [flavour] a fire in a small closed room: the room's warmth is the game's
+Council_Nuisance_LongWalk [flavour] a long walk to the table: the walk itself is the time lost
+Council_Nuisance_Insects [flavour] bites in a warm wet land: a mood
+Council_Nuisance_AnimalFilth [flavour] animal filth underfoot: the filth is the game's
+Council_Nuisance_Clutter [flavour] things waiting to be hauled: the hauling is the game's
+Council_Nuisance_HardBed [flavour] a hard bed: the game's own rest on a poor bed already costs the night
+Council_Nuisance_FilthyRoom [flavour] a filthy room: the game's own cleanliness
+Council_Nuisance_ChillyRoom [flavour] a chilly room: the game's own temperature
+Council_Nuisance_StiflingRoom [flavour] a stifling room: the game's own temperature
+Council_Nuisance_AnimalInBed [flavour] an animal in the bedroom: a mood
+Council_Nuisance_BuildingNoise [flavour] building work by the bed: a mood
+Council_Nuisance_Vermin [flavour] a wild small animal in the room: a mood; its lines tell of different things
+Council_Nuisance_DirtFloor [flavour] a bed on bare earth: a mood
+Council_Nuisance_SpoiltStores [flavour] rotten food in the stores: the rot is the game's
+Council_Nuisance_NoCoat [flavour] working in the rain with no coat: the game's own soaked
+Council_Nuisance_UglyBedroom [flavour] junk in the bedroom: the room's beauty is the game's
+Council_Nuisance_ButcherSmell [flavour] a butcher's table where they eat or sleep: a mood
+Council_Nuisance_StuckDoor:a_hurt [words] one line of eight tells of a skinned knuckle: too small for a hurt of the harm budget, and the others don't
+Council_Nuisance_SmokyRoom:a_garment_torn [words] "came away gray": soot, not a tear (the word list's catch)
+Council_Nuisance_Insects:a_night_awake [words] one line of nine; the rest are by day
+Council_Nuisance_AnimalFilth:a_mess_cleaned [words] one line of eight; the game's cleaning does the rest
+Council_Nuisance_HardBed:a_night_awake [words] the game's own rest on a poor bed already costs the night
+Council_Nuisance_FilthyRoom:a_garment_torn [words] "came away dirtier": the word list's catch
+Council_Nuisance_FilthyRoom:a_mess_cleaned [words] a question, "when was this place last swept?": nothing swept
+Council_Nuisance_Vermin:food_spoiled_by_a_pest [words] two lines of eight; the others tell of a chase, a nest, a trap
+Council_Nuisance_DirtFloor:a_mess_cleaned [words] sweeping that "only moved the dirt around": nothing changes, as the line says
+Council_Nuisance_ButcherSmell:a_night_awake [words] one line of fourteen
+
+# ---- Code hints read ----
+job:Visitors/Borne.cs:Bear:bearer [code] a visitor carrying their own dead (CanBear checks them)
+job:Visitors/Borne.cs:TakeOff:p [code] a visitor leaving the map with what is theirs
+job:Visitors/IdleHoursDebug.cs:DebugFillNow:p [code] a dev action on a visitor
+job:Visitors/IdleHoursJobs.cs:Fetch:dog [code] the colony's dog sent after a stick: the visitor's job fails the moment the dog is wanted (roped, in a group of the colony's, on an order, hungry, drafted or in a break: fixed in this review)
+job:Visitors/VisitorTradeGuests.cs:GuestNow:p [code] a visitor going to shop at the colony's market (dev and the shop's own turn)
+job:Visitors/Visitors.cs:Feed:p [code] a hungry visitor eating from their own pack
+job:Outsiders/OutsiderOutcomes.cs:Call:p [code] the colony's people called to watch a duel: the caller picks only the free (CanJoin, Interruptible, not pressed)
+job:Outsiders/Outsiders.cs:StartTalk:c [code] the player's order (TryTakeOrderedJob), or the colonist's own idea, asked only when free (OutsiderAuto: CanJoin, Interruptible)
+job:Outsiders/Outsiders.cs:StartGift:c [code] the player's order (TryTakeOrderedJob), or the colonist's own idea, asked only when free (OutsiderAuto: CanJoin, Interruptible)
+job:Outsiders/Outsiders.cs:Hold:x [code] the outsider stands still for the colonist who came over to them
+harm:Happenings/VisitorServices.cs:Dosed [code] a dose's protection, not a hurt; a dose from a bad batch goes through the harm budget (Harm/Carriers.cs)

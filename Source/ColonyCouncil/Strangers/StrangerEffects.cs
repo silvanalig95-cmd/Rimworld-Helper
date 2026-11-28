@@ -196,13 +196,41 @@ namespace ColonyCouncil
             sheet.Add(ImpactKind.People, 0, "CC_Impact_EndIt".Translate(x.LabelShort).Resolve(), "CC_Impact_EndItBrief".Translate(x.LabelShort).Resolve());
         }
 
+        /// <summary>A does it, so A must be here and able: on the map, up and in their right mind (the words have them kneel beside them).</summary>
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            var a = ctx?.a;
+            var x = ctx?.stranger;
+            if (x == null || x.Dead || !x.Spawned) return "CC_Stranger_Gone".Translate(x?.LabelShort ?? "?").ToString();
+            if (a == null || !x.RaceProps.Humanlike) return null;
+            if (a.Dead || !a.Spawned || a.Map != x.Map) return "CC_Stranger_Away".Translate(a.LabelShort).ToString();
+            if (a.Downed || a.InMentalState) return "CC_VisR7_NotAble".Translate(a.LabelShort).ToString();
+            return null;
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
             if (x == null || x.Dead || !x.Spawned) return;
             if (chance < 1f && !Rand.Chance(chance)) return;
-            if (ctx.a != null && !ctx.a.Dead && ctx.a.Spawned && x.RaceProps.Humanlike) ExecutionUtility.DoExecutionByCut(ctx.a, x, 8, true);
-            else x.Kill(null);
+            var a = ctx.a;
+            if (a == null || !x.RaceProps.Humanlike)
+            {
+                x.Kill(null);
+                return;
+            }
+            if (a.Dead || !a.Spawned || a.Map != x.Map || a.Downed || a.InMentalState) return;
+            // Beside them: done there and then, as the words tell. Further off, A walks over and does it on the map (the game's
+            // own attack on one lying down, the council's answer being the order), not from across the field.
+            if (a.Position.InHorDistOf(x.Position, VisitorReviewMath.BesideCells))
+            {
+                ExecutionUtility.DoExecutionByCut(a, x, 8, true);
+                return;
+            }
+            if (!a.CanReach(x, PathEndMode.Touch, Danger.Deadly)) return;
+            var job = JobMaker.MakeJob(JobDefOf.AttackMelee, x);
+            job.killIncappedTarget = true;
+            a.jobs?.TryTakeOrderedJob(job, JobTag.Misc, false);
         }
     }
 
@@ -217,11 +245,24 @@ namespace ColonyCouncil
             sheet.Play("CC_Impact_Capture".Translate(a.LabelShort, x.LabelShort).Resolve(), "CC_Impact_CaptureBrief".Translate(x.LabelShort).Resolve());
         }
 
+        /// <summary>A carries them, so A must be here and able: on the map, up and in their right mind.</summary>
+        public override string Unavailable(DilemmaContext ctx)
+        {
+            var a = ctx?.a;
+            var x = ctx?.stranger;
+            if (x == null || x.Dead || !x.Spawned) return "CC_Stranger_Gone".Translate(x?.LabelShort ?? "?").ToString();
+            if (a == null) return null;
+            if (a.Dead || !a.Spawned || a.Map != x.Map) return "CC_Stranger_Away".Translate(a.LabelShort).ToString();
+            if (a.Downed || a.InMentalState) return "CC_VisR7_NotAble".Translate(a.LabelShort).ToString();
+            return null;
+        }
+
         public override void Apply(DilemmaContext ctx)
         {
             var x = ctx.stranger;
             var a = ctx.a;
-            if (x == null || a == null || x.Dead || !x.Spawned || !x.Downed || !a.Spawned || a.Downed || a.Map != x.Map) return;
+            // Never an order to one in a mental break: the council's answer waits on them being themselves (Unavailable).
+            if (x == null || a == null || x.Dead || !x.Spawned || !x.Downed || !a.Spawned || a.Downed || a.InMentalState || a.Map != x.Map) return;
             var bed = RestUtility.FindBedFor(x, a, false, false, GuestStatus.Prisoner);
             if (bed == null)
             {
@@ -352,6 +393,8 @@ namespace ColonyCouncil
             if (ctx.stranger == null || ctx.stranger.Dead || !ctx.stranger.Spawned || ctx.stranger.Map != ctx.map)
                 return "CC_Stranger_Gone".Translate(ctx.stranger?.LabelShort ?? "?").ToString();
             if (ctx.pet == null || ctx.pet.Dead || ctx.pet.Faction != Faction.OfPlayer) return "CC_Stranger_PetGone".Translate().ToString();
+            // Away with a caravan, or on another of the colony's maps: it can't go with them from here.
+            if (!ctx.pet.Spawned || ctx.pet.Map != ctx.stranger.Map) return "CC_VisR7_PetAway".Translate(ctx.pet.LabelShort).ToString();
             return null;
         }
 
@@ -369,10 +412,19 @@ namespace ColonyCouncil
                     pet.mindState.exitMapAfterTick = Find.TickManager.TicksGame + Rand.Range(GenDate.TicksPerHour, GenDate.TicksPerHour * 4);
                 return;
             }
-            if (pet.Spawned) pet.jobs?.StopAll();
+            if (!pet.Spawned || pet.Map != x.Map) return;
+            pet.jobs?.StopAll();
+            // Out of any group of the colony's (a caravan forming, a gathering) before it goes with theirs.
+            Lords.Leave(pet);
             pet.SetFaction(x.Faction);
             var lord = x.GetLord();
-            if (pet.Spawned && pet.Map == x.Map && lord != null && lord.CanAddPawn(pet)) lord.AddPawn(pet);
+            if (lord != null && lord.CanAddPawn(pet))
+            {
+                lord.AddPawn(pet);
+                return;
+            }
+            // Their group can't take it: it sets off on its own the way they go, never left wandering the colony's land as theirs.
+            LordMaker.MakeNewLord(x.Faction, new LordJob_ExitMapBest(Pace.Errand, false, false), x.Map, new List<Pawn> { pet });
         }
     }
 

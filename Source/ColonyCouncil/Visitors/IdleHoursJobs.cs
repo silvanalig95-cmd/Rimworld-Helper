@@ -208,7 +208,11 @@ namespace ColonyCouncil
                 this.FailOnDespawnedOrNull(TargetIndex.A);
                 this.FailOn(() => Other == null || Other.Dead || Other.Downed || !Other.Awake());
                 if (d == IdleDoing.Company) this.FailOn(() => !SmallHabits.CanListen(Other));
-                if (d == IdleDoing.Pet) this.FailOn(() => Other.InMentalState || Other.Drafted || (Other.needs?.food?.CurCategory ?? HungerCategory.Fed) >= HungerCategory.Hungry);
+                // The colony's animal is let be the moment it is wanted: led on a rope, in a group of the colony's (a caravan
+                // forming, a gathering) or on an order the player gave it.
+                if (d == IdleDoing.Pet)
+                    this.FailOn(() => Other.InMentalState || Other.Drafted || (Other.needs?.food?.CurCategory ?? HungerCategory.Fed) >= HungerCategory.Hungry
+                                      || (Other.roping?.IsRoped ?? false) || (Other.CurJob?.playerForced ?? false) || Verse.AI.Group.LordUtility.GetLord(Other) != null);
                 var go = Toils_Goto.GotoThing(TargetIndex.A, PathEndMode.Touch);
                 if (d == IdleDoing.Pet)
                     go.AddPreTickIntervalAction(delta =>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- What fixes the two home nuisances the review of the visitors and strangers added (Defs/EncounterDefs/Rimfolk_VisR7_Nuisances.xml). -->
+
+  <ColonyCouncil.MoodHintDef>
+    <defName>Rimfolk_VisR7_Mood_Nuisances</defName>
+    <thoughts>
+      <li>Rimfolk_VisR7_Nuisance_HearthOut</li>
+      <li>Rimfolk_VisR7_Nuisance_WornBoots</li>
+    </thoughts>
+    <fix>Fix the cause: keep the fire in a bedroom fed through cold nights, or warm the room with heat that needs no feeding; make or buy new boots for someone whose pair is worn through.</fix>
+    <act>Fix the nuisance behind it</act>
+    <article>Council_Alm_C_Social</article>
+  </ColonyCouncil.MoodHintDef>
+
+</Defs>

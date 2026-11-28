@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- Moods of the two home nuisances the review of the visitors and strangers added (Defs/EncounterDefs/Rimfolk_VisR7_Nuisances.xml): small and short, like the others. -->
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_VisR7_Nuisance_HearthOut</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>the fire went out</label><description>The fire in my room burned out in the night, and I woke up cold.</description><baseMoodEffect>-2</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_VisR7_Nuisance_WornBoots</defName>
+    <durationDays>0.5</durationDays>
+    <stages><li><label>worn-out boots</label><description>My boots are worn through. I feel every stone, and they won't last much longer.</description><baseMoodEffect>-1</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

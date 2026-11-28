@@ -70,6 +70,16 @@ namespace ColonyCouncil
         /// <summary>The same colonist won't have this one again for this long.</summary>
         public float cooldownDays = 4f;
         public ThoughtDef thought;
+        /// <summary>
+        /// A bad night, as every one of its lines tells it (a generator droning by the bed, a draught across it, the hearth
+        /// gone out): this share of their rest bar is gone (the review of the visitors and strangers).
+        /// </summary>
+        public float rest;
+        /// <summary>
+        /// The thing it is about wears, as its lines tell (a seam split again, a sole worn through): the worn piece of
+        /// clothing called {THING} loses this share of its hit points, never the last one.
+        /// </summary>
+        public float wear;
         [MustTranslate] public List<string> texts = new List<string>();
 
         [Unsaved] private string whoExpr;
@@ -91,6 +101,8 @@ namespace ColonyCouncil
             foreach (var e in base.ConfigErrors()) yield return e;
             if (thought == null) yield return "nuisance has no thought";
             if (checkClass != null && !typeof(NuisanceCheckWorker).IsAssignableFrom(checkClass)) yield return "checkClass must be a NuisanceCheckWorker";
+            if (rest < 0f || rest > 0.3f) yield return "rest is a small share of the rest bar (0 to 0.3)";
+            if (wear < 0f || wear > 0.2f) yield return "wear is a small share of the thing's hit points (0 to 0.2)";
             if (texts.NullOrEmpty()) yield return "nuisance has no texts";
             else if (texts.All(t => Flavor.Strip(t, out var tags) != null && tags != null && tags.Length > 0)) yield return "nuisance needs at least one untagged text";
         }
@@ -167,6 +179,27 @@ namespace ColonyCouncil
             string text = raw.Formatted(p.Named("A"), thing.Named("THING")).Resolve();
             CouncilGameComponent.GiveThought(p, def.thought, null, 1f, text);
             News.Post(text, new LookTargets(p), NewsKind.Colony, MessageTypeDefOf.SilentInput, Importance.Flavor);
+            Effect(def, p, thing);
+        }
+
+        /// <summary>What the lines tell beyond the mood: the rest a bad night cost, the wear on the piece of clothing they name.</summary>
+        private static void Effect(NuisanceDef def, Pawn p, string thing)
+        {
+            try
+            {
+                var rest = p.needs?.rest;
+                if (def.rest > 0f && rest != null) rest.CurLevel = VisitorReviewMath.RestAfter(rest.CurLevel, def.rest);
+                if (def.wear <= 0f || thing.NullOrEmpty() || p.apparel?.WornApparel == null) return;
+                // The piece the check named: the worst-kept of that kind they wear.
+                var worn = p.apparel.WornApparel.Where(a => a.def.label == thing && a.def.useHitPoints).OrderBy(a => a.HitPoints).FirstOrDefault();
+                if (worn == null) return;
+                int loss = VisitorReviewMath.WearLoss(worn.HitPoints, worn.MaxHitPoints, def.wear);
+                if (loss > 0) worn.HitPoints -= loss;
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("nuisance effect " + def.defName, e);
+            }
         }
 
         /// <summary>The thing it's about (its label), "" when it's about no one thing, or null when it doesn't fit.</summary>

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Two more home nuisances (the review of the visitors and strangers, docs/review-visitors.md), in the frame there is
+    (Source/ColonyCouncil/Strangers/Nuisances.cs, the checks in NuisancesNew.cs) and read from the real map like the others:
+    the fire in their room gone out on a cold night, and boots worn half through. Each does what its lines say, kept small:
+    the cold night costs some rest, the boots wear a little more. Fixing the cause is the cure. Moods in
+    Defs/ThoughtDefs/Rimfolk_VisR7_Thoughts.xml. Plain words; {A_...} the colonist, {THING} the fire or the boots.
+  -->
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Rimfolk_VisR7_Nuisance_HearthOut</defName>
+    <label>the fire out in the night</label>
+    <checkClass>ColonyCouncil.NuisanceCheck_VisR7HearthOut</checkClass>
+    <who>morning</who>
+    <children>true</children>
+    <weight>1</weight>
+    <cooldownDays>4</cooldownDays>
+    <thought>Rimfolk_VisR7_Nuisance_HearthOut</thought>
+    <rest>0.06</rest>
+    <texts>
+      <li>The {THING} in {A_nameDef}'s room burned out in the night, and {A_pronoun} woke up cold.</li>
+      <li>{A_nameDef} found the {THING} cold this morning and dressed as fast as {A_pronoun} could.</li>
+      <li>Nobody had fed the {THING} in {A_nameDef}'s room, and it went out before midnight.</li>
+      <li>{A_nameDef} raked through the ash in the {THING}, looking for an ember, and found none.</li>
+      <li>{A_nameDef} slept badly, curled up under the blanket, after the {THING} in the room went out.</li>
+      <li>[snow] Snow was falling outside, and the {THING} in {A_nameDef}'s room had been out for hours.</li>
+      <li>[child] {A_nameDef} woke up cold and went to ask why the {THING} had gone out.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+  <ColonyCouncil.NuisanceDef>
+    <defName>Rimfolk_VisR7_Nuisance_WornBoots</defName>
+    <label>worn-out boots</label>
+    <checkClass>ColonyCouncil.NuisanceCheck_VisR7WornBoots</checkClass>
+    <children>true</children>
+    <weight>0.8</weight>
+    <cooldownDays>5</cooldownDays>
+    <thought>Rimfolk_VisR7_Nuisance_WornBoots</thought>
+    <wear>0.03</wear>
+    <texts>
+      <li>The sole of {A_nameDef}'s {THING} is coming away, and it flapped at every step today.</li>
+      <li>{A_nameDef} tied {A_possessive} {THING} back together with a piece of string.</li>
+      <li>{A_nameDef} has worn through the heel of {A_possessive} {THING}, and felt every stone on the path.</li>
+      <li>{A_nameDef} stopped three times today to shake grit out of {A_possessive} worn {THING}.</li>
+      <li>[rain] Water got into {A_nameDef}'s worn {THING} at the first puddle, and {A_possessive} feet stayed wet all day.</li>
+      <li>[winter|cold] The cold came straight up through the thin soles of {A_nameDef}'s {THING}.</li>
+      <li>[child] {A_nameDef} showed everyone the hole in {A_possessive} {THING}, toe first.</li>
+    </texts>
+  </ColonyCouncil.NuisanceDef>
+
+</Defs>

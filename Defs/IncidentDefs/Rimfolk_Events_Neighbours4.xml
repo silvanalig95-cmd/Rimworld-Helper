@@ -45,7 +45,7 @@
           <li>[spacer] {X_nameDef}, a xenobotanist of {FACTION}, is cataloguing the plants of the region, sample tubes clinking at {X_possessive} belt, and asks leave to work along the colony's treeline. {X_pronoun} has a bundle of dried healing herbs to sell for {COUNT} silver, gathered the old way.</li>
           <li>[fall] The last of the season's roots are coming up, and {X_nameDef}, a gatherer of {FACTION}, has walked out from {PLACE} to find them. {X_pronoun} asks leave to dig along the colony's treeline, and offers a bundle of dried herbs for {COUNT} silver.</li>
         </texts>
-        <defaultOption>2</defaultOption>
+        <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>Let {X_objective} gather, with {B_nameDef} along</label>
@@ -65,6 +65,16 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
               <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>3</count><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <!-- The review of the visitors and strangers: leave to gather, paid for in herbs. -->
+            <label>Leave to gather, for two bundles of herbs</label>
+            <outcome>{X_nameDef} set two bundles of dried herbs down at the gate in return for leave to gather on the colony's land, and went on {X_possessive} way with {X_possessive} basket.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>MedicineHerbal</thing><count>2</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>1</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
           </li>
           <li>
@@ -115,7 +125,7 @@
           <li>[spacer] {X_nameDef}, a stockman of {FACTION}, is moving a herd of gene-bred stock between settlements the slow way, on foot, to keep them calm, and has left it grazing down the road to come up to the gate. {X_pronoun} would sell the colony a young one for {COUNT} silver, and wouldn't say no to a meal for the hands.</li>
           <li>[colony:Hospitable] The colony's name for a warm welcome has reached the drovers' road. {X_nameDef} of {FACTION} has left the herd grazing down the road and come up to the gate to ask after a meal, and to offer a young beast for {COUNT} silver.</li>
         </texts>
-        <defaultOption>2</defaultOption>
+        <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>Buy a young beast ({COUNT} silver)</label>
@@ -133,6 +143,15 @@
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
             </effects>
             <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <!-- The review of the visitors and strangers: a pair from the herd. -->
+            <label>Buy two young beasts ({COUNT} silver each)</label>
+            <outcome>{X_nameDef} took the silver and sent one of the drovers down for a second young beast, and both are the colony's now.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>2</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_SpawnAnimal"><kinds><li>Cow</li><li>Goat</li><li>Sheep</li><li>Yak</li><li>Alpaca</li><li>Donkey</li><li>Muffalo</li><li>Dromedary</li></kinds><count>2</count></li>
+            </effects>
           </li>
           <li>
             <label>Send them on</label>
@@ -330,7 +349,7 @@
           <li>[!lowtech] {X_nameDef} of {FACTION} has been following a road that ended in a bog, and walked back to the colony's gate to ask where {PLACE} might actually be. {X_possessive} map, {X_pronoun} says, was drawn by a liar.</li>
           <li>[winter] {X_nameDef}, a traveller of {FACTION}, came to the gate with frost in {X_possessive} eyebrows. {X_pronoun} lost the road to {PLACE} in the snow, and would be glad of something hot and the right way to go.</li>
         </texts>
-        <defaultOption>2</defaultOption>
+        <defaultOption>3</defaultOption>
         <options>
           <li>
             <label>A hot meal, and {A_nameDef} goes over the road with {X_objective}</label>
@@ -349,6 +368,16 @@
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>something for the road</label><eat>true</eat></li>
               <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
             </effects>
+          </li>
+          <li>
+            <!-- The review of the visitors and strangers: a meal and a night by the wall, the way at first light. -->
+            <label>A meal, and a night by the wall</label>
+            <outcome>{A_nameDef} carried a meal out to {X_nameDef} and showed {X_objective} a dry place to sleep by the colony's wall. {X_nameDef} set off for {PLACE} at first light, rested and sure of the road.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>a meal and a place by the wall</label><eat>true</eat><night>true</night></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
           </li>
           <li>
             <label>Point the way</label>
@@ -469,7 +498,7 @@
             <outcome>{X_nameDef} took the silver and set the beer down by the gate.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Beer</thing><count>12</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Beer</thing><count>8</count><by>Outsiders</by></li>
             </effects>
           </li>
           <li>

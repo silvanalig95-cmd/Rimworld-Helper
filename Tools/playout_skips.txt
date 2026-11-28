@@ -674,3 +674,4 @@ Rimfolk_WS_BridgeDown [end:rebuilt] far away, told
 Rimfolk_Dlm_RivalFeasts [option 0] the feasts play out on their days, one kept in full and one quietly (Festivals.Kept, GodPlacesCouncil.KeptQuietly)
 Rimfolk_Dlm_RivalFeasts [option 1] the feasts play out on their days, one kept in full and one quietly (Festivals.Kept, GodPlacesCouncil.KeptQuietly)
 Rimfolk_Dlm_RivalFeasts [option 2] both feasts play out in full on their days (Festivals.Kept)
+Rimfolk_Evt_HerbGatherer [option 2] a stranger's part: the herbs are set down at the gate by the gatherer (DilemmaEffect_Spawn by Outsiders), who goes on their way to gather off the colony's map (SendAway); the review of the visitors and strangers

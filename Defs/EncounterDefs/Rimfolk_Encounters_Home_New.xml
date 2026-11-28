@@ -43,6 +43,7 @@
     <weight>1</weight>
     <cooldownDays>3</cooldownDays>
     <thought>Council_Nuisance_DraughtyBed</thought>
+    <rest>0.08</rest>
     <texts>
       <li>Every time someone used the {THING} by {A_nameDef}'s bed, the cold came straight in.</li>
       <li>{A_nameDef} stuffed a rolled-up shirt along the bottom of the {THING}. The draught came in anyway.</li>

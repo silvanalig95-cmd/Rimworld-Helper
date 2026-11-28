@@ -150,6 +150,7 @@
     <Compile Include="../../Source/ColonyCouncil/Camps/CampStoryMath.cs" Link="CampStoryMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Happenings/RegularMath.cs" Link="RegularMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Visitors/CallerMath.cs" Link="CallerMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Strangers/VisitorReviewMath.cs" Link="VisitorReviewMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/RivalMath.cs" Link="RivalMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/RegionMapMath.cs" Link="RegionMapMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Region/RegionMath.cs" Link="RegionMath.cs" />
