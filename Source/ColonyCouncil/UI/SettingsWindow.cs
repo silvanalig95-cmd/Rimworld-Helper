@@ -611,6 +611,18 @@ namespace ColonyCouncil
                 case "resetAll":
                     if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f))) SettingsPresets.ConfirmReset(s);
                     break;
+                case "portraitPickAgainAll":
+                {
+                    // Every colonist's picture matched again, once, after asking (UI/Faces/PortraitLibrary.cs, PickAgainAll).
+                    bool game = Current.ProgramState == ProgramState.Playing && PortraitKeeper.Instance != null;
+                    if (Widgets.ButtonText(one, UiKit.Fit(t.label, oneW - 12f), true, true, on && game) && on && game)
+                        Find.WindowStack.Add(Dialog_MessageBox.CreateConfirmation("CC_Settings_PortraitPickAgainAll_Confirm".Translate(), () =>
+                        {
+                            int n = PortraitLibrary.Source.PickAgainAll();
+                            Messages.Message("CC_Settings_PortraitPickAgainAll_Done".Translate(n.Named("COUNT")), MessageTypeDefOf.SilentInput, false);
+                        }, true));
+                    break;
+                }
                 case "portraitFolderRow":
                 {
                     // The portrait library folder (UI/Faces/PortraitFolder.cs): its path typed or pasted, and a button to read it again.

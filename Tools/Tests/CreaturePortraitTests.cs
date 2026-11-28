@@ -144,6 +144,10 @@ public static class CreaturePortraitTests
             C(fam.Contains("CardSections.RegisterLines(CardKind.Colonist") && fam.Contains("[HarmonyPatch(typeof(Pawn), nameof(Pawn.GetInspectString))]")
               && fam.Contains("BondOfAnimal(a)") && fam.Contains("FamiliarOf(mage)") && fam.Contains("MagicFamiliars.On"),
                 "(familiars) the animal's panel says whose familiar it is, the mage's card names it, only while familiars are on");
+            string libSrc = Read("UI/Faces/PortraitLibrary.cs"), menuSrc = Read("UI/Faces/InspectPortrait.cs"), setWin = Read("UI/SettingsWindow.cs");
+            C(libSrc.Contains("public string PickAgain(Pawn p)") && libSrc.Contains("public int PickAgainAll()") && libSrc.Contains("if (k == null || k.byHand) continue;")
+              && menuSrc.Contains("lib.PickAgain(p)") && setWin.Contains("case \"portraitPickAgainAll\":") && setWin.Contains("PortraitLibrary.Source.PickAgainAll()"),
+                "(pick again) on the large portrait's menu for one, and once for every colonist in the settings, asking first, pictures chosen by hand kept");
         }
         return n;
     }

@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Pick a picture again
+
+*28 November 2026, version 0.318.4*
+
+- The large portrait's right-click menu has "Pick again": the painted picture the person keeps is let go, and the closest picture in the library is chosen for them again by the usual rules.
+- Rimfolk's portrait settings have "Pick again for every colonist", once and after asking: every colonist, slave and prisoner is matched again, and pictures you chose by hand are kept. It helps after a save was loaded while the library was only partly there and colonists got pictures far from them.
+
 ## A familiar shown where you look
 
 *28 November 2026, version 0.318.3*

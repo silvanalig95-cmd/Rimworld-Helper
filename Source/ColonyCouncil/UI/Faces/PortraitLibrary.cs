@@ -780,6 +780,50 @@ namespace ColonyCouncil
             PortraitSources.Forget(p.thingIDNumber);
         }
 
+        // ---------------- Pick again ----------------
+
+        /// <summary>
+        /// "Pick again" on the large portrait's menu (the player's go of 28 November 2026 on the proposal of 23 November, after
+        /// a save loaded while the library was only partly there gave colonists far pictures that saving then kept): the
+        /// picture they keep let go, and the closest by the usual rules chosen at once (it may be the same one). Says what
+        /// happened.
+        /// </summary>
+        public string PickAgain(Pawn p)
+        {
+            if (p == null || !On) return "CC_Portrait_ChooseNone".Translate(p.Named("PAWN")).Resolve();
+            Drop(p);
+            return "CC_Portrait_PickAgainDone".Translate(p.Named("PAWN")).Resolve();
+        }
+
+        /// <summary>
+        /// "Pick again for every colonist" in the portraits' settings: each of the colony's own people (colonists, slaves,
+        /// prisoners) keeping a picture the matcher gave them has it let go and is matched again; a picture chosen by hand is
+        /// kept. Returns how many.
+        /// </summary>
+        public int PickAgainAll()
+        {
+            var keeper = PortraitKeeper.Instance;
+            if (keeper == null || !On) return 0;
+            int n = 0;
+            foreach (var p in PawnsFinder.AllMapsCaravansAndTravellingTransporters_Alive_OfPlayerFaction.Concat(PawnsFinder.AllMaps_PrisonersOfColony).ToList())
+            {
+                if (p?.RaceProps == null || !p.RaceProps.Humanlike) continue;
+                var k = keeper.Get(p.thingIDNumber);
+                if (k == null || k.byHand) continue;
+                Drop(p);
+                n++;
+            }
+            return n;
+        }
+
+        private void Drop(Pawn p)
+        {
+            PortraitKeeper.Instance?.Drop(p.thingIDNumber);
+            Forget(p.thingIDNumber);
+            noted.Remove(p.thingIDNumber);
+            PortraitSources.Forget(p.thingIDNumber);
+        }
+
         // ---------------- Choose another picture ----------------
 
         /// <summary>Whether "Choose another picture" has anything to offer this person (the library is on and has a picture that may stand for them).</summary>

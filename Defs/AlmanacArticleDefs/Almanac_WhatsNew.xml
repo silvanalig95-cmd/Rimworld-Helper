@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.318.4</version>
+        <date>28 November 2026</date>
+        <title>Pick a picture again</title>
+        <points>
+          <li>The large portrait's right-click menu has "Pick again": the painted picture the person keeps is let go, and the closest picture in the library is chosen for them again by the usual rules.</li>
+          <li>Rimfolk's portrait settings have "Pick again for every colonist", once and after asking: every colonist, slave and prisoner is matched again, and pictures you chose by hand are kept. It helps after a save was loaded while the library was only partly there and colonists got pictures far from them.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.318.3</version>
         <date>28 November 2026</date>
         <title>A familiar shown where you look</title>

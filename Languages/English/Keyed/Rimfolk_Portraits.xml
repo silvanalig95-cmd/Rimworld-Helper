@@ -61,6 +61,12 @@
   <CC_SetNote_PortraitOutline_Stronger>A firmer shadow and line round the person.</CC_SetNote_PortraitOutline_Stronger>
   <CC_Settings_PortraitFolder>Portrait library folder</CC_Settings_PortraitFolder>
   <CC_Settings_PortraitFolder_Tip>The folder that holds your painted portraits: its records.xml, which describes every picture, and the pictures in its subfolders. It can be a folder you keep in step between computers (a cloud drive). Paste its full path, for example C:\Users\you\Google Drive\Rimfolk Portraits, then press "Reload the library". Rimfolk reads it when the game starts, and writes missing.csv into it: the people, rooms and land it needed a picture for and found none, for the next batches. Empty: no folder (pictures from mods are still used).</CC_Settings_PortraitFolder_Tip>
+  <CC_Settings_PortraitPickAgainAll>Pick again for every colonist</CC_Settings_PortraitPickAgainAll>
+  <CC_SetTip_PortraitPickAgainAll>Lets go of the picture each of your colonists, slaves and prisoners keeps and chooses the closest one in the library again, by the usual rules. A picture you chose by hand is kept. Useful after a save was loaded while the library was only partly there, so colonists were given pictures far from them. Only in a loaded game; it asks first.</CC_SetTip_PortraitPickAgainAll>
+  <CC_SetNote_PortraitPickAgainAll>Every colonist's picture matched again, once; pictures chosen by hand stay.</CC_SetNote_PortraitPickAgainAll>
+  <CC_SetWhy_NoGamePortraits>Load a game to pick the pictures again.</CC_SetWhy_NoGamePortraits>
+  <CC_Settings_PortraitPickAgainAll_Confirm>Let go of the picture every colonist, slave and prisoner keeps and choose the closest one again? Pictures you chose by hand are kept.</CC_Settings_PortraitPickAgainAll_Confirm>
+  <CC_Settings_PortraitPickAgainAll_Done>Portraits: {COUNT} pictures let go; each is chosen again by the usual rules.</CC_Settings_PortraitPickAgainAll_Done>
   <CC_SetNote_PortraitFolder>Where your painted portraits are kept; Rimfolk also writes there what it found missing.</CC_SetNote_PortraitFolder>
   <CC_Settings_PortraitFolder_Empty>No folder set</CC_Settings_PortraitFolder_Empty>
   <CC_Settings_PortraitFolder_Reload>Reload the library</CC_Settings_PortraitFolder_Reload>
@@ -129,6 +135,8 @@
   <CC_Portrait_TipLibrary>{PAWN_nameDef}: click for their card, right-click to choose another painted picture, see its record and versions, keep one for training or delete one for good.</CC_Portrait_TipLibrary>
   <CC_Portrait_GripTip>Drag to make the portrait larger or smaller.</CC_Portrait_GripTip>
   <CC_Portrait_ChooseAnother>Choose another picture</CC_Portrait_ChooseAnother>
+  <CC_Portrait_PickAgain>Pick again</CC_Portrait_PickAgain>
+  <CC_Portrait_PickAgainDone>{PAWN_nameDef}'s picture was let go; the closest picture in the library is chosen for {PAWN_objective} again.</CC_Portrait_PickAgainDone>
   <CC_Portrait_RimfolkSettings>Rimfolk settings (portraits)...</CC_Portrait_RimfolkSettings>
   <CC_Portrait_ChooseEmpty>the library has no pictures</CC_Portrait_ChooseEmpty>
   <CC_Portrait_ChooseOff>painted portraits are off in the settings</CC_Portrait_ChooseOff>

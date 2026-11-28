@@ -244,6 +244,10 @@ namespace ColonyCouncil
                     string said = lib.ChooseAnother(p);
                     Messages.Message(said, MessageTypeDefOf.SilentInput, false);
                 }));
+            // Pick again: the picture they keep let go, the closest by the usual rules chosen.
+            string again = "CC_Portrait_PickAgain".Translate().Resolve();
+            if (lib.Count > 0 && (ColonyCouncilMod.Settings?.portraitLibrary ?? true) && PortraitKeeper.Instance?.Get(p.thingIDNumber) != null)
+                options.Add(new FloatMenuOption(again, () => Messages.Message(lib.PickAgain(p), MessageTypeDefOf.SilentInput, false)));
             // About the painted picture shown: its record, why it is theirs, its versions, corrections.
             string about = "CC_PortraitAbout_Menu".Translate().Resolve();
             if (PortraitSources.For(p)?.file != null && lib.KeptFor(p, out _, out _)) options.Add(new FloatMenuOption(about, () => Window_PortraitAbout.Open(p)));

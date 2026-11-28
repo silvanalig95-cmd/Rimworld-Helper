@@ -739,6 +739,8 @@ namespace ColonyCouncil
             // The player's own library folder (UI/Faces/PortraitFolder.cs): its path, and reading it again.
             var folder = Action("portraitFolderRow", "CC_Settings_PortraitFolder", "CC_Settings_PortraitFolder_Tip", "CC_SetNote_PortraitFolder", "portraitLibrary");
             folder.covers = new[] { "portraitFolder" };
+            // Every colonist's picture matched again, once (pictures chosen by hand kept): UI/Faces/PortraitLibrary.cs, PickAgainAll.
+            Action("portraitPickAgainAll", "CC_Settings_PortraitPickAgainAll", "CC_SetTip_PortraitPickAgainAll", "CC_SetNote_PortraitPickAgainAll", "portraitLibrary").whyOff = "CC_SetWhy_NoGamePortraits";
             // Deleting a picture for good from the large portrait's menu (UI/Faces/PortraitDelete.cs): its files to the bin, or deleted.
             Choice("portraitDelete", "CC_SetLabel_PortraitDelete", "CC_SetTip_PortraitDelete", "CC_PortraitDelete_", "CC_SetNote_PortraitDelete_", new[] { "Bin", "Delete" },
                 "portraitLibrary");

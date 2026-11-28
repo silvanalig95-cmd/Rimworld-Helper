@@ -806,12 +806,12 @@ most sense." So, in this order, three builds at a time:
   makes every re-check meaningful; (3) optionally, for pictures checked again, a question that gives the model the
   row's own description: "the picture is meant to show: ... Does it? Name anything that clearly differs" (the player,
   earlier: the check "should really rely first on the data that is already provided kind of by the CSV files").
-- **To do when the player asks (23 November 2026, the player): when the library is ever cleaned up, the pictures kept
+- **Handed to Rimfolk Studio's chat (28 November 2026, the player's pick; was: 23 November 2026, the player): when the library is ever cleaned up, the pictures kept
   as the model saw them go first.** The player: "for the "keep as the model saw" images it's mostly fringe cases, like
   humans with pointy hears or so, so it's possible that these are never used ingame. generally i want to build up a huge
   library but if we ever start cleaning up items it should delete those first." No cleanup tool exists; such pictures
   are known by their corrections.csv lines with the why "kept as the model saw it (Review-Pictures)".
-- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): a whole version of a picture cut
+- **Handed to Rimfolk Studio's chat (28 November 2026, the player's pick; was: 23 November 2026; proposal sent, waiting for the go): a whole version of a picture cut
   at the side.** The player: "the ones with cut off sides could be flagged for the variation script, so that a new
   variation will be created with the full image, does that make sense and is possible?" Proposed: Make-Variants makes
   a "full" version of each picture whose check line says "cut at the side" (kept or not): the picture's canvas widened
@@ -819,8 +819,11 @@ most sense." So, in this order, three builds at a time:
   model) asked to paint the rest of the person and the ground there in the same style, the result cut out again and
   saved as `<picture>_v-full.png`; Update-PortraitLibrary uses it in the picture's place (same record and corrections),
   and its "cut at the side" line counts as done; it shows on the review page to keep or throw out.
-- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): picking again after the broken
-  library reading.** The player sent their save ("i loaded my save and all pawns had new images from yesterday, i assume
+- **Done (28 November 2026, 0.318.4; the player's pick "Both"): picking again after the broken library reading.**
+  `PortraitLibrary.PickAgain` (the large portrait's menu, "Pick again": `Drop` lets the kept picture go, the closest is
+  chosen at once) and `PickAgainAll` (Rimfolk's portrait settings, "Pick again for every colonist", the action
+  `portraitPickAgainAll`, asking first: the colony's own colonists, slaves and prisoners, pictures chosen by hand kept).
+  Tests in CreaturePortraitTests; the GUIDE says it. The report it answers: The player sent their save ("i loaded my save and all pawns had new images from yesterday, i assume
   because we changed the requirements. most of the elves and the fish lady has no image at all, is that because there
   is no match with the hard requirements?"). Found: every colonist's kept picture is from characters-05 (made that
   morning), with distances of 6.5 to 22 (close enough is 6): the save was loaded while records.xml lacked characters-01
@@ -931,6 +934,18 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **The player's answers of 28 November 2026** (asked through clickable questions; the player: "Do you have anything that
+  you need from me ... If you can present these information you need from me in an interactive way where I can easily
+  just click ... plan for me when we want to continue ... I just generally want to ... do content updates. So first,
+  maybe also regularly reviewing what you have already added to the games ... whether everything works properly as
+  intended, whether it actually has also impacts on the game and it's not just flavor, whether ... the existing content
+  like events and dilemmas ... can be just further enhanced. And then after, or also on the side, just add even more
+  variety."): "Pick again" both ways (built, 0.318.4); the review to start with events and the council, then camps and
+  the world, then the gods (visitors not picked for now); the creature looks for waves 3 and 4 written now, alongside
+  (Pokémon not); the six portrait proposals that belong to Rimfolk Studio given to its chat as one prompt and taken off
+  this list. The way of working from here: review rounds (does it work, does it change the game or is it only words,
+  can it be made better) and content variety rounds, alternating or side by side, in the existing frames; each review
+  writes its audit to `docs/review-*.md`. Questions for the player go as clickable choices.
 - **Done (28 November 2026, 0.318.3; the player asked "what does it mean if a pawn binds an animal/pokemon as
   familiar?", then "do i see this familiar connection somewhere?", and to the lead's offer of a lasting label: "yes,
   please"): a familiar shown where the player looks.** `Integrations/MagicFamiliarsShown.cs`: the animal's selection
@@ -1259,7 +1274,7 @@ most sense." So, in this order, three builds at a time:
   in the game, not in the settings (the mod hides it while trees aren't drawn over colonists). Seen in the same
   screenshot and fixed (0.302.2): the council's alert said "Food runs out in about 0 days"; under a day the food and
   growing-season alerts now say it in words (LogFixTests).
-- **To do when the player asks (24 November 2026; recommendation sent, waiting for the go): the portrait workflow's
+- **Done (24 November 2026, the Studio takeover): the portrait workflow's
   scripts developed in Rimfolk Studio from now on.** The player: "the scripts and everything, it does just make sense
   if we continue also developing these in Rimfolk Studio rather than here. I don't know, or should this continue to be
   used here?", with the example "regarding the integration of animals and creatures, these will soon be start to
@@ -1335,7 +1350,7 @@ most sense." So, in this order, three builds at a time:
   picture also out for another reason stays out for that; the order doesn't matter. Tried in a browser on a mixed test
   file. SETUP-ComfyUI.md step 10. This covers point (2) of the entry below in the player's way; point (1), side cuts
   kept by default, still waits.
-- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): pictures cut at the side kept
+- **Handed to Rimfolk Studio's chat (28 November 2026, the player's pick; was: 23 November 2026; proposal sent, waiting for the go): pictures cut at the side kept
   unless the player leaves them out, and the review page sorted by reason.** The player, with a screenshot of the review
   page on its empty "Held back" tab while "Left out" held 211: "why can't i review none of the withhelf images? the
   cutoff on the side is not necessarily a dealbreaker and some still look giid". Fixed at once: the page opens on the
@@ -1343,7 +1358,7 @@ most sense." So, in this order, three builds at a time:
   Proposed: (1) a picture cut at the side stays in the game and is listed on the page to look at (Leave out takes it
   out), instead of out until kept; (2) on the page, a choice of reason (cut at the side, pointed ears, horns, two
   people ...) with its count, and "Keep all of these" for a reason, so 211 need not be gone through one by one.
-- **To do when the player asks (23 November 2026; proposal sent, waiting for the go): a picture whose row is missing
+- **Handed to Rimfolk Studio's chat (28 November 2026, the player's pick; was: 23 November 2026; proposal sent, waiting for the go): a picture whose row is missing
   keeps its record.** The player ran Copy-ToLibrary and got "no row of this name in any batch list, left out" for
   nearly every picture of characters-01 to 03 ("what does this output mean then after i launch the copy script? can i
   ignore this?"). Their `batches` lists were older than the ones the pictures were made from (the current lists in the
@@ -1426,7 +1441,7 @@ most sense." So, in this order, three builds at a time:
   (both took the rest out of the queue), the game's lines and the check's own lines changed by a later scan. Only on
   Windows: Windows PowerShell 5.1 itself, real ComfyUI (the upload's subfolder, `GET /prompt`'s queue count, `POST
   /queue` delete), and Ctrl+C in a real console window (PowerShell runs `finally` then; tested by stopping the pipeline).
-- **To do when the player asks (23 November 2026, the player; proposal sent, waiting for the go): "About this picture"
+- **Done (built as the window "About this picture"): "About this picture"
   on the large portrait's menu, its record shown and corrected in the game.** The player: "one of the right-click
   options could open kind of a menu where I see the image that is currently assigned to the pawn, and where I could see
   ... all the different attributes and characteristics that this image has assigned in the database ... which of the
@@ -1489,7 +1504,7 @@ most sense." So, in this order, three builds at a time:
   what exists, -2 past a deleted name, instructions as sent, the records, the two-level names, the old way, the queue).
   Not solved: a mark that changes the outline (a missing ear, an arm of another shape) keeps the picture's outline
   through Join Image with Alpha; said in the guide.
-- **To do when the player asks (23 November 2026, the player; proposal sent; the player, the same day: "the library sort
+- **Handed to Rimfolk Studio's chat (28 November 2026, the player's pick; was: 23 November 2026, the player; proposal sent; the player, the same day: "the library sort
   is only making me a bit concerned since scripts and csv files etc refer to the file path, so leave that for now"):
   the library sorted by kind and sex.** The player: "maybe it would also be nice if the files then also maybe get organized, for example, by
   race and then sex, you know, in folders, if that makes sense and is doable." (Asked with it, answered: the check asks
@@ -1633,7 +1648,7 @@ most sense." So, in this order, three builds at a time:
   the lists again (another right away, Enter keeps the style, Enter at the lists closes). The list's work moved into
   `Queue-List`; an error in one list is shown and the next goes on. Also fixed: the menu's heading printed "Which"
   alone (PowerShell read `$what?` as a variable named "what?"). Tried with pwsh 7 against a stand-in ComfyUI.
-- **To do when the player asks (22 November 2026, the player; noted for later): non-human kinds look too human in the
+- **Handed to Rimfolk Studio's chat (28 November 2026, the player's pick; was: 22 November 2026, the player; noted for later): non-human kinds look too human in the
   game-look style.** The player: "the non-human races still look quite human. There's still some differences, but
   overall ... since we really had not a lot of non-humans to train with, but just to keep that in mind, perhaps for
   future improvements ... improvements of the model primarily", and "the races might be mentioned as such a race, but
@@ -1657,7 +1672,7 @@ most sense." So, in this order, three builds at a time:
   drops it after the sync); its name into `library\deleted.csv`, which `Copy-ToLibrary.ps1`, `Update-PortraitLibrary.ps1`
   and `Check-Pictures.ps1` honour (never copied, recorded or checked again); whoever held it gets a new pick by the usual
   rules (their pins, the nearest free face, else the game's drawing).
-- **To do when the player asks (22 November 2026, the lead's offer; nothing built yet): back to their own picture.** The
+- **Dropped (28 November 2026): back to their own picture** (pins mean little since 0.305.0, and "Pick again" exists). The
   player: "i accidentally unselected apes images, does this get recovered after a game reload?" ("Choose another
   picture" twice, 3 of 8: a stranger's face kept for Ape). The answer: a save from before the change brings it back; else
   choose on round the circle (her pins come first). The offer: a "Back to their own picture" entry on the large

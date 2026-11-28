@@ -1,6 +1,6 @@
 # Rimfolk portraits: the guide
 
-Last changed: 27 November 2026 (0.306.1: no Pokémon in missing.csv; 0.306.0: a new picture that fits one of your people nearly exactly becomes theirs by itself; 0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
+Last changed: 28 November 2026 (0.318.4: "Pick again" for one colonist on the large portrait's menu, and once for every colonist in the settings; 0.306.1: no Pokémon in missing.csv; 0.306.0: a new picture that fits one of your people nearly exactly becomes theirs by itself; 0.305.0: dismiss a variant from the large portrait's menu, and a picture made for a name is free in a save where no one has that name; 0.304.0: painted conditions such as asleep or wounded, and the game's people list `people.csv`; before it the lists, styles and scripts come with Rimfolk Studio; before it the characters' fourth round, the creatures' variety round, pointed ears for the fantasy races, the Pokémon out of the creature lists, and 0.303.0: the gods' pictures). This guide is
 kept up to date with every change to the portrait kit (the player, 23 November 2026: "keeps the whole step-by-step
 procedure on track and documented with what it does ... when it changes, please update it"). It comes with every kit
 zip. The setup of each ComfyUI workflow, click by click, is in `SETUP-ComfyUI.md`; training the style is in
@@ -216,7 +216,10 @@ at a god's place, or standing in the room of one (its temple), has the backdrop 
 the colony's age first; those backdrops are never used anywhere else. **Priests**: a picture with the role priest goes
 to people whose backstory, faith role or the colony's priest seat makes them one.
 
-In the game: right-click the large portrait for **Choose another picture**, **About this picture** (its description,
+In the game: right-click the large portrait for **Choose another picture**, **Pick again** (the kept picture let go, the
+closest chosen again by the usual rules; in Rimfolk's portrait settings, **Pick again for every colonist** does it once for
+all your people, keeping pictures you chose by hand: useful after a save was loaded while the library was only partly
+there), **About this picture** (its description,
 why it was chosen, its variants, corrections: race, xenotype, sex, age, skin, hair, beard, build, clothes, features,
 marks, looks, work, headwear), **Keep for training**, **Delete for good**, and **Dismiss this variant** for the
 variant shown now (a condition, the expression on the face, a mark variant): it is deleted the way a picture is, the
