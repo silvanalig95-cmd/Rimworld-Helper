@@ -992,6 +992,26 @@ most sense." So, in this order, three builds at a time:
   item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
   not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
   Integrations and JecsLite, for the review below.
+- **Done (28 November 2026, 0.332.0; the player's picks A1 to A4, E3, E4 of the living land): the land's climate**, in a
+  worktree, merged; `docs/design/living-land.md` (the `LandClimate` API the other parts read: `SeasonNow`, `SeasonAt`,
+  `YearNow`, `DriftNow`, `TempNow`, `ExtremeNow`, events `SeasonBegan`, `ExtremeBegan`, `ExtremeEnded`). A season's
+  character is a hash of tile, year and quadrum (nothing saved): ordinary, wet, dry, warm, cold, snowy or short of snow
+  where the quadrum's mean is 3 °C or less, any of them extreme; it leans the weather's choice
+  (`WeatherDynamicsMath.Character`, only the land's own weathers) and adds an eased temperature push; the best weather
+  reader says what it looks like at the season's start (bubble, news, Overview); an extreme told once the map shows it.
+  Year extremes (no summer, dry, heavy rain) start the matching world event where they can; once in a lifetime (snow,
+  frost, great heat, blizzard, dust storm, heavy rain, great storm) only where the land never brings it, in its season,
+  with its temperature (snow judged by a coldest month of 7 °C or more); the great storm through `HarmKinds.Dangers`.
+  Weathers no biome lists come with the seasons, as a sign (red rain before a hard season) and in world events;
+  `ClimateMath.Never` lists the event weathers left alone. Drift: one direction a game (random or set), 1 to 3 °C a
+  decade capped at 4 °C, a volcanic winter cools, a comet pushes, pollution and losing a sixth of the trees warm and dry.
+  The land's record: a line a year, 40 years a map, in the annals, the Overview and five Almanac sections. Settings
+  `climateStrength` (Off, Gentle, Usual, Dramatic) and `climateDrift` (Off, Random, Warmer, Colder, Drier, Wetter). At
+  Usual: 48% of seasons ordinary, 10.7% extreme, a year extreme about once in 12 years, once in a lifetime about once in
+  19; a wet season rains 1.5 to 1.6 times as often, a dry one half as much; each land keeps its rain within about 10%
+  over a century. Not tried in the game: snow on desert sand, fertile rain without its landmark, Alpha Biomes' acid rain
+  through its worker, the push's strength on the map, Seasonal Weather's season lists with the lean. Tests:
+  LivingClimateTests (WeatherDynamicsTests' simulation takes the climate).
 - **Done (28 November 2026, 0.330.0; the player's picks D1 and D2 of the living land): the ground that stays and the
   mountain that wakes**, in a worktree, merged; `docs/design/living-land-ground.md`, `Nature/GroundMarks.cs`,
   `Nature/GroundWaking.cs`, `GroundMath.cs`. Quakes known by name (Seasonal Weather's, `VEE_Earthquake` at its

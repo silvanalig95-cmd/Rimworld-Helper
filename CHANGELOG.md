@@ -5,6 +5,23 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Seasons with a character of their own
+
+*28 November 2026, version 0.332.0*
+
+- Each season now has a character of its own: most are ordinary, some are wet, dry, warm, cold, snowy or short of snow, and a few are extreme, such as a hard winter several degrees colder than usual.
+- At the start of each season the colonist who reads the weather best says what kind of season it looks like, and may be wrong.
+- Now and then a year has its own extreme, a year without a summer, a dry year or a year of heavy rain, and very rarely the land sees weather from outside its own climate for a few days, such as snow in the desert or a frost in the jungle.
+- Weathers that came only by events, such as fertile rain, fog snow, a petal storm or red rain, now come with the seasons.
+- The climate drifts slowly over the years, the annals and the elders say what has changed since the colony came, and new settings on the What's on page choose the climate's strength and the drift's direction.
+
+## The sky stays outdoors
+
+*28 November 2026, version 0.331.0*
+
+- With Dynamic Atmosphere, its cloud shadows, its haze (with the yellow of a heat wave) and its event tints are now drawn only where the sky is open, so roofed rooms keep their own light.
+- Its rain already stayed outdoors on its own. A setting under Dynamic Atmosphere on Rimfolk's other mods' page turns this off.
+
 ## The ground that stays
 
 *28 November 2026, version 0.330.0*

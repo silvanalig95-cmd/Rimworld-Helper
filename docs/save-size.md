@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 838; modelled: 838; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,233 KB** after a year, **4,063 KB** after two, **4,556 KB** after five.
+Saved collections found: 842; modelled: 842; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** after two, **4,558 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -375,6 +375,7 @@ Rimfolk's part of the save, roughly: **3,233 KB** after a year, **4,063 KB** aft
 | `Colonies/HomesFounding.cs:asks` | those sent or kept against their wish who may ask once to move, for the season after a founding (FoundingMath.AskMoveToDays, 15 days) | while | 6 | 6 | 6 | 0.7 |
 | `Peoples/Events7/PeopleEvents7Book.cs:marks` | the masterworks and legends a master of the guild may come to judge, six kept | cap | 2 | 4 | 6 | 0.7 |
 | `PlayOut/PlayOutLord.cs:lines` | while the gathering lasts | while | 6 | 6 | 6 | 0.7 |
+| `Weather/LandClimate.cs:done` | LandClimate.State.MaxDone: what was told or brought already, a short key each, per home map | fixed | 24 | 24 | 24 | 0.7 |
 | `World/Notables.cs:seen` | visitors and traders seen at the colony until they're home, 6 at most, three days | fixed | 6 | 6 | 6 | 0.7 |
 | `Camps/CampTracker.cs:raids` | per colony: a band against a camp, while it is on the map (one per camp at a time, seldom more than one) | while | 1 | 1 | 1 | 0.7 |
 | `OldPowers/OldPowersBook.cs:searched` | rooms of the old ruins searched for a scroll, OldPowersMath.RuinsKept at most, the oldest let go | fixed | 20 | 20 | 20 | 0.7 |
@@ -400,6 +401,7 @@ Rimfolk's part of the save, roughly: **3,233 KB** after a year, **4,063 KB** aft
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
 | `Storylines/Storylines.cs:afters` | what an ending leaves for a year (a season's share, no traders): gone once over | cap | 3 | 3 | 3 | 0.6 |
 | `Visitors/Callers.cs:commissions` | a piece the collector is owed, until collected or for 60 days at most; at most Callers.MaxCommissions | cap | 1 | 2 | 3 | 0.6 |
+| `Weather/LandClimate.cs:came` | LandClimate.State.MaxCame: the extremes that came (a few a year at most), per home map | cap | 3 | 6 | 15 | 0.6 |
 | `Gods/GodLore.cs:lastHand` | each god's last hand remarked on | fixed | 14 | 14 | 14 | 0.5 |
 | `Peoples/Events6/PeopleEvents6Book.cs:hires` | the raids the Banner was hired for, four kept | cap | 1 | 3 | 4 | 0.5 |
 | `Peoples/Events7/PeopleEvents7Book.cs:evenings` | the organizers' evenings and their petitions, four kept | cap | 1 | 2 | 4 | 0.5 |
@@ -509,6 +511,7 @@ Rimfolk's part of the save, roughly: **3,233 KB** after a year, **4,063 KB** aft
 | `Peoples/Events6/PeopleEvents6Book.cs:veterans` | the Banner's old soldiers settled with the colony, PeopleEvents6.MaxVeterans kept once gone | cap | 0 | 1 | 2 | 0.3 |
 | `Peoples/Events9/PeopleEvents9Book.cs:enemies` | what came up from the vault's lower level, while its fight is on (made at most thirty) | fixed | 30 | 30 | 30 | 0.3 |
 | `Pressures/Pressures.cs:mealTicks` | per colonist | fixed | 12 | 12 | 12 | 0.3 |
+| `Weather/LandClimate.cs:years` | ClimateMath.RecordYears: the land's record, one short line a year, per home map | cap | 1 | 2 | 5 | 0.3 |
 | `Camps/WarCamp.cs:pawns` | a war party's fighters, while it's on the map | while | 7 | 7 | 7 | 0.3 |
 | `Peoples/Events3/SpringCalving.cs:inCalf` | the calving camp's beasts in calf, four to seven, while its camp stands | fixed | 7 | 7 | 7 | 0.3 |
 | `Peoples/Events7/PeopleEvents7Book.cs:comeBacks` | the journeymen due back a master a year after a wander-year, PeopleEvents7Math.MaxComeBacks kept once done | cap | 0 | 1 | 2 | 0.3 |
@@ -537,6 +540,7 @@ Rimfolk's part of the save, roughly: **3,233 KB** after a year, **4,063 KB** aft
 | `Persona/Marks.cs:addictions` | the addictions they have now | colonists | 6 | 6 | 6 | 0.2 |
 | `Pressures/Pressures.cs:workKinds` | per colonist | fixed | 6 | 6 | 6 | 0.2 |
 | `Visitors/VisitorTrip.cs:people` | a visit's people, while it lasts | while | 6 | 6 | 6 | 0.2 |
+| `Weather/ClimateDrift.cs:pushes` | ClimateDrift.MaxPushes: what set the drift going (a volcanic winter, a comet), the oldest let go | fixed | 6 | 6 | 6 | 0.2 |
 | `Weather/WeatherDynamics.cs:pulls` | WeatherDynamicsMath.MaxPulls: events' pulls on the weather, a few days each, per home map | fixed | 6 | 6 | 6 | 0.2 |
 | `World/Region/Hamlet.cs:escorts` | per home: the colonists who walked its hamlet's settlers out, HamletMath.MaxSettlers at most | cap | 3 | 6 | 8 | 0.2 |
 | `World/Region/Hamlet.cs:settlers` | per home: the settlers of its hamlet on their way, HamletMath.MaxSettlers at most, let go once it stands | cap | 3 | 6 | 8 | 0.2 |
