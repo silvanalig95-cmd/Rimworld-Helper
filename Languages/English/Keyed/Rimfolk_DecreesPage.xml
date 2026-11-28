@@ -43,4 +43,13 @@
   <CC_Decrees_Kind_faith_Tip>The colony's faith: holy days, a fast, tithes, one ideoligion for the colony, and every faith its evening.</CC_Decrees_Kind_faith_Tip>
   <CC_Decrees_Kind_world>The wider world</CC_Decrees_Kind_world>
   <CC_Decrees_Kind_world_Tip>The colony and its neighbours: a market day, open gates, alms for the poor.</CC_Decrees_Kind_world_Tip>
+  <!-- What matters first, what can't be used hidden, and the search (the player's picks, 28 November 2026). -->
+  <CC_Decrees_Now>Now</CC_Decrees_Now>
+  <CC_Decrees_Now_Tip>The decrees in force, the ones someone has asked the council for, and the ones the colony's state calls for right now. The rest are in their kinds below, folded: click a kind's name to open it.</CC_Decrees_Now_Tip>
+  <CC_Decrees_NowNeeded>{0} needed now</CC_Decrees_NowNeeded>
+  <CC_Decrees_ShowUnusable>Show the {0} that can't be used now</CC_Decrees_ShowUnusable>
+  <CC_Decrees_HideUnusable>Hide the {0} that can't be used now</CC_Decrees_HideUnusable>
+  <CC_Decrees_Unusable_Tip>Decrees the colony can't enact at the moment for a reason other than timing: a research not done, too few people, no traders about, nothing in the stores to give, no world event they answer, or no grief to mourn. Decrees on cooldown or waiting for a free place are always shown.</CC_Decrees_Unusable_Tip>
+  <CC_Decrees_SearchTip>Find a decree by a word in its name, its description or what it does.</CC_Decrees_SearchTip>
+  <CC_Decrees_NoneFound>No decree matches the search.</CC_Decrees_NoneFound>
 </LanguageData>

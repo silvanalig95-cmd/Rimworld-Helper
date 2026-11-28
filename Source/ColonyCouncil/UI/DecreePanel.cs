@@ -15,6 +15,10 @@ namespace ColonyCouncil
     /// kind foldable. A card keeps everything it showed: what the decree does, who loves, likes, dislikes and hates it
     /// (their portraits, now beside the effects rather than under them), a bar of how the colony stands on it, how long
     /// it has left, who asked, why it's needed, and the buttons to enact, force or repeal.
+    /// The player, 28 November 2026, with 45 decrees ("we need to think about how to order and display/list/sort them in the
+    /// interface to make it clear"), chose three things: the page opens on what matters (those in force, asked for or
+    /// needed now, at the top, and every kind folded until opened), what can't be used now hidden behind "Show the ...",
+    /// and a search box.
     /// </summary>
     public static class DecreePanel
     {
@@ -45,6 +49,10 @@ namespace ColonyCouncil
         private static Sort sort = PageMemory.GetEnum("decrees.sort", Sort.Kind);
         private static bool glance = PageMemory.GetBool("decrees.glance", true);
         private static readonly Dictionary<string, bool> folded = new Dictionary<string, bool>();
+        /// <summary>Decrees that can't be used now (DecreeTracker.CannotUse) shown too; off unless the player turns it on.</summary>
+        private static bool showAll = PageMemory.GetBool("decrees.showAll", false);
+        /// <summary>The search box: a decree's name, description or effects.</summary>
+        private static readonly QuickSearchWidget search = new QuickSearchWidget();
 
         /// <summary>A chip was clicked: the page scrolls to the card and marks it for a moment.</summary>
         private static DecreeDef scrollTo, marked;
@@ -95,13 +103,36 @@ namespace ColonyCouncil
                 cy += UiKit.SectionTitle(0f, cy, w, "CC_Decrees_Header".Translate(), listed.Count, Icons.Decree, null,
                     "CC_Decrees_Listed".Translate(listed.Count, ready, tracker.active.Count).Resolve());
                 cy += Toolbar(0f, cy, w) + 6f;
-                if (glance) cy += Glance(listed, 0f, cy, w, pawns.Count, tracker) + 10f;
+                int unusable = listed.Count(x => Unusable(x.l));
+                cy += FindRow(0f, cy, w, unusable) + 6f;
+                bool searching = search.filter.Active;
+                var visible = listed.Where(x => (showAll || !Unusable(x.l)) && (!searching || Found(x.def))).ToList();
+                if (glance) cy += Glance(visible, 0f, cy, w, pawns.Count, tracker) + 10f;
 
-                var shown = listed.Where(x => Passes(x.l)).ToList();
+                var shown = visible.Where(x => Passes(x.l)).ToList();
+                int pinned = 0;
+                // What matters now first: in force, asked for, needed now (on the whole list, not while searching).
+                if (filter == Filter.All && !searching)
+                {
+                    var now = shown.Where(x => x.l.active || x.l.asked || x.l.needed).ToList();
+                    if (now.Count > 0)
+                    {
+                        cy += NowTitle(now, 0f, cy, w) + 4f;
+                        foreach (var (def, l) in now.OrderByDescending(x => x.l.active).ThenByDescending(x => x.l.asked).ThenBy(x => x.def.order))
+                            cy += Card(def, l, comp, pawns, w, cy, outRect.height) + UiKit.CardGap;
+                        cy += UiKit.SectionGap - UiKit.CardGap;
+                        shown = shown.Where(x => !now.Contains(x)).ToList();
+                        pinned = now.Count;
+                    }
+                }
                 if (shown.Count == 0)
                 {
-                    UiKit.EmptyLine(new Rect(0f, cy, w, UiKit.RowStandard), "CC_Decrees_NoneFit".Translate());
-                    cy += UiKit.RowStandard + UiKit.CardGap;
+                    // Nothing below the decrees that matter now needs no line; nothing at all does.
+                    if (pinned == 0)
+                    {
+                        UiKit.EmptyLine(new Rect(0f, cy, w, UiKit.RowStandard), (searching ? "CC_Decrees_NoneFound" : "CC_Decrees_NoneFit").Translate());
+                        cy += UiKit.RowStandard + UiKit.CardGap;
+                    }
                 }
                 else if (sort == Sort.Kind)
                 {
@@ -109,9 +140,11 @@ namespace ColonyCouncil
                     {
                         var part = shown.Where(x => x.def.kind == kind).ToList();
                         if (part.Count == 0) continue;
-                        bool fold = folded.TryGetValue(kind, out var f) && f;
+                        // Folded until opened on the whole list; open while searching or filtering.
+                        bool fold = !searching && (folded.TryGetValue(kind, out var f) ? f : filter == Filter.All);
+                        bool was = fold;
                         cy += KindTitle(kind, part, 0f, cy, w, ref fold) + 4f;
-                        folded[kind] = fold;
+                        if (!searching && fold != was) folded[kind] = fold;
                         if (fold) continue;
                         foreach (var (def, l) in part) cy += Card(def, l, comp, pawns, w, cy, outRect.height) + UiKit.CardGap;
                         cy += UiKit.SectionGap - UiKit.CardGap;
@@ -153,6 +186,52 @@ namespace ColonyCouncil
                 }
                 return ordered;
             }
+        }
+
+        // ---------------- Can't be used now, and the search ----------------
+
+        /// <summary>Can't be used now for a reason other than its timing, and nobody waits on it (not in force, not asked for).</summary>
+        private static bool Unusable(Layout l) => l.cantUse && !l.active && !l.asked;
+
+        /// <summary>The search box's words in the decree's name, description or effects.</summary>
+        private static bool Found(DecreeDef def)
+        {
+            var f = search.filter;
+            if (f.Matches(def.label ?? "") || f.Matches(def.description ?? "")) return true;
+            return def.effects != null && def.effects.Any(e => f.Matches(e ?? ""));
+        }
+
+        /// <summary>The search box, and beside it the switch for the decrees that can't be used now (when there are any).</summary>
+        private static float FindRow(float x, float y, float w, int unusable)
+        {
+            float fieldW = Mathf.Min(280f, w * 0.45f);
+            UiKit.SearchField(new Rect(x + 4f, y, fieldW, 24f), search, null);
+            TooltipHandler.TipRegion(new Rect(x + 4f, y, fieldW, 24f), "CC_Decrees_SearchTip".Translate());
+            if (unusable > 0 || showAll)
+            {
+                string label = (showAll ? "CC_Decrees_HideUnusable" : "CC_Decrees_ShowUnusable").Translate(unusable);
+                float pw = UiKit.FilterChipWidth(label);
+                if (UiKit.FilterChip(new Rect(x + 4f + fieldW + 10f, y + 1f, pw, ChipRowH), label, showAll, "CC_Decrees_Unusable_Tip".Translate()))
+                {
+                    showAll = !showAll;
+                    PageMemory.SetBool("decrees.showAll", showAll);
+                }
+            }
+            return 26f;
+        }
+
+        /// <summary>The heading over the decrees that matter now (not folded: these are the ones to look at).</summary>
+        private static float NowTitle(List<(DecreeDef def, Layout l)> now, float x, float y, float w)
+        {
+            int inForce = now.Count(p => p.l.active), asked = now.Count(p => p.l.asked), needed = now.Count(p => p.l.needed && !p.l.active);
+            var bits = new List<string>();
+            if (inForce > 0) bits.Add("CC_Decrees_KindInForce".Translate(inForce).Resolve());
+            if (asked > 0) bits.Add("CC_Decrees_KindAsked".Translate(asked).Resolve());
+            if (needed > 0) bits.Add("CC_Decrees_NowNeeded".Translate(needed).Resolve());
+            var hit = new Rect(x, y, w, 22f);
+            UiKit.HeadingLine(x, y, w, "CC_Decrees_Now".Translate(), now.Count, string.Join(", ", bits), null, UiKit.Heading, false, true);
+            TooltipHandler.TipRegion(hit, "CC_Decrees_Now_Tip".Translate());
+            return UiKit.HeadingHeight;
         }
 
         // ---------------- The toolbar: filters and order ----------------
@@ -343,6 +422,8 @@ namespace ColonyCouncil
             /// <summary>Why it can't be enacted (null if it can), whether it can be forced, and the buttons' texts.</summary>
             public string why, enactLabel, forceTip, chance;
             public bool forcible, active, ready, asked, needed;
+            /// <summary>Can't be used now apart from its timing (DecreeTracker.CannotUse).</summary>
+            public bool cantUse;
             /// <summary>For the orders: how the colony stands on it (loves twice, hates twice), and ticks until its cooldown is over.</summary>
             public int net, readyIn;
         }
@@ -408,6 +489,7 @@ namespace ColonyCouncil
             {
                 l.why = tracker.CannotEnact(def);
                 l.ready = l.why == null;
+                l.cantUse = tracker.CannotUse(def) != null;
                 l.readyIn = tracker.TicksUntilReady(def);
                 if (l.why == null) l.enactLabel = "CC_Decree_Enact".Translate(TextUtil.DaysString(Mathf.RoundToInt(def.durationDays * GenDate.TicksPerDay)));
                 else

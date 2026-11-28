@@ -595,6 +595,20 @@ namespace ColonyCouncil
         }
 
         /// <summary>Why it can't be enacted right now, or null. <paramref name="force"/>: pushing it through its cooldown.</summary>
+        /// <summary>
+        /// Why the colony can't use this decree at all now, its timing apart (a cooldown, how many are in force, an overlap
+        /// pass on their own): a research not done, too few people, no traders about, nothing in the stores to give, no
+        /// world event it answers, no grief to mourn, the feelings it needs switched off. Null if it can. The Decrees page
+        /// hides these behind "Show all" (the player, 28 November 2026: "Hide what can't be used").
+        /// </summary>
+        public string CannotUse(DecreeDef def)
+        {
+            if (def == null || IsActive(def)) return null;
+            if (def.needsHeart && !Heart.On) return "CC_Decree_NeedsHeartWhatsOn".Translate();
+            if (def.needsGrief && !PawnsFinder.AllMaps_FreeColonists.Any(p => Ours(p) && Flavor.IsGrieving(p))) return "CC_Decree_NeedsGrief".Translate();
+            return DecreeWork.Blocked(def, this);
+        }
+
         public string CannotEnact(DecreeDef def, bool force = false)
         {
             if (IsActive(def)) return null;

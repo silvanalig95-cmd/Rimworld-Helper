@@ -5,6 +5,14 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A clearer Decrees page
+
+*28 November 2026, version 0.326.0*
+
+- The Decrees page opens on what matters: the decrees in force, asked for or needed now stand first under Now, and the kinds below start folded until you open them.
+- Decrees the colony can't use at the moment for a reason other than timing, such as a research not done, no traders about or nothing in the stores to give, are hidden until you click "Show the ... that can't be used now".
+- A search box finds a decree by a word in its name, its description or what it does.
+
 ## The visitors and strangers, looked over
 
 *28 November 2026, version 0.325.0*

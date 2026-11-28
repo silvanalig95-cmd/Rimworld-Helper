@@ -985,10 +985,16 @@ most sense." So, in this order, three builds at a time:
   categories of the summary given that day** (camps, world events, map events, the gods' happenings, council questions,
   personal stories, wishes, life goals, ambitions, moments, shared memories, quirks, missions, encounters, dreams,
   callers, gate offers, nuisances), no decrees.
-- **To do when the player asks (28 November 2026; the player, of the decrees: "or else we need to think about how to
-  order and display/list/sort them in the interface to make it clear"): the decrees' list made clear before any more
-  are added.** 45 decrees now (seven added in 0.323.0). Proposal first (grouping by what they are for, sorting, which
-  can run together), then the player's word.
+- **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
+  display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
+  used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the
+  decrees in force, asked for or needed now stand first under "Now" (`NowTitle`), the kinds below start folded (opened
+  ones remembered for the session); `DecreeTracker.CannotUse` (a research, people, a world event, traders, goods, grief,
+  the feelings switched off; not the cooldown, the count in force or an overlap) and `Layout.cantUse` hide those behind
+  the chip "Show the N that can't be used now" (`decrees.showAll`, kept by PageMemory); a search box (`QuickSearchWidget`,
+  `UiKit.SearchField`) matches a decree's name, description and effects, opening every kind while it searches. The
+  Almanac's council page says so. No more decrees for now (the player: "except maybe decrees, since too many makes it
+  confusing").
 - **Done (28 November 2026, 0.325.0; the player's pick): a review of the visitors and strangers**, in a worktree,
   merged; `docs/review-visitors.md`, `Tools/visitors_impact_audit.py`, rows read and left in
   `Tools/visitors_impact_skips.txt`. Callers and guests: 88 events, 250 to 253 answers (what is left flavour-only or thin

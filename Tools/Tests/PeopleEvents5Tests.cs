@@ -246,7 +246,8 @@ public static class PeopleEvents5Tests
         C(Enumerable.Range(0, 4).SelectMany(PeopleEvents5Math.WagonDefs).All(v => active.Contains("VehicleDef:" + v))
           && Enumerable.Range(0, 4).SelectMany(PeopleEvents5Math.WagonGoods).All(g => active.Contains("ThingDef:" + g.def)) && code.Contains("BoatBuilders.Vehicle")
           && Read("Peoples", "Events4", "BoatBuilders.cs").Contains("public static Thing MakeVehicle(ThingDef def, Faction f)"), "Vanilla Vehicles Expanded's wagon and truck by name, made by Vehicle Framework's own way");
-        var mods = File.ReadAllLines(Path.Combine(root, "docs", "player-mods", "mods.tsv")).Skip(1).Select(l => l.Split('\t')).Where(c => c.Length > 3).ToDictionary(c => c[0].ToLowerInvariant(), c => c[3] == "yes");
+        var mods = File.ReadAllLines(Path.Combine(root, "docs", "player-mods", "mods.tsv")).Skip(1).Select(l => l.Split('\t')).Where(c => c.Length > 3)
+            .GroupBy(c => c[0].ToLowerInvariant()).ToDictionary(g => g.Key, g => g.Any(c => c[3] == "yes")); // a package id two subscribed mods share counts once
         var eggs = File.ReadAllLines(Path.Combine(root, "docs", "player-mods", "items.tsv")).Skip(1).Select(l => l.Split('\t')).Where(c => c.Length > 5 && c[2] == "yes" && c[5].Contains("EggsFertilized")).ToList();
         C(PeopleEvents5Math.EggPackages.All(p => mods.TryGetValue(p, out bool on) && on && eggs.Any(e => e[1].StartsWith(p, StringComparison.OrdinalIgnoreCase))),
             "the crater eggs' mods are in the player's list, each with fertile eggs of its own");

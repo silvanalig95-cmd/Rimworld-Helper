@@ -192,7 +192,7 @@ public static class PeopleAgesTests
             }).ToList();
         }
         var mods = new Dictionary<string, bool>();
-        foreach (var r in Table("mods.tsv")) mods[r["packageId"].ToLowerInvariant()] = r["active"] == "yes";
+        foreach (var r in Table("mods.tsv")) mods[r["packageId"].ToLowerInvariant()] = mods.TryGetValue(r["packageId"].ToLowerInvariant(), out bool was) && was || r["active"] == "yes";
         bool ModOn(string id) => id.StartsWith("ludeon.rimworld") || mods.TryGetValue(id, out bool on) && on;
         var apparel = Table("apparel.tsv").Where(r => r["active"] == "yes").GroupBy(r => r["defName"]).ToDictionary(g => g.Key, g => g.Last());
         var weapons = Table("weapons.tsv").Where(r => r["active"] == "yes").GroupBy(r => r["defName"]).ToDictionary(g => g.Key, g => g.Last());
