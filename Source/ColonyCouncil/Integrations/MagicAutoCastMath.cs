@@ -57,7 +57,19 @@ namespace ColonyCouncil
         /// <summary>On a hunt Shadow Strike comes first on safe prey (the player's wish).</summary>
         public const int StrikeHuntWeight = 100;
 
-        public const string ShadowStrike = "TM_ShadowStrike";
+        public const string ShadowStrike = "TM_ShadowStrike", Spite = "TM_Spite";
+
+        /// <summary>
+        /// Spite for a death knight of A RimWorld of Magic (Continued)'s class progression (its discipline rwom.deathknight):
+        /// its own verb (ClassProgression.Verb_DeathKnightSpite) spends this much of their hate (the hediff TM_HateHD, or one
+        /// of its levels) and does nothing without it; a death knight by the classic trait casts it as before.
+        /// </summary>
+        public const string KnightDiscipline = "rwom.deathknight", HateHediff = "TM_HateHD";
+
+        public const float SpiteHate = 20f;
+
+        /// <summary>Spite can land: not a death knight of the class progression, or one with the hate it spends.</summary>
+        public static bool SpiteReady(bool knightPath, float hate) => !knightPath || !float.IsNaN(hate) && hate >= SpiteHate;
 
         private static Spell S(string name, Pays pays, int reach, int weight, bool fire = false, bool overhead = false) =>
             new Spell { name = name, pays = pays, reach = reach, weight = weight, fire = fire, overhead = overhead };
@@ -76,7 +88,7 @@ namespace ColonyCouncil
             S("TM_Firebolt", Pays.Mana, 2, 20, fire: true),
             S("TM_FrostRay", Pays.Mana, 1, 18),
             S(ShadowStrike, Pays.Stamina, 1, 16, overhead: true),
-            S("TM_Spite", Pays.Stamina, 1, 14),
+            S(Spite, Pays.Stamina, 1, 14),
             S("TM_ThrowingKnife", Pays.Stamina, 1, 12),
             S("TM_ArcaneBolt", Pays.Mana, 4, 11),
             S("TM_MagicMissile", Pays.Mana, 5, 10),

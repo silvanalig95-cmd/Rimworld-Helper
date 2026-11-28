@@ -219,6 +219,8 @@ namespace ColonyCouncil
             if (p.stances?.stunner?.Stunned == true) return "stunned";
             var j = p.CurJob;
             if (j != null && (j.ability != null || RomSpells.CastJobs.Contains(j.def))) return "casting already";
+            // Another system casting for them (RWoM Core's cast ownership: a psycast's warmup, Ability AI): not cut in on.
+            if (MagicModel.CastOwned(p)) return "another casting system has them now";
             if (Waiting(p)) return "a cast asked for is still under way";
             return null;
         }
@@ -379,6 +381,18 @@ namespace ColonyCouncil
             return best;
         }
 
+        /// <summary>A death knight's hate: the highest of the mod's hate hediffs on them (TM_HateHD and its levels), or 0.</summary>
+        private static float Hate(Pawn p)
+        {
+            float most = 0f;
+            var hediffs = p?.health?.hediffSet?.hediffs;
+            if (hediffs == null) return most;
+            foreach (var h in hediffs)
+                if (h?.def?.defName != null && h.def.defName.StartsWith(MagicAutoCastMath.HateHediff, StringComparison.Ordinal))
+                    most = Math.Max(most, h.Severity);
+            return most;
+        }
+
         /// <summary>No other enemy near the target (Shadow Strike lands its caster beside it).</summary>
         private static bool Alone(Pawn p, Pawn target)
         {
@@ -442,6 +456,11 @@ namespace ColonyCouncil
                 if (!RomSpells.CanCast(k.held.ability))
                 {
                     whys.Add(name + ": not ready (cooldown, cost or weapon)");
+                    continue;
+                }
+                if (k.spell.name == MagicAutoCastMath.Spite && !MagicAutoCastMath.SpiteReady(MagicModel.InDiscipline(p, MagicAutoCastMath.KnightDiscipline), Hate(p)))
+                {
+                    whys.Add(name + ": not enough hate (a death knight of the class progression spends " + MagicAutoCastMath.SpiteHate + " on it)");
                     continue;
                 }
                 var pool = RomSpells.Pool(p, k.held.might);

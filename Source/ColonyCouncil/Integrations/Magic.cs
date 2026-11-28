@@ -6,14 +6,16 @@ using Verse;
 namespace ColonyCouncil
 {
     /// <summary>
-    /// A RimWorld of Magic, read by name: a class is a trait (the "mage" and "fighter" tag groups list them), and a
-    /// class's level lives on the pawn's magic or might component (TorannMagic.CompAbilityUserMagic.MagicUserLevel,
-    /// CompAbilityUserMight.MightUserLevel). Without the mod there are no such traits or components, and nothing here
-    /// finds anything.
+    /// A RimWorld of Magic, read by name: a class is a trait (the "mage" and "fighter" tag groups list them) or, with A
+    /// RimWorld of Magic (Continued)'s class progression, a vocation and its disciplines (Integrations/MagicModel.cs); either
+    /// way a class's level lives on the pawn's magic or might component (TorannMagic.CompAbilityUserMagic.MagicUserLevel,
+    /// CompAbilityUserMight.MightUserLevel), read only for one the component counts as a caster or a fighter (IsMagicUser,
+    /// IsMightUser: the level of anyone else has nothing behind it, and the mod throws reading it). Without the mod there
+    /// are no such traits or components, and nothing here finds anything.
     /// </summary>
     public static class MagicClasses
     {
-        private static readonly Dictionary<System.Type, PropertyInfo> levelProps = new Dictionary<System.Type, PropertyInfo>();
+        private static readonly Dictionary<System.Type, (PropertyInfo user, PropertyInfo level)> levelProps = new Dictionary<System.Type, (PropertyInfo, PropertyInfo)>();
 
         /// <summary>Their class level (spellcasting or combat), or -1 if they have none we can read.</summary>
         public static int Level(Pawn p, bool might)
@@ -26,16 +28,19 @@ namespace ColonyCouncil
                 if (c == null) continue;
                 var type = c.GetType();
                 if (type.Name != compName) continue;
-                if (!levelProps.TryGetValue(type, out var prop))
+                if (!levelProps.TryGetValue(type, out var props))
                 {
-                    prop = type.GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
+                    var prop = type.GetProperty(propName, BindingFlags.Public | BindingFlags.Instance);
                     if (prop != null && prop.PropertyType != typeof(int)) prop = null;
-                    levelProps[type] = prop;
+                    var user = type.GetProperty(might ? "IsMightUser" : "IsMagicUser", BindingFlags.Public | BindingFlags.Instance);
+                    if (user != null && user.PropertyType != typeof(bool)) user = null;
+                    levelProps[type] = props = (user, prop);
                 }
-                if (prop == null) return -1;
+                if (props.level == null) return -1;
                 try
                 {
-                    return (int)prop.GetValue(c);
+                    if (props.user != null && !(props.user.GetValue(c) is bool on && on)) return -1;
+                    return (int)props.level.GetValue(c);
                 }
                 catch
                 {

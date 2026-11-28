@@ -293,7 +293,8 @@ namespace ColonyCouncil
         {
             if (p == null) return OldPowersMath.Caster.None;
             string craft = PeoplesMagic.Craft(p);
-            bool mage = craft != null && !PeoplesGearMath.Might(craft);
+            // A mage of any class, the classic ones' traits or the continuation's vocations: the mod's own mana is the mark.
+            bool mage = craft != null && !PeoplesGearMath.Might(craft) || MagicModel.HasMana(p);
             bool psy = ModsConfig.RoyaltyActive && p.HasPsylink;
             float sens = p.GetStatValue(StatDefOf.PsychicSensitivity);
             return OldPowersMath.CasterOf(mage, psy, sens);

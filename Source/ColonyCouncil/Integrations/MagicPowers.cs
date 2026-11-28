@@ -10,13 +10,15 @@ namespace ColonyCouncil
     /// <summary>
     /// A RimWorld of Magic, read by name: how far someone has gone in their class's craft, counted as every power or
     /// technique they've learned plus every level they've put into one (CompAbilityUserMagic.MagicData.AllMagicPowers,
-    /// CompAbilityUserMight.MightData.AllMightPowers; each power's learned and level). -1 when it can't be read, as
-    /// without the mod.
+    /// CompAbilityUserMight.MightData.AllMightPowers; each power's learned and level). A power counts once: A RimWorld of
+    /// Magic (Continued) lists the spells learned on their own (scrolls, books) twice in AllMagicPowers. Whether it is
+    /// learned is read as the continuation reads it, its knowledge store first (Integrations/MagicModel.cs), the power's own
+    /// mark when the store has no entry. -1 when it can't be read, as without the mod.
     /// </summary>
     public static class MagicCraft
     {
         private static readonly Dictionary<Type, (PropertyInfo data, PropertyInfo powers)> compProps = new Dictionary<Type, (PropertyInfo, PropertyInfo)>();
-        private static readonly Dictionary<Type, (FieldInfo learned, FieldInfo level)> powerFields = new Dictionary<Type, (FieldInfo, FieldInfo)>();
+        private static readonly Dictionary<Type, (FieldInfo learned, FieldInfo level, PropertyInfo def)> powerFields = new Dictionary<Type, (FieldInfo, FieldInfo, PropertyInfo)>();
 
         public static int Mastery(Pawn p, bool might)
         {
@@ -39,18 +41,38 @@ namespace ColonyCouncil
                     var d = props.data.GetValue(c);
                     if (d == null || !(props.powers.GetValue(d) is IEnumerable list)) return -1;
                     int total = 0;
+                    var seen = new HashSet<object>();
+                    var known = MagicModel.KnowledgeOf(p);
                     foreach (var power in list)
                     {
-                        if (power == null) continue;
+                        if (power == null || !seen.Add(power)) continue;
                         var pt = power.GetType();
                         if (!powerFields.TryGetValue(pt, out var f))
                         {
-                            f = (pt.GetField("learned", BindingFlags.Public | BindingFlags.Instance), pt.GetField("level", BindingFlags.Public | BindingFlags.Instance));
-                            if (f.learned?.FieldType != typeof(bool) || f.level?.FieldType != typeof(int)) f = (null, null);
+                            f = (pt.GetField("learned", BindingFlags.Public | BindingFlags.Instance), pt.GetField("level", BindingFlags.Public | BindingFlags.Instance),
+                                pt.GetProperty("abilityDef", BindingFlags.Public | BindingFlags.Instance));
+                            if (f.learned?.FieldType != typeof(bool) || f.level?.FieldType != typeof(int)) f = (null, null, null);
+                            if (f.def != null && !typeof(Def).IsAssignableFrom(f.def.PropertyType)) f.def = null;
                             powerFields[pt] = f;
                         }
                         if (f.learned == null) return -1;
-                        if ((bool)f.learned.GetValue(power)) total += 1 + Mathf.Max(0, (int)f.level.GetValue(power));
+                        bool legacy = (bool)f.learned.GetValue(power);
+                        bool learned = legacy;
+                        if (known != null)
+                        {
+                            Def def = null;
+                            try
+                            {
+                                def = f.def?.GetValue(power) as Def;
+                            }
+                            catch
+                            {
+                                // A power whose spell is gone from the mod: its own mark stands.
+                            }
+                            string id = def == null ? null : MagicModel.SpellId(def);
+                            learned = MagicModelMath.Learned(id != null && known.TryGetValue(id, out bool k) ? k : (bool?)null, legacy);
+                        }
+                        if (learned) total += 1 + Mathf.Max(0, (int)f.level.GetValue(power));
                     }
                     return total;
                 }

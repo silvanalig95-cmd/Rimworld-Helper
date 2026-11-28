@@ -101,6 +101,12 @@ namespace ColonyCouncil
                 foreach (var t in p.story.traits.allTraits)
                     if (t?.def != null)
                         s.traits.Add((t.def.defName, t.Degree, t.Label));
+            // A RimWorld of Magic (Continued)'s class progression: a discipline draws as the class trait of its art.
+            foreach (string c in MagicModel.DisciplineClasses(p))
+            {
+                var data = DefDatabase<TraitDef>.GetNamedSilentFail(c)?.degreeDatas;
+                if (data != null && data.Count > 0) s.traits.Add((c, data[0].degree, data[0].GetLabelFor(p)));
+            }
             if (p?.skills?.skills != null)
                 foreach (var sk in p.skills.skills)
                     if (sk?.def != null && (int)sk.passion > 0)

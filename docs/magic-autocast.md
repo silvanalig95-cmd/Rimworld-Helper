@@ -85,6 +85,12 @@ Fireclaw, Blizzard, Snowball, Meteor, Death Bolt, Blade Spin, Buckshot, Suppress
   range and line of sight, what it does when it lands, and its cost.
 - The mod's checks on an automatic cast (the continuation's `AbilityCastSafety`): Rimfolk only asks when the target is
   already in range and in sight, as those checks want.
+- Since the review of 28 November 2026 (`docs/review-magic.md`): a spell counts as known only when the continuation's
+  knowledge store doesn't mark it unlearned (RWoM Core's `PawnSpellKnowledge`, else its `AbilityKnowledgeComp`; the
+  ability list when there's no entry), as the mod's own casting reads it; nobody is asked to cast while another system
+  casts for them (RWoM Core's `CastOwnership.IsCasting`: a psycast's warm-up, Ability AI); and Spite for a death knight of
+  the class progression (its discipline `rwom.deathknight`) waits for the 20 hate its own verb spends (without it the cast
+  fizzles and the 500-tick gap is lost).
 - Without the mod nothing runs: every type is found by name (`TorannMagic.CompAbilityUserMagic`, `CompAbilityUserMight`,
   `AbilityUser.PawnAbility`), the jobs by `GetNamedSilentFail`, and the button stays away.
 

@@ -64,8 +64,13 @@ namespace ColonyCouncil
             Resolve();
             if (p == null) return false;
             if (traitSet != null && p.story?.traits != null)
+            {
                 foreach (var t in p.story.traits.allTraits)
                     if (t?.def != null && traitSet.Contains(t.def.defName)) return true;
+                // A class of A RimWorld of Magic (Continued)'s class progression counts as its class trait (Integrations/MagicModel.cs).
+                foreach (string c in MagicModel.DisciplineClasses(p))
+                    if (traitSet.Contains(c)) return true;
+            }
             if (memeSet != null && ModsConfig.IdeologyActive && p.Ideo?.memes != null)
                 foreach (var m in p.Ideo.memes)
                     if (m != null && memeSet.Contains(m.defName)) return true;
@@ -153,6 +158,9 @@ namespace ColonyCouncil
                         if (name != null) tags.Add("trait:" + name);
                     }
                 }
+                // A RimWorld of Magic (Continued): a discipline of its class progression is the class trait of the same art
+                // (trait:Druid for one on the druid's path), as the classic class would be (Integrations/MagicModel.cs).
+                foreach (string c in MagicModel.DisciplineClasses(p)) tags.Add("trait:" + c);
             }
             if (p.skills != null)
                 foreach (var s in p.skills.skills)

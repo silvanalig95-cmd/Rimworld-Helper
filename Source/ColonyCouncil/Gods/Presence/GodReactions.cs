@@ -85,6 +85,10 @@ namespace ColonyCouncil
             foreach (var t in traits.allTraits)
                 if (t?.def != null && (t.def.defName == "Priest" || t.def.defName == "Paladin" || t.def.defName == "Druid" || t.def.defName == "TM_Monk"))
                     return true;
+            // The same classes held through A RimWorld of Magic (Continued)'s disciplines (Integrations/MagicModel.cs).
+            foreach (string c in MagicModel.DisciplineClasses(p))
+                if (c == "Priest" || c == "Paladin" || c == "Druid" || c == "TM_Monk")
+                    return true;
             return false;
         }
 
