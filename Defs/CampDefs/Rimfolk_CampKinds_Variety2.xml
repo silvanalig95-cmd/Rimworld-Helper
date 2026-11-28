@@ -168,6 +168,7 @@
         <refuseTension>4</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot supper for the woodcutters</label><what>meals</what><count>4</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>

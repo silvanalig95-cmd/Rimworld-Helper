@@ -315,6 +315,48 @@
           <li Class="ColonyCouncil.WorldEffect_Event"><incident>Council_Evt_RareCreature</incident></li>
         </effects>
       </li>
+      <!-- The colony's part (review of the camps and the world, 28 November 2026): the town's hunters ask for the colony's
+           best with animals, two days at their grazing, sent there and back as a caravan of one (WorldEffect_Away). -->
+      <li>
+        <key>hunters</key>
+        <day>3~7</day>
+        <skill>Animals</skill>
+        <minLevel>5</minLevel>
+        <answerDays>1.5</answerDays>
+        <titles>
+          <li>The hunters of {PLACE} ask for help</li>
+        </titles>
+        <texts>
+          <li>A rider of {FACTION} came to the gate from {PLACE}. A band of the strange beasts has settled on the town's grazing and will not be moved, and the hunters there would sooner know what they are dealing with before they try.\n\nThey have heard that {A_nameDef} is good with animals, and ask whether {A_pronoun} would ride back with them and look the beasts over for a day or two.</li>
+          <li>[winter] The strange beasts have come down onto {PLACE}'s winter grazing, and {FACTION}'s hunters have stood watching them across the snow for three days, not knowing which of them will charge.\n\nA rider has come to the colony to ask whether {A_nameDef}, who is said to know animals, would come and tell them.</li>
+        </texts>
+        <defaultOption>1</defaultOption>
+        <options>
+          <li>
+            <label>Send {A_nameDef} to {PLACE}</label>
+            <outcome>{A_nameDef} has packed for a few days on the road and set off for {PLACE} with the rider.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.WorldEffect_Away">
+                <days>2</days>
+                <effects>
+                  <li Class="ColonyCouncil.WorldEffect_Learn"><skill>Animals</skill><xp>1500</xp></li>
+                  <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>6</amount></li>
+                </effects>
+                <home>
+                  <li>{A_nameDef} is back from {PLACE}. {A_pronoun} spent the days at the edge of the town's grazing with {FACTION}'s hunters, watching the strange beasts, and showed them which could be walked off the grass and which were best left alone. {A_nameDef} came home with more to tell about animals than anyone at the colony has heard before.</li>
+                </home>
+              </li>
+            </effects>
+            <help>1</help>
+            <deed>sent {A_nameDef} to look over the strange beasts at {PLACE}</deed>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>The colony can't spare anyone</label>
+            <outcome>The rider goes back to {PLACE} alone. The hunters there will have to learn about the beasts the hard way.</outcome>
+          </li>
+        </options>
+      </li>
     </beats>
     <endings>
       <li>

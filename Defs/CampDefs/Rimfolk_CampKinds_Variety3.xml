@@ -352,6 +352,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot supper for the shearers</label><what>meals</what><count>4</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>
@@ -501,6 +502,7 @@
         <refuseTension>3</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the catchers' beasts</label><what>rawfood</what><count>20</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>
@@ -639,6 +641,7 @@
         <refuseTension>3</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a supper for the teacher's camp</label><what>meals</what><count>3</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>
@@ -747,6 +750,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a hot supper for the fighters</label><what>meals</what><count>4</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
       <li>
@@ -773,6 +777,7 @@
         <refuseTension>5</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>medicine for the fighters</label><what>medicine</what><count>3</count><to>Camp</to><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
     </asks>

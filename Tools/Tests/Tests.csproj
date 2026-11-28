@@ -433,5 +433,6 @@
     <Compile Include="../../Source/ColonyCouncil/World/Variety/Round3WorldMath.cs" Link="Round3WorldMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/World/Variety/Round4CouncilWorldMath.cs" Link="Round4CouncilWorldMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Missions/Round5AwayMath.cs" Link="Round5AwayMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Camps/CampAskMath.cs" Link="CampAskMath.cs" />
   </ItemGroup>
 </Project>

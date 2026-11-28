@@ -52,6 +52,8 @@
     </texts>
     <effects>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncM_RowTalk</thought></li>
+      <!-- An hour's work in the next row, and a trick or two picked up from watching it. -->
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Plants</skill><xp>150</xp></li>
     </effects>
   </ColonyCouncil.EncounterDef>
 

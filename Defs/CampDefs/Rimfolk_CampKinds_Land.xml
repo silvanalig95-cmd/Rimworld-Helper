@@ -762,6 +762,7 @@
         <refuseTension>5</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampShelter" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>

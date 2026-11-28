@@ -430,6 +430,27 @@
     <helpTexts>
       <li>[wood] The young people camped {PLACE} cut wood for the colony to show they're worth hiring, and have stacked {COUNT} logs on the colony's side of their fire.</li>
     </helpTexts>
+    <!-- What they offered when they came (review of the camps and the world, 28 November 2026): a day's work for a meal.
+         The colony's meals go to their fire, and they fell wood for the colony near their camp (the play-outs' felling). -->
+    <asks>
+      <li>
+        <key>work</key>
+        <label>Give them supper for a day's work</label>
+        <tip>A few of the young people fell wood for the colony near their camp, and four of the colony's meals are carried over to their fire for supper.</tip>
+        <tension>-5</tension>
+        <warm>2</warm>
+        <deed>traded</deed>
+        <outcomes>
+          <li>{X_nameDef} had the young people out with axes before the colony's meals had even left the kitchen, and every one of them worked as if a master were watching.</li>
+          <li>[ws:hiring] The young people went at the colony's wood as if somebody from {SITUATION} were watching them, and {X_nameDef} counted the logs twice to be sure the colony got its supper's worth.</li>
+          <li>[their:tribal] The young people went out with their axes and their best manners, and brought wood in for the colony's fires before they sat down to eat.</li>
+        </outcomes>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>supper for the young people</label><what>meals</what><count>4</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>40</count><near>Camp</near></li>
+        </effects>
+      </li>
+    </asks>
   </ColonyCouncil.CampKindDef>
 
   <!-- ===================== Stranded carters ===================== -->
@@ -530,6 +551,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>hot meals for the carters</label><what>meals</what><count>3</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>
@@ -665,6 +687,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the gleaners</label><what>rawfood</what><count>30</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
     </asks>
@@ -852,6 +875,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>food for the road home</label><what>rawfood</what><count>20</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
     </asks>

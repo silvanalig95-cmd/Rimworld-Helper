@@ -61,6 +61,8 @@
 
   <!-- Goods the colony bought, carried over by one of them (Camps/CampCarry.cs). -->
   <CC_CampBring_Done>{X_nameDef} of the {NAME} has set down {COUNT} {THING} by the colony's gate.</CC_CampBring_Done>
+  <!-- Nobody of theirs could carry it over after all (down, gone, no way to the gate, the camp leaving): set out at the camp's edge. -->
+  <CC_CampBring_SetOut>Nobody of the {NAME} could carry the colony's {COUNT} {THING} over, so they have set them out at the edge of their camp for the colony to fetch.</CC_CampBring_SetOut>
 
   <!-- The camp dilemmas. -->
   <CC_CampDlm_Joined>{X_nameDef} left the {NAME} of {FACTION} to stay with the colony.</CC_CampDlm_Joined>

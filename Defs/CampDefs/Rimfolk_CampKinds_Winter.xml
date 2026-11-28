@@ -558,6 +558,7 @@
         <refuseTension>5</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampShelter" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
       <li>
@@ -881,6 +882,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a coat for the pilgrims</label><what>coat</what><count>1</count><to>Camp</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
         </effects>
       </li>
       <li>
@@ -920,6 +922,7 @@
         <refuseTension>4</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CampShelter" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>

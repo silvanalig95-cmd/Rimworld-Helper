@@ -127,6 +127,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_HostelBread" />
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>4</amount></li>
         </effects>
       </li>
       <li>
@@ -257,6 +258,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meat for the Wardens' hounds</label><what>meat</what><count>30</count><to>Camp</to><who>None</who><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
       <li>

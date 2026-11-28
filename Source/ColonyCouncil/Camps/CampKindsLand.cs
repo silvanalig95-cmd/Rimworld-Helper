@@ -667,6 +667,9 @@ namespace ColonyCouncil
         {
             try
             {
+                // The colony's load already went down the road with the carters (RoadPost.cs): the wardens leaving the post
+                // before the carters come back through don't keep its price; it is sent up the road to the colony now.
+                if (LoadOnRoad && !Hostile) PayRoad(null);
                 kind?.Worker?.Leaving(this);
                 if (hull != null && !hull.Destroyed && hull.Spawned && faction != null && hull.Faction == faction)
                 {

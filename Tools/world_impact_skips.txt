@@ -1,0 +1,136 @@
+# Rows of Tools/world_impact_audit.py read by hand and left (the review of the camps and the world, 28 November 2026).
+# One "Key [list] why" a line; list is flavour (a flavour-only answer, or a camp or event whose answers all are),
+# words (words that promise more than the effects do), nothing (a camp kind that brings nothing of its own).
+# A row that no longer matches is named at the end of the audit, so the list stays true.
+
+# ---- Camps: faith, company and recreation, the point of the ask (the gods are unseen: a prayer is never shown to work) ----
+Council_Camp_Pilgrims:graves [flavour] their prayers at the colony's graves, walked to and said there; faith, by design
+Council_Camp_Pilgrims:sick [flavour] prayer over the sick: the gods are unseen, so it is never shown to heal
+Council_Camp_Pilgrims:relic [flavour] their prayers before the relic, walked to and said there; faith, by design
+Council_Camp_Procession:fields [flavour] their icon carried round the fields with whoever walks along; faith, by design
+Council_Camp_Procession:hymn [flavour] an evening hymn at their fire; recreation and faith, by design
+Council_Camp_Procession [flavour] a faith's procession: its blessing and its hymn are the point; a warm stay may still leave a gift at the gate (the default leftovers)
+Council_Camp_Procession [nothing] a faith's procession: its blessing and its hymn are the point; a warm stay may still leave a gift at the gate (the default leftovers)
+Council_Camp_Penitents:prayer [flavour] an evening prayer at their fire; faith, by design
+Council_Camp_Penitents:relic [flavour] their prayers before the relic; faith, by design
+Council_Camp_TreeSingers:woods [flavour] a walk in the woods with them: rest and calm for the one who goes
+Council_Camp_TreeSingers:tree [flavour] their song at the great tree, the reason they came; walked to and sung there
+Rimfolk_Camp_GodPilgrims:pray [flavour] the pilgrims' prayers at dusk; the gods are unseen
+Rimfolk_Camp_GodSeer:ask [flavour] the seer's words, said darkly; the gods are unseen
+Rimfolk_Camp_Novices:tale [flavour] a tale of the colony's gods told at their fire (their worker); faith, by design
+Rimfolk_Camp_Novices:kneel [flavour] the novices walk to the colony's holy place and kneel (their worker); faith, by design
+Rimfolk_Camp_WinterPilgrims:vigil [flavour] the long night kept with them; company, by design
+Council_Camp_Mourners:vigil [flavour] a vigil with the mourners; company in grief, by design
+Rimfolk_Camp_LanternPost:lantern [flavour] a night at the lantern with the wardens; company, by design
+Council_Camp_Players:audience [flavour] the colony watches their play: recreation for those who come (their request)
+Council_Camp_Players:hire [flavour] a play bought for the colony: recreation, paid in silver; the players' parting gift comes with a warm stay
+Council_Camp_Minstrels:feast [flavour] music bought for a feast: recreation, paid in silver
+Council_Camp_Minstrels:song [flavour] a song made of the colony at their fire; free and once, so no gain is given for it
+Council_Camp_Trainers:show [flavour] a friendly contest between the colony's Pokemon and theirs, played out as a show
+Rimfolk_Camp_LeagueWinter:evening [flavour] an evening at their fire: recreation and the road's news
+Council_Camp_SaltCaravan:evening [flavour] an evening at their fire: recreation and the road's news
+Rimfolk_Camp_IceFishers:evening [flavour] an evening at their fire: recreation
+Rimfolk_Camp_SnowboundCaravan:evening [flavour] an evening at their fire: recreation
+Rimfolk_Camp_SnowCarvers:evening [flavour] an evening among the snow figures: recreation
+Rimfolk_Camp_SnowCarvers:make [flavour] a snow figure made with them, which stands on the map (their worker)
+Rimfolk_Camp_InstrumentMakers:evening [flavour] an evening of their music (their worker plays the instruments)
+Council_Camp_Wardens:watch [flavour] two wardens stand at the gate for the evening, seen on the map; a few hours' look-out, not a fight
+# ---- Camps: what shows on the map, or what their worker does ----
+Council_Camp_Hermit:meal [flavour] the hermit's thanks is the carving left at a warm parting (leaveBehind, earned by low tension), which the meal brings nearer
+Council_Camp_Hermit:medicine [flavour] the hermit's thanks is the carving left at a warm parting (leaveBehind, earned by low tension), which the medicine brings nearer
+Rimfolk_Camp_Fishers:where [flavour] the fisher walks to the richest water near the colony and waits there: the colony sees where to fish
+Rimfolk_Camp_Fishers:farwater [flavour] their fishing moves to the far water, off the colony's side (a map change)
+Rimfolk_Camp_Dyers:dye [flavour] the colonist's clothes are dyed: their look changes on the map
+Rimfolk_Camp_WitchFinders:question [flavour] the questioning at their fire (their worker); its answer is the story
+Rimfolk_Camp_RainCallers:fee [flavour] the fee is paid only if the rain comes (their worker): nothing now, by design
+Rimfolk_Camp_Diggers:graves [flavour] the old graves dug too (their worker): the colony's believers of the keeper of the dead are uneasy
+Rimfolk_Camp_EnclavePad:pad [flavour] the colony's people kept off their pad (their worker reads it)
+Rimfolk_Camp_DryWater:hay [flavour] the herders' parting thanks (+10, a young beast) comes from their worker after a good stay, which the hay keeps
+Rimfolk_Camp_DryWater:grazing [flavour] the herders' parting thanks (+10, a young beast) comes from their worker after a good stay, which the grazing keeps
+Rimfolk_Camp_FieldSickhouse:medicine [flavour] the order's parting goodwill (the Book of the Spared) comes from their worker after a good stay, which the medicine keeps
+Rimfolk_Camp_FieldSickhouse:cloth [flavour] the order's parting goodwill (the Book of the Spared) comes from their worker after a good stay, which the cloth keeps
+Rimfolk_Camp_SpringCalving:hay [flavour] the calving camp's parting goodwill comes from their worker after a good stay
+Rimfolk_Camp_SummerSchool:lend [flavour] the school's parting goodwill and lessons come from their worker; the books are on their table
+Rimfolk_Camp_SummerSchool:food [flavour] the school's parting goodwill comes from their worker after a good stay
+Rimfolk_Camp_FloodedOut:food [flavour] the flooded families' parting goodwill comes from their worker
+Rimfolk_Camp_FloodedOut:guests [flavour] their old and young taken in as the colony's guests (their worker), which shows on the map
+Rimfolk_Camp_FieldOfFallen:wood [flavour] the wood goes into the graves they dig (their worker), and their parting goodwill counts the buried
+Rimfolk_Camp_FieldOfFallen:cloth [flavour] the cloth goes into the shrouds (their worker), and their parting goodwill counts the buried
+Rimfolk_Camp_CircuitRing:feed [flavour] the ring's parting goodwill comes from their worker after a good stay
+Rimfolk_Camp_WheelYard:wood [flavour] the yard's parting goodwill comes from their worker after a good stay
+Rimfolk_Camp_AfterFire:food [flavour] their parting goodwill comes from their worker after a good stay
+Rimfolk_Camp_LineCrew:food [flavour] the crew's goodwill comes from their worker after a good stay
+Rimfolk_Camp_LineCrew:parts [flavour] the components go into their mast, which the colony may keep (their ask "keep")
+Rimfolk_Camp_Picket:evening [flavour] the picket's goodwill comes from their worker after a good stay
+Rimfolk_Camp_ListeningRing:quiet [flavour] the promise kept is worth +2 at their parting (their worker counts the loud nights)
+Rimfolk_Camp_SurfaceScouts:lessonPlants [flavour] the teacher's Social practice and the scouts' lesson are given by their worker
+Rimfolk_Camp_SurfaceScouts:lessonAnimals [flavour] the teacher's Social practice and the scouts' lesson are given by their worker
+Rimfolk_Camp_SurfaceScouts:lessonShooting [flavour] the teacher's Social practice and the scouts' lesson are given by their worker
+Rimfolk_Camp_SurfaceScouts:talkout [flavour] the talker's Social practice is given by their worker
+Rimfolk_Camp_FieldOfFallen [flavour] their worker digs the graves the wood and cloth go into, and their parting goodwill counts the buried
+Rimfolk_Camp_RainCallers [flavour] their worker calls the rain, and the fee is paid only if it comes
+Rimfolk_Camp_WitchFinders [flavour] their worker's questioning is the story; its answer is what happens
+Rimfolk_Camp_GodSeer [flavour] the seer's reading, the gods unseen
+Rimfolk_Camp_SurfaceScouts:search [flavour] the lost scout searched for on the map (their worker); the scouts' parting goodwill follows
+Rimfolk_Camp_CompanyMarch:enlist [words] the soldier's pay and the drill ground's Melee and Shooting come when they are home (EnlistAway.Home)
+
+# ---- World events: the worker, the status quo, or the scene that is the point ----
+Council_WS_Plague:quarantine/1 [flavour] the gate kept open is the status quo the plague's modifiers run on (trade on, sickness up)
+Council_WS_Healer:offer/0 [flavour] the healer's visit (its worker's PrepareBeat) treats the patient and teaches the colony's doctor 4000 Medicine
+Council_WS_Fair:contest/0 [flavour] the contest is run by its worker, with its prize
+Council_WS_PeaceTalks:ask/0 [flavour] the talks held at the colony (its worker) lead to the endings' goodwill
+Council_WS_Mercenaries:offer/0 [flavour] the hired band fights the enemy (its worker), won or lost
+Council_WS_Warlord:terms/4 [flavour] waiting the warlord out: his worker plays it
+Council_WS_BanditLordFalls:feast/1 [flavour] good wishes, the cheap answer beside the gift
+Council_WS_Songs:song/1 [flavour] the song left alone, the cheap answer beside the gift
+Council_WS_Bumper:gleaners/1 [flavour] the stubble kept for the colony's animals, a refusal
+Council_WS_Comet:watch/0 [flavour] a night's watch by a fire under the comet: the scene is the point
+Council_WS_Bumper:supper/0 [flavour] a harvest supper: the feast is the point
+Council_WS_OldBeast:ridge/0 [flavour] the dawn walk to see the old beast: the scene is the point
+Council_WS_Prophet:followers/1 [flavour] a night by the wall for the followers, the middle answer
+Council_WS_RoadTraffic:wardens/1 [flavour] water for their horses and an hour's rest, the middle answer
+Rimfolk_WS_RestlessDead:question/2 [flavour] the graves sealed (its worker)
+Rimfolk_WS_Rats:catcher/0 [flavour] the rat-catcher's dog hunts the rats on the colony's land (its worker)
+Rimfolk_WS_Run:catch/0 [flavour] a supper for the run: the feast is the point (the run itself keeps the water's fish full)
+Rimfolk_WS_Run:quarrel/0 [flavour] the camp's fishers moved to the far water (a map change)
+Rimfolk_WS_Run:quarrel/1 [flavour] the water shared, the status quo
+Rimfolk_WS_TownRaid:call/0 [flavour] the colony forms its caravan to the town (its worker), a fight on the town's map
+Rimfolk_WS_TownRaid:call/1 [flavour] the colony stays home, the town alone (its worker's endings)
+Rimfolk_WS_Games:gamesDay/0 [flavour] the games day played out at the colony; its worker's flags lead to the endings' goodwill
+Rimfolk_WS_Pardon:prisoners/1 [flavour] the prisoners kept, a refusal
+Rimfolk_WS_SonGate:ask/1 [flavour] the colonist goes out to him (its worker)
+Rimfolk_WS_Games [flavour] the games day is played out at the colony, and its worker's flags lead to the endings' goodwill
+Rimfolk_WS_TownRaid [flavour] the colony forms its caravan to the town (its worker), a fight on the town's map
+Council_WS_Healer [flavour] the healer's visit treats the patient and teaches the doctor (its worker)
+Council_WS_PeaceTalks [flavour] the talks held at the colony lead to the endings' goodwill (its worker)
+Rimfolk_WS_Rats [flavour] the rat-catcher's dog hunts the rats (its worker)
+Rimfolk_WS_NewHead:gate/1 [words] a kind head's gift of their own is handed over at the gate by its worker (World/Region/NewHeads.cs)
+Council_WS_HolyYear:alms/0 [words] thanks in words is all the line says
+Council_WS_Warlord:captive/0 [words] "the colony's business" is not a gift
+Rimfolk_WS_TwoClaims:claims/2 [words] "the land is the colony's own" is not a gift
+Rimfolk_WS_ColdYear:flock/2 [words] "the meadow is the colony's" is not a gift
+Rimfolk_WS_GreatCaravan:outriders/2 [words] "the meadow is the colony's" is not a gift
+
+# ---- Encounters: a moment told, nothing handed over (Defs/EncounterDefs: a stranger met, nobody hurt) ----
+Council_EncL_DesertTraveler [words] advice for the desert, one line of four; no skill of the game's fits it
+Council_EncL_ColdTrick [words] one line of three shows the mittens; the others are a trick against the cold, no skill fits them all
+Council_EncN_TraderLamp [words] stories told in return, not goods
+Council_EncM_WineTalk [words] the grandfather taught the stranger, not the colonist
+Council_EncM_Scriptorium [words] remedies and a map traded as words; the encounter already gives practice and research
+Council_EncP_ChildrenPlay [words] a clapping song taught, play by design
+Council_EncP_Dice [words] a dice game taught, play by design
+Council_EncP_EnemyPrayer [words] the words of a prayer learned by hearing them, by design
+Council_EncR_SongsAndNews [words] a song taught, by design; the encounter already gives goodwill
+Council_EncR_WhatForFun [words] a pastime shown, by design
+Council_EncK_TendedGreeted [words] "patched up" is the colonist's own past work, thanked for
+Council_EncO_EastbornTea [words] a way with tea shown, by design
+Council_EncM_KnightOnTheRoad [words] one line of eight shows the mail; the rest are tales, no skill fits them all
+Council_EncPW_Partner [words] the animal learned the colonist's steps
+Rimfolk_EncPE_WheelBroken [words] the machine looked over and the part named; the encounter already gives practice
+Rimfolk_EncPE_GlassSky [words] the readers' way shown; the encounter already gives practice
+Rimfolk_EncPE_GlassVial [words] the fee told of, not asked
+Rimfolk_EncPE_RepublicPostmaster [words] trade terms told of, not given
+Rimfolk_EncPE_HelixVats [words] a history told
+Council_EncL_LakeLines [words] night lines shown on the lake shore; fishing's skill differs with the player's mods, so none is given
+Council_EncL_RiverFord [words] a way across the river shown; no skill of the game's fits it
+Council_EncL_CoastKnot [words] the net's knots taught; the encounter already gives practice

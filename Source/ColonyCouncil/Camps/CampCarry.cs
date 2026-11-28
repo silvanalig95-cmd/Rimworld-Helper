@@ -160,13 +160,13 @@ namespace ColonyCouncil
             }
             if (!CanTakeUp(p, c))
             {
-                carries.Remove(c);
+                LetGo(c);
                 return null;
             }
             var cell = SetDownCell(p, c.to);
             if (!cell.IsValid)
             {
-                carries.Remove(c);
+                LetGo(c);
                 return null;
             }
             var bring = JobMaker.MakeJob(CampDefOf.Council_CampBring, cell);
@@ -436,10 +436,68 @@ namespace ColonyCouncil
             ColonyCouncil.Tell.Letter(NewsKind.World, Importance.Notable, null, Text("CC_Camp_HelpTitle"), text, LetterDefOf.PositiveEvent, target, faction);
         }
 
-        /// <summary>Every hour: one whose bearer is gone, down, or too long about it is let go (what's in their pack stays theirs).</summary>
+        /// <summary>
+        /// Every hour: one whose bearer is gone, down, or too long about it is let go (what's in their pack stays theirs, but
+        /// for what the colony paid for, which is set out for it at the camp's edge: <see cref="LetGo"/>).
+        /// </summary>
         private void WatchCarries()
         {
-            carries.RemoveAll(c => c == null || c.by == null || c.by.Dead || c.by.Downed || !Here.Contains(c.by) || Now > c.until);
+            carries.RemoveAll(c => c == null || c.by == null);
+            foreach (var c in carries.Where(c => c.by.Dead || c.by.Downed || !Here.Contains(c.by) || Now > c.until).ToList()) LetGo(c);
+        }
+
+        /// <summary>
+        /// The carries still on their way as the camp goes (CampLife.Leave): each let go, so what the colony paid for is set
+        /// out at the camp's edge before they pack up and leave.
+        /// </summary>
+        private void LetGoAll()
+        {
+            foreach (var c in carries.ToList()) LetGo(c);
+            carries.Clear();
+        }
+
+        /// <summary>
+        /// A carry let go before it was set down. Goods the colony bought and paid for ("bought") don't go with it: what of
+        /// them the bearer still has is set out at the camp's edge for the colony instead, as the ask says happens with
+        /// nobody to bring them (CampAskMath.SetOutWhenLetGo), and the colony hears where; anything else is theirs to keep.
+        /// </summary>
+        private void LetGo(CampCarry c)
+        {
+            carries.Remove(c);
+            if (c?.def == null || c.help != "bought" || map == null) return;
+            try
+            {
+                int with = 0;
+                if (c.taken && c.by != null)
+                {
+                    // Out of their hands and pack: the same goods are set out at the camp's edge below.
+                    var held = c.by.carryTracker?.CarriedThing;
+                    if (held != null && held.def == c.def && with < c.count)
+                    {
+                        int k = Mathf.Min(held.stackCount, c.count - with);
+                        held.SplitOff(k).Destroy();
+                        with += k;
+                    }
+                    var inv = c.by.inventory;
+                    if (inv != null)
+                        foreach (var t in inv.innerContainer.Where(t => t.def == c.def && inv.NotForSale(t)).ToList())
+                        {
+                            if (with >= c.count) break;
+                            int k = Mathf.Min(t.stackCount, c.count - with);
+                            t.SplitOff(k).Destroy();
+                            with += k;
+                        }
+                }
+                int n = CampAskMath.SetOutWhenLetGo(true, c.taken, c.count, with);
+                if (n <= 0) return;
+                var put = new List<Thing>();
+                if (Place(c.def, n, null, put) > 0)
+                    Note(Text("CC_CampBring_SetOut", null, null, n, c.def.label), MessageTypeDefOf.PositiveEvent, Importance.Notable, put.FirstOrDefault(), true);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("camp carry let go", e);
+            }
         }
 
         private void ExposeCarries()

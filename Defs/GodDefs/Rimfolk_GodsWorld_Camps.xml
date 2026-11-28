@@ -124,6 +124,7 @@
         </outcomes>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>meals for the pilgrims</label><what>meals</what><count>4</count><to>Camp</to><steward>false</steward></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>2</amount></li>
         </effects>
       </li>
     </asks>

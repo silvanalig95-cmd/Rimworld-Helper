@@ -27,7 +27,10 @@ public static class FarErrandTests
         // The content round's third part (Rimfolk_WS_Round3.xml): the colony's best miner sent to dig out the miners of a fallen mine.
         ("Rimfolk_WS_MineFall", "help", 1, 2f),
         // The content round's fourth part (Rimfolk_WS_Round4.xml): one of the colony with an ache sent to bathe at the warm springs.
-        ("Rimfolk_WS_WarmSprings", "send", 0, 3f)
+        ("Rimfolk_WS_WarmSprings", "send", 0, 3f),
+        // The review of the camps and the world (Council_WS_Land.xml): the colony's best with animals sent to look over the
+        // strange beasts on a town's grazing.
+        ("Council_WS_StrangeHerds", "hunters", 0, 2f)
     };
 
     public static int Run(Action<bool, string> check)
