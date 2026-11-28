@@ -1,0 +1,20 @@
+# Rows of Tools/lives_impact_audit.py read by hand and left, one "Key [list] why" a line (docs/review-lives.md).
+# A row that no longer matches is named under the report, so the list stays true.
+
+# ---- Wishes with no memory of a real number, and nothing else of their own: the thing granted is the effect ----
+Rimfolk_Wish_Familiar [thin] the familiar bound to the mage is what was asked for (Integrations/MagicFamiliars.cs); its memory gives trust instead of mood
+Rimfolk_Wish_Toy [thin] the toy made at the bench is carried to the child by hand, with the child's and the asker's moods (WishWorker_Toy.OnMet)
+Council_Wish_PW_BallSupply [thin] the ball belts on the rack are what was asked for; its memory gives trust instead of mood
+
+# ---- Personal stories ending in moods and words: the ending is the thing itself, or the way there did the rest ----
+Council_Arc_SecondChances [thin] a story of trust in the council, ending in trust (which sets their patience with wishes and whether they leave)
+Council_Arc_WithinReach [thin] it ends when their life goal is reached, with the goal's own rewards (an inspiration, a toast, a skill marked)
+Council_Arc_FindingHome [thin] belonging is the heart's need its gates wait for; the friend is made on the way (the review gave it the tie)
+Council_Arc_Stray [thin] the scraps left out and the handlers asked to tame it come on the way; the ending is the stray come home, the colony's animal
+Rimfolk_Arc_CustomOfTheirOwn [thin] it ends when their custom becomes a tradition on the colony's calendar, with the calendar's own effects
+Rimfolk_Arc_ReadyForTheSeat [thin] it ends when they hold the seat, with the seat's own work and say
+Rimfolk_Arc_YearsAim [thin] it ends when their life goal is reached, with the goal's own rewards (the review made that ending reachable)
+Rimfolk_Arc_AfterTheVote [thin] the way there does it: the winner sits down with them about the seat's work, and they help the new holder or mean to stand again
+
+# ---- Code ----
+harm:Wishes/WishEffects.cs:Apply [code] WishEffect_Hediff gives a good hediff a wish names (Council_Motivated, working faster), never a hurt

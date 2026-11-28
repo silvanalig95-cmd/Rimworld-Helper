@@ -150,10 +150,16 @@ namespace ColonyCouncil
             return res == null || !res.took;
         }
 
+        /// <summary>
+        /// Free to go off on a wish's errand of their own: not held (drafted, in a break, down or on the player's order) and
+        /// doing nothing that matters more (tending, a rescue, a meal, sleep: PlayOuts.Interruptible). The lives review.
+        /// </summary>
+        public static bool Free(Pawn p) => p != null && p.Spawned && !OwnHappenings.Held(p) && PlayOuts.Interruptible(p);
+
         /// <summary>A short walk to a place, the game's own job (answers not played out on the map).</summary>
         public static bool WalkTo(Pawn p, Thing place)
         {
-            if (p == null || place == null || !p.Spawned || !place.Spawned || p.Map != place.Map || p.Downed || p.Drafted || p.InMentalState) return false;
+            if (place == null || !Free(p) || !place.Spawned || p.Map != place.Map) return false;
             if (!p.CanReach(place, PathEndMode.Touch, Danger.Some)) return false;
             var job = JobMaker.MakeJob(JobDefOf.Goto, place.Position);
             return p.jobs != null && p.jobs.TryTakeOrderedJob(job, JobTag.Misc);
@@ -610,10 +616,18 @@ namespace ColonyCouncil
             c.thingDef = d;
             c.subjectKey = pick.recipe.defName;
             c.subjectLabel = d.label;
+            c.baseline = Made(pawn);
             yield return c;
         }
 
-        public override bool IsFulfilled(Wish wish) => Have(wish.Beneficiary?.MapHeld, wish.thingDef);
+        /// <summary>What they have made with their hands, things and meals (the game's own records).</summary>
+        private static float Made(Pawn p) => p?.records == null ? 0f : p.records.GetValue(RecordDefOf.ThingsCrafted) + p.records.GetValue(RecordDefOf.MealsCooked);
+
+        /// <summary>
+        /// The colony has one, and they have made something since they asked, as the round meant it (the lives review: a
+        /// trader's or a raider's left behind was thanked for as made).
+        /// </summary>
+        public override bool IsFulfilled(Wish wish) => Have(wish.Beneficiary?.MapHeld, wish.thingDef) && Made(wish.Beneficiary) > wish.baseline;
 
         public override bool StillValid(Wish wish) => Recipe(wish) != null && Bench(wish.Beneficiary?.MapHeld, Recipe(wish), false) != null;
 
@@ -817,16 +831,30 @@ namespace ColonyCouncil
             var w = Candidate(weight, "CC_R4L_Reason_FrostHarvest".Translate(pawn.Named("PAWN"), cells.Count.Named("COUNT")).Resolve());
             w.subjectKey = LifeNewMath.Encode(cells);
             w.targetValue = cells.Count;
+            w.baseline = Harvested(map);
             yield return w;
         }
 
-        public override bool IsFulfilled(Wish wish) => Round4LivesMath.HarvestIn(StillRipe(wish).Count(), Cells(wish).Count);
+        /// <summary>
+        /// The harvests the colony's people have brought in (the game's own record), kept in baseline when it is asked: what
+        /// tells a field brought in from one the frost, a blight or a fire took (the lives review).
+        /// </summary>
+        private static float Harvested(Map map) => map == null ? 0f : map.mapPawns.FreeColonists.Sum(p => p.records?.GetValue(RecordDefOf.PlantsHarvested) ?? 0f);
 
-        /// <summary>The frost came: what still stands is the cold's now, not the colony's to bring in.</summary>
+        /// <summary>Brought in by the colony's hands: half as many harvests since it was asked as the plants it named, at least.</summary>
+        private static bool BroughtIn(Wish wish) => Harvested(wish.Beneficiary?.MapHeld) - wish.baseline >= Cells(wish).Count / 2f;
+
+        public override bool IsFulfilled(Wish wish) => Round4LivesMath.HarvestIn(StillRipe(wish).Count(), Cells(wish).Count) && BroughtIn(wish);
+
+        /// <summary>
+        /// The frost came: what still stands is the cold's now, not the colony's to bring in. And the crops gone with nobody
+        /// bringing them in (the frost, a blight, a fire took them): let go without blame, never thanked for.
+        /// </summary>
         public override bool StillValid(Wish wish)
         {
             var map = wish.Beneficiary?.MapHeld;
-            return Cells(wish).Count > 0 && map != null && !(Round4Lives.Winter(map) && map.mapTemperature.OutdoorTemp < -5f);
+            if (Cells(wish).Count == 0 || map == null || (Round4Lives.Winter(map) && map.mapTemperature.OutdoorTemp < -5f)) return false;
+            return !Round4LivesMath.HarvestIn(StillRipe(wish).Count(), Cells(wish).Count) || BroughtIn(wish);
         }
 
         public override float Progress(Wish wish) => wish.targetValue <= 0f ? -1f : 1f - StillRipe(wish).Count() / wish.targetValue;
@@ -908,7 +936,7 @@ namespace ColonyCouncil
         protected override string Instead(Wish w)
         {
             var child = w.Beneficiary;
-            if (child == null || !child.Spawned || child.Downed || child.InMentalState || Build == null) return null;
+            if (!Round4Lives.Free(child) || Build == null) return null;
             var cell = Round4Lives.SnowCell(child);
             if (!cell.IsValid) return null;
             // apart: the child goes out alone to build it, with the game's own job.

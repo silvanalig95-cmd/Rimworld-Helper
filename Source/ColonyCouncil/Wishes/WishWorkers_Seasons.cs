@@ -217,7 +217,8 @@ namespace ColonyCouncil
         {
             var p = wish.Beneficiary;
             var map = p?.Map;
-            if (map == null || !p.Spawned || p.Drafted || p.Downed || p.InMentalState || map.dangerWatcher.DangerRating != StoryDanger.None) return null;
+            // Not one held or busy with something that matters more (tending, a rescue, a meal: the lives review).
+            if (map == null || !Round4Lives.Free(p) || map.dangerWatcher.DangerRating != StoryDanger.None) return null;
             try
             {
                 BestPiece(p, map, out float gain, out var item);

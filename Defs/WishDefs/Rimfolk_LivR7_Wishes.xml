@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The review of the colonists' own lives (docs/review-lives.md): three more wishes in the frames there are, for the frame
+    offered most often (a wish every two days by default, against a story or two a season). Each is one of the XML-driven
+    wishes (Wishes/WishWorkers_Generic.cs): something to wear, found by its name in the player's mods (the game itself has
+    no boots or gloves, so these come only with a mod that adds them, and only once the colony can make them or has them in
+    store), and cloth and hides in store before the cold. Nobody is hurt.
+  -->
+
+  <!-- ===================== Boots of their own ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_LivR7_Wish_Boots</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>boots for {FOR_nameDef}</label>
+    <description>This colonist has been going about with nothing on their feet and would like boots or shoes, now that the colony can make them or has a pair in store.</description>
+    <workerClass>ColonyCouncil.WishWorker_Wear</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
+    <category>Gear</category>
+    <weight>0.5</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_LivR7_Granted_Boots</grantedThought>
+    <envy>0.15</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Status</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef} wears boots, shoes or anything else made for the feet.</fulfilledWhen>
+    <wants>
+      <nameContains><li>boot</li><li>shoe</li><li>sandal</li><li>footwear</li></nameContains>
+      <minDaysInColony>5</minDaysInColony>
+      <reason>{PAWN_nameDef} has been going about barefoot, and the colony could put boots on {PAWN_objective}.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>I've walked this land barefoot since I came, and my feet would like a word with the council.</li>
+        <li>Every thorn and cold stone on the place has had a go at my feet, so I'd take a pair of boots gladly.</li>
+        <li>[rain] The mud comes up between my toes all day, and boots would keep it where it belongs.</li>
+        <li>[snow] I can't feel my toes after the morning's work, and I'd like to keep them.</li>
+        <li>[tribal] The others have good foot wrappings and hard soles now, and mine are still my own skin.</li>
+        <li>[spacer] We can make boots that walk on any ground there is, and here I am barefoot on it.</li>
+        <li>[old] My feet were tough once, but they aren't now, and I'd like some leather between them and the ground.</li>
+      </plain>
+      <warm><li>It needn't be a fine pair, just something so I don't limp in at supper.</li></warm>
+      <blunt><li>Boots, please, because my feet are a mess.</li></blunt>
+      <cheerful><li>I've picked out a pair in my head already, and now I just need the real ones.</li></cheerful>
+      <gloomy><li>I stepped on something sharp again today, which is what I get for having no boots.</li></gloomy>
+      <cold><li>Bare feet slow me down on rough ground, and boots would end that.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Boots on my feet at last, and I'm not taking them off.</li>
+        <li>I walked out to the far field today and didn't feel a single stone.</li>
+      </plain>
+      <warm><li>Thank you, my feet thank you too, and so will everyone who hears me complain less.</li></warm>
+      <blunt><li>Good boots, and they fit.</li></blunt>
+      <cheerful><li>Look at these, I keep stamping about just to hear them!</li></cheerful>
+      <gloomy><li>They'll wear through one day, but not this year.</li></gloomy>
+      <cold><li>The boots fit, and the work goes quicker for it.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Barefoot it is, then, and my feet will have to toughen up.</li></plain>
+      <blunt><li>No boots, so I'll keep bleeding on the paths.</li></blunt>
+      <gloomy><li>I suppose my feet aren't anyone's business but mine.</li></gloomy>
+      <cold><li>I'll make do with my bare feet, as I have so far.</li></cold>
+    </expired>
+    <reminder>
+      <plain><li>Still barefoot, in case anyone was wondering about the limp.</li></plain>
+      <cheerful><li>My boots must be on their way, since I've been asking so nicely!</li></cheerful>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Gloves for the cold work ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_LivR7_Wish_Gloves</defName>
+    <label>gloves for the cold</label>
+    <description>Someone who works outside, in the fields, the quarry, on the walls or with the animals, wants gloves before the cold sets in, now that the colony can make them or has a pair in store.</description>
+    <workerClass>ColonyCouncil.WishWorker_Wear</workerClass>
+    <forbiddenBy><li>Nudity</li></forbiddenBy>
+    <category>Gear</category>
+    <weight>0.5</weight>
+    <expiryDays>12</expiryDays>
+    <cooldownDays>30</cooldownDays>
+    <grantedThought>Rimfolk_LivR7_Granted_Gloves</grantedThought>
+    <envy>0.1</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>{PAWN_nameDef} wears gloves or mittens.</fulfilledWhen>
+    <wants>
+      <nameContains><li>glove</li><li>mitten</li></nameContains>
+      <passions><li>Plants</li><li>Mining</li><li>Construction</li><li>Animals</li></passions>
+      <coldComing>true</coldComing>
+      <reason>{PAWN_nameDef} works outside, and the cold is coming.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>My hands crack open every winter out at the work, and I'd like this winter to be different.</li>
+        <li>The tools are cold enough in the mornings to take the skin off, so I'd like gloves before the frost.</li>
+        <li>[snow] I can't close my fingers properly by midday, and the work goes badly for it.</li>
+        <li>[tribal] A pair of hide mittens would see me through the cold, if someone has the skins for it.</li>
+        <li>[spacer] We have gloves that keep a hand warm on any world, and mine are bare.</li>
+      </plain>
+      <warm><li>A pair of gloves would mean I could keep at it longer for everyone.</li></warm>
+      <blunt><li>Gloves, before my hands freeze to the tools.</li></blunt>
+      <cheerful><li>Gloves would be lovely, and I'll wave them about at supper to show everyone.</li></cheerful>
+      <gloomy><li>Last winter I lost the feeling in two fingers for a week, and I don't want to find out what comes after a week.</li></gloomy>
+      <cold><li>Cold hands make slow work, and gloves would fix that.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>Warm hands out in the cold, which I never had before here.</li>
+        <li>I worked all morning out there and could still feel my fingers at lunch.</li>
+      </plain>
+      <warm><li>Thank you, my hands will be glad of these all winter.</li></warm>
+      <blunt><li>Gloves fit, and the hands work.</li></blunt>
+      <cheerful><li>I've been waving at everyone just to show them off!</li></cheerful>
+      <gloomy><li>Now the cold will have to try harder.</li></gloomy>
+      <cold><li>The work goes on through the cold now, as it should.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>Bare hands for another winter, then.</li></plain>
+      <blunt><li>No gloves, so my hands can crack again.</li></blunt>
+      <gloomy><li>I'll wrap them in rags and hope for the best.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain><li>The cold's coming on, and my hands are still bare.</li></plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+  <!-- ===================== Cloth and hides in store ===================== -->
+
+  <ColonyCouncil.WishDef>
+    <defName>Rimfolk_LivR7_Wish_Cloth</defName>
+    <label>cloth and hides in store</label>
+    <description>The cold months are coming, and someone who makes and mends the colony's clothes wants cloth, wool or hides put by for the winter's sewing.</description>
+    <workerClass>ColonyCouncil.WishWorker_Stock</workerClass>
+    <category>Work</category>
+    <weight>0.7</weight>
+    <expiryDays>10</expiryDays>
+    <cooldownDays>25</cooldownDays>
+    <grantedThought>Rimfolk_LivR7_Granted_Cloth</grantedThought>
+    <allowPetition>true</allowPetition>
+    <envy>0</envy>
+    <objectionChance>0.1</objectionChance>
+    <talkInteraction>Council_Talk_Work</talkInteraction>
+    <fulfilledWhen>Keep at least {TARGET} cloth, wool or hides in storage or in the home area. Grow cotton, shear and skin the animals, or buy it from traders.</fulfilledWhen>
+    <wants>
+      <categories><li>Textiles</li></categories>
+      <count>200</count>
+      <anySource>true</anySource>
+      <passion>Crafting</passion>
+      <coldComing>true</coldComing>
+      <reason>{PAWN_nameDef} makes the colony's clothes and has seen how little is put by for the winter.</reason>
+    </wants>
+    <request>
+      <plain>
+        <li>I've counted the bolts and the hides, and it isn't enough for the winter's sewing.</li>
+        <li>Everyone will want something warmer once the frost comes, and I'll have nothing to make it from.</li>
+        <li>[fall] The cold's on its way, and the cloth store is down to scraps.</li>
+        <li>[tribal] We need hides put by for the winter, cured and ready, before the snow.</li>
+        <li>[spacer] The fabricator can't work from nothing, and the cloth store is nearly empty.</li>
+        <li>[old] I've seen a winter where we cut up the blankets for coats, and I won't do it again.</li>
+      </plain>
+      <warm><li>Give me enough to work with and nobody in this colony will go cold this winter.</li></warm>
+      <blunt><li>Cloth, wool, hides, anything, because the store's empty.</li></blunt>
+      <cheerful><li>Fill the store and I'll have everyone in something warm by midwinter!</li></cheerful>
+      <gloomy><li>I can mend a coat a dozen times, but I can't make one out of nothing.</li></gloomy>
+      <cold><li>Clothing wears out faster in the cold, and we haven't the stock to replace it.</li></cold>
+    </request>
+    <thanks>
+      <plain>
+        <li>The store's full of cloth and hides, and I know what I'll be doing all winter.</li>
+        <li>Enough put by now to keep everyone covered until the thaw.</li>
+      </plain>
+      <warm><li>Thank you, now I can make sure nobody here is cold this winter.</li></warm>
+      <blunt><li>Good, now I can work.</li></blunt>
+      <cheerful><li>Look at all of it, I hardly know where to start!</li></cheerful>
+      <gloomy><li>Enough for this winter, at least.</li></gloomy>
+      <cold><li>The stock is sufficient for the season's clothing.</li></cold>
+    </thanks>
+    <expired>
+      <plain><li>I'll patch what we have and hope it lasts.</li></plain>
+      <blunt><li>No cloth, so no new coats, and that's on the council.</li></blunt>
+      <gloomy><li>Somebody's going to be cold this winter, and I'll have had nothing to give them.</li></gloomy>
+    </expired>
+    <reminder>
+      <plain>
+        <li>The cloth store is still nearly empty, and the cold isn't waiting.</li>
+        <li>[petition] I'm not the only one who's looked in the store and worried.</li>
+      </plain>
+    </reminder>
+  </ColonyCouncil.WishDef>
+
+</Defs>
