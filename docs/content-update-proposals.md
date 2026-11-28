@@ -2063,7 +2063,7 @@ Workshop page before adding.
 |---|---|---|---|---|
 | P-Music | [725130005](https://steamcommunity.com/sharedfiles/filedetails/?id=725130005) | 1.0 to 1.7 | yes (HANDOFF 0.255.0) | sound: more tracks for the gods' big moments and festivals (C1, C29) |
 | Milky Way | [3773448562](https://steamcommunity.com/sharedfiles/filedetails/?id=3773448562) | 1.6, 1.7 | to check | graphics: the night sky, for Selene's nights, Cirrus's stars and the watch on the walls (C1) |
-| Atmosphere Overhaul | [3830470974](https://steamcommunity.com/sharedfiles/filedetails/?id=3830470974) | 1.6, 1.7 | to check | graphics: sky and weather, for the presences, named seasons and storms (C18, C19, C28) |
+| Atmosphere Overhaul | [3830470974](https://steamcommunity.com/sharedfiles/filedetails/?id=3830470974) | 1.6, 1.7 | dropped by the player (28 November 2026) | graphics: sky and weather, for the presences, named seasons and storms (C18, C19, C28) |
 | Gerrymon's Greekcore Style | [3666883698](https://steamcommunity.com/sharedfiles/filedetails/?id=3666883698) | 1.6, 1.7 | to check | graphics: columns and temple pieces, for the shrine rooms (C26); the player named the Greek pantheon as their reference |
 | Epochs - Incense | [3072579620](https://steamcommunity.com/sharedfiles/filedetails/?id=3072579620) | 1.4 to 1.6 | to check; no 1.7 tag | incense for rites and offerings (C1, C5) |
 | Epochs - Pottery | [3092351095](https://steamcommunity.com/sharedfiles/filedetails/?id=3092351095) | 1.4 to 1.6 | to check; no 1.7 tag | urns and pots for Tamiu's and Hush's rooms (C26) |

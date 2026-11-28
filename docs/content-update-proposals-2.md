@@ -734,7 +734,7 @@ from this machine (the first list found the same for P-Music, which is kept up),
 | Dark Ages: Beasts and Monsters | [3472275628](https://steamcommunity.com/sharedfiles/filedetails/?id=3472275628) | 1.5 to 1.7 | updated 10 November | graphics: `DA_ImperialRedhound` for the lord's hounds (D38); it also brings trolls and other creatures with dangers of their own |
 
 Looked at and not recommended:
-- **Atmosphere Overhaul** (3830470974): a simulation of air pressure, wind, humidity and fronts, not a look for fog or
+- **Atmosphere Overhaul** (dropped by the player, 28 November 2026) (3830470974): a simulation of air pressure, wind, humidity and fronts, not a look for fog or
   sky; it would change the weather these events read.
 - **Simple FX: Splashes** (3261109179): rain splashes on hard ground only, no 1.7 tag, last updated 19 June 2025.
 - **Gerrymon's Greekcore Style** (3666883698): classical clothes, a couch, a fence and a floor; it has no columns or

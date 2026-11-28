@@ -992,15 +992,23 @@ most sense." So, in this order, three builds at a time:
   item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
   not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
   Integrations and JecsLite, for the review below.
-- **To do when the player asks (28 November 2026; the player: "i really also want to integrate Atmosphere Overhaul"):
-  Atmosphere Overhaul (Acutus, `acutus.AtmosphereOverhaul.release`, Workshop 3830470974, 1.6 and 1.7; subscribed, off)
-  with Rimfolk and the living land.** It simulates air: gases, humidity, wind load, cyclones, oxygen and breathing gear,
-  vents, fans and ducts, a weather radar, water plants. The nature research of the same day had it to keep off: on 1.7,
-  reports of walls and roofs collapsing, rooms at -200 °C, a sixth of the speed, old worlds filled with ocean, and it
-  replaces the weather Rimfolk drives. Being looked into first: whether those reports still hold, what it replaces
-  (the weather choice, temperature) and how Rimfolk's weather and the living land's climate would sit beside it, its
-  settings, and the player's other mods. `Tools/Collect-NatureMods.ps1` now also takes it (its DLLs, patches,
-  settings). The player is told to back up their save before trying it.
+- **To do when the player asks (28 November 2026; the player: "dynamic atmosphere looks super cool though, i try that
+  instead"): Dynamic Atmosphere (Workshop 3808191148; 1.6 and 1.7, updated 17 October), in place of Atmosphere
+  Overhaul.** By the research, a sky drawn from the game's own weather, with hurricanes that come as game conditions,
+  and visual bugs on the world view. It reads the game's weather rather than choosing it, so Rimfolk's weather and the
+  living land's seasons should show in its sky; its hurricane conditions could join the climate's extremes, the
+  chronicle and the gods' reading. `Tools/Collect-NatureMods.ps1` now takes it; to read its files when the player sends
+  the zip with it enabled, then propose how Rimfolk ties in.
+- **Dropped (28 November 2026; the player first: "i really also want to integrate Atmosphere Overhaul", then: "okey
+  forget about atmosphere overhaul please, cut it from everything and instead just work with all the other new mods"):
+  Atmosphere Overhaul** (Acutus, 3830470974). Taken out of `Tools/Collect-NatureMods.ps1`, the catalogue (read as not
+  enabled), `Tools/Tests/PeopleGear.txt` and the plans; the older proposal docs mark it dropped. What the research found,
+  for the record: in its default weather engine it skips the game's weather choice and sets the outdoor temperature
+  itself, so Rimfolk's weather, forecast, temperature offset and the living land's climate would go quiet; it rebuilds a
+  world under 100% coverage as a full globe of ocean on every load and is not safe to remove from a save; on 1.7 its
+  fast solver is off, and speed, collapsing roofs and walls, and rooms at -200 °C after loading are still reported. The
+  player was told: if a main save was loaded and saved with it on, go back to the backup from before.
+
 - **Done (28 November 2026, 0.329.0; the player: "great, can you also review all the rimworld of magic integrations, as
   these perhaps never properly worked with the outdated mod files"): a review of every A RimWorld of Magic integration
   against the Continued version**, in a worktree, merged; `docs/review-magic.md` (37 integrations, a table of each). No
@@ -1084,8 +1092,8 @@ most sense." So, in this order, three builds at a time:
   ModsConfig.xml has none of them enabled yet (told the player). A second zip the same day, with Atmosphere Overhaul's
   full files (52 defs and patches, 5 DLLs, 18 source files): Quiet Wonders, Living Waters, Waves, Weather Reimagined,
   Wild Crops, Biome Compatibility Project and Atmosphere Overhaul enabled (last in the list), RimKeeper and Animal
-  Traits System not. Folded into the collection and `docs/player-mods` built again (462 subscribed, 305 active);
-  Atmosphere Overhaul's oxygen mask added to `Tools/Tests/PeopleGear.txt` (an industrial tag the peoples use).
+  Traits System not, then a third zip with those two enabled too. Folded into the collection and `docs/player-mods`
+  built again; Atmosphere Overhaul then dropped by the player and read as not enabled (462 subscribed, 306 active).
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
   display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
   used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the

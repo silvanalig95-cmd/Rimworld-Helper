@@ -609,5 +609,3 @@ mod:onyxae.dragonsdescent	weapon	DD_Bow_DoubleCrossbow	Neolithic,NeolithicRanged
 mod:onyxae.dragonsdescent	weapon	DD_Gun_DragonfireLauncher	Gun	-	-
 mod:onyxae.dragonsdescent	weapon	DD_MeleeWeapon_DrachenSword	MedievalMeleeDecent	-	-
 mod:onyxae.dragonsdescent	weapon	DD_MeleeWeapon_HornedLance	MedievalMeleeDecent	-	-
-# Atmosphere Overhaul's oxygen mask, under an industrial tag the peoples use (the player enabled it on 28 November 2026).
-mod:acutus.atmosphereoverhaul.release	apparel	AO_OxygenMask	IndustrialMilitaryBasic	Mouth|Overhead	-

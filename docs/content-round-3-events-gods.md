@@ -240,7 +240,7 @@ None of them hurts anyone.
 Subscribed and not enabled, from `docs/player-mods/` (nothing here depends on them; each is read by its own defs once on):
 - **Medieval Tailor Continued** (1.5, 1.6, 1.7; https://steamcommunity.com/sharedfiles/filedetails/?id=3512201406): more
   medieval clothes at the tailor's bench, which R8's bill would then pick from by itself.
-- **Atmosphere Overhaul** (1.6, 1.7; https://steamcommunity.com/sharedfiles/filedetails/?id=3830470974): fog and light
+- **Atmosphere Overhaul** (dropped by the player, 28 November 2026) (1.6, 1.7; https://steamcommunity.com/sharedfiles/filedetails/?id=3830470974): fog and light
   that would make the foggy mornings of G6 and the dusk scenes look as the words say.
 - **Medieval Total Rim: Animals** (1.6, 1.7; https://steamcommunity.com/sharedfiles/filedetails/?id=3806262056): herd
   animals of the older ages (merino sheep, the Swabian hall pig, Spanish cattle), counted as the colony's herd in R1 and
