@@ -27,11 +27,14 @@ namespace ColonyCouncil
     /// </summary>
     public static class OutsiderTend
     {
-        /// <summary>Sends the doctor to each patient in turn. False when nothing could be set going (then the answer's effect is had as before).</summary>
+        /// <summary>
+        /// Sends the doctor to each patient in turn. False when nothing could be set going (then the answer's effect is had as
+        /// before): among them a doctor drafted since the answer, in a break or on the player's own order (PeoplesReview.Held).
+        /// </summary>
         public static bool Send(Pawn doctor, IEnumerable<Pawn> patients)
         {
             var map = doctor?.Map;
-            if (map == null || doctor.Dead || doctor.Downed || doctor.jobs == null || doctor.WorkTagIsDisabled(WorkTags.Caring)) return false;
+            if (map == null || doctor.Dead || PeoplesReview.Held(doctor) || doctor.jobs == null || doctor.WorkTagIsDisabled(WorkTags.Caring)) return false;
             var jobs = new List<Job>();
             foreach (var p in patients)
             {

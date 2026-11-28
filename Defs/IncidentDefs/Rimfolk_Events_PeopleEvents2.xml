@@ -759,10 +759,13 @@
           <li>What the masts heard</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, an operator of {FACTION}, has come to the gate with a notebook of what the radio masts at {PLACE} have picked up, and is selling the news: {TALE}, for {COUNT} silver, or {RELATION}, for {BEAST}.</li>
-          <li>[noradio] The colony has no radio, so {X_nameDef} of {FACTION} has brought the news on foot from the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}, and where it lies.</li>
-          <li>[outpost] {X_nameDef} of {FACTION} has come to the gate with a headset round {X_possessive} neck. The masts at {PLACE} caught bandits talking on an open band; {X_pronoun} would sell where they camp, or another thing the line heard: {TALE} for {COUNT} silver, {RELATION} for {BEAST}.</li>
-          <li>[wreck] An operator of {FACTION}, {X_nameDef}, has a scrap of paper with a beacon's call written on it, heard by the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
+          <li>[age2|age3] {X_nameDef}, an operator of {FACTION}, has come to the gate with a notebook of what the radio masts at {PLACE} have picked up, and is selling the news: {TALE}, for {COUNT} silver, or {RELATION}, for {BEAST}.</li>
+          <li>[age0|age1] {X_nameDef}, a runner of {FACTION}, has come to the gate with news the signal towers at {PLACE} passed along by flag and fire: {TALE}, for {COUNT} silver, or {RELATION}, for {BEAST}.</li>
+          <li>[noradio,age2|age3] The colony has no radio, so {X_nameDef} of {FACTION} has brought the news on foot from the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}, and where it lies.</li>
+          <li>[outpost,age2|age3] {X_nameDef} of {FACTION} has come to the gate with a headset round {X_possessive} neck. The masts at {PLACE} caught bandits talking on an open band; {X_pronoun} would sell where they camp, or another thing the line heard: {TALE} for {COUNT} silver, {RELATION} for {BEAST}.</li>
+          <li>[outpost,age0|age1] {X_nameDef} of {FACTION} has come to the gate. The watch on the towers at {PLACE} saw the smoke of a bandit camp and marked where it is; {X_pronoun} would sell that, or another thing the line saw: {TALE} for {COUNT} silver, {RELATION} for {BEAST}.</li>
+          <li>[wreck,age2|age3] An operator of {FACTION}, {X_nameDef}, has a scrap of paper with a beacon's call written on it, heard by the masts at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
+          <li>[wreck,age0|age1] A runner of {FACTION}, {X_nameDef}, has come to the gate. The watch on the towers at {PLACE} saw something come down out of the sky and marked where it fell: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
           <li>[lowtech] A runner of {FACTION}'s line, {X_nameDef}, has come to the gate with news copied down from the flag towers at {PLACE}: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
           <li>[their:grateful] The Signal Line thinks well of the colony, and {X_nameDef} has come from {PLACE} with the line's news before anyone else hears it: {TALE} for {COUNT} silver, or {RELATION} for {BEAST}.</li>
         </texts>

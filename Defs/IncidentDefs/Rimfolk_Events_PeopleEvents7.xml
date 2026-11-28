@@ -379,7 +379,7 @@
           <li>Linesmen on the high ground</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a lineman of {FACTION}, has come to the gate. A crew of the Line would camp a week on {PLACE} and raise a {TALE} there while they string wire through the district. While it stands the colony's letters could go out by their wire, and at night their radio carries the region's news.</li>
+          <li>[age2|age3] {X_nameDef}, a lineman of {FACTION}, has come to the gate. A crew of the Line would camp a week on {PLACE} and raise a {TALE} there while they string wire through the district. While it stands the colony's letters could go out by their wire, and at night their radio carries the region's news.</li>
           <li>[mast,nomast] {X_nameDef}, a lineman of {FACTION}, has come to the gate. A crew would camp a week on {PLACE} and raise a {TALE} there while they work the wire. The colony has no mast of its own, and {X_pronoun} says the crew might sell it theirs when they go, for a fee.</li>
           <li>[tower] {X_nameDef} of {FACTION} has come to the gate. A crew of the Line would camp a week on {PLACE} and put up a {TALE}, and from it read the next tower's flags and lamps. While it stands the colony's letters could be passed along by signal.</li>
           <li>[age0] {X_nameDef} of {FACTION} has walked to the gate. Three or four of the Line's people would camp a week on {PLACE} and put up a {TALE} there, to pass signals along the hills. The colony's messages could go with theirs while they stay.</li>

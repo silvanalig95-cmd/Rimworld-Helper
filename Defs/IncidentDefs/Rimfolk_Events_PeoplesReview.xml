@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Added by the review of the peoples' events (docs/review-peoples.md; Source/ColonyCouncil/Peoples/PeoplesReview.cs), where a
+    people's set was thinnest: the pilgrim fellowship had five events of its own. {A} is the colony's best doctor, {X} a palmer of
+    the fellowship, {TALE} what the road did to them (blisters, a sprained ankle, sore knees: Rimfolk's own small ailments, given
+    to the palmer as the event makes them), {PLACE} the hostel they walk to. Built from the shapes there are: the visitor at the
+    gate, the doctor who goes out to them with a medicine from the stores (DilemmaEffect_TendStranger), a medicine carried out
+    for the road, the people's memory of who tended them. The fellowship blesses every door, open or shut.
+  -->
+
+  <!-- ===================== The footsore palmer (the pilgrim fellowship) ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_PplR7_Footsore</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>the footsore palmer</label>
+    <workerClass>ColonyCouncil.HappeningWorker_PplR7Footsore</workerClass>
+    <baseChance>0.4</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <callings><li>pilgrims</li></callings>
+        <group>Visitors</group>
+        <ages>20~70</ages>
+        <stayHours>8~12</stayHours>
+        <answerDays>0.4</answerDays>
+        <titles>
+          <li>The footsore palmer</li>
+          <li>A palmer at the gate</li>
+        </titles>
+        <texts>
+          <li>{X_nameDef}, a palmer of {FACTION}, has come to the gate on the way to {PLACE}, walking badly. The road has been hard on {X_objective}, and {X_nameDef} asks whether the colony's doctor, {A_nameDef}, would look at {X_possessive} {TALE} before the walk goes on.</li>
+          <li>[age0|age1] {X_nameDef} of {FACTION} has limped up to the gate with a staff and a shell sewn to {X_possessive} hat, on the long walk to {PLACE}. {X_nameDef} has walked on {X_possessive} {TALE} for days now, and asks whether {A_nameDef}, the colony's doctor, could see to it.</li>
+          <li>[age2|age3] {X_nameDef}, a palmer of {FACTION}, has come to the gate in boots worn through, on foot to {PLACE} as the fellowship still goes. {X_nameDef} has walked on {X_possessive} {TALE} for days now, and asks whether {A_nameDef}, the colony's doctor, could see to it.</li>
+          <li>[winter] {X_nameDef} of {FACTION} has come to the gate through the cold, slowly, on the way to {PLACE}. {X_nameDef} has walked on {X_possessive} {TALE} since the last hostel, and asks whether {A_nameDef} could spare the time to see to it.</li>
+          <li>[their:grateful] {FACTION} think well of the colony, and their palmers say its door is open. {X_nameDef} has come to it on the way to {PLACE}, walking on {X_possessive} {TALE}, to ask whether {A_nameDef} would see to it.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>{A_nameDef} sees to {X_possessive} {TALE} (1 medicine)</label>
+            <outcome>{A_nameDef} takes a medicine from the stores out to the gate and sees to {X_nameDef}'s {TALE} there. The palmers at {PLACE} will hear who did it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_TendStranger" />
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Medicine</skill><xp>200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Remember"><kind>tended</kind><about>x</about></li>
+            </effects>
+            <ways><mercy>1</mercy><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>A medicine for the road (1)</label>
+            <outcome>A medicine is carried out to {X_nameDef} at the gate, for the {TALE} and the rest of the walk to {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a medicine for {X_nameDef}'s road</label><what>medicine</what><count>1</count><steward>false</steward><to>Stranger</to></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Keep the gate shut</label>
+            <outcome>{X_nameDef} blesses the shut gate all the same, as the fellowship blesses every door, and limps on toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+            <ways><mercy>-1</mercy></ways>
+          </li>
+        </options>
+        <lines>
+          <li>[tended] Peace on this house, and thank you for the care.</li>
+          <li>[tended] I will walk easier for it, and the hostel will hear your doctor's name.</li>
+          <li>[herbs] That will carry me to the next hostel, and I will tell them who gave it.</li>
+          <li>[shut] Every door is a shrine to someone, and I bless this one as I pass.</li>
+          <li>[shut] Peace on this house, open or shut.</li>
+        </lines>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

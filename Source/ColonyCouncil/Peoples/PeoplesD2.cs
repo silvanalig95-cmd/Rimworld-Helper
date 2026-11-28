@@ -128,7 +128,7 @@ namespace ColonyCouncil
         {
             var trainer = v.a;
             var mon = v.place as Pawn;
-            if (BoutJob == null || trainer == null || mon == null || !trainer.Spawned || !mon.Spawned || trainer.Downed || mon.Downed || trainer.InMentalState) return false;
+            if (BoutJob == null || trainer == null || mon == null || !trainer.Spawned || !mon.Spawned || PeoplesReview.Held(trainer) || mon.Downed) return false;
             var job = JobMaker.MakeJob(BoutJob, mon);
             job.count = Rand.RangeInclusive(PeoplesDMath.BoutMinTicks, PeoplesDMath.BoutMaxTicks);
             return trainer.jobs.TryTakeOrderedJob(job, JobTag.Misc);

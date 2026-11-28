@@ -681,7 +681,10 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_FleetShuttle : IncidentWorker_Happening
     {
-        private static bool Theirs(Faction f) => Peoples.CallingOf(f) == PeoplesMath.Crew && Arrivals.Usable(f) && EnclaveLanding.CanTrade(f);
+        // The shuttle is the Fleet's own means: a Fleet that arose in an older age, or fell back to one, has none to land (as the
+        // colony must be of an age that knows what comes down out of the sky).
+        private static bool Theirs(Faction f) =>
+            Peoples.CallingOf(f) == PeoplesMath.Crew && Arrivals.Usable(f) && EnclaveLanding.CanTrade(f) && PeoplesFMath.ShuttleAge(Peoples.AgeOf(f));
 
         public static ThingDef CasketDef => DefDatabase<ThingDef>.GetNamedSilentFail("CryptosleepCasket");
 
