@@ -872,6 +872,11 @@ MODEL = {
     # Magic among the peoples (Peoples/Magic/PeoplesMagicWatch.cs): the visitors of the peoples who cast a spell for the colony this
     # visit, by id, dropped when they leave the map, PeoplesMagicMath.MaxCast at most.
     "Peoples/Magic/PeoplesMagicWatch.cs:cast": ("while", 4, V, "the visitors who cast for the colony this visit (once a visit each), dropped when they leave"),
+    # Casting on their own (Integrations/MagicAutoCast.cs): the colonists the player switched on with their button, one id
+    # each (a click each, a few mages at most), let go once a day when no longer the colony's free people,
+    # MagicAutoCastMath.MaxOn at most.
+    "Integrations/MagicAutoCast.cs:on": ("cap", (const("Integrations/MagicAutoCastMath.cs", "MaxOn", 60), 0.02), V,
+                                         "ids of the colonists who cast damage spells on their own, MagicAutoCastMath.MaxOn at most, let go when no longer the colony's"),
     # The peoples' own events, round 2 (Peoples/Events2/PeopleEvents2Book.cs): the river folk's crossings, one a map,
     # PeopleEvents2Math.MaxCrossings kept, each its few dozen cells; the enclave's terms, one open with a people at a time,
     # PeopleEvents2Math.MaxTerms kept; the names the guild's marks put into blades' labels, PeopleEvents2Math.MaxMarks kept.

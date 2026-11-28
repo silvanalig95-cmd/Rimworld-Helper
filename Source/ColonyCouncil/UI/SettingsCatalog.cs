@@ -849,6 +849,8 @@ namespace ColonyCouncil
             Mod(Toggle("magicGolemRepair", "CC_Settings_MagicGolemRepair", "CC_SetNote_MagicGolemRepair", "deepHooks"), MagicId);
             Mod(Toggle("magicNeedRules", "CC_Settings_MagicNeedRules", "CC_SetNote_MagicNeedRules", "deepHooks"), MagicId);
             Mod(Toggle("familiars", "CC_Settings_Familiars", "CC_SetNote_Familiars"), MagicId);
+            // Damage spells cast on their own by the colonists switched on (Integrations/MagicAutoCast.cs): its button is a hook.
+            Mod(Toggle("magicAutoCast", "CC_Settings_MagicAutoCast", "CC_SetNote_MagicAutoCast", "deepHooks"), MagicId);
             Section("CC_SetSec_Mod_Territories");
             Mod(Toggle("territoryNewsQuiet", "CC_Settings_TerritoryNewsQuiet", "CC_SetNote_TerritoryNewsQuiet", "deepHooks"), TerritoriesId);
             Section("CC_SetSec_Mod_MoveThePatient");

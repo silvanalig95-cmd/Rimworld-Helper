@@ -300,3 +300,61 @@ VTE_CatPerson
 VTE_ChildOfMountain
 # Vanilla Fishing Expanded 1.6 (vanillaexpanded.vcef): the fisherman
 VCEF_Fisherman
+# A RimWorld of Magic (Continued) 3.0 (torann.arimworldofmagic): the damage spells cast on their own, in code
+# (Integrations/MagicAutoCastMath.cs, each level _I to _III where the mod has one), Shadow Strike's projectile, watched until
+# it brings its caster back (Integrations/MagicAutoCast.cs), and the jobs it casts with
+# (Peoples/Magic/PeoplesMagic.cs, RomSpells.CastJobs; CastAbilityVerb and CastAbilitySelf are its ability framework's,
+# JecsLite - A RimWorld of Magic, also in the mod's own Defs/JecsLite), from the mod's defs and docs/player-mods (active)
+TM_ArcaneBolt
+TM_Firebolt
+TM_Icebolt
+TM_LightningBolt
+TM_FrostRay
+TM_FrostRay_I
+TM_FrostRay_II
+TM_FrostRay_III
+TM_MagicMissile
+TM_MagicMissile_I
+TM_MagicMissile_II
+TM_MagicMissile_III
+TM_Poison
+TM_Headshot
+TM_ThrowingKnife
+TM_Spite
+TM_Spite_I
+TM_Spite_II
+TM_Spite_III
+TM_ShadowStrike
+Projectile_ShadowStrike
+TMCastAbilityVerb
+TMCastAbilitySelf
+CastAbilityVerb
+CastAbilitySelf
+# A RimWorld of Magic (Continued) 3.0 (torann.arimworldofmagic): the spells that hit an area, named in code only to be
+# left out (MagicAutoCastMath.AreaSpells, Dropped), from the mod's defs and docs/player-mods (active)
+TM_LightningStorm
+TM_Sunfire
+TM_LightBurst
+TM_SmokeCloud
+TM_SpiritStorm
+TM_PsionicStorm
+TM_PsionicBlast
+TM_ArrowStorm
+TM_WaveOfFear
+TM_Fireball
+TM_Firestorm
+TM_Fireclaw
+TM_Blizzard
+TM_Snowball
+TM_EyeOfTheStorm
+TM_LightningCloud
+TM_Meteor
+TM_OrbitalStrike
+TM_Explosion
+TM_BladeSpin
+TM_SeismicSlash
+TM_Whirlwind
+TM_Buckshot
+TM_SuppressingFire
+TM_DeathBolt
+TM_ShadowBolt

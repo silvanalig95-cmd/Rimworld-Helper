@@ -450,5 +450,201 @@ namespace ColonyCouncil
         }
 
         private static readonly Dictionary<Type, (PropertyInfo pawn, PropertyInfo def)> owners = new Dictionary<Type, (PropertyInfo, PropertyInfo)>();
+
+        // ================= For the colony's own casters (Integrations/MagicAutoCast.cs) =================
+
+        private static bool lookedOwn;
+        private static Type mightComp, tmAbilityDef;
+        private static PropertyInfo isMightUser, mightAbilityData, verbOf, manaNeed, staminaNeed;
+        private static MethodInfo manaCostOf, staminaCostOf;
+        private static FieldInfo defManaCost, defStaminaCost;
+
+        /// <summary>
+        /// The rest of what the colony's own casters need, read by name: the might component (TorannMagic.CompAbilityUserMight:
+        /// IsMightUser, AbilityData, Stamina, ActualStaminaCost), the magic component's Mana and ActualManaCost, an
+        /// ability's verb (AbilityUser.PawnAbility.Verb) and a TMAbilityDef's manaCost and staminaCost.
+        /// </summary>
+        private static void LookOwn()
+        {
+            if (lookedOwn) return;
+            lookedOwn = true;
+            Look();
+            try
+            {
+                tmAbilityDef = AccessTools.TypeByName("TorannMagic.TMAbilityDef");
+                // The might component on its own: if it can't be read, the spells (mana) still can.
+                try
+                {
+                    mightComp = AccessTools.TypeByName("TorannMagic.CompAbilityUserMight");
+                    if (mightComp != null)
+                    {
+                        isMightUser = AccessTools.Property(mightComp, "IsMightUser");
+                        mightAbilityData = AccessTools.Property(mightComp, "AbilityData");
+                        staminaNeed = AccessTools.Property(mightComp, "Stamina");
+                        if (tmAbilityDef != null) staminaCostOf = AccessTools.Method(mightComp, "ActualStaminaCost", new[] { tmAbilityDef });
+                        if (isMightUser?.PropertyType != typeof(bool)) isMightUser = null;
+                    }
+                }
+                catch (Exception e)
+                {
+                    isMightUser = null;
+                    mightAbilityData = staminaNeed = null;
+                    staminaCostOf = null;
+                    CouncilLog.ErrorOnce("casting on their own: reading A RimWorld of Magic's might", e);
+                }
+                if (magicComp != null)
+                {
+                    manaNeed = AccessTools.Property(magicComp, "Mana");
+                    if (tmAbilityDef != null) manaCostOf = AccessTools.Method(magicComp, "ActualManaCost", new[] { tmAbilityDef });
+                }
+                if (abilityType != null) verbOf = AccessTools.Property(abilityType, "Verb");
+                if (verbOf != null && !typeof(Verb).IsAssignableFrom(verbOf.PropertyType)) verbOf = null;
+                if (tmAbilityDef != null)
+                {
+                    defManaCost = AccessTools.Field(tmAbilityDef, "manaCost");
+                    defStaminaCost = AccessTools.Field(tmAbilityDef, "staminaCost");
+                }
+                if (manaCostOf != null && manaCostOf.ReturnType != typeof(float)) manaCostOf = null;
+                if (staminaCostOf != null && staminaCostOf.ReturnType != typeof(float)) staminaCostOf = null;
+            }
+            catch (Exception e)
+            {
+                verbOf = null;
+                CouncilLog.ErrorOnce("casting on their own: reading A RimWorld of Magic", e);
+            }
+        }
+
+        /// <summary>The colony's own casters can be served: the mod's casting, the abilities' verbs and the pools can be read.</summary>
+        public static bool OwnReady
+        {
+            get
+            {
+                LookOwn();
+                return Ready && verbOf != null && (manaNeed != null || staminaNeed != null);
+            }
+        }
+
+        private static ThingComp CompOf(Pawn p, Type type)
+        {
+            if (p?.AllComps == null || type == null) return null;
+            foreach (var c in p.AllComps)
+                if (c != null && type.IsInstanceOfType(c))
+                    return c;
+            return null;
+        }
+
+        /// <summary>One ability a caster holds: the mod's object, its def, and whether the might component holds it (stamina) or the magic one (mana).</summary>
+        public struct Held
+        {
+            public object ability;
+            public Def def;
+            public bool might;
+        }
+
+        /// <summary>Every ability a caster holds in the mod's magic and might components, the magic ones first; empty without the mod.</summary>
+        public static List<Held> HeldBy(Pawn p)
+        {
+            var list = new List<Held>();
+            if (!OwnReady || p == null) return list;
+            try
+            {
+                Add(list, CompOf(p, magicComp), isMagicUser, abilityData, false);
+                Add(list, CompOf(p, mightComp), isMightUser, mightAbilityData, true);
+            }
+            catch (Exception e)
+            {
+                CouncilLog.ErrorOnce("casting on their own: a caster's abilities", e);
+            }
+            return list;
+        }
+
+        private static void Add(List<Held> list, ThingComp comp, PropertyInfo user, PropertyInfo data, bool might)
+        {
+            if (comp == null || user == null || data == null || !(user.GetValue(comp) is bool on) || !on) return;
+            var d = data.GetValue(comp);
+            if (d == null) return;
+            var powersOf = powers != null && powers.DeclaringType != null && powers.DeclaringType.IsInstanceOfType(d) ? powers : AccessTools.Property(d.GetType(), "Powers");
+            if (!(powersOf?.GetValue(d) is IEnumerable all)) return;
+            foreach (var a in all)
+                if (a != null && abilityDef.GetValue(a) is Def def)
+                    list.Add(new Held { ability = a, def = def, might = might });
+        }
+
+        /// <summary>The ability's verb (its range and line of sight are the mod's own), or null.</summary>
+        public static Verb VerbOf(object ability)
+        {
+            if (!OwnReady || ability == null) return null;
+            try
+            {
+                return verbOf.GetValue(ability) as Verb;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>The caster's mana (magic) or stamina (might), or null.</summary>
+        public static Need Pool(Pawn p, bool might)
+        {
+            if (!OwnReady || p == null) return null;
+            try
+            {
+                var prop = might ? staminaNeed : manaNeed;
+                var comp = CompOf(p, might ? mightComp : magicComp);
+                return comp == null || prop == null ? null : prop.GetValue(comp) as Need;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// What casting the ability costs this caster in mana (magic) or stamina (might), as the mod reckons it (its
+        /// efficiency skills and modifiers), else the def's own cost; -1 when it can't be read.
+        /// </summary>
+        public static float Cost(Pawn p, Def def, bool might)
+        {
+            if (!OwnReady || p == null || def == null || tmAbilityDef == null || !tmAbilityDef.IsInstanceOfType(def)) return -1f;
+            try
+            {
+                var comp = CompOf(p, might ? mightComp : magicComp);
+                var method = might ? staminaCostOf : manaCostOf;
+                if (comp != null && method != null && method.Invoke(comp, new object[] { def }) is float c) return c;
+                var field = might ? defStaminaCost : defManaCost;
+                return field?.GetValue(def) is float f ? f : -1f;
+            }
+            catch
+            {
+                var field = might ? defStaminaCost : defManaCost;
+                try
+                {
+                    return field?.GetValue(def) is float f ? f : -1f;
+                }
+                catch
+                {
+                    return -1f;
+                }
+            }
+        }
+
+        private static List<JobDef> castJobs;
+
+        /// <summary>The jobs the mod and its ability framework cast with (TMCastAbilityVerb, TMCastAbilitySelf, CastAbilityVerb, CastAbilitySelf), those loaded.</summary>
+        public static List<JobDef> CastJobs
+        {
+            get
+            {
+                if (castJobs != null) return castJobs;
+                castJobs = new List<JobDef>();
+                foreach (var name in new[] { "TMCastAbilityVerb", "TMCastAbilitySelf", "CastAbilityVerb", "CastAbilitySelf" })
+                {
+                    var d = DefDatabase<JobDef>.GetNamedSilentFail(name);
+                    if (d != null) castJobs.Add(d);
+                }
+                return castJobs;
+            }
+        }
     }
 }
