@@ -28,4 +28,6 @@
   <CC_PM_Asp_ClassProgress>level {0} of {1}</CC_PM_Asp_ClassProgress>
   <CC_PM_Asp_ExpertiseReady>{0}: ready to choose an expertise</CC_PM_Asp_ExpertiseReady>
 
+  <!-- Alpha Skills' forbidden passion on a skill someone can never work at (Integrations/ForbiddenPassions.cs) -->
+  <CC_ForbiddenPassion_Cleared>{PAWN}'s forbidden passion in {SKILL} was cleared: {PAWN_pronoun} can never do that work, so it only weighed on {PAWN_possessive} mood.</CC_ForbiddenPassion_Cleared>
 </LanguageData>

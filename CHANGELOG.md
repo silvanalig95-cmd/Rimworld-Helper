@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A forbidden passion that only weighed on someone
+
+*28 November 2026, version 0.318.2*
+
+- With Alpha Skills, a colonist's forbidden passion on a skill whose main work they can never do (their background or traits rule it out, as a ban on animal work does for Animals) is now cleared, and a message says so. It only ever brought the mod's lasting -5 mood.
+- A forbidden passion on a skill they can work at stays as the mod has it, with its faster learning and its mood.
+
 ## Fixes to the new missions
 
 *27 November 2026, version 0.318.1*

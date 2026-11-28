@@ -931,8 +931,14 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
-- **To do when the player asks (28 November 2026, the player, with the save Eastern_Menistan of 11:55 and two
-  screenshots of Caitlin 'Cait' Stirr): a forbidden passion on a skill the colonist can't use.** The player: "So Kate
+- **Done (28 November 2026, 0.318.2; the player: "yes, please fix that, thanks!"): a forbidden passion on a skill the
+  colonist can't use.** `Integrations/ForbiddenPassions.cs` (found softly by `VSE.Passions.PassionDef` named
+  `AS_ForbiddenPassion`; each hour in the council's hour, `HourlyPeople`): the colony's own people's forbidden passions
+  on a skill the game marks wholly disabled, or whose main work they can never do (`MainWork`: the base game's work
+  types whose first skill it is, so Handling for Animals; fishing, which also uses Animals, doesn't count), set to no
+  passion; the mod's hediff removed once none is left; a message `CC_ForbiddenPassion_Cleared`. Rule
+  `Integrations/ForbiddenPassionsMath.cs`; the Almanac's Alpha Skills page says it. Tests in CreaturePortraitTests. The
+  report as it came: The player: "So Kate
   has, if I understand this correctly, forbidden passion on hand animals, but is unable to do any animal work because of
   their background, and just as a permanent debuff now. I don't know if I understand this incorrectly. Was there
   anything I can do to stop this debuff, or do we need to change the code?" Found: the passion is Alpha Skills'
@@ -940,10 +946,8 @@ most sense." So, in this order, three builds at a time:
   mood is `ThoughtWorker_Hediff` on the hidden hediff `AS_ForbiddenPassion` (-5, "I crave it, but I mustn't"), there for
   anyone with a forbidden passion in any skill, whether or not they do that work; the hediff's comp removes it only once
   no skill has the passion. Cait (Human144666) has it on Animals; her backstory (Intimate assassin) disables the Animals
-  and Caring work tags, though her Animals skill still shows a level. Told the player what they can do (a character
-  editor, else accept it). Offered, not built: Rimfolk changing a forbidden passion that sits on a skill whose main work
-  the pawn can never do into no passion (soft, by the passion's def name, only Alpha Skills'), so only the mood goes;
-  waiting for the player's word.
+  and Caring work tags, though her Animals skill still shows a level. Told the player what they can do (Character
+  Editor, 1874644848, kept up for 1.6, 1.7 unconfirmed, else accept it) and offered the fix, built on their word.
 - **Done (27 November 2026, 0.318.1): a review of content round 5** (0.317.0, 0.318.0) for what would show in play, in a
   worktree, merged. Four bugs fixed, listed in `docs/review-round-5.md` and kept by `Tools/Tests/ReviewRound5Tests.cs`:
   the textiles goal counted no leather or wool (`Missions.Fits` now `IsWithinCategory`, which changes every older

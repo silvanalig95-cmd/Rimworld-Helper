@@ -169,6 +169,7 @@ Outland_VathunNobles
 # Outland 1.5 (Outland-Genetics)
 # Outland 1.5 (Outland-Furniture-Decor)
 # Alpha Skills 1.6 (sarg.alphaskills)
+AS_ForbiddenPassion
 AS_DrunkenPassion
 AS_DrunkenPassion_Active
 AS_StonedPassion

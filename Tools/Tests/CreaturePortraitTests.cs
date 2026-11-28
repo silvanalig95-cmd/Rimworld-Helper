@@ -133,6 +133,13 @@ public static class CreaturePortraitTests
                 "never a Pokémon: they aren't painted (the player, 27 November 2026)");
             string guard = Read("Social/FamilyGuardians.cs");
             C(guard.Contains("FamilyLifeMath.RaiserCloseness(") && !guard.Contains("Family.Of(b, child) ? 50f"), "(the orphan) the council's question names the closest grown-up, never family first");
+            // Alpha Skills' forbidden passion on a skill the colonist can never work at (28 November 2026).
+            C(ForbiddenPassionsMath.Clears(true, 1, 1) && !ForbiddenPassionsMath.Clears(true, 2, 1) && !ForbiddenPassionsMath.Clears(false, 1, 1) && !ForbiddenPassionsMath.Clears(true, 0, 0),
+                "(forbidden passion) cleared only where every main work of the skill is closed to them, never another passion, never a skill no work trains");
+            string fp = Read("Integrations/ForbiddenPassions.cs");
+            C(fp.Contains("\"VSE.Passions.PassionDef\"") && fp.Contains("s.passion = Passion.None;") && fp.Contains("p.WorkTypeIsDisabled(w)") && fp.Contains("w.modContentPack.IsCoreMod") && fp.Contains("s.TotallyDisabled") && fp.Contains("RemoveHediff(h)")
+              && Read("CouncilGameComponent.cs").Contains("if (ForbiddenPassions.Active) Safe(\"forbidden passions\", ForbiddenPassions.Hourly);"),
+                "(forbidden passion) found softly by name, set to none, the mood's hediff removed with the last one, looked at each hour");
         }
         return n;
     }

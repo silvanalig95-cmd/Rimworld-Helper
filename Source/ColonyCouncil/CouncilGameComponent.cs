@@ -629,6 +629,8 @@ namespace ColonyCouncil
             Safe("pets", () => pets.Hourly(this));
             Safe("interplay", () => Interplay.Hourly(this));
             if (PokeWorldLink.Active) Safe("pokeworld", () => PokeWorldLink.Hourly(this));
+            // Alpha Skills' forbidden passion on a skill someone can never work at: only its mood, so it is cleared.
+            if (ForbiddenPassions.Active) Safe("forbidden passions", ForbiddenPassions.Hourly);
             Safe("animal life", () => AnimalLife.Hourly(this));
             // A fed hunter of the colony's out after small game now and then (Animals/PetHunts.cs).
             Safe("pets hunting", PetHunts.Hourly);

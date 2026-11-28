@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.318.2</version>
+        <date>28 November 2026</date>
+        <title>A forbidden passion that only weighed on someone</title>
+        <points>
+          <li>With Alpha Skills, a colonist's forbidden passion on a skill whose main work they can never do (their background or traits rule it out, as a ban on animal work does for Animals) is now cleared, and a message says so. It only ever brought the mod's lasting -5 mood.</li>
+          <li>A forbidden passion on a skill they can work at stays as the mod has it, with its faster learning and its mood.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.318.1</version>
         <date>27 November 2026</date>
         <title>Fixes to the new missions</title>
