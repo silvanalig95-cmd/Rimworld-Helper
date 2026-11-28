@@ -135,6 +135,17 @@ namespace ColonyCouncil
         protected override bool Begin(HappeningContext ctx, HappeningExtension ext) =>
             Arrivals.Visit(new List<Pawn> { ctx.stranger }, ctx.map, ctx.faction, null, ext.stayHours.RandomInRange) != null;
 
+        /// <summary>
+        /// "Just a story": the trainer goes on down the road now, as the words say, not hours later (the review of the
+        /// visitors and strangers). A Hospitality guest keeps to their own stay (Arrivals.SendAway leaves them be).
+        /// </summary>
+        public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
+        {
+            // The third answer (Defs/IncidentDefs/Rimfolk_Events_Mods_PokeWorld.xml).
+            if (option == 2 && ctx?.stranger != null) Arrivals.SendAway(new List<Pawn> { ctx.stranger });
+            return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             base.AddTags(ctx, tags);

@@ -56,7 +56,7 @@
   </ColonyCouncil.FlavorPoolDef>
 
   <!-- The message when a named or bonded animal dies. {PAWN_...} its person, {PET_...} the animal.
-       [hero] = it died in or right after a fight; [quiet] = otherwise. -->
+       [hero] = an enemy's blow killed it; [quiet] = it died with no fresh wound on it; neither for any other death (a wild beast, a fall, the colony's own knife). -->
   <ColonyCouncil.FlavorPoolDef>
     <defName>Council_Pool_PetFarewell</defName>
     <lines>

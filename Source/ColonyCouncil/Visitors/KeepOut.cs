@@ -563,9 +563,11 @@ namespace ColonyCouncil
                 if (t == null || !t.Spawned || t.Map != map || !KeptFrom(guest, t.Position) || t.IsForbidden(Faction.OfPlayer) || !guest.WillEat(t, guest)) continue;
                 int count = Count(guest, t);
                 var carrier = by != null && CanCarry(by, t, guest, count) ? by : null;
+                // Anyone else only when free to break off what they're at: never from tending, a rescue, a meal or the
+                // player's own order (PlayOuts.Interruptible), as every errand an answer sets going asks.
                 if (carrier == null)
                     carrier = map.mapPawns.FreeColonistsSpawned.Where(c => c != by).OrderBy(c => c.Position.DistanceToSquared(t.Position)).Take(6)
-                        .FirstOrDefault(c => CanCarry(c, t, guest, count));
+                        .FirstOrDefault(c => PlayOuts.Interruptible(c) && CanCarry(c, t, guest, count));
                 if (carrier == null) continue;
                 var job = BringJob(t, guest);
                 // together: the colonist carries it out and walks over to the visitor to hand it over (JobDriver_BringOutFood).

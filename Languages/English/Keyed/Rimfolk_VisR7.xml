@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The review of the visitors and strangers (docs/review-visitors.md): why an answer can't be given now. -->
+  <CC_VisR7_NotAble>{0} is in no state to do it now.</CC_VisR7_NotAble>
+  <CC_VisR7_PetAway>{0} isn't here to go with them.</CC_VisR7_PetAway>
+
+</LanguageData>

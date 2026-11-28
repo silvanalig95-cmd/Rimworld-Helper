@@ -99,6 +99,7 @@
     <weight>1</weight>
     <cooldownDays>4</cooldownDays>
     <thought>Council_Nuisance_NoisyGenerator</thought>
+    <rest>0.1</rest>
     <texts>
       <li>The {THING} droned on the other side of the wall all night, and {A_nameDef} heard every minute of it.</li>
       <li>{A_nameDef} lay awake listening to the {THING} rattle and hum, and got up tired.</li>
@@ -221,6 +222,7 @@
     <weight>0.6</weight>
     <cooldownDays>6</cooldownDays>
     <thought>Council_Nuisance_ShoddyClothes</thought>
+    <wear>0.04</wear>
     <texts>
       <li>The seams of {A_nameDef}'s {THING} split again, and {A_pronoun} had to sit down and sew them shut.</li>
       <li>{A_nameDef}'s badly made {THING} itched and pinched all day.</li>

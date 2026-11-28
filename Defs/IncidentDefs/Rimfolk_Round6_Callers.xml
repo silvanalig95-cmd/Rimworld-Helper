@@ -230,7 +230,7 @@
             <outcome>{X_nameDef} took the silver and unloaded the hay by the gate for the colony's animals.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Hay</thing><count>100</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Hay</thing><count>150</count><by>Outsiders</by></li>
             </effects>
           </li>
           <li>
@@ -317,7 +317,7 @@
             <outcome>{X_nameDef} took the silver and unloaded the stone blocks by the gate, ready for the colony's builders.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>BlocksGranite</thing><count>60</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>BlocksGranite</thing><count>90</count><by>Outsiders</by></li>
             </effects>
           </li>
           <li>
@@ -394,7 +394,7 @@
             <outcome>{X_nameDef} took the silver and left a bundle of dried meat by the gate. It will keep for weeks.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
-              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Pemmican</thing><count>30</count><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Pemmican</thing><count>45</count><by>Outsiders</by></li>
             </effects>
           </li>
           <li>

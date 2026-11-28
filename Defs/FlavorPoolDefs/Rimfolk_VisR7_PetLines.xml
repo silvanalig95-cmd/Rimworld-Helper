@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    More words for the colony's animals (the review of the visitors and strangers, docs/review-visitors.md; Source/
+    ColonyCouncil/Strangers/Pets.cs), in the pools there are. A farewell is told as the animal died: [hero] when an enemy's
+    blow killed it, [quiet] when it died with no fresh wound on it, [oldage] for a quiet death of an old animal, and neither
+    for any other death (a wild beast, a fall, the colony's own knife), which only the untagged lines fit. {PAWN_...} its
+    person, {PET_...} the animal. Plain words: what happened, who did what, and nothing the map didn't show.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_VisR7_Lines_PetFarewell</defName>
+    <pool>Council_Pool_PetFarewell</pool>
+    <lines>
+      <plain>
+        <li>{PAWN_nameDef} sat with {PET_definite} for a long time and wouldn't talk about it.</li>
+        <li>{PAWN_nameDef} took {PET_nameDef}'s collar off and has kept it in {PAWN_possessive} pocket since.</li>
+        <li>[quiet] {PET_nameDef} lay down and didn't get up again. {PAWN_nameDef} was the one who found it.</li>
+        <li>[quiet] {PAWN_nameDef} stayed beside {PET_nameDef} at the end, and says it wasn't afraid.</li>
+        <li>[oldage] {PET_nameDef} had been slowing down for a long time. {PAWN_nameDef} says it went the way an old animal should.</li>
+        <li>[oldage] {PET_nameDef} was old, and {PAWN_nameDef} had known for a while that it wouldn't last the year.</li>
+        <li>[hero] {PET_nameDef} was killed in the fighting, and {PAWN_nameDef} wants it buried where everyone will see the grave.</li>
+        <li>[hero,small] {PET_nameDef} was small, and it went for them anyway. {PAWN_nameDef} says that is how it should be remembered.</li>
+        <li>[hero,big] {PET_nameDef} went at the enemy head on, {PAWN_nameDef} says, and kept going until it fell.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_VisR7_Lines_PetHeroics</defName>
+    <pool>Council_Pool_PetHeroics</pool>
+    <lines>
+      <plain>
+        <li>[defended] When {PAWN_nameDef} was hurt, {PET_definite} stood over {PAWN_objective} and snarled at anyone who came near.</li>
+        <li>[defended] {PET_nameDef} would not leave {PAWN_nameDef}'s side while {PAWN_pronoun} was hurt, and went for anyone who came near.</li>
+        <li>[defended,midsize] {PET_nameDef} went for whatever had hurt {PAWN_nameDef} and wouldn't let go.</li>
+        <li>[fought] {PET_nameDef} followed {PAWN_nameDef} into the fight without being called, and kept close the whole time.</li>
+        <li>[fought,midsize] {PET_nameDef} stayed close to {PAWN_nameDef} through the whole fight and went for any enemy that came within reach.</li>
+        <li>[fought,big] {PET_nameDef} charged into the fight beside {PAWN_nameDef}, and the enemy had to deal with both of them.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

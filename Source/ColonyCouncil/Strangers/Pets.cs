@@ -81,14 +81,18 @@ namespace ColonyCouncil
             var person = PersonOf(pet);
             if (person == null || pet.Name == null) return;
             bool bonded = Bonded(pet, person);
-            bool hero = inBattle || Find.TickManager.TicksGame - battleStart < GenDate.TicksPerDay;
+            // Told as it died (the review of the visitors and strangers): "went down in the fighting" only when an enemy's blow
+            // killed it, "died curled up in its usual spot" and the old-age lines only when no wound did; not any death in the
+            // day after a fight, nor an old animal a wild beast or the colony's own knife took.
+            string manner = VisitorReviewMath.Manner(ByEnemy(pet), FreshWound(pet));
+            bool hero = manner == "hero";
             // Killed by raiders: the one it was bonded to may swear on them.
             if (bonded && hero) comp.vendettas?.Notify_PetKilled(comp, pet, person);
             float years = (pet.records?.GetValue(RecordDefOf.TimeAsColonistOrColonyAnimal) ?? 0f) / GenDate.TicksPerYear;
             // A Pokémon (PokéWorld) is mourned like any pet, with lines of its own; an old one went at the end of a long life.
             string kind = PokeWorldLink.IsPokemon(pet) ? "pokemon" : null;
-            string old = AnimalFacts.Old(pet) && !hero ? "oldage" : null;
-            string line = Flavor.FromPool("Council_Pool_PetFarewell", person, null, null, hero ? "hero" : "quiet",
+            string old = VisitorReviewMath.OldAge(AnimalFacts.Old(pet), manner) ? "oldage" : null;
+            string line = Flavor.FromPool("Council_Pool_PetFarewell", person, null, null, manner,
                 pet.RaceProps.baseBodySize >= 1.5f ? "big" : pet.RaceProps.baseBodySize <= 0.5f ? "small" : "midsize",
                 years >= 2f ? "longtime" : years < 0.25f ? "newpet" : null, bonded ? "bonded" : "master", kind, old);
             if (line.NullOrEmpty()) return;
@@ -105,6 +109,26 @@ namespace ColonyCouncil
             if (!bonded) CouncilGameComponent.GiveThought(person, CouncilDefOf.Council_Pet_Lost);
             else comp.aspirations.Notify_Event(person, "loss");
         }
+
+        /// <summary>
+        /// An enemy's blow killed it: the one behind its freshest wounds in the game's combat log (as the vendettas read a
+        /// death) is hostile to the colony, a raider, a mechanoid, an insect or a beast gone mad.
+        /// </summary>
+        private static bool ByEnemy(Pawn pet)
+        {
+            var hediffs = pet?.health?.hediffSet?.hediffs;
+            if (hediffs == null) return false;
+            foreach (var h in hediffs.Where(h => h.combatLogEntry != null && h.ageTicks <= GenDate.TicksPerHour * 12).OrderBy(h => h.ageTicks).Take(5))
+            {
+                var attacker = h.combatLogEntry.Target?.GetConcerns().FirstOrDefault() as Pawn;
+                if (attacker == null || attacker == pet) continue;
+                return attacker.HostileTo(Faction.OfPlayer) || (attacker.Faction != null && !attacker.Faction.IsPlayer && attacker.Faction.HostileTo(Faction.OfPlayer));
+            }
+            return false;
+        }
+
+        /// <summary>A wound on it from the last day (a blow, a bite, a cut): it didn't die quietly.</summary>
+        private static bool FreshWound(Pawn pet) => pet?.health?.hediffSet?.hediffs?.Any(h => h is Hediff_Injury && h.ageTicks <= GenDate.TicksPerDay) ?? false;
 
         private void Battle(CouncilGameComponent comp)
         {

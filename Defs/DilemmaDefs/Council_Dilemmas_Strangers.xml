@@ -342,6 +342,8 @@
     <stranger>
       <kind>Fallen</kind>
       <adult>true</adult>
+      <!-- "A few steps from {A_nameDef}": asked only of one who is (the review of the visitors and strangers). -->
+      <maxDistance>12</maxDistance>
     </stranger>
     <texts>
       <li>{X_nameDef} of {FACTION} is still alive, a few steps from {A_nameDef}, both hands pressed to a wound that won't stop bleeding. A few minutes ago {X_nameDef} was trying to kill {A_objective}. Now {X_nameDef} is asking {A_objective} for help, in a voice that keeps cracking.\n\n{X_nameDef} doesn't have long.</li>
