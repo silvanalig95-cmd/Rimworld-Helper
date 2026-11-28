@@ -960,6 +960,12 @@ most sense." So, in this order, three builds at a time:
   (`Rimfolk_Evt_PplR7_Footsore`, `HappeningWorker_PplR7Footsore`). Left: 96 older events told in the colony's age (a
   content round could give them the people's forms); `Arrivals.Visit` (`Happenings/HappeningHelpers.cs`) spawns a
   people's visitors without checking war (the peoples' callers check first). Tests: ReviewPeoplesTests.
+- **Under way (28 November 2026; the player's picks, clickable, asked "whats' next and what do you need to know"): a
+  review of the colonists' own lives** (wishes, ambitions, life goals, personal stories; `docs/review-lives.md`), **and,
+  alongside, a content round giving the peoples' 96 older events their own people's age and ways** (found by the
+  peoples' review: rounds 1 to 3 and releases C to G told in the colony's age; `docs/content-round-7-peoples-ages.md`),
+  each in a worktree. Also asked of the player: run the collector and send the zip with the latest save; say how magic
+  auto-cast plays on Myst (casting at all, Shadow Strike only on safe prey, undrafted again after it).
 - **Waiting for the player (28 November 2026; their pick "I'll send a new collection"): a new catalogue of their
   mods.** They run A RimWorld of Magic (Continued) by HUGINN (with `huginn.rwom.core` and `huginn.rwom.integrations`)
   while `docs/player-mods` (7 November) lists the original. The collector, never kept in the repository before, was
@@ -1413,8 +1419,10 @@ most sense." So, in this order, three builds at a time:
   to the kit folder, Tools/PortraitArt's scripts marked as moved; GUIDE.md and STUDIO-HANDOVER.md say so. The three
   kinds (person, creature, backdrop) are told apart by records.xml's element (PortraitDef, CreaturePortraitDef,
   BackdropDef) and a list's columns (`creature`, `place`, else a person): sent to the Studio's chat as a wish.
-- **To do when the player asks (24 November 2026, the player: "sorry, i mean this one", with Workshop 3823345404):
-  Rimfolk recognising "A RimWorld of Magic (Continued)".** HUGINN's continuation (tags 1.6 and 1.7, updated 21
+- **Settled (28 November 2026; was a to-do of 24 November): Rimfolk recognising "A RimWorld of Magic (Continued)".** The
+  continuation keeps the original's package id (`Torann.ARimworldOfMagic` in its About.xml, matched without case), so
+  every part that looks for `torann.arimworldofmagic` works with it; the player's save of 28 November runs it. The
+  original entry, for the record: HUGINN's continuation (tags 1.6 and 1.7, updated 21
   November, made with Torann's permission) needs Harmony, JecsLite - A RimWorld of Magic (3312959701), RWoM Core
   (Ability Framework) (3833946439) and RWoM Integrations (3833946677), and says not to combine JecsLite with JecsTools;
   an alternative fork closer to the original is 3828893021. Told the player it replaces the original (never both) and
@@ -1423,8 +1431,8 @@ most sense." So, in this order, three builds at a time:
   MagicGolems, Workers_Storyteller, Contests, GodGifts, WorshipMore, AnimalVoices, three MayRequire in the defs), so
   with another id those parts switch off. Once the player switches, read the id from their save or log and accept it
   as well (code: the id or the TorannMagic types; defs: MayRequireAnyOf).
-- **To do when the player asks (24 November 2026; offered, not built): Rimfolk keeping another mod's broken button
-  from blocking a pawn's other buttons.** A finalizer on A RimWorld of Magic's GizmoOnGUI prefix (soft, by name) that
+- **Dropped (28 November 2026, the player's pick "Drop it"; was offered 24 November, never built): Rimfolk keeping
+  another mod's broken button from blocking a pawn's other buttons.** The Continued version fixed the crash. A finalizer on A RimWorld of Magic's GizmoOnGUI prefix (soft, by name) that
   catches its TypeLoadException and lets the game draw the button its own way, so the draft button and R work with
   auto-cast on. Fragile (another mod's internals); only if the player wants auto-cast kept.
 - **Done (23 November 2026, the player's own requests; released 0.302.0): animals and creatures in the portrait
