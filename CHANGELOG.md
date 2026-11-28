@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The visitors and strangers, looked over
+
+*28 November 2026, version 0.325.0*
+
+- Fixed: carrying food out to a visitor no longer takes anyone from tending a patient, a rescue, a meal, a fire or an order you gave.
+- Fixed: a fallen raider's plea is only asked of someone a few steps away, and ending it is done there, with the colonist walking over if needed.
+- Fixed: a pet's farewell now says how it really died, and only an enemy's blow makes it a death in the fighting.
+- Fixed: a pet given to a visitor must be on the map, and a visitor's game of fetch stops as soon as the dog is needed.
+- A night by a droning generator or in a draughty bed costs some rest, and shoddy clothes wear as their lines say; two new small troubles: a bedroom fire gone out on a cold night, and boots worn through.
+- Three more offers at the gate from the herb-gatherer, the drovers and the lost traveller, more words for the colony's pets, and four callers' goods now sell at about their worth.
+
 ## The peoples' events, looked over
 
 *28 November 2026, version 0.324.0*

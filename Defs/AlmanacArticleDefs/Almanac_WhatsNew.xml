@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.325.0</version>
+        <date>28 November 2026</date>
+        <title>The visitors and strangers, looked over</title>
+        <points>
+          <li>Fixed: carrying food out to a visitor no longer takes anyone from tending a patient, a rescue, a meal, a fire or an order you gave.</li>
+          <li>Fixed: a fallen raider's plea is only asked of someone a few steps away, and ending it is done there, with the colonist walking over if needed.</li>
+          <li>Fixed: a pet's farewell now says how it really died, and only an enemy's blow makes it a death in the fighting.</li>
+          <li>Fixed: a pet given to a visitor must be on the map, and a visitor's game of fetch stops as soon as the dog is needed.</li>
+          <li>A night by a droning generator or in a draughty bed costs some rest, and shoddy clothes wear as their lines say; two new small troubles: a bedroom fire gone out on a cold night, and boots worn through.</li>
+          <li>Three more offers at the gate from the herb-gatherer, the drovers and the lost traveller, more words for the colony's pets, and four callers' goods now sell at about their worth.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.324.0</version>
         <date>28 November 2026</date>
         <title>The peoples' events, looked over</title>

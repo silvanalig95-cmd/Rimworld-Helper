@@ -960,16 +960,28 @@ most sense." So, in this order, three builds at a time:
   (`Rimfolk_Evt_PplR7_Footsore`, `HappeningWorker_PplR7Footsore`). Left: 96 older events told in the colony's age (a
   content round could give them the people's forms); `Arrivals.Visit` (`Happenings/HappeningHelpers.cs`) spawns a
   people's visitors without checking war (the peoples' callers check first). Tests: ReviewPeoplesTests.
-- **Under way (28 November 2026; the player's picks, clickable): the next two reviews, visitors and strangers, and the
-  peoples' events**, each in a worktree, in the shape of the three before (`docs/review-visitors.md`,
-  `docs/review-peoples.md`). And the catalogue of the player's mods: they run A RimWorld of Magic (Continued) by HUGINN
-  (with `huginn.rwom.core` and `huginn.rwom.integrations`) while `docs/player-mods` (7 November) lists the original; the
-  player's pick "I'll send a new collection". The collector, never kept in the repository before, was written again as
-  `Tools/Collect-ModDefs.ps1` (the game's and DLCs' Defs, every mod's About.xml, LoadFolders.xml and the Defs of the
-  folders 1.7 loads, mods.txt, ModsConfig.xml; zip to the Desktop, opened with the zip selected; tested with PowerShell 7
-  on a made-up folder and read back by `mod_pool.py`). When the zip comes: `python3 Tools/mod_pool.py <unzipped>
-  docs/player-mods <save.rws>`, then `weapon_extract.py` and `apparel_extract.py` as the README says, poolcheck, and the
-  magic auto-cast's spell names checked against the new rows.
+- **Waiting for the player (28 November 2026; their pick "I'll send a new collection"): a new catalogue of their
+  mods.** They run A RimWorld of Magic (Continued) by HUGINN (with `huginn.rwom.core` and `huginn.rwom.integrations`)
+  while `docs/player-mods` (7 November) lists the original. The collector, never kept in the repository before, was
+  written again as `Tools/Collect-ModDefs.ps1` and sent to the player (the game's and DLCs' Defs, every mod's About.xml,
+  LoadFolders.xml and the Defs of the folders 1.7 loads, mods.txt, ModsConfig.xml; zip to the Desktop, opened with the
+  zip selected; tested with PowerShell 7 on a made-up folder and read back by `mod_pool.py`, not yet on Windows
+  PowerShell 5.1). When the zip comes: `python3 Tools/mod_pool.py <unzipped> docs/player-mods <save.rws>`, then
+  `weapon_extract.py` and `apparel_extract.py` as the README says, poolcheck, and the magic auto-cast's spell names
+  checked against the new rows.
+- **Done (28 November 2026, 0.325.0; the player's pick): a review of the visitors and strangers**, in a worktree,
+  merged; `docs/review-visitors.md`, `Tools/visitors_impact_audit.py`, rows read and left in
+  `Tools/visitors_impact_skips.txt`. Callers and guests: 88 events, 250 to 253 answers (what is left flavour-only or thin
+  is refusals or work their workers do); nuisances 24 to 26, with an effect of their own 0 to 5; data callers' prices
+  outside a fair range 3 to 0. Seven fixes: `KeepOut.Fetch` takes only someone free to break off; the fallen raider's
+  plea (`Council_DlmS_FallenPlea`) only within 12 cells, the end done on the map; pet farewells read the death from the
+  combat log; `DilemmaEffect_GivePet` waits for the pet to be on the map and a pet the group can't take leaves on its
+  own; capture and "end it" greyed out for one in a break, down or away; a visitor's game of fetch stops when the dog is
+  wanted (roped, a caravan, an order); the trainer told "just a story" leaves at once. Prices: the brewer's beer 12 to
+  8, the builder's stone 60 to 90, the guide's pemmican 30 to 45, the carter's hay 100 to 150. `NuisanceDef` gained
+  `rest` and `wear` (kept small by the def's check): the generator, the draughty bed, shoddy clothes; two nuisances
+  added (the bedroom fire gone out, boots worn through), nine pet farewells and six lines for pets that fought, three
+  offers in the data callers' frame (herb-gatherer, drovers, lost traveller). Tests: ReviewVisitorsTests.
 - **Done (28 November 2026, 0.323.0; the player's go of 27 November, "more content to the already existing
   mechanics"): content round 6**, in a worktree, merged; `docs/content-round-6.md` (with the frames' counts). Four thin
   frames: dreams (281, only 62 doing more than a mood), decrees (38, none added by a content round), callers at the gate
