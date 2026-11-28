@@ -53,6 +53,8 @@
   <CC_Fam_Cause_Died>my familiar {NAME} died</CC_Fam_Cause_Died>
   <CC_Fam_Died>{NAME}, {PAWN_nameDef}'s familiar, is dead. {PAWN_nameDef} felt it die: {PAWN_possessive} mana is gone, and the loss leaves {PAWN_objective} weak in magic for a while.</CC_Fam_Died>
   <CC_Fam_Chronicle_Died>{NAME}, the familiar of {PAWN_nameDef}, died, and {PAWN_nameDef} felt it die.</CC_Fam_Chronicle_Died>
+  <CC_Fam_InspectLine>Familiar of {MAGE}</CC_Fam_InspectLine>
+  <CC_Fam_CardLine>Familiar: {NAME} ({KIND})</CC_Fam_CardLine>
   <CC_Fam_Gone>{NAME} is no longer {PAWN_nameDef}'s familiar: it isn't the colony's any more.</CC_Fam_Gone>
 
   <!-- ===================== Omens (Animals/OmenAnimals.cs): {PET} the newborn, named; {KIND} its kind; {DAY} the day kept ===================== -->

@@ -140,6 +140,10 @@ public static class CreaturePortraitTests
             C(fp.Contains("\"VSE.Passions.PassionDef\"") && fp.Contains("s.passion = Passion.None;") && fp.Contains("p.WorkTypeIsDisabled(w)") && fp.Contains("w.modContentPack.IsCoreMod") && fp.Contains("s.TotallyDisabled") && fp.Contains("RemoveHediff(h)")
               && Read("CouncilGameComponent.cs").Contains("if (ForbiddenPassions.Active) Safe(\"forbidden passions\", ForbiddenPassions.Hourly);"),
                 "(forbidden passion) found softly by name, set to none, the mood's hediff removed with the last one, looked at each hour");
+            string fam = Read("Integrations/MagicFamiliarsShown.cs");
+            C(fam.Contains("CardSections.RegisterLines(CardKind.Colonist") && fam.Contains("[HarmonyPatch(typeof(Pawn), nameof(Pawn.GetInspectString))]")
+              && fam.Contains("BondOfAnimal(a)") && fam.Contains("FamiliarOf(mage)") && fam.Contains("MagicFamiliars.On"),
+                "(familiars) the animal's panel says whose familiar it is, the mage's card names it, only while familiars are on");
         }
         return n;
     }

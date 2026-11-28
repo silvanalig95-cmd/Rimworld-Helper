@@ -31,6 +31,16 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.318.3</version>
+        <date>28 November 2026</date>
+        <title>A familiar shown where you look</title>
+        <points>
+          <li>With A RimWorld of Magic, an animal bound as a mage's familiar now says so in its selection panel ("Familiar of Myst"), and the mage's colonist card names their familiar and its kind, whether the two are near each other or apart.</li>
+          <li>The faint glow on the familiar and "a familiar near" on the mage's health tab while the two are close stay as before.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.318.2</version>
         <date>28 November 2026</date>
         <title>A forbidden passion that only weighed on someone</title>

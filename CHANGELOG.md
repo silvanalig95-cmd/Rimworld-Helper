@@ -5,6 +5,13 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## A familiar shown where you look
+
+*28 November 2026, version 0.318.3*
+
+- With A RimWorld of Magic, an animal bound as a mage's familiar now says so in its selection panel ("Familiar of Myst"), and the mage's colonist card names their familiar and its kind, whether the two are near each other or apart.
+- The faint glow on the familiar and "a familiar near" on the mage's health tab while the two are close stay as before.
+
 ## A forbidden passion that only weighed on someone
 
 *28 November 2026, version 0.318.2*

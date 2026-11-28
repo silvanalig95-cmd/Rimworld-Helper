@@ -931,6 +931,13 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (28 November 2026, 0.318.3; the player asked "what does it mean if a pawn binds an animal/pokemon as
+  familiar?", then "do i see this familiar connection somewhere?", and to the lead's offer of a lasting label: "yes,
+  please"): a familiar shown where the player looks.** `Integrations/MagicFamiliarsShown.cs`: the animal's selection
+  panel (`Patch_FamiliarInspect`, a postfix on `Pawn.GetInspectString`, off with the deeper hooks) says "Familiar of
+  {MAGE}", the mage's colonist card (`CardSections.RegisterLines`, id `familiar-colonist`) "Familiar: {NAME} ({KIND})",
+  both from `AnimalPowersBook`'s bonds, only while familiars are on; words `CC_Fam_InspectLine`, `CC_Fam_CardLine`;
+  the Almanac's Familiars section says it. Tests in CreaturePortraitTests.
 - **Done (28 November 2026, 0.318.2; the player: "yes, please fix that, thanks!"): a forbidden passion on a skill the
   colonist can't use.** `Integrations/ForbiddenPassions.cs` (found softly by `VSE.Passions.PassionDef` named
   `AS_ForbiddenPassion`; each hour in the council's hour, `HourlyPeople`): the colony's own people's forbidden passions
