@@ -331,7 +331,8 @@ namespace ColonyCouncil
         /// <summary>One of a stack from the stores into their hand, then <paramref name="then"/>.</summary>
         private static bool TakeThen(Pawn p, Thing stack, int count, Job then)
         {
-            if (p == null || then == null) return false;
+            // Drafted, in a break or on the player's order since they were sent: left as they are (OwnHappenings.Held).
+            if (p == null || then == null || !p.Spawned || OwnHappenings.Held(p)) return false;
             try
             {
                 if (stack != null && stack.Spawned && count > 0 && p.CanReserveAndReach(stack, PathEndMode.ClosestTouch, Danger.Some))

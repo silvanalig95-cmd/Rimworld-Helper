@@ -172,7 +172,7 @@
     <beast>false</beast>
     <bodiless>true</bodiless>
     <voices><li>Clear</li><li>Heat</li></voices>
-    <omens><li>StillSun</li><li>HeatHaze</li><li>Calm</li></omens>
+    <omens><li>StillSun</li><li>HeatHaze</li><li>Calm</li><li>SunShaft</li></omens>
     <lineTag>helios</lineTag>
     <nearWhen><li>Heat</li></nearWhen>
   </ColonyCouncil.GodShapeDef>
@@ -184,7 +184,7 @@
     <beast>false</beast>
     <bodiless>true</bodiless>
     <voices><li>Eclipse</li><li>Sleepless</li><li>Aurora</li></voices>
-    <omens><li>BigMoon</li><li>Dream</li><li>Calm</li></omens>
+    <omens><li>BigMoon</li><li>Dream</li><li>Calm</li><li>Moths</li></omens>
     <returns>true</returns>
     <lineTag>selene</lineTag>
     <nearWhen><li>FullMoon</li></nearWhen>
@@ -232,7 +232,7 @@
     <stranger>false</stranger>
     <beast>false</beast>
     <voices><li>Rain</li><li>Thunder</li></voices>
-    <omens><li>Croak</li><li>Earth</li><li>Calm</li></omens>
+    <omens><li>Croak</li><li>Earth</li><li>Calm</li><li>WaterRisen</li></omens>
     <rises>true</rises>
     <trueForm>ColossusToad</trueForm>
     <trueLook>Rimfolk_GodLook_Murmur</trueLook>

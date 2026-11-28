@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The review of the gods (28 November 2026; docs/review-gods.md): what someone of the colony says when they see one of
+    the three signs the review added (Source/ColonyCouncil/Gods/OnMap/GodOmensReview.cs), joined to the signs' own pool
+    (Rimfolk_Pool_GodOmenRemark, Rimfolk_GodsOnMap_Lines.xml) at startup. As there: one sentence, a person talking about
+    what they see, tagged by the sign; never whose it was.
+  -->
+
+  <ColonyCouncil.FlavorExtensionDef>
+    <defName>Rimfolk_GodR6_PoolExt_OmenRemark</defName>
+    <pool>Rimfolk_Pool_GodOmenRemark</pool>
+    <lines>
+      <plain>
+        <!-- Selene's moths at a light, at night -->
+        <li>[moths] There must be a hundred moths on that lamp, I've never seen so many.</li>
+        <li>[moths] The moths all came to the light at once, and they won't leave it.</li>
+        <li>[moths] Look at the moths round the light, pale as the moon, every one of them.</li>
+        <!-- Murmur's water standing higher at dawn, with no rain -->
+        <li>[waterrisen] The water's come up in the night, and it never rained.</li>
+        <li>[waterrisen] It stands a hand higher than yesterday, with not a drop of rain.</li>
+        <li>[waterrisen] The ground's wet right up to here this morning, and the sky was clear all night.</li>
+        <!-- Helios's shaft of sun on a gray day -->
+        <li>[sunshaft] Look, the sun's come through on just that one spot.</li>
+        <li>[sunshaft] Everything's gray except there, where the light's coming down.</li>
+        <li>[sunshaft] One beam of sun through all that cloud, and it isn't moving.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorExtensionDef>
+
+</Defs>

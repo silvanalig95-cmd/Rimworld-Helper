@@ -192,7 +192,14 @@ namespace ColonyCouncil
             // 54. Everything going silent at once: everyone's next hour of work goes better.
             ["CC_GodM_Saw_Silence"] = S(TouchEffect.StillHour),
             // 55. A work named for the god by the one who made it: the piece is admired more.
-            ["CC_GodO_Saw_Name"] = S(TouchEffect.Admired)
+            ["CC_GodO_Saw_Name"] = S(TouchEffect.Admired),
+            // ---- The review of the gods (28 November 2026): the three signs it added (Gods/OnMap/GodOmensReview.cs) ----
+            // 56. Pale moths at one of the colony's lights all night: the one who watched them is inspired.
+            ["CC_GodM_Saw_Moths"] = N(TouchEffect.Inspire),
+            // 57. The water standing higher at dawn with no rain: flowers come up in a ring where it stood.
+            ["CC_GodM_Saw_WaterRisen"] = S(TouchEffect.Bloom),
+            // 58. A shaft of sun on a gray day: the crops in the open grow a day ahead, and solar panels give their most until sundown.
+            ["CC_GodM_Saw_SunShaft"] = S(TouchEffect.LongNoon)
         };
 
         /// <summary>

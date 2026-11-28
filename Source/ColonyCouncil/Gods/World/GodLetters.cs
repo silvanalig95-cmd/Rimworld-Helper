@@ -103,8 +103,10 @@ namespace ColonyCouncil
                 bool scoffer = mine == null || ModsConfig.IdeologyActive && writer.ideo != null && writer.ideo.Certainty < 0.25f;
                 if (!GodWorldMath.Slights(rival, scoffer, s.purpose == "condolences", Rand.Value)) return;
                 string key = (rival ? "CC_GW_Slight_Rival_" : "CC_GW_Slight_Scoff_") + Rand.RangeInclusive(0, 2);
-                s.more.Add(key.Translate(theirs.name.Named("THEIRGOD"), (mine?.name ?? "").Named("OURGOD"), (theirs.epithet ?? "").Named("THEIREPITHET")).Resolve());
-                s.outcomes.Add("CC_GW_Slight_Note".Translate(writer.LabelShort.Named("WRITER"), theirs.name.Named("GOD"), (n.townName ?? n.faction.Name).Named("TOWN")).Resolve());
+                // The colony's writer names both gods as the colony knows them (Worship.Called), never by a name the colony hasn't heard.
+                string theirName = Worship.Called(theirs, writer), ourName = mine == null ? "" : Worship.Called(mine, writer);
+                s.more.Add(key.Translate(theirName.Named("THEIRGOD"), ourName.Named("OURGOD"), (theirs.epithet ?? "").Named("THEIREPITHET")).Resolve());
+                s.outcomes.Add("CC_GW_Slight_Note".Translate(writer.LabelShort.Named("WRITER"), theirName.Named("GOD"), (n.townName ?? n.faction.Name).Named("TOWN")).Resolve());
                 book.Add(new GodDoing
                 {
                     kind = "slight", god = theirs.id, other = mine?.id ?? -1, faction = n.faction, who = writer, count = l.id, home = Homes.KeyOf(GodWorld.HomeOr(writer.MapHeld)),
@@ -138,7 +140,7 @@ namespace ColonyCouncil
                     d.done = true;
                     return;
                 }
-                s.outcomes.Add("CC_GW_Slight_Taken".Translate(f.Name.Named("PEOPLE"), g.name.Named("GOD"), (d.what ?? "?").Named("WRITER")).Resolve());
+                s.outcomes.Add("CC_GW_Slight_Taken".Translate(f.Name.Named("PEOPLE"), Worship.Called(g).Named("GOD"), (d.what ?? "?").Named("WRITER")).Resolve());
                 // Read: the answer that says so is on its way back; kept until it is in (the road back is days at most).
                 d.stage = GoodwillReasonMath.SlightRead;
                 d.faction = f;

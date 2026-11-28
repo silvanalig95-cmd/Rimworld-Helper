@@ -342,7 +342,7 @@ namespace ColonyCouncil
                 tags.AddRange(GodWays.Tags(god));
                 string line = Flavor.FromPool(MythPool, teller, null, null, tags.ToArray());
                 if (line.NullOrEmpty()) return false;
-                var args = new List<NamedArgument>(Gods.Args(god)) { teller.Named("PAWN"), (other?.name ?? "").Named("OTHER") };
+                var args = new List<NamedArgument>(Worship.ArgsCalled(god, teller)) { teller.Named("PAWN"), (other == null ? "" : Worship.Called(other, teller)).Named("OTHER") };
                 string said = line.Formatted(args.ToArray()).Resolve().CapitalizeFirst();
                 // together: the two are at their meal side by side (Together.Can above); the line is said to the listener.
                 if (!Speech.Say(teller, said, listener)) return false;

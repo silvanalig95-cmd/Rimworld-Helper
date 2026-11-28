@@ -118,7 +118,17 @@ namespace ColonyCouncil
         /// <summary>Revel: a sweet smoke drifting through the colony where nothing is burning.</summary>
         SweetSmoke,
         /// <summary>Revel: a cup or a bottle in the stores found tipped over and wet, and nobody touched it.</summary>
-        Spilled
+        Spilled,
+
+        // ---- The review of the gods (28 November 2026; Gods/OnMap/GodOmensReview.cs), added last: one more own sign each for
+        // the three whose signs were mostly the ones any god may send ----
+
+        /// <summary>Selene: at night, pale moths at one of the colony's lights, far more than anyone has seen.</summary>
+        Moths,
+        /// <summary>Murmur: at dawn the water stands higher in the wet ground or the well, though no rain fell.</summary>
+        WaterRisen,
+        /// <summary>Helios: on a gray day, a single shaft of sun comes down onto one place in the open and stays a while.</summary>
+        SunShaft
     }
 
     /// <summary>How the colony answered the stranger at the gate.</summary>
@@ -321,7 +331,8 @@ namespace ColonyCouncil
             OmenKind.Shadow or OmenKind.VastShadow => 11 + Mod(seed, 3),
             OmenKind.StillSun => 15 + Mod(seed, 2),
             OmenKind.HeatHaze => 12 + Mod(seed, 3),
-            OmenKind.Star or OmenKind.WhiteFigure or OmenKind.Dark or OmenKind.BigMoon => 21 + Mod(seed, 3),
+            OmenKind.Star or OmenKind.WhiteFigure or OmenKind.Dark or OmenKind.BigMoon or OmenKind.Moths => 21 + Mod(seed, 3),
+            OmenKind.WaterRisen => 6 + Mod(seed, 2),
             OmenKind.Croak => 17 + Mod(seed, 4),
             OmenKind.Candle or OmenKind.Flicker or OmenKind.Unpowered or OmenKind.Whisper => 19 + Mod(seed, 3),
             OmenKind.FrostWriting or OmenKind.Earth => 7 + Mod(seed, 2),

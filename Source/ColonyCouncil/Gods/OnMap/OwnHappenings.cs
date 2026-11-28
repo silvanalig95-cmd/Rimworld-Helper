@@ -607,10 +607,17 @@ namespace ColonyCouncil
             CouncilGameComponent.Instance?.journals?.WriteText(p, key.Translate(args).Resolve());
         }
 
-        /// <summary>A job given now (interrupting what they were doing, as the gods' moments do), safely.</summary>
+        /// <summary>
+        /// Someone a happening may not move now: drafted (in the player's hands), in a mental break, down, or doing what the
+        /// player ordered. A scene that began while they were free checks again at every step, for the player may have
+        /// drafted them since (the review of the gods, 28 November 2026: the wounded thrumbo's tender, the feast's table).
+        /// </summary>
+        public static bool Held(Pawn p) => p != null && (p.Drafted || p.InMentalState || p.Downed || (p.CurJob?.playerForced ?? false));
+
+        /// <summary>A job given now (interrupting what they were doing, as the gods' moments do), safely; never to one <see cref="Held"/>.</summary>
         public static bool Job(Pawn p, Job j)
         {
-            if (p == null || j == null || !p.Spawned) return false;
+            if (p == null || j == null || !p.Spawned || Held(p)) return false;
             try
             {
                 p.jobs.StartJob(j, JobCondition.InterruptForced, null, true);

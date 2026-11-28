@@ -66,7 +66,8 @@ namespace ColonyCouncil
         {
             base.AddArgs(args);
             var g = God1;
-            args.AddRange(g != null ? Gods.Args(g) : new[] { "".Named(GodsMath.God), "".Named(GodsMath.Epithet), "".Named(GodsMath.Of) });
+            // The colony's own name for each god, as {GOD2} and {GOD3} already are (Worship.ArgsCalled).
+            args.AddRange(g != null ? Worship.ArgsCalled(g) : new[] { "".Named(GodsMath.God), "".Named(GodsMath.Epithet), "".Named(GodsMath.Of) });
             args.Add(Worship.Called(God2).Named("GOD2"));
             args.Add(Worship.Called(God3).Named("GOD3"));
             args.Add((g != null ? Worship.ShrineOf(g) : Worship.ShrineWord).Named("PLACE"));

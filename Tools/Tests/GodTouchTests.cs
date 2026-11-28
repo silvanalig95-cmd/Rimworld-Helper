@@ -264,7 +264,8 @@ public static class GodTouchTests
         D(keys.Count >= 189, $"the occurrences the colony's book can record are all read ({keys.Count})");
         foreach (var k in table.Keys) D(keys.Contains(k), k + ": its words are in the Keyed files");
         foreach (var k in GodImpactMath.LeftAsTheyAre.Concat(GodImpactMath.NotCovered)) D(keys.Contains(k), k + ": its words are in the Keyed files");
-        D(table.Count == 68, $"the 55 proposals cover 68 occurrences ({table.Count})");
+        // The 55 proposals' 68, and the review of the gods' three signs (28 November 2026: the moths, the water risen, the shaft of sun).
+        D(table.Count == 71, $"the 55 proposals cover 68 occurrences, the review's signs 3 more ({table.Count})");
         D(table.Values.All(v => v.effect != TouchEffect.None), "each maps to exactly one effect, never none");
         D(GodImpactMath.LeftAsTheyAre.Length == 21 && GodImpactMath.LeftAsTheyAre.All(k => !GodImpactMath.Has(k) && !GodTouchMath.HasOwnEffect(k)),
             "the ones left as they are map to none: the moods, and the touch's random effect as before");
@@ -273,8 +274,8 @@ public static class GodTouchTests
         var accounted = table.Keys.Concat(GodImpactMath.LeftAsTheyAre).Concat(GodImpactMath.NotCovered).ToList();
         D(accounted.Count == accounted.Distinct().Count(), "the table, the ones left and the rest never overlap");
         var none = keys.Where(k => !GodTouchMath.InOwnEffectKeys(k)).ToList();
-        D(none.Count == 98 && none.All(accounted.Contains) && accounted.All(none.Contains),
-            $"every one of the 98 with no effect of its own is in the table, left as it is, or not an occurrence the proposals touch ({none.Count})");
+        D(none.Count == 101 && none.All(accounted.Contains) && accounted.All(none.Contains),
+            $"every one of the 101 with no effect of its own (the 98, and the review's three signs) is in the table, left as it is, or not an occurrence the proposals touch ({none.Count})");
 
         // Every effect the table uses is done, and the place effects need no one to have seen them.
         foreach (var e in table.Values.Select(v => v.effect).Distinct())

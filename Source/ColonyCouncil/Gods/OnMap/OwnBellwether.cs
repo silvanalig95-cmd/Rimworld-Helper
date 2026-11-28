@@ -30,6 +30,9 @@ namespace ColonyCouncil
         public const string WaitThought = "Rimfolk_Thought_GodOwnMadeHimWait";
         public const string HurtIncident = "Rimfolk_Evt_GodHurtBeast";
 
+        /// <summary>What the one who tends the wounded beast learns of doctoring by it (the review of the gods, 28 November 2026).</summary>
+        public const float TendLesson = 200f;
+
         private static God Him => OwnHappenings.God(Key);
 
         private static int Now => OwnHappenings.Now;
@@ -412,6 +415,8 @@ namespace ColonyCouncil
             float skill = p.skills?.GetSkill(SkillDefOf.Medicine) is SkillRecord r && !r.TotallyDisabled ? r.Level : 0;
             foreach (var h in t.health.hediffSet.hediffs.OfType<Hediff_Injury>().Where(h => h.TendableNow()).ToList())
                 h.Tended(Mathf.Clamp01(0.3f + 0.04f * skill + Rand.Range(-0.1f, 0.1f)), 1f);
+            // The tending is the game's own doctoring, and teaches as it does (the review of the gods: "tend its wounds").
+            p.skills?.Learn(SkillDefOf.Medicine, TendLesson);
             b.tended = true;
             b.tender = null;
             b.hurt = null;

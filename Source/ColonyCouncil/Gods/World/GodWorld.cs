@@ -155,7 +155,8 @@ namespace ColonyCouncil
                 string line = Flavor.FromPool(Pool, p, null, null, tags.ToArray());
                 if (line.NullOrEmpty()) return false;
                 var args = new List<NamedArgument> { p.Named("PAWN") };
-                if (g != null) args.AddRange(Gods.Args(g));
+                // Said by one of the colony: the god by the name they know it by (Worship.ArgsCalled).
+                if (g != null) args.AddRange(Worship.ArgsCalled(g, p));
                 if (more != null) args.AddRange(more);
                 return Speech.Say(p, line.Formatted(args.ToArray()).Resolve().CapitalizeFirst());
             }
