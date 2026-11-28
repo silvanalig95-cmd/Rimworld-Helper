@@ -106,7 +106,8 @@ namespace ColonyCouncil
         public static string Name(God g)
         {
             var own = GodWorshipDef.For(g)?.festivalName;
-            return (own.NullOrEmpty() ? ("CC_Wsh_Festival_" + g.domain).Translate() : (TaggedString)own).Formatted(Gods.Args(g)).Resolve();
+            // On the colony's calendar: by the colony's own name for the god (Worship.ArgsCalled).
+            return (own.NullOrEmpty() ? ("CC_Wsh_Festival_" + g.domain).Translate() : (TaggedString)own).Formatted(Worship.ArgsCalled(g)).Resolve();
         }
 
         /// <summary>The dishes and rite a god's festival is kept with, in a phrase: its own, else its domain's ("bread broken and the first sheaf burned").</summary>

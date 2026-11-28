@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!--
+    The review of the gods (28 November 2026; docs/review-gods.md). The colony's book of the gods keeps the three signs it
+    added in the words of who saw them (Gods/OnMap/GodOmensReview.cs), as it keeps the others: what was seen, never whose.
+  -->
+  <CC_GodM_Saw_Moths>{WHO} saw pale moths gather at a light at {HOME} in the night, more of them than anyone had seen before, and stay there.</CC_GodM_Saw_Moths>
+  <CC_GodM_Saw_WaterRisen>{WHO} found the water standing higher in the wet ground at {HOME} at dawn, though no rain had fallen in the night.</CC_GodM_Saw_WaterRisen>
+  <CC_GodM_Saw_SunShaft>{WHO} saw a single shaft of sun come down through the gray sky at {HOME} and rest on one place a long while.</CC_GodM_Saw_SunShaft>
+
+</LanguageData>

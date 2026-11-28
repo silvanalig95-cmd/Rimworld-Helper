@@ -85,7 +85,8 @@ namespace ColonyCouncil
                 case OmenKind.Sand: return MogsWays.Tombs(map, true).Count > 0 || Open(map).IsValid;
                 case OmenKind.Bleat: return EmptyRoom(map) != null;
                 case OmenKind.Spilled: return RevelGoods.HeldDrink(map) != null;
-                default: return true;
+                // The review's three (GodOmensReview.cs).
+                default: return CanGodR6(map, k);
             }
         }
 
@@ -652,7 +653,8 @@ namespace ColonyCouncil
                     return true;
                 }
             }
-            return false;
+            // The review's three (GodOmensReview.cs): the moths, the water risen, the shaft of sun.
+            return ShowGodR6(map, kind, out at, out speaker);
         }
 
         /// <summary>Wet ground near the colony's people (a marsh, mud, shallow water) or a well of the colony's, or none.</summary>

@@ -508,6 +508,15 @@ namespace ColonyCouncil
         }
 
         /// <summary>
+        /// {GOD}, {GODEPITHET} and {GODOF} in the colony's own words: {GOD} the name its book keeps the god under, or the
+        /// speaker's (<see cref="Called"/>), never the god's own name where the colony knows it by another (the review of the
+        /// gods, 28 November 2026: a council question said "Hollin" to a colony that knows her only as the Green Lady).
+        /// </summary>
+        public static NamedArgument[] ArgsCalled(God g, Pawn speaker = null) => g == null
+            ? new NamedArgument[0]
+            : new[] { Called(g, speaker).Named(GodsMath.God), (g.epithet ?? "").Named(GodsMath.Epithet), Gods.GodOf(g).Named(GodsMath.Of) };
+
+        /// <summary>
         /// Who was behind something that happened, as a card may say it (the core's rule, Gods.CardName): plainly where the
         /// colony knows it was this god (it has seen the god act plainly, or it knows the sign), else "some say" where someone
         /// of the colony saw it (<paramref name="seen"/>, else whoever was near the cell), else nothing: what happened stays
