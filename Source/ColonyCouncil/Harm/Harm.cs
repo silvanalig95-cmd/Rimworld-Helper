@@ -290,6 +290,8 @@ namespace ColonyCouncil
                 case "worstNight": return ArcTracker.On;
                 case "firstSteps": return ArcTracker.On;
                 case "workingWrong": return ArcTracker.On && Contests.MagicLoaded;
+                // The ground that stays and the mountain that wakes (Nature/Ground*.cs).
+                case "ground": return s.groundMarks || s.wakingMountain;
                 // The decrees, Rimfolk's events (dangers on the map, the hail) and the peoples' callers are always in the game.
                 default: return true;
             }

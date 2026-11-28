@@ -236,6 +236,15 @@ namespace ColonyCouncil
         /// </summary>
         public static readonly HarmKind StoryFight = new HarmKind("storyFight", "a fight a storyline brings to the colony (quests)", "quests", 0.006f, false);
 
+        // ---------------- The ground that stays and the mountain that wakes (28 November 2026) ----------------
+
+        /// <summary>
+        /// The ground moving under someone of the colony (Nature/GroundMarks.cs, GroundWaking.cs): caught at the edge of a
+        /// landslide, falling as a sinkhole opens, a stone off the rock face in the waking mountain's tremors. Only who is
+        /// there when it happens, each a few times in a decade at most.
+        /// </summary>
+        public static readonly HarmKind Ground = new HarmKind("ground", "the ground moving under someone (geology)", "ground", 0.004f, false);
+
         /// <summary>Every kind, in the order they were built.</summary>
         public static readonly HarmKind[] All =
         {
@@ -255,7 +264,8 @@ namespace ColonyCouncil
             UnionDrill,
             GodBeasts, GodLightning, GodPrice, GodRiddle, GodDead, GodBurn, GodCup,
             Uncanny,
-            Outlaw, CampNight, StoryFight
+            Outlaw, CampNight, StoryFight,
+            Ground
         };
 
         public static HarmKind Of(string key)

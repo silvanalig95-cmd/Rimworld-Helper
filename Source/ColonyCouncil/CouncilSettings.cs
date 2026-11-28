@@ -183,6 +183,10 @@ namespace ColonyCouncil
         public CampCrowd campCrowd = CampCrowd.Usual;
         /// <summary>Missions a neighbor offers show up in the game's Quests tab, to accept or let expire there (else as a letter).</summary>
         public bool missionsAsQuests = true;
+        /// <summary>The ground that stays (Nature/GroundMarks.cs): quakes leave a cave, a spring, a fissure or a scree slope; heavy rain a landslide; a wet season a sinkhole.</summary>
+        public bool groundMarks = true;
+        /// <summary>A mountain that wakes (Nature/GroundWaking.cs): on a land of mountains or lava, once in many years, days of tremors, then ash, then rich soil.</summary>
+        public bool wakingMountain = true;
         public float daysBetweenWorldEvents = 4f;
         /// <summary>Rimfolk's colony events join the storyteller's own random events (else they come on Rimfolk's own timer).</summary>
         public bool eventsFromStoryteller = true;
@@ -1038,6 +1042,8 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref camps, "camps", true);
             Scribe_Values.Look(ref campCrowd, "campCrowd", CampCrowd.Usual);
             Scribe_Values.Look(ref missionsAsQuests, "missionsAsQuests", true);
+            Scribe_Values.Look(ref groundMarks, "groundMarks", true);
+            Scribe_Values.Look(ref wakingMountain, "wakingMountain", true);
             Scribe_Values.Look(ref daysBetweenWorldEvents, "daysBetweenWorldEvents", 4f);
             Scribe_Values.Look(ref eventsFromStoryteller, "eventsFromStoryteller", true);
             Scribe_Values.Look(ref storytellerEventWeight, "storytellerEventWeight", 1f);

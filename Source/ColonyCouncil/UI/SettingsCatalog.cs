@@ -452,6 +452,9 @@ namespace ColonyCouncil
             Choice("campCrowd", "CC_Settings_CampCrowd", "CC_Settings_CampCrowd_Tip", "CC_CampCrowd_", "CC_SetNote_CampCrowd_", new[] { "Rare", "Usual", "Many", "Crowded" }, "camps");
             Toggle("missionsAsQuests", "CC_Settings_MissionsAsQuests", "CC_SetNote_MissionsAsQuests", "worldEvents");
             Toggle("eventsFromStoryteller", "CC_Settings_EventsFromStoryteller", "CC_SetNote_EventsFromStoryteller", "worldEvents");
+            // The ground that stays and the mountain that wakes (Nature/Ground*.cs): the land's own, beside the weather.
+            Toggle("groundMarks", "CC_Settings_GroundMarks", "CC_SetNote_GroundMarks");
+            Toggle("wakingMountain", "CC_Settings_WakingMountain", "CC_SetNote_WakingMountain");
             Section("CC_Settings_WorldSituationsHeader");
             Toggle("worldSituations", "CC_Settings_WorldSituations", "CC_SetNote_WorldSituations");
             Toggle("factionMemory", "CC_Settings_FactionMemory", "CC_SetNote_FactionMemory");

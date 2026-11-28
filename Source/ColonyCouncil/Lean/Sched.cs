@@ -171,7 +171,15 @@ namespace ColonyCouncil
         /// cast, and the casts asked for followed (a hunt kept going, Shadow Strike's draft let go).
         /// </summary>
         public const int RareMagicAutoCast = 103;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic, RareRideOut, RareMagicAutoCast };
+
+        /// <summary>
+        /// The ground of each home map (Nature/GroundMap.cs): while the mountain is awake, a tremor now and then, its smoke
+        /// and ash; on the pass's first tick of the hour the quakes watched and their marks, a sinkhole opening, the ash
+        /// turning the soil; the rain's and the day's looks in the first hour of the day. (61, first asked for, is the
+        /// calendar's hourly tick, 1311, on the cycle.)
+        /// </summary>
+        public const int RareGround = 206;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic, RareRideOut, RareMagicAutoCast, RareGround };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;
