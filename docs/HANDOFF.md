@@ -934,6 +934,16 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (28 November 2026, catalogue only; the player's pick "Now, alongside"): looks for creature waves 3 and 4**, in a
+  worktree, merged. `docs/portrait-art/catalogue/creatures.csv`: 354 of 360 in wave 3, 263 of 270 in wave 4 (835 with a
+  look in all, 218 before), from each mod's own defs and textures where public (GitHub), else its Workshop pages and
+  guides, else the real animal; the source in `notes`. Thirteen without a look, each saying why (ReGrowth's hemolope,
+  neutrolope, rimclaw, owlbeast, toxbeaver, toxirrel; Rimsenal Spacer's seven mechanoids: no public source, no named
+  pictures). Seven rows now `male;female` with their own looks (AEXP_Lion, VAEWaste_Toxlion, VAEWaste_Wastedeer,
+  VAERoy_Crane, VAERoy_Pheasant, AA_SpinedGow, DevDesigner_AncientDeer). Wave 5 (Pokémon) left alone. Noticed in waves
+  1 and 2, not changed: pphhyy_SanguineDeer's look (a blood-red deer) may not match the Workshop picture (a small black
+  furry creature with fangs); GR_Catalope's and GR_Chickenlope's fuel sacks are yellow in Vanilla Genetics Expanded's
+  textures, not reddish-orange. A line for the Studio was given.
 - **The player's answers of 28 November 2026** (asked through clickable questions; the player: "Do you have anything that
   you need from me ... If you can present these information you need from me in an interactive way where I can easily
   just click ... plan for me when we want to continue ... I just generally want to ... do content updates. So first,
