@@ -1,0 +1,347 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 6 (docs/content-round-6.md, R6-K1 to R6-K7): seven more decrees, each doing something the game keeps.
+    Everything is read from the decree's own fields by Decrees/DecreeWork.cs, so none needs code of its own:
+    practice and a hediff (first-aid lessons, days with the animals), a hediff alone (evenings at the bench), a share of the
+    stores sent each morning to the people a world event hits, for their goodwill (medicine for the sick, wood for the
+    neighbours), and work set going on the map each morning by the decrees' day (mending days: a work party at the damaged
+    buildings; a fishing season: a work party at the colony's fishing zones, with Odyssey or Vanilla Fishing Expanded).
+
+    Every age declares them in its own form (the description, and the era-tagged lines for and against). Evenings at the
+    bench never run with a building season or a harvest push (DecreeMath.Apart). Text is plain (decrees). Moods in
+    Defs/ThoughtDefs/Rimfolk_Round6_Thoughts.xml, effects on the body in Defs/HediffDefs/Rimfolk_Round6_Hediffs.xml.
+  -->
+
+  <!-- ============ R6-K1. First-aid lessons ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_DecreeR6_FirstAid</defName>
+    <kind>order</kind>
+    <label>first-aid lessons</label>
+    <description>Five days of first-aid lessons. The colony's doctors show everyone else how to clean and bind a wound, set a splint and keep someone warm until help comes: everyone who can tend practises medicine a little every waking hour, and tending is 5% better and 10% quicker, but other work is 4% slower. A tribe's healer shows the herbs and the binding, a village's barber-surgeon the splint and the needle, an industrial colony holds a first-aid course and a spacer colony a medical drill; the lessons are the same. Those with a passion for medicine and the kind like it; the lazy dislike it.</description>
+    <requestWhen><li>Wounded</li><li>Illness</li></requestWhen>
+    <neededWhen><li>RecentThreat</li></neededWhen>
+    <order>50</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>14</cooldownDays>
+    <ways><mercy>2</mercy><toil>1</toil></ways>
+    <hediff>Rimfolk_DecreeR6_FirstAid</hediff>
+    <thought>Rimfolk_DecreeR6_FirstAid</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <practiceSkills><li>Medicine</li></practiceSkills>
+    <practiceXpPerHour>15</practiceXpPerHour>
+    <reactions>
+      <li><passion>Medicine</passion><reaction>Like</reaction></li>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Dislike</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone who can tend practises medicine a little every waking hour.</li>
+      <li>Tending is 5% better and 10% quicker; other work is 4% slower.</li>
+      <li>Those with a passion for medicine and the kind like it; the lazy dislike it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>If our doctor goes down in the next fight, who stops the bleeding?</li>
+        <li>[tribal] Everyone should know which leaves to put on a wound, not only the healer.</li>
+        <li>[medieval] Let the barber-surgeon show us how to set a splint, and we'll all sleep easier.</li>
+        <li>[industrial] A first-aid course, a week of it, and everyone knows how to use a tourniquet.</li>
+        <li>[spacer] Basic trauma care for everyone, the way every ship's crew learns it.</li>
+      </plain>
+      <warm><li>I want to be able to help if one of you gets hurt.</li></warm>
+      <blunt><li>One doctor isn't enough, so teach the rest of us.</li></blunt>
+      <cold><li>Spreading a skill across the colony is cheaper than losing someone to a wound nobody could close.</li></cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>That's the doctor's job, and the rest of us have our own.</li>
+        <li>An hour a day of bandages, and the fields don't get weeded.</li>
+      </plain>
+      <blunt><li>I'm not touching anyone's wounds.</li></blunt>
+      <gloomy><li>We'll learn it all and still lose people.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ R6-K2. Days with the animals ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_DecreeR6_Beasts</defName>
+    <kind>stores</kind>
+    <label>days with the animals</label>
+    <description>Six days given to the colony's animals. Everyone who can handle animals practises a little every waking hour; taming is 10% likelier to work, training 15% likelier, and milking, shearing and gathering eggs bring in 5% more; other work is 5% slower. A tribe spends the time on its beast-lore, a village on breaking in the young stock, an industrial colony runs a dog school and a spacer colony behaviour training; the work with the animals is the same. Those with a passion for animals love it and the kind like it; the lazy dislike it, and those whose ideoligion holds keeping animals wrong hate it.</description>
+    <requestWhen><li>Plenty</li><li>ColonyHappy</li></requestWhen>
+    <order>51</order>
+    <durationDays>6</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><toil>1</toil><mercy>1</mercy></ways>
+    <hediff>Rimfolk_DecreeR6_Beasts</hediff>
+    <thought>Rimfolk_DecreeR6_Beasts</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <practiceSkills><li>Animals</li></practiceSkills>
+    <practiceXpPerHour>15</practiceXpPerHour>
+    <reactions>
+      <li><beliefs><li>NoRanching</li><li>NoPets</li></beliefs><reaction>Hate</reaction></li>
+      <li><passion>Animals</passion><reaction>Love</reaction></li>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Dislike</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Everyone who can handle animals practises a little every waking hour.</li>
+      <li>Taming 10% likelier to work, training 15% likelier, and milking, shearing and gathering eggs bring in 5% more; other work is 5% slower.</li>
+      <li>Those with a passion for animals love it and the kind like it; the lazy dislike it, and those whose ideoligion holds keeping animals wrong hate it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>Half the animals here only come to one of us, and that's no good if they're away.</li>
+        <li>[tribal] Let everyone learn the beast-lore, as the children of my people did.</li>
+        <li>[medieval] The young stock want breaking in before the spring, and it needs more than one pair of hands.</li>
+        <li>[industrial] A week of dog school, and the animals will come when they're called.</li>
+        <li>[spacer] The animals need handling every day or they forget what they've learned.</li>
+      </plain>
+      <warm><li>A few quiet days with the animals would do us all good, not just them.</li></warm>
+      <cheerful><li>A whole week at the pens, I can't wait.</li></cheerful>
+      <cold><li>Trained animals haul, guard and give more, so a week of practice pays for itself.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>I didn't come here to chase goats around a pen.</li></plain>
+      <blunt><li>The animals are fine, so leave them be.</li></blunt>
+      <gloomy><li>I'll get kicked for my trouble, you'll see.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ R6-K3. Evenings at the bench ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_DecreeR6_Bench</defName>
+    <kind>work</kind>
+    <label>evenings at the bench</label>
+    <description>Eight days of indoor work while the land is cold. The colony puts its hours into making things: work at the benches (smithing, tailoring, stonecutting and the like) is 20% quicker, while building, mining and the fields are 10% slower. A tribe sews hides and weaves baskets in its winter camp, a village spins, carves and mends by the fire, an industrial colony runs extra shifts in the workshop and a spacer colony a fabrication run; the work is the same. Never together with a building season or a harvest push. Those with a passion for crafting and the industrious like it; those with a passion for growing and the lazy dislike it.</description>
+    <requestWhen><li>Winter</li></requestWhen>
+    <order>52</order>
+    <durationDays>8</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><toil>2</toil><tradition>1</tradition></ways>
+    <hediff>Rimfolk_DecreeR6_Bench</hediff>
+    <thought>Rimfolk_DecreeR6_Bench</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><passion>Crafting</passion><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>1</degree><reaction>Like</reaction></li>
+      <li><passion>Plants</passion><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Work at the benches (smithing, tailoring, stonecutting and the like) is 20% quicker.</li>
+      <li>Building, mining and the fields are 10% slower.</li>
+      <li>Those with a passion for crafting and the industrious like it; those with a passion for growing and the lazy dislike it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>The fields are frozen and the work orders are piling up, so let's all go to the benches.</li>
+        <li>[tribal] The winter camp is when the hides get sewn and the baskets made.</li>
+        <li>[medieval] Winter evenings are for the spindle and the bench, as they always were.</li>
+        <li>[industrial] Put on extra shifts in the workshop until the thaw.</li>
+        <li>[spacer] A fabrication run while there's nothing to do outside.</li>
+      </plain>
+      <warm><li>A warm workshop full of people making things is the best place to spend a cold evening.</li></warm>
+      <cheerful><li>I've got three things half-made and a week would finish all of them.</li></cheerful>
+      <cold><li>Outdoor work is slow in the cold anyway, so move the hours to where they count.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>Eight days indoors at a bench, and the walls still need mending.</li></plain>
+      <blunt><li>I'm no good at a bench, so let me get on with the digging.</li></blunt>
+      <gloomy><li>A week of sawdust and cold fingers.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ R6-K4. Medicine for the sick ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_DecreeR6_MedicineSent</defName>
+    <kind>world</kind>
+    <label>medicine for the sick</label>
+    <description>Six days of sending medicine to the sick. While a sickness goes round the region (a plague among the people, or a sickness in the herds), each morning a little of the colony's medicine (1 to 3, the plainest first) goes to the people the sickness hits hardest, who gain 3 goodwill toward the colony each day it reaches them. A tribe sends a runner with bundles of herbs, a village its physician's chest, an industrial colony a crate of supplies and a spacer colony medical kits; what goes is the colony's own medicine. Only while such a sickness runs and the colony has medicine to spare. The kind love it and those with a passion for medicine like it; the greedy dislike it.</description>
+    <situationKinds><li>sickness</li></situationKinds>
+    <requestWhen><li>Situation</li></requestWhen>
+    <order>53</order>
+    <durationDays>6</durationDays>
+    <cooldownDays>20</cooldownDays>
+    <ways><generosity>4</generosity><mercy>3</mercy></ways>
+    <thought>Rimfolk_DecreeR6_MedicineSent</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <take><what>medicine</what><share>0.1</share><min>1</min><max>3</max></take>
+    <goodwillPerDay>3</goodwillPerDay>
+    <goodwillTo>Situation</goodwillTo>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Love</reaction></li>
+      <li><passion>Medicine</passion><reaction>Like</reaction></li>
+      <li><tags>devout</tags><reaction>Like</reaction></li>
+      <li><trait>Greedy</trait><reaction>Dislike</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each morning a little of the colony's medicine (1 to 3, the plainest first) goes to the people the sickness hits hardest, who gain 3 goodwill toward the colony.</li>
+      <li>Only while a sickness goes round the region and the colony has medicine to spare.</li>
+      <li>The kind love it and those with a passion for medicine like it; the greedy dislike it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>They're burying people down the road every day, and we have medicine on the shelf.</li>
+        <li>[tribal] Send the runner with the herb bundles, as many as we can spare.</li>
+        <li>[medieval] Open the physician's chest for them, a little each morning.</li>
+        <li>[industrial] A crate of supplies each day until the sickness passes.</li>
+        <li>[spacer] We have the kits and they don't, so send them.</li>
+      </plain>
+      <warm><li>If it were us, I'd want someone to do the same.</li></warm>
+      <cold><li>A few doses now buys a people's goodwill for years.</li></cold>
+    </support>
+    <oppose>
+      <plain>
+        <li>And when the sickness reaches us, what do we treat it with?</li>
+        <li>Medicine is the last thing we should give away.</li>
+      </plain>
+      <blunt><li>It's our medicine for our sick, so keep it.</li></blunt>
+      <gloomy><li>We'll send it all away, and then the fever will come here.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ R6-K5. Wood for the neighbours ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_DecreeR6_WoodSent</defName>
+    <kind>world</kind>
+    <label>wood for the neighbours</label>
+    <description>Seven days of sending wood. While a town of the region rebuilds after a fire, a flood or a raid, or a hard winter lies over the region, each morning a share of the colony's wood (10 to 40) goes to the people who need it most, who gain 2 goodwill toward the colony each day it reaches them. A tribe drags it there on sleds, a village sends a cart, an industrial colony a truck and a spacer colony a hauler; what goes is the colony's own cut wood. Only while such a hard time lasts and the colony has wood to spare. The kind like it; the greedy dislike it.</description>
+    <situationKinds><li>rebuild</li><li>townraid</li><li>weather</li></situationKinds>
+    <requestWhen><li>Situation</li></requestWhen>
+    <order>54</order>
+    <durationDays>7</durationDays>
+    <cooldownDays>20</cooldownDays>
+    <ways><generosity>4</generosity><mercy>1</mercy></ways>
+    <thought>Rimfolk_DecreeR6_WoodSent</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <take><what>WoodLog</what><share>0.08</share><min>10</min><max>40</max></take>
+    <goodwillPerDay>2</goodwillPerDay>
+    <goodwillTo>Situation</goodwillTo>
+    <reactions>
+      <li><trait>Kind</trait><reaction>Like</reaction></li>
+      <li><tags>devout</tags><reaction>Like</reaction></li>
+      <li><trait>Greedy</trait><reaction>Dislike</reaction></li>
+      <li><trait>Psychopath</trait><reaction>Neutral</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each morning a share of the colony's wood (10 to 40) goes to the people who need it most, who gain 2 goodwill toward the colony.</li>
+      <li>Only while a town of the region rebuilds after a fire, a flood or a raid, or a hard winter lies over the region, and the colony has wood to spare.</li>
+      <li>The kind like it; the greedy dislike it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>They have no roofs and no firewood, and we have a full woodpile.</li>
+        <li>[tribal] Load the sleds and send them over the hill.</li>
+        <li>[medieval] A cart of timber a day would see their houses roofed before the snow.</li>
+        <li>[industrial] One truckload a day and they'll have walls up by the end of the week.</li>
+        <li>[spacer] Send the hauler, since wood is the one thing out here everyone can use.</li>
+      </plain>
+      <warm><li>I wouldn't sleep well in a warm room knowing they're cold.</li></warm>
+      <cold><li>Wood grows back, and goodwill is harder to come by.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>Every log we send is one we'll have to cut again before winter.</li></plain>
+      <blunt><li>Let them cut their own.</li></blunt>
+      <gloomy><li>We'll be cold this winter and they won't remember why.</li></gloomy>
+    </oppose>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ R6-K6. Mending days ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_DecreeR6_Mending</defName>
+    <kind>order</kind>
+    <label>mending days</label>
+    <description>Five days of mending. Each morning two of the colony's builders go round the damaged walls, doors and furniture and mend them before other work, with the game's own repairs, so what a fight or a storm broke is whole again sooner. A tribe mends its fences and lodges, a village its walls and gates, an industrial colony and a spacer colony their walls, doors and machines; the mending is the same. Builders and the industrious like it; the lazy dislike it.</description>
+    <requestWhen><li>RecentThreat</li></requestWhen>
+    <order>55</order>
+    <durationDays>5</durationDays>
+    <cooldownDays>12</cooldownDays>
+    <ways><toil>2</toil></ways>
+    <thought>Rimfolk_DecreeR6_Mending</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><passion>Construction</passion><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>1</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Dislike</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each morning for five days, two of the colony's builders go round the damaged walls, doors and furniture and mend them before other work.</li>
+      <li>Builders and the industrious like it; the lazy dislike it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>The east wall has a hole in it you could drive a cart through, and nobody has touched it.</li>
+        <li>[lowtech] Mend the fences and the gate before anything else comes through them.</li>
+        <li>[!lowtech] Half the doors don't shut properly since the last attack, so fix them first.</li>
+      </plain>
+      <blunt><li>Fix what's broken first, then do the rest.</li></blunt>
+      <cheerful><li>Give me a hammer and a week, and you won't know there was a fight.</li></cheerful>
+      <cold><li>A damaged wall is a wall that fails next time, so repair it now.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>The walls will get mended in time without a decree about it.</li></plain>
+      <gloomy><li>We mend it, they break it, we mend it again.</li></gloomy>
+    </oppose>
+    <daily>
+      <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>mending what was broken</label><tasks><li>Repair</li></tasks><count>2</count><hours>7~16</hours><duration>2~3</duration></li>
+    </daily>
+  </ColonyCouncil.DecreeDef>
+
+  <!-- ============ R6-K7. A fishing season ============ -->
+  <ColonyCouncil.DecreeDef>
+    <defName>Rimfolk_DecreeR6_Fishing</defName>
+    <kind>stores</kind>
+    <label>a fishing season</label>
+    <description>Six days of fishing. Each morning two of the colony's people go to its fishing spots and fish before other work, so the stores fill with fresh fish (Odyssey's fishing, or Vanilla Fishing Expanded's). A tribe fishes with spears and weirs, a village with nets, an industrial colony with rods and lines and a spacer colony with whatever it has; the fishing is the same. Only with one of those, and nothing is caught where the colony has no fishing spot. Gourmands like it, and so do the lazy, who like an easy morning by the water; the industrious dislike it, and those whose ideoligion holds fishing wrong hate it.</description>
+    <mods><li>ludeon.rimworld.odyssey</li><li>vanillaexpanded.vcef</li></mods>
+    <requestWhen><li>FoodLow</li><li>Plenty</li></requestWhen>
+    <order>56</order>
+    <durationDays>6</durationDays>
+    <cooldownDays>15</cooldownDays>
+    <ways><toil>1</toil><tradition>1</tradition></ways>
+    <thought>Rimfolk_DecreeR6_Fishing</thought>
+    <defaultReaction>Neutral</defaultReaction>
+    <reactions>
+      <li><beliefs><li>NoFishing</li></beliefs><reaction>Hate</reaction></li>
+      <li><trait>Gourmand</trait><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-1</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>-2</degree><reaction>Like</reaction></li>
+      <li><trait>Industriousness</trait><degree>2</degree><reaction>Dislike</reaction></li>
+    </reactions>
+    <effects>
+      <li>Each morning for six days, two of the colony's people fish at its fishing spots before other work.</li>
+      <li>Gourmands and the lazy like it; the industrious dislike it, and those whose ideoligion holds fishing wrong hate it.</li>
+    </effects>
+    <support>
+      <plain>
+        <li>The water is full of fish and we're eating the same porridge every day.</li>
+        <li>[tribal] Build the weir again and let two go out with the spears each morning.</li>
+        <li>[medieval] Put the nets out every morning and we'll have fish on the table all week.</li>
+        <li>[industrial] A week with the rods, and the smokehouse full.</li>
+        <li>[spacer] Fresh protein, right there in the water, and nobody's catching it.</li>
+      </plain>
+      <cheerful><li>I'll take the first morning, I've had my eye on that pool for weeks.</li></cheerful>
+      <cold><li>The water feeds us for the cost of two people's mornings, which is a good trade.</li></cold>
+    </support>
+    <oppose>
+      <plain><li>Two people sitting by the water every morning while the fields need weeding.</li></plain>
+      <blunt><li>I don't like fish.</li></blunt>
+      <gloomy><li>A week of fishing and we'll catch three minnows.</li></gloomy>
+    </oppose>
+    <daily>
+      <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>a morning's fishing</label><tasks><li>Fish</li></tasks><count>2</count><hours>6~12</hours><duration>2~3</duration></li>
+    </daily>
+  </ColonyCouncil.DecreeDef>
+
+</Defs>

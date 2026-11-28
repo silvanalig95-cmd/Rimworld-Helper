@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 6 (docs/content-round-6.md, R6-C1 to R6-C5): five more callers at the gate, people who come to the colony
+    to do something for it, told from data (HappeningWorker_Setting, Source/ColonyCouncil/Happenings/Workers_Setting.cs) as
+    the fourth round of neighbours and callers was: an arms-master who teaches fighting and sells a blade, a joiner who
+    makes a chair for someone's room, a carter with firewood and hay in the cold months, a master builder with a cart of
+    cut stone, and a hunter who knows where the game goes. Each comes from a people of about the colony's own age and in
+    that age's form; at least two answers of each play out on the map (a lesson at the visitor's side, goods set down at
+    the gate, a thing made and carried over, game marked for the colony's hunters, a meal carried out), and saying nothing
+    sends them on. Nobody is hurt, nothing gathers the colony, and no line counts down. Plain words (event cards).
+  -->
+
+  <!-- ===================== R6-C1. An arms-master ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Caller_ArmsMaster</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>an arms-master</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>30~60</ages>
+        <stayHours>18~26</stayHours>
+        <amount>90~150</amount>
+        <answerDays>0.7</answerDays>
+        <colonist>
+          <bestAt>Melee</bestAt>
+          <canFight>true</canFight>
+        </colonist>
+        <second>
+          <bestAt>Shooting</bestAt>
+          <canFight>true</canFight>
+        </second>
+        <titles>
+          <li>An arms-master at the gate</li>
+          <li>{X_nameDef} teaches fighting</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef}, a spear-fighter of {FACTION}, has come to the gate with two spears wrapped in hide. {X_pronoun} teaches the young hunters of {PLACE} how to fight, and for {COUNT} silver will spend a day teaching the colony's fighters what {X_pronoun} knows, or sell one of the blades in {X_possessive} pack.</li>
+          <li>[medieval] {X_nameDef}, a master-at-arms of {FACTION}, rode in with a bundle of practice swords tied behind the saddle. {X_pronoun} trains the guards of {PLACE}, and offers the colony a day's teaching for {COUNT} silver, or a good blade from {X_possessive} pack for the same.</li>
+          <li>[industrial] {X_nameDef} of {FACTION} teaches boxing, knife-work and marksmanship to the militias along the road. {X_pronoun} has stopped at the gate to offer a day's lessons for {COUNT} silver, and has a few blades to sell.</li>
+          <li>[spacer] {X_nameDef}, a combat instructor of {FACTION}, travels between settlements teaching people to fight when their weapons fail. For {COUNT} silver {X_pronoun} will spend a day with the colony's fighters, or sell one of the blades {X_pronoun} carries.</li>
+          <li>{X_nameDef} of {FACTION} makes a living teaching people to fight, and has stopped at the gate on the way to {PLACE}. For {COUNT} silver {X_pronoun} will spend a day with whoever does the colony's fighting, or sell a blade from {X_possessive} pack.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>A day of hand-to-hand with {A_nameDef} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} spent the afternoon with {A_nameDef} in the yard, correcting {A_possessive} footing and guard over and over. {A_nameDef} is sore, and a good deal better at close fighting.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} had {A_nameDef} fight with a blunted spear until {A_pronoun} stopped leaving {A_possessive} side open. {A_nameDef} is sore, and much harder to hit.</li>
+              <li>[!lowtech] {X_nameDef} took {A_nameDef} through the same three moves for most of the afternoon, until {A_pronoun} could do them without thinking.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Melee</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>in the yard with {X_nameDef}</label><teacher>X</teacher><student>A</student><skill>Melee</skill><duration>3~4</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>A day at the targets with {B_nameDef} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} stood behind {B_nameDef} at the targets all afternoon, fixing how {B_pronoun} breathes, stands and aims. By evening {B_nameDef} was hitting the mark far more often.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} had {B_nameDef} shoot at a straw target until {B_possessive} arms ached, and showed {B_objective} how to judge the wind.</li>
+              <li>[!lowtech] {X_nameDef} made {B_nameDef} slow down and take each shot properly, and by evening {B_possessive} groups were half the size.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Shooting</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>at the targets with {X_nameDef}</label><teacher>X</teacher><student>B</student><skill>Shooting</skill><duration>3~4</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>A blade from {X_possessive} pack for {A_nameDef} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} unwrapped the blades in {X_possessive} pack, let {A_nameDef} try the balance of each, and handed over the one that suited {A_objective} best.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Made"><label>the blade from {X_nameDef}'s pack</label><things>@Blade</things><giver>X</giver><forWhom>A</forWhom><quality>Normal</quality><stuff>Steel</stuff></li>
+            </effects>
+          </li>
+          <li>
+            <label>Not today</label>
+            <outcome>{X_nameDef} wrapped up the practice weapons again and went on toward {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Melee</visitorSkill>
+        <visitorLevel>11~16</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R6-C2. A joiner ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Caller_Joiner</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a joiner</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>28~65</ages>
+        <stayHours>20~28</stayHours>
+        <amount>60~110</amount>
+        <answerDays>0.7</answerDays>
+        <second>
+          <bestAt>Crafting</bestAt>
+        </second>
+        <titles>
+          <li>A joiner at the gate</li>
+          <li>{X_nameDef}'s tools</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef} of {FACTION} makes seats and frames of bent wood lashed with hide, and carries the tools for it in a roll on {X_possessive} back. For {COUNT} silver and some of the colony's wood {X_pronoun} will make a good seat for someone's sleeping place, or show the colony's own maker how the joints are done.</li>
+          <li>[medieval] {X_nameDef}, a joiner of {FACTION}, has come up the road with a bag of chisels and a saw. {X_pronoun} works for whoever will pay, and offers to make a proper chair for someone's room for {COUNT} silver and the colony's own timber, or to teach the colony's carpenter for half that.</li>
+          <li>[industrial] {X_nameDef}, a cabinet-maker of {FACTION}, is travelling to {PLACE} with a toolbox and a hand plane. For {COUNT} silver and some wood {X_pronoun} will make a good chair for someone's room while {X_pronoun} is here, or spend the day teaching the colony's crafter.</li>
+          <li>[spacer] {X_nameDef} of {FACTION} makes furniture by hand, the slow way, and says people on the rim pay well for it. For {COUNT} silver and some of the colony's wood {X_pronoun} will make a chair for someone's room, or teach the colony's maker a few things.</li>
+          <li>{X_nameDef}, a joiner of {FACTION}, noticed that most of the colony sits on whatever is nearest. For {COUNT} silver and some of the colony's wood {X_pronoun} will make one good chair for someone's room before {X_pronoun} goes, or teach the colony's crafter for half that.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A chair for {A_nameDef}'s room ({COUNT} silver and 25 wood)</label>
+            <outcome>{X_nameDef} worked at it all afternoon by the colony's woodpile, then carried the finished chair to {A_nameDef}'s room and set it in the corner.</outcome>
+            <outcomes>
+              <li>[lowtech] {X_nameDef} bent and lashed the frame by the fire and carried the finished seat to {A_nameDef}'s sleeping place.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>WoodLog</what><count>25</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Made"><label>{X_nameDef}'s chair</label><things>DiningChair|Seat_SquareChair|Seat_Bench|Stool</things><maker>X</maker><forWhom>A</forWhom><skill>Crafting</skill><stuff>WoodLog</stuff><inRoom>true</inRoom><makeHours>3</makeHours></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Show {B_nameDef} how the joints are cut (half that)</label>
+            <outcome>{X_nameDef} spent the day at the bench with {B_nameDef}, showing how to cut a joint that holds without nails or glue. {B_nameDef} came away with sore hands and a better eye.</outcome>
+            <outcomes>
+              <li>[b:trait:TooSmart] {B_nameDef} wanted to know why every joint is cut the way it is, and {X_nameDef} was happy to explain. They were still at it after dark.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><factor>0.5</factor><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Crafting</skill><xp>1200</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>at the bench with {X_nameDef}</label><teacher>X</teacher><student>B</student><skill>Crafting</skill><duration>2~3</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Nothing this time</label>
+            <outcome>{X_nameDef} shouldered the tools again and set off for {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Crafting</visitorSkill>
+        <visitorLevel>10~15</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R6-C3. A carter in the cold months ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Caller_Carter</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a carter in the cold months</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>40</minRefireDays>
+    <earliestDay>15</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>25~65</ages>
+        <stayHours>6~10</stayHours>
+        <amount>70~110</amount>
+        <answerDays>0.6</answerDays>
+        <seasons>
+          <li>Fall</li>
+          <li>Winter</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <titles>
+          <li>A carter at the gate</li>
+          <li>Wood and hay for sale</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef} of {FACTION} has dragged a sled up to the gate, piled with dead wood from the forest and bundles of dried grass. For {COUNT} silver {X_pronoun} will leave the wood for the colony's fires, or the grass for its animals.</li>
+          <li>[medieval] {X_nameDef}, a woodman of {FACTION}, has brought a cart up from {PLACE} loaded with split logs and hay. The cold is coming, {X_pronoun} says, and for {COUNT} silver {X_pronoun} will leave either load at the gate.</li>
+          <li>[industrial] {X_nameDef} of {FACTION} drives a truck between the settlements in the cold months, selling firewood and baled hay. {X_pronoun} has stopped at the gate and offers either load for {COUNT} silver.</li>
+          <li>[spacer] {X_nameDef}, a hauler of {FACTION}, has pulled up at the gate with a load of cut wood and fodder, which {X_pronoun} says is still the cheapest way to stay warm and feed animals out here. Either load is {COUNT} silver.</li>
+          <li>[winter] {X_nameDef} of {FACTION} has come up the frozen road with a load of firewood and hay, and stamps the snow off {X_possessive} boots at the gate. {X_pronoun} will sell either load for {COUNT} silver.</li>
+          <li>{X_nameDef} of {FACTION} sells firewood and hay to the settlements on the road to {PLACE} while the cold lasts, and has stopped at the colony's gate. Either load is {COUNT} silver.</li>
+        </texts>
+        <defaultOption>3</defaultOption>
+        <options>
+          <li>
+            <label>A load of firewood ({COUNT} silver)</label>
+            <outcome>{X_nameDef} took the silver and stacked the wood by the gate.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>WoodLog</thing><count>75</count><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>A load of hay for the animals ({COUNT} silver)</label>
+            <outcome>{X_nameDef} took the silver and unloaded the hay by the gate for the colony's animals.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Hay</thing><count>100</count><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>A hot meal for {X_objective}</label>
+            <outcome>{A_nameDef} carried a hot meal out to {X_nameDef}, who ate it at the gate and said {X_pronoun} would remember which colony had fed {X_objective} in the cold.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>meals</what><count>1</count><to>Stranger</to><label>a hot meal for {X_nameDef}</label><eat>true</eat></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>2</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Nothing today</label>
+            <outcome>{X_nameDef} turned the load round and went on to the next settlement.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <maxTileTemp>18</maxTileTemp>
+        <visitor>true</visitor>
+        <people>own</people>
+        <optionNeeds>
+          <li>
+            <option>1</option>
+            <need>animals</need>
+            <reason>The colony keeps no animals to feed.</reason>
+          </li>
+        </optionNeeds>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R6-C4. A master builder ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Caller_Builder</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a master builder</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>12</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Visitors</group>
+        <ages>35~70</ages>
+        <stayHours>18~26</stayHours>
+        <amount>70~130</amount>
+        <answerDays>0.7</answerDays>
+        <second>
+          <bestAt>Construction</bestAt>
+        </second>
+        <titles>
+          <li>A master builder at the gate</li>
+          <li>{X_nameDef} and the cart of stone</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef} of {FACTION} has built longhouses for half the camps between here and {PLACE}, and knows how to set a post so it doesn't rot. {X_pronoun} has stopped at the gate with a sled of dressed stone, and for {COUNT} silver will either sell the stone or spend a day building with the colony's best builder.</li>
+          <li>[medieval] {X_nameDef}, a master mason of {FACTION}, built the walls of {PLACE} and is on the road looking for the next job. {X_pronoun} has a cart of cut stone with {X_objective}, and for {COUNT} silver will sell it, or spend a day on the colony's walls teaching its builder.</li>
+          <li>[industrial] {X_nameDef}, a building engineer of {FACTION}, has a measuring tape, a roll of plans and a trailer of cut stone blocks. For {COUNT} silver {X_pronoun} will sell the blocks, or spend a day on site with the colony's builder.</li>
+          <li>[spacer] {X_nameDef}, a construction technician of {FACTION}, has built shelters in vacuum and in storms, and says most settlements build their walls the wrong way round. For {COUNT} silver {X_pronoun} will spend a day with the colony's builder, or sell the stone blocks on {X_possessive} hauler.</li>
+          <li>{X_nameDef} of {FACTION} builds for a living and has stopped at the gate with a load of cut stone. For {COUNT} silver {X_pronoun} will sell the stone, or spend a day showing the colony's builder how {X_pronoun} works.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A day on the walls with {B_nameDef} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} went round the colony's walls and buildings with {B_nameDef}, pointing out what was done well and what was not, and spent the afternoon showing {B_objective} how to do it properly.</outcome>
+            <outcomes>
+              <li>[b:trait:Abrasive] {B_nameDef} argued with {X_nameDef} about every wall, and lost most of the arguments. {B_nameDef} learned a great deal, whether {B_pronoun} admits it or not.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>1500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>building with {X_nameDef}</label><teacher>X</teacher><student>B</student><skill>Construction</skill><duration>3~4</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>The cut stone ({COUNT} silver)</label>
+            <outcome>{X_nameDef} took the silver and unloaded the stone blocks by the gate, ready for the colony's builders.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>BlocksGranite</thing><count>60</count><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>Send {X_objective} on</label>
+            <outcome>{X_nameDef} had a long look at the colony's walls, said nothing about them, and went on to {PLACE}.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Construction</visitorSkill>
+        <visitorLevel>11~16</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R6-C5. A hunter's guide ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Caller_Guide</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>a hunter's guide</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
+        <group>Visitors</group>
+        <ages>25~60</ages>
+        <stayHours>16~24</stayHours>
+        <amount>50~90</amount>
+        <answerDays>0.6</answerDays>
+        <colonist>
+          <bestAt>Shooting</bestAt>
+          <canFight>true</canFight>
+        </colonist>
+        <titles>
+          <li>A hunter's guide</li>
+          <li>{X_nameDef} knows the land</li>
+        </titles>
+        <texts>
+          <li>[tribal] {X_nameDef}, a hunter of {FACTION}, has followed the game to the colony's land and knows where it goes to drink and graze. For {COUNT} silver {X_pronoun} will take the colony's hunter out and show {A_objective} the trails, or sell some of the dried meat {X_pronoun} carries.</li>
+          <li>[medieval] {X_nameDef}, a huntsman of {FACTION}, has come to the gate on the way back to {PLACE}. {X_pronoun} has hunted this land for years and offers to take the colony's hunter out for a day for {COUNT} silver, or to sell the dried meat in {X_possessive} pack.</li>
+          <li>[industrial] {X_nameDef} of {FACTION} guides hunting parties for a living, and has stopped at the gate with a rifle over {X_possessive} shoulder. For {COUNT} silver {X_pronoun} will take the colony's best shot out and show {A_objective} where the game is, or sell some of {X_possessive} jerky.</li>
+          <li>[spacer] {X_nameDef}, a tracker of {FACTION}, has been mapping where the animals move on this part of the rim. For {COUNT} silver {X_pronoun} will take the colony's hunter out to the best spots, or sell some of the dried meat {X_pronoun} lives on.</li>
+          <li>[winter] {X_nameDef}, a hunter of {FACTION}, has come in out of the snow and says the game on the colony's land is easy to track this time of year. For {COUNT} silver {X_pronoun} will show the colony's hunter where it goes.</li>
+          <li>{X_nameDef} of {FACTION} hunts this part of the land every year, and has stopped at the gate on the way back to {PLACE}. For {COUNT} silver {X_pronoun} will take {A_nameDef} out and show {A_objective} where the game goes, or sell some of the dried meat in {X_possessive} pack.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>A day out with {A_nameDef} ({COUNT} silver)</label>
+            <outcome>{X_nameDef} walked the land with {A_nameDef}, showing where the game goes to drink and graze and how to come at it from downwind, and pointed out two animals worth taking.</outcome>
+            <outcomes>
+              <li>[winter] {X_nameDef} showed {A_nameDef} how to read the tracks in the snow, how old each set was and where it led, and pointed out two animals worth taking.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>800</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>500</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>out on the land with {X_nameDef}</label><teacher>X</teacher><student>A</student><skill>Shooting</skill><duration>2~3</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Hunt"><count>2</count></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Buy {X_possessive} dried meat ({COUNT} silver)</label>
+            <outcome>{X_nameDef} took the silver and left a bundle of dried meat by the gate. It will keep for weeks.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><by>Outsiders</by></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Spawn"><thing>Pemmican</thing><count>30</count><by>Outsiders</by></li>
+            </effects>
+          </li>
+          <li>
+            <label>Thank {X_objective}, and send {X_objective} on</label>
+            <outcome>{X_nameDef} nodded, shouldered {X_possessive} pack and went on {X_possessive} way.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_SendAway" />
+            </effects>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <visitor>true</visitor>
+        <people>own</people>
+        <visitorSkill>Shooting</visitorSkill>
+        <visitorLevel>10~15</visitorLevel>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>

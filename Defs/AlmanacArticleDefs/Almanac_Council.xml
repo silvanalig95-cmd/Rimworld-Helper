@@ -228,6 +228,13 @@ The "Good times" line in a colonist's Mood tab says what growing ordinary takes 
           <li>Foraging days | Six days: each morning up to twelve wild plants ripe for picking near the colony (berries, agave, mushrooms) are marked for the growers' harvest.</li>
           <li>Saving the power | A colony on the grid: five nights with every lamp switched off from eleven to five, never one where a patient lies abed, and on again as it was.</li>
           <li>Every faith its evening | Ideology, more than one ideoligion at home: ten days. Declared, the largest ideoligion that isn't the colony's holds an evening of faith; each morning those of other ideoligions trust the council a little more and the colony's devout a little less. Never together with one ideoligion for the colony.</li>
+          <li>First-aid lessons | Five days: everyone who can tend practises medicine every hour; tending 5% better and 10% quicker, work 4% slower.</li>
+          <li>Days with the animals | Six days: everyone who can handle animals practises every hour; taming 10% and training 15% likelier to work, 5% more milk, wool and eggs; work 5% slower.</li>
+          <li>Evenings at the bench | Eight days, asked for in winter: work at the benches 20% quicker; building, mining and the fields 10% slower. Never together with a building season or a harvest push.</li>
+          <li>Medicine for the sick | Only while a sickness goes round the region: six days, each morning 1 to 3 of the colony's medicine (the plainest first) goes to the people it hits hardest, 3 goodwill a day.</li>
+          <li>Wood for the neighbours | Only while a town rebuilds after a fire, a flood or a raid, or a hard winter lies over the region: seven days, each morning 10 to 40 wood goes to the people who need it, 2 goodwill a day.</li>
+          <li>Mending days | Five days, asked for after an attack: each morning two of the colony's builders mend the damaged walls, doors and furniture before other work.</li>
+          <li>A fishing season | With Odyssey or Vanilla Fishing Expanded: six days, each morning two of the colony's people fish at its fishing spots before other work.</li>
         </table>
         <after>Each decree also says something about the colony: long hours make it more hard-working, festivals more easygoing and traditional, being on guard more guarded.</after>
       </li>

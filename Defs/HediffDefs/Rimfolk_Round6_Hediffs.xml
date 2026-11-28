@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 6 (docs/content-round-6.md): what three of the round's decrees (Defs/DecreeDefs/Rimfolk_Round6_Decrees.xml)
+    do to every colonist while each holds. The others act on the stores, the neighbours and the map each morning
+    (Decrees/DecreeWork.cs) and have no effect on the body, so no hediff.
+  -->
+
+  <HediffDef>
+    <defName>Rimfolk_DecreeR6_FirstAid</defName>
+    <label>first-aid lessons (decree)</label>
+    <description>Lessons in tending wounds every day, by order of the council. Tending is better and quicker, and other work waits.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><MedicalTendQuality>0.05</MedicalTendQuality><MedicalTendSpeed>0.1</MedicalTendSpeed><WorkSpeedGlobal>-0.04</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Rimfolk_DecreeR6_Beasts</defName>
+    <label>days with the animals (decree)</label>
+    <description>Time with the colony's animals every day, by order of the council. Taming, training and gathering from the animals go better, and other work waits.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><TameAnimalChance>0.1</TameAnimalChance><TrainAnimalChance>0.15</TrainAnimalChance><AnimalGatherYield>0.05</AnimalGatherYield><WorkSpeedGlobal>-0.05</WorkSpeedGlobal></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+  <HediffDef>
+    <defName>Rimfolk_DecreeR6_Bench</defName>
+    <label>work at the benches (decree)</label>
+    <description>The colony's hours go to the benches, by order of the council. Making things is quicker; building, mining and the fields are slower.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defaultLabelColor>(0.6, 0.8, 0.95)</defaultLabelColor>
+    <isBad>false</isBad>
+    <everCurableByItem>false</everCurableByItem>
+    <stages>
+      <li><statOffsets><GeneralLaborSpeed>0.2</GeneralLaborSpeed><ConstructionSpeed>-0.1</ConstructionSpeed><MiningSpeed>-0.1</MiningSpeed><PlantWorkSpeed>-0.1</PlantWorkSpeed></statOffsets></li>
+    </stages>
+  </HediffDef>
+
+</Defs>

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 6 (docs/content-round-6.md, R6-W1 to R6-W3): three more happenings of the weather on the land, told from
+    data (HappeningWorker_Setting) as the land's turning year is (Council_Events_Land.xml), each asking the colony's weather
+    record for the days it speaks of (Weather/WeatherBook.cs: "dry:4", "snow:1/2", "storm:2"), so no card speaks of weather
+    that didn't come. Clear nights after a dry spell (the colony's scholar at the sky, the research in hand moved on), fresh
+    snow that shows every track (game marked for the hunters, a young one taught to read tracks), and the trees a storm
+    brought down by the road (the logs really lie there; brought in, or some sent to the neighbours whose roofs came off).
+    What an answer says is done on the map. None ends in a fight or brings harm; no god is named and no line counts down.
+    Plain words (event cards).
+  -->
+
+  <!-- ===================== R6-W1. Clear nights ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Weather_ClearNights</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>clear nights</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <weather>
+          <li>dry:4</li>
+        </weather>
+        <answerDays>0.8</answerDays>
+        <colonist>
+          <bestAt>Intellectual</bestAt>
+        </colonist>
+        <titles>
+          <li>Clear nights</li>
+          <li>Stars over the colony</li>
+        </titles>
+        <texts>
+          <li>No rain or snow has fallen for four days, and the nights have been clear. {A_nameDef} has been up late every night looking at the stars, and says that a few more nights like this would answer questions the colony has been stuck on.</li>
+          <li>[tribal] The nights have been clear since the rain stopped, and every star is out. {A_nameDef} knows the stars the old people used to tell the seasons by, and wants to sit up with them while the sky is this clear, to check what the colony is working on against them.</li>
+          <li>[medieval] The sky has been clear for four nights running. {A_nameDef} has been up on the wall with a candle and a book, marking where the stars stand, and says the notes would help the colony's studies along if {A_pronoun} had a few more nights for it.</li>
+          <li>[industrial] Four dry days and four clear nights. {A_nameDef} has rigged up a telescope on the roof and has been taking readings until dawn, and says another night or two would settle a few problems in the colony's research.</li>
+          <li>[spacer] The sky has been clear for four nights, and {A_nameDef} has been watching the satellites and the old wrecks cross it, taking positions. With a few more clear hours {A_pronoun} could check the colony's research against what {A_pronoun} is seeing.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Let {A_nameDef} sit up with the sky and the notes</label>
+            <outcome>{A_nameDef} sat out under the clear sky until the small hours, writing down what {A_pronoun} saw, and the colony's research is further along for it.</outcome>
+            <outcomes>
+              <li>[lowtech] {A_nameDef} lay out on the cold ground with a hide over {A_objective}, watching the stars move, and in the morning had worked out what the colony had been stuck on.</li>
+              <li>[!lowtech] {A_nameDef} took readings until dawn and spent the morning working through them, and the colony's research has moved on.</li>
+            </outcomes>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Research"><share>0.15</share><max>600</max></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Intellectual</skill><xp>600</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>a night under the clear sky</label><who>A</who><to>Outdoors</to><hours>20~23</hours><duration>2~3</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Everyone out to look at the stars for an hour</label>
+            <outcome>The colony went out after supper and lay in the grass while {A_nameDef} pointed out the stars and named the ones {A_pronoun} knew. Most of them fell asleep out there.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Joy"><target>Colony</target><amount>0.15</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>Colony</target><skill>Intellectual</skill><xp>150</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Gathering"><label>an hour under the stars</label><spots><li>Outdoors</li></spots><hours>20~23</hours><duration>1~1.5</duration></li>
+            </effects>
+            <ways><openness>1</openness></ways>
+          </li>
+          <li>
+            <label>Early to bed</label>
+            <outcome>The colony keeps its usual hours. The sky will be clear again another night.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <needs>
+          <li>research</li>
+        </needs>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R6-W2. Fresh snow ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Weather_FreshSnow</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>fresh snow</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.7</baseChance>
+    <minRefireDays>45</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <leans><li>beasts</li></leans>
+        <group>Nature</group>
+        <seasons>
+          <li>Fall</li>
+          <li>Winter</li>
+          <li>PermanentWinter</li>
+        </seasons>
+        <weather>
+          <li>snow:1/2</li>
+        </weather>
+        <answerDays>0.6</answerDays>
+        <colonist>
+          <bestAt>Shooting</bestAt>
+          <canFight>true</canFight>
+        </colonist>
+        <second>
+          <maxAge>30</maxAge>
+        </second>
+        <titles>
+          <li>Fresh snow</li>
+          <li>Tracks everywhere</li>
+        </titles>
+        <texts>
+          <li>Fresh snow fell in the night, and this morning every animal that has moved on the colony's land has left a clear trail in it. {A_nameDef} says the game has never been easier to find, and it won't stay that way once the snow is trodden or the wind gets at it.</li>
+          <li>[lowtech] New snow lies over everything, and the tracks of every animal that moved in the night are written across it. {A_nameDef} is already restringing a bow, and says {B_nameDef} should come along and learn to read them.</li>
+          <li>[!lowtech] The snow that fell overnight shows every track on the land. {A_nameDef} has been out at first light with a rifle and says the game is easy to follow today, and that it's a good chance to show {B_nameDef} how.</li>
+          <li>[tundra] Fresh snow on the old snow, and the tracks of the caribou crossing the land are as clear as a road. {A_nameDef} wants to go out after them.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Send the hunters out while the tracks are fresh</label>
+            <outcome>The colony's hunters followed the clearest trails out from the colony, and two animals are marked to be brought in.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Hunt"><count>2</count></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Shooting</skill><xp>300</xp></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>{A_nameDef} takes {B_nameDef} out to learn to read tracks</label>
+            <outcome>{A_nameDef} walked {B_nameDef} along the trails all morning, showing how to tell an old track from a new one and which way an animal was going. They took nothing home today, but {B_nameDef} will know the signs next time.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Shooting</skill><xp>600</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>300</xp></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Lesson"><label>reading tracks in the snow</label><teacher>A</teacher><student>B</student><skill>Shooting</skill><duration>2~3</duration></li>
+            </effects>
+            <ways><tradition>1</tradition></ways>
+          </li>
+          <li>
+            <label>Stay in by the fire</label>
+            <outcome>The colony stays at its usual work, and by evening the wind has smoothed the snow over.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <maxTileTemp>12</maxTileTemp>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- ===================== R6-W3. Windfall after the storm ===================== -->
+
+  <IncidentDef ParentName="Council_EventBase">
+    <defName>Rimfolk_Evt_R6Weather_Windfall</defName>
+    <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
+    <label>windfall after the storm</label>
+    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <baseChance>0.6</baseChance>
+    <minRefireDays>50</minRefireDays>
+    <earliestDay>10</earliestDay>
+    <modExtensions>
+      <li Class="ColonyCouncil.HappeningExtension">
+        <group>Nature</group>
+        <weather>
+          <li>storm:2</li>
+        </weather>
+        <answerDays>0.8</answerDays>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>40</count><near>Gate</near><radius>30</radius></li>
+        </effects>
+        <titles>
+          <li>Windfall after the storm</li>
+          <li>Trees down by the road</li>
+        </titles>
+        <texts>
+          <li>The storm brought down several trees along the road outside the gate, and the logs are lying where they fell. {A_nameDef} has been out to look and says they're good wood. Word has also come from {FACTION} that the same storm took the roofs off some of their houses at {PLACE}.</li>
+          <li>[lowtech] The wind last night pulled trees out by the roots along the track outside the camp, and the trunks are lying across it. {A_nameDef} says there is a good deal of firewood in them. A runner from {FACTION} says the storm also wrecked shelters at {PLACE}.</li>
+          <li>[!lowtech] The storm knocked down a stand of trees by the road outside the gate, and the logs are lying there waiting. {A_nameDef} says it's good timber. A message from {FACTION} says the same storm tore roofs off at {PLACE}, and they're short of wood to repair them.</li>
+          <li>[winter] The winter storm brought down trees outside the gate under the weight of snow and wind. The logs are lying in the drifts. {FACTION} at {PLACE} lost roofs in the same storm.</li>
+        </texts>
+        <defaultOption>2</defaultOption>
+        <options>
+          <li>
+            <label>Bring the wood in</label>
+            <outcome>Two of the colony spent the day carrying the logs in from the road and stacking them in the store.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>bringing in the fallen wood</label><tasks><li>Wood</li></tasks><count>2</count><hours>7~17</hours><duration>2~3</duration></li>
+            </effects>
+            <ways><toil>1</toil></ways>
+          </li>
+          <li>
+            <label>Send 20 wood to {FACTION} for their roofs</label>
+            <outcome>{A_nameDef} carried a load of the wood out to the gate for {FACTION}'s people to take back to {PLACE}. They were glad of it.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><what>wood</what><count>20</count><to>Gate</to><label>wood for {FACTION}</label></li>
+              <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>3</amount></li>
+            </effects>
+            <ways><generosity>1</generosity></ways>
+          </li>
+          <li>
+            <label>Leave it where it fell for now</label>
+            <outcome>The logs stay by the road until someone has time to bring them in.</outcome>
+          </li>
+        </options>
+      </li>
+      <li Class="ColonyCouncil.HappeningSetting">
+        <minRain>500</minRain>
+        <neighbor>true</neighbor>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+</Defs>
