@@ -346,8 +346,9 @@ namespace ColonyCouncil
         /// <summary>This people holds a default against the colony: no lander until it is paid.</summary>
         public static bool InDefault(Faction f) => f != null && (All?.Any(t => t != null && !t.done && t.defaulted && t.faction == f) ?? false);
 
-        /// <summary>The terms whose letter is due now (one at a time).</summary>
-        public static TermsRecord Due() => All?.FirstOrDefault(t => t != null && !t.done && t.due >= 0 && Now >= t.due && t.faction != null && !t.faction.defeated);
+        /// <summary>The terms whose letter is due now (one at a time), from a people still there and not at war with the colony.</summary>
+        public static TermsRecord Due() =>
+            All?.FirstOrDefault(t => t != null && !t.done && t.due >= 0 && Now >= t.due && t.faction != null && !t.faction.defeated && !t.faction.HostileTo(Faction.OfPlayer));
 
         public static TermsRecord Get(int id) => All?.FirstOrDefault(t => t != null && t.id == id);
 
@@ -366,7 +367,10 @@ namespace ColonyCouncil
             return r;
         }
 
-        /// <summary>The terms' hour: when a letter is due, it is sent (when a question may be asked); a people gone or at war ends them.</summary>
+        /// <summary>
+        /// The terms' hour: when a letter is due, it is sent (when a question may be asked); a people gone ends them. While the
+        /// enclave is at war with the colony no letter comes and no courier waits at the gate: the instalment waits for peace.
+        /// </summary>
         public static bool Hour(Visit v, int now)
         {
             var r = Get(v.stake);
@@ -375,6 +379,12 @@ namespace ColonyCouncil
             {
                 Close(r, Tie.State.Ended);
                 return false;
+            }
+            // At war with the colony: the terms are kept for when there is peace again.
+            if (r.faction.HostileTo(Faction.OfPlayer))
+            {
+                v.until = Mathf.Max(v.until, now + 30 * GenDate.TicksPerDay);
+                return true;
             }
             v.until = Mathf.Max(v.until, (r.due >= 0 ? r.due : now) + 30 * GenDate.TicksPerDay);
             if (r.due < 0 || now < r.due) return true;

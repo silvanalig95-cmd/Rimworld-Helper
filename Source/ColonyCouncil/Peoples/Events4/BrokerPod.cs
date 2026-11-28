@@ -367,7 +367,13 @@ namespace ColonyCouncil
             if (how != "rescue") return;
             var broker = r.broker;
             var doctor = hc.a;
-            if (broker == null || broker.Dead || !broker.Spawned || doctor == null || !doctor.Spawned) return;
+            if (broker == null || broker.Dead || !broker.Spawned) return;
+            // The one sent: the colonist named, else (drafted since, in a break, down or on the player's own order) the nearest
+            // other of the colony up to it.
+            if (doctor == null || !doctor.Spawned || doctor.Map != broker.Map || PeoplesReview.Held(doctor))
+                doctor = PeoplesD.Able(broker.Map).Where(p => !PeoplesReview.Held(p) && !p.WorkTagIsDisabled(WorkTags.Caring))
+                    .OrderBy(p => p.Position.DistanceToSquared(broker.Position)).FirstOrDefault();
+            if (doctor == null) return;
             try
             {
                 var bed = RestUtility.FindBedFor(broker, doctor, false, false, GuestStatus.Guest);

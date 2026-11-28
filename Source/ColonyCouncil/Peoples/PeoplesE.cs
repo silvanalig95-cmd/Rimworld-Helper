@@ -58,10 +58,13 @@ namespace ColonyCouncil
             }
         }
 
-        /// <summary>A job of theirs at one target or a queue of them, a while at each (Job.count ticks).</summary>
+        /// <summary>
+        /// A job at one target or a queue of them, a while at each (Job.count ticks): theirs, or one of the colony's who sits with
+        /// them (the Choir's ring, the vault child under the sky); never one held (PeoplesReview.Held).
+        /// </summary>
         public static bool Start(Pawn pawn, JobDef def, LocalTargetInfo first, List<LocalTargetInfo> rest, int ticks)
         {
-            if (pawn == null || def == null || !pawn.Spawned || pawn.Downed || !first.IsValid) return false;
+            if (pawn == null || def == null || !pawn.Spawned || PeoplesReview.Held(pawn) || !first.IsValid) return false;
             var job = JobMaker.MakeJob(def, first);
             job.locomotionUrgency = Pace.Errand;
             job.count = Mathf.Max(60, ticks);

@@ -96,7 +96,7 @@ namespace ColonyCouncil
         /// <summary>One of theirs sent to work at a target for so long (one of round 4's jobs), at an errand's pace; false when it couldn't start.</summary>
         public static bool Send(Pawn p, JobDef job, LocalTargetInfo target, int ticks)
         {
-            if (p == null || job == null || !target.IsValid || p.Dead || !p.Spawned || p.Downed || p.InMentalState || p.CurJobDef == job) return false;
+            if (p == null || job == null || !target.IsValid || p.Dead || !p.Spawned || PeoplesReview.Held(p) || p.CurJobDef == job) return false;
             if (!p.CanReach(target, PathEndMode.Touch, Danger.Some)) return false;
             try
             {

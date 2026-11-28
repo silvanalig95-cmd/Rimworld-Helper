@@ -108,7 +108,7 @@ namespace ColonyCouncil
         /// </summary>
         public static bool Send(Pawn p, JobDef job, LocalTargetInfo target, int ticks, List<LocalTargetInfo> rest = null)
         {
-            if (p == null || job == null || !target.IsValid || p.Dead || !p.Spawned || p.Downed || p.InMentalState || p.CurJobDef == job) return false;
+            if (p == null || job == null || !target.IsValid || p.Dead || !p.Spawned || PeoplesReview.Held(p) || p.CurJobDef == job) return false;
             if (!p.CanReach(target, PathEndMode.Touch, Danger.Some)) return false;
             try
             {

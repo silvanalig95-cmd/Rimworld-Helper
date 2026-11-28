@@ -61,9 +61,11 @@
             <riskOutcome>{A_nameDef} disputed the entry, and {X_nameDef} took offence and wrote it in a second time. The colony now owes double.</riskOutcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_RedInkStruck" />
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>200</xp></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_RedInkTwice" />
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>100</xp></li>
             </riskEffects>
           </li>
           <li>
