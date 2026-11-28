@@ -127,6 +127,7 @@
         <outcome>The council said the colony keeps one day for all of it. {A_nameDef} will have to get used to the mornings.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR4_MorningsAgain</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
         <ways><tradition>1</tradition><toil>1</toil></ways>
       </li>

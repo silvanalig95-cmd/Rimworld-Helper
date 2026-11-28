@@ -515,6 +515,17 @@ namespace ColonyCouncil
 
         protected override bool CanHappen(Map map, HappeningExtension ext) => PeoplesD.Friendly(PeoplesMath.Sextons) != null && base.CanHappen(map, ext);
 
+        /// <summary>
+        /// As the undertakers, and {PLACE} is the Bell's town the dead may be carried to (the grave-garden there), as the
+        /// Bell's other events name it; the undertakers' own event never names a place.
+        /// </summary>
+        protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
+        {
+            if (!base.Cast(ctx, ext)) return false;
+            ctx.placeName = LivingEvents.TownOf(ctx.faction, ctx.map) ?? ctx.faction.Name;
+            return true;
+        }
+
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
             base.AddTags(ctx, tags);

@@ -145,6 +145,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>5</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><chance>0.25</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>200</xp></li>
         </effects>
         <riskChance>0.2</riskChance>
         <riskSkill>Social</riskSkill>
@@ -154,6 +155,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>silver</what><count>120</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmGoal_Swindled</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>200</xp></li>
         </riskEffects>
       </li>
     </options>

@@ -62,6 +62,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Needs"><target>Colony</target><skill>Social</skill><minLevel>0</minLevel><asB>true</asB></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>150</xp></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>-2</amount></li>
@@ -127,6 +128,7 @@
             <outcome>The offer is turned down flat. {A_nameDef} heard every word of it, and is in a fine mood all day.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Trust"><amount>3</amount><onlyIfChosen>true</onlyIfChosen></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_NotForSale</thought><onlyIfChosen>true</onlyIfChosen></li>
             </effects>
           </li>
         </options>
@@ -186,10 +188,12 @@
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_GoodPress</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_EventGoodwill"><amount>5</amount></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~18</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>250</xp></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Evt_BadPress</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><hours>8~18</hours><duration>1.5~2</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>150</xp></li>
             </riskEffects>
             <ways><openness>2</openness></ways>
           </li>

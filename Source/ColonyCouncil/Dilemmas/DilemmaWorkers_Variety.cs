@@ -667,7 +667,11 @@ namespace ColonyCouncil
                 var map = x.Map;
                 bool warden = map != null && map.mapPawns.FreeColonistsSpawned.Any(p => !p.IsSlave && !p.Downed && p.workSettings != null && p.workSettings.WorkIsActive(WorkTypeDefOf.Warden));
                 var a = ctx.a;
-                if (!warden && a != null && a.Spawned && !a.Downed && a.Map == map && JobDefOf.SlaveEmancipation != null)
+                // With no warden at work, the one who asked does it, if they are up to it now: never someone drafted (out of
+                // the player's hands), in a mental break or a slave themselves, nor one who can't reach the slave. Otherwise
+                // the slave's emancipation stays set for the game's own wardens, as it would from the slave's tab.
+                if (!warden && a != null && a.Spawned && !a.Downed && !a.Drafted && !a.InMentalState && !a.IsSlave && a.Map == map && JobDefOf.SlaveEmancipation != null
+                    && a.CanReach(x, PathEndMode.Touch, Danger.Some))
                     a.jobs?.TryTakeOrderedJob(JobMaker.MakeJob(JobDefOf.SlaveEmancipation, x), JobTag.Misc);
                 Tell.Message(NewsKind.Colony, Importance.Notable, map, "CC_DlmV_Emancipating".Translate(x.LabelShort).Resolve(), x, MessageTypeDefOf.NeutralEvent);
             }

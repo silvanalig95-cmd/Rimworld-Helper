@@ -64,6 +64,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmR_NightsRest</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_CouldntKeepThem</thought><onlyTrait><li>Kind</li></onlyTrait></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>bread for {X_nameDef}'s road</label><what>meals</what><count>1</count><to>Stranger</to><steward>false</steward></li>
         </effects>
       </li>
     </options>
@@ -579,6 +580,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmR_FriendShutOut</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmR_KeptOutside</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a bowl of stew for {X_nameDef}</label><what>meals</what><count>1</count><eat>true</eat><who>A</who><to>Stranger</to><steward>false</steward></li>
         </effects>
       </li>
       <li>

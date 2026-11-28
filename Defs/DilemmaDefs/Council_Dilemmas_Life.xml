@@ -683,6 +683,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>8</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Search"><label>the search for the lost child</label><target>B</target><organizer>B</organizer><hours>14~22</hours><duration>3~4</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_FindLost"><how>search</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>200</xp></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Animals</riskSkill>
@@ -694,6 +695,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Search"><label>the search for the lost child</label><target>B</target><organizer>B</organizer><hours>14~22</hours><duration>3~4</duration></li>
           <li Class="ColonyCouncil.DilemmaEffect_FindLost"><how>soon</how></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Animals</skill><xp>100</xp></li>
         </riskEffects>
       </li>
       <li>
@@ -798,6 +800,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Tie"><withB>true</withB><kind>Friends</kind><amount>6</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom><hours>16~22</hours><sit>true</sit></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>200</xp></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskSkill>Social</riskSkill>
@@ -806,6 +809,7 @@
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_ChairStaysEmpty</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>100</xp></li>
         </riskEffects>
       </li>
     </options>
@@ -1221,6 +1225,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_HeardOut</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><whom>A</whom></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>200</xp></li>
         </effects>
         <riskChance>0.35</riskChance>
         <riskSkill>Social</riskSkill>
@@ -1229,6 +1234,7 @@
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmL_Excuses</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>100</xp></li>
         </riskEffects>
       </li>
       <li>
