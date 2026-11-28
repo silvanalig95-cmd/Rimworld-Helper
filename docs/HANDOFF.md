@@ -1065,8 +1065,10 @@ most sense." So, in this order, three builds at a time:
   A1 to A5, B1 to B5, C1 to C3, D1, D2, E1 to E4; mods they will add: Quiet Wonders, Living Waters and Waves, Weather
   Reimagined, Wild Crops and Biome Compatibility Project, RimKeeper and Animal Traits System. Being built in two phases:
   first the climate (A1 to A4, E3, E4: `LandClimate`, the API the rest reads), the land (B1, B3, B5) and the ground (D1,
-  D2) in three worktrees; then the life (A5, B2, B4, C1 to C3, with RimKeeper in mind) and the ties (E1, E2), after a
-  new collection of the player's mods with the five added.
+  D2) in three worktrees; then the life (A5, B2, B4, C1 to C3, with RimKeeper in mind) and the ties (E1, E2), after the
+  player sends `RimfolkNatureMods.zip` from `Tools/Collect-NatureMods.ps1` (the player asked for a collector just for
+  these mods: their About, LoadFolders, Defs and Patches, DLLs and source in the folders 1.7 loads, their settings,
+  ModsConfig.xml; tested with PowerShell 7 on a made-up folder).
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
   display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
   used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the
