@@ -1505,6 +1505,8 @@ MODEL = {
     # Defense lines (per home map, gone with it)
     "Weather/WeatherBook.cs:days": ("fixed", const("Weather/WeatherMath.cs", "MaxDays", 30), 70, "WeatherMath.MaxDays: the last month, a short line a day, per home map"),
     "Weather/WeatherBook.cs:quarters": ("fixed", const("Weather/WeatherMath.cs", "MaxQuarters", 12), 90, "WeatherMath.MaxQuarters: three years of seasons, a short line each, per home map"),
+    "Nature/GroundMap.cs:ash": ("fixed", const("Nature/GroundMath.cs", "MaxCells", 40), 30,
+                                "GroundMath.MaxCells: per home map, the cells where ash lies thickest until they turn rich (some days after a waking mountain's ash or Odyssey's), empty otherwise"),
     "Fields/FieldWeather.cs:byWeather": ("while", 15, V, "per home map: the growing zones set to sow By the weather, while the zone stands"),
     "Fields/FieldWeather.cs:strays": ("fixed", const("Fields/FieldWeatherMath.cs", "StrayDays", 15), V,
                                       "FieldWeatherMath.StrayDays: how much colder than the land's reckoning each of the last days got, per home map"),

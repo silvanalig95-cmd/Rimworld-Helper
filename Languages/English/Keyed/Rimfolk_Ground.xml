@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- ===================== The ground that stays and the mountain that wakes (Source/ColonyCouncil/Nature/Ground*.cs) ===================== -->
+
+  <!-- The clock (Lean/PassClockMath.cs) -->
+  <CC_Clock_Pass_RareGround>The ground: quakes' marks, the rain, sinkholes, the mountain awake</CC_Clock_Pass_RareGround>
+
+  <!-- Settings (UI/SettingsCatalog.cs, Rimfolk events) -->
+  <CC_Settings_GroundMarks>The ground keeps marks</CC_Settings_GroundMarks>
+  <CC_Settings_GroundMarks_Tip>An earthquake (Seasonal Weather's, Vanilla Events Expanded's, Rimefeller's drill tremors, or any other mod's by its name), and Rimfolk's own rockslide and warm vent, may leave a lasting mark out on the land: a cave in a rock face, a spring, a crack across open ground, or loose stone at the foot of the rock. Days of heavy rain on hilly land may bring a hillside down, and a wet season may open a sinkhole, the ground sagging some hours before it gives way. Each mark is a few to a few dozen cells of the map's own rock and soil, never on or near anything of the colony's, and no two come within a season. Someone standing where a landslide comes down or the ground gives way may be hurt (Hurts from everyday life).</CC_Settings_GroundMarks_Tip>
+  <CC_SetNote_GroundMarks>Caves, springs, cracks, loose stone, landslides and sinkholes that stay on the map.</CC_SetNote_GroundMarks>
+  <CC_Settings_WakingMountain>A mountain that wakes</CC_Settings_WakingMountain>
+  <CC_Settings_WakingMountain_Tip>Only on a land of mountains or lava, about once in seventeen years (eleven on lava), never twice within five: days of tremors, warm vents opening as they end, then smoke over the mountain and ash coming down, with the game's volcanic winter for some days (and Odyssey's volcanic ash in the air, where it is loaded). Some days after the ash stops, the ground where it lay thickest turns rich. Odyssey's own volcanic ash leaves the same rich soil when it settles. In a tremor, a stone off a rock face may hurt someone standing right at it (Hurts from everyday life).</CC_Settings_WakingMountain_Tip>
+  <CC_SetNote_WakingMountain>Rarely, on mountain or lava land: days of tremors, then ash, then rich soil where it lay.</CC_SetNote_WakingMountain>
+
+  <!-- What shook the ground (GroundMath.QuakeSource) -->
+  <CC_Ground_What_Quake>The earthquake</CC_Ground_What_Quake>
+  <CC_Ground_What_Rockslide>The rockslide</CC_Ground_What_Rockslide>
+  <CC_Ground_What_WarmVent>The tremor</CC_Ground_What_WarmVent>
+
+  <!-- The marks (Nature/GroundMarks.cs). {WHAT}: what shook the ground; {PLACE}: "to the north". -->
+  <CC_Ground_Cave>{WHAT} opened a cave in the rock {PLACE}. Loose stone lies on its floor.</CC_Ground_Cave>
+  <CC_Ground_CaveSeam>{WHAT} opened a cave in the rock {PLACE}. Loose stone lies on its floor, and a seam of {ORE} shows in its wall.</CC_Ground_CaveSeam>
+  <CC_Ground_Scree>{WHAT} brought rock down off the hillside {PLACE}. Loose stone now lies in a slope at the foot of the rock.</CC_Ground_Scree>
+  <CC_Ground_Fissure>{WHAT} split the ground {PLACE}. A crack of bare rock now runs across it, with stones thrown up beside it.</CC_Ground_Fissure>
+  <CC_Ground_Spring>{WHAT} opened a spring {PLACE}. Water has come up out of the ground there and formed a small pool.</CC_Ground_Spring>
+  <CC_Ground_SpringWarm>{WHAT} opened a warm spring {PLACE}. Warm water has come up out of the ground there and formed a small pool.</CC_Ground_SpringWarm>
+  <CC_Ground_Landslide>After days of heavy rain, the hillside {PLACE} came down. Broken rock lies against the rock face, and stones and mud cover the ground below it.</CC_Ground_Landslide>
+  <CC_Ground_SinkSign>After the wet season, the ground {PLACE} has sunk a little and cracked.</CC_Ground_SinkSign>
+  <CC_Ground_SinkOpen>The ground {PLACE} gave way. A sinkhole has opened there, with water standing in it.</CC_Ground_SinkOpen>
+
+  <!-- Someone caught where the ground moved -->
+  <CC_Ground_HurtSlide>{PAWN} was caught at the edge of the landslide and hurt.</CC_Ground_HurtSlide>
+  <CC_Ground_ClearSlide>{PAWN} got clear of the landslide in time.</CC_Ground_ClearSlide>
+  <CC_Ground_HurtSink>{PAWN} fell when the ground gave way and was hurt.</CC_Ground_HurtSink>
+  <CC_Ground_ClearSink>{PAWN} jumped clear when the ground gave way.</CC_Ground_ClearSink>
+  <CC_Ground_HurtStone>A stone came off the rock face in the tremor and struck {PAWN}.</CC_Ground_HurtStone>
+
+  <!-- The chronicle -->
+  <CC_Ground_Chron_Cave>A cave opened in the rock {PLACE} when the ground shook.</CC_Ground_Chron_Cave>
+  <CC_Ground_Chron_Spring>A spring came up out of the ground {PLACE} when the ground shook.</CC_Ground_Chron_Spring>
+  <CC_Ground_Chron_Fissure>The ground split open {PLACE} when it shook.</CC_Ground_Chron_Fissure>
+  <CC_Ground_Chron_Scree>Rock came off the hillside {PLACE} when the ground shook, and lies there as loose stone.</CC_Ground_Chron_Scree>
+  <CC_Ground_Chron_Landslide>The hillside {PLACE} came down after days of heavy rain.</CC_Ground_Chron_Landslide>
+  <CC_Ground_Chron_Sinkhole>The ground {PLACE} gave way into a sinkhole after the wet season.</CC_Ground_Chron_Sinkhole>
+  <CC_Ground_Chron_Wake>The mountain {PLACE} began to shake.</CC_Ground_Chron_Wake>
+  <CC_Ground_Chron_Ash>Smoke rose over the mountain {PLACE}, and ash came down over the land.</CC_Ground_Chron_Ash>
+  <CC_Ground_Chron_Rich>Where the ash had lain thickest {PLACE}, the ground turned rich.</CC_Ground_Chron_Rich>
+
+  <!-- What a believer may take for a god's hand (Gods/GodHands.cs: "its hand in {EVENT}") -->
+  <CC_Ground_Hand_Landslide>the landslide</CC_Ground_Hand_Landslide>
+  <CC_Ground_Hand_Sinkhole>the sinkhole</CC_Ground_Hand_Sinkhole>
+  <CC_Ground_Hand_Tremors>the tremors</CC_Ground_Hand_Tremors>
+  <CC_Ground_Hand_Ash>the ash from the mountain</CC_Ground_Hand_Ash>
+
+  <!-- The mountain that wakes (Nature/GroundWaking.cs) -->
+  <CC_Ground_Wake_Title>Tremors</CC_Ground_Wake_Title>
+  <CC_Ground_Wake_Text>The ground shook just now, and dust and small stones came off the rock {PLACE}. People who know mountain country say this can go on for days, and that the mountain may be waking.</CC_Ground_Wake_Text>
+  <CC_Ground_Wake_TextBeyond>The ground shook just now. The tremors come from beyond the land {PLACE}, and people who know such country say a mountain out there may be waking.</CC_Ground_Wake_TextBeyond>
+  <CC_Ground_Vents>Steam is rising from new cracks in the ground {PLACE}, where the tremors opened warm vents.</CC_Ground_Vents>
+  <CC_Ground_Ash_Title>Ash from the mountain</CC_Ground_Ash_Title>
+  <CC_Ground_Ash_Text>Smoke is rising over the mountain {PLACE}, and ash is coming down over the land. The sky has darkened and it is getting colder.\n\nPeople who know such country say that where the ash lies thickest, the ground will be good for growing once it has settled.</CC_Ground_Ash_Text>
+  <CC_Ground_Ash_TextBeyond>Smoke is rising beyond the land {PLACE}, and ash is coming down over it. The sky has darkened and it is getting colder.\n\nPeople who know such country say that where the ash lies thickest, the ground will be good for growing once it has settled.</CC_Ground_Ash_TextBeyond>
+  <CC_Ground_Ash_Air>The air is full of ash and stings to breathe outdoors.</CC_Ground_Ash_Air>
+  <CC_Ground_Rich>Where the ash lay thickest {PLACE}, the ground has turned dark and rich.</CC_Ground_Rich>
+
+  <!-- Said over a head by whoever is nearest (one sentence each) -->
+  <CC_Ground_Say_Cave>There's a cave in the hillside that wasn't there yesterday.</CC_Ground_Say_Cave>
+  <CC_Ground_Say_Cave_2>The rock split open out there and left a cave behind it.</CC_Ground_Say_Cave_2>
+  <CC_Ground_Say_Cave_3>Someone should take a light and look inside that new cave.</CC_Ground_Say_Cave_3>
+  <CC_Ground_Say_Spring>Water's coming up out of the ground where it was dry before.</CC_Ground_Say_Spring>
+  <CC_Ground_Say_Spring_2>There's a new spring out there, and the water looks clean.</CC_Ground_Say_Spring_2>
+  <CC_Ground_Say_Spring_3>The ground cracked and now there's water standing in it.</CC_Ground_Say_Spring_3>
+  <CC_Ground_Say_Fissure>The ground's split right open out there.</CC_Ground_Say_Fissure>
+  <CC_Ground_Say_Fissure_2>Mind the new crack in the ground, it runs a good way.</CC_Ground_Say_Fissure_2>
+  <CC_Ground_Say_Fissure_3>I felt the ground tear, and now there's a crack across it.</CC_Ground_Say_Fissure_3>
+  <CC_Ground_Say_Scree>Half the rock face came down as loose stone.</CC_Ground_Say_Scree>
+  <CC_Ground_Say_Scree_2>There's loose stone all along the foot of the rock now.</CC_Ground_Say_Scree_2>
+  <CC_Ground_Say_Scree_3>Good stone lying out there now, if anyone wants to haul it.</CC_Ground_Say_Scree_3>
+  <CC_Ground_Say_Landslide>The whole hillside came down in the rain.</CC_Ground_Say_Landslide>
+  <CC_Ground_Say_Landslide_2>That slope gave way, and there's mud and rock everywhere below it.</CC_Ground_Say_Landslide_2>
+  <CC_Ground_Say_Landslide_3>I heard the hillside go, it sounded like thunder.</CC_Ground_Say_Landslide_3>
+  <CC_Ground_Say_Sinkhole>The ground just dropped away out there.</CC_Ground_Say_Sinkhole>
+  <CC_Ground_Say_Sinkhole_2>That sunken patch gave way, and now there's water in it.</CC_Ground_Say_Sinkhole_2>
+  <CC_Ground_Say_Sinkhole_3>Stay away from the edge of that sinkhole, it's still soft.</CC_Ground_Say_Sinkhole_3>
+  <CC_Ground_Say_Tremor>The ground's shaking again, I can feel it in my feet.</CC_Ground_Say_Tremor>
+  <CC_Ground_Say_Tremor_2>Dust is coming off the rock every time it shakes.</CC_Ground_Say_Tremor_2>
+  <CC_Ground_Say_Tremor_3>Keep away from the rock faces while the ground is shaking.</CC_Ground_Say_Tremor_3>
+  <CC_Ground_Say_Vent>Steam's coming out of the ground where it cracked.</CC_Ground_Say_Vent>
+  <CC_Ground_Say_Vent_2>The ground is warm around those new cracks.</CC_Ground_Say_Vent_2>
+  <CC_Ground_Say_Vent_3>There are new vents out there, and the steam is hot.</CC_Ground_Say_Vent_3>
+  <CC_Ground_Say_Ash>Ash is coming down all over the place.</CC_Ground_Say_Ash>
+  <CC_Ground_Say_Ash_2>Cover your mouth outside, the ash is everywhere.</CC_Ground_Say_Ash_2>
+  <CC_Ground_Say_Ash_3>The sky's gone dark with all that smoke.</CC_Ground_Say_Ash_3>
+  <CC_Ground_Say_Rich>The soil where the ash fell is dark and rich now.</CC_Ground_Say_Rich>
+  <CC_Ground_Say_Rich_2>Anything we plant in that dark ground should grow well.</CC_Ground_Say_Rich_2>
+  <CC_Ground_Say_Rich_3>The ash has turned that ground into good soil.</CC_Ground_Say_Rich_3>
+
+</LanguageData>

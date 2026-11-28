@@ -58,6 +58,8 @@ namespace ColonyCouncil
         RareAilments,
         RarePowers,
         RareDefenseLines,
+        /// <summary>The ground of each home map: quakes' marks, the rain, a sinkhole, the mountain awake (Sched.RareGround).</summary>
+        RareGround,
 
         // Every 250 ticks, only while something waits, in the same order.
         RareRearrange,
@@ -171,6 +173,7 @@ namespace ColonyCouncil
             new PassInfo(Pass.RareAilments, "CC_Clock_Pass_RareAilments", nameof(Sched.RareAilments), R, Sched.RareAilments),
             new PassInfo(Pass.RarePowers, "CC_Clock_Pass_RarePowers", nameof(Sched.RarePowers), R, Sched.RarePowers),
             new PassInfo(Pass.RareDefenseLines, "CC_Clock_Pass_RareDefenseLines", nameof(Sched.RareDefenseLines), R, Sched.RareDefenseLines),
+            new PassInfo(Pass.RareGround, "CC_Clock_Pass_RareGround", nameof(Sched.RareGround), R, Sched.RareGround),
 
             new PassInfo(Pass.RareRearrange, "CC_Clock_Pass_RareRearrange", nameof(Sched.RareRearrange), R, Sched.RareRearrange, true),
             new PassInfo(Pass.RareTriage, "CC_Clock_Pass_RareTriage", nameof(Sched.RareTriage), R, Sched.RareTriage, true),
