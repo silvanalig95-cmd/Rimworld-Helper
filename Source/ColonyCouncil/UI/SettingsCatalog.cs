@@ -528,6 +528,11 @@ namespace ColonyCouncil
             Toggle("handOvers", "CC_Settings_HandOvers", "CC_SetNote_HandOvers");
             Toggle("townLife", "CC_Settings_TownLife", "CC_SetNote_TownLife");
             Toggle("manyMerge", "CC_Settings_ManyMerge", "CC_SetNote_ManyMerge");
+            // The living land (Nature/Land*.cs): land that comes back, sicknesses of the wild plants, still water that rises and falls.
+            Section("CC_SetSec_Land");
+            Toggle("landRecovers", "CC_Settings_LandRecovers", "CC_SetNote_LandRecovers");
+            Toggle("landSickness", "CC_Settings_LandSickness", "CC_SetNote_LandSickness", "deepHooks");
+            Toggle("landWater", "CC_Settings_LandWater", "CC_SetNote_LandWater");
             Section("CC_SetSec_Weather");
             Toggle("dynamicWeather", "CC_Settings_DynamicWeather", "CC_SetNote_DynamicWeather", "deepHooks");
             Toggle("weatherTemperature", "CC_Settings_WeatherTemperature", "CC_SetNote_WeatherTemperature", "deepHooks");

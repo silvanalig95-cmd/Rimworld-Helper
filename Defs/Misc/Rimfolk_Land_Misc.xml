@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The council's burn of a sickness in the wild plants (Source/ColonyCouncil/Nature/LandSickness.cs): one of the colony at a sick plant with fire. -->
+  <JobDef>
+    <defName>Rimfolk_Land_Burn</defName>
+    <driverClass>ColonyCouncil.JobDriver_LandBurn</driverClass>
+    <reportString>setting fire to the sick TargetA.</reportString>
+    <casualInterruptible>false</casualInterruptible>
+  </JobDef>
+
+</Defs>

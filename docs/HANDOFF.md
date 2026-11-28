@@ -992,6 +992,25 @@ most sense." So, in this order, three builds at a time:
   item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
   not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
   Integrations and JecsLite, for the review below.
+- **Done (28 November 2026, 0.333.0; the player's picks B1, B3, B5 of the living land): the land comes back, sicknesses of
+  the wild plants, water that rises and falls**, in a worktree, merged; `docs/design/living-land-land.md`, `Nature/Land*`
+  (LandMath, LandBook, LandRegrowth, LandPasture, LandSickness, LandCouncil, LandWater, LandWet, LandPlants, LandGods,
+  LandPatches, LandDebug). Burns (a hook on flame killing a plant), felled trees (`PlantCollected`) and what a sickness
+  kills gathered into patches (10 a map) that come back by growing days (6 °C or more): grass 2, brush 12, young trees
+  of the kind that stood 25, woods 60; the land's own wild plants, never in the home area, a zone, on a floor, under a
+  roof or by a building; a felled wood grown back gives the Mossborn 3 goodwill. Overgrazing: a 16×16 block grazed 6 days
+  wears a few cells a day to packed dirt (a quarter at most), back after 20 growing days' rest. Sicknesses (about one in
+  90 growing days, never in the first 20 days or within 30 of the last; three times as likely in the region's blight):
+  a wilt (trees of one kind, 6 cells, 40 at most), a rust (grass, 3 cells, 140; up to 4 grazers leave), a rot (berry
+  bushes, 5 cells, 20), carried by the game's blight look with a hook keeping that blight from spreading on its own;
+  the council question `Rimfolk_Land_SickWood` (cut it out, burn it out on a dry hour with `JobDriver_LandBurn` at least
+  15 cells from the colony, let it run); believers may speak of Morel or Hollin. Still water and marsh only: after 4 days
+  of a dry or wet spell, edges dry to mud then soil (3 cells in) or wet to mud then marsh (2 out), every cell kept with
+  what it was and given back; rivers, the sea, hot springs, deep water and what joins them never touched (Odyssey's water
+  bodies). `LandWet.SeasonWet` is the one place that reads how wet it is (the weather record and the region's drought or
+  flood); to read `LandClimate` next. `Sched.RareLand` = 31, one of four parts a day, 200 cells a pass at most. Settings
+  under "The land". Not tried in the game: the blight look on wild trees and grass, the burn on a windy day, a pond that
+  splits as it dries, packed dirt in a busy pen, grass named otherwise in modded biomes. Tests: LivingLandTests.
 - **Done (28 November 2026, 0.332.0; the player's picks A1 to A4, E3, E4 of the living land): the land's climate**, in a
   worktree, merged; `docs/design/living-land.md` (the `LandClimate` API the other parts read: `SeasonNow`, `SeasonAt`,
   `YearNow`, `DriftNow`, `TempNow`, `ExtremeNow`, events `SeasonBegan`, `ExtremeBegan`, `ExtremeEnded`). A season's

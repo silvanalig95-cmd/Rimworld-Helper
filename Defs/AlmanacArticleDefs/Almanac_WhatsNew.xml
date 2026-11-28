@@ -31,6 +31,19 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.333.0</version>
+        <date>28 November 2026</date>
+        <title>The land comes back</title>
+        <points>
+          <li>Burnt and felled ground grows back in stages over the growing seasons: grass, then brush, then young trees of the kind that stood there, then woods.</li>
+          <li>Animals kept too thick on a pasture wear its ground to packed earth, and the grass comes back once the pasture is rested.</li>
+          <li>Now and then a wilt, a rust or a rot gets into the wild trees, grass or berry bushes and spreads, and the council is asked whether to cut it out, burn it out or let it run.</li>
+          <li>Ponds and marsh edges dry to mud and soil in a dry spell and turn to mud and marsh in a wet one, then go back to their own edge, and the fish follow. Rivers and the sea are left alone.</li>
+          <li>Each of these has its own setting under The land.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.332.0</version>
         <date>28 November 2026</date>
         <title>Seasons with a character of their own</title>

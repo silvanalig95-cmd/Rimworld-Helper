@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The living land's spoken lines (Source/ColonyCouncil/Nature/). One sentence each, said over the speaker's head.
+    Rimfolk_Land_Pool_Said: the colonist nearest a sickness when it is found ([found:wilt], [found:rust], [found:rot];
+    {THING} the plant, {KIND} its kind), and the one who sets the council's burn ([burn]).
+    Rimfolk_Land_Pool_Gods: a believer's word (LandGods), {GOD} by the name they call the god: a sickness taken for Morel's
+    doing ([wilt], [rust], [rot]), a wood come back taken for Hollin's ([woods]). Nothing says it was the god's doing; only
+    what the speaker believes.
+  -->
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Land_Pool_Said</defName>
+    <lines>
+      <plain>
+        <li>[found:wilt] That {THING} is wilting, and the ones beside it will catch it.</li>
+        <li>[found:wilt] Look at those leaves, the {THING} has the wilt.</li>
+        <li>[found:wilt] Brown leaves in the growing season, that's wilt in the {KIND}.</li>
+        <li>[found:rust] This grass is covered in orange dust, it's rust.</li>
+        <li>[found:rust] Don't walk through that grass, it has the rust and you'll carry it on your boots.</li>
+        <li>[found:rot] These berries are rotting on the bush, and the bush with them.</li>
+        <li>[found:rot] The berry bushes have the rot, there'll be nothing to pick here this year.</li>
+        <li>[burn] Stand back, once it catches it will go quickly.</li>
+        <li>[burn] Burn the sick ones out and the ground will grow clean.</li>
+        <li>[burn] Keep an eye on the wind while it burns.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+  <ColonyCouncil.FlavorPoolDef>
+    <defName>Rimfolk_Land_Pool_Gods</defName>
+    <lines>
+      <plain>
+        <li>[wilt] This wilt is {GOD}'s doing, trees don't sicken like this on their own.</li>
+        <li>[wilt] {GOD} sent this into the wood, and {GOD} will take it away again.</li>
+        <li>[rust] The old people would have called this rust on the grass {GOD}'s mark.</li>
+        <li>[rust] {GOD} has laid a hand on the grass, that's what this rust is.</li>
+        <li>[rot] {GOD} takes the berries this year, that's what the rot is.</li>
+        <li>[rot] Rot like this comes from {GOD}, and we'd do well to remember it.</li>
+        <li>[woods] {GOD} has given us the wood back.</li>
+        <li>[woods] That's {GOD}'s work, young trees standing where the ground was bare.</li>
+      </plain>
+    </lines>
+  </ColonyCouncil.FlavorPoolDef>
+
+</Defs>

@@ -179,7 +179,14 @@ namespace ColonyCouncil
         /// calendar's hourly tick, 1311, on the cycle.)
         /// </summary>
         public const int RareGround = 206;
-        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic, RareRideOut, RareMagicAutoCast, RareGround };
+
+        /// <summary>
+        /// The land's record on each home map (Nature/LandBook.cs): four small parts a day, a quarter of a day apart (the
+        /// still water, the sickness of the wild plants, the patches coming back, the pasture), each on one of these cycles
+        /// (LandMath.PartAt), a few hundred cells at most; nothing on the others, nor with its settings off.
+        /// </summary>
+        public const int RareLand = 31;
+        public static readonly int[] RareOffsets = { RareWorldKeep, RarePlanQueue, RareHeart, RareCamp, RareMissions, RareWelcome, RareAilments, RareHealth, RareDefenseLines, RareFightSides, RareSmoke, RareBuildPriority, RareWeather, RareHarm, RarePowers, RareBeasts, RareWeaponPicks, RareApparelPicks, RarePeoplesMagic, RareRideOut, RareMagicAutoCast, RareGround, RareLand };
 
         /// <summary>Passes on the 250-tick cycle that only run while something is waiting (the news of the evening, an answer playing out, the council window's memory).</summary>
         public const int RareNews = 167;

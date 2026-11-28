@@ -7,8 +7,8 @@ colony of 20, with the game keeping 30 more people it knows and 5 more each year
 generous guesses; sizes are rough XML sizes. Caps named as constants are read from the source. "Counted under" rows are
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
-Saved collections found: 842; modelled: 842; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** after two, **4,558 KB** after five.
+Saved collections found: 847; modelled: 847; growing without end: 0.
+Rimfolk's part of the save, roughly: **3,251 KB** after a year, **4,081 KB** after two, **4,575 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -37,8 +37,8 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `UI/Faces/PortraitNeeds.cs:lines` | what the portrait library lacks, one line per need: at most 200, the least recently seen let go | cap | 120 | 200 | 200 | 35.2 |
 | `Dealings/DealingBook.cs:deals` | dealings asked, under way and closed: closed ones kept 60 days (a work built together kept while it stands), DealingBook.MaxDeals at most | cap | 24 | 48 | 80 | 32.8 |
 | `Journeys/Journeys.cs:slots` | timetable hours changed for the last day (24 at most each, the night and the free hours about half), put back when they set off | fixed | 240 | 240 | 240 | 32.8 |
+| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 334 | 334 | 334 | 29.4 |
 | `Gods/GodBook.cs:standings` | the colony's standing with a god at a home, once it has moved; let go once at rest at unknown and left a year | cap | 120 | 200 | 200 | 29.3 |
-| `Dilemmas/Dilemmas.cs:lastTick` | one per dilemma def | defs | 333 | 333 | 333 | 29.3 |
 | `World/FactionMemory.cs:deeds` | 12 deeds per people (12 peoples), fading out | fixed | 144 | 144 | 144 | 28.1 |
 | `Heart/HeartTracker.cs:hearts` | one per colonist, the gone dropped hourly | colonists | 20 | 20 | 20 | 27.3 |
 | `Gods/GodLoreGifts.cs:gifts` | the gifts given, each what it was, who left it where, its fate and what was found in its place, OfferingGiftMath.BookGifts kept | cap | 18 | 36 | 90 | 26.4 |
@@ -98,8 +98,9 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `World/WorldSituations.cs:lastEnded` | one per situation def | defs | 107 | 107 | 107 | 9.4 |
 | `Colonies/LandingRecord.cs:kit` | the starting kit's stacks (a reference, the def and stuff, how many are the kit's, where it came from), a few dozen in a crashlanding; split loads merge back on the stockpile and used-up stacks are let go; only for the first 3 days | while | 60 | 60 | 60 | 9.4 |
 | `World/Notables.cs:warned` | threats each people was warned of (World/Warnings.cs): WarnMath.MaxKept, 30 days or while the threat stands | fixed | 60 | 60 | 60 | 9.4 |
-| `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
 | `Dilemmas/Dilemmas.cs:traditionCount` | per tradition, an older save's until its customs go on the calendar (the first hour) | defs | 100 | 100 | 100 | 8.8 |
+| `Building/Suggest/SameRules.cs:markedDefs` | with the above: which order | fixed | 300 | 300 | 300 | 8.8 |
+| `Nature/LandBook.cs:water` | LandMath.MaxWaterCells: cells the still water left or came over, with what each was, per home map | fixed | 360 | 360 | 360 | 8.8 |
 | `World/Notables.cs:letters` | letters and calls under way, PostMath.MaxOpen at once with the post (NotableMath.MaxOpen without); ended ones kept two days; the bringing flag while the writer carries one to the mailbag, cleared once in; the head a town's matter is passed on to | cap | 15 | 15 | 15 | 8.6 |
 | `Outsiders/OutsiderBook.cs:heard` | OutsiderTalkMath.HeardMax news heard, all towns, 60 days at most | fixed | 40 | 40 | 40 | 8.6 |
 | `Storylines/Storylines.cs:lines` | running storylines (two at most) and those ended in the last StorylineBook.KeepEndedDays | cap | 4 | 6 | 6 | 8.2 |
@@ -136,6 +137,7 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `ColonyLife/LifeBook.cs:aims` | aims said at the year's first supper, the newest LifeBook.MaxAims (A27) | cap | 18 | 30 | 30 | 5.3 |
 | `CouncilGameComponent.cs:cooldowns` | dropped once over | window | 60 | 60 | 60 | 5.3 |
 | `Story/EventRecord.cs:lines` | one line ("tick|kind|name", about 60 characters) per threat, everyday event, Rimfolk event, council question and god's card, and one a day per held reason; 30 days, at most EventRecordMath.MaxLines (200) | window | 90 | 90 | 90 | 5.3 |
+| `Nature/LandBook.cs:worn` | LandMath.MaxWorn: cells the colony's animals grazed bare, with what each was, per home map | fixed | 240 | 240 | 240 | 5.2 |
 | `Apparel/ApparelPickBook.cs:asks` | each colonist's last ask for better clothes (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 5.1 |
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `Hauling/HaulBook.cs:loads` | one per pawn carrying something for Rimfolk, dropped once it carries nothing | colonists | 20 | 20 | 20 | 5.1 |
@@ -177,6 +179,7 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `Journeys/Journeys.cs:roadFood` | travellers eating by the road's food policy, with their own to go back to at home (a pawn and two policy references) | fixed | 20 | 20 | 20 | 3.1 |
 | `Quirks/Quirks.cs:practice` | one per colonist who works, keeps late or early hours or lives under rock; dead and departed dropped daily and at saving, faded-out ones removed | colonists | 20 | 20 | 20 | 3.1 |
 | `Places/PlaceNames.cs:places` | per home map: the places its people named, PlaceNameMath.MaxPlaces at most, one gone forgotten after a season (C25) | cap | 6 | 12 | 12 | 3.0 |
+| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 33 | 33 | 33 | 2.9 |
 | `Building/BuildProjects.cs:levels` | with the above: the priorities they had | fixed | 120 | 120 | 120 | 2.9 |
 | `Decrees/Decrees.cs:nightHours` | a curfew's night hours, per colonist while it lasts; after it only those away (the dead, the gone and the unknown let go) | colonists | 20 | 20 | 20 | 2.9 |
 | `Gods/GodLore.cs:names` | the names the colony has heard the gods by, each a page of the book | cap | 3 | 6 | 15 | 2.9 |
@@ -185,7 +188,6 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `Social/SocialWeb.cs:lost` | 40 lost bonds | cap | 3 | 6 | 15 | 2.9 |
 | `Wishes/Kept.cs:watches` | granted wishes still watched (grace days) | window | 8 | 8 | 8 | 2.9 |
 | `World/WorldSituations.cs:active` | 2 running | fixed | 2 | 2 | 2 | 2.9 |
-| `Dilemmas/Dilemmas.cs:traditionBreaks` | per tradition | defs | 33 | 33 | 33 | 2.9 |
 | `Animals/AnimalPowers.cs:familiars` | a mage's familiar: one a mage, AnimalPowersMath.MaxFamiliars kept | cap | 6 | 12 | 12 | 2.8 |
 | `Faith/FaithPeople.cs:waiting` | crises waiting to be felt: one per kind per colonist, let go after 6 days | cap | 9 | 18 | 20 | 2.7 |
 | `Lean/Homes.cs:ties` | one per colonist who has been on a home: the last home they lived on; the dead, discarded and those no longer the colony's dropped hourly | colonists | 20 | 20 | 20 | 2.7 |
@@ -220,6 +222,7 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `Diplomacy/DiplomacyBook.cs:homes` | one per colony (one home in the model): their envoy's stay and the colony's envoy away (one each at most), when an envoy was last offered, the feast with guests under way and the last one; a lost home's kept 30 days | fixed | 1 | 1 | 1 | 2.3 |
 | `Quirks/Quirks.cs:luckyPast` | LuckyItems.MaxPast | cap | 3 | 6 | 15 | 2.2 |
 | `Gods/Among/GodsAmongBook.cs:seasons` | the named seasons taken for a god's doing, GodsAmongMath.MaxSeasons | cap | 2 | 4 | 10 | 2.1 |
+| `Nature/LandBook.cs:sickCells` | LandMath.Cap: the plants sick in the one sickness going on (140 grasses at most), per home map | while | 140 | 140 | 140 | 2.1 |
 | `Weather/WeatherBook.cs:days` | WeatherMath.MaxDays: the last month, a short line a day, per home map | fixed | 30 | 30 | 30 | 2.1 |
 | `Dealings/DealingBook.cs:asks` | the world's letters waiting for an answer (DealingMath.MaxWaiting at once) and answered ones kept a month | cap | 8 | 8 | 8 | 2.0 |
 | `Visitors/VisitorTracker.cs:calls` | a visitor group's purchases and next try at the market, while it is on a map; at most VisitorTrade.MaxCalls | cap | 16 | 16 | 16 | 2.0 |
@@ -396,6 +399,7 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `Ambitions/CouncilMeeting.cs:pitches` | while a meeting is called | while | 3 | 3 | 3 | 0.6 |
 | `Building/Automations.cs:doneKeys` | one per kind of automated action (a dozen kinds) | fixed | 20 | 20 | 20 | 0.6 |
 | `Camps/Camp.cs:asksMade` | asks made of the camp (once each, or once a day), while it stays | while | 15 | 15 | 15 | 0.6 |
+| `Nature/LandBook.cs:patches` | LandMath.MaxPatches: burns, felled woods and what a sickness killed, coming back, per home map | fixed | 10 | 10 | 10 | 0.6 |
 | `Peoples/Events5/PeopleEvents5Book.cs:mourns` | the raiders' peoples whose mourners are due, PeopleEvents5Math.MaxMourns kept | cap | 1 | 2 | 5 | 0.6 |
 | `Peoples/Events6/AfterFire.cs:saplings` | the cells still to plant in the burn, while the camp stands | fixed | 24 | 24 | 24 | 0.6 |
 | `Secrets/Vendettas.cs:known` | known pawns only | known | 11 | 12 | 15 | 0.6 |
@@ -571,6 +575,7 @@ Rimfolk's part of the save, roughly: **3,234 KB** after a year, **4,064 KB** aft
 | `Decrees/Decrees.cs:useDefs` | uses within the fatigue window | window | 4 | 4 | 4 | 0.2 |
 | `Health/HealthTracker.cs:lastSetback` | 20 days | window | 2 | 2 | 2 | 0.2 |
 | `Health/HealthTracker.cs:setbacks` | convalescences colonists still have | colonists | 2 | 2 | 2 | 0.2 |
+| `Nature/LandBook.cs:grazing` | LandMath.MaxBlocks: the grazing blocks watched, per home map | fixed | 12 | 12 | 12 | 0.2 |
 | `Annals.cs:died` | the year in progress | yearly | 4 | 4 | 4 | 0.2 |
 | `Peoples/Events2/PeopleEvents2Book.cs:marks` | the blades the guild marked with a colonist's name, PeopleEvents2Math.MaxMarks kept | cap | 1 | 3 | 7 | 0.2 |
 | `Beasts/BeastBook.cs:homes` | one per colony (one home in the model): its last alphas, the threat looked at, its great herd's season | fixed | 1 | 1 | 1 | 0.2 |

@@ -726,6 +726,12 @@ namespace ColonyCouncil
         /// <summary>Planning ahead (the Making page's Ahead section): days of meals to keep cooked, and days of food to keep in store beyond the days nothing grows.</summary>
         public float aheadMealDays = 2f;
         public float aheadReserveDays = 5f;
+        /// <summary>The living land (Nature/LandRegrowth.cs, LandPasture.cs): burned and felled ground comes back in stages, grass, brush, young trees, woods; ground the colony's animals graze bare wears and comes back once rested.</summary>
+        public bool landRecovers = true;
+        /// <summary>The living land (Nature/LandSickness.cs): now and then a wilt, a rust or a rot gets into the wild plants and spreads, and the council is asked.</summary>
+        public bool landSickness = true;
+        /// <summary>The living land (Nature/LandWater.cs): still water draws back in a dry spell and swells in a wet one, and goes back to the map's own edge.</summary>
+        public bool landWater = true;
         /// <summary>A "By the weather" switch on each growing zone (off on each until switched on there): sowing there pauses while a crop sown now wouldn't pay by the forecast (Fields/FieldWeather.cs).</summary>
         public bool fieldsByWeather = true;
         /// <summary>A one-click suggestion to harvest the plants of an outdoor field that a frost in the next day or so would kill (Fields/FieldWeather.cs).</summary>
@@ -1306,6 +1312,9 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref autoChopsADay, "autoChopsADay", 10);
             Scribe_Values.Look(ref aheadMealDays, "aheadMealDays", 2f);
             Scribe_Values.Look(ref aheadReserveDays, "aheadReserveDays", 5f);
+            Scribe_Values.Look(ref landRecovers, "landRecovers", true);
+            Scribe_Values.Look(ref landSickness, "landSickness", true);
+            Scribe_Values.Look(ref landWater, "landWater", true);
             Scribe_Values.Look(ref fieldsByWeather, "fieldsByWeather", true);
             Scribe_Values.Look(ref frostHarvestSuggest, "frostHarvestSuggest", true);
             Scribe_Values.Look(ref frostHarvestAuto, "frostHarvestAuto", true);

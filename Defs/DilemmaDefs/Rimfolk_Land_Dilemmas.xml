@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    The living land (Source/ColonyCouncil/Nature/, docs/design/living-land-land.md). A sickness has got into the wild
+    plants (LandSickness: a wilt among trees of one kind, a rust in the grass, a rot in the berry bushes) and a few are sick
+    already. A is the colony's best grower, B the next. {THING} the plant it began in, {KIND} the plants it takes ("oak
+    trees", "grass", "berry bushes"), {COUNT} how many are sick. Tags: wilt, rust, rot; near (close to
+    the colony's own ground). Every answer plays out on the map: the sick marked and a work party cutting them out, one of
+    them setting fire to the far edge on a dry day, or nothing done.
+  -->
+  <ColonyCouncil.DilemmaDef>
+    <defName>Rimfolk_Land_SickWood</defName>
+    <label>a sickness in the wild plants</label>
+    <workerClass>ColonyCouncil.DilemmaWorker_LandSick</workerClass>
+    <weight>1</weight>
+    <cooldownDays>15</cooldownDays>
+    <answerDays>1</answerDays>
+    <minColonists>2</minColonists>
+    <texts>
+      <li>[wilt] {A_nameDef} came in from the woods with a twig of brown leaves. The {KIND} out there are wilting in the middle of the growing season, {COUNT} of them already, and it goes from tree to tree among them. {B_nameDef} wants the sick ones felled now, with the trees standing next to them; {A_nameDef} has seen a wilt burned out before, and says fire is surer.</li>
+      <li>[wilt,lowtech] The old foresters knew this one as the wilt. {A_nameDef} found it in {COUNT} {KIND}, the bark split and the leaves gone brown, and it creeps from root to root. {B_nameDef} says fell them and the ring round them; {A_nameDef} says burn the sick wood where it stands, before it reaches the rest.</li>
+      <li>[wilt,!lowtech] {A_nameDef} cut a sample from one of the {KIND} and showed the council the dark streaks in the wood: a wilt, a fungus that travels through the roots. {COUNT} trees have it so far. {B_nameDef} wants them felled along with the ones around them; {A_nameDef} would rather burn the patch out.</li>
+      <li>[wilt,near] There is wilt in {COUNT} {KIND} close to the colony's own ground, and {A_nameDef} says the trees beside them will have it next. {B_nameDef} wants the sick trees down and their neighbours with them, before the woods round the colony are full of dead wood.</li>
+      <li>[rust] The grass {A_nameDef} walked through this morning left an orange dust on {A_possessive} boots. It is rust, in {COUNT} patches of grass already, and the wind carries it. {B_nameDef} would cut the sick grass out; {A_nameDef} would burn it off before it spreads, and let new grass come up in the ash.</li>
+      <li>[rust,lowtech] The herders know it as grass rust: the blades go orange and fall flat, and the beasts won't graze it. {A_nameDef} counted {COUNT} patches of it. {B_nameDef} says cut it out; {A_nameDef} says the old way is fire, on a dry day with the wind away from home.</li>
+      <li>[rust,!lowtech] {A_nameDef} brought a handful of grass to the council: the blades are covered in orange spores. Grass rust, in {COUNT} patches so far, and it travels on the wind. {B_nameDef} wants the sick grass cut; {A_nameDef} would burn it off.</li>
+      <li>[rot] The berry bushes have gone soft and grey with rot, {COUNT} of them so far. {A_nameDef} says the fruit will rot on the stem this year and the rot will move to the next bush. {B_nameDef} wants the sick bushes cut out; {A_nameDef} would burn them.</li>
+      <li>[rot,lowtech] {A_nameDef} came back from gathering with an empty basket: the berries are grey with mould on {COUNT} bushes, and the leaves are going the same way. The old gatherers would cut the sick bushes down or burn them. {B_nameDef} says cut; {A_nameDef} says burn.</li>
+    </texts>
+    <defaultOption>0</defaultOption>
+    <options>
+      <li>
+        <label>Cut out what is sick, and what grows beside it</label>
+        <outcome>The sick {KIND} and those growing beside them are marked for cutting, and the best grower and two others go out to cut them before it spreads further.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LandSickCut" />
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>cutting out the sickness</label><target>Colony</target><tasks><li>Cut</li><li>Haul</li></tasks><count>3</count><hours>6~18</hours><duration>2~3</duration>
+            <lines>
+              <li>Cut it below the brown, or it comes back.</li>
+              <li>Don't touch the healthy ones with that blade.</li>
+              <li>There's another one over here with the spots.</li>
+            </lines>
+          </li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Burn it out</label>
+        <outcome>On the first dry day {A_nameDef} goes out to the far edge of the sickness with fire and sets it alight. The fire will take the sick {KIND} and some of what grows round them, and the burnt ground will grow back.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_LandSickBurn" />
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Vindicated</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
+        </effects>
+      </li>
+      <li>
+        <label>Let it run its course</label>
+        <outcome>The council leaves it alone. The sickness goes where it goes, and the land grows back after it in its own time.</outcome>
+        <ways><toil>-1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_Land_SickLeft</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-1</amount></li>
+        </effects>
+      </li>
+    </options>
+  </ColonyCouncil.DilemmaDef>
+
+  <ThoughtDef ParentName="Council_MemoryBase">
+    <defName>Rimfolk_Land_SickLeft</defName>
+    <durationDays>4</durationDays>
+    <stages><li><label>left the sickness alone</label><description>I found the sickness in the wild plants, and the council let it run. I see more of it every time I go out.</description><baseMoodEffect>-3</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+</Defs>

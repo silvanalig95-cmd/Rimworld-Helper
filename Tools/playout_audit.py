@@ -110,6 +110,9 @@ PLAY = {
     # What the colony meets (Dilemmas/DilemmaWorkers_Variety2.cs): the blighted plants (and the field) marked for the
     # growers, a weapon from the stores taken up by the one chosen, an animal given a new master it follows.
     "DilemmaEffect_CutBlight": "blight marked",
+    # The living land (Nature/LandCouncil.cs): a sickness of the wild plants marked for cutting, or burned out at its far edge.
+    "DilemmaEffect_LandSickCut": "the sick marked",
+    "DilemmaEffect_LandSickBurn": "a burn set",
     "DilemmaEffect_TakeUp": "weapon taken up",
     "DilemmaEffect_NewMaster": "new master",
     # A herd crossing the land (Happenings/Workers_Variety2.cs): grown ones of it marked for the colony's hunters.

@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The land comes back
+
+*28 November 2026, version 0.333.0*
+
+- Burnt and felled ground grows back in stages over the growing seasons: grass, then brush, then young trees of the kind that stood there, then woods.
+- Animals kept too thick on a pasture wear its ground to packed earth, and the grass comes back once the pasture is rested.
+- Now and then a wilt, a rust or a rot gets into the wild trees, grass or berry bushes and spreads, and the council is asked whether to cut it out, burn it out or let it run.
+- Ponds and marsh edges dry to mud and soil in a dry spell and turn to mud and marsh in a wet one, then go back to their own edge, and the fish follow. Rivers and the sea are left alone.
+- Each of these has its own setting under The land.
+
 ## Seasons with a character of their own
 
 *28 November 2026, version 0.332.0*
