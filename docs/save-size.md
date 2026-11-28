@@ -8,7 +8,7 @@ generous guesses; sizes are rough XML sizes. Caps named as constants are read fr
 kept inside another record (a journal's lines, a heart's lists) and are already in that record's size.
 
 Saved collections found: 837; modelled: 837; growing without end: 0.
-Rimfolk's part of the save, roughly: **3,231 KB** after a year, **4,061 KB** after two, **4,555 KB** after five.
+Rimfolk's part of the save, roughly: **3,232 KB** after a year, **4,062 KB** after two, **4,555 KB** after five.
 
 | Collection | Rule | Kind | 1 year | 2 years | 5 years | KB at 5 years |
 |---|---|---|---|---|---|---|
@@ -154,6 +154,7 @@ Rimfolk's part of the save, roughly: **3,231 KB** after a year, **4,061 KB** aft
 | `Character/Character.cs:recent` | 30 recent shifts | cap | 30 | 30 | 30 | 4.4 |
 | `Social/Banishment.cs:records` | the people the council was asked about for trouble, and those it sent away, the oldest settled first past BanishTracker.MaxRecords | cap | 3 | 6 | 15 | 4.4 |
 | `Strangers/Nemeses.cs:all` | 30 that have ended | cap | 3 | 6 | 15 | 4.4 |
+| `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 45 | 45 | 45 | 4.0 |
 | `Persona/Marks.cs:fights` | the last 8 fights won per person, a year at most | colonists | 160 | 160 | 160 | 3.9 |
 | `Animals/AnimalBook.cs:gone` | animals that left alive with their handler, AnimalNatureMath.MaxGone at most, oldest first, forgotten after 120 days | cap | 3 | 6 | 15 | 3.8 |
 | `Gods/OnMap/GodsOnMapBook.cs:marks` | the marks the gods left, GodsOnMapMath.MaxMarks, let go after five years | cap | 3 | 6 | 15 | 3.8 |
@@ -167,7 +168,6 @@ Rimfolk's part of the save, roughly: **3,231 KB** after a year, **4,061 KB** aft
 | `Peoples/Events/PeopleEventsBook.cs:trusts` | goods held in trust: one open with the league at a time, the done ones kept to PeopleEventsMath.MaxTrusts | cap | 1 | 2 | 4 | 3.5 |
 | `PlayOut/OnMapTimed.cs:kept` | kept a night to a few days, at most OnMapTimed.MaxKept at once | cap | 12 | 12 | 12 | 3.5 |
 | `PlayOut/PlayOutTracker.cs:results` | how the last ones went: PlayOutTracker.MaxResults | cap | 30 | 30 | 30 | 3.5 |
-| `Decrees/Decrees.cs:readyAt` | one per decree def | defs | 38 | 38 | 38 | 3.3 |
 | `CouncilGameComponent.cs:movingOnHeld` | those kept from moving on, one per person and reason, until it resolves or after a season (Social/MovingOnHeld.cs) | fixed | 8 | 8 | 8 | 3.3 |
 | `Hud/HudComponent.cs:samples` | the mood trend: one packed number an hour, the last week (HudComponent.MaxSamples) | cap | 168 | 168 | 168 | 3.3 |
 | `Gods/Saints/SaintsBook.cs:seen` | the colony's faiths' saints seen, for the book's kept no more, SaintsMath.MaxSeen | cap | 3 | 6 | 15 | 3.2 |

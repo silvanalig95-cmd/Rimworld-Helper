@@ -5,6 +5,16 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## Dreams, decrees, callers and weather
+
+*28 November 2026, version 0.323.0*
+
+- Ten new dreams that change something: practice at cooking, fighting and mining, the game's inspirations for surgery, taming, trade, recruitment and work, and a wish for a fire in one's own room or for stronger defences.
+- Five new dreams that come true a day or a few later: stray animals, a passing herd, a dry lightning storm, lights in the sky and someone wandering in from the wild.
+- Seven new decrees: first-aid lessons, days with the animals, evenings at the bench, medicine for a sick neighbour, wood for the neighbours, mending days and a fishing season.
+- Five new callers at the gate: an arms-master, a joiner, a carter with firewood and hay in the cold months, a master builder with cut stone, and a hunter who shows the colony where the game goes.
+- Three new weather events: clear nights that move the research on, fresh snow for tracking game, and trees brought down by a storm by the road.
+
 ## The gods, looked over
 
 *28 November 2026, version 0.322.0*

@@ -948,6 +948,18 @@ most sense." So, in this order, three builds at a time:
   bill, the survivor sent home, two encounters' skills) and two choices added (the young hands' work ask, the strange
   herds' question as a two-day far errand). Tests: ReviewCampsWorldTests, FarErrandTests. For the next review: check a
   camp's or event's own code for an effect already given before adding one (the new head's gift already was).
+- **Done (28 November 2026, 0.323.0; the player's go of 27 November, "more content to the already existing
+  mechanics"): content round 6**, in a worktree, merged; `docs/content-round-6.md` (with the frames' counts). Four thin
+  frames: dreams (281, only 62 doing more than a mood), decrees (38, none added by a content round), callers at the gate
+  (31), weather happenings (16 of 449 events read the weather). 30 items: ten dreams that change something (practice,
+  the game's inspirations, wishes) and five omens (`Rimfolk_Round6_Dreams.xml`); seven decrees with hediffs and
+  four-stage thoughts (`Rimfolk_Round6_Decrees.xml`; first-aid lessons, days with the animals, evenings at the bench kept
+  apart from a building season or harvest push in `DecreeMath.Apart`, medicine and wood for neighbours, mending days, a
+  fishing season with Odyssey or Vanilla Fishing Expanded); five callers told from data (arms-master, joiner, carter,
+  master builder, hunter's guide; `Rimfolk_Round6_Callers.xml`); three weather events (clear nights, fresh snow,
+  windfall after the storm; `Rimfolk_Round6_Weather.xml`). No answer flavour-only, thin or empty by impact_audit. Mods
+  that would help (subscribed, not enabled): Outland - Furniture & Decor (2897435739), Medieval Total Rim: Animals
+  (3806262056). Tests: Round6Tests.
 - **Done (28 November 2026, 0.322.0; the player's pick of the review's order: the gods third): a review of the gods**, in
   a worktree, merged; `docs/review-gods.md`, `Tools/gods_impact_audit.py` (`--print happenings|thin|flavour|signs|
   questions|touch|unseen`, `--write`, `--root DIR`; reuses impact_audit's reading of code). Happenings on the land (65)
