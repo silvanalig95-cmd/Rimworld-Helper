@@ -1068,7 +1068,12 @@ most sense." So, in this order, three builds at a time:
   D2) in three worktrees; then the life (A5, B2, B4, C1 to C3, with RimKeeper in mind) and the ties (E1, E2), after the
   player sends `RimfolkNatureMods.zip` from `Tools/Collect-NatureMods.ps1` (the player asked for a collector just for
   these mods: their About, LoadFolders, Defs and Patches, DLLs and source in the folders 1.7 loads, their settings,
-  ModsConfig.xml; tested with PowerShell 7 on a made-up folder).
+  ModsConfig.xml; tested with PowerShell 7 on a made-up folder). The zip came the same day: all eight found
+  (`choco.quietwonders`, `patrickschwarzer.rivers`, `patrickschwarzer.waves`, `EvilEyeGuy.WeatherReimagined`,
+  `SomethingSomething.PlantsAndStuff` (Wild Crops), `Kopp.BiomeCompatibilityProject`, `Keepercraft.RimKeeperAnimals`,
+  `luved.animaltraits`), with their DLLs and patches, read into the session's scratchpad (`naturemods_upload`); its
+  ModsConfig.xml has none of them enabled yet (told the player). Phase 2 builds on them softly; add them to
+  `docs/player-mods` once a save or mod list shows them enabled.
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
   display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
   used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the
