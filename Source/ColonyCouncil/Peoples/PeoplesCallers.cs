@@ -55,6 +55,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.map != null && ctx.map.mapTemperature.OutdoorTemp < 0f) tags.Add("cold");
             if (ctx.map != null && ctx.map.weatherManager.RainRate > 0.1f) tags.Add("rain");
         }
@@ -126,7 +127,8 @@ namespace ColonyCouncil
     /// <summary>
     /// A scholar of the learned society asks to copy the colony's records for its archive (a data event: its setting
     /// brings the scholar, who works the day where the colony gathers: its party spot, its fire or its table). {THING} is the book they leave in return, one of the
-    /// society's own of the colony's age: a textbook for a tribal or medieval colony, a schematic for a later one.
+    /// society's own: a schematic from a society of the industrial age or later to a colony past the medieval age, else a
+    /// textbook (PplAgesMath.Schematic).
     /// </summary>
     public class HappeningWorker_ScholarCopyist : HappeningWorker_Setting
     {
@@ -134,15 +136,26 @@ namespace ColonyCouncil
         public static ThingDef Book() =>
             DefDatabase<ThingDef>.GetNamedSilentFail(Avail.IsPreIndustrial ? "TextBook" : "Schematic") ?? DefDatabase<ThingDef>.GetNamedSilentFail("TextBook");
 
+        /// <summary>The book this society leaves: a schematic only from a society that makes them, to a colony that can use one.</summary>
+        public static ThingDef Book(Faction society) =>
+            DefDatabase<ThingDef>.GetNamedSilentFail(PplAgesMath.Schematic(PplAges.Of(society), Avail.IsPreIndustrial) ? "Schematic" : "TextBook")
+            ?? DefDatabase<ThingDef>.GetNamedSilentFail("TextBook");
+
         /// <summary>The society's book to leave, and a place where the colony gathers for the copyist to work (a party spot, a fire, a table).</summary>
         protected override bool CanHappen(Map map, HappeningExtension ext) => Book() != null && GatheringSpot(map) != null && base.CanHappen(map, ext);
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             if (!base.Cast(ctx, ext)) return false;
-            ctx.thing = Book();
+            ctx.thing = Book(ctx.faction);
             ctx.count = 1;
             return ctx.thing != null;
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 
@@ -173,6 +186,12 @@ namespace ColonyCouncil
             if (!base.Cast(ctx, ext)) return false;
             ctx.thing = Fish(ctx.map);
             return ctx.thing != null && ctx.count > 0;
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 
@@ -206,6 +225,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.map != null && ctx.map.listerBuildings.ColonistsHaveBuildingWithPowerOn(ThingDefOf.OrbitalTradeBeacon)) tags.Add("beacon");
         }
     }

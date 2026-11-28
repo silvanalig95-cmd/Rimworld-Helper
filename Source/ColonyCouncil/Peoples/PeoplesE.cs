@@ -204,6 +204,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (GlassWatch.Fields(ctx.map) > 0) tags.Add("fields");
         }
 
@@ -417,6 +418,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.map.weatherManager.curWeather?.isBad == true || ctx.map.weatherManager.curWeather?.defName?.Contains("Thunder") == true) tags.Add("storm");
         }
 
@@ -572,6 +574,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             int plants = ctx.a?.skills?.GetSkill(SkillDefOf.Plants)?.Level ?? 0;
             if (!WeatherDynamicsMath.ReadsWeather(plants, ctx.a != null ? Flavor.HumanAge(ctx.a) : 0f, false)) tags.Add("newreader");
         }
@@ -640,6 +643,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.variant >= 40) tags.Add("cleared");
         }
 
@@ -776,6 +780,12 @@ namespace ColonyCouncil
             if (!byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, option <= 1 ? "grove" : "refused");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
+        }
     }
 
     /// <summary>The sapling planted beside the grave (HappeningContext.spot) by the grove-warden; with the play-outs off, at once.</summary>
@@ -849,6 +859,12 @@ namespace ColonyCouncil
         {
             if (!byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, option <= 1 ? "tend" : "refused");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 

@@ -64,6 +64,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.b == null) tags.Add("nofighter");
             if (MapFacts.ThreatOn(ctx.map) || ctx.map.storyState != null && Find.TickManager.TicksGame - ctx.map.storyState.LastThreatBigTick < 5 * GenDate.TicksPerDay) tags.Add("raided");
         }
@@ -211,6 +212,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.faction != null && ctx.faction.HostileTo(Faction.OfPlayer)) tags.Add("theirfoe");
         }
 
@@ -312,6 +314,12 @@ namespace ColonyCouncil
             if (!byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, option <= 1 ? "roll" : "thanks");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
+        }
     }
 
     // ===================== The Kiln Guild: a commission =====================
@@ -391,6 +399,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.skill == SkillDefOf.Artistic) tags.Add("art");
         }
 
@@ -529,6 +538,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "maker") tags.Add("maker");
             if (ctx.place != null && ((ctx.place as MinifiedThing)?.InnerThing ?? ctx.place).TryGetQuality(out var q) && q >= QualityCategory.Masterwork) tags.Add("masterwork");
         }
@@ -596,6 +606,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "maker") tags.Add("maker");
             if (ctx.variant >= 6) tags.Add("legendary");
         }

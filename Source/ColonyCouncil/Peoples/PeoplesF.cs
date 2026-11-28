@@ -219,12 +219,17 @@ namespace ColonyCouncil
     {
         private static readonly Dictionary<int, int> quietTold = new Dictionary<int, int>();
 
-        /// <summary>The colony's mast on this map, or null.</summary>
+        /// <summary>The colony's mast on this map, or null: the relay mast, or the flag tower a Line of the old ages raises (PplAges.TowerDef).</summary>
         public static Thing Of(Map map)
         {
-            var def = PeoplesF.MastDef;
-            if (map == null || def == null) return null;
-            return map.listerThings.ThingsOfDef(def).FirstOrDefault(t => t.Spawned && t.Faction != null && t.Faction.IsPlayer);
+            if (map == null) return null;
+            foreach (var def in new[] { PeoplesF.MastDef, PplAges.TowerDef })
+            {
+                if (def == null) continue;
+                var mast = map.listerThings.ThingsOfDef(def).FirstOrDefault(t => t.Spawned && t.Faction != null && t.Faction.IsPlayer);
+                if (mast != null) return mast;
+            }
+            return null;
         }
 
         /// <summary>The mast sings: the colony's, above half its hit points, with a Signal Line at peace to carry it.</summary>
@@ -271,11 +276,11 @@ namespace ColonyCouncil
             return best;
         }
 
-        /// <summary>The mast raised at the cell, the colony's from now on, and the lineman on the road.</summary>
+        /// <summary>The mast raised at the cell (a flag tower from a Line of the old ages), the colony's from now on, and the lineman on the road.</summary>
         public static void Raise(Pawn by, IntVec3 c, Map map = null)
         {
             map ??= by?.Map;
-            var def = PeoplesF.MastDef;
+            var def = PplAges.MastFor(by?.Faction != null && !by.Faction.IsPlayer ? by.Faction : PeoplesD.Friendly(PeoplesMath.Linesmen));
             if (map == null || def == null || Of(map) != null) return;
             if (!Fits(map, c))
             {
@@ -286,8 +291,8 @@ namespace ColonyCouncil
             mast.SetFaction(Faction.OfPlayer);
             GenSpawn.Spawn(mast, c, map);
             FleckMaker.ThrowMicroSparks(c.ToVector3Shifted(), map);
-            Tell.Message(NewsKind.Land, Importance.Notable, map, "CC_PeoplesF_MastRaised".Translate((by?.LabelShort ?? "?").Named("PAWN")).Resolve(), new LookTargets(mast),
-                MessageTypeDefOf.PositiveEvent);
+            Tell.Message(NewsKind.Land, Importance.Notable, map, (def == PplAges.TowerDef ? "CC_PplR8_TowerRaised" : "CC_PeoplesF_MastRaised").Translate((by?.LabelShort ?? "?").Named("PAWN")).Resolve(),
+                new LookTargets(mast), MessageTypeDefOf.PositiveEvent);
             if (by != null && by.Spawned && by.Faction != null && !by.Faction.IsPlayer) Arrivals.SendAway(new List<Pawn> { by });
         }
 
@@ -345,13 +350,16 @@ namespace ColonyCouncil
     /// A lineman of the Signal Line comes to the gate with a mast on a mule: the Line would raise a relay mast on the
     /// colony's highest ground (RelayMast.Site), and from then the colony's letters reach their readers in half the days
     /// and the line warns of a raid a little before it comes. Raised, it is the colony's. Or the colony's builder may stand
-    /// by to learn how it is guyed. {TALE} says where it would stand.
+    /// by to learn how it is guyed. {TALE} says where it would stand. A Line of the tribal or medieval age raises its flag
+    /// tower instead (PplAges.MastFor), which carries the letters and the warnings the same way, by flag and lamp.
     /// </summary>
     public class HappeningWorker_LineMast : HappeningWorker_Visitors
     {
-        protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            PeoplesD.Friendly(PeoplesMath.Linesmen) != null && PeoplesF.MastDef != null && RelayMast.Of(map) == null && RelayMast.Site(map).IsValid
-            && Colonists(map).Count > 0;
+        protected override bool CanHappen(Map map, HappeningExtension ext)
+        {
+            var line = PeoplesD.Friendly(PeoplesMath.Linesmen);
+            return line != null && PplAges.MastFor(line) != null && RelayMast.Of(map) == null && RelayMast.Site(map).IsValid && Colonists(map).Count > 0;
+        }
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
@@ -374,6 +382,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "hill") tags.Add("hill");
             if (PeoplesF.Storm(ctx.map)) tags.Add("storm");
         }
@@ -396,7 +405,9 @@ namespace ColonyCouncil
         public override void Describe(DilemmaContext ctx, ImpactSheet sheet)
         {
             var hc = ctx as HappeningContext;
-            sheet.Play("CC_PeoplesF_Impact_Mast".Translate(hc?.tale ?? "?").Resolve(), "CC_PeoplesF_Impact_MastBrief".Translate().Resolve());
+            bool tower = PplAges.MastFor(hc?.faction ?? PeoplesD.Friendly(PeoplesMath.Linesmen)) == PplAges.TowerDef;
+            sheet.Play((tower ? "CC_PplR8_Impact_Tower" : "CC_PeoplesF_Impact_Mast").Translate(hc?.tale ?? "?").Resolve(),
+                (tower ? "CC_PplR8_Impact_TowerBrief" : "CC_PeoplesF_Impact_MastBrief").Translate().Resolve());
         }
 
         public override void Apply(DilemmaContext ctx)
@@ -421,26 +432,42 @@ namespace ColonyCouncil
 
     /// <summary>
     /// The colony has components in its stores, and the Line's wire-trader comes to buy them: carried out to them at the
-    /// gate and paid for in silver ({COUNT}, a fifth over their worth; {TALE} how many). Or the colony buys the line's
-    /// news of a caravan on the road for a little silver, and the caravan comes (the game's own trader caravan, whoever's
-    /// it is that the line heard).
+    /// gate and paid for in silver ({COUNT}, a fifth over their worth; {TALE} how many). A Line of the tribal or medieval
+    /// age keeps flag towers, not masts, and its trader buys the colony's cloth for the flags instead, at the same rate
+    /// ({THING} what is bought: PplAgesMath.Flags). Or the colony buys the line's news of a caravan on the road for a
+    /// little silver, and the caravan comes (the game's own trader caravan, whoever's it is that the line heard).
     /// </summary>
     public class HappeningWorker_LineWire : HappeningWorker_Visitors
     {
         public static int Components(Map map) => map == null ? 0 : PlayCarry.Have(map, ThingDefOf.ComponentIndustrial.defName, ThingDefOf.ComponentIndustrial);
 
-        protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            PeoplesD.Friendly(PeoplesMath.Linesmen) != null && Components(map) >= PeoplesFMath.WireMin && Colonists(map).Count > 0;
+        /// <summary>What this Line's wire-trader buys: components for its masts, or cloth for an old Line's flags.</summary>
+        public static ThingDef Wanted(Faction line) => PplAgesMath.Flags(PplAges.Of(line)) ? ThingDefOf.Cloth : ThingDefOf.ComponentIndustrial;
+
+        private static int Have(Map map, ThingDef def) => map == null || def == null ? 0 : PlayCarry.Have(map, def.defName, def);
+
+        private static int Least(ThingDef def) => def == ThingDefOf.Cloth ? PplAgesMath.ClothMin : PeoplesFMath.WireMin;
+
+        private static int Most(ThingDef def) => def == ThingDefOf.Cloth ? PplAgesMath.ClothMax : PeoplesFMath.WireMax;
+
+        protected override bool CanHappen(Map map, HappeningExtension ext)
+        {
+            var line = PeoplesD.Friendly(PeoplesMath.Linesmen);
+            if (line == null) return false;
+            var want = Wanted(line);
+            return Have(map, want) >= Least(want) && Colonists(map).Count > 0;
+        }
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             ctx.faction = PeoplesD.Friendly(PeoplesMath.Linesmen);
             if (ctx.faction == null) return false;
-            int have = Components(ctx.map);
-            if (have < PeoplesFMath.WireMin) return false;
-            ctx.variant = Math.Min(have, PeoplesFMath.WireMax);
-            ctx.thing = ThingDefOf.ComponentIndustrial;
-            ctx.count = PeoplesFMath.WirePrice(ctx.variant * ThingDefOf.ComponentIndustrial.BaseMarketValue);
+            var want = Wanted(ctx.faction);
+            int have = Have(ctx.map, want);
+            if (have < Least(want)) return false;
+            ctx.variant = Math.Min(have, Most(want));
+            ctx.thing = want;
+            ctx.count = PeoplesFMath.WirePrice(ctx.variant * want.BaseMarketValue);
             var list = new List<Pawn>
             {
                 Arrivals.Make(PeoplesD.TraderKind(ctx.faction), ctx.faction, ext.ages), Arrivals.Make(PeoplesD.FighterKind(ctx.faction), ctx.faction, ext.ages)
@@ -448,7 +475,7 @@ namespace ColonyCouncil
             ctx.stranger = list[0];
             ctx.group = list.Skip(1).Where(p => p != null).ToList();
             ctx.a = PeoplesD.Able(ctx.map).OrderBy(p => p.Position.DistanceToSquared(PeoplesD.GateSpot(ctx.map) ?? p.Position)).FirstOrDefault();
-            ctx.tale = "CC_PeoplesF_WireCount".Translate(ctx.variant).Resolve();
+            ctx.tale = (want == ThingDefOf.Cloth ? "CC_PplR8_ClothCount" : "CC_PeoplesF_WireCount").Translate(ctx.variant).Resolve();
             ctx.placeName = LivingEvents.TownOf(ctx.faction, ctx.map) ?? ctx.faction.Name;
             return ctx.stranger != null && ctx.a != null;
         }
@@ -457,14 +484,21 @@ namespace ColonyCouncil
             Arrivals.Visit(ctx.group.Prepend(ctx.stranger).ToList(), ctx.map, ctx.faction, PeoplesD.GateSpot(ctx.map), ext.stayHours.RandomInRange) != null;
 
         public override string Unavailable(HappeningContext ctx, int option) =>
-            option == 0 && Components(ctx.map) < ctx.variant ? "CC_PeoplesF_WireGone".Translate().Resolve() : null;
+            option == 0 && Have(ctx.map, ctx.thing ?? ThingDefOf.ComponentIndustrial) < ctx.variant
+                ? (ctx.thing == ThingDefOf.Cloth ? "CC_PplR8_ClothGone" : "CC_PeoplesF_WireGone").Translate().Resolve() : null;
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            // Sold: the wire-trader pays at the gate; the components go out by the answer's errand.
+            // Sold: the wire-trader pays at the gate; the components (or an old Line's cloth) go out by the answer's errand.
             if (option == 0 && !byDefault) Couriers.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count, Couriers.PeopleOf(ctx), ctx.stranger);
-            if (!byDefault) PeoplesF.Say(ctx.stranger, Ext, ctx, option == 0 ? "wire" : option == 1 ? "news" : "thanks");
+            if (!byDefault) PeoplesF.Say(ctx.stranger, Ext, ctx, option == 0 ? (ctx.thing == ThingDefOf.Cloth ? "flags" : "wire") : option == 1 ? "news" : "thanks");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 
@@ -493,7 +527,9 @@ namespace ColonyCouncil
             if (ctx.stranger == null) return false;
             bool quiet = PeoplesFMath.Quiet(ctx.place.HitPoints, ctx.place.MaxHitPoints);
             ctx.note = quiet ? "quiet" : null;
-            ctx.tale = (quiet ? "CC_PeoplesF_MastQuietNow" : "CC_PeoplesF_MastWearing").Translate().Resolve();
+            // The colony's flag tower (a Line of the old ages raised it) sways and loses its ropes where a mast loses its guy wires.
+            bool tower = ctx.place.def == PplAges.TowerDef;
+            ctx.tale = (quiet ? "CC_PeoplesF_MastQuietNow" : tower ? "CC_PplR8_TowerWearing" : "CC_PeoplesF_MastWearing").Translate().Resolve();
             ctx.a = PeoplesD.Best(ctx.map, SkillDefOf.Construction) ?? PeoplesD.Able(ctx.map).RandomElementWithFallback();
             ctx.placeName = LivingEvents.TownOf(ctx.faction, ctx.map) ?? ctx.faction.Name;
             return ctx.a != null;
@@ -504,7 +540,9 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "quiet") tags.Add("quiet");
+            if (ctx.place != null && ctx.place.def == PplAges.TowerDef) tags.Add("tower");
         }
 
         public override string Unavailable(HappeningContext ctx, int option) =>
@@ -610,6 +648,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.map.deepResourceGrid.AnyActiveDeepScannersOnMap()) tags.Add("scanned");
         }
 
@@ -742,14 +781,21 @@ namespace ColonyCouncil
     /// The union's assayer comes to the gate with a cart: a crate of steel, components and blasting goods (high-explosive
     /// shells, and Settlers' dynamite where it is loaded) for {COUNT} silver, carried out to them and the crate set down at
     /// the gate. Or the assayer walks the colony's ground with its best miner and says what lies under it. {TALE} is what
-    /// is in the crate.
+    /// is in the crate. A union of the tribal or medieval age makes no components and no blasting goods: its crate is the
+    /// pits' steel alone, the components' worth added in steel, so the crate and its price stay what they were
+    /// (PplAgesMath.Machined, SteelFor).
     /// </summary>
     public class HappeningWorker_UnionGoods : HappeningWorker_Visitors
     {
-        /// <summary>The crate by the colony's wealth: steel, components and three shells, a stick of dynamite with Settlers.</summary>
-        public static List<(ThingDef def, int count)> Crate(Map map)
+        /// <summary>The crate by the colony's wealth: steel, components and three shells, a stick of dynamite with Settlers; an old union's, steel.</summary>
+        public static List<(ThingDef def, int count)> Crate(Map map, Faction union = null)
         {
             float wf = LivingEvents.WealthFactor(map);
+            if (union != null && !PplAgesMath.Machined(PplAges.Of(union)))
+            {
+                int steel = PeoplesFMath.CrateSteel(wf) + PplAgesMath.SteelFor(PeoplesFMath.CrateComponents(wf), ThingDefOf.ComponentIndustrial.BaseMarketValue, ThingDefOf.Steel.BaseMarketValue);
+                return new List<(ThingDef, int)> { (ThingDefOf.Steel, steel) };
+            }
             var list = new List<(ThingDef, int)> { (ThingDefOf.Steel, PeoplesFMath.CrateSteel(wf)), (ThingDefOf.ComponentIndustrial, PeoplesFMath.CrateComponents(wf)) };
             var shell = DefDatabase<ThingDef>.GetNamedSilentFail("Shell_HighExplosive");
             if (shell != null) list.Add((shell, 3));
@@ -784,7 +830,7 @@ namespace ColonyCouncil
         {
             ctx.faction = PeoplesD.Friendly(PeoplesMath.Drillers);
             if (ctx.faction == null || UnionStrike.Striking(ctx.faction)) return false;
-            var crate = Crate(ctx.map);
+            var crate = Crate(ctx.map, ctx.faction);
             ctx.note = Write(crate);
             ctx.count = PeoplesFMath.GoodsPrice(crate.Sum(c => c.def.BaseMarketValue * c.count));
             ctx.tale = TextUtil.JoinAnd(crate.Select(c => Couriers.Amount(c.count, null, c.def)).ToList());
@@ -804,13 +850,14 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             HappeningWorker_UnionDrill.Seam(ctx.map, out var ore, out _);
             if (ore != null) tags.Add("seam");
         }
 
         public override string Resolved(HappeningContext ctx, int option, bool risk, bool byDefault, string outcome)
         {
-            if (!byDefault) PeoplesF.Say(ctx.stranger, Ext, ctx, option == 0 ? "sold" : option == 1 ? "ground" : "thanks");
+            if (!byDefault) PeoplesF.Say(ctx.stranger, Ext, ctx, option == 0 ? "sold" : option == 1 ? "ground" : "thanks", PplAgesMath.Machined(PplAges.Of(ctx.faction)) ? "machined" : "pits");
             if (option == 1 && !byDefault)
             {
                 HappeningWorker_UnionDrill.Seam(ctx.map, out var ore, out int deep);
@@ -957,6 +1004,12 @@ namespace ColonyCouncil
         {
             if (!byDefault) PeoplesF.Say(ctx.stranger, Ext, ctx, option <= 1 ? "settled" : "refused");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 

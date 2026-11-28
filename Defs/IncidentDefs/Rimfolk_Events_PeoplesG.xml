@@ -48,6 +48,7 @@
           <li>{X_nameDef}, a sample-buyer of {FACTION}, has come to the gate in a white lab coat with a vat-keeper and a small case of glass vials. The Works have heard that {B_nameDef} carries {TALE}, and they would pay {COUNT} silver for a sample: a little blood from the arm, drawn where {B_pronoun} stands, and nothing more.</li>
           <li>[archite] {X_nameDef} of {FACTION} has come to the gate with a case of glass vials. {X_nameDef} says nobody can make archite genes any more, and {B_nameDef} carries {TALE}. The Works would pay {COUNT} silver for a little of {B_possessive} blood, drawn from the arm where {B_pronoun} stands.</li>
           <li>[lowtech] Two strangers in clean white coats have come to the gate from {PLACE}: {X_nameDef} of {FACTION} and a companion with a case of little glass bottles. They say {B_nameDef}'s blood is rare, {TALE}, and they would pay {COUNT} silver for a few drops of it from the arm.</li>
+          <li>[age1] {X_nameDef}, a sample-buyer of {FACTION}, has come to the gate in a linen coat with a vat-keeper and a box of stoppered glass. The Works have fallen back since their old labs failed, but they still keep a record of every rare blood, and {B_nameDef} carries {TALE}: {COUNT} silver for a little blood from the arm, drawn where {B_pronoun} stands.</li>
           <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has come from {PLACE} to ask, as between friends, for a sample of {B_nameDef}'s blood: {B_pronoun} carries {TALE}. The Works would pay {COUNT} silver for a little of it.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -119,6 +120,7 @@
         <texts>
           <li>{X_nameDef}, a sequencer of {FACTION}, has come to the gate with a case of the Works' instruments. The Works offer to write a gene from their own lab, {TALE}, into {B_nameDef} as a xenogene. It takes two hours and can be done wherever {B_nameDef} is, and afterwards {B_nameDef} must wait the usual time before any more gene work. {X_nameDef} asks {COUNT} silver, or one of the colony's genepacks.</li>
           <li>[genepack] {X_nameDef} of {FACTION} has heard the colony keeps genepacks, and offers to write one of the Works' own genes, {TALE}, into {B_nameDef} in exchange for a genepack or {COUNT} silver. {X_nameDef} says it takes two hours wherever {B_nameDef} is, and nothing else about {B_objective} will change.</li>
+          <li>[age1] {X_nameDef}, a sequencer of {FACTION}, has come to the gate with one of the Works' last working gene tools, wrapped in oilcloth. The Works have fallen back, but they can still write a gene from their own old library, {TALE}, into {B_nameDef} as a xenogene: two hours wherever {B_nameDef} is, then the usual wait before any more gene work, for {COUNT} silver or one of the colony's genepacks.</li>
           <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has come from {PLACE} offering {B_nameDef} a gene of their own lab, {TALE}, for {COUNT} silver or a genepack, as between friends.</li>
         </texts>
         <defaultOption>2</defaultOption>
@@ -182,10 +184,12 @@
           <li>Medicine from the Works</li>
         </titles>
         <texts>
-          <li>{X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a guard and a long case on a strap. It holds the Works' own medicine and drugs, {TALE}. If the colony pays {COUNT} silver, {X_nameDef} will leave the case at the gate.</li>
-          <li>[nogenes] {X_nameDef} of {FACTION} has come to the gate in a white coat with a case of the Works' medicine and drugs, {TALE}. {X_nameDef} says the Works still keep their old knowledge of medicine, even where nobody works with genes any more. The case costs {COUNT} silver.</li>
-          <li>[lowtech] {X_nameDef} of {FACTION}, a healer in a clean white coat, has come to the gate from {PLACE} with a case of medicines nobody here could make: {TALE}, for {COUNT} silver.</li>
-          <li>[their:grateful] The Helix Works think well of the colony, and {X_nameDef} has brought a case of their medicine and drugs from {PLACE}, {TALE}, for {COUNT} silver, a friend's price.</li>
+          <li>[age2|age3] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a guard and a long case on a strap. It holds the Works' own medicine and drugs, {TALE}. If the colony pays {COUNT} silver, {X_nameDef} will leave the case at the gate.</li>
+          <li>[nogenes,age2|age3] {X_nameDef} of {FACTION} has come to the gate in a white coat with a case of the Works' medicine and drugs, {TALE}. {X_nameDef} says the Works still keep their old knowledge of medicine, even where nobody works with genes any more. The case costs {COUNT} silver.</li>
+          <li>[lowtech,age2|age3] {X_nameDef} of {FACTION}, a healer in a clean white coat, has come to the gate from {PLACE} with a case of medicines nobody here could make: {TALE}, for {COUNT} silver.</li>
+          <li>[their:grateful,age2|age3] The Helix Works think well of the colony, and {X_nameDef} has brought a case of their medicine and drugs from {PLACE}, {TALE}, for {COUNT} silver, a friend's price.</li>
+          <li>[age1] {X_nameDef}, a vat-keeper of {FACTION}, has come to the gate with a guard and a case of the Works' herbal medicine, {TALE}, made from the plants of their old gardens. If the colony pays {COUNT} silver, {X_nameDef} will leave the case at the gate.</li>
+          <li>[their:grateful,age1] The Helix Works think well of the colony, and {X_nameDef} has brought a case of their herbal medicine from {PLACE}, {TALE}, for {COUNT} silver, a friend's price.</li>
         </texts>
         <defaultOption>2</defaultOption>
         <options>
@@ -705,7 +709,7 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a technician of {FACTION}, has come up the road in an olive vault suit with a surface-scout and a crate. It holds the last of the vault's spacer goods, {TALE}. {X_nameDef} says the vault cannot make these things, and every year a little more of what it has stops working. For the crate they want {COUNT} components and some food, carried out to them.</li>
-          <li>[fallen] {X_nameDef}, a technician of {FACTION}, has come up the road with a crate that holds less than it used to: {TALE}, nearly the last of the vault's goods that still work. {X_nameDef} says the vault wants {COUNT} components and some food for it, and will remember who helped keep its power running.</li>
+          <li>[fallen,age1|age2] {X_nameDef}, a technician of {FACTION}, has come up the road with a crate that holds less than it used to: {TALE}, nearly the last of the vault's goods that still work. {X_nameDef} says the vault wants {COUNT} components and some food for it, and will remember who helped keep its power running.</li>
           <li>[lowtech] {X_nameDef} of {FACTION}, a stranger in a patched olive suit with a number on the back, has come to the gate from {PLACE} with a crate of strange old things, {TALE}. For them {X_nameDef} wants {COUNT} components, the small machine parts, and some food.</li>
           <li>[their:grateful] The Sunken Vault thinks well of the colony, and {X_nameDef} has brought the vault's crate from {PLACE}, {TALE}, for {COUNT} components and some food, as between friends.</li>
         </texts>

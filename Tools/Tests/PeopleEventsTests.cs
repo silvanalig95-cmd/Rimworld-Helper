@@ -171,7 +171,7 @@ public static class PeopleEventsTests
                 $"{name}: a small share of the visitors, not soon again, not in the first week");
             C(ext.Element("group")?.Value == "Visitors", $"{name}: among the visitors, at the peoples' touchpoints' rates");
             var texts = ext.Element("texts")!.Elements("li").Select(l => l.Value).ToList();
-            C(texts.Count >= 5 && texts.Any(t => t.StartsWith("[lowtech]") || t.StartsWith("[!lowtech]") || Regex.IsMatch(t, @"^\[(beast|truck|lander|tree|grove|walls|landmark|tome|rod|paths|subcores|strange|wooden|prosthetic)")),
+            C(texts.Count >= 5 && texts.Any(t => t.StartsWith("[lowtech]") || t.StartsWith("[!lowtech]") || Regex.IsMatch(t, @"^\[(age\d|beast|truck|lander|tree|grove|walls|landmark|tome|rod|paths|subcores|strange|wooden|prosthetic)")),
                 $"{name}: five or more texts, in the forms of the age");
             var options = ext.Element("options")?.Elements("li").ToList() ?? new List<XElement>();
             if (name == "Rimfolk_Evt_LanternPost") C(options.Count == 0, $"{name}: a letter: the camp is the camps' own from there");

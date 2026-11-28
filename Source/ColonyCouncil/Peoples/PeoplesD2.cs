@@ -108,6 +108,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.pet != null && PokeWorldLink.IsPokemon(ctx.pet)) tags.Add("pokemon");
         }
 
@@ -343,6 +344,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (!ctx.note.NullOrEmpty()) tags.Add("ours");
             if (PokeWorldLink.IsPokemon(HatchesFrom(ctx.thing))) tags.Add("pokemon");
         }
@@ -456,6 +458,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.note == "wild") tags.Add("wild");
         }
 
@@ -543,6 +546,12 @@ namespace ColonyCouncil
             if (!byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, option == 1 ? "refused" : "mend");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
         }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
+        }
     }
 
     // ===================== The Wheel's scrap-runners =====================
@@ -550,8 +559,8 @@ namespace ColonyCouncil
     /// <summary>
     /// The colony has scrap lying about (slag on its home ground or in its stores, clothes and weapons too far gone in its
     /// stores: PlayCarry.Scrap), and the Wheel's scrap-runners come to buy it: carried out to them at the gate and paid for
-    /// in silver ({COUNT}), or traded for a piece the Wheel mended back to new ({THING}, of the colony's own age), handed
-    /// over at the gate (DilemmaEffect_WheelRefurbished).
+    /// in silver ({COUNT}), or traded for a piece the Wheel mended back to new ({THING}, of the colony's age and never past
+    /// the Wheel's own: PplAgesMath.GoodsAge), handed over at the gate (DilemmaEffect_WheelRefurbished).
     /// </summary>
     public class HappeningWorker_WheelScrap : HappeningWorker_Visitors
     {
@@ -569,10 +578,13 @@ namespace ColonyCouncil
             return all.Count;
         }
 
-        /// <summary>A piece the Wheel mended back to new, for the colony's age: a weapon of its means (bows and blades for a tribal or medieval colony, the game's guns after).</summary>
-        public static ThingDef Refurbished(int price)
+        /// <summary>
+        /// A piece the Wheel mended back to new, for the colony's age and within the Wheel's own means: a weapon of that age
+        /// (bows and blades for a tribal or medieval one, the game's guns after).
+        /// </summary>
+        public static ThingDef Refurbished(int price, Faction wheel = null)
         {
-            int age = (int)Ages.Ours;
+            int age = wheel == null ? (int)Ages.Ours : PplAgesMath.GoodsAge((int)Ages.Ours, PplAges.Of(wheel));
             var tags = age <= 0 ? new[] { "NeolithicRangedDecent", "NeolithicMeleeAdvanced" } : age == 1 ? new[] { "MedievalMeleeDecent", "MedievalMeleeAdvanced", "NeolithicRangedDecent" }
                 : age == 2 ? new[] { "SimpleGun", "Gun" } : new[] { "Gun", "SpacerGun" };
             float most = Mathf.Max(150f, price * 1.5f);
@@ -593,7 +605,7 @@ namespace ColonyCouncil
             ctx.variant = Math.Min(n, PeoplesDMath.ScrapMax);
             float share = n > 0 ? ctx.variant / (float)n : 1f;
             ctx.count = PeoplesDMath.ScrapPrice(Mathf.RoundToInt(slag * share), worth * share);
-            ctx.thing = Refurbished(ctx.count);
+            ctx.thing = Refurbished(ctx.count, ctx.faction);
             MakeGroup(ctx, ext, Rand.RangeInclusive(2, 3), ext.ages, null, false);
             ctx.a = PeoplesD.Able(ctx.map).OrderBy(p => p.Position.DistanceToSquared(PeoplesD.GateSpot(ctx.map) ?? p.Position)).FirstOrDefault();
             ctx.tale = slag > 0 ? "CC_PeoplesD_ScrapSlag".Translate(slag, n - slag).Resolve() : "CC_PeoplesD_ScrapBroken".Translate(n).Resolve();
@@ -606,6 +618,7 @@ namespace ColonyCouncil
 
         protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
         {
+            PeopleEvents.AgeTags(tags, ctx.faction);
             if (ctx.thing == null) tags.Add("nopiece");
         }
 
@@ -702,6 +715,12 @@ namespace ColonyCouncil
             if (option == 1 && !byDefault) Couriers.PaySilver(ctx.map, VarietyUtil.Near(ctx.a, ctx.map), ctx.count, Couriers.PeopleOf(ctx), ctx.stranger);
             if (!byDefault) PeoplesD.Say(ctx.stranger, Ext, ctx, option == 2 ? "refused" : "strip");
             return base.Resolved(ctx, option, risk, byDefault, outcome);
+        }
+
+        protected override void AddTags(HappeningContext ctx, HashSet<string> tags)
+        {
+            base.AddTags(ctx, tags);
+            PeopleEvents.AgeTags(tags, ctx.faction);
         }
     }
 

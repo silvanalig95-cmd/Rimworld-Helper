@@ -19,7 +19,7 @@
     <defName>Rimfolk_Evt_OrderHealer</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a hospitaller at the gate</label>
-    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <workerClass>ColonyCouncil.HappeningWorker_PplAgesSetting</workerClass>
     <baseChance>0.6</baseChance>
     <minRefireDays>40</minRefireDays>
     <earliestDay>10</earliestDay>
@@ -38,8 +38,9 @@
         </titles>
         <texts>
           <li>{X_nameDef}, a hospitaller of {FACTION}, is walking the order's round of the farms and holdings, and stopped at the gate. {X_nameDef} had asked after {A_nameDef}'s {TALE} before anyone said a word about it.\n\nThe order asks nothing for its care, {X_nameDef} says, though the sickhouse at home is always short of medicine.</li>
-          <li>[lowtech] A hospitaller of {FACTION}, {X_nameDef}, has come up the road with a satchel of herbs and clean linen, on the order's round of the farms. {X_nameDef} saw {A_nameDef} favoring the {TALE} from the gate, and offers to see to it today, freely, as the order does.</li>
-          <li>[industrial|spacer] {X_nameDef} of {FACTION} looked at the colony's medicine with polite interest and opened a satchel of herbs and linen beside it. The order sends its hospitallers round the holdings every season, {X_nameDef} says, and {A_nameDef}'s {TALE} is just the thing they come for.</li>
+          <li>[age0|age1] A hospitaller of {FACTION}, {X_nameDef}, has come up the road with a satchel of herbs and clean linen, on the order's round of the farms. {X_nameDef} saw {A_nameDef} favoring the {TALE} from the gate, and offers to see to it today, freely, as the order does.</li>
+          <li>[industrial|spacer,age0|age1] {X_nameDef} of {FACTION} looked at the colony's medicine with polite interest and opened a satchel of herbs and linen beside it. The order sends its hospitallers round the holdings every season, {X_nameDef} says, and {A_nameDef}'s {TALE} is just the thing they come for.</li>
+          <li>[age2] {X_nameDef}, a hospitaller of {FACTION}, has come up the road with a doctor's bag on the order's round of the farms and holdings. {X_nameDef} saw {A_nameDef} favoring the {TALE} from the gate, and offers to see to it today, freely, as the order does.</li>
           <li>[ail:HeadCold|ail:ChestCold] {X_nameDef}, a hospitaller of {FACTION}, heard {A_nameDef} coughing from the road and came in to see about it. The order has a tea for that, and a poultice for the chest, and asks nothing for them.</li>
           <li>[ail:StrainedBack] {A_nameDef} straightened up from a bucket very slowly, and {X_nameDef}, a hospitaller of {FACTION} on the order's round, saw it from the gate. {X_nameDef} has a way with backs, and offers to see to {A_nameDef}'s for nothing.</li>
           <li>[their:grateful] The order remembers the colony kindly. {X_nameDef}, one of {FACTION}'s hospitallers, has come out of the way on the round to see how the colony does, and has already noticed {A_nameDef}'s {TALE}.</li>
@@ -106,7 +107,7 @@
     <defName>Rimfolk_Evt_LeagueOutrider</defName>
     <ignoreIllegalLabelCharacterConfigError>true</ignoreIllegalLabelCharacterConfigError>
     <label>a league outrider</label>
-    <workerClass>ColonyCouncil.HappeningWorker_Setting</workerClass>
+    <workerClass>ColonyCouncil.HappeningWorker_PplAgesSetting</workerClass>
     <baseChance>0.6</baseChance>
     <minRefireDays>30</minRefireDays>
     <earliestDay>12</earliestDay>
@@ -123,7 +124,9 @@
         </titles>
         <texts>
           <li>{X_nameDef}, an outrider of {FACTION}, has come up to the gate ahead of a league caravan on the road past the colony. The caravan carries more than it can sell on the road, {X_nameDef} says, and could turn aside to the colony's gate today if the colony has a mind to trade.</li>
-          <li>[lowtech] An outrider of {FACTION}, {X_nameDef}, has come up to the gate ahead of a long string of pack beasts on the road. The league's caravan could turn aside to the colony, {X_nameDef} says, if the colony wants to see what it carries.</li>
+          <li>[age1] An outrider of {FACTION}, {X_nameDef}, has come up to the gate ahead of a long string of pack beasts on the road. The league's caravan could turn aside to the colony, {X_nameDef} says, if the colony wants to see what it carries.</li>
+          <li>[age2] {X_nameDef}, an outrider of {FACTION} in a long road coat with the league's badge on it, has come up to the gate ahead of a caravan on the road past the colony. The caravan carries more than it can sell on the road, {X_nameDef} says, and could turn aside to the colony's gate today if the colony has a mind to trade.</li>
+          <li>[age3] {X_nameDef}, an outrider of {FACTION}, has come up to the gate with a slate of the caravan's stock, ahead of the league's caravan on the road past the colony. The caravan could turn aside to the colony's gate today, {X_nameDef} says, if the colony would like to see what it carries.</li>
           <li>[their:grateful] {X_nameDef} of {FACTION} came on ahead of the league's caravan to the colony's gate, as the league does for a friend on its roads. The caravan will turn aside if the colony asks it.</li>
         </texts>
         <defaultOption>1</defaultOption>

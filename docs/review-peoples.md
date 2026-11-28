@@ -192,7 +192,7 @@ Measured by `python3 Tools/peoples_impact_audit.py --write` (rewritten each run;
 | Words that promise more than the answer's effects (to read by hand) | 17 |
 | Events with a placeholder no code of theirs fills | 0 |
 | Events whose people the code doesn't name | 0 |
-| Events told in their people's own age ([age0] to [age3]); in the colony's age only | 74; 96 |
+| Events told in their people's own age ([age0] to [age3], or their goods by it); checked and left, the same in every age; in the colony's age only | 157; 13; 0 |
 | The doors that send someone to work and may send the colony's own, refusing one held | 11 of 11 |
 | Defs looked up by name without SilentFail | 0 |
 | Hediffs of Rimfolk's own the peoples give, nothing ending them | 0 of 11 |
@@ -308,52 +308,52 @@ Kept out of the peoples' hands: `TM_Firestorm`, `TM_Blizzard`, `TM_EyeOfTheStorm
 
 | Event | People | Drawn or fired | Ages in its texts | Answers: game, thin, empty |
 |---|---|---|---|---|
-| `Rimfolk_Evt_HerdersBeast` | herders | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_HuntOrTame` | hunters, tamers | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_HerdersBeast` | herders | drawn | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_HuntOrTame` | hunters, tamers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_LanternPost` | hunters | drawn | 0 1 2 3 any | 0, 0, 0 |
-| `Rimfolk_Evt_LatticeMechlink` | mechanitors | drawn | 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_LeagueTrust` | traders | drawn | any | 3, 0, 0 |
-| `Rimfolk_Evt_MossSeed` | grovekeepers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_OrderLimb` | healers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_ScholarsReading` | scholars | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_StormSense` | seers | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_LatticeMechlink` | mechanitors | drawn | 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_LeagueTrust` | traders | drawn | 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_MossSeed` | grovekeepers | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_OrderLimb` | healers | drawn | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_ScholarsReading` | scholars | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_StormSense` | seers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_ArtHandedOn` | any | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_LearningTraded` | scholars, vaultfolk | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_PlagueYear` | healers, sextons | drawn | 0 1 2 3 | 4, 0, 0 |
 | `Rimfolk_Evt_RoadToll` | traders, salvagers | drawn | 0 1 2 3 | 4, 0, 0 |
 | `Rimfolk_Evt_WoodMoot` | drillers, grovekeepers | drawn | 0 1 2 3 | 4, 0, 0 |
-| `Rimfolk_Evt_ArchiveTrust` | scholars | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_EnclaveBody` | brokers | drawn | any | 3, 0, 0 |
-| `Rimfolk_Evt_EnclaveInstalment` | brokers | fired | any | 3, 0, 0 |
+| `Rimfolk_Evt_ArchiveTrust` | scholars | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_EnclaveBody` | brokers | drawn | 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_EnclaveInstalment` | brokers | fired | 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_EnclavePad` | brokers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_GuildMark` | artisans | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_HerdersDrought` | herders | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_KnotNight` | fishers | fired | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_LameBeast` | tamers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_LeagueGuard` | traders | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_HerdersDrought` | herders | drawn | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_KnotNight` | fishers | fired | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_LameBeast` | tamers | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_LeagueGuard` | traders | drawn | 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_NewsForSale` | linesmen | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_Pilgrimage` | pilgrims | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_RiverCrossing` | fishers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_DroveCrossing` | herders | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_FieldSickhouse` | healers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_HardBirth` | herders | fired | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_OldShrine` | pilgrims | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_RedInk` | traders | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_Pilgrimage` | pilgrims | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_RiverCrossing` | fishers | drawn | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_DroveCrossing` | herders | drawn | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_FieldSickhouse` | healers | drawn | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_HardBirth` | herders | fired | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_OldShrine` | pilgrims | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_RedInk` | traders | drawn | 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_RoadGang` | traders | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_SickRoom` | healers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_SickbedLitters` | healers | fired | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_SickRoom` | healers | drawn | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_SickbedLitters` | healers | fired | 0 1 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_SpringCalving` | herders | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_ThiefTrail` | herders | fired | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_TwoFaiths` | pilgrims | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_ThiefTrail` | herders | fired | 0 1 2 any | 3, 0, 0 |
+| `Rimfolk_Evt_TwoFaiths` | pilgrims | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_BoatBuilders` | fishers | drawn | 0 1 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_BrokerPod` | brokers | drawn | 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_ContractDue` | brokers | fired | any | 3, 0, 0 |
-| `Rimfolk_Evt_EnclaveContract` | brokers | drawn | any | 3, 0, 0 |
+| `Rimfolk_Evt_ContractDue` | brokers | fired | 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_EnclaveContract` | brokers | drawn | 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_FellowExamined` | scholars | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_FloodedOut` | fishers | drawn | 0 1 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_FouledWater` | fishers | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_HiveBurned` | hunters | drawn | any | 3, 0, 0 |
-| `Rimfolk_Evt_KnotLanterns` | fishers | fired | any | 3, 0, 0 |
+| `Rimfolk_Evt_HiveBurned` | hunters | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_KnotLanterns` | fishers | fired | 0 1 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_SummerSchool` | scholars | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_WardensManhunt` | hunters | fired | 0 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_WardensPage` | hunters | fired | 0 2 any | 3, 0, 0 |
@@ -417,66 +417,66 @@ Kept out of the peoples' hands: `TM_Firestorm`, `TM_Blizzard`, `TM_EyeOfTheStorm
 | `Rimfolk_Evt_SurfaceScouts` | vaultfolk | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_VaultLastPart` | vaultfolk | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_VoidListens` | listeners | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_LeagueOutrider` | traders | drawn | 0 1 any | 2, 0, 0 |
+| `Rimfolk_Evt_LeagueOutrider` | traders | drawn | 1 2 3 any | 2, 0, 0 |
 | `Rimfolk_Evt_OrderHealer` | healers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_EnclaveLander` | brokers | drawn | 2 3 any | 1, 0, 1 |
 | `Rimfolk_Evt_PilgrimShelter` | pilgrims | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_RiverCatch` | fishers | drawn | any | 3, 0, 0 |
+| `Rimfolk_Evt_RiverCatch` | fishers | drawn | 0 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_ScholarCopyist` | scholars | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_BellForTheDead` | sextons | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_BellForTheDead` | sextons | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_BellFuneral` | sextons | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_BellVoidSigns` | sextons | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_EggTrade` | tamers | drawn | any | 3, 0, 0 |
+| `Rimfolk_Evt_EggTrade` | tamers | drawn | 0 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_PeltBuyer` | hunters | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_TamerBout` | tamers | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_TamerBout` | tamers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_TamerStray` | tamers | drawn | any | 3, 0, 0 |
 | `Rimfolk_Evt_WardensHunt` | hunters | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_WardensLantern` | hunters | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_WardensLantern` | hunters | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_WheelMending` | salvagers | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_WheelScrap` | salvagers | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_WheelScrap` | salvagers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_WheelWreck` | salvagers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_BannerDeserter` | mercenaries | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_BannerDeserter` | mercenaries | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_BannerHire` | mercenaries | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_BannerRoll` | mercenaries | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_GlassLesson` | seers | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_GlassLesson` | seers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_GlassReading` | seers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_GlassRod` | seers | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_GuildBid` | artisans | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_GuildBid` | artisans | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_GuildCollects` | artisans | drawn | any | 3, 0, 0 |
-| `Rimfolk_Evt_GuildCommission` | artisans | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_GuildCommission` | artisans | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_MossGraveTree` | grovekeepers | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_MossSaplings` | grovekeepers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_MossTreeTend` | grovekeepers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_FleetSalvage` | crew | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_FleetShuttle` | crew | drawn | any | 3, 0, 0 |
+| `Rimfolk_Evt_MossSaplings` | grovekeepers | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_MossTreeTend` | grovekeepers | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_FleetSalvage` | crew | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_FleetShuttle` | crew | drawn | 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_FleetSleeper` | crew | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_LineMast` | linesmen | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_LineMast` | linesmen | drawn | 0 1 2 3 | 3, 0, 0 |
 | `Rimfolk_Evt_LineStorm` | linesmen | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_LineWire` | linesmen | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_RepublicCensus` | citizens | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_LineWire` | linesmen | drawn | 0 1 2 3 | 3, 0, 0 |
+| `Rimfolk_Evt_RepublicCensus` | citizens | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_RepublicConscript` | citizens | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_RepublicPapers` | citizens | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_UnionDrill` | drillers | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_UnionGoods` | drillers | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_RepublicPapers` | citizens | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_UnionDrill` | drillers | drawn | 0 1 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_UnionGoods` | drillers | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_UnionStrike` | drillers | drawn | 0 1 any | 3, 0, 0 |
 | `Rimfolk_Evt_ChoirArt` | listeners | drawn | 0 1 any | 3, 0, 0 |
 | `Rimfolk_Evt_ChoirListening` | listeners | drawn | 0 1 any | 3, 0, 0 |
 | `Rimfolk_Evt_HelixBatch` | editors | drawn | any | 3, 0, 0 |
-| `Rimfolk_Evt_HelixCase` | editors | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_HelixGeneWork` | editors | drawn | any | 3, 0, 0 |
+| `Rimfolk_Evt_HelixCase` | editors | drawn | 0 1 2 3 | 3, 0, 0 |
+| `Rimfolk_Evt_HelixGeneWork` | editors | drawn | 1 any | 3, 0, 0 |
 | `Rimfolk_Evt_HelixSample` | editors | drawn | 0 1 any | 3, 0, 0 |
 | `Rimfolk_Evt_LatticeLostMech` | mechanitors | drawn | any | 3, 0, 0 |
 | `Rimfolk_Evt_LatticeParts` | mechanitors | drawn | any | 3, 0, 0 |
 | `Rimfolk_Evt_LatticeRepair` | mechanitors | drawn | any | 3, 0, 0 |
 | `Rimfolk_Evt_LatticeTurret` | mechanitors | drawn | any | 3, 0, 0 |
-| `Rimfolk_Evt_VaultBarter` | vaultfolk | drawn | 0 1 any | 3, 0, 0 |
+| `Rimfolk_Evt_VaultBarter` | vaultfolk | drawn | 0 1 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_VaultChild` | vaultfolk | drawn | any | 3, 0, 0 |
 | `Rimfolk_Evt_VaultCraft` | vaultfolk | drawn | 0 1 any | 3, 0, 0 |
-| `Rimfolk_Evt_Disputation` | scholars | drawn | 0 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_Disputation` | scholars | drawn | 0 1 2 3 any | 3, 0, 0 |
 | `Rimfolk_Evt_EnclaveSalvage` | brokers | drawn | 2 3 any | 2, 0, 0 |
 | `Rimfolk_Evt_LongWalk` | pilgrims | drawn | 0 1 2 3 any | 4, 0, 0 |
 | `Rimfolk_Evt_OrderNurse` | healers | drawn | 0 1 2 3 any | 3, 0, 0 |
-| `Rimfolk_Evt_RiverNets` | fishers | drawn | 0 2 3 any | 3, 0, 0 |
+| `Rimfolk_Evt_RiverNets` | fishers | drawn | 0 1 2 any | 3, 0, 0 |
 | `Rimfolk_Evt_PplR7_Footsore` | pilgrims | drawn | 0 1 2 3 any | 3, 0, 0 |
 
 <!-- peoples_impact_audit: end -->

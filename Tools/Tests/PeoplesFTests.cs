@@ -234,8 +234,10 @@ public static class PeoplesFTests
         int Times(XElement d, string cls) => d.Descendants("li").Count(li => li.Attribute("Class")?.Value == "ColonyCouncil." + cls);
         C(Times(events["Rimfolk_Evt_LineMast"], "DilemmaEffect_LineMast") == 2 && Has(events["Rimfolk_Evt_LineMast"], "DilemmaEffect_Learn", "skill", "Construction"),
             "the mast raised by the lineman, the colony's builder beside them if it likes");
-        C(Has(events["Rimfolk_Evt_LineWire"], "DilemmaEffect_CarryOut", "what", "ComponentIndustrial") && Has(events["Rimfolk_Evt_LineWire"], "DilemmaEffect_CarryOut", "count", PeoplesFMath.NewsFee.ToString()),
-            "the components carried out to the wire-trader, or the news paid for");
+        // What the wire-trader buys is the event's own thing: components, or cloth for the flags of a Line of the old ages (PeoplesAgesTests).
+        C(events["Rimfolk_Evt_LineWire"].Descendants("li").Any(li => li.Attribute("Class")?.Value == "ColonyCouncil.DilemmaEffect_CarryOut" && li.Element("what") == null && li.Element("variant")?.Value == "true")
+          && Has(events["Rimfolk_Evt_LineWire"], "DilemmaEffect_CarryOut", "count", PeoplesFMath.NewsFee.ToString()),
+            "the components (or an old Line's cloth) carried out to the wire-trader, or the news paid for");
         C(Times(events["Rimfolk_Evt_LineStorm"], "DilemmaEffect_LineClimb") == 2, "the mast climbed and made fast in the storm");
         C(Has(events["Rimfolk_Evt_UnionDrill"], "DilemmaEffect_UnionDrill") && Has(events["Rimfolk_Evt_UnionDrill"], "DilemmaEffect_UnionDrill", "together", "true")
           && Has(events["Rimfolk_Evt_UnionDrill"], "DilemmaEffect_Learn", "skill", "Mining"), "the seam drilled by the crew, the colony's best miner beside them if it likes");

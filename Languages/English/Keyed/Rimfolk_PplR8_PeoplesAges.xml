@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The peoples' older events in their own age (Source/ColonyCouncil/Peoples/PplAges.cs, PplAgesMath.cs;
+       docs/content-round-7-peoples-ages.md). -->
+
+  <!-- The Signal Line of the old ages: its wire-trader buys cloth for the flags, and it raises a flag tower. -->
+  <CC_PplR8_ClothCount>{0} cloth</CC_PplR8_ClothCount>
+  <CC_PplR8_ClothGone>The cloth is no longer in the stores.</CC_PplR8_ClothGone>
+  <CC_PplR8_TowerRaised>{PAWN} has raised the Signal Line's flag tower. The colony's letters go down the line by flag and lamp now, and the watchers will pass a warning along when raiders are on the road.</CC_PplR8_TowerRaised>
+  <CC_PplR8_Impact_Tower>The lineman raises a flag tower {0}. While it works, the colony's letters reach their readers in half the days, passed from tower to tower by flag and lamp, and the line warns of a raid a little before it comes. A thunderstorm wears it; under half its strength it stops working until mended.</CC_PplR8_Impact_Tower>
+  <CC_PplR8_Impact_TowerBrief>A flag tower raised</CC_PplR8_Impact_TowerBrief>
+  <CC_PplR8_TowerWearing>swaying in the wind and losing its ropes</CC_PplR8_TowerWearing>
+
+</LanguageData>

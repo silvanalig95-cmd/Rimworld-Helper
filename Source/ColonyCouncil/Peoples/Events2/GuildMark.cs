@@ -89,9 +89,13 @@ namespace ColonyCouncil
             return main == null ? (ThingDefOf.Steel, 20) : (main.thingDef, Mathf.Max(10, main.count / 2));
         }
 
-        /// <summary>The colony's people whose weapon the master would rework, with a bench for it, never one already marked.</summary>
-        public static IEnumerable<Pawn> Takers(Map map) =>
-            PeopleEvents.Takers(map, GiftKind).Where(p => p.equipment?.Primary != null && Plan(p.equipment.Primary, map) != null && WanderYear.Bench(map, p) != null);
+        /// <summary>
+        /// The colony's people whose weapon the master would rework, with a bench for it, never one already marked; with the
+        /// guild given, only a weapon of the guild's own age or before (PplAgesMath.CanWork).
+        /// </summary>
+        public static IEnumerable<Pawn> Takers(Map map, Faction guild = null) =>
+            PeopleEvents.Takers(map, GiftKind).Where(p => p.equipment?.Primary != null && (guild == null || PplAgesMath.CanWork(PeopleAgesMath.AgeOfTech((int)p.equipment.Primary.def.techLevel), PplAges.Of(guild)))
+                                                          && Plan(p.equipment.Primary, map) != null && WanderYear.Bench(map, p) != null);
 
         /// <summary>The colony's best crafter but the one whose weapon it is, to stand at the master's side.</summary>
         public static Pawn Crafter(Map map, Pawn not) => PeoplesD.Best(map, SkillDefOf.Crafting, p => p != not && !p.WorkTypeIsDisabled(WorkTypeDefOf.Crafting));
@@ -170,14 +174,17 @@ namespace ColonyCouncil
     /// </summary>
     public class HappeningWorker_GuildMark : HappeningWorker_Visitors
     {
-        protected override bool CanHappen(Map map, HappeningExtension ext) =>
-            PeoplesD.Friendly(PeoplesMath.Artisans) != null && GuildMark.Takers(map).Any() && Colonists(map).Count > 0;
+        protected override bool CanHappen(Map map, HappeningExtension ext)
+        {
+            var guild = PeoplesD.Friendly(PeoplesMath.Artisans);
+            return guild != null && GuildMark.Takers(map, guild).Any() && Colonists(map).Count > 0;
+        }
 
         protected override bool Cast(HappeningContext ctx, HappeningExtension ext)
         {
             ctx.faction = PeoplesD.Friendly(PeoplesMath.Artisans);
             if (ctx.faction == null) return false;
-            ctx.a = GuildMark.Takers(ctx.map).OrderByDescending(p => p.equipment.Primary.MarketValue).FirstOrDefault();
+            ctx.a = GuildMark.Takers(ctx.map, ctx.faction).OrderByDescending(p => p.equipment.Primary.MarketValue).FirstOrDefault();
             var w = ctx.a?.equipment?.Primary;
             var plan = GuildMark.Plan(w, ctx.map);
             if (plan == null) return false;

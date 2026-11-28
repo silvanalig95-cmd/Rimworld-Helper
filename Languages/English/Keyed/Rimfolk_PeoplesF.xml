@@ -7,7 +7,7 @@
   <CC_PeoplesF_MastSings>The mast is working: the colony's letters go down the line in half the days, and the line warns of raids.</CC_PeoplesF_MastSings>
   <CC_PeoplesF_MastQuiet>The mast is not working: mend it past half its strength, with the Signal Line at peace, and it works again.</CC_PeoplesF_MastQuiet>
   <CC_PeoplesF_MastRaised>{PAWN} has raised the Signal Line's mast. The colony's letters go down the line now, and the line will call a warning up it when raiders are on the road.</CC_PeoplesF_MastRaised>
-  <CC_PeoplesF_MastWentQuiet>The storm has worn the colony's relay mast past half its strength, and it has stopped working: no letters down the line and no warnings until it is mended.</CC_PeoplesF_MastWentQuiet>
+  <CC_PeoplesF_MastWentQuiet>The storm has worn the colony's mast past half its strength, and it has stopped working: no letters down the line and no warnings until it is mended.</CC_PeoplesF_MastWentQuiet>
   <CC_PeoplesF_MastKept>{PAWN} has secured the colony's mast against the storm, and it is working again at its full strength.</CC_PeoplesF_MastKept>
   <CC_PeoplesF_MastHill>on the hillside above the colony</CC_PeoplesF_MastHill>
   <CC_PeoplesF_MastRise>on the highest ground near the colony</CC_PeoplesF_MastRise>
