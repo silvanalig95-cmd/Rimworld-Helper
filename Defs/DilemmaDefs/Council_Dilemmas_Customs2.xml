@@ -448,6 +448,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_NoCelebration</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} alone at the old tree</label><to>Outdoors</to><hours>20~23</hours><duration>1~1.5</duration></li>
         </effects>
       </li>
     </options>

@@ -49,6 +49,7 @@
         <outcome>The council said a shared room is a shared room, and {A_nameDef} went back to it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR3_StillWoken</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
         <ways><toil>1</toil></ways>
       </li>
@@ -608,6 +609,7 @@
         <outcome>The council said babies cry, and someone has to get up for them. {A_nameDef} went back to it.</outcome>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Rimfolk_DlmR3_UpAgain</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
         <ways><toil>1</toil></ways>
       </li>

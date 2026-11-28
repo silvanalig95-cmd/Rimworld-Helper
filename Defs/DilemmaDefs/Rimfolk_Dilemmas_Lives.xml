@@ -59,6 +59,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>2</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-1</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Construction</skill><xp>150</xp></li>
         </effects>
         <riskChance>0.3</riskChance>
         <riskOutcome>The council let it go, and {A_nameDef} took that as permission. Two days later it was the rain barrel again. {B_nameDef} hasn't said "I told you so", though {B_pronoun} clearly thinks it.</riskOutcome>
@@ -143,6 +144,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_NobodyCame</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
       </li>
     </options>
@@ -214,6 +216,7 @@
         <ways><tradition>1</tradition></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_LeftAloneWithIt</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
       </li>
     </options>
@@ -256,6 +259,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_LearnByWorking</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Construction</skill><xp>250</xp></li>
         </effects>
       </li>
       <li>
@@ -430,6 +434,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_KeptIn</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} looking at the hills from the wall</label><to>Gate</to><hours>13~17</hours><duration>2~3</duration></li>
         </effects>
       </li>
     </options>
@@ -472,6 +477,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_LetMeBe</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>-2</amount></li>
+          <li Class="ColonyCouncil.DilemmaEffect_EaseIllness"><target>A</target><severity>0.04</severity></li>
         </effects>
       </li>
       <li>
@@ -687,6 +693,7 @@
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_DlmLv_TheNewWay</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Motivated</hediff><severity>0.6</severity></li>
         </effects>
       </li>
       <li>
@@ -749,6 +756,7 @@
         <ways><toil>1</toil></ways>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmLv_WorriesIgnored</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
       </li>
     </options>

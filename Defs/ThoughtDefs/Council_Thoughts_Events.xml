@@ -467,6 +467,14 @@
   </ThoughtDef>
 
   <ThoughtDef>
+    <defName>Council_Evt_NotForSale</defName>
+    <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
+    <durationDays>1</durationDays>
+    <stackLimit>1</stackLimit>
+    <stages><li><label>the colony wouldn't sell me</label><description>A stranger offered silver for me, and the council turned it down flat. It's good to know where I stand.</description><baseMoodEffect>5</baseMoodEffect></li></stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
     <defName>Council_Evt_GoodPress</defName>
     <thoughtClass>ColonyCouncil.Thought_CouncilMemory</thoughtClass>
     <durationDays>3</durationDays>

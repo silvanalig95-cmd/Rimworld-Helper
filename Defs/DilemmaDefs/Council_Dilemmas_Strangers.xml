@@ -67,6 +67,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_LetThemGo</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_DlmS_NotWanted</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_WorkParty"><label>{A_nameDef} mending a fence</label><target>A</target><count>1</count><tasks><li>Repair</li><li>Build</li></tasks><hours>6~11</hours><duration>2~3</duration></li>
         </effects>
         <riskChance>0.2</riskChance>
         <riskOutcome>{A_nameDef} walked {X_nameDef} and the {FACTION} party a good way down the road at first light. When they parted, {A_nameDef} kept walking, alone, and not toward anything in particular.</riskOutcome>
@@ -92,6 +93,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_TheyStayed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>250</xp></li>
         </effects>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-11</amount></li>
@@ -182,12 +184,14 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_SmoothedOver</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>1</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><duration>0.5~0.75</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>200</xp></li>
         </effects>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_DlmS_Stung</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TalkFailed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Goodwill"><amount>-3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to><duration>0.5~0.75</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>100</xp></li>
         </riskEffects>
       </li>
     </options>
@@ -447,6 +451,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Choice_TaughtNeighbors</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_DlmS_FedTheHungry</thought><onlyTrait><li>Kind</li></onlyTrait></li>
           <li Class="ColonyCouncil.DilemmaEffect_Visit"><who>B</who><to>Stranger</to></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Plants</skill><xp>100</xp></li>
         </effects>
       </li>
     </options>
@@ -779,6 +784,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>medicine</what><count>1</count></li>
           <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dream_WellRested</hediff></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Choice_SleepingDraught</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Medicine</skill><xp>200</xp></li>
         </effects>
       </li>
     </options>

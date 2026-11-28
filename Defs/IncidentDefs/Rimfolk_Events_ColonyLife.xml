@@ -161,6 +161,7 @@
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef}'s word to {B_nameDef}</label><who>A</who><whom>B</whom><hours>8~20</hours><duration>0.5~1</duration></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_Evt_PieceNoticed</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><xp>200</xp></li>
             </effects>
           </li>
           <li>

@@ -42,7 +42,6 @@ Council_Dilemma_RainWelcome [option 1] pots set out and back to work: a moment, 
 Council_Dilemma_WaterBlessing [option 2] a refusal
 Council_Dilemma_MarshLights [option 2] a refusal
 Council_Dilemma_NightVigil [option 2] a refusal
-Council_Dilemma_TreeSinging [option 2] a refusal
 Council_Dilemma_AncestorsSupper [option 2] a refusal
 
 # Defs/DilemmaDefs/Council_Dilemmas_Goals.xml
@@ -132,7 +131,6 @@ Council_Dilemma_Soc_Favoritism [option 0] counting the stores: no play-out kind,
 
 # Defs/DilemmaDefs/Council_Dilemmas_Strangers.xml
 Council_DlmS_WantsToStay [option 0] already real: the stranger joins
-Council_DlmS_WantsToStay [option 2] the stranger leaves; the risk is a mental state, already real
 Council_DlmS_WantsToStay [option 3] a talk with the party's leader, not someone the answer names; the joining is already real
 Council_DlmS_RudeGuest [option 0] a guest's part: the guest apologizes
 Council_DlmS_RudeGuest [option 1] nothing done

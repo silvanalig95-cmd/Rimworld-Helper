@@ -246,6 +246,15 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Rimfolk_DlmE_GotMyWay</thought></li>
         </effects>
       </li>
+      <li>
+        <label>Keep them, and {A_nameDef} shows {B_nameDef} how they're made</label>
+        <outcome>The meals stay in the stores for the bad days. That evening {A_nameDef} took {B_nameDef} into the kitchen and showed {B_objective} how they were made, from the first chopping to the last, so there will be hands enough to make more when the bad days come.</outcome>
+        <ways><tradition>1</tradition></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Lesson"><teacher>A</teacher><student>B</student><skill>Cooking</skill><hours>16~20</hours></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
+        </effects>
+      </li>
     </options>
   </ColonyCouncil.DilemmaDef>
 

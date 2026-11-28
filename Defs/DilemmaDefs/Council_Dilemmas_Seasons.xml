@@ -469,11 +469,13 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_VictoryFeast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>3</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><organizer>B</organizer><hours>15~23</hours><duration>3~4</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>300</xp></li>
         </effects>
         <riskEffects>
           <li Class="ColonyCouncil.DilemmaEffect_Consume"><what>rawfood</what><factor>0.5</factor></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Dlm_SmallFeast</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Feast"><organizer>B</organizer><hours>15~23</hours><duration>1.5~2</duration></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Cooking</skill><xp>150</xp></li>
         </riskEffects>
       </li>
     </options>

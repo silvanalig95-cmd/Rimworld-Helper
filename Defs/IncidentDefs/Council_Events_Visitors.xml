@@ -347,6 +347,7 @@
               <li Class="ColonyCouncil.DilemmaEffect_Join" />
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_Evt_Sheltered</thought></li>
               <li Class="ColonyCouncil.DilemmaEffect_Visit"><to>Stranger</to><duration>1~1.5</duration></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>200</xp></li>
             </effects>
             <riskEffects>
               <li Class="ColonyCouncil.DilemmaEffect_Secret" />

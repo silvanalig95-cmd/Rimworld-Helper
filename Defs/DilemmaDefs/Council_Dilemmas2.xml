@@ -225,6 +225,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_Dlm_Hushed</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>A</target><amount>-4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_Omen</thought><degreeTrait>Nerves</degreeTrait><maxDegree>-1</maxDegree></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>A</target><hediff>Council_Dlm_Sleepless</hediff></li>
         </effects>
       </li>
     </options>
@@ -591,6 +592,7 @@
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Vindicated</thought></li>
           <li Class="ColonyCouncil.DilemmaEffect_Trust"><target>B</target><amount>4</amount></li>
           <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Others</target><thought>Council_Dlm_FairsFair</thought><exceptTrait><li>NightOwl</li></exceptTrait><chance>0.4</chance></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Hediff"><target>B</target><hediff>Council_Dream_WellRested</hediff></li>
         </effects>
       </li>
       <li>

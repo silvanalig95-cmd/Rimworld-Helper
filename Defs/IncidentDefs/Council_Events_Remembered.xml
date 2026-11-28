@@ -363,6 +363,9 @@
           <li>
             <label>Make peace, and ask weregild for the colony's dead (a good talker)</label>
             <outcome>{B_nameDef} says {DEAD}'s name, then the price, and holds {X_nameDef}'s eye through the silence after. {X_nameDef} agrees. {COUNT} silver will come with the peace.</outcome>
+            <riskEffects>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>150</xp></li>
+            </riskEffects>
             <riskChance>0.35</riskChance>
             <riskSkill>Social</riskSkill>
             <riskReplaces>true</riskReplaces>
@@ -373,6 +376,7 @@
               <li Class="ColonyCouncil.WorldEffect_Silver" />
               <li Class="ColonyCouncil.DilemmaEffect_Remember"><settle>true</settle><kind>madePeace</kind><about>none</about></li>
               <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>Colony</target><thought>Council_Mem_PeaceAfterYears</thought><exceptTrait><li>Bloodlust</li></exceptTrait></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>B</target><skill>Social</skill><xp>250</xp></li>
             </effects>
             <ways><tradition>1</tradition></ways>
           </li>

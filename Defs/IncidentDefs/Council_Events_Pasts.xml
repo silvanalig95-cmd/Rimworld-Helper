@@ -253,6 +253,10 @@
           <li>
             <label>Let {A_nameDef} talk them down</label>
             <outcome>{A_nameDef} talks the creditor through the whole sorry story, and by the end of it the creditor is laughing and the debt is forgiven.</outcome>
+            <effects>
+              <li Class="ColonyCouncil.DilemmaEffect_Thought"><thought>Council_Evt_DebtPaid</thought></li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>200</xp></li>
+            </effects>
             <riskChance>0.65</riskChance>
             <riskReplaces>true</riskReplaces>
             <riskOutcome>{A_nameDef} talks. The creditor listens, then leaves without a word, and will be back within a day or two with help.</riskOutcome>
@@ -264,6 +268,7 @@
                 <label>Debt collectors</label>
                 <text>The creditor who came for {A_nameDef}'s old debt is back with friends from {ENEMY}, to take it by force.</text>
               </li>
+              <li Class="ColonyCouncil.DilemmaEffect_Learn"><skill>Social</skill><xp>150</xp></li>
             </riskEffects>
           </li>
           <li>

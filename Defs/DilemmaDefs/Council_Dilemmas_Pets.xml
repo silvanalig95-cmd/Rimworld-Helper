@@ -108,6 +108,25 @@
           <li Class="ColonyCouncil.DilemmaEffect_Fight" />
         </riskEffects>
       </li>
+      <li>
+        <label>{A_nameDef} teaches {PET_nameDef} to wait at the door</label>
+        <outcome>{A_nameDef} spent the evening at the kitchen door with a pocket full of scraps, teaching {PET_nameDef} to lie down on the step at mealtimes and come no further. {PET_nameDef} mostly manages it. {B_nameDef} still checks the stew, and has stopped threatening the stove.</outcome>
+        <ways><toil>1</toil></ways>
+        <effects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>300</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>AAndB</target><thought>Council_Dlm_Compromise</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} at the kitchen door with {PET_nameDef}</label><whom>Pet</whom><hours>17~21</hours><duration>1~1.5</duration></li>
+        </effects>
+        <riskChance>0.25</riskChance>
+        <riskOutcome>{A_nameDef} spent the evening at the kitchen door with a pocket full of scraps. {PET_nameDef} ate every scrap and walked into the kitchen anyway, and {B_nameDef} saw all of it.</riskOutcome>
+        <riskReplaces>true</riskReplaces>
+        <riskSkill>Animals</riskSkill>
+        <riskEffects>
+          <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Animals</skill><xp>150</xp></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>B</target><thought>Council_Dlm_Overruled</thought></li>
+          <li Class="ColonyCouncil.DilemmaEffect_Visit"><label>{A_nameDef} at the kitchen door with {PET_nameDef}</label><whom>Pet</whom><hours>17~21</hours><duration>1~1.5</duration></li>
+        </riskEffects>
+      </li>
     </options>
   </ColonyCouncil.DilemmaDef>
 
