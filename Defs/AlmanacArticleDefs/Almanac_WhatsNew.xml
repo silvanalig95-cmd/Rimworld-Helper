@@ -31,6 +31,20 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.319.0</version>
+        <date>28 November 2026</date>
+        <title>The camps and the world, looked over</title>
+        <points>
+          <li>Fixed: goods bought from a camp are set out at the edge of its camp when none of its people can carry them over, instead of being lost after the colony has paid.</li>
+          <li>Fixed: a camp with no trader now pays the silver its answer says it paid, such as the damages for its herd in the fields, and when the road wardens give up their post before the carters come back, the price of the colony's load on the road is sent up to the colony.</li>
+          <li>Food, medicine, a coat or a night's shelter given to a camp whose people say they will remember it now brings a little goodwill with their people.</li>
+          <li>The deserters cut wood for the colony in return for its steel, and the young people on the road to a hiring fair will work a day for their supper.</li>
+          <li>In a year of strange herds, a neighbouring town may ask for the colony's best with animals to look the beasts over, and the fish run's catch can be put by as pemmican.</li>
+          <li>Working beside an agrihand you meet on the road teaches a little about plants, and war stories teach a little about melee.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.318.4</version>
         <date>28 November 2026</date>
         <title>Pick a picture again</title>

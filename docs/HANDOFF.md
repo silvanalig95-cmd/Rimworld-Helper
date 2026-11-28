@@ -934,6 +934,20 @@ most sense." So, in this order, three builds at a time:
   `Pinned` holds only where one of the colony's people has the name (`PortraitLibrary.ReadNames`); a free one is an
   ordinary picture, its face not held; `NamesAgainFor` gives it at once to a newcomer of that name; "About this picture"
   says it is free. Rimfolk Studio 0.16.0 reads people.csv (the player, the same day). Tests: PortraitConditionTests.
+- **Done (28 November 2026, 0.319.0; the player's pick of the review's order: camps and the world second): a review of the
+  camps and the world**, in a worktree, merged; `docs/review-camps-world.md`. Every camp ask and request, world event
+  answer, mission ending and encounter sorted by what it does (`Tools/world_impact_audit.py`: the lists; `--counts`;
+  `--write` refreshes the review file; `--root DIR` counts an older copy; rows read and left in
+  `Tools/world_impact_skips.txt` as "Key [flavour|words|nothing] why"). Before and after: camps' flavour-only asks 80 to
+  61, encounters 194 to 193 (the world events, missions and the peoples' camps were already sound; their flavour-only
+  answers are refusals or take their effect in code). Four bugs fixed: goods bought from a camp lost when its carrier
+  was let go (now set out at the camp's edge, `CampAskMath.SetOutWhenLetGo`, `LetGo`, `LetGoAll`), silver promised by a
+  camp with no trader not paid (`CampAskMath.FromPurse`), the road wardens' load lost when they left first
+  (`LandLeaving`), set-out goods counted after merging into a stack (`Camp.Place`). 25 answers given small real effects
+  (goodwill where the words say they will remember it, shelter in a storm, the deserters' wood, the fish run's pemmican
+  bill, the survivor sent home, two encounters' skills) and two choices added (the young hands' work ask, the strange
+  herds' question as a two-day far errand). Tests: ReviewCampsWorldTests, FarErrandTests. For the next review: check a
+  camp's or event's own code for an effect already given before adding one (the new head's gift already was).
 - **To do when the player asks (28 November 2026, brought over from Rimfolk Studio's chat; proposal first, then the
   player's word): mages casting damage spells by themselves, in fights and while hunting.** The player: "I'm a bit
   overwhelmed with the magic spells, and if you look at the pawn I have in my save that has spells, I like to integrate

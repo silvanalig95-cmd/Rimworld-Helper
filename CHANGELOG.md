@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The camps and the world, looked over
+
+*28 November 2026, version 0.319.0*
+
+- Fixed: goods bought from a camp are set out at the edge of its camp when none of its people can carry them over, instead of being lost after the colony has paid.
+- Fixed: a camp with no trader now pays the silver its answer says it paid, such as the damages for its herd in the fields, and when the road wardens give up their post before the carters come back, the price of the colony's load on the road is sent up to the colony.
+- Food, medicine, a coat or a night's shelter given to a camp whose people say they will remember it now brings a little goodwill with their people.
+- The deserters cut wood for the colony in return for its steel, and the young people on the road to a hiring fair will work a day for their supper.
+- In a year of strange herds, a neighbouring town may ask for the colony's best with animals to look the beasts over, and the fish run's catch can be put by as pemmican.
+- Working beside an agrihand you meet on the road teaches a little about plants, and war stories teach a little about melee.
+
 ## Pick a picture again
 
 *28 November 2026, version 0.318.4*
