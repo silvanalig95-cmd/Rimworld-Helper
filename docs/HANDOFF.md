@@ -1061,7 +1061,12 @@ most sense." So, in this order, three builds at a time:
   council questions, a record of the land, one setting for strength; mods M1 to M10 (Quiet Wonders, Natural Disasters,
   Thunderstorm with Ambience Core, Living Waters and Waves, Weather Reimagined, Wild Crops with Biome Compatibility
   Project, RimKeeper with Animal Traits, Dark Ages: Beasts and Monsters, Realistic Planets 2, Winter Taiga and
-  Planetary Cataclysms) and what to keep off or watch. Waiting for the player's picks.
+  Planetary Cataclysms) and what to keep off or watch. The player's picks (28 November 2026, from the page): every idea,
+  A1 to A5, B1 to B5, C1 to C3, D1, D2, E1 to E4; mods they will add: Quiet Wonders, Living Waters and Waves, Weather
+  Reimagined, Wild Crops and Biome Compatibility Project, RimKeeper and Animal Traits System. Being built in two phases:
+  first the climate (A1 to A4, E3, E4: `LandClimate`, the API the rest reads), the land (B1, B3, B5) and the ground (D1,
+  D2) in three worktrees; then the life (A5, B2, B4, C1 to C3, with RimKeeper in mind) and the ties (E1, E2), after a
+  new collection of the player's mods with the five added.
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
   display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
   used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the
