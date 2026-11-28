@@ -66,6 +66,10 @@
           <li>
             <label>Salt it all down for the winter</label>
             <outcome>The catch stays in the stores, every fish of it, for the lean months.</outcome>
+            <effects>
+              <!-- Put by: a bill for pemmican at the colony's stove (the game's own cooking), the run's fish going into it. -->
+              <li Class="ColonyCouncil.DilemmaEffect_PutBy" />
+            </effects>
           </li>
         </options>
       </li>

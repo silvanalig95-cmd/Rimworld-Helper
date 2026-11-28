@@ -1000,7 +1000,8 @@ namespace ColonyCouncil
             phase = CampPhase.Leaving;
             ending = reason;
             leftTick = Now;
-            carries.Clear();
+            // What was still on its way to the colony is let go, and what the colony paid for set out at the camp's edge.
+            LetGoAll();
             // Beds lent for the night given back, the wrecked craft left behind (CampKindsLand.cs).
             LandLeaving();
             // A day's stall at the gate is packed up first.

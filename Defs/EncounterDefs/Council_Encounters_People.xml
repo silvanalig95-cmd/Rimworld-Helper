@@ -252,6 +252,8 @@
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>A</target><thought>Council_EncP_FellowFighter</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_Thought"><target>X</target><thought>Council_EncP_FellowFighter</thought></li>
       <li Class="ColonyCouncil.DilemmaEffect_LifeEvent"><target>A</target><counter>stranger</counter></li>
+      <!-- Two fighters talking shop: how their people brace, where to hit, the battle lines drawn in the dirt. -->
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Melee</skill><xp>120</xp></li>
     </effects>
     <journal>Council_Journal_EncP_WarStories</journal>
   </ColonyCouncil.EncounterDef>

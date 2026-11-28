@@ -444,13 +444,16 @@ namespace ColonyCouncil
             }
             if (what == "silver")
             {
-                // From their trader's purse, and only what's in it.
+                // From their trader's purse first; what it can't cover (a camp with no trader, a thin purse) from their
+                // own, as their fee is paid (PayFee). The answer's words say they paid, so they pay it all.
                 int have = trader?.inventory?.innerContainer?.TotalStackCountOfDef(ThingDefOf.Silver) ?? 0;
-                int take = Mathf.Min(have, count);
-                if (take <= 0) return 0;
-                trader.inventory.RemoveCount(ThingDefOf.Silver, take);
-                traderSilver = -1;
-                return Place(ThingDefOf.Silver, take, at);
+                int take = CampAskMath.FromPurse(have, count);
+                if (take > 0)
+                {
+                    trader.inventory.RemoveCount(ThingDefOf.Silver, take);
+                    traderSilver = -1;
+                }
+                return Place(ThingDefOf.Silver, count, at);
             }
             Func<Thing, bool> match;
             switch (what)
@@ -476,18 +479,22 @@ namespace ColonyCouncil
             return given;
         }
 
-        private int Place(ThingDef def, int n, IntVec3? at = null)
+        private int Place(ThingDef def, int n, IntVec3? at = null, List<Thing> put = null)
         {
             int placed = 0;
             var spot = at.HasValue && at.Value.IsValid && at.Value.InBounds(map) ? at.Value : share.IsValid ? share : FireCell;
             while (n > 0)
             {
                 var t = ThingMaker.MakeThing(def, def.MadeFromStuff ? GenStuff.DefaultStuffFor(def) : null);
-                t.stackCount = Mathf.Min(n, def.stackLimit);
-                n -= t.stackCount;
-                if (!GenPlace.TryPlaceThing(t, spot, map, ThingPlaceMode.Near, out var put)) break;
-                put?.SetForbidden(false, false);
-                placed += t.stackCount;
+                // Counted before it is set down: a stack that merges into one lying there is used up by it, and its count
+                // would read nothing (the dig's share not told).
+                int k = Mathf.Min(n, def.stackLimit);
+                t.stackCount = k;
+                n -= k;
+                if (!GenPlace.TryPlaceThing(t, spot, map, ThingPlaceMode.Near, out var lying)) break;
+                lying?.SetForbidden(false, false);
+                if (lying != null) put?.Add(lying);
+                placed += k;
             }
             return placed;
         }

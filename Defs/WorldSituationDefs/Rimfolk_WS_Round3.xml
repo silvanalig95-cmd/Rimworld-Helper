@@ -434,6 +434,7 @@
             <outcome>A meal is carried out to {X_nameDef} at the gate. {X_pronoun} eats it sitting by the wall and goes on toward {PLACE}.</outcome>
             <effects>
               <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>a meal for the one who came back</label><what>meals</what><count>1</count><eat>true</eat><steward>false</steward></li>
+              <li Class="ColonyCouncil.WorldEffect_Goodwill"><amount>2</amount></li>
             </effects>
             <flags><li>fed</li></flags>
           </li>

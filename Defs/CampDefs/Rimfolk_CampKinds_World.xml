@@ -240,9 +240,9 @@
           <li>{X_nameDef} came up from the deserters' camp {PLACE} with a cracked blade and a question. Their gear is a season past mending, and a little of the colony's steel would see it right. They'd work for it, {X_pronoun} says, if the colony likes.</li>
           <li>[ws:war|ws:creed|ws:sellswords|ws:levy] The deserters camped {PLACE} came out of {SITUATION} with their weapons and nothing to keep them with. {X_nameDef} asked {A_nameDef} for a few bars of steel to mend what they carry.</li>
         </askTexts>
-        <tip>Fifteen steel is carried out to their camp. They mend their gear by the fire, and remember whose steel it was.</tip>
+        <tip>Fifteen steel is carried out to their camp. They mend their gear by the fire, remember whose steel it was, and work for it as they offered: a few of them fell wood for the colony near their camp.</tip>
         <outcomes>
-          <li>{A_nameDef} carried the steel down to the deserters' camp, and the sound of filing came up from it until dark. {X_nameDef} said, when {A_pronoun} left, that nobody had given them anything in a long while.</li>
+          <li>{A_nameDef} carried the steel down to the deserters' camp, and the sound of filing came up from it until dark. {X_nameDef} said, when {A_pronoun} left, that nobody had given them anything in a long while, and sent two of them out with axes to cut wood for the colony, as they had offered.</li>
         </outcomes>
         <refused>
           <li>{X_nameDef} nodded, as if {X_pronoun} had expected it, and went back to the camp to bind the blade with wire.</li>
@@ -250,6 +250,8 @@
         <refuseTension>4</refuseTension>
         <effects>
           <li Class="ColonyCouncil.DilemmaEffect_CarryOut"><label>steel for the deserters' gear</label><what>Steel</what><count>15</count><to>Camp</to></li>
+          <!-- "They'd work for it": wood felled for the colony by their camp, by a few of them (the play-outs' felling). -->
+          <li Class="ColonyCouncil.DilemmaEffect_Felled"><count>30</count><near>Camp</near></li>
         </effects>
       </li>
     </asks>

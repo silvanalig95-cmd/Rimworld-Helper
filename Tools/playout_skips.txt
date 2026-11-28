@@ -332,6 +332,7 @@ Council_WS_Migration [hunters/0] the strangers' part: their hunters go after the
 Council_WS_Migration [hunters/1] the strangers' part
 Council_WS_Migration [hunters/2] a refusal
 Council_WS_Migration [end:passed] told after it happened
+Council_WS_StrangeHerds [hunters/1] a refusal: the town's hunters, far away, not the colony's
 Council_WS_StrangeHerds [tracks] already happened, told
 Council_WS_StrangeHerds [end:moved] far away, told
 
