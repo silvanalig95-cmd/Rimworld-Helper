@@ -140,10 +140,10 @@ Rimfolk's part of the save, roughly: **3,232 KB** after a year, **4,062 KB** aft
 | `Building/Suggest/Suggestions.cs:done` | the steps done lately, SuggestMath.DoneKept at most, each with its undo and check | fixed | 20 | 20 | 20 | 5.1 |
 | `Hauling/HaulBook.cs:loads` | one per pawn carrying something for Rimfolk, dropped once it carries nothing | colonists | 20 | 20 | 20 | 5.1 |
 | `Building/BuildProjects.cs:projects` | rooms placed and followed in stages, BuildAheadTracker.MaxProjects at most; a finished one kept while its walls stand | fixed | 16 | 16 | 16 | 5.0 |
+| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 144 | 144 | 144 | 4.9 |
 | `Offices/Election.cs:pollDays` | the poll a day for six days a seat, while it lasts | while | 84 | 84 | 84 | 4.9 |
 | `Arcs/ArcTracker.cs:active` | stories under way | colonists | 10 | 10 | 10 | 4.9 |
 | `Weapons/WeaponPickBook.cs:asks` | each colonist's last ask for a better weapon or trade proposed (one each), those of the gone kept fifteen days | colonists | 20 | 20 | 20 | 4.9 |
-| `CouncilGameComponent.cs:everWished` | one per wish def | defs | 141 | 141 | 141 | 4.8 |
 | `Building/BuildAhead.cs:pieceDefs` | with the above: what each blueprint was | fixed | 120 | 120 | 120 | 4.7 |
 | `Gods/Worship/WorshipBook.cs:shrines` | places dedicated to a god with their last gift and its words, WorshipBook.MaxShrines, gone when the place is | cap | 3 | 6 | 15 | 4.7 |
 | `Outsiders/OutsiderBook.cs:wars` | OutsiderBook.MaxWars wars between other peoples, the ended let go after 60 days | fixed | 30 | 30 | 30 | 4.7 |

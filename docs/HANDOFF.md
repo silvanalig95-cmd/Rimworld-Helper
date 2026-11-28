@@ -960,12 +960,19 @@ most sense." So, in this order, three builds at a time:
   (`Rimfolk_Evt_PplR7_Footsore`, `HappeningWorker_PplR7Footsore`). Left: 96 older events told in the colony's age (a
   content round could give them the people's forms); `Arrivals.Visit` (`Happenings/HappeningHelpers.cs`) spawns a
   people's visitors without checking war (the peoples' callers check first). Tests: ReviewPeoplesTests.
-- **Under way (28 November 2026; the player's picks, clickable, asked "whats' next and what do you need to know"): a
-  review of the colonists' own lives** (wishes, ambitions, life goals, personal stories; `docs/review-lives.md`), **and,
-  alongside, a content round giving the peoples' 96 older events their own people's age and ways** (found by the
-  peoples' review: rounds 1 to 3 and releases C to G told in the colony's age; `docs/content-round-7-peoples-ages.md`),
-  each in a worktree. Also asked of the player: run the collector and send the zip with the latest save; say how magic
-  auto-cast plays on Myst (casting at all, Shadow Strike only on safe prey, undrafted again after it).
+- **Done (28 November 2026, 0.327.0; the player's pick): a review of the colonists' own lives**, in a worktree, merged;
+  `docs/review-lives.md`, `Tools/lives_impact_audit.py`, rows read and left in `Tools/lives_impact_skips.txt`. Wishes
+  141 to 144, life goals that mark a skill 43 to 54 (of 120), stories with a problem 1 to 0, ambitions sound (73), jobs
+  with no guard 3 to 0. Six fixes: the year's aim (`ArcWorker_YearsAim` never set `arc.goal`; saves pick it up), friends
+  over the hills walk over (`LivesReviewEffect_SeeTheirPeople`), the harvest before the frost counts the colony's own
+  harvests, something new at the bench needs a thing made since asking, a wish's errands take only someone free
+  (`Round4Lives.Free` = `OwnHappenings.Held` and `PlayOuts.Interruptible`), a seat's practice a skill they can use.
+  Eleven goals of work mark their skill, somewhere to belong makes friends, friends over the hills give recreation and
+  goodwill. Three wishes (`Rimfolk_LivR7_Wishes.xml`: boots, gloves for the cold, cloth and hides before winter). Left
+  for the player to decide: the family-tied life goals (marry, a child, a grandchild, set things right with family)
+  still record the goal-reached deed. Tests: ReviewLivesTests.
+- **Under way (28 November 2026; the player's pick "Yes, alongside"): the peoples' 96 older events in their own people's
+  age and ways**, in a worktree (`docs/content-round-7-peoples-ages.md`).
 - **Done (28 November 2026; the player's pick "I'll send a new collection"): the catalogue of their mods built again.**
   The player sent `RimfolkModDefs.zip` from `Tools/Collect-ModDefs.ps1` (written again, kept in the repository): 454
   mods subscribed, 298 active; new: A RimWorld of Magic (Continued) with RWoM Core and RWoM Integrations, Better Trees,

@@ -5,6 +5,17 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The colonists' own lives, looked over
+
+*28 November 2026, version 0.327.0*
+
+- Fixed: the year's aim said at the first supper now ends well when the life goal is reached, instead of being told as missed.
+- Fixed: friends over the hills now walk over to the people they got on with when those visitors come back, and spend an hour with them.
+- Fixed: the harvest before the frost is met only when the colony brings the crops in, and something new at the bench only once the colonist has made something since asking.
+- Fixed: a wish's walk or errand never takes someone who is drafted, in a break, on your order, or busy tending, rescuing, eating or sleeping, and a seat's practice picks a skill the colonist can use.
+- Reaching a life goal of mending, haggling, masterworks or a council seat now marks the skill it was about, as the other goals of work did, and finding a friend here makes the two friends.
+- Three new wishes: boots of their own, gloves for the cold, and cloth and hides put by before winter.
+
 ## A clearer Decrees page
 
 *28 November 2026, version 0.326.0*
