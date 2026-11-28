@@ -1015,7 +1015,16 @@ most sense." So, in this order, three builds at a time:
   like the impact on weather on the game and want to make it really kind of interesting and dynamic and realistic. And
   yeah, that always feels a bit different each season or year, perhaps." (Rimfolk's weather since 0.16.0 already has
   spells, what follows what, the land's own climate and a character per year, `WeatherDynamicsMath.YearOf`, hashed by
-  tile and year; the proposal can give each season its own character, extremes and their signs.) Being researched: what
+  tile and year; the proposal can give each season its own character, extremes and their signs.) And: "I guess here we
+  can also draw the weather, and whole biosphere is of course very much tied to the current biome, but I guess the game
+  then perhaps locks out certain possibilities that are technically implemented because they're not present in this
+  biome. So I would like you to also draw of all the possible possibilities and kind of think how we can use these to
+  enhance the system. And I mean, of course, not that in a super hot biome there suddenly now is constant snow, for
+  example, but maybe there is actually an extraordinary year where there is snow or there's super cold temperatures, for
+  example. I guess in reality it also sometimes happens that in Saudi Arabia it's snow, right? Every blue moon. But I just
+  want you kind of to be aware of all the different technical things that are already in the game and all the mods, the
+  biomes, etc., that you can draw on to just implement and use at your own discretion and less so restricted by the
+  different biomes settings, if you know what I mean." Being researched: what
   Rimfolk, the game, the DLCs and the player's mods already do with nature; Workshop mods for 1.6 and 1.7 in this field
   and how they sit with the player's list.
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
