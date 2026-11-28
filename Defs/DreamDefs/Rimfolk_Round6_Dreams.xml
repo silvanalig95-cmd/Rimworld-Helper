@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 6 (docs/content-round-6.md, R6-D1 to R6-D15): dreams that change something. Of the 281 dreams before this
+    round, 62 did more than give a mood; these fifteen all do. Each leaves the dreamer with something the game keeps: practice
+    in a skill they care about (cooking, fighting hand to hand, mining), an inspiration the game knows (surgery, taming, trade,
+    recruitment, a work frenzy), a warning of something that then really happens on the map a day or a few later (animals
+    wandering in, a herd passing, a dry storm with lightning, the lights in the sky, someone who has lived wild), or a wish the council can grant (a fire in
+    their own room in winter, stronger defences after an attack). Fields as in Council_Dreams.xml. Lines are first person and
+    plain (CLAUDE.md, "Plain, neutral text"), one or two sentences, in every voice; no god is named or meant, and nothing reads
+    kin or a family line. An omen comes no oftener than any omen (one at a time, eight days apart, the setting "dream omens").
+  -->
+
+  <!-- ===== R6-D1. At the stove: a cook practises in their sleep ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Stove</defName>
+    <label>a dream at the stove</label>
+    <kind>Strange</kind>
+    <weight>0.3</weight>
+    <dreamer><passion>Cooking</passion></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I was cooking for the whole colony on one small pot, and I worked out how to get the timing right for everything.</li>
+        <li>I dreamt someone stood next to me at the stove and showed me how much salt to use, and I think I remember it.</li>
+        <li>[lowtech] I dreamt I was cooking over an open fire and finally got the heat even all the way through.</li>
+        <li>[!lowtech] I dreamt I was in a big kitchen with every burner going, and I kept up with all of it.</li>
+      </plain>
+      <warm><li>I dreamt I cooked a supper that everyone here liked, and I want to try it for real tonight.</li></warm>
+      <blunt><li>I dreamt about cooking and learned something I'll use tonight.</li></blunt>
+      <cheerful><li>I dreamt I made the best stew anyone has ever eaten, and I think I know how I did it.</li></cheerful>
+      <gloomy><li>I dreamt I burned everything, and then I did it again properly. At least I know where I went wrong.</li></gloomy>
+      <cold><li>I went over my cooking in my sleep and found two things I've been doing wrong.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Cooking</skill><xp>400</xp></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D2. Stitches: a doctor dreams of an operation ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Stitches</defName>
+    <label>a dream of stitches</label>
+    <kind>Strange</kind>
+    <weight>0.25</weight>
+    <dreamer><passion>Medicine</passion></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I was closing a wound, and my hands knew exactly what to do at every step.</li>
+        <li>I dreamt I was operating on someone and everything went right, and I woke up remembering how.</li>
+        <li>[lowtech] I dreamt I set a broken leg so cleanly that it healed perfectly straight.</li>
+        <li>[!lowtech] I dreamt I was in a clean operating room with good light, and I didn't make a single mistake.</li>
+      </plain>
+      <warm><li>I dreamt I saved someone I couldn't save before, and I want to be ready if it comes to that again.</li></warm>
+      <blunt><li>I dreamt about surgery, and my hands are steady today if anyone needs me.</li></blunt>
+      <cheerful><li>I dreamt I did the most difficult operation of my life and it worked perfectly.</li></cheerful>
+      <gloomy><li>I dreamt about the patient I lost, and this time I saw what I should have done.</li></gloomy>
+      <cold><li>I rehearsed a difficult operation in my sleep. I'm confident I could do it now.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Surgery</inspiration></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D3. Followed home: a handler dreams of a wild animal that trusts them ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_FollowedHome</defName>
+    <label>a dream of being followed home</label>
+    <kind>Sweet</kind>
+    <weight>0.25</weight>
+    <dreamer><passion>Animals</passion></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt a wild animal followed me home from the woods and walked into the pen by itself.</li>
+        <li>I dreamt I sat still in the grass until the animals came and ate out of my hand.</li>
+        <li>[lowtech] I dreamt I walked out with a handful of grain and came back with a whole herd behind me.</li>
+        <li>[!lowtech] I dreamt I was working with an animal nobody else could get near, and it let me put a halter on it.</li>
+      </plain>
+      <warm><li>I dreamt a wild animal came up and leaned against me, and I want to go out and find one like it.</li></warm>
+      <blunt><li>I dreamt I tamed something wild, and today I'm going to do it.</li></blunt>
+      <cheerful><li>I dreamt every animal on the land wanted to live here with us.</li></cheerful>
+      <gloomy><li>I dreamt the animals ran from everyone but me. I should make use of that while it lasts.</li></gloomy>
+      <cold><li>I dreamt about how to approach a wild animal without startling it. I'll try it this afternoon.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Taming</inspiration></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D4. A good bargain: someone sociable dreams of trading ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Bargain</defName>
+    <label>a dream of a good bargain</label>
+    <kind>Sweet</kind>
+    <weight>0.25</weight>
+    <dreamer><passion>Social</passion></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I traded a sack of turnips for a cartload of good things, and the trader thanked me for it.</li>
+        <li>I dreamt I was haggling at a market and knew exactly when to stop and when to keep going.</li>
+        <li>[lowtech] I dreamt I traded at a big gathering of the peoples and came home with more than I took.</li>
+        <li>[!lowtech] I dreamt the next trader to come by gave us a price they would never normally give.</li>
+      </plain>
+      <warm><li>I dreamt a trader and I ended up laughing together and both got a fair deal.</li></warm>
+      <blunt><li>I dreamt about a good bargain, so send me to the next trader.</li></blunt>
+      <cheerful><li>I dreamt I talked a trader into giving us everything on the cart for half the price.</li></cheerful>
+      <gloomy><li>I dreamt the trader tried to cheat me and I saw through it. I'll be watching for that.</li></gloomy>
+      <cold><li>I dreamt through a negotiation, step by step. I know what to ask for next time.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Trade</inspiration></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D5. The bout: a fighter practises hand to hand in their sleep ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Bout</defName>
+    <label>a dream of a bout</label>
+    <kind>Strange</kind>
+    <weight>0.3</weight>
+    <dreamer><passion>Melee</passion><canFight>true</canFight></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I was sparring with someone faster than me, and by the end I was keeping up.</li>
+        <li>I dreamt I fought the same bout over and over until I stopped dropping my guard.</li>
+        <li>[lowtech] I dreamt I was practising with a spear in the yard and finally got the footwork right.</li>
+        <li>[!lowtech] I dreamt I was in a close fight in a corridor and kept my balance the whole time.</li>
+      </plain>
+      <warm><li>I dreamt I was teaching one of the young ones to fight, and I learned more than they did.</li></warm>
+      <blunt><li>I fought all night in my sleep and won the last one, and I feel sharper for it.</li></blunt>
+      <cheerful><li>I dreamt I beat everyone in the colony at wrestling, one after the other.</li></cheerful>
+      <gloomy><li>I dreamt I lost a fight I should have won, and then I saw why.</li></gloomy>
+      <cold><li>I went through a fight move by move in my sleep and found the opening I keep missing.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Melee</skill><xp>400</xp></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D6. Talked round: the warden dreams of a prisoner who listens ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_TalkedRound</defName>
+    <label>a dream of talking someone round</label>
+    <kind>Strange</kind>
+    <weight>0.4</weight>
+    <dreamer><office>Council_Office_Warden</office></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I sat with a prisoner all night and by morning they wanted to stay with us.</li>
+        <li>I dreamt I found the right thing to say to someone who wouldn't listen to anyone.</li>
+        <li>[lowtech] I dreamt I shared a meal with a captive by the fire, and they told me about their people.</li>
+        <li>[!lowtech] I dreamt the cell door was open and the prisoner didn't leave, because we were still talking.</li>
+      </plain>
+      <warm><li>I dreamt a prisoner told me they'd never been treated so well, and asked if they could join us.</li></warm>
+      <blunt><li>I dreamt I won a prisoner over, and I'm going to try it today.</li></blunt>
+      <cheerful><li>I dreamt every prisoner we've ever had ended up joining us, and they were all good at something.</li></cheerful>
+      <gloomy><li>I dreamt a prisoner finally trusted me. I'd like that to be true for once.</li></gloomy>
+      <cold><li>I dreamt about what a prisoner actually wants to hear. I have a better approach now.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Inspired_Recruitment</inspiration></li>
+    </effects>
+    <notable>true</notable>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D7. A day's work done: someone hard-working wakes up keen to get on ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_WorkDone</defName>
+    <label>a dream of the work done</label>
+    <kind>Sweet</kind>
+    <weight>0.25</weight>
+    <dreamer><tags>trait:Industrious|trait:HardWorker</tags><minMood>0.4</minMood></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt every job on the list was done by noon, and I want to see how close I can get today.</li>
+        <li>I dreamt I worked all day without getting tired, and I woke up wanting to start right away.</li>
+        <li>[lowtech] I dreamt the woodpile was stacked, the fields were weeded and the hides were scraped, all before dark.</li>
+        <li>[!lowtech] I dreamt the work orders were all finished and the benches were clean.</li>
+      </plain>
+      <warm><li>I dreamt I did everyone's chores so they could have the afternoon off, and I'd like to try.</li></warm>
+      <blunt><li>I dreamt about work and woke up ready for it.</li></blunt>
+      <cheerful><li>I dreamt I built a whole house before breakfast, so today I'm going to do as much as I can.</li></cheerful>
+      <gloomy><li>I dreamt the work never ended, so I'd better get a head start on it.</li></gloomy>
+      <cold><li>I planned the whole day in my sleep. I'm going to work through it without stopping.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Inspiration"><target>A</target><inspiration>Frenzy_Work</inspiration></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D8. Deep rock: a miner dreams of the seam ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_DeepRock</defName>
+    <label>a dream of the deep rock</label>
+    <kind>Strange</kind>
+    <weight>0.3</weight>
+    <dreamer><passion>Mining</passion></dreamer>
+    <lines>
+      <plain>
+        <li>I dreamt I could see through the rock to where the seam runs, and I remember which way it goes.</li>
+        <li>I dreamt I was digging and the rock came away cleanly at every stroke because I'd found the grain of it.</li>
+        <li>[lowtech] I dreamt I was working with an antler pick and learned to split the stone along its cracks.</li>
+        <li>[!lowtech] I dreamt I drilled through a whole hillside without the drill catching once.</li>
+      </plain>
+      <warm><li>I dreamt I dug us a big warm room under the hill, and everyone moved in.</li></warm>
+      <blunt><li>I dreamt about the rock and I know where to dig now.</li></blunt>
+      <cheerful><li>I dreamt the mountain was full of silver and I found every vein.</li></cheerful>
+      <gloomy><li>I dreamt the tunnel came down around me, and then I saw what I should have propped first.</li></gloomy>
+      <cold><li>I went over the rock face in my sleep. I know how to take it down faster now.</li></cold>
+    </lines>
+    <effects>
+      <li Class="ColonyCouncil.DilemmaEffect_Learn"><target>A</target><skill>Mining</skill><xp>400</xp></li>
+    </effects>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D9. A fire in my room: a winter dream that leaves them wanting their own fire ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_RoomFire</defName>
+    <label>a dream of a fire in my room</label>
+    <kind>Strange</kind>
+    <weight>0.35</weight>
+    <seasons><li>Winter</li><li>PermanentWinter</li></seasons>
+    <lines>
+      <plain>
+        <li>I dreamt I had a little fire in my own room, and I fell asleep warm for once, and then I woke up cold.</li>
+        <li>I dreamt I was lying by a hearth in my room listening to the wood crack, and now my room feels very cold.</li>
+        <li>[lowtech] I dreamt I had a fire pit by my bed with embers that lasted all night.</li>
+        <li>[!lowtech] I dreamt my room had its own heater and I could feel my feet in the morning.</li>
+      </plain>
+      <warm><li>I dreamt I had a fire in my room and my friends came in to sit by it with me.</li></warm>
+      <blunt><li>I dreamt I was warm, and I'm not, so I want a fire in my room.</li></blunt>
+      <cheerful><li>I dreamt my room had the best fire in the colony, and I'd love that to be true.</li></cheerful>
+      <gloomy><li>I dreamt I was warm, which only made waking up in the cold worse.</li></gloomy>
+      <cold><li>I dreamt about a heat source in my room. I'd sleep better with one, and I'll ask for it.</li></cold>
+    </lines>
+    <wish>Council_Wish_Hearth</wish>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D10. The gap in the wall: after an attack, a nightmare that leaves them wanting stronger defences ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_GapInWall</defName>
+    <label>a dream of the gap in the wall</label>
+    <kind>Nightmare</kind>
+    <weight>0.4</weight>
+    <afterThreat>true</afterThreat>
+    <lines>
+      <plain>
+        <li>I dreamt the attackers found a gap in our defences that nobody had noticed, and walked straight in.</li>
+        <li>I dreamt we were all inside when they came, and there was nothing between them and the door.</li>
+        <li>[lowtech] I dreamt the palisade was too low and they climbed over it while we were still running for our spears.</li>
+        <li>[!lowtech] I dreamt our walls had no cover behind them and we had nowhere to shoot from.</li>
+      </plain>
+      <warm><li>I dreamt they got in and I couldn't get to the others in time. We need better walls.</li></warm>
+      <blunt><li>I dreamt they got through, so fix the defences.</li></blunt>
+      <cheerful><li>I had a nightmare about the walls, so let's make them better and I'll stop having it.</li></cheerful>
+      <gloomy><li>I dreamt they got in, and I don't think we could stop them if they came now.</li></gloomy>
+      <cold><li>I dreamt about the last attack and saw where our defences are weakest. We should fix that.</li></cold>
+    </lines>
+    <wish>Council_Wish_Defenses</wish>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D11. Omen: animals walking in from the road ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Omen_StrayHerd</defName>
+    <label>the dream of the open gate</label>
+    <kind>Omen</kind>
+    <weight>0.2</weight>
+    <lines>
+      <plain>
+        <li>I dreamt animals came in from the road by themselves and stood by our pens as if they'd always lived here.</li>
+        <li>I dreamt the gate was open and a few tame animals walked in, looking for someone to feed them.</li>
+        <li>[lowtech] I dreamt a few beasts with no herder came down the valley and stopped at our fence.</li>
+      </plain>
+      <warm><li>I dreamt some lost animals found their way to us, and we gave them a home.</li></warm>
+      <cheerful><li>I dreamt animals just walked in and joined us, and there were enough for everyone to have one.</li></cheerful>
+      <cold><li>I dreamt of stray animals arriving at the colony. If they come, we should have the pens ready.</li></cold>
+    </lines>
+    <omen><incident>FarmAnimalsWanderIn</incident><days>1~3</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D12. Omen: a great herd passing across the land ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Omen_Migration</defName>
+    <label>the dream of the passing herd</label>
+    <kind>Omen</kind>
+    <weight>0.2</weight>
+    <lines>
+      <plain>
+        <li>I dreamt a long line of animals crossed our land from one side to the other, and the ground shook as they passed.</li>
+        <li>I dreamt I stood on a hill and watched a whole herd go by below, and it took all day.</li>
+        <li>[lowtech] I dreamt the herd came through the valley, and the hunters were waiting for it.</li>
+      </plain>
+      <warm><li>I dreamt a herd passed close to the colony and the children ran out to watch.</li></warm>
+      <cheerful><li>I dreamt of more animals than I could count walking past the walls, and there was meat for everyone that winter.</li></cheerful>
+      <cold><li>I dreamt a herd crossed the land. If it does, the hunters should be ready.</li></cold>
+    </lines>
+    <omen><incident>HerdMigration</incident><days>1~3</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D13. Omen: a dry storm with lightning ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Omen_DryStorm</defName>
+    <label>the dream of the dry storm</label>
+    <kind>Omen</kind>
+    <weight>0.15</weight>
+    <seasons><li>Spring</li><li>Summer</li><li>Fall</li><li>PermanentSummer</li></seasons>
+    <lines>
+      <plain>
+        <li>I dreamt of lightning with no rain, striking the dry grass again and again, and small fires starting everywhere.</li>
+        <li>I dreamt a storm came over without a drop of water in it, and I could smell smoke when I woke.</li>
+        <li>[lowtech] I dreamt lightning hit the grass by the fields and we beat out the flames with wet hides.</li>
+      </plain>
+      <warm><li>I dreamt of a dry storm and fires in the grass, and everyone running to put them out together.</li></warm>
+      <gloomy><li>I dreamt of lightning starting fires all over the land, and we couldn't keep up with them.</li></gloomy>
+      <cold><li>I dreamt of a dry lightning storm. I'd clear the brush away from the walls, just in case.</li></cold>
+    </lines>
+    <omen><incident>Flashstorm</incident><days>1~3</days><good>false</good></omen>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D14. Omen: coloured lights in the night sky ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Omen_Lights</defName>
+    <label>the dream of the lights in the sky</label>
+    <kind>Omen</kind>
+    <weight>0.2</weight>
+    <children>true</children>
+    <lines>
+      <plain>
+        <li>I dreamt the night sky was full of green and purple light moving like curtains, and everyone stayed up to watch.</li>
+        <li>I dreamt the sky lit up at night with colours I didn't have names for.</li>
+        <li>[child] I dreamt the sky was glowing green and I was allowed to stay up late to see it.</li>
+      </plain>
+      <warm><li>I dreamt we all lay in the grass at night and watched lights move across the sky together.</li></warm>
+      <cheerful><li>I dreamt the whole sky was dancing with colours, and it was the most beautiful thing I've seen.</li></cheerful>
+      <cold><li>I dreamt of an aurora over the colony. If one comes, it would be worth staying up for.</li></cold>
+    </lines>
+    <omen><incident>Aurora</incident><days>1~3</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+  <!-- ===== R6-D15. Omen: someone who has lived wild comes out of the trees ===== -->
+
+  <ColonyCouncil.DreamDef>
+    <defName>Rimfolk_R6_Dream_Omen_WildOne</defName>
+    <label>the dream of the one from the woods</label>
+    <kind>Omen</kind>
+    <weight>0.15</weight>
+    <lines>
+      <plain>
+        <li>I dreamt someone came out of the trees who had lived alone so long that they had forgotten how to talk.</li>
+        <li>I dreamt a person in rags was watching the colony from the edge of the woods, and wouldn't come any closer.</li>
+        <li>[lowtech] I dreamt of someone living wild like an animal, sleeping in the bushes at the edge of our land.</li>
+      </plain>
+      <warm><li>I dreamt someone wild and alone came to the edge of our fields, and I wanted to bring them in and feed them.</li></warm>
+      <gloomy><li>I dreamt someone was out there living like an animal, and nobody had ever come for them.</li></gloomy>
+      <cold><li>I dreamt a feral person came near the colony. If one does, they could be tamed like an animal, and perhaps taught to work.</li></cold>
+    </lines>
+    <omen><incident>WildManWandersIn</incident><days>1~3</days><good>true</good></omen>
+  </ColonyCouncil.DreamDef>
+
+</Defs>

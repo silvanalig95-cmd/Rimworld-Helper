@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!--
+    Content round 6 (docs/content-round-6.md): the moods of the round's seven decrees (Defs/DecreeDefs/Rimfolk_Round6_Decrees.xml),
+    four stages each as every decree's (hate, dislike, like, love), small as the council's moods are. The round's callers and
+    weather on the land give the older events' moods, and its dreams the dreams' own.
+  -->
+
+  <ThoughtDef>
+    <defName>Rimfolk_DecreeR6_FirstAid</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>more bandage lessons</label><description>Every afternoon another lesson in tying bandages. I have real work to do.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>first-aid lessons</label><description>An hour a day learning to bind wounds. I'd rather leave it to the doctor.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>first-aid lessons</label><description>I know how to stop a wound bleeding now. That could matter one day.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>teaching first aid</label><description>Everyone here can bind a wound now, and I helped teach them.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_DecreeR6_Beasts</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>animals all day</label><description>Every day out at the pens with the animals. I'm not a herder.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>days with the animals</label><description>An hour at the pens every day, whether I'm any good with them or not.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>days with the animals</label><description>The animals are calmer with us now, and so am I.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>days with the animals</label><description>The council gave us whole days with the animals. I couldn't ask for better.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_DecreeR6_Bench</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>stuck at the bench</label><description>Day after day indoors at the bench while the work outside waits.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>bench work</label><description>Everyone at the benches. I'd rather be outside, even in the cold.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>work at the benches</label><description>A warm room and something good taking shape on the bench. That's how to spend the cold months.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>work at the benches</label><description>Long days at the bench with the stove going. This is my favourite time of year.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_DecreeR6_MedicineSent</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>our medicine given away</label><description>Our medicine goes out of the gate every morning, and one day we'll need it ourselves.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>medicine sent away</label><description>We're sending medicine to strangers while our own shelves get thin.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>medicine for the sick</label><description>Our medicine is helping the sick down the road. That's a good use for it.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>medicine for the sick</label><description>People are getting better because of what we send them every morning.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_DecreeR6_WoodSent</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>our wood given away</label><description>We cut that wood ourselves, and now it goes out of the gate every morning.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>wood sent away</label><description>Our woodpile gets smaller every day so somebody else can stay warm.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>wood for the neighbours</label><description>The neighbours have a hard time of it, and our wood is helping.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>wood for the neighbours</label><description>Our wood is going into their new roofs and their stoves. I'm glad we're doing this.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_DecreeR6_Mending</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>mending again</label><description>Every morning, mending something. It'll only get broken again.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>mending days</label><description>Mornings spent patching walls when there's other work to do.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>mending days</label><description>The walls and doors are whole again. It feels safer.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>mending days</label><description>A morning's mending, and everything stands straight again. I like putting things right.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+  <ThoughtDef>
+    <defName>Rimfolk_DecreeR6_Fishing</defName>
+    <workerClass>ColonyCouncil.ThoughtWorker_Decree</workerClass>
+    <thoughtClass>ColonyCouncil.Thought_Decree</thoughtClass>
+    <stages>
+      <li><label>fishing every day</label><description>Two of us sitting by the water every morning while the real work waits.</description><baseMoodEffect>-3</baseMoodEffect></li>
+      <li><label>a fishing season</label><description>Fish for supper again. I'd rather the hands were in the fields.</description><baseMoodEffect>-1</baseMoodEffect></li>
+      <li><label>a fishing season</label><description>Fresh fish every day, and someone always has a story about the one that got away.</description><baseMoodEffect>2</baseMoodEffect></li>
+      <li><label>a fishing season</label><description>Mornings by the water with a line out. The council got this one right.</description><baseMoodEffect>3</baseMoodEffect></li>
+    </stages>
+  </ThoughtDef>
+
+</Defs>

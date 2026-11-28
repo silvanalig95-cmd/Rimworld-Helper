@@ -111,8 +111,14 @@ namespace ColonyCouncil
             new[] { "Council_Decree_QuietHours", "Council_Decree_Rest" },
             new[] { "Council_Decree_OnGuard", "Council_Decree_Curfew" },
             // One faith for the colony and every faith its evening are the two ways of the council with its faiths.
-            new[] { OneFaith, EveryFaith }
+            new[] { OneFaith, EveryFaith },
+            // Evenings at the bench move the hours indoors; a building season and a harvest push move them out (content round 6).
+            new[] { Bench, "Council_Decree_Building" },
+            new[] { Bench, "Council_Decree_Harvest" }
         };
+
+        /// <summary>Evenings at the bench (content round 6, Defs/DecreeDefs/Rimfolk_Round6_Decrees.xml).</summary>
+        public const string Bench = "Rimfolk_DecreeR6_Bench";
 
         public const string OneFaith = "Council_Decree_OneFaith", EveryFaith = "Rimfolk_Decree_EveryFaith";
 
