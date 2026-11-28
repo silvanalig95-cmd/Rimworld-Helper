@@ -599,3 +599,13 @@ mod:homebrew.fairycore	xenotype	FG_CourtFairy	-	-	-
 ludeon.rimworld.biotech	gene	PsychicAbility_Enhanced	-	-	-
 ludeon.rimworld.biotech	gene	PerfectImmunity	-	-	-
 ludeon.rimworld.biotech	gene	Ageless	-	-	-
+# Dragons Descent's pieces under the peoples' tags, read in the catalogue built again on 28 November 2026.
+mod:onyxae.dragonsdescent	apparel	DD_Apparel_DragonCrown	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier5	UpperHead|Overhead	-
+mod:onyxae.dragonsdescent	apparel	DD_Apparel_ScaleHelm	MedievalMilitary,MedievalArmorDecent	FullHead|Overhead	-
+mod:onyxae.dragonsdescent	apparel	DD_Apparel_ScaleMail	MedievalMilitary,MedievalArmorDecent	Torso,Neck,Shoulders,Arms,Legs|Middle	-
+mod:onyxae.dragonsdescent	apparel	DD_Apparel_WingCape	MedievalArmorDecent	Torso,Shoulders,Arms|Shell	-
+mod:onyxae.dragonsdescent	weapon	DDMeleeWeapon_ThrumboBattleAxe	MedievalMeleeDecent	-	-
+mod:onyxae.dragonsdescent	weapon	DD_Bow_DoubleCrossbow	Neolithic,NeolithicRangedHeavy,NeolithicRangedChief	-	-
+mod:onyxae.dragonsdescent	weapon	DD_Gun_DragonfireLauncher	Gun	-	-
+mod:onyxae.dragonsdescent	weapon	DD_MeleeWeapon_DrachenSword	MedievalMeleeDecent	-	-
+mod:onyxae.dragonsdescent	weapon	DD_MeleeWeapon_HornedLance	MedievalMeleeDecent	-	-

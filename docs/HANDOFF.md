@@ -985,6 +985,39 @@ most sense." So, in this order, three builds at a time:
   categories of the summary given that day** (camps, world events, map events, the gods' happenings, council questions,
   personal stories, wishes, life goals, ambitions, moments, shared memories, quirks, missions, encounters, dreams,
   callers, gate offers, nuisances), no decrees.
+- **To do when the player asks (28 November 2026; brainstorm and research first, a proposal list for the player to
+  pick from, nothing built until they say so): nature, the biosphere, weather, climate and geology made dynamic and
+  meaningful.** The player: "I would like to also brainstorm and think about what we could enhance and improve and
+  create anew in regards to, let's say, the whole biology and biosphere in the game. You know, I really like when there's
+  kind of ecological dynamics going on, you know, different weathers, special kinds of weathers, you know, what kind of
+  temperature and plant life and animal life is in on the map, how it develops also, you know, idea of something like
+  climate change in various possible direction. And just kind of trying to make the whole biosphere aspect and
+  ecological aspect and nature in the game as interesting, as varied and possible, because right, it also has like a
+  huge impact on the pawns, how they live, what appears and is on the map, how it develops. And I want this to be kind
+  of dynamic, realistic, immersive, and yeah, meaningful and noticeable. For example, ideas that a special kind of new
+  tree appears on the map that is not normally seen, or that climate shifts in a way that, for example, makes
+  temperatures more cold or warm, for example. I know, I mean, climate shifts in general are probably much slower
+  procedures, but perhaps there could be kinds of special triggers, or maybe there is one, say, sort of disease going
+  around that kills all kinds of plants on the map. I mean, these are just kind of different ideas, and I want to
+  brainstorm and think about how we can just make the whole nature and weather and, you know, geological and
+  ecological aspects of the game more interesting, build up on it, enhance on it. There's like a mix of realism and, or
+  implementing realism while still, you know, having, of course, all kinds of different non-realistic possibilities
+  they make that are interesting and have an impact impact on the game, and tying together with existing dynamics we
+  already have and gods, etc." And: "And here also think and research what kind of existing mods we can use and include
+  that already build up on these systems that are compatible with my version and or 1.6 confirmed compatible and also
+  compatible with my mods, of course. Or if I have to cut something, you can let me know also." And of the weather: "the
+  weather I like a lot. It's already, a great system. And I don't know how it works, but if it is, so that it's more or
+  less short term only, in a sense that one weather is just, it's rolled what the next one is, and then again, it's kind
+  of random each time. Maybe it could be more actually realistic. Perhaps you have a summer where it is raining a lot, or
+  maybe a winter where there is a lot of snow or almost no snow, and that it just makes sense, and also in reality, maybe
+  there's some summers that are just kind of regular on average. Maybe there's some extremer ones or with special
+  weather, or I don't know how well this can be implemented and how much performance it would require, but I really
+  like the impact on weather on the game and want to make it really kind of interesting and dynamic and realistic. And
+  yeah, that always feels a bit different each season or year, perhaps." (Rimfolk's weather since 0.16.0 already has
+  spells, what follows what, the land's own climate and a character per year, `WeatherDynamicsMath.YearOf`, hashed by
+  tile and year; the proposal can give each season its own character, extremes and their signs.) Being researched: what
+  Rimfolk, the game, the DLCs and the player's mods already do with nature; Workshop mods for 1.6 and 1.7 in this field
+  and how they sit with the player's list.
 - **Done (28 November 2026, 0.326.0; the player, of the decrees: "or else we need to think about how to order and
   display/list/sort them in the interface to make it clear", then the picks "Open on what matters", "Hide what can't be
   used", "A search box"): a clearer Decrees page.** `UI/DecreePanel.cs`: on the whole list (filter All, no search) the
