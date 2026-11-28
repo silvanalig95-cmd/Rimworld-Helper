@@ -861,6 +861,9 @@ namespace ColonyCouncil
             // Food Alert's days of food from Rimfolk's count (Integrations/FoodAlertCount.cs): its list of counters, no game hook.
             Section("CC_SetSec_Mod_FoodAlert");
             Mod(Toggle("foodAlertMealCount", "CC_Settings_FoodAlertMeals", "CC_SetNote_FoodAlertMeals"), FoodAlertId);
+            // Dynamic Atmosphere's sky kept out of roofed rooms (Integrations/SkyIndoors.cs): a hook on its drawing.
+            Section("CC_SetSec_Mod_DynamicAtmosphere");
+            Mod(Toggle("skyIndoorsClear", "CC_Settings_SkyIndoors", "CC_SetNote_SkyIndoors", "deepHooks"), DynamicAtmosphereId);
             Section("CC_SetSec_Mod_PokeWorld");
             Mod(Choice("pokemonSounds", "CC_Settings_PokemonSounds", "CC_Settings_PokemonSounds_Tip", "CC_PokemonSounds_", "CC_SetNote_PokemonSounds_",
                 new[] { "Creatures", "Rarer", "Own" }), PokeWorldId);
@@ -900,7 +903,8 @@ namespace ColonyCouncil
         public const string HospitalityId = "orion.hospitality", RimMarketId = "forti.rimmarket", AlphaSkillsId = "sarg.alphaskills", AlphaGenesId = "sarg.alphagenes",
             MagicId = "torann.arimworldofmagic", TerritoriesId = "jaeger972.factionterritories", MoveThePatientId = "konstantynopolitaneczka.movethepatient",
             VteId = "vanillaexpanded.vanillatradingexpanded", FoodAlertId = "mlie.foodalert", GiddyUpId = "memegoddess.giddyup",
-            VfeEmpireId = "oskarpotocki.vfe.empire", NiceInventoryTabId = "andromeda.niceinventorytab";
+            VfeEmpireId = "oskarpotocki.vfe.empire", NiceInventoryTabId = "andromeda.niceinventorytab",
+            DynamicAtmosphereId = "astryl.dynamicatmosphere";
 
         /// <summary>
         /// PokéWorld's row: its versions have had several package ids, so it is found by its Pokémon instead
@@ -921,7 +925,8 @@ namespace ColonyCouncil
             [VteId] = "CC_SetSec_Mod_Vte",
             [FoodAlertId] = "CC_SetSec_Mod_FoodAlert",
             [PokeWorldId] = "CC_SetSec_Mod_PokeWorld",
-            [GiddyUpId] = "CC_SetSec_Mod_GiddyUp"
+            [GiddyUpId] = "CC_SetSec_Mod_GiddyUp",
+            [DynamicAtmosphereId] = "CC_SetSec_Mod_DynamicAtmosphere"
         };
 
         /// <summary>A row of the other mods' page: it shows only while all these mods are loaded.</summary>

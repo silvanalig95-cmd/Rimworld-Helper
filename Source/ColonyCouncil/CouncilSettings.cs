@@ -660,6 +660,8 @@ namespace ColonyCouncil
         public bool medicalTriage = true;
         /// <summary>With Food Alert: its days of food count the meals the stores would make, flour and all, animal feed left out (Integrations/FoodAlertCount.cs).</summary>
         public bool foodAlertMealCount = true;
+        /// <summary>With Dynamic Atmosphere: its cloud shadows, haze and event tints are drawn over the open sky only, never in roofed rooms (Integrations/SkyIndoors.cs).</summary>
+        public bool skyIndoorsClear = true;
         /// <summary>What PokéWorld's Pokémon sound like (Integrations/PokeWorldSounds.cs): the nearest animal's calls, their own a third as often, or their own.</summary>
         public PokemonSounds pokemonSounds = PokemonSounds.Creatures;
         /// <summary>With PokéWorld: the colony's own Pokémon do a little at home by their type (Integrations/PokeWorldTypes.cs); its parts below.</summary>
@@ -1259,6 +1261,7 @@ namespace ColonyCouncil
             Scribe_Values.Look(ref invitedAsGuests, "invitedAsGuests", true);
             Scribe_Values.Look(ref medicalTriage, "medicalTriage", true);
             Scribe_Values.Look(ref foodAlertMealCount, "foodAlertMealCount", true);
+            Scribe_Values.Look(ref skyIndoorsClear, "skyIndoorsClear", true);
             Scribe_Values.Look(ref pokemonSounds, "pokemonSounds", PokemonSounds.Creatures);
             Scribe_Values.Look(ref pokemonTypes, "pokemonTypes", true);
             Scribe_Values.Look(ref pokemonTypeWarmth, "pokemonTypeWarmth", true);

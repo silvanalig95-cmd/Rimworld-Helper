@@ -1013,7 +1013,32 @@ most sense." So, in this order, three builds at a time:
   and visual bugs on the world view. It reads the game's weather rather than choosing it, so Rimfolk's weather and the
   living land's seasons should show in its sky; its hurricane conditions could join the climate's extremes, the
   chronicle and the gods' reading. `Tools/Collect-NatureMods.ps1` now takes it; to read its files when the player sends
-  the zip with it enabled, then propose how Rimfolk ties in.
+  the zip with it enabled, then propose how Rimfolk ties in. The player tried it the same day: the map looks yellow in a
+  heat wave (its haze and event tint for the heat wave, confirmed by the player), and its cloud shadows and tint also
+  darken roofed rooms with their own light. Its page: settings for the colony map's cloud shadows, precipitation, ripples,
+  haze and event tints, each with a strength; no setting for roofed rooms (asked for in its comments since October,
+  unanswered; one says cloud shadows at 0% changed nothing, the author answers that setting is the world map's and the
+  map's are under weather); built for 1.6, the author said on 13 October it was not updated for 1.7; last updated 17
+  October; the page now reads "removed from the community ... only visible to you". The player: "indoor areas should not
+  be impacted by clouds, haze etc", and sent its files (`astryl.DynamicAtmosphere`, enabled). Its code
+  (`MapComponent_Atmosphere.Draw`) draws each layer with a static `DrawQuad(Material, Vector3, float)` on the game's
+  whole-map plane; rain and ripples sample its own `_RoofMask` (roofed or fogged), the cloud shadows (`DA_MapCloudShadow`),
+  haze (`DA_MapHaze`, with a condition's tint) and event tints (`DA_MapEvent*`) don't. Built (0.331.0):
+  `Integrations/SkyIndoors.cs` and `SkyIndoorsMath.cs`, a prefix on that DrawQuad by name drawing those layers on a mesh
+  of the open cells' runs instead (same material, height and texture coordinates as the plane: 2000 cells round the
+  centre, 0 to 200), rebuilt at most twice a second on a roof (`RoofGrid.SetRoof` postfix) or fog change; setting
+  `skyIndoorsClear` (on, deeper hooks) under Dynamic Atmosphere on the other mods' page. Not seen in the game: whether
+  its shaders read world position or the plane's coordinates (both are kept), and the look at the edges of roofs.
+  Tests: SkyIndoorsTests.
+- **Asked (28 November 2026; the player: "there's some sound. It's like a flute sound playing in the background, not the
+  soundtrack actually from the game ... I'd like to know where it comes from and whether it ends").** Rimfolk ships no
+  sound of its own; it plays the game's, the DLCs' and the mods' sounds by name. Flute-like ones it uses: Ideology's
+  `RitualSustainer_Rustic` and Alpha Memes' `AM_RitualSustainer_Neolithic`, as a shown god's hum
+  (`GodSounds.Hum`, `Rimfolk_GodLooks.xml`, heard within 22 cells of the camera at 0.32 volume, ending when the god goes
+  or the camera moves away) and as a god's festival chant (`Festivals.ChantFor`, for the festival's length); a presence's
+  sting holds a sustained sound for 7 seconds. Others that could: the game's own Ideology rituals, Quiet Wonders. The
+  player sent a save and then found it: "it's a ritual, nevermind" (the game's own ritual music).
+
 - **Dropped (28 November 2026; the player first: "i really also want to integrate Atmosphere Overhaul", then: "okey
   forget about atmosphere overhaul please, cut it from everything and instead just work with all the other new mods"):
   Atmosphere Overhaul** (Acutus, 3830470974). Taken out of `Tools/Collect-NatureMods.ps1`, the catalogue (read as not

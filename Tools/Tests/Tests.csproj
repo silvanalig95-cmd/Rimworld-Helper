@@ -88,6 +88,7 @@
     <Compile Include="../../Source/ColonyCouncil/UI/Faces/PortraitPeopleMath.cs" Link="PortraitPeopleMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/ForbiddenPassionsMath.cs" Link="ForbiddenPassionsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/MagicAutoCastMath.cs" Link="MagicAutoCastMath.cs" />
+    <Compile Include="../../Source/ColonyCouncil/Integrations/SkyIndoorsMath.cs" Link="SkyIndoorsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Integrations/MagicModelMath.cs" Link="MagicModelMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Happenings/Round2EventsMath.cs" Link="Round2EventsMath.cs" />
     <Compile Include="../../Source/ColonyCouncil/Dilemmas/Round3CouncilMath.cs" Link="Round3CouncilMath.cs" />
