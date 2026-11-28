@@ -1509,6 +1509,13 @@ MODEL = {
     "Fields/FieldWeather.cs:strays": ("fixed", const("Fields/FieldWeatherMath.cs", "StrayDays", 15), V,
                                       "FieldWeatherMath.StrayDays: how much colder than the land's reckoning each of the last days got, per home map"),
     "Weather/WeatherDynamics.cs:pulls": ("fixed", const("Weather/WeatherDynamicsMath.cs", "MaxPulls", 6), 40, "WeatherDynamicsMath.MaxPulls: events' pulls on the weather, a few days each, per home map"),
+    # The living land (Nature/LandBook.cs, per home map): the patches coming back, the sickness going on, the cells the water
+    # and the grazing changed with what each was, the grazing blocks; each capped in LandMath.
+    "Nature/LandBook.cs:patches": ("fixed", const("Nature/LandMath.cs", "MaxPatches", 10), 60, "LandMath.MaxPatches: burns, felled woods and what a sickness killed, coming back, per home map"),
+    "Nature/LandBook.cs:sickCells": ("while", 140, 15, "LandMath.Cap: the plants sick in the one sickness going on (140 grasses at most), per home map"),
+    "Nature/LandBook.cs:water": ("fixed", const("Nature/LandMath.cs", "MaxWaterCells", 360), 25, "LandMath.MaxWaterCells: cells the still water left or came over, with what each was, per home map"),
+    "Nature/LandBook.cs:worn": ("fixed", const("Nature/LandMath.cs", "MaxWorn", 240), 22, "LandMath.MaxWorn: cells the colony's animals grazed bare, with what each was, per home map"),
+    "Nature/LandBook.cs:grazing": ("fixed", const("Nature/LandMath.cs", "MaxBlocks", 12), 15, "LandMath.MaxBlocks: the grazing blocks watched, per home map"),
     "Defense/DefenseLines.cs:lines": ("fixed", 4, 300 + C["SpanSide"] * 30 + 8 * 80 + 3 * 40 + C["DefensePlans"] / 2 * 180 + C["DefenseRaids"] * 1100,
                                       "lines the player made (only their clicks), per map; gone with the map"),
     "Defense/DefenseLine.cs:span": ("fixed", C["SpanSide"], 30, "per line: the cells across its gap, 29 at most (counted under lines)"),

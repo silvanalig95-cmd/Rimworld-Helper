@@ -925,6 +925,8 @@ namespace ColonyCouncil
             var b = Book;
             if (b == null || plant?.def?.plant == null || !plant.def.plant.IsTree || by?.Faction == null || !by.Faction.IsPlayer) return;
             if (plant.MapHeld == null || !plant.MapHeld.IsPlayerHome) return;
+            // A sick wild tree felled to stop a wilt (Nature/LandSickness.cs) isn't held against the colony.
+            if (plant.Spawned && !plant.sown && plant.Blighted) return;
             b.groveFelled++;
             // Felled within the Mossborn's planting after a fire while their camp stands: a wrong (Peoples/Events6/AfterFire.cs).
             PeopleEvents6.Safe("the planting", () => AfterFire.Felled(plant, by));

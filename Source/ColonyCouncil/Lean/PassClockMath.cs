@@ -35,6 +35,8 @@ namespace ColonyCouncil
         // Every 250 ticks, in the order they come in the cycle.
         RareSmoke,
         RareBuildPriority,
+        /// <summary>The land's record: one of its four parts a day (Sched.RareLand).</summary>
+        RareLand,
         RareWorldKeep,
         RarePlanQueue,
         RareApparelPicks,
@@ -151,6 +153,7 @@ namespace ColonyCouncil
 
             new PassInfo(Pass.RareSmoke, "CC_Clock_Pass_RareSmoke", nameof(Sched.RareSmoke), R, Sched.RareSmoke),
             new PassInfo(Pass.RareBuildPriority, "CC_Clock_Pass_RareBuildPriority", nameof(Sched.RareBuildPriority), R, Sched.RareBuildPriority),
+            new PassInfo(Pass.RareLand, "CC_Clock_Pass_RareLand", nameof(Sched.RareLand), R, Sched.RareLand),
             new PassInfo(Pass.RareWorldKeep, "CC_Clock_Pass_RareWorldKeep", nameof(Sched.RareWorldKeep), R, Sched.RareWorldKeep),
             new PassInfo(Pass.RarePlanQueue, "CC_Clock_Pass_RarePlanQueue", nameof(Sched.RarePlanQueue), R, Sched.RarePlanQueue),
             new PassInfo(Pass.RareApparelPicks, "CC_Clock_Pass_RareApparelPicks", nameof(Sched.RareApparelPicks), R, Sched.RareApparelPicks),

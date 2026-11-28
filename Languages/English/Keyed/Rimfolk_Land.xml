@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+
+  <!-- The living land (Source/ColonyCouncil/Nature/Land*.cs; docs/design/living-land-land.md): settings and the land's pass. -->
+  <CC_SetSec_Land>The land</CC_SetSec_Land>
+  <CC_Settings_LandRecovers>The land comes back</CC_Settings_LandRecovers>
+  <CC_Settings_LandRecovers_Tip>Ground a fire burned, a wood the colony felled, and trees or grass a sickness killed come back in stages over the growing days (days that average 6 °C or more): grass after 2, brush after 12, young trees of the kind that stood there after 25, and woods after 60, where wood stood. The land's own wild plants are set on the bare ground of it a few a day; nothing in the home area, a zone, on a floor, under a roof or next to a building. A felled wood let grow back is told to the Mossborn. Where the colony's animals crowd a pasture and the grass can't keep up for six days, a few bare cells a day wear to packed earth (rich soil thins to soil, marshy ground churns to mud), a quarter of the good ground at most; rested twenty growing days, it comes back as it was. Burns and fellings are noted through the deeper game hooks.</CC_Settings_LandRecovers_Tip>
+  <CC_SetNote_LandRecovers>Burnt and felled ground grows back in stages; overgrazed pastures wear bare and recover when rested.</CC_SetNote_LandRecovers>
+  <CC_Settings_LandSickness>Sicknesses of the wild plants</CC_Settings_LandSickness>
+  <CC_Settings_LandSickness_Tip>Now and then, about once in ninety growing days and three times as often while the region has a blight, a sickness gets into the wild plants of a home map: a wilt that goes from tree to tree among trees of one kind, a rust that kills patches of grass (and some wild grazers move off), or a rot in the wild berry bushes. Sick plants wear the game's blighted look, and a wilting tree stands bare. It spreads to its kind nearby each growing day, more after rain for the rust and the rot, and not in the cold; a sick plant dies after some days (a tree ten, a grass five, a bush seven). It ends when nothing sick is left, after 45 days, or after three cold days. The council is asked whether to cut it out, burn it out at the far edge on a dry day, or let it run. Needs the deeper game hooks.</CC_Settings_LandSickness_Tip>
+  <CC_SetNote_LandSickness>A wilt, a rust or a rot now and then in the wild plants, and the council asked what to do.</CC_SetNote_LandSickness>
+  <CC_Settings_LandWater>Water rises and falls</CC_Settings_LandWater>
+  <CC_Settings_LandWater_Tip>Still water (shallow water and marsh, never deep water, rivers, the sea or hot springs) follows the season. After four days of a dry spell its edge turns to mud, and the outer mud to soil, up to three cells in from the old edge. After four days of a wet spell the open ground beside it turns to mud, the ring next to the water then to marsh, up to two cells out, never into the home area, a zone, a floor or within two cells of a building. What one spell left goes back to the map's own edge first when the other comes, and slowly when the season is as usual. Fish follow: a shrunk pond holds no more fish than it can, a filled one gains a few. Switched off, the water goes back to its own edge.</CC_Settings_LandWater_Tip>
+  <CC_SetNote_LandWater>Ponds and marsh edges dry to mud in a drought and swell in wet weather, then go back.</CC_SetNote_LandWater>
+  <CC_Clock_Pass_RareLand>The land</CC_Clock_Pass_RareLand>
+
+  <!-- The land comes back (Nature/LandRegrowth.cs, LandPasture.cs). {PATCH} one of the four patches, {PLACE} "to the north", {TREES} "oak trees" or "trees". -->
+  <CC_Land_Patch_Burn>the burnt ground</CC_Land_Patch_Burn>
+  <CC_Land_Patch_Felled>the felled wood</CC_Land_Patch_Felled>
+  <CC_Land_Patch_Wilt>the ground where the wilt killed the trees</CC_Land_Patch_Wilt>
+  <CC_Land_Patch_Rust>the ground where the rust killed the grass</CC_Land_Patch_Rust>
+  <CC_Land_YoungTrees>trees</CC_Land_YoungTrees>
+  <CC_Land_Stage_Grass>Grass is coming up on {PATCH} {PLACE}.</CC_Land_Stage_Grass>
+  <CC_Land_Stage_Brush>Brush is growing back on {PATCH} {PLACE}.</CC_Land_Stage_Brush>
+  <CC_Land_Stage_Saplings>Young {TREES} are coming up on {PATCH} {PLACE}.</CC_Land_Stage_Saplings>
+  <CC_Land_Closed_Wood>The woods have grown back on {PATCH} {PLACE}.</CC_Land_Closed_Wood>
+  <CC_Land_Closed_Open>Grass and brush cover {PATCH} {PLACE} again.</CC_Land_Closed_Open>
+  <CC_Land_Closed_Chronicle>The woods grew back on {PATCH}.</CC_Land_Closed_Chronicle>
+  <CC_Land_Mossborn>{FACTION} heard that the colony let a wood of {COUNT} felled trees grow back, and think better of the colony for it.</CC_Land_Mossborn>
+  <CC_Land_PastureWorn>The colony's animals have grazed the ground {PLACE} bare, and patches of it are worn to packed earth.</CC_Land_PastureWorn>
+  <CC_Land_PastureBack>The grass has come back on the rested pasture {PLACE}.</CC_Land_PastureBack>
+
+  <!-- Sicknesses of the wild plants (Nature/LandSickness.cs, LandCouncil.cs). {KIND} "oak trees", "grass", "berry bushes"; {THING} the plant; {SICKNESS} the name below. -->
+  <CC_Land_GrassWord>grass</CC_Land_GrassWord>
+  <CC_Land_Sick_Wilt>the wilt in the {KIND}</CC_Land_Sick_Wilt>
+  <CC_Land_Sick_Rust>the grass rust</CC_Land_Sick_Rust>
+  <CC_Land_Sick_Rot>the rot in the {KIND}</CC_Land_Sick_Rot>
+  <CC_Land_Begins_Wilt>A wilt has got into the {KIND} {PLACE}. A sick tree's leaves turn brown and fall, the tree dies, and the wilt passes to the {KIND} near it.</CC_Land_Begins_Wilt>
+  <CC_Land_Begins_Rust>Rust has got into the grass {PLACE}. The grass it takes turns orange and dies, it spreads on the wind, and the wild grazers keep off it.</CC_Land_Begins_Rust>
+  <CC_Land_Begins_Rot>A rot has got into the {KIND} {PLACE}. The fruit goes soft and grey, the sick bushes die, and the rot passes from bush to bush.</CC_Land_Begins_Rot>
+  <CC_Land_GrazersLeave>With the grass thinned by the rust, {COUNT} of the wild grazers are moving off the land.</CC_Land_GrazersLeave>
+  <CC_Land_Over>{SICKNESS} has passed. {DIED} of the plants it reached died, {GONE} were cut out or burnt, and {LIVED} pulled through.</CC_Land_Over>
+  <CC_Land_OverChronicle>{SICKNESS} took {COUNT} of the colony's wild plants before it passed.</CC_Land_OverChronicle>
+  <CC_Land_NoSickness>Nothing is sick any more.</CC_Land_NoSickness>
+  <CC_Land_BurnTooNear>None of the sick plants stands far enough from the colony's buildings, fields and home area to set a fire.</CC_Land_BurnTooNear>
+  <CC_Land_BurnGivenUp>The burn was never set, and {SICKNESS} runs on.</CC_Land_BurnGivenUp>
+  <CC_Land_BurnLit>{PAWN_nameDef} has set fire to the sick {KIND}.</CC_Land_BurnLit>
+  <CC_Land_CutMarked>{0} plants are marked for cutting: the sick {KIND} and those growing beside them.</CC_Land_CutMarked>
+  <CC_Impact_LandCut>{0} plants marked for cutting: the sick {KIND} and those beside them</CC_Impact_LandCut>
+  <CC_Impact_LandCutBrief>the sick cut out</CC_Impact_LandCutBrief>
+  <CC_Impact_LandBurn>{PAWN} sets fire to the sick {KIND} at the far edge on the first dry day; the fire may spread to what grows round them</CC_Impact_LandBurn>
+  <CC_Impact_LandBurnBrief>a burn at the far edge</CC_Impact_LandBurnBrief>
+  <CC_Land_Belief_wilt>The wilt in the trees was {GOD}'s doing.</CC_Land_Belief_wilt>
+  <CC_Land_Belief_rust>The rust on the grass was {GOD}'s doing.</CC_Land_Belief_rust>
+  <CC_Land_Belief_rot>The rot in the berry bushes was {GOD}'s doing.</CC_Land_Belief_rot>
+  <CC_Land_Belief_woods>{GOD} gave the wood back.</CC_Land_Belief_woods>
+
+  <!-- Water that rises and falls (Nature/LandWater.cs). {PLACE} "to the north". -->
+  <CC_Land_WaterDrops>In the dry weather the pond {PLACE} has drawn back, and mud shows along its edge.</CC_Land_WaterDrops>
+  <CC_Land_WaterRises>After the rain the pond {PLACE} has risen over its banks, and the ground beside it is mud and marsh.</CC_Land_WaterRises>
+  <CC_Land_WaterBack>The pond {PLACE} is back at its old edge.</CC_Land_WaterBack>
+
+</LanguageData>
