@@ -1,7 +1,7 @@
 defName	mod	active	label	techLevel	tags	layers	bodyPartGroups	stuff	marketValue	tradeTags	commonality
 EEG_Apparel_CoatOfPlates	accurex.medievalempireoverhaul	no	coat of plates	Medieval	EEG_NobleGear,MedievalMilitary,MedievalMilitaryAdvanced	Shell	Neck,Torso,Shoulders,Arms,Legs	Metallic			
 EEG_Headgear_RoyalGreatHelm	accurex.medievalempireoverhaul	no	royal great helm	Medieval	EEG_NobleHelmet,DankPyon_LordHelmet	Overhead	FullHead	Metallic			
-AO_OxygenMask	acutus.atmosphereoverhaul.release	no	oxygen mask	Industrial	IndustrialMilitaryBasic	Overhead	FullHead			Clothing,Clothing	
+AO_OxygenMask	acutus.atmosphereoverhaul.release	no	oxygen mask	Industrial	IndustrialMilitaryBasic	Overhead	Mouth			Clothing,Clothing	
 TA_Bazubands	al9000.fireandsteel	no	bazubands	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier2,RoyalTier5,RoyalTier6,RoyalTier7	TA_BootGlove	Hands,Arms	Metallic		Clothing,Armor	
 TA_Bonnet	al9000.fireandsteel	no	bonnet	Medieval	Medieval	Overhead	UpperHead	Fabric		Clothing,Clothing	
 TA_BuffCoat	al9000.fireandsteel	no	buffcoat	Medieval	MedievalMilitary,MedievalArmorBasic	Shell,TA_UnderArmor	Torso,Shoulders,Arms,Legs,Neck	Leathery		Clothing,Clothing,Armor	
@@ -634,6 +634,10 @@ Outland_VathunPauldrons_Noble	neronix17.outland.vathunnobles	no	vathun noble pau
 Outland_VathunPauldrons_Peasant	neronix17.outland.vathunnobles	no	vathun peasant pauldrons	Medieval	VathunMilitary,VathunArmorDecent	ShellExtra	Shoulders,Arms,Hands	Leathery			
 Outland_VathunSurcoat	neronix17.outland.vathunnobles	no	vathun surcoat	Medieval	VathunMilitary	Shell	Torso,Neck,Shoulders,Arms	Fabric,Leathery			
 Outland_VathunTunic	neronix17.outland.vathunnobles	no	vathun tunic	Medieval	VathunClothing	OnSkin	Torso,Neck,Shoulders,Arms,Legs	Fabric			
+DD_Apparel_DragonCrown	onyxae.dragonsdescent	yes	dragon crown	Medieval	MedievalMilitary,MedievalArmorDecent,Royal,RoyalTier5	Overhead	UpperHead	DragonScale,Metallic			0.2
+DD_Apparel_ScaleHelm	onyxae.dragonsdescent	yes	scale helmet	Medieval	MedievalMilitary,MedievalArmorDecent	Overhead	FullHead	DragonScale,Metallic			0.5
+DD_Apparel_ScaleMail	onyxae.dragonsdescent	yes	scale mail	Medieval	MedievalMilitary,MedievalArmorDecent	Middle	Torso,Neck,Shoulders,Arms,Legs	DragonScale,Metallic			1
+DD_Apparel_WingCape	onyxae.dragonsdescent	yes	wing cape	Medieval	MedievalArmorDecent	Shell	Torso,Shoulders,Arms	Fabric,Leathery,DragonScale		Clothing	1
 Apparel_GreatDress	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	great dress	Medieval	Outlander,IndustrialAdvanced	OnSkin	Torso,Legs,Shoulders	Fabric		Clothing	
 Apparel_Vest	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	vest	Medieval	Outlander	Middle	Torso	Fabric,Leathery		Clothing	0.2
 VFES_Headgear_Bandana	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bandana	Industrial	Outlander	Overhead	Teeth	Fabric,Leathery		Clothing	0.3

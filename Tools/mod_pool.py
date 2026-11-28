@@ -74,6 +74,55 @@ def versions_of(root, folder):
         return []
 
 
+def save_steam_ids(path):
+    """A save's mods as {package id: Steam Workshop id} (its meta's modIds and modSteamIds side by side; 0 for a local
+    mod), or None without a save."""
+    if not path or not os.path.exists(path):
+        return None
+    with open(path, encoding="utf-8-sig", errors="replace") as f:
+        head = f.read(200000)
+    ids = re.search(r"<modIds>(.*?)</modIds>", head, re.S)
+    steam = re.search(r"<modSteamIds>(.*?)</modSteamIds>", head, re.S)
+    if not ids or not steam:
+        return {}
+    a = [x.strip().lower() for x in re.findall(r"<li>([^<]+)</li>", ids.group(1))]
+    b = [x.strip() for x in re.findall(r"<li>([^<]+)</li>", steam.group(1))]
+    return {package(k): v for k, v in zip(a, b)}
+
+
+def newest_version(vs):
+    """The newest game version up to 1.7 a mod says it supports, as a tuple ((0, 0) for none)."""
+    best = (0, 0)
+    for v in vs or []:
+        m = re.match(r"^(\d+)\.(\d+)$", v.strip())
+        if m and best < (int(m.group(1)), int(m.group(2))) <= (1, 7):
+            best = (int(m.group(1)), int(m.group(2)))
+    return best
+
+
+def loaded_copy(folders, versions, steam=None):
+    """Where two or more subscribed mods share a package id (a mod and its continuation, such as A RimWorld of Magic and
+    A RimWorld of Magic (Continued)), the one the game loads for that id: the one the save was played with (its Steam
+    id in the save's modSteamIds), else the one for the newest game version up to 1.7, else the newest Workshop item.
+    Returns {folder left out: folder loaded}."""
+    by_pid = {}
+    for folder, (pid, _) in folders.items():
+        by_pid.setdefault(package(pid), []).append(folder)
+    out = {}
+    for pid, fs in by_pid.items():
+        if len(fs) < 2:
+            continue
+        chosen = None
+        if steam and steam.get(pid) and steam[pid] != "0":
+            chosen = next((f for f in fs if f == steam[pid]), None)
+        if chosen is None:
+            chosen = max(fs, key=lambda f: (newest_version(versions.get(f)), f.isdigit(), int(f) if f.isdigit() else 0, f))
+        for f in fs:
+            if f != chosen:
+                out[f] = chosen
+    return out
+
+
 def save_mods(path):
     """The package ids a save's meta lists (the mods it was played with)."""
     if not path or not os.path.exists(path):
@@ -363,13 +412,18 @@ class Pool:
     is the game's own or active in the player's list. Other tools read the collection through this
     (Tools/weapon_extract.py)."""
 
-    def __init__(self, root):
+    def __init__(self, root, save=None):
         self.folders, self.active = read_mods(root)
         self.active_set = set(self.active)
         self.loaded = {package(p) for p in self.active} | ALWAYS_LOADED
         self.dropped = []  # (pid, tag, defName) of defs the player's mod list leaves out by MayRequire
         self.versions = {d: versions_of(root, d) for d in self.folders}
         self.old_only = {d for d, v in self.versions.items() if v and not any(x in SUPPORTED for x in v)}
+        # A second copy of a package id the game doesn't load (28 November 2026: the player has both A RimWorld of Magic
+        # and its continuation subscribed, under one id): its defs left out, as the old-only mods' are.
+        self.duplicates = loaded_copy({d: v for d, v in self.folders.items() if d not in self.old_only}, self.versions,
+                                      save_steam_ids(save))
+        self.old_only = self.old_only | set(self.duplicates)
         self.named = {}   # (tag, Name) -> [(pid, element)], for inheritance
         self.defs = []    # (pid, element)
         self.owner = {}   # id(element) -> pid
@@ -423,8 +477,9 @@ class Pool:
 
 
 def main(root, out, save=None):
-    pool = Pool(root)
+    pool = Pool(root, save)
     folders, active, active_set = pool.folders, pool.active, pool.active_set
+    dup = pool.duplicates
     in_save = save_mods(save)
     versions = pool.versions
     old_only = pool.old_only
@@ -636,11 +691,16 @@ def main(root, out, save=None):
         w.writerow(["packageId", "name", "folder", "active", "loadOrder", "inSave", "versions", "catalogued"])
         order = {p: i for i, p in enumerate(active)}
         for folder, (pid, name) in sorted(folders.items(), key=lambda kv: (order.get(kv[1][0], 9999), kv[1][1].lower())):
-            w.writerow([pid, name, folder, "yes" if pid in active_set else "no", order.get(pid, ""),
-                        "" if in_save is None else ("yes" if pid in in_save else "no"), ",".join(versions.get(folder, [])),
-                        "no (not for 1.6 or 1.7)" if folder in old_only else "yes"])
-    print(f"mods: {len(folders)} subscribed, {sum(1 for f in folders if folders[f][0] in active_set)} active, "
-          f"{len(old_only)} left out as not for 1.6 or 1.7")
+            on = pid in active_set and folder not in dup
+            w.writerow([pid, name, folder, "yes" if on else "no", order.get(pid, "") if on else "",
+                        "" if in_save is None else ("yes" if pid in in_save and folder not in dup else "no"),
+                        ",".join(versions.get(folder, [])),
+                        ("no (the same package id as " + folders[dup[folder]][1] + ", " + dup[folder] + ", which the game loads)")
+                        if folder in dup else "no (not for 1.6 or 1.7)" if folder in old_only else "yes"])
+    print(f"mods: {len(folders)} subscribed, {sum(1 for f in folders if folders[f][0] in active_set and f not in dup)} active, "
+          f"{len(old_only - set(dup))} left out as not for 1.6 or 1.7, {len(dup)} as a second copy of a package id")
+    for f, keep in sorted(dup.items()):
+        print(f"  left out: {folders[f][1]} ({f}), the game loads {folders[keep][1]} ({keep})")
     for k, rows in tables.items():
         print(f"{k}: {len(rows)} ({sum(1 for r in rows if r[2] == 'yes')} active)")
 

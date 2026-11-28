@@ -966,15 +966,29 @@ most sense." So, in this order, three builds at a time:
   peoples' review: rounds 1 to 3 and releases C to G told in the colony's age; `docs/content-round-7-peoples-ages.md`),
   each in a worktree. Also asked of the player: run the collector and send the zip with the latest save; say how magic
   auto-cast plays on Myst (casting at all, Shadow Strike only on safe prey, undrafted again after it).
-- **Waiting for the player (28 November 2026; their pick "I'll send a new collection"): a new catalogue of their
-  mods.** They run A RimWorld of Magic (Continued) by HUGINN (with `huginn.rwom.core` and `huginn.rwom.integrations`)
-  while `docs/player-mods` (7 November) lists the original. The collector, never kept in the repository before, was
-  written again as `Tools/Collect-ModDefs.ps1` and sent to the player (the game's and DLCs' Defs, every mod's About.xml,
-  LoadFolders.xml and the Defs of the folders 1.7 loads, mods.txt, ModsConfig.xml; zip to the Desktop, opened with the
-  zip selected; tested with PowerShell 7 on a made-up folder and read back by `mod_pool.py`, not yet on Windows
-  PowerShell 5.1). When the zip comes: `python3 Tools/mod_pool.py <unzipped> docs/player-mods <save.rws>`, then
-  `weapon_extract.py` and `apparel_extract.py` as the README says, poolcheck, and the magic auto-cast's spell names
-  checked against the new rows.
+- **Done (28 November 2026; the player's pick "I'll send a new collection"): the catalogue of their mods built again.**
+  The player sent `RimfolkModDefs.zip` from `Tools/Collect-ModDefs.ps1` (written again, kept in the repository): 454
+  mods subscribed, 298 active; new: A RimWorld of Magic (Continued) with RWoM Core and RWoM Integrations, Better Trees,
+  and (not enabled) Faces of the Rim, JecsTools Unofficial 1.6, Portraits of the Rim, Rimsenal Plants, Vanilla Pawns
+  Retextured. Abilities 1268 to 1757. Windows PowerShell wrote the zip's names with backslashes: read safely, and both
+  collectors now write the zip themselves with forward slashes (`Write-Zip`) and open the Desktop with the zip selected.
+  `mod_pool.py` learned that two subscribed mods may share a package id (the original magic mod and its continuation):
+  only the copy the game loads is read (the save's Steam id, else the newest game version, else the newest Workshop
+  item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
+  not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
+  Integrations and JecsLite, for the review below.
+- **Under way (28 November 2026; the player: "great, can you also review all the rimworld of magic integrations, as
+  these perhaps never properly worked with the outdated mod files"): a review of every A RimWorld of Magic integration
+  against the Continued version**, in a worktree (`docs/review-magic.md`).
+- **To do after the work under way (28 November 2026; the player: "and than later add more content in the categories
+  you listed in the last lists, except maybe decrees, since too many makes it confusing"): a content round in the
+  categories of the summary given that day** (camps, world events, map events, the gods' happenings, council questions,
+  personal stories, wishes, life goals, ambitions, moments, shared memories, quirks, missions, encounters, dreams,
+  callers, gate offers, nuisances), no decrees.
+- **To do when the player asks (28 November 2026; the player, of the decrees: "or else we need to think about how to
+  order and display/list/sort them in the interface to make it clear"): the decrees' list made clear before any more
+  are added.** 45 decrees now (seven added in 0.323.0). Proposal first (grouping by what they are for, sorting, which
+  can run together), then the player's word.
 - **Done (28 November 2026, 0.325.0; the player's pick): a review of the visitors and strangers**, in a worktree,
   merged; `docs/review-visitors.md`, `Tools/visitors_impact_audit.py`, rows read and left in
   `Tools/visitors_impact_skips.txt`. Callers and guests: 88 events, 250 to 253 answers (what is left flavour-only or thin

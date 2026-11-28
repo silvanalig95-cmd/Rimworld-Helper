@@ -1,7 +1,7 @@
 defName	mod	active	label	techLevel	role	size	stuff	stuffCount	cost	research	researchTech	minifiable	designation	thingClass	power	fuel	glow	heat	holdsRoof	passability	work	workToBuild
-AO_HouseholdFan	acutus.atmosphereoverhaul.release	no	Household Fan		lamp	(1,1)			Steel:35;ComponentIndustrial:1	Electricity	Industrial	yes	Temperature	Building	yes					PassThroughOnly		800
-AO_IndustrialBlower	acutus.atmosphereoverhaul.release	no	Industrial Blower		lamp	(2,1)			Steel:80;ComponentIndustrial:3	Machining	Industrial	yes	Temperature	Building	yes					PassThroughOnly		800
-AO_WaterFetchSpot	acutus.atmosphereoverhaul.release	no	water fetching spot		workspot	(1,1)					Undefined		Production	Building_WorkTable						Standable		0
+AO_HouseholdFan	acutus.atmosphereoverhaul.release	no	Household Fan		lamp	(1,1)			Steel:35;ComponentIndustrial:1	Electricity	Industrial	yes	AO_Atmosphere	Building	yes					PassThroughOnly		800
+AO_IndustrialBlower	acutus.atmosphereoverhaul.release	no	Industrial Blower		lamp	(2,1)			Steel:80;ComponentIndustrial:3	Machining	Industrial	yes	AO_Atmosphere	Building	yes					PassThroughOnly		800
+AO_WaterFetchSpot	acutus.atmosphereoverhaul.release	no	water fetching spot		workspot	(1,1)					Undefined		AO_Atmosphere	Building_WorkTable						Standable		0
 GSAnimalBedBig	animal.bedsnew	yes	big animal bed		animalbed	(2,2)	Fabric,Leathery	80			Undefined	yes	Furniture	AnimalBed.Building_BedHediffGiver						PassThroughOnly		500
 GSAnimalBedBigPrestige	animal.bedsnew	yes	prestige animal bed		animalbed	(2,2)	Fabric,Leathery	80	Gold:5		Undefined	yes	Furniture	AnimalBed.Building_BedHediffGiver						PassThroughOnly		750
 Stagz_WaterCandle	arquebus.stagzmerfolk	yes	floating lantern		torch	(1,1)	Woody	10	WoodLog:20		Undefined	yes	Furniture	Building		WoodLog	7	3.5		PassThroughOnly		100
@@ -282,7 +282,7 @@ OilWell	dubwise.rimefeller	yes	oil well		lamp	(3,3)			Steel:120;ComponentIndustr
 RefineryLoadingBay	dubwise.rimefeller	yes	refinery unloading bay		storage	(1,1)			Steel:15	SynthyleneProduction	Industrial	yes	Rimefeller	Building_Storage						PassThroughOnly		300
 ElectricBrazier	electricbraziers.papercrane.rw	no	electric brazier		lamp	(1,1)	Metallic,Stony	50	Steel:10;ComponentIndustrial:1	ComplexFurniture,Electricity	Industrial	yes	Furniture	Building	yes		10	2		PassThroughOnly		100
 HolographicBrazier	electricbraziers.papercrane.rw	no	holographic brazier		lamp	(1,1)			Steel:10;Plasteel:10;ComponentIndustrial:2	Fabrication	Industrial	yes	Furniture	Building	yes		10			Standable		1000
-RimMarket_GuardRestSpot	forti.rimmarket	yes	guard rest spot		spot	(1,1)					Undefined		Misc	RimMarket.Buildings.Building_MarketSpot						Standable		0
+RimMarket_GuardRestSpot	forti.rimmarket	yes	guard rest spot		spot	(1,1)					Undefined		RimMarket_Market	RimMarket.Buildings.Building_MarketSpot						Standable		0
 Greekcore_Fence	gerrymon.greekcorestyle	no	carved fence		fence	(1,1)	Stony	5			Undefined		Structure	Building						PassThroughOnly		140
 Greekcore_Kline	gerrymon.greekcorestyle	no	klinai	Medieval	bed	(1,2)	Metallic,Woody,Stony	45		ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		20000
 GM_FenceBamboo	gmmp.fences	no	thin bamboo wall		fence	(1,1)			WoodLog:5		Undefined		Structure	Building						Impassable		70
@@ -522,6 +522,12 @@ Tav_StoolA	ods.tavern	no	sturdy stool		seat	(1,1)	Woody	25			Undefined	yes	Taver
 Tav_TableDecor	ods.tavern	no	decor table		bench	(3,1)	Woody	120		ComplexFurniture	Medieval	yes	TavernFurniture	Building_WorkTable						PassThroughOnly	craft	3000
 Tav_TableLight	ods.tavern	no	tavern candle		torch	(1,1)			TavTallow:10		Undefined	yes	TavernFurniture	Building		TavTallow	9	1.5		PassThroughOnly		250
 Tav_TavernBench	ods.tavern	no	sturdy bench		seat	(2,1)	Woody	50			Undefined	yes	TavernFurniture	Building								1500
+AdvancedIncubator	onyxae.dragonsdescent	yes	advanced incubator		bench	(2,1)	Metallic	80	ComponentIndustrial:12	AirConditioning,DraconicAdvancedIncubation	Industrial		Misc	Building_WorkTable	yes		6	5		PassThroughOnly		3200
+Altar	onyxae.dragonsdescent	yes	dragon altar	Medieval	bench	(3,2)	Stony,Woody,Metallic	150	Gold:10	ComplexFurniture	Medieval	yes	Misc	Building_WorkTable						PassThroughOnly		1000
+BasicIncubator	onyxae.dragonsdescent	yes	basic incubator		bench	(2,1)	Stony	100	WoodLog:50	DraconicIncubation	Medieval		Misc	Building_WorkTable		WoodLog,Chemfuel	5	10		PassThroughOnly		1600
+DDOfferingSpot	onyxae.dragonsdescent	yes	draconic offering spot		bench	(1,1)			WoodLog:5		Undefined		Misc	Building_WorkTable						Standable		25
+DragonNest	onyxae.dragonsdescent	yes	dragon nest		storage	(1,1)			Hay:40		Undefined	yes	Furniture	Building_Storage						PassThroughOnly		700
+DragonPillow	onyxae.dragonsdescent	yes	dragon pillow		animalbed	(1,1)	Fabric,Leathery	40	Gold:4	ComplexFurniture	Medieval	yes	Furniture	Building_Bed						PassThroughOnly		1000
 Chemlamp	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	chemlamp		torch	(1,1)			Steel:20;Chemfuel:10	ComplexFurniture	Medieval	yes	Furniture	Building		Chemfuel	10			Standable		100
 ChemlampPost	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	chemlamp post		torch	(1,1)	Metallic,Woody,Stony	20	Chemfuel:10	ComplexFurniture	Medieval	yes	Furniture	Building		Chemfuel	10			PassThroughOnly		100
 DoorSaloon	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	saloon door		door	(1,1)	Metallic,Woody,Stony	15			Undefined		Structure	VFE_Settlers.Buildings.Building_SaloonDoor					false			500
@@ -578,6 +584,7 @@ TETable	rimsenal.core	yes	kinetic field manipulator		bench	(3,1)			Steel:75;Plas
 YPTable	rimsenal.core	yes	crystalline structure foundry		bench	(3,1)			Steel:20;Plasteel:40;ComponentIndustrial:8	ShardTech	Spacer	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	craft	4500
 FedTable	rimsenal.federation	yes	energy crucible		bench	(3,1)			CrucibleCore:8;Foerum:60;Plasteel:15;ComponentIndustrial:6	CrucibleTech	Spacer	yes	Production	Building_WorkTable	yes		5			PassThroughOnly	craft	4500
 FeralTable	rimsenal.feral	yes	Scav bench		bench	(3,1)			ChunkSlagSteel:4;Steel:50;ComponentIndustrial:2	Smithing	Medieval	yes	Production	Building_WorkTable	yes		3			PassThroughOnly		3500
+Rimsenal_OxyKelpVat	rimsenal.plants	no	oxykelp vat		lamp	(2,2)			Steel:300;Plasteel:50;ComponentIndustrial:8	Hydroponics,Rimsenal_SpacerCropResearch,OrbitalTech	Industrial		Production	Building	yes		4			Impassable		6000
 Turret_SupTurret	rimsenal.security	yes	suppressor turret		lamp	(2,2)			Steel:175;Plasteel:35;ComponentIndustrial:3;ComponentSpacer:1	FocusTech	Spacer	yes	Security	Building_TurretGun	yes	Plasteel	2			PassThroughOnly		17000
 Turret_SuvTurret	rimsenal.security	yes	kinetic sniper Turret		lamp	(2,2)			Steel:175;Plasteel:35;ComponentIndustrial:3;ComponentSpacer:1	KineticTech	Spacer	yes	Security	Building_TurretGun	yes	Plasteel	2			PassThroughOnly		17000
 NutrientProcessor	rimsenal.spacer	yes	nutrient processor		bench	(2,2)			Steel:175;ComponentIndustrial:4;ComponentSpacer:2	NutrientProcessing	Spacer	yes	Production	Building_WorkTable_HeatPush	yes			3		PassThroughOnly	cook	3000
@@ -648,8 +655,8 @@ RF_VE_SunstoneWallLamp	sierra.rf.medievaloverhaul	no	sunstone wall lamp		torch	(
 BenchWoolLoom	telkir.tmods.morefloors	yes	wool loom		bench	(3,1)			Steel:20;WoodLog:40	CarpetMaking	Medieval	yes	Production	Building_WorkTable						PassThroughOnly	craft	750
 PW_FossilResurrector	themoonitself.pokeworld	yes	Fossil Resurrector		bench	(3,2)			Steel:150;ComponentIndustrial:4;ComponentSpacer:1	PW_FossilResurrectorResearch	Industrial		Production	Building_WorkTable	yes					Impassable		10000
 PW_PortableComputer	themoonitself.pokeworld	yes	Portable Computer		lamp	(1,1)			Steel:40;ComponentIndustrial:3	PW_StorageSystem	Industrial	yes	Misc	Pokeworld.Building_PortableComputer	yes		3			PassThroughOnly		5000
-TableGemcutting	torann.arimworldofmagic	yes	gemcrafting table		bench	(3,1)	Metallic,Stony	150	Steel:100	TM_Enchanting	Neolithic	yes	Production	Building_WorkTable						PassThroughOnly	craft	7800
-TableMagicPrinter	torann.arimworldofmagic	yes	scribing table		bench	(1,1)	Metallic,Stony,Woody	80	Steel:20	TM_MagicScribing	Neolithic	yes	Production	Building_WorkTable						PassThroughOnly		6000
+TableGemcutting	torann.arimworldofmagic	yes	gemcrafting table		bench	(3,1)	Metallic,Stony	150	Steel:100	TM_Enchanting	Neolithic	yes	TM_RWoM	Building_WorkTable						PassThroughOnly	craft	7800
+TableMagicPrinter	torann.arimworldofmagic	yes	scribing table		bench	(1,1)	Metallic,Stony,Woody	80	Steel:20	TM_MagicScribing	Neolithic	yes	TM_RWoM	Building_WorkTable						PassThroughOnly	craft	6000
 T_Cauldron	trickity.seal.spirits	no	rendering cauldron		fire,bench	(2,2)			Steel:200	T_BioferriteRend	Undefined	yes	Anomaly	Building_WorkTable		WoodLog	5	5		PassThroughOnly	cook	1000
 T_SealedDoor	trickity.seal.spirits	no	sealing door		door	(2,1)	Metallic,Woody,Stony,Metallic,Woody,Stony	250		T_SealedDoor	Undefined		Structure	Building_MultiTileDoor					true			6000
 DA_BloodCandles	van.dacrypts	no	blood candles		torch	(1,1)			WoodLog:5;HemogenPack:1	DA_BloodflameCatacomb	Undefined	yes	Furniture	Building			2	3.5		PassThroughOnly		250

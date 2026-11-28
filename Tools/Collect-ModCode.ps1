@@ -24,6 +24,10 @@ $wanted = [ordered]@{
     # Weapons and armour that work through their own code.
     '2023507013' = 'Vanilla Expanded Framework'
     '1201382956' = 'A RimWorld of Magic'
+    '3823345404' = 'A RimWorld of Magic (Continued)'
+    '3833946439' = 'RWoM Core (Ability Framework)'
+    '3833946677' = 'RWoM Integrations'
+    '3312959701' = 'JecsLite - A RimWorld of Magic'
     '2826922787' = 'Vanilla Persona Weapons Expanded'
     '3287469135' = 'Vanilla Weapons Expanded - Bioferrite'
     '3444347874' = 'Vanilla Factions Expanded - Medieval 2'
@@ -158,6 +162,25 @@ function Copy-Mod([string]$modDir, [string]$prefix) {
     return $n
 }
 
+# The zip, with forward slashes in its entry names (Windows PowerShell's own zipping writes backslashes, which other
+# systems read as part of a file's name).
+function Write-Zip([string]$from, [string]$zip) {
+    Add-Type -AssemblyName System.IO.Compression
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $base = (Get-Item -LiteralPath $from).FullName.TrimEnd('\', '/')
+    $fs = [IO.File]::Open($zip, [IO.FileMode]::Create)
+    $archive = New-Object IO.Compression.ZipArchive($fs, [IO.Compression.ZipArchiveMode]::Create)
+    try {
+        foreach ($f in Get-ChildItem -LiteralPath $from -Recurse -File) {
+            $name = $f.FullName.Substring($base.Length).TrimStart('\', '/') -replace '\\', '/'
+            [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $f.FullName, $name, [IO.Compression.CompressionLevel]::Optimal) | Out-Null
+        }
+    } finally {
+        $archive.Dispose()
+        $fs.Dispose()
+    }
+}
+
 $sources = @()
 $local = Join-Path $rimworld 'Mods'
 if (Test-Path -LiteralPath $local) { $sources += $local }
@@ -197,11 +220,12 @@ if (Test-Path -LiteralPath $configDir) {
 $desktop = [Environment]::GetFolderPath('Desktop')
 $zip = Join-Path $desktop 'RimfolkModCode.zip'
 if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
-Compress-Archive -Path (Join-Path $work '*') -DestinationPath $zip -CompressionLevel Optimal
+Write-Zip $work $zip
 Remove-Item -LiteralPath $work -Recurse -Force
 $size = [math]::Round((Get-Item -LiteralPath $zip).Length / 1MB, 1)
 Write-Host ""
 if ($missing.Count -gt 0) { Write-Host ("Not found (not subscribed or elsewhere): " + ($missing -join ', ')) }
 Write-Host "Done: $size MB."
 Write-Host "Upload this file: $zip"
+if ($env:OS -eq 'Windows_NT') { Start-Process explorer.exe -ArgumentList "/select,`"$zip`"" }
 Read-Host 'Press Enter to close'

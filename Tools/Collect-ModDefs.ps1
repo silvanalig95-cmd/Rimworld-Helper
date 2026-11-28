@@ -146,6 +146,25 @@ function Copy-Mod([string]$modDir, [string]$prefix) {
     return $n
 }
 
+# The zip, with forward slashes in its entry names (Windows PowerShell's own zipping writes backslashes, which other
+# systems read as part of a file's name).
+function Write-Zip([string]$from, [string]$zip) {
+    Add-Type -AssemblyName System.IO.Compression
+    Add-Type -AssemblyName System.IO.Compression.FileSystem
+    $base = (Get-Item -LiteralPath $from).FullName.TrimEnd('\', '/')
+    $fs = [IO.File]::Open($zip, [IO.FileMode]::Create)
+    $archive = New-Object IO.Compression.ZipArchive($fs, [IO.Compression.ZipArchiveMode]::Create)
+    try {
+        foreach ($f in Get-ChildItem -LiteralPath $from -Recurse -File) {
+            $name = $f.FullName.Substring($base.Length).TrimStart('\', '/') -replace '\\', '/'
+            [IO.Compression.ZipFileExtensions]::CreateEntryFromFile($archive, $f.FullName, $name, [IO.Compression.CompressionLevel]::Optimal) | Out-Null
+        }
+    } finally {
+        $archive.Dispose()
+        $fs.Dispose()
+    }
+}
+
 # The game's own defs and the DLCs' (Data\Core, Data\Royalty and the others).
 $data = Join-Path $rimworld 'Data'
 $gameDefs = 0
@@ -196,8 +215,7 @@ if (Test-Path -LiteralPath $modsConfig) { Copy-Into $modsConfig 'ModsConfig.xml'
 if (-not $OutDir) { $OutDir = [Environment]::GetFolderPath('Desktop') }
 $zip = Join-Path $OutDir 'RimfolkModDefs.zip'
 if (Test-Path -LiteralPath $zip) { Remove-Item -LiteralPath $zip -Force }
-Add-Type -AssemblyName System.IO.Compression.FileSystem
-[IO.Compression.ZipFile]::CreateFromDirectory($work, $zip, [IO.Compression.CompressionLevel]::Optimal, $false)
+Write-Zip $work $zip
 Remove-Item -LiteralPath $work -Recurse -Force
 $size = [math]::Round((Get-Item -LiteralPath $zip).Length / 1MB, 1)
 Write-Host ""

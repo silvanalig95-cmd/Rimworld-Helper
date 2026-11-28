@@ -131,6 +131,10 @@ Outland_ShortFlight	neronix17.outland.genetics	no	AbilityDef	short flight
 Outland_SymbioticImplantation	neronix17.outland.genetics	no	AbilityDef	symbiotic implantation	
 Outland_ToxicSpray	neronix17.outland.genetics	no	AbilityDef	toxic spray	
 ApePoopThrow	onlymonkey.awakenedapes	yes	AbilityDef	throw feces	
+DD_DraconicFlight	onyxae.dragonsdescent	yes	AbilityDef	winged flight	DD.Ability_WingedFlyer
+DD_DragonBreath_Fire	onyxae.dragonsdescent	yes	AbilityDef	Dragon Fire Breath	DD.Ability_ShootProjectile_Dragon
+DD_DragonJump	onyxae.dragonsdescent	yes	AbilityDef	Dragon Jump	DD.Ability_DragonJump
+DD_DragonSpit_Fire	onyxae.dragonsdescent	yes	AbilityDef	Dragon Fire Spit	DD.Ability_ShootProjectile_Multiple_Dragon
 VEF_ControlledBlinking	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled blinking	
 VEF_ControlledDetonation	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled detonation	
 VEF_ControlledInvisibility	oskarpotocki.vanillafactionsexpanded.core	yes	AbilityDef	controlled invisibility	
@@ -352,6 +356,8 @@ TM_AlterFate	torann.arimworldofmagic	yes	TMAbilityDef	Alter Fate	TorannMagic.Mag
 TM_AlterStorm	torann.arimworldofmagic	yes	TMAbilityDef	Alter Storm	TorannMagic.MagicAbility
 TM_AnimalFriend	torann.arimworldofmagic	yes	TMAbilityDef	Animal Bond	TorannMagic.MightAbility
 TM_AntiArmor	torann.arimworldofmagic	yes	TMAbilityDef	Anti-Armor	TorannMagic.MightAbility
+TM_ApothecaryAntitoxin	torann.arimworldofmagic	yes	TMAbilityDef	Antitoxin	TorannMagic.ClassProgression.ApothecaryAntitoxinAbility
+TM_ApothecaryGoldenHour	torann.arimworldofmagic	yes	TMAbilityDef	Golden Hour kit	TorannMagic.ClassProgression.ApothecaryKitAbility
 TM_ArcaneBarrier	torann.arimworldofmagic	yes	TMAbilityDef	Arcane Barrier	TorannMagic.MagicAbility
 TM_ArcaneBolt	torann.arimworldofmagic	yes	TMAbilityDef	Arcane Bolt	TorannMagic.MagicAbility
 TM_ArrowStorm	torann.arimworldofmagic	yes	TMAbilityDef	Arrow Storm	TorannMagic.MightAbility
@@ -374,6 +380,8 @@ TM_BestowMight_II	torann.arimworldofmagic	yes	TMAbilityDef	Bestow Might (II)	Tor
 TM_BestowMight_III	torann.arimworldofmagic	yes	TMAbilityDef	Bestow Might (III)	TorannMagic.MagicAbility
 TM_BladeArt	torann.arimworldofmagic	yes	TMAbilityDef	Body Training	TorannMagic.MightAbility
 TM_BladeFocus	torann.arimworldofmagic	yes	TMAbilityDef	Blade training	TorannMagic.MightAbility
+TM_BladePassage	torann.arimworldofmagic	yes	TMAbilityDef	blade passage	TorannMagic.MightAbility
+TM_BladeSevenSteps	torann.arimworldofmagic	yes	TMAbilityDef	form of seven steps	TorannMagic.ClassProgression.BladeFormAbility
 TM_BladeSpin	torann.arimworldofmagic	yes	TMAbilityDef	Blade Spin	TorannMagic.MightAbility
 TM_BlankMind	torann.arimworldofmagic	yes	TMAbilityDef	Blank Mind	TorannMagic.MagicAbility
 TM_Blink	torann.arimworldofmagic	yes	TMAbilityDef	Blink	TorannMagic.MagicAbility
@@ -391,8 +399,466 @@ TM_BloodShield	torann.arimworldofmagic	yes	TMAbilityDef	Blood Shield	TorannMagic
 TM_Blur	torann.arimworldofmagic	yes	TMAbilityDef	Blur	TorannMagic.MagicAbility
 TM_BowTraining	torann.arimworldofmagic	yes	TMAbilityDef	Bow Training	TorannMagic.MightAbility
 TM_Branding	torann.arimworldofmagic	yes	TMAbilityDef	Branding	TorannMagic.MagicAbility
+TM_BreachSeal	torann.arimworldofmagic	yes	TMAbilityDef	Breach Seal	TorannMagic.Odyssey.BreachSealAbility
 TM_BreachingCharge	torann.arimworldofmagic	yes	TMAbilityDef	Breaching charge	TorannMagic.MightAbility
 TM_BriarPatch	torann.arimworldofmagic	yes	TMAbilityDef	Briar Patch	TorannMagic.MagicAbility
+TM_Bridge_60mmmortar	torann.arimworldofmagic	yes	AbilityDef	60mm Mortar	TorannMagic.TMBridgeAbility
+TM_Bridge_Acceleratetime	torann.arimworldofmagic	yes	AbilityDef	Accelerate Time	TorannMagic.TMBridgeAbility
+TM_Bridge_Advancedheal	torann.arimworldofmagic	yes	AbilityDef	Advanced Heal	TorannMagic.TMBridgeAbility
+TM_Bridge_Alterfate	torann.arimworldofmagic	yes	AbilityDef	Alter Fate	TorannMagic.TMBridgeAbility
+TM_Bridge_Alterstorm	torann.arimworldofmagic	yes	AbilityDef	Alter Storm	TorannMagic.TMBridgeAbility
+TM_Bridge_Amp	torann.arimworldofmagic	yes	AbilityDef	AMP	TorannMagic.TMBridgeAbility
+TM_Bridge_AmpI	torann.arimworldofmagic	yes	AbilityDef	AMP	TorannMagic.TMBridgeAbility
+TM_Bridge_AmpII	torann.arimworldofmagic	yes	AbilityDef	AMP	TorannMagic.TMBridgeAbility
+TM_Bridge_AmpIII	torann.arimworldofmagic	yes	AbilityDef	AMP	TorannMagic.TMBridgeAbility
+TM_Bridge_Animalfriend	torann.arimworldofmagic	yes	AbilityDef	Animal Bond	TorannMagic.TMBridgeAbility
+TM_Bridge_Antiarmor	torann.arimworldofmagic	yes	AbilityDef	Anti-Armor	TorannMagic.TMBridgeAbility
+TM_Bridge_ApothecaryAntitoxin	torann.arimworldofmagic	yes	AbilityDef	Antitoxin	TorannMagic.TMBridgeAbility
+TM_Bridge_ApothecaryGoldenHour	torann.arimworldofmagic	yes	AbilityDef	Golden Hour kit	TorannMagic.TMBridgeAbility
+TM_Bridge_Arcanebarrier	torann.arimworldofmagic	yes	AbilityDef	Arcane Barrier	TorannMagic.TMBridgeAbility
+TM_Bridge_Arcanebolt	torann.arimworldofmagic	yes	AbilityDef	Arcane Bolt	TorannMagic.TMBridgeAbility
+TM_Bridge_Arrowstorm	torann.arimworldofmagic	yes	AbilityDef	Arrow Storm	TorannMagic.TMBridgeAbility
+TM_Bridge_ArrowstormI	torann.arimworldofmagic	yes	AbilityDef	Arrow Storm (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_ArrowstormII	torann.arimworldofmagic	yes	AbilityDef	Arrow Storm (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_ArrowstormIII	torann.arimworldofmagic	yes	AbilityDef	Arrow Storm (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_ArtifactConviction	torann.arimworldofmagic	yes	AbilityDef	Conviction	TorannMagic.TMBridgeAbility
+TM_Bridge_Attraction	torann.arimworldofmagic	yes	AbilityDef	Attraction	TorannMagic.TMBridgeAbility
+TM_Bridge_AttractionI	torann.arimworldofmagic	yes	AbilityDef	Attraction	TorannMagic.TMBridgeAbility
+TM_Bridge_AttractionII	torann.arimworldofmagic	yes	AbilityDef	Attraction	TorannMagic.TMBridgeAbility
+TM_Bridge_AttractionIII	torann.arimworldofmagic	yes	AbilityDef	Attraction	TorannMagic.TMBridgeAbility
+TM_Bridge_Awarenessbrand	torann.arimworldofmagic	yes	AbilityDef	Brand: Awareness	TorannMagic.TMBridgeAbility
+TM_Bridge_Bardtraining	torann.arimworldofmagic	yes	AbilityDef	Bard Training	TorannMagic.TMBridgeAbility
+TM_Bridge_Battlehymn	torann.arimworldofmagic	yes	AbilityDef	Battle Hymn	TorannMagic.TMBridgeAbility
+TM_Bridge_Bestowmight	torann.arimworldofmagic	yes	AbilityDef	Bestow Might	TorannMagic.TMBridgeAbility
+TM_Bridge_BestowmightI	torann.arimworldofmagic	yes	AbilityDef	Bestow Might (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_BestowmightII	torann.arimworldofmagic	yes	AbilityDef	Bestow Might (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_BestowmightIII	torann.arimworldofmagic	yes	AbilityDef	Bestow Might (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_BladePassage	torann.arimworldofmagic	yes	AbilityDef	blade passage	TorannMagic.TMBridgeAbility
+TM_Bridge_BladeSevenSteps	torann.arimworldofmagic	yes	AbilityDef	form of seven steps	TorannMagic.TMBridgeAbility
+TM_Bridge_Bladeart	torann.arimworldofmagic	yes	AbilityDef	Body Training	TorannMagic.TMBridgeAbility
+TM_Bridge_Bladefocus	torann.arimworldofmagic	yes	AbilityDef	Blade training	TorannMagic.TMBridgeAbility
+TM_Bridge_Bladespin	torann.arimworldofmagic	yes	AbilityDef	Blade Spin	TorannMagic.TMBridgeAbility
+TM_Bridge_Blankmind	torann.arimworldofmagic	yes	AbilityDef	Blank Mind	TorannMagic.TMBridgeAbility
+TM_Bridge_Blink	torann.arimworldofmagic	yes	AbilityDef	Blink	TorannMagic.TMBridgeAbility
+TM_Bridge_BlinkI	torann.arimworldofmagic	yes	AbilityDef	Blink	TorannMagic.TMBridgeAbility
+TM_Bridge_BlinkII	torann.arimworldofmagic	yes	AbilityDef	Blink	TorannMagic.TMBridgeAbility
+TM_Bridge_BlinkIII	torann.arimworldofmagic	yes	AbilityDef	Blink	TorannMagic.TMBridgeAbility
+TM_Bridge_Blizzard	torann.arimworldofmagic	yes	AbilityDef	Blizzard	TorannMagic.TMBridgeAbility
+TM_Bridge_Bloodforblood	torann.arimworldofmagic	yes	AbilityDef	Blood For Blood	TorannMagic.TMBridgeAbility
+TM_Bridge_Bloodgift	torann.arimworldofmagic	yes	AbilityDef	Blood Sacrifice	TorannMagic.TMBridgeAbility
+TM_Bridge_Bloodmoon	torann.arimworldofmagic	yes	AbilityDef	Blood Moon	TorannMagic.TMBridgeAbility
+TM_Bridge_BloodmoonI	torann.arimworldofmagic	yes	AbilityDef	Blood Moon I	TorannMagic.TMBridgeAbility
+TM_Bridge_BloodmoonII	torann.arimworldofmagic	yes	AbilityDef	Blood Moon II	TorannMagic.TMBridgeAbility
+TM_Bridge_BloodmoonIII	torann.arimworldofmagic	yes	AbilityDef	Blood Moon III	TorannMagic.TMBridgeAbility
+TM_Bridge_Bloodshield	torann.arimworldofmagic	yes	AbilityDef	Blood Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_Blur	torann.arimworldofmagic	yes	AbilityDef	Blur	TorannMagic.TMBridgeAbility
+TM_Bridge_Bowtraining	torann.arimworldofmagic	yes	AbilityDef	Bow Training	TorannMagic.TMBridgeAbility
+TM_Bridge_Branding	torann.arimworldofmagic	yes	AbilityDef	Branding	TorannMagic.TMBridgeAbility
+TM_Bridge_Breachingcharge	torann.arimworldofmagic	yes	AbilityDef	Breaching charge	TorannMagic.TMBridgeAbility
+TM_Bridge_Briarpatch	torann.arimworldofmagic	yes	AbilityDef	Briar Patch	TorannMagic.TMBridgeAbility
+TM_Bridge_Buckshot	torann.arimworldofmagic	yes	AbilityDef	Buckshot	TorannMagic.TMBridgeAbility
+TM_Bridge_Burningfury	torann.arimworldofmagic	yes	AbilityDef	Burning Fury	TorannMagic.TMBridgeAbility
+TM_Bridge_Cantrips	torann.arimworldofmagic	yes	AbilityDef	Cantrips	TorannMagic.TMBridgeAbility
+TM_Bridge_Cauterizewound	torann.arimworldofmagic	yes	AbilityDef	Cauterize Wounds	TorannMagic.TMBridgeAbility
+TM_Bridge_Chainlightning	torann.arimworldofmagic	yes	AbilityDef	Chain Lightning	TorannMagic.TMBridgeAbility
+TM_Bridge_Chaostradition	torann.arimworldofmagic	yes	AbilityDef	Chaos Tradition	TorannMagic.TMBridgeAbility
+TM_Bridge_Chargebattery	torann.arimworldofmagic	yes	AbilityDef	Charge Battery	TorannMagic.TMBridgeAbility
+TM_Bridge_Chi	torann.arimworldofmagic	yes	AbilityDef	Ch'i	TorannMagic.TMBridgeAbility
+TM_Bridge_Chiburst	torann.arimworldofmagic	yes	AbilityDef	Ch'i Burst	TorannMagic.TMBridgeAbility
+TM_Bridge_Chronostaticfield	torann.arimworldofmagic	yes	AbilityDef	Chronostatic Field	TorannMagic.TMBridgeAbility
+TM_Bridge_ChronostaticfieldI	torann.arimworldofmagic	yes	AbilityDef	Chronostatic Field (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_ChronostaticfieldII	torann.arimworldofmagic	yes	AbilityDef	Chronostatic Field (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_ChronostaticfieldIII	torann.arimworldofmagic	yes	AbilityDef	Chronostatic Field (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Cleave	torann.arimworldofmagic	yes	AbilityDef	Cleave	TorannMagic.TMBridgeAbility
+TM_Bridge_Combatdrugs	torann.arimworldofmagic	yes	AbilityDef	Combat Drugs	TorannMagic.TMBridgeAbility
+TM_Bridge_CommanderOperationAid	torann.arimworldofmagic	yes	AbilityDef	Everyone Home: emergency work	TorannMagic.TMBridgeAbility
+TM_Bridge_CommanderOperationEvac	torann.arimworldofmagic	yes	AbilityDef	Everyone Home: evacuation	TorannMagic.TMBridgeAbility
+TM_Bridge_CommanderRally	torann.arimworldofmagic	yes	AbilityDef	Rally Point	TorannMagic.TMBridgeAbility
+TM_Bridge_CommanderWorkCrew	torann.arimworldofmagic	yes	AbilityDef	Work Crew	TorannMagic.TMBridgeAbility
+TM_Bridge_Commanderaura	torann.arimworldofmagic	yes	AbilityDef	Commander	TorannMagic.TMBridgeAbility
+TM_Bridge_Compverb	torann.arimworldofmagic	yes	AbilityDef	secondary targeter	TorannMagic.TMBridgeAbility
+TM_Bridge_Consumecorpse	torann.arimworldofmagic	yes	AbilityDef	Consume Corpse	TorannMagic.TMBridgeAbility
+TM_Bridge_ConsumecorpseI	torann.arimworldofmagic	yes	AbilityDef	Consume Corpse (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_ConsumecorpseII	torann.arimworldofmagic	yes	AbilityDef	Consume Corpse (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_ConsumecorpseIII	torann.arimworldofmagic	yes	AbilityDef	Consume Corpse (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_ConsumecorpseMass	torann.arimworldofmagic	yes	AbilityDef	Consume Corpse: Mass	TorannMagic.TMBridgeAbility
+TM_Bridge_Controlspiritstorm	torann.arimworldofmagic	yes	AbilityDef	Control Spirit Storm	TorannMagic.TMBridgeAbility
+TM_Bridge_Cooler	torann.arimworldofmagic	yes	AbilityDef	Magical cooler	TorannMagic.TMBridgeAbility
+TM_Bridge_Corpseexplosion	torann.arimworldofmagic	yes	AbilityDef	Corpse Explosion	TorannMagic.TMBridgeAbility
+TM_Bridge_CorpseexplosionI	torann.arimworldofmagic	yes	AbilityDef	Corpse Explosion (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_CorpseexplosionII	torann.arimworldofmagic	yes	AbilityDef	Corpse Explosion (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_CorpseexplosionIII	torann.arimworldofmagic	yes	AbilityDef	Corpse Explosion (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Cqc	torann.arimworldofmagic	yes	AbilityDef	CQC	TorannMagic.TMBridgeAbility
+TM_Bridge_Curedisease	torann.arimworldofmagic	yes	AbilityDef	Cure Disease	TorannMagic.TMBridgeAbility
+TM_Bridge_Deathbolt	torann.arimworldofmagic	yes	AbilityDef	Death Bolt	TorannMagic.TMBridgeAbility
+TM_Bridge_DeathboltI	torann.arimworldofmagic	yes	AbilityDef	Death Bolt (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_DeathboltII	torann.arimworldofmagic	yes	AbilityDef	Death Bolt (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_DeathboltIII	torann.arimworldofmagic	yes	AbilityDef	Death Bolt (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Deathmark	torann.arimworldofmagic	yes	AbilityDef	Death Mark	TorannMagic.TMBridgeAbility
+TM_Bridge_DeathmarkI	torann.arimworldofmagic	yes	AbilityDef	Death Mark (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_DeathmarkII	torann.arimworldofmagic	yes	AbilityDef	Death Mark (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_DeathmarkIII	torann.arimworldofmagic	yes	AbilityDef	Death Mark (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Dirtdevil	torann.arimworldofmagic	yes	AbilityDef	Dirt Devil	TorannMagic.TMBridgeAbility
+TM_Bridge_Disablingshot	torann.arimworldofmagic	yes	AbilityDef	Disabling Shot	TorannMagic.TMBridgeAbility
+TM_Bridge_DisablingshotI	torann.arimworldofmagic	yes	AbilityDef	Disabling Shot (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_DisablingshotII	torann.arimworldofmagic	yes	AbilityDef	Disabling Shot (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_DisablingshotIII	torann.arimworldofmagic	yes	AbilityDef	Disabling Shot (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Discord	torann.arimworldofmagic	yes	AbilityDef	Discord	TorannMagic.TMBridgeAbility
+TM_Bridge_Disguise	torann.arimworldofmagic	yes	AbilityDef	Deception	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismisscooler	torann.arimworldofmagic	yes	AbilityDef	Dismiss Cooler	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismissearthsprites	torann.arimworldofmagic	yes	AbilityDef	Dismiss Earth Sprites	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismissenchanterstones	torann.arimworldofmagic	yes	AbilityDef	Dismiss Enchanter Stone	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismissfertilelands	torann.arimworldofmagic	yes	AbilityDef	End Fertile Lands	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismissguardianspirit	torann.arimworldofmagic	yes	AbilityDef	Dismiss Guardian Spirit	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismissheater	torann.arimworldofmagic	yes	AbilityDef	Dismiss Heater	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismisslightningtrap	torann.arimworldofmagic	yes	AbilityDef	Dismiss Lightning Trap	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismissminion	torann.arimworldofmagic	yes	AbilityDef	Dismiss Minion	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismisspowernode	torann.arimworldofmagic	yes	AbilityDef	Dismiss Power Node	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismisssunlight	torann.arimworldofmagic	yes	AbilityDef	Dismiss Sun Light	TorannMagic.TMBridgeAbility
+TM_Bridge_Dismissundead	torann.arimworldofmagic	yes	AbilityDef	Dismiss Undead	TorannMagic.TMBridgeAbility
+TM_Bridge_Dispelbranding	torann.arimworldofmagic	yes	AbilityDef	Dispel Brands	TorannMagic.TMBridgeAbility
+TM_Bridge_Dispelenchantweapon	torann.arimworldofmagic	yes	AbilityDef	Dispel Weapon Enchantment	TorannMagic.TMBridgeAbility
+TM_Bridge_Dispellivingwall	torann.arimworldofmagic	yes	AbilityDef	Dispel Living Wall	TorannMagic.TMBridgeAbility
+TM_Bridge_Dispelstoneskin	torann.arimworldofmagic	yes	AbilityDef	Dispel Stoneskin	TorannMagic.TMBridgeAbility
+TM_Bridge_Distortspirit	torann.arimworldofmagic	yes	AbilityDef	Distort Spirit (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_DistortspiritI	torann.arimworldofmagic	yes	AbilityDef	Distort Spirit (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_DistortspiritII	torann.arimworldofmagic	yes	AbilityDef	Distort Spirit (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_DistortspiritIII	torann.arimworldofmagic	yes	AbilityDef	Distort Spirit (IV)	TorannMagic.TMBridgeAbility
+TM_Bridge_Dominate	torann.arimworldofmagic	yes	AbilityDef	Dominate	TorannMagic.TMBridgeAbility
+TM_Bridge_Dragonstrike	torann.arimworldofmagic	yes	AbilityDef	Dragon Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_Dryground	torann.arimworldofmagic	yes	AbilityDef	Dry Ground	TorannMagic.TMBridgeAbility
+TM_Bridge_Earthernhammer	torann.arimworldofmagic	yes	AbilityDef	Earthern Hammer	TorannMagic.TMBridgeAbility
+TM_Bridge_Earthsprites	torann.arimworldofmagic	yes	AbilityDef	Earth Sprites	TorannMagic.TMBridgeAbility
+TM_Bridge_ElementalFirebolt	torann.arimworldofmagic	yes	AbilityDef	Firebolt	TorannMagic.TMBridgeAbility
+TM_Bridge_ElementalIcebolt	torann.arimworldofmagic	yes	AbilityDef	elemental icebolt	TorannMagic.TMBridgeAbility
+TM_Bridge_Elixir	torann.arimworldofmagic	yes	AbilityDef	Elixir	TorannMagic.TMBridgeAbility
+TM_Bridge_Emergency	torann.arimworldofmagic	yes	AbilityDef	Emergency	TorannMagic.TMBridgeAbility
+TM_Bridge_Emotionbrand	torann.arimworldofmagic	yes	AbilityDef	Brand: Emotion	TorannMagic.TMBridgeAbility
+TM_Bridge_Emp	torann.arimworldofmagic	yes	AbilityDef	EMP	TorannMagic.TMBridgeAbility
+TM_Bridge_Empathy	torann.arimworldofmagic	yes	AbilityDef	Empathy	TorannMagic.TMBridgeAbility
+TM_Bridge_Encase	torann.arimworldofmagic	yes	AbilityDef	Encase	TorannMagic.TMBridgeAbility
+TM_Bridge_EncaseI	torann.arimworldofmagic	yes	AbilityDef	Encase I	TorannMagic.TMBridgeAbility
+TM_Bridge_EncaseII	torann.arimworldofmagic	yes	AbilityDef	Encase II	TorannMagic.TMBridgeAbility
+TM_Bridge_EncaseIII	torann.arimworldofmagic	yes	AbilityDef	Encase III	TorannMagic.TMBridgeAbility
+TM_Bridge_Enchantedaura	torann.arimworldofmagic	yes	AbilityDef	Enchanted Aura	TorannMagic.TMBridgeAbility
+TM_Bridge_Enchantedbody	torann.arimworldofmagic	yes	AbilityDef	Enchanted Body	TorannMagic.TMBridgeAbility
+TM_Bridge_Enchanterstone	torann.arimworldofmagic	yes	AbilityDef	Enchanter's Stone	TorannMagic.TMBridgeAbility
+TM_Bridge_Enchantweapon	torann.arimworldofmagic	yes	AbilityDef	Enchant Weapon	TorannMagic.TMBridgeAbility
+TM_Bridge_Enrage	torann.arimworldofmagic	yes	AbilityDef	Enrage	TorannMagic.TMBridgeAbility
+TM_Bridge_Entertain	torann.arimworldofmagic	yes	AbilityDef	Entertain	TorannMagic.TMBridgeAbility
+TM_Bridge_Explosion	torann.arimworldofmagic	yes	AbilityDef	Explosion!	TorannMagic.TMBridgeAbility
+TM_Bridge_Extinguish	torann.arimworldofmagic	yes	AbilityDef	Extinguish	TorannMagic.TMBridgeAbility
+TM_Bridge_Eyeofthestorm	torann.arimworldofmagic	yes	AbilityDef	Eye of the Storm	TorannMagic.TMBridgeAbility
+TM_Bridge_FacelessEcho	torann.arimworldofmagic	yes	AbilityDef	Borrowed technique	TorannMagic.TMBridgeAbility
+TM_Bridge_Fadeemotions	torann.arimworldofmagic	yes	AbilityDef	Fade Emotion	TorannMagic.TMBridgeAbility
+TM_Bridge_Fertilelands	torann.arimworldofmagic	yes	AbilityDef	Fertile Lands	TorannMagic.TMBridgeAbility
+TM_Bridge_Fieldtraining	torann.arimworldofmagic	yes	AbilityDef	Combat Training	TorannMagic.TMBridgeAbility
+TM_Bridge_Fightersfocus	torann.arimworldofmagic	yes	AbilityDef	Fighters Focus	TorannMagic.TMBridgeAbility
+TM_Bridge_Fireball	torann.arimworldofmagic	yes	AbilityDef	Fireball	TorannMagic.TMBridgeAbility
+TM_Bridge_Firebolt	torann.arimworldofmagic	yes	AbilityDef	Firebolt	TorannMagic.TMBridgeAbility
+TM_Bridge_Fireclaw	torann.arimworldofmagic	yes	AbilityDef	Fireclaw	TorannMagic.TMBridgeAbility
+TM_Bridge_Firestorm	torann.arimworldofmagic	yes	AbilityDef	Firestorm	TorannMagic.TMBridgeAbility
+TM_Bridge_Firesuppressionflask	torann.arimworldofmagic	yes	AbilityDef	Fire Suppression Flask	TorannMagic.TMBridgeAbility
+TM_Bridge_FiresuppressionflaskI	torann.arimworldofmagic	yes	AbilityDef	Fire Suppression Flask	TorannMagic.TMBridgeAbility
+TM_Bridge_FiresuppressionflaskII	torann.arimworldofmagic	yes	AbilityDef	Fire Suppression Flask	TorannMagic.TMBridgeAbility
+TM_Bridge_FiresuppressionflaskIII	torann.arimworldofmagic	yes	AbilityDef	Fire Suppression Flask	TorannMagic.TMBridgeAbility
+TM_Bridge_Firstaid	torann.arimworldofmagic	yes	AbilityDef	Self Aid	TorannMagic.TMBridgeAbility
+TM_Bridge_Fitnessbrand	torann.arimworldofmagic	yes	AbilityDef	Brand: Fitness	TorannMagic.TMBridgeAbility
+TM_Bridge_Flight	torann.arimworldofmagic	yes	AbilityDef	Flight	TorannMagic.TMBridgeAbility
+TM_Bridge_Fogoftorment	torann.arimworldofmagic	yes	AbilityDef	Fog of Torment	TorannMagic.TMBridgeAbility
+TM_Bridge_Foldreality	torann.arimworldofmagic	yes	AbilityDef	Gateway	TorannMagic.TMBridgeAbility
+TM_Bridge_Fortitude	torann.arimworldofmagic	yes	AbilityDef	Fortitude	TorannMagic.TMBridgeAbility
+TM_Bridge_Frostray	torann.arimworldofmagic	yes	AbilityDef	Frost Ray	TorannMagic.TMBridgeAbility
+TM_Bridge_FrostrayI	torann.arimworldofmagic	yes	AbilityDef	Frost Ray	TorannMagic.TMBridgeAbility
+TM_Bridge_FrostrayII	torann.arimworldofmagic	yes	AbilityDef	Frost Ray	TorannMagic.TMBridgeAbility
+TM_Bridge_FrostrayIII	torann.arimworldofmagic	yes	AbilityDef	Frost Ray	TorannMagic.TMBridgeAbility
+TM_Bridge_Gearrepair	torann.arimworldofmagic	yes	AbilityDef	Gear Repair	TorannMagic.TMBridgeAbility
+TM_Bridge_GladiatorManeuver	torann.arimworldofmagic	yes	AbilityDef	maneuver	TorannMagic.TMBridgeAbility
+TM_Bridge_GladiatorSweep	torann.arimworldofmagic	yes	AbilityDef	sweeping blow	TorannMagic.TMBridgeAbility
+TM_Bridge_Golemancy	torann.arimworldofmagic	yes	AbilityDef	Golemancy	TorannMagic.TMBridgeAbility
+TM_Bridge_Grapple	torann.arimworldofmagic	yes	AbilityDef	Grapple	TorannMagic.TMBridgeAbility
+TM_Bridge_GrappleI	torann.arimworldofmagic	yes	AbilityDef	Grapple	TorannMagic.TMBridgeAbility
+TM_Bridge_GrappleII	torann.arimworldofmagic	yes	AbilityDef	Grapple	TorannMagic.TMBridgeAbility
+TM_Bridge_GrappleIII	torann.arimworldofmagic	yes	AbilityDef	Grapple	TorannMagic.TMBridgeAbility
+TM_Bridge_Graveblade	torann.arimworldofmagic	yes	AbilityDef	Grave Blade	TorannMagic.TMBridgeAbility
+TM_Bridge_GravebladeI	torann.arimworldofmagic	yes	AbilityDef	Grave Blade I	TorannMagic.TMBridgeAbility
+TM_Bridge_GravebladeII	torann.arimworldofmagic	yes	AbilityDef	Grave Blade II	TorannMagic.TMBridgeAbility
+TM_Bridge_GravebladeIII	torann.arimworldofmagic	yes	AbilityDef	Grave Blade III	TorannMagic.TMBridgeAbility
+TM_Bridge_Guardianspirit	torann.arimworldofmagic	yes	AbilityDef	Guardian Spirit	TorannMagic.TMBridgeAbility
+TM_Bridge_Harvestpassion	torann.arimworldofmagic	yes	AbilityDef	Harvest Passion	TorannMagic.TMBridgeAbility
+TM_Bridge_Headshot	torann.arimworldofmagic	yes	AbilityDef	Headshot	TorannMagic.TMBridgeAbility
+TM_Bridge_Heal	torann.arimworldofmagic	yes	AbilityDef	Heal	TorannMagic.TMBridgeAbility
+TM_Bridge_Healingcircle	torann.arimworldofmagic	yes	AbilityDef	Healing Circle	TorannMagic.TMBridgeAbility
+TM_Bridge_HealingcircleI	torann.arimworldofmagic	yes	AbilityDef	Healing Circle (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_HealingcircleII	torann.arimworldofmagic	yes	AbilityDef	Healing Circle (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_HealingcircleIII	torann.arimworldofmagic	yes	AbilityDef	Healing Circle (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Heater	torann.arimworldofmagic	yes	AbilityDef	Magical heater	TorannMagic.TMBridgeAbility
+TM_Bridge_Heatshield	torann.arimworldofmagic	yes	AbilityDef	Heat Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_Heavyblow	torann.arimworldofmagic	yes	AbilityDef	Heavy Blow	TorannMagic.TMBridgeAbility
+TM_Bridge_Herbalbliss	torann.arimworldofmagic	yes	AbilityDef	Bliss	TorannMagic.TMBridgeAbility
+TM_Bridge_Herbalclarity	torann.arimworldofmagic	yes	AbilityDef	Clarity	TorannMagic.TMBridgeAbility
+TM_Bridge_Herbalist	torann.arimworldofmagic	yes	AbilityDef	Herbalist	TorannMagic.TMBridgeAbility
+TM_Bridge_Hex	torann.arimworldofmagic	yes	AbilityDef	Hex	TorannMagic.TMBridgeAbility
+TM_Bridge_HexCriticalfail	torann.arimworldofmagic	yes	AbilityDef	Critical Fail (Hex)	TorannMagic.TMBridgeAbility
+TM_Bridge_HexI	torann.arimworldofmagic	yes	AbilityDef	Hex	TorannMagic.TMBridgeAbility
+TM_Bridge_HexII	torann.arimworldofmagic	yes	AbilityDef	Hex	TorannMagic.TMBridgeAbility
+TM_Bridge_HexIII	torann.arimworldofmagic	yes	AbilityDef	Hex	TorannMagic.TMBridgeAbility
+TM_Bridge_HexMentalassault	torann.arimworldofmagic	yes	AbilityDef	Mental Assault (Hex)	TorannMagic.TMBridgeAbility
+TM_Bridge_HexPain	torann.arimworldofmagic	yes	AbilityDef	Pain (Hex)	TorannMagic.TMBridgeAbility
+TM_Bridge_Holdtheline	torann.arimworldofmagic	yes	AbilityDef	Hold The Line!	TorannMagic.TMBridgeAbility
+TM_Bridge_HoldthelineI	torann.arimworldofmagic	yes	AbilityDef	Hold The Line!	TorannMagic.TMBridgeAbility
+TM_Bridge_HoldthelineII	torann.arimworldofmagic	yes	AbilityDef	Hold The Line!	TorannMagic.TMBridgeAbility
+TM_Bridge_HoldthelineIII	torann.arimworldofmagic	yes	AbilityDef	Hold The Line!	TorannMagic.TMBridgeAbility
+TM_Bridge_Holywrath	torann.arimworldofmagic	yes	AbilityDef	Holy Wrath	TorannMagic.TMBridgeAbility
+TM_Bridge_Icebolt	torann.arimworldofmagic	yes	AbilityDef	Icebolt	TorannMagic.TMBridgeAbility
+TM_Bridge_Ignite	torann.arimworldofmagic	yes	AbilityDef	Ignite	TorannMagic.TMBridgeAbility
+TM_Bridge_Igniteblood	torann.arimworldofmagic	yes	AbilityDef	Ignite Blood	TorannMagic.TMBridgeAbility
+TM_Bridge_Incitepassion	torann.arimworldofmagic	yes	AbilityDef	Incite Passion	TorannMagic.TMBridgeAbility
+TM_Bridge_Innerhealing	torann.arimworldofmagic	yes	AbilityDef	Inner Healing	TorannMagic.TMBridgeAbility
+TM_Bridge_Inspire	torann.arimworldofmagic	yes	AbilityDef	Inspire	TorannMagic.TMBridgeAbility
+TM_Bridge_Invisibility	torann.arimworldofmagic	yes	AbilityDef	Invisibility	TorannMagic.TMBridgeAbility
+TM_Bridge_Legion	torann.arimworldofmagic	yes	AbilityDef	Legion	TorannMagic.TMBridgeAbility
+TM_Bridge_Lichform	torann.arimworldofmagic	yes	AbilityDef	Lich Form	TorannMagic.TMBridgeAbility
+TM_Bridge_Lifesteal	torann.arimworldofmagic	yes	AbilityDef	Life Steal	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightburst	torann.arimworldofmagic	yes	AbilityDef	Light Burst	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightlance	torann.arimworldofmagic	yes	AbilityDef	Light Lance	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightningbolt	torann.arimworldofmagic	yes	AbilityDef	Lightning Bolt	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightningcloud	torann.arimworldofmagic	yes	AbilityDef	Lightning Cloud	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightningstorm	torann.arimworldofmagic	yes	AbilityDef	Lightning Storm	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightningtrap	torann.arimworldofmagic	yes	AbilityDef	Lightning Trap	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightskip	torann.arimworldofmagic	yes	AbilityDef	Light Skip	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightskipglobal	torann.arimworldofmagic	yes	AbilityDef	Global Light Skip	TorannMagic.TMBridgeAbility
+TM_Bridge_Lightskipmass	torann.arimworldofmagic	yes	AbilityDef	Mass Light Skip	TorannMagic.TMBridgeAbility
+TM_Bridge_Livingwall	torann.arimworldofmagic	yes	AbilityDef	Living Wall	TorannMagic.TMBridgeAbility
+TM_Bridge_Lullaby	torann.arimworldofmagic	yes	AbilityDef	Lullaby	TorannMagic.TMBridgeAbility
+TM_Bridge_LullabyI	torann.arimworldofmagic	yes	AbilityDef	Lullaby (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_LullabyII	torann.arimworldofmagic	yes	AbilityDef	Lullaby (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_LullabyIII	torann.arimworldofmagic	yes	AbilityDef	Lullaby	TorannMagic.TMBridgeAbility
+TM_Bridge_Magelight	torann.arimworldofmagic	yes	AbilityDef	Magelight	TorannMagic.TMBridgeAbility
+TM_Bridge_Magicmissile	torann.arimworldofmagic	yes	AbilityDef	Magic Missile	TorannMagic.TMBridgeAbility
+TM_Bridge_MagicmissileI	torann.arimworldofmagic	yes	AbilityDef	Magic Missile	TorannMagic.TMBridgeAbility
+TM_Bridge_MagicmissileII	torann.arimworldofmagic	yes	AbilityDef	Magic Missile	TorannMagic.TMBridgeAbility
+TM_Bridge_MagicmissileIII	torann.arimworldofmagic	yes	AbilityDef	Magic Missile	TorannMagic.TMBridgeAbility
+TM_Bridge_Magicwardrobe	torann.arimworldofmagic	yes	AbilityDef	Magic Wardrobe	TorannMagic.TMBridgeAbility
+TM_Bridge_Manashield	torann.arimworldofmagic	yes	AbilityDef	Mana Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_Mechanitereprogramming	torann.arimworldofmagic	yes	AbilityDef	Reprogram Mechanites	TorannMagic.TMBridgeAbility
+TM_Bridge_Medicalsupply	torann.arimworldofmagic	yes	AbilityDef	Resupply	TorannMagic.TMBridgeAbility
+TM_Bridge_Medigel	torann.arimworldofmagic	yes	AbilityDef	Medigel	TorannMagic.TMBridgeAbility
+TM_Bridge_Meditate	torann.arimworldofmagic	yes	AbilityDef	Meditate	TorannMagic.TMBridgeAbility
+TM_Bridge_Meteor	torann.arimworldofmagic	yes	AbilityDef	Meteor	TorannMagic.TMBridgeAbility
+TM_Bridge_MeteorI	torann.arimworldofmagic	yes	AbilityDef	Meteor I	TorannMagic.TMBridgeAbility
+TM_Bridge_MeteorII	torann.arimworldofmagic	yes	AbilityDef	Meteor II	TorannMagic.TMBridgeAbility
+TM_Bridge_MeteorIII	torann.arimworldofmagic	yes	AbilityDef	Meteor III	TorannMagic.TMBridgeAbility
+TM_Bridge_Mimic	torann.arimworldofmagic	yes	AbilityDef	Mimic	TorannMagic.TMBridgeAbility
+TM_Bridge_Mindkiller	torann.arimworldofmagic	yes	AbilityDef	Mind Killer	TorannMagic.TMBridgeAbility
+TM_Bridge_Mindoverbody	torann.arimworldofmagic	yes	AbilityDef	Mind Over Body	TorannMagic.TMBridgeAbility
+TM_Bridge_Mk203gl	torann.arimworldofmagic	yes	AbilityDef	Mk203_GL	TorannMagic.TMBridgeAbility
+TM_Bridge_MonkPalmSeal	torann.arimworldofmagic	yes	AbilityDef	Palm seal	TorannMagic.TMBridgeAbility
+TM_Bridge_MonkSilentMeridian	torann.arimworldofmagic	yes	AbilityDef	Silent meridian	TorannMagic.TMBridgeAbility
+TM_Bridge_Moveout	torann.arimworldofmagic	yes	AbilityDef	Move Out!	TorannMagic.TMBridgeAbility
+TM_Bridge_MoveoutI	torann.arimworldofmagic	yes	AbilityDef	Move Out!	TorannMagic.TMBridgeAbility
+TM_Bridge_MoveoutII	torann.arimworldofmagic	yes	AbilityDef	Move Out!	TorannMagic.TMBridgeAbility
+TM_Bridge_MoveoutIII	torann.arimworldofmagic	yes	AbilityDef	Move Out!	TorannMagic.TMBridgeAbility
+TM_Bridge_Nanostimulant	torann.arimworldofmagic	yes	AbilityDef	Nano Stimulant	TorannMagic.TMBridgeAbility
+TM_Bridge_Nightshade	torann.arimworldofmagic	yes	AbilityDef	Nightshade	TorannMagic.TMBridgeAbility
+TM_Bridge_Orbitalstrike	torann.arimworldofmagic	yes	AbilityDef	Orbital Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_OrbitalstrikeI	torann.arimworldofmagic	yes	AbilityDef	Orbital Strike I	TorannMagic.TMBridgeAbility
+TM_Bridge_OrbitalstrikeII	torann.arimworldofmagic	yes	AbilityDef	Orbital Strike II	TorannMagic.TMBridgeAbility
+TM_Bridge_OrbitalstrikeIII	torann.arimworldofmagic	yes	AbilityDef	Orbital Strike III	TorannMagic.TMBridgeAbility
+TM_Bridge_Overdrive	torann.arimworldofmagic	yes	AbilityDef	Overdrive	TorannMagic.TMBridgeAbility
+TM_Bridge_Overwhelm	torann.arimworldofmagic	yes	AbilityDef	Overwhelm	TorannMagic.TMBridgeAbility
+TM_Bridge_PRayofhope	torann.arimworldofmagic	yes	AbilityDef	Ray of Hope	TorannMagic.TMBridgeAbility
+TM_Bridge_PRayofhopeI	torann.arimworldofmagic	yes	AbilityDef	Ray of Hope	TorannMagic.TMBridgeAbility
+TM_Bridge_PRayofhopeII	torann.arimworldofmagic	yes	AbilityDef	Ray of Hope	TorannMagic.TMBridgeAbility
+TM_Bridge_PRayofhopeIII	torann.arimworldofmagic	yes	AbilityDef	Ray of Hope	TorannMagic.TMBridgeAbility
+TM_Bridge_Phasestrike	torann.arimworldofmagic	yes	AbilityDef	Phase Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_PhasestrikeI	torann.arimworldofmagic	yes	AbilityDef	Phase Strike (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_PhasestrikeII	torann.arimworldofmagic	yes	AbilityDef	Phase Strike (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_PhasestrikeIII	torann.arimworldofmagic	yes	AbilityDef	Phase Strike (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Pistolspec	torann.arimworldofmagic	yes	AbilityDef	Pistol Specialization	TorannMagic.TMBridgeAbility
+TM_Bridge_Pistolwhip	torann.arimworldofmagic	yes	AbilityDef	Pistol Whip	TorannMagic.TMBridgeAbility
+TM_Bridge_Poison	torann.arimworldofmagic	yes	AbilityDef	Poison	TorannMagic.TMBridgeAbility
+TM_Bridge_Poisonflask	torann.arimworldofmagic	yes	AbilityDef	Poison Flask	TorannMagic.TMBridgeAbility
+TM_Bridge_Poisontrap	torann.arimworldofmagic	yes	AbilityDef	Poison Trap	TorannMagic.TMBridgeAbility
+TM_Bridge_Polymorph	torann.arimworldofmagic	yes	AbilityDef	Polymorph	TorannMagic.TMBridgeAbility
+TM_Bridge_PolymorphI	torann.arimworldofmagic	yes	AbilityDef	Polymorph (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_PolymorphII	torann.arimworldofmagic	yes	AbilityDef	Polymorph (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_PolymorphIII	torann.arimworldofmagic	yes	AbilityDef	Polymorph	TorannMagic.TMBridgeAbility
+TM_Bridge_Pommelstrike	torann.arimworldofmagic	yes	AbilityDef	Pommel Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_Possess	torann.arimworldofmagic	yes	AbilityDef	Possess	TorannMagic.TMBridgeAbility
+TM_Bridge_Powernode	torann.arimworldofmagic	yes	AbilityDef	Arcane Power Node	TorannMagic.TMBridgeAbility
+TM_Bridge_Prediction	torann.arimworldofmagic	yes	AbilityDef	Prediction	TorannMagic.TMBridgeAbility
+TM_Bridge_Protectionbrand	torann.arimworldofmagic	yes	AbilityDef	Brand: Protection	TorannMagic.TMBridgeAbility
+TM_Bridge_Provisioneraura	torann.arimworldofmagic	yes	AbilityDef	Provisioner	TorannMagic.TMBridgeAbility
+TM_Bridge_PsionicKineticCrucible	torann.arimworldofmagic	yes	AbilityDef	Kinetic crucible	TorannMagic.TMBridgeAbility
+TM_Bridge_Psionicaugmentation	torann.arimworldofmagic	yes	AbilityDef	Psionic Augmentation	TorannMagic.TMBridgeAbility
+TM_Bridge_Psionicbarrier	torann.arimworldofmagic	yes	AbilityDef	Psionic Barrier	TorannMagic.TMBridgeAbility
+TM_Bridge_PsionicbarrierProjected	torann.arimworldofmagic	yes	AbilityDef	Psionic Barrier	TorannMagic.TMBridgeAbility
+TM_Bridge_Psionicblast	torann.arimworldofmagic	yes	AbilityDef	Psionic Blast	TorannMagic.TMBridgeAbility
+TM_Bridge_PsionicblastI	torann.arimworldofmagic	yes	AbilityDef	Psionic Blast I	TorannMagic.TMBridgeAbility
+TM_Bridge_PsionicblastII	torann.arimworldofmagic	yes	AbilityDef	Psionic Blast II	TorannMagic.TMBridgeAbility
+TM_Bridge_PsionicblastIII	torann.arimworldofmagic	yes	AbilityDef	Psionic Blast III	TorannMagic.TMBridgeAbility
+TM_Bridge_Psionicdash	torann.arimworldofmagic	yes	AbilityDef	Psionic Dash	TorannMagic.TMBridgeAbility
+TM_Bridge_Psionicstorm	torann.arimworldofmagic	yes	AbilityDef	Psionic Storm	TorannMagic.TMBridgeAbility
+TM_Bridge_Psychicshock	torann.arimworldofmagic	yes	AbilityDef	Psychic Shock	TorannMagic.TMBridgeAbility
+TM_Bridge_Purify	torann.arimworldofmagic	yes	AbilityDef	Purify	TorannMagic.TMBridgeAbility
+TM_Bridge_Rainmaker	torann.arimworldofmagic	yes	AbilityDef	Rainmaker	TorannMagic.TMBridgeAbility
+TM_Bridge_Raiseundead	torann.arimworldofmagic	yes	AbilityDef	Raise Undead	TorannMagic.TMBridgeAbility
+TM_Bridge_RangerBreakthrough	torann.arimworldofmagic	yes	AbilityDef	breakthrough hunt	TorannMagic.TMBridgeAbility
+TM_Bridge_RangerSafeTrail	torann.arimworldofmagic	yes	AbilityDef	Safe Trail	TorannMagic.TMBridgeAbility
+TM_Bridge_Rangertraining	torann.arimworldofmagic	yes	AbilityDef	Ranger Training	TorannMagic.TMBridgeAbility
+TM_Bridge_Rayofhope	torann.arimworldofmagic	yes	AbilityDef	Inner Fire	TorannMagic.TMBridgeAbility
+TM_Bridge_RayofhopeI	torann.arimworldofmagic	yes	AbilityDef	Inner Fire	TorannMagic.TMBridgeAbility
+TM_Bridge_RayofhopeII	torann.arimworldofmagic	yes	AbilityDef	Inner Fire	TorannMagic.TMBridgeAbility
+TM_Bridge_RayofhopeIII	torann.arimworldofmagic	yes	AbilityDef	Inner Fire	TorannMagic.TMBridgeAbility
+TM_Bridge_Recall	torann.arimworldofmagic	yes	AbilityDef	Recall	TorannMagic.TMBridgeAbility
+TM_Bridge_Refraction	torann.arimworldofmagic	yes	AbilityDef	Refraction	TorannMagic.TMBridgeAbility
+TM_Bridge_Regenerate	torann.arimworldofmagic	yes	AbilityDef	Regenerate	TorannMagic.TMBridgeAbility
+TM_Bridge_Regrowlimb	torann.arimworldofmagic	yes	AbilityDef	Regrowth	TorannMagic.TMBridgeAbility
+TM_Bridge_Rend	torann.arimworldofmagic	yes	AbilityDef	Rend	TorannMagic.TMBridgeAbility
+TM_Bridge_RendI	torann.arimworldofmagic	yes	AbilityDef	Rend I	TorannMagic.TMBridgeAbility
+TM_Bridge_RendII	torann.arimworldofmagic	yes	AbilityDef	Rend (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_RendIII	torann.arimworldofmagic	yes	AbilityDef	Rend	TorannMagic.TMBridgeAbility
+TM_Bridge_Repulsion	torann.arimworldofmagic	yes	AbilityDef	Repulsion	TorannMagic.TMBridgeAbility
+TM_Bridge_RepulsionI	torann.arimworldofmagic	yes	AbilityDef	Repulsion	TorannMagic.TMBridgeAbility
+TM_Bridge_RepulsionII	torann.arimworldofmagic	yes	AbilityDef	Repulsion	TorannMagic.TMBridgeAbility
+TM_Bridge_RepulsionIII	torann.arimworldofmagic	yes	AbilityDef	Repulsion	TorannMagic.TMBridgeAbility
+TM_Bridge_Resurrection	torann.arimworldofmagic	yes	AbilityDef	Resurrection	TorannMagic.TMBridgeAbility
+TM_Bridge_Reversal	torann.arimworldofmagic	yes	AbilityDef	Reversal	TorannMagic.TMBridgeAbility
+TM_Bridge_Reversetime	torann.arimworldofmagic	yes	AbilityDef	Reverse Time	TorannMagic.TMBridgeAbility
+TM_Bridge_Riflespec	torann.arimworldofmagic	yes	AbilityDef	Rifle Specialization	TorannMagic.TMBridgeAbility
+TM_Bridge_Runecarving	torann.arimworldofmagic	yes	AbilityDef	Rune Carving	TorannMagic.TMBridgeAbility
+TM_Bridge_Sabotage	torann.arimworldofmagic	yes	AbilityDef	Sabotage	TorannMagic.TMBridgeAbility
+TM_Bridge_Scorn	torann.arimworldofmagic	yes	AbilityDef	Scorn	TorannMagic.TMBridgeAbility
+TM_Bridge_Seismicslash	torann.arimworldofmagic	yes	AbilityDef	Seismic Slash	TorannMagic.TMBridgeAbility
+TM_Bridge_Sentinel	torann.arimworldofmagic	yes	AbilityDef	Sentinel	TorannMagic.TMBridgeAbility
+TM_Bridge_Shadow	torann.arimworldofmagic	yes	AbilityDef	Shadow	TorannMagic.TMBridgeAbility
+TM_Bridge_ShadowI	torann.arimworldofmagic	yes	AbilityDef	Shadow	TorannMagic.TMBridgeAbility
+TM_Bridge_ShadowII	torann.arimworldofmagic	yes	AbilityDef	Shadow	TorannMagic.TMBridgeAbility
+TM_Bridge_ShadowIII	torann.arimworldofmagic	yes	AbilityDef	Shadow	TorannMagic.TMBridgeAbility
+TM_Bridge_Shadowbolt	torann.arimworldofmagic	yes	AbilityDef	Shadow Bolt	TorannMagic.TMBridgeAbility
+TM_Bridge_ShadowboltI	torann.arimworldofmagic	yes	AbilityDef	Shadow Bolt	TorannMagic.TMBridgeAbility
+TM_Bridge_ShadowboltII	torann.arimworldofmagic	yes	AbilityDef	Shadow Bolt	TorannMagic.TMBridgeAbility
+TM_Bridge_ShadowboltIII	torann.arimworldofmagic	yes	AbilityDef	Shadow Bolt	TorannMagic.TMBridgeAbility
+TM_Bridge_Shadowcall	torann.arimworldofmagic	yes	AbilityDef	Shadow Call	TorannMagic.TMBridgeAbility
+TM_Bridge_Shadowslayer	torann.arimworldofmagic	yes	AbilityDef	Shadow Slayer	TorannMagic.TMBridgeAbility
+TM_Bridge_Shadowstep	torann.arimworldofmagic	yes	AbilityDef	Shadow Step	TorannMagic.TMBridgeAbility
+TM_Bridge_Shadowstrike	torann.arimworldofmagic	yes	AbilityDef	Shadow Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_Shadowwalk	torann.arimworldofmagic	yes	AbilityDef	Shadow Walk	TorannMagic.TMBridgeAbility
+TM_Bridge_Shapeshift	torann.arimworldofmagic	yes	AbilityDef	Shapeshift	TorannMagic.TMBridgeAbility
+TM_Bridge_Shapeshiftdw	torann.arimworldofmagic	yes	AbilityDef	Shapeshift: Dire Wolf	TorannMagic.TMBridgeAbility
+TM_Bridge_Shattersentinel	torann.arimworldofmagic	yes	AbilityDef	Shatter Sentinel	TorannMagic.TMBridgeAbility
+TM_Bridge_Shield	torann.arimworldofmagic	yes	AbilityDef	Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_ShieldI	torann.arimworldofmagic	yes	AbilityDef	Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_ShieldII	torann.arimworldofmagic	yes	AbilityDef	Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_ShieldIII	torann.arimworldofmagic	yes	AbilityDef	Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_Shieldother	torann.arimworldofmagic	yes	AbilityDef	Shield Other	TorannMagic.TMBridgeAbility
+TM_Bridge_Shotgunspec	torann.arimworldofmagic	yes	AbilityDef	Shotgun Specialization	TorannMagic.TMBridgeAbility
+TM_Bridge_Shroud	torann.arimworldofmagic	yes	AbilityDef	Shroud of Darkness	TorannMagic.TMBridgeAbility
+TM_Bridge_Sigildrain	torann.arimworldofmagic	yes	AbilityDef	Sigil Drain	TorannMagic.TMBridgeAbility
+TM_Bridge_Sigilsurge	torann.arimworldofmagic	yes	AbilityDef	Sigil Surge	TorannMagic.TMBridgeAbility
+TM_Bridge_Siphonbrand	torann.arimworldofmagic	yes	AbilityDef	Brand: Siphon	TorannMagic.TMBridgeAbility
+TM_Bridge_Siphonmana	torann.arimworldofmagic	yes	AbilityDef	Siphon Mana	TorannMagic.TMBridgeAbility
+TM_Bridge_Smokecloud	torann.arimworldofmagic	yes	AbilityDef	Smoke Cloud	TorannMagic.TMBridgeAbility
+TM_Bridge_Snapfreeze	torann.arimworldofmagic	yes	AbilityDef	Snap Freeze	TorannMagic.TMBridgeAbility
+TM_Bridge_SniperAimedShot	torann.arimworldofmagic	yes	AbilityDef	aimed shot	TorannMagic.TMBridgeAbility
+TM_Bridge_SniperArmorFracture	torann.arimworldofmagic	yes	AbilityDef	armor fracture	TorannMagic.TMBridgeAbility
+TM_Bridge_SniperSingleOpening	torann.arimworldofmagic	yes	AbilityDef	single opening	TorannMagic.TMBridgeAbility
+TM_Bridge_Sniperfocus	torann.arimworldofmagic	yes	AbilityDef	Sniper Training	TorannMagic.TMBridgeAbility
+TM_Bridge_Snowball	torann.arimworldofmagic	yes	AbilityDef	Snowball	TorannMagic.TMBridgeAbility
+TM_Bridge_SolCreatelight	torann.arimworldofmagic	yes	AbilityDef	Create Light	TorannMagic.TMBridgeAbility
+TM_Bridge_SolEqualize	torann.arimworldofmagic	yes	AbilityDef	Equalize	TorannMagic.TMBridgeAbility
+TM_Bridge_Soothe	torann.arimworldofmagic	yes	AbilityDef	Soothing Breeze	TorannMagic.TMBridgeAbility
+TM_Bridge_SootheI	torann.arimworldofmagic	yes	AbilityDef	Soothing Breeze	TorannMagic.TMBridgeAbility
+TM_Bridge_SootheII	torann.arimworldofmagic	yes	AbilityDef	Soothing Breeze	TorannMagic.TMBridgeAbility
+TM_Bridge_SootheIII	torann.arimworldofmagic	yes	AbilityDef	Soothing Breeze	TorannMagic.TMBridgeAbility
+TM_Bridge_Sootheanimal	torann.arimworldofmagic	yes	AbilityDef	Beguile Animal	TorannMagic.TMBridgeAbility
+TM_Bridge_SootheanimalI	torann.arimworldofmagic	yes	AbilityDef	Beguile Animal (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_SootheanimalII	torann.arimworldofmagic	yes	AbilityDef	Beguile Animal (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_SootheanimalIII	torann.arimworldofmagic	yes	AbilityDef	Beguile Animal (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Soothingbalm	torann.arimworldofmagic	yes	AbilityDef	Soothing Balm	TorannMagic.TMBridgeAbility
+TM_Bridge_Soulbond	torann.arimworldofmagic	yes	AbilityDef	SoulBond	TorannMagic.TMBridgeAbility
+TM_Bridge_Spellmending	torann.arimworldofmagic	yes	AbilityDef	Spell Mending	TorannMagic.TMBridgeAbility
+TM_Bridge_Spiritdrain	torann.arimworldofmagic	yes	AbilityDef	Spirit Drain	TorannMagic.TMBridgeAbility
+TM_Bridge_Spiritoflight	torann.arimworldofmagic	yes	AbilityDef	Spirit Of Light	TorannMagic.TMBridgeAbility
+TM_Bridge_Spiritpossession	torann.arimworldofmagic	yes	AbilityDef	Possess	TorannMagic.TMBridgeAbility
+TM_Bridge_Spiritrally	torann.arimworldofmagic	yes	AbilityDef	Spirit Rally (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiritrallyI	torann.arimworldofmagic	yes	AbilityDef	Spirit Rally (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiritrallyII	torann.arimworldofmagic	yes	AbilityDef	Spirit Rally (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiritrallyIII	torann.arimworldofmagic	yes	AbilityDef	Spirit Rally (IV)	TorannMagic.TMBridgeAbility
+TM_Bridge_Spiritstorm	torann.arimworldofmagic	yes	AbilityDef	Spirit Storm	TorannMagic.TMBridgeAbility
+TM_Bridge_Spiritwolves	torann.arimworldofmagic	yes	AbilityDef	Spirit Wolves	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiritwolvesI	torann.arimworldofmagic	yes	AbilityDef	Spirit Wolves (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiritwolvesII	torann.arimworldofmagic	yes	AbilityDef	Spirit Wolves (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiritwolvesIII	torann.arimworldofmagic	yes	AbilityDef	Spirit Wolves (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Spite	torann.arimworldofmagic	yes	AbilityDef	Spite	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiteI	torann.arimworldofmagic	yes	AbilityDef	Spite I	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiteII	torann.arimworldofmagic	yes	AbilityDef	Spite II	TorannMagic.TMBridgeAbility
+TM_Bridge_SpiteIII	torann.arimworldofmagic	yes	AbilityDef	Spite III	TorannMagic.TMBridgeAbility
+TM_Bridge_Sprint	torann.arimworldofmagic	yes	AbilityDef	Sprint	TorannMagic.TMBridgeAbility
+TM_Bridge_SprintI	torann.arimworldofmagic	yes	AbilityDef	Sprint	TorannMagic.TMBridgeAbility
+TM_Bridge_SprintII	torann.arimworldofmagic	yes	AbilityDef	Sprint	TorannMagic.TMBridgeAbility
+TM_Bridge_SprintIII	torann.arimworldofmagic	yes	AbilityDef	Sprint	TorannMagic.TMBridgeAbility
+TM_Bridge_Stayalert	torann.arimworldofmagic	yes	AbilityDef	Stay Alert!	TorannMagic.TMBridgeAbility
+TM_Bridge_StayalertI	torann.arimworldofmagic	yes	AbilityDef	Stay Alert!	TorannMagic.TMBridgeAbility
+TM_Bridge_StayalertII	torann.arimworldofmagic	yes	AbilityDef	Stay Alert!	TorannMagic.TMBridgeAbility
+TM_Bridge_StayalertIII	torann.arimworldofmagic	yes	AbilityDef	Stay Alert!	TorannMagic.TMBridgeAbility
+TM_Bridge_Stoneskin	torann.arimworldofmagic	yes	AbilityDef	Stoneskin	TorannMagic.TMBridgeAbility
+TM_Bridge_Strongback	torann.arimworldofmagic	yes	AbilityDef	Strong Back	TorannMagic.TMBridgeAbility
+TM_Bridge_Summon	torann.arimworldofmagic	yes	AbilityDef	Summon	TorannMagic.TMBridgeAbility
+TM_Bridge_SummonI	torann.arimworldofmagic	yes	AbilityDef	Summon	TorannMagic.TMBridgeAbility
+TM_Bridge_SummonII	torann.arimworldofmagic	yes	AbilityDef	Summon	TorannMagic.TMBridgeAbility
+TM_Bridge_SummonIII	torann.arimworldofmagic	yes	AbilityDef	Summon	TorannMagic.TMBridgeAbility
+TM_Bridge_Summondemon	torann.arimworldofmagic	yes	AbilityDef	Summon Demon	TorannMagic.TMBridgeAbility
+TM_Bridge_Summonelemental	torann.arimworldofmagic	yes	AbilityDef	Summon Elemental	TorannMagic.TMBridgeAbility
+TM_Bridge_Summonexplosive	torann.arimworldofmagic	yes	AbilityDef	Summon explosive	TorannMagic.TMBridgeAbility
+TM_Bridge_Summonminion	torann.arimworldofmagic	yes	AbilityDef	Summon Minion	TorannMagic.TMBridgeAbility
+TM_Bridge_Summonpoppi	torann.arimworldofmagic	yes	AbilityDef	Summon Poppi	TorannMagic.TMBridgeAbility
+TM_Bridge_Summonpylon	torann.arimworldofmagic	yes	AbilityDef	Summon defense pylon	TorannMagic.TMBridgeAbility
+TM_Bridge_Summonspiritanimalmass	torann.arimworldofmagic	yes	AbilityDef	Spirit Animals	TorannMagic.TMBridgeAbility
+TM_Bridge_Summontotemearth	torann.arimworldofmagic	yes	AbilityDef	Totem: Earth	TorannMagic.TMBridgeAbility
+TM_Bridge_Summontotemhealing	torann.arimworldofmagic	yes	AbilityDef	Totem: Healing	TorannMagic.TMBridgeAbility
+TM_Bridge_Summontotemlightning	torann.arimworldofmagic	yes	AbilityDef	Totem: Lightning	TorannMagic.TMBridgeAbility
+TM_Bridge_Sunfire	torann.arimworldofmagic	yes	AbilityDef	Sunfire	TorannMagic.TMBridgeAbility
+TM_Bridge_SunfireI	torann.arimworldofmagic	yes	AbilityDef	Sunfire (I)	TorannMagic.TMBridgeAbility
+TM_Bridge_SunfireII	torann.arimworldofmagic	yes	AbilityDef	Sunfire (II)	TorannMagic.TMBridgeAbility
+TM_Bridge_SunfireIII	torann.arimworldofmagic	yes	AbilityDef	Sunfire (III)	TorannMagic.TMBridgeAbility
+TM_Bridge_Sunlight	torann.arimworldofmagic	yes	AbilityDef	Sun Light	TorannMagic.TMBridgeAbility
+TM_Bridge_SuperSoldierFieldDressing	torann.arimworldofmagic	yes	AbilityDef	field dressing	TorannMagic.TMBridgeAbility
+TM_Bridge_Suppressingfire	torann.arimworldofmagic	yes	AbilityDef	Suppressing Fire	TorannMagic.TMBridgeAbility
+TM_Bridge_Suppressiveaura	torann.arimworldofmagic	yes	AbilityDef	Suppressive Aura	TorannMagic.TMBridgeAbility
+TM_Bridge_Symbiosis	torann.arimworldofmagic	yes	AbilityDef	Symbiosis	TorannMagic.TMBridgeAbility
+TM_Bridge_Taskmasteraura	torann.arimworldofmagic	yes	AbilityDef	Task Master	TorannMagic.TMBridgeAbility
+TM_Bridge_Taunt	torann.arimworldofmagic	yes	AbilityDef	Taunt	TorannMagic.TMBridgeAbility
+TM_Bridge_Teachmagic	torann.arimworldofmagic	yes	AbilityDef	Mentor Magic	TorannMagic.TMBridgeAbility
+TM_Bridge_Teachmight	torann.arimworldofmagic	yes	AbilityDef	Combat Training	TorannMagic.TMBridgeAbility
+TM_Bridge_Technobit	torann.arimworldofmagic	yes	AbilityDef	Techno-Bit	TorannMagic.TMBridgeAbility
+TM_Bridge_Technoshield	torann.arimworldofmagic	yes	AbilityDef	Kinetic Shield	TorannMagic.TMBridgeAbility
+TM_Bridge_Technoturret	torann.arimworldofmagic	yes	AbilityDef	Mark-IV Turret	TorannMagic.TMBridgeAbility
+TM_Bridge_Technoweapon	torann.arimworldofmagic	yes	AbilityDef	Engineer Weapon	TorannMagic.TMBridgeAbility
+TM_Bridge_Teleport	torann.arimworldofmagic	yes	AbilityDef	Teleport	TorannMagic.TMBridgeAbility
+TM_Bridge_Tempeststrike	torann.arimworldofmagic	yes	AbilityDef	Tempest Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_Thickskin	torann.arimworldofmagic	yes	AbilityDef	Thick Skin	TorannMagic.TMBridgeAbility
+TM_Bridge_Throwingknife	torann.arimworldofmagic	yes	AbilityDef	Throwing Knife	TorannMagic.TMBridgeAbility
+TM_Bridge_Thunderstrike	torann.arimworldofmagic	yes	AbilityDef	Thunder Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_Tigerstrike	torann.arimworldofmagic	yes	AbilityDef	Tiger Strike	TorannMagic.TMBridgeAbility
+TM_Bridge_Timemark	torann.arimworldofmagic	yes	AbilityDef	Time Mark	TorannMagic.TMBridgeAbility
+TM_Bridge_Totems	torann.arimworldofmagic	yes	AbilityDef	Totems	TorannMagic.TMBridgeAbility
+TM_Bridge_Transfermana	torann.arimworldofmagic	yes	AbilityDef	Transfer Mana	TorannMagic.TMBridgeAbility
+TM_Bridge_Transmutate	torann.arimworldofmagic	yes	AbilityDef	Transmutate	TorannMagic.TMBridgeAbility
+TM_Bridge_Transpose	torann.arimworldofmagic	yes	AbilityDef	Transpose	TorannMagic.TMBridgeAbility
+TM_Bridge_TransposeI	torann.arimworldofmagic	yes	AbilityDef	Transpose I	TorannMagic.TMBridgeAbility
+TM_Bridge_TransposeII	torann.arimworldofmagic	yes	AbilityDef	Transpose II	TorannMagic.TMBridgeAbility
+TM_Bridge_TransposeIII	torann.arimworldofmagic	yes	AbilityDef	Transpose III	TorannMagic.TMBridgeAbility
+TM_Bridge_Valiantcharge	torann.arimworldofmagic	yes	AbilityDef	Valiant Charge	TorannMagic.TMBridgeAbility
+TM_Bridge_Veilofshadows	torann.arimworldofmagic	yes	AbilityDef	Veil of Shadows	TorannMagic.TMBridgeAbility
+TM_Bridge_Vitalitybrand	torann.arimworldofmagic	yes	AbilityDef	Brand: Vitality	TorannMagic.TMBridgeAbility
+TM_Bridge_Wanderercraft	torann.arimworldofmagic	yes	AbilityDef	The Wanderer	TorannMagic.TMBridgeAbility
+TM_Bridge_Waveoffear	torann.arimworldofmagic	yes	AbilityDef	Wave of Fear	TorannMagic.TMBridgeAbility
+TM_Bridge_Wayfarercraft	torann.arimworldofmagic	yes	AbilityDef	The Wayfarer	TorannMagic.TMBridgeAbility
+TM_Bridge_WeaponWintersfury	torann.arimworldofmagic	yes	AbilityDef	Winter's Fury	TorannMagic.TMBridgeAbility
+TM_Bridge_Wetground	torann.arimworldofmagic	yes	AbilityDef	Moisturize Ground	TorannMagic.TMBridgeAbility
+TM_Bridge_Whirlwind	torann.arimworldofmagic	yes	AbilityDef	Whirlwind	TorannMagic.TMBridgeAbility
 TM_Buckshot	torann.arimworldofmagic	yes	TMAbilityDef	Buckshot	TorannMagic.MightAbility
 TM_BurningFury	torann.arimworldofmagic	yes	TMAbilityDef	Burning Fury	TorannMagic.MightAbility
 TM_CQC	torann.arimworldofmagic	yes	TMAbilityDef	CQC	TorannMagic.MightAbility
@@ -410,6 +876,10 @@ TM_ChronostaticField_III	torann.arimworldofmagic	yes	TMAbilityDef	Chronostatic F
 TM_Cleave	torann.arimworldofmagic	yes	TMAbilityDef	Cleave	TorannMagic.MightAbility
 TM_CombatDrugs	torann.arimworldofmagic	yes	TMAbilityDef	Combat Drugs	TorannMagic.MightAbility
 TM_CommanderAura	torann.arimworldofmagic	yes	TMAbilityDef	Commander	TorannMagic.MightAbility
+TM_CommanderOperationAid	torann.arimworldofmagic	yes	TMAbilityDef	Everyone Home: emergency work	TorannMagic.ClassProgression.CommanderOperationAbility
+TM_CommanderOperationEvac	torann.arimworldofmagic	yes	TMAbilityDef	Everyone Home: evacuation	TorannMagic.ClassProgression.CommanderOperationAbility
+TM_CommanderRally	torann.arimworldofmagic	yes	TMAbilityDef	Rally Point	TorannMagic.MightAbility
+TM_CommanderWorkCrew	torann.arimworldofmagic	yes	TMAbilityDef	Work Crew	TorannMagic.MightAbility
 TM_CompVerb	torann.arimworldofmagic	yes	TMAbilityDef	secondary targeter	TorannMagic.MagicAbility
 TM_ConsumeCorpse	torann.arimworldofmagic	yes	TMAbilityDef	Consume Corpse	TorannMagic.MagicAbility
 TM_ConsumeCorpse_I	torann.arimworldofmagic	yes	TMAbilityDef	Consume Corpse (I)	TorannMagic.MagicAbility
@@ -479,9 +949,11 @@ TM_EnchantedBody	torann.arimworldofmagic	yes	TMAbilityDef	Enchanted Body	TorannM
 TM_EnchanterStone	torann.arimworldofmagic	yes	TMAbilityDef	Enchanter's Stone	TorannMagic.MagicAbility
 TM_Enrage	torann.arimworldofmagic	yes	TMAbilityDef	Enrage	TorannMagic.MagicAbility
 TM_Entertain	torann.arimworldofmagic	yes	TMAbilityDef	Entertain	TorannMagic.MagicAbility
+TM_EtherShell	torann.arimworldofmagic	yes	TMAbilityDef	Ether Shell	TorannMagic.Odyssey.EtherShellAbility
 TM_Explosion	torann.arimworldofmagic	yes	TMAbilityDef	Explosion!	TorannMagic.MagicAbility
 TM_Extinguish	torann.arimworldofmagic	yes	TMAbilityDef	Extinguish	TorannMagic.MagicAbility
 TM_EyeOfTheStorm	torann.arimworldofmagic	yes	TMAbilityDef	Eye of the Storm	TorannMagic.MagicAbility
+TM_FacelessEcho	torann.arimworldofmagic	yes	TMAbilityDef	Borrowed technique	TorannMagic.MightAbility
 TM_FadeEmotions	torann.arimworldofmagic	yes	TMAbilityDef	Fade Emotion	TorannMagic.MagicAbility
 TM_FertileLands	torann.arimworldofmagic	yes	TMAbilityDef	Fertile Lands	TorannMagic.MagicAbility
 TM_FieldTraining	torann.arimworldofmagic	yes	TMAbilityDef	Combat Training	TorannMagic.MightAbility
@@ -511,6 +983,8 @@ TM_FrostRay_I	torann.arimworldofmagic	yes	TMAbilityDef	Frost Ray	TorannMagic.Mag
 TM_FrostRay_II	torann.arimworldofmagic	yes	TMAbilityDef	Frost Ray	TorannMagic.MagicAbility
 TM_FrostRay_III	torann.arimworldofmagic	yes	TMAbilityDef	Frost Ray	TorannMagic.MagicAbility
 TM_GearRepair	torann.arimworldofmagic	yes	TMAbilityDef	Gear Repair	TorannMagic.MightAbility
+TM_GladiatorManeuver	torann.arimworldofmagic	yes	TMAbilityDef	maneuver	TorannMagic.MightAbility
+TM_GladiatorSweep	torann.arimworldofmagic	yes	TMAbilityDef	sweeping blow	TorannMagic.MightAbility
 TM_Golemancy	torann.arimworldofmagic	yes	TMAbilityDef	Golemancy	TorannMagic.MagicAbility
 TM_Grapple	torann.arimworldofmagic	yes	TMAbilityDef	Grapple	TorannMagic.MightAbility
 TM_Grapple_I	torann.arimworldofmagic	yes	TMAbilityDef	Grapple	TorannMagic.MightAbility
@@ -599,6 +1073,8 @@ TM_Mimic	torann.arimworldofmagic	yes	TMAbilityDef	Mimic	TorannMagic.MightAbility
 TM_MindKiller	torann.arimworldofmagic	yes	TMAbilityDef	Mind Killer	TorannMagic.MagicAbility
 TM_MindOverBody	torann.arimworldofmagic	yes	TMAbilityDef	Mind Over Body	TorannMagic.MightAbility
 TM_Mk203GL	torann.arimworldofmagic	yes	TMAbilityDef	Mk203_GL	TorannMagic.MightAbility
+TM_MonkPalmSeal	torann.arimworldofmagic	yes	TMAbilityDef	Palm seal	TorannMagic.MightAbility
+TM_MonkSilentMeridian	torann.arimworldofmagic	yes	TMAbilityDef	Silent meridian	TorannMagic.ClassProgression.MonkMeridianAbility
 TM_MoveOut	torann.arimworldofmagic	yes	TMAbilityDef	Move Out!	TorannMagic.MightAbility
 TM_MoveOut_I	torann.arimworldofmagic	yes	TMAbilityDef	Move Out!	TorannMagic.MightAbility
 TM_MoveOut_II	torann.arimworldofmagic	yes	TMAbilityDef	Move Out!	TorannMagic.MightAbility
@@ -642,11 +1118,14 @@ TM_PsionicBlast_I	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Blast I	Toran
 TM_PsionicBlast_II	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Blast II	TorannMagic.MightAbility
 TM_PsionicBlast_III	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Blast III	TorannMagic.MightAbility
 TM_PsionicDash	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Dash	TorannMagic.MightAbility
+TM_PsionicKineticCrucible	torann.arimworldofmagic	yes	TMAbilityDef	Kinetic crucible	TorannMagic.ClassProgression.PsionicCrucibleAbility
 TM_PsionicStorm	torann.arimworldofmagic	yes	TMAbilityDef	Psionic Storm	TorannMagic.MightAbility
 TM_PsychicShock	torann.arimworldofmagic	yes	TMAbilityDef	Psychic Shock	TorannMagic.MagicAbility
 TM_Purify	torann.arimworldofmagic	yes	TMAbilityDef	Purify	TorannMagic.MagicAbility
 TM_Rainmaker	torann.arimworldofmagic	yes	TMAbilityDef	Rainmaker	TorannMagic.MagicAbility
 TM_RaiseUndead	torann.arimworldofmagic	yes	TMAbilityDef	Raise Undead	TorannMagic.MagicAbility
+TM_RangerBreakthrough	torann.arimworldofmagic	yes	TMAbilityDef	breakthrough hunt	TorannMagic.ClassProgression.RangerHuntAbility
+TM_RangerSafeTrail	torann.arimworldofmagic	yes	TMAbilityDef	Safe Trail	TorannMagic.MightAbility
 TM_RangerTraining	torann.arimworldofmagic	yes	TMAbilityDef	Ranger Training	TorannMagic.MightAbility
 TM_RayofHope	torann.arimworldofmagic	yes	TMAbilityDef	Inner Fire	TorannMagic.MagicAbility
 TM_RayofHope_I	torann.arimworldofmagic	yes	TMAbilityDef	Inner Fire	TorannMagic.MagicAbility
@@ -702,7 +1181,10 @@ TM_SiphonBrand	torann.arimworldofmagic	yes	TMAbilityDef	Brand: Siphon	TorannMagi
 TM_SiphonMana	torann.arimworldofmagic	yes	TMAbilityDef	Siphon Mana	TorannMagic.MagicAbility
 TM_SmokeCloud	torann.arimworldofmagic	yes	TMAbilityDef	Smoke Cloud	TorannMagic.MagicAbility
 TM_SnapFreeze	torann.arimworldofmagic	yes	TMAbilityDef	Snap Freeze	TorannMagic.MagicAbility
+TM_SniperAimedShot	torann.arimworldofmagic	yes	TMAbilityDef	aimed shot	TorannMagic.MightAbility
+TM_SniperArmorFracture	torann.arimworldofmagic	yes	TMAbilityDef	armor fracture	TorannMagic.MightAbility
 TM_SniperFocus	torann.arimworldofmagic	yes	TMAbilityDef	Sniper Training	TorannMagic.MightAbility
+TM_SniperSingleOpening	torann.arimworldofmagic	yes	TMAbilityDef	single opening	TorannMagic.ClassProgression.SniperOpeningAbility
 TM_Snowball	torann.arimworldofmagic	yes	TMAbilityDef	Snowball	TorannMagic.MagicAbility
 TM_SoL_CreateLight	torann.arimworldofmagic	yes	TMAbilityDef	Create Light	TorannMagic.MagicAbility
 TM_SoL_Equalize	torann.arimworldofmagic	yes	TMAbilityDef	Equalize	TorannMagic.MagicAbility
@@ -764,6 +1246,7 @@ TM_Sunfire_I	torann.arimworldofmagic	yes	TMAbilityDef	Sunfire (I)	TorannMagic.Ma
 TM_Sunfire_II	torann.arimworldofmagic	yes	TMAbilityDef	Sunfire (II)	TorannMagic.MagicAbility
 TM_Sunfire_III	torann.arimworldofmagic	yes	TMAbilityDef	Sunfire (III)	TorannMagic.MagicAbility
 TM_Sunlight	torann.arimworldofmagic	yes	TMAbilityDef	Sun Light	TorannMagic.MagicAbility
+TM_SuperSoldierFieldDressing	torann.arimworldofmagic	yes	TMAbilityDef	field dressing	TorannMagic.ClassProgression.SuperSoldierDressingAbility
 TM_SuppressingFire	torann.arimworldofmagic	yes	TMAbilityDef	Suppressing Fire	TorannMagic.MightAbility
 TM_SuppressiveAura	torann.arimworldofmagic	yes	TMAbilityDef	Suppressive Aura	TorannMagic.MagicAbility
 TM_Symbiosis	torann.arimworldofmagic	yes	TMAbilityDef	Symbiosis	TorannMagic.MagicAbility
@@ -797,6 +1280,12 @@ TM_WandererCraft	torann.arimworldofmagic	yes	TMAbilityDef	The Wanderer	TorannMag
 TM_WaveOfFear	torann.arimworldofmagic	yes	TMAbilityDef	Wave of Fear	TorannMagic.MightAbility
 TM_WayfarerCraft	torann.arimworldofmagic	yes	TMAbilityDef	The Wayfarer	TorannMagic.MightAbility
 TM_Weapon_WintersFury	torann.arimworldofmagic	yes	TMAbilityDef	Winter's Fury	
+TM_WeatherAurora	torann.arimworldofmagic	yes	TMAbilityDef	Aurora	TorannMagic.MagicAbility
+TM_WeatherClearSkies	torann.arimworldofmagic	yes	TMAbilityDef	Clear skies	TorannMagic.MagicAbility
+TM_WeatherCoolFront	torann.arimworldofmagic	yes	TMAbilityDef	Cool front	TorannMagic.MagicAbility
+TM_WeatherDisperseFallout	torann.arimworldofmagic	yes	TMAbilityDef	Disperse fallout	TorannMagic.MagicAbility
+TM_WeatherFertileRain	torann.arimworldofmagic	yes	TMAbilityDef	Fertile rain	TorannMagic.MagicAbility
+TM_WeatherWarmFront	torann.arimworldofmagic	yes	TMAbilityDef	Warm front	TorannMagic.MagicAbility
 TM_WetGround	torann.arimworldofmagic	yes	TMAbilityDef	Moisturize Ground	TorannMagic.MagicAbility
 TM_Whirlwind	torann.arimworldofmagic	yes	TMAbilityDef	Whirlwind	TorannMagic.MightAbility
 TMagic_60mmMortar	torann.arimworldofmagic	yes	AbilityAIDef		

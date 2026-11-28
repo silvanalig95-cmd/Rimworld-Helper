@@ -238,6 +238,19 @@ Outland_FockattBrown	neronix17.outland.core	no	forest fockatt	animal	2.15	Omnivo
 Outland_FockattGrey	neronix17.outland.core	no	grey fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
 Outland_FockattPolar	neronix17.outland.core	no	polar fockatt	animal	2.15	OmnivoreAnimal, OvivoreAnimal	true	false	3
 Outland_Oxect	neronix17.outland.motzcoalition	no	oxect	animal	2.4	OmnivoreAnimal, AnimalProduct			
+Black_Dragon	onyxae.dragonsdescent	yes	black dragon	animal	4.1	OmnivoreAnimal	true	false	4
+Blue_Dragon	onyxae.dragonsdescent	yes	blue dragon	animal	4.1	OmnivoreAnimal	true	false	4
+DD_Drake	onyxae.dragonsdescent	yes	drake	animal	2.4	OmnivoreAnimal	true		2.5
+Gold_Dragon	onyxae.dragonsdescent	yes	gold dragon	animal	4.3	OmnivoreAnimal	true	false	4
+Green_Dragon	onyxae.dragonsdescent	yes	green dragon	animal	4.1	OmnivoreAnimal	true	false	4
+Jade_Dragon	onyxae.dragonsdescent	yes	jade dragon	animal	4.3	OmnivoreAnimal	true	false	4
+Purple_Dragon	onyxae.dragonsdescent	yes	purple dragon	animal	4.1	OmnivoreAnimal	true	false	4
+Red_Dragon	onyxae.dragonsdescent	yes	red dragon	animal	4.1	OmnivoreAnimal	true	false	4
+Silver_Dragon	onyxae.dragonsdescent	yes	silver dragon	animal	4.3	OmnivoreAnimal	true	false	4
+Talbuk	onyxae.dragonsdescent	yes	talbuk	animal	2.4	VegetarianRoughAnimal		true	
+True_Dragon	onyxae.dragonsdescent	yes	true dragon	animal	4.6	OmnivoreAnimal	true	false	4
+White_Dragon	onyxae.dragonsdescent	yes	white dragon	animal	4.1	OmnivoreAnimal	true	false	4
+Yellow_Dragon	onyxae.dragonsdescent	yes	yellow dragon	animal	4.1	OmnivoreAnimal	true	false	4
 VFEI2_Acidspitter	oskarpotocki.vfe.insectoid2	yes	acidspitter	animal	1.8	OmnivoreAnimal, AnimalProduct			
 VFEI2_Boomtick	oskarpotocki.vfe.insectoid2	yes	boomtick	animal	0.18	OmnivoreAnimal, AnimalProduct			
 VFEI2_Durapod	oskarpotocki.vfe.insectoid2	yes	durapod	animal	0.8	OmnivoreAnimal, AnimalProduct			
@@ -299,6 +312,7 @@ Mutant_Ogron	rimsenal.feral	yes	ogron	animal	2.0	None
 Mutant_Razortooth	rimsenal.feral	yes	razortooth	animal	1.4	None			
 Mutant_Shadark	rimsenal.feral	yes	shadark	animal	1.4	None			
 Mutant_Twisted	rimsenal.feral	yes	twisted	animal	1.0	None			
+Rimsenal_Hyperffid	rimsenal.plants	no	hyperffid	animal	1.5	None		true	
 Mech_Bombito	rimsenal.spacer	yes	bombito	animal	0.7	None			
 Mech_Borer	rimsenal.spacer	yes	borer	animal	0.7	None			
 Mech_Krambon	rimsenal.spacer	yes	krambon	animal	1.0	None			
@@ -363,6 +377,7 @@ AA_EmpressButterfly	sarg.alphaanimals	yes	Empress butterfly	animal	0.75	Vegetari
 AA_EmpressButterflyLarva	sarg.alphaanimals	yes	Empress butterfly larva	animal	0.1	VegetarianRoughAnimal	false	true	
 AA_EngorgedTentacularAberration	sarg.alphaanimals	yes	engorged tentacular aberration	animal	6	CarnivoreAnimalStrict	true		4
 AA_Erin	sarg.alphaanimals	yes	erin	animal	1	Corpse,CarnivoreAnimalStrict	true		0.75
+AA_Eyeling	sarg.alphaanimals	yes	eyeling	animal	0.4	OmnivoreRoughAnimal			
 AA_Feralisk	sarg.alphaanimals	yes	feralisk	animal	1.00	OmnivoreAnimal, AnimalProduct	true	true	
 AA_FeraliskClutchMother	sarg.alphaanimals	yes	feralisk clutch mother	animal	3	OmnivoreAnimal, AnimalProduct	true	true	
 AA_FireWasp	sarg.alphaanimals	yes	fire wasp	animal	0.79	OmnivoreAnimal	true	true	0.5
@@ -484,7 +499,6 @@ AM_Siegebreaker	sarg.alphamechs	yes	siegebreaker	animal	4	None
 AM_Siegemelter	sarg.alphamechs	yes	siegemelter	animal	4	None			
 AM_Starfire	sarg.alphamechs	yes	starfire	animal	4	None			
 AM_WarEmpress	sarg.alphamechs	yes	war empress	animal	5	None			
-AA_Eyeling	sarg.alphamemes	yes	eyeling	animal	0.4	OmnivoreRoughAnimal			
 AM_Dryad_Corruptor	sarg.alphamemes	yes	corruptor dryad	animal	0.667	None			
 AM_Dryad_Ocular	sarg.alphamemes	yes	ocular dryad	animal	0.667	None			
 AM_Dryad_Spitter	sarg.alphamemes	yes	spitter dryad	animal	0.65	None			
@@ -1462,6 +1476,7 @@ PW_Zygarde	themoonitself.pokeworld	yes	Zygarde	animal	3.12	OmnivoreAnimal, Veget
 TM_DemonR	torann.arimworldofmagic	yes	Demon	animal	2	OmnivoreAnimal	true	false	
 TM_Dire_WolfR	torann.arimworldofmagic	yes	dire wolf	animal	2.3	CarnivoreAnimal	true		3.3
 TM_Earth_ElementalR	torann.arimworldofmagic	yes	Earth Elemental	animal	2	OmnivoreAnimal	true	false	
+TM_EtherServant	torann.arimworldofmagic	yes	ether servant	animal	1	None	false		
 TM_Fire_ElementalR	torann.arimworldofmagic	yes	Fire Elemental	animal	2	OmnivoreAnimal	true	false	
 TM_FleshGolem	torann.arimworldofmagic	yes	flesh golem	animal	1	None			
 TM_GiantSkeletonR	torann.arimworldofmagic	yes	Giant skeleton	animal	1	None		false	
@@ -1498,6 +1513,7 @@ TM_SpiritTD	torann.arimworldofmagic	yes	spirit	humanlike	1	OmnivoreHuman
 TM_SpiritWolfR	torann.arimworldofmagic	yes	spirit wolf	animal	2.3	CarnivoreAnimal	true	false	3.3
 TM_StoneGolem	torann.arimworldofmagic	yes	stone golem	animal	1	None			
 TM_StrawGolem	torann.arimworldofmagic	yes	straw golem	animal	1	None			
+TM_TowerServitor	torann.arimworldofmagic	yes	stone kitchen servant	animal	0.7	None			
 TM_Water_ElementalR	torann.arimworldofmagic	yes	Water Elemental	animal	2	OmnivoreAnimal	true	false	
 TM_Wind_ElementalR	torann.arimworldofmagic	yes	Wind Elemental	animal	2	OmnivoreAnimal	true	false	
 TM_WoodGolem	torann.arimworldofmagic	yes	wood golem	animal	1	None			
@@ -1854,16 +1870,3 @@ Cults_ByakheeRace	zal.cocc	no	byakhee	animal	2.0	CarnivoreAnimal, OvivoreAnimal	
 Cults_FormlessSpawnRace	zal.cocc	no	formless spawn	animal	2.0	CarnivoreAnimal, OvivoreAnimal			
 GuardianBast	zal.cocc	no	Guardian	animal	2.2	CarnivoreAnimal, OvivoreAnimal	true	false	
 ReanimatedCorpse	zal.cocc	no	reanimated corpse	humanlike	1	CarnivoreAnimalStrict			
-DD_Drake	onyxae.dragonsdescent	yes	drake	animal	2.4				
-Talbuk	onyxae.dragonsdescent	yes	talbuk	animal	2.4				
-Black_Dragon	onyxae.dragonsdescent	yes	black dragon	animal					
-Blue_Dragon	onyxae.dragonsdescent	yes	blue dragon	animal					
-Green_Dragon	onyxae.dragonsdescent	yes	green dragon	animal					
-Purple_Dragon	onyxae.dragonsdescent	yes	purple dragon	animal					
-Red_Dragon	onyxae.dragonsdescent	yes	red dragon	animal					
-White_Dragon	onyxae.dragonsdescent	yes	white dragon	animal					
-Yellow_Dragon	onyxae.dragonsdescent	yes	yellow dragon	animal					
-Gold_Dragon	onyxae.dragonsdescent	yes	gold dragon	animal					
-Silver_Dragon	onyxae.dragonsdescent	yes	silver dragon	animal					
-Jade_Dragon	onyxae.dragonsdescent	yes	jade dragon	animal					
-True_Dragon	onyxae.dragonsdescent	yes	true dragon	animal	4.6				

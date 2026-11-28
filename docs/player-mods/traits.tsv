@@ -252,8 +252,12 @@ TM_Shaman	torann.arimworldofmagic	yes	Shaman
 TM_Sniper	torann.arimworldofmagic	yes	Sharpshooter / Sniper / Master Sniper / Legendary Sniper
 TM_SuperSoldier	torann.arimworldofmagic	yes	Super Soldier
 TM_TheShadow	torann.arimworldofmagic	yes	Shadow
+TM_VocationMage	torann.arimworldofmagic	yes	mage
+TM_VocationWarrior	torann.arimworldofmagic	yes	warrior
+TM_VocationWarriorMage	torann.arimworldofmagic	yes	warrior-mage
 TM_Wanderer	torann.arimworldofmagic	yes	Wanderer
 TM_Wayfarer	torann.arimworldofmagic	yes	Wayfarer
+TM_WeatherMage	torann.arimworldofmagic	yes	weather mage
 Technomancer	torann.arimworldofmagic	yes	Technomancer
 Undead	torann.arimworldofmagic	yes	Undead
 Warlock	torann.arimworldofmagic	yes	Warlock

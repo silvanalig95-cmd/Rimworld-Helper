@@ -125,22 +125,42 @@ AA_BlackHive	sarg.alphaanimals	yes	black hive	Animal	true	true
 AG_OutlanderCivilUnion	sarg.alphagenes	yes	civil xenohuman union	Industrial			
 AG_XenohumanPirates	sarg.alphagenes	yes	xenohuman pirate gang	Spacer		true	
 Council_PlayerHolding	silvanalig.colonycouncil	yes	New Holding	Medieval			Colonist
+Rimfolk_AshenBanner	silvanalig.colonycouncil	yes	Ashen Banner	Medieval	false	false	Rimfolk_AshenBanner_Soldier
+Rimfolk_Choir	silvanalig.colonycouncil	yes	Choir of the Spire	Spacer	false	false	Rimfolk_Choir_Listener
+Rimfolk_Deepwell	silvanalig.colonycouncil	yes	Deepwell Union	Industrial	false	false	Rimfolk_Deepwell_Miner
 Rimfolk_Enclave	silvanalig.colonycouncil	yes	spacer enclave	Spacer	false	false	Rimfolk_Enclave_Hand
+Rimfolk_HelixWorks	silvanalig.colonycouncil	yes	Helix Works	Spacer	false	false	Rimfolk_HelixWorks_LabHand
 Rimfolk_Herders	silvanalig.colonycouncil	yes	herding folk	Neolithic	false	false	Rimfolk_Herders_Herder
+Rimfolk_HollowFleet	silvanalig.colonycouncil	yes	Hollow Fleet	Spacer	false	false	Rimfolk_HollowFleet_Deckhand
+Rimfolk_KilnGuild	silvanalig.colonycouncil	yes	Kiln Guild	Medieval	false	false	Rimfolk_KilnGuild_Journeyman
+Rimfolk_Lattice	silvanalig.colonycouncil	yes	Lattice	Spacer	false	false	Rimfolk_Lattice_Linkhand
 Rimfolk_League	silvanalig.colonycouncil	yes	road league	Industrial	false	false	Rimfolk_League_Wayfarer
+Rimfolk_Mossborn	silvanalig.colonycouncil	yes	Mossborn	Neolithic	false	false	Rimfolk_Mossborn_Tender
 Rimfolk_Order	silvanalig.colonycouncil	yes	hospitaller order	Medieval	false	false	Rimfolk_Order_Lay
 Rimfolk_People_Industrial	silvanalig.colonycouncil	yes	township	Industrial	false	false	
 Rimfolk_People_Medieval	silvanalig.colonycouncil	yes	free folk	Medieval	false	false	
 Rimfolk_People_Spacer	silvanalig.colonycouncil	yes	free colony	Spacer	false	false	
 Rimfolk_People_Tribal	silvanalig.colonycouncil	yes	hearth folk	Neolithic	false	false	
 Rimfolk_Pilgrims	silvanalig.colonycouncil	yes	pilgrim fellowship	Medieval	false	false	Rimfolk_Pilgrims_Pilgrim
+Rimfolk_QuietBell	silvanalig.colonycouncil	yes	Quiet Bell	Medieval	false	false	Rimfolk_QuietBell_Keeper
+Rimfolk_Republic	silvanalig.colonycouncil	yes	Last Republic	Industrial	false	false	Rimfolk_Republic_Citizen
 Rimfolk_RiverFolk	silvanalig.colonycouncil	yes	river folk	Medieval	false	false	Rimfolk_RiverFolk_Fisher
 Rimfolk_Scholars	silvanalig.colonycouncil	yes	learned society	Industrial	false	false	Rimfolk_Scholars_Fellow
+Rimfolk_SignalLine	silvanalig.colonycouncil	yes	Signal Line	Industrial	false	false	Rimfolk_SignalLine_Lineman
+Rimfolk_Stormglass	silvanalig.colonycouncil	yes	Stormglass Conclave	Industrial	false	false	Rimfolk_Stormglass_Reader
+Rimfolk_SunkenVault	silvanalig.colonycouncil	yes	Sunken Vault	Spacer	false	false	Rimfolk_SunkenVault_Dweller
+Rimfolk_Tamers	silvanalig.colonycouncil	yes	circuit of tamers	Industrial	false	false	Rimfolk_Tamers_Tamer
+Rimfolk_Wardens	silvanalig.colonycouncil	yes	lantern wardens	Medieval	false	false	Rimfolk_Wardens_Warden
+Rimfolk_Wheel	silvanalig.colonycouncil	yes	Wheel	Industrial	false	false	Rimfolk_Wheel_Hand
 PW_HostilePokemon	themoonitself.pokeworld	yes	Pokémon	Animal	true	true	
 Seers	torann.arimworldofmagic	yes	arcane fold	Neolithic			
+TM_AssassinGuild	torann.arimworldofmagic	yes	assassin guild	Industrial		false	
+TM_DarkCoven	torann.arimworldofmagic	yes	dark coven	Industrial		false	
 TM_ElementalFaction	torann.arimworldofmagic	yes	Elemental	Neolithic	true	true	
+TM_MageHunters	torann.arimworldofmagic	yes	mage hunters	Industrial		false	
 TM_SkeletalFaction	torann.arimworldofmagic	yes	Skeletal	Neolithic	true	true	
 TM_SummonedFaction	torann.arimworldofmagic	yes	Summoned being	Neolithic	true	true	
+TM_WarriorOrder	torann.arimworldofmagic	yes	warrior order	Industrial		false	
 DA_Troll	van.beasts	no	trolls	Animal	true	true	
 GR_RoamingMonstrosities	vanillaexpanded.vgeneticse	yes	roaming monstrosities	Animal	true	true	
 VQE_NewVaultPlayerFaction	vanillaquestsexpanded.ancients	yes	New vault	Spacer			VQE_Patient

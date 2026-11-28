@@ -1201,6 +1201,16 @@ GS_Stubby_Ear	sovereign.kork	yes	stubby ears	Cosmetic		0
 GS_Tusks	sovereign.kork	yes	tusks	Cosmetic	0	0
 GS_Unity	sovereign.kork	yes	Unity	Miscellaneous	-3	2
 GS_smushed_nose	sovereign.kork	yes	smushed nose	Miscellaneous		0
+TM_ArcaneConduitGene	torann.arimworldofmagic	yes	arcane conduit blood	TM_ClassGifts	0	0
+TM_BoundlessGene	torann.arimworldofmagic	yes	boundless blood	TM_ClassGifts	0	0
+TM_EnlightenedGene	torann.arimworldofmagic	yes	enlightened blood	TM_ClassGifts	0	0
+TM_FaeBloodGene	torann.arimworldofmagic	yes	fae blood	TM_ClassGifts	0	0
+TM_GiantsBloodGene	torann.arimworldofmagic	yes	giant blood	TM_ClassGifts	0	0
+TM_HiddenMageGene	torann.arimworldofmagic	yes	hidden mage	TM_ClassGifts	0	0
+TM_ManaGene	torann.arimworldofmagic	yes	mana	TM_ClassGifts	0	0
+TM_ManaWellGene	torann.arimworldofmagic	yes	mana well blood	TM_ClassGifts	0	0
+TM_SleepingWarriorGene	torann.arimworldofmagic	yes	sleeping warrior	TM_ClassGifts	0	0
+TM_StaminaGene	torann.arimworldofmagic	yes	stamina	TM_ClassGifts	0	0
 VQEA_BlurRunner	vanillaquestsexpanded.ancients	yes	blur runner	Archite	0	3
 VQEA_Bulwark	vanillaquestsexpanded.ancients	yes	bulwark	Archite	0	3
 VQEA_Electromagnetized	vanillaquestsexpanded.ancients	yes	electromagnetized	Archite	0	3

@@ -510,6 +510,7 @@ DevDesigner_WoodElves_Trader	devdesigner.elves.continued	yes	trader	Human	DevDes
 EBSG_BlankColonist	ebsg.framework	yes	colonist	Human	PlayerColony	30		
 Boneworm	ezfi.montereybayaquariumanimals	yes	bone-eating worm	Boneworm		200		
 SeaOtter	ezfi.montereybayaquariumanimals	yes	sea otter	SeaOtter		30		
+TM_FoldFieldHealer	huginn.rwom.integrations	yes	Fold field healer	Human	Seers	50	IndustrialBasic	
 RG_Toxbeaver	local.regrowth2.wastelands	yes	toxbeaver	RG_Toxbeaver		100		
 RG_Toxirrel	local.regrowth2.wastelands	yes	toxirrel	RG_Toxirrel		33		
 Alpaca	ludeon.rimworld	yes	alpaca	Alpaca		65		
@@ -924,6 +925,19 @@ ApeWarrior_Heavy	onlymonkey.awakenedapes	yes	ape heavy gunner	Human	SettlementAp
 ApeWarrior_Leader	onlymonkey.awakenedapes	yes	ape alpha	Human	SettlementApeRepublic	150	IndustrialMilitaryAdvanced	Minigun
 ApeWarrior_Naked	onlymonkey.awakenedapes	yes	naked ape	Human	SettlementApeRepublic	40		
 ApeWarrior_Spear	onlymonkey.awakenedapes	yes	ape spearman	Human	SettlementApeRepublic	70	IndustrialMilitaryBasic	NeolithicMeleeAdvanced
+Black_Dragon	onyxae.dragonsdescent	yes	black dragon	Black_Dragon		1260		
+Blue_Dragon	onyxae.dragonsdescent	yes	blue dragon	Blue_Dragon		1260		
+DD_Drake	onyxae.dragonsdescent	yes	drake	DD_Drake		160		
+Gold_Dragon	onyxae.dragonsdescent	yes	gold dragon	Gold_Dragon		1320		
+Green_Dragon	onyxae.dragonsdescent	yes	green dragon	Green_Dragon		1240		
+Jade_Dragon	onyxae.dragonsdescent	yes	jade dragon	Jade_Dragon		1320		
+Purple_Dragon	onyxae.dragonsdescent	yes	purple dragon	Purple_Dragon		1260		
+Red_Dragon	onyxae.dragonsdescent	yes	red dragon	Red_Dragon		1260		
+Silver_Dragon	onyxae.dragonsdescent	yes	silver dragon	Silver_Dragon		1320		
+Talbuk	onyxae.dragonsdescent	yes	talbuk	Talbuk		130		
+True_Dragon	onyxae.dragonsdescent	yes	true dragon	True_Dragon		1650		
+White_Dragon	onyxae.dragonsdescent	yes	white dragon	White_Dragon		1260		
+Yellow_Dragon	onyxae.dragonsdescent	yes	yellow dragon	Yellow_Dragon		1460		
 Bandit	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bandit	Human	OutlanderCivil	45	IndustrialBasic,IndustrialAdvanced,Outlander	SimpleGun,GrenadeDestructive,NeolithicRangedBasic
 BanditLeader	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bandit leader	Human	OutlanderCivil	120	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,BeltDefensePop	Revolver
 BountyHunter	oskarpotocki.vanillafactionsexpanded.settlersmodule	yes	bounty hunter	Human	OutlanderCivil	70	IndustrialBasic,IndustrialAdvanced,Outlander,IndustrialMilitaryBasic	Gun,Revolver
@@ -1094,6 +1108,7 @@ FeralSkulker	rimsenal.feral	yes	skulker	Human	Feral	85	IndustrialBasic,Industria
 FeralSkullBuster	rimsenal.feral	yes	skull buster	Human	Feral	120	IndustrialBasic,IndustrialAdvanced	FeralAssault
 FeralThumper	rimsenal.feral	yes	thumper	Human	Feral	155	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic	FeralGunHeavy
 FeralTwisted	rimsenal.feral	yes	damned one	Mutant_Twisted	Feral	30		
+Rimsenal_Hyperffid	rimsenal.plants	no	hyperffid	Rimsenal_Hyperffid		110		
 Corporate_Common_Manager	rimsenal.spacer	yes	Spacer trade manager	Human	SpacerRough	40	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartGunBasic,SmartGunRegular
 Corporate_Common_Wageslave	rimsenal.spacer	yes	corporate employee	Human	SpacerRough	30	IndustrialBasic,IndustrialAdvanced	Gun
 Corporate_Fighter_Breacher	rimsenal.spacer	yes	corporate guard breacher	Human	SpacerRough	115	IndustrialBasic,IndustrialAdvanced,IndustrialMilitaryBasic,IndustrialMilitaryAdvanced	SmartGrenades,SpacerBreacher
@@ -1177,6 +1192,7 @@ AA_EmpressButterfly	sarg.alphaanimals	yes	Empress butterfly	AA_EmpressButterfly	
 AA_EmpressButterflyLarva	sarg.alphaanimals	yes	Empress butterfly larva	AA_EmpressButterflyLarva		10		
 AA_EngorgedTentacularAberration	sarg.alphaanimals	yes	engorged tentacular aberration	AA_EngorgedTentacularAberration		500		
 AA_Erin	sarg.alphaanimals	yes	erin	AA_Erin		175		
+AA_Eyeling	sarg.alphaanimals	yes	eyeling	AA_Eyeling		10		
 AA_Feralisk	sarg.alphaanimals	yes	feralisk	AA_Feralisk		200		
 AA_FeraliskClutchMother	sarg.alphaanimals	yes	feralisk clutch mother	AA_FeraliskClutchMother		600		
 AA_FireWasp	sarg.alphaanimals	yes	fire wasp	AA_FireWasp		80		
@@ -1298,7 +1314,6 @@ AM_Siegebreaker	sarg.alphamechs	yes	siegebreaker	AM_Siegebreaker	Mechanoid	400		
 AM_Siegemelter	sarg.alphamechs	yes	siegemelter	AM_Siegemelter	Mechanoid	400		AM_SiegemelterTurret
 AM_Starfire	sarg.alphamechs	yes	starfire	AM_Starfire	Mechanoid	600		AM_StarfireTurret
 AM_WarEmpress	sarg.alphamechs	yes	war empress	AM_WarEmpress	Mechanoid	850		
-AA_Eyeling	sarg.alphamemes	yes	eyeling	AA_Eyeling		10		
 AM_Dryad_Corruptor	sarg.alphamemes	yes	corruptor dryad	AM_Dryad_Corruptor		40		
 AM_Dryad_Ocular	sarg.alphamemes	yes	ocular dryad	AM_Dryad_Ocular		40		
 AM_Dryad_Spitter	sarg.alphamemes	yes	spitter dryad	AM_Dryad_Spitter		40		
@@ -1306,42 +1321,128 @@ AM_Dryad_Tumorous	sarg.alphamemes	yes	tumorous dryad	AM_Dryad_Tumorous		40
 AM_Dryad_Unstable	sarg.alphamemes	yes	unstable dryad	AM_Dryad_Unstable		40		
 AM_UnshackledDryad	sarg.alphamemes	yes	unshackled dryad	AM_UnshackledDryad		60		
 MDWC_StrangerInBlack	shunter.medicwarcasket	yes	stranger in black	Human	OutlanderCivil	300		MDWC_StrangerInBlack
-Rimfolk_Enclave_Chair	silvanalig.colonycouncil	yes	chair of the exchange	Human	Rimfolk_Enclave	60	IndustrialBasic,IndustrialAdvanced	SimpleGun
-Rimfolk_Enclave_Factor	silvanalig.colonycouncil	yes	enclave factor	Human	Rimfolk_Enclave	50	IndustrialBasic,IndustrialAdvanced	SimpleGun
-Rimfolk_Enclave_Hand	silvanalig.colonycouncil	yes	enclave hand	Human	Rimfolk_Enclave	45	IndustrialBasic,IndustrialAdvanced	SimpleGun
-Rimfolk_Enclave_Marshal	silvanalig.colonycouncil	yes	enclave marshal	Human	Rimfolk_Enclave	130	SpacerMilitary,IndustrialMilitaryAdvanced,IndustrialBasic	SpacerGun,IndustrialGunAdvanced
-Rimfolk_Herders_Archer	silvanalig.colonycouncil	yes	herd archer	Human	Rimfolk_Herders	55	Neolithic	NeolithicRangedDecent
-Rimfolk_Herders_Drover	silvanalig.colonycouncil	yes	drover	Human	Rimfolk_Herders	50	Neolithic	NeolithicMeleeBasic
-Rimfolk_Herders_Elder	silvanalig.colonycouncil	yes	herd elder	Human	Rimfolk_Herders	60	Neolithic	NeolithicRangedChief
-Rimfolk_Herders_Herder	silvanalig.colonycouncil	yes	herder	Human	Rimfolk_Herders	45	Neolithic	NeolithicMeleeBasic
+Rimfolk_AshenBanner_Captain	silvanalig.colonycouncil	yes	captain of the Banner	Human	Rimfolk_AshenBanner	120	MedievalArmorDecent	MedievalMeleeAdvanced
+Rimfolk_AshenBanner_Paymaster	silvanalig.colonycouncil	yes	paymaster	Human	Rimfolk_AshenBanner	45	VFEM2_Trader,VFEM2_Cap,MedievalArmorBasic	MedievalMeleeBasic
+Rimfolk_AshenBanner_Sergeant	silvanalig.colonycouncil	yes	sergeant	Human	Rimfolk_AshenBanner	95	MedievalArmorBasic,MedievalArmorDecent	MedievalMeleeAdvanced,MedievalMeleeDecent
+Rimfolk_AshenBanner_Shot	silvanalig.colonycouncil	yes	shot of the Banner	Human	Rimfolk_AshenBanner	80	MedievalMilitary	NeolithicRangedHeavy,VFEM2_Arbalest
+Rimfolk_AshenBanner_Soldier	silvanalig.colonycouncil	yes	soldier of the Banner	Human	Rimfolk_AshenBanner	85	MedievalMilitary	Spear,VFEM2_Pike
+Rimfolk_Choir_Cantor	silvanalig.colonycouncil	yes	cantor	Human	Rimfolk_Choir	70	IndustrialBasic,Psychic	
+Rimfolk_Choir_FirstVoice	silvanalig.colonycouncil	yes	first voice	Human	Rimfolk_Choir	110	IndustrialAdvanced,Psychic	
+Rimfolk_Choir_Keeper	silvanalig.colonycouncil	yes	keeper of the hum	Human	Rimfolk_Choir	45	IndustrialAdvanced	
+Rimfolk_Choir_Listener	silvanalig.colonycouncil	yes	listener	Human	Rimfolk_Choir	40	IndustrialBasic	
+Rimfolk_Choir_QuietWarden	silvanalig.colonycouncil	yes	warden of the quiet	Human	Rimfolk_Choir	90	IndustrialBasic,Psychic	MedievalMeleeBasic
+Rimfolk_Deepwell_Assayer	silvanalig.colonycouncil	yes	assayer	Human	Rimfolk_Deepwell	40	IndustrialAdvanced	SimpleGun
+Rimfolk_Deepwell_Boss	silvanalig.colonycouncil	yes	union boss	Human	Rimfolk_Deepwell	65	IndustrialAdvanced	Gun
+Rimfolk_Deepwell_Captain	silvanalig.colonycouncil	yes	shift-captain	Human	Rimfolk_Deepwell	75	IndustrialAdvanced	Gun
+Rimfolk_Deepwell_Miner	silvanalig.colonycouncil	yes	union miner	Human	Rimfolk_Deepwell	55	IndustrialBasic	PumpShotgun,MedievalMeleeBasic,ToolDecent
+Rimfolk_Deepwell_ShotFirer	silvanalig.colonycouncil	yes	shot-firer	Human	Rimfolk_Deepwell	65	IndustrialBasic,VAEA_Utility_Industrial	GrenadeDestructive,SimpleGun
+Rimfolk_Enclave_Chair	silvanalig.colonycouncil	yes	chair of the exchange	Human	Rimfolk_Enclave	60	IndustrialBasic,IndustrialAdvanced,Psychic	SimpleGun
+Rimfolk_Enclave_Factor	silvanalig.colonycouncil	yes	enclave factor	Human	Rimfolk_Enclave	50	IndustrialBasic,IndustrialAdvanced,Rimfolk_Finery,DataGlasses	SimpleGun
+Rimfolk_Enclave_Hand	silvanalig.colonycouncil	yes	enclave hand	Human	Rimfolk_Enclave	45	IndustrialBasic,IndustrialAdvanced,VAEA_Utility_Industrial,Spacer,DataGlasses	SimpleGun
+Rimfolk_Enclave_Marshal	silvanalig.colonycouncil	yes	enclave marshal	Human	Rimfolk_Enclave	130	BeltDefensePop,VAEA_Utility_Spacer	SpacerGun,SmartGunAdvanced
+Rimfolk_HelixWorks_ChiefEditor	silvanalig.colonycouncil	yes	chief editor	Human	Rimfolk_HelixWorks	90	IndustrialAdvanced,DataGlasses	SpacerGun
+Rimfolk_HelixWorks_Guard	silvanalig.colonycouncil	yes	lab guard	Human	Rimfolk_HelixWorks	110	BeltDefensePop	SpacerGun
+Rimfolk_HelixWorks_LabHand	silvanalig.colonycouncil	yes	lab hand	Human	Rimfolk_HelixWorks	40	IndustrialBasic,VAEA_Utility_Spacer	Autopistol,ShortShots
+Rimfolk_HelixWorks_Mechanitor	silvanalig.colonycouncil	yes	lab mechanitor	Human	Rimfolk_HelixWorks	75	IndustrialBasic,VAEA_Utility_Spacer	Autopistol,ShortShots
+Rimfolk_HelixWorks_SampleBuyer	silvanalig.colonycouncil	yes	sample-buyer	Human	Rimfolk_HelixWorks	45	IndustrialAdvanced	Autopistol
+Rimfolk_HelixWorks_Sequencer	silvanalig.colonycouncil	yes	sequencer	Human	Rimfolk_HelixWorks	55	IndustrialBasic,IndustrialAdvanced,DataGlasses	Autopistol,ShortShots
+Rimfolk_HelixWorks_VatKeeper	silvanalig.colonycouncil	yes	vat-keeper	Human	Rimfolk_HelixWorks	45	IndustrialBasic	Autopistol,SimpleGun
+Rimfolk_HelixWorks_Vatborn	silvanalig.colonycouncil	yes	vat-grown	Human	Rimfolk_HelixWorks	35	IndustrialBasic	
+Rimfolk_Herders_Archer	silvanalig.colonycouncil	yes	herd archer	Human	Rimfolk_Herders	55	Neolithic	NeolithicRangedDecent,NeolithicRangedBasic,ClassicalRangedJavelin
+Rimfolk_Herders_Drover	silvanalig.colonycouncil	yes	drover	Human	Rimfolk_Herders	50	Neolithic,Lasso	NeolithicMeleeBasic,NeolithicRangedBasic
+Rimfolk_Herders_Elder	silvanalig.colonycouncil	yes	herd elder	Human	Rimfolk_Herders	60	Neolithic,Lasso	NeolithicRangedChief
+Rimfolk_Herders_Herder	silvanalig.colonycouncil	yes	herder	Human	Rimfolk_Herders	45	Neolithic,Lasso	NeolithicMeleeBasic,NeolithicRangedBasic
 Rimfolk_Herders_Warden	silvanalig.colonycouncil	yes	herd warden	Human	Rimfolk_Herders	60	Neolithic	NeolithicMeleeAdvanced,NeolithicMeleeDecent
-Rimfolk_League_Factor	silvanalig.colonycouncil	yes	factor	Human	Rimfolk_League	50	IndustrialBasic,IndustrialAdvanced	SimpleGun
-Rimfolk_League_Guard	silvanalig.colonycouncil	yes	caravan guard	Human	Rimfolk_League	65	IndustrialMilitaryBasic,IndustrialBasic,BeltDefensePop	Gun
-Rimfolk_League_Master	silvanalig.colonycouncil	yes	league master	Human	Rimfolk_League	50	IndustrialBasic,IndustrialAdvanced	SimpleGun
-Rimfolk_League_Outrider	silvanalig.colonycouncil	yes	outrider	Human	Rimfolk_League	100	IndustrialMilitaryAdvanced,IndustrialMilitaryBasic,BeltDefensePop	IndustrialGunAdvanced,Gun
-Rimfolk_League_Wayfarer	silvanalig.colonycouncil	yes	wayfarer	Human	Rimfolk_League	45	IndustrialBasic,IndustrialAdvanced	SimpleGun
-Rimfolk_Order_Bowman	silvanalig.colonycouncil	yes	lay archer	Human	Rimfolk_Order	55	IndustrialBasic	NeolithicRangedDecent
-Rimfolk_Order_Brother	silvanalig.colonycouncil	yes	sworn guard	Human	Rimfolk_Order	90	IndustrialBasic	MedievalMeleeDecent,MedievalMeleeAdvanced
-Rimfolk_Order_Cellarer	silvanalig.colonycouncil	yes	cellarer	Human	Rimfolk_Order	40	IndustrialBasic	MedievalMeleeBasic
-Rimfolk_Order_Healer	silvanalig.colonycouncil	yes	hospitaller	Human	Rimfolk_Order	40	IndustrialBasic	MedievalMeleeBasic
-Rimfolk_Order_Lay	silvanalig.colonycouncil	yes	lay servant	Human	Rimfolk_Order	35	IndustrialBasic	MedievalMeleeBasic
-Rimfolk_Order_Prior	silvanalig.colonycouncil	yes	prior	Human	Rimfolk_Order	45	IndustrialBasic	MedievalMeleeBasic
-Rimfolk_Pilgrims_Bowman	silvanalig.colonycouncil	yes	way archer	Human	Rimfolk_Pilgrims	45	IndustrialBasic	NeolithicRangedBasic,NeolithicRangedDecent
-Rimfolk_Pilgrims_Chandler	silvanalig.colonycouncil	yes	chandler	Human	Rimfolk_Pilgrims	35	IndustrialBasic	NeolithicMeleeBasic
-Rimfolk_Pilgrims_Keeper	silvanalig.colonycouncil	yes	keeper of the shrines	Human	Rimfolk_Pilgrims	40	IndustrialBasic	NeolithicMeleeBasic
-Rimfolk_Pilgrims_Pilgrim	silvanalig.colonycouncil	yes	pilgrim	Human	Rimfolk_Pilgrims	30	IndustrialBasic	NeolithicMeleeBasic
-Rimfolk_Pilgrims_Warden	silvanalig.colonycouncil	yes	warden of the way	Human	Rimfolk_Pilgrims	60	IndustrialBasic	NeolithicMeleeAdvanced
-Rimfolk_RiverFolk_BoatTrader	silvanalig.colonycouncil	yes	boat-trader	Human	Rimfolk_RiverFolk	40	IndustrialBasic,Neolithic	MedievalMeleeBasic
-Rimfolk_RiverFolk_Bowman	silvanalig.colonycouncil	yes	river archer	Human	Rimfolk_RiverFolk	50	IndustrialBasic,Neolithic	NeolithicRangedDecent
-Rimfolk_RiverFolk_Ferryman	silvanalig.colonycouncil	yes	ferry hand	Human	Rimfolk_RiverFolk	40	IndustrialBasic,Neolithic	NeolithicMeleeBasic
-Rimfolk_RiverFolk_Fisher	silvanalig.colonycouncil	yes	fisher	Human	Rimfolk_RiverFolk	35	IndustrialBasic,Neolithic	MedievalMeleeBasic
-Rimfolk_RiverFolk_Master	silvanalig.colonycouncil	yes	river master	Human	Rimfolk_RiverFolk	55	IndustrialBasic,Neolithic	NeolithicMeleeAdvanced
-Rimfolk_RiverFolk_Warden	silvanalig.colonycouncil	yes	river warden	Human	Rimfolk_RiverFolk	60	IndustrialBasic,Neolithic	NeolithicMeleeAdvanced
-Rimfolk_Scholars_Bookseller	silvanalig.colonycouncil	yes	bookseller	Human	Rimfolk_Scholars	40	IndustrialBasic	SimpleGun
-Rimfolk_Scholars_Don	silvanalig.colonycouncil	yes	scholar	Human	Rimfolk_Scholars	35	IndustrialBasic	SimpleGun
-Rimfolk_Scholars_Fellow	silvanalig.colonycouncil	yes	fellow	Human	Rimfolk_Scholars	35	IndustrialBasic	SimpleGun
-Rimfolk_Scholars_Proctor	silvanalig.colonycouncil	yes	proctor	Human	Rimfolk_Scholars	70	IndustrialMilitaryBasic,IndustrialBasic	Gun
-Rimfolk_Scholars_Provost	silvanalig.colonycouncil	yes	provost	Human	Rimfolk_Scholars	40	IndustrialBasic	SimpleGun
+Rimfolk_HollowFleet_Captain	silvanalig.colonycouncil	yes	captain	Human	Rimfolk_HollowFleet	100	IndustrialAdvanced	SpacerGun
+Rimfolk_HollowFleet_Deckhand	silvanalig.colonycouncil	yes	deckhand	Human	Rimfolk_HollowFleet	45	IndustrialBasic,VAEA_Utility_Industrial	SimpleGun
+Rimfolk_HollowFleet_Engineer	silvanalig.colonycouncil	yes	ship's engineer	Human	Rimfolk_HollowFleet	70	IndustrialBasic,VAEA_Utility_Spacer	Autopistol,SimpleGun
+Rimfolk_HollowFleet_Guard	silvanalig.colonycouncil	yes	ship's guard	Human	Rimfolk_HollowFleet	110	BeltDefensePop	SpacerGun
+Rimfolk_HollowFleet_Officer	silvanalig.colonycouncil	yes	officer	Human	Rimfolk_HollowFleet	80	IndustrialAdvanced	Autopistol,SimpleGun
+Rimfolk_HollowFleet_Quartermaster	silvanalig.colonycouncil	yes	ship's quartermaster	Human	Rimfolk_HollowFleet	45	IndustrialAdvanced	Autopistol
+Rimfolk_KilnGuild_Apprentice	silvanalig.colonycouncil	yes	wander-year apprentice	Human	Rimfolk_KilnGuild	35	Neolithic,Rimfolk_Headscarf,VAEA_Utility_Neolithic	MedievalMeleeBasic,NeolithicMeleeBasic
+Rimfolk_KilnGuild_Guard	silvanalig.colonycouncil	yes	guild guard	Human	Rimfolk_KilnGuild	70	MedievalArmorBasic,MedievalArmorDecent	LongSword,MedievalMeleeAdvanced
+Rimfolk_KilnGuild_Guildmaster	silvanalig.colonycouncil	yes	guildmaster	Human	Rimfolk_KilnGuild	80	VFEM2_Cap,Rimfolk_Beads,Rimfolk_Skullcap,Rimfolk_Headscarf	MedievalMeleeDecent,MedievalMeleeAdvanced
+Rimfolk_KilnGuild_Journeyman	silvanalig.colonycouncil	yes	journeyman	Human	Rimfolk_KilnGuild	45	Neolithic,VFEM2_Cap,Rimfolk_Skullcap,Rimfolk_Headscarf,VAEA_Utility_Neolithic	MedievalMeleeDecent,MedievalMeleeBasic,ToolDecent
+Rimfolk_KilnGuild_MasterTrader	silvanalig.colonycouncil	yes	master-trader	Human	Rimfolk_KilnGuild	45	VFEM2_Trader,VFEM2_Cap,Rimfolk_Beads	MedievalMeleeBasic
+Rimfolk_Lattice_Engineer	silvanalig.colonycouncil	yes	engineer	Human	Rimfolk_Lattice	60	IndustrialBasic,VAEA_Utility_Industrial	SimpleGun,ShortShots
+Rimfolk_Lattice_Linkhand	silvanalig.colonycouncil	yes	link-hand	Human	Rimfolk_Lattice	40	IndustrialBasic,VAEA_Utility_Industrial	Autopistol,ShortShots
+Rimfolk_Lattice_MechTender	silvanalig.colonycouncil	yes	mech-tender	Human	Rimfolk_Lattice	85	IndustrialBasic,VAEA_Utility_Spacer	Autopistol,ShortShots
+Rimfolk_Lattice_Node	silvanalig.colonycouncil	yes	node	Human	Rimfolk_Lattice	100	IndustrialAdvanced,DataGlasses	SpacerGun
+Rimfolk_Lattice_PartTrader	silvanalig.colonycouncil	yes	part-trader	Human	Rimfolk_Lattice	45	IndustrialAdvanced	Autopistol
+Rimfolk_Lattice_Warden	silvanalig.colonycouncil	yes	link-warden	Human	Rimfolk_Lattice	100	BeltDefensePop	SpacerGun,ShortShots
+Rimfolk_League_Factor	silvanalig.colonycouncil	yes	factor	Human	Rimfolk_League	50	IndustrialBasic,IndustrialAdvanced,Outlander,Rimfolk_Fez	SimpleGun,FrontierGunSimple
+Rimfolk_League_Guard	silvanalig.colonycouncil	yes	caravan guard	Human	Rimfolk_League	65	IndustrialMilitaryBasic,IndustrialBasic,BeltDefensePop,VAEA_AmmoPack	Gun,FrontierGunAdvanced
+Rimfolk_League_Master	silvanalig.colonycouncil	yes	league master	Human	Rimfolk_League	50	IndustrialBasic,IndustrialAdvanced,Rimfolk_Finery	SimpleGun
+Rimfolk_League_Outrider	silvanalig.colonycouncil	yes	outrider	Human	Rimfolk_League	100	IndustrialMilitaryAdvanced,BeltDefensePop,GrenadeDestructiveBelt,VAEA_AmmoPack,Lasso	IndustrialGunAdvanced,Gun,FrontierGunAdvanced
+Rimfolk_League_Wayfarer	silvanalig.colonycouncil	yes	wayfarer	Human	Rimfolk_League	45	IndustrialBasic,IndustrialAdvanced,Western,Outlander,Rimfolk_Fez,VAEA_Utility_Industrial	SimpleGun,FrontierGunSimple
+Rimfolk_Mossborn_EldestRoot	silvanalig.colonycouncil	yes	eldest root	Human	Rimfolk_Mossborn	75	Neolithic	NeolithicRangedDecent,NeolithicMeleeAdvanced
+Rimfolk_Mossborn_HerbTrader	silvanalig.colonycouncil	yes	herb-trader	Human	Rimfolk_Mossborn	40	Neolithic,VAEA_Utility_Neolithic,Rimfolk_Beads	NeolithicMeleeBasic
+Rimfolk_Mossborn_SeedCarrier	silvanalig.colonycouncil	yes	seed-carrier	Human	Rimfolk_Mossborn	40	Neolithic,VAEA_Utility_Neolithic,Rimfolk_Headscarf	NeolithicMeleeBasic
+Rimfolk_Mossborn_Tender	silvanalig.colonycouncil	yes	grove-tender	Human	Rimfolk_Mossborn	40	Neolithic,VAEA_Utility_Neolithic	NeolithicMeleeBasic,NeolithicRangedBasic
+Rimfolk_Mossborn_Thorn	silvanalig.colonycouncil	yes	thorn-guard	Human	Rimfolk_Mossborn	60	Neolithic	NeolithicRangedDecent,NeolithicMeleeAdvanced
+Rimfolk_Order_Bowman	silvanalig.colonycouncil	yes	lay archer	Human	Rimfolk_Order	55	MedievalArmorBasic	NeolithicRangedDecent,VFEM2_Warbow,VFEM2_Arbalest
+Rimfolk_Order_Brother	silvanalig.colonycouncil	yes	sworn guard	Human	Rimfolk_Order	90	MedievalMilitary	MedievalMeleeDecent,MedievalMeleeAdvanced
+Rimfolk_Order_Cellarer	silvanalig.colonycouncil	yes	cellarer	Human	Rimfolk_Order	40	BestowerHood,VFEM2_Trader,VFEM2_Cap,Rimfolk_Beads	MedievalMeleeBasic
+Rimfolk_Order_Healer	silvanalig.colonycouncil	yes	hospitaller	Human	Rimfolk_Order	40	BestowerHood,Rimfolk_Beads	MedievalMeleeBasic
+Rimfolk_Order_Lay	silvanalig.colonycouncil	yes	lay servant	Human	Rimfolk_Order	35	BestowerHood,VFEM2_Cap,Rimfolk_Headscarf,Rimfolk_Beads	MedievalMeleeBasic,NeolithicMeleeBasic
+Rimfolk_Order_Prior	silvanalig.colonycouncil	yes	prior	Human	Rimfolk_Order	45	BestowerHood,VFEM2_Trader,Rimfolk_Mitre,Rimfolk_Beads	MedievalMeleeBasic
+Rimfolk_Pilgrims_Bowman	silvanalig.colonycouncil	yes	way archer	Human	Rimfolk_Pilgrims	45	BestowerHood,VFEM2_Cap,Rimfolk_WideHat,Rimfolk_Headscarf,MedievalArmorBasic	NeolithicRangedBasic,NeolithicRangedDecent
+Rimfolk_Pilgrims_Chandler	silvanalig.colonycouncil	yes	chandler	Human	Rimfolk_Pilgrims	35	BestowerHood,VFEM2_Trader,VFEM2_Cap,Rimfolk_WideHat,Rimfolk_Beads	NeolithicMeleeBasic
+Rimfolk_Pilgrims_Keeper	silvanalig.colonycouncil	yes	keeper of the shrines	Human	Rimfolk_Pilgrims	40	Rimfolk_Beads	NeolithicMeleeBasic
+Rimfolk_Pilgrims_Pilgrim	silvanalig.colonycouncil	yes	pilgrim	Human	Rimfolk_Pilgrims	30	VAEA_Utility_Neolithic,Rimfolk_Beads	NeolithicMeleeBasic
+Rimfolk_Pilgrims_Warden	silvanalig.colonycouncil	yes	warden of the way	Human	Rimfolk_Pilgrims	60	MedievalArmorBasic,MedievalArmorDecent	NeolithicMeleeAdvanced,VFEM2_Pike
+Rimfolk_QuietBell_FirstBell	silvanalig.colonycouncil	yes	first bell	Human	Rimfolk_QuietBell	40	Cape,VFEM2_Medieval	NeolithicMeleeBasic
+Rimfolk_QuietBell_Gravewarden	silvanalig.colonycouncil	yes	gravewarden	Human	Rimfolk_QuietBell	65	MedievalArmorBasic,MedievalArmorDecent,MedievalMilitary	NeolithicMeleeAdvanced,MedievalMeleeDecent
+Rimfolk_QuietBell_Keeper	silvanalig.colonycouncil	yes	bell-keeper	Human	Rimfolk_QuietBell	30	VAEA_Utility_Neolithic	NeolithicMeleeBasic
+Rimfolk_QuietBell_Sexton	silvanalig.colonycouncil	yes	sexton	Human	Rimfolk_QuietBell	40	Neolithic,VAEA_Utility_Neolithic,VFEM2_Cap	NeolithicMeleeBasic,ToolDecent
+Rimfolk_QuietBell_Tollkeeper	silvanalig.colonycouncil	yes	tollkeeper	Human	Rimfolk_QuietBell	30	Cape,VFEM2_Trader,VFEM2_Medieval	NeolithicMeleeBasic
+Rimfolk_Republic_Citizen	silvanalig.colonycouncil	yes	citizen	Human	Rimfolk_Republic	40	IndustrialBasic,Outlander	SimpleGun,MedievalMeleeBasic
+Rimfolk_Republic_Clerk	silvanalig.colonycouncil	yes	clerk of the Republic	Human	Rimfolk_Republic	40	IndustrialAdvanced	SimpleGun
+Rimfolk_Republic_Guard	silvanalig.colonycouncil	yes	civic guard	Human	Rimfolk_Republic	75	IndustrialMilitaryBasic	Gun,NonLethal
+Rimfolk_Republic_President	silvanalig.colonycouncil	yes	president	Human	Rimfolk_Republic	55	IndustrialAdvanced	SimpleGun
+Rimfolk_Republic_Quartermaster	silvanalig.colonycouncil	yes	quartermaster	Human	Rimfolk_Republic	40	IndustrialBasic,IndustrialAdvanced	SimpleGun
+Rimfolk_RiverFolk_BoatTrader	silvanalig.colonycouncil	yes	boat-trader	Human	Rimfolk_RiverFolk	40	Neolithic	MedievalMeleeBasic
+Rimfolk_RiverFolk_Bowman	silvanalig.colonycouncil	yes	river archer	Human	Rimfolk_RiverFolk	50	Neolithic	NeolithicRangedDecent,NeolithicRangedBasic
+Rimfolk_RiverFolk_Ferryman	silvanalig.colonycouncil	yes	ferry hand	Human	Rimfolk_RiverFolk	40	Neolithic	NeolithicMeleeBasic
+Rimfolk_RiverFolk_Fisher	silvanalig.colonycouncil	yes	fisher	Human	Rimfolk_RiverFolk	35	Neolithic	MedievalMeleeBasic,NeolithicRangedBasic,ClassicalRangedJavelin
+Rimfolk_RiverFolk_Master	silvanalig.colonycouncil	yes	river master	Human	Rimfolk_RiverFolk	55	Neolithic	NeolithicMeleeAdvanced
+Rimfolk_RiverFolk_Warden	silvanalig.colonycouncil	yes	river warden	Human	Rimfolk_RiverFolk	60	Neolithic,MedievalArmorBasic	NeolithicMeleeAdvanced
+Rimfolk_Scholars_Bookseller	silvanalig.colonycouncil	yes	bookseller	Human	Rimfolk_Scholars	40	IndustrialBasic,IndustrialAdvanced	SimpleGun
+Rimfolk_Scholars_Don	silvanalig.colonycouncil	yes	scholar	Human	Rimfolk_Scholars	35	IndustrialBasic,IndustrialAdvanced,Rimfolk_Skullcap	SimpleGun
+Rimfolk_Scholars_Fellow	silvanalig.colonycouncil	yes	fellow	Human	Rimfolk_Scholars	35	IndustrialBasic,IndustrialAdvanced,Rimfolk_Skullcap	SimpleGun
+Rimfolk_Scholars_Proctor	silvanalig.colonycouncil	yes	proctor	Human	Rimfolk_Scholars	70	IndustrialMilitaryBasic,IndustrialBasic	Gun,NonLethal
+Rimfolk_Scholars_Provost	silvanalig.colonycouncil	yes	provost	Human	Rimfolk_Scholars	40	IndustrialBasic,IndustrialAdvanced	SimpleGun
+Rimfolk_SignalLine_Chief	silvanalig.colonycouncil	yes	chief lineman	Human	Rimfolk_SignalLine	65	IndustrialAdvanced,VAEA_Utility_Industrial	Gun
+Rimfolk_SignalLine_Lineman	silvanalig.colonycouncil	yes	lineman	Human	Rimfolk_SignalLine	60	IndustrialBasic	Gun,FrontierGunSimple
+Rimfolk_SignalLine_Operator	silvanalig.colonycouncil	yes	operator	Human	Rimfolk_SignalLine	40	IndustrialBasic,IndustrialAdvanced,VAEA_Utility_Industrial	SimpleGun
+Rimfolk_SignalLine_RelayKeeper	silvanalig.colonycouncil	yes	relay-keeper	Human	Rimfolk_SignalLine	45	IndustrialAdvanced	SimpleGun
+Rimfolk_SignalLine_WireTrader	silvanalig.colonycouncil	yes	wire-trader	Human	Rimfolk_SignalLine	40	IndustrialAdvanced,VAEA_Utility_Industrial	SimpleGun
+Rimfolk_Stormglass_Apprentice	silvanalig.colonycouncil	yes	glass apprentice	Human	Rimfolk_Stormglass	35	IndustrialBasic,Western	MedievalMeleeBasic,SimpleGun
+Rimfolk_Stormglass_FirstReader	silvanalig.colonycouncil	yes	first reader	Human	Rimfolk_Stormglass	90	IndustrialBasic,Psychic	SimpleGun
+Rimfolk_Stormglass_Reader	silvanalig.colonycouncil	yes	reader	Human	Rimfolk_Stormglass	45	IndustrialBasic,VAEA_Utility_Industrial,Rimfolk_WideHat	SimpleGun,MedievalMeleeBasic
+Rimfolk_Stormglass_VialSeller	silvanalig.colonycouncil	yes	vial-seller	Human	Rimfolk_Stormglass	40	IndustrialBasic,Rimfolk_WideHat	SimpleGun
+Rimfolk_Stormglass_Walker	silvanalig.colonycouncil	yes	storm-walker	Human	Rimfolk_Stormglass	65	IndustrialMilitaryBasic,IndustrialBasic	Gun
+Rimfolk_SunkenVault_Dweller	silvanalig.colonycouncil	yes	dweller	Human	Rimfolk_SunkenVault	40	IndustrialBasic,VAEA_Utility_Industrial	Autopistol,SimpleGun
+Rimfolk_SunkenVault_Medic	silvanalig.colonycouncil	yes	vault medic	Human	Rimfolk_SunkenVault	45	IndustrialBasic	Autopistol
+Rimfolk_SunkenVault_Overseer	silvanalig.colonycouncil	yes	overseer	Human	Rimfolk_SunkenVault	90	IndustrialAdvanced	SpacerGun
+Rimfolk_SunkenVault_Scout	silvanalig.colonycouncil	yes	surface-scout	Human	Rimfolk_SunkenVault	70	IndustrialBasic,VAEA_Utility_Industrial	SimpleGun,ShortShots
+Rimfolk_SunkenVault_Security	silvanalig.colonycouncil	yes	vault security	Human	Rimfolk_SunkenVault	100	BeltDefensePop	SpacerGun
+Rimfolk_SunkenVault_Technician	silvanalig.colonycouncil	yes	technician	Human	Rimfolk_SunkenVault	45	IndustrialBasic,VAEA_Utility_Spacer	Autopistol
+Rimfolk_Tamers_EggTrader	silvanalig.colonycouncil	yes	egg-trader	Human	Rimfolk_Tamers	35	IndustrialAdvanced,Western	SimpleGun
+Rimfolk_Tamers_Holder	silvanalig.colonycouncil	yes	circuit-holder	Human	Rimfolk_Tamers	70	IndustrialAdvanced,Western	SimpleGun
+Rimfolk_Tamers_Ranger	silvanalig.colonycouncil	yes	ranger	Human	Rimfolk_Tamers	60	IndustrialBasic,IndustrialAdvanced,VAEA_Utility_Industrial	Gun,SimpleGun
+Rimfolk_Tamers_Ringwarden	silvanalig.colonycouncil	yes	ring-warden	Human	Rimfolk_Tamers	65	IndustrialMilitaryBasic	Gun,SimpleGun
+Rimfolk_Tamers_Tamer	silvanalig.colonycouncil	yes	roaming tamer	Human	Rimfolk_Tamers	40	IndustrialBasic,Western,Outlander,VAEA_Utility_Industrial	SimpleGun,MedievalMeleeBasic
+Rimfolk_Wardens_Master	silvanalig.colonycouncil	yes	lantern-master	Human	Rimfolk_Wardens	80	Neolithic,MedievalArmorBasic	NeolithicRangedHeavy,NeolithicMeleeAdvanced
+Rimfolk_Wardens_PeltBuyer	silvanalig.colonycouncil	yes	pelt-buyer	Human	Rimfolk_Wardens	40	Neolithic,VFEM2_Trader,VAEA_Utility_Neolithic	NeolithicMeleeBasic
+Rimfolk_Wardens_Spear	silvanalig.colonycouncil	yes	spear-warden	Human	Rimfolk_Wardens	65	Neolithic,MedievalArmorBasic,MedievalArmorDecent	NeolithicMeleeAdvanced,VFEM2_Pike
+Rimfolk_Wardens_Tracker	silvanalig.colonycouncil	yes	tracker	Human	Rimfolk_Wardens	55	Neolithic	NeolithicRangedDecent,NeolithicRangedHeavy,VFEM2_Arbalest
+Rimfolk_Wardens_Warden	silvanalig.colonycouncil	yes	warden	Human	Rimfolk_Wardens	50	Neolithic,MedievalArmorBasic,VAEA_Utility_Neolithic	NeolithicMeleeAdvanced,NeolithicRangedDecent
+Rimfolk_Wheel_Fixer	silvanalig.colonycouncil	yes	fixer	Human	Rimfolk_Wheel	40	IndustrialBasic,IndustrialAdvanced,VAEA_Utility_Industrial	SimpleGun
+Rimfolk_Wheel_Guard	silvanalig.colonycouncil	yes	yard guard	Human	Rimfolk_Wheel	65	IndustrialMilitaryBasic,IndustrialBasic	Gun,MakeshiftGun
+Rimfolk_Wheel_Hand	silvanalig.colonycouncil	yes	wheel hand	Human	Rimfolk_Wheel	45	IndustrialBasic,VAEA_Utility_Industrial	SimpleGun,MedievalMeleeBasic,ToolDecent,MakeshiftGun
+Rimfolk_Wheel_Mechanitor	silvanalig.colonycouncil	yes	mechanitor	Human	Rimfolk_Wheel	70	IndustrialBasic	Autopistol,SimpleGun
+Rimfolk_Wheel_Wheelwright	silvanalig.colonycouncil	yes	wheelwright	Human	Rimfolk_Wheel	60	IndustrialAdvanced,VAEA_Utility_Industrial	SimpleGun
 Allosaurus	spincrus.dinosauria	yes	allosaurus	Allosaurus		500		
 Ankylosaurus	spincrus.dinosauria	yes	ankylosaurus	Ankylosaurus		325		
 Baryonyx	spincrus.dinosauria	yes	baryonyx	Baryonyx		600		
@@ -2314,9 +2415,13 @@ SeerBowman	torann.arimworldofmagic	yes	Seer Archer	Human	Seers	90	Neolithic,Outl
 SeerDefender	torann.arimworldofmagic	yes	Magic Protector	Human	Seers	150	Neolithic,Outlander,Military,BeltDefensePop	MageAttack
 SeerElite	torann.arimworldofmagic	yes	Seer Elite	Human	Seers	180	Neolithic,Outlander,Military,BeltDefensePop,SeerEliteApparel	SeerElite,MageAttack
 SeerSpearman	torann.arimworldofmagic	yes	Guardsman	Human	Seers	60	Neolithic,Outlander,Military,BeltDefensePop	SeerSpearman
+TM_CovenAcolyte	torann.arimworldofmagic	yes	coven acolyte	Human	TM_DarkCoven	100	IndustrialBasic	MageAttack
+TM_CovenArchmage	torann.arimworldofmagic	yes	coven archmage	Human	TM_DarkCoven	300	IndustrialBasic	MageAttack
+TM_CovenInvoker	torann.arimworldofmagic	yes	coven invoker	Human	TM_DarkCoven	180	IndustrialBasic	MageAttack
 TM_Demon	torann.arimworldofmagic	yes	demon	TM_DemonR	TM_SummonedFaction	6000		
 TM_Dire_Wolf	torann.arimworldofmagic	yes	dire wolf	TM_Dire_WolfR		400		
 TM_Earth_Elemental	torann.arimworldofmagic	yes	earth elemental	TM_Earth_ElementalR	TM_ElementalFaction	1200		
+TM_EtherServantKind	torann.arimworldofmagic	yes	ether servant	TM_EtherServant		0		
 TM_Fire_Elemental	torann.arimworldofmagic	yes	fire elemental	TM_Fire_ElementalR	TM_ElementalFaction	1200		
 TM_FleshGolemK	torann.arimworldofmagic	yes	flesh-golem	TM_FleshGolem		400		
 TM_GiantSkeleton	torann.arimworldofmagic	yes	giant skeleton	TM_GiantSkeletonR	TM_SkeletalFaction	400		
@@ -2327,6 +2432,9 @@ TM_GreaterMinion	torann.arimworldofmagic	yes	greater minion	TM_GreaterMinionR	TM
 TM_GreaterWater_Elemental	torann.arimworldofmagic	yes	greater water elemental	TM_GreaterWater_ElementalR	TM_ElementalFaction	1500		
 TM_GreaterWind_Elemental	torann.arimworldofmagic	yes	greater wind elemental	TM_GreaterWind_ElementalR	TM_ElementalFaction	1500		
 TM_Greater_Sentinel	torann.arimworldofmagic	yes	greater sentinel	TM_Greater_SentinelR	TM_ElementalFaction	600		
+TM_GuildShadowmage	torann.arimworldofmagic	yes	guild arcanist	Human	TM_AssassinGuild	190	IndustrialBasic	MageAttack
+TM_GuildSpellblade	torann.arimworldofmagic	yes	guild spellblade	Human	TM_AssassinGuild	300	IndustrialBasic	MedievalMeleeAdvanced
+TM_GuildStalker	torann.arimworldofmagic	yes	guild stalker	Human	TM_AssassinGuild	110	IndustrialBasic	SniperRifle
 TM_HollowGolemK	torann.arimworldofmagic	yes	hollow-golem	TM_HollowGolem		1000		
 TM_LesserDemon	torann.arimworldofmagic	yes	lesser demon	TM_LesserDemonR	TM_SummonedFaction	2500		
 TM_LesserEarth_Elemental	torann.arimworldofmagic	yes	lesser earth elemental	TM_LesserEarth_ElementalR	TM_ElementalFaction	800		
@@ -2335,10 +2443,16 @@ TM_LesserWater_Elemental	torann.arimworldofmagic	yes	lesser water elemental	TM_L
 TM_LesserWind_Elemental	torann.arimworldofmagic	yes	lesser wind elemental	TM_LesserWind_ElementalR	TM_ElementalFaction	800		
 TM_Lesser_Sentinel	torann.arimworldofmagic	yes	lesser sentinel	TM_Lesser_SentinelR	TM_ElementalFaction	400		
 TM_LimestoneGolemK	torann.arimworldofmagic	yes	limestone-golem	TM_LimestoneGolem		200		
+TM_MageHunterSuppressor	torann.arimworldofmagic	yes	mage hunter suppression specialist	Human	TM_MageHunters	185	IndustrialBasic	IndustrialGunAdvanced
+TM_MageHunterTracker	torann.arimworldofmagic	yes	mage hunter tracker	Human	TM_MageHunters	85	IndustrialBasic	MedievalMeleeDecent
+TM_MageHunterVanguard	torann.arimworldofmagic	yes	mage hunter vanguard	Human	TM_MageHunters	140	IndustrialBasic	MedievalMeleeDecent
 TM_MaharalGolemK	torann.arimworldofmagic	yes	maharal-golem	TM_MaharalGolem		200		
 TM_MarbleGolemK	torann.arimworldofmagic	yes	marble-golem	TM_MarbleGolem		200		
 TM_MechaGolemK	torann.arimworldofmagic	yes	mecha-golem	TM_MechaGolem		500		
 TM_Minion	torann.arimworldofmagic	yes	minion	TM_MinionR	TM_SummonedFaction	50		
+TM_OrderChampion	torann.arimworldofmagic	yes	order champion	Human	TM_WarriorOrder	280	IndustrialBasic	MedievalMeleeAdvanced
+TM_OrderKnight	torann.arimworldofmagic	yes	order knight	Human	TM_WarriorOrder	170	IndustrialBasic	MedievalMeleeAdvanced
+TM_OrderRecruit	torann.arimworldofmagic	yes	order recruit	Human	TM_WarriorOrder	100	IndustrialBasic	MedievalMeleeDecent
 TM_Poppi	torann.arimworldofmagic	yes	poppi	TM_Poppi		120		
 TM_SandstoneGolemK	torann.arimworldofmagic	yes	sandstone-golem	TM_SandstoneGolem		200		
 TM_Sentinel	torann.arimworldofmagic	yes	sentinel	TM_SentinelR	TM_ElementalFaction	500		
@@ -2353,6 +2467,7 @@ TM_SpiritPKD	torann.arimworldofmagic	yes	spirit	Human	PlayerColony	30	Industrial
 TM_SpiritWolf	torann.arimworldofmagic	yes	spirit wolf	TM_SpiritWolfR		250		
 TM_StoneGolemK	torann.arimworldofmagic	yes	stone-golem	TM_StoneGolem		200		
 TM_StrawGolemK	torann.arimworldofmagic	yes	straw-golem	TM_StrawGolem		50		
+TM_TowerServitorKind	torann.arimworldofmagic	yes	stone kitchen servant	TM_TowerServitor		40		
 TM_Water_Elemental	torann.arimworldofmagic	yes	water elemental	TM_Water_ElementalR	TM_ElementalFaction	1200		
 TM_Wind_Elemental	torann.arimworldofmagic	yes	wind elemental	TM_Wind_ElementalR	TM_ElementalFaction	1200		
 TM_WoodGolemK	torann.arimworldofmagic	yes	wood-golem	TM_WoodGolem		100		

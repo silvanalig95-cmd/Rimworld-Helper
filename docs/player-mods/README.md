@@ -3,7 +3,12 @@
 What every mod the player has subscribed to adds, read from their own files (7 November 2026: the player ran
 `Collect-ModDefs.ps1` (kept since 28 November 2026 in `Tools/Collect-ModDefs.ps1`; it writes `RimfolkModDefs.zip` to the
 Desktop) on their computer and uploaded the result; 444 mods subscribed, 297 of them active in their mod
-list, plus the game's own data and all five DLCs). Built by `python3 Tools/mod_pool.py <collected folder>
+list, plus the game's own data and all five DLCs). Built again on 28 November 2026 from a new collection: 454 mods
+subscribed, 298 active, among them A RimWorld of Magic (Continued) with RWoM Core and RWoM Integrations (no save came
+with it, so `inSave` is blank until the next build with one). Where two subscribed mods share a package id (the
+original A RimWorld of Magic and its continuation), only the copy the game loads is read: the one the save names by
+its Steam id, else the one for the newest game version up to 1.7, else the newest Workshop item (`loaded_copy`); the
+other is listed in `mods.tsv` as not catalogued, with the reason. Built by `python3 Tools/mod_pool.py <collected folder>
 docs/player-mods <save.rws>`; run it again when the player sends a new collection.
 
 **Build from the active rows.** Each table has a column `active`: yes when the mod adding the def is in the player's
