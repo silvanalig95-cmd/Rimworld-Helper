@@ -1,6 +1,7 @@
 # Collect-NatureMods.ps1, for Rimfolk.
 #
-# Collects what Rimfolk needs to build the living land alongside the nature mods you added (28 November 2026): for each
+# Collects what Rimfolk needs to build the living land alongside the nature mods you added (28 November 2026, and
+# Atmosphere Overhaul, which you asked for the same day): for each
 # of them its About.xml and LoadFolders.xml, its Defs and Patches (the XML), its code (the DLLs, and its source if it
 # ships any) in the folders RimWorld 1.7 loads, and its settings; plus your mod list (ModsConfig.xml), to see that they
 # are enabled and in which order. Nothing is changed: it only reads, and writes one zip, RimfolkNatureMods.zip, to your
@@ -29,6 +30,7 @@ $wanted = [ordered]@{
     '3535674283' = 'Biome Compatibility Project'
     '3259367736' = 'RimKeeper - Wild Animal Procreation'
     '3652630316' = 'Animal Traits System'
+    '3830470974' = 'Atmosphere Overhaul'
 }
 
 function Test-RimWorld([string]$dir) {
@@ -224,7 +226,7 @@ if (Test-Path -LiteralPath $modsConfig) { Copy-Into $modsConfig 'ModsConfig.xml'
 foreach ($f in Get-ChildItem -LiteralPath $Config -Filter 'Mod_*.xml' -File -ErrorAction SilentlyContinue) {
     $n = $f.Name.ToLowerInvariant()
     if ($ids.Keys | Where-Object { $n.Contains($_) }) { Copy-Into $f.FullName (Join-Path 'Config' $f.Name); continue }
-    if ($n -match 'quiet|wonder|living|water|wave|weather|wildcrop|crop|biome|rimkeeper|keeper|procreat|animaltrait|trait') { Copy-Into $f.FullName (Join-Path 'Config' $f.Name) }
+    if ($n -match 'quiet|wonder|living|water|wave|weather|wildcrop|crop|biome|rimkeeper|keeper|procreat|animaltrait|trait|atmosphere') { Copy-Into $f.FullName (Join-Path 'Config' $f.Name) }
 }
 
 if (-not $OutDir) { $OutDir = [Environment]::GetFolderPath('Desktop') }

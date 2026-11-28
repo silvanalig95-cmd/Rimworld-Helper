@@ -992,6 +992,15 @@ most sense." So, in this order, three builds at a time:
   item). No save came with the zip, so `inSave` is blank until the next build with one. poolcheck unchanged (ok 1087,
   not found 45 in code, as before). `Collect-ModCode.ps1` now also takes the continuation, RWoM Core, RWoM
   Integrations and JecsLite, for the review below.
+- **To do when the player asks (28 November 2026; the player: "i really also want to integrate Atmosphere Overhaul"):
+  Atmosphere Overhaul (Acutus, `acutus.AtmosphereOverhaul.release`, Workshop 3830470974, 1.6 and 1.7; subscribed, off)
+  with Rimfolk and the living land.** It simulates air: gases, humidity, wind load, cyclones, oxygen and breathing gear,
+  vents, fans and ducts, a weather radar, water plants. The nature research of the same day had it to keep off: on 1.7,
+  reports of walls and roofs collapsing, rooms at -200 °C, a sixth of the speed, old worlds filled with ocean, and it
+  replaces the weather Rimfolk drives. Being looked into first: whether those reports still hold, what it replaces
+  (the weather choice, temperature) and how Rimfolk's weather and the living land's climate would sit beside it, its
+  settings, and the player's other mods. `Tools/Collect-NatureMods.ps1` now also takes it (its DLLs, patches,
+  settings). The player is told to back up their save before trying it.
 - **Done (28 November 2026, 0.329.0; the player: "great, can you also review all the rimworld of magic integrations, as
   these perhaps never properly worked with the outdated mod files"): a review of every A RimWorld of Magic integration
   against the Continued version**, in a worktree, merged; `docs/review-magic.md` (37 integrations, a table of each). No
