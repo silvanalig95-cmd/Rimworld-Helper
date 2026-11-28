@@ -5,6 +5,24 @@ the top of the Almanac in the game, and a letter shows the newest round once whe
 
 <!-- Written by Tools/changelog.py from Defs/AlmanacArticleDefs/Almanac_WhatsNew.xml: edit that file, then run the script. -->
 
+## The gods, looked over
+
+*28 November 2026, version 0.322.0*
+
+- Fixed: something the gods bring about no longer walks off a colonist who is drafted, in a mental break or following your order.
+- Fixed: the council's questions, the calendar's feasts, a colonist's words and the colony's letters now call each god by the name your colony knows it by.
+- Whoever tends a wounded thrumbo at the colony's edge now learns some Medicine from it.
+- Three new signs: pale moths at a light at night, water standing higher at dawn with no rain, and a shaft of sun on a grey day. Each leaves something behind: an inspired watcher, flowers where the water stood, or crops in the open a day ahead.
+
+## Mages cast on their own
+
+*28 November 2026, version 0.321.0*
+
+- With A RimWorld of Magic, each colonist who knows a plain damage spell has a button, Casts on their own, off until you turn it on.
+- A colonist switched on casts in a fight, drafted with fire at will or not, and opens each hunt with a spell, always keeping 30% of their mana or stamina.
+- On a hunt no fire is used, and Shadow Strike only on an animal that won't turn on its hunter; after the cast the hunt goes on and the kill is carried home.
+- No spell that hits an area is used, nothing is cast with someone in the line or near the target, and the magic mod's own auto-cast marks on each spell stay as they are.
+
 ## The events and the council's questions, looked over
 
 *28 November 2026, version 0.320.0*

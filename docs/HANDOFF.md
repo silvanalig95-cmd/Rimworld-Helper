@@ -948,6 +948,19 @@ most sense." So, in this order, three builds at a time:
   bill, the survivor sent home, two encounters' skills) and two choices added (the young hands' work ask, the strange
   herds' question as a two-day far errand). Tests: ReviewCampsWorldTests, FarErrandTests. For the next review: check a
   camp's or event's own code for an effect already given before adding one (the new head's gift already was).
+- **Done (28 November 2026, 0.322.0; the player's pick of the review's order: the gods third): a review of the gods**, in
+  a worktree, merged; `docs/review-gods.md`, `Tools/gods_impact_audit.py` (`--print happenings|thin|flavour|signs|
+  questions|touch|unseen`, `--write`, `--root DIR`; reuses impact_audit's reading of code). Happenings on the land (65)
+  and between the colony's people (45) all have a game effect; signs with their own effect 43 to 46; the gods' council
+  answers 77 (60 with an effect, the thin ones refusals or played out in their own frame); 4 texts naming a god and 7
+  "god's mind" lines read by hand, none a breach of the unseen rule. Two fixes: every walk, wait and carry of a god's
+  happening (`OwnHappenings.Job`, 222 calls, and the feasts' `TakeThen`) now leaves alone a colonist drafted, in a break,
+  down or on the player's order (`OwnHappenings.Held`); the colony's own words (council questions, the calendar's
+  festival names, a colonist's line, the myth at supper, the slighting letter and its reply) call a god by the colony's or
+  the speaker's name (`Worship.ArgsCalled`, `Worship.Called`; {GOD} in council questions had been the god's own name).
+  The wounded thrumbo's tender learns Medicine (200). Three signs added in the sign frame (`GodOmensReview.cs`, defs
+  `Rimfolk_GodR6_Review.xml`): Selene's moths (the watcher inspired), Murmur's water risen (flowers where it stood),
+  Helios's sun shaft (crops in the open a day ahead). Tests: ReviewGodsTests, GodTouchTests' counts.
 - **Done (28 November 2026, 0.320.0; the player's pick of the review's order: events and the council first): a review of
   the map events and the council's questions**, in a worktree, merged; `docs/review-events-council.md`. Every event's and
   question's answers sorted by what they carry (`Tools/impact_audit.py`: `--print flavour|thin|empty|allflavour|allthin|
@@ -964,24 +977,32 @@ most sense." So, in this order, three builds at a time:
   two answers added (the animal taught to wait at the kitchen door, the cook's lesson on the good meals). Tests:
   ReviewEventsCouncilTests. For the next review: changes that made an answer plainly worse by `dilemma_balance.py` were
   taken back; words with no existing effect to match (a cot in the storeroom, separate shifts) would need new mechanics.
-- **To do when the player asks (28 November 2026, brought over from Rimfolk Studio's chat; proposal first, then the
-  player's word): mages casting damage spells by themselves, in fights and while hunting.** The player: "I'm a bit
-  overwhelmed with the magic spells, and if you look at the pawn I have in my save that has spells, I like to integrate
-  some more auto-casting, you know, that the pawn has some intelligence when to cast certain spells ... at least for the
-  base damage spells, where it, for example, shoots something or does damage for, you know, a fair amount of mana that
-  it uses it maybe a bit more autonomously. It already has this feature, I think. But for example, he doesn't use it for
-  hunting. Maybe that would also be good if it uses spells, or at least just at the regular damage spells for hunting
-  as well." And: "for example, shadow strike, this one ability would also be great if you used it for hunting." Asked:
-  (A) plain damage spells cast by themselves when worth the mana, in a fight, drafted or not; (B) the same while hunting,
-  opening with a damage spell or Shadow Strike; (C) one switch per pawn ("casts damage spells by itself") with mana kept
-  in reserve, instead of a mark on every spell; "look at what the magic mod does today, say what Rimfolk would have to
-  add, and propose it to me before building". Linked: the earlier entry on A RimWorld of Magic's auto-cast drawing
-  stopping a pawn from being drafted (24 November 2026). Looked into: the mod's own auto-cast runs every ~180 ticks for
-  colonists (undrafted at 70% mana, drafted with fire at will at 20%), picks a random enemy of a hostile faction (no wild
-  animals, no manhunters), has no hunting for magic and no Shadow Strike in might's hunting, and has a mark per spell, no
-  switch per pawn and no reserve. The player's answers (28 November 2026, clickable): "Build it", Shadow Strike on "Safe
-  prey only", "No fire on hunts", "Keep 30%" in reserve. Being built in a worktree (one switch per colonist, fights and
-  hunts, area spells never, the mod's own marks left alone).
+- **Done (28 November 2026, 0.321.0; brought over from Rimfolk Studio's chat, the player's answers "Build it", "Safe prey
+  only", "No fire on hunts", "Keep 30%"): mages casting damage spells by themselves, in fights and while hunting.** The
+  player: "I'm a bit overwhelmed with the magic spells ... at least for the base damage spells ... he doesn't use it for
+  hunting", and "shadow strike, this one ability would also be great if you used it for hunting." The mod's own auto-cast
+  (every ~180 ticks for colonists; undrafted at 70% mana, drafted with fire at will at 20%; a random enemy of a hostile
+  faction, so no wild animals or manhunters; no hunting for magic, no Shadow Strike in might's; a mark per spell, no
+  switch per pawn, no reserve) is left as it is. Built, in a worktree, merged (`docs/magic-autocast.md`):
+  `Integrations/MagicAutoCast.cs` (`MagicAutoCastBook`, a game component keeping the colonists switched on, 60 at most;
+  the button "Casts on their own" on free colonists who know one of the spells, off by default; the pass at
+  `Sched.RareMagicAutoCast` = 103), `MagicAutoCastMath.cs` (the rules), `MagicAutoCastDebug.cs` (a dev log of what each
+  would cast and why not), `RomSpells` reads the might component, both components' abilities, verbs, pools and costs by
+  name. Fights: drafted with fire at will (not on a turret or on the way where sent), or undrafted when fighting or with
+  "attack" as their response to danger and not fleeing, rescuing, tending, eating, carrying or on an order; the target
+  they fight, else `enemyTarget`, else the nearest active threat in sight (manhunters and the berserk count); the
+  hardest-hitting ready spell that keeps 30% of its pool, reaches (`verb.CanHitTarget`) and has no friend in the line or
+  within its reach of the target; one cast every 500 ticks. Hunts: one opening cast per prey (a day), never fire, Shadow
+  Strike only on safe prey (`PawnUtility.GetManhunterOnDamageChance(prey, hunter, 1f)` under 0.015, not a predator, not a
+  person, at most 1.5 times the hunter's size) and first then; no other animal near the prey or in the line; the hunt
+  resumed or queued again, the body carried home. Shadow Strike drafts a colonist whose target lives: after the mod
+  brings them back, one not drafted before is undrafted, one who was has the mod's melee order ended. Spells: Headshot,
+  Lightning Bolt, Icebolt, Firebolt (fights only), Frost Ray, Shadow Strike, Spite, Throwing Knife, Arcane Bolt, Magic
+  Missile, Poison, each with its levels; Shadow Bolt left out (its orb hurts friends past the target); about 25 area
+  spells listed so none is ever used. The mod's own marks are never read or written (a source test). Setting
+  `magicAutoCast` (on; the deeper hooks). Not seen in the game yet: whether the AI-context cast passes the continuation's
+  automatic checks for colonists, Shadow Strike's return timing on 1.7, how often the cutoff allows Shadow Strike on
+  common prey. Tests: MagicAutoCastTests.
 - **Done (28 November 2026, catalogue only; the player's pick "Now, alongside"): looks for creature waves 3 and 4**, in a
   worktree, merged. `docs/portrait-art/catalogue/creatures.csv`: 354 of 360 in wave 3, 263 of 270 in wave 4 (835 with a
   look in all, 218 before), from each mod's own defs and textures where public (GitHub), else its Workshop pages and

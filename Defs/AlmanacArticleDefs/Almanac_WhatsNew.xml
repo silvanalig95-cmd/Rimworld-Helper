@@ -31,6 +31,30 @@ When you load a save after an update, a letter lists the newest round once. The 
     <rounds>
 
       <li>
+        <version>0.322.0</version>
+        <date>28 November 2026</date>
+        <title>The gods, looked over</title>
+        <points>
+          <li>Fixed: something the gods bring about no longer walks off a colonist who is drafted, in a mental break or following your order.</li>
+          <li>Fixed: the council's questions, the calendar's feasts, a colonist's words and the colony's letters now call each god by the name your colony knows it by.</li>
+          <li>Whoever tends a wounded thrumbo at the colony's edge now learns some Medicine from it.</li>
+          <li>Three new signs: pale moths at a light at night, water standing higher at dawn with no rain, and a shaft of sun on a grey day. Each leaves something behind: an inspired watcher, flowers where the water stood, or crops in the open a day ahead.</li>
+        </points>
+      </li>
+
+      <li>
+        <version>0.321.0</version>
+        <date>28 November 2026</date>
+        <title>Mages cast on their own</title>
+        <points>
+          <li>With A RimWorld of Magic, each colonist who knows a plain damage spell has a button, Casts on their own, off until you turn it on.</li>
+          <li>A colonist switched on casts in a fight, drafted with fire at will or not, and opens each hunt with a spell, always keeping 30% of their mana or stamina.</li>
+          <li>On a hunt no fire is used, and Shadow Strike only on an animal that won't turn on its hunter; after the cast the hunt goes on and the kill is carried home.</li>
+          <li>No spell that hits an area is used, nothing is cast with someone in the line or near the target, and the magic mod's own auto-cast marks on each spell stay as they are.</li>
+        </points>
+      </li>
+
+      <li>
         <version>0.320.0</version>
         <date>28 November 2026</date>
         <title>The events and the council's questions, looked over</title>
