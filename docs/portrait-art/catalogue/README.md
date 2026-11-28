@@ -165,8 +165,15 @@ out, the counts and waves written again, the hand columns kept.
 
 Waves: 1 the creatures in the save (62), 2 the base game's and the DLCs' and the insects of Vanilla Factions Expanded -
 Insectoids 2 (156), 3 the other animal and creature mods (360), 4 genetic hybrids, magic summons and other mods'
-mechanoids and drones (270), 5 PokeWorld's Pokemon (888). Waves 1 and 2 have their looks (218 creatures); a creature
-without a look is not planned.
+mechanoids and drones (270), 5 PokeWorld's Pokemon (888). Waves 1 and 2 have their looks (218 creatures), and since
+28 November 2026 (the player chose to have them written) waves 3 and 4 too: 354 of the 360 in wave 3 and 263 of the 270
+in wave 4, 835 creatures in all. Each was written from the creature's own def and texture where the mod's source is
+public, else from its Workshop page (the Rimsenal packs' own guides, Dinosauria's picture of its dinosaurs) or the real
+animal (Megafauna), and the row's `notes` say so when it isn't the mod's own files. The 13 left without one say why in
+`notes`: ReGrowth's hemolope, neutrolope, rimclaw, owlbeast, toxbeaver and toxirrel and the Rimsenal spacers' seven
+mechanoids, whose files aren't public. Seven of waves 3 and 4 look different by sex (lion, toxlion, wastedeer, crane,
+pheasant, spined gow, ancient deer) and have `male;female` with both looks. Wave 5 has none (the player, 27 November
+2026: "it doesn't really make sense to generate images for Pokemon"). A creature without a look is not planned.
 
 `plan_creatures.py` writes `creatures-NN` (one picture a row, the whole creature, square, cut out; painted in
 `style-rimworld-creatures`): three adults of each creature of wave 1, two of wave 2, one later; that many of each sex

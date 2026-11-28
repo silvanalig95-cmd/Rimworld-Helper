@@ -55,6 +55,16 @@ doesn't work anymore". The two projects and who owns what:
 
 ### Changes since the handover (newest first)
 
+- **Catalogue (28 November 2026): looks for creature waves 3 and 4.** The player chose to have them written now.
+  `creatures.csv` has a `look` for 354 of the 360 wave 3 creatures (the other mods' animals) and 263 of the 270 in wave
+  4 (genetic hybrids, magic summons, other mods' mechanoids and drones): 835 creatures with a look in all, against 218
+  before. Written from each creature's own def and texture where the mod's source is public, else from its Workshop
+  page or the real animal, said in `notes`; the 13 without one say why in `notes` (ReGrowth's hemolope, neutrolope,
+  rimclaw, owlbeast, toxbeaver, toxirrel; the Rimsenal spacers' bombito, borer, krambon, omniservant, psiloid,
+  skutaton, tagmaton). Seven rows now have `sexes` `male;female` with `maleLook` and `femaleLook` (AEXP_Lion,
+  VAEWaste_Toxlion, VAEWaste_Wastedeer, VAERoy_Crane, VAERoy_Pheasant, AA_SpinedGow, DevDesigner_AncientDeer). Wave 5
+  (PokeWorld) has none. No column added, renamed or removed; waves, groups and every other row as they were.
+
 - **Rimfolk 0.306.1 (27 November 2026): no Pokémon in missing.csv.** The player: "it doesn't really make sense to
   generate images for Pokemon because it just will not look like the actual Pokemon". The game writes no "creature"
   line for a PokéWorld creature any more; old lines of the file stay until it is written again. The player also holds
